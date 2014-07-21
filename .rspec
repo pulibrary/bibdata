@@ -1,3 +1,9 @@
 --color
+<<<<<<< HEAD
 --require spec_helper
  --format documentation
+=======
+--warnings
+--require spec_helper
+--format d
+>>>>>>> 640d9c7... initial commit
