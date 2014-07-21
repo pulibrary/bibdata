@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>00964cam a2200265 i 4500</marc:leader>
+    <marc:controlfield tag="001">27629</marc:controlfield>
+    <marc:controlfield tag="005">20120709071455.0</marc:controlfield>
+    <marc:controlfield tag="008">801010s1964    miua    ab    00010 eng a</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)83431252</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG19035810-B</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">AAJ1990TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Singh, Digvijai,</marc:subfield>
+      <marc:subfield code="d">1934-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="4">
+      <marc:subfield code="a">The advanced concepts of the stability of two-wheeled vehicles :</marc:subfield>
+      <marc:subfield code="b">application of mathematical analysis to actual vehicles /</marc:subfield>
+      <marc:subfield code="c">by Digvijai Singh.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Madison :</marc:subfield>
+      <marc:subfield code="b">University of Wisconsin,</marc:subfield>
+      <marc:subfield code="c">1964.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">x, 203 p. :</marc:subfield>
+      <marc:subfield code="b">ill.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Vita.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Thesis--University of Wisconsin.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Microfilm. Ann Arbor : University Microfilms, 1964. -- 1 reel ;  35 mm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"64-10, 311"</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Bibliography: p. 202-203.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2="0">
+      <marc:subfield code="b">rcppf</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">MICROFILM 03732</marc:subfield>
+      <marc:subfield code="x">tr fr flm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19921028</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19900820000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">10/10/80</marc:subfield>
+      <marc:subfield code="s">9114</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">NJPG19035810B</marc:subfield>
+      <marc:subfield code="d">05/05/81</marc:subfield>
+      <marc:subfield code="c">PMG</marc:subfield>
+      <marc:subfield code="b">KSG</marc:subfield>
+      <marc:subfield code="i">801010</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
