@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>00731cam a2200229 a 4500</marc:leader>
+        <marc:controlfield tag="001">345682</marc:controlfield>
+        <marc:controlfield tag="005">20120521194311.0</marc:controlfield>
+        <marc:controlfield tag="008">861209s1985    enk           00010 eng d</marc:controlfield>
+        <marc:datafield tag="020" ind1=" " ind2=" ">
+            <marc:subfield code="a">0947752196</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)13154067</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(CStRLIN)NJPG86-B55361</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="9">ABS1044TS</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">NBiSU</marc:subfield>
+            <marc:subfield code="c">NBiSU</marc:subfield>
+            <marc:subfield code="d">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="1" ind2=" ">
+            <marc:subfield code="a">White, Michael M.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="a">Opportunity in crisis :</marc:subfield>
+            <marc:subfield code="b">money and power in world politics 1986-88 /</marc:subfield>
+            <marc:subfield code="c">Michael M. White.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">London :</marc:subfield>
+            <marc:subfield code="b">Firethorn Press,</marc:subfield>
+            <marc:subfield code="c">1985.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">341 p. ;</marc:subfield>
+            <marc:subfield code="c">24 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">International relations.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">World politics</marc:subfield>
+            <marc:subfield code="y">1985-1995.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2=" ">
+            <marc:subfield code="a">Smith, Bob F.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2="2">
+            <marc:subfield code="a">Jones, Mary.</marc:subfield>
+            <marc:subfield code="t">Book by Mary.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="998" ind1=" " ind2=" ">
+            <marc:subfield code="a">12/09/86</marc:subfield>
+            <marc:subfield code="s">9114</marc:subfield>
+            <marc:subfield code="n">NjP</marc:subfield>
+            <marc:subfield code="w">NYBG86B26358</marc:subfield>
+            <marc:subfield code="d">12/09/86</marc:subfield>
+            <marc:subfield code="c">DF</marc:subfield>
+            <marc:subfield code="b">LDP</marc:subfield>
+            <marc:subfield code="i">861209</marc:subfield>
+            <marc:subfield code="l">NJPG</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="911" ind1=" " ind2=" ">
+            <marc:subfield code="a">19921028</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="912" ind1=" " ind2=" ">
+            <marc:subfield code="a">19900827000000.0</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+<!--     <marc:record type="Holdings">
+        <marc:leader>00244cx  a2200109z  4500</marc:leader>
+        <marc:controlfield tag="001">377678</marc:controlfield>
+        <marc:controlfield tag="004">345682</marc:controlfield>
+        <marc:controlfield tag="005">20020701101040.0</marc:controlfield>
+        <marc:controlfield tag="008">0006122u    0   1001uu   0000000</marc:controlfield>
+        <marc:datafield tag="014" ind1="1" ind2=" ">
+            <marc:subfield code="a">ABS1044TS001</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="014" ind1="0" ind2=" ">
+            <marc:subfield code="9">000377677</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="852" ind1="0" ind2="0">
+            <marc:subfield code="b">rcppa</marc:subfield>
+            <marc:subfield code="t">1</marc:subfield>
+            <marc:subfield code="h">JX1395</marc:subfield>
+            <marc:subfield code="i">.W44</marc:subfield>
+            <marc:subfield code="x">tr fr pitn</marc:subfield>
+        </marc:datafield>
+    </marc:record> -->
+</marc:collection>

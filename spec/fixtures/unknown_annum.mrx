@@ -1,0 +1,14 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>00623cam a22002055  4500</marc:leader>
+        <marc:controlfield tag="001">1160682</marc:controlfield>
+        <marc:controlfield tag="005">20100812121323.0</marc:controlfield>
+        <marc:controlfield tag="008">911212sBLAH    sp            000 0 spa d</marc:controlfield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">London :</marc:subfield>
+            <marc:subfield code="b">Firethorn Press,</marc:subfield>
+            <!-- 'x' below could be any character except a \d -->
+            <marc:subfield code="c">192x.</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>
