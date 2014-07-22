@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - jruby # JRuby most recent
+# uncomment this line if your project needs to run something other than `rake`:
+script: bundle exec rspec spec
+
+branches:
+  only:
+    - development
+notifications:
+  email:
+    recipients:
+      - "tampakis@princeton.edu"
+      - "jstroop@princeton.edu"
+      - "kr2@princeton.edu"
+    on_success: "change"
+    on_failure: "always"
+    template:
+      - "%{repository}//%{branch}@%{commit} by %{author}: %{message} - %{build_url}"
