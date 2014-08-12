@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>00964cam a2200265 i 4500</marc:leader>
+    <marc:controlfield tag="001">27629</marc:controlfield>
+    <marc:controlfield tag="005">20120709071455.0</marc:controlfield>
+    <marc:controlfield tag="008">801010s1964    miua    ab    00010 eng a</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)83431252</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG19035810-B</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">AAJ1990TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Singh, Digvijai,</marc:subfield>
+      <marc:subfield code="d">1934-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="4">
+      <marc:subfield code="a">The advanced concepts of the stability of two-wheeled vehicles :</marc:subfield>
+      <marc:subfield code="b">application of mathematical analysis to actual vehicles /</marc:subfield>
+      <marc:subfield code="c">by Digvijai Singh.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Madison :</marc:subfield>
+      <marc:subfield code="b">University of Wisconsin,</marc:subfield>
+      <marc:subfield code="c">1964.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">x, 203 p. :</marc:subfield>
+      <marc:subfield code="b">ill.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Vita.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Thesis--University of Wisconsin.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Microfilm. Ann Arbor : University Microfilms, 1964. -- 1 reel ;  35 mm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"64-10, 311"</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Bibliography: p. 202-203.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2="0">
+      <marc:subfield code="b">rcppf</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">MICROFILM 03732</marc:subfield>
+      <marc:subfield code="x">tr fr flm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19921028</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19900820000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">10/10/80</marc:subfield>
+      <marc:subfield code="s">9114</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">NJPG19035810B</marc:subfield>
+      <marc:subfield code="d">05/05/81</marc:subfield>
+      <marc:subfield code="c">PMG</marc:subfield>
+      <marc:subfield code="b">KSG</marc:subfield>
+      <marc:subfield code="i">801010</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+<!-- </marc:collection> -->
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"> -->
+    <marc:record type="Bibliographic">
+        <marc:leader>00731cam a2200229 a 4500</marc:leader>
+        <marc:controlfield tag="001">345682</marc:controlfield>
+        <marc:controlfield tag="005">20120521194311.0</marc:controlfield>
+        <marc:controlfield tag="008">861209s1985    enk           00010 eng d</marc:controlfield>
+        <marc:datafield tag="020" ind1=" " ind2=" ">
+            <marc:subfield code="a">0947752196</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)13154067</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(CStRLIN)NJPG86-B55361</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="9">ABS1044TS</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">NBiSU</marc:subfield>
+            <marc:subfield code="c">NBiSU</marc:subfield>
+            <marc:subfield code="d">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="1" ind2=" ">
+            <marc:subfield code="a">White, Michael M.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="a">Opportunity in crisis :</marc:subfield>
+            <marc:subfield code="b">money and power in world politics 1986-88 /</marc:subfield>
+            <marc:subfield code="c">Michael M. White.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">London :</marc:subfield>
+            <marc:subfield code="b">Firethorn Press,</marc:subfield>
+            <marc:subfield code="c">1985.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">341 p. ;</marc:subfield>
+            <marc:subfield code="c">24 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">International relations.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">World politics</marc:subfield>
+            <marc:subfield code="y">1985-1995.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2=" ">
+            <marc:subfield code="a">Smith, Bob F.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2="2">
+            <marc:subfield code="a">Jones, Mary.</marc:subfield>
+            <marc:subfield code="t">Book by Mary.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="998" ind1=" " ind2=" ">
+            <marc:subfield code="a">12/09/86</marc:subfield>
+            <marc:subfield code="s">9114</marc:subfield>
+            <marc:subfield code="n">NjP</marc:subfield>
+            <marc:subfield code="w">NYBG86B26358</marc:subfield>
+            <marc:subfield code="d">12/09/86</marc:subfield>
+            <marc:subfield code="c">DF</marc:subfield>
+            <marc:subfield code="b">LDP</marc:subfield>
+            <marc:subfield code="i">861209</marc:subfield>
+            <marc:subfield code="l">NJPG</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="911" ind1=" " ind2=" ">
+            <marc:subfield code="a">19921028</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="912" ind1=" " ind2=" ">
+            <marc:subfield code="a">19900827000000.0</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+<!--     <marc:record type="Holdings">
+        <marc:leader>00244cx  a2200109z  4500</marc:leader>
+        <marc:controlfield tag="001">377678</marc:controlfield>
+        <marc:controlfield tag="004">345682</marc:controlfield>
+        <marc:controlfield tag="005">20020701101040.0</marc:controlfield>
+        <marc:controlfield tag="008">0006122u    0   1001uu   0000000</marc:controlfield>
+        <marc:datafield tag="014" ind1="1" ind2=" ">
+            <marc:subfield code="a">ABS1044TS001</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="014" ind1="0" ind2=" ">
+            <marc:subfield code="9">000377677</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="852" ind1="0" ind2="0">
+            <marc:subfield code="b">rcppa</marc:subfield>
+            <marc:subfield code="t">1</marc:subfield>
+            <marc:subfield code="h">JX1395</marc:subfield>
+            <marc:subfield code="i">.W44</marc:subfield>
+            <marc:subfield code="x">tr fr pitn</marc:subfield>
+        </marc:datafield>
+    </marc:record> -->
+<!-- </marc:collection> -->
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"> -->
+  <marc:record>
+    <marc:leader>01445cas a2200337 a 4500</marc:leader>
+    <marc:controlfield tag="001">321</marc:controlfield>
+    <marc:controlfield tag="005">20110504105753.0</marc:controlfield>
+    <marc:controlfield tag="008">801208c19789999couqr p   bc  0uuua0eng d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)7375602</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG0815-S</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">AAF4557TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="110" ind1="2" ind2=" ">
+      <marc:subfield code="a">World Data Center A for Glaciology.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">New accessions list /</marc:subfield>
+      <marc:subfield code="c">World Data Center A for Glaciology [Snow and Ice].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Boulder, Col. :</marc:subfield>
+      <marc:subfield code="b">The Center,</marc:subfield>
+      <marc:subfield code="c">1978-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">v. ;</marc:subfield>
+      <marc:subfield code="c">22x28 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="362" ind1="0" ind2=" ">
+      <marc:subfield code="a">No. 1 (Dec. 1978)-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="550" ind1=" " ind2=" ">
+      <marc:subfield code="a">"Operated for Environmental Data Service (later Environmental Data and Information Service) NOAA, by Cooperative Institute for Research in Environmental Sciences, University of Colorado."</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Description based on: No. 19 (Dec. 1983); title from caption.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="610" ind1="2" ind2="0">
+      <marc:subfield code="a">World Data Center A for Glaciology</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Glaciology</marc:subfield>
+      <marc:subfield code="x">Bibliography</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Snow</marc:subfield>
+      <marc:subfield code="x">Bibliography</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Ice</marc:subfield>
+      <marc:subfield code="x">Bibliography</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="1" ind2=" ">
+      <marc:subfield code="a">United States.</marc:subfield>
+      <marc:subfield code="b">Environmental Data and Information Service.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="1" ind2=" ">
+      <marc:subfield code="a">United States.</marc:subfield>
+      <marc:subfield code="b">Environmental Data Service.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">University of Colorado, Boulder.</marc:subfield>
+      <marc:subfield code="b">Cooperative Institute for Research in Environmental Sciences.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">scidoc</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z6033.G5</marc:subfield>
+      <marc:subfield code="i">xW6</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19921028</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19951211061438.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="948" ind1=" " ind2=" ">
+      <marc:subfield code="a">AACR2 CONV.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">02/02/90</marc:subfield>
+      <marc:subfield code="s">9114</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">NJPG0815S</marc:subfield>
+      <marc:subfield code="d">10/05/81</marc:subfield>
+      <marc:subfield code="c">APG</marc:subfield>
+      <marc:subfield code="b">EE</marc:subfield>
+      <marc:subfield code="i">900202</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+<!-- </marc:collection> -->
+<!-- <?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd"> -->
+    <marc:record type="Bibliographic">
+        <marc:leader>01383cam a2200325 a 4500</marc:leader>
+        <marc:controlfield tag="001">6139836</marc:controlfield>
+        <marc:controlfield tag="005">20110201122126.0</marc:controlfield>
+        <marc:controlfield tag="008">100526s2009    it a     c    000 0bger d</marc:controlfield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)ocn650437639</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(Shamansky)  107347</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">C3L</marc:subfield>
+            <marc:subfield code="c">C3L</marc:subfield>
+            <marc:subfield code="d">MZA</marc:subfield>
+            <marc:subfield code="d">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)650437639</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="041" ind1="0" ind2=" ">
+            <marc:subfield code="a">gerita</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="043" ind1=" " ind2=" ">
+            <marc:subfield code="a">e-it---</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="050" ind1="1" ind2="4">
+            <marc:subfield code="a">N5273.2.M47</marc:subfield>
+            <marc:subfield code="b">F36 2009</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="0" ind2="4">
+            <marc:subfield code="a">Die Familie Menz und die Stadt Bozen =</marc:subfield>
+            <marc:subfield code="b">La famiglia Menz e la città di Bolzano /</marc:subfield>
+            <marc:subfield code="c">[Kuratorin/ a cura di: Silvia Spada Pintarelli].</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">Bozen :</marc:subfield>
+            <marc:subfield code="b">Handels-, Industrie-, Handwerks- und Landwirtschaftskammer,</marc:subfield>
+            <marc:subfield code="c">2009.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">59 p. :</marc:subfield>
+            <marc:subfield code="b">ill. (chiefly col.) ;</marc:subfield>
+            <marc:subfield code="c">27 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="490" ind1="1" ind2=" ">
+            <marc:subfield code="a">Heft = Quaderno / Merkantilmuseum Bozen ;</marc:subfield>
+            <marc:subfield code="v">1</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Published on the occasion of the permanent exhibition held in Bolzano, Italy, Merkantilmuseum.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Title and number of series appear on cover.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="504" ind1=" " ind2=" ">
+            <marc:subfield code="a">Includes bibliographical references (p. 56).</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="546" ind1=" " ind2=" ">
+            <marc:subfield code="a">Text in German and Italian.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="600" ind1="3" ind2="0">
+            <marc:subfield code="a">Menz family</marc:subfield>
+            <marc:subfield code="x">Art patronage</marc:subfield>
+            <marc:subfield code="v">Exhibitions.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Art patrons</marc:subfield>
+            <marc:subfield code="z">Italy</marc:subfield>
+            <marc:subfield code="z">Bolzano (Trentino-Alto Adige)</marc:subfield>
+            <marc:subfield code="v">Exhibitions.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Art</marc:subfield>
+            <marc:subfield code="z">Italy</marc:subfield>
+            <marc:subfield code="z">Bolzano (Trentino-Alto Adige)</marc:subfield>
+            <marc:subfield code="v">Exhibitions.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2=" ">
+            <marc:subfield code="a">Spada Pintarelli, Silvia.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="830" ind1=" " ind2="0">
+            <marc:subfield code="a">Heft = Quaderno / Merkantilmuseum Bozen ;</marc:subfield>
+            <marc:subfield code="v">1.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="904" ind1=" " ind2=" ">
+            <marc:subfield code="a">jar</marc:subfield>
+            <marc:subfield code="b">a</marc:subfield>
+            <marc:subfield code="h">m</marc:subfield>
+            <marc:subfield code="c">b</marc:subfield>
+            <marc:subfield code="e">20100614</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="902" ind1=" " ind2=" ">
+            <marc:subfield code="a">jar</marc:subfield>
+            <marc:subfield code="b">m</marc:subfield>
+            <marc:subfield code="6">a</marc:subfield>
+            <marc:subfield code="7">m</marc:subfield>
+            <marc:subfield code="d">v</marc:subfield>
+            <marc:subfield code="f">1</marc:subfield>
+            <marc:subfield code="e">20110201</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+<!--     <marc:record type="Holdings">
+        <marc:leader>00185cx  a22000851  4500</marc:leader>
+        <marc:controlfield tag="001">6170048</marc:controlfield>
+        <marc:controlfield tag="004">6139836</marc:controlfield>
+        <marc:controlfield tag="005">20110201122252.0</marc:controlfield>
+        <marc:controlfield tag="008">1005290u||||8|||4001uu|||0000000</marc:controlfield>
+        <marc:datafield tag="852" ind1="0" ind2=" ">
+            <marc:subfield code="b">rcppj</marc:subfield>
+            <marc:subfield code="h">N5273.2.M47</marc:subfield>
+            <marc:subfield code="i">F36 2009</marc:subfield>
+        </marc:datafield>
+    </marc:record> -->
+  <marc:record>
+    <marc:leader>00996cam a2200301Ia 4500</marc:leader>
+    <marc:controlfield tag="001">3</marc:controlfield>
+    <marc:controlfield tag="005">20100616155532.0</marc:controlfield>
+    <marc:controlfield tag="008">890815s1988    it       r    001 0 ita d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm19590730</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn301985443</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(NjP)3</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPGRRP-B</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)301985443</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)19590730</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">IUL</marc:subfield>
+      <marc:subfield code="c">IUL</marc:subfield>
+      <marc:subfield code="d">OCL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">e-it---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">Z342</marc:subfield>
+      <marc:subfield code="b">.M47 1988</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Messina, Claudio M.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Guida ragionata alle librerie antiquarie e d'occasione d'Italia, 1989 /</marc:subfield>
+      <marc:subfield code="c">Claudio M. Messina; con uno scritto di Umberto Eco.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="250" ind1=" " ind2=" ">
+      <marc:subfield code="a">2. ed.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Roma :</marc:subfield>
+      <marc:subfield code="b">Biblioteca del Vascello, Stampa Alternativa,</marc:subfield>
+      <marc:subfield code="c">1988.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">220 p. ;</marc:subfield>
+      <marc:subfield code="c">17 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Booksellers and bookselling</marc:subfield>
+      <marc:subfield code="z">Italy</marc:subfield>
+      <marc:subfield code="v">Directories.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="2">
+      <marc:subfield code="u">http://d-nb.info/991834119/04</marc:subfield>
+      <marc:subfield code="3">Inhaltsverzeichnis</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z342</marc:subfield>
+      <marc:subfield code="i">.M48 1988</marc:subfield>
+      <marc:subfield code="x">tr fr f</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">rcpxc</marc:subfield>
+      <marc:subfield code="h">Z342</marc:subfield>
+      <marc:subfield code="i">.M48 1988</marc:subfield>
+      <marc:subfield code="x">tr fr ctsnrf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">3</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>03976cam a2200577 a 4500</marc:leader>
+    <marc:controlfield tag="001">3871398</marc:controlfield>
+    <marc:controlfield tag="005">20080613105637.0</marc:controlfield>
+    <marc:controlfield tag="008">030404s1604    cc            000 0 chi d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn153844960</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)153844960</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPX97-B2556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">CStRLIN</marc:subfield>
+      <marc:subfield code="c">PULEA</marc:subfield>
+      <marc:subfield code="d">PULEA</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">MAIN</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="079" ind1=" " ind2=" ">
+      <marc:subfield code="a">ocm52579498</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju :</marc:subfield>
+      <marc:subfield code="b">[si ji yi bai qi shi juan] /</marc:subfield>
+      <marc:subfield code="c">Zhu Mu bian. Xin bian gu jin shi wen lei ju xin ji : san shi liu juan ; Xin bian gu jin shi wen lei ju wai ji : shi wu juan / Fu Dayong bian. Xin bian gu jin shi wen lei ju yi ji : shi wu juan / Zhu Yuan bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="0">
+      <marc:subfield code="6">245-01</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚 :</marc:subfield>
+      <marc:subfield code="b">[四集一百七十卷] /</marc:subfield>
+      <marc:subfield code="c">祝穆編. 新編古今事文類聚新集 : 三十六卷 ; 新編古今事文類聚外集 : 十五卷 / 富大用編. 新編古今事文類聚遺集 : 十五卷 / 祝淵編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Shi wen lei ju</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2=" ">
+      <marc:subfield code="6">246-02</marc:subfield>
+      <marc:subfield code="a">事文類聚</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="0">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Gu jin shi wen lei ju</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2="0">
+      <marc:subfield code="6">246-03</marc:subfield>
+      <marc:subfield code="a">古今事文類聚</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Jinling :</marc:subfield>
+      <marc:subfield code="b">Tang Fuchun De shou tang,</marc:subfield>
+      <marc:subfield code="c">Ming Wanli Jia chen [32 nian, 1604]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-04</marc:subfield>
+      <marc:subfield code="a">金陵 :</marc:subfield>
+      <marc:subfield code="b">唐富春德壽堂,</marc:subfield>
+      <marc:subfield code="c">明萬曆甲辰 [32年, 1604]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">112 v. ;</marc:subfield>
+      <marc:subfield code="c">25 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">In 14 cases.</marc:subfield>
+      <marc:subfield code="5">NjP-G</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Encyclopedias and dictionaries, Chinese.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="7">
+      <marc:subfield code="6">880-05</marc:subfield>
+      <marc:subfield code="a">Zi bu</marc:subfield>
+      <marc:subfield code="x">Lei shu lei.</marc:subfield>
+      <marc:subfield code="2">sk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2="7">
+      <marc:subfield code="6">650-05</marc:subfield>
+      <marc:subfield code="a">子部</marc:subfield>
+      <marc:subfield code="x">類書類.</marc:subfield>
+      <marc:subfield code="2">sk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-06</marc:subfield>
+      <marc:subfield code="a">Zhu, Mu,</marc:subfield>
+      <marc:subfield code="d">13th cent.,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-06</marc:subfield>
+      <marc:subfield code="a">祝穆,</marc:subfield>
+      <marc:subfield code="d">13th cent.,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-07</marc:subfield>
+      <marc:subfield code="a">Fu, Dayong,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-07</marc:subfield>
+      <marc:subfield code="a">富大用,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-08</marc:subfield>
+      <marc:subfield code="a">Zhu, Yuan,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-08</marc:subfield>
+      <marc:subfield code="a">祝淵,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-09</marc:subfield>
+      <marc:subfield code="a">Tang, Fuchun,</marc:subfield>
+      <marc:subfield code="e">ke.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-09</marc:subfield>
+      <marc:subfield code="a">唐富春,</marc:subfield>
+      <marc:subfield code="e">刻.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="6">880-10</marc:subfield>
+      <marc:subfield code="a">De shou tang,</marc:subfield>
+      <marc:subfield code="e">ke.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="2" ind2=" ">
+      <marc:subfield code="6">710-10</marc:subfield>
+      <marc:subfield code="a">德壽堂,</marc:subfield>
+      <marc:subfield code="e">刻.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-11</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju xin ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-11</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚新集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-12</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju wai ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-12</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚外集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-13</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju yi ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-13</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚遺集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="797" ind1="2" ind2=" ">
+      <marc:subfield code="a">CHRBA.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="1">
+      <marc:subfield code="3">First page of main text</marc:subfield>
+      <marc:subfield code="u">http://digital.lib.cuhk.edu.hk/crbp/servlet/list?action=afs&amp;startPos=1&amp;id=NJPX97B2556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP-G</marc:subfield>
+      <marc:subfield code="b">HYC</marc:subfield>
+      <marc:subfield code="j">TC348/371</marc:subfield>
+      <marc:subfield code="k">Rare</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 1-8) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 9-16) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 17-24) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 25-32) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 33-40) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 41-48) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 49-56) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 57-64) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 65-72) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 73-80) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 81-88) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 89-96) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 97-104) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 105-112) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">CIN=HXZ; OID=MMH</marc:subfield>
+      <marc:subfield code="z">Library has: (vol. 1-8); (vol. 9-16); (vol. 17-24); (vol. 25-32); (vol. 33-40); (vol. 41-48); (vol. 49-56); (vol. 57-64); (vol. 65-72); (vol. 73-80); (vol. 81-88); (vol. 89-96); (vol. 97-104); (vol. 105-112)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">卷端題"金陵唐富春刊".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">框21.2 x 14.6公分, 11行24字, 白口, 四周單邊, 單黑魚尾, 版心上鐫"事文類聚"及集次, 中鐫卷次, 下鐫"德壽堂梓".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">"重刻事文類聚序"後鐫"萬曆甲辰孟春之吉金谿唐富春精校補遺重刻".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hycrare</marc:subfield>
+      <marc:subfield code="h">TC348/371</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">C0</marc:subfield>
+      <marc:subfield code="b">PULEA</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01580ccm a2200385 a 4500</marc:leader>
+    <marc:controlfield tag="001">489972</marc:controlfield>
+    <marc:controlfield tag="005">20120805100713.0</marc:controlfield>
+    <marc:controlfield tag="008">880504m19781985au opbu        n 1  ger  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   87750014 /M </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="3" ind2="0">
+      <marc:subfield code="a">13640a</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="3" ind2="0">
+      <marc:subfield code="a">13640b</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="2" ind2="2">
+      <marc:subfield code="a">U.E. 12864</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)15281357</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG88-C360</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">ACG5686TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2=" ">
+      <marc:subfield code="a">M1500.B48</marc:subfield>
+      <marc:subfield code="b">L8 1985</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Berg, Alban,</marc:subfield>
+      <marc:subfield code="d">1885-1935.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Lulu :</marc:subfield>
+      <marc:subfield code="b">Oper nach Frank Wedekinds Tragödien Erdgeist und Büchse der Pandora /</marc:subfield>
+      <marc:subfield code="c">von Alban Berg ; herausgegeben von H.E. Apostel, 1963 ; revidiert von Friedrich Cerha, 1985.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="254" ind1=" " ind2=" ">
+      <marc:subfield code="a">Partitur.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Wien :</marc:subfield>
+      <marc:subfield code="b">Universal Edition,</marc:subfield>
+      <marc:subfield code="c">c1978-c1985.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 miniature score (2 v. (viii, 1008 p.)) :</marc:subfield>
+      <marc:subfield code="b">facsim. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">The orchestral score of Act 3 prepared by Friedrich Cerha from the composer's short score; libretto by the composer.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">[1]. I. und II. Akt -- [2]. III. Akt.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Publisher's no.: Universal Edition no. 13640a-b.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Operas</marc:subfield>
+      <marc:subfield code="x">Scores.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Apostel, Hans Erich,</marc:subfield>
+      <marc:subfield code="d">1901-1972.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cerha, Friedrich.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Wedekind, Frank,</marc:subfield>
+      <marc:subfield code="d">1864-1918.</marc:subfield>
+      <marc:subfield code="t">Erdgeist.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Wedekind, Frank,</marc:subfield>
+      <marc:subfield code="d">1864-1918.</marc:subfield>
+      <marc:subfield code="t">Büchse der Pandora.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">sv</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">M1500.B37</marc:subfield>
+      <marc:subfield code="i">L9 1985</marc:subfield>
+      <marc:subfield code="x">tr fr svl</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">mus</marc:subfield>
+      <marc:subfield code="t">2</marc:subfield>
+      <marc:subfield code="h">M1500.B37</marc:subfield>
+      <marc:subfield code="i">L9 1985</marc:subfield>
+      <marc:subfield code="x">tr fr svl</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19930311</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19930218000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="948" ind1=" " ind2=" ">
+      <marc:subfield code="a">TRANS FR F</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">02/18/93</marc:subfield>
+      <marc:subfield code="s">9110</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">DCLC87750014C</marc:subfield>
+      <marc:subfield code="d">05/04/88</marc:subfield>
+      <marc:subfield code="c">BGN</marc:subfield>
+      <marc:subfield code="b">CS</marc:subfield>
+      <marc:subfield code="i">930218</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
+
