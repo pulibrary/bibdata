@@ -1,6 +1,8 @@
 # Traject config goes here
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
+require 'lib/translation_map'
+require 'lib/umich_format'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -75,7 +77,11 @@ to_field 'pub_created_t', extract_marc('260abcefg:264abc', :first => true)
 #    340 XX 3abcdefhl
 
 
-to_field 'format',    marc_formats
+to_field 'format' do |record, accumulator|
+    fmt = UMichFormat.new(record).format_and_types
+    # accumulator << TranslationMap.new("umich/format")[ fmt ]
+    accumulator << TranslationMap.new("umich/format").translate_array!(fmt)
+end
 
 to_field 'medium_support_display', extract_marc('340')
 
