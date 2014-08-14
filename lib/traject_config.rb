@@ -476,6 +476,10 @@ to_field 'original_language_display', extract_marc('880abc')
 to_field 'location_display', extract_marc('852b') do |record, accumulator|
   accumulator = TranslationMap.new("locations").translate_array!(accumulator)
 end
+
+to_field 'location', extract_marc('852b') do |record, accumulator|
+  accumulator = TranslationMap.new("locations").translate_array!(accumulator)
+end
 # # #    1000
 
 
