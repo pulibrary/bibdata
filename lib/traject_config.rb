@@ -231,6 +231,17 @@ to_field 'has_subseries_display', extract_marc('762at')
 #    840 XX anpv
 to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:411acdefgklnpqtuv:440anpvx:490avx:800abcdefghklmnopqrstuv:810abcdefgklnt:811abcdefghklnpqstuv:830adfghklmnoprstv:840anpv')
 
+# Other version(s):
+#    3500 020Z020A
+#    3500 020A020Z
+#    3500 024A022A
+#    3500 022A024A
+#    3500 BBID776W
+#    3500 BBID787W
+#    3500 776X022A
+#    3500 022A776X
+#    3500 020A776Z
+#    3500 776Z020A
 # to_field 'Other version(s)_display', extract_marc()
 # # #    3500 020Z020A
 # # #    3500 020A020Z
@@ -243,273 +254,23 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 # # #    3500 020A776Z
 # # #    3500 776Z020A
 
+# Contained in:
+#    3500 BBID773W
 # to_field 'Contained in_display', extract_marc()
 # # #    3500 BBID773W
 
-# to_field 'Restrictions note_display', extract_marc()
-# # #    506 XX 3abcde
-
-# to_field 'Biographical/Historical note_display', extract_marc()
-# # #    545 XX ab
-
-# to_field 'Summary note_display', extract_marc()
-# # #    520 XX 3ab
-
-# to_field 'Notes_display', extract_marc()
-# # #    500 XX 3a
-# # #    501 XX a
-# # #    503 XX a
-# # #    502 XX a
-# # #    504 XX ab
-# # #    508 XX a
-# # #    513 XX ab
-# # #    514 XX abcdefghijkm
-# # #    515 XX a
-# # #    518 XX 3a
-# # #    521 XX 3ab
-# # #    522 XX a
-# # #    523 XX a
-# # #    525 XX a
-# # #    527 XX a
-# # #    534 XX abcefklmnpt
-# # #    535 XX 3abcdg
-# # #    536 XX abcdefgh
-# # #    537 XX a
-# # #    538 XX a
-# # #    544 XX 3abcden
-# # #    547 XX a
-# # #    550 XX a
-# # #    556 XX a
-# # #    562 XX 3abcde
-# # #    565 XX 3abcde
-# # #    567 XX a
-# # #    570 XX a
-
-# to_field 'Binding note_display', extract_marc()
-# # #    563 XX au3
-
-# to_field 'Local notes_display', extract_marc()
-# # #    590 XX a
-# # #    591 XX a
-# # #    592 XX a
-
-# to_field 'Rights and reproductions note_display', extract_marc()
-# # #    540 XX 3abcd
-
-# to_field 'Exhibitions note_display', extract_marc()
-# # #    585 XX 3a
-
-# to_field 'Participant(s)/Performer(s)_display', extract_marc()
-# # #    511 XX a
-
-# to_field 'Language(s)_display', extract_marc()
-# # #    546 XX 3a
-
-# to_field 'Script_display', extract_marc()
-# # #    546 XX b
-
-# to_field 'Contents_display', extract_marc()
-# # #    505 0X agrt
-# # #    505 8X agrt
-
-# to_field 'Incomplete contents_display', extract_marc()
-# # #    505 1X agrt
-
-# to_field 'Partial contents_display', extract_marc()
-# # #    505 2X agrt
-
-# to_field 'Provenance_display', extract_marc()
-# # #    561 XX 3ab
-# # #    796 XX abcqde
-# # #    797 XX abcqde
-
-# to_field 'Source of acquisition_display', extract_marc()
-# # #    541 XX abcdefhno36
-
-# to_field 'Publications about_display', extract_marc()
-# # #    581 XX az36
-
-# to_field 'Indexed in_display', extract_marc()
-# # #    510 0X 3abc
-# # #    510 1X 3abc
-# # #    510 2X 3abc
-
-# to_field 'References_display', extract_marc()
-# # #    510 3X 3abc
-# # #    510 4X 3abc
-
-# to_field 'Cite as_display', extract_marc()
-# # #    524 XX 23a
-
-# to_field 'Other format(s)_display', extract_marc()
-# # #    530 XX 3abcd
-# # #    533 XX 3abcdefmn
-
-# to_field 'Cumulative index/Finding aid_display', extract_marc()
-# # #    555 XX 3abcd
-
-# to_field 'Subject(s)_display', extract_marc()
-# # #    600 XX acdfklmnopqrst{v--%}{x--%}{y--%}{z--%} S abcdfklmnopqrtvxyz
-# # #    610 XX abfklmnoprst{v--%}{x--%}{y--%}{z--%} S abfklmnoprstvxyz
-# # #    611 XX abcdefgklnpqst{v--%}x--%}{y--%}{z--%} S abcdefgklnpqstvxyz
-# # #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
-# # #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
-# # #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
-
-# to_field 'Form/Genre_display', extract_marc()
-# # #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-
-# to_field 'Related name(s)_display', extract_marc()
-# # #    700 XX aqbcdefghklmnoprstx A aq
-# # #    710 XX abcdefghklnoprstx A ab
-
-# to_field 'Place name(s)_display', extract_marc()
-# # #    752 XX abcd
-
-# to_field 'Other title(s)_display', extract_marc()
-# # #    246 XX abfnp
-# # #    210 XX ab
-# # #    211 XX a
-# # #    212 XX a
-# # #    214 XX a
-# # #    222 XX ab
-# # #    242 XX abchnp
-# # #    243 XX adfklmnoprs
-# # #    247 XX abfhnp
-# # #    730 XX aplskfmnor
-# # #    740 XX ahnp
-
-# to_field 'In_display', extract_marc()
-# # #    773 XX 3abdghikmnoprst
-
-# to_field 'Constituent part(s)_display', extract_marc()
-# # #    774 XX abcdghikmnrstu
-
-# to_field 'ISBN_display', extract_marc()
-# # #    020 XX a
-
-# to_field 'ISSN_display', extract_marc()
-# # #    022 XX a
-
-# to_field 'SuDoc no._display', extract_marc()
-# # #    086 XX a
-
-# to_field 'Tech. report no._display', extract_marc()
-# # #    027 XX a
-# # #    088 XX a
-
-# to_field 'Publisher. no._display', extract_marc()
-# # #    028 XX a
-
-# to_field 'Standard no._display', extract_marc()
-# # #    010 XX a
-# # #    030 XX a
-
-# to_field 'Original language_display', extract_marc()
-# # #    880 XX abc
-
-# to_field 'Related record(s)_display', extract_marc()
-# # #    3500 BBID774W
-
-# to_field 'Holdings information_display', extract_marc()
-# # #    9000
-
-
-# # From displayh.cfg
-
-# to_field 'Location_display', extract_marc() +No location specified
-# # #    1000
-
-# to_field 'Call number_display', extract_marc() +No call number available
-# # #    852 XX ckhij
-# # 
-# to_field 'dat_number_display', extract_marc('852ckhij')
-
-
-# to_field 'Item details_display', extract_marc()
-# # Item details:
-# # HTML:852||b:<a href="javascript:MapInfo('{b}');" class='loc_{b}'>Where to find it</a>
-# # Google Books:
-# # HTML:852||b:<div id="googleInfo"></div>
-
-
-# to_field 'Order information_display', extract_marc()
-# # #    1030
-
-
-# to_field 'Shelving title_display', extract_marc()
-# # #    852 XX l
-
-
-# to_field 'E-items_display', extract_marc()
-# # #    1050
-
-
-# to_field 'Status_display', extract_marc()
-# # #    1012
-
-
-# to_field 'Location has_display', extract_marc()
-# # #    1040
-# # #    866 |0 az
-# # #    866 |1 az
-# # #    866 |2 az
-# # #    866 30 az
-# # #    866 31 az
-# # #    866 32 az
-# # #    866 40 az
-# # #    866 41 az
-# # #    866 42 az
-# # #    866 50 az
-# # #    866 51 az
-# # #    866 52 az
-# # #    899 XX a
-
-# to_field 'Location has (current)_display', extract_marc()
-# # #    866 || az
-# # #    1020
-
-
-# to_field 'Supplements_display', extract_marc()
-# # #    1042
-# # #    867 XX az
-# # #    1022
-
-
-# to_field 'Indexes_display', extract_marc()
-# # #    1044
-# # #    868 XX az
-# # #    1024
-
-
-# to_field 'Notes_display', extract_marc()
-# # #    852 XX z
-
-
-# to_field 'Linked resources_display', extract_marc()
-# # #    3000
-
-
-
-# Other version(s):
-#    3500 020Z020A
-#    3500 020A020Z
-#    3500 024A022A
-#    3500 022A024A
-#    3500 BBID776W
-#    3500 BBID787W
-#    3500 776X022A
-#    3500 022A776X
-#    3500 020A776Z
-#    3500 776Z020A
-# Contained in:
-#    3500 BBID773W
 # Restrictions note:
 #    506 XX 3abcde
+to_field 'restrictions_note_display', extract_marc('5063abcde')
+
 # Biographical/Historical note:
 #    545 XX ab
+to_field 'biographical_historical_note_display', extract_marc('545ab')
+
 # Summary note:
 #    520 XX 3ab
+to_field 'summary_note_display', extract_marc('5203ab')
+
 # Notes:
 #    500 XX 3a
 #    501 XX a
@@ -539,51 +300,89 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 #    565 XX 3abcde
 #    567 XX a
 #    570 XX a
+to_field 'notes_display', extract_marc('5003a:501a:503a:502a:504ab:508a:513ab:514abcdefghijkm:515a:5183a:5213ab:522a:523a:525a:527a:534abcefklmnpt:5353abcdg:536abcdefgh:537a:538a:5443abcden:547a:550a:556a:5623abcde:5653abcde:567a:570a')
+
 # Binding note:
 #    563 XX au3
+to_field 'binding_note_display', extract_marc('563au3')
+
 # Local notes:
 #    590 XX a
 #    591 XX a
 #    592 XX a
+to_field 'local_notes_display', extract_marc('590a:591a:592a')
+
 # Rights and reproductions note:
 #    540 XX 3abcd
+to_field 'rights_reproductions_note_display', extract_marc('5403abcd')
+
 # Exhibitions note:
 #    585 XX 3a
+to_field 'exhibitions_note_display', extract_marc('5853a')
+
 # Participant(s)/Performer(s):
 #    511 XX a
+to_field 'participant_performer_display', extract_marc('511a')
+
 # Language(s):
 #    546 XX 3a
+to_field 'language_display', extract_marc('5463a')
+
 # Script:
 #    546 XX b
+to_field 'script_display', extract_marc('546b')
+
 # Contents:
 #    505 0X agrt
 #    505 8X agrt
+to_field 'contents_display', extract_marc('505|0*|agrt:505|8*|agrt')
+
 # Incomplete contents:
 #    505 1X agrt
+to_field 'incomplete_contents_display', extract_marc('505|1*|agrt')
+
 # Partial contents:
 #    505 2X agrt
+to_field 'partial_contents_display', extract_marc('505|2*|agrt')
+
 # Provenance:
 #    561 XX 3ab
 #    796 XX abcqde
 #    797 XX abcqde
+to_field 'provenance_display', extract_marc('5613ab:796abcqde:797abcqde')
+
 # Source of acquisition:
 #    541 XX abcdefhno36
+to_field 'source_acquisition_display', extract_marc('541abcdefhno36')
+
 # Publications about:
 #    581 XX az36
+to_field 'publications_about_display', extract_marc('581az36')
+
 # Indexed in:
 #    510 0X 3abc
 #    510 1X 3abc
 #    510 2X 3abc
+to_field 'indexed_in_display', extract_marc('510|0*|3abc:510|1*|3abc:510|2*|3abc')
+
 # References:
 #    510 3X 3abc
 #    510 4X 3abc
+to_field 'references_display', extract_marc('510|3*|3abc:510|4*|3abc')
+
 # Cite as:
 #    524 XX 23a
+to_field 'cite_as_display', extract_marc('52423a')
+
 # Other format(s):
 #    530 XX 3abcd
 #    533 XX 3abcdefmn
+to_field 'other_format_display', extract_marc('5303abcd:5333abcdefmn')
+
 # Cumulative index/Finding aid:
 #    555 XX 3abcd
+to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
+
 # Subject(s):
 #    600 XX acdfklmnopqrst{v--%}{x--%}{y--%}{z--%} S abcdfklmnopqrtvxyz
 #    610 XX abfklmnoprst{v--%}{x--%}{y--%}{z--%} S abfklmnoprstvxyz
@@ -591,13 +390,21 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
+to_field 'subject_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz')
+
 # Form/Genre:
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
+to_field 'form_genre_display', extract_marc('0655avxyz')
+
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
 #    710 XX abcdefghklnoprstx A ab
+to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprstx:710abcdefghklnoprstx')
+
 # Place name(s):
 #    752 XX abcd
+to_field 'place_name_display', extract_marc('752abcd')
+
 # Other title(s):
 #    246 XX abfnp
 #    210 XX ab
@@ -610,27 +417,155 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 #    247 XX abfhnp
 #    730 XX aplskfmnor
 #    740 XX ahnp
+to_field 'other_title_display', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp')
+
 # In:
 #    773 XX 3abdghikmnoprst
+to_field 'in_display', extract_marc('7733abdghikmnoprst')
+
 # Constituent part(s):
 #    774 XX abcdghikmnrstu
+to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
+
 # ISBN:
 #    020 XX a
+to_field 'isbn_display', extract_marc('020a')
+
 # ISSN:
 #    022 XX a
+to_field 'issn_display', extract_marc('022a')
+
 # SuDoc no.:
 #    086 XX a
+to_field 'sudoc_no_display', extract_marc('086a')
+
 # Tech. report no.:
 #    027 XX a
 #    088 XX a
+to_field 'tech_report_no_display', extract_marc('027a:088a')
+
 # Publisher. no.:
 #    028 XX a
+to_field 'publisher_no_display', extract_marc('028a')
+
 # Standard no.:
 #    010 XX a
 #    030 XX a
+to_field 'standard_no_display', extract_marc('010a:030a')
+
 # Original language:
 #    880 XX abc
+to_field 'original_language_display', extract_marc('880abc')
+
 # Related record(s):
 #    3500 BBID774W
+# to_field 'Related record(s)_display', extract_marc()
+# # #    3500 BBID774W
+
 # Holdings information:
 #    9000
+# to_field 'Holdings information_display', extract_marc()
+# # #    9000
+
+
+# # From displayh.cfg
+
+
+# Location: +No location specified
+#    1000
+to_field 'location_display', extract_marc('852b') do |record, accumulator|
+  accumulator = TranslationMap.new("locations").translate_array!(accumulator)
+end
+# # #    1000
+
+
+# Call number: +No call number available
+#    852 XX ckhij
+to_field 'call_number_display', extract_marc('852ckhij')
+
+
+# Item details:
+# HTML:852||b:<a href="javascript:MapInfo('{b}');" class='loc_{b}'>Where to find it</a>
+# Google Books:
+# HTML:852||b:<div id="googleInfo"></div>
+# to_field 'Item details_display', extract_marc()
+# # Item details:
+# # HTML:852||b:<a href="javascript:MapInfo('{b}');" class='loc_{b}'>Where to find it</a>
+# # Google Books:
+# # HTML:852||b:<div id="googleInfo"></div>
+
+
+# Order information:
+#    1030
+# to_field 'Order information_display', extract_marc()
+# # #    1030
+
+
+# Shelving title:
+#    852 XX l
+to_field 'shelving_title_display', extract_marc('852l')
+
+
+# E-items:
+#    1050
+# to_field 'E-items_display', extract_marc()
+# # #    1050
+
+
+# Status:
+#    1012
+# to_field 'Status_display', extract_marc()
+# # #    1012
+
+
+# Location has:
+#    1040
+#    866 |0 az
+#    866 |1 az
+#    866 |2 az
+#    866 30 az
+#    866 31 az
+#    866 32 az
+#    866 40 az
+#    866 41 az
+#    866 42 az
+#    866 50 az
+#    866 51 az
+#    866 52 az
+#    899 XX a
+to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
+
+# Location has (current):
+#    866 || az
+#    1020
+to_field 'location_has_current_display', extract_marc('866|  |az')
+
+
+
+# Supplements:
+#    1042
+#    867 XX az
+#    1022
+to_field 'supplements_display', extract_marc('867az')
+
+
+# Indexes:
+#    1044
+#    868 XX az
+#    1024
+to_field 'indexes_display', extract_marc('868az')
+
+
+
+# Notes:
+#    852 XX z
+to_field 'location_notes_display', extract_marc('852z')
+
+
+# Linked resources:
+#    3000
+# to_field 'Linked resources_display', extract_marc()
+# # #    3000
+
+
+
