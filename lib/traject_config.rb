@@ -42,8 +42,12 @@ to_field 'id', extract_marc('001', :first => true)
 #    111 XX abcdefgklnpq A ab
 to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
-to_field 'author_t', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq')
+to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 
+to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true) do |record, accumulator|
+    accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
+    #accumulator << TranslationMap.new("relators")[rel]
+end
 
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
@@ -71,7 +75,7 @@ to_field 'edition_display', extract_marc('250ab')
 #    260 XX abcefg
 #    264 XX abc
 to_field 'pub_created_display', extract_marc('260abcefg:264abc', :first => true)
-to_field 'pub_created_t', extract_marc('260abcefg:264abc', :first => true)
+to_field 'pub_created_s', extract_marc('260abcefg:264abc', :first => true)
 
 # Medium/Support:
 #    340 XX 3abcdefhl
