@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01536cjm a2200349Ia 4500</marc:leader>
+    <marc:controlfield tag="001">5525311</marc:controlfield>
+    <marc:controlfield tag="005">20080718160556.0</marc:controlfield>
+    <marc:controlfield tag="007">sd bumennmplue</marc:controlfield>
+    <marc:controlfield tag="008">740729s1968    nyumun              zxx d</marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">r  68003516 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="019" ind1=" " ind2=" ">
+      <marc:subfield code="a">585369</marc:subfield>
+      <marc:subfield code="a">3005485</marc:subfield>
+      <marc:subfield code="a">35216029</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="2">
+      <marc:subfield code="a">MS 7194</marc:subfield>
+      <marc:subfield code="b">Columbia</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm00966189</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)966189</marc:subfield>
+      <marc:subfield code="z">(OCoLC)585369</marc:subfield>
+      <marc:subfield code="z">(OCoLC)3005485</marc:subfield>
+      <marc:subfield code="z">(OCoLC)35216029</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">KSU</marc:subfield>
+      <marc:subfield code="c">KSU</marc:subfield>
+      <marc:subfield code="d">OCL</marc:subfield>
+      <marc:subfield code="d">LUS</marc:subfield>
+      <marc:subfield code="d">BGU</marc:subfield>
+      <marc:subfield code="d">OCL</marc:subfield>
+      <marc:subfield code="d">PUL</marc:subfield>
+      <marc:subfield code="d">OCLCG</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">PULL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="090" ind1=" " ind2=" ">
+      <marc:subfield code="a">M1473.B3</marc:subfield>
+      <marc:subfield code="b">S958 1968</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Bach, Johann Sebastian,</marc:subfield>
+      <marc:subfield code="d">1685-1750.</marc:subfield>
+      <marc:subfield code="4">cmp</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Selections;</marc:subfield>
+      <marc:subfield code="o">arr.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Switched-on Bach</marc:subfield>
+      <marc:subfield code="h">[sound recording].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">New York :</marc:subfield>
+      <marc:subfield code="b">Columbia,</marc:subfield>
+      <marc:subfield code="c">[1968]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 sound disc (40 min.) :</marc:subfield>
+      <marc:subfield code="b">analog, 33 1/3 rpm, stereo. ;</marc:subfield>
+      <marc:subfield code="c">12 in.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="0" ind2=" ">
+      <marc:subfield code="a">Columbia masterworks</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="511" ind1="0" ind2=" ">
+      <marc:subfield code="a">Electronic realizations and performances by Walter Carlos, with the assistance of Benjamin Folkman.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Program notes by Benjamin Folkman, Robert Moog, and Rachel Elkind on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">Sinfonia to Cantata no. 29 -- Air on a G string -- Two part inventions in F major, B-flat major, and D minor -- Jesu, joy of man's desiring -- Preludes and fugues, no. 7 and 2, from book 1 of The well-tempered clavier -- Chorale prelude, Wachet auf -- Brandenburg concerto no. 3, in G major.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Electronic music.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Carlos, Wendy.</marc:subfield>
+      <marc:subfield code="4">arr</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Folkman, Benjamin.</marc:subfield>
+      <marc:subfield code="4">arr</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">rcpqk</marc:subfield>
+      <marc:subfield code="h">LS- 1074</marc:subfield>
+      <marc:subfield code="x">tr fr mus</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">C0</marc:subfield>
+      <marc:subfield code="b">PUL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">dpg</marc:subfield>
+      <marc:subfield code="b">x</marc:subfield>
+      <marc:subfield code="6">j</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20080718</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

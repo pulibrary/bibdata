@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01947cam a22003975a 4500</marc:leader>
+    <marc:controlfield tag="001">4726573</marc:controlfield>
+    <marc:controlfield tag="005">20060511125033.0</marc:controlfield>
+    <marc:controlfield tag="008">060509s1774    mau           000 0 eng d</marc:controlfield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">MWA</marc:subfield>
+      <marc:subfield code="c">MWA</marc:subfield>
+      <marc:subfield code="d">Cu-RivES</marc:subfield>
+      <marc:subfield code="d">CStRLIN</marc:subfield>
+      <marc:subfield code="d">Thomson Gale</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us-ma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Hancock, John,</marc:subfield>
+      <marc:subfield code="d">1737-1793.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="3">
+      <marc:subfield code="a">An oration; delivered March 5, 1774,</marc:subfield>
+      <marc:subfield code="b">at the request of the inhabitants of the town of Boston: to commemorate the bloody tragedy of the fifth of March 1770. By the Honorable John Hancock, Esq; [Five lines in Latin from Virgil].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Boston :</marc:subfield>
+      <marc:subfield code="b">Printed by Edes and Gill, in Queen Street,</marc:subfield>
+      <marc:subfield code="c">M,DCC,LXXIV. [1774]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">20, [2] p. ;</marc:subfield>
+      <marc:subfield code="c">25.5 x 20 cm. (fol.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">This catalogue record is derived in large part from a record for an electronic reproduction.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Half-title: An oration delivered March fifth, 1774.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Authorship of the oration has been attributed to Samuel Adams, to Benjamin Church and Joseph Warren, and to Samuel Cooper. See T.R. Adams, who notes "In all probability a number of Boston radicals had a hand in its composition." -.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Sabin</marc:subfield>
+      <marc:subfield code="c">30177</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Church</marc:subfield>
+      <marc:subfield code="c">1104</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Evans,</marc:subfield>
+      <marc:subfield code="c">13314</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Adams, T.R. Amer. pamphlets,</marc:subfield>
+      <marc:subfield code="c">117a</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">English Short Title Catalog,</marc:subfield>
+      <marc:subfield code="c">ESTCW21489.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="561" ind1=" " ind2=" ">
+      <marc:subfield code="a">WHS copy acquired 3/13/29 from Goodspeed; inv. 616.</marc:subfield>
+      <marc:subfield code="5">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="583" ind1=" " ind2=" ">
+      <marc:subfield code="x">mlc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Boston Massacre, 1770</marc:subfield>
+      <marc:subfield code="x">Anniversaries, etc.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">United States</marc:subfield>
+      <marc:subfield code="x">History</marc:subfield>
+      <marc:subfield code="y">Revolution, 1775-1783</marc:subfield>
+      <marc:subfield code="x">Causes.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cooper, Samuel,</marc:subfield>
+      <marc:subfield code="d">1725-1783.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Warren, Joseph,</marc:subfield>
+      <marc:subfield code="d">1741-1775.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Church, Benjamin,</marc:subfield>
+      <marc:subfield code="d">1734-1778.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Adams, Samuel,</marc:subfield>
+      <marc:subfield code="d">1722-1803.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Edes and Gill,</marc:subfield>
+      <marc:subfield code="e">printer.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="1" ind2=" ">
+      <marc:subfield code="a">Boston (Mass.).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Goodspeed's Book Shop (Boston, Mass.),</marc:subfield>
+      <marc:subfield code="e">bookseller.</marc:subfield>
+      <marc:subfield code="5">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">whs</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">16.5.14</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hsvr</marc:subfield>
+      <marc:subfield code="c">EX</marc:subfield>
+      <marc:subfield code="h">Lapidus 2.28</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">mrf</marc:subfield>
+      <marc:subfield code="b">m</marc:subfield>
+      <marc:subfield code="6">a</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20060509</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

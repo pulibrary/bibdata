@@ -807,5 +807,245 @@
       <marc:subfield code="l">NJPG</marc:subfield>
     </marc:datafield>
   </marc:record>
+  <marc:record>
+    <marc:leader>01947cam a22003975a 4500</marc:leader>
+    <marc:controlfield tag="001">4726573</marc:controlfield>
+    <marc:controlfield tag="005">20060511125033.0</marc:controlfield>
+    <marc:controlfield tag="008">060509s1774    mau           000 0 eng d</marc:controlfield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">MWA</marc:subfield>
+      <marc:subfield code="c">MWA</marc:subfield>
+      <marc:subfield code="d">Cu-RivES</marc:subfield>
+      <marc:subfield code="d">CStRLIN</marc:subfield>
+      <marc:subfield code="d">Thomson Gale</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us-ma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Hancock, John,</marc:subfield>
+      <marc:subfield code="d">1737-1793.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="3">
+      <marc:subfield code="a">An oration; delivered March 5, 1774,</marc:subfield>
+      <marc:subfield code="b">at the request of the inhabitants of the town of Boston: to commemorate the bloody tragedy of the fifth of March 1770. By the Honorable John Hancock, Esq; [Five lines in Latin from Virgil].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Boston :</marc:subfield>
+      <marc:subfield code="b">Printed by Edes and Gill, in Queen Street,</marc:subfield>
+      <marc:subfield code="c">M,DCC,LXXIV. [1774]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">20, [2] p. ;</marc:subfield>
+      <marc:subfield code="c">25.5 x 20 cm. (fol.)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">This catalogue record is derived in large part from a record for an electronic reproduction.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Half-title: An oration delivered March fifth, 1774.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Authorship of the oration has been attributed to Samuel Adams, to Benjamin Church and Joseph Warren, and to Samuel Cooper. See T.R. Adams, who notes "In all probability a number of Boston radicals had a hand in its composition." -.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Sabin</marc:subfield>
+      <marc:subfield code="c">30177</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Church</marc:subfield>
+      <marc:subfield code="c">1104</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Evans,</marc:subfield>
+      <marc:subfield code="c">13314</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">Adams, T.R. Amer. pamphlets,</marc:subfield>
+      <marc:subfield code="c">117a</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="510" ind1="4" ind2=" ">
+      <marc:subfield code="a">English Short Title Catalog,</marc:subfield>
+      <marc:subfield code="c">ESTCW21489.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="561" ind1=" " ind2=" ">
+      <marc:subfield code="a">WHS copy acquired 3/13/29 from Goodspeed; inv. 616.</marc:subfield>
+      <marc:subfield code="5">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="583" ind1=" " ind2=" ">
+      <marc:subfield code="x">mlc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Boston Massacre, 1770</marc:subfield>
+      <marc:subfield code="x">Anniversaries, etc.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">United States</marc:subfield>
+      <marc:subfield code="x">History</marc:subfield>
+      <marc:subfield code="y">Revolution, 1775-1783</marc:subfield>
+      <marc:subfield code="x">Causes.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cooper, Samuel,</marc:subfield>
+      <marc:subfield code="d">1725-1783.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Warren, Joseph,</marc:subfield>
+      <marc:subfield code="d">1741-1775.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Church, Benjamin,</marc:subfield>
+      <marc:subfield code="d">1734-1778.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Adams, Samuel,</marc:subfield>
+      <marc:subfield code="d">1722-1803.</marc:subfield>
+      <marc:subfield code="4">aut</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Edes and Gill,</marc:subfield>
+      <marc:subfield code="e">printer.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="1" ind2=" ">
+      <marc:subfield code="a">Boston (Mass.).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Goodspeed's Book Shop (Boston, Mass.),</marc:subfield>
+      <marc:subfield code="e">bookseller.</marc:subfield>
+      <marc:subfield code="5">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">whs</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">16.5.14</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hsvr</marc:subfield>
+      <marc:subfield code="c">EX</marc:subfield>
+      <marc:subfield code="h">Lapidus 2.28</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">mrf</marc:subfield>
+      <marc:subfield code="b">m</marc:subfield>
+      <marc:subfield code="6">a</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20060509</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01536cjm a2200349Ia 4500</marc:leader>
+    <marc:controlfield tag="001">5525311</marc:controlfield>
+    <marc:controlfield tag="005">20080718160556.0</marc:controlfield>
+    <marc:controlfield tag="007">sd bumennmplue</marc:controlfield>
+    <marc:controlfield tag="008">740729s1968    nyumun              zxx d</marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">r  68003516 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="019" ind1=" " ind2=" ">
+      <marc:subfield code="a">585369</marc:subfield>
+      <marc:subfield code="a">3005485</marc:subfield>
+      <marc:subfield code="a">35216029</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="2">
+      <marc:subfield code="a">MS 7194</marc:subfield>
+      <marc:subfield code="b">Columbia</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm00966189</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)966189</marc:subfield>
+      <marc:subfield code="z">(OCoLC)585369</marc:subfield>
+      <marc:subfield code="z">(OCoLC)3005485</marc:subfield>
+      <marc:subfield code="z">(OCoLC)35216029</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">KSU</marc:subfield>
+      <marc:subfield code="c">KSU</marc:subfield>
+      <marc:subfield code="d">OCL</marc:subfield>
+      <marc:subfield code="d">LUS</marc:subfield>
+      <marc:subfield code="d">BGU</marc:subfield>
+      <marc:subfield code="d">OCL</marc:subfield>
+      <marc:subfield code="d">PUL</marc:subfield>
+      <marc:subfield code="d">OCLCG</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">PULL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="090" ind1=" " ind2=" ">
+      <marc:subfield code="a">M1473.B3</marc:subfield>
+      <marc:subfield code="b">S958 1968</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Bach, Johann Sebastian,</marc:subfield>
+      <marc:subfield code="d">1685-1750.</marc:subfield>
+      <marc:subfield code="4">cmp</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Selections;</marc:subfield>
+      <marc:subfield code="o">arr.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Switched-on Bach</marc:subfield>
+      <marc:subfield code="h">[sound recording].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">New York :</marc:subfield>
+      <marc:subfield code="b">Columbia,</marc:subfield>
+      <marc:subfield code="c">[1968]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 sound disc (40 min.) :</marc:subfield>
+      <marc:subfield code="b">analog, 33 1/3 rpm, stereo. ;</marc:subfield>
+      <marc:subfield code="c">12 in.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="0" ind2=" ">
+      <marc:subfield code="a">Columbia masterworks</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="511" ind1="0" ind2=" ">
+      <marc:subfield code="a">Electronic realizations and performances by Walter Carlos, with the assistance of Benjamin Folkman.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Program notes by Benjamin Folkman, Robert Moog, and Rachel Elkind on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">Sinfonia to Cantata no. 29 -- Air on a G string -- Two part inventions in F major, B-flat major, and D minor -- Jesu, joy of man's desiring -- Preludes and fugues, no. 7 and 2, from book 1 of The well-tempered clavier -- Chorale prelude, Wachet auf -- Brandenburg concerto no. 3, in G major.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Electronic music.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Carlos, Wendy.</marc:subfield>
+      <marc:subfield code="4">arr</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Folkman, Benjamin.</marc:subfield>
+      <marc:subfield code="4">arr</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">rcpqk</marc:subfield>
+      <marc:subfield code="h">LS- 1074</marc:subfield>
+      <marc:subfield code="x">tr fr mus</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">C0</marc:subfield>
+      <marc:subfield code="b">PUL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">dpg</marc:subfield>
+      <marc:subfield code="b">x</marc:subfield>
+      <marc:subfield code="6">j</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20080718</marc:subfield>
+    </marc:datafield>
+  </marc:record>
 </marc:collection>
 
