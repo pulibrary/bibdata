@@ -1047,5 +1047,538 @@
       <marc:subfield code="e">20080718</marc:subfield>
     </marc:datafield>
   </marc:record>
+  <marc:record>
+    <marc:leader>01267cam a2200277 a 4500</marc:leader>
+    <marc:controlfield tag="001">430472</marc:controlfield>
+    <marc:controlfield tag="005">20120717125457.0</marc:controlfield>
+    <marc:controlfield tag="008">880111m19879999jo       b    00110 ara d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)31214190</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG88-B1222</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">ACA6068TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="3">
+      <marc:subfield code="a">al-Fihris al-shāmil lil-turāth al-ʻArabī al-Islāmī al-makhṭūṭ.</marc:subfield>
+      <marc:subfield code="p">ʻUlūm al-Qurʼān.</marc:subfield>
+      <marc:subfield code="p">Makhṭūṭāt al-tafsīr /</marc:subfield>
+      <marc:subfield code="c">Muʼassasat Āl al-Bayt, al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">ʻAmmān :</marc:subfield>
+      <marc:subfield code="b">al-Muʼassasah,</marc:subfield>
+      <marc:subfield code="c">1987-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">v. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Manshūrāt al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah ;</marc:subfield>
+      <marc:subfield code="v">raqm 83-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Vol. [13]: Index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="630" ind1="0" ind2="0">
+      <marc:subfield code="a">Koran</marc:subfield>
+      <marc:subfield code="x">Criticism, interpretation, etc.</marc:subfield>
+      <marc:subfield code="x">Manuscripts</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Royal Academy for Islamic Civilization Research.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Manshūrāt al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah ;</marc:subfield>
+      <marc:subfield code="v">raqm 83, etc.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">nec</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z6611.T3F545 1987</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">sne</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z6611.T3F545 1987</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941111</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941103000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">11/03/94</marc:subfield>
+      <marc:subfield code="s">9118</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">NJPG88B1222</marc:subfield>
+      <marc:subfield code="d">01/11/88</marc:subfield>
+      <marc:subfield code="c">KVV</marc:subfield>
+      <marc:subfield code="b">NHT</marc:subfield>
+      <marc:subfield code="i">941103</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>04673ctm a2200589Ia 4500</marc:leader>
+    <marc:controlfield tag="001">4705304</marc:controlfield>
+    <marc:controlfield tag="005">20120605122422.0</marc:controlfield>
+    <marc:controlfield tag="008">060419s1501    xx p          000 0 ara d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm67146416</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">PUL</marc:subfield>
+      <marc:subfield code="c">PUL</marc:subfield>
+      <marc:subfield code="e">amremm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us-nj</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">PULL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Dawwānī, Muḥammad ibn Asʻad,</marc:subfield>
+      <marc:subfield code="d">1426 or 7-1512 or 13</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">100-01//r</marc:subfield>
+      <marc:subfield code="a">دواني، محمد بن اسعد</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Risālat al-Zawrāʼ.</marc:subfield>
+      <marc:subfield code="b">Ḥāshiyah ʻalá al-Zawrāʼ ... [etc.].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02//r</marc:subfield>
+      <marc:subfield code="a">رسالة الزوراء.</marc:subfield>
+      <marc:subfield code="b">حاشية على الزوراء</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="c">[1501]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">i, 150 leaves, i :</marc:subfield>
+      <marc:subfield code="b">paper, ill. ;</marc:subfield>
+      <marc:subfield code="c">170 x 101 (125 x 55) mm. bound to 175 x 111 mm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Title supplied by cataloger.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Ms. codex.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="520" ind1="8" ind2=" ">
+      <marc:subfield code="a">Illuminated copy of nine texts and commentaries on kalām and logic.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">19 lines per page. Written in a small naskh using black ink, with some red for important words, to write "qawluh" or to underline the commented text. Illuminated headpiece on fol. 1b. From text 2, the beginning of each text is decorated by an illuminated panel with the same floral motifs (fol. 7b, 21b, 27b, 32b, 44b, 56b, 98b, 133b). The text is written within a gilt and red and blue border, with a red outerframe on the edge of the page. The occasional marginalia are from the author. Contains some collation notes. Table of contents by a later hand on fol. 1a (prev. 2a). Modern foliation in pencil using Western numerals (includes the first free endpaper ; fol. between fol. 7 and 8 blank).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Decoration: Contains six miniatures, representing learned men (fol. 27a, 54b, 103a, 132b, 133a, 140b). On fol 27a : Outdoor scene representing a sitting man wearing a brown and green garnment and a white and red turban. On fol. 54b : Outdoor scene with two men facing each other, the one on the left  reading a text on a roll and the one of the right pointing to the sky with the index of his right hand, and to the ground with the index of his left hand. On fol. 103a : Indoor scene with two sitting men. The one on the left, dressed in green and red, reads a book to the one one the right, dressed in yellow. On fol. 132b : A standing man dressed in blue and yellow meditating. On fol. 133a : A standing man dressed in green and purple with a cane in his right hand meditating. On fol. 140b : Indoor scene representing two men sitting and discussing on the fore ground with a book laying between them; third man in the background coming in, a leaf with text in his hand.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Copied from Ṣafar to Rabīʻ al-Thānī 907 by Aḥmad ibn ʻAlī ibn Abī Bakr (colophons).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">1. fol. 1b-7a : [Risalat al-Zawrāʼ] / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">2. fol. 7b-21a : al-Ḥāshiyah ʻalá al-Zawrāʼ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">3. fol. 21b-26b : al-Ḥāshiyah ʻalá khuṭbat al-Zawrāʼ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">4. fol. 27b-32a : al-Risālah fī khalq al-aʻmāl / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">5. fol. 32b-43b : Risālah fī taʻrīf ʻilm al-kalām / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">6. fol. 44b-56a : Sharḥ khuṭbat al-Ṭawāliʻ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">7. fol. 56b-97b : Ḥāshiyat al-Tahdhīb / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">8. fol. 98b-132a : [Ḥawāshī ʻalá Maṭāliʻ al-anwār] / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">9. fol. 133b-150b : Ḥāshiyat al-Risālah al-shamsīyah / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="563" ind1=" " ind2=" ">
+      <marc:subfield code="a">Upper and lower covers made of dark-brown leather over paper pasteboards with deeply impressed gold and black corner pieces and central mandorla with two pendants on the vertical axis. Repaired and re-backed.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Islam</marc:subfield>
+      <marc:subfield code="x">Doctrines</marc:subfield>
+      <marc:subfield code="v">Early works to 1800.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="z">New Jersey</marc:subfield>
+      <marc:subfield code="z">Princeton.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">lcsh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Illuminated manuscripts</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Headpieces (layout features)</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Miniatures (Illuminations)</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">gmgpc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705307</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705340</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705359</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705365</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705369</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705377</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705374</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705383</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705386</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="1">
+      <marc:subfield code="u">http://arks.princeton.edu/ark:/88435/9k41zd556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hsvm</marc:subfield>
+      <marc:subfield code="h">Islamic Manuscripts, New Series no. 1948</marc:subfield>
+      <marc:subfield code="x">tr fr mss</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">ceb</marc:subfield>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="6">t</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">0</marc:subfield>
+      <marc:subfield code="e">20060419</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>01400cam a2200313   4500</marc:leader>
+    <marc:controlfield tag="001">4887523</marc:controlfield>
+    <marc:controlfield tag="005">20120529143145.0</marc:controlfield>
+    <marc:controlfield tag="008">950327s1923    pl            000 0 heb d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)76954756</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)MABX95-B758</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">MWalB</marc:subfield>
+      <marc:subfield code="c">MWalB</marc:subfield>
+      <marc:subfield code="d">CStRLIN</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">BM198</marc:subfield>
+      <marc:subfield code="b">.R324 1923</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">(2</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Rabinowich, Solomon,</marc:subfield>
+      <marc:subfield code="c">ha-Kohen,</marc:subfield>
+      <marc:subfield code="d">1803-1866.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">100-01/(2/r</marc:subfield>
+      <marc:subfield code="a">שלמה בן דב צבי,</marc:subfield>
+      <marc:subfield code="c">הכהן,</marc:subfield>
+      <marc:subfield code="c">מרדומסק,</marc:subfield>
+      <marc:subfield code="d">נפ׳ 1866.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Nifleʼot ha-Tifʼeret Shelomoh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Sefer Nifleʼot ha-Tifʼeret Shelomoh :</marc:subfield>
+      <marc:subfield code="b">ha-kolel torot, ḥokhmot, agadot, śiḥot... /</marc:subfield>
+      <marc:subfield code="c">mi-kevod Shelomoh ha-Kohen a.b.d. ḳ. Radomsḳ = Sefer Nifloes-hatiferes-Szloma.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02/(2/r</marc:subfield>
+      <marc:subfield code="a">ספר נפלאות התפארת שלמה :</marc:subfield>
+      <marc:subfield code="b">... תורות, חכמות, אגדות, שיחות ... /</marc:subfield>
+      <marc:subfield code="c">שלמה הכהן אבד״ק ראדאמסק.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="0">
+      <marc:subfield code="a">Nifleʼot ha-Tifʼeret Shelomoh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="1">
+      <marc:subfield code="a">Sefer Nifloes-hatiferes-Szloma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">Nifloes-hatiferes-Szloma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Piotrkowie :</marc:subfield>
+      <marc:subfield code="b">Defus Ḳornendz ṿe-Rozenblad,</marc:subfield>
+      <marc:subfield code="c">1923.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-03/(2/r</marc:subfield>
+      <marc:subfield code="a">פיעטרקוב :</marc:subfield>
+      <marc:subfield code="b">[חמו״ל],</marc:subfield>
+      <marc:subfield code="c">1923.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">102 p. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"Ḥeleḳ 1"-- No more published?</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Hasidism.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="h">BM198</marc:subfield>
+      <marc:subfield code="i">.R324 1923</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">rs</marc:subfield>
+      <marc:subfield code="b">g</marc:subfield>
+      <marc:subfield code="h">m</marc:subfield>
+      <marc:subfield code="c">b</marc:subfield>
+      <marc:subfield code="e">20061018</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">rs</marc:subfield>
+      <marc:subfield code="b">m</marc:subfield>
+      <marc:subfield code="6">a</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20061018</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>02266cjm a2200553 a 4500</marc:leader>
+    <marc:controlfield tag="001">4687191</marc:controlfield>
+    <marc:controlfield tag="005">20060315183239.0</marc:controlfield>
+    <marc:controlfield tag="007">sd bmmennmplu-</marc:controlfield>
+    <marc:controlfield tag="008">850503p19841970fr opn   z          fre  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   85751820 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="019" ind1=" " ind2=" ">
+      <marc:subfield code="a">15641274</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="0">
+      <marc:subfield code="a">BG 2012</marc:subfield>
+      <marc:subfield code="b">Bourg Records</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="0">
+      <marc:subfield code="a">BG 2013</marc:subfield>
+      <marc:subfield code="b">Bourg Records</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="033" ind1="1" ind2=" ">
+      <marc:subfield code="a">19700225</marc:subfield>
+      <marc:subfield code="a">19700227</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm10663999</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+      <marc:subfield code="d">MUQ</marc:subfield>
+      <marc:subfield code="d">OCLCQ</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2=" ">
+      <marc:subfield code="d">fre</marc:subfield>
+      <marc:subfield code="b">engfreger</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="1" ind2="0">
+      <marc:subfield code="a">M1500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Offenbach, Jacques,</marc:subfield>
+      <marc:subfield code="d">1819-1880.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Geneviève de Brabant</marc:subfield>
+      <marc:subfield code="h">[sound recording] /</marc:subfield>
+      <marc:subfield code="c">musique de Jacques Offenbach ; paroles de Hector Crémieux et Etienne Tréfeu.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Paris :</marc:subfield>
+      <marc:subfield code="b">Bourg Records ;</marc:subfield>
+      <marc:subfield code="a">N[ew] Y[ork] :</marc:subfield>
+      <marc:subfield code="b">Distributed by Qualiton Imports,</marc:subfield>
+      <marc:subfield code="c">1984.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">2 sound discs :</marc:subfield>
+      <marc:subfield code="b">analog, 33 1/3 rpm, mono. ;</marc:subfield>
+      <marc:subfield code="c">12 in.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Collection Bourg Offenbach</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Collection Archives</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Bourg Records: BG 2012--BG 2013.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Opera in 3 acts.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="511" ind1="0" ind2=" ">
+      <marc:subfield code="a">Annik Simon ; Monique Stiot ; Bernard Plantey ; René Terrasson ; Jean-Christophe Benoit ; Jacques Tharande ; with supporting soloists ; chorus ; Orchestre lyrique radio et télévision française ; Marcel Cariven, conductor.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="518" ind1=" " ind2=" ">
+      <marc:subfield code="a">Recorded Feb. 25 and 27, 1970.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Distributor from label on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Synopsis in English, French, and German on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Operas.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Geneviève, of Brabant</marc:subfield>
+      <marc:subfield code="v">Drama.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="0" ind2="6">
+      <marc:subfield code="a">Geneviève,</marc:subfield>
+      <marc:subfield code="c">de Brabant</marc:subfield>
+      <marc:subfield code="v">Théâtre.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="6">
+      <marc:subfield code="a">Opéras</marc:subfield>
+      <marc:subfield code="y">19e siècle.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Crémieux, Hector Jonathan,</marc:subfield>
+      <marc:subfield code="d">1828-1892.</marc:subfield>
+      <marc:subfield code="4">lbt</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Tréfeu, Etienne.</marc:subfield>
+      <marc:subfield code="4">lbt</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Simon, Annik.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Stiot, Monique.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Plantey, Bernard.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Terrasson, René.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Benoit, Jean-Christophe.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Tharande, Jacques.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cariven, Marcel.</marc:subfield>
+      <marc:subfield code="4">cnd</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Orchestre lyrique de la R.T.F.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="800" ind1="1" ind2=" ">
+      <marc:subfield code="a">Offenbach, Jacques,</marc:subfield>
+      <marc:subfield code="d">1819-1880.</marc:subfield>
+      <marc:subfield code="t">Operas.</marc:subfield>
+      <marc:subfield code="k">Selections (Bourg)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Collection Archives (Institut national de la communication audiovisuelle (France))</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">rcpqk</marc:subfield>
+      <marc:subfield code="h">LS- 11479</marc:subfield>
+      <marc:subfield code="x">tr fr mus</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">Z0</marc:subfield>
+      <marc:subfield code="b">PUL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">jps</marc:subfield>
+      <marc:subfield code="b">l</marc:subfield>
+      <marc:subfield code="6">j</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20060315</marc:subfield>
+    </marc:datafield>
+  </marc:record>
 </marc:collection>
 

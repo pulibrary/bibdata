@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>02266cjm a2200553 a 4500</marc:leader>
+    <marc:controlfield tag="001">4687191</marc:controlfield>
+    <marc:controlfield tag="005">20060315183239.0</marc:controlfield>
+    <marc:controlfield tag="007">sd bmmennmplu-</marc:controlfield>
+    <marc:controlfield tag="008">850503p19841970fr opn   z          fre  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   85751820 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="019" ind1=" " ind2=" ">
+      <marc:subfield code="a">15641274</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="0">
+      <marc:subfield code="a">BG 2012</marc:subfield>
+      <marc:subfield code="b">Bourg Records</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="0" ind2="0">
+      <marc:subfield code="a">BG 2013</marc:subfield>
+      <marc:subfield code="b">Bourg Records</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="033" ind1="1" ind2=" ">
+      <marc:subfield code="a">19700225</marc:subfield>
+      <marc:subfield code="a">19700227</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm10663999</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+      <marc:subfield code="d">MUQ</marc:subfield>
+      <marc:subfield code="d">OCLCQ</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="0" ind2=" ">
+      <marc:subfield code="d">fre</marc:subfield>
+      <marc:subfield code="b">engfreger</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="1" ind2="0">
+      <marc:subfield code="a">M1500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Offenbach, Jacques,</marc:subfield>
+      <marc:subfield code="d">1819-1880.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Geneviève de Brabant</marc:subfield>
+      <marc:subfield code="h">[sound recording] /</marc:subfield>
+      <marc:subfield code="c">musique de Jacques Offenbach ; paroles de Hector Crémieux et Etienne Tréfeu.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Paris :</marc:subfield>
+      <marc:subfield code="b">Bourg Records ;</marc:subfield>
+      <marc:subfield code="a">N[ew] Y[ork] :</marc:subfield>
+      <marc:subfield code="b">Distributed by Qualiton Imports,</marc:subfield>
+      <marc:subfield code="c">1984.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">2 sound discs :</marc:subfield>
+      <marc:subfield code="b">analog, 33 1/3 rpm, mono. ;</marc:subfield>
+      <marc:subfield code="c">12 in.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Collection Bourg Offenbach</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Collection Archives</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Bourg Records: BG 2012--BG 2013.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Opera in 3 acts.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="511" ind1="0" ind2=" ">
+      <marc:subfield code="a">Annik Simon ; Monique Stiot ; Bernard Plantey ; René Terrasson ; Jean-Christophe Benoit ; Jacques Tharande ; with supporting soloists ; chorus ; Orchestre lyrique radio et télévision française ; Marcel Cariven, conductor.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="518" ind1=" " ind2=" ">
+      <marc:subfield code="a">Recorded Feb. 25 and 27, 1970.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Distributor from label on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Synopsis in English, French, and German on container.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Operas.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Geneviève, of Brabant</marc:subfield>
+      <marc:subfield code="v">Drama.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="0" ind2="6">
+      <marc:subfield code="a">Geneviève,</marc:subfield>
+      <marc:subfield code="c">de Brabant</marc:subfield>
+      <marc:subfield code="v">Théâtre.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="6">
+      <marc:subfield code="a">Opéras</marc:subfield>
+      <marc:subfield code="y">19e siècle.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Crémieux, Hector Jonathan,</marc:subfield>
+      <marc:subfield code="d">1828-1892.</marc:subfield>
+      <marc:subfield code="4">lbt</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Tréfeu, Etienne.</marc:subfield>
+      <marc:subfield code="4">lbt</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Simon, Annik.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Stiot, Monique.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Plantey, Bernard.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Terrasson, René.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Benoit, Jean-Christophe.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Tharande, Jacques.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cariven, Marcel.</marc:subfield>
+      <marc:subfield code="4">cnd</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Orchestre lyrique de la R.T.F.</marc:subfield>
+      <marc:subfield code="4">prf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="800" ind1="1" ind2=" ">
+      <marc:subfield code="a">Offenbach, Jacques,</marc:subfield>
+      <marc:subfield code="d">1819-1880.</marc:subfield>
+      <marc:subfield code="t">Operas.</marc:subfield>
+      <marc:subfield code="k">Selections (Bourg)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Collection Archives (Institut national de la communication audiovisuelle (France))</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">rcpqk</marc:subfield>
+      <marc:subfield code="h">LS- 11479</marc:subfield>
+      <marc:subfield code="x">tr fr mus</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">Z0</marc:subfield>
+      <marc:subfield code="b">PUL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">jps</marc:subfield>
+      <marc:subfield code="b">l</marc:subfield>
+      <marc:subfield code="6">j</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20060315</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

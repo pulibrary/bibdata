@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>04673ctm a2200589Ia 4500</marc:leader>
+    <marc:controlfield tag="001">4705304</marc:controlfield>
+    <marc:controlfield tag="005">20120605122422.0</marc:controlfield>
+    <marc:controlfield tag="008">060419s1501    xx p          000 0 ara d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm67146416</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">PUL</marc:subfield>
+      <marc:subfield code="c">PUL</marc:subfield>
+      <marc:subfield code="e">amremm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us-nj</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">PULL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Dawwānī, Muḥammad ibn Asʻad,</marc:subfield>
+      <marc:subfield code="d">1426 or 7-1512 or 13</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">100-01//r</marc:subfield>
+      <marc:subfield code="a">دواني، محمد بن اسعد</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Risālat al-Zawrāʼ.</marc:subfield>
+      <marc:subfield code="b">Ḥāshiyah ʻalá al-Zawrāʼ ... [etc.].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02//r</marc:subfield>
+      <marc:subfield code="a">رسالة الزوراء.</marc:subfield>
+      <marc:subfield code="b">حاشية على الزوراء</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="c">[1501]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">i, 150 leaves, i :</marc:subfield>
+      <marc:subfield code="b">paper, ill. ;</marc:subfield>
+      <marc:subfield code="c">170 x 101 (125 x 55) mm. bound to 175 x 111 mm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Title supplied by cataloger.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Ms. codex.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="520" ind1="8" ind2=" ">
+      <marc:subfield code="a">Illuminated copy of nine texts and commentaries on kalām and logic.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">19 lines per page. Written in a small naskh using black ink, with some red for important words, to write "qawluh" or to underline the commented text. Illuminated headpiece on fol. 1b. From text 2, the beginning of each text is decorated by an illuminated panel with the same floral motifs (fol. 7b, 21b, 27b, 32b, 44b, 56b, 98b, 133b). The text is written within a gilt and red and blue border, with a red outerframe on the edge of the page. The occasional marginalia are from the author. Contains some collation notes. Table of contents by a later hand on fol. 1a (prev. 2a). Modern foliation in pencil using Western numerals (includes the first free endpaper ; fol. between fol. 7 and 8 blank).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Decoration: Contains six miniatures, representing learned men (fol. 27a, 54b, 103a, 132b, 133a, 140b). On fol 27a : Outdoor scene representing a sitting man wearing a brown and green garnment and a white and red turban. On fol. 54b : Outdoor scene with two men facing each other, the one on the left  reading a text on a roll and the one of the right pointing to the sky with the index of his right hand, and to the ground with the index of his left hand. On fol. 103a : Indoor scene with two sitting men. The one on the left, dressed in green and red, reads a book to the one one the right, dressed in yellow. On fol. 132b : A standing man dressed in blue and yellow meditating. On fol. 133a : A standing man dressed in green and purple with a cane in his right hand meditating. On fol. 140b : Indoor scene representing two men sitting and discussing on the fore ground with a book laying between them; third man in the background coming in, a leaf with text in his hand.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Copied from Ṣafar to Rabīʻ al-Thānī 907 by Aḥmad ibn ʻAlī ibn Abī Bakr (colophons).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">1. fol. 1b-7a : [Risalat al-Zawrāʼ] / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">2. fol. 7b-21a : al-Ḥāshiyah ʻalá al-Zawrāʼ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">3. fol. 21b-26b : al-Ḥāshiyah ʻalá khuṭbat al-Zawrāʼ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">4. fol. 27b-32a : al-Risālah fī khalq al-aʻmāl / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">5. fol. 32b-43b : Risālah fī taʻrīf ʻilm al-kalām / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">6. fol. 44b-56a : Sharḥ khuṭbat al-Ṭawāliʻ / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">7. fol. 56b-97b : Ḥāshiyat al-Tahdhīb / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">8. fol. 98b-132a : [Ḥawāshī ʻalá Maṭāliʻ al-anwār] / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="8" ind2=" ">
+      <marc:subfield code="a">9. fol. 133b-150b : Ḥāshiyat al-Risālah al-shamsīyah / Muḥammad ibn Asʻad Dawwānī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="563" ind1=" " ind2=" ">
+      <marc:subfield code="a">Upper and lower covers made of dark-brown leather over paper pasteboards with deeply impressed gold and black corner pieces and central mandorla with two pendants on the vertical axis. Repaired and re-backed.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Islam</marc:subfield>
+      <marc:subfield code="x">Doctrines</marc:subfield>
+      <marc:subfield code="v">Early works to 1800.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="z">New Jersey</marc:subfield>
+      <marc:subfield code="z">Princeton.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">lcsh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Illuminated manuscripts</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Headpieces (layout features)</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Miniatures (Illuminations)</marc:subfield>
+      <marc:subfield code="z">Islamic Empire</marc:subfield>
+      <marc:subfield code="y">16th century.</marc:subfield>
+      <marc:subfield code="2">gmgpc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705307</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705340</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705359</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705365</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705369</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705377</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705374</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705383</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="774" ind1="0" ind2=" ">
+      <marc:subfield code="w">4705386</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="1">
+      <marc:subfield code="u">http://arks.princeton.edu/ark:/88435/9k41zd556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hsvm</marc:subfield>
+      <marc:subfield code="h">Islamic Manuscripts, New Series no. 1948</marc:subfield>
+      <marc:subfield code="x">tr fr mss</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">ceb</marc:subfield>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="6">t</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">0</marc:subfield>
+      <marc:subfield code="e">20060419</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

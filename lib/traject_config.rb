@@ -43,11 +43,13 @@ to_field 'id', extract_marc('001', :first => true)
 to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
-
-to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true) do |record, accumulator|
+to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only)
+to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true, :default => 'aut') do |record, accumulator|
     accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
     #accumulator << TranslationMap.new("relators")[rel]
 end
+
+to_field 'marc_display', serialized_marc(:format => "xml", :binary_escape => false, :allow_oversized => true)
 
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
@@ -332,6 +334,8 @@ to_field 'language_display', extract_marc('5463a')
 #    546 XX b
 to_field 'script_display', extract_marc('546b')
 
+to_field 'language_code_s', extract_marc('008[35-37]')
+
 # Contents:
 #    505 0X agrt
 #    505 8X agrt
@@ -399,7 +403,11 @@ to_field 'form_genre_display', extract_marc('0655avxyz')
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
 #    710 XX abcdefghklnoprstx A ab
-to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprstx:710abcdefghklnoprstx')
+to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprstx:710abcdefghklnoprstx', :trim_punctuation => true)
+
+to_field 'marc_relatedor_display', extract_marc('7004:7104:7114', :default => 'aut', :allow_duplicates => true)
+
+
 
 # Place name(s):
 #    752 XX abcd
@@ -476,6 +484,8 @@ to_field 'original_language_display', extract_marc('880abc')
 to_field 'location_display', extract_marc('852b') do |record, accumulator|
   accumulator = TranslationMap.new("locations").translate_array!(accumulator)
 end
+
+to_field 'location_code_display', extract_marc('852b')
 
 to_field 'location', extract_marc('852b') do |record, accumulator|
   accumulator = TranslationMap.new("locations").translate_array!(accumulator)
