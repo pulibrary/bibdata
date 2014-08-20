@@ -1,6 +1,6 @@
 require 'json'
 
-describe 'From config.rb' do
+describe 'From traject_config.rb' do
 	before(:all) do
 
 		def trajectify(fixture_name) 
