@@ -3,12 +3,14 @@ require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'lib/translation_map'
 require 'lib/umich_format'
+require 'lib/princeton_marc'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
 settings do
   # Where to find solr server to write to
   provide "solr.url", "http://localhost:8983/solr/blacklight-core"
+  #provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
 
   # If you are connecting to Solr 1.x, you need to set
   # for SolrJ compatibility:
@@ -78,6 +80,10 @@ to_field 'edition_display', extract_marc('250ab')
 #    264 XX abc
 to_field 'pub_created_display', extract_marc('260abcefg:264abc', :first => true)
 to_field 'pub_created_s', extract_marc('260abcefg:264abc', :first => true)
+
+to_field 'pub_date' do |record, accumulator|
+    accumulator << record.best_date
+end
 
 # Medium/Support:
 #    340 XX 3abcdefhl
@@ -464,6 +470,8 @@ to_field 'standard_no_display', extract_marc('010a:030a')
 # Original language:
 #    880 XX abc
 to_field 'original_language_display', extract_marc('880abc')
+
+to_field 'subject_era_facet', marc_era_facet
 
 # Related record(s):
 #    3500 BBID774W
