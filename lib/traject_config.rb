@@ -82,7 +82,7 @@ to_field 'pub_created_display', extract_marc('260abcefg:264abc', :first => true)
 to_field 'pub_created_s', extract_marc('260abcefg:264abc', :first => true)
 
 to_field 'pub_date' do |record, accumulator|
-    accumulator << best_date(record)
+    accumulator << record.best_date
 end
 
 # Medium/Support:
