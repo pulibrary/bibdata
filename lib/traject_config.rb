@@ -4,13 +4,14 @@ require 'traject/macros/marc_format_classifier'
 require 'lib/translation_map'
 require 'lib/umich_format'
 require 'lib/princeton_marc'
+require 'lib/location_extract'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
 settings do
   # Where to find solr server to write to
-  provide "solr.url", "http://localhost:8983/solr/blacklight-core"
-  #provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
+  #provide "solr.url", "http://localhost:8983/solr/blacklight-core"
+  provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
 
   # If you are connecting to Solr 1.x, you need to set
   # for SolrJ compatibility:
@@ -35,6 +36,8 @@ settings do
   provide "marc4j_reader.source_encoding", "UTF-8" # or 'UTF-8' or 'ISO-8859-1' or whatever. 
 end
 
+update_locations
+
 to_field 'id', extract_marc('001', :first => true)
 
 
@@ -45,7 +48,7 @@ to_field 'id', extract_marc('001', :first => true)
 to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
 to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
-to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only)
+to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true, :default => 'aut') do |record, accumulator|
     accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
     #accumulator << TranslationMap.new("relators")[rel]
@@ -61,8 +64,8 @@ to_field 'uniform_title_display', extract_marc('130apldfhkmnorst:240apldfhkmnors
 
 # Title:
 #    245 XX abchknps
-to_field 'title_display', extract_marc('245abchknps', :alternate_script => false)
-to_field 'title_vern_display', extract_marc('245abchknps', :alternate_script => :only)
+to_field 'title_display', extract_marc('245abchknps', :alternate_script => false, :first => true)
+to_field 'title_vern_display', extract_marc('245abchknps', :alternate_script => :only, :first => true)
 to_field 'title_sort', marc_sortable_title
 to_field 'title_t', extract_marc('245abchknps')
 
@@ -496,7 +499,7 @@ end
 to_field 'location_code_display', extract_marc('852b')
 
 to_field 'location', extract_marc('852b') do |record, accumulator|
-  accumulator = TranslationMap.new("locations").translate_array!(accumulator)
+  accumulator = TranslationMap.new("location_display").translate_array!(accumulator)
 end
 # # #    1000
 

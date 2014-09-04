@@ -17,27 +17,29 @@ module MARC
     @@BC_DATE_PATTERN = /[0-9]+ [Bb]\.?[Cc]\.?/
     def best_date
       date = nil
-      if self['260']['c']
+      if self['260']
+        if self['260']['c']
         field_260c = self['260']['c']
-        case field_260c
-          when @@THREE_OR_FOUR_DIGITS
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_BRACES
-            date = $1
-          when @@FOUR_DIGIT_PATTERN_ONE_BRACE
-            date = $1
-          when @@FOUR_DIGIT_PATTERN_OTHER_1
-            date = "1#{$1}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_2
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_3
-            date = "#{$1}#{$2}0"
-          when @@FOUR_DIGIT_PATTERN_OTHER_4
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_5
-            date = "#{$1}00"
-          when @@BC_DATE_PATTERN
-            date = nil
+          case field_260c
+            when @@THREE_OR_FOUR_DIGITS
+              date = "#{$1}#{$2}"
+            when @@FOUR_DIGIT_PATTERN_BRACES
+              date = $1
+            when @@FOUR_DIGIT_PATTERN_ONE_BRACE
+              date = $1
+            when @@FOUR_DIGIT_PATTERN_OTHER_1
+              date = "1#{$1}"
+            when @@FOUR_DIGIT_PATTERN_OTHER_2
+              date = "#{$1}#{$2}"
+            when @@FOUR_DIGIT_PATTERN_OTHER_3
+              date = "#{$1}#{$2}0"
+            when @@FOUR_DIGIT_PATTERN_OTHER_4
+              date = "#{$1}#{$2}"
+            when @@FOUR_DIGIT_PATTERN_OTHER_5
+              date = "#{$1}00"
+            when @@BC_DATE_PATTERN
+              date = nil
+          end
         end
       end
       date ||= self.date_from_008
