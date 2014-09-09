@@ -84,8 +84,17 @@ to_field 'edition_display', extract_marc('250ab')
 to_field 'pub_created_display', extract_marc('260abcefg:264abc', :first => true)
 to_field 'pub_created_s', extract_marc('260abcefg:264abc', :first => true)
 
-to_field 'pub_date' do |record, accumulator|
-    accumulator << record.best_date
+to_field 'pub_date_display' do |record, accumulator|
+    accumulator << record.date_from_008
+end
+
+
+to_field 'pub_date_start_sort' do |record, accumulator|
+    accumulator << record.date_from_008
+end
+
+to_field 'pub_date_end_sort' do |record, accumulator|
+    accumulator << record.end_date_from_008
 end
 
 # Medium/Support:
@@ -311,7 +320,43 @@ to_field 'summary_note_display', extract_marc('5203ab')
 #    565 XX 3abcde
 #    567 XX a
 #    570 XX a
-to_field 'notes_display', extract_marc('5003a:501a:503a:502a:504ab:508a:513ab:514abcdefghijkm:515a:5183a:5213ab:522a:523a:525a:527a:534abcefklmnpt:5353abcdg:536abcdefgh:537a:538a:5443abcden:547a:550a:556a:5623abcde:5653abcde:567a:570a')
+to_field 'notes_display', extract_marc('5003a')
+to_field 'with_notes_display', extract_marc('501a')
+to_field 'bibliographich_notes_display', extract_marc('503a') #obsolete
+to_field 'dissertation_notes_display', extract_marc('502a')
+to_field 'bib_ref_notes_display', extract_marc('504ab')
+to_field 'scale_notes_display', extract_marc('507ab') #added
+to_field 'credits_notes_display', extract_marc('508a')
+to_field 'type_period_notes_display', extract_marc('513ab')
+to_field 'data_quality_notes_display', extract_marc('514abcdefghijkm')
+to_field 'numbering_pec_notes_display', extract_marc('515a')
+to_field 'type_comp_data_notes_display', extract_marc('516a') #added
+to_field 'date_place_event_notes_display', extract_marc('5183a')
+to_field 'target_aud_notes_display', extract_marc('5213ab')
+to_field 'geo_cov_notes_display', extract_marc('522a')
+to_field 'time_period_notes_display', extract_marc('523a') #obsolete
+to_field 'supplement_notes_display', extract_marc('525a')
+to_field 'study_prog_notes_display', extract_marc('526abcdixz') #added
+to_field 'censorship_notes_display', extract_marc('527a') #obsolete
+to_field 'reproduction_notes_display', extract_marc('533abcdefmn') #added
+to_field 'original_version_notes_display', extract_marc('534abcefklmnpt')
+to_field 'location_originals_notes_display', extract_marc('5353abcdg')
+to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
+to_field 'source_data_notes_display', extract_marc('537a') #obsolete
+to_field 'system_details_notes_display', extract_marc('538a')
+#542?
+to_field 'location_other_arch_notes_display', extract_marc('5443abcden')
+to_field 'former_title_complex_notes_display', extract_marc('547a')
+to_field 'issuing_body_notes_display', extract_marc('550a')
+to_field 'info_document_notes_display', extract_marc('556a')
+to_field 'copy_version_notes_display', extract_marc('5623abcde')
+to_field 'case_file_notes_display', extract_marc('5653abcde')
+to_field 'methodology_notes_display', extract_marc('567a')
+to_field 'editor_notes_display', extract_marc('570a') #added
+to_field 'action_notes_display', extract_marc('583abcdefhijklnouxz') #added
+to_field 'accumulation_notes_display', extract_marc('584ab') #added
+to_field 'awards_notes_display', extract_marc('586a') #added
+to_field 'source_desc_notes_display', extract_marc('588a') #added
 
 # Binding note:
 #    563 XX au3
@@ -338,6 +383,9 @@ to_field 'participant_performer_display', extract_marc('511a')
 # Language(s):
 #    546 XX 3a
 to_field 'language_display', extract_marc('5463a')
+
+to_field "language_facet", marc_languages
+
 
 # Script:
 #    546 XX b
@@ -403,7 +451,11 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'subject_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz')
+to_field 'subject_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
+to_field 'subject_topic_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
+
+
+to_field 'lc_1letter_facet', marc_lcc_to_broad_category
 
 # Form/Genre:
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz

@@ -113,13 +113,14 @@ module Traject
 
       # Returns an actual Hash -- or nil if none found.
       def lookup(path)
-        # unless @cached.has_key?(path)
-        #   @cached[path] = _lookup!(path)
-        # end
         rb_file = File.join( "lib",  "translation_maps",  "#{path}.rb"  )
         if File.exists? rb_file
-          found = eval( File.open(rb_file).read , binding, rb_file ) 
-          @cached[path] = found      
+          found = eval( File.open(rb_file).read , binding, rb_file )   
+          @cached[path] = found    
+        else
+          unless @cached.has_key?(path)
+            @cached[path] = _lookup!(path)
+          end
         return @cached[path]
       end
 
@@ -130,22 +131,22 @@ module Traject
       def _lookup!(path)
         found = nil
 
-        # $LOAD_PATH.each do |base|
-        #   rb_file = File.join( base,  "translation_maps",  "#{path}.rb"  )
-        #   yaml_file = File.join( base, "translation_maps", "#{path}.yaml"  )
-        #   prop_file = File.join(base, "translation_maps", "#{path}.properties" )
-        # rb_file = File.join( "lib",  "translation_maps",  "#{path}.rb"  )
-        # if File.exists? rb_file
-        #   found = eval( File.open(rb_file).read , binding, rb_file )
-        #   elsif File.exists? yaml_file
-        #     found = YAML.load_file(yaml_file)
-        #     break
-        #   elsif File.exists? prop_file
-        #     found = Traject::TranslationMap.read_properties(prop_file)
-        #     break
-        #   end
-
+        $LOAD_PATH.each do |base|
+          rb_file = File.join( base,  "translation_maps",  "#{path}.rb"  )
+          yaml_file = File.join( base, "translation_maps", "#{path}.yaml"  )
+          prop_file = File.join(base, "translation_maps", "#{path}.properties" )
+        rb_file = File.join( "lib",  "translation_maps",  "#{path}.rb"  )
+        if File.exists? rb_file
+          found = eval( File.open(rb_file).read , binding, rb_file )
+          elsif File.exists? yaml_file
+            found = YAML.load_file(yaml_file)
+            break
+          elsif File.exists? prop_file
+            found = Traject::TranslationMap.read_properties(prop_file)
+            break
+          end
         end
+      end
 
         # Cached hash can't be mutated without weird consequences, let's
         # freeze it!

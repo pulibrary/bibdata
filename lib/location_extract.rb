@@ -13,7 +13,7 @@ def update_locations
 		if hash[key]["collectionDisplay"].nil?
 			longerdisplay[key] = hash[key]["libraryDisplay"] 
 		else
-			longerdisplay[key] = hash[key]["libraryDisplay"] + ' : ' + hash[key]["collectionDisplay"]
+			longerdisplay[key] = hash[key]["libraryDisplay"] + ': ' + hash[key]["collectionDisplay"]
 		end
 	end
 
