@@ -1580,5 +1580,152 @@
       <marc:subfield code="e">20060315</marc:subfield>
     </marc:datafield>
   </marc:record>
+  <marc:record>
+    <marc:leader>01949ctm a2200361 a 4500</marc:leader>
+    <marc:controlfield tag="001">3512354</marc:controlfield>
+    <marc:controlfield tag="005">20060928132355.0</marc:controlfield>
+    <marc:controlfield tag="008">020131s0990    enk           000 0 ang d</marc:controlfield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+      <marc:subfield code="e">amremm</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us-nj</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="0" ind2=" ">
+      <marc:subfield code="a">Aethelgifu.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">[Will of Aethelgifu].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="c">[ca. 990]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 leaf :</marc:subfield>
+      <marc:subfield code="b">parchment,</marc:subfield>
+      <marc:subfield code="c">560 x 350 mm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="340" ind1=" " ind2=" ">
+      <marc:subfield code="e">in case, mounted between plexiglass.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="520" ind1="0" ind2=" ">
+      <marc:subfield code="a">Ms. will.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="546" ind1=" " ind2=" ">
+      <marc:subfield code="a">Text in Anglo-Saxon.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Origin: Written in England, probably at the Abbey of St. Albans, ca. 990.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="524" ind1=" " ind2=" ">
+      <marc:subfield code="a">Scheide Library, Princeton University. M 140.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="561" ind1=" " ind2=" ">
+      <marc:subfield code="a">Belonged to the Abbey of St. Albans in the 12th century; belonged to Sir Matthew Hale in the 17th century who probably received it from John Selden; purchased by William H. Scheide through H. P. Kraus at Sotheby's, Dec. 10, 1969.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="530" ind1=" " ind2=" ">
+      <marc:subfield code="a">Photoreproduced facsimile version;</marc:subfield>
+      <marc:subfield code="b">Published as The Will of Aethelgifu : a tenth century Anglo-Saxon manuscript / translated and examined by Dorothy Whitelock, with a note on the document by Neil Ker, and analyses of the properties, livestock and chattels concerned by Lord Rennell. Oxford : Printed for presentation to the members of the Roxburghe Club by Oxford U.P., 1968.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="506" ind1=" " ind2=" ">
+      <marc:subfield code="a">These privately owned manuscripts are available through the Department of Rare Books and Special Collections, Firestone Library.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Manuscripts, English (Old)</marc:subfield>
+      <marc:subfield code="z">New Jersey</marc:subfield>
+      <marc:subfield code="z">Princeton.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Wills</marc:subfield>
+      <marc:subfield code="z">England</marc:subfield>
+      <marc:subfield code="y">10th century.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Parchment.</marc:subfield>
+      <marc:subfield code="2">aat</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Selden, John,</marc:subfield>
+      <marc:subfield code="d">1584-1654,</marc:subfield>
+      <marc:subfield code="e">former owner.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Hale, Matthew,</marc:subfield>
+      <marc:subfield code="c">Sir,</marc:subfield>
+      <marc:subfield code="d">1609-1676,</marc:subfield>
+      <marc:subfield code="e">former owner.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Scheide, William H.</marc:subfield>
+      <marc:subfield code="q">(William Hurd),</marc:subfield>
+      <marc:subfield code="d">1914-</marc:subfield>
+      <marc:subfield code="e">former owner.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">St. Albans Abbey.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">H.P. Kraus (Firm),</marc:subfield>
+      <marc:subfield code="e">bookseller.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Princeton University Library.</marc:subfield>
+      <marc:subfield code="k">Manuscript.</marc:subfield>
+      <marc:subfield code="n">Scheide 140.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="752" ind1=" " ind2=" ">
+      <marc:subfield code="a">England.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a"/>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="6">t</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20020131</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+  <marc:record>
+    <marc:leader>00658cem a22001575a 4500</marc:leader>
+    <marc:controlfield tag="001">5148991</marc:controlfield>
+    <marc:controlfield tag="005">20070328164604.0</marc:controlfield>
+    <marc:controlfield tag="008">070328 2006                             </marc:controlfield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="a">Aerial photography of New York City, January-March 2006 :</marc:subfield>
+      <marc:subfield code="b">covering NYC area (five boroughs); weather conditions prevented a continuous flight</marc:subfield>
+      <marc:subfield code="h">[map].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="a">Aerial photography of NYC, January-March 2006.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">Digital aerial photography of New York City, January-March 2006</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">New York City, January-March 2006 : aerial photography</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Tempe, AZ:</marc:subfield>
+      <marc:subfield code="b">Aerials Express,</marc:subfield>
+      <marc:subfield code="c">[2006] .</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Aerials Express</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">scimap</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">twm</marc:subfield>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="h">n</marc:subfield>
+      <marc:subfield code="c">f</marc:subfield>
+      <marc:subfield code="e">20070328</marc:subfield>
+    </marc:datafield>
+  </marc:record>
 </marc:collection>
 
