@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>00658cem a22001575a 4500</marc:leader>
+    <marc:controlfield tag="001">5148991</marc:controlfield>
+    <marc:controlfield tag="005">20070328164604.0</marc:controlfield>
+    <marc:controlfield tag="008">070328 2006                             </marc:controlfield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="a">Aerial photography of New York City, January-March 2006 :</marc:subfield>
+      <marc:subfield code="b">covering NYC area (five boroughs); weather conditions prevented a continuous flight</marc:subfield>
+      <marc:subfield code="h">[map].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="a">Aerial photography of NYC, January-March 2006.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">Digital aerial photography of New York City, January-March 2006</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">New York City, January-March 2006 : aerial photography</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Tempe, AZ:</marc:subfield>
+      <marc:subfield code="b">Aerials Express,</marc:subfield>
+      <marc:subfield code="c">[2006] .</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Aerials Express</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">scimap</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">twm</marc:subfield>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="h">n</marc:subfield>
+      <marc:subfield code="c">f</marc:subfield>
+      <marc:subfield code="e">20070328</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

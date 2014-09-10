@@ -47,7 +47,28 @@ module MARC
 
     def date_from_008
       d = self['008'].value[7,4].gsub 'u', '0'
+      if d != '    ' 
+        d = d.gsub ' ', '0'
+      end      
       d if d =~ /^[0-9]{4}$/
+    end
+
+    def end_date_from_008
+      d = self['008'].value[11,4].gsub 'u', '0'
+      if d != '    ' 
+        d = d.gsub ' ', '0'
+      end
+      d if d =~ /^[0-9]{4}$/
+    end
+
+    def date_display
+      date = nil
+      if self['260']
+        if self['260']['c']
+          date = self['260']['c']
+        end
+      end
+      date ||= self.date_from_008
     end
 
   end
