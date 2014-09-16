@@ -1727,5 +1727,41 @@
       <marc:subfield code="e">20070328</marc:subfield>
     </marc:datafield>
   </marc:record>
+  <marc:record>
+    <marc:leader>00509cam a22001575a 4500</marc:leader>
+    <marc:controlfield tag="001">6574987</marc:controlfield>
+    <marc:controlfield tag="005">20110919084640.0</marc:controlfield>
+    <marc:controlfield tag="008">110602s2011    nju           000 0 eng  </marc:controlfield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Velez, Carlos.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Searching for a modern aesthetic :</marc:subfield>
+      <marc:subfield code="b">from furniture to design /</marc:subfield>
+      <marc:subfield code="c">Carlos Velez.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="c">2011</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">139 p. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">29 x 23 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Advisor(s): Spyridon Papapetros, Lucia Allais</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="502" ind1=" " ind2=" ">
+      <marc:subfield code="a">Thesis (Senior)--Princeton University, 2011.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">uesla</marc:subfield>
+      <marc:subfield code="h">Sen. Th. 2011 Vel</marc:subfield>
+    </marc:datafield>
+  </marc:record>
 </marc:collection>
 
