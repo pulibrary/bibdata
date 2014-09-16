@@ -114,15 +114,25 @@ module Traject
       # Returns an actual Hash -- or nil if none found.
       def lookup(path)
         rb_file = File.join( "lib",  "translation_maps",  "#{path}.rb"  )
+        yaml_file = File.join( "lib", "translation_maps", "#{path}.yaml"  )
+        prop_file = File.join( "lib", "translation_maps", "#{path}.properties" )       
         if File.exists? rb_file
           found = eval( File.open(rb_file).read , binding, rb_file )   
           @cached[path] = found    
+        elsif File.exists? yaml_file
+          found = YAML.load_file(yaml_file)
+          @cached[path] = found 
+        elsif File.exists? prop_file
+          found = Traject::TranslationMap.read_properties(prop_file)
+          @cached[path] = found 
         else
           unless @cached.has_key?(path)
             @cached[path] = _lookup!(path)
           end
+        end
         return @cached[path]
       end
+
 
       # force lookup, without using cache.
       # used by cache. Returns the actual hash.
@@ -135,9 +145,10 @@ module Traject
           rb_file = File.join( base,  "translation_maps",  "#{path}.rb"  )
           yaml_file = File.join( base, "translation_maps", "#{path}.yaml"  )
           prop_file = File.join(base, "translation_maps", "#{path}.properties" )
-        rb_file = File.join( "lib",  "translation_maps",  "#{path}.rb"  )
-        if File.exists? rb_file
-          found = eval( File.open(rb_file).read , binding, rb_file )
+
+          if File.exists? rb_file
+            found = eval( File.open(rb_file).read , binding, rb_file )
+            break
           elsif File.exists? yaml_file
             found = YAML.load_file(yaml_file)
             break
@@ -146,7 +157,6 @@ module Traject
             break
           end
         end
-      end
 
         # Cached hash can't be mutated without weird consequences, let's
         # freeze it!
