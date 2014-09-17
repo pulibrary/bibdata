@@ -10,8 +10,8 @@ extend Traject::Macros::MarcFormats
 
 settings do
   # Where to find solr server to write to
-  #provide "solr.url", "http://localhost:8983/solr/blacklight-core"
-  provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
+  provide "solr.url", "http://localhost:8983/solr/blacklight-core"
+  #provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
 
   # If you are connecting to Solr 1.x, you need to set
   # for SolrJ compatibility:
@@ -27,6 +27,7 @@ settings do
   provide "marc_source.type", "xml"
 
   # various others...
+  # solrj_writer hash_to_solr_document for stdout
   provide "solrj_writer.commit_on_close", "true"
 
   # By default, we use the Traject::MarcReader
@@ -45,9 +46,9 @@ to_field 'id', extract_marc('001', :first => true)
 #    100 XX aqbcdek A aq
 #    110 XX abcdefgkln A ab
 #    111 XX abcdefgklnpq A ab
-to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
-to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
-to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :first => true)
+to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
+to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
+to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
 to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true, :default => 'aut') do |record, accumulator|
     accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
@@ -59,7 +60,7 @@ to_field 'marc_display', serialized_marc(:format => "xml", :binary_escape => fal
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
-to_field 'uniform_title_display', extract_marc('130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
+to_field 'uniform_title_display', extract_marc('100:110:111:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
 
 
 # Title:
@@ -97,16 +98,19 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
-# Medium/Support:
-#    340 XX 3abcdefhl
 
 
+# umich format just one
 to_field 'format' do |record, accumulator|
-    fmt = UMichFormat.new(record).format_and_types
+    fmt = UMichFormat.new(record).bib_format
     # accumulator << TranslationMap.new("umich/format")[ fmt ]
-    accumulator << TranslationMap.new("umich/format").translate_array!(fmt)
+    accumulator << TranslationMap.new("umich/format")[fmt]
 end
 
+# to_field 'format', marc_formats
+
+# Medium/Support:
+#    340 XX 3abcdefhl
 to_field 'medium_support_display', extract_marc('340')
 
 
@@ -454,8 +458,24 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 to_field 'subject_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
 to_field 'subject_topic_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
 
+#callnumber_mapping = Traject::TranslationMap.new("callnumber_map")
+to_field 'lc_1letter_facet' do |record, accumulator|
+  if record['050']
+    if record['050']['a']
+      first_letter = record['050']['a'].lstrip.slice(0, 1)
+      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter]
+    end
+  end
+end
 
-to_field 'lc_1letter_facet', marc_lcc_to_broad_category
+to_field 'lc_rest_facet' do |record, accumulator|
+  if record['050']
+    if record['050']['a']     
+      letter = /([[:alpha:]])*/.match(record['050']['a'])[0]
+      accumulator << Traject::TranslationMap.new("callnumber_map")[letter]
+    end
+  end
+end
 
 # Form/Genre:
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
@@ -464,11 +484,16 @@ to_field 'form_genre_display', extract_marc('0655avxyz')
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
 #    710 XX abcdefghklnoprstx A ab
-to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprstx:710abcdefghklnoprstx', :trim_punctuation => true)
+#    711 XX abcdefgklnpq A ab
+to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprsx:710abcdefghklnoprsx:711abcdefgklnpq', :trim_punctuation => true)
+
+to_field 'related_works_display', extract_marc('700|1 |t:710|1 |t:711|1 |t', :trim_punctuation => true)
+
+to_field 'contains_display', extract_marc('700|12|t:710|12|t:711|12|t', :trim_punctuation => true)
 
 to_field 'marc_relatedor_display', extract_marc('7004:7104:7114', :default => 'aut', :allow_duplicates => true)
 
-
+to_field 'instrumentation_facet', marc_instrumentation_humanized
 
 # Place name(s):
 #    752 XX abcd
@@ -551,7 +576,7 @@ end
 to_field 'location_code_display', extract_marc('852b')
 
 to_field 'location', extract_marc('852b') do |record, accumulator|
-  accumulator = TranslationMap.new("location_display").translate_array!(accumulator)
+  accumulator = TranslationMap.new("location_display", :default => "__passthrough__").translate_array!(accumulator)
 end
 # # #    1000
 
