@@ -46,19 +46,23 @@ module MARC
     end
 
     def date_from_008
-      d = self['008'].value[7,4].gsub 'u', '0'
-      if d != '    ' 
-        d = d.gsub ' ', '0'
-      end      
-      d if d =~ /^[0-9]{4}$/
+      if self['008']
+        d = self['008'].value[7,4].gsub 'u', '0'
+        if d != '    ' 
+          d = d.gsub ' ', '0'
+        end      
+        d if d =~ /^[0-9]{4}$/
+      end
     end
 
     def end_date_from_008
-      d = self['008'].value[11,4].gsub 'u', '0'
-      if d != '    ' 
-        d = d.gsub ' ', '0'
+      if self['008']
+        d = self['008'].value[11,4].gsub 'u', '0'
+        if d != '    ' 
+          d = d.gsub ' ', '0'
+        end
+        d if d =~ /^[0-9]{4}$/
       end
-      d if d =~ /^[0-9]{4}$/
     end
 
     def date_display
@@ -73,4 +77,50 @@ module MARC
 
   end
 end
+
+
+
+# def all_subject_facets(accumulator)
+#   first_array = []
+#   accumulator.each_with_index do |whole_subject, i|
+#     subjectaccum = ''
+#     subject = whole_subject.split(' -- ')
+#     sub_array = []
+#     if subject[0] 
+#       first_array << subject[0]
+#     end
+#     subject.each_with_index do |subsubject, j|
+#       subject[j] = subjectaccum + subsubject
+#       subjectaccum = subject[j] + ' -- ' 
+#       sub_array << subject[j]
+#     end
+#     accumulator[i] = sub_array
+#   end     
+# end
+
+# def first_subject(accumulator)
+#   accumulator.each_with_index do |whole_subject, i|
+#     subjectaccum = ''
+#     subject = whole_subject.split(' -- ')
+#     sub_array = []
+#     if subject[0] 
+#       accumulator[i] = subject[0]
+#     end
+#   end 
+# end
+
+# def second_subject(accumulator)
+#   accumulator.each_with_index do |whole_subject, i|
+#     subjectaccum = ''
+#     subject = whole_subject.split(' -- ')
+#     sub_array = []
+#     if subject[1] 
+#       accumulator[i] = subject[1]
+#     end
+#   end 
+# end
+
+
+
+
 

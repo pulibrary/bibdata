@@ -5,13 +5,15 @@ require 'lib/translation_map'
 require 'lib/umich_format'
 require 'lib/princeton_marc'
 require 'lib/location_extract'
+#require 'lcsort'
+require 'stringex'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
 settings do
   # Where to find solr server to write to
-  provide "solr.url", "http://localhost:8983/solr/blacklight-core"
-  #provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
+  #provide "solr.url", "http://localhost:8983/solr/blacklight-core"
+  provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
 
   # If you are connecting to Solr 1.x, you need to set
   # for SolrJ compatibility:
@@ -20,7 +22,7 @@ settings do
   # solr.version doesn't currently do anything, but set it
   # anyway, in the future it will warn you if you have settings
   # that may not work with your version.
-  provide "solr.version", "4.9.0"
+  provide "solr.version", "4.10.0"
 
   # default source type is binary, traject can't guess
   # you have to tell it.
@@ -37,7 +39,8 @@ settings do
   provide "marc4j_reader.source_encoding", "UTF-8" # or 'UTF-8' or 'ISO-8859-1' or whatever. 
 end
 
-update_locations
+#update_locations
+
 
 to_field 'id', extract_marc('001', :first => true)
 
@@ -46,10 +49,27 @@ to_field 'id', extract_marc('001', :first => true)
 #    100 XX aqbcdek A aq
 #    110 XX abcdefgkln A ab
 #    111 XX abcdefgklnpq A ab
-to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
-to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
-to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => false, :first => true)
-to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
+
+# previously set to not include alternate script and to have only first value
+# to put back in add: alternate_script: false, first: true
+to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true)
+to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, first: true) do |record, accumulator|
+  accumulator[0] = accumulator[0].gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase if accumulator[0]
+end
+
+to_field 'author_sort_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: false) do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
+  end
+end
+
+to_field 'author_vern_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
+
+to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true)
+
+# for now not separate
+# to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
+
 to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true, :default => 'aut') do |record, accumulator|
     accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
     #accumulator << TranslationMap.new("relators")[rel]
@@ -60,15 +80,34 @@ to_field 'marc_display', serialized_marc(:format => "xml", :binary_escape => fal
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
-to_field 'uniform_title_display', extract_marc('100:110:111:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
+to_field 'uniform_title_display', extract_marc('100t:110t:111t:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
 
 
 # Title:
 #    245 XX abchknps
-to_field 'title_display', extract_marc('245abchknps', :alternate_script => false, :first => true)
-to_field 'title_vern_display', extract_marc('245abchknps', :alternate_script => :only, :first => true)
-to_field 'title_sort', marc_sortable_title
-to_field 'title_t', extract_marc('245abchknps')
+to_field 'title_display', extract_marc('245abchknps', :alternate_script => false)
+
+
+to_field 'title_vern_display', extract_marc('245abchknps', :alternate_script => :only)
+
+# to_field 'title_sort', marc_sortable_title
+to_field 'title_sort' do |record, accumulator|
+  MarcExtractor.cached("245abchknps").collect_matching_lines(record) do |field, spec, extractor|
+    str = extractor.collect_subfields(field, spec).first 
+    str = str.slice(field.indicator2.to_i, str.length)
+    accumulator << str if accumulator[0].nil?
+  end
+end
+
+to_field 'title_vern_sort' do |record, accumulator|
+  MarcExtractor.cached("245abchknps", :alternate_script => :only).collect_matching_lines(record) do |field, spec, extractor|
+    str = extractor.collect_subfields(field, spec).first 
+    str = str.slice(field.indicator2.to_i, str.length)
+    accumulator << str if accumulator[0].nil?
+  end
+end
+
+to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
 
 # Compiled/Created:
 #    245 XX fg
@@ -82,8 +121,8 @@ to_field 'edition_display', extract_marc('250ab')
 # Published/Created:
 #    260 XX abcefg
 #    264 XX abc
-to_field 'pub_created_display', extract_marc('260abcefg:264abc', :first => true)
-to_field 'pub_created_s', extract_marc('260abcefg:264abc', :first => true)
+to_field 'pub_created_display', extract_marc('260abcefg:264abcefg')
+to_field 'pub_created_s', extract_marc('260abcefg:264abcefg', :first => true)
 
 to_field 'pub_date_display' do |record, accumulator|
     accumulator << record.date_from_008
@@ -348,7 +387,7 @@ to_field 'location_originals_notes_display', extract_marc('5353abcdg')
 to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
 to_field 'source_data_notes_display', extract_marc('537a') #obsolete
 to_field 'system_details_notes_display', extract_marc('538a')
-#542?
+to_field 'related_copyright_notes_display', extract_marc('542') #is this in any record?
 to_field 'location_other_arch_notes_display', extract_marc('5443abcden')
 to_field 'former_title_complex_notes_display', extract_marc('547a')
 to_field 'issuing_body_notes_display', extract_marc('550a')
@@ -455,8 +494,52 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'subject_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
-to_field 'subject_topic_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true)
+
+to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
+
+to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :false) 
+
+to_field 'subject_vern_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :only) 
+
+to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ', alternate_script: false) do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
+  end
+end
+
+
+
+# to_field 'subject_roman_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => '—', :alternate_script => false)
+# to_field 'subject_ltr_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => '—', :alternate_script => :only) do |record, accumulator|
+#   if record['008']
+#     if record['008'][35-37] == 'ara' || record['008'][35-37] == 'heb'
+#       accumulator.clear
+#     end
+#   end  
+# end
+# to_field 'subject_rtl_display', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => '—', :alternate_script => :only) do |record, accumulator|
+#   if record['008']
+#     if !(record['008'][35-37] == 'ara' || record['008'][35-37] == 'heb')
+#       if record['008'][35-37] == 'chi' || record['008'][35-37] == 'zho' || record['008'][35-37] == 'jpn' || record['008'][35-37] == 'kor'
+#         puts accumulator
+#       accumulator.clear
+#     end
+#   end 
+# end
+to_field 'subject_topic_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') #do |record, accumulator|
+  #all_subject_facets(accumulator)
+#end
+
+# to_field 'subject_topicfull_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => ' -- ') 
+
+# to_field 'subject_topic1_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => ' -- ') do |record, accumulator|
+#   first_subject(accumulator)    
+# end
+
+# to_field 'subject_topic2_facet', extract_marc('600abcdfklmnopqrtvxyz:610abfklmnoprstvxyz:611abcdefgklnpqstvxyz:630adfgklmnoprstvxyz:650abcvxyz:651avxyz', :trim_punctuation => true, :separator => ' -- ') do |record, accumulator|
+#   second_subject(accumulator)
+# end
+
 
 #callnumber_mapping = Traject::TranslationMap.new("callnumber_map")
 to_field 'lc_1letter_facet' do |record, accumulator|
@@ -585,6 +668,9 @@ end
 #    852 XX ckhij
 to_field 'call_number_display', extract_marc('852ckhij')
 
+# to_field 'call_number_s', extract_marc('852ckhij') do |record, accumulator|
+#   accumulator[0] = Lcsort.normalize(accumulator[0])
+# end
 
 # Item details:
 # HTML:852||b:<a href="javascript:MapInfo('{b}');" class='loc_{b}'>Where to find it</a>
