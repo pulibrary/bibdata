@@ -15,7 +15,7 @@ class BibFormat
     lev  = ldr[7]
     # assuming all 502s have an a subfield
     if record['502']
-      if record['502']['a'].include? "(Senior)--Princeton University"
+      if (record['502']['a'].include? "(Senior)--Princeton University") || (record['502']['a'].include? "Thesis (Senior)-Princeton University")
         @code = "ST"
       else
         @code = "TH"
@@ -45,7 +45,7 @@ class BibFormat
   end
 
   def bibformat_bk(type, lev)
-    (type == 'a') && %w[a b c d m].include?(lev)
+    (type == 'a') && %w[a b c d i m].include?(lev)
   end
 
   def bibformat_jn(type, lev)
@@ -53,27 +53,27 @@ class BibFormat
   end  
 
   def bibformat_cf(type, lev)
-    (type == 'm') && %w[a b c d m s].include?(lev)
+    (type == 'm') 
   end
 
   def bibformat_au(type, lev)
-    %w[i j].include?(type) && %w[a b c d m].include?(lev)
+    %w[i j].include?(type)
   end  
 
   def bibformat_vm(type, lev)
-    %w[k o r].include?(type) && %w[a b c d m s].include?(lev)
+    %w[k o r].include?(type) 
   end
 
   def bibformat_vp(type, lev)
-    (type == 'g') && %w[a b c d m s].include?(lev)
+    (type == 'g') 
   end
 
   def bibformat_mu(type, lev)
-    (type == 'c') && %w[a b c d m s].include?(lev)
+    (type == 'c') #&& %w[a b c d m s].include?(lev)
   end
 
   def bibformat_mp(type, lev)
-    (type = 'e') && %w[a b c d m s].include?(lev)
+    (type = 'e')
   end
 
   def bibformat_mw(type, lev)
