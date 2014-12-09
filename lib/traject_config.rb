@@ -5,15 +5,17 @@ require 'lib/translation_map'
 require 'lib/umich_format'
 require 'lib/princeton_marc'
 require 'lib/location_extract'
-#require 'lcsort'
+require 'lcsort'
 require 'stringex'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
+
+
 settings do
   # Where to find solr server to write to
-  #provide "solr.url", "http://localhost:8983/solr/blacklight-core"
-  provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
+  provide "solr.url", "http://localhost:8983/solr/blacklight-core"
+  #provide "solr.url", "http://pulsearch-dev.princeton.edu:8080/orangelight/blacklight-core"
 
   # If you are connecting to Solr 1.x, you need to set
   # for SolrJ compatibility:
@@ -39,7 +41,11 @@ settings do
   provide "marc4j_reader.source_encoding", "UTF-8" # or 'UTF-8' or 'ISO-8859-1' or whatever. 
 end
 
-#update_locations
+update_locations
+
+
+
+
 
 
 to_field 'id', extract_marc('001', :first => true)
@@ -57,13 +63,13 @@ to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq',
   accumulator[0] = accumulator[0].gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase if accumulator[0]
 end
 
-to_field 'author_sort_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: false) do |record, accumulator|
+to_field 'author_sort_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true) do |record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
   end
 end
 
-to_field 'author_vern_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
+#to_field 'author_vern_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
 to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true)
 
@@ -499,9 +505,9 @@ to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdf
 
 to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :false) 
 
-to_field 'subject_vern_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :only) 
+#to_field 'subject_vern_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :only) 
 
-to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ', alternate_script: false) do |record, accumulator|
+to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ') do |record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
   end
@@ -668,9 +674,15 @@ end
 #    852 XX ckhij
 to_field 'call_number_display', extract_marc('852ckhij')
 
-# to_field 'call_number_s', extract_marc('852ckhij') do |record, accumulator|
-#   accumulator[0] = Lcsort.normalize(accumulator[0])
-# end
+
+
+to_field 'call_number_s', extract_marc('852khij') do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = Lcsort.normalize(value)
+  end
+end
+
+to_field 'call_number_browse_s', extract_marc('852khij')
 
 # Item details:
 # HTML:852||b:<a href="javascript:MapInfo('{b}');" class='loc_{b}'>Where to find it</a>
