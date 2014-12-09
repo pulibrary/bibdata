@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01245cam a2200361Ia 4500</marc:leader>
+    <marc:controlfield tag="001">4832228</marc:controlfield>
+    <marc:controlfield tag="005">20060905102311.0</marc:controlfield>
+    <marc:controlfield tag="008">960829s1937    cc            000 0 chi d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm35316510</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">HNK</marc:subfield>
+      <marc:subfield code="c">HNK</marc:subfield>
+      <marc:subfield code="d">OCLCQ</marc:subfield>
+      <marc:subfield code="d">PULEA</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">MAIN</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="090" ind1=" " ind2=" ">
+      <marc:subfield code="a">AC149</marc:subfield>
+      <marc:subfield code="b">.T76 1935 v. 500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="099" ind1=" " ind2=" ">
+      <marc:subfield code="a">C338/4352 v.500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Chen, Shiyuan,</marc:subfield>
+      <marc:subfield code="d">jin shi 1544.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">100-01/$1</marc:subfield>
+      <marc:subfield code="a">陳士元,</marc:subfield>
+      <marc:subfield code="d">jin shi 1544.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Mengzi za ji /</marc:subfield>
+      <marc:subfield code="c">Chen Shiyuan zhu.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02/$1</marc:subfield>
+      <marc:subfield code="a">孟子雜記 /</marc:subfield>
+      <marc:subfield code="c">陳士元著.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="250" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Chu ban.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">250-03/$1</marc:subfield>
+      <marc:subfield code="a">初版.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Shanghai :</marc:subfield>
+      <marc:subfield code="b">Shang wu yin shu guan,</marc:subfield>
+      <marc:subfield code="c">Minguo 26 [1937]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-04/$1</marc:subfield>
+      <marc:subfield code="a">上海 :</marc:subfield>
+      <marc:subfield code="b">商務印書館,</marc:subfield>
+      <marc:subfield code="c">民國26 [1937]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">2, 2, 80 p. ;</marc:subfield>
+      <marc:subfield code="c">18 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="440" ind1=" " ind2="0">
+      <marc:subfield code="6">880-05</marc:subfield>
+      <marc:subfield code="a">Cong shu ji cheng chu bian ;</marc:subfield>
+      <marc:subfield code="v">0500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2="0">
+      <marc:subfield code="6">440-05/$1</marc:subfield>
+      <marc:subfield code="a">叢書集成初編 ;</marc:subfield>
+      <marc:subfield code="v">0500</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">NOT TO CIRCULATE.</marc:subfield>
+      <marc:subfield code="5">NjP-G</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="0" ind2="0">
+      <marc:subfield code="6">880-06</marc:subfield>
+      <marc:subfield code="a">Mencius.</marc:subfield>
+      <marc:subfield code="t">Mengzi.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="0">
+      <marc:subfield code="6">600-06/$1</marc:subfield>
+      <marc:subfield code="a">Mencius.</marc:subfield>
+      <marc:subfield code="t">孟子.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hyg</marc:subfield>
+      <marc:subfield code="h">C338/4352 vol.500</marc:subfield>
+      <marc:subfield code="z">NOT TO CIRCULATE</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="910" ind1=" " ind2=" ">
+      <marc:subfield code="a">rc2082</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="945" ind1=" " ind2=" ">
+      <marc:subfield code="a">hyg</marc:subfield>
+      <marc:subfield code="c">C338/4352 v.500</marc:subfield>
+      <marc:subfield code="g">NOT TO CIRCULATE</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="987" ind1=" " ind2=" ">
+      <marc:subfield code="a">PINYIN</marc:subfield>
+      <marc:subfield code="b">OCoLC</marc:subfield>
+      <marc:subfield code="c">20010607</marc:subfield>
+      <marc:subfield code="d">c</marc:subfield>
+      <marc:subfield code="e">04.15.2001</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">02</marc:subfield>
+      <marc:subfield code="b">MAI</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
