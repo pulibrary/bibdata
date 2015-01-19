@@ -1,0 +1,6 @@
+/.bundle
+/log/*.log
+/tmp
+/config/database.yml
+/config/voyager_helpers.yml
+
