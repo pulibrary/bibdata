@@ -1,28 +1,20 @@
-== README
+# MARC Liberation
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Liberate MARC data from Voyager.
 
-Things you may want to cover:
+## Configuration
 
-* Ruby version
+Be sure to copy `config/voyager_helpers.yml.tmpl` to `config/voyager_helpers.yml`
+and fill out the appropriate values.
 
-* System dependencies
+## Installation
 
-* Configuration
+Oci8 is a little bit of a pain. See `/voyager_helpers/README.md` for details.
 
-* Database creation
+## Services
 
-* Database initialization
+For now look at `config/routes.rb` for what's available.
 
-* How to run the test suite
+## License
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+See `LICENSE`.
