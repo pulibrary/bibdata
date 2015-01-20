@@ -389,32 +389,3 @@ module VoyagerHelpers
   end # class Liberator
 end # module VoyagerHelpers
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

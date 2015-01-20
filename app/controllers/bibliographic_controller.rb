@@ -1,14 +1,11 @@
 class BibliographicController < ApplicationController
   include FormattingConcern
 
-  respond_to :xml
-
   def index
-    render json: { message: 'Please supply a bib id' }
+    render plain: "Record please supply a bib id", status: 404
   end
 
   def bib
-
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
@@ -19,7 +16,7 @@ class BibliographicController < ApplicationController
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
-      respond_with do |wants|
+      respond_to do |wants|
         wants.json  {
           json = MultiJson.dump(pass_records_through_xml_parser(records))
           render json: json
@@ -37,7 +34,7 @@ class BibliographicController < ApplicationController
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
-      respond_with do |wants|
+      respond_to do |wants|
         wants.json  {
           json = MultiJson.dump(pass_records_through_xml_parser(records))
           render json: json

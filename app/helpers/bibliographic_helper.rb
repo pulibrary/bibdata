@@ -1,6 +1,0 @@
-module BibliographicHelper
-
-
-end
-
-
