@@ -9,13 +9,6 @@ module VoyagerHelpers
         )
       end
 
-      def mfhd_item_ids(mfhd_id)
-        %Q(
-        SELECT item_id FROM mfhd_item
-        WHERE mfhd_id=#{mfhd_id}
-        )
-      end
-
       def all_locations
         %Q(
         SELECT location_id, location_code, location_display_name,
@@ -81,9 +74,18 @@ module VoyagerHelpers
 
       def bib(bib_id)
         %Q(
-        SELECT record_segment FROM bib_data
+        SELECT record_segment 
+        FROM bib_data
         WHERE bib_id=#{bib_id}
         ORDER BY seqnum
+        )
+      end
+
+      def all_unsupressed_bib_ids
+        %Q(
+        SELECT bib_id 
+        FROM bib_master
+        WHERE bib_master.suppress_in_opac='N'
         )
       end
 
@@ -113,6 +115,13 @@ module VoyagerHelpers
         SELECT mfhd_id 
         FROM bib_mfhd
         WHERE bib_id=#{bib_id}
+        )
+      end
+
+      def mfhd_item_ids(mfhd_id)
+        %Q(
+        SELECT item_id FROM mfhd_item
+        WHERE mfhd_id=#{mfhd_id}
         )
       end
 
