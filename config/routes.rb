@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get '/bibliographic', to: 'bibliographic#index', defaults: { format: :json }
+  get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }
+  get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
+  get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

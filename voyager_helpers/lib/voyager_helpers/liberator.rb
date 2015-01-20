@@ -13,7 +13,6 @@ module VoyagerHelpers
       # still displays, and I think I have seen examples of this.
       # Table is LOCATION and the field is SUPPRESS_IN_OPAC
 
-
       # @param bib_id [Fixnum] A bib record id
       # @option opts [Boolean] :holdings (true) Include holdings?
       # @option opts [Boolean] :holdings_in_bib (true) Copy 852 fields to the bib record?
