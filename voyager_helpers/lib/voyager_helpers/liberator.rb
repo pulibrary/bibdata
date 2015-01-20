@@ -7,12 +7,6 @@ module VoyagerHelpers
     class << self
       include VoyagerHelpers::Queries
 
-      # TODO: Location suppression:
-      # Janet: There is also suppression at the location level but this is linked to the
-      # mfhd's. I suppose if there is only one mfhd it is possible that the bib
-      # still displays, and I think I have seen examples of this.
-      # Table is LOCATION and the field is SUPPRESS_IN_OPAC
-
       # @param bib_id [Fixnum] A bib record id
       # @option opts [Boolean] :holdings (true) Include holdings?
       # @option opts [Boolean] :holdings_in_bib (true) Copy 852 fields to the bib record?
@@ -57,22 +51,6 @@ module VoyagerHelpers
           c.exec(query) { |id,desc| statuses.store(id,desc) }
         end
         statuses
-      end
-
-      # @param handle [String] File path
-      # @param handle [Array<MARC::Record>] The records to write
-      def write_records_to_file(handle, records)
-        unless records.nil?
-          writer = MARC::XMLWriter.new(handle)
-          if records.kind_of? Array
-            records.each do |r|
-              writer.write(r) unless r.nil?
-            end
-          else
-            writer.write(records) unless records.nil?
-          end
-          writer.close()
-        end
       end
 
       def get_items_for_holding(mfhd_id, conn=nil)
@@ -133,7 +111,6 @@ module VoyagerHelpers
                 holding_items.each do |item|
                   data[:items] << item
                 end
-                # data[:items].sort_by! { |i| [i[:item_sequence_number]*-1, i[:copy_number]] }
                 data[:items].sort_by! { |i| i[:item_sequence_number] }.reverse!
               end
               items << data
