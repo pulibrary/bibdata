@@ -83,7 +83,10 @@ module VoyagerHelpers
 
       def all_unsupressed_bib_ids
         %Q(
-        SELECT bib_id 
+        SELECT 
+          bib_id,
+          create_date,
+          update_date
         FROM bib_master
         WHERE bib_master.suppress_in_opac='N'
         )
@@ -99,15 +102,10 @@ module VoyagerHelpers
 
       def mfhd_suppressed(mfhd_id)
         %Q(
-        SELECT * 
-        FROM ( 
           SELECT suppress_in_opac 
-          FROM mfhd_history
+          FROM mfhd_master
           WHERE mfhd_id=#{mfhd_id}
-          ORDER BY action_date DESC
         ) 
-        WHERE ROWNUM=1
-        )
       end
 
       def mfhd_ids(bib_id)

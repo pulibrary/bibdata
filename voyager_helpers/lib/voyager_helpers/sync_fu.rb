@@ -1,5 +1,7 @@
 require_relative 'queries'
 require_relative 'oracle_connection'
+require 'date'
+require 'diffy'
 
 module VoyagerHelpers
   class SyncFu
@@ -7,27 +9,88 @@ module VoyagerHelpers
       include VoyagerHelpers::Queries
       include VoyagerHelpers::OracleConnection
 
+      def bib_ids_to_file(file_handle, conn=nil)
+        query = VoyagerHelpers::Queries.all_unsupressed_bib_ids
+        if conn.nil?
+          connection do |c|
+            exec_bib_ids_to_file(query, file_handle, c)
+          end
+        else
+          exec_bib_ids_to_file(query, file_handle, conn)
+        end
+      end
 
+      def compare_id_dumps(earlier_file, later_file)
+        diff = Diffy::Diff.new(earlier_file, later_file, source: 'files', context: 0)
+        diff_hashes = diff_to_hash_array(diff)
+        grouped_diffs = group_by_plusminus(diff_hashes)
+        id_set = bib_id_set_from_diff(diff)
+        grouped_diffs_to_cud_hash(grouped_diffs, id_set)
+      end
 
-      # SQL> describe BIB_MASTER;
-      #  Name            Null?    Type
-      #  ----------------------------------------- -------- ----------------------------
-      #  BIB_ID               NUMBER(38)
-      #  LIBRARY_ID             NUMBER(38)
-      #  SUPPRESS_IN_OPAC           CHAR(1)
-      #  CREATE_DATE              DATE
-      #  UPDATE_DATE              DATE
-      #  EXPORT_OK              CHAR(1)
-      #  EXPORT_OK_DATE             DATE
-      #  EXPORT_OK_OPID             VARCHAR2(10)
-      #  EXPORT_OK_LOCATION_ID            NUMBER(38)
-      #  EXPORT_DATE              DATE
-      #  EXISTS_IN_DPS           NOT NULL CHAR(1)
-      #  EXISTS_IN_DPS_DATE           DATE
+      private
+      def exec_bib_ids_to_file(query, file_handle, connection)
+        File.open(file_handle, 'w') do |f|
+          f.write("BIB_ID CREATE_DATE UPDATE_DATE\n")
+          connection.exec(query) do |id, created, updated|
+            f.write("#{id} #{created.to_datetime} #{updated.to_datetime unless updated.nil?}\n")
+          end
+        end
+      end
 
+      def parse_line_to_hash(line)
+        parts = line.split(' ')
+        hsh = {
+          plusminus: parts[0][0], # + or -
+          bib_id: parts[0][1..-1], # Strip + or -
+          created: DateTime.parse(parts[1]).new_offset(0)
+        }
+        # Strip trailing \n
+        hsh[:updated] = DateTime.parse(parts[2][0..-2]).new_offset(0) if parts[2]
+        hsh
+      end
 
-      # Note that a MFHD being updated does not change the UPDATE_DATE above. Will need
-      # to get all holdings added or updated since _t_ and include those bibs as well.
+      def diff_to_hash_array(diff)
+        diff.to_a.map { |line| parse_line_to_hash(line) }
+      end
+
+      def bib_id_set_from_diff(diff)
+        diff.to_a.map { |line| line.split(' ')[0][1..-1] }.uniq
+      end
+
+      def group_by_plusminus(diff_hashes)
+        groups = {}
+        grouped = diff_hashes.group_by { |h| h[:plusminus] }
+        grouped.each do |key,val|
+          groups[key] = {}
+          val.map do |h|
+            groups[key][h[:bib_id]] = h.select { |k,_| [:updated, :created].include? k }
+          end
+        end
+        groups
+      end
+
+      def grouped_diffs_to_cud_hash(grouped_diffs, id_set)
+        now = DateTime.now.new_offset(0)
+        hsh = { create: [], update: [], delete: [] }
+        id_set.each do |bib_id|
+          if grouped_diffs['-'].has_key?(bib_id) && grouped_diffs['+'].has_key?(bib_id)
+            h = { bib_id: bib_id, datetime: grouped_diffs['+'][bib_id][:updated] }
+            hsh[:update] << h
+          elsif grouped_diffs['+'].has_key?(bib_id)
+            h = { bib_id: bib_id }
+            if grouped_diffs['+'][bib_id].has_key?(:updated)
+              h[:datetime] = grouped_diffs['+'][bib_id][:updated]
+            else
+              h[:datetime] = grouped_diffs['+'][bib_id][:created]
+            end
+            hsh[:create] << h
+          else
+            hsh[:delete] << { bib_id: bib_id, datetime: now }
+          end
+        end
+        hsh
+      end
 
     end # class << self
   end # class SyncFu
