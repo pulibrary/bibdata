@@ -20,15 +20,17 @@ module VoyagerHelpers
         end
       end
 
-      def compare_id_dumps(earlier_file, later_file)
+      def compare_id_dumps(earlier_file, later_file, now=nil)
+        now = DateTime.now.new_offset(0) if now.nil?
         diff = Diffy::Diff.new(earlier_file, later_file, source: 'files', context: 0)
         diff_hashes = diff_to_hash_array(diff)
         grouped_diffs = group_by_plusminus(diff_hashes)
         id_set = bib_id_set_from_diff(diff)
-        grouped_diffs_to_cud_hash(grouped_diffs, id_set)
+        grouped_diffs_to_cud_hash(grouped_diffs, id_set, now)
       end
 
       private
+
       def exec_bib_ids_to_file(query, file_handle, connection)
         File.open(file_handle, 'w') do |f|
           f.write("BIB_ID CREATE_DATE UPDATE_DATE\n")
@@ -70,24 +72,26 @@ module VoyagerHelpers
         groups
       end
 
-      def grouped_diffs_to_cud_hash(grouped_diffs, id_set)
-        now = DateTime.now.new_offset(0)
+      def grouped_diffs_to_cud_hash(grouped_diffs, id_set, datetime)
         hsh = { create: [], update: [], delete: [] }
-        id_set.each do |bib_id|
-          if grouped_diffs['-'].has_key?(bib_id) && grouped_diffs['+'].has_key?(bib_id)
-            h = { bib_id: bib_id, datetime: grouped_diffs['+'][bib_id][:updated] }
+        id_set.each do |id|
+          if grouped_diffs['-'].has_key?(id) && grouped_diffs['+'].has_key?(id)
+            h = { id: id, datetime: grouped_diffs['+'][id][:updated] }
             hsh[:update] << h
-          elsif grouped_diffs['+'].has_key?(bib_id)
-            h = { bib_id: bib_id }
-            if grouped_diffs['+'][bib_id].has_key?(:updated)
-              h[:datetime] = grouped_diffs['+'][bib_id][:updated]
+          elsif grouped_diffs['+'].has_key?(id)
+            h = { id: id }
+            if grouped_diffs['+'][id].has_key?(:updated)
+              h[:datetime] = grouped_diffs['+'][id][:updated]
             else
-              h[:datetime] = grouped_diffs['+'][bib_id][:created]
+              h[:datetime] = grouped_diffs['+'][id][:created]
             end
             hsh[:create] << h
           else
-            hsh[:delete] << { bib_id: bib_id, datetime: now }
+            hsh[:delete] << { id: id, datetime: datetime }
           end
+        end
+        hsh.keys.each do |k|
+          hsh[k] = hsh[k].sort_by { |h| h[:datetime] }
         end
         hsh
       end
