@@ -1,4 +1,5 @@
 %w{
+  oracle_connection
   liberator
   queries
   sync_fu

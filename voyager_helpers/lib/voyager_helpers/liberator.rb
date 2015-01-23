@@ -1,11 +1,13 @@
 require 'oci8'
 require 'marc'
 require_relative 'queries'
+require_relative 'oracle_connection'
 
 module VoyagerHelpers
   class Liberator
     class << self
       include VoyagerHelpers::Queries
+      include VoyagerHelpers::OracleConnection
 
       # @param bib_id [Fixnum] A bib record id
       # @option opts [Boolean] :holdings (true) Include holdings?
@@ -350,17 +352,7 @@ module VoyagerHelpers
         ids
       end
 
-      # du_user, db_password and db_name
-      def connection(opts={})
-        conn = OCI8.new(
-        VoyagerHelpers.config.du_user,
-        VoyagerHelpers.config.db_password,
-        VoyagerHelpers.config.db_name
-        )
-        yield conn
-      ensure
-        conn.logoff unless conn.nil?
-      end
+
 
     end # class << self
   end # class Liberator
