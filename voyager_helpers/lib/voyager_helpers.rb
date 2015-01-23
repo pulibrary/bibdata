@@ -1,7 +1,9 @@
 %w{
-  oracle_connection
+  change_report
   liberator
+  oracle_connection
   queries
+  resource_report
   sync_fu
 }.each do |f|
   require_relative "voyager_helpers/#{f}"

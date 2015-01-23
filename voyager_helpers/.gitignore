@@ -13,3 +13,4 @@
 *.a
 mkmf.log
 /lib/debug.rb
+/lib/run_at_5_10.rb

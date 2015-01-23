@@ -81,6 +81,19 @@ module VoyagerHelpers
         )
       end
 
+      def bib_id_for_holding_id(mfhd_id)
+        %Q(
+        SELECT 
+          bib_master.bib_id,
+          bib_master.create_date,
+          bib_master.update_date
+        FROM bib_master
+          INNER JOIN bib_mfhd
+            ON bib_mfhd.mfhd_id=#{mfhd_id}
+        WHERE bib_master.bib_id = bib_mfhd.bib_id
+        )
+      end
+
       def all_unsupressed_bib_ids
         %Q(
         SELECT 
@@ -89,6 +102,20 @@ module VoyagerHelpers
           update_date
         FROM bib_master
         WHERE bib_master.suppress_in_opac='N'
+        )
+      end
+
+      def all_unsupressed_mfhd_ids
+        %Q(
+        SELECT 
+          mfhd_master.mfhd_id,
+          mfhd_master.create_date,
+          mfhd_master.update_date
+        FROM mfhd_master 
+          INNER JOIN location 
+            ON mfhd_master.location_id = location.location_id
+        WHERE mfhd_master.suppress_in_opac='N'
+          AND location.suppress_in_opac='N'
         )
       end
 
