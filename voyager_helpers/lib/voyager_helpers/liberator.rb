@@ -15,12 +15,24 @@ module VoyagerHelpers
       # @return [MARC::Record] If `holdings: false` or there are no holdings.
       # @return [Array<MARC::Record>] If `holdings: true` (default) and there
       #   are holdings.
-      def get_bib_record(bib_id, opts={})
-        unless bib_is_suppressed?(bib_id)
+      def get_bib_record(bib_id, conn=nil, opts={})
+        unless bib_is_suppressed?(bib_id, conn)
           if opts.fetch(:holdings, true)
-            get_bib_with_holdings(bib_id, opts)
+            if conn.nil?
+              connection do |c|
+                get_bib_with_holdings(bib_id, c, opts)
+              end
+            else
+              get_bib_with_holdings(bib_id, conn, opts)
+            end
           else
-            get_bib_without_holdings(bib_id)
+            if conn.nil?
+              connection do |c|
+                get_bib_without_holdings(bib_id, c)
+              end
+            else
+              get_bib_without_holdings(bib_id, conn)
+            end
           end
         end
       end
@@ -38,7 +50,7 @@ module VoyagerHelpers
       # @return [Array<MARC::Record>]
       def get_holding_records(bib_id, conn=nil)
         records = []
-        get_bib_mfhd_ids(bib_id).each do |mfhd_id|
+        get_bib_mfhd_ids(bib_id, conn).each do |mfhd_id|
           record = get_holding_record(mfhd_id, conn)
           records << record unless record.nil?
         end
@@ -90,7 +102,7 @@ module VoyagerHelpers
       end
 
       # This fires off quite a few queries; could probably be optimized
-       def get_items_for_bib(bib_id)
+      def get_items_for_bib(bib_id)
         connection do |c|
           items = []
           mfhds = get_holding_records(bib_id, c)
@@ -120,6 +132,17 @@ module VoyagerHelpers
           end
           group_items(items)
         end
+      end
+
+      def dump_bibs_to_file(ids, file_name, opts={})
+        writer = MARC::XMLWriter.new(file_name)
+        connection do |c|
+          ids.each do |id|
+            r = VoyagerHelpers::Liberator.get_bib_record(id, c)
+            writer.write(r) unless r.nil?
+          end
+        end
+        writer.close()
       end
 
       private
@@ -213,7 +236,11 @@ module VoyagerHelpers
 
       def exec_mfhd_is_suppressed?(query, conn)
         suppressed = false
-        connection do |conn|
+        if conn.nil?
+          connection do |c|
+            suppressed = c.select_one(query) == ['Y']
+          end
+        else
           suppressed = conn.select_one(query) == ['Y']
         end
         suppressed
@@ -274,23 +301,27 @@ module VoyagerHelpers
         item_ids.flatten
       end
 
-      def bib_is_suppressed?(bib_id)
+      def bib_is_suppressed?(bib_id, conn=nil)
         suppressed = false
-        connection do |conn|
-          query = VoyagerHelpers::Queries.bib_suppressed(bib_id)
+        query = VoyagerHelpers::Queries.bib_suppressed(bib_id)
+        if conn.nil?
+          connection do |c|
+            suppressed = c.select_one(query) == ['Y']
+          end
+        else
           suppressed = conn.select_one(query) == ['Y']
         end
         suppressed
       end
 
-      def get_bib_without_holdings(bib_id)
-        segments = get_bib_segments(bib_id)
+      def get_bib_without_holdings(bib_id, conn=nil)
+        segments = get_bib_segments(bib_id, conn)
         MARC::Reader.decode(segments.join('')) unless segments.empty?
       end
 
-      def get_bib_with_holdings(bib_id, opts={})
-        bib = get_bib_without_holdings(bib_id)
-        holdings = get_holding_records(bib_id)
+      def get_bib_with_holdings(bib_id, conn=nil, opts={})
+        bib = get_bib_without_holdings(bib_id, conn)
+        holdings = get_holding_records(bib_id, conn)
         if holdings.empty?
           bib
         elsif opts.fetch(:holdings_in_bib, true)
@@ -346,7 +377,11 @@ module VoyagerHelpers
 
       def exec_get_bib_mfhd_ids(query, conn)
         ids = []
-        connection do |conn|
+        if conn.nil?
+          connection do |c|
+            c.exec(query) { |id| ids << id.first }
+          end
+        else
           conn.exec(query) { |id| ids << id.first }
         end
         ids
@@ -357,4 +392,8 @@ module VoyagerHelpers
     end # class << self
   end # class Liberator
 end # module VoyagerHelpers
+
+
+
+
 
