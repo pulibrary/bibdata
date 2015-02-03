@@ -1,0 +1,4 @@
+---
+# Start with a '/' for absolute paths. Otherwise we assume this is relative to 
+# Rails.root
+data_dir: 'data' 
