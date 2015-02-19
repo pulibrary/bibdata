@@ -4,7 +4,7 @@ A set of methods for retrieving data from Voyager.
 
 ## Installation
 
-On Ubuntu systems, do [this](https://help.ubuntu.com/community/Oracle%20Instant%20C). __All of it.__
+On Ubuntu systems, do [this](https://help.ubuntu.com/community/Oracle%20Instant%20Client). __All of it.__
 
 Add configuration for VGER In `$ORACLE_HOME/network/admin/tnsnames.ora` (ask DBA).
 
