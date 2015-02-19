@@ -58,28 +58,43 @@ to_field 'id', extract_marc('001', :first => true)
 
 # previously set to not include alternate script and to have only first value
 # to put back in add: alternate_script: false, first: true
-to_field 'author_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true)
-to_field 'author_sort', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, first: true) do |record, accumulator|
-  accumulator[0] = accumulator[0].gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase if accumulator[0]
-end
+to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
+to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
+#   accumulator[0] = accumulator[0].normalize_em if accumulator[0]
+# end
 
-to_field 'author_sort_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true) do |record, accumulator|
+to_field 'author_sort_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq', trim_punctuation: true) do |record, accumulator|
   accumulator.each_with_index do |value, i|
-    accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
+    accumulator[i] = value.normalize_em
   end
 end
 
 #to_field 'author_vern_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
-to_field 'author_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true)
+to_field 'author_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq', trim_punctuation: true)
 
 # for now not separate
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 
-to_field 'marc_relator_display', extract_marc('1004:1104:1114', :trim_punctuation => true, :first => true, :default => 'aut') do |record, accumulator|
-    accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
-    #accumulator << TranslationMap.new("relators")[rel]
+to_field 'marc_relator_display' do |record, accumulator|
+  MarcExtractor.cached("100:110:111").collect_matching_lines(record) do |field, spec, extractor|
+    relator = 'Author'
+    field.subfields.each do |s_field|
+      if s_field.code == 'e'
+        relator = s_field.value.gsub(/[[:punct:]]?$/,'')
+        break
+      end
+      if s_field.code == '4'
+        relator = Traject::TranslationMap.new("relators")[s_field.value]
+      end
+    end
+    accumulator << relator
+    break
+  end
 end
+#    accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
+#    #accumulator << TranslationMap.new("relators")[rel]
+#end
 
 to_field 'marc_display', serialized_marc(:format => "xml", :binary_escape => false, :allow_oversized => true)
 
@@ -91,14 +106,14 @@ to_field 'uniform_title_display', extract_marc('100t:110t:111t:130apldfhkmnorst:
 
 # Title:
 #    245 XX abchknps
-to_field 'title_display', extract_marc('245abchknps', :alternate_script => false)
+to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => false)
 
 
-to_field 'title_vern_display', extract_marc('245abchknps', :alternate_script => :only)
+to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
 
 # to_field 'title_sort', marc_sortable_title
 to_field 'title_sort' do |record, accumulator|
-  MarcExtractor.cached("245abchknps").collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached("245abcfghknps").collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first 
     str = str.slice(field.indicator2.to_i, str.length)
     accumulator << str if accumulator[0].nil?
@@ -106,7 +121,7 @@ to_field 'title_sort' do |record, accumulator|
 end
 
 to_field 'title_vern_sort' do |record, accumulator|
-  MarcExtractor.cached("245abchknps", :alternate_script => :only).collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached("245abcfghknps", :alternate_script => :only).collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first 
     str = str.slice(field.indicator2.to_i, str.length)
     accumulator << str if accumulator[0].nil?
@@ -211,7 +226,7 @@ to_field 'continues_display', extract_marc('780|00|a:780|02|at')
 # Continues in part:
 #    780 01 at
 #    780 03 at
-to_field 'continues_in part_display', extract_marc('780|01|a:780|03|at')
+to_field 'continues_in_part_display', extract_marc('780|01|a:780|03|at')
 
 # Formed from:
 #    780 04 at
@@ -237,7 +252,7 @@ to_field 'continued_by_display', extract_marc('785|00|a:785|02|at')
 # Continued in part by:
 #    785 01 at
 #    785 03 at
-to_field 'continued_in part_by_display', extract_marc('785|01|a:785|03|at')
+to_field 'continued_in_part_by_display', extract_marc('785|01|a:785|03|at')
 
 # Absorbed by:
 #    785 04 at
@@ -371,7 +386,7 @@ to_field 'summary_note_display', extract_marc('5203ab')
 #    570 XX a
 to_field 'notes_display', extract_marc('5003a')
 to_field 'with_notes_display', extract_marc('501a')
-to_field 'bibliographich_notes_display', extract_marc('503a') #obsolete
+to_field 'bibliographic_notes_display', extract_marc('503a') #obsolete
 to_field 'dissertation_notes_display', extract_marc('502a')
 to_field 'bib_ref_notes_display', extract_marc('504ab')
 to_field 'scale_notes_display', extract_marc('507ab') #added
@@ -500,16 +515,15 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
-
 to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
 
-to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :false) 
+to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
 
 #to_field 'subject_vern_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', alternate_script: :only) 
 
 to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ') do |record, accumulator|
   accumulator.each_with_index do |value, i|
-    accumulator[i] = value.gsub(/[\p{P}\p{S}]/, '').remove_formatting.downcase
+    accumulator[i] = value.normalize
   end
 end
 
@@ -552,7 +566,8 @@ to_field 'lc_1letter_facet' do |record, accumulator|
   if record['050']
     if record['050']['a']
       first_letter = record['050']['a'].lstrip.slice(0, 1)
-      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter]
+      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
     end
   end
 end
@@ -560,27 +575,78 @@ end
 to_field 'lc_rest_facet' do |record, accumulator|
   if record['050']
     if record['050']['a']     
-      letter = /([[:alpha:]])*/.match(record['050']['a'])[0]
-      accumulator << Traject::TranslationMap.new("callnumber_map")[letter]
+      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+      accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
     end
   end
 end
 
 # Form/Genre:
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display', extract_marc('0655avxyz')
+to_field 'form_genre_display', extract_marc('655avxyz')
 
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
 #    710 XX abcdefghklnoprstx A ab
 #    711 XX abcdefgklnpq A ab
-to_field 'related_name_display', extract_marc('700aqbcdefghklmnoprsx:710abcdefghklnoprsx:711abcdefgklnpq', :trim_punctuation => true)
+to_field 'related_name_display' do |record, accumulator|
+  MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
+    rel_name = extractor.collect_subfields(field, spec).first
+    rel_name = rel_name.gsub(/[[:punct:]]?$/,'') if rel_name
+    relator = ''
+    non_t = true
+    field.subfields.each do |s_field|
+      if s_field.code == 'e'
+        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/,'') + '：'
+      end
+      if s_field.code == 't'
+        non_t = false
+        break
+      end
+      if s_field.code == '4'
+        if relator == ''
+          relator = Traject::TranslationMap.new("relators")[s_field.value] || s_field.value  + '：' 
+        end
+      end
+    end
+    accumulator << relator + rel_name if non_t
+  end
+end
 
-to_field 'related_works_display', extract_marc('700|1 |t:710|1 |t:711|1 |t', :trim_punctuation => true)
+#extract_marc('700aqbcdefghklmnoprsx:710abcdefghklnoprsx:711abcdefgklnpq', :trim_punctuation => true) 
 
-to_field 'contains_display', extract_marc('700|12|t:710|12|t:711|12|t', :trim_punctuation => true)
+to_field 'related_works_display' do |record, accumulator|
+  MarcExtractor.cached('700|1 |aqbcdfghklmnoprstx:710|1 |abcdfghklnoprstx:711|1 |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+    rel_work = extractor.collect_subfields(field, spec).first.gsub(/[[:punct:]]?$/,'')
+    non_t = true
+    field.subfields.each do |s_field|
+      if s_field.code == 't'
+        non_t = false
+        break
+      end
+    end
+    accumulator << rel_work unless non_t
+  end
+end  
 
-to_field 'marc_relatedor_display', extract_marc('7004:7104:7114', :default => 'aut', :allow_duplicates => true)
+to_field 'contains_display' do |record, accumulator|
+  MarcExtractor.cached('700|12|aqbcdfghklmnoprstx:710|12|abcdfghklnoprstx:711|12|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+    rel_work = extractor.collect_subfields(field, spec).first.gsub(/[[:punct:]]?$/,'')
+    non_t = true
+    field.subfields.each do |s_field|
+      if s_field.code == 't'
+        non_t = false
+        break
+      end
+    end
+    accumulator << rel_work unless non_t
+  end
+end  
+
+# to_field 'marc_relatedor_display', extract_marc('7004:7104:7114', :allow_duplicates => true, default: 'aut') do |record, accumulator|
+#   #accumulator = TranslationMap.new("relators", :default => "__passthrough__").translate_array!(accumulator)
+# end
+
 
 to_field 'instrumentation_facet', marc_instrumentation_humanized
 
@@ -658,13 +724,13 @@ to_field 'subject_era_facet', marc_era_facet
 
 # Location: +No location specified
 #    1000
-to_field 'location_display', extract_marc('852b') do |record, accumulator|
+to_field 'location_display', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
   accumulator = TranslationMap.new("locations").translate_array!(accumulator)
 end
 
-to_field 'location_code_display', extract_marc('852b')
+to_field 'location_code_s', extract_marc('852b', :allow_duplicates => true)
 
-to_field 'location', extract_marc('852b') do |record, accumulator|
+to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
   accumulator = TranslationMap.new("location_display", :default => "__passthrough__").translate_array!(accumulator)
 end
 # # #    1000
@@ -672,7 +738,7 @@ end
 
 # Call number: +No call number available
 #    852 XX ckhij
-to_field 'call_number_display', extract_marc('852ckhij')
+to_field 'call_number_display', extract_marc('852ckhij', :allow_duplicates => true)
 
 
 
@@ -681,6 +747,15 @@ to_field 'call_number_s', extract_marc('852khij') do |record, accumulator|
     accumulator[i] = Lcsort.normalize(value)
   end
 end
+
+# to_field 'call_number_strict_s', extract_marc('852khij') do |record, accumulator|
+#   sizebefore = accumulator.length
+#   accumulator.each_with_index do |value, i|
+#     accumulator[i] = Lcsort.normalize(value, true)
+#   end
+#   accumulator.compact!
+#   puts record['001'],' ' if sizebefore > accumulator.length
+# end
 
 to_field 'call_number_browse_s', extract_marc('852khij')
 
