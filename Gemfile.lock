@@ -3,6 +3,7 @@ PATH
   specs:
     voyager_helpers (0.0.1.pre.dev)
       activesupport (~> 4.1)
+      diffy (~> 3.0.7)
       marc (~> 0.8.2)
       ruby-oci8 (~> 2.1.7)
 
@@ -62,6 +63,7 @@ GEM
     columnize (0.9.0)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
+    diffy (3.0.7)
     ensure_valid_encoding (0.5.3)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -143,6 +145,10 @@ GEM
       listen (~> 2.7, >= 2.7.3)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
+    rspec (3.0.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -222,6 +228,7 @@ DEPENDENCIES
   rake (~> 10.0)
   rerun (~> 0.10.0)
   responders (~> 2.0)
+  rspec
   rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

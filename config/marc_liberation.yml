@@ -1,0 +1,13 @@
+---
+# Start with a '/' for absolute paths. Otherwise we assume this is relative to 
+# Rails.root
+data_dir: 'data'
+dump_types:
+- label: 'Change Dump'
+  constant: 'CHANGE_DUMP'
+- label: 'Full Dump'
+  constant: 'FULL_DUMP'
+- label: 'Holding ID Dump'
+  constant: 'HOLDING_ID_DUMP'
+- label: 'Bib ID Dump'
+  constant: 'BIB_ID_DUMP'

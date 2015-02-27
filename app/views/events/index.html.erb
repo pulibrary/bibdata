@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>Finish</th>
+      <th>Error</th>
+      <th>Success</th>
+      <th>Dump type</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr>
+        <td><%= event.start %></td>
+        <td><%= event.finish %></td>
+        <td><%= event.error %></td>
+        <td><%= event.success %></td>
+        <td><%= event.dump_type %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
