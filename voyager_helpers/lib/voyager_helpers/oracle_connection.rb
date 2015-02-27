@@ -1,7 +1,6 @@
 module VoyagerHelpers
   module OracleConnection
 
-
     def connection(opts={})
       conn = OCI8.new(
         VoyagerHelpers.config.db_user,

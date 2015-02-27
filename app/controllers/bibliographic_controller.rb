@@ -10,7 +10,8 @@ class BibliographicController < ApplicationController
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-    records = VoyagerHelpers::Liberator.get_bib_record(params[:bib_id], opts)
+
+    records = VoyagerHelpers::Liberator.get_bib_record(params[:bib_id], nil, opts)
 
 
     if records.nil?
@@ -52,7 +53,7 @@ class BibliographicController < ApplicationController
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
-      respond_with do |wants|
+      respond_to do |wants|
         wants.json  { render json: MultiJson.dump(records) }
         wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
       end
