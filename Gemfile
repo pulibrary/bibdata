@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'high_voltage', '~> 2.2.1'
 
 gemspec path: './voyager_helpers'
 

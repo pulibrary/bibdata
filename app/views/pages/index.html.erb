@@ -1,0 +1,13 @@
+<h1>PUL Bibliographic Data Web Service</h1>
+<p>(AKA, <i>&ldquo;MARC Liberation&rdquo;</i>)</p>
+
+<h2>Get a Bib Record by Bib ID</h2>
+
+
+<%= form_tag('/bibliographic', method: 'get', class: 'form-inline') do %>
+  <div class="form-group">
+    <%= label_tag(:bib_id, 'BBID:') %>
+    <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'BBID') %>
+  </div>
+  <%= submit_tag('Submit', class: 'btn btn-default') %>
+<% end %>

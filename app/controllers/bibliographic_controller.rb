@@ -2,7 +2,11 @@ class BibliographicController < ApplicationController
   include FormattingConcern
 
   def index
-    render plain: "Record please supply a bib id", status: 404
+    if params[:bib_id]
+      redirect_to action: :bib, bib_id: params[:bib_id], status: :moved_permanently
+    else
+      render plain: "Record please supply a bib id", status: 404
+    end
   end
 
   def bib
