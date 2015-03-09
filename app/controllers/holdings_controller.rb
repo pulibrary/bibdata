@@ -2,7 +2,13 @@ class HoldingsController < ApplicationController
   include FormattingConcern
 
   def index
-    render plain: "Record please supply a holding id.", status: 404
+    if params[:items_only] == '1'
+      redirect_to action: :holding_items, holding_id: params[:holding_id], status: :moved_permanently
+    elsif params[:items_only] == '0'
+      redirect_to action: :holding, holding_id: params[:holding_id], status: :moved_permanently
+    else
+      render plain: "Record please supply a holding id.", status: 404
+    end
   end
 
   def holding

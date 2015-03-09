@@ -2,7 +2,11 @@ class ItemsController < ApplicationController
   include FormattingConcern
 
   def index
-    render plain: "Record please supply an item id.", status: 404
+    if params[:item_id]
+      redirect_to action: :item, item_id: params[:item_id], status: :moved_permanently
+    else
+      render plain: "Record please supply an item id.", status: 404
+    end
   end
 
   def item
