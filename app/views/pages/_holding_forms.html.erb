@@ -1,0 +1,21 @@
+<%= form_tag('/holdings', method: 'get', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <%= label_tag(:holding_id, 'Get a Holding Record:', class: 'col-sm-2 control-label') %>
+    <div class="col-sm-2">
+      <%= hidden_field_tag(:items_only, 0) %>
+      <%= number_field_tag(:holding_id, nil,  class: 'form-control', placeholder: 'Holding ID') %>
+    </div>
+    <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
+  </div>
+<% end %>
+
+<%= form_tag('/holdings', method: 'get', class: 'form-horizontal') do %>
+  <div class="form-group">
+    <%= label_tag(:holding_id, 'Get Item Records:', class: 'col-sm-2 control-label') %>
+    <div class="col-sm-2">
+      <%= hidden_field_tag(:items_only, 1) %>
+      <%= number_field_tag(:holding_id, nil,  class: 'form-control', placeholder: 'Holding ID') %>
+    </div>
+    <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
+  </div>
+<% end %>

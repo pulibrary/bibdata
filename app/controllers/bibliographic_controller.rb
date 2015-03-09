@@ -3,7 +3,13 @@ class BibliographicController < ApplicationController
 
   def index
     if params[:bib_id]
-      redirect_to action: :bib, bib_id: params[:bib_id], status: :moved_permanently
+      if params.fetch(:holdings_only, '0') == '1'
+        redirect_to action: :bib_holdings, bib_id: params[:bib_id], status: :moved_permanently
+      elsif params.fetch(:items_only, '0') == '1'
+        redirect_to action: :bib_items, bib_id: params[:bib_id], status: :moved_permanently
+      else
+        redirect_to action: :bib, bib_id: params[:bib_id], status: :moved_permanently
+      end
     else
       render plain: "Record please supply a bib id", status: 404
     end
