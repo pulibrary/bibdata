@@ -2,7 +2,7 @@
 
 <h1>Events</h1>
 
-<table>
+<table class="table table-condensed">
   <thead>
     <tr>
       <th>Start</th>
@@ -16,7 +16,7 @@
 
   <tbody>
     <% @events.each do |event| %>
-      <tr>
+      <tr class="table-striped">
         <td><%= event.start %></td>
         <td><%= event.finish %></td>
         <td><%= event.error %></td>
