@@ -1,5 +1,5 @@
 # given a record, find the bib_format code
-require 'lib/umich_format.rb'
+require './lib/umich_format.rb'
 
 class BibFormat
 

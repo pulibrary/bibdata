@@ -1,6 +1,6 @@
-require 'lib/translation_map'
-require 'lib/umich_format/bib_format'
-require 'lib/umich_format/bib_types'
+require './lib/translation_map'
+require './lib/umich_format/bib_format'
+require './lib/umich_format/bib_types'
 
 # Encapsulates logic that uses University of Michigan University Library
 # rules to determine both bib format (book, serial, visual
