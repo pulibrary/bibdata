@@ -20,6 +20,7 @@ gem 'rack-conneg', '~> 0.1.5'
 gem 'sinatra', '~> 1.4.5'
 gem 'multi_json', '~> 1.10.1'
 gem 'gyoku', '~> 1.0'
+gem 'rubyzip', '>= 1.0.0'
 
 group :development do
   gem 'spring'

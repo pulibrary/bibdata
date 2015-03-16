@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203202220) do
+ActiveRecord::Schema.define(version: 20150320130614) do
 
-  create_table "dump_files", force: :cascade do |t|
-    t.integer  "dump_id",    limit: 4
-    t.string   "path",       limit: 255
-    t.string   "md5",        limit: 255
+  create_table "dump_file_types", force: :cascade do |t|
+    t.string   "label",      limit: 255
+    t.string   "constant",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
+  add_index "dump_file_types", ["constant"], name: "index_dump_file_types_on_constant", using: :btree
+
+  create_table "dump_files", force: :cascade do |t|
+    t.integer  "dump_id",           limit: 4
+    t.string   "path",              limit: 255
+    t.string   "md5",               limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "dump_file_type_id", limit: 4
+  end
+
+  add_index "dump_files", ["dump_file_type_id"], name: "index_dump_files_on_dump_file_type_id", using: :btree
   add_index "dump_files", ["dump_id"], name: "index_dump_files_on_dump_id", using: :btree
 
   create_table "dump_types", force: :cascade do |t|
@@ -33,14 +44,13 @@ ActiveRecord::Schema.define(version: 20150203202220) do
   add_index "dump_types", ["constant"], name: "index_dump_types_on_constant", using: :btree
 
   create_table "dumps", force: :cascade do |t|
-    t.integer  "event_id",       limit: 4
-    t.integer  "dump_type_id",   limit: 4
-    t.text     "delete_ids",     limit: 65535
-    t.integer  "number_created", limit: 4
-    t.integer  "number_updated", limit: 4
-    t.integer  "number_deleted", limit: 4
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "event_id",     limit: 4
+    t.integer  "dump_type_id", limit: 4
+    t.text     "delete_ids",   limit: 4294967295
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.text     "update_ids",   limit: 4294967295
+    t.text     "create_ids",   limit: 4294967295
   end
 
   add_index "dumps", ["dump_type_id"], name: "index_dumps_on_dump_type_id", using: :btree
@@ -55,7 +65,4 @@ ActiveRecord::Schema.define(version: 20150203202220) do
     t.datetime "updated_at",               null: false
   end
 
-  add_foreign_key "dump_files", "dumps"
-  add_foreign_key "dumps", "dump_types"
-  add_foreign_key "dumps", "events"
 end
