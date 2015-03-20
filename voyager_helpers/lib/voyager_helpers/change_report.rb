@@ -30,10 +30,12 @@ module VoyagerHelpers
       a.sort_by { |h| h[:lastmod] }
     end
 
-    # DCI???
+    # DCI??? Should only be called on a bib report to merge in a holding report
+    #
+    # Note that we only make it possible to pass in bib_info so that we can
+    # test w/o an Oracle connection
     def merge_in_holding_report(holding_report, bib_info=nil)
       holding_ids = holding_report.all_ids
-      # We only make it possible to pass in bib_info so that we can test w/o an oracle connection
       bib_info = self.class.get_bib_ids_for_holding_ids(holding_ids) if bib_info.nil?
       bib_info.each do |bib_hash|
         if bib_hash.has_key?(:id) # else it was deleted
@@ -41,17 +43,23 @@ module VoyagerHelpers
           # add to update group (bib record must exist, but wasn't updated)
           holding = holding_report.entry_from_created_updated_by_id(bib_hash[:holding_id])
           if ![created_ids, updated_ids].flatten.include?(bib_hash[:id])
-            bib_hash[:lastmod] = holding[:lastmod]
+            unless holding.nil? # if it was in holding_report.deleted_ids because it was suppressed
+              bib_hash[:lastmod] = holding[:lastmod]
+            end
             bib_hash.delete(:holding_id)
             self.updated << bib_hash
-            # else if the bib is in the created or ...
+          # else if the bib is in the created or ...
           elsif created_ids.include?(bib_hash[:id])
             bib = entry_from_created_by_id(bib_hash[:id])
-            bib[:lastmod] = holding[:lastmod] if holding[:lastmod] > bib[:lastmod]
+            unless holding.nil?
+              bib[:lastmod] = [bib[:lastmod], holding[:lastmod]].max
+            end
             # ... updated group, update the report
           elsif updated_ids.include?(bib_hash[:id])
             bib = entry_from_updated_by_id(bib_hash[:id])
-            bib[:lastmod] = holding[:lastmod] if holding[:lastmod] > bib[:lastmod]
+            unless holding.nil?
+              bib[:lastmod] = [bib[:lastmod], holding[:lastmod]].max
+            end
           end
         end
       end
@@ -59,18 +67,9 @@ module VoyagerHelpers
 
 
     def entry_from_created_updated_by_id(id)
-      [self.created, self.updated].flatten.select { |e| e[:id]  == id }.first
+      [self.created, self.updated].flatten.select { |e| e[:id] == id }.first
     end
 
-    private
-
-    def entry_from_created_by_id(id)
-      self.created.flatten.select { |e| e[:id]  == id }.first
-    end
-
-    def entry_from_updated_by_id(id)
-      self.updated.flatten.select { |e| e[:id]  == id }.first
-    end
 
     def created_ids
       self.created.map { |h| h[:id] }
@@ -82,6 +81,16 @@ module VoyagerHelpers
 
     def deleted_ids
       self.deleted.map { |h| h[:id] }
+    end
+
+    private
+
+    def entry_from_created_by_id(id)
+      self.created.flatten.select { |e| e[:id]  == id }.first
+    end
+
+    def entry_from_updated_by_id(id)
+      self.updated.flatten.select { |e| e[:id]  == id }.first
     end
 
     def self.get_bib_ids_for_holding_ids(holding_ids)
@@ -133,4 +142,3 @@ module VoyagerHelpers
 
   end # class ChangeReport
 end # module VoyagerHelpers
-

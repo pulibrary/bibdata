@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show]#, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :destroy]#, :edit, :update]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @events = Event.all
@@ -31,10 +31,10 @@ class EventsController < ApplicationController
   #   respond_with(@event)
   # end
 
-  # def destroy
-  #   @event.destroy
-  #   respond_with(@event)
-  # end
+  def destroy
+    @event.destroy
+    respond_with(@event)
+  end
 
   private
     def set_event
@@ -42,6 +42,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:start, :finish, :error, :success, :dump_type)
+      params.require(:event).permit(:start, :finish, :error, :success)
     end
 end

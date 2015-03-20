@@ -1,9 +1,10 @@
+namespace :marc_liberation do
 
-namespace :sync do
-
-  desc 'Runs concurrent holding and bib ID dumps from Voyager'
-  task dump_ids: :environment do
-
+  desc 'Runs holding and bib ID dumps and diffs against previous'
+  task get_changes: :environment do
+    Dump.dump_bib_ids
+    Dump.dump_holding_ids
+    Dump.diff_since_last
   end
 
 end
