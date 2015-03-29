@@ -33,6 +33,7 @@ settings do
   # various others...
   # solrj_writer hash_to_solr_document for stdout
   provide "solrj_writer.commit_on_close", "true"
+  provide "solr_writer.max_skipped", "50"
 
   # By default, we use the Traject::MarcReader
   # One altenrnative is the Marc4JReader, using Marc4J. 
@@ -43,9 +44,6 @@ end
 
 update_locations
 
-
-
-record_json = {}
 
 
 to_field 'id', extract_marc('001', :first => true)
@@ -581,9 +579,61 @@ to_field 'lc_rest_facet' do |record, accumulator|
   end
 end
 
-# to_field 'suDoc_facet' do |record, accumulator|
-#   MarcExtractor.cached('').collect_matching_lines(record) do |field, spec, extractor|
-# end
+to_field 'sudoc_group_facet' do |record, accumulator|
+  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?    
+  end
+end
+
+to_field 'sudoc_facet' do |record, accumulator|
+  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+  end
+end
+
+
+to_field 'call_number_scheme_facet' do |record, accumulator|
+  if record['050']
+    if record['050']['a']
+      first_letter = record['050']['a'].lstrip.slice(0, 1)
+      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+      accumulator << "Library of Congress" if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
+    end
+  end  
+  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+  end
+end
+
+to_field 'call_number_group_facet' do |record, accumulator|
+  MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
+    if record['050']['a']     
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+      first_letter = record['050']['a'].lstrip.slice(0, 1)
+      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?  
+    end
+  end  
+  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?    
+  end
+end
+
+to_field 'call_number_full_facet' do |record, accumulator|
+  MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
+    if record['050']['a']     
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+      accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
+    end
+  end  
+  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+  end
+end
 
 # Form/Genre:
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
@@ -615,7 +665,7 @@ to_field 'related_name_display' do |record, accumulator|
         end
       end
     end
-    relator = "Author" if relator == ''
+    relator = "Related name" if relator == ''
     accumulator << relator + '：' + rel_name if non_t
   end
 end
@@ -641,20 +691,13 @@ to_field 'related_name_json_1display' do |record, accumulator|
         end
       end
     end
-    relator = 'Author' if relator == ''
+    relator = 'Related name' if relator == ''
     rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if non_t
   end
   unless rel_name_hash == {}
-    record_json['Related name(s)'] = rel_name_hash
     accumulator[0] = rel_name_hash.to_json.to_s
   end
 end
-
-to_field 'two_fields_1display' do |record, accumulator|
-  #puts record_json
-  accumulator[0] = record_json.to_json.to_s
-end
-
 
 to_field 'related_works_display' do |record, accumulator|
   MarcExtractor.cached('700|1 |aqbcdfghklmnoprstx:710|1 |abcdfghklnoprstx:711|1 |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
@@ -781,7 +824,6 @@ to_field 'holdings_1display' do |record, accumulator|
     all_holdings << holding
   end
   unless all_holdings == []
-    record_json['Holding info'] = all_holdings
     accumulator[0] = all_holdings.to_json.to_s
   end
 end
