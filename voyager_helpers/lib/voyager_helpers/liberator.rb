@@ -42,7 +42,7 @@ module VoyagerHelpers
       def get_holding_record(mfhd_id, conn=nil)
         unless mfhd_is_suppressed?(mfhd_id, conn)
           segments = get_mfhd_segments(mfhd_id, conn)
-          MARC::Reader.decode(segments.join('')) unless segments.empty?
+          MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8") unless segments.empty?
         end
       end
 
@@ -316,7 +316,7 @@ module VoyagerHelpers
 
       def get_bib_without_holdings(bib_id, conn=nil)
         segments = get_bib_segments(bib_id, conn)
-        MARC::Reader.decode(segments.join('')) unless segments.empty?
+        MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8") unless segments.empty?
       end
 
       def get_bib_with_holdings(bib_id, conn=nil, opts={})
