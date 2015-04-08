@@ -1,5 +1,6 @@
 # encoding: utf-8
 require 'voyager_helpers'
+require 'nokogiri'
 
 class Dump < ActiveRecord::Base
 
@@ -54,7 +55,8 @@ class Dump < ActiveRecord::Base
       connection do |c|
         ids.each do |id|
           r = VoyagerHelpers::Liberator.get_bib_record(id, c)
-          f.write(r.to_xml.to_s.force_encoding('UTF-8')+"\n") unless r.nil?
+          f.write(Nokogiri::XML(r.to_xml.to_s).to_xml(:save_with => Nokogiri::XML::Node::SaveOptions::AS_XML | 
+                  Nokogiri::XML::Node::SaveOptions::NO_DECLARATION).to_s+"\n") unless r.nil?
         end
       end
       f.write('</collection>')
