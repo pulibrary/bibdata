@@ -20,9 +20,16 @@
   <%= @event.success %>
 </p>
 
-<p>
-  <strong>Dump type:</strong>
-  <%= @event.dump_type %>
-</p>
+<% unless @event.dump.nil? %>
+  <p>
+    <strong>Dump type:</strong>
+    <%= @event.dump.dump_type.constant %>
+  </p>
+
+  <p>
+    <strong>Dump url:</strong>
+    <%= link_to 'Dump', dump_url(@event.dump, format: :json)  %>
+  </p>
+<% end %>
 
 <<%= link_to 'Back', events_path %>
