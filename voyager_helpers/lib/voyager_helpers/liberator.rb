@@ -42,7 +42,7 @@ module VoyagerHelpers
       def get_holding_record(mfhd_id, conn=nil)
         unless mfhd_is_suppressed?(mfhd_id, conn)
           segments = get_mfhd_segments(mfhd_id, conn)
-          MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8") unless segments.empty?
+          MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8", :invalid => :replace, :replace => '') unless segments.empty?
         end
       end
 
@@ -55,6 +55,13 @@ module VoyagerHelpers
           records << record unless record.nil?
         end
         records
+      end
+
+      # strips invalid xml characters to prevent parsing errors
+      # only used for "cleaning" individually retrieved records
+      def valid_xml(xml_string)
+        invalid_xml_range = /[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD]/
+        xml_string.gsub(invalid_xml_range, '')
       end
 
       # @return [<Hash>]
@@ -316,7 +323,7 @@ module VoyagerHelpers
 
       def get_bib_without_holdings(bib_id, conn=nil)
         segments = get_bib_segments(bib_id, conn)
-        MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8") unless segments.empty?
+        MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8", :invalid => :replace, :replace => '') unless segments.empty?
       end
 
       def get_bib_with_holdings(bib_id, conn=nil, opts={})

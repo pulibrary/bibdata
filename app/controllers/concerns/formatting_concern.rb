@@ -2,6 +2,7 @@ module FormattingConcern
   extend ActiveSupport::Concern
   # @param records [MARC::Record] Could be one or a collection
   # @return [String] A serialized <mrx:record/> or <mrx:collection/>
+  # "Cleans" the record of invalid xml characters
   def records_to_xml_string(records)
     if records.kind_of? Array
       xml_str = ''
@@ -12,9 +13,9 @@ module FormattingConcern
         end
         writer.close()
       end
-      xml_str
+      VoyagerHelpers::Liberator.valid_xml(xml_str)
     else
-      records.to_xml.to_s
+      VoyagerHelpers::Liberator.valid_xml(records.to_xml.to_s)
     end
   end
 
