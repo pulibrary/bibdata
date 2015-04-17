@@ -86,7 +86,7 @@ module VoyagerHelpers
       end
 
       def group_by_plusminus(diff_hashes)
-        groups = {}
+        groups = {'-' => {}, '+' => {}}
         grouped = diff_hashes.group_by { |h| h[:plusminus] }
         grouped.each do |key,val|
           groups[key] = {}
