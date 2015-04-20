@@ -1,4 +1,4 @@
-require 'traject/macros/marc21_semantics'
+ require 'traject/macros/marc21_semantics'
 
 module MARC
   class Record
@@ -47,20 +47,18 @@ module MARC
 
     def date_from_008
       if self['008']
-        d = self['008'].value[7,4].gsub 'u', '0'
-        if d != '    ' 
-          d = d.gsub ' ', '0'
-        end      
+        d = self['008'].value[7,4] 
+        d = d.gsub 'u', '0' unless d == 'uuuu'
+        d = d.gsub ' ', '0' unless d == '    '  
         d if d =~ /^[0-9]{4}$/
       end
     end
 
     def end_date_from_008
       if self['008']
-        d = self['008'].value[11,4].gsub 'u', '0'
-        if d != '    ' 
-          d = d.gsub ' ', '0'
-        end
+        d = self['008'].value[11,4] 
+        d = d.gsub 'u', '0' unless d == 'uuuu'
+        d = d.gsub ' ', '0' unless d == '    '  
         d if d =~ /^[0-9]{4}$/
       end
     end
