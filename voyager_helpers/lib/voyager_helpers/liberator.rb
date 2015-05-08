@@ -329,9 +329,7 @@ module VoyagerHelpers
       def get_bib_with_holdings(bib_id, conn=nil, opts={})
         bib = get_bib_without_holdings(bib_id, conn)
         holdings = get_holding_records(bib_id, conn)
-        if holdings.empty?
-          bib
-        elsif opts.fetch(:holdings_in_bib, true)
+        if opts.fetch(:holdings_in_bib, true)
           merge_852s_into_bib(bib, holdings)
         else
           [bib,holdings].flatten!
@@ -341,9 +339,11 @@ module VoyagerHelpers
       def merge_852s_into_bib(bib, holdings)
         record_hash = bib.to_hash
         record_hash['fields'].delete_if { |f| f.has_key?('852') }
-        holdings.each do |holding|
-          holding.to_hash['fields'].select { |h| h.has_key?('852') }.each do |h|
-            record_hash['fields'] << h
+        unless holdings.empty?
+          holdings.each do |holding|
+            holding.to_hash['fields'].select { |h| h.has_key?('852') }.each do |h|
+              record_hash['fields'] << h
+            end
           end
         end
         MARC::Record.new_from_hash(record_hash)
