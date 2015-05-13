@@ -1,6 +1,8 @@
+# encoding: UTF-8
 # Traject config goes here
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
+require 'bundler/setup'
 require './lib/translation_map'
 require './lib/umich_format'
 require './lib/princeton_marc'
