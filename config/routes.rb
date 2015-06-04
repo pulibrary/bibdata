@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Locations::Engine, at: '/locations'
 
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]

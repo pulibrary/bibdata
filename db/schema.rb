@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320130614) do
+ActiveRecord::Schema.define(version: 20150604190565) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -63,6 +63,72 @@ ActiveRecord::Schema.define(version: 20150320130614) do
     t.boolean  "success",    limit: 1
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",   limit: 4,   null: false
+    t.string   "sluggable_type", limit: 50
+    t.string   "scope",          limit: 255
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
+  create_table "locations_delivery_locations", force: :cascade do |t|
+    t.string   "label",                limit: 255
+    t.text     "address",              limit: 65535
+    t.string   "phone_number",         limit: 255
+    t.string   "contact_email",        limit: 255
+    t.boolean  "staff_only",           limit: 1,     default: false
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "locations_library_id", limit: 4
+    t.string   "gfa_pickup",           limit: 255
+    t.boolean  "pickup_location",      limit: 1,     default: false
+  end
+
+  add_index "locations_delivery_locations", ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id", using: :btree
+
+  create_table "locations_holding_locations", force: :cascade do |t|
+    t.string   "label",                              limit: 255
+    t.string   "code",                               limit: 255
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
+    t.integer  "locations_library_id",               limit: 4
+    t.boolean  "aeon_location",                      limit: 1,   default: false
+    t.boolean  "recap_electronic_delivery_location", limit: 1,   default: false
+    t.boolean  "open",                               limit: 1,   default: true
+    t.boolean  "requestable",                        limit: 1,   default: true
+    t.boolean  "always_requestable",                 limit: 1,   default: false
+    t.integer  "locations_hours_location_id",        limit: 4
+  end
+
+  add_index "locations_holding_locations", ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id", using: :btree
+
+  create_table "locations_holdings_delivery", id: false, force: :cascade do |t|
+    t.integer "locations_delivery_location_id", limit: 4
+    t.integer "locations_holding_location_id",  limit: 4
+  end
+
+  add_index "locations_holdings_delivery", ["locations_delivery_location_id"], name: "index_lhd_on_ldl_id", using: :btree
+  add_index "locations_holdings_delivery", ["locations_holding_location_id"], name: "index_ldl_on_lhd_id", using: :btree
+
+  create_table "locations_hours_locations", force: :cascade do |t|
+    t.string   "code",       limit: 255
+    t.string   "label",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "locations_libraries", force: :cascade do |t|
+    t.string   "label",      limit: 255
+    t.string   "code",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
