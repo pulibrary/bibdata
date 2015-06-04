@@ -1,0 +1,4518 @@
+
+---
+locations_libraries:
+  columns:
+  - id
+  - label
+  - code
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Forrestal Annex
+    - annexa
+    - '2015-06-04 18:40:08.069728'
+    - '2015-06-04 18:40:08.069728'
+  - - 2
+    - Fine Annex
+    - annexb
+    - '2015-06-04 18:40:08.108861'
+    - '2015-06-04 18:40:08.108861'
+  - - 3
+    - Architecture Library
+    - architecture
+    - '2015-06-04 18:40:08.148653'
+    - '2015-06-04 18:40:08.148653'
+  - - 4
+    - East Asian Library
+    - eastasian
+    - '2015-06-04 18:40:08.190612'
+    - '2015-06-04 18:40:08.190612'
+  - - 5
+    - Engineering Library
+    - engineering
+    - '2015-06-04 18:40:08.233904'
+    - '2015-06-04 18:40:08.233904'
+  - - 6
+    - Firestone Library
+    - firestone
+    - '2015-06-04 18:40:08.279224'
+    - '2015-06-04 18:40:08.279224'
+  - - 7
+    - Humanities Resource Center
+    - hrc
+    - '2015-06-04 18:40:08.324362'
+    - '2015-06-04 18:40:08.324362'
+  - - 8
+    - Lewis Library
+    - lewis
+    - '2015-06-04 18:40:08.357810'
+    - '2015-06-04 18:40:08.357810'
+  - - 9
+    - Marquand Library
+    - marquand
+    - '2015-06-04 18:40:08.403878'
+    - '2015-06-04 18:40:08.403878'
+  - - 10
+    - Mudd Manuscript Library
+    - mudd
+    - '2015-06-04 18:40:08.462584'
+    - '2015-06-04 18:40:08.462584'
+  - - 11
+    - Mendel Music Library
+    - mendel
+    - '2015-06-04 18:40:08.500912'
+    - '2015-06-04 18:40:08.500912'
+  - - 12
+    - Online
+    - online
+    - '2015-06-04 18:40:08.529398'
+    - '2015-06-04 18:40:08.529398'
+  - - 13
+    - Other Location
+    - other
+    - '2015-06-04 18:40:08.569210'
+    - '2015-06-04 18:40:08.569210'
+  - - 14
+    - Harold P. Furth Plasma Physics Library
+    - plasma
+    - '2015-06-04 18:40:08.608363'
+    - '2015-06-04 18:40:08.608363'
+  - - 15
+    - Rare Books and Special Collections
+    - rare
+    - '2015-06-04 18:40:08.657028'
+    - '2015-06-04 18:40:08.657028'
+  - - 16
+    - ReCAP
+    - recap
+    - '2015-06-04 18:40:08.696900'
+    - '2015-06-04 18:40:08.696900'
+  - - 17
+    - Stokes Library
+    - stokes
+    - '2015-06-04 18:40:08.735026'
+    - '2015-06-04 18:40:08.735026'
+
+---
+locations_hours_locations:
+  columns:
+  - id
+  - code
+  - label
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - architecture
+    - Architecture Library
+    - '2015-06-04 18:40:10.110735'
+    - '2015-06-04 18:40:10.110735'
+  - - 2
+    - eastasian
+    - East Asian Library
+    - '2015-06-04 18:40:10.171206'
+    - '2015-06-04 18:40:10.171206'
+  - - 3
+    - engineering
+    - Engineering Library
+    - '2015-06-04 18:40:10.224464'
+    - '2015-06-04 18:40:10.224464'
+  - - 4
+    - firestone
+    - Firestone Library - Building and Circulation/Reserves Hours
+    - '2015-06-04 18:40:10.283810'
+    - '2015-06-04 18:40:10.283810'
+  - - 5
+    - cotsengallery
+    - Firestone Library - Cotsen Children's Library - Gallery
+    - '2015-06-04 18:40:10.315225'
+    - '2015-06-04 18:40:10.315225'
+  - - 6
+    - cotsenresearch
+    - Firestone Library - Cotsen Children's Library - Research Collection
+    - '2015-06-04 18:40:10.371505'
+    - '2015-06-04 18:40:10.371505'
+  - - 7
+    - exhibition
+    - Firestone Library - Exhibition Galleries
+    - '2015-06-04 18:40:10.416372'
+    - '2015-06-04 18:40:10.416372'
+  - - 8
+    - interlibrary
+    - Firestone Library - Interlibrary Services
+    - '2015-06-04 18:40:10.448400'
+    - '2015-06-04 18:40:10.448400'
+  - - 9
+    - access
+    - Firestone Library - Library Privileges Office
+    - '2015-06-04 18:40:10.499881'
+    - '2015-06-04 18:40:10.499881'
+  - - 10
+    - microforms
+    - Firestone Library - Microforms Service
+    - '2015-06-04 18:40:10.545845'
+    - '2015-06-04 18:40:10.545845'
+  - - 11
+    - rbsc
+    - Firestone Library - Rare Books and Special Collections
+    - '2015-06-04 18:40:10.578267'
+    - '2015-06-04 18:40:10.578267'
+  - - 12
+    - information
+    - Firestone Library - Reference Desk
+    - '2015-06-04 18:40:10.619414'
+    - '2015-06-04 18:40:10.619414'
+  - - 13
+    - trustee
+    - Firestone Library - Trustee Reading Room - Late Night Hours
+    - '2015-06-04 18:40:10.655397'
+    - '2015-06-04 18:40:10.655397'
+  - - 14
+    - lewis
+    - Lewis Library
+    - '2015-06-04 18:40:10.687803'
+    - '2015-06-04 18:40:10.687803'
+  - - 15
+    - geoscimap
+    - Lewis Map and Geospatial Information Center
+    - '2015-06-04 18:40:10.727106'
+    - '2015-06-04 18:40:10.727106'
+  - - 16
+    - marquand
+    - Marquand Library of Art and Archaeology
+    - '2015-06-04 18:40:10.766951'
+    - '2015-06-04 18:40:10.766951'
+  - - 17
+    - mendel
+    - Mendel Music Library
+    - '2015-06-04 18:40:10.809429'
+    - '2015-06-04 18:40:10.809429'
+  - - 18
+    - mudd
+    - Mudd Manuscript Library and University Archives
+    - '2015-06-04 18:40:10.852851'
+    - '2015-06-04 18:40:10.852851'
+  - - 19
+    - plasma
+    - Plasma Physics Library
+    - '2015-06-04 18:40:10.893074'
+    - '2015-06-04 18:40:10.893074'
+  - - 20
+    - stokes
+    - Stokes Library
+    - '2015-06-04 18:40:10.927894'
+    - '2015-06-04 18:40:10.927894'
+
+---
+locations_delivery_locations:
+  columns:
+  - id
+  - label
+  - address
+  - phone_number
+  - contact_email
+  - staff_only
+  - created_at
+  - updated_at
+  - locations_library_id
+  - gfa_pickup
+  - pickup_location
+  records: 
+  - - 1
+    - Plasma Physics Library
+    - Forrestal Campus Princeton, NJ 08544
+    - 609-243-3565
+    - ppllib@princeton.edu
+    - false
+    - '2015-06-04 18:40:08.815166'
+    - '2015-06-04 18:40:08.815166'
+    - 14
+    - PQ
+    - true
+  - - 2
+    - Technical Services
+    - 693 Alexander Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - true
+    - '2015-06-04 18:40:08.863351'
+    - '2015-06-04 18:40:08.863351'
+    - 6
+    - QT
+    - false
+  - - 3
+    - Architecture Library
+    - School of Architecture Building, Second Floor Princeton, NJ 08544
+    - 609-258-3256
+    - ues@princeton.edu
+    - false
+    - '2015-06-04 18:40:08.916359'
+    - '2015-06-04 18:40:08.916359'
+    - 3
+    - PW
+    - true
+  - - 4
+    - East Asian Library
+    - Frist Campus Center, Room 317 Princeton, NJ 08544
+    - 609-258-3182
+    - gestcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:08.952184'
+    - '2015-06-04 18:40:08.952184'
+    - 4
+    - PL
+    - true
+  - - 5
+    - Engineering Library
+    - Friend Center for Engineering Education Princeton, NJ 08544
+    - 609-258-3200
+    - englib@princeton.edu
+    - false
+    - '2015-06-04 18:40:08.988370'
+    - '2015-06-04 18:40:08.988370'
+    - 5
+    - PT
+    - true
+  - - 6
+    - Firestone Library, Microforms
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-3252
+    - microfms@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.024951'
+    - '2015-06-04 18:40:09.024951'
+    - 6
+    - PF
+    - false
+  - - 7
+    - Marquand Library of Art and Archaeology
+    - McCormick Hall Princeton, NJ 08544
+    - 609-258-5863
+    - marquand@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.063361'
+    - '2015-06-04 18:40:09.063361'
+    - 9
+    - PJ
+    - true
+  - - 8
+    - Mendel Music Library
+    - Woolworth Center Princeton, NJ 08544
+    - 609-258-3230
+    - muslib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.101555'
+    - '2015-06-04 18:40:09.101555'
+    - 11
+    - PK
+    - true
+  - - 9
+    - Mudd Manuscript Library
+    - 65 Olden Street Princeton, NJ 08544
+    - 609-258-6345
+    - mudd@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.137707'
+    - '2015-06-04 18:40:09.137707'
+    - 10
+    - PH
+    - false
+  - - 10
+    - Stokes Library
+    - Wallace Hall, Lower Level Princeton, NJ 08544
+    - 609-258-5455
+    - piaprlib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.179041'
+    - '2015-06-04 18:40:09.179041'
+    - 17
+    - PM
+    - true
+  - - 11
+    - Lewis Library, Geosciences and Map Library
+    - Washington Road and Ivy Lane Princeton, NJ 08544
+    - 609-258-6004
+    - lewislib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.240381'
+    - '2015-06-04 18:40:09.240381'
+    - 8
+    - PN
+    - true
+  - - 12
+    - Firestone Library, Resource Sharing
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - true
+    - '2015-06-04 18:40:09.281797'
+    - '2015-06-04 18:40:09.281797'
+    - 6
+    - QA
+    - false
+  - - 13
+    - Firestone Library, Rare Books & Special Collections Reading Room
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.337889'
+    - '2015-06-04 18:40:09.337889'
+    - 6
+    - PG
+    - false
+  - - 14
+    - Lewis Library
+    - Washington Road and Ivy Lane Princeton, NJ 08544
+    - 609-258-6004
+    - lewislib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.377718'
+    - '2015-06-04 18:40:09.377718'
+    - 8
+    - PN
+    - true
+  - - 15
+    - Firestone Library
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.413398'
+    - '2015-06-04 18:40:09.413398'
+    - 6
+    - PA
+    - true
+  - - 16
+    - ReCAP Reading Room
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.449605'
+    - '2015-06-04 18:40:09.449605'
+    - 6
+    - IL
+    - true
+  - - 17
+    - Humanities Resource Center
+    - 011 East Pyne Princeton, NJ 08544
+    - 609-258-1290
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.490094'
+    - '2015-06-04 18:40:09.490094'
+    - 7
+    - QV
+    - false
+  - - 18
+    - Broadcast Center
+    - 132 Lewis Library Princeton, NJ 08544
+    - 609-258-7872
+    - bctv@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.534506'
+    - '2015-06-04 18:40:09.534506'
+    - 8
+    - PN
+    - false
+  - - 19
+    - Firestone Library, Costen
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.575131'
+    - '2015-06-04 18:40:09.575131'
+    - 6
+    - PG
+    - false
+  - - 20
+    - Firestone Library, Graphics Arts
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.615118'
+    - '2015-06-04 18:40:09.615118'
+    - 6
+    - PG
+    - false
+  - - 21
+    - Firestone Library, Numismatics
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.656538'
+    - '2015-06-04 18:40:09.656538'
+    - 6
+    - PG
+    - false
+  - - 22
+    - Firestone, Historic Maps
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.705880'
+    - '2015-06-04 18:40:09.705880'
+    - 6
+    - PG
+    - false
+  - - 23
+    - Technical Services, Database Maintenance
+    - 693 Alexander Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - true
+    - '2015-06-04 18:40:09.750348'
+    - '2015-06-04 18:40:09.750348'
+    - 6
+    - QC
+    - false
+  - - 24
+    - East Asian Library. Microforms
+    - Frist Campus Center, Room 317 Princeton, NJ 08544
+    - 609-258-3182
+    - gestcirc@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.797180'
+    - '2015-06-04 18:40:09.797180'
+    - 4
+    - QL
+    - false
+  - - 25
+    - Lewis Library (Rare)
+    - Washington Road and Ivy Lane Princeton, NJ 08544
+    - 609-258-6004
+    - lewislib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.852402'
+    - '2015-06-04 18:40:09.852402'
+    - 8
+    - PS
+    - false
+  - - 26
+    - Marquand Library of Art and Archaeology (Rare)
+    - McCormick Hall Princeton, NJ 08544
+    - 609-258-5863
+    - marquand@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.906014'
+    - '2015-06-04 18:40:09.906014'
+    - 9
+    - PZ
+    - false
+  - - 27
+    - Mendel Music Library. Sound/Video
+    - Woolworth Center Princeton, NJ 08544
+    - 609-258-3230
+    - muslib@princeton.edu
+    - false
+    - '2015-06-04 18:40:09.962679'
+    - '2015-06-04 18:40:09.962679'
+    - 11
+    - QK
+    - false
+  - - 28
+    - Firestone Library, Microforms (Firestone Use Only)
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-3252
+    - microfms@princeton.edu
+    - false
+    - '2015-06-04 18:40:10.003677'
+    - '2015-06-04 18:40:10.003677'
+    - 6
+    - PB
+    - false
+  - - 29
+    - Preservation
+    - One Washington Rd. Princeton, NJ 08544
+    - 609-258-1470
+    - fstcirc@princeton.edu
+    - true
+    - '2015-06-04 18:40:10.043684'
+    - '2015-06-04 18:40:10.043684'
+    - 6
+    - QP
+    - false
+
+---
+locations_holding_locations:
+  columns:
+  - id
+  - label
+  - code
+  - created_at
+  - updated_at
+  - locations_library_id
+  - aeon_location
+  - recap_electronic_delivery_location
+  - open
+  - requestable
+  - always_requestable
+  - locations_hours_location_id
+  records: 
+  - - 1
+    - Forrestal Annex
+    - anxa
+    - '2015-06-04 18:40:11.172966'
+    - '2015-06-04 18:40:11.172966'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 2
+    - 'Forrestal Annex: Documents Off-Site Storage'
+    - anxadoc
+    - '2015-06-04 18:40:11.300837'
+    - '2015-06-04 18:40:11.300837'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 3
+    - 'Forrestal Annex: Temporary'
+    - anxafst
+    - '2015-06-04 18:40:11.466318'
+    - '2015-06-04 18:40:11.466318'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 4
+    - 'Forrestal Annex: Locked Books'
+    - l
+    - '2015-06-04 18:40:11.614663'
+    - '2015-06-04 18:40:11.614663'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 5
+    - 'Forrestal Annex: Princeton Collection'
+    - p
+    - '2015-06-04 18:40:11.757732'
+    - '2015-06-04 18:40:11.757732'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 6
+    - 'Forrestal Annex: Annex A, Forrestal (Reserve)'
+    - res
+    - '2015-06-04 18:40:11.917256'
+    - '2015-06-04 18:40:11.917256'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 7
+    - 'Forrestal Annex: Classics Theses'
+    - sct
+    - '2015-06-04 18:40:12.093084'
+    - '2015-06-04 18:40:12.093084'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 8
+    - 'Forrestal Annex: German Languages Theses'
+    - sdt
+    - '2015-06-04 18:40:12.261436'
+    - '2015-06-04 18:40:12.261436'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 9
+    - 'Forrestal Annex: English Theses'
+    - set
+    - '2015-06-04 18:40:12.407777'
+    - '2015-06-04 18:40:12.407777'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 10
+    - 'Forrestal Annex: History Theses'
+    - sht
+    - '2015-06-04 18:40:12.562047'
+    - '2015-06-04 18:40:12.562047'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 11
+    - 'Forrestal Annex: Philosophy Theses'
+    - spt
+    - '2015-06-04 18:40:12.678943'
+    - '2015-06-04 18:40:12.678943'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 12
+    - 'Forrestal Annex: Romance Theses'
+    - srt
+    - '2015-06-04 18:40:12.800291'
+    - '2015-06-04 18:40:12.800291'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 13
+    - 'Forrestal Annex: Engineering'
+    - stlo
+    - '2015-06-04 18:40:12.938408'
+    - '2015-06-04 18:40:12.938408'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 14
+    - 'Forrestal Annex: Theses Collection'
+    - t
+    - '2015-06-04 18:40:13.054597'
+    - '2015-06-04 18:40:13.054597'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 15
+    - Fine Annex
+    - anxb
+    - '2015-06-04 18:40:13.219314'
+    - '2015-06-04 18:40:13.219314'
+    - 2
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 16
+    - 'Fine Annex: Locked'
+    - anxbl
+    - '2015-06-04 18:40:13.340597'
+    - '2015-06-04 18:40:13.340597'
+    - 2
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 17
+    - 'Fine Annex: Non Circulating'
+    - anxbnc
+    - '2015-06-04 18:40:13.483755'
+    - '2015-06-04 18:40:13.483755'
+    - 2
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 18
+    - 'Fine Annex: Microforms '
+    - stf
+    - '2015-06-04 18:40:13.629408'
+    - '2015-06-04 18:40:13.629408'
+    - 2
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 
+  - - 19
+    - Architecture Library
+    - ues
+    - '2015-06-04 18:40:13.798628'
+    - '2015-06-04 18:40:13.917825'
+    - 3
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 1
+  - - 20
+    - 'Architecture Library: Indexes'
+    - uesia
+    - '2015-06-04 18:40:14.003054'
+    - '2015-06-04 18:40:14.133755'
+    - 3
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 1
+  - - 21
+    - 'Architecture Library: Librarian''s Office'
+    - uesla
+    - '2015-06-04 18:40:14.205133'
+    - '2015-06-04 18:40:14.338010'
+    - 3
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 1
+  - - 22
+    - 'Architecture Library: Reserve 3 Hour'
+    - ueso
+    - '2015-06-04 18:40:14.423977'
+    - '2015-06-04 18:40:14.546978'
+    - 3
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 1
+  - - 23
+    - 'Architecture Library: Reserve Closed'
+    - uesr
+    - '2015-06-04 18:40:14.643165'
+    - '2015-06-04 18:40:14.748965'
+    - 3
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 1
+  - - 24
+    - 'Architecture Library: Reference'
+    - uesrf
+    - '2015-06-04 18:40:14.837796'
+    - '2015-06-04 18:40:14.955039'
+    - 3
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 1
+  - - 25
+    - East Asian Library
+    - c
+    - '2015-06-04 18:40:15.021521'
+    - '2015-06-04 18:40:15.163734'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 26
+    - 'East Asian Library: Rare Books'
+    - crare
+    - '2015-06-04 18:40:15.231333'
+    - '2015-06-04 18:40:15.350914'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 27
+    - 'East Asian Library: Reference'
+    - cref
+    - '2015-06-04 18:40:15.417251'
+    - '2015-06-04 18:40:15.550871'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 28
+    - 'East Asian Library: Western'
+    - gest
+    - '2015-06-04 18:40:15.630174'
+    - '2015-06-04 18:40:15.752559'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 29
+    - 'East Asian Library: Western Periodicals'
+    - gestpe
+    - '2015-06-04 18:40:15.839495'
+    - '2015-06-04 18:40:15.947519'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 30
+    - 'East Asian Library: Permanent Reserve'
+    - gestpr
+    - '2015-06-04 18:40:16.015554'
+    - '2015-06-04 18:40:16.132531'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 31
+    - 'East Asian Library: Rare Books'
+    - gestrare
+    - '2015-06-04 18:40:16.185276'
+    - '2015-06-04 18:40:16.305989'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 32
+    - 'East Asian Library: Reference'
+    - gestrf
+    - '2015-06-04 18:40:16.378571'
+    - '2015-06-04 18:40:16.514156'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 33
+    - 'East Asian Library: Reserve'
+    - gstr
+    - '2015-06-04 18:40:16.579866'
+    - '2015-06-04 18:40:16.703294'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 34
+    - 'East Asian Library: Reference'
+    - gstrf
+    - '2015-06-04 18:40:16.783104'
+    - '2015-06-04 18:40:16.902591'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 35
+    - 'East Asian Library: East Asian Library (Gest)'
+    - hyc
+    - '2015-06-04 18:40:16.970895'
+    - '2015-06-04 18:40:17.114868'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 36
+    - 'East Asian Library: Periodicals'
+    - hycpe
+    - '2015-06-04 18:40:17.179160'
+    - '2015-06-04 18:40:17.329284'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 37
+    - 'East Asian Library: Rare Books'
+    - hycrare
+    - '2015-06-04 18:40:17.396804'
+    - '2015-06-04 18:40:17.506319'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 38
+    - 'East Asian Library: Reference'
+    - hycrf
+    - '2015-06-04 18:40:17.583544'
+    - '2015-06-04 18:40:17.699515'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 39
+    - East Asian Library
+    - hyg
+    - '2015-06-04 18:40:17.787388'
+    - '2015-06-04 18:40:17.908901'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 40
+    - East Asian Library
+    - hyj
+    - '2015-06-04 18:40:17.994026'
+    - '2015-06-04 18:40:18.125893'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 41
+    - East Asian Library
+    - hyjpe
+    - '2015-06-04 18:40:18.231042'
+    - '2015-06-04 18:40:18.354035'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 42
+    - 'East Asian Library: Rare Books'
+    - hyjrare
+    - '2015-06-04 18:40:18.441673'
+    - '2015-06-04 18:40:18.558589'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 43
+    - 'East Asian Library: Reference'
+    - hyjrf
+    - '2015-06-04 18:40:18.631606'
+    - '2015-06-04 18:40:18.743966'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 44
+    - East Asian Library
+    - hyk
+    - '2015-06-04 18:40:18.824398'
+    - '2015-06-04 18:40:18.931484'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 45
+    - 'East Asian Library: Rare Books'
+    - hykrare
+    - '2015-06-04 18:40:18.996230'
+    - '2015-06-04 18:40:19.131315'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 46
+    - 'East Asian Library: Reference'
+    - hykrf
+    - '2015-06-04 18:40:19.219757'
+    - '2015-06-04 18:40:19.324041'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 47
+    - East Asian Library
+    - j
+    - '2015-06-04 18:40:19.395649'
+    - '2015-06-04 18:40:19.502752'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 48
+    - 'East Asian Library: Rare Books'
+    - jrare
+    - '2015-06-04 18:40:19.579160'
+    - '2015-06-04 18:40:19.684847'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 49
+    - 'East Asian Library: Reference'
+    - jref
+    - '2015-06-04 18:40:19.749403'
+    - '2015-06-04 18:40:19.859667'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 50
+    - East Asian Library
+    - k
+    - '2015-06-04 18:40:19.929947'
+    - '2015-06-04 18:40:20.057863'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 51
+    - 'East Asian Library: Rare Books'
+    - krare
+    - '2015-06-04 18:40:20.127251'
+    - '2015-06-04 18:40:20.244701'
+    - 4
+    - true
+    - false
+    - true
+    - false
+    - true
+    - 2
+  - - 52
+    - 'East Asian Library: Reference'
+    - kref
+    - '2015-06-04 18:40:20.312378'
+    - '2015-06-04 18:40:20.417486'
+    - 4
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 2
+  - - 53
+    - 'East Asian Library: Near East Department Collection (NED). Jones Hall'
+    - ned
+    - '2015-06-04 18:40:20.491916'
+    - '2015-06-04 18:40:20.606921'
+    - 4
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 2
+  - - 54
+    - Engineering Library
+    - ast
+    - '2015-06-04 18:40:20.691334'
+    - '2015-06-04 18:40:20.813737'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 55
+    - 'Engineering Library: Media Collection'
+    - astrf
+    - '2015-06-04 18:40:20.885041'
+    - '2015-06-04 18:40:21.016714'
+    - 5
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 3
+  - - 56
+    - 'Engineering Library: Computer Media'
+    - ltopst
+    - '2015-06-04 18:40:21.081168'
+    - '2015-06-04 18:40:21.226809'
+    - 5
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 3
+  - - 57
+    - 'Engineering Library: Friend Center Archive'
+    - scc
+    - '2015-06-04 18:40:21.291598'
+    - '2015-06-04 18:40:21.416377'
+    - 5
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 3
+  - - 58
+    - Engineering Library
+    - st
+    - '2015-06-04 18:40:21.497707'
+    - '2015-06-04 18:40:21.621865'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 59
+    - 'Engineering Library: Indexes and Abstracts'
+    - stia
+    - '2015-06-04 18:40:21.690885'
+    - '2015-06-04 18:40:21.826992'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 60
+    - Engineering Library
+    - str
+    - '2015-06-04 18:40:21.894074'
+    - '2015-06-04 18:40:21.999779'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 61
+    - 'Engineering Library: Reference'
+    - strf
+    - '2015-06-04 18:40:22.081221'
+    - '2015-06-04 18:40:22.202960'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 62
+    - 'Engineering Library: Circulation Desk Reserve Collection'
+    - strp
+    - '2015-06-04 18:40:22.270799'
+    - '2015-06-04 18:40:22.399748'
+    - 5
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 3
+  - - 63
+    - 'Engineering Library: Reserve'
+    - strr
+    - '2015-06-04 18:40:22.480098'
+    - '2015-06-04 18:40:22.591729'
+    - 5
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 3
+  - - 64
+    - 'Engineering Library: Serials'
+    - stss
+    - '2015-06-04 18:40:22.686097'
+    - '2015-06-04 18:40:22.789998'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 65
+    - 'Engineering Library: Theses'
+    - stt
+    - '2015-06-04 18:40:22.870058'
+    - '2015-06-04 18:40:22.984619'
+    - 5
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 3
+  - - 66
+    - 'Firestone Library: African-American Studies Collection '
+    - aas
+    - '2015-06-04 18:40:23.052223'
+    - '2015-06-04 18:40:23.179095'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 67
+    - 'Firestone Library: Classics Collection'
+    - clas
+    - '2015-06-04 18:40:23.247156'
+    - '2015-06-04 18:40:23.376785'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 68
+    - 'Firestone Library: Classics Non Circulating'
+    - clasnc
+    - '2015-06-04 18:40:23.456546'
+    - '2015-06-04 18:40:23.600257'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 69
+    - 'Firestone Library: Cataloging and Metadata Services'
+    - dc
+    - '2015-06-04 18:40:23.674841'
+    - '2015-06-04 18:40:23.789088'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 70
+    - 'Firestone Library: Dixon Books'
+    - dixn
+    - '2015-06-04 18:40:23.857299'
+    - '2015-06-04 18:40:23.978066'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 71
+    - 'Firestone Library: Government Documents Collection '
+    - docs
+    - '2015-06-04 18:40:24.048926'
+    - '2015-06-04 18:40:24.153891'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 72
+    - 'Firestone Library: Government Documents Collection: Microforms'
+    - docsm
+    - '2015-06-04 18:40:24.225676'
+    - '2015-06-04 18:40:24.348120'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 73
+    - 'Firestone Library: Trustee Reading Room Reference'
+    - dr
+    - '2015-06-04 18:40:24.408954'
+    - '2015-06-04 18:40:24.531373'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 74
+    - 'Firestone Library: Trustee Reading Room Reference: Atlases'
+    - dra
+    - '2015-06-04 18:40:24.627655'
+    - '2015-06-04 18:40:24.748205'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 75
+    - 'Firestone Library: Trustee Reading Room Reference: Ready Reference'
+    - drrr
+    - '2015-06-04 18:40:24.836473'
+    - '2015-06-04 18:40:24.965181'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 76
+    - 'Firestone Library: Data and Statistical Services '
+    - dss
+    - '2015-06-04 18:40:25.058402'
+    - '2015-06-04 18:40:25.178780'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 77
+    - 'Firestone Library: English Graduate Study Room'
+    - egsr
+    - '2015-06-04 18:40:25.246464'
+    - '2015-06-04 18:40:25.373751'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 78
+    - Firestone Library
+    - f
+    - '2015-06-04 18:40:25.441516'
+    - '2015-06-04 18:40:25.576125'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 79
+    - 'Firestone Library: French & Italian Grad Study Rm/Sem'
+    - fis
+    - '2015-06-04 18:40:25.644113'
+    - '2015-06-04 18:40:25.751266'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 80
+    - 'Firestone Library: Microforms Services'
+    - flm
+    - '2015-06-04 18:40:25.850572'
+    - '2015-06-04 18:40:25.958527'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 10
+  - - 81
+    - 'Firestone Library: Microforms Services'
+    - flmb
+    - '2015-06-04 18:40:26.014028'
+    - '2015-06-04 18:40:26.121802'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 10
+  - - 82
+    - 'Firestone Library: Microforms Services'
+    - flmm
+    - '2015-06-04 18:40:26.191748'
+    - '2015-06-04 18:40:26.294670'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 10
+  - - 83
+    - 'Firestone Library: Microforms Services'
+    - flmp
+    - '2015-06-04 18:40:26.385524'
+    - '2015-06-04 18:40:26.509747'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 10
+  - - 84
+    - 'Firestone Library: Non Circulating'
+    - fnc
+    - '2015-06-04 18:40:26.575885'
+    - '2015-06-04 18:40:26.676837'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 85
+    - 'Firestone Library: Microforms Services: East Asian'
+    - gestf
+    - '2015-06-04 18:40:26.758124'
+    - '2015-06-04 18:40:26.867632'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 86
+    - 'Firestone Library: Miriam Y. Holden Collection'
+    - hldn
+    - '2015-06-04 18:40:26.962246'
+    - '2015-06-04 18:40:27.093878'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 87
+    - 'Forrestal Annex: Forrestal Annex - Microforms Services: East Asian'
+    - hygf
+    - '2015-06-04 18:40:27.162980'
+    - '2015-06-04 18:40:27.162980'
+    - 1
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 88
+    - 'Firestone Library: Law Cases and Statutes '
+    - law
+    - '2015-06-04 18:40:27.321877'
+    - '2015-06-04 18:40:27.450647'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 89
+    - 'Firestone Library: Computer Media'
+    - ltop
+    - '2015-06-04 18:40:27.522921'
+    - '2015-06-04 18:40:27.640476'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 90
+    - 'Firestone Library: Near East Collections'
+    - nec
+    - '2015-06-04 18:40:27.728319'
+    - '2015-06-04 18:40:27.843694'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 91
+    - 'Firestone Library: Near East Collections Non Circulating'
+    - necnc
+    - '2015-06-04 18:40:27.932980'
+    - '2015-06-04 18:40:28.036316'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 92
+    - 'Firestone Library: New Order Request'
+    - new
+    - '2015-06-04 18:40:28.113305'
+    - '2015-06-04 18:40:28.267788'
+    - 6
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 4
+  - - 93
+    - 'Firestone Library: Newspaper Collection: Recent Issues. '
+    - nr
+    - '2015-06-04 18:40:28.341617'
+    - '2015-06-04 18:40:28.436154'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 94
+    - 'Firestone Library: Periodicals Reading Room'
+    - pr
+    - '2015-06-04 18:40:28.521664'
+    - '2015-06-04 18:40:28.642126'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 95
+    - 'Firestone Library: Periodicals Reading Room: Near East Periodicals'
+    - prne
+    - '2015-06-04 18:40:28.735714'
+    - '2015-06-04 18:40:28.852985'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 96
+    - 'Firestone Library: 3 Hour Reserve '
+    - resc
+    - '2015-06-04 18:40:28.928261'
+    - '2015-06-04 18:40:29.077193'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 97
+    - 'Firestone Library: 24 Hour Reserve '
+    - reso
+    - '2015-06-04 18:40:29.143588'
+    - '2015-06-04 18:40:29.248661'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 98
+    - 'Firestone Library: Religion Graduate Study: Reserve'
+    - rrel
+    - '2015-06-04 18:40:29.324403'
+    - '2015-06-04 18:40:29.449139'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 99
+    - 'Firestone Library: Classics Graduate Study: Reserve'
+    - rsc
+    - '2015-06-04 18:40:29.533576'
+    - '2015-06-04 18:40:29.652107'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 100
+    - 'Firestone Library: Germanic Languages Graduate Study Room: Reserve'
+    - rsd
+    - '2015-06-04 18:40:29.747753'
+    - '2015-06-04 18:40:29.870791'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 101
+    - 'Firestone Library: English Graduate Study Room: Reserve'
+    - rse
+    - '2015-06-04 18:40:29.950535'
+    - '2015-06-04 18:40:30.052041'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 102
+    - 'Firestone Library: History Reference: Reserve'
+    - rsh
+    - '2015-06-04 18:40:30.124135'
+    - '2015-06-04 18:40:30.243417'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 103
+    - 'Firestone Library: Politics Graduate Study Room: Reserve'
+    - rshp
+    - '2015-06-04 18:40:30.313761'
+    - '2015-06-04 18:40:30.436697'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 104
+    - 'Firestone Library: Russian Studies Reading Rom: Reserve'
+    - rslv
+    - '2015-06-04 18:40:30.501564'
+    - '2015-06-04 18:40:30.615591'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 105
+    - 'Firestone Library: Near East Graduate Study Room: Reserve'
+    - rsne
+    - '2015-06-04 18:40:30.690018'
+    - '2015-06-04 18:40:30.804592'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 106
+    - 'Firestone Library: Anthropology Graduate Study Room: Reserve'
+    - rsnst
+    - '2015-06-04 18:40:30.895040'
+    - '2015-06-04 18:40:31.007724'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 107
+    - 'Firestone Library: Philosophy Graduate Study Room: Reserve'
+    - rsp
+    - '2015-06-04 18:40:31.088348'
+    - '2015-06-04 18:40:31.196989'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 108
+    - 'Firestone Library: Comparative Literature Graduate Study Room: Reserve'
+    - rspc
+    - '2015-06-04 18:40:31.286782'
+    - '2015-06-04 18:40:31.414039'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 109
+    - 'Firestone Library: Sociology Graduate Study Room: Reserve'
+    - rssa
+    - '2015-06-04 18:40:31.485284'
+    - '2015-06-04 18:40:31.628272'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 110
+    - 'Firestone Library: Economics Graduate Study Room: Reserve'
+    - rsx
+    - '2015-06-04 18:40:31.701678'
+    - '2015-06-04 18:40:31.845162'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 111
+    - 'Firestone Library: Classics Graduate Study'
+    - sc
+    - '2015-06-04 18:40:31.924730'
+    - '2015-06-04 18:40:32.045602'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 112
+    - 'Firestone Library: Germanic Languages Graduate Study Room'
+    - sd
+    - '2015-06-04 18:40:32.122252'
+    - '2015-06-04 18:40:32.246476'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 113
+    - 'Firestone Library: Scribner Room '
+    - se
+    - '2015-06-04 18:40:32.312385'
+    - '2015-06-04 18:40:32.453599'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 114
+    - 'Firestone Library: Scribner Room: Reference'
+    - seref
+    - '2015-06-04 18:40:32.535272'
+    - '2015-06-04 18:40:32.672634'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 115
+    - 'Firestone Library: History Reference'
+    - sh
+    - '2015-06-04 18:40:32.756435'
+    - '2015-06-04 18:40:32.880381'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 116
+    - 'Firestone Library: Politics Graduate Study Room'
+    - shp
+    - '2015-06-04 18:40:32.951320'
+    - '2015-06-04 18:40:33.064792'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 117
+    - 'Firestone Library: Hellenic Studies Reading Room'
+    - shs
+    - '2015-06-04 18:40:33.155556'
+    - '2015-06-04 18:40:33.293490'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 118
+    - 'Firestone Library: Russian Studies Reading Room'
+    - slav
+    - '2015-06-04 18:40:33.361805'
+    - '2015-06-04 18:40:33.474875'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 119
+    - 'Firestone Library: Near East Graduate Study Room'
+    - sne
+    - '2015-06-04 18:40:33.547470'
+    - '2015-06-04 18:40:33.659212'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 120
+    - 'Firestone Library: Philosophy Graduate Study Room'
+    - sp
+    - '2015-06-04 18:40:33.726365'
+    - '2015-06-04 18:40:33.855537'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 121
+    - 'Firestone Library: Comparative Literature Graduate Study Room'
+    - spc
+    - '2015-06-04 18:40:33.935610'
+    - '2015-06-04 18:40:34.041927'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 122
+    - 'Firestone Library: Comparative Literature Graduate Study Room'
+    - spl
+    - '2015-06-04 18:40:34.123971'
+    - '2015-06-04 18:40:34.254459'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 123
+    - 'Firestone Library: Spanish & Portuguese Grad Study Room'
+    - sps
+    - '2015-06-04 18:40:34.324945'
+    - '2015-06-04 18:40:34.469094'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 124
+    - 'Firestone Library: Religion Graduate Study'
+    - srel
+    - '2015-06-04 18:40:34.545783'
+    - '2015-06-04 18:40:34.682482'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 125
+    - 'Firestone Library: Sociology Graduate Study Room'
+    - ssa
+    - '2015-06-04 18:40:34.757384'
+    - '2015-06-04 18:40:34.861610'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 126
+    - 'Firestone Library: Social Science Reference Center'
+    - ssrc
+    - '2015-06-04 18:40:34.935892'
+    - '2015-06-04 18:40:35.041387'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 127
+    - 'Firestone Library: Data and Statisticsal Services: Decennial Census'
+    - ssrcdc
+    - '2015-06-04 18:40:35.123338'
+    - '2015-06-04 18:40:35.258260'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 128
+    - 'Firestone Library: Data and Statisticsal Services: Foreign Stat. Abs.'
+    - ssrcfo
+    - '2015-06-04 18:40:35.349598'
+    - '2015-06-04 18:40:35.475515'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 129
+    - 'Firestone Library: Social Science Reference Center: Ready Reference'
+    - ssrcrr
+    - '2015-06-04 18:40:35.555417'
+    - '2015-06-04 18:40:35.661510'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 130
+    - 'Firestone Library: History Graduate Study'
+    - sss
+    - '2015-06-04 18:40:35.731808'
+    - '2015-06-04 18:40:35.831735'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 131
+    - 'Firestone Library: Economics Graduate Study Room'
+    - sx
+    - '2015-06-04 18:40:35.897932'
+    - '2015-06-04 18:40:36.011744'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 132
+    - 'Firestone Library: Social Science Reference Center: Index Tables. '
+    - sxfa
+    - '2015-06-04 18:40:36.088780'
+    - '2015-06-04 18:40:36.203004'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 133
+    - 'Firestone Library: Pliny Fisk Library: Financial Serv. '
+    - sxffi
+    - '2015-06-04 18:40:36.296394'
+    - '2015-06-04 18:40:36.415992'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 134
+    - 'Firestone Library: Pliny Fisk Library: Federal Reserve. '
+    - sxffr
+    - '2015-06-04 18:40:36.487166'
+    - '2015-06-04 18:40:36.626283'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 135
+    - 'Firestone Library: Pliny Fisk Library: Index Tables'
+    - sxfit
+    - '2015-06-04 18:40:36.691852'
+    - '2015-06-04 18:40:36.825850'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 136
+    - 'Firestone Library: Pliny Fisk Library: Ready Reference.'
+    - sxfrr
+    - '2015-06-04 18:40:36.906889'
+    - '2015-06-04 18:40:37.034074'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 137
+    - 'Firestone Library: United Nations Collection'
+    - un
+    - '2015-06-04 18:40:37.128764'
+    - '2015-06-04 18:40:37.243767'
+    - 6
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 4
+  - - 138
+    - 'Firestone Library: Very large books'
+    - xl
+    - '2015-06-04 18:40:37.302764'
+    - '2015-06-04 18:40:37.400755'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 139
+    - 'Firestone Library: Very large books Non Circulating'
+    - xlnc
+    - '2015-06-04 18:40:37.483326'
+    - '2015-06-04 18:40:37.623035'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 140
+    - 'Firestone Library: Zeiss Wildlife Collection'
+    - zeis
+    - '2015-06-04 18:40:37.691939'
+    - '2015-06-04 18:40:37.828153'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 141
+    - 'Humanities Resource Center: Video Collection'
+    - lrc
+    - '2015-06-04 18:40:37.887192'
+    - '2015-06-04 18:40:37.887192'
+    - 7
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 142
+    - 'Humanities Resource Center: Permanent Reserve'
+    - lrcpt
+    - '2015-06-04 18:40:38.070935'
+    - '2015-06-04 18:40:38.070935'
+    - 7
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 143
+    - 'Humanities Resource Center: Reserve'
+    - lrcr
+    - '2015-06-04 18:40:38.212416'
+    - '2015-06-04 18:40:38.212416'
+    - 7
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 144
+    - 'Humanities Resource Center: Video Collection'
+    - vidl
+    - '2015-06-04 18:40:38.350118'
+    - '2015-06-04 18:40:38.350118'
+    - 7
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 145
+    - 'Humanities Resource Center: Reserve'
+    - vidlr
+    - '2015-06-04 18:40:38.507519'
+    - '2015-06-04 18:40:38.507519'
+    - 7
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 146
+    - 'Lewis Library: Computer Media'
+    - ltopsci
+    - '2015-06-04 18:40:38.639026'
+    - '2015-06-04 18:40:38.753594'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 147
+    - Lewis Library
+    - sci
+    - '2015-06-04 18:40:38.815452'
+    - '2015-06-04 18:40:38.932259'
+    - 8
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 14
+  - - 148
+    - 'Lewis Library: Documents'
+    - scidoc
+    - '2015-06-04 18:40:39.000306'
+    - '2015-06-04 18:40:39.110968'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 149
+    - 'Lewis Library: E/F Oversize and Atlases'
+    - sciefa
+    - '2015-06-04 18:40:39.192848'
+    - '2015-06-04 18:40:39.294958'
+    - 8
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 14
+  - - 150
+    - 'Lewis Library: GIS and Digital Map Center'
+    - scigis
+    - '2015-06-04 18:40:39.362356'
+    - '2015-06-04 18:40:39.472631'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 151
+    - 'Lewis Library: Graduate Reading'
+    - scigr
+    - '2015-06-04 18:40:39.548354'
+    - '2015-06-04 18:40:39.670004'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 152
+    - 'Lewis Library: Limited Access (Fine Hall Wing A-Floor)'
+    - scilaf
+    - '2015-06-04 18:40:39.737823'
+    - '2015-06-04 18:40:39.878865'
+    - 8
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 14
+  - - 153
+    - 'Lewis Library: Limited Access'
+    - scilal
+    - '2015-06-04 18:40:39.943951'
+    - '2015-06-04 18:40:40.053622'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 154
+    - 'Lewis Library: Map Collection'
+    - scimap
+    - '2015-06-04 18:40:40.126309'
+    - '2015-06-04 18:40:40.276654'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 15
+  - - 155
+    - 'Lewis Library: Map Collection. Map Case'
+    - scimc
+    - '2015-06-04 18:40:40.350361'
+    - '2015-06-04 18:40:40.487846'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 15
+  - - 156
+    - 'Lewis Library: Map Collection. Map Case Max'
+    - scimcm
+    - '2015-06-04 18:40:40.568849'
+    - '2015-06-04 18:40:40.688033'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 15
+  - - 157
+    - 'Lewis Library: Microforms'
+    - scimic
+    - '2015-06-04 18:40:40.774703'
+    - '2015-06-04 18:40:40.872096'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 158
+    - 'Lewis Library: Map Collection. Lateral File'
+    - sciml
+    - '2015-06-04 18:40:40.937223'
+    - '2015-06-04 18:40:41.037931'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 15
+  - - 159
+    - 'Lewis Library: Map Collection. Reference Maps'
+    - scimlrf
+    - '2015-06-04 18:40:41.104945'
+    - '2015-06-04 18:40:41.241555'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 15
+  - - 160
+    - 'Lewis Library: Multimedia'
+    - scimm
+    - '2015-06-04 18:40:41.321475'
+    - '2015-06-04 18:40:41.431368'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 161
+    - 'Lewis Library: Pamphlet'
+    - scipam
+    - '2015-06-04 18:40:41.496106'
+    - '2015-06-04 18:40:41.622690'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 162
+    - 'Lewis Library: Peyton Hall Observing Room'
+    - sciph
+    - '2015-06-04 18:40:41.700547'
+    - '2015-06-04 18:40:41.800090'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 163
+    - 'Lewis Library: Reference (Fine Hall Wing)'
+    - sciref
+    - '2015-06-04 18:40:41.860135'
+    - '2015-06-04 18:40:42.003403'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 164
+    - 'Lewis Library: Reference (Information Desk)'
+    - scirefl
+    - '2015-06-04 18:40:42.079826'
+    - '2015-06-04 18:40:42.213762'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 165
+    - 'Lewis Library: Course Reserve'
+    - scires
+    - '2015-06-04 18:40:42.286182'
+    - '2015-06-04 18:40:42.412440'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 166
+    - 'Lewis Library: Term Loan Reserves'
+    - sciresp
+    - '2015-06-04 18:40:42.490682'
+    - '2015-06-04 18:40:42.597790'
+    - 8
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 14
+  - - 167
+    - 'Lewis Library: SuDoc Collection.'
+    - scisd
+    - '2015-06-04 18:40:42.687729'
+    - '2015-06-04 18:40:42.819063'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 168
+    - 'Lewis Library: Serials (shelved by serial title)'
+    - sciss
+    - '2015-06-04 18:40:42.909917'
+    - '2015-06-04 18:40:43.052644'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 169
+    - 'Lewis Library: Theses'
+    - scith
+    - '2015-06-04 18:40:43.135656'
+    - '2015-06-04 18:40:43.269570'
+    - 8
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 14
+  - - 170
+    - 'Marquand Library: Computer Media'
+    - ltopsa
+    - '2015-06-04 18:40:43.356404'
+    - '2015-06-04 18:40:43.475544'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 171
+    - Marquand Library
+    - sa
+    - '2015-06-04 18:40:43.562715'
+    - '2015-06-04 18:40:43.673501'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 172
+    - 'Marquand Library: Barr Ferree Collection'
+    - saf
+    - '2015-06-04 18:40:43.735363'
+    - '2015-06-04 18:40:43.866550'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 173
+    - 'Marquand Library: Tang Reading Room'
+    - safesrf
+    - '2015-06-04 18:40:43.927814'
+    - '2015-06-04 18:40:44.062789'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 174
+    - 'Marquand Library: Microforms'
+    - safi
+    - '2015-06-04 18:40:44.135831'
+    - '2015-06-04 18:40:44.250741'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 175
+    - 'Marquand Library: Manuscripts'
+    - sams
+    - '2015-06-04 18:40:44.350632'
+    - '2015-06-04 18:40:44.463233'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 176
+    - 'Marquand Library: Manuscripts: Reference'
+    - samsrf
+    - '2015-06-04 18:40:44.528908'
+    - '2015-06-04 18:40:44.673751'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 177
+    - 'Marquand Library: Photography'
+    - saph
+    - '2015-06-04 18:40:44.775640'
+    - '2015-06-04 18:40:44.889035'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 178
+    - 'Marquand Library: Photography Reference'
+    - saphrf
+    - '2015-06-04 18:40:44.959833'
+    - '2015-06-04 18:40:45.079096'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 179
+    - 'Marquand Library: Reserve'
+    - sar
+    - '2015-06-04 18:40:45.164443'
+    - '2015-06-04 18:40:45.297862'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 180
+    - 'Marquand Library: Reference'
+    - sarf
+    - '2015-06-04 18:40:45.370453'
+    - '2015-06-04 18:40:45.494237'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 181
+    - 'Marquand Library: Storage'
+    - sarp
+    - '2015-06-04 18:40:45.560687'
+    - '2015-06-04 18:40:45.684599'
+    - 9
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 16
+  - - 182
+    - 'Marquand Library: Rare Books: Miscellanea'
+    - sat
+    - '2015-06-04 18:40:45.762222'
+    - '2015-06-04 18:40:45.864725'
+    - 9
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 16
+  - - 183
+    - 'Marquand Library: Workroom'
+    - sawr
+    - '2015-06-04 18:40:45.955856'
+    - '2015-06-04 18:40:46.067634'
+    - 9
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 16
+  - - 184
+    - 'Marquand Library: Rare Books'
+    - sax
+    - '2015-06-04 18:40:46.150173'
+    - '2015-06-04 18:40:46.279575'
+    - 9
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 16
+  - - 185
+    - Mudd Manuscript Library
+    - mudd
+    - '2015-06-04 18:40:46.352134'
+    - '2015-06-04 18:40:46.492618'
+    - 10
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 18
+  - - 186
+    - 'Mudd Manuscript Library: Microforms'
+    - mudf
+    - '2015-06-04 18:40:46.569825'
+    - '2015-06-04 18:40:46.692658'
+    - 10
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 18
+  - - 187
+    - 'Mudd Manuscript Library: Princetoniana Collection'
+    - prnc
+    - '2015-06-04 18:40:46.789360'
+    - '2015-06-04 18:40:46.933999'
+    - 10
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 18
+  - - 188
+    - 'Mendel Music Library: Audio Visual (Circulation Desk)'
+    - mlis
+    - '2015-06-04 18:40:47.006684'
+    - '2015-06-04 18:40:47.125170'
+    - 11
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 17
+  - - 189
+    - Mendel Music Library
+    - mus
+    - '2015-06-04 18:40:47.201462'
+    - '2015-06-04 18:40:47.322397'
+    - 11
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 17
+  - - 190
+    - 'Mendel Music Library: Graduate Reserve'
+    - musg
+    - '2015-06-04 18:40:47.395396'
+    - '2015-06-04 18:40:47.506420'
+    - 11
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 17
+  - - 191
+    - 'Mendel Music Library: Bound Periodicals'
+    - muspe
+    - '2015-06-04 18:40:47.576687'
+    - '2015-06-04 18:40:47.711839'
+    - 11
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 17
+  - - 192
+    - 'Mendel Music Library: Reserve'
+    - musr
+    - '2015-06-04 18:40:47.793989'
+    - '2015-06-04 18:40:47.908308'
+    - 11
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 17
+  - - 193
+    - 'Mendel Music Library: Reading Room (2nd Floor)'
+    - musrg
+    - '2015-06-04 18:40:47.981321'
+    - '2015-06-04 18:40:48.130055'
+    - 11
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 17
+  - - 194
+    - 'Mendel Music Library: Reference'
+    - sv
+    - '2015-06-04 18:40:48.200552'
+    - '2015-06-04 18:40:48.317050'
+    - 11
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 17
+  - - 195
+    - 'Mendel Music Library: Facsimiles'
+    - svf
+    - '2015-06-04 18:40:48.386628'
+    - '2015-06-04 18:40:48.488928'
+    - 11
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 17
+  - - 196
+    - 'Mendel Music Library: Locked'
+    - svl
+    - '2015-06-04 18:40:48.583368'
+    - '2015-06-04 18:40:48.692593'
+    - 11
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 17
+  - - 197
+    - 'Online: Online Resources'
+    - elf
+    - '2015-06-04 18:40:48.754011'
+    - '2015-06-04 18:40:48.754011'
+    - 12
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 198
+    - 'Online: *ONLINE*'
+    - elf1
+    - '2015-06-04 18:40:48.920643'
+    - '2015-06-04 18:40:48.920643'
+    - 12
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 199
+    - 'Online: Accessible from Library Web Computers'
+    - elf2
+    - '2015-06-04 18:40:49.052029'
+    - '2015-06-04 18:40:49.052029'
+    - 12
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 200
+    - 'Online: Online Resources'
+    - elf3
+    - '2015-06-04 18:40:49.201091'
+    - '2015-06-04 18:40:49.201091'
+    - 12
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 201
+    - 'Online: Dixon eBooks'
+    - elf4
+    - '2015-06-04 18:40:49.355154'
+    - '2015-06-04 18:40:49.355154'
+    - 12
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 
+  - - 202
+    - Other Location
+    - other
+    - '2015-06-04 18:40:49.506611'
+    - '2015-06-04 18:40:49.506611'
+    - 13
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 203
+    - Harold P. Furth Plasma Physics Library
+    - ppl
+    - '2015-06-04 18:40:49.665237'
+    - '2015-06-04 18:40:49.802079'
+    - 14
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 19
+  - - 204
+    - 'Harold P. Furth Plasma Physics Library: Indexes'
+    - pplia
+    - '2015-06-04 18:40:49.891561'
+    - '2015-06-04 18:40:50.002766'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 205
+    - 'Harold P. Furth Plasma Physics Library: Seminar Room'
+    - pplla
+    - '2015-06-04 18:40:50.073397'
+    - '2015-06-04 18:40:50.205655'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 206
+    - 'Harold P. Furth Plasma Physics Library: Office'
+    - pplli
+    - '2015-06-04 18:40:50.269534'
+    - '2015-06-04 18:40:50.363793'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 207
+    - 'Harold P. Furth Plasma Physics Library: Periodicals'
+    - pplps
+    - '2015-06-04 18:40:50.442047'
+    - '2015-06-04 18:40:50.579422'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 208
+    - 'Harold P. Furth Plasma Physics Library: Reserve'
+    - pplr
+    - '2015-06-04 18:40:50.648211'
+    - '2015-06-04 18:40:50.760255'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 209
+    - 'Harold P. Furth Plasma Physics Library: Technical Reports'
+    - pplrdr
+    - '2015-06-04 18:40:50.834410'
+    - '2015-06-04 18:40:50.966294'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 210
+    - 'Harold P. Furth Plasma Physics Library: Reference'
+    - pplrf
+    - '2015-06-04 18:40:51.041816'
+    - '2015-06-04 18:40:51.153986'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 211
+    - 'Harold P. Furth Plasma Physics Library: Ready Reference'
+    - pplrr
+    - '2015-06-04 18:40:51.206458'
+    - '2015-06-04 18:40:51.344740'
+    - 14
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 19
+  - - 212
+    - 'Firestone Library: Travel Guides'
+    - trv
+    - '2015-06-04 18:40:51.425446'
+    - '2015-06-04 18:40:51.539195'
+    - 6
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 4
+  - - 213
+    - 'Harold P. Furth Plasma Physics Library: Theses'
+    - pplt
+    - '2015-06-04 18:40:51.611393'
+    - '2015-06-04 18:40:51.737931'
+    - 14
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 19
+  - - 214
+    - 'Rare Books and Special Collections: Sylvia Beach Collection'
+    - beac
+    - '2015-06-04 18:40:51.810237'
+    - '2015-06-04 18:40:51.910291'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 215
+    - 'Rare Books and Special Collections: Eugene B. Cook Chess Collection'
+    - cook
+    - '2015-06-04 18:40:51.985939'
+    - '2015-06-04 18:40:52.117729'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 216
+    - 'Rare Books and Special Collections: Cotsen Children''s Library'
+    - ctsn
+    - '2015-06-04 18:40:52.206460'
+    - '2015-06-04 18:40:52.325196'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 6
+  - - 217
+    - 'Rare Books and Special Collections: Cotsen Children''s Library: Reference'
+    - ctsnrf
+    - '2015-06-04 18:40:52.399006'
+    - '2015-06-04 18:40:52.501285'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 6
+  - - 218
+    - 'Rare Books and Special Collections: Edwards Collection '
+    - ed
+    - '2015-06-04 18:40:52.598217'
+    - '2015-06-04 18:40:52.706823'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 219
+    - Rare Books and Special Collections
+    - ex
+    - '2015-06-04 18:40:52.793277'
+    - '2015-06-04 18:40:52.900816'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 220
+    - 'Rare Books and Special Collections: Reference Collection in Dulles Reading
+      Room'
+    - exb
+    - '2015-06-04 18:40:52.965941'
+    - '2015-06-04 18:40:53.077224'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 221
+    - 'Rare Books and Special Collections: J. Harlin O''Connell Collection'
+    - exc
+    - '2015-06-04 18:40:53.146469'
+    - '2015-06-04 18:40:53.282524'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 222
+    - 'Rare Books and Special Collections: Laurance Roberts Carton Hunting Collection'
+    - exca
+    - '2015-06-04 18:40:53.352886'
+    - '2015-06-04 18:40:53.457821'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 223
+    - 'Rare Books and Special Collections: Kenneth McKenzie Fable Collection'
+    - exf
+    - '2015-06-04 18:40:53.551244'
+    - '2015-06-04 18:40:53.661226'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 224
+    - 'Rare Books and Special Collections: Miriam Y. Holden Collection'
+    - exho
+    - '2015-06-04 18:40:53.725961'
+    - '2015-06-04 18:40:53.857106'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 225
+    - 'Rare Books and Special Collections: Incunabula Collection'
+    - exi
+    - '2015-06-04 18:40:53.944938'
+    - '2015-06-04 18:40:54.065170'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 226
+    - 'Rare Books and Special Collections: Kane Collection '
+    - exka
+    - '2015-06-04 18:40:54.128944'
+    - '2015-06-04 18:40:54.241706'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 227
+    - 'Rare Books and Special Collections: Otto von Kienbusch Angling Collection'
+    - exki
+    - '2015-06-04 18:40:54.310767'
+    - '2015-06-04 18:40:54.419818'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 228
+    - 'Rare Books and Special Collections: Charles Scribner Collection of Charles
+      Lamb'
+    - exl
+    - '2015-06-04 18:40:54.481636'
+    - '2015-06-04 18:40:54.620031'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 229
+    - 'Rare Books and Special Collections: Robert Metzdorf Collection'
+    - exme
+    - '2015-06-04 18:40:54.703744'
+    - '2015-06-04 18:40:54.813985'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 230
+    - 'Rare Books and Special Collections: Oversize '
+    - exov
+    - '2015-06-04 18:40:54.888790'
+    - '2015-06-04 18:40:55.007603'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 231
+    - 'Rare Books and Special Collections: Morris L. Parrish Collection'
+    - expa
+    - '2015-06-04 18:40:55.099797'
+    - '2015-06-04 18:40:55.238662'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 232
+    - 'Rare Books and Special Collections: Kenneth H. Rockey Angling Collection '
+    - exrc
+    - '2015-06-04 18:40:55.302523'
+    - '2015-06-04 18:40:55.419826'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 233
+    - 'Rare Books and Special Collections: Leonard Milberg Coll. of American Poetry'
+    - exrl
+    - '2015-06-04 18:40:55.490054'
+    - '2015-06-04 18:40:55.612084'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 234
+    - 'Rare Books and Special Collections: Rare Books'
+    - extr
+    - '2015-06-04 18:40:55.696972'
+    - '2015-06-04 18:40:55.829939'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 235
+    - 'Rare Books and Special Collections: Technical Services Reference'
+    - extsf
+    - '2015-06-04 18:40:55.904723'
+    - '2015-06-04 18:40:56.027045'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 236
+    - 'Rare Books and Special Collections: Harry B. Vandeventer Poetry Collection '
+    - exv
+    - '2015-06-04 18:40:56.111756'
+    - '2015-06-04 18:40:56.225997'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 237
+    - 'Rare Books and Special Collections: Orlando F. Weber Coll. of Economic History'
+    - exw
+    - '2015-06-04 18:40:56.289369'
+    - '2015-06-04 18:40:56.416976'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 238
+    - 'Rare Books and Special Collections: Graphic Arts Collection'
+    - ga
+    - '2015-06-04 18:40:56.490289'
+    - '2015-06-04 18:40:56.619729'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 239
+    - 'Rare Books and Special Collections: Graphic Arts: Reference Collection'
+    - garf
+    - '2015-06-04 18:40:56.691587'
+    - '2015-06-04 18:40:56.823319'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 240
+    - 'Rare Books and Special Collections: Graphic Arts Collection '
+    - gax
+    - '2015-06-04 18:40:56.899431'
+    - '2015-06-04 18:40:57.018732'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 241
+    - 'Rare Books and Special Collections: South East (CTSN)'
+    - hsvc
+    - '2015-06-04 18:40:57.094403'
+    - '2015-06-04 18:40:57.216691'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 242
+    - 'Rare Books and Special Collections: South East (East Asian)'
+    - hsve
+    - '2015-06-04 18:40:57.296034'
+    - '2015-06-04 18:40:57.396858'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 243
+    - 'Rare Books and Special Collections: South East (GA)'
+    - hsvg
+    - '2015-06-04 18:40:57.499549'
+    - '2015-06-04 18:40:57.616838'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 244
+    - 'Rare Books and Special Collections: South East (MSS)'
+    - hsvm
+    - '2015-06-04 18:40:57.678512'
+    - '2015-06-04 18:40:57.799872'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 245
+    - 'Rare Books and Special Collections: South East (Num)'
+    - hsvn
+    - '2015-06-04 18:40:57.872038'
+    - '2015-06-04 18:40:58.005834'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 246
+    - 'Rare Books and Special Collections: South East (HM)'
+    - hsvp
+    - '2015-06-04 18:40:58.090954'
+    - '2015-06-04 18:40:58.210982'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 247
+    - 'Rare Books and Special Collections: South East (RB)'
+    - hsvr
+    - '2015-06-04 18:40:58.275987'
+    - '2015-06-04 18:40:58.371500'
+    - 15
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 11
+  - - 248
+    - 'Rare Books and Special Collections: Laurence Hutton Collection'
+    - htn
+    - '2015-06-04 18:40:58.459820'
+    - '2015-06-04 18:40:58.590683'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 249
+    - 'Rare Books and Special Collections: Historic Maps Collection'
+    - map
+    - '2015-06-04 18:40:58.662846'
+    - '2015-06-04 18:40:58.775240'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 250
+    - 'Rare Books and Special Collections: Manuscripts Collection'
+    - mss
+    - '2015-06-04 18:40:58.847434'
+    - '2015-06-04 18:40:58.970768'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 251
+    - 'Rare Books and Special Collections: Special Collections'
+    - njpg
+    - '2015-06-04 18:40:59.070434'
+    - '2015-06-04 18:40:59.176572'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 252
+    - 'Rare Books and Special Collections: Numismatics Collection '
+    - num
+    - '2015-06-04 18:40:59.237298'
+    - '2015-06-04 18:40:59.357301'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 253
+    - 'Rare Books and Special Collections: Numismatics Collection: Reference'
+    - numrf
+    - '2015-06-04 18:40:59.419952'
+    - '2015-06-04 18:40:59.544613'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 254
+    - 'Rare Books and Special Collections: Princeton Borough Collection'
+    - pb
+    - '2015-06-04 18:40:59.610182'
+    - '2015-06-04 18:40:59.732847'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 255
+    - 'Rare Books and Special Collections: Preservation Office'
+    - pres
+    - '2015-06-04 18:40:59.806538'
+    - '2015-06-04 18:40:59.934619'
+    - 15
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 11
+  - - 256
+    - 'Rare Books and Special Collections: Robert Patterson Collection'
+    - ptt
+    - '2015-06-04 18:41:00.018424'
+    - '2015-06-04 18:41:00.131688'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 257
+    - 'Rare Books and Special Collections: Robert H. Taylor Collection'
+    - rht
+    - '2015-06-04 18:41:00.206047'
+    - '2015-06-04 18:41:00.325515'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 258
+    - 'Rare Books and Special Collections: Theatre Collection'
+    - thx
+    - '2015-06-04 18:41:00.395197'
+    - '2015-06-04 18:41:00.530846'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 259
+    - 'Rare Books and Special Collections: Theatre Collection: Reference'
+    - thxr
+    - '2015-06-04 18:41:00.605536'
+    - '2015-06-04 18:41:00.722336'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 260
+    - 'Rare Books and Special Collections: Junius Morgan Collection'
+    - vrg
+    - '2015-06-04 18:41:00.806991'
+    - '2015-06-04 18:41:00.939513'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 261
+    - 'Rare Books and Special Collections: John Shaw Pierson Civil War Collection'
+    - w
+    - '2015-06-04 18:41:01.013234'
+    - '2015-06-04 18:41:01.148375'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 262
+    - 'Rare Books and Special Collections: Western Americana Collection'
+    - wa
+    - '2015-06-04 18:41:01.225491'
+    - '2015-06-04 18:41:01.338928'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 263
+    - 'Rare Books and Special Collections: William H. Scheide Library'
+    - whs
+    - '2015-06-04 18:41:01.444258'
+    - '2015-06-04 18:41:01.562398'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 264
+    - 'Rare Books and Special Collections: John Witherspoon Library'
+    - wit
+    - '2015-06-04 18:41:01.627763'
+    - '2015-06-04 18:41:01.737222'
+    - 15
+    - true
+    - false
+    - false
+    - false
+    - true
+    - 11
+  - - 265
+    - 'ReCAP: Gov Docs.'
+    - rcpgp
+    - '2015-06-04 18:41:01.818161'
+    - '2015-06-04 18:41:01.818161'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 266
+    - 'ReCAP: JSTOR Restricted'
+    - rcpjq
+    - '2015-06-04 18:41:01.984762'
+    - '2015-06-04 18:41:01.984762'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 267
+    - ReCAP
+    - rcppa
+    - '2015-06-04 18:41:02.131975'
+    - '2015-06-04 18:41:02.131975'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 268
+    - 'ReCAP: Supervised use in Firestone '
+    - rcppb
+    - '2015-06-04 18:41:02.283813'
+    - '2015-06-04 18:41:02.283813'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 269
+    - 'ReCAP: Restricted Backup Copies'
+    - rcppe
+    - '2015-06-04 18:41:02.450070'
+    - '2015-06-04 18:41:02.450070'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 270
+    - 'ReCAP: Use in Firestone Microforms only. '
+    - rcppf
+    - '2015-06-04 18:41:02.613964'
+    - '2015-06-04 18:41:02.613964'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 271
+    - 'ReCAP: RBSC Off-Site Storage'
+    - rcppg
+    - '2015-06-04 18:41:02.777203'
+    - '2015-06-04 18:41:02.777203'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 272
+    - 'ReCAP: Mudd Off-Site Storage'
+    - rcpph
+    - '2015-06-04 18:41:02.929886'
+    - '2015-06-04 18:41:02.929886'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 273
+    - 'ReCAP: Marquand Library use only'
+    - rcppj
+    - '2015-06-04 18:41:03.094350'
+    - '2015-06-04 18:41:03.094350'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 274
+    - 'ReCAP: Mendel Music Library use only.'
+    - rcppk
+    - '2015-06-04 18:41:03.248983'
+    - '2015-06-04 18:41:03.248983'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 275
+    - 'ReCAP: East Asian Library use only'
+    - rcppl
+    - '2015-06-04 18:41:03.420021'
+    - '2015-06-04 18:41:03.420021'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 276
+    - 'ReCAP: Donald E. Stokes Library use only.'
+    - rcppm
+    - '2015-06-04 18:41:03.583231'
+    - '2015-06-04 18:41:03.583231'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 277
+    - 'ReCAP: Lewis Library use only.'
+    - rcppn
+    - '2015-06-04 18:41:03.741632'
+    - '2015-06-04 18:41:03.741632'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 278
+    - 'ReCAP: Plasma Physics use only.'
+    - rcppq
+    - '2015-06-04 18:41:03.934735'
+    - '2015-06-04 18:41:03.934735'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 279
+    - 'ReCAP: Lewis Library (Rare) use only'
+    - rcpps
+    - '2015-06-04 18:41:04.103830'
+    - '2015-06-04 18:41:04.103830'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 280
+    - 'ReCAP: Technical Reports Offsite. Contact techrpts@princeton.edu'
+    - rcppt
+    - '2015-06-04 18:41:04.252481'
+    - '2015-06-04 18:41:04.252481'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 281
+    - 'ReCAP: Architecture Library use only '
+    - rcppw
+    - '2015-06-04 18:41:04.415728'
+    - '2015-06-04 18:41:04.415728'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 282
+    - 'ReCAP: Marquand Library (Rare) use only.'
+    - rcppz
+    - '2015-06-04 18:41:04.569269'
+    - '2015-06-04 18:41:04.569269'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 283
+    - 'ReCAP: Reading Room use only.'
+    - rcpqb
+    - '2015-06-04 18:41:04.700713'
+    - '2015-06-04 18:41:04.700713'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 284
+    - 'ReCAP: Mendel Music Library use only. '
+    - rcpqk
+    - '2015-06-04 18:41:04.860973'
+    - '2015-06-04 18:41:04.860973'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 285
+    - 'ReCAP: Firestone Microforms or East Asian Library use only'
+    - rcpql
+    - '2015-06-04 18:41:05.020902'
+    - '2015-06-04 18:41:05.020902'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 286
+    - 'ReCAP: Humanities Resource Center use only'
+    - rcpqv
+    - '2015-06-04 18:41:05.178617'
+    - '2015-06-04 18:41:05.178617'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 287
+    - 'ReCAP: Broadcast Center use only'
+    - rcpqx
+    - '2015-06-04 18:41:05.327386'
+    - '2015-06-04 18:41:05.327386'
+    - 16
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 
+  - - 288
+    - 'ReCAP: Cotsen Library Off-Site Storage'
+    - rcpxc
+    - '2015-06-04 18:41:05.472287'
+    - '2015-06-04 18:41:05.472287'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 289
+    - 'ReCAP: Graphic Arts Off-Site Storage'
+    - rcpxg
+    - '2015-06-04 18:41:05.614623'
+    - '2015-06-04 18:41:05.614623'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 290
+    - 'ReCAP: Manuscripts Off-Site Storage'
+    - rcpxm
+    - '2015-06-04 18:41:05.766760'
+    - '2015-06-04 18:41:05.766760'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 291
+    - 'ReCAP: Numismatics Off-Site Storage'
+    - rcpxn
+    - '2015-06-04 18:41:05.924742'
+    - '2015-06-04 18:41:05.924742'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 292
+    - 'ReCAP: Historic Maps Off-Site Storage'
+    - rcpxp
+    - '2015-06-04 18:41:06.069405'
+    - '2015-06-04 18:41:06.069405'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 293
+    - 'ReCAP: Rare Books Off-Site Storage'
+    - rcpxr
+    - '2015-06-04 18:41:06.202625'
+    - '2015-06-04 18:41:06.202625'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 294
+    - 'ReCAP: Special Items Off-Site Storage'
+    - rcpxx
+    - '2015-06-04 18:41:06.335551'
+    - '2015-06-04 18:41:06.335551'
+    - 16
+    - true
+    - false
+    - false
+    - true
+    - true
+    - 
+  - - 295
+    - 'Stokes Library: Computer Media'
+    - ltoppiapr
+    - '2015-06-04 18:41:06.489960'
+    - '2015-06-04 18:41:06.608082'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 296
+    - Stokes Library
+    - piapr
+    - '2015-06-04 18:41:06.679901'
+    - '2015-06-04 18:41:06.797700'
+    - 17
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 20
+  - - 297
+    - 'Stokes Library: Reserve'
+    - piaprr
+    - '2015-06-04 18:41:06.865198'
+    - '2015-06-04 18:41:06.989797'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 298
+    - Stokes Library
+    - spia
+    - '2015-06-04 18:41:07.050518'
+    - '2015-06-04 18:41:07.179071'
+    - 17
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 20
+  - - 299
+    - 'Stokes Library: Atlases'
+    - spiaa
+    - '2015-06-04 18:41:07.246280'
+    - '2015-06-04 18:41:07.370127'
+    - 17
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 20
+  - - 300
+    - 'Stokes Library: Indexes'
+    - spiai
+    - '2015-06-04 18:41:07.438941'
+    - '2015-06-04 18:41:07.587228'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 301
+    - 'Stokes Library: Periodicals'
+    - spiaps
+    - '2015-06-04 18:41:07.650673'
+    - '2015-06-04 18:41:07.772719'
+    - 17
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 20
+  - - 302
+    - 'Stokes Library: Reference'
+    - spiarf
+    - '2015-06-04 18:41:07.835634'
+    - '2015-06-04 18:41:07.950333'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 303
+    - 'Stokes Library: Writing Shelf'
+    - spiaws
+    - '2015-06-04 18:41:08.030936'
+    - '2015-06-04 18:41:08.127051'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 304
+    - 'Stokes Library: Reserve'
+    - spir
+    - '2015-06-04 18:41:08.208789'
+    - '2015-06-04 18:41:08.337091'
+    - 17
+    - false
+    - false
+    - false
+    - false
+    - false
+    - 20
+  - - 305
+    - Stokes Library
+    - spr
+    - '2015-06-04 18:41:08.409870'
+    - '2015-06-04 18:41:08.529912'
+    - 17
+    - false
+    - false
+    - true
+    - false
+    - false
+    - 20
+  - - 306
+    - 'Stokes Library: Microforms'
+    - sprf
+    - '2015-06-04 18:41:08.599989'
+    - '2015-06-04 18:41:08.711481'
+    - 17
+    - false
+    - false
+    - false
+    - true
+    - false
+    - 20
+
+---
+locations_holdings_delivery:
+  columns:
+  - locations_delivery_location_id
+  - locations_holding_location_id
+  records: 
+  - - 2
+    - 15
+  - - 18
+    - 5
+  - - 21
+    - 3
+  - - 22
+    - 3
+  - - 23
+    - 3
+  - - 26
+    - 4
+  - - 27
+    - 4
+  - - 31
+    - 4
+  - - 32
+    - 4
+  - - 33
+    - 4
+  - - 48
+    - 4
+  - - 49
+    - 4
+  - - 51
+    - 4
+  - - 52
+    - 4
+  - - 55
+    - 5
+  - - 57
+    - 5
+  - - 87
+    - 6
+  - - 87
+    - 24
+  - - 152
+    - 14
+  - - 185
+    - 8
+  - - 186
+    - 8
+  - - 187
+    - 8
+  - - 188
+    - 8
+  - - 193
+    - 8
+  - - 196
+    - 8
+  - - 265
+    - 1
+  - - 265
+    - 3
+  - - 265
+    - 4
+  - - 265
+    - 5
+  - - 265
+    - 6
+  - - 265
+    - 7
+  - - 265
+    - 8
+  - - 265
+    - 9
+  - - 265
+    - 10
+  - - 265
+    - 13
+  - - 265
+    - 14
+  - - 265
+    - 15
+  - - 265
+    - 17
+  - - 265
+    - 12
+  - - 265
+    - 2
+  - - 265
+    - 29
+  - - 265
+    - 23
+  - - 266
+    - 29
+  - - 266
+    - 23
+  - - 266
+    - 2
+  - - 267
+    - 1
+  - - 267
+    - 3
+  - - 267
+    - 4
+  - - 267
+    - 5
+  - - 267
+    - 6
+  - - 267
+    - 7
+  - - 267
+    - 8
+  - - 267
+    - 9
+  - - 267
+    - 10
+  - - 267
+    - 13
+  - - 267
+    - 14
+  - - 267
+    - 15
+  - - 267
+    - 17
+  - - 267
+    - 12
+  - - 267
+    - 2
+  - - 267
+    - 29
+  - - 267
+    - 23
+  - - 268
+    - 28
+  - - 268
+    - 2
+  - - 268
+    - 23
+  - - 268
+    - 29
+  - - 269
+    - 2
+  - - 269
+    - 23
+  - - 269
+    - 29
+  - - 270
+    - 6
+  - - 270
+    - 15
+  - - 270
+    - 12
+  - - 270
+    - 2
+  - - 270
+    - 29
+  - - 270
+    - 23
+  - - 271
+    - 13
+  - - 272
+    - 9
+  - - 273
+    - 7
+  - - 273
+    - 23
+  - - 273
+    - 2
+  - - 273
+    - 29
+  - - 274
+    - 8
+  - - 274
+    - 29
+  - - 274
+    - 23
+  - - 274
+    - 2
+  - - 275
+    - 4
+  - - 275
+    - 29
+  - - 275
+    - 23
+  - - 275
+    - 2
+  - - 276
+    - 10
+  - - 276
+    - 29
+  - - 276
+    - 23
+  - - 276
+    - 2
+  - - 277
+    - 14
+  - - 277
+    - 23
+  - - 277
+    - 29
+  - - 277
+    - 2
+  - - 278
+    - 1
+  - - 278
+    - 14
+  - - 278
+    - 23
+  - - 278
+    - 2
+  - - 278
+    - 29
+  - - 279
+    - 14
+  - - 279
+    - 2
+  - - 279
+    - 23
+  - - 279
+    - 29
+  - - 280
+    - 5
+  - - 280
+    - 29
+  - - 280
+    - 23
+  - - 280
+    - 2
+  - - 281
+    - 3
+  - - 281
+    - 2
+  - - 281
+    - 23
+  - - 281
+    - 29
+  - - 282
+    - 7
+  - - 283
+    - 16
+  - - 283
+    - 2
+  - - 283
+    - 29
+  - - 283
+    - 23
+  - - 284
+    - 8
+  - - 284
+    - 29
+  - - 284
+    - 23
+  - - 284
+    - 2
+  - - 284
+    - 12
+  - - 285
+    - 4
+  - - 285
+    - 6
+  - - 285
+    - 29
+  - - 285
+    - 23
+  - - 285
+    - 2
+  - - 286
+    - 17
+  - - 286
+    - 2
+  - - 286
+    - 23
+  - - 286
+    - 29
+  - - 288
+    - 19
+  - - 289
+    - 20
+  - - 290
+    - 9
+  - - 291
+    - 21
+  - - 292
+    - 22
+  - - 293
+    - 13
+  - - 294
+    - 13

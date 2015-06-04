@@ -33,3 +33,7 @@ group :development, :test do
   gem 'byebug', '~> 3.5.1'
   gem 'rerun', '~> 0.10.0'
 end
+
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', branch: 'development'
+gem 'yaml_db', '~> 0.3.0'
+gem 'friendly_id', '~> 5.1.0'
