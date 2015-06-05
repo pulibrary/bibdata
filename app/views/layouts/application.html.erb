@@ -8,6 +8,8 @@
 </head>
 <body>
   <div class="container">
+    <%= render partial: "shared/navbar" %>  	
+    <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>
   </div>
 </body>

@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   mount Locations::Engine, at: '/locations'
+
+  authenticate :user do
+    Locations::Engine.routes.prepend do
+      resources :hours_locations, path_names: { new: "create" }, only: [:new, :create, :edit, :update, :destroy]
+      resources :holding_locations, path_names: { new: "create" }, only: [:new, :create, :edit, :update, :destroy]
+      resources :libraries, path_names: { new: "create"}, only: [:new, :create, :edit, :update, :destroy]
+      resources :delivery_locations, path_names: { new: "create"}, only: [:new, :create, :edit, :update, :destroy]
+    end
+  end
 
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]
