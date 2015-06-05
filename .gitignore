@@ -3,6 +3,7 @@
 /tmp
 /config/database.yml
 /config/voyager_helpers.yml
+/config/initializers/devise.rb
 # Ignore everything
 /data/*
 !/data/.keep

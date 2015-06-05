@@ -1,5 +1,4 @@
 require 'rails_helper'
-require ''
 
 RSpec.describe "Bibliographic Gets", :type => :request do
   describe "GET /bibliographic/430472/items" do

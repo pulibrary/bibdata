@@ -29,6 +29,7 @@ set :linked_files, %w{
   config/marc_liberation.yml
   config/secrets.yml
   config/voyager_helpers.yml
+  config/initializers/devise.rb
 }
 
 # Default value for linked_dirs is []
