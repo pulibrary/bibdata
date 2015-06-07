@@ -1,0 +1,22 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+      <ul class="nav navbar-nav">
+        <li class="<%= 'active' if params[:controller] == 'high_voltage/pages' %>"><%= link_to 'Home', main_app.root_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'events' %>"><%= link_to 'Events', main_app.events_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/home' %>"><%= link_to 'All Locations', locations.root_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/delivery_locations' %>"><%= link_to 'Delivery Locations', locations.delivery_locations_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/holding_locations' %>"><%= link_to 'Holding Locations', locations.holding_locations_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/libraries' %>"><%= link_to 'Libraries', locations.libraries_path %></li>
+        <li class="<%= 'active' if params[:controller] == 'locations/hours_locations' %>"><%= link_to 'Hours Locations', locations.hours_locations_path %></li>
+        <% if current_user %>
+        <li>
+          <%= link_to 'Logout', main_app.destroy_user_session_path %>
+        </li>
+        <% else %>
+        <li>
+          <%= link_to 'Login', main_app.user_omniauth_authorize_path(:cas) %> <!-- use new_user_session_path for more options -->
+        </li>
+        <% end %>           
+      </ul>
+  </div>
+</nav>
