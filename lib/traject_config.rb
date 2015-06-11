@@ -851,22 +851,6 @@ end
 to_field 'call_number_display', extract_marc('852ckhij', :allow_duplicates => true)
 
 
-
-to_field 'call_number_s', extract_marc('852khij') do |record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = Lcsort.normalize(value)
-  end
-end
-
-# to_field 'call_number_strict_s', extract_marc('852khij') do |record, accumulator|
-#   sizebefore = accumulator.length
-#   accumulator.each_with_index do |value, i|
-#     accumulator[i] = Lcsort.normalize(value, true)
-#   end
-#   accumulator.compact!
-#   puts record['001'],' ' if sizebefore > accumulator.length
-# end
-
 to_field 'call_number_browse_s', extract_marc('852khij')
 
 # Item details:
