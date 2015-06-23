@@ -29,35 +29,20 @@ class Dump < ActiveRecord::Base
     dump_records(ids, dump_file_type)
   end
 
+  def dump_bib_records(bib_ids)
+    dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
+    dump_records(bib_ids, dump_file_type)
+  end  
+
   private
   def dump_records(ids, dump_file_type)
-    slice_size = MARC_LIBERATION_CONFIG['records_per_file']
+    slice_size = Rails.env.test? ? MARC_LIBERATION_CONFIG['test_records_per_file'] : MARC_LIBERATION_CONFIG['records_per_file']
     ids.each_slice(slice_size).each do |id_slice|
       df = DumpFile.create(dump_file_type: dump_file_type)
-      VoyagerHelpers::Liberator.dump_bibs_to_file(id_slice, df.path)
-      df.zip
-      df.save
       self.dump_files << df
       self.save
-    end
-  end
-
-  def get_bibs_from_voyager_hack(ids, path)
-    # Rails does not like this for some reason. Works in plain Ruby.
-    # VoyagerHelpers::Liberator.dump_bibs_to_file(id_slice, path)
-    # So instead:
-    File.open(path, 'w') do |f|
-      f.write('<?xml version="1.0"?>'+"\n")
-      f.write('<collection xmlns="http://www.loc.gov/MARC21/slim"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">'+"\n")
-      connection do |c|
-        ids.each do |id|
-          r = VoyagerHelpers::Liberator.get_bib_record(id, c)
-          f.write(r.to_xml.to_s+"\n") unless r.nil?
-        end
-      end
-      f.write('</collection>')
+      BibDumpJob.perform_later(id_slice, df.id)
+      sleep 1
     end
   end
 
@@ -104,8 +89,26 @@ class Dump < ActiveRecord::Base
       dump
     end
 
-    private
+    def full_bib_dump
+      dump = nil
+      Event.record do |event|
+        dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))        
+        bibs = last_bib_id_dump
+        bibs.dump_files.first.unzip
+        bib_path = bibs.dump_files.first.path
+        system "awk '{print $1}' #{bib_path} > #{bib_path}.ids"
+        bib_id_strings = File.open("#{bib_path}.ids", "r")
+        dump.dump_bib_records(bib_id_strings)
+        bibs.dump_files.first.zip
+        File.delete("#{bib_path}.ids")
+        Event.delete_old_events if event.success == true
+        dump.event = event
+        dump.save
+      end
+      dump
+    end
 
+    private
 
 
 
@@ -121,6 +124,11 @@ class Dump < ActiveRecord::Base
       dump_type = DumpType.where(constant: dump_type)
       dumps = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').limit(2).reverse
     end
+
+    def last_bib_id_dump
+      dump_type = DumpType.where(constant: 'BIB_IDS')
+      dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
+    end    
 
     def dump_ids(type)
       dump = nil

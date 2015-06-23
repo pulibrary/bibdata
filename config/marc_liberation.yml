@@ -3,15 +3,16 @@
 # Rails.root
 data_dir: 'data'
 records_per_file: 50000
+test_records_per_file: 25
 dump_types:
-- label: 'All Records'
-  constant: 'ALL_RECORDS'
 - label: 'Changed Records'
   constant: 'CHANGED_RECORDS'
 - label: 'All Holding IDs'
   constant: 'HOLDING_IDS'
 - label: 'All Bib IDs'
   constant: 'BIB_IDS'
+- label: 'All Records'
+  constant: 'ALL_RECORDS'
 
 dump_file_types:
 - label: 'Updated Records'
@@ -22,3 +23,5 @@ dump_file_types:
   constant: 'HOLDING_IDS'
 - label: 'All Bib IDs'
   constant: 'BIB_IDS'
+- label: 'All bib records'
+  constant: 'BIB_RECORDS'

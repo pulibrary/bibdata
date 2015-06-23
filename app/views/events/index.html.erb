@@ -21,7 +21,7 @@
     <% @events.each do |event| %>
       <tr class="table-striped<%= event.success ? '' : ' warning'%>">
         <td class="nowrap"><%= event.start.localtime.to_s(:db_twelve_hour) %></td>
-        <td class="nowrap "><%= event.finish.localtime.to_s(:db_twelve_hour) %></td>
+        <td class="nowrap "><%= event.finish.localtime.to_s(:db_twelve_hour) if event.finish %></td>
         <td><%= event.success %></td>
         <td ><%= event.error %></td>
         <% if event.dump.nil? %>

@@ -7,4 +7,9 @@ namespace :marc_liberation do
     Dump.diff_since_last
   end
 
+  desc 'Dumps records given BIB_FILE containing ids'
+  task bib_dump: :environment do
+  	Dump.full_bib_dump
+  end
+
 end
