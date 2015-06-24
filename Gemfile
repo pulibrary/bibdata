@@ -40,5 +40,6 @@ gem 'friendly_id', '~> 5.1.0'
 
 gem 'devise'
 gem 'omniauth-cas'
-
+gem 'capybara'
+gem 'poltergeist'
 gem 'resque'

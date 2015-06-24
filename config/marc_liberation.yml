@@ -23,5 +23,5 @@ dump_file_types:
   constant: 'HOLDING_IDS'
 - label: 'All Bib IDs'
   constant: 'BIB_IDS'
-- label: 'All bib records'
+- label: 'All Bib Records'
   constant: 'BIB_RECORDS'
