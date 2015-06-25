@@ -328,11 +328,13 @@ module VoyagerHelpers
 
       def get_bib_with_holdings(bib_id, conn=nil, opts={})
         bib = get_bib_without_holdings(bib_id, conn)
-        holdings = get_holding_records(bib_id, conn)
-        if opts.fetch(:holdings_in_bib, true)
-          merge_852s_into_bib(bib, holdings)
-        else
-          [bib,holdings].flatten!
+        unless bib.nil?
+          holdings = get_holding_records(bib_id, conn)
+          if opts.fetch(:holdings_in_bib, true)
+            merge_852s_into_bib(bib, holdings)
+          else
+            [bib,holdings].flatten!
+          end
         end
       end
 
