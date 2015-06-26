@@ -11,8 +11,8 @@ module IndexFunctions
     dump = JSON.parse(Faraday.get(event['dump_url']).body)
     
     # updates
-    dump['files']['updated_records'].each_with_index do |update, i|     
-      File.write("/tmp/update_#{i}.gz", Faraday.get(dump['files']['updated_records'][i]['dump_file']).body)
+    dump['files']['updated_records'].each_with_index do |update, i|
+      File.write("/tmp/update_#{i}.gz", Faraday.get(update['dump_file']).body)
       Zlib::GzipReader.open("/tmp/update_#{i}.gz") do |gz|
         File.open("/tmp/update_#{i}.xml", 'w') do |fp|
           while chunk = gz.read(16 * 1024) do
@@ -21,12 +21,12 @@ module IndexFunctions
         end
         gz.close
       end
-      file_paths << "/tmp/update_#{i}.xml"
+      file_paths << "/tmp/update_#{i}"
     end
 
     # new records
-    dump['files']['new_records'].each_with_index do |new, i|     
-      File.write("/tmp/new_#{i}.gz", Faraday.get(dump['files']['new_records'][0]['dump_file']).body)
+    dump['files']['new_records'].each_with_index do |new_records, i|
+      File.write("/tmp/new_#{i}.gz", Faraday.get(new_records['dump_file']).body)
       Zlib::GzipReader.open("/tmp/new_#{i}.gz") do |gz|
         File.open("/tmp/new_#{i}.xml", "w") do |fp|
           while chunk = gz.read(16 * 1024) do
@@ -35,7 +35,7 @@ module IndexFunctions
         end
         gz.close
       end 
-      file_paths << "/tmp/new_#{i}.xml"
+      file_paths << "/tmp/new_#{i}"
     end  
 
     # delete records
@@ -44,10 +44,22 @@ module IndexFunctions
     file_paths
   end
 
-  def self.changed_since(events)
-  end
+  def self.full_dump(event, solr_url)
+    file_paths = []
+    dump = JSON.parse(Faraday.get(event['dump_url']).body)
 
-  def self.changed_on(events)
+    dump['files']['bib_records'].each_with_index do |bib, i|
+      File.write("/tmp/bib_#{i}.gz", Faraday.get(bib['dump_file']).body)
+      Zlib::GzipReader.open("/tmp/bib_#{i}.gz") do |gz|
+        File.open("/tmp/bib_#{i}.xml", 'w') do |fp|
+          while chunk = gz.read(16 * 1024) do
+            fp.write chunk
+          end
+        end
+        gz.close
+      end
+      file_paths << "/tmp/bib_#{i}"
+    end
   end
 
 end
