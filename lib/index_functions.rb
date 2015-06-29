@@ -60,6 +60,7 @@ module IndexFunctions
       end
       file_paths << "/tmp/bib_#{i}"
     end
+    file_paths
   end
 
 end
