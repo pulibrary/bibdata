@@ -1,5 +1,5 @@
 # given a record, find the bib_format code
-require './lib/umich_format.rb'
+require './lib/format.rb'
 
 class BibFormat
 
@@ -75,7 +75,7 @@ class BibFormat
   end
 
   def bibformat_mp(type, lev)
-    (type = 'e')
+    (type == 'e')
   end
 
   def bibformat_mw(type, lev)
