@@ -1,5 +1,5 @@
 require 'traject/macros/marc21_semantics'
-require './lib/umich_format/xv6xx'
+require './lib/format/xv6xx'
 
 
 # Determine the "types" of material represented by the bib record.
