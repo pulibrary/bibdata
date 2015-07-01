@@ -1,4 +1,4 @@
- require 'traject/macros/marc21_semantics'
+require 'traject/macros/marc21_semantics'
 
 module MARC
   class Record

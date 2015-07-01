@@ -1,14 +1,9 @@
 require './lib/translation_map'
-require './lib/umich_format/bib_format'
-require './lib/umich_format/bib_types'
+require './lib/format/bib_format'
+require './lib/format/bib_types'
 
-# Encapsulates logic that uses University of Michigan University Library
-# rules to determine both bib format (book, serial, visual
-# material, etc.) and type, a more expansive list including both format
-# (blu-ray, microform) and more semantic categories (bibliography,
-# conference)
-
-class UMichFormat
+# Adapted from: https://github.com/billdueber/traject_umich_format
+class Format
   # @!attribute [r] record
   #   The record passed into the constructor
   # @!attribute [r] bib_format
