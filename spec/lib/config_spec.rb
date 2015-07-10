@@ -1,40 +1,47 @@
 require 'json'
 
 describe 'From traject_config.rb' do
-	before(:all) do
+  before(:all) do
 
-		def trajectify(fixture_name) 
-			o='/tmp/tmp.json'
-			i=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
-			c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
-			system "traject -c #{c} #{i} -w Traject::JsonWriter -o #{o}"
-			JSON.parse(IO.read(o))
-		end			
-	  	@sample1=trajectify('sample1')
-	  	@sample2=trajectify('sample2')
-	  	@sample3=trajectify('sample3')
-
+    def trajectify(fixture_name)
+		  o='/tmp/tmp.json'
+      i=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
+      c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
+      system "traject -c #{c} #{i} -w Traject::JsonWriter -o #{o}"
+      JSON.parse(IO.read(o))
+    end
+    @sample1=trajectify('sample1')
+    @sample2=trajectify('sample2')
+    @sample3=trajectify('sample3')
+    @sample27=trajectify('sample27')
 	end
 
-	describe 'the id field' do
-		it 'has exactly 1 value' do
-			expect(@sample1['id'].length).to eq 1
-		end
-	end
-	describe 'the title_sort field' do
-		it 'does not have initial articles' do
-			expect(@sample1['title_sort'][0].start_with?('advanced concepts')).to be_truthy
-		end
-	end
-	describe 'the author_display field' do
-		it 'takes from the 100 field' do
-			expect(@sample1['author_display'][0]).to eq 'Singh, Digvijai, 1934-'
-		end
-		it 'shows only 100 field' do
-			expect(@sample2['author_display'][0]).to eq 'White, Michael M.'
-		end
-		it 'shows 110 field' do
-			expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
-		end					
-	end
+  describe 'the id field' do
+    it 'has exactly 1 value' do
+      expect(@sample1['id'].length).to eq 1
+    end
+  end
+  describe 'the title_sort field' do
+    it 'does not have initial articles' do
+      expect(@sample1['title_sort'][0].start_with?('advanced concepts')).to be_truthy
+    end
+  end
+  describe 'the author_display field' do
+    it 'takes from the 100 field' do
+      expect(@sample1['author_display'][0]).to eq 'Singh, Digvijai, 1934-'
+    end
+    it 'shows only 100 field' do
+      expect(@sample2['author_display'][0]).to eq 'White, Michael M.'
+    end
+    it 'shows 110 field' do
+      expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
+    end
+  end
+
+  describe 'related_name_json_1display' do
+    it 'trims punctuation the same way as author_s facet' do
+      rel_names = JSON.parse(@sample27['related_name_json_1display'][0])
+      rel_names['Related name'].each {|n| expect(@sample27['author_s']).to include(n)}
+    end
+  end
 end

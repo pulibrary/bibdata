@@ -3244,5 +3244,80 @@
     <subfield code="b">c</subfield>
   </datafield>
 </record>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>00733nam a22002295  4500</leader>
+  <controlfield tag="001">1964305</controlfield>
+  <controlfield tag="008">980330s1955    it fh         000 0 ita d</controlfield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)ocm38866435</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="9">CHD8897TS</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">PUL</subfield>
+    <subfield code="c">PUL</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="100">
+    <subfield code="a">Resta, Sebastiano.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Cento tavole del codice Resta.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="260">
+    <subfield code="a">[Milano,</subfield>
+    <subfield code="b">Officine grafiche A. Pizzi,</subfield>
+    <subfield code="c">1955]</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">facsim.: 100 pl.</subfield>
+    <subfield code="c">53 cm.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="490">
+    <subfield code="a">Milan. Biblioteca ambrosiana. Fonti ambrosiane,</subfield>
+    <subfield code="v">29</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="546">
+    <subfield code="a">Introduction in Italian, French, English and German.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="590">
+    <subfield code="a">Limited ed.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Drawing, Italian.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="710">
+    <subfield code="a">Biblioteca ambrosiana.</subfield>
+    <subfield code="k">Mss.</subfield>
+    <subfield code="n">(Codice Resta)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="830">
+    <subfield code="a">Fontes ambrosiani ;</subfield>
+    <subfield code="v">29.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="945">
+    <subfield code="a">SAX</subfield>
+    <subfield code="b">1</subfield>
+    <subfield code="c">NC1045</subfield>
+    <subfield code="d">.R31e</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="911">
+    <subfield code="a">19981027</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="852">
+    <subfield code="b">sax</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="c">Oversize</subfield>
+    <subfield code="c">Oversize</subfield>
+    <subfield code="h">NC1045</subfield>
+    <subfield code="i">.R31e</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="b">gax</subfield>
+    <subfield code="c">Oversize</subfield>
+    <subfield code="h">2006-0102E</subfield>
+    <subfield code="x">Former call number: Adler Ref 2503</subfield>
+  </datafield>
+</record>
 </marc:collection>
 
