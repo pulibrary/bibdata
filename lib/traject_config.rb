@@ -26,6 +26,7 @@ update_locations
 
 to_field 'id', extract_marc('001', :first => true)
 
+to_field 'cjk_all', extract_all_marc_values
 
 # Author/Artist:
 #    100 XX aqbcdek A aq
@@ -45,7 +46,7 @@ to_field 'author_sort_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:70
   end
 end
 
-#to_field 'author_vern_s', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
+to_field 'cjk_author', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
 to_field 'author_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq', trim_punctuation: true)
 
@@ -72,8 +73,6 @@ end
 #    #accumulator << TranslationMap.new("relators")[rel]
 #end
 
-to_field 'marc_display', serialized_marc(:format => "xml", :binary_escape => false, :allow_oversized => true)
-
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
@@ -86,6 +85,7 @@ to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => fal
 
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
+to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
 
 # to_field 'title_sort', marc_sortable_title
 to_field 'title_sort' do |record, accumulator|
@@ -489,7 +489,7 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
-
+to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', :alternate_script => :only) 
 to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
 
 to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ') do |record, accumulator|
@@ -591,8 +591,7 @@ to_field 'form_genre_display', extract_marc('655avxyz')
 to_field 'related_name_json_1display' do |record, accumulator|
   rel_name_hash = {}
   MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
-    rel_name = extractor.collect_subfields(field, spec).first
-    rel_name = rel_name.gsub(/[[:punct:]]?$/,'') if rel_name
+    rel_name = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     relator = ''
     non_t = true
     field.subfields.each do |s_field|
@@ -610,7 +609,7 @@ to_field 'related_name_json_1display' do |record, accumulator|
       end
     end
     relator = 'Related name' if relator == ''
-    rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if non_t
+    rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
   end
   unless rel_name_hash == {}
     accumulator[0] = rel_name_hash.to_json.to_s
@@ -619,7 +618,7 @@ end
 
 to_field 'related_works_display' do |record, accumulator|
   MarcExtractor.cached('700|1 |aqbcdfghklmnoprstx:710|1 |abcdfghklnoprstx:711|1 |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = extractor.collect_subfields(field, spec).first.gsub(/[[:punct:]]?$/,'') if extractor.collect_subfields(field, spec).first
+    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 't'
@@ -633,7 +632,7 @@ end
 
 to_field 'contains_display' do |record, accumulator|
   MarcExtractor.cached('700|12|aqbcdfghklmnoprstx:710|12|abcdfghklnoprstx:711|12|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = extractor.collect_subfields(field, spec).first.gsub(/[[:punct:]]?$/,'')
+    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 't'
