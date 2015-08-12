@@ -3322,4 +3322,303 @@
 <record xmlns='http://www.loc.gov/MARC21/slim'><leader>06387cgm a2201057Ii 4500</leader><controlfield tag='001'>9031545</controlfield><controlfield tag='005'>20150529134344.0</controlfield><controlfield tag='007'>vd cvaizq</controlfield><controlfield tag='008'>150413p20152013ko 113            vlkor d</controlfield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(OCoLC)ocn910337424</subfield></datafield><datafield ind1=' ' ind2=' ' tag='040'><subfield code='a'>PUL</subfield><subfield code='e'>rda</subfield><subfield code='c'>PUL</subfield><subfield code='d'>PUL</subfield></datafield><datafield ind1='3' ind2=' ' tag='024'><subfield code='a'>8809306459831</subfield></datafield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(OCoLC)910337424</subfield></datafield><datafield ind1=' ' ind2=' ' tag='043'><subfield code='a'>a-ko---</subfield></datafield><datafield ind1=' ' ind2=' ' tag='046'><subfield code='k'>2013</subfield></datafield><datafield ind1=' ' ind2=' ' tag='079'><subfield code='a'>ocn910337360</subfield></datafield><datafield ind1=' ' ind2=' ' tag='049'><subfield code='a'>PULL</subfield></datafield><datafield ind1='0' ind2=' ' tag='130'><subfield code='6'>880-01</subfield><subfield code='a'>Appa rŭl pillyŏ tŭrimnida (Motion picture : 2013)</subfield></datafield><datafield ind1='1' ind2='0' tag='245'><subfield code='6'>880-02</subfield><subfield code='a'>Appa rŭl pillyŏ tŭrimnida /</subfield><subfield code='c'>paegŭp, Mega Paksŭ (Chu) P&apos;ŭllŏsŭ Em ; paegŭp, chegong, (Chu) Redŭ Robŏ ; chejak, (Chu) Isŭt&apos;ŭ Sŭk&apos;ai P&apos;illŭm, (Chu) Ŏmyujŭ Ent&apos;ŏt&apos;einmŏnt&apos;ŭ ; kamdok, kakpon, Kim Tŏk-su.</subfield></datafield><datafield ind1='1' ind2=' ' tag='246'><subfield code='i'>English title also known as :</subfield><subfield code='a'>Dad for rent</subfield></datafield><datafield ind1=' ' ind2=' ' tag='257'><subfield code='a'>Korea</subfield><subfield code='2'>naf</subfield></datafield><datafield ind1=' ' ind2='1' tag='264'><subfield code='6'>880-03</subfield><subfield code='a'>[Seoul] :</subfield><subfield code='b'>(Chu) Tŏ K&apos;ŏnt&apos;ench&apos;ŭ on Midiŏ,</subfield><subfield code='c'>2015.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='300'><subfield code='a'>1 videodisc (113 min.) :</subfield><subfield code='b'>sound, color ;</subfield><subfield code='c'>4 3/4 in.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='306'><subfield code='a'>015300</subfield></datafield><datafield ind1=' ' ind2=' ' tag='336'><subfield code='a'>two-dimensional moving image</subfield><subfield code='b'>tdi</subfield><subfield code='2'>rdacontent</subfield></datafield><datafield ind1=' ' ind2=' ' tag='337'><subfield code='a'>video</subfield><subfield code='b'>v</subfield><subfield code='2'>rdamedia</subfield></datafield><datafield ind1=' ' ind2=' ' tag='338'><subfield code='a'>videodisc</subfield><subfield code='b'>vd</subfield><subfield code='2'>rdacarrier</subfield></datafield><datafield ind1=' ' ind2=' ' tag='340'><subfield code='b'>4 3/4 in.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='344'><subfield code='a'>digital</subfield><subfield code='b'>optical</subfield><subfield code='g'>surround</subfield><subfield code='h'>Dolby digital 5.1</subfield><subfield code='2'>rda</subfield></datafield><datafield ind1=' ' ind2=' ' tag='346'><subfield code='a'>laser optical</subfield><subfield code='b'>NTSC</subfield><subfield code='2'>rda</subfield></datafield><datafield ind1=' ' ind2=' ' tag='347'><subfield code='a'>video file</subfield><subfield code='b'>DVD video</subfield><subfield code='e'>region all</subfield><subfield code='2'>rda</subfield></datafield><datafield ind1=' ' ind2=' ' tag='380'><subfield code='a'>Motion picture</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Originally produced as a motion picture in 2013.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>2.35:1 anamorphic widescreen.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='508'><subfield code='6'>880-04</subfield><subfield code='a'>Chejak, Kim Hyŏn-ch&apos;ŏl, Kim Yŏng-im ; ch&apos;waryŏng, Yi Chong-yŏl ; p&apos;yŏnjip, Ch&apos;oe Chae-gŭn, Kim So-yŏn ; ŭmak, Kim Tong-uk, Kwŏn Sŏng-yŏn ; wŏnjak, Hong Pu-yong.</subfield></datafield><datafield ind1='1' ind2=' ' tag='511'><subfield code='6'>880-05</subfield><subfield code='a'>Kim Sang-gyŏng, Mun Chŏng-hŭi, Ch&apos;ae Chŏng-an, Mun Ta-in, Cho Chae-yun, Pang Min-a.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='520'><subfield code='a'>&quot;The story starts with A-young Chae, who came up with an idea of a rental business of her own father. On the day of her school garage sale, A-young presents her father Taeman Chae, claiming that he is her useful item which is not in use, and JT, who craves for a father figure in his life, takes the offer and rents Taeman. Since then, A-young&apos;s puts an advertisement on a website and Taeman&apos;s father rental business expands making it official. However, out of shame, Taeman carries on his business without letting his wife, Jisu know about it. Taeman plays an excellent father figure for others who pay for the service, while neglecting his real family due to his busy schedule. Meanwhile, Jisu suspects Taeman&apos;s double life and figures he is having an affair with JT&apos;s mother, thus making their marriage fall apart. Realizing the crisis upon her family, A-young pays all her savings to rent her own father, Taeman. Taeman and Jisu realizes they have not paid enough attention to their daughter and reclaims their family value once and for all.&quot;--Korean Movie Database (KMDb).</subfield></datafield><datafield ind1=' ' ind2=' ' tag='521'><subfield code='6'>880-06</subfield><subfield code='a'>12-se isang kwallam ka.</subfield></datafield><datafield ind1=' ' ind2='0' tag='650'><subfield code='a'>Families</subfield><subfield code='z'>Korea (South)</subfield><subfield code='v'>Drama.</subfield></datafield><datafield ind1=' ' ind2='0' tag='650'><subfield code='a'>Fathers</subfield><subfield code='z'>Korea (South)</subfield><subfield code='v'>Drama.</subfield></datafield><datafield ind1=' ' ind2='7' tag='655'><subfield code='a'>Feature films.</subfield><subfield code='2'>lcgft</subfield></datafield><datafield ind1=' ' ind2='7' tag='655'><subfield code='a'>Fiction films.</subfield><subfield code='2'>lcgft</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-07</subfield><subfield code='a'>Kim, Tŏk-su,</subfield><subfield code='e'>film director,</subfield><subfield code='e'>screenwriter.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-08</subfield><subfield code='a'>Kim, Sang-gyŏng,</subfield><subfield code='d'>1972-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-09</subfield><subfield code='a'>Mun, Chŏng-hŭi,</subfield><subfield code='d'>1976-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-10</subfield><subfield code='a'>Ch&apos;ae, Chŏng-an,</subfield><subfield code='d'>1977-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-11</subfield><subfield code='a'>Mun, Ta-in,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-12</subfield><subfield code='a'>Cho, Chae-yun,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-13</subfield><subfield code='a'>Pang, Min-a,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-14</subfield><subfield code='a'>Kim, Hyŏn-ch&apos;ŏl,</subfield><subfield code='e'>film producer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-15</subfield><subfield code='a'>Kim, Yŏng-im,</subfield><subfield code='e'>film producer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-16</subfield><subfield code='a'>Yi, Chong-yŏl,</subfield><subfield code='e'>cinematographer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-17</subfield><subfield code='a'>Ch&apos;oe, Chae-gŭn,</subfield><subfield code='e'>film editor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-18</subfield><subfield code='a'>Kim So-yŏn,</subfield><subfield code='e'>film editor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-19</subfield><subfield code='a'>Kim, Tong-uk,</subfield><subfield code='e'>musical director.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-20</subfield><subfield code='a'>Kwŏn Sŏng-yŏn,</subfield><subfield code='e'>musical director.</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='6'>880-21</subfield><subfield code='i'>motion picture adaptation of (work) :</subfield><subfield code='a'>Hong, Pu-yong.</subfield><subfield code='t'>Appa rŭl pillyŏ tŭrimnida.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='6'>880-22</subfield><subfield code='a'>Mega Paksŭ (Chu) P&apos;ŭllŏsŭ Em (Firm),</subfield><subfield code='e'>film distributer.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='6'>880-23</subfield><subfield code='a'>Redŭ Robŏ (Firm),</subfield><subfield code='e'>presenter,</subfield><subfield code='e'>film distributer.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='6'>880-24</subfield><subfield code='a'>Isŭt&apos;ŭ Sŭk&apos;ai P&apos;illŭm (Firm),</subfield><subfield code='e'>production company.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='6'>880-25</subfield><subfield code='a'>Ŏmyujŭ Ent&apos;ŏt&apos;einmŏnt&apos;ŭ (Firm),</subfield><subfield code='e'>production company.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='6'>880-26</subfield><subfield code='a'>Tŏ K&apos;ŏnt&apos;ench&apos;ŭ on Midiŏ (Firm),</subfield><subfield code='e'>publisher.</subfield></datafield><datafield ind1='0' ind2=' ' tag='880'><subfield code='6'>130-01</subfield><subfield code='a'>아빠를빌려드립니다 (Motion picture : 2013)</subfield></datafield><datafield ind1='1' ind2='0' tag='880'><subfield code='6'>245-02</subfield><subfield code='a'>아빠를빌려드립니다 /</subfield><subfield code='c'>배급, 메가박스(주)플러스엠 ; 배급, 제공, (주)레드로버 ; 제작, (주)이스트스카이필름, (주)어뮤즈엔터테인먼트 ; 감독, 각본, 김덕수.</subfield></datafield><datafield ind1=' ' ind2='1' tag='880'><subfield code='6'>264-03</subfield><subfield code='a'>[Seoul] :</subfield><subfield code='b'>(주)더컨텐츠온미디어,</subfield><subfield code='c'>2015.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='880'><subfield code='6'>508-04</subfield><subfield code='a'>제작, 김현철, 김영임 ; 촬영, 이종열 ; 편집, 최재근, 김소연 ; 음악, 김동욱, 권성연 ; 원작, 홍부용.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>511-05</subfield><subfield code='a'>김상경, 문정희, 채정안, 문다인, 조재윤, 방민아.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='880'><subfield code='6'>521-06</subfield><subfield code='a'>12세이상관람가.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-07</subfield><subfield code='a'>김덕수,</subfield><subfield code='e'>film director,</subfield><subfield code='e'>screenwriter.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-08</subfield><subfield code='a'>김상경,</subfield><subfield code='d'>1972-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-09</subfield><subfield code='a'>문정희,</subfield><subfield code='d'>1976-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-10</subfield><subfield code='a'>채정안,</subfield><subfield code='d'>1977-</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-11</subfield><subfield code='a'>문다인,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-12</subfield><subfield code='a'>조재윤,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-13</subfield><subfield code='a'>방민아,</subfield><subfield code='e'>actor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-14</subfield><subfield code='a'>김현철,</subfield><subfield code='e'>film producer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-15</subfield><subfield code='a'>김영임,</subfield><subfield code='e'>film producer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-16</subfield><subfield code='a'>이종열,</subfield><subfield code='e'>cinematographer.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-17</subfield><subfield code='a'>최재근,</subfield><subfield code='e'>film editor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-18</subfield><subfield code='a'>김소연,</subfield><subfield code='e'>film editor.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-19</subfield><subfield code='a'>김동욱,</subfield><subfield code='e'>musical director.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-20</subfield><subfield code='a'>권성연,</subfield><subfield code='e'>musical director.</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>700-21</subfield><subfield code='i'>motion picture adaptation of (work) :</subfield><subfield code='a'>홍부용,</subfield><subfield code='t'>아빠를빌려드립니다.</subfield></datafield><datafield ind1='2' ind2=' ' tag='880'><subfield code='6'>710-22</subfield><subfield code='a'>메가박스(주)플러스엠 (Firm),</subfield><subfield code='e'>film distributer.</subfield></datafield><datafield ind1='2' ind2=' ' tag='880'><subfield code='6'>710-23</subfield><subfield code='a'>레드로버 (Firm),</subfield><subfield code='e'>presenter,</subfield><subfield code='e'>film distributer.</subfield></datafield><datafield ind1='2' ind2=' ' tag='880'><subfield code='6'>710-24</subfield><subfield code='a'>이스트스카이필름 (Firm),</subfield><subfield code='e'>production company.</subfield></datafield><datafield ind1='2' ind2=' ' tag='880'><subfield code='6'>710-25</subfield><subfield code='a'>어뮤즈엔터테인먼트 (Firm),</subfield><subfield code='e'>production company.</subfield></datafield><datafield ind1='2' ind2=' ' tag='880'><subfield code='6'>710-26</subfield><subfield code='a'>더컨텐츠온미디어 (Firm),</subfield><subfield code='e'>publisher.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='902'><subfield code='a'>hle</subfield><subfield code='s'>hle</subfield><subfield code='b'>o</subfield><subfield code='6'>g</subfield><subfield code='7'>m</subfield><subfield code='d'>e</subfield><subfield code='f'>1</subfield><subfield code='e'>20150529</subfield></datafield><datafield ind1=' ' ind2=' ' tag='904'><subfield code='a'>hle</subfield><subfield code='b'>o</subfield><subfield code='h'>m</subfield><subfield code='c'>v</subfield><subfield code='e'>20150413</subfield></datafield><datafield ind1=' ' ind2=' ' tag='994'><subfield code='a'>C0</subfield><subfield code='b'>PUL</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield code='b'>vidl</subfield><subfield code='h'>DVD 10193</subfield></datafield></record>
 <record xmlns='http://www.loc.gov/MARC21/slim'><leader>02694cam a2200277   4500</leader><controlfield tag='001'>7916044</controlfield><controlfield tag='005'>20141022105959.0</controlfield><controlfield tag='008'>131113s2013    xx |||||||||||||| ||eng d</controlfield><datafield ind1=' ' ind2=' ' tag='020'><subfield code='a'>9781303457036</subfield></datafield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(UMI)AAI3597575</subfield></datafield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>AAI3597575</subfield></datafield><datafield ind1=' ' ind2=' ' tag='040'><subfield code='a'>UMI</subfield><subfield code='c'>UMI</subfield><subfield code='d'>NjP</subfield></datafield><datafield ind1='1' ind2=' ' tag='100'><subfield code='a'>Visnjic, Catherine.</subfield></datafield><datafield ind1='1' ind2='0' tag='245'><subfield code='a'>Data characteristics and preliminary results from the atacama b-mode search (ABS).</subfield></datafield><datafield ind1=' ' ind2=' ' tag='300'><subfield code='a'>113 p.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Source: Dissertation Abstracts International, Volume: 75-02(E), Section: B.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='502'><subfield code='a'>Thesis (Ph.D.)--Princeton University, 2013.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='520'><subfield code='a'>The Atacama B-Mode Search (ABS) is a 145 GHz polarimeter located at a high altitude site on Cerro Toco, in the Andes of northern Chile. Having deployed in early 2012, it is currently in its second year of operation, observing the polarization of the Cosmic Microwave Background (CMB). It seeks to probe the as yet undetected odd-parity B-modes of the polarization, which would have been created by the primordial gravitational wave background (GWB) predicted by theories of inflation. The magnitude of the B-mode signal is characterized by the tensor-to-scalar ratio, r. ABS features 60 cm cryogenic reflectors in the crossed-Dragone configuration, and a warm, continuously rotating sapphire half-wave plate to modulate the polarization of incoming radiation. The focal plane consists of 480 antenna-coupled transition edge sensor bolometers, arranged in orthogonal pairs for polarization sensitivity, and coupled to feedhorns in a hexagonal array.  In this thesis we describe the ABS instrument in the state in which it is now operating, outline the first season of observations, and characterize the data obtained. Focusing on observations of the primary CMB field during a one month reference period, we detail the algorithms currently used to select the data suitable for making maps. This is the first pass at data cuts and provides a conservative estimate for the sensitivity of ABS to the polarization modes in the sky. We project that with one year total observation time of the primary CMB field, ABS should be able to detect the B-mode signal at roughly the level of r = 0.03.</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='a'>Princeton University.</subfield><subfield code='b'>Dept. of Physics</subfield></datafield><datafield ind1='0' ind2=' ' tag='773'><subfield code='t'>Dissertation Abstracts International</subfield><subfield code='g'>75-02B(E).</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Page, Lyman A., advisor</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Bialek, William, committee member</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Jones, William, committee member</subfield></datafield><datafield ind1='4' ind2='0' tag='856'><subfield code='u'>http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3597575</subfield></datafield><datafield ind1='4' ind2='0' tag='856'><subfield code='u'>http://arks.princeton.edu/ark:/88435/dsp018w32r5735</subfield></datafield><datafield ind1=' ' ind2=' ' tag='902'><subfield code='a'>st8</subfield><subfield code='b'>m</subfield><subfield code='6'>a</subfield><subfield code='7'>m</subfield><subfield code='d'>v</subfield><subfield code='f'>1</subfield><subfield code='e'>20140123</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield code='b'>elf1</subfield><subfield code='h'>Electronic Resource</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield code='b'>rcpph</subfield><subfield code='h'>PRIN 685 2013</subfield></datafield></record>
 <record xmlns='http://www.loc.gov/MARC21/slim'><leader>04966nmm a2200733   4500</leader><controlfield tag='001'>9088928</controlfield><controlfield tag='005'>20150602121648.0</controlfield><controlfield tag='006'>m    f   a u      </controlfield><controlfield tag='007'>cr mn mmmmuuuu</controlfield><controlfield tag='008'>150323s2015    miu    f   a        eng d</controlfield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(MiAaI)ICPSR35465</subfield></datafield><datafield ind1=' ' ind2=' ' tag='040'><subfield code='a'>MiAaI</subfield><subfield code='c'>MiAaI</subfield></datafield><datafield ind1=' ' ind2=' ' tag='090'><subfield code='a'>Electronic Resource</subfield></datafield><datafield ind1='0' ind2='0' tag='245'><subfield code='a'>Afrobarometer Round 5</subfield><subfield code='h'>[electronic resource] :</subfield><subfield code='b'>The Quality of Democracy and Governance in Benin, 2011</subfield><subfield code='c'>Institute for Empirical Research in Political Economy, Michael Bratton, E. Gyimah-Boadi, Carolyn Logan</subfield></datafield><datafield ind1=' ' ind2=' ' tag='250'><subfield code='a'>2015-03-19</subfield></datafield><datafield ind1=' ' ind2=' ' tag='260'><subfield code='a'>Ann Arbor, Mich. :</subfield><subfield code='b'>Inter-university Consortium for Political and Social Research [distributor],</subfield><subfield code='c'>2015</subfield></datafield><datafield ind1='1' ind2=' ' tag='490'><subfield code='a'>ICPSR ;</subfield><subfield code='v'>35465</subfield></datafield><datafield ind1=' ' ind2=' ' tag='516'><subfield code='a'>Numeric</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Title from ICPSR DDI metadata of 2015-03-23.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='506'><subfield code='a'>AVAILABLE. This study is freely available to ICPSR member institutions.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='530'><subfield code='a'>Also available as downloadable files.</subfield></datafield><datafield ind1='3' ind2=' ' tag='520'><subfield code='a'>The Afrobarometer project was designed to collect and disseminate information regarding Africans&apos; views on democracy, governance, economic reform, civil society, and quality of life. This particular survey was concerned with the attitudes and opinions of the citizens of Benin. Respondents in a face-to-face interview were asked to rate their president and the president&apos;s administration in overall performance, to state the most important issues facing their nation, and to evaluate the effectiveness of certain continental and international institutions. Opinions were gathered on the role of the government in improving the economy, whether corruption existed in local and national government, whether government officials were responsive to problems of the general population, and whether local government officials, the police, the courts, the overall criminal justice system, the National Electoral Commission, and the government broadcasting service could be trusted. Respondents were polled on their knowledge of the government, including the identification of government officials, their level of personal involvement in political, governmental, and community affairs, their participation in national elections, and the inclusiveness of the government. Economic questions addressed the past, present, and future of the country&apos;s and the respondents&apos; economic conditions, and respondents&apos; living conditions. Round 5 surveys included special modules on taxation; gender issues; crime, conflict and insecurity; globalization; and social service delivery. Background variables include age, gender, ethnicity, education, religious affiliation and participation, political party affiliation, language spoken most at home, whether the respondent was the head of household, current and past employment status, whether a close friend or relative had died from AIDS, and language used in interview. In addition, the interviewer&apos;s gender, race, and education level is provided. Cf.: http://doi.org/10.3886/ICPSR35465</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>AIDS</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>community involvement</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>corruption</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>democracy</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>economic conditions</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>gender issues</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>globalization</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>government</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>government performance</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>HIV</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>information sources</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>legislatures</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>living conditions</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>local government</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>macroeconomics</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>markets</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>national interests</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>police</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>political attitudes</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>political change</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>political corruption</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>political participation</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>political systems</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>presidential performance</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>presidents</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>public confidence</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>public opinion</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>quality of life</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>social attitudes</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>social services</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>standard of living</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>taxes</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1=' ' ind2='7' tag='650'><subfield code='a'>trust in government</subfield><subfield code='2'>icpsr</subfield></datafield><datafield ind1='0' ind2=' ' tag='653'><subfield code='a'>ICPSR XIV.C.2. Mass Political Behavior and Attitudes, Public Opinion on Political Matters, Nations Other Than the United States</subfield><subfield code='a'>ICPSR XIV. Mass Political Behavior and Attitudes</subfield><subfield code='a'>ICPSR XIV.C. Mass Political Behavior and Attitudes, Public Opinion on Political Matters</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='a'>Institute for Empirical Research in Political Economy</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='a'>Bratton, Michael</subfield><subfield code='u'>Michigan State University</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='a'>Gyimah-Boadi, E.</subfield><subfield code='u'>Ghana Center for Democratic Development</subfield></datafield><datafield ind1='1' ind2=' ' tag='700'><subfield code='a'>Logan, Carolyn</subfield><subfield code='u'>Michigan State University</subfield></datafield><datafield ind1='2' ind2=' ' tag='710'><subfield code='a'>Inter-university Consortium for Political and Social Research.</subfield></datafield><datafield ind1=' ' ind2='0' tag='830'><subfield code='a'>ICPSR ;</subfield><subfield code='v'>35465</subfield></datafield><datafield ind1='4' ind2='0' tag='856'><subfield code='u'>http://doi.org/10.3886/ICPSR35465</subfield></datafield><datafield ind1=' ' ind2=' ' tag='902'><subfield code='a'>jwl</subfield><subfield code='b'>z</subfield><subfield code='6'>m</subfield><subfield code='7'>m</subfield><subfield code='d'>w</subfield><subfield code='f'>0</subfield><subfield code='e'>20150602</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield code='b'>elf1</subfield><subfield code='h'>Electronic Resource</subfield></datafield></record>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>02046cbc a2200373 a 4500</leader>
+  <controlfield tag="001">844962</controlfield>
+  <controlfield tag="005">20120628092849.0</controlfield>
+  <controlfield tag="008">910613i19841990nju     |           spa d</controlfield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(CStRLIN)NJPG91-A17</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="9">AEG4169TS</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">844962</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">NjP</subfield>
+    <subfield code="c">NjP</subfield>
+    <subfield code="e">appm</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Chile photographic file,</subfield>
+    <subfield code="f">1984-1990.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">0.4</subfield>
+    <subfield code="f">linear ft.</subfield>
+    <subfield code="a">(1</subfield>
+    <subfield code="f">box)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="351">
+    <subfield code="a">Two main sections: 1) photographs (8/9/1984-5/1/1990), arranged chronologically, which generally concern anti-government and human rights protests, other demonstrations, and graffiti; and 2) slides, which span the period of campaigning immediately before the elections (12/14/1989) as well as the celebrations the day after.</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="520">
+    <subfield code="a">Consists of 223 slides and 77 photographs taken during the last years of the Pinochet regime in Chile.</subfield>
+    <subfield code="b">Included are images of pro-democracy, anti-dictatorship, and human rights demonstrations; political graffiti; and various presidential and senatorial campaigning and celebrating (Aylwin, Bu&#x308;chi, Erra&#x301;zuriz, Lagos, Pin&#x303;era, Palestro, Frei, etc.).  There are also slides showing the casting of votes and of the general ambience during the elections.</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="555">
+    <subfield code="a">All photographs have captions on the back.  A folder listing and an index to the slides are available.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Aylwin Azo&#x301;car, Patricio.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Bu&#x308;chi Buc, Hernan.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Walker Erra&#x301;zuriz, Francisco.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Demonstrations</subfield>
+    <subfield code="z">Chile</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Elections</subfield>
+    <subfield code="z">Chile</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Political campaigns</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Graffiti</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Human rights workers</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Human rights</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Plebiscite</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Chile</subfield>
+    <subfield code="x">Politics and government</subfield>
+    <subfield code="y">1973-</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Photoprints</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">ftamc</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Slides</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1="4" ind2="2" tag="856">
+    <subfield code="z">Finding aid</subfield>
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/pz50gw142</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="911">
+    <subfield code="a">19931111</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="912">
+    <subfield code="a">19931104000000.0</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="998">
+    <subfield code="a">11/04/93</subfield>
+    <subfield code="s">9554</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG91A17</subfield>
+    <subfield code="d">06/13/91</subfield>
+    <subfield code="p">b</subfield>
+    <subfield code="i">931104</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield ind1="8" ind2="0" tag="852">
+    <subfield code="b">mss</subfield>
+    <subfield code="h">C0683</subfield>
+  </datafield>
+</record>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>05193cpc a2200553 a 4500</leader>
+  <controlfield tag="001">2238036</controlfield>
+  <controlfield tag="005">20150622101217.0</controlfield>
+  <controlfield tag="008">990326i19682006nju     |           eng d</controlfield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)82449034</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(CStRLIN)NJPG99-A18</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="9">CKE1461TS</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">2238036</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">NjP</subfield>
+    <subfield code="c">NjP</subfield>
+    <subfield code="e">appm</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="041">
+    <subfield code="a">enggre</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="110">
+    <subfield code="a">Modern Greek Studies Association.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Modern Greek Studies Association archives,</subfield>
+    <subfield code="f">1968-2006.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">29</subfield>
+    <subfield code="f">linear ft.</subfield>
+    <subfield code="a">(21</subfield>
+    <subfield code="f">record center cartons,</subfield>
+    <subfield code="a">13</subfield>
+    <subfield code="f">archival boxes,</subfield>
+    <subfield code="a">2 half-size boxes)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="351">
+    <subfield code="a">Roughly sorted as follows: cartons 1-5, general files of the Modern Greek Studies Association; carton 6, printed bulletins; cartons 7-12, files of the JOURNAL OF MODERN GREEK STUDIES; boxes 13-19, additional files (1987-1999) of articles submitted to the JOURNAL OF MODERN GREEK STUDIES; boxes 20-24, additional files (1969-1999) of the Modern Greek Studies Association; boxes 25-32, additional files (2002-2006) of articles submitted to the JOURNAL OF MODERN GREEK STUDIES.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="506">
+    <subfield code="a">The 12 cartons made gift (AM 1994-105) in Dec. 1997 are closed for a period of 15 years (until Jan. 1, 2012). The boxes made a gift (AM 2000-28) in Sept. 1999 are closed for a period of 15 years (until Sept. 30, 2014). The box made a gift in Apr. 2003 (AM 2003-112) is closed for a period of 15 years (until Apr. 11, 2018). The 5 cartons made a gift (AM 2006-88) in Feb. 2006 are closed for a period of 15 years (until Feb. 14, 2021). The box 25 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 1 year (until 2012). The box 26 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 2 years (until 2013). The boxes 27-29 made a gift (AM 2012-14) in Aug. 2011 are closed for a period of 3 years (until 2014). The boxes 30-31 made a gift (AM 2012-14) in Aug. 2011 are closed for a period of 4 years (until 2015). The box 32 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 5 years (until 2016). Boxes 35-38 (AM 2015-97) are closed for a period of 15 years (until June 18, 2030).</subfield>
+  </datafield>
+  <datafield ind1="0" ind2=" " tag="545">
+    <subfield code="a">The MGSA is an American-based nonprofit organization of scholars, students, and philhellenes established in 1968 for the purpose of promoting modern Greek studies in language, modern and Byzantine literature, history, politics, and social science in the United States, Canada, and Greece.The JOURNAL OF MODERN GREEK STUDIES is published semi-annually by the Johns Hopkins University Press, beginning with Vol. 1, No. 1 in June 1983, and focuses on Greek social, cultural, literary, and political affairs from the late Byzantine Empire to the present.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="520">
+    <subfield code="a">Consists jointly of the files of the Modern Greek Studies Association (MGSA) and its' official publication, the JOURNAL OF MODERN GREEK STUDIES.</subfield>
+    <subfield code="b">The files of the MGSA include correspondence of Edmund Keeley, president (1970-1973 and 1980-1981), and others, material on symposiums, membership, and fundraising. Also present are printed bulletins, 1969-1988, and four audiotapes of a Greek symposium in 1969.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="520">
+    <subfield code="a"/>
+    <subfield code="b">The files of the JOURNAL OF MODERN GREEK STUDIES consists of the correspondence of its editors, William Hardy McNeill (1983-1985), Ernestine Friedl (1986-1990), Peter Bien (1990-1999), and Stratos Constantinidis (2003- ), which includes many drafts and copies of manuscripts of articles, translations, verse, and stories by various, mostly Greek, authors submitted for consideration for publication in the journal. Many of the submitted manuscripts are accompanied by reader's reports. The JOURNAL OF MODERN GREEK STUDIES is published semi-annually by the Johns Hopkins University Press, beginning with Vol. 1, No. 1 in June 1983, and focuses on Greek social, cultural, literary, and political affairs from the late Byzantine Empire to the present.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2="0" tag="610">
+    <subfield code="a">Modern Greek Studies Association.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="630">
+    <subfield code="a">Journal of modern Greek studies.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Byzantine literature.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Civilization</subfield>
+    <subfield code="y">1821-1900</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Civilization</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern</subfield>
+    <subfield code="x">History and criticism.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek poetry, Modern.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek poetry, Modern</subfield>
+    <subfield code="v">Translations into English.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Poets, Greek (Modern)</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Correspondence.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Poets, Greek (Modern)</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Poetry.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Intellectual life</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Politics and government</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Audiotapes</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">lcsh</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Correspondence</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Manuscripts</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Newsletters</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Bien, Peter.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Constantinidis, Stratos E.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Friedl, Ernestine,</subfield>
+    <subfield code="d">1920-</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Keeley, Edmund.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">McNeill, William Hardy,</subfield>
+    <subfield code="d">1917- .</subfield>
+  </datafield>
+  <datafield ind1="4" ind2="2" tag="856">
+    <subfield code="z">Finding aid</subfield>
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/8c97kq48g</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="911">
+    <subfield code="a">19990408</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="912">
+    <subfield code="a">19990329000000.0</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="998">
+    <subfield code="a">03/29/99</subfield>
+    <subfield code="s">9554</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG99A18</subfield>
+    <subfield code="d">03/26/99</subfield>
+    <subfield code="p">e</subfield>
+    <subfield code="i">990329</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield ind1="8" ind2="0" tag="852">
+    <subfield code="b">rcpxm</subfield>
+    <subfield code="h">C0821</subfield>
+  </datafield>
+</record>
+<record xmlns='http://www.loc.gov/MARC21/slim'><leader>01947ckm a2200349u  4500</leader><controlfield tag='001'>5183133</controlfield><controlfield tag='005'>20140128162822.0</controlfield><controlfield tag='008'>060302s1944    ja nnn            gnjpn d</controlfield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(idCotsen)101132</subfield></datafield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(CTSN)1007273</subfield></datafield><datafield ind1=' ' ind2=' ' tag='035'><subfield code='a'>(cotsendb)86683</subfield></datafield><datafield ind1='1' ind2=' ' tag='100'><subfield code='6'>880-01</subfield><subfield code='a'>Sawai, Ichisaburō,</subfield><subfield code='d'>1911-1989,</subfield><subfield code='e'>author,</subfield><subfield code='e'>illustrator.</subfield></datafield><datafield ind1='1' ind2='0' tag='245'><subfield code='a'>Dai Toa Kyoeiken meguri (A trip around the Greater East Asia Co-prosperity Sphere sugoroku board game).</subfield></datafield><datafield ind1='3' ind2=' ' tag='246'><subfield code='6'>880-02</subfield><subfield code='a'>Sugoroku Dai Toa Kyoeiken meguri.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='260'><subfield code='a'>Tokyo :</subfield><subfield code='b'>Chuo Nogyokai,</subfield><subfield code='c'>1944.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='300'><subfield code='a'>1 sheet :</subfield><subfield code='b'>chiefly color ;</subfield><subfield code='c'>38 x 54 cm</subfield></datafield><datafield ind1='0' ind2=' ' tag='490'><subfield code='a'>Ie no hikari shinnengo dai 20-kan dai 1-go furoku (The light of house, New Year&apos;s issue, vol. 20, no. 1, supplement).</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Monthly magazine supplement to: Ie no hikari shinnengo dai 20-kan dai 1-go (The light of house, New Year&apos;s issue, vol. 20, no. 1).</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>At head of title: sugoroku.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Includes black-and-white photo portraits of Subhas Chandra Bose (India), Ba Maw (Burma), Wang Jingwei (China), and José P. Laurel (the Philippines), who were presidents and political leaders of Imperial Japan&apos;s puppet states in East Asia during the Pacific War.</subfield></datafield><datafield ind1=' ' ind2=' ' tag='500'><subfield code='a'>Title from sheet.</subfield></datafield><datafield ind1=' ' ind2='0' tag='650'><subfield code='a'>Sugoroku (Game)</subfield></datafield><datafield ind1=' ' ind2='0' tag='650'><subfield code='a'>World War, 1939-1945</subfield><subfield code='z'>Southeast Asia</subfield><subfield code='v'>Pictorial works.</subfield></datafield><datafield ind1=' ' ind2='0' tag='650'><subfield code='a'>World War, 1939-1945</subfield><subfield code='x'>Occupied territories</subfield><subfield code='v'>Pictorial works.</subfield></datafield><datafield ind1=' ' ind2='0' tag='651'><subfield code='a'>Greater East Asia Co-prosperity Sphere</subfield><subfield code='v'>Pictorial works.</subfield></datafield><datafield ind1=' ' ind2='0' tag='651'><subfield code='a'>Japan</subfield><subfield code='x'>Colonies</subfield><subfield code='z'>Asia</subfield><subfield code='v'>Pictorial works.</subfield></datafield><datafield ind1=' ' ind2='7' tag='655'><subfield code='a'>Gameboards</subfield><subfield code='x'>Japanese</subfield><subfield code='y'>20th century.</subfield><subfield code='2'>gmgpc</subfield></datafield><datafield ind1='4' ind2='1' tag='856'><subfield code='u'>http://arks.princeton.edu/ark:/88435/q524jq073</subfield></datafield><datafield ind1='1' ind2=' ' tag='880'><subfield code='6'>100-01</subfield><subfield code='a'>沢井一三郎,</subfield><subfield code='d'>1911-1989,</subfield><subfield code='e'>author,</subfield><subfield code='e'>illustrator.</subfield></datafield><datafield ind1='0' ind2='0' tag='880'><subfield code='6'>245-00</subfield><subfield code='a'>大東亞共榮圈めぐリ :</subfield><subfield code='b'>双六 /</subfield><subfield code='c'>案と畫澤井一三郎.</subfield></datafield><datafield ind1='3' ind2=' ' tag='880'><subfield code='6'>246-02</subfield><subfield code='a'>双六大東亞共榮圈めぐリ</subfield></datafield><datafield ind1='8' ind2=' ' tag='852'><subfield code='b'>hsvc</subfield><subfield code='c'>Print Case LA / Box 71</subfield><subfield code='h'>101132</subfield><subfield code='p'>32101054263189</subfield></datafield></record>
 </marc:collection>

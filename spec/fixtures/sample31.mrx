@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>02046cbc a2200373 a 4500</leader>
+  <controlfield tag="001">844962</controlfield>
+  <controlfield tag="005">20120628092849.0</controlfield>
+  <controlfield tag="008">910613i19841990nju     |           spa d</controlfield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(CStRLIN)NJPG91-A17</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="9">AEG4169TS</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">844962</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">NjP</subfield>
+    <subfield code="c">NjP</subfield>
+    <subfield code="e">appm</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Chile photographic file,</subfield>
+    <subfield code="f">1984-1990.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">0.4</subfield>
+    <subfield code="f">linear ft.</subfield>
+    <subfield code="a">(1</subfield>
+    <subfield code="f">box)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="351">
+    <subfield code="a">Two main sections: 1) photographs (8/9/1984-5/1/1990), arranged chronologically, which generally concern anti-government and human rights protests, other demonstrations, and graffiti; and 2) slides, which span the period of campaigning immediately before the elections (12/14/1989) as well as the celebrations the day after.</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="520">
+    <subfield code="a">Consists of 223 slides and 77 photographs taken during the last years of the Pinochet regime in Chile.</subfield>
+    <subfield code="b">Included are images of pro-democracy, anti-dictatorship, and human rights demonstrations; political graffiti; and various presidential and senatorial campaigning and celebrating (Aylwin, Bu&#x308;chi, Erra&#x301;zuriz, Lagos, Pin&#x303;era, Palestro, Frei, etc.).  There are also slides showing the casting of votes and of the general ambience during the elections.</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="555">
+    <subfield code="a">All photographs have captions on the back.  A folder listing and an index to the slides are available.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Aylwin Azo&#x301;car, Patricio.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Bu&#x308;chi Buc, Hernan.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Walker Erra&#x301;zuriz, Francisco.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Demonstrations</subfield>
+    <subfield code="z">Chile</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Elections</subfield>
+    <subfield code="z">Chile</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Political campaigns</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Graffiti</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Human rights workers</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Human rights</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Plebiscite</subfield>
+    <subfield code="z">Chile.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Chile</subfield>
+    <subfield code="x">Politics and government</subfield>
+    <subfield code="y">1973-</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Photoprints</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">ftamc</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Slides</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1="4" ind2="2" tag="856">
+    <subfield code="z">Finding aid</subfield>
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/pz50gw142</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="911">
+    <subfield code="a">19931111</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="912">
+    <subfield code="a">19931104000000.0</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="998">
+    <subfield code="a">11/04/93</subfield>
+    <subfield code="s">9554</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG91A17</subfield>
+    <subfield code="d">06/13/91</subfield>
+    <subfield code="p">b</subfield>
+    <subfield code="i">931104</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield ind1="8" ind2="0" tag="852">
+    <subfield code="b">mss</subfield>
+    <subfield code="h">C0683</subfield>
+  </datafield>
+</record>
+</collection>
