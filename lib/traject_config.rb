@@ -58,7 +58,7 @@ to_field 'marc_relator_display' do |record, accumulator|
     relator = 'Author'
     field.subfields.each do |s_field|
       if s_field.code == 'e'
-        relator = s_field.value.gsub(/[[:punct:]]?$/,'')
+        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
         break
       end
       if s_field.code == '4'
@@ -740,6 +740,9 @@ to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record,
 end
 # # #    1000
 
+to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
+  accumulator = TranslationMap.new("access", :default => "At the Library").translate_array!(accumulator)
+end
 
 # Call number: +No call number available
 #    852 XX ckhij

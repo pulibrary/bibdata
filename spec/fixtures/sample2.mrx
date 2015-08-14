@@ -70,19 +70,6 @@
         <marc:datafield tag="912" ind1=" " ind2=" ">
             <marc:subfield code="a">19900827000000.0</marc:subfield>
         </marc:datafield>
-    </marc:record>
-<!--     <marc:record type="Holdings">
-        <marc:leader>00244cx  a2200109z  4500</marc:leader>
-        <marc:controlfield tag="001">377678</marc:controlfield>
-        <marc:controlfield tag="004">345682</marc:controlfield>
-        <marc:controlfield tag="005">20020701101040.0</marc:controlfield>
-        <marc:controlfield tag="008">0006122u    0   1001uu   0000000</marc:controlfield>
-        <marc:datafield tag="014" ind1="1" ind2=" ">
-            <marc:subfield code="a">ABS1044TS001</marc:subfield>
-        </marc:datafield>
-        <marc:datafield tag="014" ind1="0" ind2=" ">
-            <marc:subfield code="9">000377677</marc:subfield>
-        </marc:datafield>
         <marc:datafield tag="852" ind1="0" ind2="0">
             <marc:subfield code="b">rcppa</marc:subfield>
             <marc:subfield code="t">1</marc:subfield>
@@ -90,5 +77,5 @@
             <marc:subfield code="i">.W44</marc:subfield>
             <marc:subfield code="x">tr fr pitn</marc:subfield>
         </marc:datafield>
-    </marc:record> -->
+    </marc:record>
 </marc:collection>
