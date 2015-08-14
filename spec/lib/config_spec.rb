@@ -13,7 +13,9 @@ describe 'From traject_config.rb' do
     @sample1=trajectify('sample1')
     @sample2=trajectify('sample2')
     @sample3=trajectify('sample3')
-    @sample27=trajectify('sample27')
+    @related_names=trajectify('sample27')
+    @online_at_library=trajectify('sample29')
+    @online=trajectify('sample30')
 	end
 
   describe 'the id field' do
@@ -40,8 +42,27 @@ describe 'From traject_config.rb' do
 
   describe 'related_name_json_1display' do
     it 'trims punctuation the same way as author_s facet' do
-      rel_names = JSON.parse(@sample27['related_name_json_1display'][0])
-      rel_names['Related name'].each {|n| expect(@sample27['author_s']).to include(n)}
+      rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
+      rel_names['Related name'].each {|n| expect(@related_names['author_s']).to include(n)}
+    end
+  end
+
+  describe 'access_facet' do
+    it 'value is at the library for all non-online holding locations' do
+      expect(@sample3['location_code_s'][0]).to eq 'scidoc' # Lewis Library
+      expect(@sample3['access_facet']).to include 'At the Library'
+      expect(@sample3['access_facet']).not_to include 'Online'
+    end
+    it 'value is online for elf holding locations' do
+      expect(@online['location_code_s'][0]).to eq 'elf1'
+      expect(@online['access_facet']).to include 'Online'
+      expect(@online['access_facet']).not_to include 'At the Library'
+    end
+    it 'value can be both at the library and online when there are multiple holdings' do
+      expect(@online_at_library['location_code_s']).to include 'elf1'
+      expect(@online_at_library['location_code_s']).to include 'rcpph'
+      expect(@online_at_library['access_facet']).to include 'Online'
+      expect(@online_at_library['access_facet']).to include 'At the Library'
     end
   end
 end
