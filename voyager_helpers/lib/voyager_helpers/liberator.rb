@@ -112,13 +112,14 @@ module VoyagerHelpers
       def get_items_for_bib(bib_id)
         connection do |c|
           items = []
+          any_items = false
           mfhds = get_holding_records(bib_id, c)
-          if mfhds.empty?
-            get_approved_orders(bib_id, c)
-          else
-            mfhds.each do |mfhd|
-              mfhd_hash = mfhd.to_hash
-              mfhd_id = id_from_mfhd_hash(mfhd_hash)
+          mfhds.each do |mfhd|
+            mfhd_hash = mfhd.to_hash
+            mfhd_id = id_from_mfhd_hash(mfhd_hash)
+            holding_items = get_items_for_holding(mfhd_id, c)
+            unless holding_items.empty?
+              any_items = true
               data = { holding_id: mfhd_id.to_i }
               # Everyone seems quite sure that we don't repeat 852 per mfhd
               field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
@@ -126,16 +127,16 @@ module VoyagerHelpers
               data[:call_number] = callno_from_852(field_852)
               notes = holdings_notes_from_mfhd_hash(mfhd_hash)
               data[:notes] = notes unless notes.empty?
-              holding_items = get_items_for_holding(mfhd_id, c)
-              unless holding_items.empty?
-                data[:items] = []
-                holding_items.each do |item|
-                  data[:items] << item
-                end
-                data[:items].sort_by! { |i| i[:item_sequence_number] }.reverse!
+              data[:items] = []
+              holding_items.each do |item|
+                data[:items] << item
               end
+              data[:items].sort_by! { |i| i[:item_sequence_number] }.reverse!
               items << data
             end
+          end
+          unless any_items
+            items << { perm_location: 'order', items: get_approved_orders(bib_id, c) }
           end
           group_items(items)
         end
