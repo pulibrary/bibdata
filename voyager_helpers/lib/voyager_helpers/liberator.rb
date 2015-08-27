@@ -136,7 +136,8 @@ module VoyagerHelpers
             end
           end
           unless any_items
-            items << { perm_location: 'order', items: get_approved_orders(bib_id, c) }
+            orders = get_approved_orders(bib_id, c)
+            items << { perm_location: 'order', items: orders} unless orders.empty?
           end
           group_items(items)
         end
@@ -332,14 +333,15 @@ module VoyagerHelpers
         unless bib.nil?
           holdings = get_holding_records(bib_id, conn)
           if opts.fetch(:holdings_in_bib, true)
-            merge_852s_into_bib(bib, holdings)
+            merge_holdings_into_bib(bib, holdings, conn)
           else
             [bib,holdings].flatten!
           end
         end
       end
 
-      def merge_852s_into_bib(bib, holdings)
+      # Removes bibliographic 852s, adds holdings 852s, and 959 catalog date
+      def merge_holdings_into_bib(bib, holdings, conn=nil)
         record_hash = bib.to_hash
         record_hash['fields'].delete_if { |f| f.has_key?('852') }
         unless holdings.empty?
@@ -348,8 +350,63 @@ module VoyagerHelpers
               record_hash['fields'] << h
             end
           end
+          catalog_date = get_catalog_date(bib['001'].value, holdings, conn)
+          unless catalog_date.nil?
+            record_hash['fields'] << {"959"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>catalog_date.to_s}]}}
+          end
         end
         MARC::Record.new_from_hash(record_hash)
+      end
+
+      def get_catalog_date(bib_id, holdings, conn=nil)
+        if electronic_resource?(holdings, conn)
+          get_bib_create_date(bib_id, conn)
+        else
+          get_earliest_item_date(holdings, conn) # returns nil if no items
+        end
+      end
+
+      def electronic_resource?(holdings, conn=nil)
+        holdings.each do |mfhd|
+          mfhd_hash = mfhd.to_hash
+          field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
+          online = location_from_852(field_852).start_with?('elf')
+          return true if online
+        end
+        false
+      end
+
+      def get_bib_create_date(bib_id, conn=nil)
+        query = VoyagerHelpers::Queries.bib_create_date(bib_id)
+        if conn.nil?
+          connection do |c|
+            c.exec(query) { |date| return date.first }
+          end
+        else
+          conn.exec(query) { |date| return date.first }
+        end
+      end
+
+      def get_item_create_date(item_id, conn=nil)
+        query = VoyagerHelpers::Queries.item_create_date(item_id)
+        if conn.nil?
+          connection do |c|
+            c.exec(query) { |date| return date.first }
+          end
+        else
+          conn.exec(query) { |date| return date.first }
+        end
+      end
+
+      def get_earliest_item_date(holdings, conn=nil)
+        item_ids = []
+        holdings.each do |mfhd|
+          mfhd_id = id_from_mfhd_hash(mfhd.to_hash)
+          item_ids << get_item_ids_for_holding(mfhd_id, conn)
+        end
+        dates = []
+        item_ids.flatten.min_by {|item_id| dates << get_item_create_date(item_id, conn)}
+        dates.min
       end
 
       def get_bib_segments(bib_id, conn=nil)

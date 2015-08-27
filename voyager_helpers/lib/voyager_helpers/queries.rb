@@ -45,6 +45,15 @@ module VoyagerHelpers
         )
       end
 
+      def item_create_date(item_id)
+        %Q(
+        SELECT
+          create_date
+        FROM item
+        WHERE item_id=#{item_id}
+        )
+      end
+
       def approved_orders(bib_id)
         # what could go wrong?
         line_item_status_approved=8
@@ -102,6 +111,15 @@ module VoyagerHelpers
           update_date
         FROM bib_master
         WHERE bib_master.suppress_in_opac='N'
+        )
+      end
+
+      def bib_create_date(bib_id)
+        %Q(
+        SELECT
+          create_date
+        FROM bib_master
+        WHERE bib_master.bib_id=#{bib_id}
         )
       end
 
