@@ -8,6 +8,9 @@ require './lib/format'
 require './lib/princeton_marc'
 require './lib/location_extract'
 require 'stringex'
+require 'isbn'
+require 'library_stdnums'
+require 'time'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -134,6 +137,9 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
+to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
+  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+end
 
 
 # format just one
@@ -696,7 +702,40 @@ to_field 'publisher_no_display', extract_marc('028a')
 # Standard no.:
 #    010 XX a
 #    030 XX a
-to_field 'standard_no_display', extract_marc('010a:030a')
+to_field 'lccn_display', extract_marc('010a')
+to_field 'coden_display', extract_marc('030a')
+
+to_field 'standard_no_1display' do |record, accumulator|
+  standard_no = standard_no_hash(record)
+  accumulator[0] = standard_no.to_json.to_s unless standard_no == {}
+end
+
+to_field 'lccn_s', extract_marc('010a') do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = StdNum::LCCN.normalize(value)
+  end
+end
+
+to_field 'isbn_s', extract_marc('020a') do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = StdNum::ISBN.normalize(value)
+  end
+  accumulator.uniq!
+end
+
+to_field 'oclc_s', extract_marc('035a') do |record, accumulator|
+  oclcs = []
+  accumulator.each_with_index do |value, i|
+    oclcs << oclc_normalize(value) if value.start_with?('(OCoLC)')
+  end
+  accumulator.replace(oclcs.uniq)
+end
+
+to_field 'standard_no_index', extract_marc('035a') do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = remove_parens_035(value)
+  end
+end
 
 # Original language:
 #    880 XX abc

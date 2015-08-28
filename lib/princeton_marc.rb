@@ -1,4 +1,3 @@
-require 'traject/macros/marc21_semantics'
 
 module MARC
   class Record
@@ -76,49 +75,43 @@ module MARC
   end
 end
 
+FALLBACK_STANDARD_NO = "Other standard number"
+def map_024_indicators_to_labels i
+  case i
+  when '0' then "International Standard Recording Code"
+  when '1' then "Universal Product Code"
+  when '2' then "International Standard Music Number"
+  when '3' then "International Article Number"
+  when '4' then "Serial Item and Contribution Identifier"
+  when '7' then '$2'
+  else FALLBACK_STANDARD_NO
+  end
+end
 
+def subfield_specified_hash_key subfield_value, fallback
+  key = subfield_value.capitalize.gsub(/[[:punct:]]?$/,'')
+  key == '' ? fallback : key
+end
 
-# def all_subject_facets(accumulator)
-#   first_array = []
-#   accumulator.each_with_index do |whole_subject, i|
-#     subjectaccum = ''
-#     subject = whole_subject.split(' -- ')
-#     sub_array = []
-#     if subject[0] 
-#       first_array << subject[0]
-#     end
-#     subject.each_with_index do |subsubject, j|
-#       subject[j] = subjectaccum + subsubject
-#       subjectaccum = subject[j] + ' -- ' 
-#       sub_array << subject[j]
-#     end
-#     accumulator[i] = sub_array
-#   end     
-# end
+def standard_no_hash record
+  standard_no = {}
+  Traject::MarcExtractor.cached('024').collect_matching_lines(record) do |field, spec, extractor|
+    standard_label = map_024_indicators_to_labels(field.indicator1)
+    standard_number = ''
+    field.subfields.each do |s_field|
+      standard_number = s_field.value if s_field.code == 'a'
+      standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO) if s_field.code == '2' and standard_label == '$2'
+    end
+    standard_label = FALLBACK_STANDARD_NO if standard_label == '$2'
+    standard_no[standard_label] ? standard_no[standard_label] << standard_number : standard_no[standard_label] = [standard_number] unless standard_number.nil?
+  end
+  standard_no
+end
 
-# def first_subject(accumulator)
-#   accumulator.each_with_index do |whole_subject, i|
-#     subjectaccum = ''
-#     subject = whole_subject.split(' -- ')
-#     sub_array = []
-#     if subject[0] 
-#       accumulator[i] = subject[0]
-#     end
-#   end 
-# end
+def oclc_normalize oclc
+  oclc.gsub(/\D/, '')
+end
 
-# def second_subject(accumulator)
-#   accumulator.each_with_index do |whole_subject, i|
-#     subjectaccum = ''
-#     subject = whole_subject.split(' -- ')
-#     sub_array = []
-#     if subject[1] 
-#       accumulator[i] = subject[1]
-#     end
-#   end 
-# end
-
-
-
-
-
+def remove_parens_035 standard_no
+  standard_no.gsub(/^\(.*?\)/,'')
+end
