@@ -1,3 +1,4 @@
+require 'library_stdnums'
 
 module MARC
   class Record
@@ -108,8 +109,39 @@ def standard_no_hash record
   standard_no
 end
 
-def oclc_normalize oclc
-  oclc.gsub(/\D/, '')
+
+# Handles ISBNs, ISSNs, and OCLCs
+# ISBN: 020a, 020z, 776z
+# ISSN: 022a, 022l, 022y, 022z, 776x
+# OCLC: 035a, 776w, 787w
+def other_versions record
+  linked_nums = []
+  Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") or (field.tag == "776" and s_field.code == 'z')
+      linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") or (field.tag == "776" and s_field.code == 'x')
+      if (field.tag == "035") or (field.tag == "776" and s_field.code == 'w') or (field.tag == "787" and s_field.code == 'w')
+        linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)')
+      end
+    end
+  end
+  linked_nums.compact.uniq
+end
+
+def oclc_normalize oclc, opts = {prefix: false}
+  oclc_num = oclc.gsub(/\D/, '').to_i.to_s
+  if opts[:prefix] == true
+    case oclc_num.length
+    when 1..8
+      "ocm" + "%08d" % oclc_num
+    when 9
+      "ocn" + oclc_num
+    else
+      "on" + oclc_num
+    end
+  else
+    oclc_num
+  end
 end
 
 def remove_parens_035 standard_no
