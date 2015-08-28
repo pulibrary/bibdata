@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def item
-    record = VoyagerHelpers::Liberator.get_item(params[:item_id])
+    record = VoyagerHelpers::Liberator.get_item(sanitize(params[:item_id]))
     if record.nil?
       render plain: "Item #{params[:item_id]} not found.", status: 404
     else

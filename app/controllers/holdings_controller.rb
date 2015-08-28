@@ -12,7 +12,7 @@ class HoldingsController < ApplicationController
   end
 
   def holding
-    record = VoyagerHelpers::Liberator.get_holding_record(params[:holding_id])
+    record = VoyagerHelpers::Liberator.get_holding_record(sanitize(params[:holding_id]))
     if record.nil?
       render plain: "Record #{params[:holding_id]} not found or suppressed.", status: 404
     else
@@ -24,7 +24,7 @@ class HoldingsController < ApplicationController
   end
 
   def holding_items
-    records = VoyagerHelpers::Liberator.get_items_for_holding(params[:holding_id])
+    records = VoyagerHelpers::Liberator.get_items_for_holding(sanitize(params[:holding_id]))
     if records.nil?
       render plain: "Holding #{params[:holding_id]} not found or suppressed.", status: 404
     else
