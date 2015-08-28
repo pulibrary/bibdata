@@ -168,6 +168,28 @@ module VoyagerHelpers
         )
       end
 
+      def patron_info(id, id_field)
+        %Q(
+          SELECT
+            patron.title,
+            patron.first_name,
+            patron.last_name,
+            patron_barcode.patron_barcode,
+            patron_barcode.barcode_status,
+            patron_barcode.barcode_status_date,
+            patron.institution_id,
+            patron_barcode.patron_group_id,
+            patron.purge_date,
+            patron.expire_date,
+            patron.patron_id
+          FROM patron, patron_barcode
+          WHERE
+            #{id_field}='#{id}'
+            AND patron.patron_id=patron_barcode.patron_id
+            AND patron_barcode.barcode_status=1
+          )
+      end
+
     end # class << self
   end # module Queries
 end # module VoyagerHelpers

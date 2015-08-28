@@ -154,6 +154,16 @@ module VoyagerHelpers
         writer.close()
       end
 
+      # @param patron_id [String] Either a netID, PUID, or PU Barcode
+      # @return [<Hash>]
+      def get_patron_info(patron_id)
+        id_type = determine_id_type(patron_id)
+        query = VoyagerHelpers::Queries.patron_info(patron_id, id_type)
+        connection do |c|
+          exec_get_info_for_patron(query, c)
+        end
+      end
+
       private
 
       def group_items(data_arr)
@@ -280,6 +290,25 @@ module VoyagerHelpers
           date = a.shift
           info[:status_date] = date.to_datetime unless date.nil?
           info[:barcode] = a.shift
+        end
+        info
+      end
+
+      def exec_get_info_for_patron(query, conn)
+        info = {}
+        conn.exec(query) do |a|
+          info[:netid] = a.shift
+          info[:first_name] = a.shift
+          info[:last_name] = a.shift
+          info[:barcode] = a.shift
+          info[:barcode_status] = a.shift
+          info[:barcode_status_date] = a.shift
+          info[:university_id] = a.shift
+          patron_group = a.shift
+          info[:patron_group] = patron_group == 3 ? 'staff' : patron_group
+          info[:purge_date] = a.shift
+          info[:expire_date] = a.shift
+          info[:patron_id] = a.shift
         end
         info
       end
@@ -454,7 +483,15 @@ module VoyagerHelpers
         ids
       end
 
-
+      def determine_id_type(patron_id)
+        if /^\d{14}$/.match(patron_id)
+          'patron_barcode.patron_barcode'
+        elsif /^\d{9}$/.match(patron_id)
+          'patron.institution_id'
+        else
+          'patron.title'
+        end
+      end
 
     end # class << self
   end # class Liberator

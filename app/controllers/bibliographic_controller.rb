@@ -21,7 +21,7 @@ class BibliographicController < ApplicationController
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
 
-    records = VoyagerHelpers::Liberator.get_bib_record(params[:bib_id], nil, opts)
+    records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
 
 
     if records.nil?
@@ -41,7 +41,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_holdings
-    records = VoyagerHelpers::Liberator.get_holding_records(params[:bib_id])
+    records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -59,7 +59,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = VoyagerHelpers::Liberator.get_items_for_bib(params[:bib_id])
+    records = VoyagerHelpers::Liberator.get_items_for_bib(sanitize(params[:bib_id]))
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
