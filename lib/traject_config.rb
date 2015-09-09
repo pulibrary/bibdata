@@ -381,7 +381,7 @@ to_field 'time_period_notes_display', extract_marc('523a') #obsolete
 to_field 'supplement_notes_display', extract_marc('525a')
 to_field 'study_prog_notes_display', extract_marc('526abcdixz') #added
 to_field 'censorship_notes_display', extract_marc('527a') #obsolete
-to_field 'reproduction_notes_display', extract_marc('533abcdefmn') #added
+to_field 'reproduction_notes_display', extract_marc('5333abcdefmn')
 to_field 'original_version_notes_display', extract_marc('534abcefklmnpt')
 to_field 'location_originals_notes_display', extract_marc('5353abcdg')
 to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
@@ -481,7 +481,7 @@ to_field 'cite_as_display', extract_marc('52423a')
 # Other format(s):
 #    530 XX 3abcd
 #    533 XX 3abcdefmn
-to_field 'other_format_display', extract_marc('5303abcd:5333abcdefmn')
+to_field 'other_format_display', extract_marc('5303abcd')
 
 # Cumulative index/Finding aid:
 #    555 XX 3abcd
@@ -522,13 +522,6 @@ to_field 'lc_rest_facet' do |record, accumulator|
       letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
       accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
     end
-  end
-end
-
-to_field 'sudoc_group_facet' do |record, accumulator|
-  MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?    
   end
 end
 
@@ -735,6 +728,18 @@ to_field 'standard_no_index', extract_marc('035a') do |record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = remove_parens_035(value)
   end
+end
+
+# Other version(s):
+#    3500 BBID776W
+#    3500 BBID787W
+#    3500 776X022A
+#    3500 022A776X
+#    3500 020A776Z
+#    3500 776Z020A
+to_field 'other_version_s' do |record, accumulator|
+  linked_nums = other_versions(record)
+  accumulator.replace(linked_nums)
 end
 
 # Original language:
