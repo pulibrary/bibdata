@@ -116,4 +116,18 @@ describe 'From princeton_marc.rb' do
       expect(@linked_nums).not_to include(oclc_normalize(@non_oclc_num, prefix: true))
     end
   end
+
+  describe 'process_names function'
+    before(:all) do
+      @t100 = {"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"t"=>"TITLE"}, {"k"=>"ignore"}]}}
+      @t700 = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"k"=>"don't ignore"}, {"t"=>"TITLE"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@t100, @t700] })
+    end
+
+    it 'strips subfields that appear after subfield $t' do
+      names = process_names(@sample_marc)
+      expect(names).to include("John 1492")
+      expect(names).to include("John 1492 don't ignore")
+      expect(names).not_to include("John 1492 ignore")
+    end
 end
