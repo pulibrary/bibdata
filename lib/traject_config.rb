@@ -40,18 +40,13 @@ to_field 'cjk_all', extract_all_marc_values
 # to put back in add: alternate_script: false, first: true
 to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
 to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
-#   accumulator[0] = accumulator[0].normalize_em if accumulator[0]
-# end
-
-to_field 'author_sort_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq', trim_punctuation: true) do |record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = value.normalize_em
-  end
-end
 
 to_field 'cjk_author', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
-to_field 'author_s', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq', trim_punctuation: true)
+to_field 'author_s' do |record, accumulator|
+  names = process_names(record)
+  accumulator.replace(names)
+end
 
 # for now not separate
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
@@ -72,9 +67,6 @@ to_field 'marc_relator_display' do |record, accumulator|
     break
   end
 end
-#    accumulator[0] = TranslationMap.new("relators")[accumulator[0]]
-#    #accumulator << TranslationMap.new("relators")[rel]
-#end
 
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
@@ -93,7 +85,7 @@ to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
 # to_field 'title_sort', marc_sortable_title
 to_field 'title_sort' do |record, accumulator|
   MarcExtractor.cached("245abcfghknps", :alternate_script => false).collect_matching_lines(record) do |field, spec, extractor|
-    str = extractor.collect_subfields(field, spec).first 
+    str = extractor.collect_subfields(field, spec).first
     str = str.slice(field.indicator2.to_i, str.length)
     accumulator << str if accumulator[0].nil?
   end
@@ -101,7 +93,7 @@ end
 
 to_field 'title_vern_sort' do |record, accumulator|
   MarcExtractor.cached("245abcfghknps", :alternate_script => :only).collect_matching_lines(record) do |field, spec, extractor|
-    str = extractor.collect_subfields(field, spec).first 
+    str = extractor.collect_subfields(field, spec).first
     str = str.slice(field.indicator2.to_i, str.length) if str
     accumulator << str if accumulator[0].nil?
   end
@@ -706,6 +698,12 @@ end
 to_field 'lccn_s', extract_marc('010a') do |record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = StdNum::LCCN.normalize(value)
+  end
+end
+
+to_field 'issn_s', extract_marc('022a') do |record, accumulator|
+  accumulator.each_with_index do |value, i|
+    accumulator[i] = StdNum::ISSN.normalize(value)
   end
 end
 
