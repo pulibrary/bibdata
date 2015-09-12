@@ -166,3 +166,66 @@ end
 def remove_parens_035 standard_no
   standard_no.gsub(/^\(.*?\)/,'')
 end
+
+GENRES = [
+  'Bibliography',
+  'Biography',
+  'Catalogs',
+  'Catalogues raisonnes',
+  'Commentaries',
+  'Congresses',
+  'Diaries',
+  'Dictionaries',
+  'Drama',
+  'Encyclopedias',
+  'Exhibitions',
+  'Fiction',
+  'Guidebooks',
+  'In art',
+  'Indexes',
+  'Librettos',
+  'Manuscripts',
+  'Newspapers',
+  'Periodicals',
+  'Pictorial works',
+  'Poetry',
+  'Portraits',
+  'Scores',
+  'Songs and music',
+  'Sources',
+  'Statistics',
+  'Texts',
+  'Translations'
+]
+
+GENRE_STARTS_WITH = [
+  'Census',
+  'Maps',
+  'Methods',
+  'Parts',
+  'Personal narratives',
+  'Scores and parts',
+  'Study and teaching',
+  'Translations into '
+]
+
+# 600/610/650/651 $v, $x filtered
+# 655 $a, $v, $x filtered
+def process_genre_facet record
+  genres = []
+  Traject::MarcExtractor.cached('600|*0|x:600|*7|x:610|*0|x:610|*7|x:611|*0|x:611|*7|x:630|*0|x:630|*7|x:650|*0|x:650|*7|x:651|*0|x:651|*7|x:655|*0|x:655|*7|x').collect_matching_lines(record) do |field, spec, extractor|
+    genre = extractor.collect_subfields(field, spec).first
+    unless genre.nil?
+      genre = Traject::Macros::Marc21.trim_punctuation(genre)
+      genres << genre if GENRES.include?(genre) || GENRE_STARTS_WITH.any? { |g| genre[g] }
+    end
+  end
+  Traject::MarcExtractor.cached('600|*0|v:600|*7|v:610|*0|v:610|*7|v:611|*0|v:611|*7|v:630|*0|v:630|*7|v:650|*0|v:650|*7|v:651|*0|v:651|*7|v:655|*0|a:655|*7|a:655|*0|v:655|*7|v').collect_matching_lines(record) do |field, spec, extractor|
+    genre = extractor.collect_subfields(field, spec).first
+    unless genre.nil?
+      genre = Traject::Macros::Marc21.trim_punctuation(genre)
+      genres << genre
+    end
+  end
+  genres.uniq
+end
