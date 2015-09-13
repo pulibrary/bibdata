@@ -486,17 +486,22 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
-to_field 'subject_display', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—', :alternate_script => :only) 
-to_field 'subject_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—') 
-
-to_field 'subject_sort_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => ' ') do |record, accumulator|
-  accumulator.each_with_index do |value, i|
-    accumulator[i] = value.normalize
-  end
+to_field 'subject_display' do |record, accumulator|
+  subjects = process_subject_facet(record)
+  accumulator.replace(subjects)
 end
 
-to_field 'subject_topic_facet', extract_marc('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz', :trim_punctuation => true, :separator => '—')
+# used for the browse lists and hierarchical subject facet
+to_field 'subject_facet' do |record, accumulator|
+  subjects = process_subject_facet(record)
+  accumulator.replace(subjects)
+end
+
+# used for split subject topic facet
+to_field 'subject_topic_facet' do |record, accumulator|
+  subjects = process_subject_topic_facet(record)
+  accumulator.replace(subjects)
+end
 
 to_field 'lc_1letter_facet' do |record, accumulator|
   if record['050']
