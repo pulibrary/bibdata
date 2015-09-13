@@ -573,6 +573,13 @@ end
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'form_genre_display', extract_marc('655avxyz')
 
+# 600/610/650/651 $v, $x filtered
+# 655 $a, $v, $x filtered
+to_field 'genre_facet' do |record, accumulator|
+  genres = process_genre_facet(record)
+  accumulator.replace(genres)
+end
+
 # Related name(s):
 #    700 XX aqbcdefghklmnoprstx A aq
 #    710 XX abcdefghklnoprstx A ab

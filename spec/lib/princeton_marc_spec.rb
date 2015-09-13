@@ -130,4 +130,40 @@ describe 'From princeton_marc.rb' do
       expect(names).to include("John 1492 don't ignore")
       expect(names).not_to include("John 1492 ignore")
     end
+
+  describe 'process_genre_facet function' do
+    before(:all) do
+      @g600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"Exclude"}, {"v"=>"John"}, {"x"=>"Join"}]}}
+      @g630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction."}]}}
+      @g655 = {"655"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"Culture."}, {"x"=>"Dramatic rendition"}, {"v"=>"Awesome"}]}}
+      @g655_2 = {"655"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"a"=>"Poetry"}, {"x"=>"Translations into French"}, {"v"=>"Maps"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@g600, @g630, @g655, @g655_2] })
+      @genres = process_genre_facet(@sample_marc)
+    end
+
+    it 'trims punctuation' do
+      expect(@genres).to include("Culture")
+    end
+
+    it 'excludes $a when not 655' do
+      expect(@genres).not_to include("Exclude")
+    end
+
+    it 'includes 6xx $v and 655 $a' do
+      expect(@genres).to include("John")
+      expect(@genres).to include("Maps")
+      expect(@genres).to include("Awesome")
+      expect(@genres).to include("Poetry")
+    end
+
+    it 'includes 6xx $x from filtered in terms' do
+      expect(@genres).to include("Fiction")
+      expect(@genres).to include("Translations into French")
+    end
+
+    it 'excludes $x terms that do not match filter list' do
+      expect(@genres).not_to include("Join")
+      expect(@genres).not_to include("Dramatic renditon")
+    end
+  end
 end
