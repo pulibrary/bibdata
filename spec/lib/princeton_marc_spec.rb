@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'json'
 require './lib/princeton_marc'
 require 'library_stdnums'
@@ -117,7 +118,7 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'process_names function'
+  describe 'process_names function' do
     before(:all) do
       @t100 = {"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"t"=>"TITLE"}, {"k"=>"ignore"}]}}
       @t700 = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"k"=>"don't ignore"}, {"t"=>"TITLE"}]}}
@@ -130,6 +131,7 @@ describe 'From princeton_marc.rb' do
       expect(names).to include("John 1492 don't ignore")
       expect(names).not_to include("John 1492 ignore")
     end
+  end
 
   describe 'process_genre_facet function' do
     before(:all) do
@@ -164,6 +166,50 @@ describe 'From princeton_marc.rb' do
     it 'excludes $x terms that do not match filter list' do
       expect(@genres).not_to include("Join")
       expect(@genres).not_to include("Dramatic renditon")
+    end
+  end
+
+  SEPARATOR = '—'
+  describe 'process_subject_facet function' do
+    before(:all) do
+      @s610_ind2_5 = {"600"=>{"ind1"=>"", "ind2"=>"5", "subfields"=>[{"a"=>"Exclude"}]}}
+      @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"t"=>"Title"}, {"v"=>"split genre"}, {"d"=>"2015"}]}}
+      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s610_ind2_5, @s600, @s630] })
+      @subjects = process_subject_facet(@sample_marc)
+    end
+
+    it 'excludes subjects without 0 or 7 in the 2nd indicator' do
+      expect(@subjects).not_to include("Exclude")
+    end
+
+    it 'only separates v,x,y,z with em dash' do
+      expect(@subjects).to include("John. Title#{SEPARATOR}split genre 2015")
+      expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore TITLE")
+    end
+  end
+
+  describe 'process_subject_topic_facet function' do
+    before(:all) do
+      @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"x"=>"Join"}, {"t"=>"Title"}, {"d"=>"2015"}]}}
+      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"v"=>"split genre"}, {"t"=>"TITLE"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s600, @s630] })
+      @subjects = process_subject_topic_facet(@sample_marc)
+    end
+
+    it 'trims punctuation' do
+      expect(@subjects).to include("John")
+    end
+
+    it 'excludes v and y' do
+      expect(@subjects).not_to include("1492")
+      expect(@subjects).not_to include("split genre")
+    end
+
+    it 'includes subjects split along x or z' do
+      expect(@subjects).to include("Join Title 2015")
+      expect(@subjects).to include("Fiction")
+      expect(@subjects).to include("don't ignore TITLE")
     end
   end
 end
