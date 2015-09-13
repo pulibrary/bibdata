@@ -150,8 +150,13 @@ to_field 'medium_support_display', extract_marc('340')
 #    most have first sub as 4, a few 0,1,7
 #    treat the same
 #    $u is for the link
-#    $z, $2 and $3 seem to show alt text
-to_field 'electronic_access_display', extract_marc('856u:856z23')
+#    $y and $3 for display text for link
+#    $z additional display text
+#    display host name if missing $y or $3
+to_field 'electronic_access_1display' do |record, accumulator|
+  links = electronic_access_links(record)
+  accumulator[0] = links.to_json.to_s unless links == {}
+end
 
 # Description:
    # 254 XX a

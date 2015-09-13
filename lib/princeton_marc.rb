@@ -1,4 +1,5 @@
 require 'library_stdnums'
+require 'uri'
 
 module MARC
   class Record
@@ -161,6 +162,31 @@ def oclc_normalize oclc, opts = {prefix: false}
   else
     oclc_num
   end
+end
+
+# returns hash of links ($u) (key),
+# anchor text ($y, $3, hostname), and additional labels ($z) (array value)
+def electronic_access_links record
+  links = {}
+  Traject::MarcExtractor.cached('856u').collect_matching_lines(record) do |field, spec, extractor|
+    url = extractor.collect_subfields(field, spec).first
+    anchor_text = false
+    z_label = false
+    field.subfields.each do |s_field|
+      z_label = s_field.value if s_field.code == 'z'
+      if s_field.code == 'y' || s_field.code == '3'
+        if anchor_text
+          anchor_text << ": #{s_field.value}"
+        else
+          anchor_text = s_field.value
+        end
+      end
+    end
+    anchor_text = URI.parse(url).host unless anchor_text
+    links[url] = [anchor_text] # anchor text is first element
+    links[url] << z_label if z_label # optional 2nd element if z
+  end
+  links
 end
 
 def remove_parens_035 standard_no
