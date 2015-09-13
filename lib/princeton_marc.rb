@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'library_stdnums'
 
 module MARC
@@ -145,6 +146,45 @@ def process_names record
     end
   end
   names.uniq
+end
+
+SEPARATOR = '—'
+
+# for the hierarchical subject display and facet
+# split with em dash along v,x,y,z
+def process_subject_facet record
+  subjects = []
+  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz').collect_matching_lines(record) do |field, spec, extractor|
+    subject = extractor.collect_subfields(field, spec).first
+    unless subject.nil?
+      field.subfields.each do |s_field|
+        if (s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
+          subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}")
+        end
+      end
+      subjects << Traject::Macros::Marc21.trim_punctuation(subject)
+    end
+  end
+  subjects
+end
+
+# for the split subject facet
+# split with em dash along x,z
+def process_subject_topic_facet record
+  subjects = []
+  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:600|*7|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:610|*7|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:611|*7|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:630|*7|adfgklmnoprstxz:650|*0|abcxz:650|*7|abcxz:651|*0|axz:651|*7|axz').collect_matching_lines(record) do |field, spec, extractor|
+    subject = extractor.collect_subfields(field, spec).first
+    unless subject.nil?
+      field.subfields.each do |s_field|
+        if (s_field.code == 'x' || s_field.code == 'z')
+          subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}")
+        end
+      end
+      subject = subject.split(SEPARATOR)
+      subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
+    end
+  end
+  subjects.flatten
 end
 
 def oclc_normalize oclc, opts = {prefix: false}
