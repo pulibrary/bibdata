@@ -5,6 +5,28 @@ require 'library_stdnums'
 
 describe 'From princeton_marc.rb' do
 
+  describe 'electronic_access_links' do
+    before(:all) do
+      @url1 = 'google.com'
+      @url2 = 'yahoo.com'
+      @url3 = 'princeton.edu'
+      @long_url = 'http://aol.com/234/asdf/24tdsfsdjf'
+      @l856 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url1}, {"y"=>"GOOGLE!"}, {"z"=>"label"} ]}}
+      @l856_1 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url2}, {"3"=>"Table of contents"} ]}}
+      @l856_2 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@long_url}]}}
+      @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3] })
+      @links = electronic_access_links(@sample_marc)
+    end
+
+    it 'returns a hash with the url as the key and its anchor text/label as value' do
+      expect(@links[@url1]).to eq(["GOOGLE!", "label"])
+      expect(@links[@url2]).to eq(["Table of contents"])
+      expect(@links[@url3]).to eq(["text 1: text 2"])
+      expect(@links[@long_url]).to eq(["aol.com"])
+    end
+  end
+
   describe 'standard_no_hash with keys based on the first indicator' do
     before(:all) do
       @key_for_3 = "International Article Number"
