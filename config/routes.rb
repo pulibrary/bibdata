@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get '/holdings/:holding_id', to: 'holdings#holding', defaults: { format: :json }
   get '/holdings/:holding_id/items', to: 'holdings#holding_items', defaults: { format: :json }
 
+  get '/availability', to: 'availability#index', defaults: { format: :json }
+
   get '/items', to: 'items#index', defaults: { format: :txt }
   get '/items/:item_id', to: 'items#item', defaults: { format: :json }
 

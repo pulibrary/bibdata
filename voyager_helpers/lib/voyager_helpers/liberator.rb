@@ -143,6 +143,33 @@ module VoyagerHelpers
         end
       end
 
+      # @param bib_id [Array<Fixnum>] Bib ids
+      # @return [Hash] Key is bib id, value is hash with availability
+      # Availability includes status for first item of 2 holdings
+      # And a boolean for whether the record has more than 2 items
+      # or more than 1 item per holding
+      def get_availability(bibs)
+        connection do |c|
+          availability = {}
+          bibs.each do |bib_id|
+            availability[bib_id] = {}
+            mfhds = get_holding_records(bib_id, c)
+            availability[bib_id][:more_holdings] = mfhds.count > 2
+            mfhds[0..1].each do |mfhd|
+              mfhd_hash = mfhd.to_hash
+              mfhd_id = id_from_mfhd_hash(mfhd_hash)
+              holding_items = get_items_for_holding(mfhd_id, c)
+              unless holding_items.empty?
+                availability[bib_id][:more_holdings] = true if holding_items.count > 1
+                field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
+                availability[bib_id][location_from_852(field_852)] = holding_items.first[:status]
+              end
+            end
+          end
+          availability
+        end
+      end
+
       def dump_bibs_to_file(ids, file_name, opts={})
         writer = MARC::XMLWriter.new(file_name)
         connection do |c|
