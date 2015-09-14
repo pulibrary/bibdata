@@ -1,5 +1,4 @@
 class PatronController < ApplicationController
-  include FormattingConcern
   before_filter :protect
 
   def patron_info
