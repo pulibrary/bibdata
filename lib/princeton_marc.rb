@@ -208,11 +208,12 @@ end
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 def electronic_access_links record
   links = {}
-  Traject::MarcExtractor.cached('856u').collect_matching_lines(record) do |field, spec, extractor|
-    url = extractor.collect_subfields(field, spec).first
+  Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
     anchor_text = false
     z_label = false
+    url = false
     field.subfields.each do |s_field|
+      url = s_field.value if s_field.code == 'u'
       z_label = s_field.value if s_field.code == 'z'
       if s_field.code == 'y' || s_field.code == '3'
         if anchor_text
@@ -222,9 +223,11 @@ def electronic_access_links record
         end
       end
     end
-    anchor_text = URI.parse(url).host unless anchor_text
-    links[url] = [anchor_text] # anchor text is first element
-    links[url] << z_label if z_label # optional 2nd element if z
+    if url and (URI.parse(url) rescue nil)
+      anchor_text = URI.parse(url).host unless anchor_text
+      links[url] = [anchor_text] # anchor text is first element
+      links[url] << z_label if z_label # optional 2nd element if z
+    end
   end
   links
 end
