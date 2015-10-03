@@ -164,7 +164,7 @@ describe 'From princeton_marc.rb' do
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"Exclude"}, {"v"=>"John"}, {"x"=>"Join"}]}}
-      @g630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction."}]}}
+      @g630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction."}]}}
       @g655 = {"655"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"Culture."}, {"x"=>"Dramatic rendition"}, {"v"=>"Awesome"}]}}
       @g655_2 = {"655"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"a"=>"Poetry"}, {"x"=>"Translations into French"}, {"v"=>"Maps"}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@g600, @g630, @g655, @g655_2] })
@@ -179,16 +179,18 @@ describe 'From princeton_marc.rb' do
       expect(@genres).not_to include("Exclude")
     end
 
+    it 'excludes 2nd indicator of 7' do
+      expect(@genres).not_to include("Poetry")
+      expect(@genres).not_to include("Maps")
+    end
+
     it 'includes 6xx $v and 655 $a' do
       expect(@genres).to include("John")
-      expect(@genres).to include("Maps")
       expect(@genres).to include("Awesome")
-      expect(@genres).to include("Poetry")
     end
 
     it 'includes 6xx $x from filtered in terms' do
       expect(@genres).to include("Fiction")
-      expect(@genres).to include("Translations into French")
     end
 
     it 'excludes $x terms that do not match filter list' do
@@ -201,14 +203,16 @@ describe 'From princeton_marc.rb' do
   describe 'process_subject_facet function' do
     before(:all) do
       @s610_ind2_5 = {"600"=>{"ind1"=>"", "ind2"=>"5", "subfields"=>[{"a"=>"Exclude"}]}}
+      @s600_ind2_7 = {"600"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"a"=>"Also Exclude"}]}}
       @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"t"=>"Title"}, {"v"=>"split genre"}, {"d"=>"2015"}]}}
-      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE"}]}}
+      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE"}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s610_ind2_5, @s600, @s630] })
       @subjects = process_subject_facet(@sample_marc)
     end
 
-    it 'excludes subjects without 0 or 7 in the 2nd indicator' do
+    it 'excludes subjects without 0 in the 2nd indicator' do
       expect(@subjects).not_to include("Exclude")
+      expect(@subjects).not_to include("Also Exclude")
     end
 
     it 'only separates v,x,y,z with em dash' do
@@ -220,7 +224,7 @@ describe 'From princeton_marc.rb' do
   describe 'process_subject_topic_facet function' do
     before(:all) do
       @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"x"=>"Join"}, {"t"=>"Title"}, {"d"=>"2015"}]}}
-      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"v"=>"split genre"}, {"t"=>"TITLE"}]}}
+      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"v"=>"split genre"}, {"t"=>"TITLE"}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s600, @s630] })
       @subjects = process_subject_topic_facet(@sample_marc)
     end
