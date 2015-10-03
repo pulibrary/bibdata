@@ -101,6 +101,18 @@ end
 
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
 
+
+## Title and Title starts with index-only fields ##
+#################################################
+to_field 'series_title_index', extract_marc('400t:410t:411t:440anpvx:490avx')
+
+to_field 'contains_title_index', extract_marc('700|12|t:710|12|t:711|12|t')
+
+to_field 'linked_title_index', extract_marc('800t:810t:811t:830adfghklmnoprstv:840anpv')
+
+to_field 'series_ae_index', extract_marc('800t:810t:811t:830adfghklmnoprstv:840anpv')
+#################################################
+
 # Compiled/Created:
 #    245 XX fg
 to_field 'compiled_created_display', extract_marc('245fg')
@@ -316,8 +328,11 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 
 # Contained in:
 #    3500 BBID773W
-# to_field 'Contained in_display', extract_marc()
-# # #    3500 BBID773W
+to_field 'contained in_s', extract_marc('773w')
+
+# Related record(s):
+#    3500 BBID774W
+to_field 'related_work_s', extract_marc('774w')
 
 # Restrictions note:
 #    506 XX 3abcde
@@ -757,6 +772,8 @@ to_field 'other_version_s' do |record, accumulator|
   accumulator.replace(linked_nums)
 end
 
+
+
 # Original language:
 #    880 XX abc
 to_field 'original_language_display', extract_marc('880abc')
@@ -764,10 +781,6 @@ to_field 'original_language_display', extract_marc('880abc')
 to_field 'subject_era_facet', marc_era_facet
 
 # # From displayh.cfg
-
-
-# Location: +No location specified
-#    1000
 
 to_field 'holdings_1display' do |record, accumulator|
   all_holdings = []

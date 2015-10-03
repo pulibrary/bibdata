@@ -155,7 +155,7 @@ SEPARATOR = '—'
 # split with em dash along v,x,y,z
 def process_subject_facet record
   subjects = []
-  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:600|*7|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:610|*7|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:611|*7|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:630|*7|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz:651|*7|avxyz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
@@ -173,7 +173,7 @@ end
 # split with em dash along x,z
 def process_subject_topic_facet record
   subjects = []
-  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:600|*7|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:610|*7|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:611|*7|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:630|*7|adfgklmnoprstxz:650|*0|abcxz:650|*7|abcxz:651|*0|axz:651|*7|axz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:650|*0|abcxz:651|*0|axz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
@@ -282,14 +282,14 @@ GENRE_STARTS_WITH = [
 # 655 $a, $v, $x filtered
 def process_genre_facet record
   genres = []
-  Traject::MarcExtractor.cached('600|*0|x:600|*7|x:610|*0|x:610|*7|x:611|*0|x:611|*7|x:630|*0|x:630|*7|x:650|*0|x:650|*7|x:651|*0|x:651|*7|x:655|*0|x:655|*7|x').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('600|*0|x:610|*0|x:611|*0|x:630|*0|x:650|*0|x:651|*0|x:655|*0|x').collect_matching_lines(record) do |field, spec, extractor|
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
       genres << genre if GENRES.include?(genre) || GENRE_STARTS_WITH.any? { |g| genre[g] }
     end
   end
-  Traject::MarcExtractor.cached('600|*0|v:600|*7|v:610|*0|v:610|*7|v:611|*0|v:611|*7|v:630|*0|v:630|*7|v:650|*0|v:650|*7|v:651|*0|v:651|*7|v:655|*0|a:655|*7|a:655|*0|v:655|*7|v').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('600|*0|v:610|*0|v:611|*0|v:630|*0|v:650|*0|v:651|*0|v:655|*0|a:655|*0|v').collect_matching_lines(record) do |field, spec, extractor|
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
