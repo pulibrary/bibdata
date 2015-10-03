@@ -15,7 +15,7 @@ def update_locations
     hash.each do |holding|
       holding_code = holding["code"]
       lib_label = holding["library"]["label"]
-      holding_label = holding["label"] == '' ? lib_label : lib_label + ': ' + holding['label']
+      holding_label = holding["label"] == '' ? lib_label : lib_label + ' - ' + holding['label']
       libdisplay[holding_code] = lib_label
       longerdisplay[holding_code] = holding_label
     end
