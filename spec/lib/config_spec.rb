@@ -40,6 +40,16 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe 'the author_citation_display field' do
+    it 'shows only the 100 a subfield' do
+      expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
+    end
+
+    it 'shows only the 700 a subfield' do
+      expect(@sample2['author_citation_display']).to include 'Jones, Mary'
+    end
+  end
+
   describe 'related_name_json_1display' do
     it 'trims punctuation the same way as author_s facet' do
       rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
