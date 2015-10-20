@@ -8,3 +8,6 @@
 # Ignore everything
 /data/*
 !/data/.keep
+# updated locations are dumped into ruby hash file
+config/translation_maps/locations.rb
+config/translation_maps/location_display.rb
