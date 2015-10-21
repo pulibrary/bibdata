@@ -244,4 +244,56 @@ describe 'From princeton_marc.rb' do
       expect(@subjects).to include("don't ignore TITLE")
     end
   end
+
+  describe 'process_author_roles' do
+    before(:all) do
+      @aut1 = "Lahiri, Jhumpa"
+      @aut2 = "Eugenides, Jeffrey"
+      @aut3 = "Cole, Teju"
+      @aut4 = "Nikolakopoulou, Evangelia"
+      @aut5 = "Morrison, Toni"
+      @aut6 = "Oates, Joyce Carol"
+      @aut7 = "Marchesi, Simone"
+      @aut8 = "Fitzgerald, F. Scott"
+
+      @a100 = {"100"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut1}]}}
+      @a700_1 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut2}, {"4"=> 'edt'}]}}
+      @a700_2 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut3}, {"4"=> 'com'}]}}
+      @a700_3 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut4}, {"4"=> 'trl'}]}}
+      @a700_4 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut5}, {"4"=> 'aaa'}]}}
+      @a700_5 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut6}]}}
+      @a700_6 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut7}, {"e"=>'translator.'}]}}
+      @a700_7 = {"700"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@aut8}, {"e"=>'ed.'}]}}
+
+      @sample_marc = MARC::Record
+                      .new_from_hash({ 'fields' => [@a100, @a700_1, @a700_2,
+                                                    @a700_3, @a700_4, @a700_5,
+                                                    @a700_6, @a700_7] })
+      @roles = process_author_roles(@sample_marc)
+    end
+
+    it 'list 1xx as primary author' do
+      expect(@roles['primary_author']).to eq @aut1
+    end
+    it '7xx authors with edt subfield 4 code are editors' do
+      expect(@roles['editors']).to include @aut2
+    end
+    it '7xx authors with com subfield 4 code are compilers' do
+      expect(@roles['compilers']).to include @aut3
+    end
+    it '7xx authors with trl subfield 4 code are translators' do
+      expect(@roles['translators']).to include @aut4
+    end
+    it '7xx authors without matched roles are secondary authors' do
+      expect(@roles['secondary_authors']).to include @aut5
+      expect(@roles['secondary_authors']).to include @aut6
+    end
+    it '7xx authors with translator subfield e term are translators' do
+      expect(@roles['translators']).to include @aut7
+    end
+    it '7xx authors with unmatched subfield e term are secondary_authors' do
+      expect(@roles['secondary_authors']).to include @aut8
+    end
+  end
+
 end

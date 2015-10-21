@@ -42,6 +42,11 @@ to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq',
 to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
+to_field 'author_roles_1display' do |record, accumulator|
+  authors = process_author_roles(record)
+  accumulator[0] = authors.to_json.to_s
+end
+
 to_field 'cjk_author', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
 to_field 'author_s' do |record, accumulator|
