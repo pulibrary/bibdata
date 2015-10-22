@@ -40,6 +40,12 @@ to_field 'cjk_all', extract_all_marc_values
 # to put back in add: alternate_script: false, first: true
 to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
 to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
+to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
+
+to_field 'author_roles_1display' do |record, accumulator|
+  authors = process_author_roles(record)
+  accumulator[0] = authors.to_json.to_s
+end
 
 to_field 'cjk_author', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
 
@@ -100,7 +106,7 @@ to_field 'title_vern_sort' do |record, accumulator|
 end
 
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
-
+to_field 'title_citation_display', extract_marc('245ab', :alternate_script => false, :first => true)
 
 ## Title and Title starts with index-only fields ##
 #################################################
@@ -127,6 +133,11 @@ to_field 'edition_display', extract_marc('250ab')
 #    264 XX abc
 to_field 'pub_created_display', extract_marc('260abcefg:264abcefg')
 to_field 'pub_created_s', extract_marc('260abcefg:264abcefg', :first => true)
+
+to_field 'pub_citation_display' do |record, accumulator|
+  pub_info = set_pub_citation(record)
+  accumulator.replace(pub_info)
+end
 
 to_field 'pub_date_display' do |record, accumulator|
     accumulator << record.date_from_008
