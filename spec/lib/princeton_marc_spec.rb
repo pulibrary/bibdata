@@ -296,4 +296,40 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+  describe 'set_pub_citation' do
+    before(:all) do
+      @place1 = 'Princeton'
+      @name1 = 'Princeton University Press'
+      @place2 = 'Brooklyn'
+      @name2 = 'Archipelago Books'
+
+      @p260_a = {"260"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@place1}]}}
+      @p260_b = {"260"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"b"=>@name1}]}}
+      @p260_a_b = {"260"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@place1}, {"b"=>@name1}]}}
+      @p264_a = {"264"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@place2}]}}
+      @p264_b = {"264"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"b"=>@name2}]}}
+      @p264_a_b = {"264"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"a"=>@place2}, {"b"=>@name2}]}}
+
+      @sample_marc_a = MARC::Record.new_from_hash({ 'fields' => [@p260_a, @p264_a] })
+      @sample_marc_b = MARC::Record.new_from_hash({ 'fields' => [@p260_b, @p264_b] })
+      @sample_marc_a_b = MARC::Record.new_from_hash({ 'fields' => [@p260_a_b, @p264_a_b] })
+
+      @citation_a = set_pub_citation(@sample_marc_a)
+      @citation_b = set_pub_citation(@sample_marc_b)
+      @citation_a_b = set_pub_citation(@sample_marc_a_b)
+    end
+
+    it 'record with fields 260 or 264 and only subfield a will have a place-only citation' do
+      expect(@citation_a).to include @place1
+      expect(@citation_a).to include @place2
+    end
+    it 'record with fields 260 or 264 and only subfield b will have a name-only citation' do
+      expect(@citation_b).to include @name1
+      expect(@citation_b).to include @name2
+    end
+    it 'record with fields 260 or 264 with subfield a and b will have a concatenated citation' do
+      expect(@citation_a_b).to include "#{@place1}: #{@name1}"
+      expect(@citation_a_b).to include "#{@place2}: #{@name2}"
+    end
+  end
 end

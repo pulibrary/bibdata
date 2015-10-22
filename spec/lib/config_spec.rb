@@ -39,24 +39,25 @@ describe 'From traject_config.rb' do
       expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
     end
   end
-
   describe 'the author_citation_display field' do
     it 'shows only the 100 a subfield' do
       expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
     end
-
     it 'shows only the 700 a subfield' do
       expect(@sample2['author_citation_display']).to include 'Jones, Mary'
     end
   end
-
+  describe 'the pub_citation_display field' do
+    it 'shows the the 260 a and b subfields' do
+      expect(@sample2['pub_citation_display']).to include 'London: Firethorn Press'
+    end
+  end
   describe 'related_name_json_1display' do
     it 'trims punctuation the same way as author_s facet' do
       rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
       rel_names['Related name'].each {|n| expect(@related_names['author_s']).to include(n)}
     end
   end
-
   describe 'access_facet' do
     it 'value is at the library for all non-online holding locations' do
       expect(@sample3['location_code_s'][0]).to eq 'scidoc' # Lewis Library
