@@ -151,6 +151,7 @@ end
 
 ##
 # Get hash of authors grouped by role
+# @param [MARC::Record]
 # @return [Hash]
 def process_author_roles record
   author_roles = {
@@ -161,6 +162,7 @@ def process_author_roles record
     'EDITOR' => 'editors',
     'COMPILER' => 'compilers'
   }
+
   names = {}
   names['secondary_authors'] = []
   names['translators'] = []
@@ -196,6 +198,30 @@ def process_author_roles record
   end
   names
 end
+
+##
+# Process publication information for citations.
+# @param [MARC::Record]
+# @return [Array] pub info strings from fields 260 and 264.
+def set_pub_citation(record)
+  pub_citation = []
+  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, spec, extractor|
+    a_pub_info = nil
+    b_pub_info = nil
+    pub_info = ""
+    field.subfields.each do |s_field|
+      a_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'a'
+      b_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'b'
+    end
+
+    # Build publication info string and add to citation array.
+    pub_info += a_pub_info unless a_pub_info.nil?
+    pub_info += ": " if !a_pub_info.nil? and !b_pub_info.nil?
+    pub_info += b_pub_info unless b_pub_info.nil?
+    pub_citation << pub_info if !pub_info.empty?
+  end
+  pub_citation
+ end
 
 SEPARATOR = '—'
 

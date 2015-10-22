@@ -134,6 +134,11 @@ to_field 'edition_display', extract_marc('250ab')
 to_field 'pub_created_display', extract_marc('260abcefg:264abcefg')
 to_field 'pub_created_s', extract_marc('260abcefg:264abcefg', :first => true)
 
+to_field 'pub_citation_display' do |record, accumulator|
+  pub_info = set_pub_citation(record)
+  accumulator.replace(pub_info)
+end
+
 to_field 'pub_date_display' do |record, accumulator|
     accumulator << record.date_from_008
 end
