@@ -149,6 +149,80 @@ def process_names record
   names.uniq
 end
 
+##
+# Get hash of authors grouped by role
+# @param [MARC::Record]
+# @return [Hash]
+def process_author_roles record
+  author_roles = {
+    'TRL' => 'translators',
+    'EDT' => 'editors',
+    'COM' => 'compilers',
+    'TRANSLATOR' => 'translators',
+    'EDITOR' => 'editors',
+    'COMPILER' => 'compilers'
+  }
+
+  names = {}
+  names['secondary_authors'] = []
+  names['translators'] = []
+  names['editors'] = []
+  names['compilers'] = []
+
+  Traject::MarcExtractor.cached('100a:110a:111a:700a:710a:711a').collect_matching_lines(record) do |field, spec, extractor|
+    name = extractor.collect_subfields(field, spec).first
+    unless name.nil?
+      name = Traject::Macros::Marc21.trim_punctuation(name)
+
+      # If name is from 1xx field, it is the primary author.
+      if /1../.match(field.tag)
+        names['primary_author'] = name
+      else
+        relator = ""
+        field.subfields.each do |s_field|
+
+          # relator code (subfield 4)
+          if s_field.code == '4'
+            relator = s_field.value.upcase.gsub(/[[:punct:]]?$/, '')
+          # relator term (subfield e)
+          elsif s_field.code == 'e'
+            relator = s_field.value.upcase.gsub(/[[:punct:]]?$/, '')
+          end
+        end
+
+        # Set role from relator value.
+        role = author_roles[relator] || 'secondary_authors'
+        names[role] << name
+      end
+    end
+  end
+  names
+end
+
+##
+# Process publication information for citations.
+# @param [MARC::Record]
+# @return [Array] pub info strings from fields 260 and 264.
+def set_pub_citation(record)
+  pub_citation = []
+  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, spec, extractor|
+    a_pub_info = nil
+    b_pub_info = nil
+    pub_info = ""
+    field.subfields.each do |s_field|
+      a_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'a'
+      b_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'b'
+    end
+
+    # Build publication info string and add to citation array.
+    pub_info += a_pub_info unless a_pub_info.nil?
+    pub_info += ": " if !a_pub_info.nil? and !b_pub_info.nil?
+    pub_info += b_pub_info unless b_pub_info.nil?
+    pub_citation << pub_info if !pub_info.empty?
+  end
+  pub_citation
+ end
+
 SEPARATOR = '—'
 
 # for the hierarchical subject display and facet
