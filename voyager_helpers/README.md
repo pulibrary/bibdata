@@ -15,20 +15,7 @@ export ORACLE_LIB=$ORACLE_HOME/lib
 export TNS_ADMIN=$ORACLE_HOME/network/admin
 ```
 
-To the variables you added earlier, and, finally, add this line to your application's Gemfile:
-
-```ruby
-gem 'marc_liberation'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install marc_liberation
-
+To the variables you added earlier.
 
 ## Configuration
 
