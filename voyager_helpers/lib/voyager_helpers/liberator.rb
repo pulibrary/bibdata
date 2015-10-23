@@ -16,20 +16,20 @@ module VoyagerHelpers
       # @return [Array<MARC::Record>] If `holdings: true` (default) and there
       #   are holdings.
       def get_bib_record(bib_id, conn=nil, opts={})
-        unless bib_is_suppressed?(bib_id, conn)
-          if opts.fetch(:holdings, true)
-            if conn.nil?
-              connection do |c|
+        if conn.nil?
+          connection do |c|
+            unless bib_is_suppressed?(bib_id, c)
+              if opts.fetch(:holdings, true)
                 get_bib_with_holdings(bib_id, c, opts)
-              end
-            else
-              get_bib_with_holdings(bib_id, conn, opts)
-            end
-          else
-            if conn.nil?
-              connection do |c|
+              else
                 get_bib_without_holdings(bib_id, c)
               end
+            end
+          end
+        else
+          unless bib_is_suppressed?(bib_id, conn)
+            if opts.fetch(:holdings, true)
+              get_bib_with_holdings(bib_id, conn, opts)
             else
               get_bib_without_holdings(bib_id, conn)
             end
@@ -40,9 +40,18 @@ module VoyagerHelpers
       # @param mfhd_id [Fixnum] A holding record id
       # @return [MARC::Record]
       def get_holding_record(mfhd_id, conn=nil)
-        unless mfhd_is_suppressed?(mfhd_id, conn)
-          segments = get_mfhd_segments(mfhd_id, conn)
-          MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8", :invalid => :replace, :replace => '') unless segments.empty?
+        if conn.nil?
+          connection do |c|
+            unless mfhd_is_suppressed?(mfhd_id, c)
+              segments = get_mfhd_segments(mfhd_id, c)
+              MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8", :invalid => :replace, :replace => '') unless segments.empty?
+            end
+          end
+        else
+          unless mfhd_is_suppressed?(mfhd_id, conn)
+            segments = get_mfhd_segments(mfhd_id, conn)
+            MARC::Reader.decode(segments.join(''), :external_encoding => "UTF-8", :invalid => :replace, :replace => '') unless segments.empty?
+          end
         end
       end
 
@@ -50,9 +59,18 @@ module VoyagerHelpers
       # @return [Array<MARC::Record>]
       def get_holding_records(bib_id, conn=nil)
         records = []
-        get_bib_mfhd_ids(bib_id, conn).each do |mfhd_id|
-          record = get_holding_record(mfhd_id, conn)
-          records << record unless record.nil?
+        if conn.nil?
+          connection do |c|
+            get_bib_mfhd_ids(bib_id, c).each do |mfhd_id|
+              record = get_holding_record(mfhd_id, c)
+              records << record unless record.nil?
+            end
+          end
+        else
+          get_bib_mfhd_ids(bib_id, conn).each do |mfhd_id|
+            record = get_holding_record(mfhd_id, conn)
+            records << record unless record.nil?
+          end
         end
         records
       end
@@ -523,8 +541,3 @@ module VoyagerHelpers
     end # class << self
   end # class Liberator
 end # module VoyagerHelpers
-
-
-
-
-
