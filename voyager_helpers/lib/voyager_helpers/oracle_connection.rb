@@ -14,6 +14,3 @@ module VoyagerHelpers
 
   end # module Connection
 end # module VoyagerHelpers
-
-
-
