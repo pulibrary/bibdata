@@ -161,11 +161,18 @@ module VoyagerHelpers
         end
       end
 
-      # @param bib_id [Array<Fixnum>] Bib ids
-      # @return [Hash] Key is bib id, value is hash with availability
-      # Availability includes status for first item of 2 holdings
-      # And a boolean for whether the record has more than 2 items
-      # or more than 1 item per holding
+      # @param bibs [Array<Fixnum>] Bib ids
+      # @return [Hash] :bib_id_value => [Hash] bib availability
+      #
+      # Bib availability hash:
+      # :more_holdings => [Boolean] Does the bib have more than 2 holdings?
+      # For the bib's first 2 holding records:
+      # :holding_id_value => [Hash] holding availability
+      #
+      # Holding availability hash:
+      # :status => [String] Voyager item status for the first item.
+      # :location => [String] Holding location code (mainly for debugging)
+      # :more_items => [Boolean] Does the holding record have more than 1 item?
       def get_availability(bibs)
         connection do |c|
           availability = {}
@@ -173,14 +180,30 @@ module VoyagerHelpers
             availability[bib_id] = {}
             mfhds = get_holding_records(bib_id, c)
             availability[bib_id][:more_holdings] = mfhds.count > 2
-            mfhds[0..1].each do |mfhd|
+
+            mfhds[0..1].each do |mfhd| # for the first 2 holdings
               mfhd_hash = mfhd.to_hash
               mfhd_id = id_from_mfhd_hash(mfhd_hash)
+              field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
+              field_852 = location_from_852(field_852)
               holding_items = get_items_for_holding(mfhd_id, c)
-              unless holding_items.empty?
-                availability[bib_id][:more_holdings] = true if holding_items.count > 1
-                field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
-                availability[bib_id][location_from_852(field_852)] = holding_items.first[:status]
+
+              availability[bib_id][mfhd_id] = {} # holding record availability hash
+              availability[bib_id][mfhd_id][:more_items] = holding_items.count > 1
+              availability[bib_id][mfhd_id][:location] = field_852
+
+              if holding_items.empty?
+                if field_852[/^elf/]
+                  availability[bib_id][mfhd_id][:status] = 'Online'
+                elsif !get_approved_orders(bib_id).empty?
+                  availability[bib_id][mfhd_id][:status] = 'Requestable'
+                elsif closed_holding_location?(field_852)
+                  availability[bib_id][mfhd_id][:status] = 'Limited'
+                else
+                  availability[bib_id][mfhd_id][:status] = 'Unknown'
+                end
+              else
+                availability[bib_id][mfhd_id][:status] = holding_items.first[:status]
               end
             end
           end
@@ -222,6 +245,12 @@ module VoyagerHelpers
           end
         end
         hsh
+      end
+
+      # assume open unless if the :open value for the location is false
+      def closed_holding_location?(loc_code)
+        holding_location = Locations::HoldingLocation.find_by(code: loc_code)
+        holding_location.nil? ? false : !holding_location.open
       end
 
       # Note that the hash is the result of calling `to_hash`, not `to_marchash`

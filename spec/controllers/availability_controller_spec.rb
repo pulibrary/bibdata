@@ -3,33 +3,101 @@ require 'json'
 
 RSpec.describe AvailabilityController, :type => :controller do
 
-  it "each bib id provided is a key in the availability hash, each id value has a more_holdings key" do
-    id_params = ['123','456', '789']
-    get :index, ids: id_params, format: :json
-    availability = JSON.parse(response.body)
-    id_params.each do |id|
-      expect(availability).to include(id)
-      expect(availability[id]).to include('more_holdings')
+  describe 'bib availability hash' do
+    it "each bib id provided is a key in the availability hash, each id value has a more_holdings key" do
+      id_params = ['123','456', '789']
+      get :index, ids: id_params, format: :json
+      availability = JSON.parse(response.body)
+      id_params.each do |id|
+        expect(availability).to include(id)
+        expect(availability[id]).to include('more_holdings')
+      end
+    end
+
+    it 'more_holdings is false when there are two or less holdings' do
+      bib_2_holdings = '8217104'
+      bib_1_holding = '35345'
+      get :index, ids: [bib_2_holdings, bib_1_holding], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_2_holdings]['more_holdings']).to eq(false)
+      expect(availability[bib_1_holding]['more_holdings']).to eq(false)
+    end
+
+    it 'provides availability for only the first 2 holdings, when more_holdings is true' do
+      bib_3_holdings = '929437'
+      get :index, ids: [bib_3_holdings], format: :json
+      availability = JSON.parse(response.body)
+      bib_availability = availability[bib_3_holdings]
+      expect(availability[bib_3_holdings]['more_holdings']).to eq(true)
+      availability[bib_3_holdings].delete('more_holdings')
+      holding_locations = bib_availability.each_value.map { |holding| holding['location'] }
+      expect(holding_locations).to include('rcppa')
+      expect(holding_locations).to include('fnc')
+      expect(holding_locations).not_to include('anxb')
     end
   end
 
-  it 'more_holdings is false when there are two or less holdings' do
-    bib_2_holdings = '8217104'
-    bib_1_holding = '35345'
-    get :index, ids: [bib_2_holdings, bib_1_holding], format: :json
-    availability = JSON.parse(response.body)
-    expect(availability[bib_2_holdings]['more_holdings']).to eq(false)
-    expect(availability[bib_1_holding]['more_holdings']).to eq(false)
-  end
+  describe 'holding availability hash' do
+    it 'voyager status is returned for item' do
+      bib_with_item = '35345'
+      holding_id = '39176'
+      item_id = 36736
+      item_status = VoyagerHelpers::Liberator.get_item(item_id)[:status]
+      get :index, ids: [bib_with_item], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_with_item][holding_id]['status']).to eq(item_status)
+    end
 
-  it 'provides availability for only the first 2 holdings, when more_holdings is true' do
-    bib_3_holdings = '929437'
-    get :index, ids: [bib_3_holdings], format: :json
-    availability = JSON.parse(response.body)
-    expect(availability[bib_3_holdings]).to include('rcppa')
-    expect(availability[bib_3_holdings]).to include('fnc')
-    expect(availability[bib_3_holdings]['more_holdings']).to eq(true)
-    expect(availability[bib_3_holdings]).not_to include('anxb')
+    it 'elf records have a status of online' do
+      bib_online = '7916044'
+      holding_id = '7698138'
+      get :index, ids: [bib_online], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_online][holding_id]['location']).to eq('elf1')
+      expect(availability[bib_online][holding_id]['status']).to eq('Online')
+    end
+
+    it 'on-order records have a status of requestable' do
+      bib_on_order = '9160439'
+      holding_id = '9040953'
+      get :index, ids: [bib_on_order], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_on_order][holding_id]['status']).to eq('Requestable')
+    end
+
+    it 'non open locations have a status of limited' do
+      allow(VoyagerHelpers::Liberator).to receive(:closed_holding_location?).and_return(true)
+      bible = '4609321'
+      holding_id = '4847980'
+      get :index, ids: [bible], format: :json
+      availability = JSON.parse(response.body)
+      puts availability
+      expect(availability[bible][holding_id]['status']).to eq('Limited')
+    end
+
+    it 'all other holding records without items have a status of unknown' do
+      bib_ipad = '7617477'
+      holding_id = '7429805'
+      get :index, ids: [bib_ipad], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_ipad][holding_id]['status']).to eq('Unknown')
+    end
+
+    it 'more_items is true when there is more than 1 item for a holding' do
+      bib_multiple_items = '857469'
+      holding_id = '977093'
+      get :index, ids: [bib_multiple_items], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_multiple_items][holding_id]['more_items']).to eq(true)
+    end
+
+    it 'more_items is false when there is 1 item or less for a holding' do
+      bib_1_item = '35345'
+      holding_id = '39176'
+      get :index, ids: [bib_1_item], format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[bib_1_item][holding_id]['more_items']).to eq(false)
+    end
   end
 
   it "404 when bibs are not provided" do
