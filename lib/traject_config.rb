@@ -800,6 +800,7 @@ to_field 'holdings_1display' do |record, accumulator|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         holding['location'] = TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        holding['location_code'] = s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= '' 
         holding['call_number'] += s_field.value
