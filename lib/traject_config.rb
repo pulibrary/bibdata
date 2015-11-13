@@ -197,8 +197,8 @@ end
    # 306 XX a
    # 515 XX a
    # 362 XX az
-to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:306a:515a:362az')
-to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:306a:515a:362az')
+to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
+to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
 
 # Arrangement:
 # #    351 XX 3abc
@@ -419,7 +419,6 @@ to_field 'copy_version_notes_display', extract_marc('5623abcde')
 to_field 'case_file_notes_display', extract_marc('5653abcde')
 to_field 'methodology_notes_display', extract_marc('567a')
 to_field 'editor_notes_display', extract_marc('570a') #added
-to_field 'action_notes_display', extract_marc('583abcdefhijklnouxz') #added
 to_field 'accumulation_notes_display', extract_marc('584ab') #added
 to_field 'awards_notes_display', extract_marc('586a') #added
 to_field 'source_desc_notes_display', extract_marc('588a') #added

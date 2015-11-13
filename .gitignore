@@ -1,0 +1,3 @@
+# updated locations are dumped into ruby hash file
+lib/translation_maps/locations.rb
+lib/translation_maps/location_display.rb
