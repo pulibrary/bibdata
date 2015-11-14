@@ -414,13 +414,18 @@ module VoyagerHelpers
         end
       end
 
-      # Removes bibliographic 852s, adds holdings 852s, and 959 catalog date
+      # Removes bib 852s, adds holdings 852s and 856s, and 959 catalog date
       def merge_holdings_into_bib(bib, holdings, conn=nil)
         record_hash = bib.to_hash
         record_hash['fields'].delete_if { |f| f.has_key?('852') }
         unless holdings.empty?
           holdings.each do |holding|
             holding.to_hash['fields'].select { |h| h.has_key?('852') }.each do |h|
+              h['852']['subfields'] << {"0"=>holding['001'].value}
+              record_hash['fields'] << h
+            end
+            holding.to_hash['fields'].select { |h| h.has_key?('856') }.each do |h|
+              h['856']['subfields'] << {"0"=>holding['001'].value}
               record_hash['fields'] << h
             end
           end
