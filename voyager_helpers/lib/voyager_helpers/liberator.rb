@@ -414,18 +414,15 @@ module VoyagerHelpers
         end
       end
 
-      # Removes bib 852s, adds holdings 852s and 856s, and 959 catalog date
+      # Removes bib 852s and 86Xs, adds 852s, 856s, and 86Xs from holdings, adds 959 catalog date
       def merge_holdings_into_bib(bib, holdings, conn=nil)
         record_hash = bib.to_hash
-        record_hash['fields'].delete_if { |f| f.has_key?('852') }
+        record_hash['fields'].delete_if { |f| ['852', '866', '867', '868'].any? { |key| f.has_key?(key) } }
         unless holdings.empty?
           holdings.each do |holding|
-            holding.to_hash['fields'].select { |h| h.has_key?('852') }.each do |h|
-              h['852']['subfields'] << {"0"=>holding['001'].value}
-              record_hash['fields'] << h
-            end
-            holding.to_hash['fields'].select { |h| h.has_key?('856') }.each do |h|
-              h['856']['subfields'] << {"0"=>holding['001'].value}
+            holding.to_hash['fields'].select { |h| ['852', '856', '866', '867', '868'].any? { |key| h.has_key?(key) } }.each do |h|
+              key, _value = h.first # marc field hashes have only one key, which is the tag number
+              h[key]['subfields'].unshift({"0"=>holding['001'].value})
               record_hash['fields'] << h
             end
           end
