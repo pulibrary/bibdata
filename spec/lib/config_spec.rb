@@ -1,21 +1,22 @@
 require 'json'
+require 'traject'
 
 describe 'From traject_config.rb' do
   before(:all) do
 
-    def trajectify(fixture_name)
-		  o='/tmp/tmp.json'
-      i=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
-      c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
-      system "traject -c #{c} #{i} -w Traject::JsonWriter -o #{o}"
-      JSON.parse(IO.read(o))
+    def fixture_record(fixture_name)
+      f=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
+      MARC::XMLReader.new(f).first
     end
-    @sample1=trajectify('sample1')
-    @sample2=trajectify('sample2')
-    @sample3=trajectify('sample3')
-    @related_names=trajectify('sample27')
-    @online_at_library=trajectify('sample29')
-    @online=trajectify('sample30')
+    c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
+    @indexer = Traject::Indexer.new
+    @indexer.load_config_file(c)
+    @sample1=@indexer.map_record(fixture_record('sample1'))
+    @sample2=@indexer.map_record(fixture_record('sample2'))
+    @sample3=@indexer.map_record(fixture_record('sample3'))
+    @related_names=@indexer.map_record(fixture_record('sample27'))
+    @online_at_library=@indexer.map_record(fixture_record('sample29'))
+    @online=@indexer.map_record(fixture_record('sample30'))
 	end
 
   describe 'the id field' do
@@ -75,5 +76,7 @@ describe 'From traject_config.rb' do
       expect(@online_at_library['access_facet']).to include 'Online'
       expect(@online_at_library['access_facet']).to include 'At the Library'
     end
+  end
+  describe 'holdings_1display' do
   end
 end
