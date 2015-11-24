@@ -282,11 +282,14 @@ end
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 def electronic_access_links record
   links = {}
+  holding_856s = {}
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
     anchor_text = false
     z_label = false
     url = false
+    holding_id = ''
     field.subfields.each do |s_field|
+      holding_id = s_field.value if s_field.code == '0'
       url = s_field.value if s_field.code == 'u'
       z_label = s_field.value if s_field.code == 'z'
       if s_field.code == 'y' || s_field.code == '3'
@@ -299,10 +302,12 @@ def electronic_access_links record
     end
     if url and (URI.parse(url) rescue nil)
       anchor_text = URI.parse(url).host unless anchor_text
-      links[url] = [anchor_text] # anchor text is first element
-      links[url] << z_label if z_label # optional 2nd element if z
+      url_labels = [anchor_text] # anchor text is first element
+      url_labels << z_label if z_label # optional 2nd element if z
+      holding_id == '' ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
     end
   end
+  links['holding_record_856s'] = holding_856s unless holding_856s == {}
   links
 end
 
