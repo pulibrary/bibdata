@@ -879,3 +879,23 @@ to_field 'supplements_display', extract_marc('867az')
 #    868 XX az
 #    1024
 to_field 'indexes_display', extract_marc('868az')
+
+########################################################
+# Processing already-extracted fields                  #
+# Remove holding 856s from electronic_access_1display  #
+# and put into holdings_1display                       #
+########################################################
+each_record do |record, context|
+  if context.output_hash['electronic_access_1display']
+    bib_856s = JSON.parse(context.output_hash['electronic_access_1display'].first)
+    holding_856s = bib_856s.delete('holding_record_856s')
+    unless holding_856s.nil?
+      holdings_hash = JSON.parse(context.output_hash['holdings_1display'].first)
+      holding_856s.each do |h_id, links|
+        holdings_hash[h_id]['electronic_access'] = links
+      end
+      context.output_hash['holdings_1display'][0] = holdings_hash.to_json.to_s
+      context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
+    end
+  end
+end
