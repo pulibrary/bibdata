@@ -3,7 +3,6 @@
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
-require './lib/translation_map'
 require './lib/format'
 require './lib/princeton_marc'
 require './lib/location_extract'
@@ -24,6 +23,7 @@ settings do
 end
 
 update_locations
+$LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
 
 
 
@@ -160,7 +160,7 @@ end
 # format just one
 to_field 'format' do |record, accumulator|
     fmt = Format.new(record).bib_format
-    accumulator << TranslationMap.new("format")[fmt]
+    accumulator << Traject::TranslationMap.new("format")[fmt]
 end
 
 # Medium/Support:
@@ -793,38 +793,47 @@ to_field 'subject_era_facet', marc_era_facet
 # # From displayh.cfg
 
 to_field 'holdings_1display' do |record, accumulator|
-  all_holdings = []
+  all_holdings = {}
   MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
     holding = {}
+    holding_id = ''
     field.subfields.each do |s_field|
-      if s_field.code == 'b'
-        holding['location'] = TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'b'
+        holding['location'] = Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        holding['full_location'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
         holding['location_code'] = s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= '' 
         holding['call_number'] += s_field.value
+      elsif s_field.code == 'l'
+        holding['shelving_title'] = s_field.value
+      elsif s_field.code == 'z'
+        holding['location_note'] = s_field.value
       end
     end
-    all_holdings << holding
+    all_holdings[holding_id] = holding unless holding_id == ''
   end
-  unless all_holdings == []
+
+  unless all_holdings == {}
     accumulator[0] = all_holdings.to_json.to_s
   end
 end
 
 to_field 'location_display', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = TranslationMap.new("locations").translate_array!(accumulator)
+  accumulator = Traject::TranslationMap.new("locations").translate_array!(accumulator)
 end
 
 to_field 'location_code_s', extract_marc('852b', :allow_duplicates => true)
 
 to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = TranslationMap.new("location_display", :default => "__passthrough__").translate_array!(accumulator)
+  accumulator = Traject::TranslationMap.new("location_display", :default => "__passthrough__").translate_array!(accumulator)
 end
 # # #    1000
 
 to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = TranslationMap.new("access", :default => "At the Library").translate_array!(accumulator)
+  accumulator = Traject::TranslationMap.new("access", :default => "At the Library").translate_array!(accumulator)
 end
 
 # Call number: +No call number available
@@ -833,10 +842,6 @@ to_field 'call_number_display', extract_marc('852ckhij', :allow_duplicates => tr
 
 
 to_field 'call_number_browse_s', extract_marc('852khij')
-
-# Shelving title:
-#    852 XX l
-to_field 'shelving_title_display', extract_marc('852l')
 
 
 # Location has:
@@ -875,7 +880,22 @@ to_field 'supplements_display', extract_marc('867az')
 #    1024
 to_field 'indexes_display', extract_marc('868az')
 
-
-# Notes:
-#    852 XX z
-to_field 'location_notes_display', extract_marc('852z')
+########################################################
+# Processing already-extracted fields                  #
+# Remove holding 856s from electronic_access_1display  #
+# and put into holdings_1display                       #
+########################################################
+each_record do |record, context|
+  if context.output_hash['electronic_access_1display']
+    bib_856s = JSON.parse(context.output_hash['electronic_access_1display'].first)
+    holding_856s = bib_856s.delete('holding_record_856s')
+    unless holding_856s.nil?
+      holdings_hash = JSON.parse(context.output_hash['holdings_1display'].first)
+      holding_856s.each do |h_id, links|
+        holdings_hash[h_id]['electronic_access'] = links
+      end
+      context.output_hash['holdings_1display'][0] = holdings_hash.to_json.to_s
+      context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
+    end
+  end
+end

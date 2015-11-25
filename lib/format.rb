@@ -1,4 +1,3 @@
-require './lib/translation_map'
 require './lib/format/bib_format'
 require './lib/format/bib_types'
 
