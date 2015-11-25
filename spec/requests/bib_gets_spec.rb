@@ -18,6 +18,15 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
   end
 
+  describe "GET /bibliographic/8637182" do
+    it "Removes bib 866" do
+      get '/bibliographic/8637182.json'
+      bib = JSON.parse(response.body)
+      has_866 = bib["fields"].any? {|f| f.has_key?('866')}
+      expect(has_866).to be(false)
+    end
+  end
+
   describe '#get_catalog_date added to 959' do
 
     it 'adds item create_date when bib has associated items' do
@@ -42,36 +51,41 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
   end
 
-  describe 'merges 852s and 856s from holding record into bib record' do
-    before(:all) do
-      get '/bibliographic/7617477.json'
-      @ipad_bib_record = JSON.parse(response.body)
+  describe 'holding record info is coupled with holding id in bib record' do
+    it 'merges 852s and 856s from holding record into bib record' do
+      bib_id = '7617477'
+      get "/bibliographic/#{bib_id}.json"
+      ipad_bib_record = JSON.parse(response.body)
+
+      holding_ids = VoyagerHelpers::Liberator.send(:get_bib_mfhd_ids, bib_id)
+      holding_ids.each do |id|
+        get "/holdings/#{id}.json"
+        holding = JSON.parse(response.body)
+        holding = MARC::Record.new_from_hash(holding)
+        eight52 = holding['852'].to_hash
+        eight52['852']['subfields'].prepend({"0"=>id.to_s})
+        eight56 = holding['856'].to_hash
+        eight56['856']['subfields'].prepend({"0"=>id.to_s})
+        expect(ipad_bib_record['fields']).to include(eight52)
+        expect(ipad_bib_record['fields']).to include(eight56)
+
+      end
     end
 
-    it 'bib includes firestone holding record info coupled with holding id' do
-      f_holding_id = '7429805'
-      get "/holdings/#{f_holding_id}.json"
-      holding = JSON.parse(response.body)
-      holding = MARC::Record.new_from_hash(holding)
-      eight52 = holding['852'].to_hash
-      eight52['852']['subfields'] << {"0"=>f_holding_id}
-      eight56 = holding['856'].to_hash
-      eight56['856']['subfields'] << {"0"=>f_holding_id}
-      expect(@ipad_bib_record['fields']).to include(eight52)
-      expect(@ipad_bib_record['fields']).to include(eight56)
-    end
+    it 'merges 866s from holding record into bib record when present' do
+      bib_id = '4609321'
+      get "/bibliographic/#{bib_id}.json"
+      ipad_bib_record = JSON.parse(response.body)
 
-    it 'bib includes lewis holding record info coupled with holding id' do
-      sci_holding_id = '7429809'
-      get "/holdings/#{sci_holding_id}.json"
-      holding = JSON.parse(response.body)
-      holding = MARC::Record.new_from_hash(holding)
-      eight52 = holding['852'].to_hash
-      eight52['852']['subfields'] << {"0"=>sci_holding_id}
-      eight56 = holding['856'].to_hash
-      eight56['856']['subfields'] << {"0"=>sci_holding_id}
-      expect(@ipad_bib_record['fields']).to include(eight52)
-      expect(@ipad_bib_record['fields']).to include(eight56)
+      holding_ids = VoyagerHelpers::Liberator.send(:get_bib_mfhd_ids, bib_id)
+      holding_ids.each do |id|
+        get "/holdings/#{id}.json"
+        holding = JSON.parse(response.body)
+        holding = MARC::Record.new_from_hash(holding)
+        eight66 = holding['866'].to_hash
+        eight66['866']['subfields'].prepend({"0"=>id.to_s})
+        expect(ipad_bib_record['fields']).to include(eight66)
+      end
     end
   end
 end
