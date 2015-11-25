@@ -1,5 +1,6 @@
 require 'json'
 require 'traject'
+require 'faraday'
 
 describe 'From traject_config.rb' do
   before(:all) do
@@ -17,6 +18,12 @@ describe 'From traject_config.rb' do
     @related_names=@indexer.map_record(fixture_record('sample27'))
     @online_at_library=@indexer.map_record(fixture_record('sample29'))
     @online=@indexer.map_record(fixture_record('sample30'))
+    config = YAML.load(ERB.new(File.read('config/solr.yml')).result)
+    @conn = Faraday.new(:url => config['marc_liberation']) do |faraday|
+      faraday.request  :url_encoded             # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
 	end
 
   describe 'the id field' do
@@ -78,5 +85,35 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'holdings_1display' do
+    before(:all) do
+      resp = @conn.get "/bibliographic/7617477"
+      marcxml = MARC::XMLReader.new(StringIO.new(resp.body)).first
+      @solr_hash = @indexer.map_record(marcxml)
+      @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
+      resp = @conn.get "/bibliographic/7617477/holdings.json"
+      holdings = JSON.parse(resp.body)
+      @holding_records = []
+      holdings.each {|h| @holding_records << MARC::Record.new_from_hash(h) }
+    end
+    it 'groups holding info into a hash keyed on the mfhd id' do
+      @holding_records.each do |holding|
+        holding_id = holding['001'].value
+        expect(@holding_block[holding_id]['location_code']).to eq(holding['852']['b'])
+        expect(@holding_block[holding_id]['location_note']).to eq(holding['852']['z'])
+      end
+    end
+
+    it 'includes holding 856s keyed on mfhd id' do
+      @holding_records.each do |holding|
+        holding_id = holding['001'].value
+        electronic_access = @holding_block[holding_id]['electronic_access']
+        expect(electronic_access[holding['856']['u']]).to include(holding['856']['z'])
+      end
+    end
+
+    it 'holding 856s are excluded from electronic_access_1display' do
+      electronic_access = JSON.parse(@solr_hash['electronic_access_1display'].first)
+      expect(electronic_access).not_to include('holding_record_856s')
+    end
   end
 end
