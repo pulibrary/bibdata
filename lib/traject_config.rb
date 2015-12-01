@@ -802,7 +802,7 @@ to_field 'holdings_1display' do |record, accumulator|
         holding_id = s_field.value
       elsif s_field.code == 'b'
         holding['location'] = Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-        holding['full_location'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
+        holding['library'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
         holding['location_code'] = s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= '' 
