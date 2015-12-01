@@ -4,7 +4,7 @@ require 'faraday'
 
 def update_locations
   begin
-    conn = Faraday.new(:url => 'http://bibdata.princeton.edu/locations/holding_locations.json')
+    conn = Faraday.new(:url => 'https://bibdata.princeton.edu/locations/holding_locations.json')
     resp = conn.get do |req|
       req.options.open_timeout = 5
     end
