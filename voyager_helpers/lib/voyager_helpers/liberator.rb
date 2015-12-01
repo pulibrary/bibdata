@@ -165,7 +165,6 @@ module VoyagerHelpers
       # @return [Hash] :bib_id_value => [Hash] bib availability
       #
       # Bib availability hash:
-      # :more_holdings => [Boolean] Does the bib have more than 2 holdings?
       # For the bib's first 2 holding records:
       # :holding_id_value => [Hash] holding availability
       #
@@ -179,8 +178,6 @@ module VoyagerHelpers
           bibs.each do |bib_id|
             availability[bib_id] = {}
             mfhds = get_holding_records(bib_id, c)
-            availability[bib_id][:more_holdings] = mfhds.count > 2
-
             mfhds[0..1].each do |mfhd| # for the first 2 holdings
               mfhd_hash = mfhd.to_hash
               mfhd_id = id_from_mfhd_hash(mfhd_hash)
