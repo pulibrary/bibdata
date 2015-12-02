@@ -7,7 +7,6 @@ require './lib/format'
 require './lib/princeton_marc'
 require './lib/location_extract'
 require 'stringex'
-require 'isbn'
 require 'library_stdnums'
 require 'time'
 extend Traject::Macros::Marc21Semantics

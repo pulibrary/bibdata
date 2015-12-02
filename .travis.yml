@@ -1,7 +1,9 @@
 language: ruby
 rvm:
-  - jruby # JRuby most recent
+  - jruby-9.0.4.0 # JRuby most recent
 # uncomment this line if your project needs to run something other than `rake`:
+jdk:
+  - oraclejdk8
 script: bundle exec rspec spec
 
 branches:
