@@ -624,7 +624,7 @@ to_field 'related_name_json_1display' do |record, accumulator|
   rel_name_hash = {}
   MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
     rel_name = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    relator = ''
+    relator = nil
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 'e'
@@ -635,12 +635,12 @@ to_field 'related_name_json_1display' do |record, accumulator|
         break
       end
       if s_field.code == '4'
-        if relator == ''
+        if relator.nil?
           relator = Traject::TranslationMap.new("relators")[s_field.value] || s_field.value 
         end
       end
     end
-    relator = 'Related name' if relator == ''
+    relator = 'Related name' if relator.nil?
     rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
   end
   unless rel_name_hash == {}
@@ -792,32 +792,8 @@ to_field 'subject_era_facet', marc_era_facet
 # # From displayh.cfg
 
 to_field 'holdings_1display' do |record, accumulator|
-  all_holdings = {}
-  MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
-    holding = {}
-    holding_id = ''
-    field.subfields.each do |s_field|
-      if s_field.code == '0'
-        holding_id = s_field.value
-      elsif s_field.code == 'b'
-        holding['location'] = Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-        holding['library'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
-        holding['location_code'] = s_field.value
-      elsif /[ckhij]/.match(s_field.code)
-        holding['call_number'] ||= '' 
-        holding['call_number'] += s_field.value
-      elsif s_field.code == 'l'
-        holding['shelving_title'] = s_field.value
-      elsif s_field.code == 'z'
-        holding['location_note'] = s_field.value
-      end
-    end
-    all_holdings[holding_id] = holding unless holding_id == ''
-  end
-
-  unless all_holdings == {}
-    accumulator[0] = all_holdings.to_json.to_s
-  end
+  all_holdings = process_holdings(record)
+  accumulator[0] = all_holdings.to_json.to_s unless all_holdings == {}
 end
 
 to_field 'location_display', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
@@ -858,26 +834,26 @@ to_field 'call_number_browse_s', extract_marc('852khij')
 #    866 51 az
 #    866 52 az
 #    899 XX a
-to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
+#to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
 
 # Location has (current):
 #    866 || az
 #    1020
-to_field 'location_has_current_display', extract_marc('866|  |az')
+#to_field 'location_has_current_display', extract_marc('866|  |az')
 
 
 # Supplements:
 #    1042
 #    867 XX az
 #    1022
-to_field 'supplements_display', extract_marc('867az')
+#to_field 'supplements_display', extract_marc('867az')
 
 
 # Indexes:
 #    1044
 #    868 XX az
 #    1024
-to_field 'indexes_display', extract_marc('868az')
+#to_field 'indexes_display', extract_marc('868az')
 
 ########################################################
 # Processing already-extracted fields                  #

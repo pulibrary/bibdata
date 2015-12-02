@@ -93,14 +93,14 @@ end
 
 def subfield_specified_hash_key subfield_value, fallback
   key = subfield_value.capitalize.gsub(/[[:punct:]]?$/,'')
-  key == '' ? fallback : key
+  key.empty? ? fallback : key
 end
 
 def standard_no_hash record
   standard_no = {}
   Traject::MarcExtractor.cached('024').collect_matching_lines(record) do |field, spec, extractor|
     standard_label = map_024_indicators_to_labels(field.indicator1)
-    standard_number = ''
+    standard_number = nil
     field.subfields.each do |s_field|
       standard_number = s_field.value if s_field.code == 'a'
       standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO) if s_field.code == '2' and standard_label == '$2'
@@ -287,7 +287,7 @@ def electronic_access_links record
     anchor_text = false
     z_label = false
     url = false
-    holding_id = ''
+    holding_id = nil
     field.subfields.each do |s_field|
       holding_id = s_field.value if s_field.code == '0'
       url = s_field.value if s_field.code == 'u'
@@ -304,7 +304,7 @@ def electronic_access_links record
       anchor_text = URI.parse(url).host unless anchor_text
       url_labels = [anchor_text] # anchor text is first element
       url_labels << z_label if z_label # optional 2nd element if z
-      holding_id == '' ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
+      holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}
@@ -376,4 +376,96 @@ def process_genre_facet record
     end
   end
   genres.uniq
+end
+
+# holding block json hash keyed on mfhd id including location, library, call number, shelving title,
+# location note, location has, location has (current), indexes, and supplements
+# pulls from mfhd 852, 866, 867, and 868
+# assumes exactly 1 852 is present per mfhd (it saves the last 852 it finds)
+def process_holdings record
+  all_holdings = {}
+  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
+    holding = {}
+    holding_id = nil
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'b'
+        holding['location'] = Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        holding['library'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
+        holding['location_code'] = s_field.value
+      elsif /[ckhij]/.match(s_field.code)
+        holding['call_number'] ||= []
+        holding['call_number'] << s_field.value
+        unless s_field.code == 'c'
+          holding['call_number_browse'] ||= []
+          holding['call_number_browse'] << s_field.value
+        end
+      elsif s_field.code == 'l'
+        holding['shelving_title'] = s_field.value
+      elsif s_field.code == 'z'
+        holding['location_note'] = s_field.value
+      end
+    end
+    holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
+    holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
+    all_holdings[holding_id] = holding unless holding_id.nil?
+  end
+  Traject::MarcExtractor.cached('866| 0|0az:866| 1|0az:866| 2|0az:866|30|0az:866|31|0az:866|32|0az:866|40|0az:866|41|0az:866|42|0az:866|50|0az:866|51|0az:866|52|0az').collect_matching_lines(record) do |field, spec, extractor|
+    value = []
+    holding_id = nil
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'a'
+        value << s_field.value
+      elsif s_field.code == 'z'
+        value << s_field.value
+      end
+    end
+    all_holdings[holding_id]['location_has'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+  end
+  Traject::MarcExtractor.cached('866|  |0az').collect_matching_lines(record) do |field, spec, extractor|
+    value = []
+    holding_id = nil
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'a'
+        value << s_field.value
+      elsif s_field.code == 'z'
+        value << s_field.value
+      end
+    end
+    all_holdings[holding_id]['location_has_current'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+  end
+  Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, spec, extractor|
+    value = []
+    holding_id = nil
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'a'
+        value << s_field.value
+      elsif s_field.code == 'z'
+        value << s_field.value
+      end
+    end
+    all_holdings[holding_id]['supplements'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+  end
+  Traject::MarcExtractor.cached('8680az').collect_matching_lines(record) do |field, spec, extractor|
+    value = []
+    holding_id = nil
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        holding_id = s_field.value
+      elsif s_field.code == 'a'
+        value << s_field.value
+      elsif s_field.code == 'z'
+        value << s_field.value
+      end
+    end
+    all_holdings[holding_id]['indexes'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+  end
+  all_holdings
 end
