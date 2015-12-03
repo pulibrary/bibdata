@@ -4,7 +4,7 @@ require 'json'
 RSpec.describe AvailabilityController, :type => :controller do
 
   describe 'bib availability hash' do
-    it 'provides availability for only the first 2 holdings' do
+    it 'provides availability for only the first 2 holdings by default' do
       bib_3_holdings = '929437'
       get :index, ids: [bib_3_holdings], format: :json
       availability = JSON.parse(response.body)
@@ -13,6 +13,16 @@ RSpec.describe AvailabilityController, :type => :controller do
       expect(holding_locations).to include('rcppa')
       expect(holding_locations).to include('fnc')
       expect(holding_locations).not_to include('anxb')
+    end
+
+    it 'provides availability for all holdings if full availability requested' do
+      bib_3_holdings = '929437'
+      get :index, id: bib_3_holdings, format: :json
+      availability = JSON.parse(response.body)
+      holding_locations = availability.each_value.map { |holding| holding['location'] }
+      expect(holding_locations).to include('rcppa')
+      expect(holding_locations).to include('fnc')
+      expect(holding_locations).to include('anxb')
     end
   end
 
