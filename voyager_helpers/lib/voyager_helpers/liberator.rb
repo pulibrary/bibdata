@@ -162,23 +162,26 @@ module VoyagerHelpers
       end
 
       # @param bibs [Array<Fixnum>] Bib ids
+      # @param full [Boolean] true return full availability for single bib, false (default) first 2 holdings
       # @return [Hash] :bib_id_value => [Hash] bib availability
+      # 
       #
       # Bib availability hash:
-      # For the bib's first 2 holding records:
+      # For the bib's holding records:
       # :holding_id_value => [Hash] holding availability
       #
       # Holding availability hash:
       # :status => [String] Voyager item status for the first item.
       # :location => [String] Holding location code (mainly for debugging)
       # :more_items => [Boolean] Does the holding record have more than 1 item?
-      def get_availability(bibs)
+      def get_availability(bibs, full=false)
+        number_of_mfhds = full ? 0..-1 : 0..1 # all vs first 2
         connection do |c|
           availability = {}
           bibs.each do |bib_id|
             availability[bib_id] = {}
             mfhds = get_holding_records(bib_id, c)
-            mfhds[0..1].each do |mfhd| # for the first 2 holdings
+            mfhds[number_of_mfhds].each do |mfhd|
               mfhd_hash = mfhd.to_hash
               mfhd_id = id_from_mfhd_hash(mfhd_hash)
               field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
@@ -204,6 +207,7 @@ module VoyagerHelpers
               end
             end
           end
+          _, availability = availability.first if full # return just holding availability hash (single bib)
           availability
         end
       end
