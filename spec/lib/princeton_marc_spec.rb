@@ -3,6 +3,9 @@ require 'json'
 require './lib/princeton_marc'
 require 'library_stdnums'
 
+$LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
+
+
 describe 'From princeton_marc.rb' do
 
   describe 'electronic_access_links' do
@@ -330,6 +333,47 @@ describe 'From princeton_marc.rb' do
     it 'record with fields 260 or 264 with subfield a and b will have a concatenated citation' do
       expect(@citation_a_b).to include "#{@place1}: #{@name1}"
       expect(@citation_a_b).to include "#{@place2}: #{@name2}"
+    end
+  end
+
+  describe '#process_holdings' do
+    before(:all) do
+      @oversize_mfhd_id = "3723853"
+      @other_mfhd_id = "4191919"
+      @call_number = "M23.L5S6 1973q"
+      @f_852 = {"852"=>{"ind1"=>"0","ind2"=>"0","subfields"=>[{"0"=>@oversize_mfhd_id},{"b"=>"anxa"},{"t"=>"2"},{"c"=>"Oversize"},{"h"=>@call_number}]}}
+      @other_852 = {"852"=>{"ind1"=>"0","ind2"=>"0","subfields"=>[{"0"=>@other_mfhd_id},{"b"=>"f"}]}} 
+      @l_866 = {"866"=>{"ind1"=>"3","ind2"=>"1","subfields"=>[{"0"=>@oversize_mfhd_id},{"a"=>"volume 1"},{"z"=>"full"}]}}
+      @c_866 = {"866"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"0"=>@oversize_mfhd_id},{"a"=>"v2"},{"z"=>"available"}]}}
+      @s_867 = {"867"=>{"ind1"=>"9","ind2"=>" ","subfields"=>[{"0"=>@other_mfhd_id},{"a"=>"v454"}]}}
+      @i_868 = {"868"=>{"ind1"=>" ","ind2"=>"0","subfields"=>[{"0"=>@oversize_mfhd_id},{"z"=>"lost"}]}}
+      @other_866 = {"866"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"0"=>@other_mfhd_id},{"a"=>"v4"},{"z"=>"p3"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@f_852, @l_866, @c_866, @s_867, @i_868, @other_866, @other_852] })
+
+      @holding_block = process_holdings(@sample_marc)
+    end
+
+    it 'excludes $c for call_number_browse key' do
+      expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).not_to include('Oversize')
+      expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).to eq(@call_number)
+    end
+
+    it 'separates call_number subfields with whitespace' do
+      expect(@holding_block[@oversize_mfhd_id]['call_number']).to eq("Oversize #{@call_number}")
+    end
+
+    it 'location_has takes from 866 $a and $z when the 1st ind is blank or 3-5 and 2nd ind is 0-2' do
+      expect(@holding_block[@oversize_mfhd_id]['location_has']).to eq("volume 1 full")
+    end
+    it 'location_has takes from 866 $a and $z when both indicators are blank' do
+      expect(@holding_block[@oversize_mfhd_id]['location_has_current']).to eq("v2 available")
+      expect(@holding_block[@other_mfhd_id]['location_has_current']).to eq("v4 p3")
+    end
+    it 'supplements takes from 867 $a and $z' do
+      expect(@holding_block[@other_mfhd_id]['supplements']).to eq("v454")
+    end
+    it 'indexes takes from 868 $a and $z' do
+      expect(@holding_block[@oversize_mfhd_id]['indexes']).to eq("lost")
     end
   end
 end
