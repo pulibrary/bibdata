@@ -196,7 +196,9 @@ module VoyagerHelpers
             department.department_name,
             course.course_name,
             course.course_number,
-            reserve_list_courses.section_id
+            reserve_list_courses.section_id,
+            instructor.first_name,
+            instructor.last_name
           FROM ((((reserve_list_courses join 
                   department on reserve_list_courses.department_id = department.department_id) join 
                   instructor on reserve_list_courses.instructor_id = instructor.instructor_id) join 
@@ -208,7 +210,9 @@ module VoyagerHelpers
             department.department_name,
             course.course_name,
             course.course_number,
-            reserve_list_courses.section_id
+            reserve_list_courses.section_id,
+            instructor.first_name,
+            instructor.last_name
             )
       end
       
