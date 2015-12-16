@@ -44,7 +44,7 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
 
     it 'does not add item create_date when bib without items is not elf' do
-      get '/bibliographic/9160439.json'
+      get '/bibliographic/4609321.json'
       bib = JSON.parse(response.body)
       has_959 = bib["fields"].any? {|f| f.has_key?('959')}
       expect(has_959).to be(false)
