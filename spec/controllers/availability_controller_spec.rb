@@ -46,28 +46,12 @@ RSpec.describe AvailabilityController, :type => :controller do
       expect(availability[bib_online][holding_id]['status']).to eq('Online')
     end
 
-    it 'on-order records have a status of On-Order' do
-      bib_on_order = '9173362'
-      holding_id = '9051785'
-      get :index, ids: [bib_on_order], format: :json
-      availability = JSON.parse(response.body)
-      expect(availability[bib_on_order][holding_id]['status']).to include('On-Order')
-    end
-
-    it 'Received on-order records have a status of Order Received' do
-      bib_received_order = '9468468'
-      get :index, id: bib_received_order, format: :json
-      availability = JSON.parse(response.body)
-      expect(availability.first[1]['status']).to include('Order Received')
-    end
-
     it 'always_requestable locations have a status of limited' do
       allow(VoyagerHelpers::Liberator).to receive(:limited_access_location?).and_return(true)
       bible = '4609321'
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
       availability = JSON.parse(response.body)
-      puts availability
       expect(availability[bible][holding_id]['status']).to eq('Limited')
     end
 

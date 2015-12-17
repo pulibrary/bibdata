@@ -154,7 +154,7 @@ module VoyagerHelpers
             end
           end
           unless any_items
-            orders = get_approved_orders(bib_id, c)
+            orders = get_orders(bib_id, c)
             items << { perm_location: 'order', items: orders} unless orders.empty?
           end
           group_items(items)
@@ -197,9 +197,8 @@ module VoyagerHelpers
               elsif holding_items.empty?
                 if field_852[/^elf/]
                   'Online'
-                elsif !(order = get_approved_orders(bib_id)).empty?
-                  status = order.first[:li_status] == 1 ? 'Order Received' : 'On-Order'
-                  "#{status} #{order.first[:date].strftime('%m-%d-%Y')}"
+                elsif !(order_status = get_order_status(bib_id)).nil?
+                  order_status
                 else
                   'Unknown'
                 end
@@ -232,6 +231,37 @@ module VoyagerHelpers
         connection do |c|
           exec_get_info_for_patron(query, c)
         end
+      end
+
+      # @param bib_id [Fixnum] Find order status for provided bib ID
+      # @return [String] on-order status message and date of status if the status code in whitelist
+      # if code is not whitelisted return nil
+      def get_order_status(bib_id)
+        po_pending = 0
+        po_approved = 1
+        po_rec_partial = 3
+        po_rec_complete = 4
+        po_status_whitelist = [po_pending, po_approved, po_rec_partial, po_rec_complete]
+        li_pending = 0
+        li_rec_complete = 1
+        li_approved = 8
+        li_rec_partial = 9
+        li_status_whitelist = [li_pending, li_rec_complete, li_approved, li_rec_partial]
+        status = nil
+        unless (order = get_orders(bib_id)).empty?
+          po_status, li_status = order.first[:po_status], order.first[:li_status]
+          if po_status_whitelist.include?(po_status) or li_status_whitelist.include?(li_status)
+            status = if li_status == li_rec_complete
+              'Order Received'
+            elsif li_status == li_pending
+              'Pending Order'
+            else
+              'On-Order'
+            end
+            status << " #{order.first[:date].strftime('%m-%d-%Y')}" unless order.first[:date].nil?
+          end
+        end
+        status
       end
 
       private
@@ -299,21 +329,24 @@ module VoyagerHelpers
 
       # @param bib_id [Fixnum] A bib record id
       # @return [Array<Hash>] An Array of Hashes with one key: :on_order.
-      def get_approved_orders(bib_id, conn=nil)
-        query = VoyagerHelpers::Queries.approved_orders(bib_id)
+      def get_orders(bib_id, conn=nil)
+        query = VoyagerHelpers::Queries.orders(bib_id)
         if conn.nil?
           connection do |c|
-            exec_get_approved_orders(query, c)
+            exec_get_orders(query, c)
           end
         else
-          exec_get_approved_orders(query, conn)
+          exec_get_orders(query, conn)
         end
       end
 
-      def exec_get_approved_orders(query, conn)
+      # return status codes for all orders for debugging and for
+      # determining availability message
+      def exec_get_orders(query, conn)
         statuses = []
         conn.exec(query) do |bib_id,po_status,order_status,date|
-          statuses << { date: date.to_datetime,
+          date = date.to_datetime unless date.nil?
+          statuses << { date: date,
                         li_status: order_status,
                         po_status: po_status }
         end
