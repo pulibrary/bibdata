@@ -6,7 +6,7 @@ describe VoyagerHelpers::Liberator do
   let(:date) { Date.parse("2015-12-14T15:34:00.000-05:00") }
   let(:no_order_found) { {} }
   let(:pre_order) { [{
-                      date: Date.parse("2015-12-17T15:34:00.000-05:00"),
+                      date: nil,
                       li_status: 0,
                       po_status: 0
                       }] }
@@ -32,9 +32,9 @@ describe VoyagerHelpers::Liberator do
       allow(described_class).to receive(:get_orders).and_return(no_order_found)
       expect(described_class.get_order_status(placeholder_bib)).to eq nil
     end
-    it 'returns nil for pending orders' do
+    it 'returns Pending Order for pending orders, date not included if nil' do
       allow(described_class).to receive(:get_orders).and_return(pre_order)
-      expect(described_class.get_order_status(placeholder_bib)).to eq nil
+      expect(described_class.get_order_status(placeholder_bib)).to eq "Pending Order"
     end
     it 'returns On-Order for approved order' do
       allow(described_class).to receive(:get_orders).and_return(approved_order)

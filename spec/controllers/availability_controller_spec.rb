@@ -52,7 +52,6 @@ RSpec.describe AvailabilityController, :type => :controller do
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
       availability = JSON.parse(response.body)
-      puts availability
       expect(availability[bible][holding_id]['status']).to eq('Limited')
     end
 

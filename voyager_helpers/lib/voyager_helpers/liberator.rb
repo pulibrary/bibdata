@@ -234,23 +234,31 @@ module VoyagerHelpers
       end
 
       # @param bib_id [Fixnum] Find order status for provided bib ID
-      # @return [String] on-order status message and date of status if the order is approved or received
-      # if order is not approved return nil
+      # @return [String] on-order status message and date of status if the status code in whitelist
+      # if code is not whitelisted return nil
       def get_order_status(bib_id)
-        po_approved=1
-        po_rec_partial=3
-        po_rec_complete=4
-        po_status_whitelist = [po_approved, po_rec_partial, po_rec_complete]
-        li_rec_complete=1
-        li_approved=8
-        li_rec_partial=9
-        li_status_whitelist = [li_rec_complete, li_approved, li_rec_partial]
+        po_pending = 0
+        po_approved = 1
+        po_rec_partial = 3
+        po_rec_complete = 4
+        po_status_whitelist = [po_pending, po_approved, po_rec_partial, po_rec_complete]
+        li_pending = 0
+        li_rec_complete = 1
+        li_approved = 8
+        li_rec_partial = 9
+        li_status_whitelist = [li_pending, li_rec_complete, li_approved, li_rec_partial]
         status = nil
         unless (order = get_orders(bib_id)).empty?
           po_status, li_status = order.first[:po_status], order.first[:li_status]
           if po_status_whitelist.include?(po_status) or li_status_whitelist.include?(li_status)
-            message = li_status == li_rec_complete ? 'Order Received' : 'On-Order'
-            status = "#{message} #{order.first[:date].strftime('%m-%d-%Y')}"
+            status = if li_status == li_rec_complete
+              'Order Received'
+            elsif li_status == li_pending
+              'Pending Order'
+            else
+              'On-Order'
+            end
+            status << " #{order.first[:date].strftime('%m-%d-%Y')}" unless order.first[:date].nil?
           end
         end
         status
@@ -337,7 +345,8 @@ module VoyagerHelpers
       def exec_get_orders(query, conn)
         statuses = []
         conn.exec(query) do |bib_id,po_status,order_status,date|
-          statuses << { date: date.to_datetime,
+          date = date.to_datetime unless date.nil?
+          statuses << { date: date,
                         li_status: order_status,
                         po_status: po_status }
         end
