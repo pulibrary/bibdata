@@ -1,9 +1,9 @@
 GIT
   remote: git@github.com:pulibrary/locations.git
-  revision: b2eb99ea3fb29d1128eaf33efd66c368914f6682
-  tag: 0.1.1
+  revision: e47fbe98df9d44b3ef0cebf07a7fd93eef2f9efc
+  tag: 0.1.2
   specs:
-    locations (0.1.1)
+    locations (0.1.2)
       bootstrap-sass (~> 3.3)
       coveralls
       friendly_id (~> 5.1.0)
@@ -99,12 +99,13 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
-    coveralls (0.8.1)
+    coveralls (0.8.10)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
-      simplecov (~> 0.10.0)
+      simplecov (~> 0.11.0)
       term-ansicolor (~> 1.3)
       thor (~> 0.19.1)
+      tins (~> 1.6.0)
     debugger-linecache (1.2.0)
     devise (3.5.1)
       bcrypt (~> 3.0)
@@ -116,7 +117,7 @@ GEM
     diff-lcs (1.2.5)
     diffy (3.0.7)
     docile (1.1.5)
-    domain_name (0.5.24)
+    domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
     ensure_valid_encoding (0.5.3)
     erubis (2.7.0)
@@ -165,7 +166,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
-    netrc (0.10.3)
+    netrc (0.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     omniauth (1.2.2)
@@ -268,7 +269,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
-    simplecov (0.10.0)
+    simplecov (0.11.1)
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
@@ -292,7 +293,7 @@ GEM
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    term-ansicolor (1.3.0)
+    term-ansicolor (1.3.2)
       tins (~> 1.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
@@ -302,7 +303,7 @@ GEM
     tilt (1.4.1)
     timers (4.0.1)
       hitimes
-    tins (1.5.2)
+    tins (1.6.0)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
