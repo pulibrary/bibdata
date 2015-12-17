@@ -54,13 +54,7 @@ module VoyagerHelpers
         )
       end
 
-      def approved_orders(bib_id)
-        po_approved=1
-        po_rec_partial=3
-        po_rec_complete=4
-        li_rec_complete=1
-        li_approved=8
-        li_rec_partial=9
+      def orders(bib_id)
         %Q(
         SELECT LINE_ITEM.BIB_ID,
           PURCHASE_ORDER.PO_STATUS,
@@ -70,12 +64,6 @@ module VoyagerHelpers
         INNER JOIN LINE_ITEM ON PURCHASE_ORDER.PO_ID = LINE_ITEM.PO_ID)
         INNER JOIN LINE_ITEM_COPY_STATUS ON LINE_ITEM.LINE_ITEM_ID = LINE_ITEM_COPY_STATUS.LINE_ITEM_ID)
         WHERE (LINE_ITEM.BIB_ID = #{bib_id})
-        AND (PURCHASE_ORDER.PO_STATUS = #{po_approved}
-          OR PURCHASE_ORDER.PO_STATUS = #{po_rec_partial}
-          OR PURCHASE_ORDER.PO_STATUS = #{po_rec_complete}
-          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_rec_complete}
-          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_approved}
-          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_rec_partial})
         )
       end
 
