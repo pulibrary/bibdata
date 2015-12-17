@@ -55,22 +55,27 @@ module VoyagerHelpers
       end
 
       def approved_orders(bib_id)
-        # what could go wrong?
-        line_item_status_approved=8
-        po_status_approved=1
+        po_approved=1
+        po_rec_partial=3
+        po_rec_complete=4
+        li_rec_complete=1
+        li_approved=8
+        li_rec_partial=9
         %Q(
-        SELECT bib_text.bib_id, 
-          purchase_order.po_status,
-          line_item_copy_status.line_item_status,
-          line_item_copy_status.status_date
-        FROM ((purchase_order
-        INNER JOIN line_item ON purchase_order.po_id = line_item.po_id)
-        INNER JOIN bib_text ON line_item.bib_id = bib_text.bib_id)
-        INNER JOIN line_item_copy_status ON line_item.line_item_id = line_item_copy_status.line_item_id
-        WHERE (((bib_text.bib_id)=#{bib_id})
-        AND ((purchase_order.po_status)=#{po_status_approved}))
-        OR (((bib_text.bib_id)=#{bib_id})
-        AND ((line_item_copy_status.line_item_status)=#{line_item_status_approved}))
+        SELECT LINE_ITEM.BIB_ID,
+          PURCHASE_ORDER.PO_STATUS,
+          LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS,
+          LINE_ITEM_COPY_STATUS.STATUS_DATE
+        FROM ((PURCHASE_ORDER
+        INNER JOIN LINE_ITEM ON PURCHASE_ORDER.PO_ID = LINE_ITEM.PO_ID)
+        INNER JOIN LINE_ITEM_COPY_STATUS ON LINE_ITEM.LINE_ITEM_ID = LINE_ITEM_COPY_STATUS.LINE_ITEM_ID)
+        WHERE (LINE_ITEM.BIB_ID = #{bib_id})
+        AND (PURCHASE_ORDER.PO_STATUS = #{po_approved}
+          OR PURCHASE_ORDER.PO_STATUS = #{po_rec_partial}
+          OR PURCHASE_ORDER.PO_STATUS = #{po_rec_complete}
+          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_rec_complete}
+          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_approved}
+          OR LINE_ITEM_COPY_STATUS.LINE_ITEM_STATUS = #{li_rec_partial})
         )
       end
 

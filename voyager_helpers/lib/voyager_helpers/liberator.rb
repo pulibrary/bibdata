@@ -192,18 +192,19 @@ module VoyagerHelpers
               availability[bib_id][mfhd_id][:more_items] = holding_items.count > 1
               availability[bib_id][mfhd_id][:location] = field_852
 
-              if holding_items.empty?
+              availability[bib_id][mfhd_id][:status] = if limited_access_location?(field_852)
+                'Limited'
+              elsif holding_items.empty?
                 if field_852[/^elf/]
-                  availability[bib_id][mfhd_id][:status] = 'Online'
-                elsif !get_approved_orders(bib_id).empty?
-                  availability[bib_id][mfhd_id][:status] = 'Requestable'
-                elsif closed_holding_location?(field_852)
-                  availability[bib_id][mfhd_id][:status] = 'Limited'
+                  'Online'
+                elsif !(order = get_approved_orders(bib_id)).empty?
+                  status = order.first[:li_status] == 1 ? 'Order Received' : 'On-Order'
+                  "#{status} #{order.first[:date].strftime('%m-%d-%Y')}"
                 else
-                  availability[bib_id][mfhd_id][:status] = 'Unknown'
+                  'Unknown'
                 end
               else
-                availability[bib_id][mfhd_id][:status] = holding_items.first[:status]
+                holding_items.first[:status]
               end
             end
           end
@@ -248,10 +249,10 @@ module VoyagerHelpers
         hsh
       end
 
-      # assume open unless if the :open value for the location is false
-      def closed_holding_location?(loc_code)
+      # assume full access unless if the :always_requestable value for the location is true
+      def limited_access_location?(loc_code)
         holding_location = Locations::HoldingLocation.find_by(code: loc_code)
-        holding_location.nil? ? false : !holding_location.open
+        holding_location.nil? ? false : holding_location.always_requestable
       end
 
       # Note that the hash is the result of calling `to_hash`, not `to_marchash`
@@ -312,7 +313,9 @@ module VoyagerHelpers
       def exec_get_approved_orders(query, conn)
         statuses = []
         conn.exec(query) do |bib_id,po_status,order_status,date|
-          statuses << { on_order: date.to_datetime }
+          statuses << { date: date.to_datetime,
+                        li_status: order_status,
+                        po_status: po_status }
         end
         statuses
       end
