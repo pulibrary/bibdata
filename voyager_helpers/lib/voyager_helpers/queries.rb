@@ -222,14 +222,13 @@ module VoyagerHelpers
         %Q(
           SELECT
             reserve_list.reserve_list_id,
-            reserve_list_items.item_id,
-            mfhd_item.mfhd_id,
-            bib_mfhd.bib_id
+            bib_item.bib_id
           FROM ((reserve_list join
                reserve_list_items on reserve_list.reserve_list_id = reserve_list_items.reserve_list_id) join
-               mfhd_item on reserve_list_items.item_id = mfhd_item.item_id) join
-               bib_mfhd on mfhd_item.mfhd_id = bib_mfhd.mfhd_id
+               bib_item on reserve_list_items.item_id = bib_item.item_id)
           WHERE reserve_list.reserve_list_id = #{reserve_list_id}
+          GROUP BY reserve_list.reserve_list_id,
+                    bib_item.bib_id;
         )
       end
       
