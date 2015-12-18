@@ -218,7 +218,7 @@ module VoyagerHelpers
             )
       end
       
-      def course_items(reserve_list_id)
+      def course_bibs(reserve_list_id)
         %Q(
           SELECT
             reserve_list.reserve_list_id,
