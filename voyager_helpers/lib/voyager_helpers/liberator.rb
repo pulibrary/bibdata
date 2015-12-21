@@ -203,7 +203,9 @@ module VoyagerHelpers
                   'Unknown'
                 end
               else
-                get_info_for_item(holding_item_ids.first, c, false)[:status]
+                item = get_info_for_item(holding_item_ids.first, c, false)
+                availability[bib_id][mfhd_id][:on_reserve] = item[:temp_location] || item[:perm_location] if item[:on_reserve] == 'Y'
+                item[:status]
               end
             end
           end
@@ -213,13 +215,22 @@ module VoyagerHelpers
       end
 
       # @param mfhd_id [Fixnum] get info for all mfhd items
-      # @return [Array<Hash>] Item hash includes status and enumeration
+      # @return [Array<Hash>] Item hash includes status, enumeration, reserve location code
       def get_full_mfhd_availability(mfhd_id)
         item_availability = []
         items = get_items_for_holding(mfhd_id)
         items.each do |item|
           item_hash = {}
-          item_hash[:status] = item[:status]
+          item_hash[:barcode] = item[:barcode]
+          item_hash[:id] = item[:id]
+          if item[:on_reserve] == 'Y'
+            item_hash[:on_reserve] = item[:temp_location] || item[:perm_location]
+            item_hash[:copy_number] = item[:copy_number]
+            item_hash[:status] = item[:status]
+          else
+            item_hash[:status] = limited_access_location?(item[:perm_location]) ? 'Limited' : item[:status]
+            item_hash[:copy_number] = item[:copy_number] if item[:copy_number] != 1
+          end
           unless item[:enum].nil?
             enum = item[:enum]
             enum << " (#{item[:chron]})" unless item[:chron].nil?
