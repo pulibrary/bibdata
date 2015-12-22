@@ -205,6 +205,47 @@ module VoyagerHelpers
           )
       end
 
+      def active_courses
+        %Q(
+          SELECT
+            reserve_list.reserve_list_id,
+            department.department_name,
+            course.course_name,
+            course.course_number,
+            reserve_list_courses.section_id,
+            instructor.first_name,
+            instructor.last_name
+          FROM ((((reserve_list_courses join
+                  department on reserve_list_courses.department_id = department.department_id) join
+                  instructor on reserve_list_courses.instructor_id = instructor.instructor_id) join
+                  course on reserve_list_courses.course_id = course.course_id) join
+                  reserve_list on reserve_list.reserve_list_id = reserve_list_courses.reserve_list_id)
+                  join reserve_list_items on reserve_list.reserve_list_id = reserve_list_items.reserve_list_id
+          WHERE reserve_list.expire_date >= sysdate
+          GROUP BY
+            reserve_list.reserve_list_id,
+            department.department_name,
+            course.course_name,
+            course.course_number,
+            reserve_list_courses.section_id,
+            instructor.first_name,
+            instructor.last_name
+            )
+      end
+
+      def course_bibs(reserve_list_id)
+        %Q(
+          SELECT
+            reserve_list.reserve_list_id,
+            bib_item.bib_id
+          FROM ((reserve_list join
+               reserve_list_items on reserve_list.reserve_list_id = reserve_list_items.reserve_list_id) join
+               bib_item on reserve_list_items.item_id = bib_item.item_id)
+          WHERE reserve_list.reserve_list_id = #{reserve_list_id}
+          GROUP BY reserve_list.reserve_list_id,
+                    bib_item.bib_id;
+        )
+      end
     end # class << self
   end # module Queries
 end # module VoyagerHelpers
