@@ -19,6 +19,7 @@ settings do
   provide "solrj_writer.commit_on_close", "true"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
+  provide "log.error_file", "/tmp/error.log"
 end
 
 update_locations
@@ -633,6 +634,7 @@ to_field 'related_name_json_1display' do |record, accumulator|
       if s_field.code == 't'
         non_t = false
         break
+
       end
       if s_field.code == '4'
         if relator.nil?
@@ -803,12 +805,14 @@ end
 to_field 'location_code_s', extract_marc('852b', :allow_duplicates => true)
 
 to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = Traject::TranslationMap.new("location_display", :default => "__passthrough__").translate_array!(accumulator)
+  accumulator = Traject::TranslationMap.new("location_display").translate_array!(accumulator)
+  accumulator.delete('Online')
+  accumulator.uniq!
 end
 # # #    1000
 
 to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = Traject::TranslationMap.new("access", :default => "At the Library").translate_array!(accumulator)
+  accumulator = Traject::TranslationMap.new("access", :default => "In the Library").translate_array!(accumulator)
 end
 
 # Call number: +No call number available
@@ -871,6 +875,12 @@ each_record do |record, context|
       end
       context.output_hash['holdings_1display'][0] = holdings_hash.to_json.to_s
       context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
+    end
+  end
+  if context.output_hash['location_code_s']
+    mapped_codes = Traject::TranslationMap.new("locations")
+    context.output_hash['location_code_s'].each do |l|
+      logger.error "#{context.output_hash['id'].first} - Invalid Location Code: #{l}" unless mapped_codes[l]
     end
   end
 end
