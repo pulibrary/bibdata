@@ -186,15 +186,15 @@ module VoyagerHelpers
               mfhd_id = id_from_mfhd_hash(mfhd_hash)
               field_852 = fields_from_marc_hash(mfhd_hash, '852').first['852']
               field_852 = location_from_852(field_852)
-              holding_items = get_items_for_holding(mfhd_id, c)
+              holding_item_ids = get_item_ids_for_holding(mfhd_id, c)
 
               availability[bib_id][mfhd_id] = {} # holding record availability hash
-              availability[bib_id][mfhd_id][:more_items] = holding_items.count > 1
+              availability[bib_id][mfhd_id][:more_items] = holding_item_ids.count > 1
               availability[bib_id][mfhd_id][:location] = field_852
 
               availability[bib_id][mfhd_id][:status] = if limited_access_location?(field_852)
                 'Limited'
-              elsif holding_items.empty?
+              elsif holding_item_ids.empty?
                 if field_852[/^elf/]
                   'Online'
                 elsif !(order_status = get_order_status(bib_id)).nil?
@@ -203,13 +203,42 @@ module VoyagerHelpers
                   'Unknown'
                 end
               else
-                holding_items.first[:status]
+                item = get_info_for_item(holding_item_ids.first, c, false)
+                availability[bib_id][mfhd_id][:on_reserve] = item[:temp_location] || item[:perm_location] if item[:on_reserve] == 'Y'
+                item[:status]
               end
             end
           end
           _, availability = availability.first if full # return just holding availability hash (single bib)
           availability
         end
+      end
+
+      # @param mfhd_id [Fixnum] get info for all mfhd items
+      # @return [Array<Hash>] Item hash includes status, enumeration, reserve location code
+      def get_full_mfhd_availability(mfhd_id)
+        item_availability = []
+        items = get_items_for_holding(mfhd_id)
+        items.each do |item|
+          item_hash = {}
+          item_hash[:barcode] = item[:barcode]
+          item_hash[:id] = item[:id]
+          if item[:on_reserve] == 'Y'
+            item_hash[:on_reserve] = item[:temp_location] || item[:perm_location]
+            item_hash[:copy_number] = item[:copy_number]
+            item_hash[:status] = item[:status]
+          else
+            item_hash[:status] = limited_access_location?(item[:perm_location]) ? 'Limited' : item[:status]
+            item_hash[:copy_number] = item[:copy_number] if item[:copy_number] != 1
+          end
+          unless item[:enum].nil?
+            enum = item[:enum]
+            enum << " (#{item[:chron]})" unless item[:chron].nil?
+            item_hash[:enum] = enum
+          end
+          item_availability << item_hash
+        end
+        item_availability
       end
 
       def dump_bibs_to_file(ids, file_name, opts={})
@@ -271,9 +300,6 @@ module VoyagerHelpers
         hsh.each do |location, holding_arr|
           holding_arr.each do |holding|
             holding.delete(:perm_location)
-            holding.fetch(:items, []).each do |i|
-              i.delete(:perm_location)
-            end
           end
         end
         hsh
@@ -377,30 +403,34 @@ module VoyagerHelpers
       end
 
 
-      def get_info_for_item(item_id, conn=nil)
-        query = VoyagerHelpers::Queries.item_info(item_id)
+      def get_info_for_item(item_id, conn=nil, full=true)
+        query = full == true ? VoyagerHelpers::Queries.full_item_info(item_id) : VoyagerHelpers::Queries.brief_item_info(item_id)
         if conn.nil?
           connection do |c|
-            exec_get_info_for_item(query, c)
+            exec_get_info_for_item(query, c, full)
           end
         else
-          exec_get_info_for_item(query, conn)
+          exec_get_info_for_item(query, conn, full)
         end
       end
 
-      def exec_get_info_for_item(query, conn)
+      def exec_get_info_for_item(query, conn, full)
         info = {}
         conn.exec(query) do |a|
           info[:id] = a.shift
-          info[:copy_number] = a.shift
-          info[:item_sequence_number] = a.shift
-          info[:on_reserve] = a.shift
-          info[:perm_location] = a.shift
-          info[:temp_location] = a.shift
           info[:status] = a.shift
-          date = a.shift
-          info[:status_date] = date.to_datetime unless date.nil?
-          info[:barcode] = a.shift
+          info[:on_reserve] = a.shift
+          info[:temp_location] = a.shift
+          if full == true
+            info[:perm_location] = a.shift
+            info[:enum] = a.shift
+            info[:chron] = a.shift
+            info[:copy_number] = a.shift
+            info[:item_sequence_number] = a.shift
+            date = a.shift
+            info[:status_date] = date.to_datetime unless date.nil?
+            info[:barcode] = a.shift
+          end
         end
         info
       end
