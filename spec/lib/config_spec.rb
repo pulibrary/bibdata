@@ -67,21 +67,21 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'access_facet' do
-    it 'value is at the library for all non-online holding locations' do
+    it 'value is in the library for all non-online holding locations' do
       expect(@sample3['location_code_s'][0]).to eq 'scidoc' # Lewis Library
-      expect(@sample3['access_facet']).to include 'At the Library'
+      expect(@sample3['access_facet']).to include 'In the Library'
       expect(@sample3['access_facet']).not_to include 'Online'
     end
     it 'value is online for elf holding locations' do
       expect(@online['location_code_s'][0]).to eq 'elf1'
       expect(@online['access_facet']).to include 'Online'
-      expect(@online['access_facet']).not_to include 'At the Library'
+      expect(@online['access_facet']).not_to include 'In the Library'
     end
-    it 'value can be both at the library and online when there are multiple holdings' do
+    it 'value can be both in the library and online when there are multiple holdings' do
       expect(@online_at_library['location_code_s']).to include 'elf1'
       expect(@online_at_library['location_code_s']).to include 'rcpph'
       expect(@online_at_library['access_facet']).to include 'Online'
-      expect(@online_at_library['access_facet']).to include 'At the Library'
+      expect(@online_at_library['access_facet']).to include 'In the Library'
     end
   end
   describe 'holdings_1display' do
@@ -114,6 +114,17 @@ describe 'From traject_config.rb' do
     it 'holding 856s are excluded from electronic_access_1display' do
       electronic_access = JSON.parse(@solr_hash['electronic_access_1display'].first)
       expect(electronic_access).not_to include('holding_record_856s')
+    end
+  end
+  describe 'excluding locations from library facet' do
+    it 'when location is online' do
+      expect(@online['location_code_s']).to include 'elf1'
+      expect(@online['location']).to be_nil
+    end
+
+    it 'when location codes that do not map to labels' do
+      expect(@sample1['location_code_s']).to include 'invalidcode'
+      expect(@sample1['location']).to be_nil
     end
   end
 end

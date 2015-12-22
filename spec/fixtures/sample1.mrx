@@ -52,7 +52,7 @@
       <marc:subfield code="a">Bibliography: p. 202-203.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2="0">
-      <marc:subfield code="b">rcppf</marc:subfield>
+      <marc:subfield code="b">invalidcode</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">MICROFILM 03732</marc:subfield>
       <marc:subfield code="x">tr fr flm</marc:subfield>
