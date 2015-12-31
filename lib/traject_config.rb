@@ -77,7 +77,7 @@ end
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
-to_field 'uniform_title_display', extract_marc('100t:110t:111t:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
+to_field 'uniform_title_s', extract_marc('100t:110t:111t:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
 
 
 # Title:
@@ -92,7 +92,7 @@ to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
 to_field 'title_sort' do |record, accumulator|
   MarcExtractor.cached("245abcfghknps", :alternate_script => false).collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first
-    str = str.slice(field.indicator2.to_i, str.length)
+    str = str.slice(field.indicator2.to_i, str.length) if str
     accumulator << str if accumulator[0].nil?
   end
 end
@@ -105,12 +105,27 @@ to_field 'title_vern_sort' do |record, accumulator|
   end
 end
 
+# roman and alt-script title with and without non-filing characters, excluding $h
+to_field 'title_no_h_index' do |record, accumulator|
+  MarcExtractor.cached("245abcfgknps").collect_matching_lines(record) do |field, spec, extractor|
+    str = extractor.collect_subfields(field, spec).first
+    if str
+      accumulator << str
+      str = str.slice(field.indicator2.to_i, str.length)
+      accumulator << str
+    end
+  end
+  accumulator.uniq!
+end
+
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
 to_field 'title_citation_display', extract_marc('245ab', :alternate_script => false, :first => true)
 
 ## Title and Title starts with index-only fields ##
 #################################################
 to_field 'series_title_index', extract_marc('400t:410t:411t:440anpvx:490avx')
+
+to_field 'content_title_index', extract_marc('505t')
 
 to_field 'contains_title_index', extract_marc('700|12|t:710|12|t:711|12|t')
 
@@ -339,11 +354,11 @@ to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:
 
 # Contained in:
 #    3500 BBID773W
-to_field 'contained in_s', extract_marc('773w')
+to_field 'contained_in_s', extract_marc('773w')
 
 # Related record(s):
 #    3500 BBID774W
-to_field 'related_work_s', extract_marc('774w')
+to_field 'related_record_s', extract_marc('774w')
 
 # Restrictions note:
 #    506 XX 3abcde
@@ -696,7 +711,39 @@ to_field 'place_name_display', extract_marc('752abcd')
 #    247 XX abfhnp
 #    730 XX aplskfmnor
 #    740 XX ahnp
-to_field 'other_title_display', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp')
+to_field 'other_title_index', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp')
+
+# only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
+to_field 'other_title_display' do |record, accumulator|
+  MarcExtractor.cached('246|* |abfnp:246|*3|abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp').collect_matching_lines(record) do |field, spec, extractor|
+    if field.tag == '246'
+      label = field.subfields.select{|s_field| s_field.code == 'i'}.first
+      accumulator << extractor.collect_subfields(field, spec).first if label.nil?
+    else
+      accumulator << extractor.collect_subfields(field, spec).first
+    end
+  end
+end
+
+# 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
+to_field 'other_title_1display' do |record, accumulator|
+  other_title_hash = {}
+  MarcExtractor.cached('246abfnp').collect_matching_lines(record) do |field, spec, extractor|
+    label = field.subfields.select{|s_field| s_field.code == 'i'}.first
+    if label.nil?
+      next if field.indicator2 == ' ' || field.indicator2 == '3'
+      label = indicator_label_246(field.indicator2)
+    else
+      label = label.value
+    end
+    label = Traject::Macros::Marc21.trim_punctuation(label)
+    title = extractor.collect_subfields(field, spec).first
+    other_title_hash[label] ? other_title_hash[label] << title : other_title_hash[label] = [title] unless title.nil?
+  end
+  unless other_title_hash == {}
+    accumulator[0] = other_title_hash.to_json.to_s
+  end
+end
 
 # In:
 #    773 XX 3abdghikmnoprst

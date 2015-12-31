@@ -15,9 +15,12 @@ describe 'From traject_config.rb' do
     @sample1=@indexer.map_record(fixture_record('sample1'))
     @sample2=@indexer.map_record(fixture_record('sample2'))
     @sample3=@indexer.map_record(fixture_record('sample3'))
+    @added_title_246=@indexer.map_record(fixture_record('sample18'))
     @related_names=@indexer.map_record(fixture_record('sample27'))
+    @label_i_246=@indexer.map_record(fixture_record('sample28'))
     @online_at_library=@indexer.map_record(fixture_record('sample29'))
     @online=@indexer.map_record(fixture_record('sample30'))
+    @other_title_246=@indexer.map_record(fixture_record('7910599'))
     config = YAML.load(ERB.new(File.read('config/solr.yml')).result)
     @conn = Faraday.new(:url => config['marc_liberation']) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
@@ -125,6 +128,25 @@ describe 'From traject_config.rb' do
     it 'when location codes that do not map to labels' do
       expect(@sample1['location_code_s']).to include 'invalidcode'
       expect(@sample1['location']).to be_nil
+    end
+  end
+  describe 'other_title_display array 246s included' do
+    it 'when 2nd indicator is 3' do
+      expect(@added_title_246['other_title_display']).to include 'Bi ni itaru yamai'
+    end
+    it 'when no indicator or $i' do
+      expect(@other_title_246['other_title_display']).to include 'Episcopus, civitas, territorium'
+    end
+  end
+  describe 'other_title_1display 246s hash' do
+    it 'supports multiple titles per label' do
+      other_title_hash = JSON.parse(@added_title_246['other_title_1display'].first)
+      expect(other_title_hash['Added title page title']).to include 'Morimura Yasumasa, the sickness unto beauty'
+      expect(other_title_hash['Added title page title']).to include 'Sickness unto beauty'
+    end
+    it 'uses label from $i when available' do
+      other_title_hash = JSON.parse(@label_i_246['other_title_1display'].first)
+      expect(other_title_hash['English title also known as']).to include 'Dad for rent'
     end
   end
 end
