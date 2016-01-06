@@ -78,16 +78,30 @@ module MARC
   end
 end
 
-FALLBACK_STANDARD_NO = "Other standard number"
+FALLBACK_STANDARD_NO = 'Other standard number'
 def map_024_indicators_to_labels i
   case i
-  when '0' then "International Standard Recording Code"
-  when '1' then "Universal Product Code"
-  when '2' then "International Standard Music Number"
-  when '3' then "International Article Number"
-  when '4' then "Serial Item and Contribution Identifier"
+  when '0' then 'International Standard Recording Code'
+  when '1' then 'Universal Product Code'
+  when '2' then 'International Standard Music Number'
+  when '3' then 'International Article Number'
+  when '4' then 'Serial Item and Contribution Identifier'
   when '7' then '$2'
   else FALLBACK_STANDARD_NO
+  end
+end
+
+def indicator_label_246 i
+  case i
+  when '0' then 'Portion of title'
+  when '1' then 'Parallel title'
+  when '2' then 'Distinctive title'
+  when '3' then 'Other title'
+  when '4' then 'Cover title'
+  when '5' then 'Added title page title'
+  when '6' then 'Caption title'
+  when '7' then 'Running title'
+  when '8' then 'Spine title'
   end
 end
 
