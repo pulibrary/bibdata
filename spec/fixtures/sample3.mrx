@@ -25,6 +25,9 @@
       <marc:subfield code="a">New accessions list /</marc:subfield>
       <marc:subfield code="c">World Data Center A for Glaciology [Snow and Ice].</marc:subfield>
     </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Should Not Be Here</marc:subfield>
+    </marc:datafield>
     <marc:datafield tag="260" ind1=" " ind2=" ">
       <marc:subfield code="a">Boulder, Col. :</marc:subfield>
       <marc:subfield code="b">The Center,</marc:subfield>

@@ -149,4 +149,9 @@ describe 'From traject_config.rb' do
       expect(other_title_hash['English title also known as']).to include 'Dad for rent'
     end
   end
+  describe 'multiple 245s' do
+    it 'only uses first 245 in single-valued title_display field' do
+      expect(@sample3['title_display'].length).to eq 1
+    end
+  end
 end
