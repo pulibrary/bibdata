@@ -930,4 +930,10 @@ each_record do |record, context|
       logger.error "#{context.output_hash['id'].first} - Invalid Location Code: #{l}" unless mapped_codes[l]
     end
   end
+  if context.output_hash['title_display']
+    if context.output_hash['title_display'].length > 1
+      logger.error "#{context.output_hash['id'].first} - Multiple titles"
+      context.output_hash['title_display'] = context.output_hash['title_display'].slice(0,1)
+    end
+  end
 end
