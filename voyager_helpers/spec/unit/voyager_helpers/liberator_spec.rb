@@ -187,27 +187,3 @@ describe VoyagerHelpers::Liberator do
     end
   end
 end
-
-      def get_full_mfhd_availability(mfhd_id)
-        item_availability = []
-        items = get_items_for_holding(mfhd_id)
-        items.each do |item|
-          item_hash = {}
-          if item[:on_reserve] == 'Y'
-            item_hash[:on_reserve] = item[:temp_location] || item[:perm_location]
-            item_hash[:copy_number] = item[:copy_number]
-            item_hash[:status] = item[:status]
-          else
-            item_hash[:status] = limited_access_location?(item[:perm_location]) ? 'Limited' : item[:status]
-            item_hash[:copy_number] = item[:copy_number] if item[:copy_number] != 1
-          end
-          item_hash[:barcode] = item[:barcode]
-          unless item[:enum].nil?
-            enum = item[:enum]
-            enum << " (#{item[:chron]})" unless item[:chron].nil?
-            item_hash[:enum] = enum
-          end
-          item_availability << item_hash
-        end
-        item_availability
-      end
