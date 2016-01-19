@@ -54,6 +54,27 @@ RSpec.describe AvailabilityController, :type => :controller do
       expect(availability[bib_on_order][holding_id]['status']).to include('On-Order')
     end
 
+    it 'limited access location on-order records have a status of On-Order' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_item_ids_for_holding).and_return([])
+      allow(VoyagerHelpers::Liberator).to receive(:get_order_status).and_return('On-Order')
+      marquand = '9497429'
+      get :index, id: marquand, format: :json
+      availability = JSON.parse(response.body)
+      key, value = availability.first
+      expect(value['location']).to eq('sa')
+      expect(value['status']).to include('On-Order')
+    end
+
+    it 'online on-order records have a status of On-Order' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_order_status).and_return('On-Order')
+      online = '9226664'
+      get :index, id: online, format: :json
+      availability = JSON.parse(response.body)
+      key, value = availability.first
+      expect(value['location']).to include('elf')
+      expect(value['status']).to include('On-Order')
+    end
+
     it 'Received on-order records have a status of Order Received' do
       bib_received_order = '9468468'
       get :index, id: bib_received_order, format: :json
@@ -67,8 +88,17 @@ RSpec.describe AvailabilityController, :type => :controller do
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
       availability = JSON.parse(response.body)
-      puts availability
       expect(availability[bible][holding_id]['status']).to eq('Limited')
+    end
+
+    it 'reference locations have a status of limited' do
+      allow(VoyagerHelpers::Liberator).to receive(:limited_access_location?).and_return(true)
+      music_ref = '9104739'
+      holding_id = '9000808'
+      get :index, id: music_ref, format: :json
+      availability = JSON.parse(response.body)
+      expect(availability[holding_id]['location']).to eq('sv')
+      expect(availability[holding_id]['status']).to eq('Limited')
     end
 
     it 'all other holding records without items have a status of unknown' do

@@ -192,20 +192,24 @@ module VoyagerHelpers
               availability[bib_id][mfhd_id][:more_items] = holding_item_ids.count > 1
               availability[bib_id][mfhd_id][:location] = field_852
 
-              availability[bib_id][mfhd_id][:status] = if limited_access_location?(field_852)
-                'Limited'
-              elsif holding_item_ids.empty?
-                if field_852[/^elf/]
-                  'Online'
-                elsif !(order_status = get_order_status(bib_id)).nil?
+              availability[bib_id][mfhd_id][:status] = if holding_item_ids.empty?
+                if !(order_status = get_order_status(bib_id)).nil?
                   order_status
+                elsif field_852[/^elf/]
+                  'Online'
+                elsif limited_access_location?(field_852)
+                  'Limited'
                 else
                   'Unknown'
                 end
               else
                 item = get_info_for_item(holding_item_ids.first, c, false)
                 availability[bib_id][mfhd_id][:on_reserve] = item[:temp_location] || item[:perm_location] if item[:on_reserve] == 'Y'
-                item[:status]
+                if limited_access_location?(field_852)
+                  'Limited'
+                else
+                  item[:status]
+                end
               end
             end
           end
@@ -306,9 +310,15 @@ module VoyagerHelpers
       end
 
       # assume full access unless if the :always_requestable value for the location is true
+      # or if the location is a reference location
       def limited_access_location?(loc_code)
+        limited = false
         holding_location = Locations::HoldingLocation.find_by(code: loc_code)
-        holding_location.nil? ? false : holding_location.always_requestable
+        unless holding_location.nil? 
+          limited = holding_location.always_requestable
+          limited = true if holding_location.label.match(/Reference/)
+        end
+        limited
       end
 
       # Note that the hash is the result of calling `to_hash`, not `to_marchash`
