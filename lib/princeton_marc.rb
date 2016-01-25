@@ -130,14 +130,20 @@ end
 # ISBN: 020a, 020z, 776z
 # ISSN: 022a, 022l, 022y, 022z, 776x
 # OCLC: 035a, 776w, 787w
+# BIB: 776w, 787w (adds BIB prefix so Blacklight can detect whether to search id field)
 def other_versions record
   linked_nums = []
   Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, spec, extractor|
     field.subfields.each do |s_field|
       linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") or (field.tag == "776" and s_field.code == 'z')
       linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") or (field.tag == "776" and s_field.code == 'x')
-      if (field.tag == "035") or (field.tag == "776" and s_field.code == 'w') or (field.tag == "787" and s_field.code == 'w')
-        linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)')
+      linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)') and (field.tag == "035")
+      if (field.tag == "776" and s_field.code == 'w') or (field.tag == "787" and s_field.code == 'w')
+        linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.include?('(OCoLC)')
+        linked_nums << "BIB" + strip_non_numeric(s_field.value) unless s_field.value.include?('(')
+        if s_field.value.include?('(') and !s_field.value.start_with?('(')
+          logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
+        end
       end
     end
   end
@@ -276,8 +282,12 @@ def process_subject_topic_facet record
   subjects.flatten
 end
 
+def strip_non_numeric num_str
+  num_str.gsub(/\D/, '').to_i.to_s
+end
+
 def oclc_normalize oclc, opts = {prefix: false}
-  oclc_num = oclc.gsub(/\D/, '').to_i.to_s
+  oclc_num = strip_non_numeric(oclc)
   if opts[:prefix] == true
     case oclc_num.length
     when 1..8
