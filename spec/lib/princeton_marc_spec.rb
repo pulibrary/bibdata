@@ -101,8 +101,10 @@ describe 'From princeton_marc.rb' do
 
   describe 'other_versions function' do
     before(:all) do
-      @non_oclc_num = '12345678'
-      @non_oclc_776w = {"776"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"w"=>@non_oclc_num}]}}
+      @bib = '12345678'
+      @bib_776w = {"776"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"w"=>@bib}]}}
+      @non_oclc_non_bib = '(DLC)12345678'
+      @non_oclc_non_bib_776w = {"776"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"w"=>@non_oclc_non_bib}]}}
       @oclc_num = '(OCoLC)on9990014350'
       @oclc_776w = {"776"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"w"=>@oclc_num}]}}
       @oclc_num2 = '(OCoLC)on9990014351'
@@ -119,7 +121,7 @@ describe 'From princeton_marc.rb' do
       @isbn_num2 = 'ISBN: 978-0-306-40615-7'
       @isbn_num2_10d = '0-306-40615-2'
       @isbn_020 = {"020"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>@isbn_num2}, {"z"=>@isbn_num2_10d}]}}
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@non_oclc_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020] })
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@bib_776w, @non_oclc_non_bib_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020] })
       @linked_nums = other_versions(@sample_marc)
     end
 
@@ -127,6 +129,7 @@ describe 'From princeton_marc.rb' do
       expect(@linked_nums).to include(oclc_normalize(@oclc_num, prefix: true))
       expect(@linked_nums).to include(oclc_normalize(@oclc_num2, prefix: true))
       expect(@linked_nums).to include(oclc_normalize(@oclc_num4, prefix: true))
+      expect(@linked_nums).to include('BIB' + strip_non_numeric(@bib))
       expect(@linked_nums).to include(StdNum::ISSN.normalize(@issn_num))
       expect(@linked_nums).to include(StdNum::ISSN.normalize(@issn_num2))
       expect(@linked_nums).to include(StdNum::ISBN.normalize(@isbn_num))
@@ -144,8 +147,8 @@ describe 'From princeton_marc.rb' do
       expect(@linked_nums).not_to include(oclc_normalize(@oclc_num3, prefix: true))
     end
 
-    it 'excludes non oclc in expected oclc subfield' do
-      expect(@linked_nums).not_to include(oclc_normalize(@non_oclc_num, prefix: true))
+    it 'excludes non oclc/non bib in expected oclc/bib subfield' do
+      expect(@linked_nums).not_to include(oclc_normalize(@non_oclc_non_bib, prefix: true))
     end
   end
 
