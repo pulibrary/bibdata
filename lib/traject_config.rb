@@ -842,7 +842,11 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator|
   all_holdings = process_holdings(record)
-  accumulator[0] = all_holdings.to_json.to_s unless all_holdings == {}
+  if all_holdings == {}
+    logger.error "#{record['001']} - Missing holdings"
+  else
+    accumulator[0] = all_holdings.to_json.to_s
+  end
 end
 
 to_field 'location_display', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
@@ -858,7 +862,7 @@ to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record,
 end
 # # #    1000
 
-to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
+to_field 'access_s', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
   accumulator = Traject::TranslationMap.new("access", :default => "In the Library").translate_array!(accumulator)
 end
 
