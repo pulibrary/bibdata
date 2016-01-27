@@ -862,7 +862,7 @@ to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record,
 end
 # # #    1000
 
-to_field 'access_s', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
+to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
   accumulator = Traject::TranslationMap.new("access", :default => "In the Library").translate_array!(accumulator)
 end
 
