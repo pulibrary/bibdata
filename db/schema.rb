@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605135610) do
+ActiveRecord::Schema.define(version: 20160127213220) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20150605135610) do
     t.integer  "locations_library_id", limit: 4
     t.string   "gfa_pickup",           limit: 255
     t.boolean  "pickup_location",      limit: 1,     default: false
+    t.boolean  "digital_location",     limit: 1
   end
 
   add_index "locations_delivery_locations", ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id", using: :btree

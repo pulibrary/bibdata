@@ -34,7 +34,7 @@ group :development, :test do
   gem 'rerun', '~> 0.10.0'
 end
 
-gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.1.2'
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.2.0'
 gem 'yaml_db', '~> 0.3.0'
 gem 'friendly_id', '~> 5.1.0'
 
