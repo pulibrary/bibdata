@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:pulibrary/locations.git
-  revision: e47fbe98df9d44b3ef0cebf07a7fd93eef2f9efc
-  tag: 0.1.2
+  revision: 650cf5ea20ac7ecf72395b5be9db6178fb6ad683
+  tag: 0.2.0
   specs:
     locations (0.1.2)
       bootstrap-sass (~> 3.3)
