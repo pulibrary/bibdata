@@ -172,10 +172,10 @@ to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
 end
 
 
-# format just one
+# format - allow multiple - "first" one is used for thumbnail
 to_field 'format' do |record, accumulator|
-    fmt = Format.new(record).bib_format
-    accumulator << Traject::TranslationMap.new("format")[fmt]
+  formats = Format.new(record).bib_format
+  formats.each {|fmt| accumulator << Traject::TranslationMap.new("format")[fmt]}
 end
 
 # Medium/Support:
