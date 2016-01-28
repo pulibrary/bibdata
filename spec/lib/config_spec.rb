@@ -20,6 +20,7 @@ describe 'From traject_config.rb' do
     @label_i_246=@indexer.map_record(fixture_record('sample28'))
     @online_at_library=@indexer.map_record(fixture_record('sample29'))
     @online=@indexer.map_record(fixture_record('sample30'))
+    @elf2=@indexer.map_record(fixture_record('elf2'))
     @other_title_246=@indexer.map_record(fixture_record('7910599'))
     config = YAML.load(ERB.new(File.read('config/solr.yml')).result)
     @conn = Faraday.new(:url => config['marc_liberation']) do |faraday|
@@ -69,22 +70,27 @@ describe 'From traject_config.rb' do
       rel_names['Related name'].each {|n| expect(@related_names['author_s']).to include(n)}
     end
   end
-  describe 'access_s' do
+  describe 'access_facet' do
     it 'value is in the library for all non-online holding locations' do
       expect(@sample3['location_code_s'][0]).to eq 'scidoc' # Lewis Library
-      expect(@sample3['access_s']).to include 'In the Library'
-      expect(@sample3['access_s']).not_to include 'Online'
+      expect(@sample3['access_facet']).to include 'In the Library'
+      expect(@sample3['access_facet']).not_to include 'Online'
     end
-    it 'value is online for elf holding locations' do
+    it 'value is at the library for elf2 holding location' do
+      expect(@elf2['location_code_s'][0]).to eq 'elf2'
+      expect(@elf2['access_facet']).not_to include 'Online'
+      expect(@elf2['access_facet']).to include 'In the Library'
+    end
+    it 'value is online for all other elf holding locations' do
       expect(@online['location_code_s'][0]).to eq 'elf1'
-      expect(@online['access_s']).to include 'Online'
-      expect(@online['access_s']).not_to include 'In the Library'
+      expect(@online['access_facet']).to include 'Online'
+      expect(@online['access_facet']).not_to include 'In the Library'
     end
     it 'value can be both in the library and online when there are multiple holdings' do
       expect(@online_at_library['location_code_s']).to include 'elf1'
       expect(@online_at_library['location_code_s']).to include 'rcpph'
-      expect(@online_at_library['access_s']).to include 'Online'
-      expect(@online_at_library['access_s']).to include 'In the Library'
+      expect(@online_at_library['access_facet']).to include 'Online'
+      expect(@online_at_library['access_facet']).to include 'In the Library'
     end
   end
   describe 'holdings_1display' do
