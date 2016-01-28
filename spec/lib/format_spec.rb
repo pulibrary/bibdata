@@ -9,18 +9,17 @@ describe 'From format.rb' do
     'Data File' => ['m '],
     'Visual Material' => ['k ', 'o ', 'r '],
     'Video/Projected Medium' => ['g '],
-    'Musical Score' => ['c '],
+    'Musical Score' => ['c ', 'd '],
     'Audio' => ['i ', 'j '],
     'Map' => ['e '],
-    'Manuscript' => ['d ', 'f ', 't '],
-    'Mixed Material' => ['p '],
+    'Manuscript' => ['d ', 'f ', 't ', 'p '],
     'Unknown' => ['  ', 'zz']
   }.each do |k, v|
     it "properly determines format for #{k}" do
       v.each do |c|
         marc.leader[6..7] = c
         fmt = Format.new(marc).bib_format
-        expect(Traject::TranslationMap.new("format")[fmt]).to eq k
+        expect(Traject::TranslationMap.new("format").translate_array!(fmt)).to include k
       end
     end
   end

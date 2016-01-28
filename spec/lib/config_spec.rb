@@ -15,6 +15,7 @@ describe 'From traject_config.rb' do
     @sample1=@indexer.map_record(fixture_record('sample1'))
     @sample2=@indexer.map_record(fixture_record('sample2'))
     @sample3=@indexer.map_record(fixture_record('sample3'))
+    @manuscript_book=@indexer.map_record(fixture_record('sample17'))
     @added_title_246=@indexer.map_record(fixture_record('sample18'))
     @related_names=@indexer.map_record(fixture_record('sample27'))
     @label_i_246=@indexer.map_record(fixture_record('sample28'))
@@ -158,6 +159,11 @@ describe 'From traject_config.rb' do
   describe 'multiple 245s' do
     it 'only uses first 245 in single-valued title_display field' do
       expect(@sample3['title_display'].length).to eq 1
+    end
+  end
+  describe 'multiformat record' do
+    it 'manuscript book includes both formats, manuscript first' do
+      expect(@manuscript_book['format']).to eq ['Manuscript', 'Book']
     end
   end
 end
