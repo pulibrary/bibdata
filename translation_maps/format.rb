@@ -27,7 +27,7 @@
     "RU" => "Audio",
     "SE" => "Serial",
     "ST" => "Senior Thesis",
-    "TH" => "Thesis",
+    "TH" => "Dissertation",
     "VB" => "Video (Blu-ray)",
     "VD" => "Video (DVD)",
     "VG" => "Video Games",
