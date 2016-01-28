@@ -17,9 +17,9 @@ class BibFormat
     if record['502']
       if record['502']['a']
         if (record['502']['a'].include? "(Senior)--Princeton University") || (record['502']['a'].include? "Thesis (Senior)-Princeton University")
-          @code = "ST"
+          @code = ["ST"]
         else
-          @code = "TH"
+          @code = ["TH"]
         end
       end
     else
@@ -28,30 +28,27 @@ class BibFormat
   end
 
   def determine_bib_code(type, lev)
-    return "BK" if bibformat_bk(type, lev)
-    return "AJ" if bibformat_jn(type, lev)    
-    return "CF" if bibformat_cf(type, lev)
-    return "VM" if bibformat_vm(type, lev)
-    return "VP" if bibformat_vp(type, lev)    
-    return "MS" if bibformat_mu(type, lev)
-    return "AU" if bibformat_au(type, lev)
-    return "MP" if bibformat_mp(type, lev)
-    return "MW" if bibformat_mw(type, lev)
-    return "MX" if bibformat_mx(type, lev)
+    format = []
+    format << "AJ" if bibformat_jn(type, lev) # journal
+    format << "CF" if bibformat_cf(type, lev) # data file
+    format << "VM" if bibformat_vm(type, lev) # visual material
+    format << "VP" if bibformat_vp(type, lev) # video
+    format << "MS" if bibformat_mu(type, lev) # musical score
+    format << "AU" if bibformat_au(type, lev) # audio
+    format << "MP" if bibformat_mp(type, lev) # map
+    format << "MW" if bibformat_mw(type, lev) # manuscript
+    format << "BK" if bibformat_bk(type, lev) # book
 
-
-
-    # No match
-    return 'XX'
-
+    format << 'XX' if format.empty? # unknown if no match
+    format
   end
 
   def bibformat_bk(type, lev)
-    (type == 'a') && %w[a b c d i m].include?(lev)
+    (type == 't') or ((type == 'a') and %w[a b c d i m].include?(lev))
   end
 
   def bibformat_jn(type, lev)
-    (type == 'a') && (lev == 's')
+    (type == 'a') and (lev == 's')
   end  
 
   def bibformat_cf(type, lev)
@@ -71,18 +68,15 @@ class BibFormat
   end
 
   def bibformat_mu(type, lev)
-    (type == 'c') #&& %w[a b c d m s].include?(lev)
+    %w[c d].include?(type)
   end
 
   def bibformat_mp(type, lev)
-    (type == 'e')
+    %w[e f].include?(type)
   end
 
   def bibformat_mw(type, lev)
-    %w[d f t].include?(type)
+    %w[d f p t].include?(type)
   end
 
-  def bibformat_mx(type, lev)
-    (type == 'p')
-  end
 end
