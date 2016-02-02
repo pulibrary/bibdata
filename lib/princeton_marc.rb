@@ -415,9 +415,9 @@ def process_holdings record
       if s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] = Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-        holding['library'] = Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
-        holding['location_code'] = s_field.value
+        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
+        holding['location_code'] ||= s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
@@ -426,9 +426,11 @@ def process_holdings record
           holding['call_number_browse'] << s_field.value
         end
       elsif s_field.code == 'l'
-        holding['shelving_title'] = s_field.value
+        holding['shelving_title'] ||= []
+        holding['shelving_title'] << s_field.value
       elsif s_field.code == 'z'
-        holding['location_note'] = s_field.value
+        holding['location_note'] ||= []
+        holding['location_note'] << s_field.value
       end
     end
     holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
@@ -447,7 +449,10 @@ def process_holdings record
         value << s_field.value
       end
     end
-    all_holdings[holding_id]['location_has'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] and !value.empty?)
+      all_holdings[holding_id]['location_has'] ||= []
+      all_holdings[holding_id]['location_has'] << value.join(' ')
+    end
   end
   Traject::MarcExtractor.cached('866|  |0az').collect_matching_lines(record) do |field, spec, extractor|
     value = []
@@ -461,7 +466,10 @@ def process_holdings record
         value << s_field.value
       end
     end
-    all_holdings[holding_id]['location_has_current'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] and !value.empty?)
+      all_holdings[holding_id]['location_has_current'] ||= []
+      all_holdings[holding_id]['location_has_current'] << value.join(' ')
+    end
   end
   Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, spec, extractor|
     value = []
@@ -475,7 +483,10 @@ def process_holdings record
         value << s_field.value
       end
     end
-    all_holdings[holding_id]['supplements'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] and !value.empty?)
+      all_holdings[holding_id]['supplements'] ||= []
+      all_holdings[holding_id]['supplements'] << value.join(' ')
+    end
   end
   Traject::MarcExtractor.cached('8680az').collect_matching_lines(record) do |field, spec, extractor|
     value = []
@@ -489,7 +500,10 @@ def process_holdings record
         value << s_field.value
       end
     end
-    all_holdings[holding_id]['indexes'] = value.join(' ') if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] and !value.empty?)
+      all_holdings[holding_id]['indexes'] ||= []
+      all_holdings[holding_id]['indexes'] << value.join(' ')
+    end
   end
   all_holdings
 end
