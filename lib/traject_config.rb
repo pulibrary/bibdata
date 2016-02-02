@@ -849,21 +849,39 @@ to_field 'holdings_1display' do |record, accumulator|
   end
 end
 
-to_field 'location_display', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = Traject::TranslationMap.new("locations").translate_array!(accumulator)
-end
+# Process location code once
+each_record do |record, context|
+  location_codes = []
+  MarcExtractor.cached("852b").collect_matching_lines(record) do |field, spec, extractor|
+    holding_b = nil
+    field.subfields.each do |s_field|
+      if s_field.code == 'b'
+        logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
+        holding_b ||= s_field.value
+      end
+    end
+    location_codes << holding_b
+  end
+  unless location_codes.empty?
+    location_codes.uniq!
+    context.output_hash['location_code_s'] = location_codes
+    mapped_codes = Traject::TranslationMap.new("locations")
+    location_codes.each do |l|
+      if mapped_codes[l]
+        context.output_hash['location_display'] ||= []
+        context.output_hash['location_display'] << mapped_codes[l]
+      else
+        logger.error "#{record['001']} - Invalid Location Code: #{l}"
+      end
+    end
 
-to_field 'location_code_s', extract_marc('852b', :allow_duplicates => true)
+    # do not index location field if empty (when location code invalid or online)
+    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
+    context.output_hash['location'].delete('Online')
+    context.output_hash.delete('location') if context.output_hash['location'].empty?
 
-to_field 'location', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = Traject::TranslationMap.new("location_display").translate_array!(accumulator)
-  accumulator.delete('Online')
-  accumulator.uniq!
-end
-# # #    1000
-
-to_field 'access_facet', extract_marc('852b', :allow_duplicates => true) do |record, accumulator|
-  accumulator = Traject::TranslationMap.new("access", :default => "In the Library").translate_array!(accumulator)
+    context.output_hash['access_facet'] = Traject::TranslationMap.new("access", :default => "In the Library").translate_array(location_codes)
+  end
 end
 
 # Call number: +No call number available
@@ -926,12 +944,6 @@ each_record do |record, context|
       end
       context.output_hash['holdings_1display'][0] = holdings_hash.to_json.to_s
       context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
-    end
-  end
-  if context.output_hash['location_code_s']
-    mapped_codes = Traject::TranslationMap.new("locations")
-    context.output_hash['location_code_s'].each do |l|
-      logger.error "#{context.output_hash['id'].first} - Invalid Location Code: #{l}" unless mapped_codes[l]
     end
   end
   if context.output_hash['title_display']

@@ -3,12 +3,12 @@ require 'traject'
 require 'faraday'
 
 describe 'From traject_config.rb' do
-  before(:all) do
+  def fixture_record(fixture_name)
+    f=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
+    MARC::XMLReader.new(f).first
+  end
 
-    def fixture_record(fixture_name)
-      f=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
-      MARC::XMLReader.new(f).first
-    end
+  before(:all) do
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
     @indexer = Traject::Indexer.new
     @indexer.load_config_file(c)
@@ -108,8 +108,8 @@ describe 'From traject_config.rb' do
     it 'groups holding info into a hash keyed on the mfhd id' do
       @holding_records.each do |holding|
         holding_id = holding['001'].value
-        expect(@holding_block[holding_id]['location_code']).to eq(holding['852']['b'])
-        expect(@holding_block[holding_id]['location_note']).to eq(holding['852']['z'])
+        expect(@holding_block[holding_id]['location_code']).to include(holding['852']['b'])
+        expect(@holding_block[holding_id]['location_note']).to include(holding['852']['z'])
       end
     end
 
@@ -129,11 +129,13 @@ describe 'From traject_config.rb' do
   describe 'excluding locations from library facet' do
     it 'when location is online' do
       expect(@online['location_code_s']).to include 'elf1'
+      expect(@online['location_display']).to include 'Online - *ONLINE*'
       expect(@online['location']).to be_nil
     end
 
     it 'when location codes that do not map to labels' do
       expect(@sample1['location_code_s']).to include 'invalidcode'
+      expect(@sample1['location_display']).to be_nil
       expect(@sample1['location']).to be_nil
     end
   end
@@ -164,6 +166,18 @@ describe 'From traject_config.rb' do
   describe 'multiformat record' do
     it 'manuscript book includes both formats, manuscript first' do
       expect(@manuscript_book['format']).to eq ['Manuscript', 'Book']
+    end
+  end
+  describe '852 $b location processing' do
+    let(:extra_b_record) { fixture_record('sample27') }
+    let(:single_b)  { extra_b_record.fields('852')[0]['b'] }
+    let(:extra_b) { extra_b_record.fields('852')[1].map { |f| f.value if f.code == 'b' }.compact }
+
+    it 'supports multiple location codes in separate 852s' do
+      expect(@related_names['location_code_s']).to include(single_b, extra_b.first)
+    end
+    it 'only includes the first $b within a single tag' do
+      expect(@related_names['location_code_s']).not_to include(extra_b.last)
     end
   end
 end
