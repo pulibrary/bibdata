@@ -14,17 +14,19 @@ class BibFormat
     type = ldr[6]
     lev  = ldr[7]
     # assuming all 502s have an a subfield
+    @code = []
     if record['502']
       if record['502']['a']
         if (record['502']['a'].include? "(Senior)--Princeton University") || (record['502']['a'].include? "Thesis (Senior)-Princeton University")
-          @code = ["ST"]
+          @code << "ST"
         else
-          @code = ["TH"]
+          @code << "TH"
         end
       end
-    else
-      @code = self.determine_bib_code(type, lev)
     end
+    @code << self.determine_bib_code(type, lev)
+    @code = @code.flatten
+    @code << 'XX' if @code.empty?
   end
 
   def determine_bib_code(type, lev)
@@ -38,8 +40,6 @@ class BibFormat
     format << "MP" if bibformat_mp(type, lev) # map
     format << "MW" if bibformat_mw(type, lev) # manuscript
     format << "BK" if bibformat_bk(type, lev) # book
-
-    format << 'XX' if format.empty? # unknown if no match
     format
   end
 
