@@ -200,7 +200,7 @@ module VoyagerHelpers
                 elsif limited_access_location?(field_852)
                   'Limited'
                 else
-                  'Unknown'
+                  'On Shelf'
                 end
               else
                 item = get_info_for_item(holding_item_ids.first, c, false)

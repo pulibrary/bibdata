@@ -101,12 +101,12 @@ RSpec.describe AvailabilityController, :type => :controller do
       expect(availability[holding_id]['status']).to eq('Limited')
     end
 
-    it 'all other holding records without items have a status of unknown' do
+    it 'all other holding records without items have a status of On Shelf' do
       bib_ipad = '7617477'
       holding_id = '7429805'
       get :index, ids: [bib_ipad], format: :json
       availability = JSON.parse(response.body)
-      expect(availability[bib_ipad][holding_id]['status']).to eq('Unknown')
+      expect(availability[bib_ipad][holding_id]['status']).to eq('On Shelf')
     end
 
     it 'more_items is true when there is more than 1 item for a holding' do
