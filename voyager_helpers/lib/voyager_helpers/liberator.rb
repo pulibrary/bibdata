@@ -245,6 +245,19 @@ module VoyagerHelpers
         item_availability
       end
 
+      # @param mfhd_id [Fixnum] get current issues for mfhd
+      # @return [Array<Hash>] Current issues
+      def get_current_issues(mfhd_id)
+        query = VoyagerHelpers::Queries.current_periodicals(mfhd_id)
+        issues = []
+        connection do |c|
+          c.exec(query) do |enum|
+            issues << enum.first
+          end
+        end
+        issues
+      end
+
       def dump_bibs_to_file(ids, file_name, opts={})
         writer = MARC::XMLWriter.new(file_name)
         connection do |c|

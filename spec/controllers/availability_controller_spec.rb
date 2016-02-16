@@ -136,6 +136,20 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
   end
 
+  describe 'mfhd_serial location has current' do
+    it '404 when no volumes found for given mfhd' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_current_issues).and_return([])
+      get :index, mfhd_serial: '12345678901', format: :json
+      expect(response).to have_http_status(404)
+    end
+    it 'current volumes for given_mfhd are parsed as an array' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_current_issues).and_return(['v1', 'v2', 'v3'])
+      get :index, mfhd_serial: '12345678901', format: :json
+      current_issues = JSON.parse(response.body)
+      expect(current_issues).to match_array(['v1', 'v2', 'v3'])
+    end
+  end
+
   it "404 when bibs are not provided" do
     get :index, ids: [], format: :json
     expect(response).to have_http_status(404)
