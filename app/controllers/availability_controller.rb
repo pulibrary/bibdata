@@ -27,6 +27,15 @@ class AvailabilityController < ApplicationController
           wants.json  { render json: MultiJson.dump(avail) }
         end
       end
+    elsif params[:mfhd_serial]
+      avail = VoyagerHelpers::Liberator.get_current_issues(sanitize(params[:mfhd_serial]).to_i)
+      if avail.empty?
+        render plain: "No current issues found for record #{params[:mfhd_serial]}.", status: 404
+      else
+        respond_to do |wants|
+          wants.json  { render json: MultiJson.dump(avail) }
+        end
+      end
     else
       render plain: "Please provide a bib id.", status: 404
     end

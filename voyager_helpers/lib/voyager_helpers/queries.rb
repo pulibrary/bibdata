@@ -243,7 +243,21 @@ module VoyagerHelpers
                bib_item on reserve_list_items.item_id = bib_item.item_id)
           WHERE reserve_list.reserve_list_id = #{reserve_list_id}
           GROUP BY reserve_list.reserve_list_id,
-                    bib_item.bib_id;
+                    bib_item.bib_id
+        )
+      end
+
+      def current_periodicals(mfhd_id)
+        %Q(
+        SELECT
+          SERIAL_ISSUES.ENUMCHRON
+        FROM (LINE_ITEM INNER JOIN LINE_ITEM_COPY_STATUS ON LINE_ITEM.LINE_ITEM_ID = LINE_ITEM_COPY_STATUS.LINE_ITEM_ID) INNER JOIN
+             (((SUBSCRIPTION INNER JOIN COMPONENT ON SUBSCRIPTION.SUBSCRIPTION_ID = COMPONENT.SUBSCRIPTION_ID) INNER JOIN
+             ISSUES_RECEIVED ON COMPONENT.COMPONENT_ID = ISSUES_RECEIVED.COMPONENT_ID) INNER JOIN
+             SERIAL_ISSUES ON (ISSUES_RECEIVED.COMPONENT_ID = SERIAL_ISSUES.COMPONENT_ID) AND
+             (ISSUES_RECEIVED.ISSUE_ID = SERIAL_ISSUES.ISSUE_ID)) ON LINE_ITEM_COPY_STATUS.LINE_ITEM_ID = SUBSCRIPTION.LINE_ITEM_ID
+        WHERE (((LINE_ITEM_COPY_STATUS.MFHD_ID = #{mfhd_id}) AND (SERIAL_ISSUES.RECEIVED)='1') AND ((ISSUES_RECEIVED.OPAC_SUPPRESSED)='1'))
+        GROUP BY LINE_ITEM_COPY_STATUS.MFHD_ID, SERIAL_ISSUES.ENUMCHRON
         )
       end
     end # class << self
