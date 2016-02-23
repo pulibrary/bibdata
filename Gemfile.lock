@@ -10,13 +10,20 @@ GIT
       rails (~> 4.2)
       yaml_db (~> 0.3.0)
 
+GIT
+  remote: https://github.com/pulibrary/stringex.git
+  revision: 357f70511532a35b11a240e5ae06d02725cb8d0a
+  tag: vpton.2.5.2.2
+  specs:
+    stringex (2.5.2)
+
 PATH
   remote: ./voyager_helpers
   specs:
     voyager_helpers (0.0.1.dev)
       activesupport (~> 4.1)
       diffy (~> 3.0.7)
-      marc (~> 0.8.2)
+      marc (~> 1.0)
       ruby-oci8 (~> 2.2.1)
 
 GEM
@@ -99,6 +106,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colorize (0.7.7)
     columnize (0.9.0)
+    concurrent-ruby (1.0.0)
     coveralls (0.8.10)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
@@ -119,9 +127,11 @@ GEM
     docile (1.1.5)
     domain_name (0.5.25)
       unf (>= 0.0.5, < 1.0.0)
-    ensure_valid_encoding (0.5.3)
+    dot-properties (0.1.3)
     erubis (2.7.0)
     execjs (2.5.2)
+    faraday (0.9.2)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.8)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -135,6 +145,7 @@ GEM
     hitimes (1.2.2)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
+    httpclient (2.7.1)
     i18n (0.7.0)
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
@@ -144,6 +155,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
+    library_stdnums (1.4.1)
     libv8 (3.16.14.7)
     listen (2.10.0)
       celluloid (~> 0.16.0)
@@ -153,15 +165,17 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    marc (0.8.2)
-      ensure_valid_encoding
+    marc (1.0.0)
       scrub_rb (>= 1.0.1, < 2)
       unf
+    marc-fastxmlwriter (1.0.0)
+      marc (~> 1.0)
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.7.0)
     mono_logger (1.1.0)
     multi_json (1.10.1)
+    multipart-post (2.0.0)
     mysql2 (0.3.18)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -304,6 +318,15 @@ GEM
     timers (4.0.1)
       hitimes
     tins (1.6.0)
+    traject (2.2.1)
+      concurrent-ruby (>= 0.8.0)
+      dot-properties (>= 0.1.1)
+      hashie (~> 3.1)
+      httpclient (~> 2.5)
+      marc (~> 1.0)
+      marc-fastxmlwriter (~> 1.0)
+      slop (>= 3.4.5, < 4.0)
+      yell
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -313,7 +336,7 @@ GEM
       json (>= 1.8.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.1)
+    unf_ext (0.0.7.2)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.3)
@@ -326,6 +349,7 @@ GEM
     yaml_db (0.3.0)
       rails (>= 3.0, < 4.3)
       rake (>= 0.8.7)
+    yell (2.0.5)
 
 PLATFORMS
   ruby
@@ -337,13 +361,15 @@ DEPENDENCIES
   capistrano-rails (~> 1.1.1)
   capybara
   devise
+  faraday
   friendly_id (~> 5.1.0)
   gyoku (~> 1.0)
   high_voltage (~> 2.2.1)
   jbuilder (~> 2.0)
   jquery-rails
+  library_stdnums
   locations!
-  marc (~> 0.8.2)
+  marc (~> 1.0)
   multi_json (~> 1.10.1)
   mysql2
   omniauth-cas
@@ -361,7 +387,9 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   sinatra (~> 1.4.5)
   spring
+  stringex!
   therubyracer
+  traject (~> 2.0)
   turbolinks
   uglifier (>= 1.3.0)
   voyager_helpers!

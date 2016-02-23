@@ -8,3 +8,5 @@
 # Ignore everything
 /data/*
 !/data/.keep
+/config/translation_maps/locations.rb
+/config/translation_maps/location_display.rb

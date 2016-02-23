@@ -40,6 +40,33 @@ class BibliographicController < ApplicationController
     end
   end
 
+  def bib_solr
+    opts = {
+      holdings: params.fetch('holdings', 'true') == 'true',
+      holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
+    }
+
+    records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+
+    if records.nil?
+      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+    else
+      solr_doc = indexer.map_record(records)
+      render json: solr_doc
+    end
+  end
+
+  def indexer
+    @indexer ||= setup_indexer
+  end
+
+  def setup_indexer
+    c=File.join(Rails.root, 'config', 'traject', 'traject_config.rb')
+    indexer = Traject::Indexer.new
+    indexer.load_config_file(c)
+    indexer
+  end
+
   def bib_holdings
     records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
     if records.nil?
