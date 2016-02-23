@@ -61,7 +61,7 @@ class BibliographicController < ApplicationController
   end
 
   def setup_indexer
-    c=File.join(Rails.root, 'config', 'traject', 'traject_config.rb')
+    c = File.join(Rails.root, 'config', 'traject', 'traject_config.rb')
     indexer = Traject::Indexer.new
     indexer.load_config_file(c)
     indexer
@@ -69,7 +69,7 @@ class BibliographicController < ApplicationController
 
   def bib_holdings
     records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
-    if records.nil?
+    if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|
@@ -87,7 +87,7 @@ class BibliographicController < ApplicationController
 
   def bib_items
     records = VoyagerHelpers::Liberator.get_items_for_bib(sanitize(params[:bib_id]))
-    if records.nil?
+    if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|
