@@ -45,7 +45,8 @@ module VoyagerHelpers
             ON mfhd_item.item_id = item.item_id
           LEFT JOIN item_barcode
             ON item_barcode.item_id = item.item_id
-        WHERE item.item_id=#{item_id}
+        WHERE item.item_id=#{item_id} AND
+          item_status.item_status NOT IN ('5', '6', '16', '19', '20', '21', '23', '24')
         )
       end
 
@@ -63,7 +64,8 @@ module VoyagerHelpers
             ON item_status.item_id = item.item_id
           INNER JOIN item_status_type
             ON item_status_type.item_status_type = item_status.item_status
-        WHERE item.item_id=#{item_id}
+        WHERE item.item_id=#{item_id} AND
+          item_status.item_status NOT IN ('5', '6', '16', '19', '20', '21', '23', '24')
         )
       end
 
