@@ -1,0 +1,278 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>06746ctm a2200757Ia 4500</marc:leader>
+        <marc:controlfield tag="001">5325028</marc:controlfield>
+        <marc:controlfield tag="005">20120604092435.0</marc:controlfield>
+        <marc:controlfield tag="008">071127s1305    sy            000 0 ara d</marc:controlfield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)ocn182548414</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">PUL</marc:subfield>
+            <marc:subfield code="c">PUL</marc:subfield>
+            <marc:subfield code="e">amremm</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="066" ind1=" " ind2=" ">
+            <marc:subfield code="c">(3</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)182548414</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="043" ind1=" " ind2=" ">
+            <marc:subfield code="a">n-us-nj</marc:subfield>
+            <marc:subfield code="a">a-sy---</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="049" ind1=" " ind2=" ">
+            <marc:subfield code="a">PULL</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="0" ind2=" ">
+            <marc:subfield code="6">880-01</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="a">Kitāb al-Kāfī fī al-ʻaqd al-ṣāfī ; al-Qusṭās al-mustaqīm ... [etc.].</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">Damascus,</marc:subfield>
+            <marc:subfield code="c">[1305]</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">i, 113, i leaves :</marc:subfield>
+            <marc:subfield code="b">paper ;</marc:subfield>
+            <marc:subfield code="c">165 x 123 (140 x 100) mm. bound to 165 x 140 mm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Ms. codex.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Title supplied by cataloger, from the titles of the two first treatises in the volume.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="520" ind1="8" ind2=" ">
+            <marc:subfield code="a">Collection of several treatises, some fragmentary or defective, by al-Ghazzālī.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Physical description: 21 lines per page. Written in small naskh in black ink with use of red. Cream paper, glossy, hardly translucid, with chain lines and pulp visible. Fol. I is a later added leaf with inscriptions, including a table of contents. Leaves missing between fol. II and III. Fol. 74, 77, 79-81, and 112 are later added leaves (European paper), blank, except for a Fāʾidah on fol. 112a. A few leaves crudely repaired, with loss of text. Modern foliation in pencil using Western numerals (omits the first three folios, numbered I-III). Foliation in black ink using Arabic numerals from "34" to "62"on fol. 21a-49a in the faulty modern foliation; from "13" to "33", on fol. 52a-72a; from "1" to "4" (not in order) on fol. 73, 75-76, and 78; from "5" to "12" on fol. 82a-89a.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Inscription in Arabic script on a label pasted on the upper cover: "SH 63".</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="0" ind2=" ">
+            <marc:subfield code="a">1. fol. Ia: [Table of contents].</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">2. fol. IIa-b: Kitāb al-Kāfī fī al-ʻaqd al-ṣāfī [only first page] / al-Ghazzālī. -- Mach, R. Yahuda, no. 2219.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">3. fol. IIIa-16b: al-Qusṭās al-mustaqīm [aceph. ; first title: al-Qawl fī mīzān al-talāzum] / al-Ghazzālī.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">4. fol. 17a-20b: ʻAqīdat ahl al-sunnah [i.e. Kitāb Iḥyāʾ ʻulūm al-dīn. Kitāb qawāʻid al-ʻaqāʾid. Faṣl 1] / al-Ghazzālī. -- Mach, R. Yahuda, no. 2218.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">5. fol. 21a-49b: Kitāb Iljām al-ʻawāmm ʻan ʻilm al-kalām / al-Ghazzālī. -- Mach, R. Yahuda, no. 2387.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">6. fol. 51a-71b: Kitāb al-Munqidh min al-ḍalāl / al-Ghazzālī. -- Mach, R. Yahuda, no. 3025.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">7. fol. 73a-78b: al-Durrah al-fākhirah fī kashf ʻulūm al-ākhirah [fragments; fol. 74 and 77 blank] / al-Ghazzālī. -- Mach, R. Yahuda, no. 2531.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">8. fol. 82a-89b: Jawāhir al-Qurʾān [incomplete at beginning and end] / al-Ghazzālī. -- Mach, R. Yahuda, no. 2160.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="8" ind2=" ">
+            <marc:subfield code="a">9. fol. 90a-111a: Kitāb Mishkāt al-anwār / al-Ghazzālī. -- Mach, R. Yahuda, no. 2668.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Origin: According to colophon of last text, copied by Ḥusayn ibn Mubārak ibn al-thiqah al-Ṣīrafī al-Mawṣilī, Damascus, Khānqāh al-Qaṣāʻīn, on Friday 12 or 22 Jumādá al-Ākhir 704(?) (fol. 111a).</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="561" ind1=" " ind2=" ">
+            <marc:subfield code="a">On fol. Ia: Ownership statement in the name of Muḥammad Amīn al-Kazdī(?) ; reading statement ("naẓara fīhi") in the name of Ibrāhīm ibn Aḥmad. On fol. IIa: Two ownership statements, one in the name of Muṣṭafá al-Kazdī(?), the other in the name of Muḥammad Salīm al-Ḥamzawī, dated 1274 H. [1857 or 8]. Reading statement in the name of Yaḥyá ibn Ṣāliḥ on fol. 16b; repeated in a note dated 893 H. [1487 or 8], with the name reading: Yaḥyá ibn Aḥmad ibn Ṣāliḥ, on fol. 20b; repeated on fol. 49b, 71b, and 111b. Reading statement in the name of sayyid Aḥmad Asmā Ibn ...? al-Shāfiʻī al-Ṣaydāwī on fol. 20b (wrongly spelled). Reading statement in the name of Ibrāhīm ibn Muḥammad ibn Sharwīn dated Ṣafar 914 [1508] on fol. 71b and Jumādá al-Ākhirah 914 on fol. 111b. Two reading statements on fol. 72a, in the name of Aḥmad ibn Yūsuf ibn al-Mallāḥ al-Shāfiʻī al-Ashʻarī and of ʻAlī ibn al-ḥājj Salāmah al-Shaʻāṭin(?), dated 1064 [1653 or 4] respectively. Acquired from Abraham Shalom Yahuda, 1942.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="563" ind1=" " ind2=" ">
+            <marc:subfield code="a">Brown leather over paper pasteboards for upper and lower covers, fore-edge flap and envelope-flap. Blind-tooled. Paper pastedowns.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="510" ind1="4" ind2=" ">
+            <marc:subfield code="a">Mach, R. Yahuda,</marc:subfield>
+            <marc:subfield code="c">2160, 2218, 2219, 2387, 2531, 2668, 3025</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="541" ind1=" " ind2=" ">
+            <marc:subfield code="c">Gift ;</marc:subfield>
+            <marc:subfield code="a">Robert Garrett, Class of 1897 ;</marc:subfield>
+            <marc:subfield code="d">1942.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Islam</marc:subfield>
+            <marc:subfield code="x">Doctrines</marc:subfield>
+            <marc:subfield code="v">Early works to 1800.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Islam</marc:subfield>
+            <marc:subfield code="x">Customs and practices</marc:subfield>
+            <marc:subfield code="v">Early works to 1800.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Sufism</marc:subfield>
+            <marc:subfield code="v">Early works to 1800.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+            <marc:subfield code="z">New Jersey</marc:subfield>
+            <marc:subfield code="z">Princeton.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="655" ind1=" " ind2="7">
+            <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+            <marc:subfield code="y">14th century.</marc:subfield>
+            <marc:subfield code="2">lcsh</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="655" ind1=" " ind2="7">
+            <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+            <marc:subfield code="z">Syria</marc:subfield>
+            <marc:subfield code="z">Damascus</marc:subfield>
+            <marc:subfield code="y">14th century.</marc:subfield>
+            <marc:subfield code="2">lcsh</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-02</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Durrah al-fākhirah fī kashf ʻulūm al-Ākhirah.</marc:subfield>
+            <marc:subfield code="k">Fragments.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-03</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Kāfī fī al-ʻaqd al-ṣāfī.</marc:subfield>
+            <marc:subfield code="k">Fragments.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-04</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Qusṭās al-mustaqīm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-05</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">ʻAqīdat ahl al-sunnah.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-06</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Iḥyāʾ ʻulūm al-dīn.</marc:subfield>
+            <marc:subfield code="n">Book 2, Faṣl 1.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-07</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Iljām al-ʻawāmm ʻan ʻilm al-kalām.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-08</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Munqidh min al-ḍalāl.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-09</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Jawāhir al-Qurʾān.</marc:subfield>
+            <marc:subfield code="k">Fragments.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="0" ind2="2">
+            <marc:subfield code="6">880-10</marc:subfield>
+            <marc:subfield code="a">Ghazzālī,</marc:subfield>
+            <marc:subfield code="d">1058-1111.</marc:subfield>
+            <marc:subfield code="t">Mishkāt al-anwār.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2="2">
+            <marc:subfield code="6">880-11</marc:subfield>
+            <marc:subfield code="a">Mawṣilī, Ḥusayn ibn al-Mubārak,</marc:subfield>
+            <marc:subfield code="d">d. 1341,</marc:subfield>
+            <marc:subfield code="e">copyist.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2=" ">
+            <marc:subfield code="6">100-01/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-02/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">درة الفاخرة في كشف علوم الاخرة</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-03/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">كافي في العقد الصافي</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-04/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">قسطاس المستقيم</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-05/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">عقيدة اهل السنة</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-06/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">احياء علوم الدين.</marc:subfield>
+            <marc:subfield code="n">كتاب 2، فصل 1</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-07/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">الجام العوام عن علم الكلام</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-08/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">منقذ من الضلال</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-09/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">جواهر القرآن</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="0" ind2="2">
+            <marc:subfield code="6">700-10/(3/r</marc:subfield>
+            <marc:subfield code="a">غزالي.</marc:subfield>
+            <marc:subfield code="t">مشكاة الانوار</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2="2">
+            <marc:subfield code="6">700-11/(3/r</marc:subfield>
+            <marc:subfield code="a">موصلي، حسين بن المبارك</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="856" ind1="4" ind2="1">
+            <marc:subfield code="u">http://arks.princeton.edu/ark:/88435/zp38wc68f</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="902" ind1=" " ind2=" ">
+            <marc:subfield code="a">ceb</marc:subfield>
+            <marc:subfield code="b">o</marc:subfield>
+            <marc:subfield code="6">t</marc:subfield>
+            <marc:subfield code="7">m</marc:subfield>
+            <marc:subfield code="d">v</marc:subfield>
+            <marc:subfield code="f">0</marc:subfield>
+            <marc:subfield code="e">20071127</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+    <marc:record type="Holdings">
+        <marc:leader>00200nx  a22000854  4500</marc:leader>
+        <marc:controlfield tag="001">5489886</marc:controlfield>
+        <marc:controlfield tag="004">5325028</marc:controlfield>
+        <marc:controlfield tag="005">20071127163319.0</marc:controlfield>
+        <marc:controlfield tag="008">0711274u    8   1001uu   0901128</marc:controlfield>
+        <marc:datafield tag="852" ind1="8" ind2=" ">
+            <marc:subfield code="b">mss</marc:subfield>
+            <marc:subfield code="h">Islamic Manuscripts, Garrett no. 4181Y</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>

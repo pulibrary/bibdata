@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>03976cam a2200577 a 4500</marc:leader>
+    <marc:controlfield tag="001">3871398</marc:controlfield>
+    <marc:controlfield tag="005">20080613105637.0</marc:controlfield>
+    <marc:controlfield tag="008">030404s1604    cc            000 0 chi d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn153844960</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)153844960</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPX97-B2556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">CStRLIN</marc:subfield>
+      <marc:subfield code="c">PULEA</marc:subfield>
+      <marc:subfield code="d">PULEA</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="049" ind1=" " ind2=" ">
+      <marc:subfield code="a">MAIN</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="079" ind1=" " ind2=" ">
+      <marc:subfield code="a">ocm52579498</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju :</marc:subfield>
+      <marc:subfield code="b">[si ji yi bai qi shi juan] /</marc:subfield>
+      <marc:subfield code="c">Zhu Mu bian. Xin bian gu jin shi wen lei ju xin ji : san shi liu juan ; Xin bian gu jin shi wen lei ju wai ji : shi wu juan / Fu Dayong bian. Xin bian gu jin shi wen lei ju yi ji : shi wu juan / Zhu Yuan bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="0">
+      <marc:subfield code="6">245-01</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚 :</marc:subfield>
+      <marc:subfield code="b">[四集一百七十卷] /</marc:subfield>
+      <marc:subfield code="c">祝穆編. 新編古今事文類聚新集 : 三十六卷 ; 新編古今事文類聚外集 : 十五卷 / 富大用編. 新編古今事文類聚遺集 : 十五卷 / 祝淵編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Shi wen lei ju</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2=" ">
+      <marc:subfield code="6">246-02</marc:subfield>
+      <marc:subfield code="a">事文類聚</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="0">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Gu jin shi wen lei ju</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2="0">
+      <marc:subfield code="6">246-03</marc:subfield>
+      <marc:subfield code="a">古今事文類聚</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Jinling :</marc:subfield>
+      <marc:subfield code="b">Tang Fuchun De shou tang,</marc:subfield>
+      <marc:subfield code="c">Ming Wanli Jia chen [32 nian, 1604]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-04</marc:subfield>
+      <marc:subfield code="a">金陵 :</marc:subfield>
+      <marc:subfield code="b">唐富春德壽堂,</marc:subfield>
+      <marc:subfield code="c">明萬曆甲辰 [32年, 1604]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">112 v. ;</marc:subfield>
+      <marc:subfield code="c">25 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">In 14 cases.</marc:subfield>
+      <marc:subfield code="5">NjP-G</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Encyclopedias and dictionaries, Chinese.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="7">
+      <marc:subfield code="6">880-05</marc:subfield>
+      <marc:subfield code="a">Zi bu</marc:subfield>
+      <marc:subfield code="x">Lei shu lei.</marc:subfield>
+      <marc:subfield code="2">sk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2="7">
+      <marc:subfield code="6">650-05</marc:subfield>
+      <marc:subfield code="a">子部</marc:subfield>
+      <marc:subfield code="x">類書類.</marc:subfield>
+      <marc:subfield code="2">sk</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-06</marc:subfield>
+      <marc:subfield code="a">Zhu, Mu,</marc:subfield>
+      <marc:subfield code="d">13th cent.,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-06</marc:subfield>
+      <marc:subfield code="a">祝穆,</marc:subfield>
+      <marc:subfield code="d">13th cent.,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-07</marc:subfield>
+      <marc:subfield code="a">Fu, Dayong,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-07</marc:subfield>
+      <marc:subfield code="a">富大用,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-08</marc:subfield>
+      <marc:subfield code="a">Zhu, Yuan,</marc:subfield>
+      <marc:subfield code="e">bian.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-08</marc:subfield>
+      <marc:subfield code="a">祝淵,</marc:subfield>
+      <marc:subfield code="e">編.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-09</marc:subfield>
+      <marc:subfield code="a">Tang, Fuchun,</marc:subfield>
+      <marc:subfield code="e">ke.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">700-09</marc:subfield>
+      <marc:subfield code="a">唐富春,</marc:subfield>
+      <marc:subfield code="e">刻.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="6">880-10</marc:subfield>
+      <marc:subfield code="a">De shou tang,</marc:subfield>
+      <marc:subfield code="e">ke.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="2" ind2=" ">
+      <marc:subfield code="6">710-10</marc:subfield>
+      <marc:subfield code="a">德壽堂,</marc:subfield>
+      <marc:subfield code="e">刻.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-11</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju xin ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-11</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚新集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-12</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju wai ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-12</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚外集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1="0" ind2="2">
+      <marc:subfield code="6">880-13</marc:subfield>
+      <marc:subfield code="a">Xin bian gu jin shi wen lei ju yi ji.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="2">
+      <marc:subfield code="6">730-13</marc:subfield>
+      <marc:subfield code="a">新編古今事文類聚遺集.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="797" ind1="2" ind2=" ">
+      <marc:subfield code="a">CHRBA.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="1">
+      <marc:subfield code="3">First page of main text</marc:subfield>
+      <marc:subfield code="u">http://digital.lib.cuhk.edu.hk/crbp/servlet/list?action=afs&amp;startPos=1&amp;id=NJPX97B2556</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP-G</marc:subfield>
+      <marc:subfield code="b">HYC</marc:subfield>
+      <marc:subfield code="j">TC348/371</marc:subfield>
+      <marc:subfield code="k">Rare</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 1-8) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 9-16) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 17-24) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 25-32) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 33-40) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 41-48) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 49-56) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 57-64) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 65-72) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 73-80) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 81-88) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 89-96) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 97-104) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">c.1 (vol. 105-112) Gillis 371. All vols. bound separately, in case</marc:subfield>
+      <marc:subfield code="x">CIN=HXZ; OID=MMH</marc:subfield>
+      <marc:subfield code="z">Library has: (vol. 1-8); (vol. 9-16); (vol. 17-24); (vol. 25-32); (vol. 33-40); (vol. 41-48); (vol. 49-56); (vol. 57-64); (vol. 65-72); (vol. 73-80); (vol. 81-88); (vol. 89-96); (vol. 97-104); (vol. 105-112)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">卷端題"金陵唐富春刊".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">框21.2 x 14.6公分, 11行24字, 白口, 四周單邊, 單黑魚尾, 版心上鐫"事文類聚"及集次, 中鐫卷次, 下鐫"德壽堂梓".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">500-00</marc:subfield>
+      <marc:subfield code="a">"重刻事文類聚序"後鐫"萬曆甲辰孟春之吉金谿唐富春精校補遺重刻".</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2=" ">
+      <marc:subfield code="b">hycrare</marc:subfield>
+      <marc:subfield code="h">TC348/371</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="994" ind1=" " ind2=" ">
+      <marc:subfield code="a">C0</marc:subfield>
+      <marc:subfield code="b">PULEA</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

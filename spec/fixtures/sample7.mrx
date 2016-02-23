@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01580ccm a2200385 a 4500</marc:leader>
+    <marc:controlfield tag="001">489972</marc:controlfield>
+    <marc:controlfield tag="005">20120805100713.0</marc:controlfield>
+    <marc:controlfield tag="008">880504m19781985au opbu        n 1  ger  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   87750014 /M </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="3" ind2="0">
+      <marc:subfield code="a">13640a</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="3" ind2="0">
+      <marc:subfield code="a">13640b</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="028" ind1="2" ind2="2">
+      <marc:subfield code="a">U.E. 12864</marc:subfield>
+      <marc:subfield code="b">Universal Edition</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)15281357</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG88-C360</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">ACG5686TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2=" ">
+      <marc:subfield code="a">M1500.B48</marc:subfield>
+      <marc:subfield code="b">L8 1985</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Berg, Alban,</marc:subfield>
+      <marc:subfield code="d">1885-1935.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Lulu :</marc:subfield>
+      <marc:subfield code="b">Oper nach Frank Wedekinds Tragödien Erdgeist und Büchse der Pandora /</marc:subfield>
+      <marc:subfield code="c">von Alban Berg ; herausgegeben von H.E. Apostel, 1963 ; revidiert von Friedrich Cerha, 1985.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="254" ind1=" " ind2=" ">
+      <marc:subfield code="a">Partitur.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Wien :</marc:subfield>
+      <marc:subfield code="b">Universal Edition,</marc:subfield>
+      <marc:subfield code="c">c1978-c1985.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">1 miniature score (2 v. (viii, 1008 p.)) :</marc:subfield>
+      <marc:subfield code="b">facsim. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">The orchestral score of Act 3 prepared by Friedrich Cerha from the composer's short score; libretto by the composer.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="505" ind1="0" ind2=" ">
+      <marc:subfield code="a">[1]. I. und II. Akt -- [2]. III. Akt.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Publisher's no.: Universal Edition no. 13640a-b.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Operas</marc:subfield>
+      <marc:subfield code="x">Scores.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Apostel, Hans Erich,</marc:subfield>
+      <marc:subfield code="d">1901-1972.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Cerha, Friedrich.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Wedekind, Frank,</marc:subfield>
+      <marc:subfield code="d">1864-1918.</marc:subfield>
+      <marc:subfield code="t">Erdgeist.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2=" ">
+      <marc:subfield code="a">Wedekind, Frank,</marc:subfield>
+      <marc:subfield code="d">1864-1918.</marc:subfield>
+      <marc:subfield code="t">Büchse der Pandora.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">sv</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">M1500.B37</marc:subfield>
+      <marc:subfield code="i">L9 1985</marc:subfield>
+      <marc:subfield code="x">tr fr svl</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">mus</marc:subfield>
+      <marc:subfield code="t">2</marc:subfield>
+      <marc:subfield code="h">M1500.B37</marc:subfield>
+      <marc:subfield code="i">L9 1985</marc:subfield>
+      <marc:subfield code="x">tr fr svl</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19930311</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19930218000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="948" ind1=" " ind2=" ">
+      <marc:subfield code="a">TRANS FR F</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">02/18/93</marc:subfield>
+      <marc:subfield code="s">9110</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">DCLC87750014C</marc:subfield>
+      <marc:subfield code="d">05/04/88</marc:subfield>
+      <marc:subfield code="c">BGN</marc:subfield>
+      <marc:subfield code="b">CS</marc:subfield>
+      <marc:subfield code="i">930218</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>05193cpc a2200553 a 4500</leader>
+  <controlfield tag="001">2238036</controlfield>
+  <controlfield tag="005">20150622101217.0</controlfield>
+  <controlfield tag="008">990326i19682006nju     |           eng d</controlfield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)82449034</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(CStRLIN)NJPG99-A18</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="9">CKE1461TS</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">2238036</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">NjP</subfield>
+    <subfield code="c">NjP</subfield>
+    <subfield code="e">appm</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="041">
+    <subfield code="a">enggre</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="110">
+    <subfield code="a">Modern Greek Studies Association.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Modern Greek Studies Association archives,</subfield>
+    <subfield code="f">1968-2006.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">29</subfield>
+    <subfield code="f">linear ft.</subfield>
+    <subfield code="a">(21</subfield>
+    <subfield code="f">record center cartons,</subfield>
+    <subfield code="a">13</subfield>
+    <subfield code="f">archival boxes,</subfield>
+    <subfield code="a">2 half-size boxes)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="351">
+    <subfield code="a">Roughly sorted as follows: cartons 1-5, general files of the Modern Greek Studies Association; carton 6, printed bulletins; cartons 7-12, files of the JOURNAL OF MODERN GREEK STUDIES; boxes 13-19, additional files (1987-1999) of articles submitted to the JOURNAL OF MODERN GREEK STUDIES; boxes 20-24, additional files (1969-1999) of the Modern Greek Studies Association; boxes 25-32, additional files (2002-2006) of articles submitted to the JOURNAL OF MODERN GREEK STUDIES.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="506">
+    <subfield code="a">The 12 cartons made gift (AM 1994-105) in Dec. 1997 are closed for a period of 15 years (until Jan. 1, 2012). The boxes made a gift (AM 2000-28) in Sept. 1999 are closed for a period of 15 years (until Sept. 30, 2014). The box made a gift in Apr. 2003 (AM 2003-112) is closed for a period of 15 years (until Apr. 11, 2018). The 5 cartons made a gift (AM 2006-88) in Feb. 2006 are closed for a period of 15 years (until Feb. 14, 2021). The box 25 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 1 year (until 2012). The box 26 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 2 years (until 2013). The boxes 27-29 made a gift (AM 2012-14) in Aug. 2011 are closed for a period of 3 years (until 2014). The boxes 30-31 made a gift (AM 2012-14) in Aug. 2011 are closed for a period of 4 years (until 2015). The box 32 made a gift (AM 2012-14) in Aug. 2011 is closed for a period of 5 years (until 2016). Boxes 35-38 (AM 2015-97) are closed for a period of 15 years (until June 18, 2030).</subfield>
+  </datafield>
+  <datafield ind1="0" ind2=" " tag="545">
+    <subfield code="a">The MGSA is an American-based nonprofit organization of scholars, students, and philhellenes established in 1968 for the purpose of promoting modern Greek studies in language, modern and Byzantine literature, history, politics, and social science in the United States, Canada, and Greece.The JOURNAL OF MODERN GREEK STUDIES is published semi-annually by the Johns Hopkins University Press, beginning with Vol. 1, No. 1 in June 1983, and focuses on Greek social, cultural, literary, and political affairs from the late Byzantine Empire to the present.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="520">
+    <subfield code="a">Consists jointly of the files of the Modern Greek Studies Association (MGSA) and its' official publication, the JOURNAL OF MODERN GREEK STUDIES.</subfield>
+    <subfield code="b">The files of the MGSA include correspondence of Edmund Keeley, president (1970-1973 and 1980-1981), and others, material on symposiums, membership, and fundraising. Also present are printed bulletins, 1969-1988, and four audiotapes of a Greek symposium in 1969.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="520">
+    <subfield code="a"/>
+    <subfield code="b">The files of the JOURNAL OF MODERN GREEK STUDIES consists of the correspondence of its editors, William Hardy McNeill (1983-1985), Ernestine Friedl (1986-1990), Peter Bien (1990-1999), and Stratos Constantinidis (2003- ), which includes many drafts and copies of manuscripts of articles, translations, verse, and stories by various, mostly Greek, authors submitted for consideration for publication in the journal. Many of the submitted manuscripts are accompanied by reader's reports. The JOURNAL OF MODERN GREEK STUDIES is published semi-annually by the Johns Hopkins University Press, beginning with Vol. 1, No. 1 in June 1983, and focuses on Greek social, cultural, literary, and political affairs from the late Byzantine Empire to the present.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2="0" tag="610">
+    <subfield code="a">Modern Greek Studies Association.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="630">
+    <subfield code="a">Journal of modern Greek studies.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Byzantine literature.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Civilization</subfield>
+    <subfield code="y">1821-1900</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Civilization</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern</subfield>
+    <subfield code="x">History and criticism.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek poetry, Modern.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek poetry, Modern</subfield>
+    <subfield code="v">Translations into English.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Greek literature, Modern</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Poets, Greek (Modern)</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Correspondence.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Poets, Greek (Modern)</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Poetry.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Intellectual life</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Politics and government</subfield>
+    <subfield code="y">20th century.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Audiotapes</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">lcsh</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Correspondence</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Manuscripts</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Newsletters</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="2">aat</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Bien, Peter.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Constantinidis, Stratos E.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Friedl, Ernestine,</subfield>
+    <subfield code="d">1920-</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">Keeley, Edmund.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="700">
+    <subfield code="a">McNeill, William Hardy,</subfield>
+    <subfield code="d">1917- .</subfield>
+  </datafield>
+  <datafield ind1="4" ind2="2" tag="856">
+    <subfield code="z">Finding aid</subfield>
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/8c97kq48g</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="911">
+    <subfield code="a">19990408</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="912">
+    <subfield code="a">19990329000000.0</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="998">
+    <subfield code="a">03/29/99</subfield>
+    <subfield code="s">9554</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG99A18</subfield>
+    <subfield code="d">03/26/99</subfield>
+    <subfield code="p">e</subfield>
+    <subfield code="i">990329</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield ind1="8" ind2="0" tag="852">
+    <subfield code="b">rcpxm</subfield>
+    <subfield code="h">C0821</subfield>
+  </datafield>
+</record>
+</collection>

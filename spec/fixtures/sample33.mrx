@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <record xmlns="http://www.loc.gov/MARC21/slim">
+    <leader>01947ckm a2200349u  4500</leader>
+    <controlfield tag="001">5183133</controlfield>
+    <controlfield tag="005">20140128162822.0</controlfield>
+    <controlfield tag="008">060302s1944    ja nnn            gnjpn d</controlfield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(idCotsen)101132</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(CTSN)1007273</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(cotsendb)86683</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Sawai, Ichisaburo&#x304;,</subfield>
+      <subfield code="d">1911-1989,</subfield>
+      <subfield code="e">author,</subfield>
+      <subfield code="e">illustrator.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Dai Toa Kyoeiken meguri (A trip around the Greater East Asia Co-prosperity Sphere sugoroku board game).</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="246">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Sugoroku Dai Toa Kyoeiken meguri.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="a">Tokyo :</subfield>
+      <subfield code="b">Chuo Nogyokai,</subfield>
+      <subfield code="c">1944.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 sheet :</subfield>
+      <subfield code="b">chiefly color ;</subfield>
+      <subfield code="c">38 x 54 cm</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="490">
+      <subfield code="a">Ie no hikari shinnengo dai 20-kan dai 1-go furoku (The light of house, New Year's issue, vol. 20, no. 1, supplement).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Monthly magazine supplement to: Ie no hikari shinnengo dai 20-kan dai 1-go (The light of house, New Year's issue, vol. 20, no. 1).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">At head of title: sugoroku.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Includes black-and-white photo portraits of Subhas Chandra Bose (India), Ba Maw (Burma), Wang Jingwei (China), and Jose&#x301; P. Laurel (the Philippines), who were presidents and political leaders of Imperial Japan's puppet states in East Asia during the Pacific War.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Title from sheet.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Sugoroku (Game)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">World War, 1939-1945</subfield>
+      <subfield code="z">Southeast Asia</subfield>
+      <subfield code="v">Pictorial works.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">World War, 1939-1945</subfield>
+      <subfield code="x">Occupied territories</subfield>
+      <subfield code="v">Pictorial works.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="651">
+      <subfield code="a">Greater East Asia Co-prosperity Sphere</subfield>
+      <subfield code="v">Pictorial works.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="651">
+      <subfield code="a">Japan</subfield>
+      <subfield code="x">Colonies</subfield>
+      <subfield code="z">Asia</subfield>
+      <subfield code="v">Pictorial works.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Gameboards</subfield>
+      <subfield code="x">Japanese</subfield>
+      <subfield code="y">20th century.</subfield>
+      <subfield code="2">gmgpc</subfield>
+    </datafield>
+    <datafield ind1="4" ind2="1" tag="856">
+      <subfield code="u">http://arks.princeton.edu/ark:/88435/q524jq073</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="880">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">&#x6CA2;&#x4E95;&#x4E00;&#x4E09;&#x90CE;,</subfield>
+      <subfield code="d">1911-1989,</subfield>
+      <subfield code="e">author,</subfield>
+      <subfield code="e">illustrator.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="880">
+      <subfield code="6">245-00</subfield>
+      <subfield code="a">&#x5927;&#x6771;&#x4E9E;&#x5171;&#x69AE;&#x5708;&#x3081;&#x3050;&#x30EA; :</subfield>
+      <subfield code="b">&#x53CC;&#x516D; /</subfield>
+      <subfield code="c">&#x6848;&#x3068;&#x756B;&#x6FA4;&#x4E95;&#x4E00;&#x4E09;&#x90CE;.</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="880">
+      <subfield code="6">246-02</subfield>
+      <subfield code="a">&#x53CC;&#x516D;&#x5927;&#x6771;&#x4E9E;&#x5171;&#x69AE;&#x5708;&#x3081;&#x3050;&#x30EA;</subfield>
+    </datafield>
+    <datafield ind1="8" ind2=" " tag="852">
+      <subfield code="b">hsvc</subfield>
+      <subfield code="c">Print Case LA / Box 71</subfield>
+      <subfield code="h">101132</subfield>
+      <subfield code="p">32101054263189</subfield>
+    </datafield>
+  </record>
+</collection>

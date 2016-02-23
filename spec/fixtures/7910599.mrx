@@ -1,0 +1,133 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>01499cam a2200337 i 4500</marc:leader>
+        <marc:controlfield tag="001">7910599</marc:controlfield>
+        <marc:controlfield tag="005">20131121164350.0</marc:controlfield>
+        <marc:controlfield tag="008">131016s2013    vc a     b    100 0 mul c</marc:controlfield>
+        <marc:datafield tag="020" ind1=" " ind2=" ">
+            <marc:subfield code="a">9788885991583 (pbk.)</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="020" ind1=" " ind2=" ">
+            <marc:subfield code="a">8885991580 (pbk.)</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">NjP</marc:subfield>
+            <marc:subfield code="b">eng</marc:subfield>
+            <marc:subfield code="e">rda</marc:subfield>
+            <marc:subfield code="c">NjP</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="041" ind1="0" ind2=" ">
+            <marc:subfield code="a">ita</marc:subfield>
+            <marc:subfield code="a">spa</marc:subfield>
+            <marc:subfield code="a">eng</marc:subfield>
+            <marc:subfield code="a">fre</marc:subfield>
+            <marc:subfield code="a">ger</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="042" ind1=" " ind2=" ">
+            <marc:subfield code="a">pcc</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="050" ind1=" " ind2="4">
+            <marc:subfield code="a">BR131</marc:subfield>
+            <marc:subfield code="b">.C66 2008</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="111" ind1="2" ind2=" ">
+            <marc:subfield code="a">Congresso internazionale di archeologia cristiana</marc:subfield>
+            <marc:subfield code="n">(15th :</marc:subfield>
+            <marc:subfield code="d">2008 :</marc:subfield>
+            <marc:subfield code="c">Toledo, Spain)</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="a">Acta XV Congressus internationalis archaeologiae christianae, Toleti (8-12.9.2008) :</marc:subfield>
+            <marc:subfield code="b">episcopus, civitas, territorium /</marc:subfield>
+            <marc:subfield code="c">editionem curaverunt Olof Brandt, Silvia Cresci, Jorge López Quiroga, Carmelo Pappalardo.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="246" ind1="3" ind2=" ">
+            <marc:subfield code="a">Episcopus, civitas, territorium</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="264" ind1=" " ind2="1">
+            <marc:subfield code="a">Città del Vaticano :</marc:subfield>
+            <marc:subfield code="b">Pontificio Istituto di Archeologia cristiana,</marc:subfield>
+            <marc:subfield code="c">2013.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">2 volumes (lvii, 1790 pages) :</marc:subfield>
+            <marc:subfield code="b">illustrations ;</marc:subfield>
+            <marc:subfield code="c">25 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="336" ind1=" " ind2=" ">
+            <marc:subfield code="a">text</marc:subfield>
+            <marc:subfield code="2">rdacontent</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="337" ind1=" " ind2=" ">
+            <marc:subfield code="a">unmediated</marc:subfield>
+            <marc:subfield code="2">rdamedia</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="338" ind1=" " ind2=" ">
+            <marc:subfield code="a">volume</marc:subfield>
+            <marc:subfield code="2">rdacarrier</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="490" ind1="1" ind2=" ">
+            <marc:subfield code="a">Studi di antichità cristiana,</marc:subfield>
+            <marc:subfield code="x">1012-5779 ;</marc:subfield>
+            <marc:subfield code="v">LXV</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="504" ind1=" " ind2=" ">
+            <marc:subfield code="a">Includes bibliographical references.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="546" ind1=" " ind2=" ">
+            <marc:subfield code="a">Contributions in Italian, Spanish, English, French or German.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Christian antiquities</marc:subfield>
+            <marc:subfield code="v">Congresses</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Church history</marc:subfield>
+            <marc:subfield code="y">Primitive and early church, ca. 30-600</marc:subfield>
+            <marc:subfield code="v">Congresses.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="700" ind1="1" ind2=" ">
+            <marc:subfield code="a">Brandt, Olof,</marc:subfield>
+            <marc:subfield code="e">editor of compilation.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="830" ind1=" " ind2="0">
+            <marc:subfield code="a">Studi di antichità cristiana ;</marc:subfield>
+            <marc:subfield code="v">65.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="904" ind1=" " ind2=" ">
+            <marc:subfield code="a">dls</marc:subfield>
+            <marc:subfield code="b">m</marc:subfield>
+            <marc:subfield code="h">m</marc:subfield>
+            <marc:subfield code="c">t</marc:subfield>
+            <marc:subfield code="e">20131112</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="902" ind1=" " ind2=" ">
+            <marc:subfield code="a">jrl</marc:subfield>
+            <marc:subfield code="b">o</marc:subfield>
+            <marc:subfield code="6">a</marc:subfield>
+            <marc:subfield code="7">m</marc:subfield>
+            <marc:subfield code="d">v</marc:subfield>
+            <marc:subfield code="f">2</marc:subfield>
+            <marc:subfield code="g">p</marc:subfield>
+            <marc:subfield code="e">20131121</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+    <marc:record type="Holdings">
+        <marc:leader>00240cv  a22001094  4500</marc:leader>
+        <marc:controlfield tag="001">7695541</marc:controlfield>
+        <marc:controlfield tag="004">7910599</marc:controlfield>
+        <marc:controlfield tag="005">20131121163541.0</marc:controlfield>
+        <marc:controlfield tag="008">1311124u    8   1001uu   0901128</marc:controlfield>
+        <marc:datafield tag="852" ind1="0" ind2=" ">
+            <marc:subfield code="b">sa</marc:subfield>
+            <marc:subfield code="h">BR131</marc:subfield>
+            <marc:subfield code="i">.C66 2008</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="866" ind1=" " ind2="0">
+            <marc:subfield code="a">Pars 1-pars 2</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="866" ind1=" " ind2="0">
+            <marc:subfield code="x">DESIGNATOR: pars</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>

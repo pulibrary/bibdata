@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01267cam a2200277 a 4500</marc:leader>
+    <marc:controlfield tag="001">430472</marc:controlfield>
+    <marc:controlfield tag="005">20120717125457.0</marc:controlfield>
+    <marc:controlfield tag="008">880111m19879999jo       b    00110 ara d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)31214190</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG88-B1222</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">ACA6068TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">NjP</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="3">
+      <marc:subfield code="a">al-Fihris al-shāmil lil-turāth al-ʻArabī al-Islāmī al-makhṭūṭ.</marc:subfield>
+      <marc:subfield code="p">ʻUlūm al-Qurʼān.</marc:subfield>
+      <marc:subfield code="p">Makhṭūṭāt al-tafsīr /</marc:subfield>
+      <marc:subfield code="c">Muʼassasat Āl al-Bayt, al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">ʻAmmān :</marc:subfield>
+      <marc:subfield code="b">al-Muʼassasah,</marc:subfield>
+      <marc:subfield code="c">1987-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">v. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="490" ind1="1" ind2=" ">
+      <marc:subfield code="a">Manshūrāt al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah ;</marc:subfield>
+      <marc:subfield code="v">raqm 83-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Vol. [13]: Index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="630" ind1="0" ind2="0">
+      <marc:subfield code="a">Koran</marc:subfield>
+      <marc:subfield code="x">Criticism, interpretation, etc.</marc:subfield>
+      <marc:subfield code="x">Manuscripts</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="x">Catalogs.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="a">Royal Academy for Islamic Civilization Research.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="830" ind1=" " ind2="0">
+      <marc:subfield code="a">Manshūrāt al-Majmaʻ al-Malakī li-Buḥūth al-Ḥaḍārah al-Islāmīyah ;</marc:subfield>
+      <marc:subfield code="v">raqm 83, etc.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">nec</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z6611.T3F545 1987</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">sne</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">Z6611.T3F545 1987</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941111</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941103000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">11/03/94</marc:subfield>
+      <marc:subfield code="s">9118</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">NJPG88B1222</marc:subfield>
+      <marc:subfield code="d">01/11/88</marc:subfield>
+      <marc:subfield code="c">KVV</marc:subfield>
+      <marc:subfield code="b">NHT</marc:subfield>
+      <marc:subfield code="i">941103</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

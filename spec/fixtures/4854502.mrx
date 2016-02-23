@@ -1,0 +1,125 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>02522cta a2200361Ia 4500</marc:leader>
+        <marc:controlfield tag="001">4854502</marc:controlfield>
+        <marc:controlfield tag="005">20091006124137.0</marc:controlfield>
+        <marc:controlfield tag="008">060919s1345    xx            000 0 ara d</marc:controlfield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)ocm71357256</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">PUL</marc:subfield>
+            <marc:subfield code="c">PUL</marc:subfield>
+            <marc:subfield code="e">amremm</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="043" ind1=" " ind2=" ">
+            <marc:subfield code="a">n-us-nj</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="049" ind1=" " ind2=" ">
+            <marc:subfield code="a">PULL</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="1" ind2=" ">
+            <marc:subfield code="6">880-01</marc:subfield>
+            <marc:subfield code="a">Sharīshī, Muḥammad ibn Aḥmad,</marc:subfield>
+            <marc:subfield code="d">1294?-1368?</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="1" ind2="0">
+            <marc:subfield code="6">880-02</marc:subfield>
+            <marc:subfield code="a">Fawāʼid fiqhīyah /</marc:subfield>
+            <marc:subfield code="c">lil-Sharīshī.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="246" ind1="1" ind2=" ">
+            <marc:subfield code="6">880-03</marc:subfield>
+            <marc:subfield code="i">Title in Mach, R. Yahuda:</marc:subfield>
+            <marc:subfield code="a">Fawāʼid al-fiqhīyah.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="c">[1345?]</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Ms. component part.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">Title from table of contents (fol. 2a).</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="520" ind1="8" ind2=" ">
+            <marc:subfield code="a">Collection of answers by Hibat Allāh ibn al-Bārizī (d. 1338) to questions by ʻAbd al-Raḥīm al-Isnawī (d. 1370) on several legal matters, with additional remarks by Muḥammad ibn Aḥmad ibn Muḥammad al-Sharīshī.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="500" ind1=" " ind2=" ">
+            <marc:subfield code="a">The date of copy of this text is not explicitly mentioned. However another text in the same ms. is said to have been copied on 25 Rabīʻ al-Ākhar 746 (fol. 16a).</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="510" ind1="4" ind2=" ">
+            <marc:subfield code="a">Mach, R. Yahuda,</marc:subfield>
+            <marc:subfield code="c">1451</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="600" ind1="1" ind2="0">
+            <marc:subfield code="a">Isnawī, ʻAbd al-Raḥīm ibn al-Ḥasan,</marc:subfield>
+            <marc:subfield code="d">1305-1370.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="600" ind1="1" ind2="0">
+            <marc:subfield code="a">Ibn al-Bārizī, Hibat Allāh ibn Najm al-Dīn,</marc:subfield>
+            <marc:subfield code="d">1247-1338.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Islamic law</marc:subfield>
+            <marc:subfield code="y">14th century.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Shafiites</marc:subfield>
+            <marc:subfield code="y">14th century.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="650" ind1=" " ind2="0">
+            <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+            <marc:subfield code="z">New Jersey</marc:subfield>
+            <marc:subfield code="z">Princeton.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="773" ind1="0" ind2=" ">
+            <marc:subfield code="7">nntm</marc:subfield>
+            <marc:subfield code="a">Sharīshī, Muḥammad ibn Aḥmad, d. 1368</marc:subfield>
+            <marc:subfield code="t">Fawāʼid fiqhīyah ... [etc.],</marc:subfield>
+            <marc:subfield code="g">fol. 3b-8b.</marc:subfield>
+            <marc:subfield code="w">4854496</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2=" ">
+            <marc:subfield code="6">100-01/r</marc:subfield>
+            <marc:subfield code="a">شريشي، محمد بن احمد</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2="0">
+            <marc:subfield code="6">245-02/r</marc:subfield>
+            <marc:subfield code="a">فوائد فقهية /</marc:subfield>
+            <marc:subfield code="c">للشريشي</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1="1" ind2=" ">
+            <marc:subfield code="6">246-03/r</marc:subfield>
+            <marc:subfield code="a">الفوائد الفقهية</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00/r</marc:subfield>
+            <marc:subfield code="a">Incipit: قال سيدنا وشيخنا القاضى جمال الدين محمد بن الشريشى يقول محمد بن احمد بن محمد الشريشى الشافعى ... وقفت على سوالات فى الفقه دلت على غزارة علم سايلها ... منسوبة الى الشيخ ... جمال الدين الاسنآيي ... ووقفت ايضا على اجوبة تلك المسآيل لسيدنا ... البارزي ... ووجدت الاجوبة كالاسولة كل منهما كشف</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="880" ind1=" " ind2=" ">
+            <marc:subfield code="6">500-00/r</marc:subfield>
+            <marc:subfield code="a">Explicit: وهذا هو الحق وهو اختيار الشيخ سيف الدين(؟) من المتاخرين وذهب اليه جماعة من(؟) المتقدمين ولعل هذا الاحتمال يقدح في ذلك الاستدلال والله اعلم</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="902" ind1=" " ind2=" ">
+            <marc:subfield code="a">ceb</marc:subfield>
+            <marc:subfield code="b">o</marc:subfield>
+            <marc:subfield code="6">t</marc:subfield>
+            <marc:subfield code="7">a</marc:subfield>
+            <marc:subfield code="d">v</marc:subfield>
+            <marc:subfield code="f">0</marc:subfield>
+            <marc:subfield code="e">20060919</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+    <marc:record type="Holdings">
+        <marc:leader>00200nx  a2200085m  4500</marc:leader>
+        <marc:controlfield tag="001">5053232</marc:controlfield>
+        <marc:controlfield tag="004">4854502</marc:controlfield>
+        <marc:controlfield tag="005">20060919141228.0</marc:controlfield>
+        <marc:controlfield tag="008">060919||    8   1001uu   0901128</marc:controlfield>
+        <marc:datafield tag="852" ind1="8" ind2=" ">
+            <marc:subfield code="b">mss</marc:subfield>
+            <marc:subfield code="h">Islamic Manuscripts, Garrett no. 1359Y</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <record xmlns="http://www.loc.gov/MARC21/slim">
+    <leader>00506nam a22001935u 4500</leader>
+    <controlfield tag="001">7338297</controlfield>
+    <controlfield tag="005">20130220123706.0</controlfield>
+    <controlfield tag="008">130220s2012    cc      r         0 chi d</controlfield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9781935981633</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Hu, Lili</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Xi jin ping zhuan ji</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="b">&#x660E;&#x93E1;&#x51FA;&#x7248;&#x793E;,</subfield>
+      <subfield code="c">2012</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">492 p.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="6">880-03 Liang, Jian</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="880">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">&#x80E1;&#x9E97;&#x9E97;</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="880">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">&#x7FD2;&#x8FD1;&#x5E73;&#x50B3;&#x8A18;</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="880">
+      <subfield code="6">700-03 &#x6881;&#x528D;</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="980">
+      <subfield code="b">18.60</subfield>
+      <subfield code="v">HKCOMPR</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="904">
+      <subfield code="a">ww</subfield>
+      <subfield code="b">o</subfield>
+      <subfield code="h">m</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20130220</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="852">
+      <subfield code="b">c</subfield>
+    </datafield>
+  </record>
+</collection>
