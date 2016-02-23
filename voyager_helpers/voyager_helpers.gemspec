@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'activesupport', '~> 4.1'
   spec.add_dependency 'marc', '~> 0.8.2'
-  spec.add_dependency 'ruby-oci8', '~> 2.1.7'
+  spec.add_dependency 'ruby-oci8', '~> 2.2.1'
   spec.add_dependency 'diffy', '~> 3.0.7'
 
 end
