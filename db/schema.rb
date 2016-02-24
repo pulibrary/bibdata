@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160127213220) do
+ActiveRecord::Schema.define(version: 20160224214320) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 20160127213220) do
     t.boolean  "requestable",                        limit: 1,   default: true
     t.boolean  "always_requestable",                 limit: 1,   default: false
     t.integer  "locations_hours_location_id",        limit: 4
+    t.boolean  "circulates",                         limit: 1,   default: true
   end
 
   add_index "locations_holding_locations", ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id", using: :btree

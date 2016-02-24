@@ -197,7 +197,7 @@ module VoyagerHelpers
                   order_status
                 elsif field_852[/^elf/]
                   'Online'
-                elsif limited_access_location?(field_852)
+                elsif !circulating_location?(field_852)
                   'Limited'
                 else
                   'On Shelf'
@@ -205,7 +205,7 @@ module VoyagerHelpers
               else
                 item = get_info_for_item(holding_item_ids.first, c, false)
                 availability[bib_id][mfhd_id][:on_reserve] = item[:temp_location] || item[:perm_location] if item[:on_reserve] == 'Y'
-                if limited_access_location?(field_852)
+                if !circulating_location?(field_852)
                   'Limited'
                 else
                   item[:status]
@@ -232,7 +232,7 @@ module VoyagerHelpers
             item_hash[:copy_number] = item[:copy_number]
             item_hash[:status] = item[:status]
           else
-            item_hash[:status] = limited_access_location?(item[:perm_location]) ? 'Limited' : item[:status]
+            item_hash[:status] = !circulating_location?(item[:perm_location]) ? 'Limited' : item[:status]
             item_hash[:copy_number] = item[:copy_number] if item[:copy_number] != 1
           end
           unless item[:enum].nil?
@@ -322,16 +322,14 @@ module VoyagerHelpers
         hsh
       end
 
-      # assume full access unless if the :always_requestable value for the location is true
-      # or if the location is a reference location
-      def limited_access_location?(loc_code)
-        limited = false
+      # check if holding location is a circulating location, default true
+      def circulating_location?(loc_code)
+        circulates = true
         holding_location = Locations::HoldingLocation.find_by(code: loc_code)
         unless holding_location.nil? 
-          limited = holding_location.always_requestable
-          limited = true if holding_location.label.match(/Reference/)
+          limited = holding_location.circulates
         end
-        limited
+        circulates
       end
 
       # Note that the hash is the result of calling `to_hash`, not `to_marchash`
