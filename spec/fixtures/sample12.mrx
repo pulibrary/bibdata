@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01400cam a2200313   4500</marc:leader>
+    <marc:controlfield tag="001">4887523</marc:controlfield>
+    <marc:controlfield tag="005">20120529143145.0</marc:controlfield>
+    <marc:controlfield tag="008">950327s1923    pl            000 0 heb d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)76954756</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)MABX95-B758</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">MWalB</marc:subfield>
+      <marc:subfield code="c">MWalB</marc:subfield>
+      <marc:subfield code="d">CStRLIN</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">BM198</marc:subfield>
+      <marc:subfield code="b">.R324 1923</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">(2</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Rabinowich, Solomon,</marc:subfield>
+      <marc:subfield code="c">ha-Kohen,</marc:subfield>
+      <marc:subfield code="d">1803-1866.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="6">100-01/(2/r</marc:subfield>
+      <marc:subfield code="a">שלמה בן דב צבי,</marc:subfield>
+      <marc:subfield code="c">הכהן,</marc:subfield>
+      <marc:subfield code="c">מרדומסק,</marc:subfield>
+      <marc:subfield code="d">נפ׳ 1866.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="240" ind1="1" ind2="0">
+      <marc:subfield code="a">Nifleʼot ha-Tifʼeret Shelomoh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Sefer Nifleʼot ha-Tifʼeret Shelomoh :</marc:subfield>
+      <marc:subfield code="b">ha-kolel torot, ḥokhmot, agadot, śiḥot... /</marc:subfield>
+      <marc:subfield code="c">mi-kevod Shelomoh ha-Kohen a.b.d. ḳ. Radomsḳ = Sefer Nifloes-hatiferes-Szloma.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02/(2/r</marc:subfield>
+      <marc:subfield code="a">ספר נפלאות התפארת שלמה :</marc:subfield>
+      <marc:subfield code="b">... תורות, חכמות, אגדות, שיחות ... /</marc:subfield>
+      <marc:subfield code="c">שלמה הכהן אבד״ק ראדאמסק.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="0">
+      <marc:subfield code="a">Nifleʼot ha-Tifʼeret Shelomoh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="1">
+      <marc:subfield code="a">Sefer Nifloes-hatiferes-Szloma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2=" ">
+      <marc:subfield code="a">Nifloes-hatiferes-Szloma</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Piotrkowie :</marc:subfield>
+      <marc:subfield code="b">Defus Ḳornendz ṿe-Rozenblad,</marc:subfield>
+      <marc:subfield code="c">1923.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-03/(2/r</marc:subfield>
+      <marc:subfield code="a">פיעטרקוב :</marc:subfield>
+      <marc:subfield code="b">[חמו״ל],</marc:subfield>
+      <marc:subfield code="c">1923.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">102 p. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"Ḥeleḳ 1"-- No more published?</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Hasidism.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="h">BM198</marc:subfield>
+      <marc:subfield code="i">.R324 1923</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">rs</marc:subfield>
+      <marc:subfield code="b">g</marc:subfield>
+      <marc:subfield code="h">m</marc:subfield>
+      <marc:subfield code="c">b</marc:subfield>
+      <marc:subfield code="e">20061018</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">rs</marc:subfield>
+      <marc:subfield code="b">m</marc:subfield>
+      <marc:subfield code="6">a</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20061018</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

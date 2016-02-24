@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>02203cas a22005771a 4500</marc:leader>
+    <marc:controlfield tag="001">491654</marc:controlfield>
+    <marc:controlfield tag="005">20110505093543.0</marc:controlfield>
+    <marc:controlfield tag="008">880415c19499999dcu x1   s   f0uuua0eng  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   52004576 //r84 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="022" ind1="0" ind2=" ">
+      <marc:subfield code="a">0082-9455</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)1184940</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG88-S1774</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">ACG7376TS</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="c">DI</marc:subfield>
+      <marc:subfield code="d">NIC</marc:subfield>
+      <marc:subfield code="d">InU</marc:subfield>
+      <marc:subfield code="d">NSDP</marc:subfield>
+      <marc:subfield code="d">m.c.</marc:subfield>
+      <marc:subfield code="d">MH</marc:subfield>
+      <marc:subfield code="d">MnMULS</marc:subfield>
+      <marc:subfield code="d">RCS</marc:subfield>
+      <marc:subfield code="d">MH</marc:subfield>
+      <marc:subfield code="d">DGPO</marc:subfield>
+      <marc:subfield code="d">DNAL</marc:subfield>
+      <marc:subfield code="d">PPiU</marc:subfield>
+      <marc:subfield code="d">NST</marc:subfield>
+      <marc:subfield code="d">DLC</marc:subfield>
+      <marc:subfield code="d">NST</marc:subfield>
+      <marc:subfield code="d">MH</marc:subfield>
+      <marc:subfield code="d">DLC</marc:subfield>
+      <marc:subfield code="d">OCoLC</marc:subfield>
+      <marc:subfield code="d">m/c</marc:subfield>
+      <marc:subfield code="d">NST</marc:subfield>
+      <marc:subfield code="d">OCoLC</marc:subfield>
+      <marc:subfield code="d">NSDP</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">lc</marc:subfield>
+      <marc:subfield code="a">nsdp</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-us---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2=" ">
+      <marc:subfield code="a">HA202</marc:subfield>
+      <marc:subfield code="b">.A36</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="060" ind1=" " ind2=" ">
+      <marc:subfield code="a">W2 A B9CO</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="070" ind1=" " ind2=" ">
+      <marc:subfield code="a">HA202.A3</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="072" ind1=" " ind2=" ">
+      <marc:subfield code="a">E100</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="074" ind1=" " ind2=" ">
+      <marc:subfield code="a">151</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2=" ">
+      <marc:subfield code="a">317.3</marc:subfield>
+      <marc:subfield code="2">19</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="086" ind1="0" ind2=" ">
+      <marc:subfield code="a">C 56.243/2:C 83/</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="086" ind1="0" ind2=" ">
+      <marc:subfield code="a">C 3.134/2:C 83/2/</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="210" ind1="0" ind2=" ">
+      <marc:subfield code="a">Cty. city data book</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="222" ind1=" " ind2="0">
+      <marc:subfield code="a">County and city data book</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="a">County and city data book.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">[Washington, D.C.] :</marc:subfield>
+      <marc:subfield code="b">U.S. Dept. of Commerce, Bureau of the Census :</marc:subfield>
+      <marc:subfield code="b">[For sale by the Supt. of Docs., U.S. G.P.O.],</marc:subfield>
+      <marc:subfield code="c">1952-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="265" ind1=" " ind2=" ">
+      <marc:subfield code="a">Supt. of Docs., U.S. Govt. Print. Off., Washington, D.C. 20402</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">v. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">29 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="310" ind1=" " ind2=" ">
+      <marc:subfield code="a">Irregular</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="362" ind1="0" ind2=" ">
+      <marc:subfield code="a">1949-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">"A statistical abstract supplement."</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="530" ind1=" " ind2=" ">
+      <marc:subfield code="a">Also available via Internet from the Census Bureau web                     site. Address as of 6/13/03: http://www.census.gov                     /statab/www/ccdb.html; current access is available via PURL.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="580" ind1=" " ind2=" ">
+      <marc:subfield code="a">Continues in part: Cities supplement, and also continues in part: County databook.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Cities and towns</marc:subfield>
+      <marc:subfield code="z">United States</marc:subfield>
+      <marc:subfield code="x">Statistics</marc:subfield>
+      <marc:subfield code="x">Periodicals.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">United States</marc:subfield>
+      <marc:subfield code="x">Statistics</marc:subfield>
+      <marc:subfield code="x">Periodicals.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="1" ind2=" ">
+      <marc:subfield code="a">United States.</marc:subfield>
+      <marc:subfield code="b">Bureau of the Census.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="730" ind1=" " ind2=" ">
+      <marc:subfield code="a">Statistical abstract of the United States.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="780" ind1="1" ind2="1">
+      <marc:subfield code="t">Cities supplement</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="780" ind1="1" ind2="1">
+      <marc:subfield code="t">County databook.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="856" ind1="4" ind2="1">
+      <marc:subfield code="u">http://purl.access.gpo.gov/GPO/LPS29932</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">HA202</marc:subfield>
+      <marc:subfield code="i">.U581</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">drrr</marc:subfield>
+      <marc:subfield code="h">HA202</marc:subfield>
+      <marc:subfield code="i">.U581</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">sci</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">HA202</marc:subfield>
+      <marc:subfield code="i">.A36</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">spr</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">HA202</marc:subfield>
+      <marc:subfield code="i">.U581</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="1">
+      <marc:subfield code="b">dss</marc:subfield>
+      <marc:subfield code="h">HA202</marc:subfield>
+      <marc:subfield code="i">.U581</marc:subfield>
+      <marc:subfield code="x">tr fr sxf</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941111</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19941102000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="948" ind1=" " ind2=" ">
+      <marc:subfield code="a">S-RECON</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">11/02/94</marc:subfield>
+      <marc:subfield code="s">9120</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">DCLC524576S</marc:subfield>
+      <marc:subfield code="d">04/15/88</marc:subfield>
+      <marc:subfield code="c">SBY</marc:subfield>
+      <marc:subfield code="b">DPK</marc:subfield>
+      <marc:subfield code="i">941102</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

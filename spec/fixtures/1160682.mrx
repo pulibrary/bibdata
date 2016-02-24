@@ -1,0 +1,82 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+    <marc:record type="Bibliographic">
+        <marc:leader>00623cam a22002055  4500</marc:leader>
+        <marc:controlfield tag="001">1160682</marc:controlfield>
+        <marc:controlfield tag="005">20100812121323.0</marc:controlfield>
+        <marc:controlfield tag="008">911212s1899    sp            000 0 spa d</marc:controlfield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="a">(OCoLC)ocm24943424</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="035" ind1=" " ind2=" ">
+            <marc:subfield code="9">CCR0879TS</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="040" ind1=" " ind2=" ">
+            <marc:subfield code="a">RQR</marc:subfield>
+            <marc:subfield code="c">RQR</marc:subfield>
+            <marc:subfield code="d">PUL</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="092" ind1=" " ind2=" ">
+            <marc:subfield code="a">972.9105</marc:subfield>
+            <marc:subfield code="b">C84d</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="100" ind1="1" ind2=" ">
+            <marc:subfield code="a">Corral, Manuel.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="245" ind1="0" ind2="3">
+            <marc:subfield code="a">El desastre!</marc:subfield>
+            <marc:subfield code="b">Memorias de un voluntario en la campaña de Cuba.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="260" ind1=" " ind2=" ">
+            <marc:subfield code="a">Barceloa,</marc:subfield>
+            <marc:subfield code="b">A. Martínez,</marc:subfield>
+            <marc:subfield code="c">1899.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="300" ind1=" " ind2=" ">
+            <marc:subfield code="a">236, [3] p.</marc:subfield>
+            <marc:subfield code="c">19 cm.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="0" ind2=" ">
+            <marc:subfield code="a">Contents / foo.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="505" ind1="0" ind2=" ">
+            <marc:subfield code="a">Contents / bar -- Contents / baz</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="651" ind1=" " ind2="0">
+            <marc:subfield code="a">Cuba</marc:subfield>
+            <marc:subfield code="x">History</marc:subfield>
+            <marc:subfield code="y">Revolution, 1895-1898.</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="852" ind1="0" ind2=" ">
+            <marc:subfield code="b">f</marc:subfield>
+            <marc:subfield code="h">F1786</marc:subfield>
+            <marc:subfield code="i">.C677 1899</marc:subfield>
+            <marc:subfield code="p">1329236</marc:subfield>
+            <marc:subfield code="x">reclassed from: 1333.268</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="947" ind1=" " ind2=" ">
+            <marc:subfield code="a">CCR0879</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="911" ind1=" " ind2=" ">
+            <marc:subfield code="a">20000402</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+    <marc:record type="Holdings">
+        <marc:leader>00235cx  a2200109z  4500</marc:leader>
+        <marc:controlfield tag="001">1329236</marc:controlfield>
+        <marc:controlfield tag="004">1160682</marc:controlfield>
+        <marc:controlfield tag="005">20111012073950.0</marc:controlfield>
+        <marc:controlfield tag="008">0006122u    0   1001uu   0000000</marc:controlfield>
+        <marc:datafield tag="014" ind1="1" ind2=" ">
+            <marc:subfield code="a">CCR0879TS001</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="014" ind1="0" ind2=" ">
+            <marc:subfield code="9">001329236</marc:subfield>
+        </marc:datafield>
+        <marc:datafield tag="852" ind1="0" ind2="0">
+            <marc:subfield code="b">f</marc:subfield>
+            <marc:subfield code="t">1</marc:subfield>
+            <marc:subfield code="h">F1786</marc:subfield>
+            <marc:subfield code="i">.C677 1899</marc:subfield>
+        </marc:datafield>
+    </marc:record>
+</marc:collection>

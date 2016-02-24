@@ -4,7 +4,7 @@ A set of methods for retrieving data from Voyager.
 
 ## Installation
 
-On Ubuntu systems, do [this](https://help.ubuntu.com/community/Oracle%20Instant%20Client). __All of it.__
+On __Ubuntu__ systems, do [this](https://help.ubuntu.com/community/Oracle%20Instant%20Client). __All of it.__
 
 Add configuration for VGER In `$ORACLE_HOME/network/admin/tnsnames.ora` (ask DBA).
 
@@ -16,6 +16,11 @@ export TNS_ADMIN=$ORACLE_HOME/network/admin
 ```
 
 To the variables you added earlier.
+
+On __MacOSX__, follow the [ruby-oci8 instructions for setting up Oracle with Homebrew]
+(http://www.rubydoc.info/gems/ruby-oci8/file/docs/install-on-osx.md), and set the `TNS_ADMIN`
+variable to the directory containing your `tnsnames.ora` config file.  These instructions
+install the 11.2 client, which works fine with 10.2 Oracle servers.
 
 ## Configuration
 

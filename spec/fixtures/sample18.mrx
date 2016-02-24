@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>02579nac a2200505 a 4500</marc:leader>
+    <marc:controlfield tag="001">3060288</marc:controlfield>
+    <marc:controlfield tag="008">980402s1996    ja a     bc   000 0djpnod</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPG98-B21119</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="9">CFX8767NE</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DFG</marc:subfield>
+      <marc:subfield code="c">DFG</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="041" ind1="1" ind2=" ">
+      <marc:subfield code="a">jpneng</marc:subfield>
+      <marc:subfield code="h">jpn</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">a-ja---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">TR647</marc:subfield>
+      <marc:subfield code="b">.M669 1996</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Morimura, Yasumasa,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2=" ">
+      <marc:subfield code="a">₋$1!Ds!Cr₋(B ₋$1!G"!B₋(B,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+      <marc:subfield code="6">100-01/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Morimura Yasumasa ten :</marc:subfield>
+      <marc:subfield code="b">bi ni itaru yamai : joyū ni natta watakushi /</marc:subfield>
+      <marc:subfield code="c">[henshū Yokohama Bijutsukan Gakugeibu].</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="a">₋$1!Ds!Cr₋(B ₋$1!G"!B₋(B ₋$1!;Z₋(B :</marc:subfield>
+      <marc:subfield code="b">₋$1!R;₋(B ₋$1i$K₋(B ₋$1!T)i$k₋(B ₋$1!LG₋(B : ₋$1!9B!2f₋(B ₋$1i$K₋(B ₋$1i$Ji$Ci$?₋(B ₋$1!O%₋(B /</marc:subfield>
+      <marc:subfield code="c">[₋$1!Q[!A₋(B ₋$1!EV9I(₋(B ₋$1!R;KWF!y₋(B ₋$1':KV1!\k₋(B].</marc:subfield>
+      <marc:subfield code="6">245-02/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="3">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Bi ni itaru yamai</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2="3">
+      <marc:subfield code="a">₋$1!R;₋(B ₋$1i$K₋(B ₋$1!T)i$k₋(B ₋$1!LG₋(B</marc:subfield>
+      <marc:subfield code="6">246-03/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="3">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Joyū ni natta watakushi</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="3" ind2="3">
+      <marc:subfield code="a">₋$1!9B!2f₋(B ₋$1i$K₋(B ₋$1i$Ji$Ci$?₋(B ₋$1!O%₋(B</marc:subfield>
+      <marc:subfield code="6">246-04/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="5">
+      <marc:subfield code="a">Morimura Yasumasa, the sickness unto beauty</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="5">
+      <marc:subfield code="a">Sickness unto beauty</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="246" ind1="3" ind2="3">
+      <marc:subfield code="a">Self portraits as actress</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-05</marc:subfield>
+      <marc:subfield code="a">[Yokohama-shi] :</marc:subfield>
+      <marc:subfield code="b">Yokohama-shi Bijutsukan,</marc:subfield>
+      <marc:subfield code="c">c1996.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="a">[₋$1!EV9I(!&lt;D₋(B] :</marc:subfield>
+      <marc:subfield code="b">₋$1!EV9I(!&lt;D₋(B ₋$1!R;KWF!y₋(B,</marc:subfield>
+      <marc:subfield code="c">c1996.</marc:subfield>
+      <marc:subfield code="6">260-05/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">181 p. :</marc:subfield>
+      <marc:subfield code="b">chiefly ill. (some col.) ;</marc:subfield>
+      <marc:subfield code="c">30 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Catalog of an exhibition held at Yokohama Museum of Art, Apr. 6-June 9, 1996.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Title on added t.p.: Morimura Yasumasa : the sickness unto beauty : self portraits as actress.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references (p. 174-179).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="546" ind1=" " ind2=" ">
+      <marc:subfield code="a">Text also in English.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="6">880-06</marc:subfield>
+      <marc:subfield code="a">Morimura, Yasumasa,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="a">₋$1!Ds!Cr₋(B ₋$1!G"!B₋(B,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+      <marc:subfield code="6">600-06/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="6">880-07</marc:subfield>
+      <marc:subfield code="a">Morimusa, Yasumasa,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+      <marc:subfield code="x">Portraits</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="a">₋$1!Ds!Cr₋(B ₋$1!G"!B₋(B,</marc:subfield>
+      <marc:subfield code="d">1951-</marc:subfield>
+      <marc:subfield code="x">Portraits</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+      <marc:subfield code="6">600-07/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Female impersonators in art</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Transvestism in art</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Actresses in art</marc:subfield>
+      <marc:subfield code="x">Exhibitions.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="710" ind1="2" ind2=" ">
+      <marc:subfield code="6">880-08</marc:subfield>
+      <marc:subfield code="a">Yokohama Bijutsukan.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="2" ind2=" ">
+      <marc:subfield code="a">₋$1!EV9I(₋(B ₋$1!R;KWF!y₋(B.</marc:subfield>
+      <marc:subfield code="6">710-08/$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">rcppj</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="c">Oversize</marc:subfield>
+      <marc:subfield code="h">TR647</marc:subfield>
+      <marc:subfield code="i">.M669 1996q</marc:subfield>
+      <marc:subfield code="x">tr fr saph</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="911" ind1=" " ind2=" ">
+      <marc:subfield code="a">19980409</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="912" ind1=" " ind2=" ">
+      <marc:subfield code="a">19980402000000.0</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">04/02/98</marc:subfield>
+      <marc:subfield code="s">9114</marc:subfield>
+      <marc:subfield code="n">NjP</marc:subfield>
+      <marc:subfield code="w">DCFX97B148</marc:subfield>
+      <marc:subfield code="d">04/02/98</marc:subfield>
+      <marc:subfield code="c">RPH</marc:subfield>
+      <marc:subfield code="b">RPH</marc:subfield>
+      <marc:subfield code="i">980402</marc:subfield>
+      <marc:subfield code="l">NJPG</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

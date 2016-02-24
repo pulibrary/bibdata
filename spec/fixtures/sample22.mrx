@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01019cam a2200325 a 4500</marc:leader>
+    <marc:controlfield tag="001">4233920</marc:controlfield>
+    <marc:controlfield tag="005">20110126102737.0</marc:controlfield>
+    <marc:controlfield tag="008">030606s2003    ru a     b    001 0 rusoc</marc:controlfield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">5850506683</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocm53782256</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CtY)6237903</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)CTYA6237903-B</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">CGU</marc:subfield>
+      <marc:subfield code="c">CGU</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="042" ind1=" " ind2=" ">
+      <marc:subfield code="a">pcc</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">e-fr---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1=" " ind2="4">
+      <marc:subfield code="a">N6850</marc:subfield>
+      <marc:subfield code="b">.G475 2003</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">German, Mikhail,</marc:subfield>
+      <marc:subfield code="d">1933-</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Parizhskai︠a︡ shkola /</marc:subfield>
+      <marc:subfield code="c">Mikhail German.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Moskva :</marc:subfield>
+      <marc:subfield code="b">Slovo,</marc:subfield>
+      <marc:subfield code="c">2003.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">268 p. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">21 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="440" ind1=" " ind2="0">
+      <marc:subfield code="a">Bolʹshai︠a︡ biblioteka "Slova"</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references (p. 257) and index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">École de Paris.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Art</marc:subfield>
+      <marc:subfield code="z">France</marc:subfield>
+      <marc:subfield code="z">Paris</marc:subfield>
+      <marc:subfield code="y">20th century.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Art, French</marc:subfield>
+      <marc:subfield code="z">France</marc:subfield>
+      <marc:subfield code="z">Paris</marc:subfield>
+      <marc:subfield code="y">20th century.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Expatriate artists</marc:subfield>
+      <marc:subfield code="z">France</marc:subfield>
+      <marc:subfield code="z">Paris</marc:subfield>
+      <marc:subfield code="y">20th century.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">sa</marc:subfield>
+      <marc:subfield code="h">N6850</marc:subfield>
+      <marc:subfield code="i">.G475 2003</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">abd</marc:subfield>
+      <marc:subfield code="b">o</marc:subfield>
+      <marc:subfield code="h">m</marc:subfield>
+      <marc:subfield code="c">b</marc:subfield>
+      <marc:subfield code="e">20040902</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">4233920</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">rph</marc:subfield>
+      <marc:subfield code="b">l</marc:subfield>
+      <marc:subfield code="6">a</marc:subfield>
+      <marc:subfield code="7">m</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20061029</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

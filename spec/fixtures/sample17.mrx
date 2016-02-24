@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01386ctaaa2200325Mi 4500</marc:leader>
+    <marc:controlfield tag="001">5906024</marc:controlfield>
+    <marc:controlfield tag="005">20100312141604.0</marc:controlfield>
+    <marc:controlfield tag="008">090828q16581659xx            000 0 ara d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)ocn436109995</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)436109995</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP</marc:subfield>
+      <marc:subfield code="c">PUL</marc:subfield>
+      <marc:subfield code="e">amremm</marc:subfield>
+      <marc:subfield code="d">PUL</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">(3</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="0" ind2="0">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Sharḥ Ṣughrá al-Sanūsī.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="0" ind2="0">
+      <marc:subfield code="6">245-01/(3/r</marc:subfield>
+      <marc:subfield code="a">شرح صغرى السنوسي.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="c">[1658 or 9]</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Title from f. 1a.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Author listed on fol. 1a as al-Shaykh al-Madāfī al-Zadʻamī (?).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Original text in red.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="500" ind1=" " ind2=" ">
+      <marc:subfield code="a">Dated 1069 AH (1658 or 9) (fol. 23a).</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="520" ind1="8" ind2=" ">
+      <marc:subfield code="a">A commentary on Sanūsī's doctrinal work, Umm al-barāhīn.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Sanūsī, Muḥammad ibn Yūsuf,</marc:subfield>
+      <marc:subfield code="d">ca. 1427-ca. 1490.</marc:subfield>
+      <marc:subfield code="t">Umm al-barāhīn.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">600-02/(3/r</marc:subfield>
+      <marc:subfield code="a">سنوسي، محمد بن يوسف.</marc:subfield>
+      <marc:subfield code="t">ام البراهين.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Islam</marc:subfield>
+      <marc:subfield code="x">Doctrines</marc:subfield>
+      <marc:subfield code="v">Early works to 1800.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Manuscripts, Arabic</marc:subfield>
+      <marc:subfield code="y">17th century.</marc:subfield>
+      <marc:subfield code="2">lcsh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="655" ind1=" " ind2="7">
+      <marc:subfield code="a">Manuscripts, Arabic.</marc:subfield>
+      <marc:subfield code="2">lcsh</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="700" ind1="1" ind2="2">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Sanūsī, Muḥammad ibn Yūsuf,</marc:subfield>
+      <marc:subfield code="d">ca. 1427-ca. 1490.</marc:subfield>
+      <marc:subfield code="t">Umm al-barāhīn.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="2">
+      <marc:subfield code="6">700-03/(3/r</marc:subfield>
+      <marc:subfield code="a">سنوسي، محمد بن يوسف.</marc:subfield>
+      <marc:subfield code="t">ام البراهين.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="773" ind1="0" ind2=" ">
+      <marc:subfield code="t">[Collection of five Arabic texts].</marc:subfield>
+      <marc:subfield code="g">3a-23a</marc:subfield>
+      <marc:subfield code="w">5905966</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="8" ind2="0">
+      <marc:subfield code="b">mss</marc:subfield>
+      <marc:subfield code="h">Islamic Manuscripts, Third Series no. 99</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="999" ind1=" " ind2=" ">
+      <marc:subfield code="a">5906024</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

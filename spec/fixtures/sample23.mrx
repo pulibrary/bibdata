@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01497aam a2200421 a 4500</marc:leader>
+    <marc:controlfield tag="001">3256177</marc:controlfield>
+    <marc:controlfield tag="005">20120529111630.0</marc:controlfield>
+    <marc:controlfield tag="008">000509s2000    njua     b    001 0beng  </marc:controlfield>
+    <marc:datafield tag="010" ind1=" " ind2=" ">
+      <marc:subfield code="a">   00034664 </marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">0691069506 (alk. paper)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="020" ind1=" " ind2=" ">
+      <marc:subfield code="a">0691115680 (paperback)</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(OCoLC)44090472</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)DCLC0034664-B</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">DLC</marc:subfield>
+      <marc:subfield code="c">DLC</marc:subfield>
+      <marc:subfield code="d">NjP</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="043" ind1=" " ind2=" ">
+      <marc:subfield code="a">n-usu--</marc:subfield>
+      <marc:subfield code="a">n-us---</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="050" ind1="0" ind2="0">
+      <marc:subfield code="a">PS3539.A74</marc:subfield>
+      <marc:subfield code="b">Z93 2001</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="082" ind1="0" ind2="0">
+      <marc:subfield code="a">818/.5209</marc:subfield>
+      <marc:subfield code="a">B</marc:subfield>
+      <marc:subfield code="2">21</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="a">Underwood, Thomas A.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="a">Allen Tate:</marc:subfield>
+      <marc:subfield code="b">orphan of the South /</marc:subfield>
+      <marc:subfield code="c">Thomas A. Underwood.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="a">Princeton, N.J. :</marc:subfield>
+      <marc:subfield code="b">Princeton University Press,</marc:subfield>
+      <marc:subfield code="c">c2000.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">viii, 447 p. :</marc:subfield>
+      <marc:subfield code="b">ill. ;</marc:subfield>
+      <marc:subfield code="c">24 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="504" ind1=" " ind2=" ">
+      <marc:subfield code="a">Includes bibliographical references and index.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="600" ind1="1" ind2="0">
+      <marc:subfield code="a">Tate, Allen,</marc:subfield>
+      <marc:subfield code="d">1899-1979.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">Southern States</marc:subfield>
+      <marc:subfield code="x">Intellectual life</marc:subfield>
+      <marc:subfield code="y">20th century.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Authors, American</marc:subfield>
+      <marc:subfield code="z">Southern States</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Authors, American</marc:subfield>
+      <marc:subfield code="y">20th century</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Agrarians (Group of writers)</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Critics</marc:subfield>
+      <marc:subfield code="z">United States</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Fugitives (Group)</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="651" ind1=" " ind2="0">
+      <marc:subfield code="a">Southern States</marc:subfield>
+      <marc:subfield code="v">Biography.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">exb</marc:subfield>
+      <marc:subfield code="h">PS3539.A74</marc:subfield>
+      <marc:subfield code="i">Z93 2000</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="h">PS3539.A74</marc:subfield>
+      <marc:subfield code="i">Z93 2000</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="h">PS3539.A74</marc:subfield>
+      <marc:subfield code="i">Z93 2000</marc:subfield>
+      <marc:subfield code="x">tr fr anxa</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="t">2</marc:subfield>
+      <marc:subfield code="h">PS3539.A74</marc:subfield>
+      <marc:subfield code="i">Z93 2000</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2=" ">
+      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="h">PS3539.A74</marc:subfield>
+      <marc:subfield code="i">Z93 2000</marc:subfield>
+      <marc:subfield code="x">tr fr dixn</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="902" ind1=" " ind2=" ">
+      <marc:subfield code="a">gls</marc:subfield>
+      <marc:subfield code="b">l</marc:subfield>
+      <marc:subfield code="c">b</marc:subfield>
+      <marc:subfield code="d">v</marc:subfield>
+      <marc:subfield code="s">m</marc:subfield>
+      <marc:subfield code="f">1</marc:subfield>
+      <marc:subfield code="e">20001121</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="904" ind1=" " ind2=" ">
+      <marc:subfield code="a">gls</marc:subfield>
+      <marc:subfield code="b">g</marc:subfield>
+      <marc:subfield code="h">m</marc:subfield>
+      <marc:subfield code="c">b</marc:subfield>
+      <marc:subfield code="e">20001121</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="s">9660</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>

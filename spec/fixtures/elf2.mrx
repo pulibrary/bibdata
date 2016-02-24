@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<record xmlns="http://www.loc.gov/MARC21/slim">
+  <leader>01971cmm a2200409 a 4500</leader>
+  <controlfield tag="001">3478898</controlfield>
+  <controlfield tag="005">20160121135358.0</controlfield>
+  <controlfield tag="006">aa          000 0 </controlfield>
+  <controlfield tag="007">co|cga</controlfield>
+  <controlfield tag="008">000131s1999    cc         |        chi d</controlfield>
+  <datafield ind1=" " ind2=" " tag="020">
+    <subfield code="a">9629840022</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(NBISU)notisAFQ1057</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)ocm43373479</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(CStRLIN)NYBGAFQ1057-D</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">3478898</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">HNK</subfield>
+    <subfield code="c">HNK</subfield>
+    <subfield code="d">NBiSU</subfield>
+    <subfield code="d">CStRLIN</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="043">
+    <subfield code="a">a-cc---</subfield>
+  </datafield>
+  <datafield ind1="0" ind2=" " tag="130">
+    <subfield code="a">Si ku quan shu.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="245">
+    <subfield code="a">Wen yuan ge Si ku quan shu dian zi ban</subfield>
+    <subfield code="h">[electronic resource].</subfield>
+  </datafield>
+  <datafield ind1="3" ind2="3" tag="246">
+    <subfield code="a">Siku quanshu.</subfield>
+    <subfield code="p">Electronic version</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="250">
+    <subfield code="a">Yuan wen ji quan wen jian suo ban.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="256">
+    <subfield code="a">Computer data.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="260">
+    <subfield code="a">Xianggang :</subfield>
+    <subfield code="b">Di zhi wen hua chu ban you xian gong si :</subfield>
+    <subfield code="b">Zhong wen da xue chu ban she,</subfield>
+    <subfield code="c">1999.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">183 computer optical discs :</subfield>
+    <subfield code="b">sd., col. ;</subfield>
+    <subfield code="c">4 3/4 in. +</subfield>
+    <subfield code="e">1 user's manual (67 p. : ill. ; 24 cm.)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="500">
+    <subfield code="a">Title from title screen.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="500">
+    <subfield code="a">Based on "Ying yin Wen yuan ge Si ku quan shu". 15 excluded titles listed on p. 63-64 in the user's manual. Includes some related entries from "Si ku da ci dian" published by Jilin da xue chu ban she and "Zhonghua gu Han yu zi dian" by Shanghai ren min chu ban she for hypertext search.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="538">
+    <subfield code="a">System requirements: Pentium 166 equivalent or above CPU, 32MB or above free hard disk space and space for installing Internet Explorer 5 (70 MB for standard installation or 110 MB for full installation), 800 x 600 resolution and 32768 (15-bit) colors or above display card, mouse, 16-bit sound card, speaker, CD-ROM Drive, software environment compatible with Windows 98.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="630">
+    <subfield code="a">Si ku quan shu.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Chinese literature.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Chinese classics.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Philosophy, Chinese.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">China</subfield>
+    <subfield code="x">History.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="2" tag="730">
+    <subfield code="a">Si ku da ci dian.</subfield>
+    <subfield code="k">Selections.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="2" tag="730">
+    <subfield code="a">Zhonghua gu Han yu zi dian.</subfield>
+    <subfield code="k">Selections.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="787">
+    <subfield code="w">3861539</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="904">
+    <subfield code="a">ktf</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">f</subfield>
+    <subfield code="e">20011115</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="950">
+    <subfield code="a">AC149</subfield>
+    <subfield code="b">.S5 1999</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="0">3802765</subfield>
+    <subfield code="b">elf2</subfield>
+    <subfield code="h">Electronic Resource</subfield>
+    <subfield code="z">Accessible from designated East Asian Library computers only</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="959">
+    <subfield code="a">2001-11-15 11:55:33 -0500</subfield>
+  </datafield>
+</record>

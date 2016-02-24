@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+  <marc:record>
+    <marc:leader>01187cam a2200277 a 4500</marc:leader>
+    <marc:controlfield tag="001">3148879</marc:controlfield>
+    <marc:controlfield tag="005">20071019094442.0</marc:controlfield>
+    <marc:controlfield tag="008">970130s1982    ko ab         00110 kor d</marc:controlfield>
+    <marc:datafield tag="035" ind1=" " ind2=" ">
+      <marc:subfield code="a">(CStRLIN)NJPX97-B706</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="040" ind1=" " ind2=" ">
+      <marc:subfield code="a">NjP-G</marc:subfield>
+      <marc:subfield code="c">NjP-G</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="066" ind1=" " ind2=" ">
+      <marc:subfield code="c">$1</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="090" ind1=" " ind2=" ">
+      <marc:subfield code="a">DS916.55</marc:subfield>
+      <marc:subfield code="b">.M56 vol.4</marc:subfield>
+      <marc:subfield code="f">CAS</marc:subfield>
+      <marc:subfield code="i">03/11/04 T</marc:subfield>
+      <marc:subfield code="h">02/27/97 CT</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="100" ind1="1" ind2=" ">
+      <marc:subfield code="6">880-01</marc:subfield>
+      <marc:subfield code="a">Sin, Chae-hong.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">100-01/$1</marc:subfield>
+      <marc:subfield code="a">신재홍．</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="245" ind1="1" ind2="0">
+      <marc:subfield code="6">880-02</marc:subfield>
+      <marc:subfield code="a">Tongnipkun ŭi chŏntʻu /</marc:subfield>
+      <marc:subfield code="c">Sin Chae-hong chippʻil.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1="1" ind2="0">
+      <marc:subfield code="6">245-02/$1</marc:subfield>
+      <marc:subfield code="a">독립군의전투　/</marc:subfield>
+      <marc:subfield code="c">신재홍집필.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="260" ind1=" " ind2=" ">
+      <marc:subfield code="6">880-03</marc:subfield>
+      <marc:subfield code="a">Sŏul Tʻŭkpyŏlsi :</marc:subfield>
+      <marc:subfield code="b">Minjok Munhwa Munʼgo Kanhaenghoe,</marc:subfield>
+      <marc:subfield code="c">1982.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2=" ">
+      <marc:subfield code="6">260-03/$1</marc:subfield>
+      <marc:subfield code="a">서울특별시　:</marc:subfield>
+      <marc:subfield code="b">민족문화문고간행회,</marc:subfield>
+      <marc:subfield code="c">1982.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="300" ind1=" " ind2=" ">
+      <marc:subfield code="a">472, 27 p. :</marc:subfield>
+      <marc:subfield code="b">ill., maps ;</marc:subfield>
+      <marc:subfield code="c">23 cm.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="440" ind1=" " ind2="0">
+      <marc:subfield code="6">880-04</marc:subfield>
+      <marc:subfield code="a">Minjok undong chʻongsŏ ;</marc:subfield>
+      <marc:subfield code="v">che 4-chip</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="880" ind1=" " ind2="0">
+      <marc:subfield code="6">440-04/$1</marc:subfield>
+      <marc:subfield code="a">민족운동총서　;</marc:subfield>
+      <marc:subfield code="v">第4集</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="650" ind1=" " ind2="0">
+      <marc:subfield code="a">Korean resistance movements, 1905-1945.</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="852" ind1="0" ind2="0">
+      <marc:subfield code="b">k</marc:subfield>
+      <marc:subfield code="t">1</marc:subfield>
+      <marc:subfield code="h">DS916.55</marc:subfield>
+      <marc:subfield code="i">.M56 vol.4</marc:subfield>
+      <marc:subfield code="x">AnnexA</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="950" ind1=" " ind2=" ">
+      <marc:subfield code="l">K</marc:subfield>
+      <marc:subfield code="d">\AnnexA\</marc:subfield>
+      <marc:subfield code="p">7</marc:subfield>
+      <marc:subfield code="h">02/27/1997 C</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="955" ind1=" " ind2=" ">
+      <marc:subfield code="l">K</marc:subfield>
+      <marc:subfield code="c">1</marc:subfield>
+      <marc:subfield code="q">gift from ICSK 4-11-85 Gest A07364</marc:subfield>
+      <marc:subfield code="r">32101032841288</marc:subfield>
+      <marc:subfield code="h">02/27/97 C</marc:subfield>
+    </marc:datafield>
+    <marc:datafield tag="998" ind1=" " ind2=" ">
+      <marc:subfield code="a">03/11/04</marc:subfield>
+      <marc:subfield code="t">c</marc:subfield>
+      <marc:subfield code="s">9114</marc:subfield>
+      <marc:subfield code="n">NjP-G</marc:subfield>
+      <marc:subfield code="w">NJPX97B706</marc:subfield>
+      <marc:subfield code="d">03/11/04</marc:subfield>
+      <marc:subfield code="c">SK</marc:subfield>
+      <marc:subfield code="b">KH</marc:subfield>
+      <marc:subfield code="i">040311</marc:subfield>
+      <marc:subfield code="h">970227</marc:subfield>
+      <marc:subfield code="l">NJPX</marc:subfield>
+    </marc:datafield>
+  </marc:record>
+</marc:collection>
