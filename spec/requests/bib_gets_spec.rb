@@ -9,12 +9,87 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
   end
 
+  describe "GET /bibliographic/00000000/items" do
+    it "returns an error when the bib record does not exist" do
+      get '/bibliographic/00000000/items'
+      expect(response.status).to be(404)
+    end
+  end
+
   describe "GET /bibliographic/6815537" do
     it "Removes bib 852 when there is no holding record" do
       get '/bibliographic/6815537.json'
       bib = JSON.parse(response.body)
       has_852 = bib["fields"].any? {|f| f.has_key?('852')}
       expect(has_852).to be(false)
+    end
+  end
+
+  describe 'retrieving solr json' do
+    it 'retrieves solr json for a bib record' do
+      bib_id = '1234567'
+      get "/bibliographic/#{bib_id}/solr"
+      expect(response.status).to be(200)
+
+      solr_doc = JSON.parse(response.body)
+      expect(solr_doc['id']).to eq(['1234567'])
+    end
+
+    it 'displays an error when the bib record does not exist' do
+      get '/bibliographic/00000000/solr'
+      expect(response.status).to be(404)
+    end
+  end
+
+  describe "GET /bibliographic/:bib_id" do
+    it "returns an error when the bib record does not exist" do
+      get '/bibliographic/00000000'
+      expect(response.status).to be(404)
+    end
+
+    it "returns xml" do
+      get '/bibliographic/1234567.xml'
+      expect(response.status).to be(200)
+      expect(response.content_type).to eq('application/xml')
+    end
+  end
+
+  describe 'index' do
+    it 'redirects to holdings' do
+      get '/bibliographic?bib_id=1234567&holdings_only=1'
+      expect(response).to redirect_to('/bibliographic/1234567/holdings')
+    end
+
+    it 'redirects to items' do
+      get '/bibliographic?bib_id=1234567&items_only=1'
+      expect(response).to redirect_to('/bibliographic/1234567/items')
+    end
+
+    it 'redirects to bib' do
+      get '/bibliographic?bib_id=1234567'
+      expect(response).to redirect_to('/bibliographic/1234567')
+    end
+
+    it 'returns an error when a bib id is not provided' do
+      get '/bibliographic'
+      expect(response.status).to be(404)
+    end
+  end
+
+  describe 'holdings' do
+    it 'provides json' do
+      get '/bibliographic/1234567/holdings.json'
+      expect(response.content_type).to eq('application/json')
+    end
+
+    it 'provides xml' do
+      get '/bibliographic/1234567/holdings.xml'
+      expect(response.content_type).to eq('application/xml')
+    end
+
+    it "returns an error when the bib record does not exist" do
+      get '/bibliographic/00000000/holdings'
+      expect(response.status).to be(404)
     end
   end
 

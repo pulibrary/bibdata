@@ -205,7 +205,6 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  SEPARATOR = '—'
   describe 'process_subject_facet function' do
     before(:all) do
       @s610_ind2_5 = {"600"=>{"ind1"=>"", "ind2"=>"5", "subfields"=>[{"a"=>"Exclude"}]}}

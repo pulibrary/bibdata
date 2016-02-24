@@ -23,12 +23,6 @@ describe 'From traject_config.rb' do
     @online=@indexer.map_record(fixture_record('sample30'))
     @elf2=@indexer.map_record(fixture_record('elf2'))
     @other_title_246=@indexer.map_record(fixture_record('7910599'))
-    config = YAML.load(ERB.new(File.read('config/solr.yml')).result)
-    @conn = Faraday.new(:url => config['marc_liberation']) do |faraday|
-      faraday.request  :url_encoded             # form-encode POST params
-      faraday.response :logger                  # log requests to STDOUT
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-    end
 	end
 
   describe 'the id field' do
@@ -96,12 +90,11 @@ describe 'From traject_config.rb' do
   end
   describe 'holdings_1display' do
     before(:all) do
-      resp = @conn.get "/bibliographic/7617477"
-      marcxml = MARC::XMLReader.new(StringIO.new(resp.body)).first
+      marcxml = fixture_record('7617477')
       @solr_hash = @indexer.map_record(marcxml)
       @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
-      resp = @conn.get "/bibliographic/7617477/holdings.json"
-      holdings = JSON.parse(resp.body)
+      holdings_file=File.expand_path("../../fixtures/7617477-holdings.json",__FILE__)
+      holdings = JSON.parse(File.read(holdings_file))
       @holding_records = []
       holdings.each {|h| @holding_records << MARC::Record.new_from_hash(h) }
     end
