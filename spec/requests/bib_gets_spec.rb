@@ -41,6 +41,16 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
   end
 
+  describe 'retrieving iiif json' do
+    it 'retrieves iiif json for a bib record' do
+      get "/bibliographic/1234567/iiif"
+      expect(response.status).to be(200)
+
+      iiif_doc = JSON.parse(response.body)
+      expect(iiif_doc['label']).to eq('Christopher and his kind, 1929-1939 /')
+    end
+  end
+
   describe "GET /bibliographic/:bib_id" do
     it "returns an error when the bib record does not exist" do
       get '/bibliographic/00000000'
