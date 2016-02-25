@@ -327,7 +327,7 @@ module VoyagerHelpers
         circulates = true
         holding_location = Locations::HoldingLocation.find_by(code: loc_code)
         unless holding_location.nil? 
-          limited = holding_location.circulates
+          circulates = holding_location.circulates
         end
         circulates
       end
