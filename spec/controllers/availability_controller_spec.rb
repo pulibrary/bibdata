@@ -82,23 +82,13 @@ RSpec.describe AvailabilityController, :type => :controller do
       expect(availability.first[1]['status']).to include('Order Received')
     end
 
-    it 'always_requestable locations have a status of limited' do
-      allow(VoyagerHelpers::Liberator).to receive(:limited_access_location?).and_return(true)
+    it 'non_circulating locations have a status of limited' do
+      allow(VoyagerHelpers::Liberator).to receive(:circulating_location?).and_return(false)
       bible = '4609321'
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
       availability = JSON.parse(response.body)
       expect(availability[bible][holding_id]['status']).to eq('Limited')
-    end
-
-    it 'reference locations have a status of limited' do
-      allow(VoyagerHelpers::Liberator).to receive(:limited_access_location?).and_return(true)
-      music_ref = '9104739'
-      holding_id = '9000808'
-      get :index, id: music_ref, format: :json
-      availability = JSON.parse(response.body)
-      expect(availability[holding_id]['location']).to eq('sv')
-      expect(availability[holding_id]['status']).to eq('Limited')
     end
 
     it 'all other holding records without items have a status of On Shelf' do
