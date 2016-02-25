@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/bibliographic', to: 'bibliographic#index', defaults: { format: :txt }
   get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }
   get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
-  get '/bibliographic/:bib_id/iiif', to: 'bibliographic#bib_iiif'
+  get '/bibliographic/:bib_id/jsonld', to: 'bibliographic#bib_jsonld'
   get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
   get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
 

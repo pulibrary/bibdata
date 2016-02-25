@@ -41,13 +41,14 @@ RSpec.describe "Bibliographic Gets", :type => :request do
     end
   end
 
-  describe 'retrieving iiif json' do
-    it 'retrieves iiif json for a bib record' do
-      get "/bibliographic/1234567/iiif"
+  describe 'retrieving json+ld' do
+    it 'retrieves json+ld for a bib record' do
+      get "/bibliographic/1234567/jsonld"
       expect(response.status).to be(200)
+      expect(response.content_type).to eq('application/ld+json')
 
-      iiif_doc = JSON.parse(response.body)
-      expect(iiif_doc['label']).to eq('Christopher and his kind, 1929-1939 /')
+      json_ld_doc = JSON.parse(response.body)
+      expect(json_ld_doc['title']).to eq({'@value' => 'Christopher and his kind, 1929-1939 /', '@language' => 'eng'})
     end
   end
 

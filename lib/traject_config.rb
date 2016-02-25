@@ -119,7 +119,7 @@ to_field 'title_no_h_index' do |record, accumulator|
 end
 
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
-to_field 'title_citation_display', extract_marc('245ab', :alternate_script => false, :first => true)
+to_field 'title_citation_display', extract_marc('245ab')
 
 ## Title and Title starts with index-only fields ##
 #################################################

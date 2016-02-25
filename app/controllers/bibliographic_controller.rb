@@ -52,13 +52,20 @@ class BibliographicController < ApplicationController
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       solr_doc = indexer.map_record(records)
-      solr_doc = IIIFRecord.new(solr_doc).to_json if format == :iiif
-      render json: solr_doc
+      if format == :jsonld
+        render json: {context: context_url}.merge(JSONLDRecord.new(solr_doc).to_h), content_type: 'application/ld+json'
+      else
+        render json: solr_doc
+      end
     end
   end
 
-  def bib_iiif
-    bib_solr format: :iiif
+  def context_url
+    Rails.application.routes.url_helpers.root_url(host: request.host_with_port) + 'context.json'
+  end
+
+  def bib_jsonld
+    bib_solr format: :jsonld
   end
 
   def indexer
