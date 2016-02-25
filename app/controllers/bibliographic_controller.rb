@@ -40,7 +40,7 @@ class BibliographicController < ApplicationController
     end
   end
 
-  def bib_solr
+  def bib_solr(format: nil)
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
@@ -52,8 +52,13 @@ class BibliographicController < ApplicationController
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       solr_doc = indexer.map_record(records)
+      solr_doc = IIIFRecord.new(solr_doc).to_json if format == :iiif
       render json: solr_doc
     end
+  end
+
+  def bib_iiif
+    bib_solr format: :iiif
   end
 
   def indexer
