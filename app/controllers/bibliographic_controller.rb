@@ -53,7 +53,7 @@ class BibliographicController < ApplicationController
     else
       solr_doc = indexer.map_record(records)
       if format == :jsonld
-        render json: {context: context_url}.merge(JSONLDRecord.new(solr_doc).to_h), content_type: 'application/ld+json'
+        render json: solr_to_jsonld(solr_doc), content_type: 'application/ld+json'
       else
         render json: solr_doc
       end
@@ -61,11 +61,23 @@ class BibliographicController < ApplicationController
   end
 
   def context_url
-    Rails.application.routes.url_helpers.root_url(host: request.host_with_port) + 'context.json'
+    url_helpers.root_url(host: request.host_with_port) + 'context.json'
   end
 
   def bib_jsonld
     bib_solr format: :jsonld
+  end
+
+  def bib_id_url
+    url_helpers.show_bib_url(params[:bib_id], host: request.host_with_port)
+  end
+
+  def solr_to_jsonld(solr_doc=nil)
+    { '@context': context_url, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
+  end
+
+  def url_helpers
+    Rails.application.routes.url_helpers
   end
 
   def indexer

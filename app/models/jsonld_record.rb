@@ -4,7 +4,7 @@ class JSONLDRecord
   end
 
   def to_h
-    metadata = { title: title, description: description }
+    metadata = { title: title, description: description, language: language_codes }
 
     metadata_map.each do |solr_key, metadata_key|
       values = @solr_doc[solr_key.to_s] || []
@@ -14,6 +14,8 @@ class JSONLDRecord
 
     contrib = contributors
     metadata['contributor'] = contrib unless contrib.empty?
+    metadata['created'] = date(true)
+    metadata['date'] = date
 
     metadata
   end
@@ -23,8 +25,28 @@ class JSONLDRecord
     JSON.parse(@solr_doc['related_name_json_1display'].first).values.flatten.uniq
   end
 
+  def date(expanded = false)
+    date = @solr_doc['pub_date_start_sort'].first
+    date += "-01-01T00:00:00Z" if expanded
+    end_date = @solr_doc['pub_date_end_sort']
+    unless end_date.empty?
+      date += expanded ? "/" + end_date.first + "-12-31T23:59:59Z" : "-" + end_date.first
+    end
+
+    date
+  end
+
   def description
     (@solr_doc['summary_note_display'] || [""]).first
+  end
+
+  def language_codes
+    lang = @solr_doc['language_code_s']
+    @solr_doc['language_facet'].each do |label|
+      lang << LanguageService.label_to_iso(label) unless label == 'Multiple'
+    end
+    lang = lang.uniq
+    lang.size == 1 ? lang.first : lang
   end
 
   def title
@@ -50,15 +72,12 @@ class JSONLDRecord
   def metadata_map
     {
       author_display:        'creator',
-      pub_date_display:      'date',
       description_display:   'description',
       edition_display:       'edition',
       format:                'format',
       genre_facet:           'genre',
-      language_facet:        'language',
-      language_code_s:       'language_code',
       notes_display:         'note',
-      pub_citation_display:  'publication',
+      pub_created_display:   'publisher',
       subject_facet:         'subject'
     }
   end
