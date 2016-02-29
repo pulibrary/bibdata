@@ -19,11 +19,11 @@
     "rights": {"@id": "dc:rights"},
     "source": {"@id": "dc:source"},
     "subject": {"@id": "dc:subject"},
-    "title": {"@id": "dc:title"},
     "type": {"@id": "dc:type"},
 
     "created": {"@id": "dcterms:created"},
     "extent": {"@id": "dcterms:extent"},
-    "modified": {"@id": "dcterms:modified"}
+    "modified": {"@id": "dcterms:modified"},
+    "title": {"@id": "dcterms:title"},
   }
 }

@@ -12,8 +12,7 @@ class JSONLDRecord
       metadata[metadata_key] = values unless values.empty?
     end
 
-    contrib = contributors
-    metadata['contributor'] = contrib unless contrib.empty?
+    metadata.merge! contributors
     metadata['created'] = date(true)
     metadata['date'] = date
 
@@ -21,8 +20,13 @@ class JSONLDRecord
   end
 
   def contributors
-    return [] unless @solr_doc['related_name_json_1display']
-    JSON.parse(@solr_doc['related_name_json_1display'].first).values.flatten.uniq
+    return {} unless @solr_doc['related_name_json_1display']
+
+    contributors = {}
+    JSON.parse(@solr_doc['related_name_json_1display'].first).each do |role, names|
+      contributors[role.underscore.singularize] = names
+    end
+    contributors
   end
 
   def date(expanded = false)
@@ -54,13 +58,17 @@ class JSONLDRecord
   end
 
   def vernacular_title
-    vtitle = (@solr_doc['title_citation_display'] || []).second
+    vtitle = Traject::Macros::Marc21.trim_punctuation (@solr_doc['title_citation_display'] || []).second
     return { "@value": vtitle, "@language": title_language } if vtitle
   end
 
   def roman_title
     lang = vernacular_title.nil? ? title_language : title_language + "-Latn"
-    { "@value": @solr_doc['title_citation_display'].first, "@language": lang }
+    { "@value": roman_display_title, "@language": lang }
+  end
+
+  def roman_display_title
+    Traject::Macros::Marc21.trim_punctuation @solr_doc['title_citation_display'].first
   end
 
   def title_language

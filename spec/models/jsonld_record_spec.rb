@@ -25,7 +25,8 @@ RSpec.describe JSONLDRecord, :type => :model do
       created: '1970-01-01T00:00:00Z/1972-12-31T23:59:59Z',
       language: ['eng', 'spa', 'zho'],
       publisher: 'New York : Farrar, Straus Giroux, 1970.',
-      contributor: ['Translator, Bob', 'Translator, Carol']
+      donor: ['Translator, Carol'],
+      translator: ['Translator, Bob', 'Translator, Carol']
     }
     expect(subject.to_h.symbolize_keys).to eq(json_ld)
   end

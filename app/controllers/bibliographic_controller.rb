@@ -60,8 +60,12 @@ class BibliographicController < ApplicationController
     end
   end
 
-  def context_url
-    url_helpers.root_url(host: request.host_with_port) + 'context.json'
+  def context_urls
+    [ root_url + 'dc/context.json', root_url + 'mrel/context.json' ]
+  end
+
+  def root_url
+    url_helpers.root_url(host: request.host_with_port)
   end
 
   def bib_jsonld
@@ -73,7 +77,7 @@ class BibliographicController < ApplicationController
   end
 
   def solr_to_jsonld(solr_doc=nil)
-    { '@context': context_url, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
+    { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
   end
 
   def url_helpers
