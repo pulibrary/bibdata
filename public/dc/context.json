@@ -24,6 +24,6 @@
     "created": {"@id": "dcterms:created"},
     "extent": {"@id": "dcterms:extent"},
     "modified": {"@id": "dcterms:modified"},
-    "title": {"@id": "dcterms:title"},
+    "title": {"@id": "dcterms:title"}
   }
 }
