@@ -12,7 +12,7 @@ RSpec.describe JSONLDRecord, :type => :model do
     'language_facet'             => ['English', 'Spanish', 'Chinese'],
     'language_code_s'            => ['eng'],
     'author_display'             => ['Author, Alice'],
-    'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Donor":["Translator, Carol"]}']
+    'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Former owner":["Translator, Carol"],"Related name":["Contributor, Donald"]}']
   }}
   subject { described_class.new solr_doc }
 
@@ -25,7 +25,8 @@ RSpec.describe JSONLDRecord, :type => :model do
       created: '1970-01-01T00:00:00Z/1972-12-31T23:59:59Z',
       language: ['eng', 'spa', 'zho'],
       publisher: 'New York : Farrar, Straus Giroux, 1970.',
-      donor: ['Translator, Carol'],
+      contributor: ['Contributor, Donald'],
+      former_owner: ['Translator, Carol'],
       translator: ['Translator, Bob', 'Translator, Carol']
     }
     expect(subject.to_h.symbolize_keys).to eq(json_ld)

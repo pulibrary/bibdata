@@ -24,7 +24,9 @@ class JSONLDRecord
 
     contributors = {}
     JSON.parse(@solr_doc['related_name_json_1display'].first).each do |role, names|
-      contributors[role.underscore.singularize] = names
+      key = role.parameterize('_').singularize
+      key = 'contributor' if key == 'related_name'
+      contributors[key] = names
     end
     contributors
   end
