@@ -1,5 +1,4 @@
 require 'yaml'
-require_relative '../../voyager_helpers/lib/voyager_helpers'
 include VoyagerHelpers::OracleConnection
 
 vh_config = YAML.load_file("#{File.dirname(__FILE__)}/../voyager_helpers.yml")
