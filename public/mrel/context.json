@@ -232,9 +232,6 @@
     "cover_designer": {
       "@id": "mrel:cov"
     },
-    "creator": {
-      "@id": "mrel:cre"
-    },
     "curator": {
       "@id": "mrel:cur"
     },
@@ -606,9 +603,6 @@
     },
     "publication_place": {
       "@id": "mrel:pup"
-    },
-    "publisher": {
-      "@id": "mrel:pbl"
     },
     "publishing_director": {
       "@id": "mrel:pbd"
@@ -1009,9 +1003,6 @@
     "contractor": {
       "@id": "mrel:ctr"
     },
-    "contributor": {
-      "@id": "mrel:ctb"
-    },
     "copyright_claimant": {
       "@id": "mrel:cpc"
     },
@@ -1035,9 +1026,6 @@
     },
     "cover_designer": {
       "@id": "mrel:cov"
-    },
-    "creator": {
-      "@id": "mrel:cre"
     },
     "curator": {
       "@id": "mrel:cur"
