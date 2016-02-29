@@ -28,7 +28,7 @@ class JSONLDRecord
   def date(expanded = false)
     date = @solr_doc['pub_date_start_sort'].first
     date += "-01-01T00:00:00Z" if expanded
-    end_date = @solr_doc['pub_date_end_sort']
+    end_date = @solr_doc['pub_date_end_sort'] || []
     unless end_date.empty?
       date += expanded ? "/" + end_date.first + "-12-31T23:59:59Z" : "-" + end_date.first
     end

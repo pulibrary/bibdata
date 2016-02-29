@@ -5,6 +5,7 @@ RSpec.describe AvailabilityController, :type => :controller do
 
   describe 'bib availability hash' do
     it 'provides availability for only the first 2 holdings by default' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"929437"=>{"1068356"=>{:more_items=>false, :location=>"rcppa", :status=>"Not Charged"}, "1068357"=>{:more_items=>false, :location=>"fnc", :status=>"Not Charged"}}})
       bib_3_holdings = '929437'
       get :index, ids: [bib_3_holdings], format: :json
       availability = JSON.parse(response.body)
@@ -16,6 +17,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'provides availability for all holdings if full availability requested' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"1068356"=>{:more_items=>false, :location=>"rcppa", :status=>"Not Charged"}, "1068357"=>{:more_items=>false, :location=>"fnc", :status=>"Not Charged"}, "1068358"=>{:more_items=>false, :location=>"anxb", :status=>"Not Charged"}})
       bib_3_holdings = '929437'
       get :index, id: bib_3_holdings, format: :json
       availability = JSON.parse(response.body)
@@ -28,16 +30,17 @@ RSpec.describe AvailabilityController, :type => :controller do
 
   describe 'holding availability hash' do
     it 'voyager status is returned for item' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"35345"=>{"39176"=>{:more_items=>false, :location=>"f", :status=>"Not Charged"}}})
       bib_with_item = '35345'
       holding_id = '39176'
       item_id = 36736
-      item_status = VoyagerHelpers::Liberator.get_item(item_id)[:status]
       get :index, ids: [bib_with_item], format: :json
       availability = JSON.parse(response.body)
-      expect(availability[bib_with_item][holding_id]['status']).to eq(item_status)
+      expect(availability[bib_with_item][holding_id]['status']).to eq('Not Charged')
     end
 
     it 'elf records have a status of online' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"7916044"=>{"7698138"=>{:more_items=>false, :location=>"elf1", :status=>"Online"}, "7860428"=>{:more_items=>false, :location=>"rcpph", :status=>"Not Charged"}}})
       bib_online = '7916044'
       holding_id = '7698138'
       get :index, ids: [bib_online], format: :json
@@ -47,6 +50,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'on-order records have a status of On-Order' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"9173362"=>{"9051785"=>{:more_items=>false, :location=>"f", :status=>"On-Order 09-10-2015"}}})
       bib_on_order = '9173362'
       holding_id = '9051785'
       get :index, ids: [bib_on_order], format: :json
@@ -57,6 +61,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     it 'limited access location on-order records have a status of On-Order' do
       allow(VoyagerHelpers::Liberator).to receive(:get_item_ids_for_holding).and_return([])
       allow(VoyagerHelpers::Liberator).to receive(:get_order_status).and_return('On-Order')
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"9355531"=>{:more_items=>false, :location=>"sa", :status=>"On-Order"}})
       marquand = '9497429'
       get :index, id: marquand, format: :json
       availability = JSON.parse(response.body)
@@ -67,6 +72,7 @@ RSpec.describe AvailabilityController, :type => :controller do
 
     it 'online on-order records have a status of On-Order' do
       allow(VoyagerHelpers::Liberator).to receive(:get_order_status).and_return('On-Order')
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"9096471"=>{:more_items=>false, :location=>"elf1", :status=>"On-Order"}})
       online = '9226664'
       get :index, id: online, format: :json
       availability = JSON.parse(response.body)
@@ -76,6 +82,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'Received on-order records have a status of Order Received' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"9329199"=>{:more_items=>false, :location=>"f", :status=>"Order Received 12-16-2015"}})
       bib_received_order = '9468468'
       get :index, id: bib_received_order, format: :json
       availability = JSON.parse(response.body)
@@ -84,6 +91,7 @@ RSpec.describe AvailabilityController, :type => :controller do
 
     it 'non_circulating locations have a status of limited' do
       allow(VoyagerHelpers::Liberator).to receive(:circulating_location?).and_return(false)
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"4609321"=>{"4847980"=>{:more_items=>false, :location=>"whs", :status=>"Limited"}, "4848993"=>{:more_items=>false, :location=>"whs", :status=>"Limited"}}})
       bible = '4609321'
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
@@ -92,6 +100,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'all other holding records without items have a status of On Shelf' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"7617477"=>{"7429805"=>{:more_items=>false, :location=>"f", :status=>"On Shelf"}, "7429809"=>{:more_items=>false, :location=>"sci", :status=>"On Shelf"}}})
       bib_ipad = '7617477'
       holding_id = '7429805'
       get :index, ids: [bib_ipad], format: :json
@@ -100,6 +109,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'more_items is true when there is more than 1 item for a holding' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"857469"=>{"977093"=>{:more_items=>true, :location=>"f", :status=>"Not Charged"}, "977094"=>{:more_items=>true, :location=>"rcppf", :status=>"Not Charged"}}})
       bib_multiple_items = '857469'
       holding_id = '977093'
       get :index, ids: [bib_multiple_items], format: :json
@@ -108,6 +118,7 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'more_items is false when there is 1 item or less for a holding' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"35345"=>{"39176"=>{:more_items=>false, :location=>"f", :status=>"Not Charged"}}})
       bib_1_item = '35345'
       holding_id = '39176'
       get :index, ids: [bib_1_item], format: :json
@@ -118,11 +129,11 @@ RSpec.describe AvailabilityController, :type => :controller do
 
   describe 'full mfhd availability array' do
     it 'returns info for all items for a given mfhd' do
+      allow(VoyagerHelpers::Liberator).to receive(:get_full_mfhd_availability).and_return([{:barcode=>"32101082329929", :id=>502918, :status=>"Not Charged", :enum=>"1994"}, {:barcode=>"32101082329937", :id=>502919, :status=>"Not Charged", :enum=>"1995"}, {:barcode=>"32101082329945", :id=>502920, :status=>"Not Charged", :enum=>"1996"}, {:barcode=>"32101035390275", :id=>502921, :status=>"Not Charged", :enum=>"1954-59"}, {:barcode=>"32101082329895", :id=>1767770, :status=>"Not Charged", :enum=>"1964"}])
       holding_id = '464473'
       get :index, mfhd: holding_id, format: :json
       availability = JSON.parse(response.body)
-      item_ids = VoyagerHelpers::Liberator.get_items_for_holding(holding_id)
-      expect(availability.length).to eq(item_ids.length)
+      expect(availability.length).to eq(5)
     end
   end
 
@@ -141,6 +152,7 @@ RSpec.describe AvailabilityController, :type => :controller do
   end
 
   it "404 when bibs are not provided" do
+    allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({})
     get :index, ids: [], format: :json
     expect(response).to have_http_status(404)
   end
