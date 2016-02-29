@@ -18,20 +18,22 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
     Resque.redis.del "queue:default"
   end
 
-  scenario 'Anyone can retrieve an event dump' do
-    event = Event.last
-    visit "/events/#{event.id}"
-    click_link "Dump"
-  end
+  unless ENV['CI']
+    scenario 'Anyone can retrieve an event dump' do
+      event = Event.last
+      visit "/events/#{event.id}"
+      click_link "Dump"
+    end
 
-  scenario "anyone can retrieve JSON feeds for events" do
-    visit "/events.json"
-  end
+    scenario "anyone can retrieve JSON feeds for events" do
+      visit "/events.json"
+    end
 
-  scenario "only authenticated users can delete events" do
-    visit "/events"
-    click_link "Delete"
-    find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
+    scenario "only authenticated users can delete events" do
+      visit "/events"
+      click_link "Delete"
+      find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
+    end
   end
 
   ["libraries", "holding_locations", "delivery_locations",

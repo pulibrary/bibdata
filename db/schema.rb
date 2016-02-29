@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20160224214320) do
     t.datetime "start"
     t.datetime "finish"
     t.text     "error",      limit: 65535
-    t.boolean  "success",    limit: 1
+    t.boolean  "success"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -83,13 +83,13 @@ ActiveRecord::Schema.define(version: 20160224214320) do
     t.text     "address",              limit: 65535
     t.string   "phone_number",         limit: 255
     t.string   "contact_email",        limit: 255
-    t.boolean  "staff_only",           limit: 1,     default: false
+    t.boolean  "staff_only",                         default: false
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "locations_library_id", limit: 4
     t.string   "gfa_pickup",           limit: 255
-    t.boolean  "pickup_location",      limit: 1,     default: false
-    t.boolean  "digital_location",     limit: 1
+    t.boolean  "pickup_location",                    default: false
+    t.boolean  "digital_location"
   end
 
   add_index "locations_delivery_locations", ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id", using: :btree
@@ -100,13 +100,13 @@ ActiveRecord::Schema.define(version: 20160224214320) do
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
     t.integer  "locations_library_id",               limit: 4
-    t.boolean  "aeon_location",                      limit: 1,   default: false
-    t.boolean  "recap_electronic_delivery_location", limit: 1,   default: false
-    t.boolean  "open",                               limit: 1,   default: true
-    t.boolean  "requestable",                        limit: 1,   default: true
-    t.boolean  "always_requestable",                 limit: 1,   default: false
+    t.boolean  "aeon_location",                                  default: false
+    t.boolean  "recap_electronic_delivery_location",             default: false
+    t.boolean  "open",                                           default: true
+    t.boolean  "requestable",                                    default: true
+    t.boolean  "always_requestable",                             default: false
     t.integer  "locations_hours_location_id",        limit: 4
-    t.boolean  "circulates",                         limit: 1,   default: true
+    t.boolean  "circulates",                                     default: true
   end
 
   add_index "locations_holding_locations", ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id", using: :btree

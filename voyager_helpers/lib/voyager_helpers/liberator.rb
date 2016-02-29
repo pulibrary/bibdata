@@ -1,4 +1,6 @@
-require 'oci8'
+unless Rails.env.test?
+  require 'oci8'
+end
 require 'marc'
 require_relative 'queries'
 require_relative 'oracle_connection'
