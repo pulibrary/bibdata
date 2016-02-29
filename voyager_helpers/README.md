@@ -4,6 +4,15 @@ A set of methods for retrieving data from Voyager.
 
 ## Installation
 
+In your application:
+
+```
+gem 'voyager_helpers'
+gem 'ruby-oci8', '~> 2.2.1'
+```
+
+Also requires the Oracle OCI client to be setup:
+
 On __Ubuntu__ systems, do [this](https://help.ubuntu.com/community/Oracle%20Instant%20Client). __All of it.__
 
 Add configuration for VGER In `$ORACLE_HOME/network/admin/tnsnames.ora` (ask DBA).

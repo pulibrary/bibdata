@@ -1,0 +1,10 @@
+machine:
+  ruby:
+    version: 2.3.0
+dependencies:
+  bundler:
+    without: [development, production]
+  post:
+    - cp -v config/ip_whitelist.yml.tmpl config/ip_whitelist.yml
+    - cp -v config/voyager_helpers.yml.tmpl config/voyager_helpers.yml
+    - cp -v config/initializers/devise.rb.tmpl config/initializers/devise.rb

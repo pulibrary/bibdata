@@ -11,6 +11,10 @@ gem 'mysql2'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'high_voltage', '~> 2.2.1'
 
+group :development, :production do
+  gem 'ruby-oci8', '~> 2.2.1'
+end
+
 gemspec path: './voyager_helpers'
 
 gem 'responders', '~> 2.0'
