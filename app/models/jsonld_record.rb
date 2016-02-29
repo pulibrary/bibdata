@@ -13,6 +13,7 @@ class JSONLDRecord
     end
 
     metadata.merge! contributors
+    metadata.merge! creator
     metadata['created'] = date(true)
     metadata['date'] = date
 
@@ -24,11 +25,20 @@ class JSONLDRecord
 
     contributors = {}
     JSON.parse(@solr_doc['related_name_json_1display'].first).each do |role, names|
-      key = role.parameterize('_').singularize
-      key = 'contributor' if key == 'related_name'
-      contributors[key] = names
+      contributors[check_role(role)] = names
     end
     contributors
+  end
+
+  def creator
+    role = check_role((@solr_doc['marc_relator_display'] || []).first)
+    return { role => @solr_doc['author_display'].first } unless role == 'contributor'
+    {}
+  end
+
+  def check_role(label)
+    role = (label || '').parameterize('_').singularize
+    RELATORS.include?(role) ? role : 'contributor'
   end
 
   def date(expanded = false)
