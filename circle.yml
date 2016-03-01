@@ -6,5 +6,5 @@ dependencies:
     without: [development, production]
   post:
     - cp -v config/ip_whitelist.yml.tmpl config/ip_whitelist.yml
-    - cp -v config/voyager_helpers.yml.tmpl config/voyager_helpers.yml
     - cp -v config/initializers/devise.rb.tmpl config/initializers/devise.rb
+    - cp -v config/initializers/voyager_helpers.rb.tmpl config/initializers/voyager_helpers.rb

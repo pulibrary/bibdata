@@ -90,8 +90,8 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
 
     it 'non_circulating locations have a status of limited' do
-      allow(VoyagerHelpers::Liberator).to receive(:circulating_location?).and_return(false)
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"4609321"=>{"4847980"=>{:more_items=>false, :location=>"whs", :status=>"Limited"}, "4848993"=>{:more_items=>false, :location=>"whs", :status=>"Limited"}}})
+      allow_any_instance_of(described_class).to receive(:circulating_location?).and_return(false)
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"4609321"=>{"4847980"=>{:more_items=>false, :location=>"whs", :status=>"On Shelf"}, "4848993"=>{:more_items=>false, :location=>"whs", :status=>"Limited"}}})
       bible = '4609321'
       holding_id = '4847980'
       get :index, ids: [bible], format: :json
