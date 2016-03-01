@@ -2,9 +2,9 @@
 /log/*.log
 /tmp
 /config/database.yml
-/config/voyager_helpers.yml
 /config/ip_whitelist.yml
 /config/initializers/devise.rb
+/config/initializers/voyager_helpers.rb
 # Ignore everything
 /data/*
 !/data/.keep
