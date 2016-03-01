@@ -28,7 +28,7 @@ set :linked_files, %w{
   config/database.yml 
   config/marc_liberation.yml
   config/secrets.yml
-  config/voyager_helpers.yml
+  config/initializers/voyager_helpers.rb
   config/ip_whitelist.yml
   config/initializers/devise.rb
 }
