@@ -61,7 +61,7 @@ class BibliographicController < ApplicationController
   end
 
   def context_urls
-    [ root_url + 'dc/context.json', root_url + 'mrel/context.json' ]
+    root_url + 'context.json'
   end
 
   def root_url

@@ -1,6 +1,32 @@
 {
   "@context": {
+    "id" : "@id",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcterms": "http://purl.org/dc/terms/",
     "mrel": "http://id.loc.gov/vocabulary/relators/",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+
+    "contributor": {"@id": "dc:contributor"},
+    "coverage": {"@id": "dc:coverage"},
+    "creator": {"@id": "dc:creator"},
+    "date": {"@id": "dc:date"},
+    "description": {"@id": "dc:description"},
+    "format": {"@id": "dc:format"},
+    "identifier": {"@id": "dc:identifier"},
+    "language": {"@id": "dc:language"},
+    "publisher": {"@id": "dc:publisher"},
+    "relation": {"@id": "dc:relation"},
+    "rights": {"@id": "dc:rights"},
+    "source": {"@id": "dc:source"},
+    "subject": {"@id": "dc:subject"},
+    "type": {"@id": "dc:type"},
+
+    "created": {"@id": "dcterms:created"},
+    "extent": {"@id": "dcterms:extent"},
+    "modified": {"@id": "dcterms:modified"},
+    "title": {"@id": "dcterms:title"},
+
     "abridger": {
       "@id": "mrel:abr"
     },
@@ -204,9 +230,6 @@
     },
     "contractor": {
       "@id": "mrel:ctr"
-    },
-    "contributor": {
-      "@id": "mrel:ctb"
     },
     "copyright_claimant": {
       "@id": "mrel:cpc"
@@ -1398,9 +1421,6 @@
     },
     "publication_place": {
       "@id": "mrel:pup"
-    },
-    "publisher": {
-      "@id": "mrel:pbl"
     },
     "publishing_director": {
       "@id": "mrel:pbd"

@@ -1,3 +1,4 @@
 require 'json'
 
-RELATORS ||= JSON.parse(File.read("#{File.dirname(__FILE__)}/../../public/mrel/context.json"))['@context'].keys
+f = File.read("#{File.dirname(__FILE__)}/../../public/context.json")
+RELATORS ||= JSON.parse(f)['@context'].select { |k,v| (v['@id'] || '').start_with? 'mrel:' }.keys
