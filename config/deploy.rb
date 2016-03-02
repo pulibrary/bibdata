@@ -51,6 +51,14 @@ set :keep_releases, 5
 
 namespace :deploy do
 
+  before :starting, :stop_workers do
+    on roles(:web), in: :groups do
+      within release_path do
+        execute :rake, 'workers:stop'
+      end
+    end
+  end
+
   desc "Check that we can access everything"
   task :check_write_permissions do
     on roles(:all) do |host|
@@ -71,12 +79,12 @@ namespace :deploy do
 
   after :publishing, :restart
 
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
+  after :restart, :start_workers do
+    on roles(:web), in: :groups, limit: 3, wait: 5 do
       # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+      within release_path do
+        execute :rake, 'workers:start'
+      end
     end
   end
 
