@@ -51,26 +51,35 @@ class AvailabilityController < ApplicationController
       bib = single_bib_circulation(bib)
     end
   end
+
   def single_bib_circulation(bib)
-    bib.each do |mfhd_id, mfhd|
-      mfhd[:status] = 'Limited' unless circulating_location?(mfhd[:location])
+    bib.each do |_mfhd_id, mfhd|
+      update_item_loc(mfhd)
     end
     bib
   end
+
   def single_mfhd_circulation(mfhd)
     mfhd.each do |item|
-      item[:status] = 'Limited' unless circulating_location?(item[:location])
+      update_item_loc(item)
     end
     mfhd
   end
 
-  # check if holding location is a circulating location, default true
-  def circulating_location?(loc_code)
-    circulates = true
-    holding_location = Locations::HoldingLocation.find_by(code: loc_code)
-    unless holding_location.nil?
-      circulates = holding_location.circulates
-    end
-    circulates
+  def location_full_display(loc)
+    loc.label == '' ? loc.library.label : loc.library.label + ' - ' + loc.label
   end
+
+  def get_holding_location(loc_code)
+    Locations::HoldingLocation.find_by(code: loc_code)
+  end
+
+  def update_item_loc(item)
+    loc = get_holding_location(item[:on_reserve] || item[:location])
+    unless loc.nil?
+      item[:on_reserve] = location_full_display(loc) if item[:on_reserve]
+      item[:status] = 'Limited' unless loc.circulates
+    end
+  end
+
 end
