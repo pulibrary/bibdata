@@ -4,7 +4,7 @@ Liberate MARC data from Voyager.
 
 ## Configuration
 
-Be sure to copy `config/voyager_helpers.yml.tmpl` to `config/voyager_helpers.yml`
+Be sure to copy `config/initializers/voyager_helpers.rb.tmpl` to `config/initializers/voyager_helpers.rb`
 and `config/initializers/devise.rb.tml` to `config/initializers/devise.rb`,
 then fill out the appropriate values.
 
