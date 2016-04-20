@@ -74,11 +74,29 @@ class AvailabilityController < ApplicationController
     Locations::HoldingLocation.find_by(code: loc_code)
   end
 
+  def available_statuses
+    ['Not Charged', 'On Shelf']
+  end
+
+  # non-circulating items that are available should have status 'limited'
+  # always requestable non-circulating items should always have 'limited' status,
+  # even with unavailable Voyager status
+  def location_based_status(loc, status)
+    if loc.always_requestable or (!loc.circulates and available_statuses.include?(status))
+      'Limited'
+    else
+      status
+    end
+  end
+
   def update_item_loc(item)
     loc = get_holding_location(item[:on_reserve] || item[:location])
     unless loc.nil?
-      item[:on_reserve] = location_full_display(loc) if item[:on_reserve]
-      item[:status] = 'Limited' unless loc.circulates
+      if item[:on_reserve]
+        item[:temp_loc] = item[:on_reserve]
+        item[:on_reserve] = location_full_display(loc)
+      end
+      item[:status] = location_based_status(loc, item[:status])
     end
   end
 
