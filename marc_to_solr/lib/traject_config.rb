@@ -3,9 +3,9 @@
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
-require './lib/format'
-require './lib/princeton_marc'
-require './lib/location_extract'
+require_relative './format'
+require_relative './princeton_marc'
+require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -23,7 +23,7 @@ settings do
 end
 
 update_locations
-$LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
+$LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 
 

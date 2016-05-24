@@ -1,5 +1,5 @@
-require './lib/format/bib_format'
-require './lib/format/bib_types'
+require_relative './format/bib_format'
+require_relative './format/bib_types'
 
 # Adapted from: https://github.com/billdueber/traject_umich_format
 class Format

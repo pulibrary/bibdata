@@ -1,5 +1,5 @@
 # given a record, find the bib_format code
-require './lib/format.rb'
+require_relative '../format.rb'
 
 class BibFormat
 
