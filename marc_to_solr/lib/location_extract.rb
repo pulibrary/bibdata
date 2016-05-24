@@ -20,8 +20,8 @@ def update_locations
       longerdisplay[holding_code] = holding_label
     end
 
-    File.open('translation_maps/location_display.rb', 'w') { |file| PP.pp(libdisplay, file) }
-    File.open('translation_maps/locations.rb', 'w') { |file| PP.pp(longerdisplay, file) }
+    File.open(File.expand_path('../../translation_maps/location_display.rb', __FILE__), 'w') { |file| PP.pp(libdisplay, file) }
+    File.open(File.expand_path('../../translation_maps/locations.rb', __FILE__), 'w') { |file| PP.pp(longerdisplay, file) }
   rescue Faraday::TimeoutError # use existing locations if unable to connect
   end
 end

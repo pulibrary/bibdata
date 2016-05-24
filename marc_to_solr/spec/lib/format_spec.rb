@@ -1,5 +1,5 @@
 require 'json'
-require './lib/format'
+require_relative '../../lib/format'
 
 describe 'From format.rb' do
   let(:marc) {MARC::Record.new}

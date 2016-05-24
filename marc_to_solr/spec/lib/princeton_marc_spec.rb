@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'json'
-require './lib/princeton_marc'
+require_relative '../../lib/princeton_marc'
 require 'library_stdnums'
 
 $LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded

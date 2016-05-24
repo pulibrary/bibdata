@@ -8,3 +8,6 @@ dependencies:
     - cp -v config/ip_whitelist.yml.tmpl config/ip_whitelist.yml
     - cp -v config/initializers/devise.rb.tmpl config/initializers/devise.rb
     - cp -v config/initializers/voyager_helpers.rb.tmpl config/initializers/voyager_helpers.rb
+test:
+  post:
+    - bundle exec rspec marc_to_solr/spec
