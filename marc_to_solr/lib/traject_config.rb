@@ -84,6 +84,7 @@ to_field 'uniform_title_s', extract_marc('100t:110t:111t:130apldfhkmnorst:240apl
 #    245 XX abchknps
 to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => false)
 
+to_field 'title_a_index', extract_marc('245a')
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
 to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
@@ -640,11 +641,11 @@ to_field 'related_name_json_1display' do |record, accumulator|
   rel_name_hash = {}
   MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
     rel_name = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    relator = nil
+    relators = []
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 'e'
-        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
+        relators << s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
       end
       if s_field.code == 't'
         non_t = false
@@ -652,13 +653,13 @@ to_field 'related_name_json_1display' do |record, accumulator|
 
       end
       if s_field.code == '4'
-        if relator.nil?
-          relator = Traject::TranslationMap.new("relators")[s_field.value] || s_field.value 
-        end
+        relators << Traject::TranslationMap.new("relators")[s_field.value] || s_field.value
       end
     end
-    relator = 'Related name' if relator.nil?
-    rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+    relators << 'Related name' if relators.empty?
+    relators.each do |relator|
+      rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+    end
   end
   unless rel_name_hash == {}
     accumulator[0] = rel_name_hash.to_json.to_s
@@ -755,7 +756,7 @@ to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
 
 # ISBN:
 #    020 XX a
-to_field 'isbn_display', extract_marc('020a')
+to_field 'isbn_display', extract_marc('020aq')
 
 # ISSN:
 #    022 XX a

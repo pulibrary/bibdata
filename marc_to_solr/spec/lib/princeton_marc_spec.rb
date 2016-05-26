@@ -370,12 +370,9 @@ describe 'From princeton_marc.rb' do
       expect(@holding_block[@oversize_mfhd_id]['call_number']).to eq("Oversize #{@call_number}")
     end
 
-    it 'location_has takes from 866 $a and $z when the 1st ind is blank or 3-5 and 2nd ind is 0-2' do
-      expect(@holding_block[@oversize_mfhd_id]['location_has']).to include("volume 1 full", "In reading room")
-    end
-    it 'location_has_current takes from 866 $a and $z when both indicators are blank' do
-      expect(@holding_block[@oversize_mfhd_id]['location_has_current']).to include("v2 available")
-      expect(@holding_block[@other_mfhd_id]['location_has_current']).to include("v4 p3")
+    it 'location_has takes from 866 $a and $z regardless of indicators' do
+      expect(@holding_block[@oversize_mfhd_id]['location_has']).to include("volume 1 full", "In reading room", "v2 available")
+      expect(@holding_block[@other_mfhd_id]['location_has']).to include("v4 p3")
     end
     it 'supplements takes from 867 $a and $z' do
       expect(@holding_block[@other_mfhd_id]['supplements']).to include("v454")
