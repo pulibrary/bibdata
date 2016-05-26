@@ -19,8 +19,6 @@ class BibFormat
       if record['502']['a']
         if (record['502']['a'].include? "(Senior)--Princeton University") || (record['502']['a'].include? "Thesis (Senior)-Princeton University")
           @code << "ST"
-        else
-          @code << "TH"
         end
       end
     end
