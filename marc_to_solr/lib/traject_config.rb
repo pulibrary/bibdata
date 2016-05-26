@@ -641,11 +641,11 @@ to_field 'related_name_json_1display' do |record, accumulator|
   rel_name_hash = {}
   MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
     rel_name = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    relator = nil
+    relators = []
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 'e'
-        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
+        relators << s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
       end
       if s_field.code == 't'
         non_t = false
@@ -653,13 +653,13 @@ to_field 'related_name_json_1display' do |record, accumulator|
 
       end
       if s_field.code == '4'
-        if relator.nil?
-          relator = Traject::TranslationMap.new("relators")[s_field.value] || s_field.value 
-        end
+        relators << Traject::TranslationMap.new("relators")[s_field.value] || s_field.value
       end
     end
-    relator = 'Related name' if relator.nil?
-    rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+    relators << 'Related name' if relators.empty?
+    relators.each do |relator|
+      rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+    end
   end
   unless rel_name_hash == {}
     accumulator[0] = rel_name_hash.to_json.to_s

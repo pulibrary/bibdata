@@ -42,6 +42,11 @@
     <datafield ind1=" " ind2="0" tag="650">
       <subfield code="a">Drawing, Italian.</subfield>
     </datafield>
+    <datafield ind1="" ind2=" " tag="700">
+      <subfield code="a">Someone</subfield>
+      <subfield code="e">editor</subfield>
+      <subfield code="e">painter</subfield>
+    </datafield>
     <datafield ind1="2" ind2=" " tag="710">
       <subfield code="a">Biblioteca ambrosiana.</subfield>
       <subfield code="k">Mss.</subfield>
