@@ -437,7 +437,7 @@ def process_holdings record
     holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
     all_holdings[holding_id] = holding unless holding_id.nil?
   end
-  Traject::MarcExtractor.cached('866| 0|0az:866| 1|0az:866| 2|0az:866|30|0az:866|31|0az:866|32|0az:866|40|0az:866|41|0az:866|42|0az:866|50|0az:866|51|0az:866|52|0az').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, spec, extractor|
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
@@ -452,23 +452,6 @@ def process_holdings record
     if (all_holdings[holding_id] and !value.empty?)
       all_holdings[holding_id]['location_has'] ||= []
       all_holdings[holding_id]['location_has'] << value.join(' ')
-    end
-  end
-  Traject::MarcExtractor.cached('866|  |0az').collect_matching_lines(record) do |field, spec, extractor|
-    value = []
-    holding_id = nil
-    field.subfields.each do |s_field|
-      if s_field.code == '0'
-        holding_id = s_field.value
-      elsif s_field.code == 'a'
-        value << s_field.value
-      elsif s_field.code == 'z'
-        value << s_field.value
-      end
-    end
-    if (all_holdings[holding_id] and !value.empty?)
-      all_holdings[holding_id]['location_has_current'] ||= []
-      all_holdings[holding_id]['location_has_current'] << value.join(' ')
     end
   end
   Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, spec, extractor|
