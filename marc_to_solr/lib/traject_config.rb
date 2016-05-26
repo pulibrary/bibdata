@@ -84,6 +84,7 @@ to_field 'uniform_title_s', extract_marc('100t:110t:111t:130apldfhkmnorst:240apl
 #    245 XX abchknps
 to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => false)
 
+to_field 'title_a_index', extract_marc('245a')
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
 to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
