@@ -755,7 +755,7 @@ to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
 
 # ISBN:
 #    020 XX a
-to_field 'isbn_display', extract_marc('020a')
+to_field 'isbn_display', extract_marc('020aq')
 
 # ISSN:
 #    022 XX a
