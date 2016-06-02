@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224214320) do
+ActiveRecord::Schema.define(version: 20160602214813) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -107,8 +107,10 @@ ActiveRecord::Schema.define(version: 20160224214320) do
     t.boolean  "always_requestable",                             default: false
     t.integer  "locations_hours_location_id",        limit: 4
     t.boolean  "circulates",                                     default: true
+    t.integer  "holding_library_id",                 limit: 4
   end
 
+  add_index "locations_holding_locations", ["holding_library_id"], name: "fk_rails_9d6bef4ef6", using: :btree
   add_index "locations_holding_locations", ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id", using: :btree
 
   create_table "locations_holdings_delivery", id: false, force: :cascade do |t|
@@ -155,4 +157,5 @@ ActiveRecord::Schema.define(version: 20160224214320) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
+  add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"
 end

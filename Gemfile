@@ -33,11 +33,12 @@ end
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'rspec-rails', '~> 3.0.0'
+  gem 'simplecov'
   gem 'byebug', '~> 3.5.1'
   gem 'rerun', '~> 0.10.0'
 end
 
-gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.2.1'
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.3.0'
 gem 'yaml_db', '~> 0.3.0'
 gem 'friendly_id', '~> 5.1.0'
 
