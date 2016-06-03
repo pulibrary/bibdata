@@ -754,6 +754,10 @@ to_field 'in_display', extract_marc('7733abdghikmnoprst')
 #    774 XX abcdghikmnrstu
 to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
 
+to_field 'other_editions_display', extract_marc('775adhit')
+
+to_field 'data_source_display', extract_marc('786at')
+
 # ISBN:
 #    020 XX a
 to_field 'isbn_display', extract_marc('020aq')
