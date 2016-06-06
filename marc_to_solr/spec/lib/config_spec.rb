@@ -136,6 +136,16 @@ describe 'From traject_config.rb' do
       expect(@sample1['location']).to be_nil
     end
   end
+  describe 'including libraries in location_code_s facet' do
+    it 'lewis library included with lewis code' do
+      expect(@sample3['location_code_s']).to include 'scidoc'
+      expect(@sample3['location_code_s']).to include 'Lewis Library'
+    end
+    it 'online is included' do
+      expect(@elf2['location_code_s']).to include 'elf2'
+      expect(@elf2['location_code_s']).to include 'Online'
+    end
+  end
   describe 'other_title_display array 246s included' do
     it 'when 2nd indicator is 3' do
       expect(@added_title_246['other_title_display']).to include 'Bi ni itaru yamai'

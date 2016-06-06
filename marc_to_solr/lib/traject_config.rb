@@ -880,12 +880,19 @@ each_record do |record, context|
       end
     end
 
-    # do not index location field if empty (when location code invalid or online)
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
-    context.output_hash['location'].delete('Online')
-    context.output_hash.delete('location') if context.output_hash['location'].empty?
 
     context.output_hash['access_facet'] = Traject::TranslationMap.new("access", :default => "In the Library").translate_array(location_codes)
+    context.output_hash['access_facet'].uniq!
+
+    # Add library as a location code for advanced multi-select facet
+    context.output_hash['location'].uniq!
+    context.output_hash['location_code_s'] << context.output_hash['location']
+    context.output_hash['location_code_s'].flatten!
+
+    # do not index location field if empty (when location code invalid or online)
+    context.output_hash['location'].delete('Online')
+    context.output_hash.delete('location') if context.output_hash['location'].empty?
   end
 end
 
