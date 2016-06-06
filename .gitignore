@@ -11,3 +11,4 @@
 marc_to_solr/translation_maps/locations.rb
 marc_to_solr/translation_maps/location_display.rb
 /coverage
+/db/data.yml
