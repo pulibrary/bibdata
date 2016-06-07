@@ -136,14 +136,18 @@ describe 'From traject_config.rb' do
       expect(@sample1['location']).to be_nil
     end
   end
-  describe 'including libraries in location_code_s facet' do
+  describe 'including libraries and codes in advanced_location_s facet' do
     it 'lewis library included with lewis code' do
-      expect(@sample3['location_code_s']).to include 'scidoc'
-      expect(@sample3['location_code_s']).to include 'Lewis Library'
+      expect(@sample3['advanced_location_s']).to include 'scidoc'
+      expect(@sample3['advanced_location_s']).to include 'Lewis Library'
     end
     it 'online is included' do
-      expect(@elf2['location_code_s']).to include 'elf2'
-      expect(@elf2['location_code_s']).to include 'Online'
+      expect(@elf2['advanced_location_s']).to include 'elf2'
+      expect(@elf2['advanced_location_s']).to include 'Online'
+    end
+    it 'library is excluded from location_code_s' do
+      expect(@sample3['location_code_s']).to include 'scidoc'
+      expect(@sample3['location_code_s']).not_to include 'Lewis Library'
     end
   end
   describe 'other_title_display array 246s included' do
