@@ -34,9 +34,21 @@ RSpec.describe PatronController, :type => :controller do
     expect(response).to have_http_status(404)
   end
 
+  it "authorized IPs can return patron stat codes" do
+    stub_patron_codes('steve')
+    allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return('192.168.0.1')
+    allow_any_instance_of(described_class).to receive(:load_ip_whitelist).and_return(['192.168.0.1'])    
+    get :patron_codes, patron_id: 'steve', format: :json
+    expect(response).to have_http_status(200)
+  end
 end
 
 def stub_patron(netid)
   f = File.expand_path("../../fixtures/patron-#{netid}.json",__FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_patron_info).and_return(JSON.parse(File.read(f)))
+end
+
+def stub_patron_codes(netid)
+  f = File.expand_path("../../fixtures/patron-#{netid}-codes.json",__FILE__)
+  allow(VoyagerHelpers::Liberator).to receive(:get_patron_stat_codes).and_return(JSON.parse(File.read(f)))
 end
