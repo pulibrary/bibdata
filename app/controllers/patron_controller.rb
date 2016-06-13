@@ -12,6 +12,17 @@ class PatronController < ApplicationController
     end
   end
 
+  def patron_codes
+    data = VoyagerHelpers::Liberator.get_patron_stat_codes(sanitize(params[:patron_id]))
+    if data.empty?
+      render text: {}, status: 404
+    else
+      respond_to do |wants|
+        wants.json  { render json: MultiJson.dump(data) }
+      end
+    end
+  end
+
   private
   def protect
     unless user_signed_in?

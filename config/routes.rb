@@ -24,4 +24,5 @@ Rails.application.routes.draw do
 
   get '/codes/:location', to: 'codes#locations', defaults: { format: :json }
   get '/patron/:patron_id', to: 'patron#patron_info', defaults: { format: :json }
+  get '/patron/:patron_id/codes', to: 'patron#patron_codes', defaults: { format: :json }
 end

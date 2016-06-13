@@ -12,10 +12,10 @@ GIT
 
 GIT
   remote: git@github.com:pulibrary/voyager_helpers.git
-  revision: 6978e87149b86e30bdf93f68d0b2a1c89be4e805
-  tag: v0.1.2
+  revision: 70ad3bb6c5eed293a33d51dcd0f212eab368fd04
+  tag: v0.2.0
   specs:
-    voyager_helpers (0.1.2)
+    voyager_helpers (0.2.0)
       activesupport (~> 4.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
@@ -162,7 +162,7 @@ GEM
       marc (~> 1.0)
     mime-types (2.99.1)
     mini_portile2 (2.0.0)
-    minitest (5.8.4)
+    minitest (5.9.0)
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
@@ -367,4 +367,4 @@ DEPENDENCIES
   yaml_db (~> 0.3.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.4
