@@ -82,12 +82,11 @@ to_field 'uniform_title_s', extract_marc('130apldfhkmnorst:240apldfhkmnors', :tr
   accumulator.flatten!
 end
 
-
 # Title:
 #    245 XX abchknps
 to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => false)
 
-to_field 'title_a_index', extract_marc('245a')
+to_field 'title_a_index', extract_marc('245a', :trim_punctuation => true)
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
 to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
@@ -137,12 +136,12 @@ to_field 'series_statement_index', extract_marc('490avx')
 to_field 'content_title_index', extract_marc('505t')
 
 to_field 'contains_title_index' do |record, accumulator|
-  accumulator.replace(everything_after_t(record, '700|12|:710|12|:711|12|'))
+  accumulator.replace(everything_after_t(record, '700|1*|:710|1*|:711|1*|'))
 end
 
 to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
 
-to_field 'linked_series_title_index', extract_marc('765k:767k:770k:772k:773k:774k:775k:776k:777k:780k:787k')
+to_field 'linked_series_title_index', extract_marc('765k:767k:770k:772k:773k:774k:775k:776k:777k:780k:785k:786k:787k')
 
 to_field 'series_ae_index', extract_marc('830adfghklmnoprstv:840anpv') do |record, accumulator|
   accumulator << everything_after_t(record, '800:810:811')
@@ -232,7 +231,7 @@ end
    # 306 XX a
    # 515 XX a
    # 362 XX az
-to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
+to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:362az')
 to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
 
 # Arrangement:
@@ -255,12 +254,12 @@ to_field 'issued_with_display', extract_marc('777at')
 # Continues:
 #    780 00 at
 #    780 02 at
-to_field 'continues_display', extract_marc('780|00|a:780|02|at')
+to_field 'continues_display', extract_marc('780|00|at:780|02|at')
 
 # Continues in part:
 #    780 01 at
 #    780 03 at
-to_field 'continues_in_part_display', extract_marc('780|01|a:780|03|at')
+to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at')
 
 # Formed from:
 #    780 04 at
@@ -281,12 +280,12 @@ to_field 'separated_from_display', extract_marc('780|07|at')
 # Continued by:
 #    785 00 at
 #    785 02 at
-to_field 'continued_by_display', extract_marc('785|00|a:785|02|at')
+to_field 'continued_by_display', extract_marc('785|00|at:785|02|at')
 
 # Continued in part by:
 #    785 01 at
 #    785 03 at
-to_field 'continued_in_part_by_display', extract_marc('785|01|a:785|03|at')
+to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at')
 
 # Absorbed by:
 #    785 04 at
@@ -919,6 +918,48 @@ each_record do |record, context|
     context.output_hash['location'].delete('Online')
     context.output_hash.delete('location') if context.output_hash['location'].empty?
   end
+end
+
+# For name-title browse - fields get deleted at end
+to_field 'uniform_130_s', extract_marc('130apldfhkmnorst', :trim_punctuation => true)
+to_field 'uniform_240_s', extract_marc('240apldfhkmnors', :trim_punctuation => true)
+
+to_field 'series_ae_s' do |record, accumulator|
+  MarcExtractor.cached('800|1*|aqbcdfghklmnoprstx:800|1*|abcdfghklnoprstx:711|1*|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+    ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
+    non_t = true
+    field.subfields.each do |s_field|
+      if s_field.code == 't'
+        non_t = false
+        break
+      end
+    end
+    accumulator << ae unless non_t
+  end
+end
+
+  ########################################################
+  # Author-Title Browse field includes                   #
+  # combination 100+240/245a, 130, 700/10/11, 800/10/11  #
+  ########################################################
+each_record do |record, context|
+  doc = context.output_hash
+  browse_field = [doc['uniform_130_s'], doc['related_works_display'],
+                  doc['contains_display'], doc['series_ae_s']]
+  if doc['author_display']
+    author = doc['author_display'][0]
+    if doc['uniform_240_s']
+      browse_field << %(#{author}. #{doc['uniform_240_s'][0]})
+    elsif doc['title_a_index']
+      browse_field << %(#{author}. #{doc['title_a_index'][0]})
+    end
+  end
+  browse_field = browse_field.compact.uniq
+  context.output_hash['name_title_browse_t'] = browse_field unless browse_field.empty?
+
+  context.output_hash.delete('uniform_130_s')
+  context.output_hash.delete('uniform_240_s')
+  context.output_hash.delete('series_ae_s')
 end
 
 # Call number: +No call number available
