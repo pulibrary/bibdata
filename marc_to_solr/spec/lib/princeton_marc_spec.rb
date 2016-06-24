@@ -1,5 +1,6 @@
 # encoding: UTF-8
 require 'json'
+require 'traject'
 require_relative '../../lib/princeton_marc'
 require 'library_stdnums'
 
@@ -164,6 +165,32 @@ describe 'From princeton_marc.rb' do
       expect(names).to include("John 1492")
       expect(names).to include("John 1492 don't ignore")
       expect(names).not_to include("John 1492 ignore")
+    end
+  end
+
+  describe '#everything_after_t' do
+    before(:all) do
+      t100 = {"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"IGNORE"}, {"d"=>"me"}, {"t"=>"TITLE"}]}}
+      t710 = {"710"=>{"ind1"=>"1", "ind2"=>"2", "subfields"=>[{"t"=>"AWESOME"}, {"a"=>"John"}, {"d"=>"1492"}, {"k"=>"dont ignore"}]}}
+      ignore700 = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"should not include"}, {"a"=>"when missing indicators"}]}}
+      no_t = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"please"}, {"d"=>"disregard"}, {"k"=>"no title"}]}}
+      sample_marc = MARC::Record.new_from_hash({ 'fields' => [t100, t710, no_t] })
+      @titles = everything_after_t(sample_marc, '100:710')
+      indicators_marc = MARC::Record.new_from_hash({ 'fields' => [ignore700, t710] })
+      @indicator_titles = everything_after_t(indicators_marc, '700|12|:710|12|:711|12|')
+    end
+
+    it 'includes subfield $t when last subfield' do
+      expect(@titles).to include('TITLE')
+    end
+    it 'inlcudes subfield $t and subfields after $t' do
+      expect(@titles).to include('AWESOME John 1492 dont ignore')
+    end
+    it 'excludes fields with no subfield $t' do
+      expect(@titles).not_to include('please disregard no title')
+    end
+    it 'expects indicator matcher to factor into matching lines' do
+      expect(@indicator_titles).to match_array(['AWESOME John 1492 dont ignore'])
     end
   end
 

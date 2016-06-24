@@ -191,4 +191,22 @@ describe 'From traject_config.rb' do
       expect(@related_names['location_code_s']).not_to include(extra_b.last)
     end
   end
+
+  describe 'mixing extract_marc and everything_after_t' do
+    let(:leader) { '1234567890' }
+    let(:t400) {{"400"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
+    let(:t440) {{"440"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"AWESOME"}, {"a"=>"John"}, {"n"=>"1492"}, {"k"=>"dont ignore"}]}}}
+
+    it 'includes 400 field when 440 missing for series_title_index field' do
+      no_440 = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t400], 'leader' => leader }))
+      expect(no_440['series_title_index']).to include('TITLE')
+    end
+    it 'includes 400 and 440 field for series_title_index field' do
+      yes_440 = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t400, t440], 'leader' => leader }))
+      expect(yes_440['series_title_index']).to match_array(['TITLE', 'John 1492'])
+    end
+    it 'excludes series_title_index field when no matching values' do
+      expect(@sample1['series_title_index']).to be_nil
+    end
+  end
 end
