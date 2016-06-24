@@ -77,7 +77,10 @@ end
 # Uniform title:
 #    130 XX apldfhkmnorst T ap
 #    240 XX {a[%}pldfhkmnors"]" T ap
-to_field 'uniform_title_s', extract_marc('100t:110t:111t:130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true, :first => true)
+to_field 'uniform_title_s', extract_marc('130apldfhkmnorst:240apldfhkmnors', :trim_punctuation => true) do |record, accumulator|
+  accumulator << everything_after_t(record, '100:110:111')
+  accumulator.flatten!
+end
 
 
 # Title:
@@ -122,17 +125,33 @@ end
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
 to_field 'title_citation_display', extract_marc('245ab')
 
-## Title and Title starts with index-only fields ##
+## Series, Title, and Title starts with index-only fields ##
 #################################################
-to_field 'series_title_index', extract_marc('400t:410t:411t:440anpvx:490avx')
+to_field 'series_title_index', extract_marc('440anpvx') do |record, accumulator|
+  accumulator << everything_after_t(record, '400:410:411')
+  accumulator.flatten!
+end
+
+to_field 'series_statement_index', extract_marc('490avx')
 
 to_field 'content_title_index', extract_marc('505t')
 
-to_field 'contains_title_index', extract_marc('700|12|t:710|12|t:711|12|t')
+to_field 'contains_title_index' do |record, accumulator|
+  accumulator.replace(everything_after_t(record, '700|12|:710|12|:711|12|'))
+end
 
-to_field 'linked_title_index', extract_marc('800t:810t:811t:830adfghklmnoprstv:840anpv')
+to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
 
-to_field 'series_ae_index', extract_marc('800t:810t:811t:830adfghklmnoprstv:840anpv')
+to_field 'linked_series_title_index', extract_marc('765k:767k:770k:772k:773k:774k:775k:776k:777k:780k:787k')
+
+to_field 'series_ae_index', extract_marc('830adfghklmnoprstv:840anpv') do |record, accumulator|
+  accumulator << everything_after_t(record, '800:810:811')
+  accumulator.flatten!
+end
+
+to_field 'linked_series_index', extract_marc('760acgst:762acgst')
+
+to_field 'original_version_series_index', extract_marc('534f')
 #################################################
 
 # Compiled/Created:
@@ -329,6 +348,9 @@ to_field 'has_subseries_display', extract_marc('762at')
 #    830 XX adfghklmnoprstv
 #    840 XX anpv
 to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:411acdefgklnpqtuv:440anpvx:490avx:800abcdefghklmnopqrstuv:810abcdefgklnt:811abcdefghklnpqstuv:830adfghklmnoprstv:840anpv')
+
+# a subset of the series fields and subfields to link to "More in this series"
+to_field 'more_in_this_series_t', extract_marc('440anp:800at:810at:811at:830anp')
 
 # Other version(s):
 #    3500 020Z020A
