@@ -419,6 +419,23 @@ def everything_after_t record, fields
   values
 end
 
+def everything_through_t record, fields
+  values = []
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+    non_t = true
+    title = []
+    field.subfields.each do |s_field|
+      title << s_field.value
+      if s_field.code == 't'
+        non_t = false
+        break
+      end
+    end
+    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless (title.empty? or non_t)
+  end
+  values
+end
+
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868

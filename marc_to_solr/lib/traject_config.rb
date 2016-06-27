@@ -349,7 +349,11 @@ to_field 'has_subseries_display', extract_marc('762at')
 to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:411acdefgklnpqtuv:440anpvx:490avx:800abcdefghklmnopqrstuv:810abcdefgklnt:811abcdefghklnpqstuv:830adfghklmnoprstv:840anpv')
 
 # a subset of the series fields and subfields to link to "More in this series"
-to_field 'more_in_this_series_t', extract_marc('440anp:800at:810at:811at:830anp')
+to_field 'more_in_this_series_t', extract_marc('440anp:830anp') do |record, accumulator|
+  accumulator << everything_through_t(record, '800:810:811')
+  accumulator.flatten!
+end
+
 
 # Other version(s):
 #    3500 020Z020A
