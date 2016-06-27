@@ -247,9 +247,9 @@ SEPARATOR = '—'
 
 # for the hierarchical subject display and facet
 # split with em dash along v,x,y,z
-def process_subject_facet record
+def process_subject_facet record, fields
   subjects = []
-  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz:655|*0|avxyz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
