@@ -964,7 +964,7 @@ end
 
 # Call number: +No call number available
 #    852 XX ckhij
-to_field 'call_number_display', extract_marc('852ckhij', :allow_duplicates => true)
+to_field 'call_number_display', extract_marc('852ckhij')
 
 
 to_field 'call_number_browse_s', extract_marc('852khij')

@@ -4,7 +4,7 @@ class JSONLDRecord
   end
 
   def to_h
-    metadata = { title: title, description: description, language: language_codes }
+    metadata = { title: title, language: language_codes }
 
     metadata_map.each do |solr_key, metadata_key|
       values = @solr_doc[solr_key.to_s] || []
@@ -16,6 +16,7 @@ class JSONLDRecord
     metadata.merge! creator
     metadata['created'] = date(true)
     metadata['date'] = date
+    metadata['description'] = description if description
 
     metadata
   end
@@ -53,7 +54,7 @@ class JSONLDRecord
   end
 
   def description
-    (@solr_doc['summary_note_display'] || [""]).first
+    (@solr_doc['summary_note_display'] || []).first
   end
 
   def language_codes
@@ -92,7 +93,8 @@ class JSONLDRecord
   def metadata_map
     {
       author_display:        'creator',
-      description_display:   'description',
+      call_number_display:   'call_number',
+      description_display:   'extent',
       edition_display:       'edition',
       format:                'format',
       genre_facet:           'genre',
