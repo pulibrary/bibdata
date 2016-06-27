@@ -165,8 +165,8 @@ to_field 'edition_display', extract_marc('250ab')
 # Published/Created:
 #    260 XX abcefg
 #    264 XX abc
-to_field 'pub_created_display', extract_marc('260abcefg:264abcefg')
-to_field 'pub_created_s', extract_marc('260abcefg:264abcefg', :first => true)
+to_field 'pub_created_display', extract_marc('260abcefg:264abcefg3')
+to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
 
 to_field 'pub_citation_display' do |record, accumulator|
   pub_info = set_pub_citation(record)
@@ -313,7 +313,7 @@ to_field 'frequency_display', extract_marc('310ab')
 
 # Former frequency:
 #    321 XX a
-to_field 'former_frequency_display', extract_marc('321a')
+to_field 'former_frequency_display', extract_marc('321ab')
 
 # Has supplement:
 #    770 XX at
@@ -427,10 +427,10 @@ to_field 'summary_note_display', extract_marc('5203ab')
 #    565 XX 3abcde
 #    567 XX a
 #    570 XX a
-to_field 'notes_display', extract_marc('5003a')
+to_field 'notes_display', extract_marc('5003a:590a')
 to_field 'with_notes_display', extract_marc('501a')
 to_field 'bibliographic_notes_display', extract_marc('503a') #obsolete
-to_field 'dissertation_notes_display', extract_marc('502a')
+to_field 'dissertation_notes_display', extract_marc('502abcdgo')
 to_field 'bib_ref_notes_display', extract_marc('504ab')
 to_field 'scale_notes_display', extract_marc('507ab') #added
 to_field 'credits_notes_display', extract_marc('508a')
@@ -438,7 +438,7 @@ to_field 'type_period_notes_display', extract_marc('513ab')
 to_field 'data_quality_notes_display', extract_marc('514abcdefghijkm')
 to_field 'numbering_pec_notes_display', extract_marc('515a')
 to_field 'type_comp_data_notes_display', extract_marc('516a') #added
-to_field 'date_place_event_notes_display', extract_marc('5183a')
+to_field 'date_place_event_notes_display', extract_marc('5183adop')
 to_field 'target_aud_notes_display', extract_marc('5213ab')
 to_field 'geo_cov_notes_display', extract_marc('522a')
 to_field 'time_period_notes_display', extract_marc('523a') #obsolete
@@ -446,12 +446,12 @@ to_field 'supplement_notes_display', extract_marc('525a')
 to_field 'study_prog_notes_display', extract_marc('526abcdixz') #added
 to_field 'censorship_notes_display', extract_marc('527a') #obsolete
 to_field 'reproduction_notes_display', extract_marc('5333abcdefmn')
-to_field 'original_version_notes_display', extract_marc('534abcefklmnpt')
+to_field 'original_version_notes_display', extract_marc('534abcefklmnpt3')
 to_field 'location_originals_notes_display', extract_marc('5353abcdg')
 to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
 to_field 'source_data_notes_display', extract_marc('537a') #obsolete
-to_field 'system_details_notes_display', extract_marc('538a')
-to_field 'related_copyright_notes_display', extract_marc('542') #is this in any record?
+to_field 'system_details_notes_display', extract_marc('5383ai')
+to_field 'related_copyright_notes_display', extract_marc('542|1*|:542| *|') #is this in any record?
 to_field 'location_other_arch_notes_display', extract_marc('5443abcden')
 to_field 'former_title_complex_notes_display', extract_marc('547a')
 to_field 'issuing_body_notes_display', extract_marc('550a')
@@ -460,8 +460,8 @@ to_field 'copy_version_notes_display', extract_marc('5623abcde')
 to_field 'case_file_notes_display', extract_marc('5653abcde')
 to_field 'methodology_notes_display', extract_marc('567a')
 to_field 'editor_notes_display', extract_marc('570a') #added
-to_field 'accumulation_notes_display', extract_marc('584ab') #added
-to_field 'awards_notes_display', extract_marc('586a') #added
+to_field 'accumulation_notes_display', extract_marc('584ab3') #added
+to_field 'awards_notes_display', extract_marc('586a3') #added
 to_field 'source_desc_notes_display', extract_marc('588a') #added
 
 # Binding note:
@@ -472,7 +472,7 @@ to_field 'binding_note_display', extract_marc('563au3')
 #    590 XX a
 #    591 XX a
 #    592 XX a
-to_field 'local_notes_display', extract_marc('590a:591a:592a')
+to_field 'local_notes_display', extract_marc('591a:592a')
 
 # Rights and reproductions note:
 #    540 XX 3abcd
@@ -488,7 +488,7 @@ to_field 'participant_performer_display', extract_marc('511a')
 
 # Language(s):
 #    546 XX 3a
-to_field 'language_display', extract_marc('5463a')
+to_field 'language_display', extract_marc('5463ab')
 
 to_field "language_facet", marc_languages
 
@@ -502,25 +502,17 @@ to_field 'language_code_s', extract_marc('008[35-37]')
 # Contents:
 #    505 0X agrt
 #    505 8X agrt
-to_field 'contents_display', extract_marc('505|0*|agrt:505|8*|agrt')
-
-# Incomplete contents:
-#    505 1X agrt
-to_field 'incomplete_contents_display', extract_marc('505|1*|agrt')
-
-# Partial contents:
-#    505 2X agrt
-to_field 'partial_contents_display', extract_marc('505|2*|agrt')
+to_field 'contents_display', extract_marc('505agrt')
 
 # Provenance:
 #    561 XX 3ab
 #    796 XX abcqde
 #    797 XX abcqde
-to_field 'provenance_display', extract_marc('5613ab:796abcqde:797abcqde')
+to_field 'provenance_display', extract_marc('561|1*|3ab:561| *|3ab') #:796abcqde:797abcqde')
 
 # Source of acquisition:
 #    541 XX abcdefhno36
-to_field 'source_acquisition_display', extract_marc('541abcdefhno36')
+to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|abcdefhno36')
 
 # Publications about:
 #    581 XX az36
@@ -548,7 +540,15 @@ to_field 'other_format_display', extract_marc('5303abcd')
 
 # Cumulative index/Finding aid:
 #    555 XX 3abcd
-to_field 'cumulative_index_finding_aid_display', extract_marc('5553abcd')
+
+# No indicator 1- cumulative index
+to_field 'indexes_display', extract_marc('555| *|3abcd')
+
+# Indicator 1 = 0 - finding aid
+to_field 'finding_aid_display', extract_marc('555|0*|3abcd')
+
+# Indicator 1 = 8 - not specified
+to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 
 # Subject(s):
 #    600 XX acdfklmnopqrst{v--%}{x--%}{y--%}{z--%} S abcdfklmnopqrtvxyz
@@ -749,6 +749,7 @@ to_field 'other_title_display' do |record, accumulator|
       accumulator << extractor.collect_subfields(field, spec).first
     end
   end
+  accumulator.uniq!
 end
 
 # 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
@@ -769,6 +770,7 @@ to_field 'other_title_1display' do |record, accumulator|
   unless other_title_hash == {}
     accumulator[0] = other_title_hash.to_json.to_s
   end
+  accumulator.uniq!
 end
 
 # In:

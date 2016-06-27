@@ -256,8 +256,8 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @s610_ind2_5 = {"600"=>{"ind1"=>"", "ind2"=>"5", "subfields"=>[{"a"=>"Exclude"}]}}
       @s600_ind2_7 = {"600"=>{"ind1"=>"", "ind2"=>"7", "subfields"=>[{"a"=>"Also Exclude"}]}}
-      @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"t"=>"Title"}, {"v"=>"split genre"}, {"d"=>"2015"}]}}
-      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE"}]}}
+      @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"t"=>"Title."}, {"v"=>"split genre"}, {"d"=>"2015"}]}}
+      @s630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE."}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s610_ind2_5, @s600, @s630] })
       @subjects = process_subject_facet(@sample_marc)
     end
@@ -267,7 +267,7 @@ describe 'From princeton_marc.rb' do
       expect(@subjects).not_to include("Also Exclude")
     end
 
-    it 'only separates v,x,y,z with em dash' do
+    it 'only separates v,x,y,z with em dash, strips punctuation' do
       expect(@subjects).to include("John. Title#{SEPARATOR}split genre 2015")
       expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore TITLE")
     end
@@ -391,7 +391,7 @@ describe 'From princeton_marc.rb' do
       @other_mfhd_id = "4191919"
       @call_number = "M23.L5S6 1973q"
       @include_loc = "f"
-      @f_852 = {"852"=>{"ind1"=>"0","ind2"=>"0","subfields"=>[{"0"=>@oversize_mfhd_id},{"b"=>"anxa"},{"t"=>"2"},{"c"=>"Oversize"},{"h"=>@call_number}]}}
+      @f_852 = {"852"=>{"ind1"=>"0","ind2"=>"0","subfields"=>[{"0"=>@oversize_mfhd_id},{"b"=>"anxa"},{"t"=>"2"},{"t"=>"BAD"},{"c"=>"Oversize"},{"h"=>@call_number}]}}
       @other_852 = {"852"=>{"ind1"=>"0","ind2"=>"0","subfields"=>[{"0"=>@other_mfhd_id},{"b"=>@include_loc},{"b"=>"elf1"}]}}
       @l_866 = {"866"=>{"ind1"=>"3","ind2"=>"1","subfields"=>[{"0"=>@oversize_mfhd_id},{"a"=>"volume 1"},{"z"=>"full"}]}}
       @l_866_2nd = {"866"=>{"ind1"=>"3","ind2"=>"1","subfields"=>[{"0"=>@oversize_mfhd_id},{"a"=>"In reading room"}]}}
@@ -411,6 +411,14 @@ describe 'From princeton_marc.rb' do
     it 'excludes $c for call_number_browse key' do
       expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).not_to include('Oversize')
       expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).to eq(@call_number)
+    end
+
+    it 'includes first instance of 852 $t as copy_number' do
+      expect(@holding_block[@oversize_mfhd_id]['copy_number']).to eq('2')
+    end
+
+    it 'only includes copy_number if there is an 852 $t' do
+      expect(@holding_block[@other_mfhd_id]['copy_number']).to be_nil
     end
 
     it 'separates call_number subfields with whitespace' do

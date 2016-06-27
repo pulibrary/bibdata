@@ -249,7 +249,7 @@ SEPARATOR = '—'
 # split with em dash along v,x,y,z
 def process_subject_facet record
   subjects = []
-  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz:655|*0|avxyz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
@@ -257,7 +257,9 @@ def process_subject_facet record
           subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}")
         end
       end
-      subjects << Traject::Macros::Marc21.trim_punctuation(subject)
+      subject = subject.split(SEPARATOR)
+      subject = subject.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
+      subjects << subject
     end
   end
   subjects
@@ -396,7 +398,11 @@ def process_genre_facet record
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
-      genres << genre
+      if genre.match(/^\s+$/)
+        logger.error "#{record['001']} - Blank genre field"
+      else
+        genres << genre
+      end
     end
   end
   genres.uniq
@@ -462,6 +468,8 @@ def process_holdings record
       elsif s_field.code == 'l'
         holding['shelving_title'] ||= []
         holding['shelving_title'] << s_field.value
+      elsif s_field.code == 't' && holding['copy_number'].nil?
+        holding['copy_number'] = s_field.value
       elsif s_field.code == 'z'
         holding['location_note'] ||= []
         holding['location_note'] << s_field.value
