@@ -1,9 +1,11 @@
 {
   "@context": {
     "id" : "@id",
+    "bf": "http://id.loc.gov/ontologies/bibframe/",
     "dc": "http://purl.org/dc/elements/1.1/",
     "dcterms": "http://purl.org/dc/terms/",
     "mrel": "http://id.loc.gov/vocabulary/relators/",
+    "pulterms": "http://library.princeton.edu/terms/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
 
@@ -26,6 +28,9 @@
     "extent": {"@id": "dcterms:extent"},
     "modified": {"@id": "dcterms:modified"},
     "title": {"@id": "dcterms:title"},
+
+    "edition": {"@id": "bf:editionStatement"},
+    "call_number": {"@id": "pulterms:call_number"},
 
     "abridger": {
       "@id": "mrel:abr"
