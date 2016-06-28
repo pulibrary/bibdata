@@ -259,7 +259,7 @@ describe 'From princeton_marc.rb' do
       @s600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"John."}, {"t"=>"Title."}, {"v"=>"split genre"}, {"d"=>"2015"}]}}
       @s630 = {"630"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"x"=>"Fiction"}, {"y"=>"1492"}, {"z"=>"don't ignore"}, {"t"=>"TITLE."}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s610_ind2_5, @s600, @s630] })
-      @subjects = process_subject_facet(@sample_marc)
+      @subjects = process_subject_facet(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
     end
 
     it 'excludes subjects without 0 in the 2nd indicator' do

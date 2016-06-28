@@ -558,13 +558,13 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'subject_display' do |record, accumulator|
-  subjects = process_subject_facet(record)
+  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   accumulator.replace(subjects)
 end
 
-# used for the browse lists and hierarchical subject facet
+# used for the browse lists and hierarchical subject facet (includes 655)
 to_field 'subject_facet' do |record, accumulator|
-  subjects = process_subject_facet(record)
+  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz:655avxyz')
   accumulator.replace(subjects)
 end
 
@@ -645,9 +645,12 @@ to_field 'call_number_full_facet' do |record, accumulator|
   end
 end
 
-# Form/Genre:
+# Form/Genre: (with links to facet search/browse)
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display', extract_marc('655avxyz')
+to_field 'form_genre_display' do |record, accumulator|
+  genres = process_subject_facet(record, '655avxyz')
+  accumulator.replace(genres)
+end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
