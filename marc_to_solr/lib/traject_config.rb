@@ -136,7 +136,7 @@ to_field 'series_statement_index', extract_marc('490avx')
 to_field 'content_title_index', extract_marc('505t')
 
 to_field 'contains_title_index' do |record, accumulator|
-  accumulator.replace(everything_after_t(record, '700|1*|:710|1*|:711|1*|'))
+  accumulator.replace(everything_after_t(record, '700:710:711'))
 end
 
 to_field 'linked_title_index', extract_marc('765st:767st:770st:772st:773st:774st:775st:776st:777st:780st:785st:786st:787st')
@@ -694,29 +694,32 @@ to_field 'related_name_json_1display' do |record, accumulator|
   end
 end
 
+ZERO_WIDTH = "\u{200B}".freeze
 to_field 'related_works_display' do |record, accumulator|
-  MarcExtractor.cached('700|1 |aqbcdfghklmnoprstx:710|1 |abcdfghklnoprstx:711|1 |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
     rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 't'
         non_t = false
-        break
+        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
       end
+      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
     end
     accumulator << rel_work unless non_t
   end
-end  
+end
 
 to_field 'contains_display' do |record, accumulator|
-  MarcExtractor.cached('700|12|aqbcdfghklmnoprstx:710|12|abcdfghklnoprstx:711|12|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
     rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     field.subfields.each do |s_field|
       if s_field.code == 't'
         non_t = false
-        break
+        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
       end
+      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
     end
     accumulator << rel_work unless non_t
   end
@@ -744,7 +747,9 @@ to_field 'other_title_index', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:
 
 # only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
 to_field 'other_title_display' do |record, accumulator|
-  MarcExtractor.cached('246|* |abfnp:246|*3|abfnp:210ab:211a:212a:214a:222ab:242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp').collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached(%w(246|*\ |abfnp:246|*3|abfnp:210ab:211a:212a:214a:222ab:
+                          242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp
+                      )).collect_matching_lines(record) do |field, spec, extractor|
     if field.tag == '246'
       label = field.subfields.select{|s_field| s_field.code == 'i'}.first
       accumulator << extractor.collect_subfields(field, spec).first if label.nil?
@@ -930,11 +935,13 @@ each_record do |record, context|
 end
 
 # For name-title browse - fields get deleted at end
-to_field 'uniform_130_s', extract_marc('130apldfhkmnorst', :trim_punctuation => true)
 to_field 'uniform_240_s', extract_marc('240apldfhkmnors', :trim_punctuation => true)
 
-to_field 'series_ae_s' do |record, accumulator|
-  MarcExtractor.cached('800|1*|aqbcdfghklmnoprstx:800|1*|abcdfghklnoprstx:711|1*|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
+to_field 'name_title_ae_s' do |record, accumulator|
+  MarcExtractor.cached(%w(700aqbcdfghklmnoprstx:710abcdfghklnoprstx:
+                          711abcdefgklnpqt:800aqbcdfghklmnoprstx:
+                          810abcdfghklnoprstx:811abcdefgklnpqt
+                      )).collect_matching_lines(record) do |field, spec, extractor|
     ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     field.subfields.each do |s_field|
@@ -947,28 +954,42 @@ to_field 'series_ae_s' do |record, accumulator|
   end
 end
 
+to_field 'linked_title_s' do |record, accumulator|
+  MarcExtractor.cached(%w(760at:762at:765at:767at:770at:772at:773at:774at:
+                          775at:776at:777at:780at:785at:786at:787at
+                      )).collect_matching_lines(record) do |field, spec, extractor|
+    ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
+    non_t = true
+    non_a = true
+    field.subfields.each do |s_field|
+      non_a = false if s_field.code == 'a'
+      non_t = false if s_field.code == 't'
+      break if (non_a && non_t)
+    end
+    accumulator << ae unless (non_a || non_t)
+  end
+end
+
   ########################################################
   # Author-Title Browse field includes                   #
-  # combination 100+240/245a, 130, 700/10/11, 800/10/11  #
+  # combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
   ########################################################
 each_record do |record, context|
   doc = context.output_hash
-  browse_field = [doc['uniform_130_s'], doc['related_works_display'],
-                  doc['contains_display'], doc['series_ae_s']]
+  browse_field = [doc['name_title_ae_s'], doc['linked_title_s']]
   if doc['author_display']
     author = doc['author_display'][0]
     if doc['uniform_240_s']
       browse_field << %(#{author}. #{doc['uniform_240_s'][0]})
     elsif doc['title_a_index']
+      context.output_hash['name_title_245_s'] = [%(#{author}. #{doc['title_a_index'][0]})]
       browse_field << %(#{author}. #{doc['title_a_index'][0]})
     end
   end
-  browse_field = browse_field.compact.uniq
-  context.output_hash['name_title_browse_t'] = browse_field unless browse_field.empty?
-
-  context.output_hash.delete('uniform_130_s')
+  browse_field = browse_field.compact.flatten.uniq
+  context.output_hash['name_title_browse_s'] = browse_field unless browse_field.empty?
   context.output_hash.delete('uniform_240_s')
-  context.output_hash.delete('series_ae_s')
+  context.output_hash.delete('name_title_ae_s')
 end
 
 # Call number: +No call number available
