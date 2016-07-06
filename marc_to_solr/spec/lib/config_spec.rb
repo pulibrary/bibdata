@@ -209,4 +209,37 @@ describe 'From traject_config.rb' do
       expect(@sample1['series_title_index']).to be_nil
     end
   end
+
+  describe 'both a and t must be present in linked title field' do
+    let(:leader) { '1234567890' }
+    let(:t760) {{"760"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
+    let(:a762) {{"762"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"NAME"}]}}}
+    let(:at765) {{"765"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Both"}, {"t"=>"name and title"}]}}}
+    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t760, a762, at765], 'leader' => leader })) }
+
+    it 'only includes 765at' do
+      expect(linked_record['linked_title_s']).to match_array(['Both name and title'])
+    end
+
+    it 'linked title field included in name-title browse' do
+      expect(linked_record['name_title_browse_s']).to include('Both name and title')
+    end
+  end
+
+  describe '7xx separated along $t and $p' do
+    let(:leader) { '1234567890' }
+    let(:t700) {{"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"t"=>"TITLE"}]}}}
+    let(:no_title) {{"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Mike"}, {"p"=>"part"}]}}}
+    let(:t710) {{"710"=>{"ind1"=>"", "ind2"=>"2", "subfields"=>[{"a"=>"Sean"}, {"d"=>"2011"}, {"t"=>"work"}, {"n"=>"53"}, {"p"=>"Allegro"}]}}}
+    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t700, no_title, t710], 'leader' => leader })) }
+    let(:zero_width) { "\u{200B}" }
+
+    it 'only records with $t included' do
+      expect(linked_record['related_works_display']).to match_array(["John 1492 #{zero_width}TITLE"])
+    end
+
+    it 'two separators when $t and $p present' do
+      expect(linked_record['contains_display']).to match_array(["Sean 2011 #{zero_width}work 53 #{zero_width}Allegro"])
+    end
+  end
 end
