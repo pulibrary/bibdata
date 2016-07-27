@@ -12,8 +12,8 @@ GIT
 
 GIT
   remote: git@github.com:pulibrary/voyager_helpers.git
-  revision: e1f4e90ddeebe2d3160c7a936cdc598c6c1df6c8
-  tag: v0.2.2
+  revision: 40cff4bf86d4e33f33a0b9ccfe9f6ee3d31ec550
+  tag: v0.2.3
   specs:
     voyager_helpers (0.2.1)
       activesupport (~> 4.1)
@@ -172,6 +172,7 @@ GEM
     net-ssh (3.0.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oj (2.17.1)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
       rack (~> 1.0)
@@ -251,7 +252,7 @@ GEM
       rspec-mocks (~> 3.0.0)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.4)
-    ruby-oci8 (2.2.1)
+    ruby-oci8 (2.2.2)
     rubyzip (1.2.0)
     sass (3.2.19)
     sass-rails (4.0.5)
@@ -344,6 +345,7 @@ DEPENDENCIES
   marc (~> 1.0)
   multi_json (~> 1.10.1)
   mysql2
+  oj
   omniauth-cas
   poltergeist
   rack-conneg (~> 0.1.5)
@@ -367,4 +369,4 @@ DEPENDENCIES
   yaml_db (~> 0.3.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
