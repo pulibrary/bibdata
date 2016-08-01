@@ -11,6 +11,7 @@ RSpec.describe "Course Reserves", type: :request do
         {
           "reserve_list_id" => 1958,
           "department_name" => "Molecular Biology",
+          "department_code" => "MOL",
           "course_name" => "Genetics",
           "course_number" => "MOL 342",
           "section_id" => 171,
@@ -42,7 +43,7 @@ RSpec.describe "Course Reserves", type: :request do
 
   def stub_all_courses
     allow(VoyagerHelpers::Liberator).to receive(:active_courses).and_return([
-      VoyagerHelpers::Course.new(1958, "Molecular Biology", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
+      VoyagerHelpers::Course.new(1958, "Molecular Biology", "MOL", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
     ])
   end
 
