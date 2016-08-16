@@ -48,7 +48,7 @@ RSpec.describe "Course Reserves", type: :request do
   end
 
   def stub_bib_ids
-    allow(VoyagerHelpers::Liberator).to receive(:course_bibs).with([1, 2]).and_return([
+    allow(VoyagerHelpers::Liberator).to receive(:course_bibs).with(['1', '2']).and_return([
       VoyagerHelpers::CourseBib.new(1,3),
       VoyagerHelpers::CourseBib.new(2,4)
     ])
