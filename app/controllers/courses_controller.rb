@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   end
 
   def bibs
-    @reserve_ids = params.fetch(:reserve_id).map(&:to_i)
+    @reserve_ids = params.fetch(:reserve_id)
     @bib_relations = VoyagerHelpers::Liberator.course_bibs(@reserve_ids)
     respond_to do |f|
       f.json do
