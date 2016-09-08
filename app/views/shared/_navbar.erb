@@ -10,11 +10,11 @@
         <li class="<%= 'active' if params[:controller] == 'locations/hours_locations' %>"><%= link_to 'Hours Locations', locations.hours_locations_path %></li>
         <% if current_user %>
         <li>
-          <%= link_to 'Logout', main_app.destroy_user_session_path %>
+          <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete %>
         </li>
         <% else %>
         <li>
-          <%= link_to 'Login', main_app.user_omniauth_authorize_path(:cas) %> <!-- use new_user_session_path for more options -->
+          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path %>
         </li>
         <% end %>           
       </ul>

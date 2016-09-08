@@ -15,7 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', git: 'git@github.com:pulibrary/voyager_helpers.git', tag: 'v0.2.5'
+gem 'voyager_helpers', git: 'git@github.com:pulibrary/voyager_helpers.git', tag: 'v0.3.0'
 
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
@@ -33,7 +33,7 @@ end
 
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.5'
   gem 'simplecov'
   gem 'byebug', '~> 3.5.1'
   gem 'rerun', '~> 0.10.0'
@@ -43,7 +43,7 @@ gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.4.0'
 gem 'yaml_db', '~> 0.3.0'
 gem 'friendly_id', '~> 5.1.0'
 
-gem 'devise'
+gem 'devise', '~> 4.2'
 gem 'omniauth-cas'
 gem 'capybara'
 gem 'poltergeist'

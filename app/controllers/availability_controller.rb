@@ -122,14 +122,11 @@ class AvailabilityController < ApplicationController
   end
 
   def update_item_loc(item)
-    loc = get_holding_location(item[:on_reserve] || item[:location])
+    loc = get_holding_location(item[:temp_loc] || item[:location])
     unless loc.nil?
-      if item[:on_reserve]
-        item[:temp_loc] = item[:on_reserve]
-        item[:on_reserve] = location_full_display(loc)
-      end
+      item[:on_reserve] = location_full_display(loc)
+      item[:label] = item[:on_reserve]
       item[:status] = location_based_status(loc, item[:status])
     end
   end
-
 end
