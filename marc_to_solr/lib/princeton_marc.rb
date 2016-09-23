@@ -530,5 +530,35 @@ def process_holdings record
       all_holdings[holding_id]['indexes'] << value.join(' ')
     end
   end
+  ### Added for ReCAP records
+  Traject::MarcExtractor.cached('87603ahjptx').collect_matching_lines(record) do |field, spec, extractor|
+    item = {}
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        item[:holding_id] = s_field.value
+      elsif s_field.code == '3'
+        item[:enumeration] = s_field.value
+      elsif s_field.code == 'a'
+        item[:id] = s_field.value
+      elsif s_field.code == 'h'
+        item[:use_statement] = s_field.value
+      elsif s_field.code == 'j'
+        item[:status_at_load] = s_field.value
+      elsif s_field.code == 'p'
+        item[:barcode] = s_field.value
+      elsif s_field.code == 't'
+        item[:copy_number] = s_field.value
+      elsif s_field.code == 'x'
+        item[:collection_group] = s_field.value
+      end
+      item[:partner] == 'CU'
+    end
+    if all_holdings[item[:holding_id]]["items"].nil?
+      all_holdings[item[:holding_id]]["items"] = [ item ]
+    else
+      all_holdings[item[:holding_id]]["items"] << item
+    end
+  end
   all_holdings
 end
+
