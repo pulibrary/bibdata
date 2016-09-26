@@ -497,8 +497,10 @@ to_field "language_facet", marc_languages
 #    546 XX b
 to_field 'script_display', extract_marc('546b')
 
-to_field 'language_code_s', extract_marc('008[35-37]')
-
+to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |record, accumulator|
+  codes = accumulator.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
+  accumulator.replace(codes.flatten.uniq)
+end
 # Contents:
 #    505 0X agrt
 #    505 8X agrt

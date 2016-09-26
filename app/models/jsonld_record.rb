@@ -4,7 +4,7 @@ class JSONLDRecord
   end
 
   def to_h
-    metadata = { title: title, language: language_codes }
+    metadata = { title: title, language: iso_codes }
 
     metadata_map.each do |solr_key, metadata_key|
       values = @solr_doc[solr_key.to_s] || []
@@ -57,12 +57,8 @@ class JSONLDRecord
     (@solr_doc['summary_note_display'] || []).first
   end
 
-  def language_codes
-    lang = @solr_doc['language_code_s']
-    @solr_doc['language_facet'].each do |label|
-      lang << LanguageService.label_to_iso(label) unless label == 'Multiple'
-    end
-    lang = lang.uniq
+  def iso_codes
+    lang = language_codes.map { |l| LanguageService.loc_to_iso(l) }.compact.uniq
     lang.size == 1 ? lang.first : lang
   end
 
@@ -85,9 +81,8 @@ class JSONLDRecord
   end
 
   def title_language
-    lang = @solr_doc['language_code_s'].first
-    return LanguageService.label_to_iso(@solr_doc['language_facet'].second) if lang == 'mul'
-    return LanguageService.loc_to_iso(lang)
+    lang = language_codes.first
+    LanguageService.loc_to_iso(lang)
   end
 
   def metadata_map
@@ -103,4 +98,10 @@ class JSONLDRecord
       subject_facet:         'subject'
     }
   end
+
+  private
+
+    def language_codes
+      (@solr_doc['language_code_s'] || []).reject { |l| l == 'mul' }
+    end
 end

@@ -1,9 +1,9 @@
 class LanguageService
-  def self.label_to_iso(language)
-    LANGUAGES.select { |lang| lang['label'].split(';').include? language }.first['iso']
-  end
-
   def self.loc_to_iso(loc)
-    LANGUAGES.select { |lang| lang['loc'] == loc }.first['iso']
+    if codes = ISO_639.find(loc)
+      term = codes.alpha3_terminologic # blank when iso and loc are the same
+      iso = term unless term.empty?
+      iso ||= codes.alpha3
+    end
   end
 end
