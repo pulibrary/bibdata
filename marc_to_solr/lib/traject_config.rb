@@ -346,10 +346,22 @@ to_field 'has_subseries_display', extract_marc('762at')
 #    811 XX abcdefghklnpqstuv
 #    830 XX adfghklmnoprstv
 #    840 XX anpv
-to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:411acdefgklnpqtuv:440anpvx:490avx:800abcdefghklmnopqrstuv:810abcdefgklnt:811abcdefghklnpqstuv:830adfghklmnoprstv:840anpv')
+# only includes 490 if the value is different from the other fields
+to_field 'series_display', extract_marc('400abcdefgklnpqtuvx:410abcdefgklnptuvx:411acdefgklnpqtuv:440anpvx:800abcdefghklmnopqrstuv:810abcdefgklnt:811abcdefghklnpqstuv:830adfghklmnoprstv:840anpv') do |record, accumulator|
+  without_punct = accumulator.map { |f| Traject::Macros::Marc21.trim_punctuation(f) }
+  MarcExtractor.cached('490avx').collect_matching_lines(record) do |field, spec, extractor|
+    series = extractor.collect_subfields(field, spec).first
+    accumulator << series unless without_punct.include?(Traject::Macros::Marc21.trim_punctuation(series))
+  end
+end
 
 # a subset of the series fields and subfields to link to "More in this series"
-to_field 'more_in_this_series_t', extract_marc('440anp:830anp') do |record, accumulator|
+to_field 'more_in_this_series_t' do |record, accumulator|
+  MarcExtractor.cached('440anp:830anp').collect_matching_lines(record) do |field, spec, extractor|
+    str = extractor.collect_subfields(field, spec).first
+    str = str.slice(field.indicator2.to_i, str.length) if str
+    accumulator << str unless str.empty?
+  end
   accumulator << everything_through_t(record, '800:810:811')
   accumulator.flatten!
 end

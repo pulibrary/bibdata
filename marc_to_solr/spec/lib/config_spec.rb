@@ -242,4 +242,20 @@ describe 'From traject_config.rb' do
       expect(linked_record['contains_display']).to match_array(["Sean 2011 #{zero_width}work 53 #{zero_width}Allegro"])
     end
   end
+
+  describe 'series 490 dedup, non-filing' do
+    let(:leader) { '1234567890' }
+    let(:s490) {{"490"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title"}]}}}
+    let(:s830) {{"830"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title."}]}}}
+    let(:s440) {{"440"=>{"ind1"=>"", "ind2"=>"4", "subfields"=>[{"a"=>"The Series"}]}}}
+    let(:record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [s490, s830, s440], 'leader' => leader })) }
+
+    it '490s are not included when they are covered by another series field' do
+      expect(record['series_display']).to match_array(['Series title.', 'The Series'])
+    end
+
+    it 'matches for other works within series ignore non-filing characters' do
+      expect(record['more_in_this_series_t']).to match_array(['Series title.', 'Series'])
+    end
+  end
 end
