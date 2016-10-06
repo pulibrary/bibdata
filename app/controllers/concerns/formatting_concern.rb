@@ -36,6 +36,13 @@ module FormattingConcern
     end
   end
 
+  def valid_barcode(barcode)
+    valid_barcode = false
+    if barcode =~ /^32101[0-9]{9}$/
+      valid_barcode = true
+    end
+  end
+
   def statuses_to_xml(data)
     # yep!
     s = []

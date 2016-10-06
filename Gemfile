@@ -16,6 +16,7 @@ group :development, :production do
 end
 
 gem 'voyager_helpers', git: 'git@github.com:pulibrary/voyager_helpers.git', tag: 'v0.3.3'
+
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
@@ -36,6 +37,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'byebug', '~> 3.5.1'
   gem 'rerun', '~> 0.10.0'
+  gem 'pry-byebug'
 end
 
 gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.4.3'

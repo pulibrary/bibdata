@@ -123,7 +123,6 @@ ActiveRecord::Schema.define(version: 20160908225104) do
   end
 
   add_index "locations_holding_locations", ["holding_library_id"], name: "fk_rails_9d6bef4ef6", using: :btree
-  add_index "locations_holding_locations", ["locations_hours_location_id"], name: "fk_rails_41d5ab8754", using: :btree
   add_index "locations_holding_locations", ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id", using: :btree
 
   create_table "locations_holdings_delivery", id: false, force: :cascade do |t|
@@ -170,9 +169,6 @@ ActiveRecord::Schema.define(version: 20160908225104) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
-  add_foreign_key "locations_delivery_locations", "locations_libraries"
   add_foreign_key "locations_floors", "locations_libraries"
-  add_foreign_key "locations_holding_locations", "locations_hours_locations"
-  add_foreign_key "locations_holding_locations", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"
 end
