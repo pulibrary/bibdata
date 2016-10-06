@@ -38,7 +38,7 @@ module FormattingConcern
 
   def valid_barcode(barcode)
     valid_barcode = false
-    if barcode =~ /^32101[0-9]{9}$/
+    if barcode =~ /^(32101[0-9]{9}|PULTST[0-9]{5})$/
       valid_barcode = true
     end
   end
