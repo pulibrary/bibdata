@@ -326,11 +326,17 @@ def electronic_access_links record
         end
       end
     end
-    if url and (URI.parse(url) rescue nil)
-      anchor_text = URI.parse(url).host unless anchor_text
-      url_labels = [anchor_text] # anchor text is first element
-      url_labels << z_label if z_label # optional 2nd element if z
-      holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
+    if url
+      url_no_whitespace = url.gsub(' ', '%20')
+      logger.error "#{record['001']} - whitespace in 856 url" if url != url_no_whitespace
+      if (URI.parse(url_no_whitespace) rescue nil)
+        anchor_text = URI.parse(url_no_whitespace).host unless anchor_text
+        url_labels = [anchor_text] # anchor text is first element
+        url_labels << z_label if z_label # optional 2nd element if z
+        holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
+      end
+    else
+      logger.error "#{record['001']} - no url in 856 field" if url != url_no_whitespace
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}
