@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:pulibrary/locations.git
-  revision: a88252439419cecaacffc58ce491a093290a7a33
-  tag: 0.4.1
+  revision: 71443a4c585cd903b42fa46a4a467a9cdf5d3ef9
+  tag: 0.4.2
   specs:
     locations (0.3.0)
       bootstrap-sass (~> 3.3)
@@ -71,7 +71,7 @@ GEM
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (6.0.3)
-    autoprefixer-rails (6.5.0.2)
+    autoprefixer-rails (6.5.1)
       execjs
     bcrypt (3.1.11)
     bootstrap-sass (3.3.5)
@@ -179,9 +179,8 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     oj (2.17.4)
     omniauth (1.2.2)
       hashie (>= 1.2, < 4)
@@ -191,7 +190,6 @@ GEM
       nokogiri (~> 1.5)
       omniauth (~> 1.2.0)
     orm_adapter (0.5.0)
-    pkg-config (1.1.7)
     poltergeist (1.10.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
