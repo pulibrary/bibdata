@@ -562,3 +562,27 @@ def process_holdings record
   all_holdings
 end
 
+def process_recap_notes record
+  item_notes = []
+  Traject::MarcExtractor.cached('87603ahjptx').collect_matching_lines(record) do |field, spec, extractor|
+    col_group = ''
+    partner_lib = ''
+    field.subfields.each do |s_field|
+      if s_field.code == 'x'
+        if s_field.value == 'Shared'
+          col_group = 'S'
+        else
+          col_group = '0'
+        end
+      elsif s_field.code == 'b'
+        if s_field.value == 'CU'
+          partner_lib = 'C'
+        else
+          partner_lib = 'N'
+        end
+      end
+    end
+    item_notes << "#{partner_lib} - #{col_group}"
+  end
+  item_notes
+end

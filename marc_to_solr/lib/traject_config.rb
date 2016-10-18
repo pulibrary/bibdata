@@ -9,6 +9,7 @@ require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
+require 'pry-byebug'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -900,6 +901,18 @@ to_field 'holdings_1display' do |record, accumulator|
     logger.error "#{record['001']} - Missing holdings"
   else
     accumulator[0] = all_holdings.to_json.to_s
+  end
+end
+
+## for recap notes
+to_field 'recap_notes_display' do |record, accumulator|
+  recap_notes = process_recap_notes(record)
+  if recap_notes == []
+    logger.info 'No Recap Notes'
+  else
+    recap_notes.each_with_index do |value, i|
+      accumulator[i] = value
+    end
   end
 end
 
