@@ -179,6 +179,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
+    newrelic_rpm (3.16.2.321)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oj (2.17.4)
@@ -356,6 +357,7 @@ DEPENDENCIES
   marc (~> 1.0)
   multi_json (~> 1.10.1)
   mysql2
+  newrelic_rpm
   oj
   omniauth-cas
   poltergeist
@@ -380,4 +382,4 @@ DEPENDENCIES
   yaml_db (~> 0.3.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.5
