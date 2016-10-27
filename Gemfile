@@ -54,3 +54,4 @@ gem 'stringex', :git => 'https://github.com/pulibrary/stringex.git', :tag => 'vp
 gem 'library_stdnums'
 gem 'faraday'
 gem 'iso-639'
+gem 'newrelic_rpm'
