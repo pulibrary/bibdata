@@ -1,10 +1,12 @@
 class JSONLDRecord
-  def initialize(solr_doc)
+  def initialize(solr_doc = {})
     @solr_doc = solr_doc
   end
 
   def to_h
-    metadata = { title: title, language: iso_codes }
+    metadata = {}
+    metadata[:title] = title if title
+    metadata[:language] = iso_codes unless iso_codes.empty?
 
     metadata_map.each do |solr_key, metadata_key|
       values = @solr_doc[solr_key.to_s] || []
@@ -14,8 +16,8 @@ class JSONLDRecord
 
     metadata.merge! contributors
     metadata.merge! creator
-    metadata['created'] = date(true)
-    metadata['date'] = date
+    metadata['created'] = date(true) if date(true)
+    metadata['date'] = date if date
     metadata['description'] = description if description
 
     metadata
@@ -43,6 +45,7 @@ class JSONLDRecord
   end
 
   def date(expanded = false)
+    return unless @solr_doc['pub_date_start_sort']
     date = @solr_doc['pub_date_start_sort'].first
     date += "-01-01T00:00:00Z" if expanded
     end_date = @solr_doc['pub_date_end_sort'] || []
@@ -63,7 +66,8 @@ class JSONLDRecord
   end
 
   def title
-    vernacular_title.nil? ? roman_title : [ vernacular_title, roman_title ]
+    [ vernacular_title, roman_title ] unless vernacular_title.nil?
+    roman_title unless roman_title.nil?
   end
 
   def vernacular_title
@@ -73,10 +77,11 @@ class JSONLDRecord
 
   def roman_title
     lang = vernacular_title.nil? ? title_language : title_language + "-Latn"
-    { "@value": roman_display_title, "@language": lang }
+    { "@value": roman_display_title, "@language": lang } if roman_display_title
   end
 
   def roman_display_title
+    return unless @solr_doc['title_citation_display']
     Traject::Macros::Marc21.trim_punctuation @solr_doc['title_citation_display'].first
   end
 

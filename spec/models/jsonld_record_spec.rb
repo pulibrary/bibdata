@@ -59,4 +59,34 @@ RSpec.describe JSONLDRecord, :type => :model do
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
   end
+
+  context 'without dates' do
+    let(:solr_doc) {{
+      'title_citation_display'     => ['This is the Title'],
+      'language_facet'             => ['English'],
+      'language_code_s'            => ['eng'],
+      'author_display'             => ['Composer, Carol'],
+      'marc_relator_display'       => ['Composer']
+    }}
+    subject { described_class.new solr_doc }
+
+    it 'maps the creator to dc:creator and the more specific role' do
+      json_ld = {
+        title: {'@value':'This is the Title', '@language': 'eng'},
+        language: 'eng',
+        creator: 'Composer, Carol',
+        composer: 'Composer, Carol'
+      }
+      expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+  end
+
+  context 'without any data' do
+    subject { described_class.new }
+
+    it 'maps the creator to dc:creator and the more specific role' do
+      expect { described_class.new }.to_not raise_error
+      expect(described_class.new.to_h).to eq({})
+    end
+  end
 end
