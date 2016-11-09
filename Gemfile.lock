@@ -14,10 +14,10 @@ GIT
 
 GIT
   remote: git@github.com:pulibrary/voyager_helpers.git
-  revision: b4c31f7a8d1f880d3d248754f56244888a6d6490
-  tag: v0.3.2a
+  revision: cc558e7c1860f46fd702fb3b218422be07d3932c
+  tag: v0.3.3
   specs:
-    voyager_helpers (0.3.2)
+    voyager_helpers (0.3.3)
       activesupport (~> 4.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
