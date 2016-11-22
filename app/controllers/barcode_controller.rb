@@ -14,7 +14,7 @@ class BarcodeController < ApplicationController
       render plain: "Barcode #{params[:barcode]} not valid.", status: 404
     else
       records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]))
-      if records.nil?
+      if records == []
         render plain: "Barcode #{params[:barcode]} not found.", status: 404
       else
         respond_to do |wants|
