@@ -16,10 +16,10 @@ RSpec.describe "Barcode Gets", :type => :request do
       expect(response.status).to be(404)
     end
   end
-  describe "GET /barcode/32101070300319" do
-    it "returns an error when the barcode does not exist" do
-      allow(VoyagerHelpers::Liberator).to receive(:get_records_from_barcode).and_return([])
-      get '/barcode/32101070300319'
+  describe "GET /barcode/" do
+    it "returns an error when no barcode is supplied" do
+      allow(VoyagerHelpers::Liberator).to receive(:get_records_from_barcode).and_return(nil)
+      get '/barcode/'
       expect(response.status).to be(404)
     end
   end

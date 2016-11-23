@@ -36,11 +36,8 @@ module FormattingConcern
     end
   end
 
-  def valid_barcode(barcode)
-    valid_barcode = false
-    if barcode =~ /^(32101[0-9]{9}|PULTST[0-9]{5})$/
-      valid_barcode = true
-    end
+  def valid_barcode(barcode='')
+    barcode =~ /^(32101[0-9]{9}|PULTST[0-9]{5})$/
   end
 
   def statuses_to_xml(data)
