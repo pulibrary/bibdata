@@ -89,4 +89,27 @@ RSpec.describe JSONLDRecord, :type => :model do
       expect(described_class.new.to_h).to eq({})
     end
   end
+
+  context 'with vernacular title' do
+    let(:solr_doc) {{
+      'title_citation_display'     => ['Kitāb al-Manāhil al-ṣāfīyah /', 'كتاب المناهل الصافية /'],
+      'language_facet'             => ['Arabic'],
+      'language_code_s'            => ['ara'],
+      'author_display'             => ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626',
+                                       'ظفيري، لطف الله بن محمد'],
+      'marc_relator_display'       => ['Author']
+    }}
+    subject { described_class.new solr_doc }
+
+    it 'includes both the vernacular and english titles' do
+      json_ld = {
+        title: [{'@value':'كتاب المناهل الصافية', '@language': 'ara'},
+                {'@value':'Kitāb al-Manāhil al-ṣāfīyah', '@language': 'ara-Latn'}],
+        language: 'ara',
+        creator: ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626', 'ظفيري، لطف الله بن محمد'],
+        author: 'Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626'
+      }
+      expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+  end
 end
