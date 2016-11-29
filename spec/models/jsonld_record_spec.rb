@@ -11,6 +11,7 @@ RSpec.describe JSONLDRecord, :type => :model do
       'pub_date_end_sort'          => ['1972'],
       'pub_created_display'        => ['New York : Farrar, Straus Giroux, 1970.'],
       'call_number_display'        => ['ND623.C3 M8'],
+      'genre_facet'                => ['Biography'],
       'language_code_s'            => ['eng', 'spa', 'chi'],
       'author_display'             => ['Author, Alice'],
       'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Former owner":["Translator, Carol"],"Related name":["Contributor, Donald"]}']
@@ -26,6 +27,7 @@ RSpec.describe JSONLDRecord, :type => :model do
         date: '1970-1972',
         created: '1970-01-01T00:00:00Z/1972-12-31T23:59:59Z',
         call_number: 'ND623.C3 M8',
+        type: 'Biography',
         language: ['eng', 'spa', 'zho'],
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
         contributor: ['Contributor, Donald'],
