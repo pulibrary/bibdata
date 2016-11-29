@@ -99,7 +99,7 @@ class JSONLDRecord
       description_display:   'extent',
       edition_display:       'edition',
       format:                'format',
-      genre_facet:           'genre',
+      genre_facet:           'type',
       notes_display:         'note',
       pub_created_display:   'publisher',
       subject_facet:         'subject'
