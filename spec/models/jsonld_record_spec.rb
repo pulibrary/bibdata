@@ -5,6 +5,7 @@ RSpec.describe JSONLDRecord, :type => :model do
     let(:solr_doc) {{
       'title_citation_display'     => ['This is the Title'],
       'summary_note_display'       => ['This is a note about it.'],
+      'notes_display'              => ['This is another note.'],
       'description_display'        => ['340 p., ill., 24 cm'],
       'pub_date_display'           => ['1970'],
       'pub_date_start_sort'        => ['1970'],
@@ -21,7 +22,8 @@ RSpec.describe JSONLDRecord, :type => :model do
     it 'produces json+ld' do
       json_ld = {
         title: {'@value':'This is the Title', '@language':'eng'},
-        description: 'This is a note about it.',
+        abstract: 'This is a note about it.',
+        description: 'This is another note.',
         extent: '340 p., ill., 24 cm',
         creator: 'Author, Alice',
         date: '1970-1972',

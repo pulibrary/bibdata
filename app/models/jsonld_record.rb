@@ -18,7 +18,7 @@ class JSONLDRecord
     metadata.merge! creator
     metadata['created'] = date(true) if date(true)
     metadata['date'] = date if date
-    metadata['description'] = description if description
+    metadata['abstract'] = abstract if abstract
 
     metadata
   end
@@ -56,7 +56,7 @@ class JSONLDRecord
     date
   end
 
-  def description
+  def abstract
     (@solr_doc['summary_note_display'] || []).first
   end
 
@@ -100,7 +100,7 @@ class JSONLDRecord
       edition_display:       'edition',
       format:                'format',
       genre_facet:           'type',
-      notes_display:         'note',
+      notes_display:         'description',
       pub_created_display:   'publisher',
       subject_facet:         'subject'
     }
