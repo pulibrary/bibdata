@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   get '/items', to: 'items#index', defaults: { format: :txt }
   get '/items/:item_id', to: 'items#item', defaults: { format: :json }
 
+  get '/barcode', to: 'barcode#index', defaults: {format: :txt }
+  get '/barcode/:barcode', to: 'barcode#barcode', defaults: { format: :xml }, as: :show_barcode
+
   get '/codes/:location', to: 'codes#locations', defaults: { format: :json }
   get '/patron/:patron_id', to: 'patron#patron_info', defaults: { format: :json }
   get '/patron/:patron_id/codes', to: 'patron#patron_codes', defaults: { format: :json }
