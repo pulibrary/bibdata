@@ -48,7 +48,7 @@ gem 'capybara'
 gem 'poltergeist'
 gem 'resque'
 
-gem 'traject', '~> 2.0'
+gem 'traject', '2.3.1'
 gem 'stringex', :git => 'https://github.com/pulibrary/stringex.git', :tag => 'vpton.2.5.2.2'
 gem 'library_stdnums'
 gem 'faraday'
