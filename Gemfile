@@ -15,7 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', git: 'git@github.com:pulibrary/voyager_helpers.git', tag: 'v0.3.3'
+gem 'voyager_helpers', git: 'git@github.com:pulibrary/voyager_helpers.git', tag: 'v0.3.4'
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
@@ -48,7 +48,7 @@ gem 'capybara'
 gem 'poltergeist'
 gem 'resque'
 
-gem 'traject', '~> 2.0'
+gem 'traject', '2.3.1'
 gem 'stringex', :git => 'https://github.com/pulibrary/stringex.git', :tag => 'vpton.2.5.2.2'
 gem 'library_stdnums'
 gem 'faraday'
