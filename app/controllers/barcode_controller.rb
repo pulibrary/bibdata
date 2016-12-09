@@ -10,7 +10,7 @@ class BarcodeController < ApplicationController
   end
 
   def barcode
-    unless valid_barcode(params[:barcode])
+    unless valid_barcode?(params[:barcode])
       render plain: "Barcode #{params[:barcode]} not valid.", status: 404
     else
       records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]))
