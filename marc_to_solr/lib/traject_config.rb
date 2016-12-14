@@ -9,7 +9,7 @@ require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
-require 'pry-byebug'
+
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
