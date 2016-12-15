@@ -359,8 +359,16 @@ end
 to_field 'more_in_this_series_t' do |record, accumulator|
   MarcExtractor.cached('440anp:830anp').collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first
-    str = str.slice(field.indicator2.to_i, str.length) if str
-    accumulator << str unless str.empty?
+    if str
+      str = str.slice(field.indicator2.to_i, str.length)
+      if str.nil? || str.empty?
+        logger.error "#{record['001']} - Non-filing characters >= title length"
+      else
+        accumulator << str
+      end
+    else
+      logger.error "#{record['001']} - Missing 440/830 $a"
+    end
   end
   accumulator << everything_through_t(record, '800:810:811')
   accumulator.flatten!
