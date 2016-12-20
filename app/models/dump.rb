@@ -97,7 +97,7 @@ class Dump < ActiveRecord::Base
         bibs.dump_files.first.unzip
         bib_path = bibs.dump_files.first.path
         system "awk '{print $1}' #{bib_path} > #{bib_path}.ids"
-        bib_id_strings = File.open("#{bib_path}.ids", "r")
+        bib_id_strings = File.readlines("#{bib_path}.ids").map &:strip
         dump.dump_bib_records(bib_id_strings)
         bibs.dump_files.first.zip
         File.delete("#{bib_path}.ids")
