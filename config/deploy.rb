@@ -40,6 +40,7 @@ set :linked_dirs, %w{
   tmp/sockets
   vendor/bundle
   public/system
+  log
 }
 
 
