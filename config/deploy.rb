@@ -1,5 +1,5 @@
 set :application, 'marc_liberation'
-set :repo_url, "git@github.com:pulibrary/#{fetch(:application)}.git"
+set :repo_url, "https://github.com/pulibrary/marc_liberation.git"
 
 # Default branch is :master
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
