@@ -7,7 +7,7 @@
 set :stage, :production
 set :rails_env, 'production'
 server 'bibdata', user: 'deploy', roles: [:web, :app, :db]
-set :branch, ENV['BRANCH'] || 'development'
+set :branch, ENV['BRANCH'] || 'master'
 
 # Extended Server Syntax
 # ======================
