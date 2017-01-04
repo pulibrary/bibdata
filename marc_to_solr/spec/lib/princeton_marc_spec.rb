@@ -15,13 +15,15 @@ describe 'From princeton_marc.rb' do
       @url2 = 'yahoo.com'
       @url3 = 'princeton.edu'
       @long_url = 'http://aol.com/234/asdf/24tdsfsdjf'
-      @invalid_url = 'mail.usa not link'
+      @invalid_url = 'not a link'
+      @url_whitespace = 'http://google.com/spaced query'
       @l856 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url1}, {"y"=>"GOOGLE!"}, {"z"=>"label"} ]}}
       @l856_1 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url2}, {"3"=>"Table of contents"} ]}}
       @l856_2 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@long_url}]}}
       @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
       @l856_4 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@invalid_url}]}}
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4] })
+      @l856_5 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url_whitespace}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4, @l856_5] })
       @links = electronic_access_links(@sample_marc)
     end
 
@@ -34,6 +36,10 @@ describe 'From princeton_marc.rb' do
 
     it 'skips invalid urls' do
       expect(@links).not_to include(@invalid_url)
+    end
+
+    it 'indexes urls with whitespace and escapes them' do
+      expect(@links).to include(@url_whitespace.gsub(' ', '%20'))
     end
   end
 
