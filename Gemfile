@@ -38,7 +38,7 @@ group :development, :test do
   gem 'rerun', '~> 0.10.0'
 end
 
-gem 'locations', git: 'git@github.com:pulibrary/locations.git', :tag => '0.4.3'
+gem 'locations', git: 'git@github.com:pulibrary/locations.git', tag: '0.5.0'
 gem 'yaml_db', '~> 0.3.0'
 gem 'friendly_id', '~> 5.1.0'
 
@@ -49,7 +49,7 @@ gem 'poltergeist'
 gem 'resque'
 
 gem 'traject', '2.3.1'
-gem 'stringex', :git => 'https://github.com/pulibrary/stringex.git', :tag => 'vpton.2.5.2.2'
+gem 'stringex', git: 'https://github.com/pulibrary/stringex.git', tag: 'vpton.2.5.2.2'
 gem 'library_stdnums'
 gem 'faraday'
 gem 'iso-639'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160908225104) do
+ActiveRecord::Schema.define(version: 20170103045037) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -144,8 +144,9 @@ ActiveRecord::Schema.define(version: 20160908225104) do
   create_table "locations_libraries", force: :cascade do |t|
     t.string   "label",      limit: 255
     t.string   "code",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "order",      limit: 4,   default: 0
   end
 
   create_table "users", force: :cascade do |t|
