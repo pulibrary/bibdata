@@ -32,7 +32,6 @@ describe 'From format.rb' do
 
     it 'Princeton senior theses are properly classified' do
       senior_thesis_marc.leader = marc.leader
-      puts senior_thesis_marc.leader
       fmt = Format.new(senior_thesis_marc).bib_format
       expect(Traject::TranslationMap.new("format").translate_array!(fmt)).to include 'Senior thesis'
     end
