@@ -331,6 +331,8 @@ def electronic_access_links record
       url_labels = [anchor_text] # anchor text is first element
       url_labels << z_label if z_label # optional 2nd element if z
       holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
+    else
+      logger.error "#{record['001']} - no url in 856 field"
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}
