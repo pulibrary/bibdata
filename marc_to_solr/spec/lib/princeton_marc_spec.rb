@@ -219,6 +219,32 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+
+  describe '#prep_name_title, each hierarchical component is array element' do
+    before(:all) do
+      t700 = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"t"=>"TITLE"}, {"0"=>"(uri)"}]}}
+      no_title_700 = {"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Mike"}, {"p"=>"part"}]}}
+      no_author_710 = {"710"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"d"=>"1500"}, {"t"=>"Title"}, {"p"=>"part"}]}}
+      t710 = {"710"=>{"ind1"=>"", "ind2"=>"2", "subfields"=>[{"a"=>"Sean"}, {"d"=>"2011"}, {"t"=>"work"}, {"n"=>"53"}, {"p"=>"Allegro"}]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [t700, no_title_700, no_author_710, t710] })
+    end
+
+    it '$t required, includes only specified subfields' do
+      name_titles_700 = prep_name_title(@sample_marc, '700adt')
+      expect(name_titles_700[0]).to match_array(['John 1492 TITLE'])
+    end
+
+    it '$a required, split happens after $t' do
+      name_titles_710 = prep_name_title(@sample_marc, '710')
+      expect(name_titles_710[0]).to match_array(['Sean 2011 work', '53', 'Allegro'])
+    end
+
+    it '#join_hierarchy combines hierarchical component with parent components' do
+      name_titles = join_hierarchy(prep_name_title(@sample_marc, '700adt:710'))
+      expect(name_titles).to match_array([['John 1492 TITLE'], ['Sean 2011 work', 'Sean 2011 work 53', 'Sean 2011 work 53 Allegro']])
+    end
+  end
+
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = {"600"=>{"ind1"=>"", "ind2"=>"0", "subfields"=>[{"a"=>"Exclude"}, {"v"=>"John"}, {"x"=>"Join"}]}}

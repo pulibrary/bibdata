@@ -444,6 +444,42 @@ def everything_through_t record, fields
   values
 end
 
+##
+# @param record [MARC::Record]
+# @param fields [String] MARC fields of interest
+# @return [Array] of name-titles each in an [Array], each element [String] split by hierarchy,
+# both name ($a) and title ($t) are required
+def prep_name_title record, fields
+  values = []
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+    name_title = []
+    through_t = []
+    non_a = true
+    non_t = true
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      if non_t
+        through_t << s_field.value
+      else
+        name_title << s_field.value
+      end
+      non_a = false if s_field.code == 'a'
+      non_t = false if s_field.code == 't'
+    end
+    unless (non_a || non_t)
+      name_title.unshift(through_t.join(' '))
+      values << name_title unless name_title.empty?
+    end
+  end
+  values
+end
+
+# @param fields [Array] with portions of hierarchy from name-titles
+# @return [Array] name-title portions of hierarchy including previous elements
+def join_hierarchy fields
+  fields.collect { |h| h.collect.with_index { |v, i| h[0..i].join(' ') } }
+end
+
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868

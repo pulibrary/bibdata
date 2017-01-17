@@ -40,7 +40,7 @@ to_field 'cjk_all', extract_all_marc_values
 # previously set to not include alternate script and to have only first value
 # to put back in add: alternate_script: false, first: true
 to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
-to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
+to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true)
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
 to_field 'author_roles_1display' do |record, accumulator|
@@ -714,35 +714,16 @@ to_field 'related_name_json_1display' do |record, accumulator|
   end
 end
 
-ZERO_WIDTH = "\u{200B}".freeze
-to_field 'related_works_display' do |record, accumulator|
-  MarcExtractor.cached('700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
-      end
-      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
-    end
-    accumulator << rel_work unless non_t
-  end
+to_field 'related_works_1display' do |record, accumulator|
+  fields = '700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt'
+  related_works = prep_name_title(record, fields)
+  accumulator[0] = related_works.to_json.to_s unless related_works.empty?
 end
 
-to_field 'contains_display' do |record, accumulator|
-  MarcExtractor.cached('700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
-      end
-      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
-    end
-    accumulator << rel_work unless non_t
-  end
+to_field 'contains_1display' do |record, accumulator|
+  fields = '700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt'
+  analytical_entries = prep_name_title(record, fields)
+  accumulator[0] = analytical_entries.to_json.to_s unless analytical_entries.empty?
 end
 
 to_field 'instrumentation_facet', marc_instrumentation_humanized
@@ -952,23 +933,17 @@ each_record do |record, context|
 end
 
 # For name-title browse - fields get deleted at end
-to_field 'uniform_240_s', extract_marc('240apldfhkmnors', :trim_punctuation => true)
+to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true)
+to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: :only, first: true)
+to_field 'name_title_245a', extract_marc('245a', alternate_script: false, first: true, trim_punctuation: true)
+to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, first: true, trim_punctuation: true)
+to_field 'uniform_240', extract_marc('240apldfhkmnors', trim_punctuation: true, alternate_script: false, first: true)
+to_field 'uniform_240_vern', extract_marc('240apldfhkmnors', trim_punctuation: true, alternate_script: :only, first: true)
 
 to_field 'name_title_ae_s' do |record, accumulator|
-  MarcExtractor.cached(%w(700aqbcdfghklmnoprstx:710abcdfghklnoprstx:
-                          711abcdefgklnpqt:800aqbcdfghklmnoprstx:
-                          810abcdfghklnoprstx:811abcdefgklnpqt
-                      )).collect_matching_lines(record) do |field, spec, extractor|
-    ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        break
-      end
-    end
-    accumulator << ae unless non_t
-  end
+  fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
+  ae = prep_name_title(record, fields)
+  accumulator.replace(join_hierarchy(ae))
 end
 
 to_field 'linked_title_s' do |record, accumulator|
@@ -993,19 +968,43 @@ end
   ########################################################
 each_record do |record, context|
   doc = context.output_hash
-  browse_field = [doc['name_title_ae_s'], doc['linked_title_s']]
-  if doc['author_display']
-    author = doc['author_display'][0]
-    if doc['uniform_240_s']
-      browse_field << %(#{author}. #{doc['uniform_240_s'][0]})
-    elsif doc['title_a_index']
-      context.output_hash['name_title_245_s'] = [%(#{author}. #{doc['title_a_index'][0]})]
-      browse_field << %(#{author}. #{doc['title_a_index'][0]})
+  related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
+  contains = join_hierarchy(JSON.parse(doc['contains_1display'][0])) if doc['contains_1display']
+  browse_field = [doc['name_title_ae_s'], doc['linked_title_s'], related_works, contains]
+  if doc['name_title_100']
+    author = doc['name_title_100'][0]
+    if doc['uniform_240']
+      name_title_100_240 = %(#{author} #{doc['uniform_240'][0]})
+      context.output_hash['name_uniform_title_display'] ||= []
+      context.output_hash['name_uniform_title_display'] << name_title_100_240
+      browse_field << name_title_100_240
+    elsif doc['name_title_245a']
+      browse_field << %(#{author} #{doc['name_title_245a'][0]})
     end
   end
+  if doc['name_title_100_vern']
+    author = doc['name_title_100_vern'][0]
+    if doc['uniform_240_vern']
+      name_title_100_240 = %(#{author} #{doc['uniform_240_vern'][0]})
+      context.output_hash['name_uniform_title_display'] ||= []
+      context.output_hash['name_uniform_title_display'] << name_title_100_240
+      browse_field << name_title_100_240
+    elsif doc['name_title_245a_vern']
+      browse_field << %(#{author} #{doc['name_title_245a_vern'][0]})
+    end
+  end
+
+  # combine name-title browse values into a single array
   browse_field = browse_field.compact.flatten.uniq
   context.output_hash['name_title_browse_s'] = browse_field unless browse_field.empty?
-  context.output_hash.delete('uniform_240_s')
+
+  # these fields are no longer necessary
+  context.output_hash.delete('name_title_100')
+  context.output_hash.delete('name_title_100_vern')
+  context.output_hash.delete('uniform_240')
+  context.output_hash.delete('uniform_240_vern')
+  context.output_hash.delete('name_title_245a')
+  context.output_hash.delete('name_title_245a_vern')
   context.output_hash.delete('name_title_ae_s')
 end
 
