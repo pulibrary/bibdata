@@ -151,18 +151,22 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'other_title_display array 246s included' do
-    it 'when 2nd indicator is 3' do
+    it 'regardless of 2nd indicator value' do
       expect(@added_title_246['other_title_display']).to include 'Bi ni itaru yamai'
+      expect(@added_title_246['other_title_display']).to include 'Morimura Yasumasa, the sickness unto beauty'
+      expect(@added_title_246['other_title_display']).to include 'Sickness unto beauty'
     end
-    it 'when no indicator or $i' do
+    it 'when no 2nd indicator' do
       expect(@other_title_246['other_title_display']).to include 'Episcopus, civitas, territorium'
     end
+    it 'excludes other title when subfield $i is present' do
+      expect(@label_i_246['other_title_display']).to be_nil
+    end
+
   end
   describe 'other_title_1display 246s hash' do
-    it 'supports multiple titles per label' do
-      other_title_hash = JSON.parse(@added_title_246['other_title_1display'].first)
-      expect(other_title_hash['Added title page title']).to include 'Morimura Yasumasa, the sickness unto beauty'
-      expect(other_title_hash['Added title page title']).to include 'Sickness unto beauty'
+    it 'excludes titles with 2nd indicator labels' do
+      expect(@added_title_246['other_title_1display']).to be_nil
     end
     it 'uses label from $i when available' do
       other_title_hash = JSON.parse(@label_i_246['other_title_1display'].first)

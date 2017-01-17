@@ -766,7 +766,7 @@ to_field 'other_title_index', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:
 
 # only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
 to_field 'other_title_display' do |record, accumulator|
-  MarcExtractor.cached(%w(246|*\ |abfnp:246|*3|abfnp:210ab:211a:212a:214a:222ab:
+  MarcExtractor.cached(%w(246abfnp:210ab:211a:212a:214a:222ab:
                           242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp
                       )).collect_matching_lines(record) do |field, spec, extractor|
     if field.tag == '246'
@@ -784,15 +784,12 @@ to_field 'other_title_1display' do |record, accumulator|
   other_title_hash = {}
   MarcExtractor.cached('246abfnp').collect_matching_lines(record) do |field, spec, extractor|
     label = field.subfields.select{|s_field| s_field.code == 'i'}.first
-    if label.nil?
-      next if field.indicator2 == ' ' || field.indicator2 == '3'
-      label = indicator_label_246(field.indicator2)
-    else
+    unless label.nil?
       label = label.value
+      label = Traject::Macros::Marc21.trim_punctuation(label)
+      title = extractor.collect_subfields(field, spec).first
+      other_title_hash[label] ? other_title_hash[label] << title : other_title_hash[label] = [title] unless title.nil?
     end
-    label = Traject::Macros::Marc21.trim_punctuation(label)
-    title = extractor.collect_subfields(field, spec).first
-    other_title_hash[label] ? other_title_hash[label] << title : other_title_hash[label] = [title] unless title.nil?
   end
   unless other_title_hash == {}
     accumulator[0] = other_title_hash.to_json.to_s
