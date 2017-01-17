@@ -8,6 +8,11 @@ $LOAD_PATH.unshift('.') # include current directory so local translation_maps ca
 
 
 describe 'From princeton_marc.rb' do
+  before(:all) do
+    c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
+    @indexer = Traject::Indexer.new
+    @indexer.load_config_file(c)
+  end
 
   describe 'electronic_access_links' do
     before(:all) do
@@ -22,7 +27,7 @@ describe 'From princeton_marc.rb' do
       @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
       @l856_4 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@invalid_url}]}}
       @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4] })
-      @links = electronic_access_links(@sample_marc)
+      @links = @indexer.send(:electronic_access_links, @sample_marc)
     end
 
     it 'returns a hash with the url as the key and its anchor text/label as value' do

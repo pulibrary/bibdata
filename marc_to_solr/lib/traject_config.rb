@@ -416,7 +416,7 @@ to_field 'biographical_historical_note_display', extract_marc('545ab')
 
 # Summary note:
 #    520 XX 3ab
-to_field 'summary_note_display', extract_marc('5203ab')
+to_field 'summary_note_display', extract_marc('5203abc')
 
 # Notes:
 #    500 XX 3a
