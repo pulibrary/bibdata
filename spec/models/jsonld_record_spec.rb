@@ -40,6 +40,24 @@ RSpec.describe JSONLDRecord, :type => :model do
     end
   end
 
+  context 'with a human readable date and date ranges' do
+    let(:solr_doc) {{
+      'pub_date_display'           => ['1970'],
+      'pub_date_start_sort'        => ['1970'],
+      'pub_date_end_sort'          => ['1972'],
+      'compiled_created_display'   => ['[between 1970 and 1972]']
+    }}
+    subject { described_class.new solr_doc }
+
+    it 'produces json+ld' do
+      json_ld = {
+        date: '[between 1970 and 1972]',
+        created: '1970-01-01T00:00:00Z/1972-12-31T23:59:59Z',
+      }
+      expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+  end
+
   context 'with multiple roles' do
     let(:solr_doc) {{
       'title_citation_display'     => ['This is the Title'],
