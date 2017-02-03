@@ -82,7 +82,10 @@ class JSONLDRecord
 
   def roman_title
     lang = vernacular_title.nil? ? title_language : title_language + "-Latn"
-    { "@value": roman_display_title, "@language": lang } if roman_display_title
+    if roman_display_title
+      return roman_display_title unless lang
+      return { "@value": roman_display_title, "@language": lang }
+    end
   end
 
   def roman_display_title
