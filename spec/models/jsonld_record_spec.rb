@@ -106,7 +106,7 @@ RSpec.describe JSONLDRecord, :type => :model do
   context 'without any data' do
     subject { described_class.new }
 
-    it 'maps the creator to dc:creator and the more specific role' do
+    it 'produces an empty document without errors' do
       expect { described_class.new }.to_not raise_error
       expect(described_class.new.to_h).to eq({})
     end
@@ -131,6 +131,18 @@ RSpec.describe JSONLDRecord, :type => :model do
         creator: ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626', 'ظفيري، لطف الله بن محمد'],
         author: 'Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626'
       }
+      expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+  end
+
+  context 'when the title language is missing' do
+    let(:solr_doc) {{
+      'title_citation_display'     => ['This is a test title']
+    }}
+    subject { described_class.new solr_doc }
+
+    it 'produces a title statement without language tag' do
+      json_ld = {title: 'This is a test title'}
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
   end
