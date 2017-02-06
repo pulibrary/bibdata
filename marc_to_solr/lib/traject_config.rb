@@ -22,7 +22,8 @@ settings do
   provide "log.error_file", "/tmp/error.log"
 end
 
-update_locations
+update_locations unless ENV['RAILS_ENV']
+
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 
