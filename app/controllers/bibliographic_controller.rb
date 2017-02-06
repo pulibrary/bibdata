@@ -85,14 +85,7 @@ class BibliographicController < ApplicationController
   end
 
   def indexer
-    @indexer ||= setup_indexer
-  end
-
-  def setup_indexer
-    c = File.join(Rails.root, 'marc_to_solr', 'lib', 'traject_config.rb')
-    indexer = Traject::Indexer.new
-    indexer.load_config_file(c)
-    indexer
+    TRAJECT_INDEXER
   end
 
   def bib_holdings
