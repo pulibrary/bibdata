@@ -26,7 +26,7 @@ RSpec.describe PatronController, :type => :controller do
   end
 
   it "404 when patron info is not found" do
-    stub_patron('123456789')
+    #stub_patron('123456789')
     user = double('user')
     allow(request.env['warden']).to receive(:authenticate!) { user }
     allow(controller).to receive(:current_user) { user }

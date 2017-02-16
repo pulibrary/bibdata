@@ -574,5 +574,62 @@ def process_holdings record
       all_holdings[holding_id]['indexes'] << value.join(' ')
     end
   end
+  ### Added for ReCAP records
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+    item = {}
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        item[:holding_id] = s_field.value
+      elsif s_field.code == '3'
+        item[:enumeration] = s_field.value
+      elsif s_field.code == 'a'
+        item[:id] = s_field.value
+      elsif s_field.code == 'h'
+        item[:use_statement] = s_field.value
+      elsif s_field.code == 'j'
+        item[:status_at_load] = s_field.value
+      elsif s_field.code == 'p'
+        item[:barcode] = s_field.value
+      elsif s_field.code == 't'
+        item[:copy_number] = s_field.value
+      elsif s_field.code == 'x'
+        item[:collection_group] = s_field.value
+      elsif s_field.code == 'z'
+        item[:designation] = s_field.value
+      end
+    end
+    if all_holdings[item[:holding_id]]["items"].nil?
+      all_holdings[item[:holding_id]]["items"] = [ item ]
+    else
+      all_holdings[item[:holding_id]]["items"] << item
+    end
+  end
   all_holdings
+end
+
+def process_recap_notes record
+  item_notes = []
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+    col_group = ''
+    partner_lib = ''
+    field.subfields.each do |s_field|
+      if s_field.code == 'z'
+        if s_field.value == 'Shared'
+          col_group = 'S'
+        elsif s_field.value == 'Private'
+          col_group = 'P'
+        else
+          col_group = '0'
+        end
+      elsif s_field.code == 'x'
+        if s_field.value == 'CU'
+          partner_lib = 'C'
+        else
+          partner_lib = 'N'
+        end
+      end
+    end
+    item_notes << "#{partner_lib} - #{col_group}"
+  end
+  item_notes
 end
