@@ -21,10 +21,10 @@ def update_locations
     end
 
     ## Test collections from ReCAP
-    libdisplay['htccul'] = 'ReCAP'
-    libdisplay['htcnypl'] = 'ReCAP'
-    longerdisplay['htccul'] = 'ReCAP'
-    longerdisplay['htcnypl'] = 'ReCAP'
+    libdisplay['scsbcul'] = 'ReCAP'
+    libdisplay['scsbnypl'] = 'ReCAP'
+    longerdisplay['scsbcul'] = 'ReCAP'
+    longerdisplay['scsbnypl'] = 'ReCAP'
 
     File.open(File.expand_path('../../translation_maps/location_display.rb', __FILE__), 'w') { |file| PP.pp(libdisplay, file) }
     File.open(File.expand_path('../../translation_maps/locations.rb', __FILE__), 'w') { |file| PP.pp(longerdisplay, file) }
