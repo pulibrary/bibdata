@@ -453,21 +453,21 @@ def prep_name_title record, fields
   values = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     name_title = []
-    through_t = []
+    author = []
     non_a = true
     non_t = true
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      non_a = false if s_field.code == 'a'
+      non_t = false if s_field.code == 't'
       if non_t
-        through_t << s_field.value
+        author << s_field.value
       else
         name_title << s_field.value
       end
-      non_a = false if s_field.code == 'a'
-      non_t = false if s_field.code == 't'
     end
     unless (non_a || non_t)
-      name_title.unshift(through_t.join(' '))
+      name_title.unshift(author.join(' '))
       values << name_title unless name_title.empty?
     end
   end
@@ -475,9 +475,15 @@ def prep_name_title record, fields
 end
 
 # @param fields [Array] with portions of hierarchy from name-titles
+# @return [Array] name-title portions of hierarchy including previous elements, author
+def join_hierarchy_without_author fields
+  fields.collect { |h| h.collect.with_index { |v, i| Traject::Macros::Marc21.trim_punctuation(h[0..i].join(' ')) } }
+end
+
+# @param fields [Array] with portions of hierarchy from name-titles
 # @return [Array] name-title portions of hierarchy including previous elements
 def join_hierarchy fields
-  fields.collect { |h| h.collect.with_index { |v, i| h[0..i].join(' ') } }
+  join_hierarchy_without_author(fields).map { |a| a[1..-1] }
 end
 
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,

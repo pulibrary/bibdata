@@ -232,25 +232,25 @@ describe 'From traject_config.rb' do
 
   describe 'name_uniform_title_display field' do
     let(:leader) { '1234567890' }
-    let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name"}]}}}
-    let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName"}]}}}
-    let(:t240) {{"240"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-02"}, {"a"=>"Uniform Title"}, {"p"=>"5"}]}}}
-    let(:t240_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"240-02"}, {"a"=>"AltUniform Title"}, {"p"=>"5"}]}}}
+    let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name,"}]}}}
+    let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName ;"}]}}}
+    let(:t240) {{"240"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-02"}, {"a"=>"Uniform Title,"}, {"p"=>"5"}]}}}
+    let(:t240_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"240-02"}, {"a"=>"AltUniform Title,"}, {"p"=>"5"}]}}}
     let(:t245) {{"245"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-03"}, {"a"=>"Title 245a"}]}}}
     let(:t245_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"245-03"}, {"a"=>"VernTitle 245a"}]}}}
     let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader })) }
     let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader })) }
 
     it 'name title browse field includes both scripts, excludes 245 with uniform title present' do
-      expect(uniform_title['name_uniform_title_display']).to match_array(["Name Uniform Title 5",
-                                                                          "AltName AltUniform Title 5"])
-      expect(uniform_title['name_title_browse_s']).to match_array(["Name Uniform Title 5",
-                                                                   "AltName AltUniform Title 5"])
+      expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to match_array([['Name.', 'Uniform Title,', '5'],
+                                                                                      ['AltName.', 'AltUniform Title,', '5']])
+      expect(uniform_title['name_title_browse_s']).to match_array(['Name. Uniform Title', 'Name. Uniform Title, 5',
+                                                                   'AltName. AltUniform Title', 'AltName. AltUniform Title, 5'])
     end
 
     it 'name title browse field includes both scripts, includes 245 when no uniform title present' do
-      expect(no_uniform_title['name_title_browse_s']).to match_array(["Name Title 245a",
-                                                                      "AltName VernTitle 245a"])
+      expect(no_uniform_title['name_title_browse_s']).to match_array(["Name. Title 245a",
+                                                                      "AltName. VernTitle 245a"])
     end
   end
 

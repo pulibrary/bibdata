@@ -933,17 +933,33 @@ each_record do |record, context|
 end
 
 # For name-title browse - fields get deleted at end
-to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true)
-to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: :only, first: true)
+to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true, trim_punctuation: true)
+to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: :only, first: true, trim_punctuation: true)
 to_field 'name_title_245a', extract_marc('245a', alternate_script: false, first: true, trim_punctuation: true)
 to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, first: true, trim_punctuation: true)
-to_field 'uniform_240', extract_marc('240apldfhkmnors', trim_punctuation: true, alternate_script: false, first: true)
-to_field 'uniform_240_vern', extract_marc('240apldfhkmnors', trim_punctuation: true, alternate_script: :only, first: true)
+to_field 'uniform_240' do |record, accumulator|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
+to_field 'uniform_240_vern' do |record, accumulator|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
 
 to_field 'name_title_ae_s' do |record, accumulator|
   fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
   ae = prep_name_title(record, fields)
-  accumulator.replace(join_hierarchy(ae))
+  accumulator.replace(join_hierarchy_without_author(ae))
 end
 
 to_field 'linked_title_s' do |record, accumulator|
@@ -971,28 +987,28 @@ each_record do |record, context|
   related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
   contains = join_hierarchy(JSON.parse(doc['contains_1display'][0])) if doc['contains_1display']
   browse_field = [doc['name_title_ae_s'], doc['linked_title_s'], related_works, contains]
+  name_uniform_t = []
   if doc['name_title_100']
-    author = doc['name_title_100'][0]
+    author = doc['name_title_100'][0] + '.'
     if doc['uniform_240']
-      name_title_100_240 = %(#{author} #{doc['uniform_240'][0]})
-      context.output_hash['name_uniform_title_display'] ||= []
-      context.output_hash['name_uniform_title_display'] << name_title_100_240
-      browse_field << name_title_100_240
+      name_title_100_240 = doc['uniform_240'].unshift(author)
+      name_uniform_t << name_title_100_240
+      browse_field << join_hierarchy([name_title_100_240])
     elsif doc['name_title_245a']
       browse_field << %(#{author} #{doc['name_title_245a'][0]})
     end
   end
   if doc['name_title_100_vern']
-    author = doc['name_title_100_vern'][0]
+    author = doc['name_title_100_vern'][0] + '.'
     if doc['uniform_240_vern']
-      name_title_100_240 = %(#{author} #{doc['uniform_240_vern'][0]})
-      context.output_hash['name_uniform_title_display'] ||= []
-      context.output_hash['name_uniform_title_display'] << name_title_100_240
-      browse_field << name_title_100_240
+      name_title_100_240 = doc['uniform_240_vern'].unshift(author)
+      name_uniform_t << name_title_100_240
+      browse_field << join_hierarchy([name_title_100_240])
     elsif doc['name_title_245a_vern']
       browse_field << %(#{author} #{doc['name_title_245a_vern'][0]})
     end
   end
+  context.output_hash['name_uniform_title_1display'] = [name_uniform_t.to_json.to_s] unless name_uniform_t.empty?
 
   # combine name-title browse values into a single array
   browse_field = browse_field.compact.flatten.uniq

@@ -231,12 +231,12 @@ describe 'From princeton_marc.rb' do
 
     it '$t required, includes only specified subfields' do
       name_titles_700 = prep_name_title(@sample_marc, '700adt')
-      expect(name_titles_700[0]).to match_array(['John 1492 TITLE'])
+      expect(name_titles_700[0]).to match_array(['John 1492', 'TITLE'])
     end
 
-    it '$a required, split happens after $t' do
+    it '$a required, split happens before $t' do
       name_titles_710 = prep_name_title(@sample_marc, '710')
-      expect(name_titles_710[0]).to match_array(['Sean 2011 work', '53', 'Allegro'])
+      expect(name_titles_710[0]).to match_array(['Sean 2011', 'work', '53', 'Allegro'])
     end
 
     it '#join_hierarchy combines hierarchical component with parent components' do
