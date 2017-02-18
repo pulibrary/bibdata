@@ -241,72 +241,72 @@ to_field 'arrangement_display', extract_marc('351abc')
 
 # Translation of:
 #    765 XX at
-to_field 'translation_of_display', extract_marc('765at')
+to_field 'translation_of_display', extract_marc('765at', trim_punctuation: true)
 
 
 # Translated as:
 #    767 XX at
-to_field 'translated_as_display', extract_marc('767at')
+to_field 'translated_as_display', extract_marc('767at', trim_punctuation: true)
 
 # Issued with:
 #    777 XX at
-to_field 'issued_with_display', extract_marc('777at')
+to_field 'issued_with_display', extract_marc('777at', trim_punctuation: true)
 
 # Continues:
 #    780 00 at
 #    780 02 at
-to_field 'continues_display', extract_marc('780|00|at:780|02|at')
+to_field 'continues_display', extract_marc('780|00|at:780|02|at', trim_punctuation: true)
 
 # Continues in part:
 #    780 01 at
 #    780 03 at
-to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at')
+to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at', trim_punctuation: true)
 
 # Formed from:
 #    780 04 at
-to_field 'formed_from_display', extract_marc('780|04|at')
+to_field 'formed_from_display', extract_marc('780|04|at', trim_punctuation: true)
 
 # Absorbed:
 #    780 05 at
-to_field 'absorbed_display', extract_marc('780|05|at')
+to_field 'absorbed_display', extract_marc('780|05|at', trim_punctuation: true)
 
 # Absorbed in part:
 #    780 06 at
-to_field 'absorbed_in_part_display', extract_marc('780|06|at')
+to_field 'absorbed_in_part_display', extract_marc('780|06|at', trim_punctuation: true)
 
 # Separated from:
 #    780 07 at
-to_field 'separated_from_display', extract_marc('780|07|at')
+to_field 'separated_from_display', extract_marc('780|07|at', trim_punctuation: true)
 
 # Continued by:
 #    785 00 at
 #    785 02 at
-to_field 'continued_by_display', extract_marc('785|00|at:785|02|at')
+to_field 'continued_by_display', extract_marc('785|00|at:785|02|at', trim_punctuation: true)
 
 # Continued in part by:
 #    785 01 at
 #    785 03 at
-to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at')
+to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at', trim_punctuation: true)
 
 # Absorbed by:
 #    785 04 at
-to_field 'absorbed_by_display', extract_marc('785|04|at')
+to_field 'absorbed_by_display', extract_marc('785|04|at', trim_punctuation: true)
 
 # Absorbed in part by:
 #    785 05 at
-to_field 'absorbed_in_part_by_display', extract_marc('785|05|at')
+to_field 'absorbed_in_part_by_display', extract_marc('785|05|at', trim_punctuation: true)
 
 # Split into:
 #    785 06 at
-to_field 'split_into_display', extract_marc('785|06|at')
+to_field 'split_into_display', extract_marc('785|06|at', trim_punctuation: true)
 
 # Merged to form:
 #    785 07 at
-to_field 'merged_to_form_display', extract_marc('785|07|at')
+to_field 'merged_to_form_display', extract_marc('785|07|at', trim_punctuation: true)
 
 # Changed back to:
 #    785 08 at
-to_field 'changed_back_to_display', extract_marc('785|08|at')
+to_field 'changed_back_to_display', extract_marc('785|08|at', trim_punctuation: true)
 
 # Frequency:
 #    310 XX ab
@@ -318,11 +318,11 @@ to_field 'former_frequency_display', extract_marc('321ab')
 
 # Has supplement:
 #    770 XX at
-to_field 'has_supplement_display', extract_marc('770at')
+to_field 'has_supplement_display', extract_marc('770at', trim_punctuation: true)
 
 # Supplement to:
 #    772 XX at
-to_field 'supplement_to_display', extract_marc('772at')
+to_field 'supplement_to_display', extract_marc('772at', trim_punctuation: true)
 
 # Linking notes:
 #    580 XX a
@@ -330,11 +330,11 @@ to_field 'linking_notes_display', extract_marc('580a')
 
 # Subseries of:
 #    760 XX at
-to_field 'subseries_of_display', extract_marc('760at')
+to_field 'subseries_of_display', extract_marc('760at', trim_punctuation: true)
 
 # Has subseries:
 #    762 XX at
-to_field 'has_subseries_display', extract_marc('762at')
+to_field 'has_subseries_display', extract_marc('762at', trim_punctuation: true)
 
 # Series:
 #    400 XX abcdefgklnpqtuvx
@@ -781,15 +781,15 @@ end
 
 # In:
 #    773 XX 3abdghikmnoprst
-to_field 'in_display', extract_marc('7733abdghikmnoprst')
+to_field 'in_display', extract_marc('7733abdghikmnoprst', trim_punctuation: true)
 
 # Constituent part(s):
 #    774 XX abcdghikmnrstu
-to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
+to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu', trim_punctuation: true)
 
-to_field 'other_editions_display', extract_marc('775adhit')
+to_field 'other_editions_display', extract_marc('775adhit', trim_punctuation: true)
 
-to_field 'data_source_display', extract_marc('786at')
+to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
 
 # ISBN:
 #    020 XX a
