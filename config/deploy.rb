@@ -1,3 +1,6 @@
+# config valid only for current version of Capistrano
+lock '3.7.2'
+
 set :application, 'marc_liberation'
 set :repo_url, "https://github.com/pulibrary/marc_liberation.git"
 
