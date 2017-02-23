@@ -40,7 +40,7 @@ to_field 'cjk_all', extract_all_marc_values
 # previously set to not include alternate script and to have only first value
 # to put back in add: alternate_script: false, first: true
 to_field 'author_display', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true)
-to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true) # do |record, accumulator|
+to_field 'author_sort', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', trim_punctuation: true, first: true)
 to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a', trim_punctuation: true, alternate_script: false)
 
 to_field 'author_roles_1display' do |record, accumulator|
@@ -241,72 +241,72 @@ to_field 'arrangement_display', extract_marc('351abc')
 
 # Translation of:
 #    765 XX at
-to_field 'translation_of_display', extract_marc('765at')
+to_field 'translation_of_display', extract_marc('765at', trim_punctuation: true)
 
 
 # Translated as:
 #    767 XX at
-to_field 'translated_as_display', extract_marc('767at')
+to_field 'translated_as_display', extract_marc('767at', trim_punctuation: true)
 
 # Issued with:
 #    777 XX at
-to_field 'issued_with_display', extract_marc('777at')
+to_field 'issued_with_display', extract_marc('777at', trim_punctuation: true)
 
 # Continues:
 #    780 00 at
 #    780 02 at
-to_field 'continues_display', extract_marc('780|00|at:780|02|at')
+to_field 'continues_display', extract_marc('780|00|at:780|02|at', trim_punctuation: true)
 
 # Continues in part:
 #    780 01 at
 #    780 03 at
-to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at')
+to_field 'continues_in_part_display', extract_marc('780|01|at:780|03|at', trim_punctuation: true)
 
 # Formed from:
 #    780 04 at
-to_field 'formed_from_display', extract_marc('780|04|at')
+to_field 'formed_from_display', extract_marc('780|04|at', trim_punctuation: true)
 
 # Absorbed:
 #    780 05 at
-to_field 'absorbed_display', extract_marc('780|05|at')
+to_field 'absorbed_display', extract_marc('780|05|at', trim_punctuation: true)
 
 # Absorbed in part:
 #    780 06 at
-to_field 'absorbed_in_part_display', extract_marc('780|06|at')
+to_field 'absorbed_in_part_display', extract_marc('780|06|at', trim_punctuation: true)
 
 # Separated from:
 #    780 07 at
-to_field 'separated_from_display', extract_marc('780|07|at')
+to_field 'separated_from_display', extract_marc('780|07|at', trim_punctuation: true)
 
 # Continued by:
 #    785 00 at
 #    785 02 at
-to_field 'continued_by_display', extract_marc('785|00|at:785|02|at')
+to_field 'continued_by_display', extract_marc('785|00|at:785|02|at', trim_punctuation: true)
 
 # Continued in part by:
 #    785 01 at
 #    785 03 at
-to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at')
+to_field 'continued_in_part_by_display', extract_marc('785|01|at:785|03|at', trim_punctuation: true)
 
 # Absorbed by:
 #    785 04 at
-to_field 'absorbed_by_display', extract_marc('785|04|at')
+to_field 'absorbed_by_display', extract_marc('785|04|at', trim_punctuation: true)
 
 # Absorbed in part by:
 #    785 05 at
-to_field 'absorbed_in_part_by_display', extract_marc('785|05|at')
+to_field 'absorbed_in_part_by_display', extract_marc('785|05|at', trim_punctuation: true)
 
 # Split into:
 #    785 06 at
-to_field 'split_into_display', extract_marc('785|06|at')
+to_field 'split_into_display', extract_marc('785|06|at', trim_punctuation: true)
 
 # Merged to form:
 #    785 07 at
-to_field 'merged_to_form_display', extract_marc('785|07|at')
+to_field 'merged_to_form_display', extract_marc('785|07|at', trim_punctuation: true)
 
 # Changed back to:
 #    785 08 at
-to_field 'changed_back_to_display', extract_marc('785|08|at')
+to_field 'changed_back_to_display', extract_marc('785|08|at', trim_punctuation: true)
 
 # Frequency:
 #    310 XX ab
@@ -318,11 +318,11 @@ to_field 'former_frequency_display', extract_marc('321ab')
 
 # Has supplement:
 #    770 XX at
-to_field 'has_supplement_display', extract_marc('770at')
+to_field 'has_supplement_display', extract_marc('770at', trim_punctuation: true)
 
 # Supplement to:
 #    772 XX at
-to_field 'supplement_to_display', extract_marc('772at')
+to_field 'supplement_to_display', extract_marc('772at', trim_punctuation: true)
 
 # Linking notes:
 #    580 XX a
@@ -330,11 +330,11 @@ to_field 'linking_notes_display', extract_marc('580a')
 
 # Subseries of:
 #    760 XX at
-to_field 'subseries_of_display', extract_marc('760at')
+to_field 'subseries_of_display', extract_marc('760at', trim_punctuation: true)
 
 # Has subseries:
 #    762 XX at
-to_field 'has_subseries_display', extract_marc('762at')
+to_field 'has_subseries_display', extract_marc('762at', trim_punctuation: true)
 
 # Series:
 #    400 XX abcdefgklnpqtuvx
@@ -714,35 +714,16 @@ to_field 'related_name_json_1display' do |record, accumulator|
   end
 end
 
-ZERO_WIDTH = "\u{200B}".freeze
-to_field 'related_works_display' do |record, accumulator|
-  MarcExtractor.cached('700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
-      end
-      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
-    end
-    accumulator << rel_work unless non_t
-  end
+to_field 'related_works_1display' do |record, accumulator|
+  fields = '700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt'
+  related_works = prep_name_title(record, fields)
+  accumulator[0] = related_works.to_json.to_s unless related_works.empty?
 end
 
-to_field 'contains_display' do |record, accumulator|
-  MarcExtractor.cached('700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt').collect_matching_lines(record) do |field, spec, extractor|
-    rel_work = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}")
-      end
-      rel_work = rel_work.gsub(" #{s_field.value}", " #{ZERO_WIDTH}#{s_field.value}") if s_field.code == 'p'
-    end
-    accumulator << rel_work unless non_t
-  end
+to_field 'contains_1display' do |record, accumulator|
+  fields = '700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt'
+  analytical_entries = prep_name_title(record, fields)
+  accumulator[0] = analytical_entries.to_json.to_s unless analytical_entries.empty?
 end
 
 to_field 'instrumentation_facet', marc_instrumentation_humanized
@@ -800,15 +781,15 @@ end
 
 # In:
 #    773 XX 3abdghikmnoprst
-to_field 'in_display', extract_marc('7733abdghikmnoprst')
+to_field 'in_display', extract_marc('7733abdghikmnoprst', trim_punctuation: true)
 
 # Constituent part(s):
 #    774 XX abcdghikmnrstu
-to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu')
+to_field 'constituent_part_display', extract_marc('774abcdghikmnrstu', trim_punctuation: true)
 
-to_field 'other_editions_display', extract_marc('775adhit')
+to_field 'other_editions_display', extract_marc('775adhit', trim_punctuation: true)
 
-to_field 'data_source_display', extract_marc('786at')
+to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
 
 # ISBN:
 #    020 XX a
@@ -952,23 +933,33 @@ each_record do |record, context|
 end
 
 # For name-title browse - fields get deleted at end
-to_field 'uniform_240_s', extract_marc('240apldfhkmnors', :trim_punctuation => true)
+to_field 'name_title_100', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: false, first: true, trim_punctuation: true)
+to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgklnpq', alternate_script: :only, first: true, trim_punctuation: true)
+to_field 'name_title_245a', extract_marc('245a', alternate_script: false, first: true, trim_punctuation: true)
+to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, first: true, trim_punctuation: true)
+to_field 'uniform_240' do |record, accumulator|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
+to_field 'uniform_240_vern' do |record, accumulator|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
 
 to_field 'name_title_ae_s' do |record, accumulator|
-  MarcExtractor.cached(%w(700aqbcdfghklmnoprstx:710abcdfghklnoprstx:
-                          711abcdefgklnpqt:800aqbcdfghklmnoprstx:
-                          810abcdfghklnoprstx:811abcdefgklnpqt
-                      )).collect_matching_lines(record) do |field, spec, extractor|
-    ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
-    non_t = true
-    field.subfields.each do |s_field|
-      if s_field.code == 't'
-        non_t = false
-        break
-      end
-    end
-    accumulator << ae unless non_t
-  end
+  fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
+  ae = prep_name_title(record, fields)
+  accumulator.replace(join_hierarchy_without_author(ae))
 end
 
 to_field 'linked_title_s' do |record, accumulator|
@@ -993,19 +984,43 @@ end
   ########################################################
 each_record do |record, context|
   doc = context.output_hash
-  browse_field = [doc['name_title_ae_s'], doc['linked_title_s']]
-  if doc['author_display']
-    author = doc['author_display'][0]
-    if doc['uniform_240_s']
-      browse_field << %(#{author}. #{doc['uniform_240_s'][0]})
-    elsif doc['title_a_index']
-      context.output_hash['name_title_245_s'] = [%(#{author}. #{doc['title_a_index'][0]})]
-      browse_field << %(#{author}. #{doc['title_a_index'][0]})
+  related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
+  contains = join_hierarchy(JSON.parse(doc['contains_1display'][0])) if doc['contains_1display']
+  browse_field = [doc['name_title_ae_s'], doc['linked_title_s'], related_works, contains]
+  name_uniform_t = []
+  if doc['name_title_100']
+    author = doc['name_title_100'][0] + '.'
+    if doc['uniform_240']
+      name_title_100_240 = doc['uniform_240'].unshift(author)
+      name_uniform_t << name_title_100_240
+      browse_field << join_hierarchy([name_title_100_240])
+    elsif doc['name_title_245a']
+      browse_field << %(#{author} #{doc['name_title_245a'][0]})
     end
   end
+  if doc['name_title_100_vern']
+    author = doc['name_title_100_vern'][0] + '.'
+    if doc['uniform_240_vern']
+      name_title_100_240 = doc['uniform_240_vern'].unshift(author)
+      name_uniform_t << name_title_100_240
+      browse_field << join_hierarchy([name_title_100_240])
+    elsif doc['name_title_245a_vern']
+      browse_field << %(#{author} #{doc['name_title_245a_vern'][0]})
+    end
+  end
+  context.output_hash['name_uniform_title_1display'] = [name_uniform_t.to_json.to_s] unless name_uniform_t.empty?
+
+  # combine name-title browse values into a single array
   browse_field = browse_field.compact.flatten.uniq
   context.output_hash['name_title_browse_s'] = browse_field unless browse_field.empty?
-  context.output_hash.delete('uniform_240_s')
+
+  # these fields are no longer necessary
+  context.output_hash.delete('name_title_100')
+  context.output_hash.delete('name_title_100_vern')
+  context.output_hash.delete('uniform_240')
+  context.output_hash.delete('uniform_240_vern')
+  context.output_hash.delete('name_title_245a')
+  context.output_hash.delete('name_title_245a_vern')
   context.output_hash.delete('name_title_ae_s')
 end
 
