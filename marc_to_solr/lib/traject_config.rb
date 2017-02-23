@@ -5,6 +5,7 @@ require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
 require_relative './format'
 require_relative './princeton_marc'
+require_relative './geo'
 require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
@@ -234,6 +235,11 @@ end
    # 362 XX az
 to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:362az')
 to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
+
+to_field 'coverage_display' do |record, accumulator|
+  coverage = decimal_coordinate(record)
+  accumulator[0] = coverage unless coverage.nil?
+end
 
 # Arrangement:
 # #    351 XX 3abc

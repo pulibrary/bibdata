@@ -108,7 +108,8 @@ class JSONLDRecord
       genre_facet:           'type',
       notes_display:         'description',
       pub_created_display:   'publisher',
-      subject_facet:         'subject'
+      subject_facet:         'subject',
+      coverage_display:      'coverage'
     }
   end
 
