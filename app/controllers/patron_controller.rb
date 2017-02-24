@@ -3,7 +3,7 @@ class PatronController < ApplicationController
 
   def patron_info
     data = VoyagerHelpers::Liberator.get_patron_info(sanitize(params[:patron_id]))
-    if data.nil?
+    if data.blank?
       render text: {}, status: 404
     else
       respond_to do |wants|
@@ -14,7 +14,7 @@ class PatronController < ApplicationController
 
   def patron_codes
     data = VoyagerHelpers::Liberator.get_patron_stat_codes(sanitize(params[:patron_id]))
-    if data.nil?
+    if data.blank?
       render text: {}, status: 404
     else
       respond_to do |wants|

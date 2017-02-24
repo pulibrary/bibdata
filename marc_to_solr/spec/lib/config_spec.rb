@@ -230,20 +230,27 @@ describe 'From traject_config.rb' do
     end
   end
 
-  describe '7xx separated along $t and $p' do
+  describe 'name_uniform_title_display field' do
     let(:leader) { '1234567890' }
-    let(:t700) {{"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"John"}, {"d"=>"1492"}, {"t"=>"TITLE"}]}}}
-    let(:no_title) {{"700"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Mike"}, {"p"=>"part"}]}}}
-    let(:t710) {{"710"=>{"ind1"=>"", "ind2"=>"2", "subfields"=>[{"a"=>"Sean"}, {"d"=>"2011"}, {"t"=>"work"}, {"n"=>"53"}, {"p"=>"Allegro"}]}}}
-    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t700, no_title, t710], 'leader' => leader })) }
-    let(:zero_width) { "\u{200B}" }
+    let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name,"}]}}}
+    let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName ;"}]}}}
+    let(:t240) {{"240"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-02"}, {"a"=>"Uniform Title,"}, {"p"=>"5"}]}}}
+    let(:t240_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"240-02"}, {"a"=>"AltUniform Title,"}, {"p"=>"5"}]}}}
+    let(:t245) {{"245"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-03"}, {"a"=>"Title 245a"}]}}}
+    let(:t245_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"245-03"}, {"a"=>"VernTitle 245a"}]}}}
+    let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader })) }
+    let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader })) }
 
-    it 'only records with $t included' do
-      expect(linked_record['related_works_display']).to match_array(["John 1492 #{zero_width}TITLE"])
+    it 'name title browse field includes both scripts, excludes 245 with uniform title present' do
+      expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to match_array([['Name.', 'Uniform Title,', '5'],
+                                                                                      ['AltName.', 'AltUniform Title,', '5']])
+      expect(uniform_title['name_title_browse_s']).to match_array(['Name. Uniform Title', 'Name. Uniform Title, 5',
+                                                                   'AltName. AltUniform Title', 'AltName. AltUniform Title, 5'])
     end
 
-    it 'two separators when $t and $p present' do
-      expect(linked_record['contains_display']).to match_array(["Sean 2011 #{zero_width}work 53 #{zero_width}Allegro"])
+    it 'name title browse field includes both scripts, includes 245 when no uniform title present' do
+      expect(no_uniform_title['name_title_browse_s']).to match_array(["Name. Title 245a",
+                                                                      "AltName. VernTitle 245a"])
     end
   end
 
