@@ -19,6 +19,7 @@ class JSONLDRecord
     metadata['created'] = date(true) if date(true)
     metadata['date'] = date if date
     metadata['abstract'] = abstract if abstract
+    metadata['identifier'] = identifier if identifier
 
     metadata
   end
@@ -98,6 +99,12 @@ class JSONLDRecord
     LanguageService.loc_to_iso(lang)
   end
 
+  def identifier
+    return unless @solr_doc['electronic_access_1display']
+    json = JSON.parse(@solr_doc['electronic_access_1display'].first)
+    return json.index(['arks.princeton.edu'])
+  end
+
   def metadata_map
     {
       author_display:        'creator',
@@ -109,7 +116,8 @@ class JSONLDRecord
       notes_display:         'description',
       pub_created_display:   'publisher',
       subject_facet:         'subject',
-      coverage_display:      'coverage'
+      coverage_display:      'coverage',
+      title_sort:            'title_sort'
     }
   end
 
