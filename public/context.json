@@ -4,10 +4,15 @@
     "bf": "http://id.loc.gov/ontologies/bibframe/",
     "dc": "http://purl.org/dc/elements/1.1/",
     "dcterms": "http://purl.org/dc/terms/",
+    "edm": "http://www.europeana.eu/schemas/edm/",
     "mrel": "http://id.loc.gov/vocabulary/relators/",
+    "mods": "http://opaquenamespace.org/ns/mods/",
+    "pcdm": "http://pcdm.org/models#",
+    "pres": "http://iiif.io/api/presentation/2#",
     "pulterms": "http://library.princeton.edu/terms/",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
 
     "contributor": {"@id": "dc:contributor"},
     "coverage": {"@id": "dc:coverage"},
@@ -30,7 +35,12 @@
     "title": {"@id": "dcterms:title"},
 
     "edition": {"@id": "bf:editionStatement"},
+    "edm_rights": {"@id": "edm:rights"},
+    "title_sort": {"@id": "mods:titleForSort"},
+    "memberOf": {"@id": "pcdm:memberOf"},
+    "navDate": {"@id": "pres:navDate"},
     "call_number": {"@id": "pulterms:call_number"},
+    "scopeNote": {"@id": "skos:scopeNote"},
 
     "abridger": {
       "@id": "mrel:abr"
