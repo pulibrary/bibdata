@@ -612,13 +612,13 @@ def process_recap_notes record
     col_group = ''
     partner_lib = ''
     field.subfields.each do |s_field|
-      if s_field.code == 'x'
+      if s_field.code == 'z'
         if s_field.value == 'Shared'
           col_group = 'S'
         else
           col_group = '0'
         end
-      elsif s_field.code == 'b'
+      elsif s_field.code == 'x'
         if s_field.value == 'CU'
           partner_lib = 'C'
         else
