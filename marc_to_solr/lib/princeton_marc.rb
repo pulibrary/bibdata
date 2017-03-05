@@ -575,7 +575,7 @@ def process_holdings record
     end
   end
   ### Added for ReCAP records
-  Traject::MarcExtractor.cached('87603ahjptx').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
     item = {}
     field.subfields.each do |s_field|
       if s_field.code == '0'
@@ -594,8 +594,9 @@ def process_holdings record
         item[:copy_number] = s_field.value
       elsif s_field.code == 'x'
         item[:collection_group] = s_field.value
+      elsif s_field.code == 'z'
+        item[:designation] = s_field.value
       end
-      item[:partner] == 'CU'
     end
     if all_holdings[item[:holding_id]]["items"].nil?
       all_holdings[item[:holding_id]]["items"] = [ item ]
@@ -608,7 +609,7 @@ end
 
 def process_recap_notes record
   item_notes = []
-  Traject::MarcExtractor.cached('87603ahjptx').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
     col_group = ''
     partner_lib = ''
     field.subfields.each do |s_field|
