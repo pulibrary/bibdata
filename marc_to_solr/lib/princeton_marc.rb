@@ -616,6 +616,8 @@ def process_recap_notes record
       if s_field.code == 'z'
         if s_field.value == 'Shared'
           col_group = 'S'
+        elsif s_field.value == 'Private'
+          col_group = 'P'
         else
           col_group = '0'
         end
