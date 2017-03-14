@@ -897,9 +897,7 @@ end
 ## for recap notes
 to_field 'recap_notes_display' do |record, accumulator|
   recap_notes = process_recap_notes(record)
-  if recap_notes == []
-    logger.info 'No Recap Notes'
-  else
+  unless recap_notes.blank?
     recap_notes.each_with_index do |value, i|
       accumulator[i] = value
     end
