@@ -15,7 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.4.1'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.4.2'
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
