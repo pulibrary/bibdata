@@ -3,6 +3,8 @@ require 'traject'
 require 'faraday'
 
 describe 'From traject_config.rb' do
+  let(:leader) { '1234567890' }
+
   def fixture_record(fixture_name)
     f=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
     MARC::XMLReader.new(f).first
@@ -197,7 +199,6 @@ describe 'From traject_config.rb' do
   end
 
   describe 'mixing extract_marc and everything_after_t' do
-    let(:leader) { '1234567890' }
     let(:t400) {{"400"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
     let(:t440) {{"440"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"AWESOME"}, {"a"=>"John"}, {"n"=>"1492"}, {"k"=>"dont ignore"}]}}}
 
@@ -215,7 +216,6 @@ describe 'From traject_config.rb' do
   end
 
   describe 'both a and t must be present in linked title field' do
-    let(:leader) { '1234567890' }
     let(:t760) {{"760"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
     let(:a762) {{"762"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"NAME"}]}}}
     let(:at765) {{"765"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Both"}, {"t"=>"name and title"}]}}}
@@ -231,7 +231,6 @@ describe 'From traject_config.rb' do
   end
 
   describe 'name_uniform_title_display field' do
-    let(:leader) { '1234567890' }
     let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name,"}]}}}
     let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName ;"}]}}}
     let(:t240) {{"240"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-02"}, {"a"=>"Uniform Title,"}, {"p"=>"5"}]}}}
@@ -255,7 +254,6 @@ describe 'From traject_config.rb' do
   end
 
   describe 'series 490 dedup, non-filing' do
-    let(:leader) { '1234567890' }
     let(:s490) {{"490"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title"}]}}}
     let(:s830) {{"830"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title."}]}}}
     let(:s440) {{"440"=>{"ind1"=>"", "ind2"=>"4", "subfields"=>[{"a"=>"The Series"}]}}}
@@ -267,6 +265,24 @@ describe 'From traject_config.rb' do
 
     it 'matches for other works within series ignore non-filing characters' do
       expect(record['more_in_this_series_t']).to match_array(['Series title.', 'Series'])
+    end
+  end
+  describe 'senior thesis 502 note' do
+    let(:senior_thesis_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"a"=>"Thesis (Senior)-Princeton University"}]}} }
+    let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [senior_thesis_502], 'leader' => leader })) }
+    let(:whitespace_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"a"=>"Thesis (Senior)  -- Princeton University"}]}} }
+    let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [whitespace_502], 'leader' => leader })) }
+    let(:subfield_bc_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"b"=>"Senior"}, {"c"=>"Princeton University"}]}} }
+    let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [subfield_bc_502], 'leader' => leader })) }
+
+    it 'Princeton senior theses are properly classified' do
+      expect(senior_thesis_marc['format']).to include 'Senior thesis'
+    end
+    it 'whitespace is ignored in classifying senior thesis' do
+      expect(senior_thesis_whitespace['format']).to include 'Senior thesis'
+    end
+    it 'senior thesis note can be split across subfields $b and $c' do
+      expect(thesis_bc_marc['format']).to include 'Senior thesis'
     end
   end
 end
