@@ -33,6 +33,7 @@
     "extent": {"@id": "dcterms:extent"},
     "modified": {"@id": "dcterms:modified"},
     "title": {"@id": "dcterms:title"},
+    "abstract": {"@id": "dcterms:abstract"},
 
     "edition": {"@id": "bf:editionStatement"},
     "edm_rights": {"@id": "edm:rights"},
