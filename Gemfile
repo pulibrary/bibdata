@@ -15,7 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.4.4'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'recap_diff' # tag: 'v0.4.1'
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'simplecov'
   gem 'byebug', '~> 3.5.1'
+  gem 'pry'
   gem 'rerun', '~> 0.10.0'
 end
 

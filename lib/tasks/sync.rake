@@ -12,4 +12,9 @@ namespace :marc_liberation do
   	Dump.full_bib_dump
   end
 
+  desc 'Dumps changed ReCAP records by barcode'
+  task recap_dump: :environment do
+    Dump.dump_recap_barcodes
+  end
+
 end

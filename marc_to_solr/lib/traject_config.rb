@@ -914,7 +914,7 @@ end
 ## for recap notes
 to_field 'recap_notes_display' do |record, accumulator|
   recap_notes = process_recap_notes(record)
-  unless recap_notes.blank?
+  unless recap_notes.empty?
     recap_notes.each_with_index do |value, i|
       accumulator[i] = value
     end

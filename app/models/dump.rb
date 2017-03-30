@@ -10,6 +10,7 @@ class Dump < ActiveRecord::Base
   serialize :delete_ids
   serialize :create_ids
   serialize :update_ids
+  serialize :recap_barcodes
 
   before_destroy {
     self.dump_files.each do |df|
@@ -55,6 +56,9 @@ class Dump < ActiveRecord::Base
       dump_ids('HOLDING_IDS')
     end
 
+    def dump_recap_barcodes
+      dump_ids('RECAP_BARCODES')
+    end
 
     def diff_since_last
       dump = nil
@@ -110,8 +114,6 @@ class Dump < ActiveRecord::Base
 
     private
 
-
-
     def last_two_bib_id_dumps
       last_two_id_dumps('BIB_IDS')
     end
@@ -128,7 +130,12 @@ class Dump < ActiveRecord::Base
     def last_bib_id_dump
       dump_type = DumpType.where(constant: 'BIB_IDS')
       dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
-    end    
+    end
+
+    def last_recap_dump
+      dump_type = DumpType.where(constant: 'RECAP_UPDATED_IDS')
+      dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
+    end
 
     def dump_ids(type)
       dump = nil
@@ -140,6 +147,16 @@ class Dump < ActiveRecord::Base
           VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
         elsif type == 'HOLDING_IDS'
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
+        elsif type == 'RECAP_BARCODES'
+          ### create a the json record file a al sync fu
+          ### create the xml data dump in RecapDumpJob
+          ### create an additional method that posts the dump 
+          if last_recap_dump.nil?
+            last_dump_date = Time.now.utc - 1.days
+          else
+            last_dump_date = last_recap_dump
+          end
+          VoyagerHelpers::Liberator.updated_recap_barcodes(last_dump_date.strftime("%Y-%m-%d %H:%M:%S"))
         else
           raise 'Unrecognized DumpType'
         end

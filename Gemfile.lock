@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: b1bb8c277b0a5fb215a46ca81e2831747eecf353
-  tag: v0.4.4
+  revision: 8b9f17983e1f32d408e5fd81cbfbd46c21fda910
+  branch: recap_diff
   specs:
     voyager_helpers (0.4.3)
       activesupport (~> 4.1)
@@ -110,6 +110,7 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     cliver (0.3.2)
+    coderay (1.1.1)
     columnize (0.9.0)
     concurrent-ruby (1.0.4)
     debugger-linecache (1.2.0)
@@ -165,6 +166,7 @@ GEM
       unf
     marc-fastxmlwriter (1.0.0)
       marc (~> 1.0)
+    method_source (0.8.2)
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
@@ -193,6 +195,10 @@ GEM
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     public_suffix (2.0.5)
     rack (1.6.5)
     rack-conneg (0.1.6)
@@ -360,6 +366,7 @@ DEPENDENCIES
   oj
   omniauth-cas
   poltergeist
+  pry
   rack-conneg (~> 0.1.5)
   rails (~> 4.2)
   rerun (~> 0.10.0)
