@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103045037) do
+ActiveRecord::Schema.define(version: 20170330155417) do
 
   create_table "dump_file_types", force: :cascade do |t|
     t.string   "label",      limit: 255
@@ -44,13 +44,14 @@ ActiveRecord::Schema.define(version: 20170103045037) do
   add_index "dump_types", ["constant"], name: "index_dump_types_on_constant", using: :btree
 
   create_table "dumps", force: :cascade do |t|
-    t.integer  "event_id",     limit: 4
-    t.integer  "dump_type_id", limit: 4
-    t.text     "delete_ids",   limit: 4294967295
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.text     "update_ids",   limit: 4294967295
-    t.text     "create_ids",   limit: 4294967295
+    t.integer  "event_id",       limit: 4
+    t.integer  "dump_type_id",   limit: 4
+    t.text     "delete_ids",     limit: 4294967295
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "update_ids",     limit: 4294967295
+    t.text     "create_ids",     limit: 4294967295
+    t.text     "recap_barcodes", limit: 4294967295
   end
 
   add_index "dumps", ["dump_type_id"], name: "index_dumps_on_dump_type_id", using: :btree
