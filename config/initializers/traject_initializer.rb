@@ -1,7 +1,7 @@
 require 'pp'
 
 def setup_indexer
-  process_locations unless Rails.env.test?
+  process_locations unless Rails.env.test? || !ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
   c = File.join(Rails.root, 'marc_to_solr', 'lib', 'traject_config.rb')
   indexer = Traject::Indexer.new
   indexer.load_config_file(c)
