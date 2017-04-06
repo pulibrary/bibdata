@@ -31,7 +31,8 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 
 
 to_field 'id', extract_marc('001', :first => true)
-
+# for scsb local system id
+to_field 'other_id_s', extract_marc('009', :first => true)
 to_field 'cjk_all', extract_all_marc_values
 
 # Author/Artist:
