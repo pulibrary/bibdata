@@ -33,7 +33,12 @@ class Dump < ActiveRecord::Base
   def dump_bib_records(bib_ids)
     dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
     dump_records(bib_ids, dump_file_type)
-  end  
+  end
+
+  def dump_updated_recap_records(updated_barcodes)
+    dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
+    dump_records(updated_barcodes, dump_file_type)
+  end
 
   private
   def dump_records(ids, dump_file_type)
@@ -42,7 +47,11 @@ class Dump < ActiveRecord::Base
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
       self.save
-      BibDumpJob.perform_later(id_slice, df.id)
+      if dump_file_type == 'RECAP_RECORDS'
+        RecapDumpJob.perform_later(id_slice, df.id)
+      else
+        BibDumpJob.perform_later(id_slice, df.id)
+      end
       sleep 1
     end
   end
@@ -56,8 +65,8 @@ class Dump < ActiveRecord::Base
       dump_ids('HOLDING_IDS')
     end
 
-    def dump_recap_barcodes
-      dump_ids('RECAP_BARCODES')
+    def dump_recap_records
+      dump_ids('RECAP_RECORDS')
     end
 
     def diff_since_last
@@ -133,7 +142,7 @@ class Dump < ActiveRecord::Base
     end
 
     def last_recap_dump
-      dump_type = DumpType.where(constant: 'RECAP_UPDATED_IDS')
+      dump_type = DumpType.where(constant: 'RECAP_RECORDS')
       dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
     end
 
@@ -142,35 +151,34 @@ class Dump < ActiveRecord::Base
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: type))
         dump.event = event
-        dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
+        unless type == 'RECAP_RECORDS'
+          dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
+        end
         if type == 'BIB_IDS'
           VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
         elsif type == 'HOLDING_IDS'
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
-        elsif type == 'RECAP_BARCODES'
-          ### create a the json record file a al sync fu
-          ### create the xml data dump in RecapDumpJob
-          ### create an additional method that posts the dump 
+        elsif type == 'RECAP_RECORDS'
           if last_recap_dump.nil?
-            last_dump_date = Time.now.utc - 1.days
+            last_dump_date = Time.now - 1.days
           else
-            last_dump_date = last_recap_dump
+            last_dump_date = last_recap_dump.updated_at
           end
-          VoyagerHelpers::Liberator.updated_recap_barcodes(last_dump_date.strftime("%Y-%m-%d %H:%M:%S"))
+          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(last_dump_date)
+          dump.update_ids = barcodes
+          dump.save
+          dump.dump_updated_recap_records(barcodes)
         else
           raise 'Unrecognized DumpType'
         end
-        dump_file.save
-        dump_file.zip
-        dump.dump_files << dump_file
+        unless type == 'RECAP_RECORDS'
+          dump_file.save
+          dump_file.zip
+          dump.dump_files << dump_file
+        end
         dump.save
       end
       dump
     end
-
-
-
-
   end # class << self
-
 end

@@ -13,8 +13,8 @@ dump_types:
   constant: 'BIB_IDS'
 - label: 'All Records'
   constant: 'ALL_RECORDS'
-- label: 'Updated ReCAP Barcodes'
-  constant: 'RECAP_BARCODES'
+- label: 'Updated ReCAP Records'
+  constant: 'RECAP_RECORDS'
 
 dump_file_types:
 - label: 'Updated Records'
@@ -27,5 +27,5 @@ dump_file_types:
   constant: 'BIB_IDS'
 - label: 'All Bib Records'
   constant: 'BIB_RECORDS'
-- label: 'ReCAP Updated Records'
-  constant: 'RECAP_UPDATED_RECORDS'
+- label: 'Updated ReCAP Records'
+  constant: 'RECAP_RECORDS'
