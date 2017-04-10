@@ -33,7 +33,12 @@ class Dump < ActiveRecord::Base
   def dump_bib_records(bib_ids)
     dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
     dump_records(bib_ids, dump_file_type)
-  end  
+  end
+
+  def dump_recap_updated_records(barcodes)
+    dump_file_type = DumpFileType.find_by(constant: 'RECAP_UPDATED_RECORDS')
+    dump_records(barcodes, dump_file_type)
+  end
 
   private
   def dump_records(ids, dump_file_type)
@@ -42,7 +47,11 @@ class Dump < ActiveRecord::Base
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
       self.save
-      BibDumpJob.perform_later(id_slice, df.id)
+      if dump_file_type == 'RECAP_UPDATED_RECORDS' 
+        RecapDumpJob.perform_later(id_slice, df.id)
+      else
+        BibDumpJob.perform_later(id_slice, df.id)
+      end
       sleep 1
     end
   end
@@ -152,11 +161,11 @@ class Dump < ActiveRecord::Base
           ### create the xml data dump in RecapDumpJob
           ### create an additional method that posts the dump 
           if last_recap_dump.nil?
-            last_dump_date = Time.now.utc - 1.days
+            last_dump_date = Time.now - 1.days
           else
             last_dump_date = last_recap_dump
           end
-          VoyagerHelpers::Liberator.updated_recap_barcodes(last_dump_date.strftime("%Y-%m-%d %H:%M:%S"))
+          VoyagerHelpers::SyncFu.recap_barcodes_to_file(dump_file.path, last_dump_date)
         else
           raise 'Unrecognized DumpType'
         end
@@ -167,10 +176,5 @@ class Dump < ActiveRecord::Base
       end
       dump
     end
-
-
-
-
   end # class << self
-
 end
