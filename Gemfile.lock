@@ -21,10 +21,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 1ec3cfba3fe405fe341e04a6f76bbd9794a78d71
-  tag: v0.4.2
+  revision: c03fe90d93bb52a84a2f8826fb459f4b42a3f6e0
+  tag: v0.4.3
   specs:
-    voyager_helpers (0.4.2)
+    voyager_helpers (0.4.3)
       activesupport (~> 4.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
@@ -381,4 +381,4 @@ DEPENDENCIES
   yaml_db (~> 0.3.0)
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
