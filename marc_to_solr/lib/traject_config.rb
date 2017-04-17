@@ -241,6 +241,10 @@ to_field 'coverage_display' do |record, accumulator|
   accumulator[0] = coverage unless coverage.nil?
 end
 
+to_field 'scale_display', extract_marc('255a')
+
+to_field 'projection_display', extract_marc('255b:342a')
+
 # Arrangement:
 # #    351 XX 3abc
 to_field 'arrangement_display', extract_marc('351abc')
@@ -615,7 +619,7 @@ end
 
 to_field 'lc_rest_facet' do |record, accumulator|
   if record['050']
-    if record['050']['a']     
+    if record['050']['a']
       letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
       accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
     end
@@ -625,7 +629,7 @@ end
 to_field 'sudoc_facet' do |record, accumulator|
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
@@ -636,41 +640,41 @@ to_field 'call_number_scheme_facet' do |record, accumulator|
       letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
       accumulator << "Library of Congress" if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)  
+      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         first_letter = record['050']['a'].lstrip.slice(0, 1)
-        accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?  
+        accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
       end
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil? 
+    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?
   end
 end
 
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)    
-        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] 
+      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
       end
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
@@ -766,6 +770,8 @@ to_field 'other_title_display' do |record, accumulator|
   end
   accumulator.uniq!
 end
+
+to_field 'alt_title_246_display', extract_marc('246abfnp')
 
 # 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
 to_field 'other_title_1display' do |record, accumulator|

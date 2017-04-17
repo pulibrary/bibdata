@@ -2,6 +2,7 @@
   "@context": {
     "id" : "@id",
     "bf": "http://id.loc.gov/ontologies/bibframe/",
+    "bf1": "http://bibframe.org/vocab/",
     "dc": "http://purl.org/dc/elements/1.1/",
     "dcterms": "http://purl.org/dc/terms/",
     "edm": "http://www.europeana.eu/schemas/edm/",
@@ -14,6 +15,7 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
 
+    "alternative": {"@id": "dc:alternative"},
     "contributor": {"@id": "dc:contributor"},
     "coverage": {"@id": "dc:coverage"},
     "creator": {"@id": "dc:creator"},
@@ -35,7 +37,10 @@
     "title": {"@id": "dcterms:title"},
     "abstract": {"@id": "dcterms:abstract"},
 
+
     "edition": {"@id": "bf:editionStatement"},
+    "cartographic_projection": {"@id": "bf1:cartographicProjection"},
+    "cartographic_scale": {"@id": "bf1:cartographicScale"},
     "edm_rights": {"@id": "edm:rights"},
     "title_sort": {"@id": "mods:titleForSort"},
     "memberOf": {"@id": "pcdm:memberOf"},
