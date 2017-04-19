@@ -15,7 +15,6 @@
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "skos": "http://www.w3.org/2004/02/skos/core#",
 
-    "alternative": {"@id": "dc:alternative"},
     "contributor": {"@id": "dc:contributor"},
     "coverage": {"@id": "dc:coverage"},
     "creator": {"@id": "dc:creator"},
@@ -31,6 +30,7 @@
     "subject": {"@id": "dc:subject"},
     "type": {"@id": "dc:type"},
 
+    "alternative": {"@id": "dcterms:alternative"},
     "created": {"@id": "dcterms:created"},
     "extent": {"@id": "dcterms:extent"},
     "modified": {"@id": "dcterms:modified"},
