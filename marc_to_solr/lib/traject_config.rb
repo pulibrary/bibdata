@@ -922,17 +922,20 @@ each_record do |record, context|
   unless location_codes.empty?
     location_codes.uniq!
     context.output_hash['location_code_s'] = location_codes
+    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
+    holding_library = Traject::TranslationMap.new("holding_library")
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
+        if /^ReCAP/ =~ mapped_codes[l] && ['Rare Books and Special Collections', 'Marquand Library'].include?(holding_library[l])
+          context.output_hash['location'] << holding_library[l]
+        end
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-
-    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
 
     context.output_hash['access_facet'] = Traject::TranslationMap.new("access", :default => "In the Library").translate_array(location_codes)
     context.output_hash['access_facet'].uniq!

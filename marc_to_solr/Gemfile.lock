@@ -69,5 +69,8 @@ DEPENDENCIES
   stringex!
   traject (~> 2.0)
 
+RUBY VERSION
+   ruby 1.9.3p551 (jruby 1.7.25)
+
 BUNDLED WITH
-   1.13.1
+   1.14.6
