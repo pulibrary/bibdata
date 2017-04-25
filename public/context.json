@@ -34,6 +34,7 @@
     "created": {"@id": "dcterms:created"},
     "extent": {"@id": "dcterms:extent"},
     "modified": {"@id": "dcterms:modified"},
+    "spatial": {"@id": "dcterms:spatial"},
     "title": {"@id": "dcterms:title"},
     "abstract": {"@id": "dcterms:abstract"},
 

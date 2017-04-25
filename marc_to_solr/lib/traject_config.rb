@@ -241,6 +241,17 @@ to_field 'coverage_display' do |record, accumulator|
   accumulator[0] = coverage unless coverage.nil?
 end
 
+to_field "geocode_display" do |record, acc|
+  marc_geo_map = Traject::TranslationMap.new("marc_geographic")
+  extractor_043a  = MarcExtractor.cached("043a", :separator => nil)
+  acc.concat(
+    extractor_043a.extract(record).collect do |code|
+      # remove any trailing hyphens, then map
+      marc_geo_map[code.gsub(/\-+\Z/, '')]
+    end.compact
+  )
+end
+
 to_field 'scale_display', extract_marc('255a')
 
 to_field 'projection_display', extract_marc('255b:342a')
