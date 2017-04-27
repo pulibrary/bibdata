@@ -162,7 +162,7 @@ class Dump < ActiveRecord::Base
           if last_recap_dump.nil?
             last_dump_date = Time.now - 1.days
           else
-            last_dump_date = last_recap_dump
+            last_dump_date = last_recap_dump.updated_at
           end
           barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(last_dump_date)
           dump.update_ids = barcodes
