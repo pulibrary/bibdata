@@ -499,9 +499,9 @@ def process_holdings record
       if s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
-        holding['location_code'] ||= s_field.value
+        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value].gsub(/-/, '')
+        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value].gsub(/-/,'')
+        holding['location_code'] ||= s_field.value.gsub(/-/,'')
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
@@ -609,9 +609,16 @@ end
 
 def process_recap_notes record
   item_notes = []
+  partner_lib = nil
+  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      if s_field.code == 'b'
+        partner_lib ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+      end
+    end
+  end
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
     col_group = ''
-    partner_lib = ''
     field.subfields.each do |s_field|
       if s_field.code == 'z'
         if s_field.value == 'Shared'
@@ -621,15 +628,14 @@ def process_recap_notes record
         else
           col_group = '0'
         end
-      elsif s_field.code == 'x'
-        if s_field.value == 'CU'
-          partner_lib = 'C'
-        else
-          partner_lib = 'N'
-        end
       end
     end
-    item_notes << "#{partner_lib} - #{col_group}"
-  end
+    if partner_lib == 'scsbnypl' 
+      partner_display_string = 'N'
+    else
+      partner_display_string = 'C'
+    end
+    item_notes << "#{partner_display_string} - #{col_group}"
+    end
   item_notes
 end
