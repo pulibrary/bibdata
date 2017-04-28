@@ -117,7 +117,11 @@ class JSONLDRecord
       pub_created_display:   'publisher',
       subject_facet:         'subject',
       coverage_display:      'coverage',
-      title_sort:            'title_sort'
+      title_sort:            'title_sort',
+      alt_title_246_display: 'alternative',
+      scale_display:         'cartographic_scale',
+      projection_display:    'cartographic_projection',
+      geocode_display:       'spatial'
     }
   end
 

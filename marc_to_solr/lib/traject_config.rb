@@ -243,6 +243,21 @@ to_field 'coverage_display' do |record, accumulator|
   accumulator[0] = coverage unless coverage.nil?
 end
 
+to_field "geocode_display" do |record, acc|
+  marc_geo_map = Traject::TranslationMap.new("marc_geographic")
+  extractor_043a  = MarcExtractor.cached("043a", :separator => nil)
+  acc.concat(
+    extractor_043a.extract(record).collect do |code|
+      # remove any trailing hyphens, then map
+      marc_geo_map[code.gsub(/\-+\Z/, '')]
+    end.compact
+  )
+end
+
+to_field 'scale_display', extract_marc('255a')
+
+to_field 'projection_display', extract_marc('255b:342a')
+
 # Arrangement:
 # #    351 XX 3abc
 to_field 'arrangement_display', extract_marc('351abc')
@@ -617,7 +632,7 @@ end
 
 to_field 'lc_rest_facet' do |record, accumulator|
   if record['050']
-    if record['050']['a']     
+    if record['050']['a']
       letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
       accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
     end
@@ -627,7 +642,7 @@ end
 to_field 'sudoc_facet' do |record, accumulator|
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
@@ -638,41 +653,41 @@ to_field 'call_number_scheme_facet' do |record, accumulator|
       letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
       accumulator << "Library of Congress" if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)  
+      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         first_letter = record['050']['a'].lstrip.slice(0, 1)
-        accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?  
+        accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
       end
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil? 
+    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?
   end
 end
 
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)    
-        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] 
+      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
       end
     end
-  end  
+  end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?    
+    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
 
@@ -768,6 +783,8 @@ to_field 'other_title_display' do |record, accumulator|
   end
   accumulator.uniq!
 end
+
+to_field 'alt_title_246_display', extract_marc('246abfnp')
 
 # 246 hash, 2nd indicator is used for label (hash key), prefer $i if present
 to_field 'other_title_1display' do |record, accumulator|
@@ -905,6 +922,13 @@ to_field 'recap_notes_display' do |record, accumulator|
   end
 end
 
+each_record do |record, context|
+  dissertation_note = context.output_hash['dissertation_notes_display']
+  if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?("seniorprincetonuniversity")
+    context.output_hash['format'] << Traject::TranslationMap.new("format")['ST']
+  end
+end
+
 # Process location code once
 each_record do |record, context|
   location_codes = []
@@ -921,17 +945,20 @@ each_record do |record, context|
   unless location_codes.empty?
     location_codes.uniq!
     context.output_hash['location_code_s'] = location_codes
+    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
+    holding_library = Traject::TranslationMap.new("holding_library")
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
+        if /^ReCAP/ =~ mapped_codes[l] && ['Rare Books and Special Collections', 'Marquand Library'].include?(holding_library[l])
+          context.output_hash['location'] << holding_library[l]
+        end
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-
-    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
 
     context.output_hash['access_facet'] = Traject::TranslationMap.new("access", :default => "In the Library").translate_array(location_codes)
     context.output_hash['access_facet'].uniq!

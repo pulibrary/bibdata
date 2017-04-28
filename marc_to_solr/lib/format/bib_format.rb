@@ -13,15 +13,7 @@ class BibFormat
     ldr = record.leader
     type = ldr[6]
     lev  = ldr[7]
-    # assuming all 502s have an a subfield
     @code = []
-    if record['502']
-      if record['502']['a']
-        if (record['502']['a'].include? "(Senior)--Princeton University") || (record['502']['a'].include? "Thesis (Senior)-Princeton University")
-          @code << "ST"
-        end
-      end
-    end
     @code << self.determine_bib_code(type, lev)
     @code = @code.flatten
     @code << 'XX' if @code.empty?
