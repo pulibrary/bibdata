@@ -613,7 +613,7 @@ def process_recap_notes record
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
-        partner_lib ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        partner_lib ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value].gsub(/-/,'')
       end
     end
   end

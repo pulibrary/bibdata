@@ -937,7 +937,7 @@ each_record do |record, context|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value
+        holding_b ||= s_field.value.gsub(/-/,'')
       end
     end
     location_codes << holding_b
