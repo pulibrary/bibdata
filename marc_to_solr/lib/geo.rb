@@ -11,7 +11,7 @@ def decimal_coordinate record
       c['n'] = s_field.value if s_field.code == 'f' and valid_coordinate_format?(s_field.value, record)
       c['s'] = s_field.value if s_field.code == 'g' and valid_coordinate_format?(s_field.value, record)
     end
-    if c.length != 4 and !c.empty?
+    if c.length != 4
       logger.error "#{record['001']} - missing coordinate"
       break
     end

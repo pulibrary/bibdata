@@ -121,7 +121,8 @@ class JSONLDRecord
       alt_title_246_display: 'alternative',
       scale_display:         'cartographic_scale',
       projection_display:    'cartographic_projection',
-      geocode_display:       'spatial'
+      geocode_display:       'spatial',
+      contents_display:      'contents'
     }
   end
 
