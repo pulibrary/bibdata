@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: c03fe90d93bb52a84a2f8826fb459f4b42a3f6e0
-  tag: v0.4.3
+  revision: b1bb8c277b0a5fb215a46ca81e2831747eecf353
+  tag: v0.4.4
   specs:
     voyager_helpers (0.4.3)
       activesupport (~> 4.1)
@@ -139,7 +139,7 @@ GEM
     hike (1.2.3)
     hitimes (1.2.4)
     httpclient (2.8.3)
-    i18n (0.8.0)
+    i18n (0.8.1)
     iso-639 (0.2.8)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -169,7 +169,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.10.1)
+    minitest (5.10.2)
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
@@ -298,7 +298,7 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     thor (0.19.4)
-    thread_safe (0.3.5)
+    thread_safe (0.3.6)
     tilt (1.4.1)
     timers (4.0.4)
       hitimes
@@ -314,13 +314,13 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.4)
     vegas (0.1.11)
       rack (>= 1.0.0)
     warden (1.2.7)
