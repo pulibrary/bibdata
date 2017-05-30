@@ -1,6 +1,7 @@
 require 'json'
 require 'traject'
 require 'faraday'
+require 'time'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
@@ -25,11 +26,24 @@ describe 'From traject_config.rb' do
     @online=@indexer.map_record(fixture_record('sample30'))
     @elf2=@indexer.map_record(fixture_record('elf2'))
     @other_title_246=@indexer.map_record(fixture_record('7910599'))
+    @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
 	end
 
   describe 'the id field' do
     it 'has exactly 1 value' do
       expect(@sample1['id'].length).to eq 1
+    end
+  end
+  describe 'the date cataloged facets' do
+    it 'has a single date cataloged facet when the 959a is present' do
+      expect(@elf2['cataloged_tdt'].length).to eq 1
+    end
+    it 'is a formatted date' do
+      expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+      expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to eq('2001-11-15T16:55:33Z')
+    end
+    it 'does not have a date cataloged facet when the record is a SCSB partner record' do
+      expect(@scsb_journal['cataloged_tdt']).to be_nil
     end
   end
   describe 'the title_sort field' do
