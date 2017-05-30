@@ -27,6 +27,7 @@ describe 'From traject_config.rb' do
     @elf2=@indexer.map_record(fixture_record('elf2'))
     @other_title_246=@indexer.map_record(fixture_record('7910599'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
+    @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
 	end
 
   describe 'the id field' do
@@ -68,6 +69,11 @@ describe 'From traject_config.rb' do
     end
     it 'shows only the 700 a subfield' do
       expect(@sample2['author_citation_display']).to include 'Jones, Mary'
+    end
+  end
+  describe 'the title vernacular display' do
+    it 'is a single value' do
+      expect(@scsb_alt_title['title_vern_display'].is_a? String).to be true
     end
   end
   describe 'the pub_citation_display field' do
