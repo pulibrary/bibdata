@@ -499,9 +499,10 @@ def process_holdings record
       if s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value].gsub(/-/, '')
-        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value].gsub(/-/,'')
-        holding['location_code'] ||= s_field.value.gsub(/-/,'')
+        ## Location and Library aren't loading correctly with SCSB Records
+        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
+        holding['location_code'] ||= s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
@@ -593,9 +594,9 @@ def process_holdings record
       elsif s_field.code == 't'
         item[:copy_number] = s_field.value
       elsif s_field.code == 'x'
-        item[:collection_group] = s_field.value
+        item[:cgc] = s_field.value
       elsif s_field.code == 'z'
-        item[:designation] = s_field.value
+        item[:collection_code] = s_field.value
       end
     end
     if all_holdings[item[:holding_id]]["items"].nil?
@@ -613,14 +614,14 @@ def process_recap_notes record
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
-        partner_lib ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value].gsub(/-/,'')
+        partner_lib = s_field.value #||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
       end
     end
   end
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
     col_group = ''
     field.subfields.each do |s_field|
-      if s_field.code == 'z'
+      if s_field.code == 'x'
         if s_field.value == 'Shared'
           col_group = 'S'
         elsif s_field.value == 'Private'
@@ -632,7 +633,7 @@ def process_recap_notes record
     end
     if partner_lib == 'scsbnypl' 
       partner_display_string = 'N'
-    else
+    elsif partner_lib == 'scsbcul'
       partner_display_string = 'C'
     end
     item_notes << "#{partner_display_string} - #{col_group}"

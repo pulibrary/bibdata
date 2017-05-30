@@ -190,8 +190,19 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
-to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
-  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
+#   accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# end
+
+to_field 'cataloged_tdt' do |record, accumulator|
+  extractor_doc_id =  MarcExtractor.cached("001")
+  doc_id = extractor_doc_id.extract(record).first
+  unless /^SCSB-\d+/ =~ doc_id
+    #puts "#{record['001'].value}"
+    extractor_959a  = MarcExtractor.cached("959a")
+    cataloged_date = extractor_959a.extract(record).first
+    accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+  end
 end
 
 
@@ -937,13 +948,15 @@ each_record do |record, context|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value.gsub(/-/,'')
+        holding_b ||= s_field.value
       end
     end
     location_codes << holding_b
   end
   unless location_codes.empty?
     location_codes.uniq!
+    ## need to through any location code that isn't from voyager, thesis, or graphic arts
+    ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
