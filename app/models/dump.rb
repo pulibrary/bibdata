@@ -47,7 +47,7 @@ class Dump < ActiveRecord::Base
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
       self.save
-      if dump_file_type == 'RECAP_RECORDS'
+      if dump_file_type.constant == 'RECAP_RECORDS'
         RecapDumpJob.perform_later(id_slice, df.id)
       else
         BibDumpJob.perform_later(id_slice, df.id)
