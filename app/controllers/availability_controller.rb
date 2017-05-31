@@ -91,7 +91,7 @@ class AvailabilityController < ApplicationController
   end
 
   def inaccessible_locations
-    %q(sci scith sciref scirefl scilaf scilal scimm)
+    %w(sci scith sciref scirefl scilaf scilal scimm)
   end
 
   def inaccessible?(code)
@@ -134,10 +134,11 @@ class AvailabilityController < ApplicationController
   end
 
   def update_item_loc(item)
-    loc = get_holding_location(item[:temp_loc] || item[:location])
+    loc_code = item[:temp_loc] || item[:location]
+    loc = get_holding_location(loc_code)
     unless loc.nil?
       item[:label] = location_full_display(loc)
-      item[:status] = if inaccessible?(item[:location])
+      item[:status] = if inaccessible?(loc_code)
         inaccessible_status
       else
         location_based_status(loc, item[:status])
