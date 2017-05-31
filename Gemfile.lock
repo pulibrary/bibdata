@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 356239810cab4d7fa9c4c6acb6d4036045e91af2
+  revision: 1aec42efd3dfb2dc3ccdf390997f2c5f05373fb1
   branch: recap_diff
   specs:
     voyager_helpers (0.4.3)
@@ -137,7 +137,7 @@ GEM
     hike (1.2.3)
     hitimes (1.2.4)
     httpclient (2.8.3)
-    i18n (0.8.1)
+    i18n (0.8.4)
     iso-639 (0.2.8)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -168,7 +168,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mini_portile2 (2.1.0)
-    minitest (5.10.1)
+    minitest (5.10.2)
     mono_logger (1.1.0)
     multi_json (1.10.1)
     multipart-post (2.0.0)
