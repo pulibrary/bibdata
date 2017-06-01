@@ -156,6 +156,15 @@ RSpec.describe AvailabilityController, :type => :controller do
         availability = JSON.parse(response.body)
         expect(availability[book][holding_id]['status']).to eq('Inaccessible')
       end
+      it 'inaccessible locations display order status' do
+        allow_any_instance_of(described_class).to receive(:get_holding_location).and_return(holding_loc_label)
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({"1234567"=>{"54321"=>{:more_items=>false, :location=>"sci", :status=>"Order Received"}}})
+        book = '1234567'
+        holding_id = '54321'
+        get :index, ids: [book], format: :json
+        availability = JSON.parse(response.body)
+        expect(availability[book][holding_id]['status']).to eq('Order Received')
+      end
     end
 
     it 'Items with temp location codes are have a temp_loc key' do
