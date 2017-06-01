@@ -138,10 +138,12 @@ class AvailabilityController < ApplicationController
     loc = get_holding_location(loc_code)
     unless loc.nil?
       item[:label] = location_full_display(loc)
-      item[:status] = if inaccessible?(loc_code)
-        inaccessible_status
-      else
-        location_based_status(loc, item[:status])
+      unless order_status?(item[:status])
+        item[:status] = if inaccessible?(loc_code)
+          inaccessible_status
+        else
+          location_based_status(loc, item[:status])
+        end
       end
     end
   end
