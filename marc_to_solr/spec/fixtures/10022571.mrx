@@ -1,0 +1,53 @@
+<marc:collection xmlns:marc="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<marc:record>
+    <leader>00537nam a22001575u 4500</leader>
+    <controlfield tag='001'>10022571</controlfield>
+    <controlfield tag='005'>20161205124938.0</controlfield>
+    <controlfield tag='008'>161202s2019 ko 000 0 kor d</controlfield>
+    <datafield ind1=' ' ind2=' ' tag='020'>
+        <subfield code='a'>9791185393254</subfield>
+    </datafield>
+    <datafield ind1='1' ind2='0' tag='245'>
+        <subfield code='6'>880-01</subfield>
+        <subfield code='a'>Han&apos;gŭl ŭl almyŏn Yŏngŏ ka sanda : pŏnyŏk pangbŏmnon.</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='260'>
+        <subfield code='6'>880-02</subfield>
+        <subfield code='a'>Sŏul:</subfield>
+        <subfield code='b'>Pikkot,</subfield>
+        <subfield code='c'>2019.</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='300'>
+        <subfield code='a'>288 p.</subfield>
+    </datafield>
+    <datafield ind1='1' ind2='0' tag='880'>
+        <subfield code='6'>245-01</subfield>
+        <subfield code='a'>한글을 알면 영어가 산다 : 번역 방법론 /</subfield>
+        <subfield code='c'>김옥수著.</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='880'>
+        <subfield code='6'>260-02</subfield>
+        <subfield code='a'>서울:</subfield>
+        <subfield code='b'>비꽃,</subfield>
+        <subfield code='c'>2019.</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='980'>
+        <subfield code='a'>13,000</subfield>
+        <subfield code='v'>KOPANCO</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='904'>
+        <subfield code='a'>hle</subfield>
+        <subfield code='b'>o</subfield>
+        <subfield code='h'>m</subfield>
+        <subfield code='c'>b</subfield>
+        <subfield code='e'>20161202</subfield>
+    </datafield>
+    <datafield ind1='0' ind2=' ' tag='852'>
+        <subfield code='0'>9823617</subfield>
+        <subfield code='b'>k</subfield>
+    </datafield>
+    <datafield ind1=' ' ind2=' ' tag='959'>
+        <subfield code='a'>2017-02-06 13:50:57 -0400</subfield>
+    </datafield>
+</marc:record>
+</marc:collection>

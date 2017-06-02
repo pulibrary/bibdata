@@ -26,6 +26,7 @@ describe 'From traject_config.rb' do
     @online=@indexer.map_record(fixture_record('sample30'))
     @elf2=@indexer.map_record(fixture_record('elf2'))
     @other_title_246=@indexer.map_record(fixture_record('7910599'))
+    @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
 	end
@@ -72,8 +73,13 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'the title vernacular display' do
-    it 'is a single value' do
-      expect(@scsb_alt_title['title_vern_display'].is_a? String).to be true
+    it 'is a single value for scsb records' do
+      expect(@scsb_alt_title['title_vern_display'].length).to eq(1)
+    end
+
+    it 'is a single value for pul records' do
+      puts @title_vern_display['title_vern_display']
+      expect(@title_vern_display['title_vern_display'].length).to eq(1)
     end
   end
   describe 'the pub_citation_display field' do
