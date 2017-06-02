@@ -84,8 +84,4 @@ DEPENDENCIES
   traject (~> 2.0)
 
 BUNDLED WITH
-<<<<<<< HEAD
    1.14.6
-=======
-   1.13.6
->>>>>>> 9383d69... WIP extract december
