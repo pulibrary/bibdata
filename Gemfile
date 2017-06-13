@@ -15,7 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'recap_diff' # tag: 'v0.4.4'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.4.5'
 #gem 'voyager_helpers', path: '/Users/kevinreiss/Projects/blacklight/voyager_helpers'
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
