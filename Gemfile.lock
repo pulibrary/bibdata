@@ -21,8 +21,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 71bc6b92dce2c4eaeec4bff631619e4557bb31c0
-  tag: v0.4.6
+  revision: a1290221fa1bfb32a7600d772373915c6d4ab72e
+  branch: update_merge_holding_item
   specs:
     voyager_helpers (0.4.3)
       activesupport (~> 4.1)
