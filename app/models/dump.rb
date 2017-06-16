@@ -105,7 +105,7 @@ class Dump < ActiveRecord::Base
     def full_bib_dump
       dump = nil
       Event.record do |event|
-        dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))        
+        dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
         bibs = last_bib_id_dump
         bibs.dump_files.first.unzip
         bib_path = bibs.dump_files.first.path
@@ -160,7 +160,7 @@ class Dump < ActiveRecord::Base
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
         elsif type == 'RECAP_RECORDS'
           if last_recap_dump.nil?
-            last_dump_date = Time.now - 1.days
+            last_dump_date = Time.now - 5.days
           else
             last_dump_date = last_recap_dump.updated_at
           end
