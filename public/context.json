@@ -33,14 +33,17 @@
     "alternative": {"@id": "dcterms:alternative"},
     "created": {"@id": "dcterms:created"},
     "extent": {"@id": "dcterms:extent"},
+    "is_part_of": {"@id": "dcterms:isPartOf"},
     "modified": {"@id": "dcterms:modified"},
     "spatial": {"@id": "dcterms:spatial"},
     "title": {"@id": "dcterms:title"},
+    "dcterms_type": {"@id": "dcterms:type"},
     "abstract": {"@id": "dcterms:abstract"},
     "contents": {"@id": "dcterms:tableOfContents"},
 
 
     "edition": {"@id": "bf:editionStatement"},
+    "origin_place": {"@id": "bf:originPlace"},
     "cartographic_projection": {"@id": "bf1:cartographicProjection"},
     "cartographic_scale": {"@id": "bf1:cartographicScale"},
     "edm_rights": {"@id": "edm:rights"},
@@ -48,6 +51,8 @@
     "memberOf": {"@id": "pcdm:memberOf"},
     "navDate": {"@id": "pres:navDate"},
     "call_number": {"@id": "pulterms:call_number"},
+    "exact_match": {"@id": "skos:exactMatch"},
+    "pref_label": {"@id": "skos:prefLabel"},
     "scopeNote": {"@id": "skos:scopeNote"},
 
     "abridger": {
