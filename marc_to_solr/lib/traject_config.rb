@@ -190,20 +190,20 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
-# to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
-#   accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
-# end
-
-to_field 'cataloged_tdt' do |record, accumulator|
-  extractor_doc_id =  MarcExtractor.cached("001")
-  doc_id = extractor_doc_id.extract(record).first
-  unless /^SCSB-\d+/ =~ doc_id
-    #puts "#{record['001'].value}"
-    extractor_959a  = MarcExtractor.cached("959a")
-    cataloged_date = extractor_959a.extract(record).first
-    accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
-  end
+to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
+  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
 end
+
+# to_field 'cataloged_tdt' do |record, accumulator|
+#   extractor_doc_id =  MarcExtractor.cached("001")
+#   doc_id = extractor_doc_id.extract(record).first
+#   unless /^SCSB-\d+/ =~ doc_id
+#     #puts "#{record['001'].value}"
+#     extractor_959a  = MarcExtractor.cached("959a")
+#     cataloged_date = extractor_959a.extract(record).first
+#     accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+#   end
+# end
 
 
 # format - allow multiple - "first" one is used for thumbnail

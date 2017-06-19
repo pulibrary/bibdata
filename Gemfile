@@ -7,7 +7,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'mysql2', '0.4.5'
+gem 'mysql2'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'high_voltage', '~> 2.2.1'
 
@@ -15,8 +15,7 @@ group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
 end
 
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'update_merge_holding_item' # tag: 'v0.4.6'
-# gem 'voyager_helpers', path: '/Users/kevinreiss/Projects/blacklight/voyager_helpers'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.4.7'
 gem 'responders', '~> 2.0'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
