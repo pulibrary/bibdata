@@ -10,6 +10,7 @@ require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
+
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -30,7 +31,8 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 
 
 to_field 'id', extract_marc('001', :first => true)
-
+# for scsb local system id
+to_field 'other_id_s', extract_marc('009', :first => true)
 to_field 'cjk_all', extract_all_marc_values
 
 # Author/Artist:
@@ -90,7 +92,7 @@ to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => fal
 
 to_field 'title_a_index', extract_marc('245a', :trim_punctuation => true)
 
-to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only)
+to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only, :first => true)
 to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
 
 # to_field 'title_sort', marc_sortable_title
@@ -188,8 +190,19 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
-to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
-  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
+#   accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# end
+
+to_field 'cataloged_tdt' do |record, accumulator|
+  extractor_doc_id =  MarcExtractor.cached("001")
+  doc_id = extractor_doc_id.extract(record).first
+  unless /^SCSB-\d+/ =~ doc_id
+    #puts "#{record['001'].value}"
+    extractor_959a  = MarcExtractor.cached("959a")
+    cataloged_date = extractor_959a.extract(record).first
+    accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+  end
 end
 
 
@@ -910,6 +923,16 @@ to_field 'holdings_1display' do |record, accumulator|
   end
 end
 
+## for recap notes
+to_field 'recap_notes_display' do |record, accumulator|
+  recap_notes = process_recap_notes(record)
+  unless recap_notes.empty?
+    recap_notes.each_with_index do |value, i|
+      accumulator[i] = value
+    end
+  end
+end
+
 each_record do |record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
   if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?("seniorprincetonuniversity")
@@ -932,6 +955,8 @@ each_record do |record, context|
   end
   unless location_codes.empty?
     location_codes.uniq!
+    ## need to through any location code that isn't from voyager, thesis, or graphic arts
+    ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
