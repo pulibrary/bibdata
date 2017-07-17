@@ -44,7 +44,7 @@ describe 'From traject_config.rb' do
       expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
       expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to eq('2001-11-15T16:55:33Z')
     end
-    it 'does not have a date cataloged facet when the record is a SCSB partner record' do
+    xit 'does not have a date cataloged facet when the record is a SCSB partner record' do
       expect(@scsb_journal['cataloged_tdt']).to be_nil
     end
   end

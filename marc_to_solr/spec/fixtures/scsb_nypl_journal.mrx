@@ -85,11 +85,13 @@
     <marcxml:datafield tag="299" ind1="1" ind2="0">
       <marcxml:subfield code="a">Sunday journal</marcxml:subfield>
     </marcxml:datafield>
+    <!-- Comment for per further discussion: https://github.com/pulibrary/marc_liberation/issues/248
     <marcxml:datafield tag="959" ind1=" " ind2=" ">
       <marcxml:subfield code="a">.b41609232</marcxml:subfield>
       <marcxml:subfield code="b">08-13-07</marcxml:subfield>
       <marcxml:subfield code="c">11-19-96</marcxml:subfield>
     </marcxml:datafield>
+  -->
     <marcxml:datafield tag="775" ind1="0" ind2=" ">
       <marcxml:subfield code="t">Albuquerque journal (Albuquerque, N.M. : Evening ed.)</marcxml:subfield>
       <marcxml:subfield code="w">(DLC)sn 92-70453</marcxml:subfield>

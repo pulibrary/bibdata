@@ -5,7 +5,7 @@ RSpec.describe PatronController, :type => :controller do
   it "authorized ips can access patron info" do
     stub_patron('steve')
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return('192.168.0.1')
-    allow_any_instance_of(described_class).to receive(:load_ip_whitelist).and_return(['192.168.0.1'])    
+    allow_any_instance_of(described_class).to receive(:load_ip_whitelist).and_return(['192.168.0.1'])
     get :patron_info, patron_id: 'steve', format: :json
     expect(response).to have_http_status(200)
   end
@@ -26,7 +26,6 @@ RSpec.describe PatronController, :type => :controller do
   end
 
   it "404 when patron info is not found" do
-    #stub_patron('123456789')
     user = double('user')
     allow(request.env['warden']).to receive(:authenticate!) { user }
     allow(controller).to receive(:current_user) { user }
@@ -37,7 +36,7 @@ RSpec.describe PatronController, :type => :controller do
   it "authorized IPs can return patron stat codes" do
     stub_patron_codes('steve')
     allow_any_instance_of(ActionDispatch::Request).to receive(:remote_ip).and_return('192.168.0.1')
-    allow_any_instance_of(described_class).to receive(:load_ip_whitelist).and_return(['192.168.0.1'])    
+    allow_any_instance_of(described_class).to receive(:load_ip_whitelist).and_return(['192.168.0.1'])
     get :patron_codes, patron_id: 'steve', format: :json
     expect(response).to have_http_status(200)
   end
