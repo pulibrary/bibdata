@@ -499,6 +499,7 @@ def process_holdings record
       if s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
+        ## Location and Library aren't loading correctly with SCSB Records
         holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
         holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
@@ -574,5 +575,68 @@ def process_holdings record
       all_holdings[holding_id]['indexes'] << value.join(' ')
     end
   end
+  ### Added for ReCAP records
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+    item = {}
+    field.subfields.each do |s_field|
+      if s_field.code == '0'
+        item[:holding_id] = s_field.value
+      elsif s_field.code == '3'
+        item[:enumeration] = s_field.value
+      elsif s_field.code == 'a'
+        item[:id] = s_field.value
+      elsif s_field.code == 'h'
+        item[:use_statement] = s_field.value
+      elsif s_field.code == 'j'
+        item[:status_at_load] = s_field.value
+      elsif s_field.code == 'p'
+        item[:barcode] = s_field.value
+      elsif s_field.code == 't'
+        item[:copy_number] = s_field.value
+      elsif s_field.code == 'x'
+        item[:cgc] = s_field.value
+      elsif s_field.code == 'z'
+        item[:collection_code] = s_field.value
+      end
+    end
+    if all_holdings[item[:holding_id]]["items"].nil?
+      all_holdings[item[:holding_id]]["items"] = [ item ]
+    else
+      all_holdings[item[:holding_id]]["items"] << item
+    end
+  end
   all_holdings
+end
+
+def process_recap_notes record
+  item_notes = []
+  partner_lib = nil
+  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
+    field.subfields.each do |s_field|
+      if s_field.code == 'b'
+        partner_lib = s_field.value #||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+      end
+    end
+  end
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+    col_group = ''
+    field.subfields.each do |s_field|
+      if s_field.code == 'x'
+        if s_field.value == 'Shared'
+          col_group = 'S'
+        elsif s_field.value == 'Private'
+          col_group = 'P'
+        else
+          col_group = '0'
+        end
+      end
+    end
+    if partner_lib == 'scsbnypl' 
+      partner_display_string = 'N'
+    elsif partner_lib == 'scsbcul'
+      partner_display_string = 'C'
+    end
+    item_notes << "#{partner_display_string} - #{col_group}"
+    end
+  item_notes
 end

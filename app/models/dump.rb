@@ -10,6 +10,7 @@ class Dump < ActiveRecord::Base
   serialize :delete_ids
   serialize :create_ids
   serialize :update_ids
+  serialize :recap_barcodes
 
   before_destroy {
     self.dump_files.each do |df|
@@ -32,7 +33,12 @@ class Dump < ActiveRecord::Base
   def dump_bib_records(bib_ids)
     dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
     dump_records(bib_ids, dump_file_type)
-  end  
+  end
+
+  def dump_updated_recap_records(updated_barcodes)
+    dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
+    dump_records(updated_barcodes, dump_file_type)
+  end
 
   private
   def dump_records(ids, dump_file_type)
@@ -41,7 +47,11 @@ class Dump < ActiveRecord::Base
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
       self.save
-      BibDumpJob.perform_later(id_slice, df.id)
+      if dump_file_type.constant == 'RECAP_RECORDS'
+        RecapDumpJob.perform_later(id_slice, df.id)
+      else
+        BibDumpJob.perform_later(id_slice, df.id)
+      end
       sleep 1
     end
   end
@@ -55,6 +65,9 @@ class Dump < ActiveRecord::Base
       dump_ids('HOLDING_IDS')
     end
 
+    def dump_recap_records
+      dump_ids('RECAP_RECORDS')
+    end
 
     def diff_since_last
       dump = nil
@@ -92,7 +105,7 @@ class Dump < ActiveRecord::Base
     def full_bib_dump
       dump = nil
       Event.record do |event|
-        dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))        
+        dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
         bibs = last_bib_id_dump
         bibs.dump_files.first.unzip
         bib_path = bibs.dump_files.first.path
@@ -110,8 +123,6 @@ class Dump < ActiveRecord::Base
 
     private
 
-
-
     def last_two_bib_id_dumps
       last_two_id_dumps('BIB_IDS')
     end
@@ -128,32 +139,46 @@ class Dump < ActiveRecord::Base
     def last_bib_id_dump
       dump_type = DumpType.where(constant: 'BIB_IDS')
       dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
-    end    
+    end
+
+    def last_recap_dump
+      dump_type = DumpType.where(constant: 'RECAP_RECORDS')
+      dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
+    end
 
     def dump_ids(type)
       dump = nil
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: type))
         dump.event = event
-        dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
+        unless type == 'RECAP_RECORDS'
+          dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
+        end
         if type == 'BIB_IDS'
           VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
         elsif type == 'HOLDING_IDS'
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
+        elsif type == 'RECAP_RECORDS'
+          if last_recap_dump.nil?
+            last_dump_date = Time.now - 5.days
+          else
+            last_dump_date = last_recap_dump.updated_at
+          end
+          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(last_dump_date)
+          dump.update_ids = barcodes
+          dump.save
+          dump.dump_updated_recap_records(barcodes)
         else
           raise 'Unrecognized DumpType'
         end
-        dump_file.save
-        dump_file.zip
-        dump.dump_files << dump_file
+        unless type == 'RECAP_RECORDS'
+          dump_file.save
+          dump_file.zip
+          dump.dump_files << dump_file
+        end
         dump.save
       end
       dump
     end
-
-
-
-
   end # class << self
-
 end
