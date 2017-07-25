@@ -82,6 +82,14 @@ class AvailabilityController < ApplicationController
     ['Order Received', 'Pending Order', 'On-Order']
   end
 
+  def not_charged
+    'Not Charged'
+  end
+
+  def hold_request
+    'Hold Request'
+  end
+
   def on_site
     'On-Site'
   end
@@ -96,6 +104,15 @@ class AvailabilityController < ApplicationController
 
   def inaccessible?(code)
     inaccessible_locations.include?(code)
+  end
+
+  # only recap non-aeon items retain the hold request status
+  def scsb_status(loc, status)
+    if loc.library.code == 'recap' && !loc.aeon_location
+      hold_request
+    else
+      not_charged
+    end
   end
 
   def order_status?(status)
@@ -124,6 +141,7 @@ class AvailabilityController < ApplicationController
   # always requestable non-circulating items should always have 'limited' status,
   # even with unavailable Voyager status
   def location_based_status(loc, status)
+    status = scsb_status(loc, status) if status == 'Hold Request'
     if loc.always_requestable
       always_requestable_status(status)
     elsif !loc.circulates
