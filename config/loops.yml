@@ -1,0 +1,25 @@
+loops:
+  scsb_request_queue:
+    workers_number: 1
+    logger: log/queue.log
+    host: uat-recap-direct.htcinc.com
+    port: 61613
+    queue_name: /topic/PUL.RequestT
+  scsb_recall_queue:
+    workers_number: 1
+    logger: log/queue.log
+    host: uat-recap-direct.htcinc.com
+    port: 61613
+    queue_name: /topic/PUL.RecallT
+  scsb_edd_queue:
+    workers_number: 1
+    logger: log/queue.log
+    host: uat-recap-direct.htcinc.com
+    port: 61613
+    queue_name: /topic/PUL.EDDT
+  scsb_export_queue:
+    workers_number: 1
+    logger: log/queue.log
+    host: uat-recap-direct.htcinc.com
+    port: 61613
+    queue_name: /topic/PUL.ExportProcessCompletion

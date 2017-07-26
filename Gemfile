@@ -10,6 +10,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'high_voltage', '~> 2.2.1'
+gem 'loops', github: 'kovyrin/loops', branch: 'master'
+gem 'stomp'
 
 group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
