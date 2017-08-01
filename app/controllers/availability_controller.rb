@@ -137,6 +137,20 @@ class AvailabilityController < ApplicationController
     end
   end
 
+  def status_priority
+    ['Not Charged', 'Discharged', 'In Process', 'Hold Request', 'Charged', 'Renewed', 'Overdue',
+     'On Hold', 'In Transit', 'In Transit On Hold', 'In Transit Discharged', 'Withdrawn',
+     'Claims Returned', 'Lost--Library Applied', 'Missing', 'Lost--System Applied']
+  end
+
+  def display_status(status)
+    if status.is_a?(Array)
+      (status_priority & status).last
+    else
+      status
+    end
+  end
+
   # non-circulating items that are available should have status 'limited'
   # always requestable non-circulating items should always have 'limited' status,
   # even with unavailable Voyager status
@@ -152,6 +166,7 @@ class AvailabilityController < ApplicationController
   end
 
   def update_item_loc(item)
+    item[:status] = display_status(item[:status])
     loc_code = item[:temp_loc] || item[:location]
     loc = get_holding_location(loc_code)
     unless loc.nil?
