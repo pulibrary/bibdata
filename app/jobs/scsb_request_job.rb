@@ -6,11 +6,4 @@ class ScsbRequestJob < ActiveJob::Base
     args = parse_scsb_message(message)
     ScsbMailer.send('request_email', args).deliver_now
   end
-
-  # private
-  #
-  #   def parse_scsb_message(message)
-  #     parsed = JSON.parse(message)
-  #     parsed.class == Hash ? parsed.with_indifferent_access : parsed
-  #   end
 end

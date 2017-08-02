@@ -293,6 +293,44 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
   end
 
+  describe 'scsb bib id' do
+    let(:scsb_good_lookup) { ScsbLookup.new }
+    let(:scsb_bad_lookup) { ScsbLookup.new }
+    let(:scsb_id) { '5270946' }
+    let(:no_id) { 'foo' }
+    let(:bib_response) {
+      [
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      ]
+    }
+    it '404 when no item ID exists' do
+      allow(scsb_good_lookup).to receive(:find_by_id).and_return({})
+      get :index, scsb_id: no_id, format: :json
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns barcodes and status attached to the id' do
+      allow(scsb_bad_lookup).to receive(:find_by_id).and_return([
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      ])
+      get :index, scsb_id: scsb_id, format: :json
+      bib_barcodes = JSON.parse(response.body)
+      expect(bib_barcodes).match_array(bib_response)
+    end
+  end
+
+  describe 'scsb barcode lookup' do
+
+  end
+
   it "404 when bibs are not provided" do
     allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({})
     get :index, ids: [], format: :json

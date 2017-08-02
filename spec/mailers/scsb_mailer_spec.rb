@@ -53,9 +53,61 @@ RSpec.describe ScsbMailer, :type => :mailer do
     }
 
     it "renders the headers" do
-      # expect(mail.subject).to eq()
       expect(mail.to).to eq(['test@account.edu'])
-      expect(mail.from).to eq(['bah'])
+      expect(mail.from).to eq([I18n.t('scsb.default_from')])
+    end
+  end
+
+  context "Failed Retrieval Request" do
+    let(:args) {
+      {
+        "itemBarcode": "32101101392320",
+        "itemOwningInstitution": "PUL",
+        "screenMessage": "ILS Exception : Item barcode not found.",
+        "success": false,
+        "esipDataIn": null,
+        "esipDataOut": null,
+        "requestId": 54538,
+        "expirationDate": null,
+        "titleIdentifier": "[In Library Use] L'ABBAYE SAINT-PIERRE DE MOZAC. ARCHITECTURE, DECORS ET HISTOIRE D?UN SITE MONASTIQUE (VIIE-XXE SIECLE) / [RECAP]",
+        "dueDate": null,
+        "circulationStatus": null,
+        "securityMarker": null,
+        "feeType": null,
+        "transactionDate": null,
+        "holdQueueLength": "0",
+        "holdPickupDate": null,
+        "recallDate": null,
+        "mediaType": null,
+        "permanentLocation": null,
+        "currentLocation": null,
+        "bibID": "10153117",
+        "currencyType": null,
+        "callNumber": null,
+        "itemType": null,
+        "bibIds": null,
+        "source": null,
+        "createdDate": null,
+        "updatedDate": null,
+        "deletedDate": null,
+        "patronBarcode": "22101009999999",
+        "requestingInstitution": "PUL",
+        "emailAddress": "foo@princeton.edu",
+        "requestType": "RETRIEVAL",
+        "deliveryLocation": "PJ",
+        "requestNotes": "ILS Exception : Item barcode not found.",
+        "itemId": 13655298,
+        "username": "Joe User",
+        "isbn": null,
+        "lccn": null,
+        "owner": null,
+        "deleted": false
+      }
+    }
+
+    it "renders the headers" do
+      expect(mail.to).to eq([I18n.t('scsb.default_error_to')])
+      expect(mail.from).to eq([I18n.t('scsb.default_from')])
     end
   end
 
@@ -109,8 +161,9 @@ RSpec.describe ScsbMailer, :type => :mailer do
       ScsbMailer.send("edd_email", args).deliver_now
     }
 
-    it 'has the correct email address' do
-
+    it "renders the headers" do
+      expect(mail.to).to eq(['test@account.edu'])
+      expect(mail.from).to eq([I18n.t('scsb.default_from')])
     end
   end
 
@@ -161,7 +214,12 @@ RSpec.describe ScsbMailer, :type => :mailer do
       }.with_indifferent_access
     }
     let(:mail) {
-      ScsbMailer.send("recak_email", args).deliver_now
+      ScsbMailer.send("recall_email", args).deliver_now
     }
+
+    it "renders the headers" do
+      expect(mail.to).to eq(['test@account.edu'])
+      expect(mail.from).to eq([I18n.t('scsb.default_from')])
+    end
   end
 end

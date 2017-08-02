@@ -1,5 +1,7 @@
 en:
   scsb:
+    default_from: 'fstcirc@princeton.edu'
+    default_error_to: 'fstcirc@princeton.edu'
     retreival:
       success: "Request submitted to ReCAP, our offsite storage facility. You can expect delivery within 48 hours. See confirmation email with details about when your item(s) will be available."
       email_subject: "Offsite Request Confirmation"
