@@ -5,7 +5,11 @@ class ScsbMailer < ApplicationMailer
       @success = args[:success]
       @screen_message = args[:screenMessage]
       @message = args
-      destination_email = @email
+      if @success == false
+        destination_email = I18n.t('scsb.default_error_to')
+      else
+        destination_email = @email
+      end
       mail(to: destination_email,
            subject: "EDD Request" )
   end
@@ -15,7 +19,11 @@ class ScsbMailer < ApplicationMailer
       @success = args[:success]
       @screen_message = args[:screenMessage]
       @message = args
-      destination_email = @email
+      if @success == false
+        destination_email = I18n.t('scsb.default_error_to')
+      else
+        destination_email = @email
+      end
       mail(to: destination_email,
            subject: "Recall Request" )
   end
@@ -25,7 +33,11 @@ class ScsbMailer < ApplicationMailer
       @success = args[:success]
       @screen_message = args[:screenMessage]
       @message = args
-      destination_email = @email
+      if @success == false
+        destination_email = I18n.t('scsb.default_error_to')
+      else
+        destination_email = @email
+      end
       mail(to: destination_email,
            subject: "Offsite Request" )
   end

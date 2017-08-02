@@ -39,7 +39,7 @@ module Scsb
   end
 
   def scsb_conn
-    conn = Faraday.new(url: ENV['SCSB_SERVER']) do |faraday|
+    conn = Faraday.new(url: scsb_server) do |faraday|
       faraday.request  :url_encoded # form-encode POST params
       faraday.response :logger unless Rails.env.test? # log requests to STDOUT
       faraday.adapter  Faraday.default_adapter # make requests with Net::HTTP
@@ -64,6 +64,14 @@ module Scsb
         ENV['SCSB_AUTH_KEY']
       else
         'TESTME'
+      end
+    end
+
+    def scsb_server
+      if !Rails.env.test?
+        ENV['SCSB_SERVER']
+      else
+        'https://test.api.com/'
       end
     end
 end
