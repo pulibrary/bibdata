@@ -17,20 +17,9 @@ RSpec.describe ScsbRequestJob do
     expect(described_class.queue_name).to eq('scsb_request')
   end
 
-  # it 'logs the message passed to the job' do
-  #   described_class.new.perform(fail_message)
-  #   allow(described_class.logger).to receive(:info).and_call_original
-  #   expect(described_class.logger).to receive(:info).with("Processing Message #{fail_message}")
-  # end
-
   it 'distributes an email message to the requesting user when a request succeeds via the scsb_request queue' do
     described_class.new.perform(success_message)
     expect(described_class.queue_name?).to be true
     expect(described_class.queue_name).to eq('scsb_request')
   end
-
-  # it 'does not enqueue a mail job when no email is present' do
-  #   described_class.new.perform(no_email_success_message)
-  #   expect(described_class.queue_name?).to be false
-  # end
 end

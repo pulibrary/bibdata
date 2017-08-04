@@ -55,6 +55,16 @@ RSpec.describe ScsbMailer, :type => :mailer do
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
+      expect(mail.subject).to eq( I18n.t('scsb.request.email_subject'))
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to have_content args["titleIdentifier"]
+      expect(mail.body.encoded).to have_content args["itemBarcode"]
+    end
+
+    it 'provides a link to your library account' do
+      expect(mail.body.encoded).to have_content 'https://pulsearch.princeton.edu/account'
     end
   end
 
@@ -106,12 +116,17 @@ RSpec.describe ScsbMailer, :type => :mailer do
     }
 
     let(:mail) {
-      ScsbMailer.send("request_email", args).deliver_now
+      ScsbMailer.send("error_email", args).deliver_now
     }
 
     it "renders the headers" do
       expect(mail.to).to eq([I18n.t('scsb.default_error_to')])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
+      expect(mail.subject).to eq( I18n.t('scsb.default_error_subject'))
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to have_content "#{args["screenMessage"]}"
     end
   end
 
@@ -150,9 +165,9 @@ RSpec.describe ScsbMailer, :type => :mailer do
         "patronBarcode"=>"22101009999999",
         "requestingInstitution"=>"PUL",
         "emailAddress"=>"test@account.edu",
-        "requestType"=>"RETRIEVAL",
+        "requestType"=>"EDD",
         "deliveryLocation"=>"PA",
-        "requestNotes"=>"An EDD Request",
+        "requestNotes"=>"requestNotes\":\"User: Test From Kevin.\\n\\nStart Page: 22 \\nEnd Page: 50 \\nVolume Number: 1 \\nIssue: 2 \\nArticle Author:  \\nArticle/Chapter Title: Chapter Two \"",
         "itemId"=>12977183,
         "username"=>"Joe User",
         "lccn"=>nil,
@@ -168,6 +183,13 @@ RSpec.describe ScsbMailer, :type => :mailer do
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
+      expect(mail.subject).to eq( I18n.t('scsb.edd.email_subject'))
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to have_content args["requestNotes"]
+      expect(mail.body.encoded).to have_content args["titleIdentifier"]
+      expect(mail.body.encoded).to have_content args["itemBarcode"]
     end
   end
 
@@ -224,6 +246,12 @@ RSpec.describe ScsbMailer, :type => :mailer do
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to have_content args["requestNotes"]
+      expect(mail.body.encoded).to have_content args["titleIdentifier"]
+      expect(mail.body.encoded).to have_content args["itemBarcode"]
     end
   end
 end

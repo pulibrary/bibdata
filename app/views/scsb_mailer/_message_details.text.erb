@@ -1,5 +1,16 @@
-<% @message.each do |key,value| %>
-  <% unless value.nil? %>
-    <%= "#{key}=#{value}" %>
+<% if @success == true %>
+  <%= "Title: #{@message[:titleIdentifier]}" %>
+  <%= "Barcode: #{@message[:itemBarcode]}" %>
+  <% unless @message[:requestNotes].blank? %>
+    <%= "Notes: #{@message[:requestNotes]}" %>
+  <% end %>
+
+  <%= "Your Library Account: #{link_to 'https://pulsearch.princeton.edu/account', 'https://pulsearch.princeton.edu/account'}" %>
+<% else %>
+  <%= "Request Failure: #{@message[:screenMessage]}" %>
+  <% @message.each do |key,value| %>
+    <% unless value.blank? %>
+      <%= "#{key}=#{value}" %>
+    <% end %>
   <% end %>
 <% end %>

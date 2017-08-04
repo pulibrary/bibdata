@@ -1,16 +1,17 @@
 en:
   scsb:
     default_from: 'fstcirc@princeton.edu'
-    default_error_to: 'fstcirc@princeton.edu'
-    retreival:
-      success: "Request submitted to ReCAP, our offsite storage facility. You can expect delivery within 48 hours. See confirmation email with details about when your item(s) will be available."
-      email_subject: "Offsite Request Confirmation"
-      delivery_label: "Physical Item Delivery"
+    default_error_to: 'kr2@princeton.edu'
+    default_error_subject: 'SCSB Processing Exception'
+    request:
+      email_subject: "Off-site Request Confirmation"
+      email_fail_subject: 'Off-site Request Failure'
       email_conf_msg: "Your will receive an email in 1-2 business days when your item is delivered and ready for pickup."
-      guest_email_destination: "fstcirc@princeton.edu"
     edd:
-      email_subject: "Recap Electronic Delivery Confirmation"
-      brief_msg: "Item offsite at ReCAP Facility. Request a selection be scanned for you and delivered as a PDF file in 1-2 business days."
-      email_conf_msg: "Electronic copy requests typically take 1-2 days to process. You receive an email including a link where you can download your scanned section in the that timeframe."
+      email_subject: "Off-site Electronic Delivery Confirmation"
+      email_fail_subject: 'Offsite EDD Request Failure'
+      email_conf_msg: "Electronic copy requests typically take 1-2 days to process. You will receive an email including a link where you can download your scanned selection within that timeframe."
     recall:
-      success: "You have successfully placed a recall. The item may not be available for pickup for several weeks, at which point you will be notified. See confirmation email with details about when your item(s) will be available."
+      email_subject: "Off-site Recall Confirmation"
+      email_fail_subject: "Recap Recall Request Failure"
+      email_conf_msg: "Your are requesting that another Library user return this book for your use. This process can take up to several weeks. Contact the Library Circulation Desk for details. If possible please request the material in question via Borrow Direct or Interlibrary Loan."

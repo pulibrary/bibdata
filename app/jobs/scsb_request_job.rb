@@ -4,9 +4,11 @@ class ScsbRequestJob < ActiveJob::Base
 
   def perform(message)
     args = parse_scsb_message(message)
-    logger.info("Processing Message #{message}")
-    unless args[:emailAddress].nil?
-      ScsbMailer.send('request_email', args).deliver_now
+    # unless args[:emailAddress].blank?
+    #   ScsbMailer.send('request_email', args).deliver_now
+    # end
+    if args[:success] == false
+      ScsbMailer.send('error_email', args).deliver_now
     end
   end
 end
