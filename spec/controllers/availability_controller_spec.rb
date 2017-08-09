@@ -300,13 +300,14 @@ RSpec.describe AvailabilityController, :type => :controller do
     let(:scsb_id) { '5270946' }
     let(:no_id) { 'foo' }
     let(:bib_response) {
-      [
+      {
+        '32101055068314':
         {
           "itemBarcode": "32101055068314",
           "itemAvailabilityStatus": "Available",
           "errorMessage": nil
-        }.with_indifferent_access
-      ]
+        }
+      }.with_indifferent_access
     }
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
@@ -323,7 +324,7 @@ RSpec.describe AvailabilityController, :type => :controller do
          with(body: '{"bibliographicId":"5270946","institutionId":"scsb"}',
               headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.11.0'}).
          to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null}]', headers: {})
-      allow(scsb_bad_lookup).to receive(:find_by_id).and_return([
+      allow(scsb_good_lookup).to receive(:find_by_id).and_return([
         {
           "itemBarcode": "32101055068314",
           "itemAvailabilityStatus": "Available",
@@ -332,7 +333,7 @@ RSpec.describe AvailabilityController, :type => :controller do
       ])
       get :index, scsb_id: scsb_id, format: :json
       bib_barcodes = JSON.parse(response.body)
-      expect(bib_barcodes).to match_array(bib_response)
+      expect(bib_barcodes).to eq(bib_response)
     end
   end
 
@@ -343,18 +344,20 @@ RSpec.describe AvailabilityController, :type => :controller do
     let(:scsb_id) { '5270946' }
     let(:no_id) { 'foo' }
     let(:bib_response) {
-      [
+      {
+        '32101055068314':
         {
           "itemBarcode": "32101055068314",
           "itemAvailabilityStatus": "Available",
           "errorMessage": nil
-        }.with_indifferent_access,
+        },
+        '32101055068313':
         {
           "itemBarcode": "32101055068313",
           "itemAvailabilityStatus": "Available",
           "errorMessage": nil
-        }.with_indifferent_access
-      ]
+        }
+      }.with_indifferent_access
     }
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
@@ -385,7 +388,7 @@ RSpec.describe AvailabilityController, :type => :controller do
       ])
       get :index, barcodes: ['32101055068314', '32101055068313'], format: :json
       bib_barcodes = JSON.parse(response.body)
-      expect(bib_barcodes).to match_array(bib_response)
+      expect(bib_barcodes).to eq(bib_response)
     end
   end
 
