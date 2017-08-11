@@ -1,0 +1,17 @@
+en:
+  scsb:
+    default_from: 'fstcirc@princeton.edu'
+    default_error_to: 'kr2@princeton.edu'
+    default_error_subject: 'SCSB Processing Exception'
+    request:
+      email_subject: "Off-site Request Confirmation"
+      email_fail_subject: 'Off-site Request Failure'
+      email_conf_msg: "Your will receive an email in 1-2 business days when your item is delivered and ready for pickup."
+    edd:
+      email_subject: "Off-site Electronic Delivery Confirmation"
+      email_fail_subject: 'Offsite EDD Request Failure'
+      email_conf_msg: "Electronic copy requests typically take 1-2 days to process. You will receive an email including a link where you can download your scanned selection within that timeframe."
+    recall:
+      email_subject: "Off-site Recall Confirmation"
+      email_fail_subject: "Recap Recall Request Failure"
+      email_conf_msg: "Your are requesting that another Library user return this book for your use. This process can take up to several weeks. Contact the Library Circulation Desk for details. If possible please request the material in question via Borrow Direct or Interlibrary Loan."

@@ -293,6 +293,105 @@ RSpec.describe AvailabilityController, :type => :controller do
     end
   end
 
+  describe 'scsb bib id' do
+
+    let(:scsb_good_lookup) { ScsbLookup.new }
+    let(:scsb_bad_lookup) { ScsbLookup.new }
+    let(:scsb_id) { '5270946' }
+    let(:no_id) { 'foo' }
+    let(:bib_response) {
+      {
+        '32101055068314':
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      }.with_indifferent_access
+    }
+    it '404 when no item ID exists' do
+      stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
+         with(body: "{\"bibliographicId\":\"foo\",\"institutionId\":\"scsb\"}",
+              headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.11.0'}).
+         to_return(status: 404, body: "", headers: {})
+      allow(scsb_good_lookup).to receive(:find_by_id).and_return({})
+      get :index, scsb_id: no_id, format: :json
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns barcodes and status attached to the id' do
+      stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
+         with(body: '{"bibliographicId":"5270946","institutionId":"scsb"}',
+              headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.11.0'}).
+         to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null}]', headers: {})
+      allow(scsb_good_lookup).to receive(:find_by_id).and_return([
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      ])
+      get :index, scsb_id: scsb_id, format: :json
+      bib_barcodes = JSON.parse(response.body)
+      expect(bib_barcodes).to eq(bib_response)
+    end
+  end
+
+  describe 'scsb by barcode' do
+
+    let(:scsb_good_lookup) { ScsbLookup.new }
+    let(:scsb_bad_lookup) { ScsbLookup.new }
+    let(:scsb_id) { '5270946' }
+    let(:no_id) { 'foo' }
+    let(:bib_response) {
+      {
+        '32101055068314':
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        },
+        '32101055068313':
+        {
+          "itemBarcode": "32101055068313",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      }.with_indifferent_access
+    }
+    it '404 when no item ID exists' do
+      stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
+         with(body: "{\"barcodes\":[\"foo\",\"blah\"]}",
+              headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.11.0'}).
+         to_return(status: 404, body: "", headers: {})
+      allow(scsb_good_lookup).to receive(:find_by_barcodes).and_return({})
+      get :index, barcodes: ['foo', 'blah'], format: :json
+      expect(response).to have_http_status(404)
+    end
+
+    it 'returns barcodes and status attached to the id' do
+      stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
+         with(body: "{\"barcodes\":[\"32101055068314\",\"32101055068313\"]}",
+              headers: {'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.11.0'}).
+         to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null},{ "itemBarcode": "32101055068313", "itemAvailabilityStatus": "Available", "errorMessage": null}]', headers: {})
+      allow(scsb_bad_lookup).to receive(:find_by_barcodes).and_return([
+        {
+          "itemBarcode": "32101055068314",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        },
+        {
+          "itemBarcode": "32101055068313",
+          "itemAvailabilityStatus": "Available",
+          "errorMessage": nil
+        }
+      ])
+      get :index, barcodes: ['32101055068314', '32101055068313'], format: :json
+      bib_barcodes = JSON.parse(response.body)
+      expect(bib_barcodes).to eq(bib_response)
+    end
+  end
+
   it "404 when bibs are not provided" do
     allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return({})
     get :index, ids: [], format: :json

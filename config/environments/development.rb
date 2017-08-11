@@ -32,6 +32,8 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  ## Dump this out to the console when running in development
+  config.logger = Loops.logger if Loops.running?
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end

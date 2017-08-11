@@ -14,3 +14,11 @@
 ```http://localhost:9000/solr/```
 ## Run a full re-index of pul marc data against an arbitrary solr core (with sudo privs)
 ```docker run -v /tmp:/tmp -e SET_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap --net=host pulibrary/orangeindex bash -c 'rake liberate:full' >> /tmp/recap.log 2>&1```
+
+## Building the Browse index
+* ```rake browse:all```
+* ```rake load:all```
+
+## Cron tasks
+10 01 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH" && eval "$(rbenv init -)" && cd /opt/orangelight && PATH=$PATH:/usr/local/bin SOLR_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap rake$
+00 02 * * * /bin/bash -c 'export PATH="$HOME/.rbenv/bin:$PATH" && eval "$(rbenv init -)" && cd /opt/orangelight && PATH=$PATH:/usr/local/bin SOLR_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap rake$

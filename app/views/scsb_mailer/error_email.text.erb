@@ -1,0 +1,9 @@
+==============================================
+SCSB Processing Execption
+
+<%= "Reason for Exception: #{@message[:screenMessage]}" %>
+<% @message.each do |key,value| %>
+  <% unless value.blank? %>
+    <%= "#{key}=#{value}" %>
+  <% end %>
+<% end %>

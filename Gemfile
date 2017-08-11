@@ -10,6 +10,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mysql2'
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'high_voltage', '~> 2.2.1'
+gem 'loops', github: 'kovyrin/loops', branch: 'master'
+gem 'stomp'
 
 group :development, :production do
   gem 'ruby-oci8', '~> 2.2.1'
@@ -37,6 +39,7 @@ group :development, :test do
   gem 'byebug', '~> 3.5.1'
   gem 'pry'
   gem 'rerun', '~> 0.10.0'
+  gem 'webmock'
 end
 
 gem 'locations', github: "pulibrary/locations", tag: '0.5.0'
