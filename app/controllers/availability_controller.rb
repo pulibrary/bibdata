@@ -119,7 +119,8 @@ class AvailabilityController < ApplicationController
   end
 
   def inaccessible_locations
-    %w(sci scith sciref scirefl scilaf scilal scimm)
+    #%w(sci scith sciref scirefl scilaf scilal scimm)
+    []
   end
 
   def inaccessible?(code)
