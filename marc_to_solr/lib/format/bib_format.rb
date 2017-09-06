@@ -16,7 +16,9 @@ class BibFormat
     @code = []
     @code << self.determine_bib_code(type, lev)
     @code = @code.flatten
-    @code << 'XX' if @code.empty?
+    # Removed per @tampakis recommendation to keep items with an unknown format
+    # value out of the format facet
+    # @code << 'XX' if @code.empty?
   end
 
   def determine_bib_code(type, lev)
@@ -39,22 +41,22 @@ class BibFormat
 
   def bibformat_jn(type, lev)
     (type == 'a') and (lev == 's')
-  end  
+  end
 
   def bibformat_cf(type, lev)
-    (type == 'm') 
+    (type == 'm')
   end
 
   def bibformat_au(type, lev)
     %w[i j].include?(type)
-  end  
+  end
 
   def bibformat_vm(type, lev)
-    %w[k o r].include?(type) 
+    %w[k o r].include?(type)
   end
 
   def bibformat_vp(type, lev)
-    (type == 'g') 
+    (type == 'g')
   end
 
   def bibformat_mu(type, lev)

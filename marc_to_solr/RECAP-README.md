@@ -7,7 +7,7 @@
 ## Use Docker to index a single file
 ```sudo docker run -v /my-system-path/sample_marc_directory:/tmp pulibrary/orangeindex:recap bash -c 'rake index SET_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap MARC=/tmp/my_sample.xml; true'```
 ## Use Docker to index a directory of marc xml files
-```sudo docker run -idt -v /home/systems/recap_full/data:/tmp pulibrary/orangeindex:recap bash -c 'rake index_folder SET_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap MARC_PATH=/tmp' >> /tmp/bulk_import.log 2>&1
+```sudo docker run -idt -v /my-systems-path/marc_xml_data:/tmp pulibrary/orangeindex bash -c 'rake index_folder SET_URL=http://lib-solr2.princeton.edu:8983/solr/blacklight-core-recap MARC_PATH=/tmp' >> /tmp/bulk_import.log 2>&1
 ```
 ## View solr config console via SSH Tunnel
 ```ssh -L 9000:localhost:8983 systems@lib-solr2```
