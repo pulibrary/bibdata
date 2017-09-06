@@ -936,6 +936,7 @@ end
 each_record do |record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
   if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?("seniorprincetonuniversity")
+    context.output_hash['format'] ||= []
     context.output_hash['format'] << Traject::TranslationMap.new("format")['ST']
   end
 end
