@@ -545,8 +545,12 @@ to_field 'participant_performer_display', extract_marc('511a')
 #    546 XX 3a
 to_field 'language_display', extract_marc('5463ab')
 
-to_field "language_facet", marc_languages
+to_field 'language_facet', marc_languages
 
+to_field 'publication_place_facet', extract_marc('008[15-17]') do |record, accumulator|
+  places = accumulator.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
+  accumulator.replace(places.compact)
+end
 
 # Script:
 #    546 XX b
