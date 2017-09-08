@@ -858,6 +858,8 @@ to_field 'publisher_no_display', extract_marc('028a')
 to_field 'lccn_display', extract_marc('010a')
 to_field 'coden_display', extract_marc('030a')
 
+to_field 'standard_no_024_index', extract_marc('024a')
+
 to_field 'standard_no_1display' do |record, accumulator|
   standard_no = standard_no_hash(record)
   accumulator[0] = standard_no.to_json.to_s unless standard_no == {}
