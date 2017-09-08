@@ -12,12 +12,14 @@ def decimal_coordinate record
       c['s'] = s_field.value if s_field.code == 'g' and valid_coordinate_format?(s_field.value, record)
     end
     if c.length != 4
-      logger.error "#{record['001']} - missing coordinate"
+      # turning of geo coordinate logging for now
+      # logger.error "#{record['001']} - missing coordinate"
       break
     end
     coverage << "northlimit=#{c['n']}; eastlimit=#{c['e']}; southlimit=#{c['s']}; westlimit=#{c['w']}; units=degrees; projection=EPSG:4326"
   end
-  logger.error "#{record['001']} - multiple 034s" if coverage.length > 1
+  # turning of geo coordinate logging for now
+  # logger.error "#{record['001']} - multiple 034s" if coverage.length > 1
   coverage.first
 end
 
