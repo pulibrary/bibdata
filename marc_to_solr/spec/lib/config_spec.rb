@@ -78,8 +78,15 @@ describe 'From traject_config.rb' do
     end
 
     it 'is a single value for pul records' do
-      puts @title_vern_display['title_vern_display']
       expect(@title_vern_display['title_vern_display'].length).to eq(1)
+    end
+  end
+  describe 'publication_place_facet field' do
+    it 'maps the 3-digit code in the 008[15-17] to a name' do
+      expect(@sample1['publication_place_facet']).to eq ['Michigan']
+    end
+    it 'maps the 2-digit code in the 008[15-17] to a name' do
+      expect(@added_title_246['publication_place_facet']).to eq ['Japan']
     end
   end
   describe 'the pub_citation_display field' do
