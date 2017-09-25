@@ -114,19 +114,6 @@ class AvailabilityController < ApplicationController
     'On-Site'
   end
 
-  def inaccessible_status
-    'Inaccessible'
-  end
-
-  def inaccessible_locations
-    #%w(sci scith sciref scirefl scilaf scilal scimm)
-    []
-  end
-
-  def inaccessible?(code)
-    inaccessible_locations.include?(code)
-  end
-
   # only recap non-aeon items retain the hold request status
   def scsb_status(loc, status)
     if loc.library.code == 'recap' && !loc.aeon_location
@@ -193,11 +180,7 @@ class AvailabilityController < ApplicationController
     unless loc.nil?
       item[:label] = location_full_display(loc)
       unless order_status?(item[:status])
-        item[:status] = if inaccessible?(loc_code)
-          inaccessible_status
-        else
-          location_based_status(loc, item[:status])
-        end
+        item[:status] = location_based_status(loc, item[:status])
       end
     end
   end
