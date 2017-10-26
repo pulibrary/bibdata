@@ -11,13 +11,15 @@ conn = Faraday.new(:url => 'https://bibdata.princeton.edu') do |faraday|
   faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
 end
 
-default_solr_url = 'http://localhost:8983/solr/blacklight-core'
+default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'
 
 desc "Index MARC against SET_URL, default sample fixtures against traject config solr.url"
 task :index do
-  url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
-  fixtures = ENV['MARC'] || 'spec/fixtures/sampleconc.mrx'
-  sh "traject -c lib/traject_config.rb #{fixtures} #{url_arg}"
+  if ENV['MARC']
+    url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
+    fixtures = ENV['MARC']
+    sh "traject -c lib/traject_config.rb #{fixtures} #{url_arg}"
+  end
 end
 
 desc "Index MARC_PATH files against SET_URL (default is production)"
