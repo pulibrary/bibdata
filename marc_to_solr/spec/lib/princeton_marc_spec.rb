@@ -19,6 +19,7 @@ describe 'From princeton_marc.rb' do
       @url1 = 'google.com'
       @url2 = 'yahoo.com'
       @url3 = 'princeton.edu'
+      @url4 = 'handle.net'
       @long_url = 'http://aol.com/234/asdf/24tdsfsdjf'
       @invalid_url = 'mail.usa not link'
       @l856 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url1}, {"y"=>"GOOGLE!"}, {"z"=>"label"} ]}}
@@ -26,7 +27,8 @@ describe 'From princeton_marc.rb' do
       @l856_2 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@long_url}]}}
       @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
       @l856_4 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@invalid_url}]}}
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4] })
+      @l856_5 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url4}, {"x"=>"Open Access"} ]}}
+      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4, @l856_5] })
       @links = @indexer.send(:electronic_access_links, @sample_marc)
     end
 
@@ -35,6 +37,7 @@ describe 'From princeton_marc.rb' do
       expect(@links[@url2]).to eq(["Table of contents"])
       expect(@links[@url3]).to eq(["text 1: text 2"])
       expect(@links[@long_url]).to eq(["aol.com"])
+      expect(@links[@url4]).to eq(["Open Access"])
     end
 
     it 'skips invalid urls' do
