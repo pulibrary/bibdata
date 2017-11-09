@@ -49,18 +49,18 @@ module MARC
 
     def date_from_008
       if self['008']
-        d = self['008'].value[7,4] 
+        d = self['008'].value[7,4]
         d = d.gsub 'u', '0' unless d == 'uuuu'
-        d = d.gsub ' ', '0' unless d == '    '  
+        d = d.gsub ' ', '0' unless d == '    '
         d if d =~ /^[0-9]{4}$/
       end
     end
 
     def end_date_from_008
       if self['008']
-        d = self['008'].value[11,4] 
+        d = self['008'].value[11,4]
         d = d.gsub 'u', '0' unless d == 'uuuu'
-        d = d.gsub ' ', '0' unless d == '    '  
+        d = d.gsub ' ', '0' unless d == '    '
         d if d =~ /^[0-9]{4}$/
       end
     end
@@ -318,7 +318,7 @@ def electronic_access_links record
       holding_id = s_field.value if s_field.code == '0'
       url = s_field.value if s_field.code == 'u'
       z_label = s_field.value if s_field.code == 'z'
-      if s_field.code == 'y' || s_field.code == '3'
+      if s_field.code == 'y' || s_field.code == '3' || s_field.code == 'x'
         if anchor_text
           anchor_text << ": #{s_field.value}"
         else
@@ -631,7 +631,7 @@ def process_recap_notes record
         end
       end
     end
-    if partner_lib == 'scsbnypl' 
+    if partner_lib == 'scsbnypl'
       partner_display_string = 'N'
     elsif partner_lib == 'scsbcul'
       partner_display_string = 'C'
