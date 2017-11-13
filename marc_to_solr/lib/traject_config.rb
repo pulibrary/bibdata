@@ -18,7 +18,6 @@ settings do
   provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
   provide "solr.version", "4.10.0"
   provide "marc_source.type", "xml"
-  provide "solrj_writer.commit_on_close", "true"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
   provide "log.error_file", "/tmp/error.log"

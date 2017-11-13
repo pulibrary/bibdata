@@ -6,10 +6,9 @@ require 'time'
 
 module IndexFunctions
 
-  def self.update_records(event, solr_url)
+  def self.update_records(dump)
     file_paths = []
-    dump = JSON.parse(Faraday.get(event['dump_url']).body)
-    
+
     # updates
     dump['files']['updated_records'].each_with_index do |update, i|
       File.write("/tmp/update_#{i}.gz", Faraday.get(update['dump_file']).body)
@@ -20,15 +19,20 @@ module IndexFunctions
     dump['files']['new_records'].each_with_index do |new_records, i|
       File.write("/tmp/new_#{i}.gz", Faraday.get(new_records['dump_file']).body)
       file_paths << "/tmp/new_#{i}"
-    end  
+    end
 
-    # delete records
-    delete_ids = {"delete" => dump['ids']['delete_ids'].each {|i| i.keep_if{|k,v| k == 'id'} } }
-    File.open("/tmp/delete_ids.json", "w") {|f| f.write(delete_ids.to_json)}
     file_paths
   end
 
-  def self.full_dump(event, solr_url)
+  def self.delete_ids(dump)
+    dump['ids']['delete_ids'].map { |h| h['id'] }
+  end
+
+  def self.rsolr_connection(solr_url)
+    RSolr.connect(url: solr_url, read_timeout: 300, open_timeout: 300)
+  end
+
+  def self.full_dump(event)
     file_paths = []
     dump = JSON.parse(Faraday.get(event['dump_url']).body)
     dump['files']['bib_records'].each_with_index do |bib, i|
