@@ -41,7 +41,7 @@ class JSONLDRecord
   end
 
   def check_role(label)
-    role = (label || '').parameterize('_').singularize
+    role = (label || '').parameterize(separator: '_').singularize
     RELATORS.include?(role) ? role : 'contributor'
   end
 
