@@ -1,10 +1,10 @@
 class PatronController < ApplicationController
-  before_filter :protect
+  before_action :protect
 
   def patron_info
     data = VoyagerHelpers::Liberator.get_patron_info(sanitize(params[:patron_id]))
     if data.blank?
-      render text: {}, status: 404
+      render json: {}, status: 404
     else
       respond_to do |wants|
         wants.json  { render json: MultiJson.dump(data) }
@@ -15,7 +15,7 @@ class PatronController < ApplicationController
   def patron_codes
     data = VoyagerHelpers::Liberator.get_patron_stat_codes(sanitize(params[:patron_id]))
     if data.blank?
-      render text: {}, status: 404
+      render json: {}, status: 404
     else
       respond_to do |wants|
         wants.json  { render json: MultiJson.dump(data) }
@@ -28,7 +28,7 @@ class PatronController < ApplicationController
     unless user_signed_in?
       @ips = load_ip_whitelist
       if not @ips.include? request.remote_ip
-         render text: "You are unauthorized", status: 403
+         render plain: "You are unauthorized", status: 403
       end
     end
   end
