@@ -29,7 +29,7 @@
         <% else %>
           <td class="nowrap"><%= link_to(event.dump.dump_type.label, dump_url(event.dump, format: :json)) %></td>
           <td ><%= event.dump.create_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' %></td>
-          <td ><%= event.dump.update_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' || event.dump.dump_type.constant == 'RECAP_RECORDS'%></td>
+          <td ><%= event.dump.update_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' || event.dump.dump_type.constant == 'PRINCETON_RECAP'%></td>
           <td ><%= event.dump.delete_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' %></td>
         <% end %>
         <td class="nowrap"><%= link_to 'Delete', event, method: :delete, class: "label label-danger", data: { confirm: 'Are you sure? This will Delete all associated files!' } %></td>

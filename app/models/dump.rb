@@ -66,7 +66,7 @@ class Dump < ActiveRecord::Base
     end
 
     def dump_recap_records
-      dump_ids('RECAP_RECORDS')
+      dump_ids('PRINCETON_RECAP')
     end
 
     def diff_since_last
@@ -142,7 +142,7 @@ class Dump < ActiveRecord::Base
     end
 
     def last_recap_dump
-      dump_type = DumpType.where(constant: 'RECAP_RECORDS')
+      dump_type = DumpType.where(constant: 'PRINCETON_RECAP')
       dump = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
     end
 
@@ -151,12 +151,14 @@ class Dump < ActiveRecord::Base
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: type))
         dump.event = event
-        dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type)) unless type == 'RECAP_RECORDS'
+        unless type == 'PRINCETON_RECAP'
+          dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
+        end
         if type == 'BIB_IDS'
           VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
         elsif type == 'HOLDING_IDS'
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
-        elsif type == 'RECAP_RECORDS'
+        elsif type == 'PRINCETON_RECAP'
           if last_recap_dump.nil?
             last_dump_date = Time.now - 1.day
           else
@@ -169,7 +171,7 @@ class Dump < ActiveRecord::Base
         else
           raise 'Unrecognized DumpType'
         end
-        unless type == 'RECAP_RECORDS'
+        unless type == 'PRINCETON_RECAP'
           dump_file.save
           dump_file.zip
           dump.dump_files << dump_file
