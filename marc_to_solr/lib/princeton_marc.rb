@@ -627,7 +627,7 @@ def process_recap_notes record
         elsif s_field.value == 'Private'
           col_group = 'P'
         else
-          col_group = '0'
+          col_group = 'O'
         end
       end
     end
