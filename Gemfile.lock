@@ -149,6 +149,7 @@ GEM
     hashie (3.5.6)
     high_voltage (3.0.0)
     hitimes (1.2.6)
+    honeybadger (3.2.0)
     httpclient (2.8.3)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
@@ -382,6 +383,7 @@ DEPENDENCIES
   friendly_id (~> 5.1.0)
   gyoku (~> 1.0)
   high_voltage (~> 3.0)
+  honeybadger (~> 3.1)
   iso-639
   jbuilder (~> 2.0)
   jquery-rails
