@@ -29,6 +29,7 @@ RSpec.describe PatronController, :type => :controller do
     user = double('user')
     allow(request.env['warden']).to receive(:authenticate!) { user }
     allow(controller).to receive(:current_user) { user }
+    allow(VoyagerHelpers::Liberator).to receive(:get_patron_info).and_return(nil)
     get :patron_info, params: { patron_id: 123456789, format: :json }
     expect(response).to have_http_status(404)
   end

@@ -12,10 +12,7 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'high_voltage', '~> 3.0'
 gem 'loops', github: 'kovyrin/loops', branch: 'master'
 gem 'stomp'
-
-group :development, :production do
-  gem 'ruby-oci8', '~> 2.2.1'
-end
+gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
 
 gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.5.0'
 gem 'responders', '~> 2.3'
