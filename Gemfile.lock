@@ -7,16 +7,14 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/locations.git
-  revision: e135f700f8f604ce9b8e47614e1e5cd68cabc881
-  tag: v1.0.0
+  revision: ef7809404e9452eb74ebe2439343ffe1151c67f4
+  tag: v1.1.0
   specs:
-    locations (1.0.0)
+    locations (1.1.0)
       bootstrap-sass (~> 3.3)
-      carrierwave
       friendly_id (~> 5.1.0)
       jquery-tablesorter (~> 1.21)
       rails (~> 5.1)
-      rmagick
       yaml_db (~> 0.6)
 
 GIT
@@ -110,10 +108,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (1.2.1)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     cliver (0.3.2)
@@ -180,9 +174,6 @@ GEM
     marc-fastxmlwriter (1.0.0)
       marc (~> 1.0)
     method_source (0.9.0)
-    mime-types (3.1)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0521)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.10.3)
@@ -268,7 +259,6 @@ GEM
       redis-namespace (~> 1.3)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
-    rmagick (2.16.0)
     rspec-core (3.7.0)
       rspec-support (~> 3.7.0)
     rspec-expectations (3.7.0)
