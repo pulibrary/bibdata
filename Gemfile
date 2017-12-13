@@ -43,7 +43,7 @@ group :development, :test do
   gem 'rails-controller-testing'
 end
 
-gem 'locations', github: "pulibrary/locations", tag: 'v1.0.0'
+gem 'locations', github: "pulibrary/locations", tag: 'v1.1.0'
 gem 'yaml_db', '~> 0.6.0'
 gem 'friendly_id', '~> 5.1.0'
 
