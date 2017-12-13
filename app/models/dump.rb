@@ -1,5 +1,8 @@
 # encoding: utf-8
 require 'voyager_helpers'
+require 'zip'
+require 'net/sftp'
+require 'date'
 
 class Dump < ActiveRecord::Base
 
@@ -121,7 +124,32 @@ class Dump < ActiveRecord::Base
       dump
     end
 
+    def partner_update
+      dump = nil
+      Event.record do |event|
+        dump = Dump.create(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP'))
+        bib_id_strings = File.readlines("#{bib_path}.ids").map &:strip
+        dump.dump_bib_records(bib_id_strings)
+        bibs.dump_files.first.zip
+        File.delete("#{bib_path}.ids")
+        Event.delete_old_events if event.success == true
+        dump.event = event
+        dump.save
+      end
+      dump
+    end
+
     private
+
+    def get_partner_updates
+      Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+        files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_UPDATE_DIR'], "*#{filemask}*.zip").map { |entry| "#{ENV['RECAP_PARTNER_UPDATE_DIR']}/#{entry.name}" }
+        files.each do |file|
+          filename = File.basename(file)
+          ssh.sftp.download!(file, "/tmp/#{filename}")
+        end
+      end
+    end
 
     def last_two_bib_id_dumps
       last_two_id_dumps('BIB_IDS')
