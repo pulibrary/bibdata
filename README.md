@@ -12,6 +12,10 @@ then fill out the appropriate values.
 
 Oci8 is a little bit of a pain. See `/voyager_helpers/README.md` for details.
 
+### Using macOS/OS X releases and Homebrew
+
+Please see [the RubyDoc for the ruby-oci8 Gem](http://www.rubydoc.info/github/kubo/ruby-oci8/file/docs/install-on-osx.md#Install_Oracle_Instant_Client_Packages) for how best to track versions of the Oracle Client packages in Apple OS environments.
+
 ## Services
 
 For now look at `config/routes.rb` for what's available.
