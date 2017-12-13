@@ -1,5 +1,5 @@
 # This migration comes from locations (originally 20150519154738)
-class CreateLocationsDeliveryLocations < ActiveRecord::Migration
+class CreateLocationsDeliveryLocations < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_delivery_locations do |t|
       t.string :label

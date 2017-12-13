@@ -1,5 +1,5 @@
 # This migration comes from locations (originally 20150521221100)
-class AddLocationsHoldingsDeliveryJoin < ActiveRecord::Migration
+class AddLocationsHoldingsDeliveryJoin < ActiveRecord::Migration[4.2]
   def change
     create_table :locations_holdings_delivery, id: false do |t|
       t.integer :locations_delivery_location_id, index: false

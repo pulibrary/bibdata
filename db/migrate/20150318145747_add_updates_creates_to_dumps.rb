@@ -1,4 +1,4 @@
-class AddUpdatesCreatesToDumps < ActiveRecord::Migration
+class AddUpdatesCreatesToDumps < ActiveRecord::Migration[4.2]
   def change
     change_table :dumps do |t|
       t.text :update_ids
