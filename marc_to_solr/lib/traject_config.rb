@@ -440,6 +440,9 @@ to_field 'contained_in_s', extract_marc('773w')
 #    3500 BBID774W
 to_field 'related_record_s', extract_marc('774w')
 
+# Description for the related record
+to_field 'related_record_info_display', extract_marc('776i')
+
 # Restrictions note:
 #    506 XX 3abcde
 to_field 'restrictions_note_display', extract_marc('5063abcde')

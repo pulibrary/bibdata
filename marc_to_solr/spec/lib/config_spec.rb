@@ -274,6 +274,15 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe '#related_record_info_display' do
+    let(:i776) {{"776" => {"ind1" => "", "ind2" => "", "subfields" => [{"i" => "Test description"}]}}}
+    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [i776], 'leader' => leader })) }
+
+    it 'indexes the 776$i value' do
+      expect(linked_record['related_record_info_display']).to include('Test description')
+    end
+  end
+
   describe 'name_uniform_title_display field' do
     let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name,"}]}}}
     let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName ;"}]}}}
