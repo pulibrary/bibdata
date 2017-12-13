@@ -1,4 +1,4 @@
-class CreateDumpFiles < ActiveRecord::Migration
+class CreateDumpFiles < ActiveRecord::Migration[4.2]
   def change
     create_table :dump_files do |t|
       t.belongs_to :dump, index: true

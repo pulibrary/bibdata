@@ -1,4 +1,4 @@
-class CreateDumps < ActiveRecord::Migration
+class CreateDumps < ActiveRecord::Migration[4.2]
   def change
     create_table :dumps do |t|
       t.belongs_to :event, index: true
