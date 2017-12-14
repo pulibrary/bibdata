@@ -44,6 +44,7 @@ gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v0.3.0'
 gem 'rsolr'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'
+gem 'net-sftp', '~> 2.1', '>= 2.1.2'
 
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
