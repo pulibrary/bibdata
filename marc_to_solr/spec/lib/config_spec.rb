@@ -259,15 +259,6 @@ describe 'From traject_config.rb' do
     end
   end
 
-  describe 'title_p_index' do
-    let(:p730) {{"730"=>{"ind1"=>"", "ind2"=>"", "subfields"=>[{"a"=> "Weinwirtschaft.", "p"=>"Technik."}]}}}
-
-    it 'indexes the 730$p subfield for the title' do
-      indexed = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [p730], 'leader' => leader }))
-      expect(indexed['title_p_index']).to include('Technik')
-    end
-  end
-
   describe 'both a and t must be present in linked title field' do
     let(:t760) {{"760"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
     let(:a762) {{"762"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"NAME"}]}}}
