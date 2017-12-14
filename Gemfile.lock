@@ -7,10 +7,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/locations.git
-  revision: ef7809404e9452eb74ebe2439343ffe1151c67f4
-  tag: v1.1.0
+  revision: 334da3bd6f1c1482c2e0485b31d9dd3e2c8bc551
+  tag: v1.2.0
   specs:
-    locations (1.1.0)
+    locations (1.2.0)
       bootstrap-sass (~> 3.3)
       friendly_id (~> 5.1.0)
       jquery-tablesorter (~> 1.21)
