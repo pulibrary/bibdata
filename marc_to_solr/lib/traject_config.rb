@@ -91,8 +91,6 @@ to_field 'title_display', extract_marc('245abcfghknps', :alternate_script => fal
 
 to_field 'title_a_index', extract_marc('245a', :trim_punctuation => true)
 
-to_field 'title_p_index', extract_marc('730p', :trim_punctuation => true)
-
 to_field 'title_vern_display', extract_marc('245abcfghknps', :alternate_script => :only, :first => true)
 to_field 'cjk_title', extract_marc('245abcfghknps', :alternate_script => :only)
 
