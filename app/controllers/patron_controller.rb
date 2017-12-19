@@ -26,14 +26,10 @@ class PatronController < ApplicationController
   private
   def protect
     unless user_signed_in?
-      @ips = load_ip_whitelist
-      if not @ips.include? request.remote_ip
+      ips = Rails.application.config.ip_whitelist
+      if not ips.include? request.remote_ip
          render plain: "You are unauthorized", status: 403
       end
     end
-  end
-
-  def load_ip_whitelist
-    YAML.load(File.open("./config/ip_whitelist.yml"))
   end
 end
