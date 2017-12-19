@@ -1,5 +1,3 @@
 require 'yaml'
 
-MARC_LIBERATION_CONFIG ||= YAML.load_file("#{File.dirname(__FILE__)}/../marc_liberation.yml")
-
-MARC_LIBERATION_CONFIG['data_dir'] = File.expand_path(MARC_LIBERATION_CONFIG['data_dir'])
+MARC_LIBERATION_CONFIG ||= YAML.load(ERB.new(File.read("#{Rails.root}/config/marc_liberation.yml")).result)

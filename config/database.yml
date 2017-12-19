@@ -4,7 +4,7 @@ development:
   encoding: utf8
   database: marc_liberation_dev
   username: root
-  password: 
+  password:
   pool: 5
   timeout: 5000
   host: localhost
@@ -16,7 +16,7 @@ test:
   database: marc_liberation_test
   pool: 5
   username: root
-  password: 
+  password:
   timeout: 5000
   host: localhost
 
@@ -24,9 +24,9 @@ production:
   adapter: mysql2
   collation: utf8_bin
   encoding: utf8
-  database: marc_liberation_prod
-  pool: 5
-  username: root
-  password: 
+  database: <%= ENV['BIBDATA_DB'] %>
+  pool: 20
+  username: <%= ENV['BIBDATA_DB_USERNAME'] %>
+  password: <%= ENV['BIBDATA_DB_PASSWORD'] %>
   timeout: 5000
-  host: localhost
+  host: <%= ENV['BIBDATA_DB_HOST'] %>
