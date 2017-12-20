@@ -28,5 +28,6 @@ module MarcLiberation
       'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token'
       }
 
+    config.ip_whitelist = config_for(:ip_whitelist)["addresses"].split
   end
 end

@@ -1,0 +1,8 @@
+development:
+  addresses: "127.0.0.1"
+
+test:
+  addresses: "127.0.0.1"
+
+production:
+  addresses: <%= ENV["BIBDATA_IP_WHITELIST"] || "" %>

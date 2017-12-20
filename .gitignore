@@ -1,7 +1,6 @@
 /.bundle
 /log/*.log
 /tmp
-/config/ip_whitelist.yml
 # Ignore everything
 /data/*
 !/data/.keep
@@ -11,3 +10,4 @@ marc_to_solr/translation_maps/holding_library.rb
 /coverage
 /db/data.yml
 .DS_Store
+dump.rdb
