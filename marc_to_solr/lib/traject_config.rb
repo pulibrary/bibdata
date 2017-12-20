@@ -21,6 +21,7 @@ settings do
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
   provide "log.error_file", "/tmp/error.log"
+  provide "allow_duplicate_values",  false
 end
 
 update_locations unless ENV['RAILS_ENV']
@@ -121,7 +122,7 @@ to_field 'title_no_h_index' do |record, accumulator|
       accumulator << str
     end
   end
-  accumulator.uniq!
+  accumulator
 end
 
 to_field 'title_t', extract_marc('245abchknps', :alternate_script => false, :first => true)
@@ -560,7 +561,7 @@ to_field 'script_display', extract_marc('546b')
 
 to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |record, accumulator|
   codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
-  accumulator.replace(codes.flatten.uniq)
+  accumulator.replace(codes.flatten)
 end
 # Contents:
 #    505 0X agrt
@@ -798,7 +799,7 @@ to_field 'other_title_display' do |record, accumulator|
       accumulator << extractor.collect_subfields(field, spec).first
     end
   end
-  accumulator.uniq!
+  accumulator
 end
 
 to_field 'alt_title_246_display', extract_marc('246abfnp')
@@ -818,7 +819,7 @@ to_field 'other_title_1display' do |record, accumulator|
   unless other_title_hash == {}
     accumulator[0] = other_title_hash.to_json.to_s
   end
-  accumulator.uniq!
+  accumulator
 end
 
 # In:
@@ -883,7 +884,7 @@ to_field 'isbn_s', extract_marc('020a') do |record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = StdNum::ISBN.normalize(value)
   end
-  accumulator.uniq!
+  accumulator
 end
 
 to_field 'oclc_s', extract_marc('035a') do |record, accumulator|
@@ -891,7 +892,7 @@ to_field 'oclc_s', extract_marc('035a') do |record, accumulator|
   accumulator.each_with_index do |value, i|
     oclcs << oclc_normalize(value) if value.start_with?('(OCoLC)')
   end
-  accumulator.replace(oclcs.uniq)
+  accumulator.replace(oclcs)
 end
 
 to_field 'standard_no_index', extract_marc('035a') do |record, accumulator|
