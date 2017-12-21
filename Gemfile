@@ -14,7 +14,7 @@ gem 'loops', github: 'kovyrin/loops', branch: 'master'
 gem 'stomp'
 gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
 
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.5.0'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.6.0'
 gem 'responders', '~> 2.3'
 gem 'marc', '~> 1.0'
 gem 'rack-conneg', '~> 0.1.5'
