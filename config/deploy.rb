@@ -24,11 +24,6 @@ set :ssh_options, { forward_agent: true }
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w{
-  config/marc_liberation.yml
-  config/ip_whitelist.yml
-}
-
 # Default value for linked_dirs is []
 set :linked_dirs, %w{
   tmp/pids
