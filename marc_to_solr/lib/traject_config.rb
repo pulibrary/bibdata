@@ -169,8 +169,13 @@ to_field 'edition_display', extract_marc('250ab')
 # Published/Created:
 #    260 XX abcefg
 #    264 XX abc
-to_field 'pub_created_display', extract_marc('260abcefg:264abcefg3')
-to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
+to_field 'pub_created_display' do |record, accumulator|
+  accumulator << set_pub_created(record)
+end
+
+to_field 'pub_created_s' do |record, accumulator|
+  accumulator << set_pub_created(record)
+end
 
 to_field 'pub_citation_display' do |record, accumulator|
   pub_info = set_pub_citation(record)
