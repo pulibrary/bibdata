@@ -343,31 +343,91 @@ def oclc_normalize oclc, opts = {prefix: false}
   end
 end
 
+# Cached mapping of ARKs to Bib IDs
+class CacheMap
+  attr_reader :values
+
+  # Constructor
+  # @param endpoint [String] the URL endpoint for the Solr
+  # @param rows [Integer] the number of rows for each Solr response
+  # @param logger [IO] the logging device
+  def initialize(endpoint:, rows: 1000000, logger: STDOUT)
+    @endpoint = endpoint
+    @rows = rows
+    @logger = logger
+    @values = {}
+
+    seed
+  end
+
+  # Seed the cache
+  # @param page [Integer] the page number at which to start the caching
+  def seed(page: 1)
+    response = query(page: page)
+    return if response.empty?
+
+    pages = response.fetch('pages')
+
+    cache_page(response)
+
+    if pages.fetch('last_page?') == false
+      seed(page: page + 1)
+    end
+
+    self
+  end
+
+  private
+
+    # Cache a page
+    # @param page [Hash] Solr response page
+    def cache_page(page)
+      docs = page.fetch('docs')
+      docs.each do |doc|
+        arks = doc.fetch('identifier_ssim', [])
+        bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
+
+        ark = arks.first
+        bib_id = bib_ids.first
+
+        @values[ark] = bib_id
+      end
+    end
+
+    # Query the service using the endpoint
+    # @param [Integer] the page parameter for the query
+    def query(page: 1)
+      begin
+        http_response = Faraday.get("#{@endpoint}.json&q=&rows=#{@rows}&page=#{page}")
+        values = JSON.parse(http_response.body)
+        values.fetch('response')
+      rescue StandardError => err
+        @logger.error "Failed to seed the ARK cached from the repository: #{err}"
+        {}
+      end
+    end
+end
+
+# Retrieve the stored (or seed) the cache for the ARKs
+# @return [CacheMap]
+def ark_cache
+  @cache ||= CacheMap.new(endpoint: "https://figgy.princeton.edu/catalog", logger: logger)
+  @cache.values
+end
+
 # Resolves ARKs through executing an HTTP GET request
 # @param uri [URI::Generic] the URI for the ARK resource
 # @param bib_id [String] the BibID for the record
 # @return [URI::Generic, String] the URI for the resource
-def resolve_ark(uri: uri, bib_id: bib_id)
-  conn = Faraday.new(:url => uri) do |faraday|
-    faraday.use FaradayMiddleware::FollowRedirects
-    faraday.adapter Faraday.default_adapter
-  end
+def resolve_ark(uri:, bib_id:)
+  m = /(ark\:.+)$/.match(uri.to_s)
+  ark = m[1]
+  bib_id = ark_cache.fetch(ark, nil)
 
-  redirected_uri = begin
-                     response = conn.get
-                     response.env.url
-                   rescue StandardError => err
-                     logger.error err
-                     uri
-                   end
+  return uri if bib_id.nil?
 
-  # Determine whether or not this ARK resolves to an Orangelight resource
   orangelight_host = 'pulsearch.princeton.edu' # @todo Resolve this properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
-
-  # If this is, provide a relative link to the Plum Viewer elements (please @see https://github.com/pulibrary/orangelight/issues/1048)
-  return uri unless redirected_uri.host.include?(orangelight_host)
-
-  redirected_uri
+  redirected_uri = URI::HTTPS.build(host: orangelight_host, path: "/catalog/#{bib_id}")
 end
 
 # returns hash of links ($u) (key),
