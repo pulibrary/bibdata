@@ -343,7 +343,7 @@ def oclc_normalize oclc, opts = {prefix: false}
   end
 end
 
-# Resolves ARK's throught executing an HTTP GET request
+# Resolves ARKs through executing an HTTP GET request
 # @param uri [URI::Generic] the URI for the ARK resource
 # @param bib_id [String] the BibID for the record
 # @return [URI::Generic, String] the URI for the resource
@@ -366,13 +366,6 @@ def resolve_ark(uri: uri, bib_id: bib_id)
 
   # If this is, provide a relative link to the Plum Viewer elements (please @see https://github.com/pulibrary/orangelight/issues/1048)
   return uri unless redirected_uri.host.include?(orangelight_host)
-
-  m = /catalog\/(.+)$/.match(redirected_uri.to_s)
-  redirected_bib_id = m[1]
-
-  if redirected_bib_id == bib_id # If this is the same record, provide a relative URL
-    redirected_uri = '#view'
-  end
 
   redirected_uri
 end
@@ -428,7 +421,6 @@ def electronic_access_links(record)
           bib_id_field = record['001']
           bib_id = bib_id_field.value
           url_key = resolve_ark(uri: url, bib_id: bib_id).to_s
-          anchor_text = 'Digital Content Below' if url_key == '#view'
         end
       end
 

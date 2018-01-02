@@ -57,14 +57,6 @@ describe 'From princeton_marc.rb' do
       it 'retrieves the URL for the current resource' do
         expect(links).to include('https://pulsearch.princeton.edu/catalog/test-bibid' => ['arks.princeton.edu'])
       end
-
-      context 'with a URL for an ARK  which resolves to the same record' do
-        let(:redirection) { 'https://pulsearch.princeton.edu/catalog/4609321' }
-
-        it 'generates a relative URL' do
-          expect(links).to include('#view' => ['Digital Content Below'])
-        end
-      end
     end
 
     context 'with a holding ID in the 856$0 subfield' do
