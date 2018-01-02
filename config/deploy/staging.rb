@@ -6,7 +6,7 @@
 
 set :stage, :production
 set :rails_env, 'production'
-server 'bibdata-dev', user: 'deploy', roles: [:web, :app, :db]
+server 'bibdata-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
 set :branch, ENV['BRANCH'] || 'master'
 
 
