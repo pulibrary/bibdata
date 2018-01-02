@@ -419,6 +419,62 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+  describe '#set_pub_created' do
+    let(:place) { 'Cincinnati, Ohio :' }
+    let(:name) { 'American Drama Institute,' }
+    let(:date) { 'c1991-' }
+    let(:p008) do
+      {
+        '008' => '911219d19912007ohufr-p-------0---a0eng-c'
+      }
+    end
+    let(:p260_a_b_c) do
+      {
+        "260" => {
+          "ind1" => " ",
+          "ind2" => " ",
+          "subfields" => [ {"a" => place }, { "b" => name }, { "c" => date } ]
+        }
+      }
+    end
+
+    let(:sample_marc) { MARC::Record.new_from_hash({ 'fields' => [ p008, p260_a_b_c ] }) }
+    let(:created) { set_pub_created(sample_marc) }
+
+    it 'appends the terminal date to the creation information when possible' do
+      expect(created.length).to eq(1)
+      expect(created.first).to include '2007'
+    end
+
+    context 'with a complete publication date range' do
+      let(:date) { 'c1991-2001' }
+
+      it 'does not append the terminal date' do
+        expect(created.length).to eq(1)
+        expect(created.first).to include '2001'
+        expect(created.first).not_to include '2007'
+      end
+    end
+
+    context 'without a publication date range' do
+      let(:p260_a_b) do
+        {
+          "260" => {
+            "ind1" => " ",
+            "ind2" => " ",
+            "subfields" => [ {"a" => place }, { "b" => name } ]
+          }
+        }
+      end
+      let(:sample_marc) { MARC::Record.new_from_hash({ 'fields' => [ p008, p260_a_b ] }) }
+
+      it 'does not append any date' do
+        expect(created.length).to eq(1)
+        expect(created.first).not_to include '2007'
+      end
+    end
+  end
+
   describe '#process_holdings' do
     before(:all) do
       @oversize_mfhd_id = "3723853"
