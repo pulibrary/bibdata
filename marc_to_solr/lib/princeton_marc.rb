@@ -1,6 +1,8 @@
 # encoding: UTF-8
 require 'library_stdnums'
 require 'uri'
+require 'faraday'
+require 'faraday_middleware'
 
 module MARC
   class Record
@@ -341,20 +343,63 @@ def oclc_normalize oclc, opts = {prefix: false}
   end
 end
 
+# Resolves ARK's throught executing an HTTP GET request
+# @param uri [URI::Generic] the URI for the ARK resource
+# @param bib_id [String] the BibID for the record
+# @return [URI::Generic, String] the URI for the resource
+def resolve_ark(uri: uri, bib_id: bib_id)
+  conn = Faraday.new(:url => uri) do |faraday|
+    faraday.use FaradayMiddleware::FollowRedirects
+    faraday.adapter Faraday.default_adapter
+  end
+
+  redirected_uri = begin
+                     response = conn.get
+                     response.env.url
+                   rescue StandardError => err
+                     logger.error err
+                     uri
+                   end
+
+  # Determine whether or not this ARK resolves to an Orangelight resource
+  orangelight_host = 'pulsearch.princeton.edu' # @todo Resolve this properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
+
+  # If this is, provide a relative link to the Plum Viewer elements (please @see https://github.com/pulibrary/orangelight/issues/1048)
+  return uri unless redirected_uri.host.include?(orangelight_host)
+
+  m = /catalog\/(.+)$/.match(redirected_uri.to_s)
+  redirected_bib_id = m[1]
+
+  if redirected_bib_id == bib_id # If this is the same record, provide a relative URL
+    redirected_uri = '#view'
+  end
+
+  redirected_uri
+end
+
 # returns hash of links ($u) (key),
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
-def electronic_access_links record
+# @param [MARC::Record] the MARC record being parsed
+# @return [Hash] the values used to construct the links
+def electronic_access_links(record)
   links = {}
   holding_856s = {}
+
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
     anchor_text = false
     z_label = false
-    url = false
+    url_key = false
     holding_id = nil
+
     field.subfields.each do |s_field|
       holding_id = s_field.value if s_field.code == '0'
-      url = s_field.value if s_field.code == 'u'
+
+      # e. g. http://arks.princeton.edu/ark:/88435/7d278t10z, https://drive.google.com/open?id=0B3HwfRG3YqiNVVR4bXNvRzNwaGs
+      url_key = s_field.value if s_field.code == 'u'
+
+      # e. g. "Curatorial documentation"
       z_label = s_field.value if s_field.code == 'z'
+
       if s_field.code == 'y' || s_field.code == '3' || s_field.code == 'x'
         if anchor_text
           anchor_text << ": #{s_field.value}"
@@ -363,13 +408,39 @@ def electronic_access_links record
         end
       end
     end
-    if url and (URI.parse(url) rescue nil)
-      anchor_text = URI.parse(url).host unless anchor_text
+
+    logger.error "#{record['001']} - no url in 856 field" unless url_key
+
+    url = begin
+            url = URI.parse(url_key)
+          rescue StandardError => err
+            logger.error "#{record['001']} - invalid URL in 856 field"
+            nil
+          end
+
+    if url
+      if url.host
+        # Default to the host for the URL for the <a> text content
+        anchor_text = url.host unless anchor_text
+
+        # Retrieve the ARK resource
+        if url.host.include?('arks.princeton.edu')
+          bib_id_field = record['001']
+          bib_id = bib_id_field.value
+          url_key = resolve_ark(uri: url, bib_id: bib_id).to_s
+          anchor_text = 'Digital Content Below' if url_key == '#view'
+        end
+      end
+
+      # Build the URL
       url_labels = [anchor_text] # anchor text is first element
       url_labels << z_label if z_label # optional 2nd element if z
-      holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
-    else
-      logger.error "#{record['001']} - no url in 856 field"
+
+      if holding_id.nil?
+        links[url_key] = url_labels
+      else
+        holding_856s[holding_id] = { url_key => url_labels }
+      end
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}

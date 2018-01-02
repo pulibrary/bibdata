@@ -14,34 +14,97 @@ describe 'From princeton_marc.rb' do
     @indexer.load_config_file(c)
   end
 
-  describe 'electronic_access_links' do
-    before(:all) do
-      @url1 = 'google.com'
-      @url2 = 'yahoo.com'
-      @url3 = 'princeton.edu'
-      @url4 = 'handle.net'
-      @long_url = 'http://aol.com/234/asdf/24tdsfsdjf'
-      @invalid_url = 'mail.usa not link'
-      @l856 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url1}, {"y"=>"GOOGLE!"}, {"z"=>"label"} ]}}
-      @l856_1 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url2}, {"3"=>"Table of contents"} ]}}
-      @l856_2 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@long_url}]}}
-      @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
-      @l856_4 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@invalid_url}]}}
-      @l856_5 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url4}, {"x"=>"Open Access"} ]}}
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4, @l856_5] })
-      @links = @indexer.send(:electronic_access_links, @sample_marc)
+  let(:config) { File.expand_path('../../../lib/traject_config.rb', __FILE__) }
+  let(:indexer) { Traject::Indexer.new }
+
+  before do
+    indexer.load_config_file(config)
+  end
+
+  describe '#electronic_access_links' do
+    subject(:links) { electronic_access_links(marc_record) }
+
+    let(:url) { 'https://domain.edu/test-resource' }
+    let(:l001) { { '001' => '4609321' } }
+    let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url } ]} } }
+    let(:marc_record) { MARC::Record.new_from_hash({ 'fields' => [l001, l856] }) }
+    let(:logger) { instance_double(Logger) }
+
+    before do
+      allow(logger).to receive(:error)
     end
 
-    it 'returns a hash with the url as the key and its anchor text/label as value' do
-      expect(@links[@url1]).to eq(["GOOGLE!", "label"])
-      expect(@links[@url2]).to eq(["Table of contents"])
-      expect(@links[@url3]).to eq(["text 1: text 2"])
-      expect(@links[@long_url]).to eq(["aol.com"])
-      expect(@links[@url4]).to eq(["Open Access"])
+    it 'retrieves the URLs and the link labels', eaccess: true do
+      expect(links).to include('https://domain.edu/test-resource' => ['domain.edu'])
     end
 
-    it 'skips invalid urls' do
-      expect(@links).not_to include(@invalid_url)
+    context 'without a URL' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => []} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to be_empty
+      end
+    end
+
+    context 'with a URL for an ARK' do
+      let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
+      let(:redirection) { 'https://pulsearch.princeton.edu/catalog/test-bibid' }
+      before do
+        stub_request(:get, url).to_return(:status => 301, :headers => { 'Location' => redirection })
+        stub_request(:get, redirection)
+      end
+
+      it 'retrieves the URL for the current resource' do
+        expect(links).to include('https://pulsearch.princeton.edu/catalog/test-bibid' => ['arks.princeton.edu'])
+      end
+
+      context 'with a URL for an ARK  which resolves to the same record' do
+        let(:redirection) { 'https://pulsearch.princeton.edu/catalog/4609321' }
+
+        it 'generates a relative URL' do
+          expect(links).to include('#view' => ['Digital Content Below'])
+        end
+      end
+    end
+
+    context 'with a holding ID in the 856$0 subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "0" => "test-holding-id" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('holding_record_856s' => {'test-holding-id' => { 'https://domain.edu/test-resource' => ['domain.edu'] } })
+      end
+    end
+
+    context 'with a label' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "z" => "test label" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['domain.edu', 'test label'])
+      end
+    end
+
+    context 'with link text in the 856$y subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "y" => "test text1" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text1'])
+      end
+    end
+
+    context 'with link text in the 856$3 subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "3" => "test text2" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text2'])
+      end
+    end
+
+    context 'with link text in the 856$x subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "x" => "test text3" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text3'])
+      end
     end
   end
 
