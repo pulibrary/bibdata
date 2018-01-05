@@ -37,6 +37,7 @@ group :development, :test do
   gem 'rerun', '~> 0.10.0'
   gem 'webmock'
   gem 'rails-controller-testing'
+  gem 'coveralls'
 end
 
 gem 'locations', github: "pulibrary/locations", tag: 'v1.2.0'
