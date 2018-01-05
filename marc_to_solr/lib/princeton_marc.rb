@@ -344,6 +344,7 @@ def oclc_normalize oclc, opts = {prefix: false}
 end
 
 # Cached mapping of ARKs to Bib IDs
+# Retrieves and stores paginated Solr responses containing the ARK's and BibID's
 class CacheMap
   attr_reader :values
 
@@ -357,12 +358,12 @@ class CacheMap
     @logger = logger
     @values = {}
 
-    seed
+    seed!
   end
 
   # Seed the cache
   # @param page [Integer] the page number at which to start the caching
-  def seed(page: 1)
+  def seed!(page: 1)
     response = query(page: page)
     return if response.empty?
 
@@ -371,10 +372,8 @@ class CacheMap
     cache_page(response)
 
     if pages.fetch('last_page?') == false
-      seed(page: page + 1)
+      seed!(page: page + 1)
     end
-
-    self
   end
 
   private
@@ -408,26 +407,119 @@ class CacheMap
     end
 end
 
-# Retrieve the stored (or seed) the cache for the ARKs
+# Composite of CacheMaps
+# Provides the ability to build a cache from multiple Solr endpoints
+class CompositeCacheMap
+  # Constructor
+  # @param cache_maps [Array<CacheMap>] the CacheMap instances for each endpoint
+  def initialize(cache_maps:)
+    @cache_maps = cache_maps
+  end
+
+  # Seed the cache
+  # @param page [Integer] the page number at which to start the caching
+  def seed!(page: 1)
+    @cache_maps.each { |cache_map| cache_map.seed! }
+  end
+
+  # Retrieve the cached values
+  # @return [Hash] the values cached from the Solr response
+  def values
+    @cache_maps.map { |cache_map| cache_map.values }.reduce(&:merge)
+  end
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in Figgy
 # @return [CacheMap]
+def figgy_ark_cache
+  CacheMap.new(endpoint: "https://figgy.princeton.edu/catalog", logger: logger)
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in Plum
+# @return [CacheMap]
+def plum_ark_cache
+  CacheMap.new(endpoint: "https://plum.princeton.edu/catalog", logger: logger)
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in all repositories
+# @return [CompositeCacheMap]
 def ark_cache
-  @cache ||= CacheMap.new(endpoint: "https://figgy.princeton.edu/catalog", logger: logger)
+  @cache ||= CompositeCacheMap.new(cache_maps: [figgy_ark_cache, plum_ark_cache])
   @cache.values
 end
 
-# Resolves ARKs through executing an HTTP GET request
-# @param uri [URI::Generic] the URI for the ARK resource
-# @param bib_id [String] the BibID for the record
-# @return [URI::Generic, String] the URI for the resource
-def resolve_ark(uri:, bib_id:)
-  m = /(ark\:.+)$/.match(uri.to_s)
-  ark = m[1]
-  bib_id = ark_cache.fetch(ark, nil)
+# Class modeling the ARK standard for URL's
+# @see https://tools.ietf.org/html/draft-kunze-ark-18
+class URI::ARK < URI::Generic
+  attr_reader :nmah, :naan, :name
 
-  return uri if bib_id.nil?
+  # Constructs an ARK from a URL
+  # @param url [URI::Generic] the URL for the ARK resource
+  # @return [URI::ARK] the ARK
+  def self.parse(url: url)
+    build(
+      scheme: url.scheme,
+      userinfo: url.userinfo,
+      host: url.host,
+      port: url.port,
+      registry: url.registry,
+      path: url.path,
+      opaque: url.opaque,
+      query: url.query,
+      fragment: url.fragment
+    )
+  end
 
-  orangelight_host = 'pulsearch.princeton.edu' # @todo Resolve this properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
-  redirected_uri = URI::HTTPS.build(host: orangelight_host, path: "/catalog/#{bib_id}")
+  # Validates whether or not a URL is an ARK URL
+  # @param uri [URI::Generic] a URL
+  # @return [TrueClass, FalseClass]
+  def self.ark?(url: url)
+    m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(url.to_s)
+    !!m
+  end
+
+  # Constructor
+  def initialize(*arg)
+    super(*arg)
+    extract_components!
+  end
+
+  private
+    # Extract the components from the ARK URL into member variables
+    def extract_components!
+      raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.ark?(url: self)
+      m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(self.to_s)
+
+      @nmah = m[1]
+      @naan = m[2]
+      @name = m[3]
+    end
+end
+
+# Class for building instances of URI::HTTPS for Orangelight URL's
+class OrangelightUrlBuilder
+  # Constructor
+  # @param ark_cache [CompositeCacheMap] composite of caches for mapping ARK's to BibID's
+  # @param service_host [String] the host name for the Orangelight instance
+  # @todo Resolve the service_host default parameter properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
+  def initialize(ark_cache:, service_host: 'pulsearch.princeton.edu')
+    @ark_cache = ark_cache
+    @service_host = service_host
+  end
+
+  # Generates an Orangelight URL using an ARK
+  # @param ark [URI::ARK] the archival resource key
+  # @return URI::HTTPS the URL
+  def build(url:)
+    if url.is_a? URI::ARK
+      cached_bib_id = @ark_cache.fetch("ark:/#{url.naan}/#{url.name}", nil)
+    else
+      cached_bib_id = @ark_cache.fetch(url.to_s, nil)
+    end
+    return if cached_bib_id.nil?
+
+    URI::HTTPS.build(host: @service_host, path: "/catalog/#{cached_bib_id}")
+  end
 end
 
 # returns hash of links ($u) (key),
@@ -472,16 +564,21 @@ def electronic_access_links(record)
           end
 
     if url
+      # Default to the host for the URL for the <a> text content
       if url.host
         # Default to the host for the URL for the <a> text content
         anchor_text = url.host unless anchor_text
 
         # Retrieve the ARK resource
-        if url.host.include?('arks.princeton.edu')
-          bib_id_field = record['001']
-          bib_id = bib_id_field.value
-          url_key = resolve_ark(uri: url, bib_id: bib_id).to_s
-        end
+        bib_id_field = record['001']
+        bib_id = bib_id_field.value
+
+        # Extract the ARK from the URL (if the URL is indeed an ARK)
+        url = URI::ARK.parse(url: url) if URI::ARK.ark?(url: url)
+        # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
+        builder = OrangelightUrlBuilder.new(ark_cache: ark_cache)
+        orangelight_url = builder.build(url: url)
+        url_key = orangelight_url.to_s unless orangelight_url.nil?
       end
 
       # Build the URL

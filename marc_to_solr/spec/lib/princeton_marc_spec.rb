@@ -17,8 +17,168 @@ describe 'From princeton_marc.rb' do
   let(:config) { File.expand_path('../../../lib/traject_config.rb', __FILE__) }
   let(:indexer) { Traject::Indexer.new }
 
+  let(:ark) { "ark:/88435/xp68kg247" }
+  let(:bib_id) { "4715189" }
+  let(:docs) do
+    [
+      {
+        id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
+        identifier_tsim: [
+          ark
+        ],
+        identifier_ssim: [
+          ark
+        ],
+        identifier_tesim: [
+          ark
+        ],
+        source_metadata_identifier_tsim: [
+          bib_id
+        ],
+        source_metadata_identifier_ssim: [
+          bib_id
+        ],
+        source_metadata_identifier_tesim: [
+          bib_id
+        ]
+      }
+    ]
+  end
+  let(:facets) do
+    [
+      {
+        "name":"member_of_collection_titles_ssim",
+        "items":[
+          {
+            "value":"Bibliotheca Cicognara",
+            "hits":2207,
+            "label":"Bibliotheca Cicognara"
+          },
+          {
+            "value":"Princeton Digital Library of Islamic Manuscripts",
+            "hits":1471,
+            "label":"Princeton Digital Library of Islamic Manuscripts"
+          },
+          {
+            "value":"Treasures of the Cotsen Collection",
+            "hits":390,
+            "label":"Treasures of the Cotsen Collection"
+          },
+          {
+            "value":"Yemeni Manuscript Digitization Initiative",
+            "hits":250,
+            "label":"Yemeni Manuscript Digitization Initiative"
+          },
+          {
+            "value":"Princeton Slavic Collections",
+            "hits":172,
+            "label":"Princeton Slavic Collections"
+          },
+          {
+            "value":"Soviet Era Books for Children and Youth",
+            "hits":170,
+            "label":"Soviet Era Books for Children and Youth"
+          }
+        ],
+        "label":"Collections"
+      },
+      {
+        "name":"human_readable_type_ssim",
+        "items":[
+          {
+            "value":"Ephemera Folder",
+            "hits":11826,
+            "label":"Ephemera Folder"
+          },
+          {
+            "value":"Scanned Resource",
+            "hits":4161,
+            "label":"Scanned Resource"
+          },
+          {
+            "value":"Multi Volume Work",
+            "hits":292,
+            "label":"Multi Volume Work"
+          }
+        ],
+        "label":"Type of Work"
+      },
+      {
+        "name":"ephemera_project_ssim",
+        "items":[
+          {
+            "value":"Latin American Ephemera",
+            "hits":11826,
+            "label":"Latin American Ephemera"
+          }
+        ],
+        "label":"Ephemera Project"
+      },
+      {
+        "name":"display_subject_ssim",
+        "items":[
+          {
+            "value":"Politics and government",
+            "hits":678,
+            "label":"Politics and government"
+            },
+            {
+              "value":"Manuscripts, Arabic—New Jersey—Princeton",
+              "hits":631,
+              "label":"Manuscripts, Arabic—New Jersey—Princeton"
+            },
+            {
+              "value":"Human and civil rights",
+              "hits":294,
+              "label":"Human and civil rights"
+            },
+            {
+              "value":"Arts and culture",
+              "hits":259,
+              "label":"Arts and culture"
+            },
+            {
+              "value":"Socioeconomic conditions and development",
+              "hits":230,
+              "label":"Socioeconomic conditions and development"
+            },
+            {
+              "value":"Islamic law—Early works to 1800",
+              "hits":228,
+              "label":"Islamic law—Early works to 1800"
+            }
+          ],
+          "label":"Subject"
+        }
+    ]
+  end
+  let(:pages) do
+    {
+      "current_page":1,
+      "next_page":2,
+      "prev_page":nil,
+      "total_pages":1628,
+      "limit_value":10,
+      "offset_value":0,
+      "total_count":16279,
+      "first_page?":true,
+      "last_page?":true
+    }
+  end
+  let(:results) do
+    {
+      "response": {
+        "docs": docs,
+        "facets": facets,
+        "pages": pages
+      }
+    }
+  end
+
   before do
     indexer.load_config_file(config)
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json&q=&rows=1000000&page=1").to_return(status: 200, body: JSON.generate(results))
+    stub_request(:get, "https://plum.princeton.edu/catalog.json&q=&rows=1000000&page=1").to_return(status: 200, body: JSON.generate(results))
   end
 
   describe '#electronic_access_links' do
@@ -47,169 +207,9 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-      let(:ark) { "ark:/88435/xp68kg247" }
-      let(:bib_id) { "4715189" }
 
-      let(:docs) do
-        [
-          {
-            id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
-            identifier_tsim: [
-              ark
-            ],
-            identifier_ssim: [
-              ark
-            ],
-            identifier_tesim: [
-              ark
-            ],
-            source_metadata_identifier_tsim: [
-              bib_id
-            ],
-            source_metadata_identifier_ssim: [
-              bib_id
-            ],
-            source_metadata_identifier_tesim: [
-              bib_id
-            ]
-          }
-        ]
-      end
-      let(:facets) do
-        [
-          {
-            "name":"member_of_collection_titles_ssim",
-            "items":[
-              {
-                "value":"Bibliotheca Cicognara",
-                "hits":2207,
-                "label":"Bibliotheca Cicognara"
-              },
-              {
-                "value":"Princeton Digital Library of Islamic Manuscripts",
-                "hits":1471,
-                "label":"Princeton Digital Library of Islamic Manuscripts"
-              },
-              {
-                "value":"Treasures of the Cotsen Collection",
-                "hits":390,
-                "label":"Treasures of the Cotsen Collection"
-              },
-              {
-                "value":"Yemeni Manuscript Digitization Initiative",
-                "hits":250,
-                "label":"Yemeni Manuscript Digitization Initiative"
-              },
-              {
-                "value":"Princeton Slavic Collections",
-                "hits":172,
-                "label":"Princeton Slavic Collections"
-              },
-              {
-                "value":"Soviet Era Books for Children and Youth",
-                "hits":170,
-                "label":"Soviet Era Books for Children and Youth"
-              }
-            ],
-            "label":"Collections"
-          },
-          {
-            "name":"human_readable_type_ssim",
-            "items":[
-              {
-                "value":"Ephemera Folder",
-                "hits":11826,
-                "label":"Ephemera Folder"
-              },
-              {
-                "value":"Scanned Resource",
-                "hits":4161,
-                "label":"Scanned Resource"
-              },
-              {
-                "value":"Multi Volume Work",
-                "hits":292,
-                "label":"Multi Volume Work"
-              }
-            ],
-            "label":"Type of Work"
-          },
-          {
-            "name":"ephemera_project_ssim",
-            "items":[
-              {
-                "value":"Latin American Ephemera",
-                "hits":11826,
-                "label":"Latin American Ephemera"
-              }
-            ],
-            "label":"Ephemera Project"
-          },
-          {
-            "name":"display_subject_ssim",
-            "items":[
-              {
-                "value":"Politics and government",
-                "hits":678,
-                "label":"Politics and government"
-                },
-                {
-                  "value":"Manuscripts, Arabic—New Jersey—Princeton",
-                  "hits":631,
-                  "label":"Manuscripts, Arabic—New Jersey—Princeton"
-                },
-                {
-                  "value":"Human and civil rights",
-                  "hits":294,
-                  "label":"Human and civil rights"
-                },
-                {
-                  "value":"Arts and culture",
-                  "hits":259,
-                  "label":"Arts and culture"
-                },
-                {
-                  "value":"Socioeconomic conditions and development",
-                  "hits":230,
-                  "label":"Socioeconomic conditions and development"
-                },
-                {
-                  "value":"Islamic law—Early works to 1800",
-                  "hits":228,
-                  "label":"Islamic law—Early works to 1800"
-                }
-              ],
-              "label":"Subject"
-            }
-        ]
-      end
-      let(:pages) do
-        {
-          "current_page":1,
-          "next_page":2,
-          "prev_page":nil,
-          "total_pages":1628,
-          "limit_value":10,
-          "offset_value":0,
-          "total_count":16279,
-          "first_page?":true,
-          "last_page?":true
-        }
-      end
-
-      let(:results) do
-        {
-          "response": {
-            "docs": docs,
-            "facets": facets,
-            "pages": pages
-          }
-        }
-      end
       let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
-      before do
-        stub_request(:get, "https://figgy.princeton.edu/catalog.json&q=&rows=1000000&page=1").to_return(status: 200, body: JSON.generate(results))
-      end
+
 
       it 'retrieves the URL for the current resource', eaccess: true do
         expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])

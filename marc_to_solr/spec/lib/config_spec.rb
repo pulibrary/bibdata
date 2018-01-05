@@ -13,6 +13,7 @@ describe 'From traject_config.rb' do
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json&q=&rows=1000000&page=1")
+    stub_request(:get, "https://plum.princeton.edu/catalog.json&q=&rows=1000000&page=1")
 
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
     @indexer = Traject::Indexer.new
