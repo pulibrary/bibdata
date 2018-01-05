@@ -6,7 +6,6 @@ require 'library_stdnums'
 
 $LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
 
-
 describe 'From princeton_marc.rb' do
   before(:all) do
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
@@ -157,10 +156,10 @@ describe 'From princeton_marc.rb' do
       "current_page":1,
       "next_page":2,
       "prev_page":nil,
-      "total_pages":1628,
+      "total_pages":1,
       "limit_value":10,
       "offset_value":0,
-      "total_count":16279,
+      "total_count":1,
       "first_page?":true,
       "last_page?":true
     }
@@ -177,8 +176,8 @@ describe 'From princeton_marc.rb' do
 
   before do
     indexer.load_config_file(config)
-    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
   end
 
   describe '#electronic_access_links' do
@@ -210,7 +209,64 @@ describe 'From princeton_marc.rb' do
       let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
 
       it 'retrieves the URL for the current resource' do
+        stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
         expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+      end
+
+      context 'within the Plum repository' do
+        before do
+          stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+        end
+
+        it 'retrieves the URL for the current resource using Plum' do
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+        end
+      end
+
+      context 'within a repository with multiple pages of ARK and BibID mappings' do
+        let(:first_pages) do
+          {
+            "current_page":1,
+            "next_page":2,
+            "prev_page":nil,
+            "total_pages":2,
+            "limit_value":10,
+            "offset_value":0,
+            "total_count":2,
+            "first_page?":true,
+            "last_page?":false
+          }
+        end
+        let(:first_results) do
+          {
+            "response": {
+              "docs": [],
+              "facets": [],
+              "pages": first_pages
+            }
+          }
+        end
+        let(:pages) do
+          {
+            "current_page":2,
+            "next_page":nil,
+            "prev_page":1,
+            "total_pages":2,
+            "limit_value":10,
+            "offset_value":0,
+            "total_count":2,
+            "first_page?":false,
+            "last_page?":true
+          }
+        end
+        before do
+          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(first_results))
+          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=2&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+        end
+
+        it 'retrieves the URL for the current resource' do
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+        end
       end
     end
 

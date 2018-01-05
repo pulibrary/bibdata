@@ -399,8 +399,7 @@ class CacheMap
     # @param [Integer] the page parameter for the query
     def query(page: 1)
       begin
-        url = URI::HTTPS.build(host: @host, path: @path, query: 'q=&rows=1000000&page=1&f[identifier_tesim][]=ark')
-        #http_response = Faraday.get("#{@endpoint}.json&q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
+        url = URI::HTTPS.build(host: @host, path: @path, query: "q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
         http_response = Faraday.get(url)
 
         values = JSON.parse(http_response.body)
