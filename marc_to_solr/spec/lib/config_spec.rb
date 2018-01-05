@@ -12,6 +12,9 @@ describe 'From traject_config.rb' do
   end
 
   before(:all) do
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
     @indexer = Traject::Indexer.new
     @indexer.load_config_file(c)

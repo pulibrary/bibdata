@@ -6,7 +6,6 @@ require 'library_stdnums'
 
 $LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
 
-
 describe 'From princeton_marc.rb' do
   before(:all) do
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
@@ -14,34 +13,301 @@ describe 'From princeton_marc.rb' do
     @indexer.load_config_file(c)
   end
 
-  describe 'electronic_access_links' do
-    before(:all) do
-      @url1 = 'google.com'
-      @url2 = 'yahoo.com'
-      @url3 = 'princeton.edu'
-      @url4 = 'handle.net'
-      @long_url = 'http://aol.com/234/asdf/24tdsfsdjf'
-      @invalid_url = 'mail.usa not link'
-      @l856 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url1}, {"y"=>"GOOGLE!"}, {"z"=>"label"} ]}}
-      @l856_1 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url2}, {"3"=>"Table of contents"} ]}}
-      @l856_2 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@long_url}]}}
-      @l856_3 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url3}, {"y"=>"text 1"}, {"3"=>"text 2"}]}}
-      @l856_4 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@invalid_url}]}}
-      @l856_5 = {"856"=>{"ind1"=>" ", "ind2"=>" ", "subfields"=>[{"u"=>@url4}, {"x"=>"Open Access"} ]}}
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@l856, @l856_1, @l856_2, @l856_3, @l856_4, @l856_5] })
-      @links = @indexer.send(:electronic_access_links, @sample_marc)
+  let(:config) { File.expand_path('../../../lib/traject_config.rb', __FILE__) }
+  let(:indexer) { Traject::Indexer.new }
+
+  let(:ark) { "ark:/88435/xp68kg247" }
+  let(:bib_id) { "4715189" }
+  let(:docs) do
+    [
+      {
+        id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
+        identifier_tsim: [
+          ark
+        ],
+        identifier_ssim: [
+          ark
+        ],
+        identifier_tesim: [
+          ark
+        ],
+        source_metadata_identifier_tsim: [
+          bib_id
+        ],
+        source_metadata_identifier_ssim: [
+          bib_id
+        ],
+        source_metadata_identifier_tesim: [
+          bib_id
+        ]
+      }
+    ]
+  end
+  let(:facets) do
+    [
+      {
+        "name":"member_of_collection_titles_ssim",
+        "items":[
+          {
+            "value":"Bibliotheca Cicognara",
+            "hits":2207,
+            "label":"Bibliotheca Cicognara"
+          },
+          {
+            "value":"Princeton Digital Library of Islamic Manuscripts",
+            "hits":1471,
+            "label":"Princeton Digital Library of Islamic Manuscripts"
+          },
+          {
+            "value":"Treasures of the Cotsen Collection",
+            "hits":390,
+            "label":"Treasures of the Cotsen Collection"
+          },
+          {
+            "value":"Yemeni Manuscript Digitization Initiative",
+            "hits":250,
+            "label":"Yemeni Manuscript Digitization Initiative"
+          },
+          {
+            "value":"Princeton Slavic Collections",
+            "hits":172,
+            "label":"Princeton Slavic Collections"
+          },
+          {
+            "value":"Soviet Era Books for Children and Youth",
+            "hits":170,
+            "label":"Soviet Era Books for Children and Youth"
+          }
+        ],
+        "label":"Collections"
+      },
+      {
+        "name":"human_readable_type_ssim",
+        "items":[
+          {
+            "value":"Ephemera Folder",
+            "hits":11826,
+            "label":"Ephemera Folder"
+          },
+          {
+            "value":"Scanned Resource",
+            "hits":4161,
+            "label":"Scanned Resource"
+          },
+          {
+            "value":"Multi Volume Work",
+            "hits":292,
+            "label":"Multi Volume Work"
+          }
+        ],
+        "label":"Type of Work"
+      },
+      {
+        "name":"ephemera_project_ssim",
+        "items":[
+          {
+            "value":"Latin American Ephemera",
+            "hits":11826,
+            "label":"Latin American Ephemera"
+          }
+        ],
+        "label":"Ephemera Project"
+      },
+      {
+        "name":"display_subject_ssim",
+        "items":[
+          {
+            "value":"Politics and government",
+            "hits":678,
+            "label":"Politics and government"
+            },
+            {
+              "value":"Manuscripts, Arabic—New Jersey—Princeton",
+              "hits":631,
+              "label":"Manuscripts, Arabic—New Jersey—Princeton"
+            },
+            {
+              "value":"Human and civil rights",
+              "hits":294,
+              "label":"Human and civil rights"
+            },
+            {
+              "value":"Arts and culture",
+              "hits":259,
+              "label":"Arts and culture"
+            },
+            {
+              "value":"Socioeconomic conditions and development",
+              "hits":230,
+              "label":"Socioeconomic conditions and development"
+            },
+            {
+              "value":"Islamic law—Early works to 1800",
+              "hits":228,
+              "label":"Islamic law—Early works to 1800"
+            }
+          ],
+          "label":"Subject"
+        }
+    ]
+  end
+  let(:pages) do
+    {
+      "current_page":1,
+      "next_page":2,
+      "prev_page":nil,
+      "total_pages":1,
+      "limit_value":10,
+      "offset_value":0,
+      "total_count":1,
+      "first_page?":true,
+      "last_page?":true
+    }
+  end
+  let(:results) do
+    {
+      "response": {
+        "docs": docs,
+        "facets": facets,
+        "pages": pages
+      }
+    }
+  end
+
+  before do
+    indexer.load_config_file(config)
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+  end
+
+  describe '#electronic_access_links' do
+    subject(:links) { electronic_access_links(marc_record) }
+
+    let(:url) { 'https://domain.edu/test-resource' }
+    let(:l001) { { '001' => '4609321' } }
+    let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url } ]} } }
+    let(:marc_record) { MARC::Record.new_from_hash({ 'fields' => [l001, l856] }) }
+    let(:logger) { instance_double(Logger) }
+
+    before do
+      allow(logger).to receive(:error)
     end
 
-    it 'returns a hash with the url as the key and its anchor text/label as value' do
-      expect(@links[@url1]).to eq(["GOOGLE!", "label"])
-      expect(@links[@url2]).to eq(["Table of contents"])
-      expect(@links[@url3]).to eq(["text 1: text 2"])
-      expect(@links[@long_url]).to eq(["aol.com"])
-      expect(@links[@url4]).to eq(["Open Access"])
+    it 'retrieves the URLs and the link labels' do
+      expect(links).to include('https://domain.edu/test-resource' => ['domain.edu'])
     end
 
-    it 'skips invalid urls' do
-      expect(@links).not_to include(@invalid_url)
+    context 'without a URL' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => []} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to be_empty
+      end
+    end
+
+    context 'with a URL for an ARK' do
+      let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
+
+      it 'retrieves the URL for the current resource' do
+        stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+        expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+      end
+
+      context 'within the Plum repository' do
+        before do
+          stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+        end
+
+        it 'retrieves the URL for the current resource using Plum' do
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+        end
+      end
+
+      context 'within a repository with multiple pages of ARK and BibID mappings' do
+        let(:first_pages) do
+          {
+            "current_page":1,
+            "next_page":2,
+            "prev_page":nil,
+            "total_pages":2,
+            "limit_value":10,
+            "offset_value":0,
+            "total_count":2,
+            "first_page?":true,
+            "last_page?":false
+          }
+        end
+        let(:first_results) do
+          {
+            "response": {
+              "docs": [],
+              "facets": [],
+              "pages": first_pages
+            }
+          }
+        end
+        let(:pages) do
+          {
+            "current_page":2,
+            "next_page":nil,
+            "prev_page":1,
+            "total_pages":2,
+            "limit_value":10,
+            "offset_value":0,
+            "total_count":2,
+            "first_page?":false,
+            "last_page?":true
+          }
+        end
+        before do
+          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(first_results))
+          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=2&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+        end
+
+        it 'retrieves the URL for the current resource' do
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+        end
+      end
+    end
+
+    context 'with a holding ID in the 856$0 subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "0" => "test-holding-id" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('holding_record_856s' => {'test-holding-id' => { 'https://domain.edu/test-resource' => ['domain.edu'] } })
+      end
+    end
+
+    context 'with a label' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "z" => "test label" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['domain.edu', 'test label'])
+      end
+    end
+
+    context 'with link text in the 856$y subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "y" => "test text1" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text1'])
+      end
+    end
+
+    context 'with link text in the 856$3 subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "3" => "test text2" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text2'])
+      end
+    end
+
+    context 'with link text in the 856$x subfield' do
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "x" => "test text3" } ]} } }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include('https://domain.edu/test-resource' => ['test text3'])
+      end
     end
   end
 

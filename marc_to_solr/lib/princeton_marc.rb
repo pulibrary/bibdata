@@ -1,6 +1,8 @@
 # encoding: UTF-8
 require 'library_stdnums'
 require 'uri'
+require 'faraday'
+require 'faraday_middleware'
 
 module MARC
   class Record
@@ -341,20 +343,212 @@ def oclc_normalize oclc, opts = {prefix: false}
   end
 end
 
+# Cached mapping of ARKs to Bib IDs
+# Retrieves and stores paginated Solr responses containing the ARK's and BibID's
+class CacheMap
+  attr_reader :values
+
+  # Constructor
+  # @param host [String] the host for the Blacklight endpoint
+  # @param path [String] the path for the Blacklight endpoint
+  # @param rows [Integer] the number of rows for each Solr response
+  # @param logger [IO] the logging device
+  def initialize(host:, path: '/catalog.json', rows: 1000000, logger: STDOUT)
+    @host = host
+    @path = path
+    @rows = rows
+    @logger = logger
+    @values = {}
+
+    seed!
+  end
+
+  # Seed the cache
+  # @param page [Integer] the page number at which to start the caching
+  def seed!(page: 1)
+    response = query(page: page)
+    return if response.empty?
+
+    pages = response.fetch('pages')
+
+    cache_page(response)
+
+    if pages.fetch('last_page?') == false
+      seed!(page: page + 1)
+    end
+  end
+
+  private
+
+    # Cache a page
+    # @param page [Hash] Solr response page
+    def cache_page(page)
+      docs = page.fetch('docs')
+      docs.each do |doc|
+        arks = doc.fetch('identifier_ssim', [])
+        bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
+
+        ark = arks.first
+        bib_id = bib_ids.first
+
+        @values[ark] = bib_id
+      end
+    end
+
+    # Query the service using the endpoint
+    # @param [Integer] the page parameter for the query
+    def query(page: 1)
+      begin
+        url = URI::HTTPS.build(host: @host, path: @path, query: "q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
+        http_response = Faraday.get(url)
+
+        values = JSON.parse(http_response.body)
+        values.fetch('response')
+      rescue StandardError => err
+        @logger.error "Failed to seed the ARK cached from the repository: #{err}"
+        {}
+      end
+    end
+end
+
+# Composite of CacheMaps
+# Provides the ability to build a cache from multiple Solr endpoints
+class CompositeCacheMap
+  # Constructor
+  # @param cache_maps [Array<CacheMap>] the CacheMap instances for each endpoint
+  def initialize(cache_maps:)
+    @cache_maps = cache_maps
+  end
+
+  # Seed the cache
+  # @param page [Integer] the page number at which to start the caching
+  def seed!(page: 1)
+    @cache_maps.each { |cache_map| cache_map.seed! }
+  end
+
+  # Retrieve the cached values
+  # @return [Hash] the values cached from the Solr response
+  def values
+    @cache_maps.map { |cache_map| cache_map.values }.reduce(&:merge)
+  end
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in Figgy
+# @return [CacheMap]
+def figgy_ark_cache
+  CacheMap.new(host: "figgy.princeton.edu", logger: logger)
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in Plum
+# @return [CacheMap]
+def plum_ark_cache
+  CacheMap.new(host: "plum.princeton.edu", logger: logger)
+end
+
+# Retrieve the stored (or seed) the cache for the ARK's in all repositories
+# @return [CompositeCacheMap]
+def ark_cache
+  @cache ||= CompositeCacheMap.new(cache_maps: [figgy_ark_cache, plum_ark_cache])
+  @cache.values
+end
+
+# Class modeling the ARK standard for URL's
+# @see https://tools.ietf.org/html/draft-kunze-ark-18
+class URI::ARK < URI::Generic
+  attr_reader :nmah, :naan, :name
+
+  # Constructs an ARK from a URL
+  # @param url [URI::Generic] the URL for the ARK resource
+  # @return [URI::ARK] the ARK
+  def self.parse(url: url)
+    build(
+      scheme: url.scheme,
+      userinfo: url.userinfo,
+      host: url.host,
+      port: url.port,
+      registry: url.registry,
+      path: url.path,
+      opaque: url.opaque,
+      query: url.query,
+      fragment: url.fragment
+    )
+  end
+
+  # Validates whether or not a URL is an ARK URL
+  # @param uri [URI::Generic] a URL
+  # @return [TrueClass, FalseClass]
+  def self.ark?(url: url)
+    m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(url.to_s)
+    !!m
+  end
+
+  # Constructor
+  def initialize(*arg)
+    super(*arg)
+    extract_components!
+  end
+
+  private
+    # Extract the components from the ARK URL into member variables
+    def extract_components!
+      raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.ark?(url: self)
+      m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(self.to_s)
+
+      @nmah = m[1]
+      @naan = m[2]
+      @name = m[3]
+    end
+end
+
+# Class for building instances of URI::HTTPS for Orangelight URL's
+class OrangelightUrlBuilder
+  # Constructor
+  # @param ark_cache [CompositeCacheMap] composite of caches for mapping ARK's to BibID's
+  # @param service_host [String] the host name for the Orangelight instance
+  # @todo Resolve the service_host default parameter properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
+  def initialize(ark_cache:, service_host: 'pulsearch.princeton.edu')
+    @ark_cache = ark_cache
+    @service_host = service_host
+  end
+
+  # Generates an Orangelight URL using an ARK
+  # @param ark [URI::ARK] the archival resource key
+  # @return URI::HTTPS the URL
+  def build(url:)
+    if url.is_a? URI::ARK
+      cached_bib_id = @ark_cache.fetch("ark:/#{url.naan}/#{url.name}", nil)
+    else
+      cached_bib_id = @ark_cache.fetch(url.to_s, nil)
+    end
+    return if cached_bib_id.nil?
+
+    URI::HTTPS.build(host: @service_host, path: "/catalog/#{cached_bib_id}")
+  end
+end
+
 # returns hash of links ($u) (key),
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
-def electronic_access_links record
+# @param [MARC::Record] the MARC record being parsed
+# @return [Hash] the values used to construct the links
+def electronic_access_links(record)
   links = {}
   holding_856s = {}
+
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
     anchor_text = false
     z_label = false
-    url = false
+    url_key = false
     holding_id = nil
+
     field.subfields.each do |s_field|
       holding_id = s_field.value if s_field.code == '0'
-      url = s_field.value if s_field.code == 'u'
+
+      # e. g. http://arks.princeton.edu/ark:/88435/7d278t10z, https://drive.google.com/open?id=0B3HwfRG3YqiNVVR4bXNvRzNwaGs
+      url_key = s_field.value if s_field.code == 'u'
+
+      # e. g. "Curatorial documentation"
       z_label = s_field.value if s_field.code == 'z'
+
       if s_field.code == 'y' || s_field.code == '3' || s_field.code == 'x'
         if anchor_text
           anchor_text << ": #{s_field.value}"
@@ -363,13 +557,42 @@ def electronic_access_links record
         end
       end
     end
-    if url and (URI.parse(url) rescue nil)
-      anchor_text = URI.parse(url).host unless anchor_text
+
+    logger.error "#{record['001']} - no url in 856 field" unless url_key
+
+    url = begin
+            url = URI.parse(url_key)
+          rescue StandardError => err
+            logger.error "#{record['001']} - invalid URL in 856 field"
+            nil
+          end
+
+    if url
+      if url.host
+        # Default to the host for the URL for the <a> text content
+        anchor_text = url.host unless anchor_text
+
+        # Retrieve the ARK resource
+        bib_id_field = record['001']
+        bib_id = bib_id_field.value
+
+        # Extract the ARK from the URL (if the URL is indeed an ARK)
+        url = URI::ARK.parse(url: url) if URI::ARK.ark?(url: url)
+        # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
+        builder = OrangelightUrlBuilder.new(ark_cache: ark_cache)
+        orangelight_url = builder.build(url: url)
+        url_key = orangelight_url.to_s unless orangelight_url.nil?
+      end
+
+      # Build the URL
       url_labels = [anchor_text] # anchor text is first element
       url_labels << z_label if z_label # optional 2nd element if z
-      holding_id.nil? ? links[url] = url_labels : holding_856s[holding_id] = {url => url_labels}
-    else
-      logger.error "#{record['001']} - no url in 856 field"
+
+      if holding_id.nil?
+        links[url_key] = url_labels
+      else
+        holding_856s[holding_id] = { url_key => url_labels }
+      end
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}
