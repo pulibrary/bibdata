@@ -177,8 +177,8 @@ describe 'From princeton_marc.rb' do
 
   before do
     indexer.load_config_file(config)
-    stub_request(:get, "https://figgy.princeton.edu/catalog.json&q=&rows=1000000&page=1").to_return(status: 200, body: JSON.generate(results))
-    stub_request(:get, "https://plum.princeton.edu/catalog.json&q=&rows=1000000&page=1").to_return(status: 200, body: JSON.generate(results))
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
   end
 
   describe '#electronic_access_links' do
@@ -194,7 +194,7 @@ describe 'From princeton_marc.rb' do
       allow(logger).to receive(:error)
     end
 
-    it 'retrieves the URLs and the link labels', eaccess: true do
+    it 'retrieves the URLs and the link labels' do
       expect(links).to include('https://domain.edu/test-resource' => ['domain.edu'])
     end
 
@@ -207,11 +207,9 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-
       let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
 
-
-      it 'retrieves the URL for the current resource', eaccess: true do
+      it 'retrieves the URL for the current resource' do
         expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
       end
     end

@@ -349,11 +349,13 @@ class CacheMap
   attr_reader :values
 
   # Constructor
-  # @param endpoint [String] the URL endpoint for the Solr
+  # @param host [String] the host for the Blacklight endpoint
+  # @param path [String] the path for the Blacklight endpoint
   # @param rows [Integer] the number of rows for each Solr response
   # @param logger [IO] the logging device
-  def initialize(endpoint:, rows: 1000000, logger: STDOUT)
-    @endpoint = endpoint
+  def initialize(host:, path: '/catalog.json', rows: 1000000, logger: STDOUT)
+    @host = host
+    @path = path
     @rows = rows
     @logger = logger
     @values = {}
@@ -397,7 +399,10 @@ class CacheMap
     # @param [Integer] the page parameter for the query
     def query(page: 1)
       begin
-        http_response = Faraday.get("#{@endpoint}.json&q=&rows=#{@rows}&page=#{page}")
+        url = URI::HTTPS.build(host: @host, path: @path, query: 'q=&rows=1000000&page=1&f[identifier_tesim][]=ark')
+        #http_response = Faraday.get("#{@endpoint}.json&q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
+        http_response = Faraday.get(url)
+
         values = JSON.parse(http_response.body)
         values.fetch('response')
       rescue StandardError => err
@@ -432,13 +437,13 @@ end
 # Retrieve the stored (or seed) the cache for the ARK's in Figgy
 # @return [CacheMap]
 def figgy_ark_cache
-  CacheMap.new(endpoint: "https://figgy.princeton.edu/catalog", logger: logger)
+  CacheMap.new(host: "figgy.princeton.edu", logger: logger)
 end
 
 # Retrieve the stored (or seed) the cache for the ARK's in Plum
 # @return [CacheMap]
 def plum_ark_cache
-  CacheMap.new(endpoint: "https://plum.princeton.edu/catalog", logger: logger)
+  CacheMap.new(host: "plum.princeton.edu", logger: logger)
 end
 
 # Retrieve the stored (or seed) the cache for the ARK's in all repositories
@@ -564,7 +569,6 @@ def electronic_access_links(record)
           end
 
     if url
-      # Default to the host for the URL for the <a> text content
       if url.host
         # Default to the host for the URL for the <a> text content
         anchor_text = url.host unless anchor_text
