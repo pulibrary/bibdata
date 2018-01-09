@@ -9,6 +9,8 @@ gem 'rsolr'
 
 gem 'faraday'
 
+gem 'faraday_middleware'
+
 gem 'library_stdnums'
 
 group :development do
