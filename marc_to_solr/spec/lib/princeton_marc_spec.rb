@@ -1,18 +1,12 @@
 # encoding: UTF-8
 require 'json'
-require 'traject'
 require_relative '../../lib/princeton_marc'
+require 'traject'
 require 'library_stdnums'
 
 $LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
 
 describe 'From princeton_marc.rb' do
-  before(:all) do
-    c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
-    @indexer = Traject::Indexer.new
-    @indexer.load_config_file(c)
-  end
-
   let(:config) { File.expand_path('../../../lib/traject_config.rb', __FILE__) }
   let(:indexer) { Traject::Indexer.new }
 
@@ -175,13 +169,13 @@ describe 'From princeton_marc.rb' do
   end
 
   before do
-    indexer.load_config_file(config)
-    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
     stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    indexer.load_config_file(config)
   end
 
   describe '#electronic_access_links' do
-    subject(:links) { electronic_access_links(marc_record) }
+    subject(:links) { electronic_access_links(marc_record, 'tmp/ark_cache_test') }
 
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
@@ -190,7 +184,7 @@ describe 'From princeton_marc.rb' do
     let(:logger) { instance_double(Logger) }
 
     before do
-      allow(logger).to receive(:error)
+      allow(logger).to receive(:info)
     end
 
     it 'retrieves the URLs and the link labels' do
@@ -199,6 +193,10 @@ describe 'From princeton_marc.rb' do
 
     context 'without a URL' do
       let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => []} } }
+
+      before do
+        allow(logger).to receive(:error)
+      end
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to be_empty
@@ -209,8 +207,7 @@ describe 'From princeton_marc.rb' do
       let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
 
       it 'retrieves the URL for the current resource' do
-        stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-        expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+        expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
       end
 
       context 'within the Plum repository' do
@@ -219,7 +216,7 @@ describe 'From princeton_marc.rb' do
         end
 
         it 'retrieves the URL for the current resource using Plum' do
-          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
         end
       end
 
@@ -265,7 +262,7 @@ describe 'From princeton_marc.rb' do
         end
 
         it 'retrieves the URL for the current resource' do
-          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189' => ['arks.princeton.edu'])
+          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
         end
       end
     end
