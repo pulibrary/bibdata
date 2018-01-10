@@ -460,7 +460,7 @@ class URI::ARK < URI::Generic
   # Constructs an ARK from a URL
   # @param url [URI::Generic] the URL for the ARK resource
   # @return [URI::ARK] the ARK
-  def self.parse(url: url)
+  def self.parse(url:)
     build(
       scheme: url.scheme,
       userinfo: url.userinfo,
@@ -477,7 +477,7 @@ class URI::ARK < URI::Generic
   # Validates whether or not a URL is an ARK URL
   # @param uri [URI::Generic] a URL
   # @return [TrueClass, FalseClass]
-  def self.ark?(url: url)
+  def self.ark?(url:)
     m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(url.to_s)
     !!m
   end
