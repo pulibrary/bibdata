@@ -30,7 +30,7 @@ class CacheMap
   def seed!(page: 1)
     # Determine if the values from the Solr response have been cached
     @cached_values = @cache.fetch(cache_key)
-    return if !@cached_values.nil?
+    return if page == 1 && !@cached_values.nil?  
 
     @cache.write(cache_key, @values)
     @logger.info "Seeding the cache for #{@host} using Solr..."
