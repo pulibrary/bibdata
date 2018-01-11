@@ -34,6 +34,12 @@ RSpec.describe Event, type: :model do
     end
   end
 
+  describe 'Failed dump' do
+    it 'creates an unsuccessful event' do
+      expect(test_failed_event.success).to be false
+    end
+  end
+
   def dump_test_bib_ids(bibs)
     dump = nil
     Event.record do |event|
@@ -57,6 +63,12 @@ RSpec.describe Event, type: :model do
       dump.save
     end
     dump
+  end
+
+  def test_failed_event
+    Event.record do |event|
+      raise Exception.new('test')
+    end
   end
 
   def dump_count(type)

@@ -19,6 +19,7 @@ class Event < ActiveRecord::Base
     ensure
       event.finish = Time.now.utc
       event.save!
+      return event
     end
 
     # Keep 3 most recent full dumps and 8 most recent dumps of each other type
