@@ -181,11 +181,7 @@ describe 'From princeton_marc.rb' do
     let(:l001) { { '001' => '4609321' } }
     let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url } ]} } }
     let(:marc_record) { MARC::Record.new_from_hash({ 'fields' => [l001, l856] }) }
-    let(:logger) { instance_double(Logger) }
-
-    before do
-      allow(logger).to receive(:info)
-    end
+    let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
 
     it 'retrieves the URLs and the link labels' do
       expect(links).to include('https://domain.edu/test-resource' => ['domain.edu'])
@@ -193,10 +189,6 @@ describe 'From princeton_marc.rb' do
 
     context 'without a URL' do
       let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => []} } }
-
-      before do
-        allow(logger).to receive(:error)
-      end
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to be_empty
