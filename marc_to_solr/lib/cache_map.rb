@@ -22,6 +22,7 @@ class CacheMap
     @logger = logger
     @values = {}
 
+    @logger.info "Seeding the cache for #{@host} using Solr..."
     seed!
   end
 
@@ -30,10 +31,9 @@ class CacheMap
   def seed!(page: 1)
     # Determine if the values from the Solr response have been cached
     @cached_values = @cache.fetch(cache_key)
-    return if page == 1 && !@cached_values.nil?  
+    return if page == 1 && !@cached_values.nil?
 
     @cache.write(cache_key, @values)
-    @logger.info "Seeding the cache for #{@host} using Solr..."
     response = query(page: page)
     if response.empty?
       @logger.warn "No response could be retrieved from Solr for #{@host}"
@@ -63,7 +63,7 @@ class CacheMap
     if value.nil?
       @logger.warn "Failed to resolve #{ark}" if URI::ARK.ark?(url: ark)
     else
-      @logger.info "Resolved #{ark} for #{value}"
+      @logger.debug "Resolved #{ark} for #{value}"
     end
     value
   end
@@ -86,7 +86,7 @@ class CacheMap
         # Handle collisions by refusing to overwrite the first value
         unless @cache.exist?(key_for_ark)
           @cache.write(key_for_ark, bib_id)
-          @logger.info "Cached the mapping for #{ark} to #{bib_id}"
+          @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
         end
       end
     end
