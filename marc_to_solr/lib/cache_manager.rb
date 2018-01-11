@@ -36,7 +36,7 @@ class CacheManager
   # Retrieve the stored (or seed) the cache for the ARK's in Plum
   # @return [CacheMap]
   def plum_ark_cache
-    @figgy_ark_cache ||= CacheMap.new(cache: @cache, host: "plum.princeton.edu", logger: @logger)
+    @plum_ark_cache ||= CacheMap.new(cache: @cache, host: "plum.princeton.edu", logger: @logger)
   end
 
   # Retrieve the stored (or seed) the cache for the ARK's in all repositories
