@@ -39,6 +39,12 @@ describe 'From traject_config.rb' do
       expect(@sample1['id'].length).to eq 1
     end
   end
+  describe 'numeric_id_b' do
+    it 'returns desired bool' do
+      expect(@sample1['numeric_id_b'].first).to eq true
+      expect(@scsb_journal['numeric_id_b'].first).to eq false
+    end
+  end
   describe 'the date cataloged facets' do
     it 'has a single date cataloged facet when the 959a is present' do
       expect(@elf2['cataloged_tdt'].length).to eq 1

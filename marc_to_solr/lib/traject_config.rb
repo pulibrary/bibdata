@@ -30,6 +30,12 @@ update_locations unless ENV['RAILS_ENV']
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 to_field 'id', extract_marc('001', :first => true)
+
+# if the id contains only numbers we know it's a princeton item
+to_field 'numeric_id_b', extract_marc('001', :first => true) do |record, accumulator|
+  accumulator.map! { |v| /^[0-9]+$/.match(v) ? true : false }
+end
+
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', :first => true)
 to_field 'cjk_all', extract_all_marc_values
