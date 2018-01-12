@@ -40,6 +40,9 @@ A couple of the tests require some fixtures to be in place; for now they must be
 
 Ensure redis is running
 
+To run the tests in the `marc_to_solr` directory set RAILS_ENV:
+`$ RAILS_ENV=test bundle exec rspec marc_to_solr/spec`
+
 ## License
 
 See `LICENSE`.
