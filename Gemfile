@@ -49,7 +49,7 @@ gem 'devise', '~> 4.3'
 gem 'omniauth-cas'
 gem 'capybara'
 gem 'poltergeist'
-gem 'resque'
+gem 'sidekiq'
 
 gem 'traject', '2.3.1'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'

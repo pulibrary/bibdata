@@ -15,7 +15,6 @@ RSpec.describe Event, type: :model do
   after(:all) do
     Event.destroy_all
     DumpFileType.destroy_all
-    Resque.redis.del "queue:default"
   end
 
   describe 'ALL_RECORDS dump' do

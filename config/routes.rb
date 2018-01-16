@@ -32,4 +32,9 @@ Rails.application.routes.draw do
 
   get '/courses', to: 'courses#index', defaults: { format: :json }
   get "/bib_ids", to: 'courses#bibs', defaults: { format: :json }
+
+  require 'sidekiq/web'
+  authenticate :user do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end

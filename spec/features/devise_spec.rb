@@ -15,7 +15,6 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
     Locations::HoldingLocation.destroy_all
     Locations::DeliveryLocation.destroy_all
     Locations::HoursLocation.destroy_all
-    Resque.redis.del "queue:default"
   end
 
   unless ENV['CI']
