@@ -20,12 +20,12 @@ settings do
   provide "marc_source.type", "xml"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
-  provide "log.error_file", "/tmp/error.log"
+  provide "log.error_file", "./log/traject-error.log"
   provide "allow_duplicate_values",  false
   provide "cache_dir", ENV['ARK_CACHE_PATH'] || "tmp/ark_cache"
 end
 
-update_locations unless ENV['RAILS_ENV']
+update_locations unless ENV['RAILS_ENV'] == 'CI' || ENV['RAILS_ENV'] == 'test'
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
