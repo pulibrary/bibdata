@@ -3,7 +3,7 @@ require 'faraday'
 require 'zlib'
 require 'rsolr'
 require 'time'
-require './lib/index_functions'
+require './marc_to_solr/lib/index_functions'
 
 default_bibdata_url = 'https://bibdata.princeton.edu'
 bibdata_url = ENV['BIBDATA_URL'] || default_bibdata_url
@@ -23,9 +23,9 @@ task :index do
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
     fixtures = ENV['MARC']
     if ENV['NO_COMMIT'] && ENV['NO_COMMIT'] == '1'
-      sh "traject -c lib/traject_config.rb #{fixtures} #{url_arg}"
+      sh "traject -c marc_to_solr/lib/traject_config.rb #{fixtures} #{url_arg}"
     else
-      sh "traject -c lib/traject_config.rb #{fixtures} #{url_arg} #{commit}"
+      sh "traject -c marc_to_solr/lib/traject_config.rb #{fixtures} #{url_arg} #{commit}"
     end
   end
 end
@@ -90,8 +90,8 @@ namespace :liberate do
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
     if ENV['BIB']
       resp = conn.get "/bibliographic/#{ENV['BIB']}"
-      File.write('/tmp/tmp.xml', resp.body)
-      sh "traject -c lib/traject_config.rb /tmp/tmp.xml #{url_arg} #{commit}"
+      File.write('./tmp/tmp.xml', resp.body)
+      sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg} #{commit}"
     else
       puts 'Please provide a BIB argument (BIB=####)'
     end
@@ -107,7 +107,7 @@ namespace :liberate do
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
       IndexFunctions.update_records(dump).each do |marc_xml|
         IndexFunctions.unzip(marc_xml)
-        sh "traject -c lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
         File.delete("#{marc_xml}.xml")
         File.delete("#{marc_xml}.gz")
       end
@@ -125,7 +125,7 @@ namespace :liberate do
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
       IndexFunctions.update_records(dump).each do |marc_xml|
         IndexFunctions.unzip(marc_xml)
-        sh "traject -c lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
         File.delete("#{marc_xml}.xml")
         File.delete("#{marc_xml}.gz")
       end
@@ -144,7 +144,7 @@ namespace :liberate do
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
       IndexFunctions.update_records(dump).each do |marc_xml|
         IndexFunctions.unzip(marc_xml)
-        sh "traject -c lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
         File.delete("#{marc_xml}.xml")
         File.delete("#{marc_xml}.gz")
       end
@@ -161,7 +161,7 @@ namespace :liberate do
     if event = JSON.parse(resp.body).select {|e| e['success'] && e['dump_type'] == 'ALL_RECORDS'}.last
       IndexFunctions.full_dump(event).each do |marc_xml|
         IndexFunctions.unzip(marc_xml)
-        sh "traject -c lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
         File.delete("#{marc_xml}.xml")
         File.delete("#{marc_xml}.gz")
       end
