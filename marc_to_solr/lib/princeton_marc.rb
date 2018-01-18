@@ -8,6 +8,7 @@ require_relative './composite_cache_map'
 require_relative './cache_manager'
 require_relative './uri_ark'
 require_relative './orangelight_url_builder'
+require_relative './iiif_manifest_url_builder'
 
 module MARC
   class Record
@@ -368,6 +369,7 @@ end
 def electronic_access_links(record, dir_path)
   links = {}
   holding_856s = {}
+  iiif_manifest_paths = {}
 
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
     anchor_text = false
@@ -394,14 +396,17 @@ def electronic_access_links(record, dir_path)
     end
 
     if url_key
-      url_key = URI.encode(url_key)
-
-      url = begin
-              url = URI.parse(url_key)
-            rescue StandardError => err
-              logger.error "#{record['001']} - invalid URL in 856 field: #{url_key}"
-              nil
-            end
+      begin
+        if url_key =~ URI.regexp
+          url_key = URI.encode(url_key)
+          URI.parse(url_key)
+          url = URI.parse(url_key)
+        else
+          logger.error "#{record['001']} - invalid URL in 856 field: #{url_key}"
+        end
+      rescue StandardError => error
+        logger.error "#{record['001']} - invalid text encoding for the URL in the 856 field: #{url_key}"
+      end
     else
       logger.error "#{record['001']} - no url in 856 field"
     end
@@ -415,13 +420,28 @@ def electronic_access_links(record, dir_path)
         bib_id_field = record['001']
         bib_id = bib_id_field.value
 
-        # Extract the ARK from the URL (if the URL is indeed an ARK)
-        url = URI::ARK.parse(url: url) if URI::ARK.ark?(url: url)
-        # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-        cache_manager = build_cache_manager(dir_path: dir_path)
-        builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
-        orangelight_url = builder.build(url: url)
-        url_key = orangelight_url.to_s unless orangelight_url.nil?
+        if URI::ARK.ark?(url: url)
+          # Cast the URL into an ARK
+          ark_url = URI::ARK.parse(url: url)
+          # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
+          cache_manager = build_cache_manager(dir_path: dir_path)
+          catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
+          orangelight_url = catalog_url_builder.build(url: ark_url)
+          unless orangelight_url.nil?
+            ark_url_key = url_key
+            url_key = orangelight_url.to_s
+          end
+
+          figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.ark_cache, service_host:'figgy.princeton.edu')
+          iiif_manifest_path = figgy_url_builder.build(url: ark_url)
+
+          if iiif_manifest_path.nil?
+            plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.ark_cache, service_host:'plum.princeton.edu')
+            iiif_manifest_path = plum_url_builder.build(url: ark_url)
+          end
+
+          iiif_manifest_paths[ark_url_key] = iiif_manifest_path.to_s unless iiif_manifest_path.nil?
+        end
       end
 
       # Build the URL
@@ -436,6 +456,7 @@ def electronic_access_links(record, dir_path)
     end
   end
   links['holding_record_856s'] = holding_856s unless holding_856s == {}
+  links['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
   links
 end
 

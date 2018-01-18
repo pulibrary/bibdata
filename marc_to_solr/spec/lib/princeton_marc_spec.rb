@@ -3,6 +3,7 @@ require 'json'
 require_relative '../../lib/princeton_marc'
 require 'traject'
 require 'library_stdnums'
+require 'pry-byebug'
 
 $LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
 
@@ -16,6 +17,15 @@ describe 'From princeton_marc.rb' do
     [
       {
         id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
+        internal_resource_tsim: [
+          "ScannedResource"
+        ],
+        internal_resource_ssim: [
+          "ScannedResource"
+        ],
+        internal_resource_tesim: [
+          "ScannedResource"
+        ],
         identifier_tsim: [
           ark
         ],
@@ -33,116 +43,9 @@ describe 'From princeton_marc.rb' do
         ],
         source_metadata_identifier_tesim: [
           bib_id
-        ]
+        ],
+
       }
-    ]
-  end
-  let(:facets) do
-    [
-      {
-        "name":"member_of_collection_titles_ssim",
-        "items":[
-          {
-            "value":"Bibliotheca Cicognara",
-            "hits":2207,
-            "label":"Bibliotheca Cicognara"
-          },
-          {
-            "value":"Princeton Digital Library of Islamic Manuscripts",
-            "hits":1471,
-            "label":"Princeton Digital Library of Islamic Manuscripts"
-          },
-          {
-            "value":"Treasures of the Cotsen Collection",
-            "hits":390,
-            "label":"Treasures of the Cotsen Collection"
-          },
-          {
-            "value":"Yemeni Manuscript Digitization Initiative",
-            "hits":250,
-            "label":"Yemeni Manuscript Digitization Initiative"
-          },
-          {
-            "value":"Princeton Slavic Collections",
-            "hits":172,
-            "label":"Princeton Slavic Collections"
-          },
-          {
-            "value":"Soviet Era Books for Children and Youth",
-            "hits":170,
-            "label":"Soviet Era Books for Children and Youth"
-          }
-        ],
-        "label":"Collections"
-      },
-      {
-        "name":"human_readable_type_ssim",
-        "items":[
-          {
-            "value":"Ephemera Folder",
-            "hits":11826,
-            "label":"Ephemera Folder"
-          },
-          {
-            "value":"Scanned Resource",
-            "hits":4161,
-            "label":"Scanned Resource"
-          },
-          {
-            "value":"Multi Volume Work",
-            "hits":292,
-            "label":"Multi Volume Work"
-          }
-        ],
-        "label":"Type of Work"
-      },
-      {
-        "name":"ephemera_project_ssim",
-        "items":[
-          {
-            "value":"Latin American Ephemera",
-            "hits":11826,
-            "label":"Latin American Ephemera"
-          }
-        ],
-        "label":"Ephemera Project"
-      },
-      {
-        "name":"display_subject_ssim",
-        "items":[
-          {
-            "value":"Politics and government",
-            "hits":678,
-            "label":"Politics and government"
-            },
-            {
-              "value":"Manuscripts, Arabic—New Jersey—Princeton",
-              "hits":631,
-              "label":"Manuscripts, Arabic—New Jersey—Princeton"
-            },
-            {
-              "value":"Human and civil rights",
-              "hits":294,
-              "label":"Human and civil rights"
-            },
-            {
-              "value":"Arts and culture",
-              "hits":259,
-              "label":"Arts and culture"
-            },
-            {
-              "value":"Socioeconomic conditions and development",
-              "hits":230,
-              "label":"Socioeconomic conditions and development"
-            },
-            {
-              "value":"Islamic law—Early works to 1800",
-              "hits":228,
-              "label":"Islamic law—Early works to 1800"
-            }
-          ],
-          "label":"Subject"
-        }
     ]
   end
   let(:pages) do
@@ -162,7 +65,7 @@ describe 'From princeton_marc.rb' do
     {
       "response": {
         "docs": docs,
-        "facets": facets,
+        "facets": [],
         "pages": pages
       }
     }
@@ -190,7 +93,7 @@ describe 'From princeton_marc.rb' do
     context 'without a URL' do
       let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => []} } }
 
-      it 'retrieves the URLs and the link labels' do
+      it 'retrieves no URLs' do
         expect(links).to be_empty
       end
     end
@@ -202,7 +105,13 @@ describe 'From princeton_marc.rb' do
         expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
       end
 
-      context 'within the Plum repository' do
+      context 'for a Figgy resource' do
+        it 'generates the IIIF manifest path' do
+          expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/xp68kg247' => 'https://figgy.princeton.edu/concern/scanned_resources/b65cd851-ef01-45f2-b5bd-28c6616574ca/manifest' })
+        end
+      end
+
+      context 'for a Plum resource' do
         before do
           stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
         end
@@ -296,6 +205,27 @@ describe 'From princeton_marc.rb' do
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('https://domain.edu/test-resource' => ['test text3'])
+      end
+    end
+
+    context 'with an invalid URL' do
+      let(:url) { 'some invalid value' }
+
+      it 'retrieves no URLs and logs an error' do
+        expect(links).to be_empty
+        expect(logger).to have_received(:error).with('001 4609321 - invalid URL in 856 field: some invalid value')
+      end
+    end
+
+    context 'with an unparsable URL' do
+      let(:url) do
+        a = "\xFF"
+        a.force_encoding "utf-8"
+      end
+
+      it 'retrieves no URLs and logs an error' do
+        expect(links).to be_empty
+        expect(logger).to have_received(:error).with("001 4609321 - invalid text encoding for the URL in the 856 field: #{url}")
       end
     end
   end
