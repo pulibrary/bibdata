@@ -13,9 +13,13 @@ class OrangelightUrlBuilder
   # @param ark [URI::ARK] the archival resource key
   # @return URI::HTTPS the URL
   def build(url:)
-    cached_bib_id = @ark_cache.fetch("ark:/#{url.naan}/#{url.name}") if url.is_a? URI::ARK
-    return if cached_bib_id.nil?
+    if url.is_a? URI::ARK
+      cached_values = @ark_cache.fetch("ark:/#{url.naan}/#{url.name}")
+      return if cached_values.nil?
 
-    URI::HTTPS.build(host: @service_host, path: "/catalog/#{cached_bib_id}", fragment: 'view')
+      cached_bib_id = cached_values.fetch :source_metadata_identifier
+
+      URI::HTTPS.build(host: @service_host, path: "/catalog/#{cached_bib_id}", fragment: 'view')
+    end
   end
 end

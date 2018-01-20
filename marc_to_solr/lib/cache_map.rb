@@ -1,4 +1,5 @@
 require 'faraday'
+require 'active_support/core_ext/string'
 
 # Cached mapping of ARKs to Bib IDs
 # Retrieves and stores paginated Solr responses containing the ARK's and BibID's
@@ -20,7 +21,6 @@ class CacheMap
     @path = path
     @rows = rows
     @logger = logger
-    @values = {}
 
     @logger.info "Seeding the cache for #{@host} using Solr..."
     seed!
@@ -33,7 +33,6 @@ class CacheMap
     @cached_values = @cache.fetch(cache_key)
     return if page == 1 && !@cached_values.nil?
 
-    @cache.write(cache_key, @values)
     response = query(page: page)
     if response.empty?
       @logger.warn "No response could be retrieved from Solr for #{@host}"
@@ -77,6 +76,10 @@ class CacheMap
       docs.each do |doc|
         arks = doc.fetch('identifier_ssim', [])
         bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
+        id = doc.fetch('id')
+        # Grab the human readable type
+        resource_types = doc.fetch('internal_resource_ssim')
+        resource_type = resource_types.first
 
         ark = arks.first
         bib_id = bib_ids.first
@@ -85,7 +88,7 @@ class CacheMap
         key_for_ark = self.class.cache_key_for(ark: ark)
         # Handle collisions by refusing to overwrite the first value
         unless @cache.exist?(key_for_ark)
-          @cache.write(key_for_ark, bib_id)
+          @cache.write(key_for_ark, { id: id, source_metadata_identifier: bib_id, internal_resource: resource_type })
           @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
         end
       end
