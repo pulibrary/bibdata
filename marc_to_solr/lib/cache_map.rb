@@ -78,7 +78,7 @@ class CacheMap
         bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
         id = doc.fetch('id')
         # Grab the human readable type
-        resource_types = doc.fetch('internal_resource_ssim')
+        resource_types = doc.fetch('internal_resource_ssim', nil) || doc.fetch('has_model_ssim', nil)
         resource_type = resource_types.first
 
         ark = arks.first
