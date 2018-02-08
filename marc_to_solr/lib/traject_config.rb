@@ -443,6 +443,8 @@ end
 # # #    3500 020A776Z
 # # #    3500 776Z020A
 
+to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:777at', trim_punctuation: true)
+
 # Contained in:
 #    3500 BBID773W
 to_field 'contained_in_s', extract_marc('773w')
