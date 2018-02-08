@@ -40,6 +40,7 @@
     "dcterms_type": {"@id": "dcterms:type"},
     "abstract": {"@id": "dcterms:abstract"},
     "contents": {"@id": "dcterms:tableOfContents"},
+    "references": {"@id": "dcterms:references"},
 
 
     "edition": {"@id": "bf:editionStatement"},

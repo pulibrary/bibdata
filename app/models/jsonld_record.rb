@@ -122,7 +122,9 @@ class JSONLDRecord
       scale_display:         'cartographic_scale',
       projection_display:    'cartographic_projection',
       geocode_display:       'spatial',
-      contents_display:      'contents'
+      contents_display:      'contents',
+      geo_related_record_display: 'relation',
+      electronic_access_1display: 'references'
     }
   end
 
