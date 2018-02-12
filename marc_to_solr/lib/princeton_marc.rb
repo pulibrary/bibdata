@@ -7,6 +7,7 @@ require_relative './cache_map'
 require_relative './composite_cache_map'
 require_relative './cache_manager'
 require_relative './uri_ark'
+require_relative './normal_uri_factory'
 require_relative './orangelight_url_builder'
 require_relative './iiif_manifest_url_builder'
 
@@ -441,6 +442,11 @@ def electronic_access_links(record, dir_path)
           end
 
           iiif_manifest_paths[ark_url_key] = iiif_manifest_path.to_s unless iiif_manifest_path.nil?
+        else
+          # Ensure that each URI is properly normalized for the transform
+          normalizer = NormalUriFactory.new(value: url.to_s)
+          normal_uri = normalizer.build
+          url_key = normal_uri.to_s
         end
       end
 

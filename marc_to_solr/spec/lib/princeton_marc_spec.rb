@@ -228,6 +228,13 @@ describe 'From princeton_marc.rb' do
         expect(logger).to have_received(:error).with("001 4609321 - invalid text encoding for the URL in the 856 field: #{url}")
       end
     end
+
+    context 'with a URL with the "|" encoded as a query parameter' do
+      let(:url) { 'http://go.galegroup.com/ps/i.do?id=GALE%7C9781440840869&v=2.1&u=prin77918&it=etoc&p=GVRL&sw=w' }
+      it 'ensures that the "|" characters are encoded only once' do
+        expect(links).to include('http://go.galegroup.com/ps/i.do?id=GALE|9781440840869&v=2.1&u=prin77918&it=etoc&p=GVRL&sw=w' => ['go.galegroup.com'])
+      end
+    end
   end
 
   describe 'standard_no_hash with keys based on the first indicator' do
