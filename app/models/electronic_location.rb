@@ -6,6 +6,7 @@ class ElectronicLocation
   # @param access_method [String] code for the access method
   # @param relationship [String] code for the relationship
   # @param subfields [Array<Hash>] subfield Hashes
+  # @param holdings [Array<Holding>] holding values
   # @param iiif_manifest_uris [Array<IIIFManifestURI>] IIIF manifests
   def initialize(access_method:, relationship:, subfields:, holdings:, iiif_manifest_uris:)
     @access_method = access_method
@@ -15,8 +16,8 @@ class ElectronicLocation
     @manifests = iiif_manifest_uris.map { |uri| uri.to_s }
   end
 
-  # Return all sub-fields containing an ARK URL
-  # @return [Array]
+  # Returns the first sub-field value containing an ARK URL
+  # @return [String] the ARK URL
   def identifier
     arks = @subfields.select { |subfield|
              subfield[ElectronicLocations::SubfieldCodes::LINK_TEXT] == 'arks.princeton.edu'

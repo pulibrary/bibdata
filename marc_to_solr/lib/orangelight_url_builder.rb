@@ -3,8 +3,7 @@ class OrangelightUrlBuilder
   # Constructor
   # @param ark_cache [CompositeCacheMap] composite of caches for mapping ARK's to BibID's
   # @param service_host [String] the host name for the Orangelight instance
-  # @todo Resolve the service_host default parameter properly (please @see https://github.com/pulibrary/marc_liberation/issues/313)
-  def initialize(ark_cache:, service_host: 'pulsearch.princeton.edu')
+  def initialize(ark_cache:, service_host: 'catalog.princeton.edu')
     @ark_cache = ark_cache
     @service_host = service_host
   end

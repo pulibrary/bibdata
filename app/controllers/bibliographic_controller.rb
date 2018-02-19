@@ -102,7 +102,7 @@ class BibliographicController < ApplicationController
     end
 
     # Access the global Traject Object
-    # @return [Object] the Traject indexer
+    # @return [Traject::Indexer] the Traject indexer
     def indexer
       TRAJECT_INDEXER
     end

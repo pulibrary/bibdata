@@ -353,13 +353,17 @@ end
 
 # Construct (or retrieve) the cache manager service
 # @return [CacheManager] the cache manager service
-def build_cache_manager(dir_path:)
+def build_cache_manager(figgy_dir_path:, plum_dir_path:)
   return @cache_manager unless @cache_manager.nil?
 
-  lightly = Lightly.new(dir: dir_path, life: 0, hash: false)
-  cache_adapter = CacheAdapter.new(service: lightly)
+  figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
+  figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
 
-  CacheManager.initialize(cache: cache_adapter, logger: logger)
+  plum_lightly = Lightly.new(dir: plum_dir_path, life: 0, hash: false)
+  plum_cache_adapter = CacheAdapter.new(service: plum_lightly)
+
+  CacheManager.initialize(figgy_cache: figgy_cache_adapter, plum_cache: plum_cache_adapter, logger: logger)
+
   @cache_manager = CacheManager.current
 end
 
@@ -367,7 +371,7 @@ end
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 # @param [MARC::Record] the MARC record being parsed
 # @return [Hash] the values used to construct the links
-def electronic_access_links(record, dir_path)
+def electronic_access_links(record, figgy_dir_path, plum_dir_path)
   links = {}
   holding_856s = {}
   iiif_manifest_paths = {}
@@ -426,23 +430,44 @@ def electronic_access_links(record, dir_path)
           # Cast the URL into an ARK
           ark_url = URI::ARK.parse(url: url)
           # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-          cache_manager = build_cache_manager(dir_path: dir_path)
+          cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path, plum_dir_path: plum_dir_path)
           catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
           orangelight_url = catalog_url_builder.build(url: ark_url)
+          # Index this by the domain for Orangelight
           unless orangelight_url.nil?
+            # Deduplicate this
+            url_labels = [anchor_text] # anchor text is first element
+            url_labels << z_label if z_label # optional 2nd element if z
+
+            # Deduplicate this too
+            if holding_id.nil?
+              links[url_key] = url_labels
+            else
+              holding_856s[holding_id] = { url_key => url_labels }
+            end
+
             ark_url_key = url_key
             url_key = orangelight_url.to_s
+            anchor_text = 'catalog.princeton.edu'
           end
 
-          figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.ark_cache, service_host:'figgy.princeton.edu')
+          figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host:'figgy.princeton.edu')
           iiif_manifest_path = figgy_url_builder.build(url: ark_url)
 
           if iiif_manifest_path.nil?
-            plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.ark_cache, service_host:'plum.princeton.edu')
+            plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.plum_ark_cache, service_host:'plum.princeton.edu')
             iiif_manifest_path = plum_url_builder.build(url: ark_url)
           end
 
-          iiif_manifest_paths[ark_url_key] = iiif_manifest_path.to_s unless iiif_manifest_path.nil?
+          unless iiif_manifest_path.nil?
+            iiif_manifest_key = ark_url_key || url_key
+            iiif_manifest_paths[iiif_manifest_key] = iiif_manifest_path.to_s
+          end
+        else
+          # Ensure that each URI is properly normalized for the transform
+          normalizer = NormalUriFactory.new(value: url.to_s)
+          normal_uri = normalizer.build
+          url_key = normal_uri.to_s
         end
       end
 

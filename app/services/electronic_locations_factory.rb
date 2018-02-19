@@ -20,15 +20,6 @@ class ElectronicLocationsFactory
     end
   end
 
-  # Construct OnlineLocation Objects from Solr Document values
-  # @param values [Hash] Solr Document values for links Hash by URL
-  # @return [Array<OnlineLocation>]
-  def self.parse_online_locations(values)
-    values.map do |url_key, _|
-      ElectronicLocations::OnlineLocation.new(value: url_key, )
-    end
-  end
-
   # Generate a Hash indexing the MARC subfield values for an electronic location field
   # @param holding_values [Hash] Solr Document values for URL's Hashed by holding ID
   # @param values [Hash] Solr Document values for links Hash by URL

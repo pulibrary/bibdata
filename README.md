@@ -34,6 +34,24 @@ rake db:migrate
 rake db:seed
 ```
 
+## ARK Caching
+
+In order to resolve bibliographic identifiers (bib. IDs) to resources with ARKs and IIIF manifests for resources managed within digital repositories, caches are seeded and used in order to resolve the relationships between these resources.
+
+### Seeding the Cache
+
+One may seed the cache using the following Rake Task:
+```bash
+rake liberate:arks:seed_cache
+```
+
+### Clearing the Cache
+
+One may clear the cache using the following Rake Task:
+```bash
+rake liberate:arks:clear_cache
+```
+
 ## Tests
 
 A couple of the tests require some fixtures to be in place; for now they must be copied as in this CI configuration: https://github.com/pulibrary/marc_liberation/blob/master/circle.yml#L8-L10

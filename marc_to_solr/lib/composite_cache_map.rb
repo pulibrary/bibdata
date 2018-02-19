@@ -24,6 +24,6 @@ class CompositeCacheMap
   # @return [String, nil] the BibID (or nil if it has not been mapped)
   def fetch(ark)
     bib_ids = @cache_maps.map { |cache_map| cache_map.fetch(ark) }
-    bib_ids.first
+    bib_ids.compact.first
   end
 end

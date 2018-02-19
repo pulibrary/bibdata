@@ -78,7 +78,9 @@ describe 'From princeton_marc.rb' do
   end
 
   describe '#electronic_access_links' do
-    subject(:links) { electronic_access_links(marc_record, 'tmp/ark_cache_test') }
+    subject(:links) { electronic_access_links(marc_record, figgy_dir_path, plum_dir_path) }
+    let(:figgy_dir_path) { ENV['FIGGY_ARK_CACHE_PATH'] || 'marc_to_solr/spec/fixtures/figgy_ark_cache' }
+    let(:plum_dir_path) { ENV['PLUM_ARK_CACHE_PATH'] || 'marc_to_solr/spec/fixtures/plum_ark_cache' }
 
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
@@ -99,71 +101,27 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-      let(:url) { 'http://arks.princeton.edu/ark:/88435/xp68kg247' }
+      let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
 
       it 'retrieves the URL for the current resource' do
-        expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['catalog.princeton.edu'])
       end
 
       context 'for a Figgy resource' do
         it 'generates the IIIF manifest path' do
-          expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/xp68kg247' => 'https://figgy.princeton.edu/concern/scanned_resources/b65cd851-ef01-45f2-b5bd-28c6616574ca/manifest' })
+          expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/00000140q' => 'https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest' })
         end
       end
 
       context 'for a Plum resource' do
-        before do
-          stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-        end
+        let(:url) { 'http://arks.princeton.edu/ark:/88435/rn301432b' }
 
         it 'retrieves the URL for the current resource using Plum' do
-          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
-        end
-      end
-
-      context 'within a repository with multiple pages of ARK and BibID mappings' do
-        let(:first_pages) do
-          {
-            "current_page":1,
-            "next_page":2,
-            "prev_page":nil,
-            "total_pages":2,
-            "limit_value":10,
-            "offset_value":0,
-            "total_count":2,
-            "first_page?":true,
-            "last_page?":false
-          }
-        end
-        let(:first_results) do
-          {
-            "response": {
-              "docs": [],
-              "facets": [],
-              "pages": first_pages
-            }
-          }
-        end
-        let(:pages) do
-          {
-            "current_page":2,
-            "next_page":nil,
-            "prev_page":1,
-            "total_pages":2,
-            "limit_value":10,
-            "offset_value":0,
-            "total_count":2,
-            "first_page?":false,
-            "last_page?":true
-          }
-        end
-        before do
-          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(first_results))
-          stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=2&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+          expect(links).to include('https://catalog.princeton.edu/catalog/7065263#view' => ['catalog.princeton.edu'])
         end
 
-        it 'retrieves the URL for the current resource' do
-          expect(links).to include('https://pulsearch.princeton.edu/catalog/4715189#view' => ['arks.princeton.edu'])
+        it 'generates the IIIF manifest path' do
+          expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/rn301432b' => 'https://plum.princeton.edu/concern/map_sets/pr7820663d/manifest' })
         end
       end
     end

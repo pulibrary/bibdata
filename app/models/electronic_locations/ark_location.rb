@@ -6,7 +6,7 @@ module ElectronicLocations
     # Constructor
     # @param value [URI::ARK, String] the ARK URI
     def initialize(value:)
-      ark_value = value.is_a?(URI::ARK) ? value : URI::ARK.parse(value)
+      ark_value = value.is_a?(URI::ARK) ? value : URI::ARK.parse(url: value)
       super(value: ark_value)
     end
   end

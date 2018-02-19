@@ -3,8 +3,8 @@ class CacheManager
   # Build and set the current cache to the new instance
   # @param cache [ActiveSupport::Cache::Store, CacheAdapter] Low-level cache
   # @param logger [IO] logger for handling output during HTTP service requests
-  def self.initialize(cache:, logger: STDOUT)
-    @current_cache = new(cache: cache, logger: logger)
+  def self.initialize(figgy_cache:, plum_cache:, logger: STDOUT)
+    @current_cache = new(figgy_cache: figgy_cache, plum_cache: plum_cache, logger: logger)
   end
 
   # Retrieve the last initialized cache manager
@@ -19,8 +19,9 @@ class CacheManager
   # Constructor
   # @param cache [ActiveSupport::Cache::Store] Rails low-level cache
   # @param logger [IO] logger for handling output during HTTP service requests
-  def initialize(cache:, logger: STDOUT)
-    @cache = cache
+  def initialize(figgy_cache:, plum_cache:, logger: STDOUT)
+    @figgy_cache = figgy_cache
+    @plum_cache = plum_cache
     @logger = logger
 
     # Seed the caches
@@ -30,13 +31,13 @@ class CacheManager
   # Retrieve the stored (or seed) the cache for the ARK's in Figgy
   # @return [CacheMap]
   def figgy_ark_cache
-    @figgy_ark_cache ||= CacheMap.new(cache: @cache, host: "figgy.princeton.edu", logger: @logger)
+    @figgy_ark_cache ||= CacheMap.new(cache: @figgy_cache, host: "figgy.princeton.edu", logger: @logger)
   end
 
   # Retrieve the stored (or seed) the cache for the ARK's in Plum
   # @return [CacheMap]
   def plum_ark_cache
-    @plum_ark_cache ||= CacheMap.new(cache: @cache, host: "plum.princeton.edu", logger: @logger)
+    @plum_ark_cache ||= CacheMap.new(cache: @plum_cache, host: "plum.princeton.edu", logger: @logger)
   end
 
   # Retrieve the stored (or seed) the cache for the ARK's in all repositories
