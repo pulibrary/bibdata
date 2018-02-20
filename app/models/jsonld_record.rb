@@ -20,6 +20,7 @@ class JSONLDRecord
     metadata['date'] = date if date
     metadata['abstract'] = abstract if abstract
     metadata['identifier'] = identifier if identifier
+    metadata['local_identifier'] = local_identifier if local_identifier
 
     metadata
   end
@@ -103,6 +104,12 @@ class JSONLDRecord
     return unless @solr_doc['electronic_access_1display']
     json = JSON.parse(@solr_doc['electronic_access_1display'].first)
     return json.index(['arks.princeton.edu'])
+  end
+
+  def local_identifier
+    return unless @solr_doc['standard_no_1display']
+    json = JSON.parse(@solr_doc['standard_no_1display'].first)
+    return json['Dclib']
   end
 
   def metadata_map

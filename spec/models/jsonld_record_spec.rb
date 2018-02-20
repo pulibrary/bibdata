@@ -151,4 +151,15 @@ RSpec.describe JSONLDRecord, :type => :model do
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
   end
+
+  context 'with a digital cicognara number' do
+    let(:solr_doc) {{
+      'standard_no_1display' => ["{\"Cico\":[\"1200-1\"],\"Dclib\":[\"cico:bk5\"]}"]
+    }}
+    subject { described_class.new solr_doc }
+
+    it 'includes the digital cicognara number in the local_identifier field' do
+      expect(subject.to_h['local_identifier']).to include 'cico:bk5'
+    end
+  end
 end
