@@ -231,8 +231,15 @@ describe 'From princeton_marc.rb' do
 
     context 'with a URL with the "|" encoded as a query parameter' do
       let(:url) { 'http://go.galegroup.com/ps/i.do?id=GALE%7C9781440840869&v=2.1&u=prin77918&it=etoc&p=GVRL&sw=w' }
-      it 'ensures that the "|" characters are encoded only once' do
-        expect(links).to include('http://go.galegroup.com/ps/i.do?id=GALE|9781440840869&v=2.1&u=prin77918&it=etoc&p=GVRL&sw=w' => ['go.galegroup.com'])
+      it 'ensures that escaped characters are escaped only once' do
+        expect(links).to include('http://go.galegroup.com/ps/i.do?id=GALE%7C9781440840869&v=2.1&u=prin77918&it=etoc&p=GVRL&sw=w' => ['go.galegroup.com'])
+      end
+    end
+
+    context 'with a URL not properly escaped' do
+      let(:url) { 'http://www.archivesdirect.amdigital.co.uk/Documents/Details/FO 424_144' }
+      it 'ensures all characters are escaped that should be escaped' do
+        expect(links).to include('http://www.archivesdirect.amdigital.co.uk/Documents/Details/FO%20424_144' => ['www.archivesdirect.amdigital.co.uk'])
       end
     end
   end

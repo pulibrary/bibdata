@@ -399,8 +399,9 @@ def electronic_access_links(record, dir_path)
     if url_key
       begin
         if url_key =~ URI.regexp
-          url_key = URI.encode(url_key)
-          URI.parse(url_key)
+          normalizer = NormalUriFactory.new(value: url_key)
+          url = normalizer.build
+          url_key = url.to_s
           url = URI.parse(url_key)
         else
           logger.error "#{record['001']} - invalid URL in 856 field: #{url_key}"
@@ -442,11 +443,6 @@ def electronic_access_links(record, dir_path)
           end
 
           iiif_manifest_paths[ark_url_key] = iiif_manifest_path.to_s unless iiif_manifest_path.nil?
-        else
-          # Ensure that each URI is properly normalized for the transform
-          normalizer = NormalUriFactory.new(value: url.to_s)
-          normal_uri = normalizer.build
-          url_key = normal_uri.to_s
         end
       end
 
