@@ -29,6 +29,71 @@ RSpec.describe "Bibliographic Gets", :type => :request do
   end
 
   describe 'retrieving solr json' do
+    let(:ark) { "ark:/88435/7d278t10z" }
+    let(:bib_id) { "4609321" }
+    let(:docs) do
+      [
+        {
+          id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
+          internal_resource_tsim: [
+            "ScannedResource"
+          ],
+          internal_resource_ssim: [
+            "ScannedResource"
+          ],
+          internal_resource_tesim: [
+            "ScannedResource"
+          ],
+          identifier_tsim: [
+            ark
+          ],
+          identifier_ssim: [
+            ark
+          ],
+          identifier_tesim: [
+            ark
+          ],
+          source_metadata_identifier_tsim: [
+            bib_id
+          ],
+          source_metadata_identifier_ssim: [
+            bib_id
+          ],
+          source_metadata_identifier_tesim: [
+            bib_id
+          ],
+
+        }
+      ]
+    end
+    let(:pages) do
+      {
+        "current_page":1,
+        "next_page":2,
+        "prev_page":nil,
+        "total_pages":1,
+        "limit_value":10,
+        "offset_value":0,
+        "total_count":1,
+        "first_page?":true,
+        "last_page?":true
+      }
+    end
+    let(:results) do
+      {
+        "response": {
+          "docs": docs,
+          "facets": [],
+          "pages": pages
+        }
+      }
+    end
+
+    before do
+      stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
+      stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+    end
+
     it 'retrieves solr json for a bib record' do
       bib_id = '1234567'
       stub_voyager('1234567')
@@ -37,6 +102,45 @@ RSpec.describe "Bibliographic Gets", :type => :request do
 
       solr_doc = JSON.parse(response.body)
       expect(solr_doc['id']).to eq(['1234567'])
+    end
+
+    context 'with a bib record which has an ARK' do
+      it 'exposes the ARK' do
+        bib_id = '4765221'
+        stub_voyager('4765221')
+        get "/bibliographic/#{bib_id}/solr"
+        expect(response.status).to be(200)
+
+        solr_doc = JSON.parse(response.body)
+        expect(solr_doc['id']).to eq(['4765221'])
+
+        expect(solr_doc).to have_key('electronic_access_1display')
+        electronic_access_links = solr_doc['electronic_access_1display']
+        electronic_access = JSON.parse(electronic_access_links.first)
+        expect(electronic_access).to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
+      end
+    end
+
+    context 'with a bib record which has an ARK in Figgy' do
+      it 'exposes a link to the catalog as well' do
+        bib_id = '4765221'
+        stub_voyager('4765221')
+        get "/bibliographic/#{bib_id}/solr"
+        expect(response.status).to be(200)
+
+        solr_doc = JSON.parse(response.body)
+        expect(solr_doc['id']).to eq(['4765221'])
+
+        expect(solr_doc).to have_key('electronic_access_1display')
+        electronic_access_links = solr_doc['electronic_access_1display']
+        electronic_access = JSON.parse(electronic_access_links.first)
+        expect(electronic_access).to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
+        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['catalog.princeton.edu'])
+
+        expect(electronic_access).to have_key('iiif_manifest_paths')
+        manifest_paths = electronic_access['iiif_manifest_paths']
+        expect(manifest_paths).to include('http://arks.princeton.edu/ark:/88435/00000140q' => 'https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest')
+      end
     end
 
     it 'displays an error when the bib record does not exist' do
@@ -55,6 +159,32 @@ RSpec.describe "Bibliographic Gets", :type => :request do
 
       json_ld_doc = JSON.parse(response.body)
       expect(json_ld_doc['title']).to eq({'@value' => 'Christopher and his kind, 1929-1939', '@language' => 'eng'})
+    end
+
+    context 'with a bib record which has an ARK' do
+      it 'exposes the ARK' do
+        bib_id = '4765221'
+        stub_voyager('4765221')
+        get "/bibliographic/#{bib_id}/jsonld"
+        expect(response.status).to be(200)
+
+        solr_doc = JSON.parse(response.body)
+        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/4765221')
+        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/00000140q'
+      end
+    end
+
+    context 'with a bib record which has an ARK for a Figgy resource' do
+      it 'exposes the ARK' do
+        bib_id = '4609321'
+        stub_voyager('4609321')
+        get "/bibliographic/#{bib_id}/jsonld"
+        expect(response.status).to be(200)
+
+        solr_doc = JSON.parse(response.body)
+        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/4609321')
+        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/7d278t10z'
+      end
     end
   end
 

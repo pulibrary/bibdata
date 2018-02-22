@@ -17,9 +17,6 @@ class NormalUriFactory
 
     # Clean the URL value
     def clean(value)
-      return value unless /\?.+?%/.match?(value)
-      cleaned = URI.decode_www_form_component(value)
-      return cleaned unless /\?.+?%/.match?(value)
-      clean(cleaned) # Recurse if there is more to be decoded
+      cleaned = URI.escape(URI.unescape(value).scrub)
     end
 end

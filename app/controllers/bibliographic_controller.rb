@@ -23,7 +23,6 @@ class BibliographicController < ApplicationController
 
     records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
 
-
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -60,32 +59,8 @@ class BibliographicController < ApplicationController
     end
   end
 
-  def context_urls
-    root_url + 'context.json'
-  end
-
-  def root_url
-    url_helpers.root_url(host: request.host_with_port)
-  end
-
   def bib_jsonld
     bib_solr format: :jsonld
-  end
-
-  def bib_id_url
-    url_helpers.show_bib_url(params[:bib_id], host: request.host_with_port)
-  end
-
-  def solr_to_jsonld(solr_doc=nil)
-    { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
-  end
-
-  def url_helpers
-    Rails.application.routes.url_helpers
-  end
-
-  def indexer
-    TRAJECT_INDEXER
   end
 
   def bib_holdings
@@ -118,4 +93,42 @@ class BibliographicController < ApplicationController
     end
   end
 
+  private
+
+    # Access the URL helpers for the application
+    # @return [Array<ActionDispatch::Routing::RouteSet::NamedRouteCollection::UrlHelper>]
+    def url_helpers
+      Rails.application.routes.url_helpers
+    end
+
+    # Access the global Traject Object
+    # @return [Traject::Indexer] the Traject indexer
+    def indexer
+      TRAJECT_INDEXER
+    end
+
+    # Generate the URL for the application root
+    # @return [String] the root URL
+    def root_url
+      url_helpers.root_url(host: request.host_with_port)
+    end
+
+    # Generate a JSON-LD context URI using the root url
+    # @return [String] the context URI
+    def context_urls
+      root_url + 'context.json'
+    end
+
+    # Generates the URL for the bibliographic record
+    # @return [String] the URL
+    def bib_id_url
+      url_helpers.show_bib_url(params[:bib_id], host: request.host_with_port)
+    end
+
+    # Converts a Solr Document into a JSON-LD graph
+    # @param solr_doc [SolrDocument] the Solr Document being transformed
+    # @return [Hash] the JSON-LD graph serialized as a Hash
+    def solr_to_jsonld(solr_doc=nil)
+      { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
+    end
 end

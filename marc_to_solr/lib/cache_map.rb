@@ -21,14 +21,12 @@ class CacheMap
     @path = path
     @rows = rows
     @logger = logger
-
-    @logger.info "Seeding the cache for #{@host} using Solr..."
-    seed!
   end
 
   # Seed the cache
   # @param page [Integer] the page number at which to start the caching
   def seed!(page: 1)
+    @logger.info "Seeding the cache for #{@host} using Solr..."
     # Determine if the values from the Solr response have been cached
     @cached_values = @cache.fetch(cache_key)
     return if page == 1 && !@cached_values.nil?

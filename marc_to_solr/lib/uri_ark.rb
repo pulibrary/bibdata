@@ -7,6 +7,7 @@ class URI::ARK < URI::Generic
   # @param url [URI::Generic] the URL for the ARK resource
   # @return [URI::ARK] the ARK
   def self.parse(url:)
+    url = URI.parse(url) unless url.is_a? URI::Generic
     build(
       scheme: url.scheme,
       userinfo: url.userinfo,

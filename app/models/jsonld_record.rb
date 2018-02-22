@@ -1,8 +1,13 @@
+# Class for JSON-LD graphs encoding bibliographic records
 class JSONLDRecord
+  # Constructor
+  # @param solr_doc [Hash] SolrDocument serialized as a Hash
   def initialize(solr_doc = {})
     @solr_doc = solr_doc
   end
 
+  # Generate a Hash from the graph values
+  # @return [Hash]
   def to_h
     metadata = {}
     metadata[:title] = title if title
@@ -100,10 +105,10 @@ class JSONLDRecord
     LanguageService.loc_to_iso(lang)
   end
 
+  # Generate the identifier from MARC 856 field values
+  # @return [String] identifier
   def identifier
-    return unless @solr_doc['electronic_access_1display']
-    json = JSON.parse(@solr_doc['electronic_access_1display'].first)
-    return json.index(['arks.princeton.edu'])
+    electronic_locations.first&.identifier
   end
 
   def local_identifier
@@ -137,7 +142,16 @@ class JSONLDRecord
 
   private
 
+    # Access the MARC language codes (excluding cases where "multiple languages" are explicitly coded)
+    # @see https://www.loc.gov/marc/languages/
+    # @return [Array<String>]
     def language_codes
       (@solr_doc['language_code_s'] || []).reject { |l| l == 'mul' }
+    end
+
+    # Construct the models for the electronic locations
+    # @return [Array<ElectronicLocation>]
+    def electronic_locations
+      @electronic_locations ||= ElectronicLocationsFactory.build(@solr_doc)
     end
 end
