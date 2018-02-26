@@ -103,6 +103,70 @@ describe 'From traject_config.rb' do
       expect(@sample2['pub_citation_display']).to include 'London: Firethorn Press'
     end
   end
+  describe 'publication end date' do
+    let(:place) { 'Cincinnati, Ohio :' }
+    let(:name) { 'American Drama Institute,' }
+    let(:date) { 'c1991-' }
+    let(:date_full) { 'c1991-1998' }
+    let(:ceased_008) do
+      {
+        '008' => '911219d19912007ohufr-p-------0---a0eng-c'
+      }
+    end
+    let(:not_ceased_008) do
+      {
+        '008' => '911219c19912007ohufr-p-------0---a0eng-c'
+      }
+    end
+    let(:no_date_008) do
+      {
+        '008' => '911219d1991    ohufr-p-------0---a0eng-c'
+      }
+    end
+    let(:date_9999_008) do
+      {
+        '008' => '911219d19919999ohufr-p-------0---a0eng-c'
+      }
+    end
+    let(:p260) do
+      {
+        "260" => {
+          "ind1" => " ",
+          "ind2" => " ",
+          "subfields" => [ {"a" => place }, { "b" => name }, { "c" => date } ]
+        }
+      }
+    end
+    let(:p260_complete) do
+      {
+        "260" => {
+          "ind1" => " ",
+          "ind2" => " ",
+          "subfields" => [ {"a" => place }, { "b" => name }, { "c" => date_full } ]
+        }
+      }
+    end
+    let(:no_date_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [no_date_008, p260], 'leader' => leader })) }
+    let(:date_9999_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [date_9999_008, p260], 'leader' => leader })) }
+    let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [not_ceased_008, p260], 'leader' => leader })) }
+    let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [ceased_008, p260], 'leader' => leader })) }
+    let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [ceased_008, p260_complete], 'leader' => leader })) }
+    it 'displays when 008-6 is d and an end date is present in the 008' do
+      expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
+    end
+    it 'does not display when 008-6 is d but end date is 9999' do
+      expect(date_9999_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
+    end
+    it 'does not display when 008-6 is d but end date is not present' do
+      expect(no_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
+    end
+    it 'does not display when 008-6 is not d' do
+      expect(not_ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
+    end
+    it 'does not display when the publisher field ends with a character other than a dash' do
+      expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
+    end
+  end
   describe 'related_name_json_1display' do
     let(:rel_names) { JSON.parse(@related_names['related_name_json_1display'][0]) }
     it 'trims punctuation the same way as author_s facet' do
