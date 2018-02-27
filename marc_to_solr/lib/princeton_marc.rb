@@ -252,44 +252,6 @@ def set_pub_citation(record)
   pub_citation
 end
 
-##
-# Process publication information for creation information
-# @param [MARC::Record]
-# @return [Array<String>]
-def set_pub_created(record)
-  value = []
-
-  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, spec, extractor|
-    a_pub_info = nil
-    b_pub_info = nil
-    c_pub_info = nil
-
-    pub_info = ""
-
-    field.subfields.each do |s_field|
-      a_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'a'
-      b_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'b'
-      c_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'c'
-    end
-
-    # Build the string
-    pub_info += a_pub_info unless a_pub_info.nil?
-
-    pub_info += ": " unless a_pub_info.nil? && b_pub_info.nil?
-    pub_info += b_pub_info unless b_pub_info.nil?
-
-    pub_info += ', ' unless pub_info.nil? || c_pub_info.nil?
-    pub_info += c_pub_info unless c_pub_info.nil?
-
-    # Append the terminal publication date
-    terminal_pub_date = record.end_date_from_008 if !c_pub_info.nil? && /\d{4}\-$/.match(c_pub_info)
-    pub_info += terminal_pub_date if terminal_pub_date
-
-    value << pub_info unless pub_info.empty?
-  end
-  value
-end
-
 SEPARATOR = '—'
 
 # for the hierarchical subject display and facet
