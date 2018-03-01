@@ -13,31 +13,13 @@ class EventsController < ApplicationController
     respond_with(@event)
   end
 
-  # def new
-  #   @event = Event.new
-  #   respond_with(@event)
-  # end
-
-  # def edit
-  # end
-
-  # def create
-  #   @event = Event.new(event_params)
-  #   @event.save
-  #   respond_with(@event)
-  # end
-
-  # def update
-  #   @event.update(event_params)
-  #   respond_with(@event)
-  # end
-
   def destroy
     @event.destroy
     respond_with(@event)
   end
 
   private
+
     def set_event
       @event = Event.find(params[:id])
     end

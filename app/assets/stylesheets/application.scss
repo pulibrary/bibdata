@@ -1,11 +1,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+@import 'variables/colors';
+@import 'variables/typography';
+
+@import 'base/typography';
 
 body {
-  font: $font-stack;
   color: $primary-color;
   padding-top: 90px;
 }

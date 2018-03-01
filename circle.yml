@@ -15,6 +15,7 @@ test:
           RAILS_ENV: test
           FIGGY_ARK_CACHE_PATH: marc_to_solr/spec/fixtures/figgy_ark_cache
           PLUM_ARK_CACHE_PATH: marc_to_solr/spec/fixtures/plum_ark_cache
+          TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
   post:
     - bundle exec rspec marc_to_solr/spec:
         environment:

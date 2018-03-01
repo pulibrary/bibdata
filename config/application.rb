@@ -29,5 +29,8 @@ module MarcLiberation
       }
 
     config.ip_whitelist = config_for(:ip_whitelist)["addresses"].split
+    config.traject = config_for(:traject)
+    config.solr = config_for(:solr)
+    config.authz = config_for(:authz)
   end
 end

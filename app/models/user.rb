@@ -13,4 +13,11 @@ class User < ActiveRecord::Base
       user.provider = access_token.provider
     end
   end
+
+  # Determines whether or not a given user is a catalog administrator
+  # @return [TrueClass, FalseClass]
+  def catalog_admin?
+    netids = Rails.application.config.authz['netids']
+    netids.include? uid
+  end
 end

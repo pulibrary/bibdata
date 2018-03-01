@@ -1,0 +1,12 @@
+default: &default
+  netids: []
+
+development: &development
+  netids:
+    - admin123
+
+test:
+  <<: *development
+
+production:
+  <<: *default
