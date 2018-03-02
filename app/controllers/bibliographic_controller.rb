@@ -1,5 +1,6 @@
 class BibliographicController < ApplicationController
   include FormattingConcern
+  before_action :protect, only: [:update]
 
   def index
     if params[:bib_id]
@@ -93,7 +94,69 @@ class BibliographicController < ApplicationController
     end
   end
 
+  def update
+    records = find_by_id(sanitized_id, voyager_opts)
+
+    if records.nil?
+      render plain: "Record #{sanitized_id} not found or suppressed", status: 404
+    else
+      file = Tempfile.new("#{sanitized_id}.mrx")
+      file.write(records_to_xml_string(records))
+      file.close
+      index_job_queue.add(file: file.path)
+
+      flash[:notice] = "Reindexing job scheduled for #{sanitized_id}"
+    end
+  rescue StandardError => error
+    flash[:alert] = "Failed to schedule the reindexing job for #{sanitized_id}: #{error}"
+  ensure
+    redirect_to index_path
+  end
+
   private
+
+    # Construct or access the indexing service
+    # @return [IndexingService]
+    def index_job_queue
+      traject_config = Rails.application.config.traject
+      solr_config = Rails.application.config.solr
+      @index_job_queue ||= IndexJobQueue.new(config: traject_config['config'], url: solr_config['url'])
+    end
+
+    # Ensure that the client is authenticated and the user is a catalog administrator
+    def protect
+      if user_signed_in?
+        if !current_user.catalog_admin?
+          render plain: "You are unauthorized", status: 403
+        end
+      else
+        redirect_to user_cas_omniauth_authorize_path
+      end
+    end
+
+    # Retrieve and sanitize the Bib. ID from the request parameters
+    # @return [String]
+    def sanitized_id
+      id = params[:bib_id]
+      sanitize(id)
+    end
+
+    # Generate the options for retrieving bib. records from Voyager
+    # @return [Hash]
+    def voyager_opts
+      {
+        holdings: params.fetch('holdings', 'true') == 'true',
+        holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
+      }
+    end
+
+    # Find all bib. records from Voyager using a bib. ID and optional arguments
+    # @param id [String] the bib. ID
+    # @param opts [Hash] optional arguments
+    # @return [Array<Object>] the set of bib. records
+    def find_by_id(id, opts)
+      VoyagerHelpers::Liberator.get_bib_record(id, nil, opts)
+    end
 
     # Access the URL helpers for the application
     # @return [Array<ActionDispatch::Routing::RouteSet::NamedRouteCollection::UrlHelper>]

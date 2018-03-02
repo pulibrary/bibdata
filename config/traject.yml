@@ -1,0 +1,11 @@
+default: &default
+  config: <%= ENV["TRAJECT_CONFIG"] || Rails.root.join('config', 'traject.rb') %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default

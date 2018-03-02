@@ -24,23 +24,6 @@ gem 'oj'
 gem 'gyoku', '~> 1.0'
 gem 'rubyzip', '>= 1.0.0'
 gem 'lightly'
-
-group :development do
-  gem 'spring'
-  gem 'capistrano-rails', '~> 1.1.1'
-end
-
-group :development, :test do
-  # bundler and rake come in from the voyager_helpers gemspec
-  gem 'rspec-rails', '~> 3.5'
-  gem 'simplecov'
-  gem 'pry-byebug', '~> 3.0'
-  gem 'rerun', '~> 0.10.0'
-  gem 'webmock'
-  gem 'rails-controller-testing'
-  gem 'coveralls'
-end
-
 gem 'locations', github: "pulibrary/locations", tag: 'v1.2.0'
 gem 'yaml_db', '~> 0.6.0'
 gem 'friendly_id', '~> 5.1.0'
@@ -61,3 +44,20 @@ gem 'iso-639'
 gem 'newrelic_rpm'
 gem 'honeybadger', '~> 3.1'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v0.3.0'
+
+group :development do
+  gem 'spring'
+  gem 'capistrano-rails', '~> 1.1.1'
+end
+
+group :development, :test do
+  # bundler and rake come in from the voyager_helpers gemspec
+  gem 'rspec-rails', '~> 3.5'
+  gem 'simplecov'
+  gem 'pry-byebug', '~> 3.0'
+  gem 'rerun', '~> 0.10.0'
+  gem 'webmock'
+  gem 'rails-controller-testing'
+  gem 'coveralls'
+  gem "factory_bot_rails", "~> 4.0"
+end
