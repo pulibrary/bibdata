@@ -16,6 +16,13 @@ class CacheManager
     raise NotImplementedError, 'Please initialize a cache using CacheManager.initialize(cache: Rails.cache, logger: Rails.logger)'
   end
 
+  # Clear a cache directory
+  # @param dir [String] path to the cache directory
+  def self.clear(dir:)
+    return unless Dir.exist? dir
+    FileUtils.rm_r dir
+  end
+
   # Constructor
   # @param cache [ActiveSupport::Cache::Store] Rails low-level cache
   # @param logger [IO] logger for handling output during HTTP service requests
@@ -46,12 +53,9 @@ class CacheManager
     @cache_maps ||= CompositeCacheMap.new(cache_maps: [figgy_ark_cache, plum_ark_cache])
   end
 
-  private
-
-    # Ensure the the CacheMap and CompositeCacheMap instances are memoized
-    def seed!
-      figgy_ark_cache
-      plum_ark_cache
-      ark_cache
-    end
+  # Ensure the the CacheMap and CompositeCacheMap instances are memoized
+  def seed!
+    figgy_ark_cache.seed!
+    plum_ark_cache.seed!
+  end
 end

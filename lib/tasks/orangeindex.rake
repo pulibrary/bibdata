@@ -1,9 +1,15 @@
-require 'json'
 require 'faraday'
-require 'zlib'
+require 'json'
+require 'lightly'
 require 'rsolr'
 require 'time'
+require 'zlib'
+
 require './marc_to_solr/lib/index_functions'
+require_relative '../../marc_to_solr/lib/cache_adapter'
+require_relative '../../marc_to_solr/lib/cache_manager'
+require_relative '../../marc_to_solr/lib/cache_map'
+require_relative '../../marc_to_solr/lib/composite_cache_map'
 
 default_bibdata_url = 'https://bibdata.princeton.edu'
 bibdata_url = ENV['BIBDATA_URL'] || default_bibdata_url
@@ -168,12 +174,6 @@ namespace :liberate do
     end
     solr.commit
   end
-
-  require 'lightly'
-  require_relative '../../marc_to_solr/lib/cache_adapter'
-  require_relative '../../marc_to_solr/lib/cache_map'
-  require_relative '../../marc_to_solr/lib/composite_cache_map'
-  require_relative '../../marc_to_solr/lib/cache_manager'
 
   namespace :arks do
     desc "Seed the ARK cache"

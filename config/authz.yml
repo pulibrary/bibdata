@@ -1,12 +1,11 @@
 default: &default
-  netids: []
+  netids: <%= ENV['BIBDATA_ADMIN_NETIDS'] || '' %>
 
-development: &development
-  netids:
-    - admin123
+development:
+  <<: *default
 
 test:
-  <<: *development
+  <<: *default
 
 production:
   <<: *default

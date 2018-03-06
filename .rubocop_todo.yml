@@ -441,7 +441,7 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/normal_uri_factory.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
-    - 'spec/controllers/availability_controller_spec.rb'    
+    - 'spec/controllers/availability_controller_spec.rb'
 
 # Offense count: 13
 Metrics/AbcSize:
@@ -451,6 +451,8 @@ Metrics/AbcSize:
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/BlockLength:
   Max: 533
+  Exclude:
+    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
 
 # Offense count: 3
 # Configuration parameters: CountBlocks.

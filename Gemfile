@@ -45,6 +45,11 @@ gem 'rsolr'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'
 
+gem 'bixby', '~> 1.0'
+gem 'rspec-rails', '~> 3.5'
+gem 'rubocop', '~> 0.52.1'
+gem 'rubocop-rspec', '~> 1.22'
+
 group :development do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'spring'
@@ -52,15 +57,11 @@ end
 
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
-  gem 'bixby', '~> 1.0'
   gem 'coveralls'
   gem "factory_bot_rails", "~> 4.0"
   gem 'pry-byebug', '~> 3.0'
   gem 'rails-controller-testing'
   gem 'rerun', '~> 0.10.0'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'rubocop', '~> 0.52.1', require: false
-  gem 'rubocop-rspec', '~> 1.22'
   gem 'simplecov'
   gem 'webmock'
 end

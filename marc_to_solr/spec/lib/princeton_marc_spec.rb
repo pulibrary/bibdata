@@ -104,7 +104,8 @@ describe 'From princeton_marc.rb' do
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
 
       it 'retrieves the URL for the current resource' do
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['catalog.princeton.edu'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content below'])
+        expect(links).not_to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
       end
 
       context 'for a Figgy resource' do
@@ -117,7 +118,8 @@ describe 'From princeton_marc.rb' do
         let(:url) { 'http://arks.princeton.edu/ark:/88435/rn301432b' }
 
         it 'retrieves the URL for the current resource using Plum' do
-          expect(links).to include('https://catalog.princeton.edu/catalog/7065263#view' => ['catalog.princeton.edu'])
+          expect(links).to include('https://catalog.princeton.edu/catalog/7065263#view' => ['Digital content below'])
+          expect(links).not_to include('http://arks.princeton.edu/ark:/88435/rn301432b' => ['arks.princeton.edu'])
         end
 
         it 'generates the IIIF manifest path' do
@@ -167,11 +169,11 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with an invalid URL' do
-      let(:url) { 'some invalid value' }
+      let(:url) { 'some_invalid_value' }
 
       it 'retrieves no URLs and logs an error' do
         expect(links).to be_empty
-        expect(logger).to have_received(:error).with('001 4609321 - invalid URL in 856 field: some invalid value')
+        expect(logger).to have_received(:error).with('001 4609321 - invalid URL for 856$u value: some_invalid_value')
       end
     end
 
@@ -183,7 +185,7 @@ describe 'From princeton_marc.rb' do
 
       it 'retrieves no URLs and logs an error' do
         expect(links).to be_empty
-        expect(logger).to have_received(:error).with("001 4609321 - invalid text encoding for the URL in the 856 field: #{url}")
+        expect(logger).to have_received(:error).with("001 4609321 - invalid character encoding for 856$u value: #{url}")
       end
     end
 

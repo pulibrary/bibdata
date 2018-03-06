@@ -1,15 +1,15 @@
 # encoding: UTF-8
 require 'library_stdnums'
-require 'uri'
 require 'lightly'
-require_relative './cache_adapter'
-require_relative './cache_map'
-require_relative './composite_cache_map'
-require_relative './cache_manager'
-require_relative './uri_ark'
-require_relative './normal_uri_factory'
-require_relative './orangelight_url_builder'
-require_relative './iiif_manifest_url_builder'
+require 'uri'
+require_relative 'cache_adapter'
+require_relative 'cache_manager'
+require_relative 'cache_map'
+require_relative 'composite_cache_map'
+require_relative 'electronic_access_link'
+require_relative 'electronic_access_link_factory'
+require_relative 'iiif_manifest_url_builder'
+require_relative 'orangelight_url_builder'
 
 module MARC
   class Record
@@ -321,124 +321,84 @@ def build_cache_manager(figgy_dir_path:, plum_dir_path:)
   @cache_manager = CacheManager.current
 end
 
+
 # returns hash of links ($u) (key),
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 # @param [MARC::Record] the MARC record being parsed
 # @return [Hash] the values used to construct the links
 def electronic_access_links(record, figgy_dir_path, plum_dir_path)
-  links = {}
+  solr_field_values = {}
   holding_856s = {}
   iiif_manifest_paths = {}
+
+  output = []
+  iiif_manifest_links = []
 
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, _spec, _extractor|
     anchor_text = false
     z_label = false
     url_key = false
     holding_id = nil
+    bib_id = record['001']
 
-    field.subfields.each do |s_field|
-      holding_id = s_field.value if s_field.code == '0'
-
-      # e. g. http://arks.princeton.edu/ark:/88435/7d278t10z, https://drive.google.com/open?id=0B3HwfRG3YqiNVVR4bXNvRzNwaGs
-      url_key = s_field.value if s_field.code == 'u'
-
-      # e. g. "Curatorial documentation"
-      z_label = s_field.value if s_field.code == 'z'
-
-      if s_field.code == 'y' || s_field.code == '3' || s_field.code == 'x'
-        if anchor_text
-          anchor_text << ": #{s_field.value}"
-        else
-          anchor_text = s_field.value
-        end
-      end
+    begin
+      electronic_access_link = ElectronicAccessLinkFactory.build marc_field: field
+    rescue StandardError => error
+      logger.error "#{bib_id} - #{error}"
+      next
     end
 
-    if url_key
-      begin
-        if url_key =~ URI.regexp
-          normalizer = NormalUriFactory.new(value: url_key)
-          url = normalizer.build
-          url_key = url.to_s
-          url = URI.parse(url_key)
-        else
-          logger.error "#{record['001']} - invalid URL in 856 field: #{url_key}"
-        end
-      rescue StandardError => error
-        logger.error "#{record['001']} - invalid text encoding for the URL in the 856 field: #{url_key}"
+    # If the electronic access link is an ARK...
+    if electronic_access_link.ark
+      # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
+      cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path, plum_dir_path: plum_dir_path)
+
+      # Orangelight links
+      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
+      orangelight_url = catalog_url_builder.build(url: electronic_access_link.ark)
+
+      if orangelight_url
+        # Index this by the domain for Orangelight
+        orangelight_link = electronic_access_link.clone url_key: orangelight_url.to_s, anchor_text: 'Digital content below'
+        # Only add the link to the current page if it resolves to a resource with a IIIF Manifest
+        output << orangelight_link
+      else
+        # Otherwise, always add the link to the resource
+        output << electronic_access_link
+      end
+
+      # Figgy URL's
+      figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host:'figgy.princeton.edu')
+      figgy_iiif_manifest = figgy_url_builder.build(url: electronic_access_link.ark)
+      if figgy_iiif_manifest
+        figgy_iiif_manifest_link = electronic_access_link.clone url_key: figgy_iiif_manifest.to_s
+        iiif_manifest_paths[electronic_access_link.url_key] = figgy_iiif_manifest_link.url.to_s
+      end
+
+      # Plum URL's
+      plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.plum_ark_cache, service_host:'plum.princeton.edu')
+      plum_iiif_manifest = plum_url_builder.build(url: electronic_access_link.ark)
+      if plum_iiif_manifest
+        plum_iiif_manifest_link = electronic_access_link.clone url_key: plum_iiif_manifest.to_s
+        iiif_manifest_paths[electronic_access_link.url_key] = plum_iiif_manifest_link.url.to_s unless iiif_manifest_paths.key? electronic_access_link.url_key
       end
     else
-      logger.error "#{record['001']} - no url in 856 field"
+      # Always add links to the resource if it isn't an ARK
+      output << electronic_access_link
     end
 
-    if url
-      if url.host
-        # Default to the host for the URL for the <a> text content
-        anchor_text = url.host unless anchor_text
-
-        # Retrieve the ARK resource
-        bib_id_field = record['001']
-        bib_id = bib_id_field.value
-
-        if URI::ARK.ark?(url: url)
-          # Cast the URL into an ARK
-          ark_url = URI::ARK.parse(url: url)
-          # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-          cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path, plum_dir_path: plum_dir_path)
-          catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
-          orangelight_url = catalog_url_builder.build(url: ark_url)
-          # Index this by the domain for Orangelight
-          unless orangelight_url.nil?
-            # Deduplicate this
-            url_labels = [anchor_text] # anchor text is first element
-            url_labels << z_label if z_label # optional 2nd element if z
-
-            # Deduplicate this too
-            if holding_id.nil?
-              links[url_key] = url_labels
-            else
-              holding_856s[holding_id] = { url_key => url_labels }
-            end
-
-            ark_url_key = url_key
-            url_key = orangelight_url.to_s
-            anchor_text = 'catalog.princeton.edu'
-          end
-
-          figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host:'figgy.princeton.edu')
-          iiif_manifest_path = figgy_url_builder.build(url: ark_url)
-
-          if iiif_manifest_path.nil?
-            plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.plum_ark_cache, service_host:'plum.princeton.edu')
-            iiif_manifest_path = plum_url_builder.build(url: ark_url)
-          end
-
-          unless iiif_manifest_path.nil?
-            iiif_manifest_key = ark_url_key || url_key
-            iiif_manifest_paths[iiif_manifest_key] = iiif_manifest_path.to_s
-          end
-        else
-          # Ensure that each URI is properly normalized for the transform
-          normalizer = NormalUriFactory.new(value: url.to_s)
-          normal_uri = normalizer.build
-          url_key = normal_uri.to_s
-        end
-      end
-
-      # Build the URL
-      url_labels = [anchor_text] # anchor text is first element
-      url_labels << z_label if z_label # optional 2nd element if z
-
-      if holding_id.nil?
-        links[url_key] = url_labels
-      else
-        holding_856s[holding_id] = { url_key => url_labels }
+    output.each do |link|
+      if link.holding_id
+        holding_856s[link.holding_id] = { link.url_key => link.url_labels }
+      elsif link.url_key && link.url_labels
+        solr_field_values[link.url_key] = link.url_labels
       end
     end
   end
-  links['holding_record_856s'] = holding_856s unless holding_856s == {}
-  links['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
-  links
+
+  solr_field_values['holding_record_856s'] = holding_856s unless holding_856s == {}
+  solr_field_values['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
+  solr_field_values
 end
 
 def remove_parens_035 standard_no

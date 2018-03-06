@@ -26,11 +26,19 @@ module MarcLiberation
       'Access-Control-Allow-Origin' => '*',
       'Access-Control-Request-Method' => 'GET',
       'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token'
-      }
+    }
 
-    config.ip_whitelist = config_for(:ip_whitelist)["addresses"].split
+    config.ip_whitelist = []
+    ip_whitelist = config_for(:ip_whitelist)
+    ip_whitelist_addresses = ip_whitelist["addresses"]
+    config.ip_whitelist = ip_whitelist_addresses.split if ip_whitelist_addresses
+
     config.traject = config_for(:traject)
     config.solr = config_for(:solr)
-    config.authz = config_for(:authz)
+
+    config.authz = []
+    authz = config_for(:authz)
+    netids = authz["netids"]
+    config.authz = netids.split if netids
   end
 end
