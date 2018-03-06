@@ -91,9 +91,13 @@ GEM
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (8.0.0)
+    ast (2.4.0)
     autoprefixer-rails (7.1.6)
       execjs
     bcrypt (3.1.11)
+    bixby (1.0.0)
+      rubocop (~> 0.50, <= 0.52.1)
+      rubocop-rspec (~> 1.22, <= 1.22.2)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -237,10 +241,14 @@ GEM
       nokogiri (~> 1.5)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    parallel (1.12.1)
+    parser (2.5.0.3)
+      ast (~> 2.4.0)
     poltergeist (1.16.0)
       capybara (~> 2.1)
       cliver (~> 0.3.1)
       websocket-driver (>= 0.2.0)
+    powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -282,6 +290,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (3.0.0)
     rake (12.3.0)
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
@@ -317,7 +326,17 @@ GEM
       rspec-mocks (~> 3.7.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.0)
+    rubocop (0.52.1)
+      parallel (~> 1.10)
+      parser (>= 2.4.0.2, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    rubocop-rspec (1.22.2)
+      rubocop (>= 0.52.1)
     ruby-oci8 (2.2.5)
+    ruby-progressbar (1.9.0)
     rubyzip (1.2.1)
     safe_yaml (1.0.4)
     sass (3.5.3)
@@ -391,6 +410,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.4)
+    unicode-display_width (1.3.0)
     warden (1.2.7)
       rack (>= 1.0)
     webmock (3.1.1)
@@ -411,6 +431,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bixby (~> 1.0)
   bootstrap-sass (~> 3.3.3)
   capistrano-rails (~> 1.1.1)
   capybara
@@ -446,6 +467,8 @@ DEPENDENCIES
   responders (~> 2.3)
   rsolr
   rspec-rails (~> 3.5)
+  rubocop (~> 0.52.1)
+  rubocop-rspec (~> 1.22)
   ruby-oci8 (~> 2.2.1)
   rubyzip (>= 1.0.0)
   sass-rails (~> 5.0)
@@ -464,4 +487,4 @@ DEPENDENCIES
   yaml_db (~> 0.6.0)
 
 BUNDLED WITH
-   1.16.0
+   1.16.1

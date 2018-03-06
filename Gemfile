@@ -60,4 +60,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'coveralls'
   gem "factory_bot_rails", "~> 4.0"
+  gem 'rubocop', '~> 0.52.1', require: false
+  gem 'rubocop-rspec', '~> 1.22'
+  gem 'bixby', '~> 1.0'
 end
