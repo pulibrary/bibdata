@@ -757,28 +757,28 @@ Style/BlockComments:
   Exclude:
     - 'marc_to_solr/spec/spec_helper.rb'
 
-# Offense count: 40
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# SupportedStyles: line_count_based, semantic, braces_for_chaining
-# ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# FunctionalMethods: let, let!, subject, watch
-# IgnoredMethods: lambda, proc, it
-Style/BlockDelimiters:
-  Exclude:
-    - 'app/controllers/barcode_controller.rb'
-    - 'app/controllers/bibliographic_controller.rb'
-    - 'app/models/dump.rb'
-    - 'app/models/dump_file.rb'
-    - 'app/models/electronic_location.rb'
-    - 'app/models/event.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/jobs/scsb_edd_job_spec.rb'
-    - 'spec/jobs/scsb_recall_job_spec.rb'
-    - 'spec/jobs/scsb_request_job_spec.rb'
-    - 'spec/mailers/scsb_mailer_spec.rb'
-    - 'spec/models/dump_file_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
+# # Offense count: 40
+# # Cop supports --auto-correct.
+# # Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
+# # SupportedStyles: line_count_based, semantic, braces_for_chaining
+# # ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
+# # FunctionalMethods: let, let!, subject, watch
+# # IgnoredMethods: lambda, proc, it
+# Style/BlockDelimiters:
+#   Exclude:
+#     - 'app/controllers/barcode_controller.rb'
+#     - 'app/controllers/bibliographic_controller.rb'
+#     - 'app/models/dump.rb'
+#     - 'app/models/dump_file.rb'
+#     - 'app/models/electronic_location.rb'
+#     - 'app/models/event.rb'
+#     - 'spec/controllers/availability_controller_spec.rb'
+#     - 'spec/jobs/scsb_edd_job_spec.rb'
+#     - 'spec/jobs/scsb_recall_job_spec.rb'
+#     - 'spec/jobs/scsb_request_job_spec.rb'
+#     - 'spec/mailers/scsb_mailer_spec.rb'
+#     - 'spec/models/dump_file_spec.rb'
+#     - 'spec/models/jsonld_record_spec.rb'
 
 # Offense count: 60
 # Cop supports --auto-correct.
@@ -837,12 +837,12 @@ Style/FormatString:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
 
-# Offense count: 159
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: when_needed, always, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
+# # Offense count: 159
+# # Cop supports --auto-correct.
+# # Configuration parameters: EnforcedStyle.
+# # SupportedStyles: when_needed, always, never
+# Style/FrozenStringLiteralComment:
+#   Enabled: false
 
 # Offense count: 13
 # Configuration parameters: MinBodyLength.

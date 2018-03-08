@@ -5,6 +5,114 @@ require: rubocop-rspec
 inherit_gem:
   bixby: bixby_default.yml
 
+Rails:
+  Enabled: true
+
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
+  Include:
+    - '**/Capfile'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'bin/*'
+    - 'config/deploy.rb'
+    - 'config/initializers/*'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'app/controllers/barcode_controller.rb'
+    - 'app/controllers/bibliographic_controller.rb'
+    - 'app/models/dump.rb'
+    - 'app/models/dump_file.rb'
+    - 'app/models/electronic_location.rb'
+    - 'app/models/event.rb'
+    - 'spec/controllers/availability_controller_spec.rb'
+    - 'spec/jobs/scsb_edd_job_spec.rb'
+    - 'spec/jobs/scsb_recall_job_spec.rb'
+    - 'spec/jobs/scsb_request_job_spec.rb'
+    - 'spec/mailers/scsb_mailer_spec.rb'
+    - 'spec/models/dump_file_spec.rb'
+    - 'spec/models/jsonld_record_spec.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Lint/UnusedBlockArgument:
+  Include:
+    - 'app/controllers/availability_controller.rb'
+    - 'app/services/electronic_locations_factory.rb'
+    - 'config/initializers/relators.rb'
+    - 'lib/tasks/orangeindex.rake'
+    - 'marc_to_solr/lib/geo.rb'
+    - 'marc_to_solr/lib/princeton_marc.rb'
+    - 'marc_to_solr/lib/traject_config.rb'
+    - 'spec/features/devise_spec.rb'
+    - 'spec/models/event_spec.rb'
+
+Lint/UnusedMethodArgument:
+  Include:
+    - 'app/controllers/application_controller.rb'
+    - 'app/controllers/availability_controller.rb'
+    - 'marc_to_solr/lib/format/bib_format.rb'
+    - 'marc_to_solr/lib/geo.rb'
+
+Lint/UselessAssignment:
+  Include:
+    - 'app/controllers/availability_controller.rb'
+    - 'app/models/dump.rb'
+    - 'app/services/language_service.rb'
+    - 'lib/tasks/orangeindex.rake'
+    - 'marc_to_solr/lib/normal_uri_factory.rb'
+    - 'marc_to_solr/lib/princeton_marc.rb'
+    - 'marc_to_solr/lib/traject_config.rb'
+    - 'spec/controllers/availability_controller_spec.rb'        
+
+Layout/SpaceInsideHashLiteralBraces:
+  Include:
+    - 'config/routes.rb'
+    - 'lib/tasks/orangeindex.rake'
+    - 'marc_to_solr/lib/princeton_marc.rb'
+    - 'marc_to_solr/spec/lib/config_spec.rb'
+    - 'marc_to_solr/spec/lib/geo_spec.rb'
+    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/controllers/availability_controller_spec.rb'
+    - 'spec/models/jsonld_record_spec.rb'
+    - 'spec/requests/bib_gets_spec.rb'
+
+Layout/TrailingWhitespace:
+  Include:
+    - 'app/jobs/bib_dump_job.rb'
+    - 'app/jobs/recap_dump_job.rb'
+    - 'app/views/dumps/show.json.jbuilder'
+    - 'config/initializers/locations_decorator.rb'
+    - 'marc_to_solr/lib/format/bib_types.rb'
+    - 'spec/controllers/barcode_controller_spec.rb'
+    - 'spec/features/devise_spec.rb'
+    - 'spec/models/dump_file_spec.rb'
+
+
+Layout/TrailingBlankLines:
+  Include:
+    - 'Rakefile'
+    - 'app/controllers/codes_controller.rb'
+    - 'app/controllers/dump_files_controller.rb'
+    - 'app/controllers/holdings_controller.rb'
+    - 'app/controllers/items_controller.rb'
+    - 'app/controllers/users/omniauth_callbacks_controller.rb'
+    - 'app/jobs/bib_dump_job.rb'
+    - 'app/jobs/recap_dump_job.rb'
+    - 'config/initializers/cookies_serializer.rb'
+    - 'config/initializers/locations_decorator.rb'
+    - 'marc_to_solr/lib/format.rb'
+    - 'marc_to_solr/translation_maps/relators.rb'
+    - 'marc_to_solr/translation_maps/sudocs.rb'
+    - 'marc_to_solr/translation_maps/sudocs_split.rb'
+    - 'spec/controllers/barcode_controller_spec.rb'
+
+    
