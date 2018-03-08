@@ -464,6 +464,9 @@ to_field 'related_record_s', extract_marc('774w')
 # Description for the related record
 to_field 'related_record_info_display', extract_marc('776i')
 
+# Notes index field 5XX
+to_field "notes_index", extract_all_marc_values(from: '500', to: '599')
+
 # Restrictions note:
 #    506 XX 3abcde
 to_field 'restrictions_note_display', extract_marc('5063abcde')
