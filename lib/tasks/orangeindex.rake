@@ -44,7 +44,7 @@ task :check do
     index_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(index_url)
     `awk 'NR % 50000 == 0 {print} END {print}' #{ENV['BIB_DUMP']}`.split("\n").each_with_index do |bib, i|
-      puts i if solr.get('get', params: {id: "#{bib}"})["doc"].nil?
+      puts i if solr.get('get', params: { id: "#{bib}" })["doc"].nil?
     end
   end
 end
@@ -55,7 +55,7 @@ task :check_given do
     index_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(index_url)
     `awk '{print}' #{ENV['BIBS']}`.split("\n").each do |bib|
-      puts bib if solr.get('get', params: {id: "#{bib}"})["doc"].nil?
+      puts bib if solr.get('get', params: { id: "#{bib}" })["doc"].nil?
     end
   end
 end
@@ -66,7 +66,7 @@ task :check_included do
     index_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(index_url)
     `awk 'NR % 50000 == 0 {print} END {print}' #{ENV['BIB_DUMP']}`.split("\n").each_with_index do |bib, i|
-      puts i unless solr.get('get', params: {id: "#{bib}"})["doc"].nil?
+      puts i unless solr.get('get', params: { id: "#{bib}" })["doc"].nil?
     end
   end
 end
@@ -177,7 +177,7 @@ namespace :liberate do
 
   namespace :arks do
     desc "Seed the ARK cache"
-    task :seed_cache, [:figgy_dir_path, :plum_dir_path] do |t, args|
+    task :seed_cache, [:figgy_dir_path, :plum_dir_path] do |_t, args|
       figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
       figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
       figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
@@ -192,7 +192,7 @@ namespace :liberate do
     end
 
     desc "Clear the ARK cache"
-    task :clear_cache, [:figgy_dir_path, :plum_dir_path] do |t, args|
+    task :clear_cache, [:figgy_dir_path, :plum_dir_path] do |_t, args|
       figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
       CacheManager.clear(dir: figgy_dir_path)
 

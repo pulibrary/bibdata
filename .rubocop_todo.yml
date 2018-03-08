@@ -350,23 +350,6 @@ Layout/SpaceInsideBlockBraces:
     - 'spec/models/jsonld_record_spec.rb'
     - 'spec/requests/bib_gets_spec.rb'
 
-# Offense count: 863
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'config/routes.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-
 # Offense count: 9
 # Cop supports --auto-correct.
 Layout/SpaceInsideParens:
@@ -392,41 +375,6 @@ Layout/Tab:
     - 'marc_to_solr/spec/lib/config_spec.rb'
     - 'marc_to_solr/translation_maps/sudocs.rb'
     - 'marc_to_solr/translation_maps/sudocs_split.rb'
-
-# Offense count: 15
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingBlankLines:
-  Exclude:
-    - 'Rakefile'
-    - 'app/controllers/codes_controller.rb'
-    - 'app/controllers/dump_files_controller.rb'
-    - 'app/controllers/holdings_controller.rb'
-    - 'app/controllers/items_controller.rb'
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-    - 'app/jobs/bib_dump_job.rb'
-    - 'app/jobs/recap_dump_job.rb'
-    - 'config/initializers/cookies_serializer.rb'
-    - 'config/initializers/locations_decorator.rb'
-    - 'marc_to_solr/lib/format.rb'
-    - 'marc_to_solr/translation_maps/relators.rb'
-    - 'marc_to_solr/translation_maps/sudocs.rb'
-    - 'marc_to_solr/translation_maps/sudocs_split.rb'
-    - 'spec/controllers/barcode_controller_spec.rb'
-
-# Offense count: 19
-# Cop supports --auto-correct.
-Layout/TrailingWhitespace:
-  Exclude:
-    - 'app/jobs/bib_dump_job.rb'
-    - 'app/jobs/recap_dump_job.rb'
-    - 'app/views/dumps/show.json.jbuilder'
-    - 'config/initializers/locations_decorator.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'spec/controllers/barcode_controller_spec.rb'
-    - 'spec/features/devise_spec.rb'
-    - 'spec/models/dump_file_spec.rb'
 
 # Offense count: 1
 Lint/AmbiguousOperator:
@@ -491,31 +439,6 @@ Lint/StringConversionInInterpolation:
     - 'app/models/concerns/file_path_generator.rb'
     - 'marc_to_solr/lib/uri_ark.rb'
 
-# Offense count: 56
-# Cop supports --auto-correct.
-# Configuration parameters: IgnoreEmptyBlocks, AllowUnusedKeywordArguments.
-Lint/UnusedBlockArgument:
-  Exclude:
-    - 'app/controllers/availability_controller.rb'
-    - 'app/services/electronic_locations_factory.rb'
-    - 'config/initializers/relators.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/geo.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'spec/features/devise_spec.rb'
-    - 'spec/models/event_spec.rb'
-
-# Offense count: 10
-# Cop supports --auto-correct.
-# Configuration parameters: AllowUnusedKeywordArguments, IgnoreEmptyMethods.
-Lint/UnusedMethodArgument:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/availability_controller.rb'
-    - 'marc_to_solr/lib/format/bib_format.rb'
-    - 'marc_to_solr/lib/geo.rb'
-
 # Offense count: 16
 Lint/UselessAssignment:
   Exclude:
@@ -526,7 +449,7 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/normal_uri_factory.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
+    - 'spec/controllers/availability_controller_spec.rb'    
 
 # Offense count: 13
 Metrics/AbcSize:
@@ -757,29 +680,6 @@ Style/BlockComments:
   Exclude:
     - 'marc_to_solr/spec/spec_helper.rb'
 
-# # Offense count: 40
-# # Cop supports --auto-correct.
-# # Configuration parameters: EnforcedStyle, ProceduralMethods, FunctionalMethods, IgnoredMethods.
-# # SupportedStyles: line_count_based, semantic, braces_for_chaining
-# # ProceduralMethods: benchmark, bm, bmbm, create, each_with_object, measure, new, realtime, tap, with_object
-# # FunctionalMethods: let, let!, subject, watch
-# # IgnoredMethods: lambda, proc, it
-# Style/BlockDelimiters:
-#   Exclude:
-#     - 'app/controllers/barcode_controller.rb'
-#     - 'app/controllers/bibliographic_controller.rb'
-#     - 'app/models/dump.rb'
-#     - 'app/models/dump_file.rb'
-#     - 'app/models/electronic_location.rb'
-#     - 'app/models/event.rb'
-#     - 'spec/controllers/availability_controller_spec.rb'
-#     - 'spec/jobs/scsb_edd_job_spec.rb'
-#     - 'spec/jobs/scsb_recall_job_spec.rb'
-#     - 'spec/jobs/scsb_request_job_spec.rb'
-#     - 'spec/mailers/scsb_mailer_spec.rb'
-#     - 'spec/models/dump_file_spec.rb'
-#     - 'spec/models/jsonld_record_spec.rb'
-
 # Offense count: 60
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
@@ -836,13 +736,6 @@ Style/DoubleNegation:
 Style/FormatString:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
-
-# # Offense count: 159
-# # Cop supports --auto-correct.
-# # Configuration parameters: EnforcedStyle.
-# # SupportedStyles: when_needed, always, never
-# Style/FrozenStringLiteralComment:
-#   Enabled: false
 
 # Offense count: 13
 # Configuration parameters: MinBodyLength.

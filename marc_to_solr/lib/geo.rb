@@ -3,7 +3,7 @@
 
 def decimal_coordinate record
   coverage = []
-  Traject::MarcExtractor.cached('034defg').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('034defg').collect_matching_lines(record) do |field, _spec, _extractor|
     c = {}
     field.subfields.each do |s_field|
       c['w'] = s_field.value if s_field.code == 'd' and valid_coordinate_format?(s_field.value, record)
@@ -23,7 +23,7 @@ def decimal_coordinate record
   coverage.first
 end
 
-def valid_coordinate_format? c, record
+def valid_coordinate_format? c, _record
   unless c =~ /^[-+]?[0-9]*\.?[0-9]+$/
     return false
   end

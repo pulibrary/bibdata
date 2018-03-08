@@ -49,9 +49,8 @@ Lint/UnusedBlockArgument:
     - 'app/services/electronic_locations_factory.rb'
     - 'config/initializers/relators.rb'
     - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/geo.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/*'
+    - 'spec/**/*'
     - 'spec/features/devise_spec.rb'
     - 'spec/models/event_spec.rb'
 
@@ -61,17 +60,6 @@ Lint/UnusedMethodArgument:
     - 'app/controllers/availability_controller.rb'
     - 'marc_to_solr/lib/format/bib_format.rb'
     - 'marc_to_solr/lib/geo.rb'
-
-Lint/UselessAssignment:
-  Include:
-    - 'app/controllers/availability_controller.rb'
-    - 'app/models/dump.rb'
-    - 'app/services/language_service.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/normal_uri_factory.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'spec/controllers/availability_controller_spec.rb'        
 
 Layout/SpaceInsideHashLiteralBraces:
   Include:

@@ -121,7 +121,7 @@ end
 
 def standard_no_hash record
   standard_no = {}
-  Traject::MarcExtractor.cached('024').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('024').collect_matching_lines(record) do |field, _spec, _extractor|
     standard_label = map_024_indicators_to_labels(field.indicator1)
     standard_number = nil
     field.subfields.each do |s_field|
@@ -142,7 +142,7 @@ end
 # BIB: 776w, 787w (adds BIB prefix so Blacklight can detect whether to search id field)
 def other_versions record
   linked_nums = []
-  Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
       linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") or (field.tag == "776" and s_field.code == 'z')
       linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") or (field.tag == "776" and s_field.code == 'x')
@@ -234,7 +234,7 @@ end
 # @return [Array] pub info strings from fields 260 and 264.
 def set_pub_citation(record)
   pub_citation = []
-  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, _spec, _extractor|
     a_pub_info = nil
     b_pub_info = nil
     pub_info = ""
@@ -297,7 +297,7 @@ def strip_non_numeric num_str
   num_str.gsub(/\D/, '').to_i.to_s
 end
 
-def oclc_normalize oclc, opts = {prefix: false}
+def oclc_normalize oclc, opts = { prefix: false }
   oclc_num = strip_non_numeric(oclc)
   if opts[:prefix] == true
     case oclc_num.length
@@ -338,7 +338,7 @@ def electronic_access_links(record, figgy_dir_path, plum_dir_path)
   holding_856s = {}
   iiif_manifest_paths = {}
 
-  Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, _spec, _extractor|
     anchor_text = false
     z_label = false
     url_key = false
@@ -522,7 +522,7 @@ end
 
 def everything_after_t record, fields
   values = []
-  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
     after_t = false
     title = []
     field.subfields.each do |s_field|
@@ -539,7 +539,7 @@ end
 
 def everything_through_t record, fields
   values = []
-  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
     non_t = true
     title = []
     field.subfields.each do |s_field|
@@ -561,7 +561,7 @@ end
 # both name ($a) and title ($t) are required
 def prep_name_title record, fields
   values = []
-  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, _extractor|
     name_title = []
     author = []
     non_a = true
@@ -587,7 +587,7 @@ end
 # @param fields [Array] with portions of hierarchy from name-titles
 # @return [Array] name-title portions of hierarchy including previous elements, author
 def join_hierarchy_without_author fields
-  fields.collect { |h| h.collect.with_index { |v, i| Traject::Macros::Marc21.trim_punctuation(h[0..i].join(' ')) } }
+  fields.collect { |h| h.collect.with_index { |_v, i| Traject::Macros::Marc21.trim_punctuation(h[0..i].join(' ')) } }
 end
 
 # @param fields [Array] with portions of hierarchy from name-titles
@@ -602,7 +602,7 @@ end
 # assumes exactly 1 852 is present per mfhd (it saves the last 852 it finds)
 def process_holdings record
   all_holdings = {}
-  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
     holding_id = nil
     field.subfields.each do |s_field|
@@ -634,7 +634,7 @@ def process_holdings record
     holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
     all_holdings[holding_id] = holding unless holding_id.nil?
   end
-  Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
@@ -651,7 +651,7 @@ def process_holdings record
       all_holdings[holding_id]['location_has'] << value.join(' ')
     end
   end
-  Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
@@ -668,7 +668,7 @@ def process_holdings record
       all_holdings[holding_id]['supplements'] << value.join(' ')
     end
   end
-  Traject::MarcExtractor.cached('8680az').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('8680az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
@@ -686,7 +686,7 @@ def process_holdings record
     end
   end
   ### Added for ReCAP records
-  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
     item = {}
     field.subfields.each do |s_field|
       if s_field.code == '0'
@@ -721,14 +721,14 @@ end
 def process_recap_notes record
   item_notes = []
   partner_lib = nil
-  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         partner_lib = s_field.value #||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
       end
     end
   end
-  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, spec, extractor|
+  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
     col_group = ''
     field.subfields.each do |s_field|
       if s_field.code == 'x'

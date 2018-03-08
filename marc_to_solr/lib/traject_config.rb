@@ -33,7 +33,7 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 to_field 'id', extract_marc('001', :first => true)
 
 # if the id contains only numbers we know it's a princeton item
-to_field 'numeric_id_b', extract_marc('001', :first => true) do |record, accumulator|
+to_field 'numeric_id_b', extract_marc('001', :first => true) do |_record, accumulator|
   accumulator.map! { |v| /^[0-9]+$/.match(v) ? true : false }
 end
 
@@ -68,7 +68,7 @@ end
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 
 to_field 'marc_relator_display' do |record, accumulator|
-  MarcExtractor.cached("100:110:111").collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached("100:110:111").collect_matching_lines(record) do |field, _spec, _extractor|
     relator = 'Author'
     field.subfields.each do |s_field|
       if s_field.code == 'e'
@@ -210,7 +210,7 @@ to_field 'pub_date_end_sort' do |record, accumulator|
     accumulator << record.end_date_from_008
 end
 
-to_field 'cataloged_tdt', extract_marc('959a') do |record, accumulator|
+to_field 'cataloged_tdt', extract_marc('959a') do |_record, accumulator|
   accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
 end
 
@@ -572,7 +572,7 @@ to_field 'language_display', extract_marc('5463ab')
 
 to_field 'language_facet', marc_languages
 
-to_field 'publication_place_facet', extract_marc('008[15-17]') do |record, accumulator|
+to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator|
   places = accumulator.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
   accumulator.replace(places.compact)
 end
@@ -581,7 +581,7 @@ end
 #    546 XX b
 to_field 'script_display', extract_marc('546b')
 
-to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |record, accumulator|
+to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
   accumulator.replace(codes.flatten)
 end
@@ -890,34 +890,34 @@ to_field 'standard_no_1display' do |record, accumulator|
   accumulator[0] = standard_no.to_json.to_s unless standard_no == {}
 end
 
-to_field 'lccn_s', extract_marc('010a') do |record, accumulator|
+to_field 'lccn_s', extract_marc('010a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = StdNum::LCCN.normalize(value)
   end
 end
 
-to_field 'issn_s', extract_marc('022a') do |record, accumulator|
+to_field 'issn_s', extract_marc('022a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = StdNum::ISSN.normalize(value)
   end
 end
 
-to_field 'isbn_s', extract_marc('020a') do |record, accumulator|
+to_field 'isbn_s', extract_marc('020a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = StdNum::ISBN.normalize(value)
   end
   accumulator
 end
 
-to_field 'oclc_s', extract_marc('035a') do |record, accumulator|
+to_field 'oclc_s', extract_marc('035a') do |_record, accumulator|
   oclcs = []
-  accumulator.each_with_index do |value, i|
+  accumulator.each_with_index do |value, _i|
     oclcs << oclc_normalize(value) if value.start_with?('(OCoLC)')
   end
   accumulator.replace(oclcs)
 end
 
-to_field 'standard_no_index', extract_marc('035a') do |record, accumulator|
+to_field 'standard_no_index', extract_marc('035a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
     accumulator[i] = remove_parens_035(value)
   end
@@ -964,7 +964,7 @@ to_field 'recap_notes_display' do |record, accumulator|
   end
 end
 
-each_record do |record, context|
+each_record do |_record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
   if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?("seniorprincetonuniversity")
     context.output_hash['format'] ||= []
@@ -975,7 +975,7 @@ end
 # Process location code once
 each_record do |record, context|
   location_codes = []
-  MarcExtractor.cached("852b").collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached("852b").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     field.subfields.each do |s_field|
       if s_field.code == 'b'
@@ -1028,7 +1028,7 @@ to_field 'name_title_100_vern', extract_marc('100aqbcdk:110abcdfgkln:111abcdfgkl
 to_field 'name_title_245a', extract_marc('245a', alternate_script: false, first: true, trim_punctuation: true)
 to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, first: true, trim_punctuation: true)
 to_field 'uniform_240' do |record, accumulator|
-  MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
       accumulator << s_field.value
@@ -1037,7 +1037,7 @@ to_field 'uniform_240' do |record, accumulator|
   end
 end
 to_field 'uniform_240_vern' do |record, accumulator|
-  MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
       accumulator << s_field.value
@@ -1072,7 +1072,7 @@ end
   # Author-Title Browse field includes                   #
   # combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
   ########################################################
-each_record do |record, context|
+each_record do |_record, context|
   doc = context.output_hash
   related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
   contains = join_hierarchy(JSON.parse(doc['contains_1display'][0])) if doc['contains_1display']
@@ -1163,7 +1163,7 @@ to_field 'call_number_browse_s', extract_marc('852khij')
 # Remove holding 856s from electronic_access_1display  #
 # and put into holdings_1display                       #
 ########################################################
-each_record do |record, context|
+each_record do |_record, context|
   if context.output_hash['electronic_access_1display']
     bib_856s = JSON.parse(context.output_hash['electronic_access_1display'].first)
     holding_856s = bib_856s.delete('holding_record_856s')

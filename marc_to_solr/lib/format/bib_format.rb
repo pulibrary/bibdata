@@ -43,31 +43,31 @@ class BibFormat
     (type == 'a') and (lev == 's')
   end
 
-  def bibformat_cf(type, lev)
+  def bibformat_cf(type, _lev)
     (type == 'm')
   end
 
-  def bibformat_au(type, lev)
+  def bibformat_au(type, _lev)
     %w[i j].include?(type)
   end
 
-  def bibformat_vm(type, lev)
+  def bibformat_vm(type, _lev)
     %w[k o r].include?(type)
   end
 
-  def bibformat_vp(type, lev)
+  def bibformat_vp(type, _lev)
     (type == 'g')
   end
 
-  def bibformat_mu(type, lev)
+  def bibformat_mu(type, _lev)
     %w[c d].include?(type)
   end
 
-  def bibformat_mp(type, lev)
+  def bibformat_mp(type, _lev)
     %w[e f].include?(type)
   end
 
-  def bibformat_mw(type, lev)
+  def bibformat_mw(type, _lev)
     %w[d f p t].include?(type)
   end
 

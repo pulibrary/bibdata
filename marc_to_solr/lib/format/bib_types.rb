@@ -20,8 +20,8 @@ class BibTypes
     # Need these a lot -- the sub x and v from any 6XX field
     @xv6XX      = XV6XX.new(@record)
   end
-  
-  
+
+
   def codes
     codes = []
     codes.concat self.video_types
@@ -41,11 +41,11 @@ class BibTypes
 
     codes.uniq!
     codes.compact!
-    
+
     codes
   end
-    
-  
+
+
 
   # Provide memoized values for on-the-fly created MarcExtractor
   # objects
@@ -154,7 +154,7 @@ class BibTypes
     f8524 = record.fields('852').select{|f| f.indicator1 == '4'}
 
     # RC
-    if %w[i j].include?(ldr6) && (bib_format == 'MU') 
+    if %w[i j].include?(ldr6) && (bib_format == 'MU')
       @record.fields('007').map{|f| f.value}.each do |f|
         if f[1] == 'd' && f[12] == 'e'
           types << 'RC'

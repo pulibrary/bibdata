@@ -65,7 +65,7 @@ RSpec.describe Event, type: :model do
   end
 
   def test_failed_event
-    Event.record do |event|
+    Event.record do |_event|
       raise Exception.new('test')
     end
   end

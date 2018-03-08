@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'fileutils'
 
 feature 'Devise restricts features for unauthenticated users', type: :feature, js: true do
-  
   before(:all) do
     dump_test_bib_ids('./spec/fixtures/sample_bib_ids.txt')
     system 'rake db:seed'
@@ -36,7 +35,7 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
   end
 
   ["libraries", "holding_locations", "delivery_locations",
-    "hours_locations"].each_with_index do |data_type, i|
+    "hours_locations"].each_with_index do |data_type, _i|
     scenario "anyone can retrieve JSON feeds for #{data_type}" do
       visit "/locations/#{data_type}.json"
     end
@@ -45,7 +44,7 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
       visit "/locations/#{data_type}"
       find("a[href='/locations/#{data_type}/create']").click
       find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
-    end 
+    end
   end
 
   def dump_test_bib_ids(bibs)

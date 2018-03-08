@@ -14,5 +14,3 @@ end
 
 desc 'Run test suite and style checker'
 task spec: :rubocop
-
-

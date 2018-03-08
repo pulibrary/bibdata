@@ -11,5 +11,3 @@ class CodesController < ApplicationController
 
 
 end
-
-

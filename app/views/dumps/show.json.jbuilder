@@ -1,5 +1,5 @@
 json.type @dump.dump_type.constant.downcase
-json.files do 
+json.files do
   DumpFileType.all.each do |dft|
     json.set! dft.constant.downcase, @dump.dump_files.where(dump_file_type: dft).each do |df|
       json.dump_file dump_file_url(df)

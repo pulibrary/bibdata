@@ -3,8 +3,8 @@ require 'fileutils'
 
 RSpec.describe DumpFile, type: :model do
 
-  subject { 
-    instance = described_class.create 
+  subject {
+    instance = described_class.create
     FileUtils.touch(instance.path)
     instance
   }

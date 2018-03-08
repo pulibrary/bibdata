@@ -24,4 +24,3 @@ RSpec.describe BarcodeController, :type => :controller do
     end
   end
 end
-        

@@ -133,7 +133,7 @@ describe 'From traject_config.rb' do
         "260" => {
           "ind1" => " ",
           "ind2" => " ",
-          "subfields" => [ {"a" => place }, { "b" => name }, { "c" => date } ]
+          "subfields" => [ { "a" => place }, { "b" => name }, { "c" => date } ]
         }
       }
     end
@@ -142,7 +142,7 @@ describe 'From traject_config.rb' do
         "260" => {
           "ind1" => " ",
           "ind2" => " ",
-          "subfields" => [ {"a" => place }, { "b" => name }, { "c" => date_full } ]
+          "subfields" => [ { "a" => place }, { "b" => name }, { "c" => date_full } ]
         }
       }
     end
@@ -316,8 +316,8 @@ describe 'From traject_config.rb' do
   end
 
   describe 'mixing extract_marc and everything_after_t' do
-    let(:t400) {{"400"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
-    let(:t440) {{"440"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"AWESOME"}, {"a"=>"John"}, {"n"=>"1492"}, {"k"=>"dont ignore"}]}}}
+    let(:t400) {{ "400"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"TITLE" }] } }}
+    let(:t440) {{ "440"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "n"=>"1492" }, { "k"=>"dont ignore" }] } }}
 
     it 'includes 400 field when 440 missing for series_title_index field' do
       no_440 = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t400], 'leader' => leader }))
@@ -333,9 +333,9 @@ describe 'From traject_config.rb' do
   end
 
   describe 'both a and t must be present in linked title field' do
-    let(:t760) {{"760"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"t"=>"TITLE"}]}}}
-    let(:a762) {{"762"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"NAME"}]}}}
-    let(:at765) {{"765"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Both"}, {"t"=>"name and title"}]}}}
+    let(:t760) {{ "760"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"TITLE" }] } }}
+    let(:a762) {{ "762"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"NAME" }] } }}
+    let(:at765) {{ "765"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Both" }, { "t"=>"name and title" }] } }}
     let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t760, a762, at765], 'leader' => leader })) }
 
     it 'only includes 765at' do
@@ -348,7 +348,7 @@ describe 'From traject_config.rb' do
   end
 
   describe '#related_record_info_display' do
-    let(:i776) {{"776" => {"ind1" => "", "ind2" => "", "subfields" => [{"i" => "Test description"}]}}}
+    let(:i776) {{ "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } }}
     let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [i776], 'leader' => leader })) }
 
     it 'indexes the 776$i value' do
@@ -357,12 +357,12 @@ describe 'From traject_config.rb' do
   end
 
   describe 'name_uniform_title_display field' do
-    let(:n100) {{"100"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-01"}, {"a"=>"Name,"}]}}}
-    let(:n100_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"100-01"}, {"a"=>"AltName ;"}]}}}
-    let(:t240) {{"240"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-02"}, {"a"=>"Uniform Title,"}, {"p"=>"5"}]}}}
-    let(:t240_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"240-02"}, {"a"=>"AltUniform Title,"}, {"p"=>"5"}]}}}
-    let(:t245) {{"245"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"880-03"}, {"a"=>"Title 245a"}]}}}
-    let(:t245_vern) {{"880"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"6"=>"245-03"}, {"a"=>"VernTitle 245a"}]}}}
+    let(:n100) {{ "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-01" }, { "a"=>"Name," }] } }}
+    let(:n100_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-01" }, { "a"=>"AltName ;" }] } }}
+    let(:t240) {{ "240"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-02" }, { "a"=>"Uniform Title," }, { "p"=>"5" }] } }}
+    let(:t240_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"240-02" }, { "a"=>"AltUniform Title," }, { "p"=>"5" }] } }}
+    let(:t245) {{ "245"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-03" }, { "a"=>"Title 245a" }] } }}
+    let(:t245_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"245-03" }, { "a"=>"VernTitle 245a" }] } }}
     let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader })) }
     let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader })) }
 
@@ -380,9 +380,9 @@ describe 'From traject_config.rb' do
   end
 
   describe 'series 490 dedup, non-filing' do
-    let(:s490) {{"490"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title"}]}}}
-    let(:s830) {{"830"=>{"ind1"=>"", "ind2"=>" ", "subfields"=>[{"a"=>"Series title."}]}}}
-    let(:s440) {{"440"=>{"ind1"=>"", "ind2"=>"4", "subfields"=>[{"a"=>"The Series"}]}}}
+    let(:s490) {{ "490"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title" }] } }}
+    let(:s830) {{ "830"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title." }] } }}
+    let(:s440) {{ "440"=>{ "ind1"=>"", "ind2"=>"4", "subfields"=>[{ "a"=>"The Series" }] } }}
     let(:record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [s490, s830, s440], 'leader' => leader })) }
 
     it '490s are not included when they are covered by another series field' do
@@ -394,11 +394,11 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'senior thesis 502 note' do
-    let(:senior_thesis_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"a"=>"Thesis (Senior)-Princeton University"}]}} }
+    let(:senior_thesis_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)-Princeton University" }] } } }
     let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [senior_thesis_502], 'leader' => leader })) }
-    let(:whitespace_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"a"=>"Thesis (Senior)  -- Princeton University"}]}} }
+    let(:whitespace_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)  -- Princeton University" }] } } }
     let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [whitespace_502], 'leader' => leader })) }
-    let(:subfield_bc_502) { {"502"=>{"ind1"=>" ","ind2"=>" ","subfields"=>[{"b"=>"Senior"}, {"c"=>"Princeton University"}]}} }
+    let(:subfield_bc_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "b"=>"Senior" }, { "c"=>"Princeton University" }] } } }
     let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [subfield_bc_502], 'leader' => leader })) }
 
     it 'Princeton senior theses are properly classified' do
