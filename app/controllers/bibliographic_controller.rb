@@ -126,9 +126,7 @@ class BibliographicController < ApplicationController
     # Ensure that the client is authenticated and the user is a catalog administrator
     def protect
       if user_signed_in?
-        if !current_user.catalog_admin?
-          render plain: "You are unauthorized", status: 403
-        end
+        render plain: "You are unauthorized", status: 403 if !current_user.catalog_admin?
       else
         redirect_to user_cas_omniauth_authorize_path
       end

@@ -77,9 +77,7 @@ module MARC
     def date_display
       date = nil
       if self['260']
-        if self['260']['c']
-          date = self['260']['c']
-        end
+        date = self['260']['c'] if self['260']['c']
       end
       date ||= self.date_from_008
     end
@@ -126,7 +124,7 @@ def standard_no_hash record
     standard_number = nil
     field.subfields.each do |s_field|
       standard_number = s_field.value if s_field.code == 'a'
-      standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO) if s_field.code == '2' and standard_label == '$2'
+      standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO) if (s_field.code == '2') && (standard_label == '$2')
     end
     standard_label = FALLBACK_STANDARD_NO if standard_label == '$2'
     standard_no[standard_label] ? standard_no[standard_label] << standard_number : standard_no[standard_label] = [standard_number] unless standard_number.nil?
@@ -144,15 +142,13 @@ def other_versions record
   linked_nums = []
   Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
-      linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") or (field.tag == "776" and s_field.code == 'z')
-      linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") or (field.tag == "776" and s_field.code == 'x')
-      linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)') and (field.tag == "035")
-      if (field.tag == "776" and s_field.code == 'w') or (field.tag == "787" and s_field.code == 'w')
+      linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") || ((field.tag == "776") && (s_field.code == 'z'))
+      linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") || ((field.tag == "776") && (s_field.code == 'x'))
+      linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)') && (field.tag == "035")
+      if ((field.tag == "776") && (s_field.code == 'w')) || ((field.tag == "787") && (s_field.code == 'w'))
         linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.include?('(OCoLC)')
         linked_nums << "BIB" + strip_non_numeric(s_field.value) unless s_field.value.include?('(')
-        if s_field.value.include?('(') and !s_field.value.start_with?('(')
-          logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
-        end
+        logger.error "#{record['001']} - linked field formatting: #{s_field.value}" if s_field.value.include?('(') && !s_field.value.start_with?('(')
       end
     end
   end
@@ -168,7 +164,7 @@ def process_names record
       remove = ''
       after_t = false
       field.subfields.each do |s_field|
-        remove << " #{s_field.value}" if after_t and spec.includes_subfield_code?(s_field.code)
+        remove << " #{s_field.value}" if after_t && spec.includes_subfield_code?(s_field.code)
         after_t = true if s_field.code == 't'
       end
       name = name.chomp(remove)
@@ -245,7 +241,7 @@ def set_pub_citation(record)
 
     # Build publication info string and add to citation array.
     pub_info += a_pub_info unless a_pub_info.nil?
-    pub_info += ": " if !a_pub_info.nil? and !b_pub_info.nil?
+    pub_info += ": " if !a_pub_info.nil? && !b_pub_info.nil?
     pub_info += b_pub_info unless b_pub_info.nil?
     pub_citation << pub_info if !pub_info.empty?
   end
@@ -262,9 +258,7 @@ def process_subject_facet record, fields
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
-        if (s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
-          subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}")
-        end
+        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
       subject = subject.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
@@ -282,9 +276,7 @@ def process_subject_topic_facet record
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
-        if (s_field.code == 'x' || s_field.code == 'z')
-          subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}")
-        end
+        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
       subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
@@ -549,7 +541,7 @@ def everything_through_t record, fields
         break
       end
     end
-    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless (title.empty? or non_t)
+    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless (title.empty? || non_t)
   end
   values
 end
@@ -610,8 +602,8 @@ def process_holdings record
         holding_id = s_field.value
       elsif s_field.code == 'b'
         ## Location and Library aren't loading correctly with SCSB Records
-        holding['location'] ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-        holding['library'] ||= Traject::TranslationMap.new("location_display", :default => "__passthrough__")[s_field.value]
+        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
+        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
       elsif /[ckhij]/.match(s_field.code)
         holding['call_number'] ||= []
@@ -646,7 +638,7 @@ def process_holdings record
         value << s_field.value
       end
     end
-    if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] && !value.empty?)
       all_holdings[holding_id]['location_has'] ||= []
       all_holdings[holding_id]['location_has'] << value.join(' ')
     end
@@ -663,7 +655,7 @@ def process_holdings record
         value << s_field.value
       end
     end
-    if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] && !value.empty?)
       all_holdings[holding_id]['supplements'] ||= []
       all_holdings[holding_id]['supplements'] << value.join(' ')
     end
@@ -680,7 +672,7 @@ def process_holdings record
         value << s_field.value
       end
     end
-    if (all_holdings[holding_id] and !value.empty?)
+    if (all_holdings[holding_id] && !value.empty?)
       all_holdings[holding_id]['indexes'] ||= []
       all_holdings[holding_id]['indexes'] << value.join(' ')
     end

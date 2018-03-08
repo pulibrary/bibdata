@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe JSONLDRecord, :type => :model do
+RSpec.describe JSONLDRecord, type: :model do
   context 'with date ranges' do
     let(:solr_doc) {{
       'title_citation_display'     => ['This is the Title'],
@@ -35,7 +35,7 @@ RSpec.describe JSONLDRecord, :type => :model do
         type: 'Biography',
         language: ['eng', 'spa', 'zho'],
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
-        :references => "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
+        references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
         identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",

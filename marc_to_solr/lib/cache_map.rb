@@ -86,7 +86,7 @@ class CacheMap
         key_for_ark = self.class.cache_key_for(ark: ark)
         # Handle collisions by refusing to overwrite the first value
         unless @cache.exist?(key_for_ark)
-          @cache.write(key_for_ark, { id: id, source_metadata_identifier: bib_id, internal_resource: resource_type })
+          @cache.write(key_for_ark, id: id, source_metadata_identifier: bib_id, internal_resource: resource_type)
           @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
         end
       end

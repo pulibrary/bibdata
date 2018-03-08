@@ -18,8 +18,8 @@ describe 'From geo.rb' do
       @s = '-0.2444'
       @proper_034 = { "034"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "d"=>@w }, { "e"=>@e }, { "f"=>@n }, { "g"=>@s }] } }
       @bad_034 = { "034"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "d"=>@w }, { "e"=>@e }, { "f"=>@n }, { "g"=>'blah' }] } }
-      @good_bbox = MARC::Record.new_from_hash({ 'fields' => [@proper_034] })
-      @bad_bbox = MARC::Record.new_from_hash({ 'fields' => [@bad_034] })
+      @good_bbox = MARC::Record.new_from_hash('fields' => [@proper_034])
+      @bad_bbox = MARC::Record.new_from_hash('fields' => [@bad_034])
       @good_coverage = @indexer.send(:decimal_coordinate, @good_bbox)
       @bad_coverage = @indexer.send(:decimal_coordinate, @bad_bbox)
     end

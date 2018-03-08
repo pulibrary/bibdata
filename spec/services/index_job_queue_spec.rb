@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IndexJobQueue, :type => :service do
+RSpec.describe IndexJobQueue, type: :service do
   subject(:index_job_queue) { described_class.new(config: config, url: url) }
   let(:config) { Rails.application.config.traject['config'] }
   let(:url) { Rails.application.config.solr['url'] }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PatronController, :type => :controller do
+RSpec.describe PatronController, type: :controller do
   context "with an authorized ip" do
     let(:whitelisted_ip) { '192.168.0.1'}
 

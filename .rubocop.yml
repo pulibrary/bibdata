@@ -18,8 +18,6 @@ AllCops:
     - '**/config.ru'
   Exclude:
     - 'db/**/*'
-    - 'vendor/**/*'
-    - 'tmp/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
     - 'config/initializers/*'
@@ -43,5 +41,9 @@ Style/BlockDelimiters:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/MethodDefParentheses:
+  Enabled: false
 
+Style/NumericPredicate:
+  Enabled: false  
     

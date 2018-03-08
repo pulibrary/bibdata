@@ -85,7 +85,7 @@ describe 'From princeton_marc.rb' do
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
     let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url } ] } } }
-    let(:marc_record) { MARC::Record.new_from_hash({ 'fields' => [l001, l856] }) }
+    let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856]) }
     let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
 
     it 'retrieves the URLs and the link labels' do
@@ -216,7 +216,7 @@ describe 'From princeton_marc.rb' do
       @ind1_7 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'789' }, "2"=>@sub2_key] } }
       @missing_sub2 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'987' }] } }
       @empty_sub2 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'000', "2"=>'' }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@ind1_3, @ind1_4, @ind1_4_second, @ind1_8, @ind1_blank, @ind1_7, @missing_sub2, @empty_sub2] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@ind1_3, @ind1_4, @ind1_4_second, @ind1_8, @ind1_blank, @ind1_7, @missing_sub2, @empty_sub2])
       @standard_nos = standard_no_hash(@sample_marc)
     end
 
@@ -287,7 +287,7 @@ describe 'From princeton_marc.rb' do
       @isbn_num2 = 'ISBN: 978-0-306-40615-7'
       @isbn_num2_10d = '0-306-40615-2'
       @isbn_020 = { "020"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>@isbn_num2 }, { "z"=>@isbn_num2_10d }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@bib_776w, @non_oclc_non_bib_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@bib_776w, @non_oclc_non_bib_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020])
       @linked_nums = other_versions(@sample_marc)
     end
 
@@ -322,7 +322,7 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
       @t700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "k"=>"don't ignore" }, { "t"=>"TITLE" }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@t100, @t700] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@t100, @t700])
     end
 
     it 'strips subfields that appear after subfield $t' do
@@ -339,9 +339,9 @@ describe 'From princeton_marc.rb' do
       t710 = { "710"=>{ "ind1"=>"1", "ind2"=>"2", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "d"=>"1492" }, { "k"=>"dont ignore" }] } }
       ignore700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"should not include" }, { "a"=>"when missing indicators" }] } }
       no_t = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"please" }, { "d"=>"disregard" }, { "k"=>"no title" }] } }
-      sample_marc = MARC::Record.new_from_hash({ 'fields' => [t100, t710, no_t] })
+      sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t])
       @titles = everything_after_t(sample_marc, '100:700:710')
-      indicators_marc = MARC::Record.new_from_hash({ 'fields' => [ignore700, t710] })
+      indicators_marc = MARC::Record.new_from_hash('fields' => [ignore700, t710])
       @indicator_titles = everything_after_t(indicators_marc, '700|12|:710|12|:711|12|')
     end
 
@@ -364,7 +364,7 @@ describe 'From princeton_marc.rb' do
       t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "d"=>"me" }, { "t"=>"TITLE" }, { "a"=>"IGNORE" }] } }
       t710 = { "710"=>{ "ind1"=>"1", "ind2"=>"2", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "d"=>"1492" }, { "k"=>"ignore" }] } }
       no_t = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"please" }, { "d"=>"disregard" }, { "k"=>"no title" }] } }
-      sample_marc = MARC::Record.new_from_hash({ 'fields' => [t100, t710, no_t] })
+      sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t])
       @titles = everything_through_t(sample_marc, '100:700:710')
     end
 
@@ -386,7 +386,7 @@ describe 'From princeton_marc.rb' do
       no_title_700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Mike" }, { "p"=>"part" }] } }
       no_author_710 = { "710"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "d"=>"1500" }, { "t"=>"Title" }, { "p"=>"part" }] } }
       t710 = { "710"=>{ "ind1"=>"", "ind2"=>"2", "subfields"=>[{ "a"=>"Sean" }, { "d"=>"2011" }, { "t"=>"work" }, { "n"=>"53" }, { "p"=>"Allegro" }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [t700, no_title_700, no_author_710, t710] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [t700, no_title_700, no_author_710, t710])
     end
 
     it '$t required, includes only specified subfields' do
@@ -411,7 +411,7 @@ describe 'From princeton_marc.rb' do
       @g630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction." }] } }
       @g655 = { "655"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Culture." }, { "x"=>"Dramatic rendition" }, { "v"=>"Awesome" }] } }
       @g655_2 = { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Poetry" }, { "x"=>"Translations into French" }, { "v"=>"Maps" }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@g600, @g630, @g655, @g655_2] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@g600, @g630, @g655, @g655_2])
       @genres = process_genre_facet(@sample_marc)
     end
 
@@ -449,7 +449,7 @@ describe 'From princeton_marc.rb' do
       @s600_ind2_7 = { "600"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Also Exclude" }] } }
       @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "t"=>"Title." }, { "v"=>"split genre" }, { "d"=>"2015" }] } }
       @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "t"=>"TITLE." }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s610_ind2_5, @s600, @s630] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@s610_ind2_5, @s600, @s630])
       @subjects = process_subject_facet(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
     end
 
@@ -468,7 +468,7 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "x"=>"Join" }, { "t"=>"Title" }, { "d"=>"2015" }] } }
       @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "v"=>"split genre" }, { "t"=>"TITLE" }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@s600, @s630] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630])
       @subjects = process_subject_topic_facet(@sample_marc)
     end
 
@@ -509,9 +509,9 @@ describe 'From princeton_marc.rb' do
       @a700_7 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut8 }, { "e"=>'ed.' }] } }
 
       @sample_marc = MARC::Record
-                      .new_from_hash({ 'fields' => [@a100, @a700_1, @a700_2,
-                                                    @a700_3, @a700_4, @a700_5,
-                                                    @a700_6, @a700_7] })
+                      .new_from_hash('fields' => [@a100, @a700_1, @a700_2,
+                                                  @a700_3, @a700_4, @a700_5,
+                                                  @a700_6, @a700_7])
       @roles = process_author_roles(@sample_marc)
     end
 
@@ -553,9 +553,9 @@ describe 'From princeton_marc.rb' do
       @p264_b = { "264"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "b"=>@name2 }] } }
       @p264_a_b = { "264"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@place2 }, { "b"=>@name2 }] } }
 
-      @sample_marc_a = MARC::Record.new_from_hash({ 'fields' => [@p260_a, @p264_a] })
-      @sample_marc_b = MARC::Record.new_from_hash({ 'fields' => [@p260_b, @p264_b] })
-      @sample_marc_a_b = MARC::Record.new_from_hash({ 'fields' => [@p260_a_b, @p264_a_b] })
+      @sample_marc_a = MARC::Record.new_from_hash('fields' => [@p260_a, @p264_a])
+      @sample_marc_b = MARC::Record.new_from_hash('fields' => [@p260_b, @p264_b])
+      @sample_marc_a_b = MARC::Record.new_from_hash('fields' => [@p260_a_b, @p264_a_b])
 
       @citation_a = set_pub_citation(@sample_marc_a)
       @citation_b = set_pub_citation(@sample_marc_b)
@@ -590,7 +590,7 @@ describe 'From princeton_marc.rb' do
       @s_867 = { "867"=>{ "ind1"=>"9","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v454" }] } }
       @i_868 = { "868"=>{ "ind1"=>" ","ind2"=>"0","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "z"=>"lost" }] } }
       @other_866 = { "866"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v4" },{ "z"=>"p3" }] } }
-      @sample_marc = MARC::Record.new_from_hash({ 'fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852] })
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852])
 
       @holding_block = process_holdings(@sample_marc)
     end

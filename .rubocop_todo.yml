@@ -6,14 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 22
-# Cop supports --auto-correct.
-# Configuration parameters: Include, TreatCommentsAsGroupSeparators.
-# Include: **/Gemfile, **/gems.rb
-Bundler/OrderedGems:
-  Exclude:
-    - 'Gemfile'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 Layout/AlignArray:
@@ -629,13 +621,6 @@ Rails/FilePath:
     - 'spec/rails_helper.rb'
 
 # Offense count: 1
-# Configuration parameters: Include.
-# Include: app/**/*.rb, config/**/*.rb, db/**/*.rb, lib/**/*.rb
-Rails/Output:
-  Exclude:
-    - 'config/deploy.rb'
-
-# Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: referer, referrer
@@ -655,44 +640,6 @@ Rails/TimeZone:
 Security/YAMLLoad:
   Exclude:
     - 'config/initializers/marc_liberation.rb'
-
-# Offense count: 23
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, conditionals
-Style/AndOr:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_format.rb'
-    - 'marc_to_solr/lib/geo.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: percent_q, bare_percent
-Style/BarePercentLiterals:
-  Exclude:
-    - 'app/controllers/concerns/formatting_concern.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/BlockComments:
-  Exclude:
-    - 'marc_to_solr/spec/spec_helper.rb'
-
-# Offense count: 60
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: braces, no_braces, context_dependent
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'config/deploy.rb'
-    - 'marc_to_solr/lib/cache_map.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -753,31 +700,6 @@ Style/GuardClause:
     - 'marc_to_solr/lib/orangelight_url_builder.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
 
-# Offense count: 151
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, UseHashRocketsWithSymbolValues, PreferHashRocketsForNonAlnumEndingSymbols.
-# SupportedStyles: ruby19, hash_rockets, no_mixed_keys, ruby19_no_mixed_keys
-Style/HashSyntax:
-  Enabled: false
-
-# Offense count: 26
-# Cop supports --auto-correct.
-Style/IfUnlessModifier:
-  Exclude:
-    - 'app/controllers/availability_controller.rb'
-    - 'app/controllers/bibliographic_controller.rb'
-    - 'app/controllers/patron_controller.rb'
-    - 'app/jobs/scsb_edd_job.rb'
-    - 'app/jobs/scsb_recall_job.rb'
-    - 'app/jobs/scsb_request_job.rb'
-    - 'app/models/dump.rb'
-    - 'app/models/jsonld_record.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/geo.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'spec/models/dump_file_spec.rb'
-
 # Offense count: 3
 Style/IfUnlessModifierOfIfUnless:
   Exclude:
@@ -789,15 +711,6 @@ Style/IfUnlessModifierOfIfUnless:
 Style/MethodCallWithoutArgsParentheses:
   Exclude:
     - 'app/controllers/concerns/formatting_concern.rb'
-
-# Offense count: 22
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: require_parentheses, require_no_parentheses, require_no_parentheses_except_multiline
-Style/MethodDefParentheses:
-  Exclude:
-    - 'marc_to_solr/lib/geo.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
 
 # Offense count: 1
 Style/MultilineBlockChain:
@@ -849,17 +762,6 @@ Style/Not:
 # Configuration parameters: Strict.
 Style/NumericLiterals:
   MinDigits: 10
-
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, EnforcedStyle.
-# SupportedStyles: predicate, comparison
-Style/NumericPredicate:
-  Exclude:
-    - 'spec/**/*'
-    - 'app/controllers/concerns/formatting_concern.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/format/xv6xx.rb'
 
 # Offense count: 2
 # Cop supports --auto-correct.

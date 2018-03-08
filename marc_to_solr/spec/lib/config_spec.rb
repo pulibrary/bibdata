@@ -146,11 +146,11 @@ describe 'From traject_config.rb' do
         }
       }
     end
-    let(:no_date_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [no_date_008, p260], 'leader' => leader })) }
-    let(:date_9999_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [date_9999_008, p260], 'leader' => leader })) }
-    let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [not_ceased_008, p260], 'leader' => leader })) }
-    let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [ceased_008, p260], 'leader' => leader })) }
-    let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [ceased_008, p260_complete], 'leader' => leader })) }
+    let(:no_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [no_date_008, p260], 'leader' => leader)) }
+    let(:date_9999_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [date_9999_008, p260], 'leader' => leader)) }
+    let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [not_ceased_008, p260], 'leader' => leader)) }
+    let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
+    let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
     it 'displays when 008-6 is d and an end date is present in the 008' do
       expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
     end
@@ -320,11 +320,11 @@ describe 'From traject_config.rb' do
     let(:t440) {{ "440"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "n"=>"1492" }, { "k"=>"dont ignore" }] } }}
 
     it 'includes 400 field when 440 missing for series_title_index field' do
-      no_440 = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t400], 'leader' => leader }))
+      no_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400], 'leader' => leader))
       expect(no_440['series_title_index']).to include('TITLE')
     end
     it 'includes 400 and 440 field for series_title_index field' do
-      yes_440 = @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t400, t440], 'leader' => leader }))
+      yes_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400, t440], 'leader' => leader))
       expect(yes_440['series_title_index']).to match_array(['TITLE', 'John 1492'])
     end
     it 'excludes series_title_index field when no matching values' do
@@ -336,7 +336,7 @@ describe 'From traject_config.rb' do
     let(:t760) {{ "760"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"TITLE" }] } }}
     let(:a762) {{ "762"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"NAME" }] } }}
     let(:at765) {{ "765"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Both" }, { "t"=>"name and title" }] } }}
-    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [t760, a762, at765], 'leader' => leader })) }
+    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t760, a762, at765], 'leader' => leader)) }
 
     it 'only includes 765at' do
       expect(linked_record['linked_title_s']).to match_array(['Both name and title'])
@@ -349,7 +349,7 @@ describe 'From traject_config.rb' do
 
   describe '#related_record_info_display' do
     let(:i776) {{ "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } }}
-    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [i776], 'leader' => leader })) }
+    let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [i776], 'leader' => leader)) }
 
     it 'indexes the 776$i value' do
       expect(linked_record['related_record_info_display']).to include('Test description')
@@ -363,8 +363,8 @@ describe 'From traject_config.rb' do
     let(:t240_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"240-02" }, { "a"=>"AltUniform Title," }, { "p"=>"5" }] } }}
     let(:t245) {{ "245"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-03" }, { "a"=>"Title 245a" }] } }}
     let(:t245_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"245-03" }, { "a"=>"VernTitle 245a" }] } }}
-    let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader })) }
-    let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader })) }
+    let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
+    let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader)) }
 
     it 'name title browse field includes both scripts, excludes 245 with uniform title present' do
       expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to match_array([['Name.', 'Uniform Title,', '5'],
@@ -383,7 +383,7 @@ describe 'From traject_config.rb' do
     let(:s490) {{ "490"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title" }] } }}
     let(:s830) {{ "830"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title." }] } }}
     let(:s440) {{ "440"=>{ "ind1"=>"", "ind2"=>"4", "subfields"=>[{ "a"=>"The Series" }] } }}
-    let(:record) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [s490, s830, s440], 'leader' => leader })) }
+    let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
 
     it '490s are not included when they are covered by another series field' do
       expect(record['series_display']).to match_array(['Series title.', 'The Series'])
@@ -395,11 +395,11 @@ describe 'From traject_config.rb' do
   end
   describe 'senior thesis 502 note' do
     let(:senior_thesis_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)-Princeton University" }] } } }
-    let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [senior_thesis_502], 'leader' => leader })) }
+    let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
     let(:whitespace_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)  -- Princeton University" }] } } }
-    let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [whitespace_502], 'leader' => leader })) }
+    let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [whitespace_502], 'leader' => leader)) }
     let(:subfield_bc_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "b"=>"Senior" }, { "c"=>"Princeton University" }] } } }
-    let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash({ 'fields' => [subfield_bc_502], 'leader' => leader })) }
+    let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [subfield_bc_502], 'leader' => leader)) }
 
     it 'Princeton senior theses are properly classified' do
       expect(senior_thesis_marc['format']).to include 'Senior thesis'

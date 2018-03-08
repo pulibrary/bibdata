@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ScsbMailer, :type => :mailer do
+RSpec.describe ScsbMailer, type: :mailer do
 
   context "Retrieval Request" do
     let(:args) {

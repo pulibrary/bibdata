@@ -6,10 +6,10 @@ def decimal_coordinate record
   Traject::MarcExtractor.cached('034defg').collect_matching_lines(record) do |field, _spec, _extractor|
     c = {}
     field.subfields.each do |s_field|
-      c['w'] = s_field.value if s_field.code == 'd' and valid_coordinate_format?(s_field.value, record)
-      c['e'] = s_field.value if s_field.code == 'e' and valid_coordinate_format?(s_field.value, record)
-      c['n'] = s_field.value if s_field.code == 'f' and valid_coordinate_format?(s_field.value, record)
-      c['s'] = s_field.value if s_field.code == 'g' and valid_coordinate_format?(s_field.value, record)
+      c['w'] = s_field.value if (s_field.code == 'd') && valid_coordinate_format?(s_field.value, record)
+      c['e'] = s_field.value if (s_field.code == 'e') && valid_coordinate_format?(s_field.value, record)
+      c['n'] = s_field.value if (s_field.code == 'f') && valid_coordinate_format?(s_field.value, record)
+      c['s'] = s_field.value if (s_field.code == 'g') && valid_coordinate_format?(s_field.value, record)
     end
     if c.length != 4
       # turning of geo coordinate logging for now
@@ -24,8 +24,6 @@ def decimal_coordinate record
 end
 
 def valid_coordinate_format? c, _record
-  unless c =~ /^[-+]?[0-9]*\.?[0-9]+$/
-    return false
-  end
+  return false unless c =~ /^[-+]?[0-9]*\.?[0-9]+$/
   true
 end

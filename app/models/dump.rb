@@ -151,9 +151,7 @@ class Dump < ActiveRecord::Base
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: type))
         dump.event = event
-        unless type == 'RECAP_RECORDS'
-          dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type))
-        end
+        dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type)) unless type == 'RECAP_RECORDS'
         if type == 'BIB_IDS'
           VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
         elsif type == 'HOLDING_IDS'

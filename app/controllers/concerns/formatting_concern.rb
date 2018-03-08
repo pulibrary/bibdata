@@ -44,7 +44,7 @@ module FormattingConcern
     # yep!
     s = []
     s << '<statuses>'
-    data.each { |k,v| s << %Q(<status code="#{k}" label="#{v}" />) }
+    data.each { |k,v| s << %(<status code="#{k}" label="#{v}" />) }
     s << '</statuses>'
     s.join('')
   end

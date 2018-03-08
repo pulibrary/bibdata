@@ -36,11 +36,11 @@ class BibFormat
   end
 
   def bibformat_bk(type, lev)
-    (type == 't') or ((type == 'a') and %w[a b c d i m].include?(lev))
+    (type == 't') || ((type == 'a') && %w[a b c d i m].include?(lev))
   end
 
   def bibformat_jn(type, lev)
-    (type == 'a') and (lev == 's')
+    (type == 'a') && (lev == 's')
   end
 
   def bibformat_cf(type, _lev)
