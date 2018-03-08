@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'marc'
 
-RSpec.describe "Bibliographic Gets", :type => :request do
+RSpec.describe "Bibliographic Gets", type: :request do
   describe "GET /bibliographic/430472/items" do
     it "Properly encoded item records" do
       stub_voyager_items('430472')
@@ -158,7 +158,7 @@ RSpec.describe "Bibliographic Gets", :type => :request do
       expect(response.content_type).to eq('application/ld+json')
 
       json_ld_doc = JSON.parse(response.body)
-      expect(json_ld_doc['title']).to eq({'@value' => 'Christopher and his kind, 1929-1939', '@language' => 'eng'})
+      expect(json_ld_doc['title']).to eq('@value' => 'Christopher and his kind, 1929-1939', '@language' => 'eng')
     end
 
     context 'with a bib record which has an ARK' do
@@ -295,9 +295,9 @@ RSpec.describe "Bibliographic Gets", :type => :request do
         holding = JSON.parse(response.body)
         holding = MARC::Record.new_from_hash(holding)
         eight52 = holding['852'].to_hash
-        eight52['852']['subfields'].prepend({"0"=>id.to_s})
+        eight52['852']['subfields'].prepend("0"=>id.to_s)
         eight56 = holding['856'].to_hash
-        eight56['856']['subfields'].prepend({"0"=>id.to_s})
+        eight56['856']['subfields'].prepend("0"=>id.to_s)
         expect(ipad_bib_record['fields']).to include(eight52)
         expect(ipad_bib_record['fields']).to include(eight56)
 
@@ -316,7 +316,7 @@ RSpec.describe "Bibliographic Gets", :type => :request do
         holding = JSON.parse(response.body)
         holding = MARC::Record.new_from_hash(holding)
         eight66 = holding['866'].to_hash
-        eight66['866']['subfields'].prepend({"0"=>id.to_s})
+        eight66['866']['subfields'].prepend("0"=>id.to_s)
         expect(ipad_bib_record['fields']).to include(eight66)
       end
     end

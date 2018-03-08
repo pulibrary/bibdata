@@ -7,8 +7,6 @@ class ScsbRequestJob < ActiveJob::Base
     # unless args[:emailAddress].blank?
     #   ScsbMailer.send('request_email', args).deliver_now
     # end
-    if args[:success] == false
-      ScsbMailer.send('error_email', args).deliver_now
-    end
+    ScsbMailer.send('error_email', args).deliver_now if args[:success] == false
   end
 end

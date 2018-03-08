@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'marc'
 
-RSpec.describe "Barcode Gets", :type => :request do
+RSpec.describe "Barcode Gets", type: :request do
   describe "GET /barcode/32101070300312" do
     it "returns a collection of bibliographic records" do
       stub_voyager_barcodes('32101070300312')

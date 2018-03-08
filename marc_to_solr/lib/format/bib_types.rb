@@ -20,8 +20,8 @@ class BibTypes
     # Need these a lot -- the sub x and v from any 6XX field
     @xv6XX      = XV6XX.new(@record)
   end
-  
-  
+
+
   def codes
     codes = []
     codes.concat self.video_types
@@ -41,11 +41,11 @@ class BibTypes
 
     codes.uniq!
     codes.compact!
-    
+
     codes
   end
-    
-  
+
+
 
   # Provide memoized values for on-the-fly created MarcExtractor
   # objects
@@ -154,7 +154,7 @@ class BibTypes
     f8524 = record.fields('852').select{|f| f.indicator1 == '4'}
 
     # RC
-    if %w[i j].include?(ldr6) && (bib_format == 'MU') 
+    if %w[i j].include?(ldr6) && (bib_format == 'MU')
       @record.fields('007').map{|f| f.value}.each do |f|
         if f[1] == 'd' && f[12] == 'e'
           types << 'RC'
@@ -261,9 +261,7 @@ class BibTypes
 
   def map_types
     types = []
-    if (bib_format == 'MP') || %w[e f].include?(record.leader[6]) ||  self['007[0]'].include?('a')
-      types << 'MN'
-    end
+    types << 'MN' if (bib_format == 'MP') || %w[e f].include?(record.leader[6]) ||  self['007[0]'].include?('a')
     return types
   end
 
@@ -358,12 +356,8 @@ class BibTypes
   def software_types
     types = []
     self['852j'].each do |j|
-      if j =~ /\Acd-?rom/i
-        types << 'CR'
-      end
-      if j =~ /\Asoftware/i
-        types << 'CS'
-      end
+      types << 'CR' if j =~ /\Acd-?rom/i
+      types << 'CS' if j =~ /\Asoftware/i
     end
     types.uniq!
     return types
@@ -455,22 +449,16 @@ class BibTypes
 
 
 
-    if (f8_24.include? 'e') || (f6_7.include? 'e')
-      types << 'EN'
-    end
+    types << 'EN' if (f8_24.include? 'e') || (f6_7.include? 'e')
 
     if f6_7.include? 'd'
       types << 'DI'
       types << 'DR'
     end
 
-    if f8_24.include? 'd'
-      types << 'DI'
-    end
+    types << 'DI' if f8_24.include? 'd'
 
-    if f8_24.include? 'r'
-      types << 'DR'
-    end
+    types << 'DR' if f8_24.include? 'r'
 
     types << 'EN' if @xv6XX.match? /encyclopedias/i
     types << 'DI' if @xv6XX.match? /dictionaries/i

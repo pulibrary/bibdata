@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe ScsbMailer, :type => :mailer do
+RSpec.describe ScsbMailer, type: :mailer do
 
   context "Retrieval Request" do
-    let(:args) {
+    let(:args) do
       {
         "itemBarcode"=>"32101069042784",
         "itemOwningInstitution"=>"PUL",
@@ -47,10 +47,10 @@ RSpec.describe ScsbMailer, :type => :mailer do
         "owner"=>nil,
         "deleted"=>false
       }.with_indifferent_access
-    }
-    let(:mail) {
+    end
+    let(:mail) do
       ScsbMailer.send("request_email", args).deliver_now
-    }
+    end
 
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
@@ -69,7 +69,7 @@ RSpec.describe ScsbMailer, :type => :mailer do
   end
 
   context "Failed Retrieval Request" do
-    let(:args) {
+    let(:args) do
       {
         "itemBarcode": "32101101392320",
         "itemOwningInstitution": "PUL",
@@ -113,11 +113,11 @@ RSpec.describe ScsbMailer, :type => :mailer do
         "owner": nil,
         "deleted": false
       }
-    }
+    end
 
-    let(:mail) {
+    let(:mail) do
       ScsbMailer.send("error_email", args).deliver_now
-    }
+    end
 
     it "renders the headers" do
       expect(mail.to).to eq([I18n.t('scsb.default_error_to')])
@@ -131,7 +131,7 @@ RSpec.describe ScsbMailer, :type => :mailer do
   end
 
   context "EDD Request" do
-    let(:args) {
+    let(:args) do
       {
         "itemBarcode"=>"32101069042784",
         "itemOwningInstitution"=>"PUL",
@@ -175,10 +175,10 @@ RSpec.describe ScsbMailer, :type => :mailer do
         "owner"=>nil,
         "deleted"=>false
       }.with_indifferent_access
-    }
-    let(:mail) {
+    end
+    let(:mail) do
       ScsbMailer.send("edd_email", args).deliver_now
-    }
+    end
 
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
@@ -194,7 +194,7 @@ RSpec.describe ScsbMailer, :type => :mailer do
   end
 
   context "Recall Request" do
-    let(:args) {
+    let(:args) do
       {
         "itemBarcode"=>"32101069042784",
         "itemOwningInstitution"=>"PUL",
@@ -238,10 +238,10 @@ RSpec.describe ScsbMailer, :type => :mailer do
         "owner"=>nil,
         "deleted"=>false
       }.with_indifferent_access
-    }
-    let(:mail) {
+    end
+    let(:mail) do
       ScsbMailer.send("recall_email", args).deliver_now
-    }
+    end
 
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])

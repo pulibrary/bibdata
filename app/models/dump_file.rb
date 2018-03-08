@@ -7,12 +7,12 @@ class DumpFile < ActiveRecord::Base
   belongs_to :dump
   belongs_to :dump_file_type
 
-  after_create {
+  after_create do
     self.path = generate_fp
     self.save
-  }
+  end
 
-  before_save {
+  before_save do
     unless self.path.nil? || !File.exist?(self.path)
       self.md5 = File.open(self.path, 'rb') do |io|
         digest = Digest::MD5.new
@@ -24,11 +24,11 @@ class DumpFile < ActiveRecord::Base
       end
     end
 
-  }
+  end
 
-  before_destroy {
+  before_destroy do
     File.delete(self.path) if File.exist?(self.path)
-  }
+  end
 
   def zipped?
     self.path.ends_with?('.gz')

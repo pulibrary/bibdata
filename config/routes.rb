@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   mount Locations::Engine, at: '/locations'
 
   resources :dump_files, only: [:show]
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   get '/items', to: 'items#index', defaults: { format: :txt }
   get '/items/:item_id', to: 'items#item', defaults: { format: :json }
 
-  get '/barcode', to: 'barcode#index', defaults: {format: :txt }
+  get '/barcode', to: 'barcode#index', defaults: { format: :txt }
   get '/barcode/:barcode', to: 'barcode#barcode', defaults: { format: :xml }, as: :show_barcode
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 

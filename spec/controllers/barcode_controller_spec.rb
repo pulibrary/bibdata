@@ -1,6 +1,6 @@
 require 'rails_helper'
 include FormattingConcern
-RSpec.describe BarcodeController, :type => :controller do
+RSpec.describe BarcodeController, type: :controller do
   describe '#valid_barcode' do
     context 'barcode is valid' do
       let(:valid_barcode1) { '32101123456789' }
@@ -24,4 +24,3 @@ RSpec.describe BarcodeController, :type => :controller do
     end
   end
 end
-        

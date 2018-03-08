@@ -15,4 +15,3 @@ class DumpFilesController < ApplicationController
     params.require(:dump_file).permit(:dump_id)#(:dump_id, :path, :md5)
   end
 end
-

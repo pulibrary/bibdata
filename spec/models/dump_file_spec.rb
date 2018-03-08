@@ -3,17 +3,15 @@ require 'fileutils'
 
 RSpec.describe DumpFile, type: :model do
 
-  subject { 
-    instance = described_class.create 
+  subject do
+    instance = described_class.create
     FileUtils.touch(instance.path)
     instance
-  }
+  end
 
-  after(:each) {
-    unless subject.nil? || !File.exists?(subject.path)
-      File.delete(subject.path)
-    end
-  }
+  after(:each) do
+    File.delete(subject.path) unless subject.nil? || !File.exists?(subject.path)
+  end
 
   describe 'when a new instance is created' do
     it 'populates :path' do

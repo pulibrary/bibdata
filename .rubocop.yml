@@ -1,0 +1,37 @@
+inherit_from: .rubocop_todo.yml
+
+require: rubocop-rspec
+
+inherit_gem:
+  bixby: bixby_default.yml
+
+Rails:
+  Enabled: true
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.3
+  Include:
+    - '**/Capfile'
+    - '**/Gemfile'
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'bin/*'
+    - 'config/deploy.rb'
+    - 'config/initializers/*'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/models/jsonld_record_spec.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MethodDefParentheses:
+  Enabled: false
+
+Style/NumericPredicate:
+  Enabled: false  
+    

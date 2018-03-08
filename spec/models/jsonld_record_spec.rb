@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe JSONLDRecord, :type => :model do
+RSpec.describe JSONLDRecord, type: :model do
   context 'with date ranges' do
     let(:solr_doc) {{
       'title_citation_display'     => ['This is the Title'],
@@ -23,7 +23,7 @@ RSpec.describe JSONLDRecord, :type => :model do
 
     it 'produces json+ld' do
       json_ld = {
-        title: {'@value':'This is the Title', '@language':'eng'},
+        title: { '@value':'This is the Title', '@language':'eng' },
         title_sort: 'this is the title',
         abstract: 'This is a note about it.',
         description: 'This is another note.',
@@ -35,7 +35,7 @@ RSpec.describe JSONLDRecord, :type => :model do
         type: 'Biography',
         language: ['eng', 'spa', 'zho'],
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
-        :references => "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
+        references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
         identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",
@@ -76,7 +76,7 @@ RSpec.describe JSONLDRecord, :type => :model do
 
     it 'maps the creator to dc:creator and the more specific role' do
       json_ld = {
-        title: {'@value':'This is the Title', '@language': 'eng'},
+        title: { '@value':'This is the Title', '@language': 'eng' },
         date: '1970',
         created: '1970-01-01T00:00:00Z',
         language: 'eng',
@@ -99,7 +99,7 @@ RSpec.describe JSONLDRecord, :type => :model do
 
     it 'maps the creator to dc:creator and the more specific role' do
       json_ld = {
-        title: {'@value':'This is the Title', '@language': 'eng'},
+        title: { '@value':'This is the Title', '@language': 'eng' },
         language: 'eng',
         creator: 'Composer, Carol',
         composer: 'Composer, Carol'
@@ -130,8 +130,8 @@ RSpec.describe JSONLDRecord, :type => :model do
 
     it 'includes both the vernacular and english titles' do
       json_ld = {
-        title: [{'@value':'كتاب المناهل الصافية', '@language': 'ara'},
-                {'@value':'Kitāb al-Manāhil al-ṣāfīyah', '@language': 'ara-Latn'}],
+        title: [{ '@value':'كتاب المناهل الصافية', '@language': 'ara' },
+                { '@value':'Kitāb al-Manāhil al-ṣāfīyah', '@language': 'ara-Latn' }],
         language: 'ara',
         creator: ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626', 'ظفيري، لطف الله بن محمد'],
         author: 'Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626'
@@ -147,7 +147,7 @@ RSpec.describe JSONLDRecord, :type => :model do
     subject { described_class.new solr_doc }
 
     it 'produces a title statement without language tag' do
-      json_ld = {title: 'This is a test title'}
+      json_ld = { title: 'This is a test title' }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
   end

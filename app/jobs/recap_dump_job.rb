@@ -2,7 +2,7 @@ require 'voyager_helpers'
 
 class RecapDumpJob < ActiveJob::Base
   queue_as :default
- 
+
   def perform(barcode_slice, df_id)
     df = DumpFile.find(df_id)
     File.truncate(df.path, 0) if File.exist?(df.path)
@@ -12,4 +12,3 @@ class RecapDumpJob < ActiveJob::Base
     df.save
   end
 end
-

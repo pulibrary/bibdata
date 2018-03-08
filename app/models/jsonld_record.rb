@@ -52,9 +52,7 @@ class JSONLDRecord
   end
 
   def date(expanded = false)
-    if expanded == false && @solr_doc['compiled_created_display']
-      return @solr_doc['compiled_created_display'].first
-    end
+    return @solr_doc['compiled_created_display'].first if expanded == false && @solr_doc['compiled_created_display']
     return unless @solr_doc['pub_date_start_sort']
     date = @solr_doc['pub_date_start_sort'].first
     date += "-01-01T00:00:00Z" if expanded

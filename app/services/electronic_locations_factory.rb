@@ -26,7 +26,7 @@ class ElectronicLocationsFactory
   # @return [Hash]
   def self.parse_subfields(holding_values, values)
     subfields = []
-    holding_values.each do |holding_id, url_values|
+    holding_values.each do |_holding_id, url_values|
       url_values.each do |url_key, url_labels|
         subfield = {}
 

@@ -2,7 +2,7 @@ require 'voyager_helpers'
 
 class BibDumpJob < ActiveJob::Base
   queue_as :default
- 
+
   def perform(id_slice, df_id)
     df = DumpFile.find(df_id)
     File.truncate(df.path, 0) if File.exist?(df.path)

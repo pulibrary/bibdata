@@ -67,7 +67,7 @@ class AvailabilityController < ApplicationController
   private
 
   def multiple_bib_circulation(bibs)
-    bibs.each do |bib_id, bib|
+    bibs.each do |_bib_id, bib|
       bib = single_bib_circulation(bib)
     end
   end
@@ -115,7 +115,7 @@ class AvailabilityController < ApplicationController
   end
 
   # only recap non-aeon items retain the hold request status
-  def scsb_status(loc, status)
+  def scsb_status(loc, _status)
     if loc.library.code == 'recap' && !loc.aeon_location
       hold_request
     else
@@ -179,9 +179,7 @@ class AvailabilityController < ApplicationController
     loc = get_holding_location(loc_code)
     unless loc.nil?
       item[:label] = location_full_display(loc)
-      unless order_status?(item[:status])
-        item[:status] = location_based_status(loc, item[:status])
-      end
+      item[:status] = location_based_status(loc, item[:status]) unless order_status?(item[:status])
     end
   end
 end

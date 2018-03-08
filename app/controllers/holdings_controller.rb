@@ -36,6 +36,3 @@ class HoldingsController < ApplicationController
   end
 
 end
-
-
-

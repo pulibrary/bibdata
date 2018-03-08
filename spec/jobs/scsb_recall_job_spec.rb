@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ScsbRecallJob do
-  let(:fail_message) {
+  let(:fail_message) do
     '{"success": false, "screenMessage": "You Failed", "emailAddress": "foo@foo.com"}'
-  }
-  let(:success_message) {
+  end
+  let(:success_message) do
     '{"success": true, "screenMessage": "Request plaaced", "emailAddress": "foo@foo.com"}'
-  }
+  end
 
   it 'distributes an email message to staff when a request fails' do
     described_class.new.perform(fail_message)
