@@ -24,18 +24,6 @@ AllCops:
 
 Style/BlockDelimiters:
   Exclude:
-    - 'app/controllers/barcode_controller.rb'
-    - 'app/controllers/bibliographic_controller.rb'
-    - 'app/models/dump.rb'
-    - 'app/models/dump_file.rb'
-    - 'app/models/electronic_location.rb'
-    - 'app/models/event.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/jobs/scsb_edd_job_spec.rb'
-    - 'spec/jobs/scsb_recall_job_spec.rb'
-    - 'spec/jobs/scsb_request_job_spec.rb'
-    - 'spec/mailers/scsb_mailer_spec.rb'
-    - 'spec/models/dump_file_spec.rb'
     - 'spec/models/jsonld_record_spec.rb'
 
 Style/FrozenStringLiteralComment:

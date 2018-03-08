@@ -28,14 +28,14 @@ class BibliographicController < ApplicationController
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|
-        wants.json  {
+        wants.json  do
           json = MultiJson.dump(pass_records_through_xml_parser(records))
           render json: json
-        }
-        wants.xml {
+        end
+        wants.xml do
           xml = records_to_xml_string(records)
           render xml: xml
-        }
+        end
       end
     end
   end
@@ -70,14 +70,14 @@ class BibliographicController < ApplicationController
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|
-        wants.json  {
+        wants.json  do
           json = MultiJson.dump(pass_records_through_xml_parser(records))
           render json: json
-        }
-        wants.xml {
+        end
+        wants.xml do
           xml = records_to_xml_string(records)
           render xml: xml
-        }
+        end
       end
     end
   end

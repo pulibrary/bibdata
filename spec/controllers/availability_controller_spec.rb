@@ -281,7 +281,7 @@ RSpec.describe AvailabilityController, type: :controller do
     let(:scsb_bad_lookup) { ScsbLookup.new }
     let(:scsb_id) { '5270946' }
     let(:no_id) { 'foo' }
-    let(:bib_response) {
+    let(:bib_response) do
       {
         '32101055068314':
         {
@@ -290,7 +290,7 @@ RSpec.describe AvailabilityController, type: :controller do
           "errorMessage": nil
         }
       }.with_indifferent_access
-    }
+    end
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
          with(body: "{\"bibliographicId\":\"foo\",\"institutionId\":\"scsb\"}",
@@ -325,7 +325,7 @@ RSpec.describe AvailabilityController, type: :controller do
     let(:scsb_bad_lookup) { ScsbLookup.new }
     let(:scsb_id) { '5270946' }
     let(:no_id) { 'foo' }
-    let(:bib_response) {
+    let(:bib_response) do
       {
         '32101055068314':
         {
@@ -340,7 +340,7 @@ RSpec.describe AvailabilityController, type: :controller do
           "errorMessage": nil
         }
       }.with_indifferent_access
-    }
+    end
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
          with(body: "{\"barcodes\":[\"foo\",\"blah\"]}",

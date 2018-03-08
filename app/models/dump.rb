@@ -12,11 +12,11 @@ class Dump < ActiveRecord::Base
   serialize :update_ids
   serialize :recap_barcodes
 
-  before_destroy {
+  before_destroy do
     self.dump_files.each do |df|
       df.destroy
     end
-  }
+  end
 
   def dump_updated_records
     ids = self.update_ids.map { |h| h[:id] }

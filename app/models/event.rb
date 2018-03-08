@@ -1,9 +1,9 @@
 class Event < ActiveRecord::Base
   has_one :dump
 
-  before_destroy {
+  before_destroy do
     self.dump.destroy unless self.dump.nil?
-  }
+  end
 
   class << self
 

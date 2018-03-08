@@ -19,9 +19,9 @@ class ElectronicLocation
   # Returns the first sub-field value containing an ARK URL
   # @return [String] the ARK URL
   def identifier
-    arks = @subfields.select { |subfield|
+    arks = @subfields.select do |subfield|
              subfield[ElectronicLocations::SubfieldCodes::LINK_TEXT] == 'arks.princeton.edu'
-           }.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
+           end.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
     arks.first
   end
 
