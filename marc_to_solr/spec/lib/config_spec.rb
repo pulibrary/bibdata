@@ -18,9 +18,10 @@ describe 'From traject_config.rb' do
     c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
     @indexer = Traject::Indexer.new
     @indexer.load_config_file(c)
-    @sample1=@indexer.map_record(fixture_record('sample1'))
-    @sample2=@indexer.map_record(fixture_record('sample2'))
-    @sample3=@indexer.map_record(fixture_record('sample3'))
+    @sample1 = @indexer.map_record(fixture_record('sample1'))
+    @sample2 = @indexer.map_record(fixture_record('sample2'))
+    @sample3 = @indexer.map_record(fixture_record('sample3'))
+    @sample34 = @indexer.map_record(fixture_record('sample34'))
     @manuscript_book=@indexer.map_record(fixture_record('sample17'))
     @added_title_246=@indexer.map_record(fixture_record('sample18'))
     @related_names=@indexer.map_record(fixture_record('sample27'))
@@ -101,6 +102,11 @@ describe 'From traject_config.rb' do
   describe 'the pub_citation_display field' do
     it 'shows the the 260 a and b subfields' do
       expect(@sample2['pub_citation_display']).to include 'London: Firethorn Press'
+    end
+  end
+  describe 'notes from record show up in the notes_index' do
+    it 'shows tag 500 and 538' do
+       expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', '"Digitized and restored in 2K with the support of the Centre National du Cinéma."')
     end
   end
   describe 'publication end date' do
