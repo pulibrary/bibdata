@@ -158,7 +158,7 @@ class Dump < ActiveRecord::Base
           VoyagerHelpers::SyncFu.holding_ids_to_file(dump_file.path)
         elsif type == 'RECAP_RECORDS'
           if last_recap_dump.nil?
-            last_dump_date = Time.now - 5.days
+            last_dump_date = Time.now - 1.days
           else
             last_dump_date = last_recap_dump.updated_at
           end

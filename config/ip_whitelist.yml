@@ -1,5 +1,5 @@
 development:
-  addresses: "127.0.0.1"
+  addresses: "127.0.0.1 ::1"
 
 test:
   addresses: "127.0.0.1"

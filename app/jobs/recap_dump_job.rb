@@ -1,4 +1,5 @@
 require 'voyager_helpers'
+require 'net/sftp'
 
 class RecapDumpJob < ActiveJob::Base
   queue_as :default
@@ -10,5 +11,12 @@ class RecapDumpJob < ActiveJob::Base
     VoyagerHelpers::Liberator.dump_merged_records_to_file(barcode_slice, df.path, true)
     df.zip
     df.save
+    transfer_recap_dump_file(df)
+  end
+
+  def transfer_recap_dump_file(dump_file)
+    Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+      ssh.sftp.upload!(dump_file.path, "#{ENV['RECAP_UPDATE_DIR']}/#{File.basename(dump_file.path)}")
+    end
   end
 end

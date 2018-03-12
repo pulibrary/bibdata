@@ -294,7 +294,7 @@ RSpec.describe AvailabilityController, type: :controller do
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
          with(body: "{\"bibliographicId\":\"foo\",\"institutionId\":\"scsb\"}",
-              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.13.1' }).
+              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json' }).
          to_return(status: 404, body: "", headers: {})
       allow(scsb_good_lookup).to receive(:find_by_id).and_return({})
       get :index, params: { scsb_id: no_id, format: :json }
@@ -304,7 +304,7 @@ RSpec.describe AvailabilityController, type: :controller do
     it 'returns barcodes and status attached to the id' do
       stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus").
          with(body: '{"bibliographicId":"5270946","institutionId":"scsb"}',
-              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.13.1' }).
+              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json' }).
          to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null}]', headers: {})
       allow(scsb_good_lookup).to receive(:find_by_id).and_return([
         {
@@ -344,7 +344,7 @@ RSpec.describe AvailabilityController, type: :controller do
     it '404 when no item ID exists' do
       stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
          with(body: "{\"barcodes\":[\"foo\",\"blah\"]}",
-              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.13.1' }).
+              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json' }).
          to_return(status: 404, body: "", headers: {})
       allow(scsb_good_lookup).to receive(:find_by_barcodes).and_return({})
       get :index, params: { barcodes: ['foo', 'blah'], format: :json }
@@ -354,7 +354,7 @@ RSpec.describe AvailabilityController, type: :controller do
     it 'returns barcodes and status attached to the id' do
       stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus").
          with(body: "{\"barcodes\":[\"32101055068314\",\"32101055068313\"]}",
-              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json', 'User-Agent'=>'Faraday v0.13.1' }).
+              headers: { 'Accept'=>'application/json', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Api-Key'=>'TESTME', 'Content-Type'=>'application/json' }).
          to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null},{ "itemBarcode": "32101055068313", "itemAvailabilityStatus": "Available", "errorMessage": null}]', headers: {})
       allow(scsb_bad_lookup).to receive(:find_by_barcodes).and_return([
         {
