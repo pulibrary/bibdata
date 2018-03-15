@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
   # Determines whether or not a given user is a catalog administrator
   # @return [TrueClass, FalseClass]
   def catalog_admin?
-    netids = Rails.application.config.authz['netids']
+    netids = Rails.application.config.authz
     netids.include? uid
   end
 end

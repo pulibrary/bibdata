@@ -106,23 +106,23 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK' do
       it 'exposes the ARK' do
-        bib_id = '4765221'
-        stub_voyager('4765221')
+        bib_id = '10372293'
+        stub_voyager('10372293')
         get "/bibliographic/#{bib_id}/solr"
         expect(response.status).to be(200)
 
         solr_doc = JSON.parse(response.body)
-        expect(solr_doc['id']).to eq(['4765221'])
+        expect(solr_doc['id']).to eq(['10372293'])
 
         expect(solr_doc).to have_key('electronic_access_1display')
         electronic_access_links = solr_doc['electronic_access_1display']
         electronic_access = JSON.parse(electronic_access_links.first)
-        expect(electronic_access).to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
+        expect(electronic_access).to include('http://arks.princeton.edu/ark:/88435/dsp015425kd270' => ['arks.princeton.edu'])
       end
     end
 
     context 'with a bib record which has an ARK in Figgy' do
-      it 'exposes a link to the catalog as well' do
+      it 'exposes a link to the catalog' do
         bib_id = '4765221'
         stub_voyager('4765221')
         get "/bibliographic/#{bib_id}/solr"
@@ -134,8 +134,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
         expect(solr_doc).to have_key('electronic_access_1display')
         electronic_access_links = solr_doc['electronic_access_1display']
         electronic_access = JSON.parse(electronic_access_links.first)
-        expect(electronic_access).to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
-        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['catalog.princeton.edu'])
+        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content below'])
 
         expect(electronic_access).to have_key('iiif_manifest_paths')
         manifest_paths = electronic_access['iiif_manifest_paths']
@@ -163,14 +162,14 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK' do
       it 'exposes the ARK' do
-        bib_id = '4765221'
-        stub_voyager('4765221')
+        bib_id = '10372293'
+        stub_voyager('10372293')
         get "/bibliographic/#{bib_id}/jsonld"
         expect(response.status).to be(200)
 
         solr_doc = JSON.parse(response.body)
-        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/4765221')
-        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/00000140q'
+        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/10372293')
+        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/dsp015425kd270'
       end
     end
 
@@ -183,7 +182,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
         solr_doc = JSON.parse(response.body)
         expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/4609321')
-        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/7d278t10z'
+        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/xp68kg247'
       end
     end
   end
