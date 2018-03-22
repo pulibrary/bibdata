@@ -259,7 +259,7 @@ to_field 'medium_support_display', extract_marc('340')
 #    display host name if missing $y or $3
 to_field 'electronic_access_1display' do |record, accumulator|
   links = electronic_access_links(record, settings['figgy_cache_dir'], settings['plum_cache_dir'])
-  accumulator[0] = links.to_json.to_s unless links == {}
+  accumulator[0] = JSON.generate(links) unless links == {}
 end
 
 # Description:

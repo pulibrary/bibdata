@@ -113,19 +113,6 @@ describe 'From princeton_marc.rb' do
           expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/00000140q' => 'https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest' })
         end
       end
-
-      context 'for a Plum resource' do
-        let(:url) { 'http://arks.princeton.edu/ark:/88435/rn301432b' }
-
-        it 'retrieves the URL for the current resource using Plum' do
-          expect(links).to include('https://catalog.princeton.edu/catalog/7065263#view' => ['Digital content below'])
-          expect(links).not_to include('http://arks.princeton.edu/ark:/88435/rn301432b' => ['arks.princeton.edu'])
-        end
-
-        it 'generates the IIIF manifest path' do
-          expect(links).to include('iiif_manifest_paths' => { 'http://arks.princeton.edu/ark:/88435/rn301432b' => 'https://plum.princeton.edu/concern/map_sets/pr7820663d/manifest' })
-        end
-      end
     end
 
     context 'with a holding ID in the 856$0 subfield' do
@@ -171,9 +158,13 @@ describe 'From princeton_marc.rb' do
     context 'with an invalid URL' do
       let(:url) { 'some_invalid_value' }
 
-      it 'retrieves no URLs and logs an error' do
+      it 'retrieves no URLs' do
         expect(links).to be_empty
-        expect(logger).to have_received(:error).with('001 4609321 - invalid URL for 856$u value: some_invalid_value')
+      end
+
+      it 'logs an error' do
+        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with('4609321 - invalid URL for 856$u value: some_invalid_value')
       end
     end
 
@@ -183,9 +174,13 @@ describe 'From princeton_marc.rb' do
         a.force_encoding "utf-8"
       end
 
-      it 'retrieves no URLs and logs an error' do
+      it 'retrieves no URLs' do
         expect(links).to be_empty
-        expect(logger).to have_received(:error).with("001 4609321 - invalid character encoding for 856$u value: #{url}")
+      end
+
+      it 'logs an error' do
+        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with("4609321 - invalid character encoding for 856$u value: #{url}")
       end
     end
 
