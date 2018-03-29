@@ -22,6 +22,7 @@ describe 'From traject_config.rb' do
     @sample2 = @indexer.map_record(fixture_record('sample2'))
     @sample3 = @indexer.map_record(fixture_record('sample3'))
     @sample34 = @indexer.map_record(fixture_record('sample34'))
+    @sample35 = @indexer.map_record(fixture_record('sample35'))
     @manuscript_book=@indexer.map_record(fixture_record('sample17'))
     @added_title_246=@indexer.map_record(fixture_record('sample18'))
     @related_names=@indexer.map_record(fixture_record('sample27'))
@@ -34,6 +35,16 @@ describe 'From traject_config.rb' do
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
 	end
+
+  describe 'the isbn_display field' do
+    it 'has more than one q subfields' do
+      expect(@sample35['isbn_display']).to eq(["9780816695706 (hardcover : alkaline paper)", "0816695709 (hardcover : alkaline paper)", "9780816695713 (paperback : alkaline paper)", "0816695717 (paperback : alkaline paper)"])
+    end
+
+    it 'has one a subfield' do
+      expect(@sample2['isbn_display']).to eq(["0947752196"])
+    end
+  end
 
   describe 'the id field' do
     it 'has exactly 1 value' do
