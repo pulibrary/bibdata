@@ -11,3 +11,5 @@ marc_to_solr/translation_maps/holding_library.rb
 /db/data.yml
 .DS_Store
 dump.rdb
+marc_to_solr/spec/fixtures/figgy_ark_cache
+marc_to_solr/spec/fixtures/plum_ark_cache

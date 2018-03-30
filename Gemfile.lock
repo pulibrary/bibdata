@@ -425,7 +425,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.3)
   capistrano-rails (~> 1.1.1)
   capybara
-  coveralls
+  coveralls (= 0.7.2)
   devise (~> 4.3)
   factory_bot_rails (~> 4.0)
   faraday (~> 0.13)
@@ -465,7 +465,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   sidekiq
-  simplecov
+  simplecov (= 0.15.1)
   sinatra (~> 2.0)
   spring
   stomp
