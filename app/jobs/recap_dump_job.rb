@@ -15,7 +15,7 @@ class RecapDumpJob < ActiveJob::Base
   end
 
   def transfer_recap_dump_file(dump_file)
-    Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+    Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']]) do |ssh|
       ssh.sftp.upload!(dump_file.path, "#{ENV['RECAP_UPDATE_DIR']}/#{File.basename(dump_file.path)}")
     end
   end

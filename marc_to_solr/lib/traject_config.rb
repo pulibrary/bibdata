@@ -851,7 +851,26 @@ to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
 
 # ISBN:
 #    020 XX a
-to_field 'isbn_display', extract_marc('020aq')
+to_field 'isbn_display' do |record, accumulator|
+  MarcExtractor.cached("020aq").collect_matching_lines(record) do |field, _spec, _extractor|
+    a_array = []
+    q_array = []
+    field.subfields.each do |m|
+      if m.code == 'a'
+        a_array << m.value
+      elsif m.code == 'q'
+        q_array << m.value
+      end
+    end
+    a_string = a_array.compact.join if a_array
+    q_string = q_array.compact.join("\s:\s") if q_array
+    accumulator << if a_string && q_string && !q_string.empty?
+                     a_string + ' ' + '(' + q_string + ')'
+                   else
+                     a_string
+                   end
+  end
+end
 
 # ISSN:
 #    022 XX a
