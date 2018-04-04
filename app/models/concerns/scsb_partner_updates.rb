@@ -2,7 +2,7 @@ require 'json'
 
 module Scsb
   class PartnerUpdates
-  extend ActiveSupport::Concern
+    extend ActiveSupport::Concern
 
     def initialize(dump: )
       @dump = dump
@@ -40,9 +40,9 @@ module Scsb
           filename = File.basename(file, '.zip')
           filename.gsub!(/^[^_]+_([0-9]+)_([0-9]+).*$/, '\1_\2')
           file_increment = 1
-          Zip::ZipFile.open(file) do |zip_file|
+          Zip::File.open(file) do |zip_file|
             zip_file.each do |entry|
-              target = "#{@update_directory}/scsbupdate#{filename}_#{file_increment}.xml"
+              target = "#{@update_directory}/#{filename}_#{file_increment}.xml"
               entry.extract(target)
               file_increment += 1
             end
@@ -52,9 +52,9 @@ module Scsb
         Dir.glob("#{@update_directory}/*.xml").each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          filepath = "#{file_dest}/#{filename}"
+          filepath = "#{@update_directory}/scsbupdate#{filename}"
           writer = MARC::XMLWriter.new(filepath)
-          reader.each do { |record| writer.write(process_record(record)) }
+          reader.each { |record| writer.write(process_record(record)) }
           writer.close()
           attach_dump_file(filepath)
           File.unlink(file)
@@ -88,7 +88,7 @@ module Scsb
       end
 
       def attach_dump_file(filepath)
-        dump_file_type = DumpFileType.find_by(constant: 'PARTNER_RECAP')
+        dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
         df = DumpFile.create(dump_file_type: dump_file_type, path: filepath)
         @dump.dump_files << df
         @dump.save
@@ -96,10 +96,10 @@ module Scsb
 
       def log_record_fixes
         log_file = {
-          inv_xml: @inv_xml
-          tab_newline: @tab_newline
-          leader: @leader
-          composed_chars: @composed_chars
+          inv_xml: @inv_xml,
+          tab_newline: @tab_newline,
+          leader: @leader,
+          composed_chars: @composed_chars,
           bad_utf8: @bad_utf8
         }
         filepath = "#{@update_directory}/fixes_#{@last_dump}.json"

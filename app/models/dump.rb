@@ -3,9 +3,9 @@ require 'voyager_helpers'
 require 'zip'
 require 'net/sftp'
 require 'date'
+require_relative './concerns/scsb_partner_updates'
 
 class Dump < ActiveRecord::Base
-  include ScsbPartnerUpdates
 
   belongs_to :event
   belongs_to :dump_type
