@@ -6,7 +6,7 @@ module Scsb
 
     def initialize(dump: )
       @dump = dump
-      @update_directory = '/tmp/xml'
+      @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @last_dump = (DateTime.now - 1).to_time
       @inv_xml = []
       @tab_newline = []
@@ -19,7 +19,6 @@ module Scsb
       get_partner_updates
       process_partner_updates
       log_record_fixes
-      attach_dump_files
     end
 
     private
@@ -53,9 +52,11 @@ module Scsb
         Dir.glob("#{@update_directory}/*.xml").each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          writer = MARC::XMLWriter.new("#{file_dest}/#{filename}")
+          filepath = "#{file_dest}/#{filename}"
+          writer = MARC::XMLWriter.new(filepath)
           reader.each do { |record| writer.write(process_record(record)) }
           writer.close()
+          attach_dump_file(filepath)
           File.unlink(file)
         end
       end
@@ -86,9 +87,9 @@ module Scsb
         record = empty_subfield_fix(record)
       end
 
-      def attach_dump_files
-        dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
-        df = DumpFile.create(dump_file_type: dump_file_type)
+      def attach_dump_file(filepath)
+        dump_file_type = DumpFileType.find_by(constant: 'PARTNER_RECAP')
+        df = DumpFile.create(dump_file_type: dump_file_type, path: filepath)
         @dump.dump_files << df
         @dump.save
       end
@@ -101,7 +102,9 @@ module Scsb
           composed_chars: @composed_chars
           bad_utf8: @bad_utf8
         }
-        File.write("#{@update_directory}/fixes_#{@last_dump}.json", log_file.to_json.to_s)
+        filepath = "#{@update_directory}/fixes_#{@last_dump}.json"
+        File.write(filepath, log_file.to_json.to_s)
+        attach_dump_file(filepath)
       end
 
       def prepare_directory
