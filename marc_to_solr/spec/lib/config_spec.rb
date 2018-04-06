@@ -23,6 +23,7 @@ describe 'From traject_config.rb' do
     @sample3 = @indexer.map_record(fixture_record('sample3'))
     @sample34 = @indexer.map_record(fixture_record('sample34'))
     @sample35 = @indexer.map_record(fixture_record('sample35'))
+    @sample36 = @indexer.map_record(fixture_record('8181849'))
     @manuscript_book=@indexer.map_record(fixture_record('sample17'))
     @added_title_246=@indexer.map_record(fixture_record('sample18'))
     @related_names=@indexer.map_record(fixture_record('sample27'))
@@ -168,6 +169,9 @@ describe 'From traject_config.rb' do
     let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [not_ceased_008, p260], 'leader' => leader)) }
     let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
     let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
+    it 'displays 264 tag sorted by indicator2' do
+      expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "©1956-1971"]
+    end
     it 'displays when 008-6 is d and an end date is present in the 008' do
       expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
     end
@@ -182,6 +186,11 @@ describe 'From traject_config.rb' do
     end
     it 'does not display when the publisher field ends with a character other than a dash' do
       expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
+    end
+  end
+  describe 'pub_created_vern_display' do
+    it 'displays 880 in pub_created_vern_display field' do
+      expect(@sample36['pub_created_vern_display']).to eq ["東京 : 勉誠出版, 2014."]
     end
   end
   describe 'related_name_json_1display' do

@@ -170,10 +170,14 @@ to_field 'compiled_created_t', extract_marc('245abchknps')
 #    250 XX ab
 to_field 'edition_display', extract_marc('250ab')
 
+# for browse lists Published/Created
+#    880
+to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', alternate_script: :only)
+
 # Published/Created:
 #    260 XX abcefg
 #    264 XX abc
-to_field 'pub_created_display', extract_marc('260abcefg:264abcefg3') do |record, accumulator|
+to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulator|
   if record['008'] && record['008'].value[6,1] == 'd'
     end_date = record.end_date_from_008
     if end_date && end_date != '9999'
@@ -185,6 +189,16 @@ to_field 'pub_created_display', extract_marc('260abcefg:264abcefg3') do |record,
         end
       end
     end
+  end
+  if record['264']
+    rec_264 = []
+    MarcExtractor.cached("264abcefg3").collect_matching_lines(record) do |field, spec, extractor|
+      rec_264 << [field, spec, extractor]
+    end
+    rec_264.sort_by! {|r| r[0].indicator2.to_i if r[0].indicator2}
+    rec_264 = rec_264.map {|r| r[2].collect_subfields(r[0], r[1]).first }
+    accumulator << rec_264
+    accumulator.flatten!
   end
 end
 
