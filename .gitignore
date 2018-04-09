@@ -13,3 +13,4 @@ marc_to_solr/translation_maps/holding_library.rb
 dump.rdb
 marc_to_solr/spec/fixtures/figgy_ark_cache
 marc_to_solr/spec/fixtures/plum_ark_cache
+.byebug_history

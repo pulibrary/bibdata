@@ -14,8 +14,10 @@ dump_types:
   constant: 'BIB_IDS'
 - label: 'All Records'
   constant: 'ALL_RECORDS'
-- label: 'Updated ReCAP Records'
-  constant: 'RECAP_RECORDS'
+- label: 'Updated Princeton ReCAP Records'
+  constant: 'PRINCETON_RECAP'
+- label: 'Updated Partner ReCAP Records'
+  constant: 'PARTNER_RECAP'
 
 dump_file_types:
 - label: 'Updated Records'
