@@ -341,12 +341,7 @@ def electronic_access_links(record, figgy_dir_path, plum_dir_path)
     holding_id = nil
     bib_id = record['001']
 
-    begin
-      electronic_access_link = ElectronicAccessLinkFactory.build marc_field: field
-    rescue StandardError => error
-      logger.error "#{bib_id} - #{error}"
-      next
-    end
+    electronic_access_link = ElectronicAccessLinkFactory.build bib_id: bib_id, marc_field: field
 
     # If the electronic access link is an ARK...
     if electronic_access_link.ark

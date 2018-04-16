@@ -2,19 +2,21 @@ require_relative 'normal_uri_factory'
 require_relative 'uri_ark'
 
 class ElectronicAccessLink
-  attr_reader :holding_id, :url_key, :z_label, :anchor_text
+  attr_reader :bib_id, :holding_id, :url_key, :z_label, :anchor_text
 
   # Constructor
-  # @param holding_id ID for an electronic holding referencing the linked resource
+  # @param bib_id Bib record ID for an electronic holding referencing the linked resource
+  # @param holding_id Holding record ID for an electronic holding referencing the linked resource
   # @param url_key the URL for the resource serving as a key
   # @param z_label the label for the resource link
   # @param anchor_text the text for the link markup (<a> element)
-  def initialize(holding_id:, url_key:, z_label:, anchor_text:)
+  def initialize(bib_id:, holding_id:, url_key:, z_label:, anchor_text:, logger: Logger.new(STDOUT))
+    @bib_id = bib_id
     @holding_id = holding_id
     @url_key = url_key
     @z_label = z_label
     @anchor_text = anchor_text
-
+    @logger = logger
     process_url_key!
   end
 
@@ -22,7 +24,7 @@ class ElectronicAccessLink
   # @param link_args arguments which override the attributes for this instance
   # @return [ElectronicAccessLink]
   def clone(link_args)
-    default_link_args = { holding_id: @holding_id, url_key: @url_key, z_label: @z_label, anchor_text: @anchor_text }
+    default_link_args = { bib_id: @bib_id, holding_id: @holding_id, url_key: @url_key, z_label: @z_label, anchor_text: @anchor_text }
     new_link_args = default_link_args.merge link_args
     self.class.new new_link_args
   end
@@ -34,12 +36,18 @@ class ElectronicAccessLink
     return unless @url_key
     return @url if @url
 
-    raise EncodingError, "invalid character encoding for 856$u value: #{@url_key}" unless @url_key.valid_encoding?
-
-    @url_key = normal_url.to_s
-    raise ArgumentError, "invalid URL for 856$u value: #{@url_key}" unless @url_key =~ URI.regexp
-
-    @url = URI.parse(@url_key)
+    if !@url_key.valid_encoding?
+      @logger.error "#{@bib_id} - invalid character encoding for 856$u value: #{@url_key}"
+      @url_key = nil
+    else
+      @url_key = normal_url.to_s
+      if @url_key !~ URI.regexp
+        @logger.error "#{@bib_id} - invalid URL for 856$u value: #{@url_key}"
+        @url_key = nil
+      else
+        @url = URI.parse(@url_key)
+      end
+    end
   end
 
   # Generates the ARK from the string URL key
@@ -90,9 +98,11 @@ class ElectronicAccessLink
 
     # Updates the object state based upon the url_key value
     def process_url_key!
-      return unless @url_key || url&.host
+      return unless @url_key
 
       # If a valid URL was extracted from the MARC metadata...
-      @anchor_text = url.host if @anchor_text.nil? || @anchor_text.empty?
+      if url&.host
+        @anchor_text = url.host if @anchor_text.nil? || @anchor_text.empty?
+      end
     end
 end

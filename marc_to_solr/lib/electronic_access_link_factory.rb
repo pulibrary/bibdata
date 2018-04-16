@@ -39,8 +39,8 @@ class ElectronicAccessLinkFactory
   # Constructs an ElectronicAccessLink object given a MARC record
   # @param marc_field the MARC record
   # @return ElectronicAccessLink
-  def self.build(marc_field:)
-    link_args = { holding_id: nil, url_key: nil, z_label: nil, anchor_text: nil }
+  def self.build(bib_id:, marc_field:)
+    link_args = { bib_id: bib_id, holding_id: nil, url_key: nil, z_label: nil, anchor_text: nil }
     parsed_args = parse_subfields(marc_field)
     link_args.merge! parsed_args
 
