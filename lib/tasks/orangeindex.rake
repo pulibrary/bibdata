@@ -177,27 +177,20 @@ namespace :liberate do
 
   namespace :arks do
     desc "Seed the ARK cache"
-    task :seed_cache, [:figgy_dir_path, :plum_dir_path] do |_t, args|
+    task :seed_cache, [:figgy_dir_path] do |_t, args|
       figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
       figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
       figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
 
-      plum_dir_path = args[:plum_dir_path] || Rails.root.join('tmp', 'plum_ark_cache')
-      plum_lightly = Lightly.new(dir: plum_dir_path, life: 0, hash: false)
-      plum_cache_adapter = CacheAdapter.new(service: plum_lightly)
-
       logger = Logger.new(STDOUT)
-      cache_manager = CacheManager.initialize(figgy_cache: figgy_cache_adapter, plum_cache: plum_cache_adapter, logger: logger)
+      cache_manager = CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger: logger)
       cache_manager.seed!
     end
 
     desc "Clear the ARK cache"
-    task :clear_cache, [:figgy_dir_path, :plum_dir_path] do |_t, args|
+    task :clear_cache, [:figgy_dir_path] do |_t, args|
       figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
       CacheManager.clear(dir: figgy_dir_path)
-
-      plum_dir_path = args[:plum_dir_path] || Rails.root.join('tmp', 'plum_ark_cache')
-      CacheManager.clear(dir: plum_dir_path)
     end
   end
 end

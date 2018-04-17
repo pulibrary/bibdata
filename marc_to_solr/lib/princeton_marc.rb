@@ -307,16 +307,13 @@ end
 
 # Construct (or retrieve) the cache manager service
 # @return [CacheManager] the cache manager service
-def build_cache_manager(figgy_dir_path:, plum_dir_path:)
+def build_cache_manager(figgy_dir_path:)
   return @cache_manager unless @cache_manager.nil?
 
   figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
   figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
 
-  plum_lightly = Lightly.new(dir: plum_dir_path, life: 0, hash: false)
-  plum_cache_adapter = CacheAdapter.new(service: plum_lightly)
-
-  CacheManager.initialize(figgy_cache: figgy_cache_adapter, plum_cache: plum_cache_adapter, logger: logger)
+  CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger: logger)
 
   @cache_manager = CacheManager.current
 end
@@ -326,7 +323,7 @@ end
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 # @param [MARC::Record] the MARC record being parsed
 # @return [Hash] the values used to construct the links
-def electronic_access_links(record, figgy_dir_path, plum_dir_path)
+def electronic_access_links(record, figgy_dir_path)
   solr_field_values = {}
   holding_856s = {}
   iiif_manifest_paths = {}
@@ -346,7 +343,7 @@ def electronic_access_links(record, figgy_dir_path, plum_dir_path)
     # If the electronic access link is an ARK...
     if electronic_access_link.ark
       # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-      cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path, plum_dir_path: plum_dir_path)
+      cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path)
 
       # Orangelight links
       catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
@@ -370,13 +367,6 @@ def electronic_access_links(record, figgy_dir_path, plum_dir_path)
         iiif_manifest_paths[electronic_access_link.url_key] = figgy_iiif_manifest_link.url.to_s
       end
 
-      # Plum URL's
-      plum_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.plum_ark_cache, service_host:'plum.princeton.edu')
-      plum_iiif_manifest = plum_url_builder.build(url: electronic_access_link.ark)
-      if plum_iiif_manifest
-        plum_iiif_manifest_link = electronic_access_link.clone url_key: plum_iiif_manifest.to_s
-        iiif_manifest_paths[electronic_access_link.url_key] = plum_iiif_manifest_link.url.to_s unless iiif_manifest_paths.key? electronic_access_link.url_key
-      end
     else
       # Always add links to the resource if it isn't an ARK
       output << electronic_access_link

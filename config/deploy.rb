@@ -42,8 +42,7 @@ set :linked_dirs, %w{
 set :keep_releases, 5
 
 set :figgy_ark_cache_path, 'tmp/figgy_ark_cache'
-set :plum_ark_cache_path, 'tmp/plum_ark_cache'
-set :linked_dirs, fetch(:linked_dirs, []).push(fetch(:figgy_ark_cache_path), fetch(:plum_ark_cache_path))
+set :linked_dirs, fetch(:linked_dirs, []).push(fetch(:figgy_ark_cache_path))
 
 namespace :sidekiq do
   task :quiet do

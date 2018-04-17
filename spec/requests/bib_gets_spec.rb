@@ -91,7 +91,6 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     before do
       stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-      stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
     end
 
     it 'retrieves solr json for a bib record' do
