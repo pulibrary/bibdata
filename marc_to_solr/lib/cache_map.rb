@@ -58,7 +58,7 @@ class CacheMap
     value = @cache.fetch(self.class.cache_key_for(ark: ark))
 
     if value.nil?
-      @logger.warn "Failed to resolve #{ark}" if URI::ARK.ark?(url: ark)
+      @logger.warn "Failed to resolve #{ark}" if URI::ARK.princeton_ark?(url: ark)
     else
       @logger.debug "Resolved #{ark} for #{value}"
     end
