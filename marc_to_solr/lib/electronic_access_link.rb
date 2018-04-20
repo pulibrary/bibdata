@@ -48,6 +48,11 @@ class ElectronicAccessLink
         @url = URI.parse(@url_key)
       end
     end
+  rescue URI::InvalidURIError
+    # This handles cases where the statement @url_key !~ URI.regexp is true but this exception is still raised
+    # An example valid URL for this would be http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf
+    cleaned = Addressable::URI.parse(@url_key).normalize.to_s
+    @url = URI.parse(cleaned)
   end
 
   # Generates the ARK from the string URL key
