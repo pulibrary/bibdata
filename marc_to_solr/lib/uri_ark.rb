@@ -24,8 +24,8 @@ class URI::ARK < URI::Generic
   # Validates whether or not a URL is an ARK URL
   # @param uri [URI::Generic] a URL
   # @return [TrueClass, FalseClass]
-  def self.ark?(url:)
-    m = /ark\:\/(.+)\/(.+)\/?/.match(url.to_s)
+  def self.princeton_ark?(url:)
+    m = /[\/?]ark\:\/88435\/(.+)\/?/.match(url.to_s)
     !!m
   end
 
@@ -38,7 +38,7 @@ class URI::ARK < URI::Generic
   private
     # Extract the components from the ARK URL into member variables
     def extract_components!
-      raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.ark?(url: self)
+      raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.princeton_ark?(url: self)
       m = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.match(self.to_s)
 
       @nmah = m[1]

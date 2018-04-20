@@ -54,7 +54,7 @@ class ElectronicAccessLink
   # @return [URI::ARK]
   def ark
     # If the URL is a valid ARK...
-    return unless ark_class.ark? url: url
+    return unless ark_class.princeton_ark? url: url
 
     # Cast the URL into an ARK
     @ark ||= ark_class.parse url: url
