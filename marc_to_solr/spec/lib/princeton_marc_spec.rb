@@ -166,6 +166,14 @@ describe 'From princeton_marc.rb' do
       end
     end
 
+    context 'with an valid URL which incorrectly raises an exception' do
+      let(:url) { 'http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf' }
+
+      it 'retrieves the URLs and the link labels' do
+        expect(links).to include(url => ['www.strategicstudiesinstitute.army.mil'])
+      end
+    end
+
     context 'with an unparsable URL' do
       let(:url) do
         a = "\xFF"
