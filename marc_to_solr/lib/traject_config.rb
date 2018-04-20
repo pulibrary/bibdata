@@ -23,7 +23,6 @@ settings do
   provide "log.error_file", "./log/traject-error.log"
   provide "allow_duplicate_values",  false
   provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
-  provide "plum_cache_dir", ENV['PLUM_ARK_CACHE_PATH'] || "tmp/plum_ark_cache"
 end
 
 update_locations if ENV['UPDATE_LOCATIONS']
@@ -258,7 +257,7 @@ to_field 'medium_support_display', extract_marc('340')
 #    $z additional display text
 #    display host name if missing $y or $3
 to_field 'electronic_access_1display' do |record, accumulator|
-  links = electronic_access_links(record, settings['figgy_cache_dir'], settings['plum_cache_dir'])
+  links = electronic_access_links(record, settings['figgy_cache_dir'])
   accumulator[0] = JSON.generate(links) unless links == {}
 end
 

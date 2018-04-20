@@ -73,14 +73,12 @@ describe 'From princeton_marc.rb' do
 
   before do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-    stub_request(:get, "https://plum.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
     indexer.load_config_file(config)
   end
 
   describe '#electronic_access_links' do
-    subject(:links) { electronic_access_links(marc_record, figgy_dir_path, plum_dir_path) }
+    subject(:links) { electronic_access_links(marc_record, figgy_dir_path) }
     let(:figgy_dir_path) { ENV['FIGGY_ARK_CACHE_PATH'] || 'marc_to_solr/spec/fixtures/figgy_ark_cache' }
-    let(:plum_dir_path) { ENV['PLUM_ARK_CACHE_PATH'] || 'marc_to_solr/spec/fixtures/plum_ark_cache' }
 
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
