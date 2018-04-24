@@ -18,10 +18,16 @@ RSpec.describe Event, type: :model do
   end
 
   describe 'ALL_RECORDS dump' do
-    it 'removes stale dump events after completing dump' do
+    it 'removes stale dump events after completing dump, no errors when id is nil' do
+      # Dumps without event ids would cause full dumps to fail
+      # An event id is still required to delete events
+      # (hence there being 9 holding id dump events instead of 8)
+      dump = Dump.where(dump_type: DumpType.find_by(constant: 'HOLDING_IDS')).first
+      dump.event_id = nil
+      dump.save
       Dump.full_bib_dump
       expect(dump_count('BIB_IDS')).to eq 8
-      expect(dump_count('HOLDING_IDS')).to eq 8
+      expect(dump_count('HOLDING_IDS')).to eq 9
       expect(dump_count('CHANGED_RECORDS')).to eq 8
       expect(dump_count('ALL_RECORDS')).to eq 3
     end
