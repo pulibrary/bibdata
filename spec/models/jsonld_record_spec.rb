@@ -162,4 +162,20 @@ RSpec.describe JSONLDRecord, type: :model do
       expect(subject.to_h['local_identifier']).to include 'cico:bk5'
     end
   end
+
+  context 'with multiple titles and no language codes' do
+    let(:solr_doc) {{
+      'title_citation_display' => ['First title /', '中国少数民族文字珍稀典籍汇编 /'],
+      'language_code_s'        => ['mul']
+    }}
+    subject { described_class.new solr_doc }
+
+    it "returns the vernacular title" do
+      expect(subject.vernacular_title).to eq("中国少数民族文字珍稀典籍汇编")
+    end
+
+    it "returns the romanized title" do
+      expect(subject.roman_title).to eq("First title")
+    end
+  end
 end

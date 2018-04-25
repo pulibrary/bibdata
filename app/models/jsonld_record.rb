@@ -81,12 +81,14 @@ class JSONLDRecord
   def vernacular_title
     @vernacular_title ||= begin
       vtitle = Traject::Macros::Marc21.trim_punctuation (@solr_doc['title_citation_display'] || []).second
+      return vtitle unless title_language
       { "@value": vtitle, "@language": title_language } if vtitle
     end
   end
 
   def roman_title
-    lang = vernacular_title.nil? ? title_language : title_language + "-Latn"
+    lang = title_language
+    lang = "#{lang}-Latn" if lang && vernacular_title.present?
     if roman_display_title
       return roman_display_title unless lang
       return { "@value": roman_display_title, "@language": lang }
@@ -100,7 +102,7 @@ class JSONLDRecord
 
   def title_language
     lang = language_codes.first
-    LanguageService.loc_to_iso(lang)
+    LanguageService.loc_to_iso(lang) if lang
   end
 
   # Generate the identifier from MARC 856 field values
