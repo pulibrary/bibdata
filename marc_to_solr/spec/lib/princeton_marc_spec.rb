@@ -162,15 +162,16 @@ describe 'From princeton_marc.rb' do
 
       it 'logs an error' do
         ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
-        expect(logger).to have_received(:error).with('4609321 - invalid URL for 856$u value: some_invalid_value')
+        expect(logger).to have_received(:error).with("4609321 - invalid URL for 856$u value: #{url}")
       end
     end
 
-    context 'with an valid URL which incorrectly raises an exception' do
+    context 'with an invalid URL which still manages to be match the valid uri regexp' do
       let(:url) { 'http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf' }
 
-      it 'retrieves the URLs and the link labels' do
-        expect(links).to include(url => ['www.strategicstudiesinstitute.army.mil'])
+      it 'logs an error' do
+        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with("4609321 - invalid URL for 856$u value: #{url}")
       end
     end
 
