@@ -104,8 +104,7 @@ class ElectronicAccessLink
       return unless @url_key
 
       # If a valid URL was extracted from the MARC metadata...
-      if url&.host
-        @anchor_text = url.host if @anchor_text.nil? || @anchor_text.empty?
-      end
+      return unless url&.host
+      @anchor_text = url.host if @anchor_text.nil? || @anchor_text.empty?
     end
 end
