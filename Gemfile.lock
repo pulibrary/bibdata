@@ -38,8 +38,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 6d22bfd06da16774a3865836e3e33761e3d1b376
-  tag: v0.6.2
+  revision: 95d6257f3591d4f2ee25a6eed6ba95826afbe3ce
+  tag: v0.6.3
   specs:
     voyager_helpers (0.6.2)
       activesupport (~> 5.1)
@@ -271,8 +271,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     railties (5.1.5)
       actionpack (= 5.1.5)
       activesupport (= 5.1.5)
