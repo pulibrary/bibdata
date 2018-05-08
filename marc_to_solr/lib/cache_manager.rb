@@ -47,7 +47,5 @@ class CacheManager
   end
 
   # Ensure the the CacheMap and CompositeCacheMap instances are memoized
-  def seed!
-    figgy_ark_cache.seed!
-  end
+  delegate :seed!, to: :figgy_ark_cache
 end
