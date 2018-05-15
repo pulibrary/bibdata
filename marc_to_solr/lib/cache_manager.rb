@@ -1,3 +1,5 @@
+require 'active_support/core_ext/module'
+
 # Class for handling instances of caching objects
 class CacheManager
   # Build and set the current cache to the new instance
