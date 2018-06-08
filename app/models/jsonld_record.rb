@@ -106,9 +106,12 @@ class JSONLDRecord
   end
 
   # Generate the identifier from MARC 856 field values
+  # Retrieved from the Array of ElectronicLocations
   # @return [String] identifier
   def identifier
-    electronic_locations.first&.identifier
+    first_location = electronic_locations.first
+    return unless first_location
+    first_location.identifiers.first
   end
 
   def local_identifier
