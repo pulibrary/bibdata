@@ -16,12 +16,11 @@ class ElectronicLocation
     @manifests = iiif_manifest_uris.map { |uri| uri.to_s }
   end
 
-  # Returns the first sub-field value containing an ARK URL
-  # This performs a full search for the ARK URI regardless of the subfield code
+  # Returns the subfield value containing an ARK URL
   # @return [Array<String>] the ARK URLs
   def identifiers
     @subfields.select do |subfield|
-      subfield.values.find { |value| /arks\.princeton\.edu/.match(value) }.present?
+      subfield.key?(ElectronicLocations::SubfieldCodes::URI) && /arks\.princeton\.edu/.match(subfield[ElectronicLocations::SubfieldCodes::URI])
     end.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
   end
 
