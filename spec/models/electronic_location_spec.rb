@@ -30,7 +30,7 @@ RSpec.describe ElectronicLocation, type: :model do
 
   describe '#identifier' do
     it 'retrieves ARKs for an electronic location record' do
-      expect(electronic_location.identifier).to eq 'http://arks.princeton.edu/ark:/88435/5m60qr98h'
+      expect(electronic_location.identifiers).to include 'http://arks.princeton.edu/ark:/88435/5m60qr98h'
     end
   end
 end
