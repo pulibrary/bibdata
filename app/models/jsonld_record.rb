@@ -139,7 +139,8 @@ class JSONLDRecord
       geocode_display:       'spatial',
       contents_display:      'contents',
       geo_related_record_display: 'relation',
-      electronic_access_1display: 'references'
+      electronic_access_1display: 'references',
+      uniform_title_s: 'uniform_title'
     }
   end
 

@@ -37,6 +37,7 @@
     "modified": {"@id": "dcterms:modified"},
     "spatial": {"@id": "dcterms:spatial"},
     "title": {"@id": "dcterms:title"},
+    "uniform_title": {"@id": "dc:title"},
     "dcterms_type": {"@id": "dcterms:type"},
     "abstract": {"@id": "dcterms:abstract"},
     "contents": {"@id": "dcterms:tableOfContents"},
