@@ -40,7 +40,6 @@ RSpec.describe JSONLDRecord, type: :model do
         type: 'Biography',
         language: ['eng', 'spa', 'zho'],
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
-        references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
         identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",
@@ -52,6 +51,10 @@ RSpec.describe JSONLDRecord, type: :model do
         source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.'
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+
+    it 'suppresses electronic references' do
+      expect(subject.to_h.symbolize_keys).not_to include references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}"
     end
   end
 
