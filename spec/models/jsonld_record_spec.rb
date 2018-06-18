@@ -17,7 +17,8 @@ RSpec.describe JSONLDRecord, type: :model do
       'language_code_s'            => ['eng', 'spa', 'chi'],
       'author_display'             => ['Author, Alice'],
       'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}'],
-      'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Former owner":["Translator, Carol"],"Related name":["Contributor, Donald"]}']
+      'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Former owner":["Translator, Carol"],"Related name":["Contributor, Donald"]}'],
+      'uniform_title_s'            => ['Declaration of Independence']
     }}
     subject { described_class.new solr_doc }
 
@@ -39,7 +40,8 @@ RSpec.describe JSONLDRecord, type: :model do
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
         identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",
-        translator: ['Translator, Bob', 'Translator, Carol']
+        translator: ['Translator, Bob', 'Translator, Carol'],
+        uniform_title: 'Declaration of Independence'
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
