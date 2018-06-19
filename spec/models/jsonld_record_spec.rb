@@ -13,6 +13,7 @@ RSpec.describe JSONLDRecord, type: :model do
       'pub_date_end_sort'          => ['1972'],
       'pub_created_display'        => ['New York : Farrar, Straus Giroux, 1970.'],
       'call_number_display'        => ['ND623.C3 M8'],
+      'location_code_s'            => ['f', 'anxafst'],
       'genre_facet'                => ['Biography'],
       'language_code_s'            => ['eng', 'spa', 'chi'],
       'author_display'             => ['Author, Alice'],
@@ -52,7 +53,8 @@ RSpec.describe JSONLDRecord, type: :model do
         provenance: 'Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.',
         source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.',
         references: ['Stillwell B460.', 'Goff B-526.'],
-        indexed_by: 'Example'
+        indexed_by: 'Example',
+        location: ['F ND623.C3 M8', 'ANXAFST ND623.C3 M8']
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
