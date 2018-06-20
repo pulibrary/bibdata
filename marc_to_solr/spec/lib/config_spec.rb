@@ -2,6 +2,7 @@ require 'json'
 require 'traject'
 require 'faraday'
 require 'time'
+require 'iso-639'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
@@ -35,6 +36,16 @@ describe 'From traject_config.rb' do
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
 	end
+
+  describe 'the language_iana_s field' do
+    it 'returns a language value based on the IANA Language Subtag Registry' do
+      expect(@sample1['language_iana_s']).to eq(["en"])
+    end
+
+    it 'returns 2 language values based on the IANA Language Subtag Registry' do
+      expect(@added_title_246['language_iana_s']).to eq(["ja", "en"])
+    end
+  end
 
   describe 'the isbn_display field' do
     it 'has more than one q subfields' do
