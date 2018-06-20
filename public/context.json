@@ -23,6 +23,7 @@
     "format": {"@id": "dc:format"},
     "identifier": {"@id": "dc:identifier"},
     "language": {"@id": "dc:language"},
+    "text_language": {"@id": "dcterms:language"},
     "publisher": {"@id": "dc:publisher"},
     "relation": {"@id": "dc:relation"},
     "rights": {"@id": "dc:rights"},
@@ -42,6 +43,7 @@
     "abstract": {"@id": "dcterms:abstract"},
     "contents": {"@id": "dcterms:tableOfContents"},
     "references": {"@id": "dcterms:references"},
+    "provenance": {"@id": "dcterms:provenance"},
 
 
     "edition": {"@id": "bf:editionStatement"},
@@ -56,6 +58,8 @@
     "exact_match": {"@id": "skos:exactMatch"},
     "pref_label": {"@id": "skos:prefLabel"},
     "scopeNote": {"@id": "skos:scopeNote"},
+    "binding_note": {"@id": "skos:note"},
+    "source_acquisition": {"@id": "bf:immediateAcquisition"},
 
     "abridger": {
       "@id": "mrel:abr"
