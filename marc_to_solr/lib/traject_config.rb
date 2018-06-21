@@ -10,6 +10,7 @@ require_relative './location_extract'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
+require 'iso-639'
 
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
@@ -601,6 +602,12 @@ to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, ac
   codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
   accumulator.replace(codes.flatten)
 end
+
+to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
+  codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }.flatten.uniq
+  codes.length == 1 ? accumulator.replace(ISO_639.find(codes.join).alpha2.split) : accumulator.replace(codes.map {|e| ISO_639.find(e).alpha2.split.join(",")})
+end
+
 # Contents:
 #    505 0X agrt
 #    505 8X agrt
