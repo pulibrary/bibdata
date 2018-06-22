@@ -45,6 +45,7 @@
     "references": {"@id": "dcterms:references"},
     "provenance": {"@id": "dcterms:provenance"},
     "bibliographic_citation": {"@id": "dcterms:bibliographicCitation"},
+    "is_referenced_by": {"@id": "dcterms:isReferencedBy"},
 
 
     "edition": {"@id": "bf:editionStatement"},

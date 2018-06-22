@@ -23,7 +23,8 @@ RSpec.describe JSONLDRecord, type: :model do
       'provenance_display'         => ['Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.'],
       'source_acquisition_display'         => ['Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.'],
       'references_display'         => ["Stillwell B460.", "Goff B-526."],
-      'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}']
+      'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}'],
+      'indexed_in_display'         => ['Example']
     }}
     subject { described_class.new solr_doc }
 
@@ -50,7 +51,8 @@ RSpec.describe JSONLDRecord, type: :model do
         binding_note: 'In half-morocco slipcase.',
         provenance: 'Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.',
         source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.',
-        bibliographic_citation: ['Stillwell B460.', 'Goff B-526.']
+        bibliographic_citation: ['Stillwell B460.', 'Goff B-526.'],
+        is_referenced_by: 'Example'
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
