@@ -56,6 +56,10 @@ RSpec.describe JSONLDRecord, type: :model do
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
+
+    it 'suppresses electronic references' do
+      expect(subject.to_h.symbolize_keys).not_to include references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}"
+    end
   end
 
   context 'with a human readable date and date ranges' do
