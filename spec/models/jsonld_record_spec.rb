@@ -16,13 +16,14 @@ RSpec.describe JSONLDRecord, type: :model do
       'genre_facet'                => ['Biography'],
       'language_code_s'            => ['eng', 'spa', 'chi'],
       'author_display'             => ['Author, Alice'],
-      'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}'],
       'related_name_json_1display' => ['{"Translators":["Translator, Bob", "Translator, Carol"],"Former owner":["Translator, Carol"],"Related name":["Contributor, Donald"]}'],
       'uniform_title_s'            => ['Declaration of Independence'],
       'language_display'           => ['Text in German.'],
       'binding_note_display'       => ['In half-morocco slipcase.'],
       'provenance_display'         => ['Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.'],
-      'source_acquisition_display'         => ['Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.']
+      'source_acquisition_display'         => ['Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.'],
+      'references_display'         => ["Stillwell B460.", "Goff B-526."],
+      'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}']
     }}
     subject { described_class.new solr_doc }
 
@@ -40,7 +41,6 @@ RSpec.describe JSONLDRecord, type: :model do
         type: 'Biography',
         language: ['eng', 'spa', 'zho'],
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
-        references: "{\"http://arks.princeton.edu/ark:/88435/dr26z114k\":[\"arks.princeton.edu\"],\"http://digital.lib.cuhk.edu.hk/crbp/servlet/list\":[\"First page of main text\"]}",
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
         identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",
@@ -49,7 +49,8 @@ RSpec.describe JSONLDRecord, type: :model do
         text_language: 'Text in German.',
         binding_note: 'In half-morocco slipcase.',
         provenance: 'Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.',
-        source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.'
+        source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.',
+        bibliographic_citation: ['Stillwell B460.', 'Goff B-526.']
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end

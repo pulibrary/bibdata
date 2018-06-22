@@ -44,6 +44,7 @@
     "contents": {"@id": "dcterms:tableOfContents"},
     "references": {"@id": "dcterms:references"},
     "provenance": {"@id": "dcterms:provenance"},
+    "bibliographic_citation": {"@id": "dcterms:bibliographicCitation"},
 
 
     "edition": {"@id": "bf:editionStatement"},

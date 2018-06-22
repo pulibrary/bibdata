@@ -139,12 +139,12 @@ class JSONLDRecord
       geocode_display:       'spatial',
       contents_display:      'contents',
       geo_related_record_display: 'relation',
-      electronic_access_1display: 'references',
       uniform_title_s:       'uniform_title',
       language_display:      'text_language',
       binding_note_display:  'binding_note',
       provenance_display:    'provenance',
-      source_acquisition_display: 'source_acquisition'
+      source_acquisition_display: 'source_acquisition',
+      references_display:    'bibliographic_citation'
     }
   end
 
