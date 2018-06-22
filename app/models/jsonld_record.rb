@@ -26,6 +26,7 @@ class JSONLDRecord
     metadata['abstract'] = abstract if abstract
     metadata['identifier'] = identifier if identifier
     metadata['local_identifier'] = local_identifier if local_identifier
+    metadata['location'] = location if location
 
     metadata
   end
@@ -118,6 +119,21 @@ class JSONLDRecord
     return unless @solr_doc['standard_no_1display']
     json = JSON.parse(@solr_doc['standard_no_1display'].first)
     return json['Dclib']
+  end
+
+  # Parse the call number values and prepend each location code to them
+  # This provides a more fully-qualified location
+  # @return [Array<String>]
+  def location
+    return unless @solr_doc['location_code_s'] && @solr_doc['call_number_display']
+
+    values = []
+    @solr_doc['location_code_s'].each do |location_code|
+      @solr_doc['call_number_display'].each do |call_number|
+        values << "#{location_code.upcase} #{call_number}"
+      end
+    end
+    values
   end
 
   def metadata_map
