@@ -42,8 +42,9 @@
     "dcterms_type": {"@id": "dcterms:type"},
     "abstract": {"@id": "dcterms:abstract"},
     "contents": {"@id": "dcterms:tableOfContents"},
-    "references": {"@id": "dcterms:references"},
     "provenance": {"@id": "dcterms:provenance"},
+    "references": {"@id": "dcterms:bibliographicCitation"},
+    "indexed_by": {"@id": "dcterms:isReferencedBy"},
 
 
     "edition": {"@id": "bf:editionStatement"},
