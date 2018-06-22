@@ -51,8 +51,8 @@ RSpec.describe JSONLDRecord, type: :model do
         binding_note: 'In half-morocco slipcase.',
         provenance: 'Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.',
         source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.',
-        bibliographic_citation: ['Stillwell B460.', 'Goff B-526.'],
-        is_referenced_by: 'Example'
+        references: ['Stillwell B460.', 'Goff B-526.'],
+        indexed_by: 'Example'
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end

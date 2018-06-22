@@ -144,8 +144,8 @@ class JSONLDRecord
       binding_note_display:  'binding_note',
       provenance_display:    'provenance',
       source_acquisition_display: 'source_acquisition',
-      references_display:    'bibliographic_citation',
-      indexed_in_display:    'is_referenced_by'
+      references_display:    'references',
+      indexed_in_display:    'indexed_by'
     }
   end
 
