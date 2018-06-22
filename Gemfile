@@ -24,7 +24,6 @@ gem 'oj'
 gem 'rack-conneg', '~> 0.1.5'
 gem 'responders', '~> 2.3'
 gem 'rubyzip', '>= 1.0.0'
-gem 'sinatra', '~> 2.0'
 gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.6.5'
 gem 'yaml_db', '~> 0.6.0'
 
