@@ -604,8 +604,10 @@ to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, ac
 end
 
 to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
-  codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }.flatten.uniq
-  codes.length == 1 ? accumulator.replace(ISO_639.find(codes.join).alpha2.split) : accumulator.replace(codes.map {|e| ISO_639.find(e).alpha2.split.join(",")})
+  codes_start = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
+  codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
+  codes_iso_639 = codes.map {|e| ISO_639.find(e).alpha2 if ISO_639.find(e).is_a? ISO_639}.compact
+  codes_iso_639.present? ? accumulator.replace(codes_iso_639) : accumulator.replace(codes_start.flatten)
 end
 
 # Contents:
