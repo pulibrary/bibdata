@@ -1,0 +1,106 @@
+<record xmlns="http://www.loc.gov/MARC21/slim">
+<leader>01368cam a2200325 a 4500</leader>
+<controlfield tag="001">8543052</controlfield>
+<controlfield tag="005">20170824115049.0</controlfield>
+<controlfield tag="007">he|amu|||bacu</controlfield>
+<controlfield tag="008">010717s1820 it aef b 00000 ita d</controlfield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="9">0200-87760</subfield>
+</datafield>
+<datafield ind1="7" ind2=" " tag="024">
+<subfield code="a">4046</subfield>
+<subfield code="2">cico</subfield>
+</datafield>
+<datafield ind1="7" ind2=" " tag="024">
+<subfield code="a">cico:hcb</subfield>
+<subfield code="2">dclib</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="9">DCNA01-B5384</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">172196</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="040">
+<subfield code="a">DNGA</subfield>
+<subfield code="c">DNGA</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="041">
+<subfield code="a">e-it---</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="099">
+<subfield code="a">49 no. 4046</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="100">
+<subfield code="a">Molini, Giuseppe,</subfield>
+<subfield code="d">1772-1856.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/n87903282</subfield>
+</datafield>
+<datafield ind1="1" ind2="3" tag="245">
+<subfield code="a">La Metropolitana fiorentina illustrata</subfield>
+<subfield code="h">[microform].</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="260">
+<subfield code="a">Firenze :</subfield>
+<subfield code="b">Giuseppe Molini e Comp.,</subfield>
+<subfield code="c">1820.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="300">
+<subfield code="a">vii, 76 p., xxxvii leaves of plates :</subfield>
+<subfield code="b">ill., plans.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="500">
+<subfield code="a">Text by Giuseppe Molini.</subfield>
+</datafield>
+<datafield ind1="4" ind2=" " tag="510">
+<subfield code="a">Cicognara,</subfield>
+<subfield code="c">4046</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="533">
+<subfield code="a">Microfiche.</subfield>
+<subfield code="b">Cambridge, England :</subfield>
+<subfield code="c">Chadwyck-Healey,</subfield>
+<subfield code="d">1989-</subfield>
+<subfield code="e">3 microfiche : positive.</subfield>
+<subfield code="f">(Cicognara library)</subfield>
+</datafield>
+<datafield ind1="2" ind2="0" tag="610">
+<subfield code="a">
+Santa Maria del Fiore (Cathedral : Florence, Italy)
+</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="651">
+<subfield code="a">Florence (Italy)</subfield>
+<subfield code="x">Buildings, structures, etc.</subfield>
+<subfield code="0">
+http://id.loc.gov/authorities/subjects/sh2008115037
+</subfield>
+</datafield>
+<datafield ind1="2" ind2=" " tag="710">
+<subfield code="a">Fondo Cicognara (Biblioteca apostolica vaticana)</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/nr94016468</subfield>
+</datafield>
+<datafield ind1="2" ind2=" " tag="710">
+<subfield code="a">
+Leopoldo Cicognara Program (University of Illinois at Urbana-Champaign)
+</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/nr94016472</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="830">
+<subfield code="a">Cicognara library.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="902">
+<subfield code="a">jwl</subfield>
+<subfield code="b">z</subfield>
+<subfield code="6">a</subfield>
+<subfield code="7">m</subfield>
+<subfield code="d">w</subfield>
+<subfield code="f">0</subfield>
+<subfield code="e">20140708</subfield>
+</datafield>
+<datafield ind1="8" ind2=" " tag="852">
+<subfield code="0">8288079</subfield>
+<subfield code="b">safi</subfield>
+<subfield code="h">MICROFICHE 5</subfield>
+</datafield>
+</record>

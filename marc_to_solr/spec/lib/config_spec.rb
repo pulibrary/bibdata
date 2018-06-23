@@ -35,15 +35,20 @@ describe 'From traject_config.rb' do
     @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
+    @sample37 = @indexer.map_record(fixture_record('8543052'))
 	end
 
-  describe 'the language_iana_s field' do
-    it 'returns a language value based on the IANA Language Subtag Registry' do
+  describe 'the language_iana_s field based on the IANA Language Subtag Registry' do
+    it 'returns a language value' do
       expect(@sample1['language_iana_s']).to eq(["en"])
     end
 
-    it 'returns 2 language values based on the IANA Language Subtag Registry' do
-      expect(@added_title_246['language_iana_s']).to eq(["ja", "en"])
+    it 'returns 2 language values' do
+      expect(@added_title_246['language_iana_s']).to eq(["ja"])
+    end
+
+    it 'rejects empty array elements and nil and returns valid ISO_639' do
+      expect(@sample37['language_iana_s']).not_to be_nil
     end
   end
 
