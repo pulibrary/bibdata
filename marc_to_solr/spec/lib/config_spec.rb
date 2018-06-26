@@ -38,12 +38,13 @@ describe 'From traject_config.rb' do
 	end
 
   describe 'the language_iana_s field' do
-    it 'returns a language value based on the IANA Language Subtag Registry' do
-      expect(@sample1['language_iana_s']).to eq(["en"])
+    it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
+      expect(@sample1['language_code_s']).to eq(['eng', '|||'])
+      expect(@sample1['language_iana_s']).to eq(['en'])
     end
 
     it 'returns 2 language values based on the IANA Language Subtag Registry' do
-      expect(@added_title_246['language_iana_s']).to eq(["ja", "en"])
+      expect(@added_title_246['language_iana_s']).to eq(['ja', 'en'])
     end
   end
 
