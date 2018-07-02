@@ -199,9 +199,10 @@ describe 'From traject_config.rb' do
       expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
     end
   end
-  describe 'pub_created_vern_display' do
-    it 'displays 880 in pub_created_vern_display field' do
+  describe 'pub_created_vern_display and cjk_subject' do
+    it 'displays 880 in pub_created_vern_display and subject field' do
       expect(@sample36['pub_created_vern_display']).to eq ["東京 : 勉誠出版, 2014."]
+      expect(@sample36['cjk_subject']).to eq ["石塚晴通"]
     end
   end
   describe 'related_name_json_1display' do
