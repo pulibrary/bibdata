@@ -24,4 +24,89 @@ to_field 'id', extract_marc('001', first: true)
 
 to_field 'marc_display', serialized_marc(:format => 'xml', :binary_escape => false, :allow_oversized => true)
 
-to_field 'name_s', extract_marc('100:110:111')
+to_field 'name_s', extract_marc('100abcdefghjklmnopqrstvxyz:110abcdefghklmnoprstvxyz:111acdefghjklnpqstvxyz')
+
+to_field 'title_s', extract_marc('130adfghklmnoprstvxyz')
+
+to_field 'named_event_s', extract_marc('147acdgvxyz')
+
+to_field 'chronological_term_s', extract_marc('148avxyz')
+
+to_field 'subject_s', extract_marc('150abgvxyz')
+
+to_field 'geographic_name_s', extract_marc('151agvxyz')
+
+to_field 'genre_s', extract_marc('155avxyz')
+
+to_field 'medium_of_performance_heading_s', extract_marc('162a')
+
+to_field 'general_subdivision_s', extract_marc('180vxyz')
+to_field 'geographic_subdivision_s', extract_marc('181vxyz')
+to_field 'chronological_subdivision_s', extract_marc('182vxyz')
+to_field 'form_subdivision_s', extract_marc('185vxyz')
+
+to_field 'birth_date_s', extract_marc('046f')
+to_field 'death_date_s', extract_marc('046g')
+to_field 'beginning_single_date_s', extract_marc('046k')
+to_field 'ending_date_s', extract_marc('046l')
+to_field 'aggregated_starting_date_s', extract_marc('046o')
+to_field 'aggregated_ended_date_s', extract_marc('046p')
+to_field 'establishment_date_s', extract_marc('046q')
+to_field 'termination_date_s', extract_marc('046r')
+to_field 'start_period_s', extract_marc('046s')
+to_field 'end_period_s', extract_marc('046t')
+to_field 'beginning_single_date_s', extract_marc('046k')
+to_field 'ending_date_s', extract_marc('046l')
+to_field 'source_for_046_s', extract_marc('046uv')
+
+to_field 'content_type_s', extract_marc('336a')
+
+to_field 'notation_format_s', extract_marc('348a')
+
+to_field 'other_attributes_s', extract_marc('368abcd')
+to_field 'other_attributes_period_s', extract_marc('368st')
+
+to_field 'birth_place_s', extract_marc('370a')
+to_field 'death_place_s', extract_marc('370b')
+to_field 'associated_country_s', extract_marc('370c')
+to_field 'residence_hq_s', extract_marc('370e')
+to_field 'other_associated_place_s', extract_marc('370f')
+to_field 'origin_of_work_s', extract_marc('370g')
+to_field 'relationship_to_heading_s', extract_marc('370i')
+to_field 'place_period_s', extract_marc('368st')
+
+to_field 'field_of_activity_s', extract_marc('372a')
+to_field 'activity_period_s', extract_marc('372st')
+
+to_field 'associated_group_s', extract_marc('373a')
+to_field 'associated_group_period_s', extract_marc('373st')
+
+to_field 'occupation_s', extract_marc('374a')
+to_field 'occupation_period_s', extract_marc('374st')
+
+to_field 'family_info_s', extract_marc('376abc')
+to_field 'family_info_period_s', extract_marc('376st')
+
+to_field 'associated_language_s', extract_marc('377a', translation_map: 'marc_languages')
+to_field 'associated_language_term_s', extract_marc('377b')
+
+to_field 'fuller_form_s', extract_marc('378q')
+
+to_field 'form_of_work_s', extract_marc('380a')
+to_field 'other_distinguishing_characteristics_s', extract_marc('381a')
+
+to_field 'work_performance_medium_s', extract_marc('382|0*|a')
+to_field 'partial_work_performance_medium_s', extract_marc('382|1*|a')
+to_field 'soloist_s', extract_marc('382b')
+to_field 'doubling_instrument_s', extract_marc('382d')
+to_field 'alternative_performance_medium_s', extract_marc('382p')
+to_field 'total_number_of_performers_s', extract_marc('382s')
+to_field 'performance_medium_note_s', extract_marc('382v')
+
+
+to_field 'music_work_number_s', extract_marc('383a')
+to_field 'music_key_s', extract_marc('384|0*|a:384| *|a')
+to_field 'transposed_key_s', extract_marc('384|1*|a')
+
+to_field 'creator_characteristics_s', extract_marc('386abimn')
+to_field 'creation_time_period_s', extract_marc('388a')
