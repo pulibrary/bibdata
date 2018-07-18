@@ -330,6 +330,7 @@ def electronic_access_links(record, figgy_dir_path)
 
   output = []
   iiif_manifest_links = []
+  fragment_index = 0
 
   Traject::MarcExtractor.cached('856').collect_matching_lines(record) do |field, _spec, _extractor|
     anchor_text = false
@@ -346,12 +347,12 @@ def electronic_access_links(record, figgy_dir_path)
       cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path)
 
       # Orangelight links
-      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache)
+      catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache, fragment: fragment_value(fragment_index))
       orangelight_url = catalog_url_builder.build(url: electronic_access_link.ark)
 
       if orangelight_url
         # Index this by the domain for Orangelight
-        orangelight_link = electronic_access_link.clone url_key: orangelight_url.to_s, anchor_text: 'Digital content below'
+        orangelight_link = electronic_access_link.clone url_key: orangelight_url.to_s, anchor_text: 'Digital content'
         # Only add the link to the current page if it resolves to a resource with a IIIF Manifest
         output << orangelight_link
       else
@@ -379,11 +380,20 @@ def electronic_access_links(record, figgy_dir_path)
         solr_field_values[link.url_key] = link.url_labels
       end
     end
+    fragment_index += 1
   end
 
   solr_field_values['holding_record_856s'] = holding_856s unless holding_856s == {}
   solr_field_values['iiif_manifest_paths'] = iiif_manifest_paths unless iiif_manifest_paths.empty?
   solr_field_values
+end
+
+def fragment_value(fragment_index)
+  if fragment_index == 0
+    'view'
+  else
+    "view_#{fragment_index}"
+  end
 end
 
 def remove_parens_035 standard_no

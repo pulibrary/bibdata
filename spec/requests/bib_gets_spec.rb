@@ -133,7 +133,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
         expect(solr_doc).to have_key('electronic_access_1display')
         electronic_access_links = solr_doc['electronic_access_1display']
         electronic_access = JSON.parse(electronic_access_links.first)
-        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content below'])
+        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content'])
 
         expect(electronic_access).to have_key('iiif_manifest_paths')
         manifest_paths = electronic_access['iiif_manifest_paths']
