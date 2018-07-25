@@ -22,10 +22,13 @@ RSpec.describe Event, type: :model do
       # Dumps without event ids would cause full dumps to fail
       # An event id is still required to delete events
       # (hence there being 9 holding id dump events instead of 8)
+      ActiveJob::Base.queue_adapter = :test
       dump = Dump.where(dump_type: DumpType.find_by(constant: 'HOLDING_IDS')).first
       dump.event_id = nil
       dump.save
-      Dump.full_bib_dump
+      expect {
+        Dump.full_bib_dump
+      }.to have_enqueued_job.exactly(6).times.on_queue("super_low")
       expect(dump_count('BIB_IDS')).to eq 8
       expect(dump_count('HOLDING_IDS')).to eq 9
       expect(dump_count('CHANGED_RECORDS')).to eq 8
