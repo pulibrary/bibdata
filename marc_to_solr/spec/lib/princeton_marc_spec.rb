@@ -99,7 +99,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url , "z" => "label" } ] } } }
+      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url, "z" => "label" } ] } } }
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2]) }
 
