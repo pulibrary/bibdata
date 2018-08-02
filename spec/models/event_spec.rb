@@ -26,9 +26,9 @@ RSpec.describe Event, type: :model do
       dump = Dump.where(dump_type: DumpType.find_by(constant: 'HOLDING_IDS')).first
       dump.event_id = nil
       dump.save
-      expect {
+      expect do
         Dump.full_bib_dump
-      }.to have_enqueued_job.exactly(6).times.on_queue("super_low")
+      end.to have_enqueued_job.exactly(6).times.on_queue("super_low")
       expect(dump_count('BIB_IDS')).to eq 8
       expect(dump_count('HOLDING_IDS')).to eq 9
       expect(dump_count('CHANGED_RECORDS')).to eq 8
