@@ -54,6 +54,10 @@ jobs:
           command: bundle exec rake db:setup
 
       - run:
+          name: Rubocop
+          command: bundle exec rubocop --config .rubocop.yml
+
+      - run:
           name: Rspec
           command: bundle exec rspec spec marc_to_solr/spec
           environment:
