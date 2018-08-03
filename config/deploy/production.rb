@@ -6,9 +6,9 @@
 
 set :stage, :production
 set :rails_env, 'production'
-server 'bibdata1.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
-server 'bibdata2.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
-server 'bibdata-worker2.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
+server 'bibdata1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker]
+server 'bibdata2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker]
+server 'bibdata-worker2.princeton.edu', user: 'deploy', roles: [:db, :worker]
 set :branch, ENV['BRANCH'] || 'master'
 
 # Extended Server Syntax
