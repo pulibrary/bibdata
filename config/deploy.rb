@@ -45,19 +45,12 @@ set :figgy_ark_cache_path, 'tmp/figgy_ark_cache'
 set :linked_dirs, fetch(:linked_dirs, []).push(fetch(:figgy_ark_cache_path))
 
 namespace :sidekiq do
-  task :quiet do
-    # Horrible hack to get PID without having to use terrible PID files
-    on roles(:worker) do
-      puts capture("kill -USR1 $(sudo initctl status bibdata-workers | grep /running | awk '{print $NF}') || :")
-    end
-  end
   task :restart do
     on roles(:worker) do
       execute :sudo, :service, "bibdata-workers", :restart
     end
   end
 end
-after 'deploy:starting', 'sidekiq:quiet'
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:published', 'sidekiq:restart'
 
