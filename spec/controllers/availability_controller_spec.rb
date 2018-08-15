@@ -43,6 +43,34 @@ RSpec.describe AvailabilityController, type: :controller do
       expect(availability[bib_with_item][holding_id]['status']).to eq('Not Charged')
     end
 
+    context 'when a connection error is encountered for Voyager' do
+      let(:bib_with_item) { '35345' }
+
+      before do
+        allow(Rails.logger).to receive(:error)
+
+        # See https://github.com/pulibrary/marc_liberation/issues/292
+        if ENV['CI']
+          class OCIError < StandardError; end
+        end
+
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_raise(OCIError)
+      end
+
+      after do
+        # See https://github.com/pulibrary/marc_liberation/issues/292
+        if ENV['CI']
+          Object.send(:remove_const, :OCIError)
+        end
+      end
+
+      it 'logs an error and returns a 404 status response' do
+        get :index, params: { ids: [bib_with_item], format: :json }
+        expect(response.status).to eq(404)
+        expect(Rails.logger).to have_received(:error).with("Error encountered when requesting availability status: OCIError")
+      end
+    end
+
     it 'elf records have a status of online' do
       allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("7916044"=>{ "7698138"=>{ more_items: false, location: "elf1", status: "Online" }, "7860428"=>{ more_items: false, location: "rcpph", status: ["Not Charged"] } })
       bib_online = '7916044'
