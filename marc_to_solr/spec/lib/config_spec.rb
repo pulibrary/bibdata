@@ -427,8 +427,8 @@ describe 'From traject_config.rb' do
       expect(record['series_display']).to match_array(['Series title.', 'The Series'])
     end
 
-    it 'matches for other works within series ignore non-filing characters' do
-      expect(record['more_in_this_series_t']).to match_array(['Series title.', 'Series'])
+    it 'matches for other works within series ignore non-filing characters, trim punctuation' do
+      expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
     end
   end
   describe 'senior thesis 502 note' do
