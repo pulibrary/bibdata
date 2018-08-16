@@ -39,7 +39,40 @@ end
 
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', first: true)
-to_field 'cjk_all', extract_all_marc_values
+to_field 'cjk_all' do |record, accumulator|
+  keep_fields = %w[880]
+  result = []
+  record.each do |field|
+    next unless  keep_fields.include?(field.tag)
+    subfield_values = field.subfields
+                           .reject { |sf| sf.code == '6' }
+                           .collect(&:value)
+
+    next unless subfield_values.length > 0
+
+    result << subfield_values.join(' ')
+  end
+  accumulator << result.join(' ')
+end
+
+# only include the 5xx alt script values for cjk field
+to_field 'cjk_notes' do |record, accumulator|
+  keep_fields = %w[880]
+  result = []
+  record.each do |field|
+    next unless  keep_fields.include?(field.tag)
+    linked_tag = field.subfields.select { |sf| sf.code == '6' }.collect(&:value)
+    next unless linked_tag.first.start_with?('5')
+    subfield_values = field.subfields
+                           .reject { |sf| sf.code == '6' }
+                           .collect(&:value)
+
+    next unless subfield_values.length > 0
+
+    result << subfield_values.join(' ')
+  end
+  accumulator << result.join(' ')
+end
 
 # Author/Artist:
 #    100 XX aqbcdek A aq
@@ -57,7 +90,10 @@ to_field 'author_roles_1display' do |record, accumulator|
   accumulator[0] = authors.to_json.to_s
 end
 
-to_field 'cjk_author', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', trim_punctuation: true, alternate_script: :only)
+to_field 'cjk_author' do |record, accumulator|
+  names = process_alt_script_names(record)
+  accumulator.replace(names)
+end
 
 to_field 'author_s' do |record, accumulator|
   names = process_names(record)
@@ -97,7 +133,6 @@ to_field 'title_display', extract_marc('245abcfghknps', alternate_script: false)
 to_field 'title_a_index', extract_marc('245a', trim_punctuation: true)
 
 to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :only, first: true)
-to_field 'cjk_title', extract_marc('245abcfghknps', alternate_script: :only)
 
 # to_field 'title_sort', marc_sortable_title
 to_field 'title_sort' do |record, accumulator|
@@ -159,6 +194,29 @@ end
 to_field 'linked_series_index', extract_marc('760acgst:762acgst')
 
 to_field 'original_version_series_index', extract_marc('534f')
+
+to_field 'cjk_title', extract_marc(%w(
+      130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
+      242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
+      440anpvx:490avx:
+      505t:534f:730aplskfmnor:740ahnp:
+      760acgst:762acgst:765kst:767kst:
+      770kst:772kst:773kst:774kst:775kst:776kst:777kst:
+      780kst:785kst:786kst:787kst:
+      830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+  accumulator << everything_after_t_alt_script(record, '100:110:111:400:410:411:700:710:711:800:810:811')
+  accumulator.flatten!
+end
+
+to_field 'cjk_series_title', extract_marc(%w(
+      440anpvx:490avx:534f:
+      760acgst:762acgst:765k:767k:
+      770k:772k:773k:774k:775k:776k:777k:
+      780k:785k:786k:787k:
+      830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+  accumulator << everything_after_t_alt_script(record, '400:410:411:800:810:811')
+  accumulator.flatten!
+end
 #################################################
 
 # Compiled/Created:
