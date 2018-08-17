@@ -440,7 +440,7 @@ to_field 'more_in_this_series_t' do |record, accumulator|
     end
   end
   accumulator << everything_through_t(record, '800:810:811')
-  accumulator.flatten!
+  accumulator.flatten!.map! { |f| Traject::Macros::Marc21.trim_punctuation(f) }
 end
 
 
