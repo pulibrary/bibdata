@@ -174,6 +174,26 @@ def process_names record
   names.uniq
 end
 
+# only includes values before $t
+def process_alt_script_names record
+  names = []
+  Traject::MarcExtractor.cached('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq').collect_matching_lines(record) do |field, spec, extractor|
+    next unless field.tag == '880'
+    name = extractor.collect_subfields(field, spec).first
+    unless name.nil?
+      remove = ''
+      after_t = false
+      field.subfields.each do |s_field|
+        remove << " #{s_field.value}" if after_t && spec.includes_subfield_code?(s_field.code)
+        after_t = true if s_field.code == 't'
+      end
+      name = name.chomp(remove)
+      names << Traject::Macros::Marc21.trim_punctuation(name)
+    end
+  end
+  names.uniq
+end
+
 ##
 # Get hash of authors grouped by role
 # @param [MARC::Record]
@@ -470,6 +490,24 @@ end
 def everything_after_t record, fields
   values = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
+    after_t = false
+    title = []
+    field.subfields.each do |s_field|
+      title << s_field.value if after_t
+      if s_field.code == 't'
+        title << s_field.value
+        after_t = true
+      end
+    end
+    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless title.empty?
+  end
+  values
+end
+
+def everything_after_t_alt_script record, fields
+  values = []
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless field.tag == '880'
     after_t = false
     title = []
     field.subfields.each do |s_field|
