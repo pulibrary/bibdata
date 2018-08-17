@@ -1,39 +1,48 @@
 class AvailabilityController < ApplicationController
+
   def index
     if params[:ids]
-      avail = VoyagerHelpers::Liberator.get_availability(sanitize_array(params[:ids]))
-      avail = multiple_bib_circulation(avail)
+      ids_param = sanitize_array(params[:ids])
+      avail_response = find_availability(bib_ids: ids_param)
+      avail = multiple_bib_circulation(avail_response)
+
       if avail.empty?
-        render plain: "Record(s): #{params[:ids]} not found.", status: 404
+        render plain: "Record(s): #{ids_param} not found.", status: 404
       else
         respond_to do |wants|
           wants.json  { render json: MultiJson.dump(avail) }
         end
       end
     elsif params[:id]
-      avail = VoyagerHelpers::Liberator.get_availability([sanitize(params[:id])], true)
-      avail = single_bib_circulation(avail)
+      id_param = sanitize(params[:id])
+      avail_response = find_availability(bib_ids: [id_param])
+      avail = single_bib_circulation(avail_response)
+
       if avail.empty?
-        render plain: "Record: #{params[:id]} not found.", status: 404
+        render plain: "Record: #{id} not found.", status: 404
       else
         respond_to do |wants|
           wants.json  { render json: MultiJson.dump(avail) }
         end
       end
     elsif params[:mfhd]
-      avail = VoyagerHelpers::Liberator.get_full_mfhd_availability(sanitize(params[:mfhd]).to_i)
-      avail = single_mfhd_circulation(avail)
+      mfhd_param = sanitize(params[:mfhd])
+      avail_response = find_availability(mfhd: mfhd_param.to_i)
+      avail = single_mfhd_circulation(avail_response)
+
       if avail.empty?
-        render plain: "Record: #{params[:mfhd]} not found.", status: 404
+        render plain: "Record: #{mfhd_param} not found.", status: 404
       else
         respond_to do |wants|
           wants.json  { render json: MultiJson.dump(avail) }
         end
       end
     elsif params[:mfhd_serial]
-      avail = VoyagerHelpers::Liberator.get_current_issues(sanitize(params[:mfhd_serial]).to_i)
+      mfhd_serial_param = sanitize(params[:mfhd_serial])
+      avail = find_availability(mfhd_serial: mfhd_serial_param.to_i)
+
       if avail.empty?
-        render plain: "No current issues found for record #{params[:mfhd_serial]}.", status: 404
+        render plain: "No current issues found for record #{mfhd_serial_param}.", status: 404
       else
         respond_to do |wants|
           wants.json  { render json: MultiJson.dump(avail) }
@@ -65,6 +74,20 @@ class AvailabilityController < ApplicationController
   end
 
   private
+
+  # Retrieves the availability status of a holding from Voyager
+  # @param [Array<String>] bib_ids the IDs for bib. items
+  # @param [Integer] mfhd the ID for MFHD information
+  # @param [Integer] mfhd_serial the ID for MFHD information describing a series
+  # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
+  def find_availability(bib_ids: nil, mfhd: nil, mfhd_serial: nil)
+    return VoyagerHelpers::Liberator.get_current_issues(mfhd_serial) unless mfhd_serial.nil?
+    return VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd) unless mfhd.nil?
+    VoyagerHelpers::Liberator.get_availability(bib_ids, true)
+  rescue OCIError => oci_error
+    Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+    {}
+  end
 
   def multiple_bib_circulation(bibs)
     bibs.each do |_bib_id, bib|
