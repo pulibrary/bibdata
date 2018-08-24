@@ -212,7 +212,6 @@ GEM
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
-    newrelic_rpm (4.8.0.341)
     nio4r (2.3.1)
     nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
@@ -435,7 +434,6 @@ DEPENDENCIES
   multi_json (~> 1.10.1)
   mysql2
   net-sftp (~> 2.1, >= 2.1.2)
-  newrelic_rpm
   oj
   omniauth-cas
   orangetheses!
