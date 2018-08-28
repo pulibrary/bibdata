@@ -14,17 +14,22 @@ class ElectronicLocation
     @subfields = subfields
     index_holdings!(holdings)
     @manifests = iiif_manifest_uris.map { |uri| uri.to_s }
+    @iiif_manifest_uris = iiif_manifest_uris
   end
 
   # Returns the subfield value containing an ARK URL
   # @return [Array<String>] the ARK URLs
   def identifiers
-    @subfields.select do |subfield|
+    iiif_manifest_arks + @subfields.select do |subfield|
       subfield.key?(ElectronicLocations::SubfieldCodes::URI) && /arks\.princeton\.edu/.match(subfield[ElectronicLocations::SubfieldCodes::URI])
     end.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
   end
 
   private
+
+    def iiif_manifest_arks
+      @iiif_manifest_arks ||= @iiif_manifest_uris.map(&:ark).map(&:to_s)
+    end
 
     # Index the electronic locations by labels
     # @param holdings [Holding] an array of electronic holdings
