@@ -67,6 +67,21 @@ RSpec.describe JSONLDRecord, type: :model do
     end
   end
 
+  context "with IIIF manifest path identifiers" do
+    let(:solr_doc) {{
+      # Provide two arks - one in the iiif manifest paths (a known figgy ark),
+      # and one without, to make sure it picks the Figgy one.
+      'electronic_access_1display' => ["{\"https://catalog.princeton.edu/catalog/7849027#view\":[\"Digital content\"],\"http://arks.princeton.edu/ark:/88435/cj82k733w\":[\"arks.princeton.edu\",\"Yemeni Manuscript Digitization Initiative\"],\"iiif_manifest_paths\":{\"http://arks.princeton.edu/ark:/88435/qv33rx40r\":\"https://figgy.princeton.edu/concern/scanned_resources/28cfa04a-b699-427c-84e6-998b74f9669e/manifest\"}}"],
+      'indexed_in_display'         => ['Example']
+    }}
+    subject { described_class.new solr_doc }
+    it "chooses the ark with a manifest first" do
+      stub_ezid(shoulder: "88435", blade: "qv33rx40r")
+      stub_ezid(shoulder: "88435", blade: "cj82k733w")
+      expect(subject.to_h["identifier"]).to eq "http://arks.princeton.edu/ark:/88435/qv33rx40r"
+    end
+  end
+
   context 'with a human readable date and date ranges' do
     let(:solr_doc) {{
       'pub_date_display'           => ['1970'],

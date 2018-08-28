@@ -35,8 +35,7 @@ RSpec.describe ElectronicLocationsFactory, type: :service do
 
       expect(manifests).not_to be_empty
       expect(manifests.first).to be_a ElectronicLocations::IIIFManifestURI
-      expect(manifests.first.ark).to be_a URI::ARK
-      expect(manifests.first.ark.to_s).to eq 'http://arks.princeton.edu:80/ark:/88435/5m60qr98h'
+      expect(manifests.first.ark.to_s).to eq 'http://arks.princeton.edu/ark:/88435/5m60qr98h'
       expect(manifests.first.value).to be_a URI::Generic
       expect(manifests.first.value.to_s).to eq 'https://figgy.princeton.edu/concern/scanned_resources/441d6471-9c97-4add-aa09-91c056e0fc0b/manifest'
     end
