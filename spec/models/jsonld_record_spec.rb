@@ -24,12 +24,19 @@ RSpec.describe JSONLDRecord, type: :model do
       'provenance_display'         => ['Provenance: Johann Anton André, of Offenbach, 1799; Philharmonische Gesellschaft, Laibach (Ljubljana); Robert Ammann.'],
       'source_acquisition_display'         => ['Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.'],
       'references_display'         => ["Stillwell B460.", "Goff B-526."],
-      'electronic_access_1display' => ['{"http://arks.princeton.edu/ark:/88435/dr26z114k":["arks.princeton.edu"],"http://digital.lib.cuhk.edu.hk/crbp/servlet/list":["First page of main text"]}'],
+      # Provide two ARKs so we can make the first one point to a finding aid to
+      # ensure it isn't picked.
+      'electronic_access_1display' => ["{\"http://arks.princeton.edu/ark:/88435/47429918s\":[\"arks.princeton.edu\",\"Finding aid\"],\"http://arks.princeton.edu/ark:/88435/7p88ch283\":[\"arks.princeton.edu\"]}"],
       'indexed_in_display'         => ['Example']
     }}
     subject { described_class.new solr_doc }
 
     it 'produces json+ld' do
+      # Stub the first ARK to point to findingaids site so it isn't picked as
+      # the identifier. We want to return the first non-finding-aid ARK for
+      # Figgy to import.
+      stub_ezid(shoulder: "88435", blade: "47429918s", location: "http://findingaids.princeton.edu/bla")
+      stub_ezid(shoulder: "88435", blade: "7p88ch283")
       json_ld = {
         title: { '@value':'This is the Title', '@language':'eng' },
         title_sort: 'this is the title',
@@ -45,7 +52,7 @@ RSpec.describe JSONLDRecord, type: :model do
         publisher: 'New York : Farrar, Straus Giroux, 1970.',
         contributor: ['Contributor, Donald'],
         former_owner: ['Translator, Carol'],
-        identifier: "http://arks.princeton.edu/ark:/88435/dr26z114k",
+        identifier: "http://arks.princeton.edu/ark:/88435/7p88ch283",
         translator: ['Translator, Bob', 'Translator, Carol'],
         uniform_title: 'Declaration of Independence',
         text_language: 'Text in German.',
