@@ -163,6 +163,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       it 'exposes the ARK' do
         bib_id = '10372293'
         stub_voyager('10372293')
+        stub_ezid(shoulder: "88435", blade: "dsp015425kd270")
         get "/bibliographic/#{bib_id}/jsonld"
         expect(response.status).to be(200)
 
@@ -176,6 +177,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       it 'exposes the ARK' do
         bib_id = '4609321'
         stub_voyager('4609321')
+        stub_ezid(shoulder: "88435", blade: "xp68kg247")
         get "/bibliographic/#{bib_id}/jsonld"
         expect(response.status).to be(200)
 

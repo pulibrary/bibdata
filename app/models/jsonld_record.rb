@@ -75,7 +75,7 @@ class JSONLDRecord
   end
 
   def title
-    return [ vernacular_title, roman_title ] unless vernacular_title.nil?
+    return [vernacular_title, roman_title] unless vernacular_title.nil?
     roman_title unless roman_title.nil?
   end
 
@@ -110,15 +110,16 @@ class JSONLDRecord
   # Retrieved from the Array of ElectronicLocations
   # @return [String] identifier
   def identifier
-    first_location = electronic_locations.first
-    return unless first_location
-    first_location.identifiers.first
+    identifiers = electronic_locations.flat_map(&:identifiers).select { |x| x.to_s.include?("ark") }
+    identifiers.find do |identifier|
+      !ArkResolver.new(ark: identifier).location.to_s.include?("findingaids")
+    end
   end
 
   def local_identifier
     return unless @solr_doc['standard_no_1display']
     json = JSON.parse(@solr_doc['standard_no_1display'].first)
-    return json['Dclib']
+    json['Dclib']
   end
 
   # Parse the call number values and prepend each location code to them

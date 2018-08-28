@@ -104,6 +104,7 @@ RSpec.describe BibliographicController, type: :controller do
       stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
       allow(indexer).to receive(:map_record).and_return(solr_doc)
       stub_const("TRAJECT_INDEXER", indexer)
+      stub_ezid(shoulder: "88435", blade: "d504rp938")
     end
 
     it 'generates JSON-LD' do
