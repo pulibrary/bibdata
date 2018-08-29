@@ -3,7 +3,7 @@ class AvailabilityController < ApplicationController
   def index
     if params[:ids]
       ids_param = sanitize_array(params[:ids])
-      avail_response = find_availability(bib_ids: ids_param)
+      avail_response = find_availability(bib_ids: ids_param, full: false)
       avail = multiple_bib_circulation(avail_response)
 
       if avail.empty?
@@ -80,10 +80,10 @@ class AvailabilityController < ApplicationController
   # @param [Integer] mfhd the ID for MFHD information
   # @param [Integer] mfhd_serial the ID for MFHD information describing a series
   # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
-  def find_availability(bib_ids: nil, mfhd: nil, mfhd_serial: nil)
+  def find_availability(bib_ids: nil, mfhd: nil, mfhd_serial: nil, full: true)
     return VoyagerHelpers::Liberator.get_current_issues(mfhd_serial) unless mfhd_serial.nil?
     return VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd) unless mfhd.nil?
-    VoyagerHelpers::Liberator.get_availability(bib_ids, true)
+    VoyagerHelpers::Liberator.get_availability(bib_ids, full)
   rescue OCIError => oci_error
     Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
     {}
