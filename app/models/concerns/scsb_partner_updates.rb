@@ -7,7 +7,8 @@ module Scsb
     def initialize(dump: )
       @dump = dump
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-      @last_dump = (DateTime.now - 1).to_time
+      @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
+      @last_dump = set_timestamp
       @inv_xml = []
       @tab_newline = []
       @leader = []
@@ -15,10 +16,12 @@ module Scsb
       @bad_utf8 = []
     end
 
-    def process_update_files
+    def process_partner_files
       get_partner_updates
       process_partner_updates
       log_record_fixes
+      get_partner_deletes
+      process_partner_deletes
     end
 
     private
@@ -32,6 +35,52 @@ module Scsb
             ssh.sftp.download!(file[:name], "#{@update_directory}/#{filename}")
           end
         end
+      end
+
+      def get_partner_deletes
+        prepare_directory
+        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+          files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_DELETE_DIR'], '*.zip').map { |entry| { name: "#{ENV['RECAP_PARTNER_DELETE_DIR']}/#{entry.name}", mod_time: Time.at(entry.attributes.mtime) } }
+          files.each do |file|
+            next unless file[:mod_time] > @last_dump
+            filename = File.basename(file[:name])
+            ssh.sftp.download!(file[:name], "#{@update_directory}/#{filename}")
+          end
+        end
+      end
+
+      def process_partner_deletes
+        files = Dir.glob("#{@update_directory}/*.zip")
+        files.each do |file|
+          filename = File.basename(file, '.zip')
+          file_increment = 1
+          Zip::File.open(file) do |zip_file|
+            zip_file.each do |entry|
+              target = "#{@update_directory}/scsbdelete#{filename}_#{file_increment}.json"
+              entry.extract(target)
+              file_increment += 1
+            end
+          end
+          File.unlink(file)
+        end
+        files = Dir.glob("#{@update_directory}/*.json")
+        ids = []
+        files.each do |file|
+          filename = File.basename(file, '.json')
+          scsb_ids(file, ids)
+          File.unlink(file)
+        end
+        @dump.delete_ids = ids
+        @dump.save
+      end
+
+      def scsb_ids(filename, ids)
+        file = File.read(filename)
+        data = JSON.parse(file)
+        data.each do |record|
+          ids << "SCSB-#{record['bib']['bibId']}"
+        end
+        ids
       end
 
       def process_partner_updates
@@ -52,7 +101,7 @@ module Scsb
         Dir.glob("#{@update_directory}/*.xml").each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          filepath = "#{@update_directory}/scsbupdate#{filename}"
+          filepath = "#{@scsb_file_dir}/scsbupdate#{filename}"
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(process_record(record)) }
           writer.close()
@@ -87,9 +136,11 @@ module Scsb
         record = empty_subfield_fix(record)
       end
 
-      def attach_dump_file(filepath)
-        dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
+      def attach_dump_file(filepath, constant = 'RECAP_RECORDS')
+        dump_file_type = DumpFileType.find_by(constant: constant)
         df = DumpFile.create(dump_file_type: dump_file_type, path: filepath)
+        df.zip
+        df.save
         @dump.dump_files << df
         @dump.save
       end
@@ -102,9 +153,22 @@ module Scsb
           composed_chars: @composed_chars,
           bad_utf8: @bad_utf8
         }
-        filepath = "#{@update_directory}/fixes_#{@last_dump}.json"
+        filepath = log_file_name
         File.write(filepath, log_file.to_json.to_s)
-        attach_dump_file(filepath)
+        attach_dump_file(filepath, 'LOG_FILE')
+      end
+
+      def log_file_name
+        "#{@scsb_file_dir}/fixes_#{@last_dump.strftime('%Y_%m_%d')}.json"
+      end
+
+      def set_timestamp
+        last_dumps = Dump.where(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP')).last(2)
+        if last_dumps.length == 2
+          last_dumps.first.created_at
+        else
+          (DateTime.now - 1).to_time
+        end
       end
 
       def prepare_directory

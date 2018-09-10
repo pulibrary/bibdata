@@ -129,7 +129,7 @@ class Dump < ActiveRecord::Base
       dump = nil
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP'))
-        Scsb::PartnerUpdates.new(dump: dump).process_update_files
+        ScsbImportJob.perform_later(dump.id)
         dump.event = event
         dump.save
       end

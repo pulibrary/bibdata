@@ -32,3 +32,5 @@ dump_file_types:
   constant: 'BIB_RECORDS'
 - label: 'Updated ReCAP Records'
   constant: 'RECAP_RECORDS'
+- label: 'Log File'
+  constant: 'LOG_FILE'
