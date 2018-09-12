@@ -8,7 +8,7 @@ class DumpFile < ActiveRecord::Base
   belongs_to :dump_file_type
 
   after_create do
-    self.path = generate_fp
+    self.path = generate_fp if self.path.nil?
     self.save
   end
 
