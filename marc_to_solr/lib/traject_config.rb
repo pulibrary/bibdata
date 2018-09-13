@@ -823,7 +823,14 @@ end
 
 # Form/Genre
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display', extract_marc('655avxyz')
+#to_field 'form_genre_display', extract_marc('655avxyz')
+to_field 'form_genre_display' do |record, accumulator|
+  MarcExtractor.cached('655avxyz', separator: '; ').collect_matching_lines(record) do |field, spec, extractor|
+    values = extractor.collect_subfields(field, spec)
+    value = values.join('; ')
+    accumulator << value
+  end
+end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered

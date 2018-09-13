@@ -429,6 +429,67 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+  describe 'form_genre_display' do
+    subject(:form_genre_display) { indexer.map_record(marc_record) }
+
+    let(:leader) { '1234567890' }
+    let(:field_655) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "0",
+          "subfields" => [
+            {
+              "a" => "Culture."
+            },
+            {
+              "v" => "Awesome"
+            },
+            {
+              "x" => "Dramatic rendition"
+            },
+            {
+              "y" => "19th century."
+            }
+          ]
+        }
+      }
+    end
+    let(:field_655_2) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "7",
+          "subfields" => [
+            {
+              "a" => "Poetry"
+            },
+            {
+              "x" => "Translations into French"
+            },
+            {
+              "v" => "Maps"
+            },
+            {
+              "y" => "19th century."
+            }
+          ]
+        }
+      }
+    end
+    let(:marc_record) do
+      MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
+    end
+
+    it "indexes the subfields as semicolon-delimited values" do
+      expect(form_genre_display).not_to be_empty
+      expect(form_genre_display).to include "form_genre_display"
+      expect(form_genre_display["form_genre_display"].length).to eq(2)
+      expect(form_genre_display["form_genre_display"].first).to eq("Culture.; Awesome; Dramatic rendition; 19th century.")
+      expect(form_genre_display["form_genre_display"].last).to eq("Poetry; Translations into French; Maps; 19th century.")
+    end
+  end
+
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Exclude" }, { "v"=>"John" }, { "x"=>"Join" }] } }
