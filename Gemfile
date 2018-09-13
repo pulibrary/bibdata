@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bootstrap-sass', '~> 3.3.3'
+gem 'ffi', '>= 1.9.25'
 gem 'high_voltage', '~> 3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
@@ -24,7 +25,7 @@ gem 'multi_json', '~> 1.10.1'
 gem 'oj'
 gem 'rack-conneg', '~> 0.1.5'
 gem 'responders', '~> 2.3'
-gem 'rubyzip', '>= 1.0.0'
+gem 'rubyzip', '>= 1.2.2'
 gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.6.5'
 gem 'yaml_db', '~> 0.6.0'
 
