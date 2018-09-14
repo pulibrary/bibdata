@@ -792,7 +792,7 @@ end
 
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050']['a']
+    if record['050'] && record['050']['a']
       if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         first_letter = record['050']['a'].lstrip.slice(0, 1)
@@ -808,7 +808,7 @@ end
 
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050']['a']
+    if record['050'] && record['050']['a']
       if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
