@@ -742,7 +742,7 @@ end
 
 # used for the browse lists and hierarchical subject facet
 to_field 'subject_facet' do |record, accumulator|
-  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz:655avxyz')
   accumulator.replace(subjects)
 end
 
@@ -827,7 +827,10 @@ end
 
 # Form/Genre
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display', extract_marc('655avxyz')
+to_field 'form_genre_display' do |record, accumulator|
+  subjects = process_subject_facet(record, '655avxyz')
+  accumulator.replace(subjects)
+end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
