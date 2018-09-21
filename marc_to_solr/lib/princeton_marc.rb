@@ -271,14 +271,14 @@ end
 SEPARATOR = '—'
 
 # for the hierarchical subject display and facet
-# split with em dash along v,x,y,z
+# split with em dash along t,v,x,y,z
 def process_subject_facet record, fields
   subjects = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       field.subfields.each do |s_field|
-        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
+        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 't' || s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
       subject = subject.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)

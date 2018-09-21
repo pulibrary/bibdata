@@ -482,9 +482,9 @@ describe 'From princeton_marc.rb' do
       expect(@subjects).not_to include("Also Exclude")
     end
 
-    it 'only separates v,x,y,z with em dash, strips punctuation' do
-      expect(@subjects).to include("John. Title#{SEPARATOR}split genre 2015")
-      expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore TITLE")
+    it 'only separates t,v,x,y,z with em dash, strips punctuation' do
+      expect(@subjects).to include("John#{SEPARATOR}Title#{SEPARATOR}split genre 2015")
+      expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore#{SEPARATOR}TITLE")
     end
   end
 
