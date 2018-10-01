@@ -62,7 +62,7 @@ to_field 'cjk_notes' do |record, accumulator|
   record.each do |field|
     next unless  keep_fields.include?(field.tag)
     linked_tag = field.subfields.select { |sf| sf.code == '6' }.collect(&:value)
-    next unless linked_tag.first.start_with?('5')
+    next unless linked_tag.first&.start_with?('5')
     subfield_values = field.subfields
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
