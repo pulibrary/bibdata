@@ -48,7 +48,7 @@ to_field 'cjk_all' do |record, accumulator|
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
 
-    next unless subfield_values.length > 0
+    next unless !subfield_values.empty?
 
     result << subfield_values.join(' ')
   end
@@ -67,7 +67,7 @@ to_field 'cjk_notes' do |record, accumulator|
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
 
-    next unless subfield_values.length > 0
+    next unless !subfield_values.empty?
 
     result << subfield_values.join(' ')
   end
@@ -196,24 +196,24 @@ to_field 'linked_series_index', extract_marc('760acgst:762acgst')
 to_field 'original_version_series_index', extract_marc('534f')
 
 to_field 'cjk_title', extract_marc(%w(
-      130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
-      242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
-      440anpvx:490avx:
-      505t:534f:730aplskfmnor:740ahnp:
-      760acgst:762acgst:765kst:767kst:
-      770kst:772kst:773kst:774kst:775kst:776kst:777kst:
-      780kst:785kst:786kst:787kst:
-      830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+  130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
+  242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
+  440anpvx:490avx:
+  505t:534f:730aplskfmnor:740ahnp:
+  760acgst:762acgst:765kst:767kst:
+  770kst:772kst:773kst:774kst:775kst:776kst:777kst:
+  780kst:785kst:786kst:787kst:
+  830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
   accumulator << everything_after_t_alt_script(record, '100:110:111:400:410:411:700:710:711:800:810:811')
   accumulator.flatten!
 end
 
 to_field 'cjk_series_title', extract_marc(%w(
-      440anpvx:490avx:534f:
-      760acgst:762acgst:765k:767k:
-      770k:772k:773k:774k:775k:776k:777k:
-      780k:785k:786k:787k:
-      830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+  440anpvx:490avx:534f:
+  760acgst:762acgst:765k:767k:
+  770k:772k:773k:774k:775k:776k:777k:
+  780k:785k:786k:787k:
+  830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
   accumulator << everything_after_t_alt_script(record, '400:410:411:800:810:811')
   accumulator.flatten!
 end

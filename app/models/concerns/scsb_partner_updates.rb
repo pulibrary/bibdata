@@ -4,7 +4,7 @@ module Scsb
   class PartnerUpdates
     extend ActiveSupport::Concern
 
-    def initialize(dump: )
+    def initialize(dump:)
       @dump = dump
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
@@ -25,9 +25,10 @@ module Scsb
     end
 
     private
+
       def get_partner_updates
         prepare_directory
-        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']]) do |ssh|
           files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_UPDATE_DIR'], '*.zip').map { |entry| { name: "#{ENV['RECAP_PARTNER_UPDATE_DIR']}/#{entry.name}", mod_time: Time.at(entry.attributes.mtime) } }
           files.each do |file|
             next unless file[:mod_time] > @last_dump
@@ -39,7 +40,7 @@ module Scsb
 
       def get_partner_deletes
         prepare_directory
-        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], { port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']] } ) do |ssh|
+        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']]) do |ssh|
           files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_DELETE_DIR'], '*.zip').map { |entry| { name: "#{ENV['RECAP_PARTNER_DELETE_DIR']}/#{entry.name}", mod_time: Time.at(entry.attributes.mtime) } }
           files.each do |file|
             next unless file[:mod_time] > @last_dump
@@ -104,7 +105,7 @@ module Scsb
           filepath = "#{@scsb_file_dir}/scsbupdate#{filename}"
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(process_record(record)) }
-          writer.close()
+          writer.close
           attach_dump_file(filepath)
           File.unlink(file)
         end
@@ -133,7 +134,7 @@ module Scsb
           record = composed_chars_normalize(record)
         end
         record = extra_space_fix(record)
-        record = empty_subfield_fix(record)
+        empty_subfield_fix(record)
       end
 
       def attach_dump_file(filepath, constant = 'RECAP_RECORDS')
@@ -172,7 +173,7 @@ module Scsb
       end
 
       def prepare_directory
-        if File.exists?(@update_directory)
+        if File.exist?(@update_directory)
           Dir.glob("#{@update_directory}/*").each { |file| File.delete(file) }
         else
           Dir.mkdir(@update_directory)

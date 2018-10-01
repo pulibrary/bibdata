@@ -99,7 +99,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url , "z" => "label" } ] } } }
+      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url, "z" => "label" } ] } } }
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2]) }
 
@@ -329,7 +329,7 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
       @t700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "k"=>"don't ignore" }, { "t"=>"TITLE" }] } }
-      @t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1"}, { "a"=>"Κινέζικα" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
+      @t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1" }, { "a"=>"Κινέζικα" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@t100, @t700, @t880])
     end
 
@@ -351,7 +351,7 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"IGNORE" }, { "d"=>"me" }, { "t"=>"TITLE" }] } }
       t710 = { "710"=>{ "ind1"=>"1", "ind2"=>"2", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "d"=>"1492" }, { "k"=>"dont ignore" }] } }
-      t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1"},{ "a"=>"IGNORE" }, { "d"=>"me" }, { "t"=>"Τίτλος" }] } }
+      t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1" },{ "a"=>"IGNORE" }, { "d"=>"me" }, { "t"=>"Τίτλος" }] } }
       ignore700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"should not include" }, { "a"=>"when missing indicators" }] } }
       no_t = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"please" }, { "d"=>"disregard" }, { "k"=>"no title" }] } }
       sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t, t880])

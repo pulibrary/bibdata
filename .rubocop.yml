@@ -35,3 +35,7 @@ Style/MethodDefParentheses:
 Style/NumericPredicate:
   Enabled: false  
     
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/models/concerns/scsb_partner_updates.rb'
+    - 'marc_to_solr/lib/princeton_marc.rb'
