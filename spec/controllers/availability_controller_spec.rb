@@ -50,18 +50,14 @@ RSpec.describe AvailabilityController, type: :controller do
         allow(Rails.logger).to receive(:error)
 
         # See https://github.com/pulibrary/marc_liberation/issues/292
-        if ENV['CI']
-          class OCIError < StandardError; end
-        end
+        class OCIError < StandardError; end if ENV['CI']
 
         allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_raise(OCIError)
       end
 
       after do
         # See https://github.com/pulibrary/marc_liberation/issues/292
-        if ENV['CI']
-          Object.send(:remove_const, :OCIError)
-        end
+        Object.send(:remove_const, :OCIError) if ENV['CI']
       end
 
       it 'logs an error and returns a 404 status response' do
