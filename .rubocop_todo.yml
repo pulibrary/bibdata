@@ -410,11 +410,6 @@ Lint/EnsureReturn:
     - 'app/models/event.rb'
 
 # Offense count: 1
-Lint/HandleExceptions:
-  Exclude:
-    - 'marc_to_solr/lib/location_extract.rb'
-
-# Offense count: 1
 Lint/ParenthesesAsGroupedExpression:
   Exclude:
     - 'app/models/jsonld_record.rb'
