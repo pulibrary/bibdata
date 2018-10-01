@@ -4,25 +4,16 @@ module Scsb
   # if id comes from 001 source is scsb
   # if id comes from 009 source is the owning library
   def items_by_id(id, source = 'scsb')
-    response = self.scsb_conn.post do |req|
-      req.url '/sharedCollection/bibAvailabilityStatus'
-      req.headers['Content-Type'] = 'application/json'
-      req.headers['Accept'] = 'application/json'
-      req.headers['api_key'] = scsb_auth_key
-      req.body = scsb_bib_id_request(id, source).to_json
-    end
-    parse_scsb_response(response)
+    request_body = scsb_bib_id_request(id, source)
+    request_body_json = request_body.to_json
+    scsb_request('/sharedCollection/bibAvailabilityStatus', request_body_json)
   end
 
+  # Retrieves items from the SCSB endpoint using a barcode
   def items_by_barcode(barcodes)
-    response = scsb_conn.post do |req|
-      req.url '/sharedCollection/itemAvailabilityStatus'
-      req.headers['Content-Type'] = 'application/json'
-      req.headers['Accept'] = 'application/json'
-      req.headers['api_key'] = scsb_auth_key
-      req.body = scsb_barcode_request(barcodes).to_json
-    end
-    parse_scsb_response(response)
+    request_body = scsb_barcode_request(barcodes)
+    request_body_json = request_body.to_json
+    scsb_request('/sharedCollection/itemAvailabilityStatus', request_body_json)
   end
 
   def scsb_barcode_request(barcodes)
@@ -73,5 +64,19 @@ module Scsb
       else
         'https://test.api.com/'
       end
+    end
+
+    def scsb_request(request_path, request_body)
+      response = self.scsb_conn.post do |req|
+        req.url request_path
+        req.headers['Content-Type'] = 'application/json'
+        req.headers['Accept'] = 'application/json'
+        req.headers['api_key'] = scsb_auth_key
+        req.body = request_body
+      end
+      parse_scsb_response(response)
+    rescue Faraday::ConnectionFailed => connection_failed
+      Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
+      raise connection_failed
     end
 end
