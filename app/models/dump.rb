@@ -16,13 +16,13 @@ class Dump < ActiveRecord::Base
   serialize :recap_barcodes
 
   before_destroy do
-    dump_files.each do |df|
+    self.dump_files.each do |df|
       df.destroy
     end
   end
 
   def dump_updated_records
-    ids = update_ids
+    ids = self.update_ids
     dump_file_type = DumpFileType.find_by(constant: 'UPDATED_RECORDS')
     dump_records(ids, dump_file_type)
   end
@@ -42,8 +42,8 @@ class Dump < ActiveRecord::Base
     slice_size = Rails.env.test? ? MARC_LIBERATION_CONFIG['test_records_per_file'] : MARC_LIBERATION_CONFIG['records_per_file']
     ids.each_slice(slice_size).each do |id_slice|
       df = DumpFile.create(dump_file_type: dump_file_type)
-      dump_files << df
-      save
+      self.dump_files << df
+      self.save
       if dump_file_type.constant == 'RECAP_RECORDS'
         RecapDumpJob.perform_later(id_slice, df.id)
       else
