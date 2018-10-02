@@ -9,6 +9,5 @@ json.files do
 end
 json.ids do
   json.delete_ids @dump.delete_ids
-  json.create_ids @dump.create_ids
   json.update_ids @dump.update_ids
 end
