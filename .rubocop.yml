@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 require: rubocop-rspec
 inherit_from: .rubocop_todo.yml
 
@@ -8,7 +6,6 @@ Rails:
 
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.3
   Include:
     - '**/Capfile'
     - '**/Gemfile'

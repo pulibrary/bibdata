@@ -95,9 +95,6 @@ GEM
     autoprefixer-rails (8.1.0.1)
       execjs
     bcrypt (3.1.11)
-    bixby (1.0.0)
-      rubocop (~> 0.50, <= 0.52.1)
-      rubocop-rspec (~> 1.22, <= 1.22.2)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -410,7 +407,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bixby (~> 1.0)
   bootstrap-sass (~> 3.3.3)
   capistrano-rails (~> 1.1.1)
   capybara
@@ -467,4 +463,4 @@ DEPENDENCIES
   yaml_db (~> 0.6.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
