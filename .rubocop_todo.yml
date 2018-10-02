@@ -551,6 +551,11 @@ RSpec/EmptyExampleGroup:
   Exclude:
     - 'spec/requests/dump_files_spec.rb'
 
+# Offense count: 1
+RSpec/EmptyLineAfterFinalLet:
+  Exclude:
+    - 'spec/models/solr_document_spec.rb'
+
 # Offense count: 44
 # Configuration parameters: Max.
 RSpec/ExampleLength:
@@ -872,19 +877,7 @@ Style/SymbolProc:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInArrayLiteral:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-    - 'spec/services/electronic_locations_factory_spec.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
+Style/TrailingCommaInLiteral:
   Exclude:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'

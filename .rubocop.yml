@@ -5,6 +5,7 @@ Rails:
   Enabled: true
 
 AllCops:
+  TargetRubyVersion: 2.3
   DisplayCopNames: true
   Include:
     - '**/Capfile'
