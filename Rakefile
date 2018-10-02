@@ -12,6 +12,3 @@ RuboCop::RakeTask.new do |task|
   task.requires << 'rubocop-rspec'
   task.fail_on_error = true
 end
-
-desc 'Run test suite and style checker'
-task spec: :rubocop

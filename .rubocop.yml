@@ -41,3 +41,8 @@ Naming/AccessorMethodName:
   Exclude:
     - 'app/models/concerns/scsb_partner_updates.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
+
+Lint/HandleExceptions:
+  Exclude:
+    - 'lib/tasks/spec.rake'
+    - 'marc_to_solr/lib/location_extract.rb'
