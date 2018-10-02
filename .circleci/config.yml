@@ -34,6 +34,10 @@ jobs:
             - vendor/bundle
 
       - run:
+          name: Rubocop
+          command: bundle exec rubocop
+
+      - run:
           name: Configure location display
           command: cp -v marc_to_solr/translation_maps/location_display.rb.tmpl marc_to_solr/translation_maps/location_display.rb
 

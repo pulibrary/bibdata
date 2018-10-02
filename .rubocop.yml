@@ -16,11 +16,13 @@ AllCops:
     - '**/Gemfile'
     - '**/Rakefile'
     - '**/config.ru'
+    - 'marc_to_solr/translation_maps/*.rb.tmpl'
   Exclude:
     - 'db/**/*'
     - 'bin/*'
     - 'config/deploy.rb'
     - 'config/initializers/*'
+    - 'vendor/**/*'
 
 Style/BlockDelimiters:
   Exclude:
