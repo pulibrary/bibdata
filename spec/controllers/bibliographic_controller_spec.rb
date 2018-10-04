@@ -115,5 +115,22 @@ RSpec.describe BibliographicController, type: :controller do
       expect(json_ld).to include 'identifier'
       expect(json_ld['identifier']).to include 'http://arks.princeton.edu/ark:/88435/d504rp938'
     end
+
+    context 'when an error is encountered while querying Voyager' do
+      before do
+        class OCIError < StandardError; end if ENV['CI']
+        allow(Rails.logger).to receive(:error)
+        allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_raise(OCIError, 'ORA-01722: invalid number')
+      end
+      after do
+        Object.send(:remove_const, :OCIError) if ENV['CI']
+      end
+      it 'returns a 400 HTTP response and logs an error' do
+        get :bib, params: { bib_id: bib_id }
+
+        expect(response.status).to be 400
+        expect(Rails.logger).to have_received(:error).with('Failed to retrieve the Voyager record using the bib. ID: 10002695: ORA-01722: invalid number')
+      end
+    end
   end
 end

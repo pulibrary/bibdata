@@ -22,7 +22,12 @@ class BibliographicController < ApplicationController
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
 
-    records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+    begin
+      records = VoyagerHelpers::Liberator.get_bib_record(bib_id_param, nil, opts)
+    rescue OCIError => oci_error
+      Rails.logger.error "Failed to retrieve the Voyager record using the bib. ID: #{bib_id_param}: #{oci_error}"
+      return head :bad_request
+    end
 
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
@@ -191,5 +196,11 @@ class BibliographicController < ApplicationController
     # @return [Hash] the JSON-LD graph serialized as a Hash
     def solr_to_jsonld(solr_doc=nil)
       { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
+    end
+
+    # Sanitizes the bib_id HTTP parameter
+    # @return [String]
+    def bib_id_param
+      sanitize(params[:bib_id])
     end
 end
