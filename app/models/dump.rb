@@ -159,14 +159,12 @@ class Dump < ActiveRecord::Base
     end
 
     def incremental_update_timestamp(dump_type)
-      (ENV['TIMESTAMP'] || last_incremental_update(dump_type) || DateTime.now - 1).to_time
+      (ENV['TIMESTAMP'] || last_incremental_update(dump_type) || DateTime.now - 1).to_time_in_current_zone
     end
 
     def last_incremental_update(dump_type)
       last_dump = Dump.where(dump_type: DumpType.find_by(constant: dump_type)).last
-      if last_dump
-        last_dump.created_at
-      end
+      last_dump&.created_at
     end
 
     def dump_ids(type)
