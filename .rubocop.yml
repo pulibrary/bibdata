@@ -8,6 +8,9 @@ inherit_gem:
 Rails:
   Enabled: true
 
+Rails/Date:
+  Enabled: false
+
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
@@ -35,8 +38,8 @@ Style/MethodDefParentheses:
   Enabled: false
 
 Style/NumericPredicate:
-  Enabled: false  
-    
+  Enabled: false
+
 Naming/AccessorMethodName:
   Exclude:
     - 'app/models/concerns/scsb_partner_updates.rb'

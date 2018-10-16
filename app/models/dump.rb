@@ -145,7 +145,7 @@ class Dump < ActiveRecord::Base
     end
 
     def incremental_update_timestamp(dump_type)
-      (ENV['TIMESTAMP'] || last_incremental_update(dump_type) || DateTime.now - 1).to_time_in_current_zone
+      (ENV['TIMESTAMP'] || last_incremental_update(dump_type) || DateTime.now - 1).to_time
     end
 
     def last_incremental_update(dump_type)
