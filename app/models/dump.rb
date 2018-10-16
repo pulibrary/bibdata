@@ -66,20 +66,6 @@ class Dump < ActiveRecord::Base
       dump_ids('PRINCETON_RECAP')
     end
 
-    def incremental_voyager_update
-      Event.record do |event|
-        updated_bibs = VoyagerHelpers::Liberator.get_updated_bibs(timestamp.to_s)
-        dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
-        dump.event = event
-        dump.create_ids = []
-        dump.delete_ids = []
-        dump.update_ids = updated_bibs
-        dump.save
-        dump.dump_voyager_updates
-      end
-      dump
-    end
-
     def diff_since_last
       dump = nil
       dump_type = 'CHANGED_RECORDS'
