@@ -639,6 +639,7 @@ Rails/TimeZone:
     - 'app/models/dump.rb'
     - 'app/models/concerns/scsb_partner_updates.rb'
     - 'spec/models/concerns/scsb_partner_updates_spec.rb'
+    - 'spec/models/dump_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

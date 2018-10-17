@@ -10,7 +10,6 @@
       <th>Success</th>
       <th>Error</th>
       <th>Dump Type</th>
-      <th>Bibs Added</th>
       <th>Bibs Updated</th>
       <th>Bibs Deleted</th>
       <th>Delete?</th>
@@ -25,10 +24,9 @@
         <td><%= event.success %></td>
         <td ><%= event.error %></td>
         <% if event.dump.nil? %>
-          <td colspan="4" />
+          <td colspan="3" />
         <% else %>
           <td class="nowrap"><%= link_to(event.dump.dump_type.label, dump_url(event.dump, format: :json)) %></td>
-          <td ><%= event.dump.create_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' %></td>
           <td ><%= event.dump.update_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' || event.dump.dump_type.constant == 'PRINCETON_RECAP'%></td>
           <td ><%= event.dump.delete_ids.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' %></td>
         <% end %>
