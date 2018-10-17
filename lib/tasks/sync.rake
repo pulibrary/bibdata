@@ -8,7 +8,8 @@ namespace :marc_liberation do
 
   desc 'Dumps records given BIB_FILE containing ids'
   task bib_dump: :environment do
-  	Dump.full_bib_dump
+    Dump.dump_bib_ids
+  	 Dump.full_bib_dump
   end
 
   desc 'Adds updated partner recap records'
@@ -16,9 +17,13 @@ namespace :marc_liberation do
   	Dump.partner_update
   end
 
+  desc 'Dumps file of bibs with attached holdings'
+  task id_dump: :environment do
+    Dump.dump_merged_ids
+  end
+
   desc 'Dumps changed ReCAP records by barcode'
   task recap_dump: :environment do
     Dump.dump_recap_records
   end
-
 end

@@ -7,7 +7,6 @@ RSpec.describe Event, type: :model do
     system 'rake db:seed'
     bibs = './spec/fixtures/sample_bib_ids.txt'
     10.times { dump_test_bib_ids(bibs) }
-    10.times { test_events('HOLDING_IDS') }
     10.times { test_events('CHANGED_RECORDS') }
     5.times { test_events('ALL_RECORDS') }
   end
@@ -23,14 +22,13 @@ RSpec.describe Event, type: :model do
       # An event id is still required to delete events
       # (hence there being 9 holding id dump events instead of 8)
       ActiveJob::Base.queue_adapter = :test
-      dump = Dump.where(dump_type: DumpType.find_by(constant: 'HOLDING_IDS')).first
+      dump = Dump.where(dump_type: DumpType.find_by(constant: 'BIB_IDS')).first
       dump.event_id = nil
       dump.save
       expect do
         Dump.full_bib_dump
       end.to have_enqueued_job.exactly(6).times.on_queue("super_low")
-      expect(dump_count('BIB_IDS')).to eq 8
-      expect(dump_count('HOLDING_IDS')).to eq 9
+      expect(dump_count('BIB_IDS')).to eq 9
       expect(dump_count('CHANGED_RECORDS')).to eq 8
       expect(dump_count('ALL_RECORDS')).to eq 3
     end
