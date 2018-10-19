@@ -2,6 +2,36 @@ require 'rails_helper'
 require 'json'
 
 RSpec.describe AvailabilityController, type: :controller do
+  describe '#index' do
+    context 'when a single bib. ID is specified in the request' do
+      before do
+        get :index, params: { id: id }
+      end
+
+      context 'when the record cannot be found' do
+        let(:id) { 'invalid' }
+
+        it 'returns a 404 response' do
+          expect(response.status).to eq(404)
+          expect(response.body).to eq("Record: #{id} not found.")
+        end
+      end
+    end
+    context 'when a single MFHD ID is specified in the request' do
+      before do
+        get :index, params: { mfhd: mfhd }
+      end
+
+      context 'when the record cannot be found' do
+        let(:mfhd) { 'invalid' }
+
+        it 'returns a 404 response' do
+          expect(response.status).to eq(404)
+          expect(response.body).to eq("Record: #{mfhd} not found.")
+        end
+      end
+    end
+  end
 
   describe 'bib availability hash' do
     it 'provides availability for only the first 2 holdings by default' do
