@@ -48,13 +48,13 @@ gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'
 
 gem 'bixby', '~> 1.0'
+gem 'capistrano-rails', '~> 1.1.1'
 gem 'rspec-rails', '~> 3.8'
 gem 'rubocop', '~> 0.52.1'
 gem 'rubocop-rspec', '~> 1.22'
 gem "whenever", "~> 0.10"
 
 group :development do
-  gem 'capistrano-rails', '~> 1.1.1'
   gem 'spring'
 end
 

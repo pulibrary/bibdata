@@ -5,7 +5,7 @@ set :application, 'marc_liberation'
 set :repo_url, "https://github.com/pulibrary/marc_liberation.git"
 
 # Default branch is :master
-ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+set :branch, ENV['BRANCH'] || 'master'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, "/opt/#{fetch(:application)}"
@@ -41,6 +41,8 @@ set :linked_dirs, %w{
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
+
+set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production] }
 
 namespace :sidekiq do
   task :restart do
@@ -84,15 +86,4 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
-
-  desc "Generate the crontab tasks using Whenever"
-  task :whenever do
-    on roles(:cron) do
-      within release_path do
-        execute("cd #{release_path} && bundle exec whenever --update-crontab #{fetch :application} --set environment=#{fetch :rails_env, fetch(:stage, "production")} --user deploy")
-      end
-    end
-  end
-
-  after 'published', 'whenever'
 end

@@ -20,6 +20,9 @@
 
 set :job_template, "bash -l -c 'export PATH=\"/usr/local/bin/:$PATH\" && :job'"
 
+# a job with no roles will deploy to all servers
+# otherwise use roles to say which server it should go to
+# e.g. every 1.day, at: '2:00am', roles: [:cron_staging] do
 every 1.day, at: '3:00am' do
   rake "liberate:arks:clear_and_seed_cache"
 end
