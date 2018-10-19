@@ -18,11 +18,11 @@ class CacheManager
     raise NotImplementedError, 'Please initialize a cache using CacheManager.initialize(cache: Rails.cache, logger: Rails.logger)'
   end
 
-  # Clear a cache directory
+  # Clear a cache directory by removing its contents
   # @param dir [String] path to the cache directory
   def self.clear(dir:)
     return unless Dir.exist? dir
-    FileUtils.rm_r dir
+    FileUtils.rm_r Dir.glob("#{dir}/*")
   end
 
   # Constructor
