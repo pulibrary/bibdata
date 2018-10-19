@@ -192,5 +192,12 @@ namespace :liberate do
       figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
       CacheManager.clear(dir: figgy_dir_path)
     end
+
+    desc "Clear, then seed, the ARK cache"
+    task :clear_and_seed_cache, [:figgy_dir_path] do |_t, args|
+      figgy_dir_path = args[:figgy_dir_path] || Rails.root.join('tmp', 'figgy_ark_cache')
+      Rake::Task["liberate:arks:clear_cache"].invoke(figgy_dir_path)
+      Rake::Task["liberate:arks:seed_cache"].invoke(figgy_dir_path)
+    end
   end
 end

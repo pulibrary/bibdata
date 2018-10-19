@@ -28,6 +28,7 @@ set :ssh_options, { forward_agent: true }
 set :linked_dirs, %w{
   tmp/pids
   tmp/cache
+  tmp/figgy_ark_cache
   tmp/sockets
   vendor/bundle
   public/system
@@ -40,9 +41,6 @@ set :linked_dirs, %w{
 
 # Default value for keep_releases is 5
 set :keep_releases, 5
-
-set :figgy_ark_cache_path, 'tmp/figgy_ark_cache'
-set :linked_dirs, fetch(:linked_dirs, []).push(fetch(:figgy_ark_cache_path))
 
 namespace :sidekiq do
   task :restart do
@@ -86,4 +84,15 @@ namespace :deploy do
   end
 
   after :finishing, 'deploy:cleanup'
+
+  desc "Generate the crontab tasks using Whenever"
+  task :whenever do
+    on roles(:cron) do
+      within release_path do
+        execute("cd #{release_path} && bundle exec whenever --update-crontab #{fetch :application} --set environment=#{fetch :rails_env, fetch(:stage, "production")} --user deploy")
+      end
+    end
+  end
+
+  after 'published', 'whenever'
 end
