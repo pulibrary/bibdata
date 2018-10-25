@@ -8,7 +8,7 @@ module Scsb
       @dump = dump
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
-      @last_dump = timestamp
+      @last_dump = timestamp.to_time
       @inv_xml = []
       @tab_newline = []
       @leader = []

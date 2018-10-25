@@ -46,7 +46,7 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 7ca93e7e5da0f25b96beed3e6db367da2cfb8d2a
+  revision: 1630294a2ffc43f80c88cfffa534dc93c8832c10
   branch: cat_date
   specs:
     voyager_helpers (0.7.0)
@@ -494,4 +494,4 @@ DEPENDENCIES
   yaml_db (~> 0.6.0)
 
 BUNDLED WITH
-   1.16.5
+   1.16.6
