@@ -4,22 +4,80 @@
 # It's helpful, but not entirely necessary to understand cron before proceeding.
 # http://en.wikipedia.org/wiki/Cron
 
-# Example:
-#
-# set :output, "/path/to/my/cron_log.log"
-#
-# every 2.hours do
-#   command "/usr/bin/some_great_command"
-#   runner "MyModel.some_method"
-#   rake "some:great:rake:task"
-# end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
-# end
-
 set :job_template, "bash -l -c 'export PATH=\"/usr/local/bin/:$PATH\" && :job'"
 
+# USING CAPISTRANO ROLES
+# a job with no roles will deploy to all servers
+# otherwise use roles to say which server it should go to
+# e.g. every 1.day, at: '2:00am', roles: [:cron_staging] do
+
+# OUTPUT
+# add an `output` key to your args hash to write to a file (examples below)
+
+# ENVIRONMENT VARIABLES
+# I've created custom job types when we need to use env vars that aren't
+#   written into whenever (like mailto)
+
+# populate the figgy ark cache
 every 1.day, at: '3:00am' do
   rake "liberate:arks:clear_and_seed_cache"
+end
+
+# 2 full dumps per month
+every "0 5 13,28 * *", roles: [:cron_production] do
+  rake "marc_liberation:bib_dump", output: "/tmp/cron_log.log"
+end
+
+# check voyager for updates 3 times per day in prod; 1nce per week in staging
+every 1.day, at: ["10:10am", "2:10pm", "10:35pm"], roles: [:cron_production] do
+  rake "marc_liberation:get_changes", output: "/tmp/cron_log.log"
+end
+
+every :sunday, at: "2:30am", roles: [:cron_staging] do
+  rake "marc_liberation:get_changes", output: "/tmp/cron_log.log"
+end
+
+# proxy the liberate:latest task so we can set env vars
+job_type :liberate_latest_staging, "cd :path && :environment_variable=:environment BIBDATA_URL=:bibdata_url SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
+job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
+
+# 1 update to catalog-staging per day
+every :sunday, at: "5:15am", roles: [:cron_staging] do
+  liberate_latest_staging(
+    "liberate:latest",
+    bibdata_url: "https://bibdata-staging.princeton.edu",
+    set_url: ENV["SOLR_URL"],
+    update_locations: "true",
+    output: "/tmp/cron_log.log"
+  )
+end
+
+# 3 updates to catalog-production per day
+every 1.day, at: ["12:40am", "10:55am", "2:55pm"], roles: [:cron_production] do
+  liberate_latest_production(
+    "liberate:latest",
+    set_url: ENV["SOLR_URL"],
+    update_locations: "true",
+    output: "/tmp/daily_updates.log"
+  )
+end
+
+# 3 updates to catalog-rebuild per day
+# These are 1 hour earlier than production to stagger the load on solr but ensure that
+#   no updates get lost when indices are swapped
+every 1.day, at: ["11:40pm", "9:55am", "1:55pm"], roles: [:cron_production] do
+  liberate_latest_production(
+    "liberate:latest",
+    set_url: ENV["SOLR_REINDEX_URL"],
+    update_locations: "true",
+    output: "/tmp/daily_updates.log"
+  )
+end
+
+# Daily racap / partner jobs
+every 1.day, at: "3:00pm", roles: [:cron_production] do
+  rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
+end
+every 1.day, at: "6:00am", roles: [:cron_production] do
+  rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"
 end
