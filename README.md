@@ -64,6 +64,10 @@ To run the tests in the `marc_to_solr` directory set RAILS_ENV:
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
 
+## Deploy
+Deployment is through capistrano. To deploy a branch other than "master", prepend an environment variable to your deploy command, e.g.:
+`BRANCH=my_feature bundle exec cap staging deploy`
+
 ## License
 
 See `LICENSE`.
