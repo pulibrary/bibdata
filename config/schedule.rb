@@ -58,7 +58,7 @@ every 1.day, at: ["12:40am", "10:55am", "2:55pm"], roles: [:cron_production] do
     "liberate:latest",
     set_url: ENV["SOLR_URL"],
     update_locations: "true",
-    output: "/tmp/daily_upates.log"
+    output: "/tmp/daily_updates.log"
   )
 end
 
@@ -70,7 +70,7 @@ every 1.day, at: ["11:40pm", "9:55am", "1:55pm"], roles: [:cron_production] do
     "liberate:latest",
     set_url: ENV["SOLR_REINDEX_URL"],
     update_locations: "true",
-    output: "/tmp/daily_upates.log"
+    output: "/tmp/daily_updates.log"
   )
 end
 
