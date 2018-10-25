@@ -29,7 +29,7 @@ every "0 5 13,28 * *", roles: [:cron_production] do
 end
 
 # check voyager for updates 3 times per day in prod; 1nce per week in staging
-every 1.day, at: ["10:10am", "2:10am", "10:35pm"], roles: [:cron_production] do
+every 1.day, at: ["10:10am", "2:10pm", "10:35pm"], roles: [:cron_production] do
   rake "marc_liberation:get_changes", output: "/tmp/cron_log.log"
 end
 
