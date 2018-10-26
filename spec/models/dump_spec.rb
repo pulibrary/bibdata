@@ -22,17 +22,17 @@ RSpec.describe Dump, type: :model do
   describe '#incremental_update_timestamp' do
     it 'returns yesterday when no environment variable or dump object is there' do
       Dump.destroy_all
-      timestamp = Dump.send(:incremental_update_timestamp, partner_recap).strftime("%Y%m%d")
+      timestamp = Dump.send(:incremental_update_timestamp, partner_recap).to_time.strftime("%Y%m%d")
       expect(timestamp).to eq((DateTime.now - 1).to_time.strftime("%Y%m%d"))
     end
     it 'sets to create time of previous partner recap dump when there' do
       Dump.create(dump_type: partner_recap_dump_type, created_at: test_create_time)
       timestamp = Dump.send(:incremental_update_timestamp, partner_recap)
-      expect(timestamp).to eq(test_create_time)
+      expect(timestamp).to eq(test_create_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
     end
     it 'sets to environment variable when there' do
       ENV['TIMESTAMP'] = '2017-07-01'
-      timestamp = Dump.send(:incremental_update_timestamp, partner_recap).strftime("%Y%m%d")
+      timestamp = Dump.send(:incremental_update_timestamp, partner_recap).to_time.strftime("%Y%m%d")
       expect(timestamp).to eq(ENV['TIMESTAMP'].to_time.strftime("%Y%m%d"))
     end
   end

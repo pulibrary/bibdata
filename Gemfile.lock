@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 2dd40465be85ffbf23887070559f189b12144a8e
-  tag: v0.6.7
+  revision: d1465caf9416c0d94c16005b378092ccef403114
+  tag: v0.7.1
   specs:
-    voyager_helpers (0.6.7)
+    voyager_helpers (0.7.1)
       activesupport (~> 5.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
@@ -182,7 +182,7 @@ GEM
     hitimes (1.2.6)
     honeybadger (3.3.0)
     httpclient (2.8.3)
-    i18n (1.0.1)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     iso-639 (0.2.8)
     jbuilder (2.7.0)
@@ -494,4 +494,4 @@ DEPENDENCIES
   yaml_db (~> 0.6.0)
 
 BUNDLED WITH
-   1.16.2
+   1.16.6

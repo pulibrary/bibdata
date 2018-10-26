@@ -4,11 +4,11 @@ module Scsb
   class PartnerUpdates
     extend ActiveSupport::Concern
 
-    def initialize(dump:)
+    def initialize(dump:, timestamp:)
       @dump = dump
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
-      @last_dump = set_timestamp
+      @last_dump = timestamp.to_time
       @inv_xml = []
       @tab_newline = []
       @leader = []
@@ -161,15 +161,6 @@ module Scsb
 
       def log_file_name
         "#{@scsb_file_dir}/fixes_#{@last_dump.strftime('%Y_%m_%d')}.json"
-      end
-
-      def set_timestamp
-        last_dumps = Dump.where(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP')).last(2)
-        if last_dumps.length == 2
-          last_dumps.first.created_at
-        else
-          (DateTime.now - 1).to_time
-        end
       end
 
       def prepare_directory

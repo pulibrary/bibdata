@@ -25,16 +25,16 @@ RSpec.describe Event, type: :model do
       dump = Dump.where(dump_type: DumpType.find_by(constant: 'BIB_IDS')).first
       dump.event_id = nil
       dump.save
-      expect do
-        Dump.full_bib_dump
-      end.to have_enqueued_job.exactly(6).times.on_queue("super_low")
+      Event.delete_old_events
       expect(dump_count('BIB_IDS')).to eq 9
       expect(dump_count('CHANGED_RECORDS')).to eq 8
       expect(dump_count('ALL_RECORDS')).to eq 3
     end
 
     it 'creates unique dumpfile path names for each dump' do
-      dump = Dump.full_bib_dump
+      bib_ids = (1..175).to_a
+      dump = Dump.new
+      dump.dump_bib_records(bib_ids)
       paths = dump.dump_files.collect { |df| df.path }
       expect(paths).to eq paths.uniq
     end

@@ -8,8 +8,7 @@ namespace :marc_liberation do
 
   desc 'Dumps records given BIB_FILE containing ids'
   task bib_dump: :environment do
-    Dump.dump_bib_ids
-  	 Dump.full_bib_dump
+    Dump.full_bib_dump
   end
 
   desc 'Adds updated partner recap records'
