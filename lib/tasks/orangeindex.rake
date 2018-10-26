@@ -22,6 +22,7 @@ end
 
 default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'
 commit = "-s solrj_writer.commit_on_close=true"
+binary = "-t binary"
 
 desc "Index MARC against SET_URL, set NO_COMMIT to 1 to skip commit"
 task :index do
@@ -111,11 +112,11 @@ namespace :liberate do
     comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today-1)
     all_events = JSON.parse(resp.body).select {|e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS'}.each do |event|
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc_xml|
-        IndexFunctions.unzip(marc_xml)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
-        File.delete("#{marc_xml}.xml")
-        File.delete("#{marc_xml}.gz")
+      IndexFunctions.update_records(dump).each do |marc|
+        IndexFunctions.unzip_mrc(marc)
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
+        File.delete("#{marc}.mrc")
+        File.delete("#{marc}.gz")
       end
       solr.delete_by_id(IndexFunctions.delete_ids(dump))
     end
@@ -129,11 +130,11 @@ namespace :liberate do
     resp = conn.get '/events.json'
     if event = JSON.parse(resp.body).detect {|e| Date.parse(e['start']) == Date.parse(ENV['SET_DATE']) && e['success'] && e['dump_type'] == 'CHANGED_RECORDS'}
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc_xml|
-        IndexFunctions.unzip(marc_xml)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
-        File.delete("#{marc_xml}.xml")
-        File.delete("#{marc_xml}.gz")
+      IndexFunctions.update_records(dump).each do |marc|
+        IndexFunctions.unzip_mrc(marc)
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
+        File.delete("#{marc}.mrc")
+        File.delete("#{marc}.gz")
       end
       solr.delete_by_id(IndexFunctions.delete_ids(dump))
     end
@@ -148,11 +149,11 @@ namespace :liberate do
     event = JSON.parse(resp.body).last
     if event['success'] && event['dump_type'] == 'CHANGED_RECORDS'
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc_xml|
-        IndexFunctions.unzip(marc_xml)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
-        File.delete("#{marc_xml}.xml")
-        File.delete("#{marc_xml}.gz")
+      IndexFunctions.update_records(dump).each do |marc|
+        IndexFunctions.unzip_mrc(marc)
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
+        File.delete("#{marc}.mrc")
+        File.delete("#{marc}.gz")
       end
       solr.delete_by_id(IndexFunctions.delete_ids(dump))
     end
@@ -165,11 +166,11 @@ namespace :liberate do
     solr = IndexFunctions.rsolr_connection(solr_url)
     resp = conn.get '/events.json'
     if event = JSON.parse(resp.body).select {|e| e['success'] && e['dump_type'] == 'ALL_RECORDS'}.last
-      IndexFunctions.full_dump(event).each do |marc_xml|
-        IndexFunctions.unzip(marc_xml)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc_xml}.xml -u #{solr_url}; true"
-        File.delete("#{marc_xml}.xml")
-        File.delete("#{marc_xml}.gz")
+      IndexFunctions.full_dump(event).each do |marc|
+        IndexFunctions.unzip_mrc(marc)
+        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
+        File.delete("#{marc}.mrc")
+        File.delete("#{marc}.gz")
       end
     end
     solr.commit

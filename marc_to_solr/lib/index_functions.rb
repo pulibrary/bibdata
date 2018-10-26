@@ -25,7 +25,7 @@ module IndexFunctions
   end
 
   def self.delete_ids(dump)
-    dump['ids']['delete_ids'].map { |h| h['id'] }
+    dump['ids']['delete_ids']
   end
 
   def self.rsolr_connection(solr_url)
@@ -43,7 +43,18 @@ module IndexFunctions
   end
 
 
-  def self.unzip(marc_dump)
+  def self.unzip_mrc(marc_dump)
+    Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
+      File.open("#{marc_dump}.mrc", 'wb') do |fp|
+        while chunk = gz.read(16 * 1024) do
+          fp.write chunk
+        end
+      end
+      gz.close
+    end
+  end
+
+  def self.unzip_xml(marc_dump)
     Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
       File.open("#{marc_dump}.xml", 'wb') do |fp|
         while chunk = gz.read(16 * 1024) do

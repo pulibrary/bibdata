@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 1630294a2ffc43f80c88cfffa534dc93c8832c10
-  branch: cat_date
+  revision: d1465caf9416c0d94c16005b378092ccef403114
+  tag: v0.7.1
   specs:
-    voyager_helpers (0.7.0)
+    voyager_helpers (0.7.1)
       activesupport (~> 5.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
