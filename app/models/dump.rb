@@ -54,10 +54,6 @@ class Dump < ActiveRecord::Base
   end
 
   class << self
-    def dump_bib_ids
-      dump_ids('BIB_IDS')
-    end
-
     def dump_merged_ids
       dump_ids('MERGED_IDS')
     end
@@ -97,15 +93,8 @@ class Dump < ActiveRecord::Base
       dump = nil
       Event.record do |event|
         dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
-        bibs = last_bib_id_dump
-        bibs.dump_files.first.unzip
-        bib_path = bibs.dump_files.first.path
-        system "awk '{print $1}' #{bib_path} > #{bib_path}.ids"
-        bib_id_strings = File.readlines("#{bib_path}.ids").map &:strip
-        dump.dump_bib_records(bib_id_strings, 'super_low')
-        bibs.dump_files.first.zip
-        File.delete("#{bib_path}.ids")
-        Event.delete_old_events if event.success == true
+        bibs = VoyagerHelpers::Liberator.get_all_bib_ids
+        dump.dump_bib_records(bibs, 'super_low')
         dump.event = event
         dump.save
       end

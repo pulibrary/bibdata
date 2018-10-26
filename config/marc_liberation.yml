@@ -2,7 +2,7 @@
 # Start with a '/' for absolute paths. Otherwise we assume this is relative to
 # Rails.root
 data_dir: <%= ENV['BIBDATA_DATA_DIR'] || 'data' %>
-records_per_file: 50000
+records_per_file: 500_000
 recap_dump_records_per_file: 5000
 test_records_per_file: 25
 dump_types:
