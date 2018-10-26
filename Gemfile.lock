@@ -46,10 +46,9 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 9ab501b8dd40efdc9e50363aed7fad3e86a84147
-  branch: full_dump_refactor
+  revision: 2cd565fa09870fdc658004228bc71da77ef8fd01
   specs:
-    voyager_helpers (0.6.8)
+    voyager_helpers (0.6.9)
       activesupport (~> 5.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
