@@ -59,7 +59,7 @@ class DumpFile < ActiveRecord::Base
       gz_path = self.path
 
       Zlib::GzipReader.open(gz_path) do |gz|
-        File.open(uncompressed_path, 'w') do |fp|
+        File.open(uncompressed_path, 'wb') do |fp|
           while chunk = gz.read(16 * 1024) do
             fp.write chunk
           end
