@@ -11,6 +11,9 @@ Rails:
 Rails/Date:
   Enabled: false
 
+Rails/TimeZone:
+  Enabled: false
+
 AllCops:
   DisplayCopNames: true
   TargetRubyVersion: 2.3
