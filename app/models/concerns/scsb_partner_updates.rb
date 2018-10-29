@@ -99,6 +99,7 @@ module Scsb
           end
           File.unlink(file)
         end
+        filepaths = []
         Dir.glob("#{@update_directory}/*.xml").each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
@@ -106,9 +107,10 @@ module Scsb
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(process_record(record)) }
           writer.close
-          attach_dump_file(filepath)
+          filepaths << filepath
           File.unlink(file)
         end
+        filepaths.sort.each { |f| attach_dump_file(f) }
       end
 
       def process_record(record)
