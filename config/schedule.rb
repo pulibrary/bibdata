@@ -63,9 +63,9 @@ every 1.day, at: ["12:40am", "10:55am", "2:55pm"], roles: [:cron_production] do
 end
 
 # 3 updates to catalog-rebuild per day
-# These are 1 hour earlier than production to stagger the load on solr but ensure that
+# These are earlier than production to stagger the load on solr but ensure that
 #   no updates get lost when indices are swapped
-every 1.day, at: ["1:40am", "11:55am", "3:55pm"], roles: [:cron_production] do
+every 1.day, at: ["12:00am", "10:30am", "2:30pm"], roles: [:cron_production] do
   liberate_latest_production(
     "liberate:latest",
     set_url: ENV["SOLR_REINDEX_URL"],
