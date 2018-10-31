@@ -27,6 +27,19 @@ RSpec.describe DumpFile, type: :model do
     end
   end
 
+  describe '#recap_record_type?' do
+    let(:recap_record_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
+    let(:other_type) { DumpFileType.create }
+    it 'returns true for RECAP_RECORDS type' do
+      df = DumpFile.new(dump_file_type: recap_record_type)
+      expect(df.recap_record_type?).to eq true
+    end
+    it 'otherwise returns false' do
+      df = DumpFile.new(dump_file_type: other_type)
+      expect(df.recap_record_type?).to eq false
+    end
+  end
+
   describe '#zip' do
     it 'changes the file path to include gz' do
       path = subject.path

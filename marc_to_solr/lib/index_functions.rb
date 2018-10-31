@@ -8,19 +8,10 @@ module IndexFunctions
 
   def self.update_records(dump)
     file_paths = []
-
-    # updates
     dump['files']['updated_records'].each_with_index do |update, i|
       File.binwrite("/tmp/update_#{i}.gz", Faraday.get(update['dump_file']).body)
       file_paths << "/tmp/update_#{i}"
     end
-
-    # new records
-    dump['files']['new_records'].each_with_index do |new_records, i|
-      File.binwrite("/tmp/new_#{i}.gz", Faraday.get(new_records['dump_file']).body)
-      file_paths << "/tmp/new_#{i}"
-    end
-
     file_paths
   end
 
@@ -42,7 +33,6 @@ module IndexFunctions
     file_paths
   end
 
-
   def self.unzip_mrc(marc_dump)
     Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
       File.open("#{marc_dump}.mrc", 'wb') do |fp|
@@ -63,5 +53,19 @@ module IndexFunctions
       end
       gz.close
     end
+  end
+
+  def self.process_scsb_dumps(dumps, solr_url)
+    solr = rsolr_connection(solr_url)
+    dumps.each do |dump|
+      dump.dump_files.each do |df|
+        next unless df.recap_record_type?
+        df.unzip
+        system "traject -c marc_to_solr/lib/traject_config.rb #{df.path} -u #{solr_url}; true"
+        df.zip
+      end
+      solr.delete_by_id(dump.delete_ids) if dump.delete_ids
+    end
+    solr.commit
   end
 end

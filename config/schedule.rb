@@ -63,9 +63,9 @@ every 1.day, at: ["12:40am", "10:55am", "2:55pm"], roles: [:cron_production] do
 end
 
 # 3 updates to catalog-rebuild per day
-# These are 1 hour earlier than production to stagger the load on solr but ensure that
+# These are earlier than production to stagger the load on solr but ensure that
 #   no updates get lost when indices are swapped
-every 1.day, at: ["11:40pm", "9:55am", "1:55pm"], roles: [:cron_production] do
+every 1.day, at: ["12:00am", "10:30am", "2:30pm"], roles: [:cron_production] do
   liberate_latest_production(
     "liberate:latest",
     set_url: ENV["SOLR_REINDEX_URL"],
@@ -77,6 +77,15 @@ end
 # Daily racap / partner jobs
 every 1.day, at: "3:00pm", roles: [:cron_production] do
   rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
+end
+
+every 1.day, at: "6:30am", roles: [:cron_production] do
+  liberate_latest_production(
+    "scsb:latest",
+    set_url: ENV["SOLR_URL"],
+    update_locations: "true",
+    output: "/tmp/daily_updates.log"
+  )
 end
 every 1.day, at: "6:00am", roles: [:cron_production] do
   rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"

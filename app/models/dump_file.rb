@@ -30,6 +30,10 @@ class DumpFile < ActiveRecord::Base
     File.delete(self.path) if File.exist?(self.path)
   end
 
+  def recap_record_type?
+    self.dump_file_type == DumpFileType.find_by(constant: 'RECAP_RECORDS')
+  end
+
   def zipped?
     self.path.ends_with?('.gz')
   end
@@ -59,7 +63,7 @@ class DumpFile < ActiveRecord::Base
       gz_path = self.path
 
       Zlib::GzipReader.open(gz_path) do |gz|
-        File.open(uncompressed_path, 'w') do |fp|
+        File.open(uncompressed_path, 'wb') do |fp|
           while chunk = gz.read(16 * 1024) do
             fp.write chunk
           end
