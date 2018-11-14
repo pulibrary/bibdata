@@ -5,7 +5,7 @@ class ScsbLookup
     response = items_by_id(id)
     response.map { |r| [r['itemBarcode'], r] }.to_h
   rescue Faraday::ConnectionFailed
-    logger.warn("No barcodes could be retrieved for the item: #{id}")
+    Rails.logger.warn("No barcodes could be retrieved for the item: #{id}")
     {}
   end
 
@@ -13,7 +13,7 @@ class ScsbLookup
     response = items_by_barcode(barcodes)
     response.map { |r| [r['itemBarcode'], r] }.to_h
   rescue Faraday::ConnectionFailed
-    logger.warn("No items could be retrieved for the barcodes: #{barcodes.join(',')}")
+    Rails.logger.warn("No items could be retrieved for the barcodes: #{barcodes.join(',')}")
     {}
   end
 end
