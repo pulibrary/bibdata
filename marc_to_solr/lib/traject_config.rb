@@ -320,6 +320,8 @@ to_field 'electronic_access_1display' do |record, accumulator|
   accumulator[0] = JSON.generate(links) unless links == {}
 end
 
+to_field 'electronic_access_index', extract_marc('856')
+
 # Description:
    # 254 XX a
    # 255 XX abcdefg
@@ -702,6 +704,8 @@ to_field 'indexed_in_display', extract_marc('510|0*|3abc:510|1*|3abc:510|2*|3abc
 #    510 3X 3abc
 #    510 4X 3abc
 to_field 'references_display', extract_marc('510|3*|3abc:510|4*|3abc')
+
+to_field 'references_url_display', extract_marc('510|3*|3abcu:510|4*|3abcu')
 
 # Cite as:
 #    524 XX 23a
