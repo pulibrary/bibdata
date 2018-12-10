@@ -1,0 +1,2361 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"  repositoryencoding="iso15511" scriptencoding="iso15924">
+        <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/6d56zw62x" urn="ark:/88435/6d56zw62x">C0001</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>Thorne collection of Elias Boudinot, <date normal="1734/1924" type="inclusive">1734-1924</date> (bulk <date normal="1777/1819" type="bulk">1777-1819</date>): Finding Aid</titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date type="publication" normal="2002">2002</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid encoded in EAD 2002 by Techbooks and Cristela García-Spitz on <date normal="2007-04-27">April 27, 2007</date>. Created from MARC record via MarcEdit and XSL stylesheets in 2007. </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-05-02">2012-05-02T12:36:23.425-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-03-26">2014-03-26T11:38:56.987-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+        <did>
+            <unitid type="collection" countrycode="US" repositorycode="US-NjP">C0001</unitid>
+            <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>Thorne Collection of Elias Boudinot</unittitle>
+            <unitdate normal="1734/1924" type="inclusive">1734-1924</unitdate>
+            <unitdate normal="1777/1819" type="bulk">1777-1819</unitdate>
+            <physdesc>
+                <extent >3 linear feet</extent>
+                <extent unit="boxes">4 boxes</extent>
+            </physdesc>
+            <origination>
+                <persname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/47844246">Boudinot, Elias, 1740-1821.</persname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>Elias Boudinot was an American lawyer and public official who represented New Jersey in the Continental Congress. This collection consists of correspondence, documents, and printed material relating to Boudinot and his family, collected by Langdon K. Thorne.</abstract>
+            <physloc type="code">mss</physloc>
+        </did>
+        <bioghist>
+            <p>Elias Boudinot was an American lawyer and public official who represented New Jersey in the Continental Congress. Born in Philadelphia in 1740, Boudinot became a lawyer in 1760. At the onset of the American Revolution, he became a member of the Revolutionary Party although he was a conservative Whig. He served as deputy in the New Jersey provincial assembly and then as a New Jersey representative in the Continental Congress. He later served as a member of the House of Representatives from 1789 to 1795 before becoming director of the U.S. Mint from 1795 to 1805. Boudinot died in 1821.</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The collection consists of correspondence, documents, and printed material relating to Elias Boudinot and the Boudinot family, collected by Langdon K. Thorne. Much of Boudinot's correspondence is addressed to his wife, Hannah, sister of Richard Stockton, while he is traveling with the Continental Army as commissary-general of prisoners (1777-1778); other letters deal more directly with his prisoners-of-war work, and there are many to his brother Elisha, covering (1777-1819) the whole range of Boudinot's public service: New Jersey member of the Continental Congress (1781-1783), president of that body (1782-1783), member of the National House of Representatives (1789-1795), director of the U.S. Mint (1795-1805), and founding member and first president of the American Bible Society (1816).</p>
+                <p>In addition, there are Boudinot's personal copy of a broadside of resolutions (1776-1777) relating to the Commissary of Prisoners Department and a copy of his proclamation (24 June 1783) as president of Congress moving it to Princeton. Among papers of others in the collection are Loyalist surgeon Uzal Johnson's journal (5 March 1780 to 6 March 1781), including accounts of the battle of King's Mountain and other military movements in and around Charleston, South Carolina, while serving under General Patterson in the 71st Regiment of Light Infantry, and a bound volume of recipes belonging to Mrs. C. Boudinot.</p>
+            </scopecontent>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>Collection is open for research use.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>Collected by Langdon K. Thorne. Received through M. Knw Knoedler and Co. in 1953.</p>
+            </acqinfo>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); Thorne Collection of Elias Boudinot; Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>Biography written by Jessica Marati, '08.</p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+        <controlaccess>
+            <persname source="lcnaf">Johnson, Uzal, 1757?-1827 -- Notebooks, sketchbooks, etc.</persname>
+            <persname source="viaf" authfilenumber="http://viaf.org/viaf/21167035">Boudinot, Elisha, 1749-1819.</persname>
+            <persname source="lcnaf">Thorne, Langdon K.</persname>
+            <subject source="lcsh">Cookery, American -- 18th century.</subject>
+            <subject source="lcsh">Husband and wife -- United States -- 18th century.</subject>
+            <subject source="lcsh">King's Mountain, Battle of, 1780 -- Personal narratives.</subject>
+            <subject source="lcsh">Prisoners of war -- United States -- 18th century.</subject>
+            <geogname source="lcsh">New Jersey -- History -- Revolution, 1775-1783.</geogname>
+            <geogname source="lcsh">South Carolina -- History -- Revolution, 1775-1783.</geogname>
+            <geogname source="lcsh">United States -- History -- Revolution, 1775-1783.</geogname>
+            <geogname source="lcsh">United States -- History -- Revolution, 1775-1783 -- Prisoners and Prisons.</geogname>
+            <geogname source="lcsh">United States -- History -- Revolution, 1775-1783 -- Prisoners, Exchange of.</geogname>
+            <geogname source="lcsh">United States -- History, Military -- To 1900.</geogname>
+            <genreform source="aat">Broadsides -- United States -- 18th century.</genreform>
+            <genreform source="aat">Journals -- United States -- 18th century.</genreform>
+            <genreform source="aat">Recipes -- United States -- 18th century.</genreform>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t8">American history/Revolution</subject>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t50">Publishing history</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c id="C0001_c0001" level="series">
+                <did>
+                    <unittitle>Series 1: Boudinot, Elias: Correspondence</unittitle>
+                    <unitdate normal="1772/1819" type="inclusive">1772-1819</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="folders">14 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Consists of family correspondence, letter books, and other correspondence from and to Elias Boudinot, spanning the years 1772-1819. Notable correspondents include Benjamin Franklin and George Washington. The series also includes a group of letters pertaining to prisoners of war, 1777-1779.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>Letters to Mrs. Elias Boudinot (Hannah Stockton), Letters regarding prisoners-of-war, Letters by E.B. to Elisha Boudinot [22], E.B. to Elisha Boudinot [26], E.B. to Elisha Boudinot [20], and E.G. to Elisha Boudinot [21]. Followed by an alphabetical run of individual letters and includes a Letterbook of Elias Boudinot.</p>
+                </arrangement>
+                <c level="file" id="C0001_c0002">
+                    <did>
+                        <unittitle>Letters to Mrs. Elias Boudinot (Hannah Stockton)</unittitle>
+                        <unitdate normal="1777-07-02/1779-03-29" type="inclusive">1777 July 2-1779 March 29</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0003">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp, New Windsor</unittitle>
+                            <unitdate normal="1777-07-02">1777 July 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0004">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Potts Grove</unittitle>
+                            <unitdate normal="1777-09-23">1777 September 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0005">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp near Schuylkill</unittitle>
+                            <unitdate normal="1777-09-23">1777 September 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0006">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp White Marsh</unittitle>
+                            <unitdate normal="1777-11-21">1777 November 21</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0007">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Green Park</unittitle>
+                            <unitdate normal="1777-11-30">1777 November 30</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0008">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp</unittitle>
+                            <unitdate normal="1778-04-22">1778 April 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0009">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp</unittitle>
+                            <unitdate normal="1778-06-07">1778 June 7</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0010">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1778-06-10">1778 June 10</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0011">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp</unittitle>
+                            <unitdate normal="1778-06-11">1778 June 11</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0012">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Camp</unittitle>
+                            <unitdate normal="1778-06-13">1778 June 13</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0013">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadephia</unittitle>
+                            <unitdate normal="1778-06-20">1778 June 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0014">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Coryells Ferry</unittitle>
+                            <unitdate normal="1778-06-22">1778 June 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0015">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1778-07-07">1778 July 7</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0016">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1778-07-09">1778 July 9</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0017">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Princeton</unittitle>
+                            <unitdate normal="1778-08-08">1778 August 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0018">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1778-08-17">1778 August 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0019">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1779-03-20">1779 March 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0020">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">1</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1779-03-29">1779 March 29</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0021">
+                    <did>
+                        <unittitle>Letters regarding prisoners-of-war</unittitle>
+                        <unitdate normal="1777-04-24/1779-12-24" type="inclusive">1777 April 24-1779 December 24</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0022">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Nathaniel Scudder</unittitle>
+                            <unitdate>undated</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0023">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Col. Robt. Harrison</unittitle>
+                            <unitdate>undated</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0024">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1777-04-24">1777 April 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0025">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Lewis Pintard</unittitle>
+                            <unitdate normal="1777-06-09">1777 June 9</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0026">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1777-07-04">1777 July 4</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0027">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Lewis Pintard</unittitle>
+                            <unitdate normal="1777-08-02">1777 August 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0028">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Gen. Wadsworth</unittitle>
+                            <unitdate normal="1777-11-05">1777 November 5</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0029">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Robt. Hooper, Jr</unittitle>
+                            <unitdate normal="1777-12-24">1777 December 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0030">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Robt. Hooper, Jr</unittitle>
+                            <unitdate normal="1777-12">1777 December</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0031">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Charles Pettet</unittitle>
+                            <unitdate normal="1778-01-01">1778 January 1</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0032">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1778-01-20">1778 January 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0033">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by E.B. to George Washington</unittitle>
+                            <unitdate normal="1778-03-02">1778 March 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0034">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle altrender="[from E.B.]">AN [from E.B.]</unittitle>
+                            <unitdate normal="1778-03-19">1778 March 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0035">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by E.B. to John Winslow</unittitle>
+                            <unitdate normal="1778-04-17">1778 April 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0036">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1778-04-22">1778 April 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0037">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle altrender="Obligation by [E.B.]">AN Obligation by [E.B.]</unittitle>
+                            <unitdate normal="1778-05-06">1778 May 6</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0038">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle altrender="to Ezekiel Williams">AN to Ezekiel Williams</unittitle>
+                            <unitdate normal="1778-05-06">1778 May 6</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0039">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS to Col. Hamilton by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1978-06-05">1978 June 5</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0040">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Jos. Loring for Commissioner Lewis Pintard</unittitle>
+                            <unitdate normal="1778-06-17">1778 June 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0041">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by James Dirk to Elisha Boudinot</unittitle>
+                            <unitdate normal="1779-01-24">1779 January 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0042">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by James Dirk to [Elisha Boudinot]</unittitle>
+                            <unitdate normal="1779-02-06">1779 February 6</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0043">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Col. Beatty to [Elisha Boudinot]</unittitle>
+                            <unitdate normal="1779-06-28">1779 June 28</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0044">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle>ALS by Col. Beatty to [Elisha Boudinot]</unittitle>
+                            <unitdate normal="1779-12-24">1779 December 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0045">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">2</container>
+                            <unittitle altrender="[fragment]">AN [fragment]</unittitle>
+                            <unitdate>undated</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0046">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">3</container>
+                        <unittitle>Letterbook of Elias Boudinot, 134 pp.</unittitle>
+                        <unitdate type="inclusive" normal="1772/1786">1772-1786</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0047">
+                    <did>
+                        <unittitle>Letters by E.B. to Elisha Boudinot [22]</unittitle>
+                        <unitdate type="inclusive" normal="1778/1796">1778-1796</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0048">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Valley Forge</unittitle>
+                            <unitdate normal="1778-03-21">1778 March 21</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0049">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Valley Forge</unittitle>
+                            <unitdate normal="1778-03-27">1778 March 27</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0050">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1781-08-12">1781 August 12</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0051">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Baskinridge</unittitle>
+                            <unitdate normal="1781-12-25">1781 December 25</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0052">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1782-02-15">1782 February 15</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0053">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1782-02-20">1782 February 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0054">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1782-02-26">1782 February 26</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0055">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1782-03-19">1782 March 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0056">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1782-12-24">1782 December 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0057">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1783-03-29">1783 March 29</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0058">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1783-04-16">1783 April 16</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0059">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1783-06-23">1783 June 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0060">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1791-03-13">1791 March 13</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0061">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1791-03-15">1791 March 15</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0062">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1792-03-20">1792 March 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0063">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1792-03-29">1792 March 29</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0064">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1794-02-20">1794 February 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0065">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1796-02-04">1796 February 4</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0066">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1796-02-17">1796 February 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0067">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1796-05-13">1796 May 13</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0068">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1796-06-22">1796 June 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0069">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">4</container>
+                            <unittitle>U.S. Mint</unittitle>
+                            <unitdate normal="1796-11-28">1796 November 28</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0070">
+                    <did>
+                        <unittitle>E.B. to Elisha Boudinot [26]</unittitle>
+                        <unitdate type="inclusive" normal="1797/1801">1797-1801</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0071">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1797-01-11">1797 January 11</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0072">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1797-01-22">1797 January 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0073">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1797-02-04">1797 February 4</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0074">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1797-07-11">1797 July 11</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0075">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-08-02">1797 August 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0076">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-08-21">1797 August 21</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0077">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>U.S. Mint</unittitle>
+                            <unitdate normal="1797-08-28">1797 August 28</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0078">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-08-30">1797 August 30</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0079">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-09-04">1797 September 4</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0080">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-09-06">1797 September 6</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0081">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-09-14">1797 September 14</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0082">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-11-02">1797 November 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0083">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-12-23">1797 December 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0084">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1797-12-11">1797 December 11</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0085">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1798-02-08">1798 February 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0086">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1798-06-12">1798 June 12</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0087">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1799-06-05">1799 June 5</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0088">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1799-08-23">1799 August 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0089">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1800-01-31">1800 January 31</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0090">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1800-07-22">1800 July 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0091">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1800-12-22">1800 December 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0092">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1801-01-07">1801 January 7</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0093">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1801-01-19">1801 January 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0094">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1801-01-28">1801 January 28</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0095">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1801-02-19">1801 February 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0096">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">5</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1801-06-13">1801 June 13</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0097">
+                    <did>
+                        <unittitle>E.B. to Elisha Boudinot [20]</unittitle>
+                        <unitdate type="inclusive" normal="1802/1811">1802-1811</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0098">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1802-01-12">1802 January 12</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0099">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1802-07-13">1802 July 13</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0100">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1802-07-21">1802 July 21</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0101">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1802-08-23">1802 August 23</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0102">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1803-08-08">1803 August 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0103">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1803-12-16">1803 December 16</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0104">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate normal="1803-12-27">1803 December 27</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0105">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1804-11-30">1804 November 30</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0106">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Rosehill</unittitle>
+                            <unitdate normal="1804-12-17">1804 December 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0107">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1805-11-27">1805 November 27</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0108">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1805-12-02">1805 December 2</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0109">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1807-01-09">1807 January 9</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0110">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1808-01-10">1808 January 10</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0111">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1808-03-19">1808 March 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0112">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1808-07-11">1808 July 11</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0113">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Boston</unittitle>
+                            <unitdate normal="1809-07-22">1809 July 22</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0114">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Boston</unittitle>
+                            <unitdate normal="1809-08-09">1809 August 9</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0115">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1809-11-20">1809 November 20</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0116">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1810-04-30">1810 April 30</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0117">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">6</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1811-03-08">1811 March 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0118">
+                    <did>
+                        <unittitle>E.G. to Elisha Boudinot [21]</unittitle>
+                        <unitdate type="inclusive" normal="1812/1819">1812-1819</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0119">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1812-02-03">1812 February 3</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0120">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1812-02-15">1812 February 15</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0121">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1814-07-30">1814 July 30</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0122">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Princeton</unittitle>
+                            <unitdate normal="1814-10-24">1814 October 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0123">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1815-01-24">1815 January 24</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0124">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1815-03-08">1815 March 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0125">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1816-05-10">1816 May 10</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0126">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1816-07-29">1816 July 29</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0127">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1816-10-12">1816 October 12</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0128">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1816-11-07">1816 November 7</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0129">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1817-02-17">1817 February 17</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0130">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-02-08">1819 February 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0131">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-02-01">1819 February 1</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0132">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-02-16">1819 February 16</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0133">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-02-26">1819 February 26</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0134">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-04-19">1819 April 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0135">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-06-19">1819 June 19</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0136">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-07-06">1819 July 6</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0137">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Burlington</unittitle>
+                            <unitdate normal="1819-08-08">1819 August 8</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0138">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>Philadelphia</unittitle>
+                            <unitdate>undated</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0139">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i1">7</container>
+                            <unittitle>[fragments]</unittitle>
+                            <unitdate>undated</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">portion of 1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0140">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">8</container>
+                        <unittitle>ALS to Rachel Bradford Boudinot [2]</unittitle>
+                        <unitdate type="inclusive" normal="1797/1799">1797-1799</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0141">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">9</container>
+                        <unittitle>AL to Jacob Burnet</unittitle>
+                        <unitdate normal="1809-10-15">1809 October 15</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0142">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">10</container>
+                        <unittitle>ALS to Elihu Chauncey</unittitle>
+                        <unitdate normal="1819-09-26">1819 September 26</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0143">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">11</container>
+                        <unittitle>ALS to Jonathan Dayton</unittitle>
+                        <unitdate normal="1801-06-13">1801 June 13</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0144">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">12</container>
+                        <unittitle>ALs to Benjamin Franklin</unittitle>
+                        <unitdate normal="1783-09-09">1783 September 9</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0145">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">13</container>
+                        <unittitle>ALS by Wm. Peartree Smith</unittitle>
+                        <unitdate normal="1778-07-23">1778 July 23</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0146">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">14</container>
+                        <unittitle>AL [fragment] to George Washington</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c id="C0001_c0147" level="series">
+                <did>
+                    <unittitle>Series 2: Boudinot, Elias: Documents</unittitle>
+                    <unitdate normal="1783-06-24/1818-01-01" type="inclusive">1783 June 24-1818 January 1</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="folders">2 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p> This series consists of two items pertaining to the mutiny of armed soldiers, 1783, and a power of attorney to Charles Shippen, 1818. </p>
+                </scopecontent>
+                <arrangement>
+                    <p>Arranged chronologically.</p>
+                </arrangement>
+                <c level="file" id="C0001_c0148">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">15</container>
+                        <unittitle>Re: mutiny of armed soldiers [proclamation]</unittitle>
+                        <unitdate normal="1783-06-24">1783 June 24</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0149">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i1">16</container>
+                        <unittitle>Power of attorney to Charles Shippen</unittitle>
+                        <unitdate normal="1818-01-01">1818 January 1</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c id="C0001_c0150" level="series">
+                <did>
+                    <unittitle>Series 3: Printed Documents and Miscellaneous Items</unittitle>
+                    <unitdate normal="1767-03-04/1969-01-19" type="inclusive">1767 March 4-1969 January 19</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="folders">30 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p> Consists of property documents in Philadelphia, circa 1788, as well as genealogical data for the Kip and Boudinot families, circa 1801. This series also includes articles regarding Elias Boudinot and his contemporaries, written during the years 1894-1916. </p>
+                </scopecontent>
+                <arrangement>
+                    <p>Not arranged according to any arrangement scheme.</p>
+                </arrangement>
+                <c level="file" id="C0001_c0151">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">1</container>
+                        <unittitle>ALsS by Boudinot Keith to Aunt Jennie [2]</unittitle>
+                        <unitdate normal="1908/1908">1908</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0152">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">2</container>
+                        <unittitle>Clipping: "Invocation," initialed "E.L.B."</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0153">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">3</container>
+                        <unittitle>Deed from William Boudinot to William Keith for property in Philadelphia</unittitle>
+                        <unitdate normal="1969-01-19">1969 January 19</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0154">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">3</container>
+                        <unittitle>Patent of William Keith or property in Philadelphia</unittitle>
+                        <unitdate normal="1788-04-08">1788 April 8</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0155">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">3</container>
+                        <unittitle>Deed of Joseph Wilson for property in Philadelphia</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0156">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">4</container>
+                        <unittitle>Receipt to Dr. Samuel Ormes for contribution to the Pennsylvania Hospital</unittitle>
+                        <unitdate normal="1767-03-04">1767 March 4</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0157">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">5</container>
+                        <unittitle>Boudinot, Elias. <emph render="italic">Journal of Events in the Revolution</emph> (Phila.: Bourquin, 1894)</unittitle>
+                        <unitdate normal="1894/1894">1894</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0158">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">6</container>
+                        <unittitle>Boudinot, Richard Stockton: photograph by Sully</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0159">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">7</container>
+                        <unittitle>"Washington's Birthday," AMS, poem</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0160">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">8</container>
+                        <unittitle>Minutes of Meeting of the City Club [ <emph render="italic">Evening Post</emph>]</unittitle>
+                        <unitdate normal="1892-12-16">1892 December 16</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0161">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">9</container>
+                        <unittitle altrender="Huguenots of Canterbury, AMs, 1 p., TMs, 11 pp.">"The Huguenots of Canterbury," AMs, 1 p., TMs, 11 pp.</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0162">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">10</container>
+                        <unittitle>Boudinot, Julia: Calling card photograph</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0163">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">11</container>
+                        <unittitle>Photograph and tintype of a small boy (unidentified)</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0164">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">12</container>
+                        <unittitle>Information relating to portraits of Washington and his officers</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0165">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">13</container>
+                        <unittitle>Silver teapot (enlarged photograph)</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0166">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">14</container>
+                        <unittitle>Washington centennial catalog</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0167">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">15</container>
+                        <unittitle>Boudinot, Elias: booklist for Chestnut Hill</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0168">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">16</container>
+                        <unittitle>Broadside: Resolution of Commissary General of Prisoners</unittitle>
+                        <unitdate normal="1776-05-21">1776 May 21</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0169">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">17</container>
+                        <unittitle>Adams, Rev. W. <emph render="italic">Old Man's Home</emph> (New York: Gen. Protestant Episcopal S.S. Union, 1847)</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0170">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">18</container>
+                        <unittitle>Ritchie, A. H.: Print of engraving of Washington and his generals</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0171">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">19</container>
+                        <unittitle>Miscellaneous data on Huguenot history</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent unit="items">9 items</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0172">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">20</container>
+                        <unittitle>Massachusetts Bay Colonial Offices: unsigned</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent unit="pages">9 pp.</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0173">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">21</container>
+                        <unittitle>Keith, Charles: genealogical data of various families connected with the Boudinot family</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0174">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">22</container>
+                        <unittitle>Fly leaf/title page from New Testament with genealogical data on the Kip family</unittitle>
+                        <unitdate normal="1801/1801">1801</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0175">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">23</container>
+                        <unittitle>Clippings related to the Boudinot family</unittitle>
+                        <unitdate normal="1912/1912">1912</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0176">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">24</container>
+                        <unittitle>Oliver and Gallaudet families: genealogies</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0177">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">25</container>
+                        <unittitle>Washington, George: copies of excerpts from his papers</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0178">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">26</container>
+                        <unittitle>Notes on Huguenet history</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0179">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">27</container>
+                        <unittitle>Prescription: signed "R.Hart"</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0180">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">28</container>
+                        <unittitle>Atterbury, Rev. W. Wallace, "Elias Boudinot: Reminiscences of the American Revolution,"</unittitle>
+                        <unitdate normal="1894/1894">1894</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0181">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">29</container>
+                        <unittitle>Delafield, Maturin "William Smith"</unittitle>
+                        <unitdate normal="1881/1881">1881</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0182">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i2">30</container>
+                        <unittitle>Russell, Charles Howland. "The Declaration of Independence"</unittitle>
+                        <unitdate normal="1916/1916">1916</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c id="C0001_c0183" level="series">
+                <did>
+                    <unittitle>Series 4: Papers of Other Persons</unittitle>
+                    <unitdate normal="1734-05-13/1818-03-02" type="inclusive">1734 May 13-1818 March 2</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="folders">14 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p> Consists of correspondence from contemporaries of Elias Boudinot, mainly correspondence to or from his family members. </p>
+                </scopecontent>
+                <arrangement>
+                    <p>Arranged alphabetically.</p>
+                </arrangement>
+                <c level="file" id="C0001_c0184">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">1</container>
+                        <unittitle>Boudinot, Elisha (nephew): ALS to Elisha B. (uncle)</unittitle>
+                        <unitdate normal="1808-10-02">1808 October 2</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0185">
+                    <did>
+                        
+                        <unittitle>Boudinot, Elisha</unittitle>
+                        <unitdate normal="1770-01-01/1796-09-16" type="inclusive">1770-1796 September 16</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">portion of 5 folders</extent>
+                        </physdesc>
+                    </did>
+                    <c level="file" id="C0001_c0186">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i3">2</container>
+                            <unittitle>Notes of Cases in Practice</unittitle>
+                            <unitdate normal="1770/1770">1770</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0187">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i3">3</container>
+                            <unittitle>ALS to Nicholas Law</unittitle>
+                            <unitdate normal="1796-07-10">1796 July 10</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0188">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i3">4</container>
+                            <unittitle>ALS to Lewis Pintard</unittitle>
+                            <unitdate normal="1780-01-09">1780 January 9</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                    <c level="file" id="C0001_c0189">
+                        <did>
+                            
+                            <container type="folder" parent="C0001_i3">5</container>
+                            <unittitle>ALS to Col. Benjamin Walker</unittitle>
+                            <unitdate normal="1796-09-16">1796 September 16</unitdate>
+                            <physdesc>
+                                <extent type="computed" unit="folders">1 folder</extent>
+                            </physdesc>
+                        </did>
+                    </c>
+                </c>
+                <c level="file" id="C0001_c0190">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">7</container>
+                        <unittitle>Boudinot, Hannah Stockton: cookbook</unittitle>
+                        <unitdate>dates not examined</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0191">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">8</container>
+                        <unittitle>Bryant, William: ALS to Samuel Storke</unittitle>
+                        <unitdate normal="1734-05-13">1734 May 13</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0192">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">9</container>
+                        <unittitle>Hasard, Eben: ALS to Elisha Boudinot</unittitle>
+                        <unitdate normal="1785-09-26">1785 September 26</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0193">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">10</container>
+                        <unittitle>Johnson, Uzal: war diary</unittitle>
+                        <unitdate type="inclusive" normal="1780/1781">1780-1781</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0194">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">11</container>
+                        <unittitle>King, Joseph: ALS to William Hall</unittitle>
+                        <unitdate normal="1792-05-25">1792 May 25</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0195">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">12</container>
+                        <unittitle>Rush, Mrs. Julia (Stockton): ALS to Hannah Boudinot</unittitle>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0196">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">13</container>
+                        <unittitle>Stockton, William: ALS to Elias E. Boudinot</unittitle>
+                        <unitdate normal="1818-03-02">circa 1818 March 2</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0197">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">14</container>
+                        <unittitle>Tichenor, Isaac [Govenor of Vt.]: ALS to Elisha Boudinot</unittitle>
+                        <unitdate normal="1790-02-20">1790 February 20</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c0198">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i3">15</container>
+                        <unittitle>Washington, George: ALS to Elisha Boudinot</unittitle>
+                        <unitdate normal="1783-05-10">1783 May 10</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C0001_c199">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i4">1</container>
+                        <unitid type="accessionnumber">AM 15087</unitid>
+                        <unittitle>A. B. Durand Engravings of Elias Boudinot</unittitle>
+                        <unitdate normal="1825/1825" type="inclusive">1825</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>2 copies.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C0001_c200">
+                    <did>
+                        
+                        <container type="folder" parent="C0001_i4">2</container>
+                        <unitid type="accessionnumber">AM 15087</unitid>
+                        <unittitle>Facsimiles of Proclamations</unittitle>
+                        <unitdate normal="1783/1783" type="inclusive">1783</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0001_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101040678888</unitid>
+               <physloc type="code">mss</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0001_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101040678896</unitid>
+               <physloc type="code">mss</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0001_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101040678904</unitid>
+               <physloc type="code">mss</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0001_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101080521071</unitid>
+               <physloc type="code">mss</physloc>
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

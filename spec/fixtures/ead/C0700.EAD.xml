@@ -1,0 +1,232 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader  scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b">
+      <eadid mainagencycode="US-NjP" countrycode="US" url="http://arks.princeton.edu/ark:/88435/6108vb31f" urn="ark:/88435/6108vb31f">C0700</eadid>
+      <filedesc>
+            <titlestmt>
+                <titleproper>Wenceslao Ramirez de Villaurrutia Papers, <date normal="1862/1924" type="inclusive">1862-1924</date>: Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2008">2008</date>
+            </publicationstmt>
+        </filedesc>
+      <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2012-06-07">2012-06-07T15:36-0400</date>
+            </creation>
+            <langusage>
+            <language langcode="eng"/>
+         </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+                    Describing Archives: A Content Standard. </emph>
+            </descrules>
+        </profiledesc>
+      <revisiondesc>
+            <change>
+                <date normal="2012-06-07">2012-06-07T15:45:30.966-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+   </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+      <did>
+         <unitid countrycode="US" repositorycode="US-NjP" type="collection">C0700</unitid>
+         <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+         <unittitle>Wenceslao Ramirez de Villaurrutia Papers</unittitle>
+         <unitdate normal="1862/1924" type="inclusive">1862-1924</unitdate>
+         <physdesc>
+                <extent unit="footage">0.4 linear feet</extent>
+                <extent unit="boxes">1 archival box</extent>
+            </physdesc>
+         <origination>
+                <persname source="lcsh" role="cre">Ramirez de Villaurrutia, Wenceslao, 1850-1933.</persname>
+            </origination>
+         <langmaterial>
+                <language langcode="spa"/>
+            </langmaterial>
+         <abstract>Consists of manuscript notes, reports, and letters of Spanish diplomat Wenceslao Ramirez de Villaurrutia concerning the Spanish position on Morocco and negotiations with statesmen and ambassadors of countries with interest in Morocco.</abstract>
+         <physloc type="code">mss</physloc>
+      </did>
+      <bioghist>
+            <p>Wenceslao Ramirez de Villaurrutia was a Spanish diplomat, historian, and politician. Ramirez de Villaurrutia served as Spain's minister of state in 1905 during the reign of Alfonso XIII. As a diplomat, Ramirez de Villaurrutia served as a minister plenipotentiary in Constantinople, Athens, and Brussels and as an ambassador in Vienna, London, Rome, and Paris. In 1918, Ramirez de Villaurrutia received the ns2:title of marqués de Villaurrutia.</p>
+        </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+                <p>The collection consists of manuscript notes and letters of Ramirez de Villaurrutia concerning the Spanish position on Morocco and negotiations with statesmen and ambassadors of countries with interest in Morocco; some correspondence, 1881-1888; and two reports, 1862-1863.</p>
+            </scopecontent>
+         <arrangement>
+                <p>The material is arranged chronologically.</p>
+            </arrangement>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+                <p>The collection is open for research.</p>
+            </accessrestrict>
+         <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <acqinfo>
+                <p>This collection was purchased from Oscar Schreyer in 1991.</p>
+            </acqinfo>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+                <p>Identification of specific item; Date (if known); Wenceslao Ramirez de Villaurrutia Papers, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+         <processinfo id="processing">
+                <p>Folder inventory added by Nicholas Williams '2015 in 2012.</p>
+            </processinfo>
+      </descgrp>
+      <dao xlink:type="simple" xlink:title="Princeton University Library's Manuscripts Division" xlink:href="msslogo.jpg"/>
+      <controlaccess>
+            
+            <corpname source="lcsh">Spain. Ministerio de Estado -- History -- Sources.</corpname>
+            <subject source="lcsh">Diplomats -- Spain -- 20th century.</subject>
+            <geogname source="lcsh">Morocco -- Foreign relations -- Spain -- 20th century.</geogname>
+            <geogname source="lcsh">Spain -- Foreign relations -- Morocco -- 20th century.</geogname>
+            <genreform source="aat">Correspondence -- 19th century.</genreform>
+            <genreform source="aat">Reports -- 19th century.</genreform>
+            
+            <subject rules="local" source="local" encodinganalog="690" authfilenumber="t22">Diplomacy</subject>
+        </controlaccess>
+      <dsc type="combined">
+            <c id="C0700_c001" level="file">
+                <did>
+                    <unittitle>"A Eotado" I</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">1</container>
+                    <unitdate type="inclusive" normal="1906/1907">1906-1907</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c002" level="file">
+                <did>
+                    <unittitle>"A Eotado" II</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">2</container>
+                    <unitdate normal="1912/1912">1912</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c003" level="file">
+                <did>
+                    <unittitle>Correspondence I</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">3</container>
+                    <unitdate type="inclusive" normal="1904/1907">1904-1907</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c004" level="file">
+                <did>
+                    <unittitle>Correspondence II</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">4</container>
+                    <unitdate type="inclusive" normal="1910/1911">1910-1911</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c005" level="file">
+                <did>
+                    <unittitle>Correspondence III</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">5</container>
+                    <unitdate normal="1912/1912">1912</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c006" level="file">
+                <did>
+                    <unittitle>Correspondence IV</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">6</container>
+                    <unitdate type="inclusive" normal="1919/1924">1919-1924</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c007" level="file">
+                <did>
+                    <unittitle>Newspaper Clippings</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">7</container>
+                    <unitdate normal="1906/1906">1906</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c008" level="file">
+                <did>
+                    <unittitle>Printed Material</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">8</container>
+                    <unitdate normal="1912/1912">1912</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c009" level="file">
+                <did>
+                    <unittitle>Postcards</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">9</container>
+                    <unitdate normal="1906/1906">1906</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0700_c010" level="file">
+                <did>
+                    <unittitle>Correspondence of Ramirez De Villaurutia, Wencesslas, Dipolomat</unittitle>
+                    
+                    <container type="folder" parent="C0700_i1">10</container>
+                    <unitdate type="inclusive" normal="1862/1888">1862-1888</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0700_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101036913968</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

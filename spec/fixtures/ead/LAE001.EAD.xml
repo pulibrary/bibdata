@@ -1,0 +1,2376 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+   <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"  repositoryencoding="iso15511" scriptencoding="iso15924">
+      <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/ks65hc24m" urn="ark:/88435/ks65hc24m">LAE001</eadid>
+      <filedesc>
+         <titlestmt>
+            <titleproper>Women in Argentina, VII, <date normal="1993/2005" type="inclusive">1993-2005</date>: Finding
+               Aid</titleproper>
+         </titlestmt>
+         <publicationstmt id="LAEaddress">
+            <publisher>Princeton University Library</publisher>
+            <address>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+               <addressline>Phone: (609) 258-5964</addressline>
+               <addressline>refdesk@princeton.edu</addressline>
+               <addressline>http://library.princeton.edu/</addressline>
+            </address>
+            <date type="publication" normal="2007">2007</date>
+         </publicationstmt>
+      </filedesc>
+      <profiledesc>
+         <creation>Machine-readable finding aid encoded in EAD 2002 by TechBooks and Cristela
+            García-Spitz on <date normal="2007-07-20">July 20, 2007</date>. </creation>
+         <langusage>
+            <language langcode="eng"/>
+         </langusage>
+         <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+         </descrules>
+      </profiledesc>
+      <revisiondesc>
+         <change>
+            <date normal="2012-05-02">2012-05-02T17:00:18.01-04:00</date>
+            <item>Run through PULFA 2.0 normalization routines.</item>
+         </change>
+         <change>
+            <date normal="2012-10-10">2012-10-10T14:26:55.374-04:00</date>
+            <item>Run through PULFA 2.0 normalization routines.</item>
+         </change>
+      </revisiondesc>
+   </eadheader>
+   <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+      <did>
+         <unitid type="collection" countrycode="US" repositorycode="US-NjP">HQ1532 W654 1993</unitid>
+         <unitid type="collection" countrycode="US" repositorycode="US-NjP">LAE001</unitid>
+         <repository id="lae">
+            <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books
+               and Special Collections</corpname>
+            <address>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+            </address>
+         </repository>
+         <unittitle>Women in Argentina, VII</unittitle>
+         <unitdate normal="1993/2005" type="inclusive">1993-2005</unitdate>
+         <physdesc>
+            <extent unit="footage">1 linear feet</extent>
+            <extent>2 boxes</extent>
+            
+            <extent>2 microfilm reels</extent>
+            
+         </physdesc>
+         <origination>
+            <corpname source="lcnaf" altrender="Argentina" role="col">Princeton University. Library.</corpname>
+            <!--
+Possible URIs:
+http://viaf.org/viaf/168223982 : Princeton University. Library. Friends
+http://viaf.org/viaf/121763554 : Princeton university. Library
+http://viaf.org/viaf/220858273 : Conference on Library Education
+http://viaf.org/viaf/155995009 : Gest Oriental Library and East Asian Collections
+http://viaf.org/viaf/158353929 : Princeton University. Library. Graphic Arts Collection
+http://viaf.org/viaf/141659324 : Cotsen children's library Princeton, N.J.
+http://viaf.org/viaf/151910152 : Princeton Emblem Project
+http://viaf.org/viaf/129838879 : Seeley G. Mudd Manuscript Library
+http://viaf.org/viaf/159792701 : Leonard L. Milberg Irish Theater Collection
+http://viaf.org/viaf/157464452 : John Shaw Pierson Civil War Collection
+http://viaf.org/viaf/156318737 : Margaret Jane Pershing Collection of Emily Dickinson
+http://viaf.org/viaf/155220171 : Princeton University. Pliny-Fisk Statistical Library
+http://viaf.org/viaf/155127114 : Leonard L. Milberg Collection of Jewish American Writers
+http://viaf.org/viaf/153995546 : Leonard L. Milberg Collection of Irish Prose
+http://viaf.org/viaf/151613990 : East Asian Library and the Gest Collection
+http://viaf.org/viaf/149284344 : Gallatin Beardsley Collection
+http://viaf.org/viaf/147981977 : Junius Spencer Morgan Collection
+http://viaf.org/viaf/147018644 : Colloquium on Islamic Culture in its Relations to the Contemporary World (1953 : Princeton University and Library of Congress)
+http://viaf.org/viaf/139910002 : Weaver Collection on the French Revolution
+http://viaf.org/viaf/139905778 : Morris L. Parrish Collection of Victorian Novelists
+http://viaf.org/viaf/137283825 : Princeton University. Library. Dept. of Rare Books and Special Collections
+http://viaf.org/viaf/136389730 : Scheide Library
+http://viaf.org/viaf/136385532 : Sinclair Hamilton Collection of American Illustrated Books
+http://viaf.org/viaf/134044342 : JĂ¸rgen W. Schmidt Collection
+http://viaf.org/viaf/132639352 : Leonard L. Milberg Gallery for the Graphic Arts
+http://viaf.org/viaf/131310408 : Cotsen Children's Library-\-Los Angeles
+http://viaf.org/viaf/130545291 : Stanley Lieberman Memorial Collection of Nineteenth-Century American Juvenile Literature
+http://viaf.org/viaf/128281128 : Princeton University. Library Assistants Association
+http://viaf.org/viaf/128001166 : Leonard L. Milberg Collection of American Poetry
+http://viaf.org/viaf/125862541 : Alexander D. Wainwright Collection of Thomas Wolfe
+http://viaf.org/viaf/125835819 : Charles Rahn Fry Pochoir Collection
+http://viaf.org/viaf/125814011 : Leonard L. Milberg Collection of Irish Poetry
+http://viaf.org/viaf/121155345 : Rossetti Collection of Janet Camp Troxell
+-->
+      </origination>
+         <langmaterial>
+            <language langcode="spa"/>
+         </langmaterial>
+         <abstract>This collection comprises a diversity of pamphlets, flyers, posters, newspapers,
+            and other documents produced by political parties, women's organizations and movements,
+            political and cultural organizations, city and state governments, as well as other
+            publishers from Argentina.</abstract>
+         <physloc type="text">This collection is stored offsite at the ReCAP facility. Microfilm of
+            this collection is stored onsite at Firestone Library and offsite at the ReCAP facility.
+            It can be consulted in Microforms Service, Firestone Library ( <extref xlink:href="http://firestone.princeton.edu/microforms/" xlink:type="simple">http://firestone.princeton.edu/microforms/</extref>). </physloc>
+         <physloc type="code">rcpxr</physloc>
+         <physloc type="code">flm</physloc>
+         <physloc type="code">rcppf</physloc>
+      </did>
+      <bioghist>
+
+         <p>The Princeton University Library has developed numerous collections of Latin American
+            ephemera that are unique in their depth and scope. Privileging the popular voices of the
+            region, the collections document numerous political and social movements, and a wide
+            variety of key socioeconomic and cultural developments. Some particularly
+            well-documented topics are grassroots organizing, human rights, electoral politics,
+            indigenous issues, women and gender issues, youth, the environment, health, education,
+            and religion. Types of primary materials collected include pamphlets, non-commercially
+            produced and distributed serials, flyers, posters, working papers, government
+            publications, and other non-traditional formats. Most of the documentation in the
+            collections was produced after the mid 1960s by Latin American nongovernmental
+            organizations of all types, interest groups, political parties, research institutes, and
+            government agencies.</p>
+         <p>The intensive collecting of ephemera was initiated by Barbara Hadley Stein, the
+            University’s first Bibliographer for Latin America, Spain and Portugal (1966-1977). She
+            sought to document some of the major political developments of the period, including the
+            rise to power of military dictatorships, coup d’états, the institutionalization of the
+            Cuban Revolution, and the popular responses to those developments. Her successor, Peter
+            T. Johnson (1977-2003), expanded the geographic and thematic scope of the collections
+            and systematized the process of organizing, cataloging, and preserving them. Intensive
+            collecting in this area continues to this date.</p>
+         <p>Over the years, materials have been grouped and organized by country or region, and by
+            topic or subject area. Once collections are fully organized, they are cataloged and
+            microfilmed. A complete list of collections appears in the Guide to the Princeton
+            University Latin American Microfilm Collection (Wilmington, DE: Scholarly Resources,
+            1993) and subsequent supplements. Many of the collections’ finding aids are available
+            online. Original print materials have been preserved in many cases.</p>
+      </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+            <p>This collection comprises a diversity of pamphlets, flyers, posters, newspapers, and
+               other documents produced by political parties, women's organizations and movements,
+               political and cultural organizations, city and state governments, as well as other
+               publishers from Argentina. All materials reflect and relate to the situation and
+               political involvement of Argentine women from the early 1990s onward, with an
+               emphasis on the years and the annual <emph render="italic">encuentros de
+                  mujeres</emph> between 2000 and 2006. This collection is organized by publisher.
+               In most sections, materials are then grouped alphabetically by title; the briefest
+               pamphlets and flyers, usually two pages or less, are left untitled and grouped
+               together.</p>
+         </scopecontent>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+            <p>The Latin American ephemera collections are open for research use.</p>
+            <p>Originals are stored offsite at the ReCAP facility. Microfilm surrogates can be
+               consulted in Microforms Service, Firestone Library ( <extref xlink:href="http://firestone.princeton.edu/microforms/" xlink:type="simple">http://firestone.princeton.edu/microforms/</extref>).</p>
+         </accessrestrict>
+         <accessrestrict type="remotestorage">
+            <p>Please consult with the Department of Rare Books and Special Collections about having the collection recalled to the
+               Department for your use. This process normally requires 48-72 hours notice.</p>
+         </accessrestrict>
+         <userestrict>
+            <p>No restrictions. Researchers are responsible for determining any copyright
+               questions.</p>
+         </userestrict>
+      </descgrp>
+      <descgrp id="dacs6">
+         <altformavail>
+            <p>MICROFILM 12064</p>
+            <p>MICROFILM 7812 (Master printing copy. Available for reproduction only.)</p>
+         </altformavail>
+         <relatedmaterial>
+            <p>Additional material related to the subjects addressed in this collection can be found
+               in the collections listed below. For a complete list of Latin American ephemera
+               collections, consult the <emph render="italic">Guide to the Princeton University
+                  Latin American Microfilm Collections</emph> (call number: Z1610 .G842 1993) and
+               subsequent supplements.</p>
+
+               <p>Socioeconomic crisis and political participation in Argentina, I,
+                  1995-2005</p>
+               <p>Women in Argentina, I: pamphlets, [1978-1985]</p>
+               <p>Women in Argentina, II: pamphlets, 1983-1988</p>
+               <p>Women in Argentina, III: pamphlets, 1984-1989</p>
+               <p>Women in Argentina, IV: pamphlets, 1986-1991</p>
+               <p>Women in Argentina, V: pamphlets, 1982-1998</p>
+               <p>Women in Argentina, VI, 1989-2001</p>
+            
+         </relatedmaterial>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+            <p>Identification of specific item; Date (if known); Women in Argentina, VII; Princeton
+               University Library.</p>
+         </prefercite>
+         <processinfo id="processing">
+            <p>This collection was processed by <name role="processor">Aimée Contreras</name>, <name role="processor">Lauren Hooten</name> and <name role="processor">Gabrielle
+                  Winkler</name> in <date type="processed" normal="2006">2006</date>. Finding aid
+               written by <name role="author">Aimée Contreras</name>, <name role="author">Lauren
+                  Hooten</name> and <name role="author">Gabrielle Winkler</name> in <date type="processed" normal="2006">2006</date>.</p>
+         </processinfo>
+      </descgrp>
+      <dao xlink:title="Princeton University Latin American Ephemeral Collections" xlink:href="bioghist-images/laelogo.jpg" xlink:type="simple"/>
+      <controlaccess>
+         
+
+
+
+         <subject source="lcsh">Family violence --
+            Argentina.</subject>
+         <subject source="lcsh">Reproductive health --
+            Argentina.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh93008658">Women --
+            Argentina.</subject>
+         <subject source="lcsh">Women -- Argentina -- Political
+            activity.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2010118747">Women -- Argentina
+            -- Social conditions.</subject>
+         <subject source="lcsh">Women -- Crimes against --
+            Argentina.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2010118748">Women -- Employment
+            -- Argentina.</subject>
+         <subject source="lcsh">Women -- Health and hygiene --
+            Argentina.</subject>
+         <subject source="lcsh">Women's rights --
+            Argentina.</subject>
+         <subject source="lcsh">Women in politics --
+            Argentina.</subject>
+         <subject source="lcsh">Women labor union members --
+            Argentina.</subject>
+         <subject rules="local" source="local" encodinganalog="690" authfilenumber="t37">Latin
+            American studies</subject>
+      </controlaccess>
+      <dsc type="combined">
+         <c level="file" id="LAE001_c0001">
+            <did>
+               <unittitle>Agrupación Pan y Rosas (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2005-12-31" type="inclusive">2004-2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0002">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Manifiesto Pan y Rosas</emph>
+                  </unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent>24p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0003">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Pan y Rosas</emph>
+                  </unittitle>
+                  <unitdate normal="2004-08-01/2004-08-31" type="inclusive">2004 August</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0004">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Boletín No. 2</unittitle>
+                     <unitdate normal="2004-08">2004 August</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0005">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Pan y Rosas</emph>
+                  </unittitle>
+                  <unitdate normal="2004-03-08/2005-12-31" type="inclusive">2004 March 8-2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0006">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>2004 March 8</unittitle>
+                     <unitdate normal="2004-03-08">2004 March 8</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+               <c level="file" id="LAE001_c0007">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>circa 2005</unittitle>
+                     <unitdate normal="2005/2005">circa 2005</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0008">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0009">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0010">
+            <did>
+               <unittitle>Agrupación Víctor Choque de ATE (Asociación de Trabajadores del Estado)
+                  (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0011">
+               <did>
+                  <unittitle altrender="boletín de la VÍctor Choque">
+                     <emph render="italic">El boletín de la VÍctor Choque</emph>
+                  </unittitle>
+                  <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0012">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Año I, Número Especial</unittitle>
+                     <unitdate normal="2005-10">2005 October</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0013">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0014">
+            <did>
+               <unittitle>Asociación de Especialistas Universitarias en Estudios de la Mujer
+                  (ADEUEM) (Buenos Aires)</unittitle>
+               <unitdate normal="2002-01-01/2002-12-31" type="inclusive">2002</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0015">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2002/2002">2002</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0016">
+            <did>
+               <unittitle>Asociación de Mujeres Bonarenses (A.M.Bo.) (Buenos Aires)</unittitle>
+               <unitdate normal="1998-01-01/1998-12-31" type="inclusive">1998</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0017">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="1998/1998">1998</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0018">
+            <did>
+               <unittitle>Asociación de Trabajo y Estudio sobre la Mujer (ATEM) (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0019">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0020">
+            <did>
+               <unittitle>Autoconvocatoria NO AL ALCA (Buenos Aires)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0021">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0022">
+            <did>
+               <unittitle>Bloque Obrero y Popular (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0023">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0024">
+            <did>
+               <unittitle>Campaña Nacional por el Derecho al Aborto Legal, Seguro y Gratuito (Buenos
+                  Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0025">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0026">
+            <did>
+               <unittitle altrender="Casa del Encuentro (Buenos Aires)">La Casa del Encuentro
+                  (Buenos Aires)</unittitle>
+               <unitdate normal="2004-10-01/2005-11-30" type="inclusive">2004 October-2005 November</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0027">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Encontradas: revista lésbico feminista para todas las
+                        mujeres</emph>
+                  </unittitle>
+                  <unitdate normal="2004-10-01/2005-11-30" type="inclusive">2004 October-2005 November</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0028">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Edición Mensual, Año 1</unittitle>
+                     <unitdate normal="2004-10">2004 October</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+               <c level="file" id="LAE001_c0029">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Edición Bimestral</unittitle>
+                     <unitdate type="inclusive" normal="2005-10/2005-11">2005
+                        October-November</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0030">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0031">
+            <did>
+               <unittitle>Católicas por el Derecho a Decidir (CDD) (Buenos Aires)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0032">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0033">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0034">
+            <did>
+               <unittitle>Central de los Trabajadores Argentinos (CTA) (Mendoza)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0035">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0036">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0037">
+            <did>
+               <unittitle>Centro de Comunicación Popular y Asesoramiento Legal (CECOPAL)
+                  (Córdoba)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0038">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Economía Solidaria</emph>
+                  </unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent>14p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cartillas en gestión de microemprendimientos en la economía solidaria 1)</p>
+               </scopecontent>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0039">
+            <did>
+               <unittitle>Centro de Encuentros Cultura y Mujer (CECYM) (Buenos Aires)</unittitle>
+               <unitdate normal="2002-01-01/2002-12-31" type="inclusive">2002</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0040">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Mujeres víctimas de violencia sexual: proteger,
+                        recuperar, reparar.</emph> Silvia Chejter y Beatriz Ruffa</unittitle>
+                  <unitdate normal="2002/2002">2002</unitdate>
+                  <physdesc>
+                     <extent>42p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0041">
+            <did>
+               <unittitle>Centro de Estudios de Población (CENEP) (Buenos Aires)</unittitle>
+               <unitdate normal="1989-01-01/1989-12-31" type="inclusive">1989</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0042">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Trabajo, carrera y género en el mundo de la salud.</emph>
+                     Rosa N. Geldstein y Catalina H. Wainerman</unittitle>
+                  <unitdate normal="1989/1989">1989</unitdate>
+                  <physdesc>
+                     <extent>62p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuaderno del CENEP; No. 42)</p>
+               </scopecontent>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0043">
+            <did>
+               <unittitle>Centro de Estudios Políticos y Sociales Sobre Género (Buenos
+                  Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0044">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0045">
+            <did>
+               <unittitle>Centro Interdisciplinario de Estudios Sociales Contemporáneos (CIESC)
+                  (Buenos Aires)</unittitle>
+               <unitdate normal="1989-01-01/1989-12-31" type="inclusive">1989</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0046">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Piedras en los bolsillos: miedo, violación, culpa.</emph>
+                     Inés Hercovich</unittitle>
+                  <unitdate normal="1989/1989">1989</unitdate>
+                  <physdesc>
+                     <extent>9p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0047">
+            <did>
+               <unittitle>Colectivo Feminista "Viva la Pepa" (s.l.)</unittitle>
+               <unitdate normal="2003-01-01/2004-12-31" type="inclusive">2003-2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0048">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>3 flyers</unittitle>
+                  <unitdate type="inclusive" normal="2003/2004">2003-2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0049">
+            <did>
+               <unittitle>Comisión de Género IMFC (Instituto Movilizador de Fondos Cooperativos)
+                  (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0050">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>2 pamphlets</unittitle>
+                  <unitdate normal="2005/2005">circa 2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0051">
+            <did>
+               <unittitle>Comisión de Mujeres de la Alianza Social Continental (Mar del
+                  Plata)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0052">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0053">
+            <did>
+               <unittitle>Consejo Nacional de la Mujer (Buenos Aires)</unittitle>
+               <unitdate normal="1985-01-01/2003-12-31" type="inclusive">1985-2003</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0054">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>Convención interamericana para prevenir, sancionar y erradicar la
+                     violencia contra la mujer (Ley 24.632, "Convención de Belém do
+                     Pará")</unittitle>
+                  <unitdate normal="2000/2000">2000</unitdate>
+                  <physdesc>
+                     <extent>21p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Serie La violencia contra la mujer)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0055">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>Convención sobre la eliminación de todas las formas de discriminación
+                     contra la mujer (Ley 23.179)</unittitle>
+                  <unitdate normal="1985/1985">1985</unitdate>
+                  <physdesc>
+                     <extent>16p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0056">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>Mujer, equidad y trabajo: cuaderno de práctica</unittitle>
+                  <unitdate normal="2003/2003">2003</unitdate>
+                  <physdesc>
+                     <extent>64p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0057">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>Mujer, equidad y trabajo: manual para facilitadoras y
+                     facilitadores</unittitle>
+                  <unitdate normal="2003/2003">2003</unitdate>
+                  <physdesc>
+                     <extent>167p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0058">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle altrender="trabajo en los talleres">El trabajo en los
+                     talleres</unittitle>
+                  <unitdate normal="1999/1999">1999</unitdate>
+                  <physdesc>
+                     <extent>59p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Serie La violencia contra las mujeres en el ámbito de las relaciones
+                     familiares)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0059">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle altrender="trabajo en los talleres. ( 2002, 2 a edición revisada)">El
+                     trabajo en los talleres. ( 2002, 2 <emph render="super">a</emph> edición
+                     revisada)</unittitle>
+                  <unitdate normal="2002/2002">2002</unitdate>
+                  <physdesc>
+                     <extent>59p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Serie La violencia contra las mujeres en el ámbito de las relaciones
+                     familiares)</p>
+               </scopecontent>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0060">
+            <did>
+               <unittitle>Consorcio Nacional de Derechos Reproductivos y Sexuales (CONDERS) (Buenos
+                  Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0061">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0062">
+            <did>
+               <unittitle>Corriente Clasista y Combativa (CCC) (Buenos Aires)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0063">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Alegatos del juicio: libertad a Romina Tejeríana</emph>
+                  </unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent>15p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0064">
+            <did>
+               <unittitle>Corriente Praxis (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0065">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">XX Encuentro Nacional de Mujeres</emph>
+                  </unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent>13p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0066">
+            <did>
+               <unittitle>Debocaenboca (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0067">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0068">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>3 pamphlets</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0069">
+            <did>
+               <unittitle>Ediciones Hoy (Buenos Aires)</unittitle>
+               <unitdate normal="2005-10-05/2005-10-05">2005 October 5</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0070">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Hoy: seminario del comunismo revolucionario de
+                        Argentina</emph>
+                  </unittitle>
+                  <unitdate normal="2005-10-05/2005-10-05">2005 October 5</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0071">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>No. 1085</unittitle>
+                     <unitdate normal="2005-10-05">2005 October 5</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0072">
+            <did>
+               <unittitle>Ediciones Se.A.P. (Servicio a la Acción Popular) (Córdoba)</unittitle>
+               <unitdate normal="1993-01-01/1996-12-31" type="inclusive">1993-1996</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0073">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Habitemos nuestro cuerpo.</emph> ( 1996, 2 <emph render="super">a</emph> edición)</unittitle>
+                  <unitdate normal="1996/1996">1996</unitdate>
+                  <physdesc>
+                     <extent>22p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0074">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle altrender="poder que queremos">
+                     <emph render="italic">El poder que queremos</emph>
+                  </unittitle>
+                  <unitdate normal="1993/1993">1993</unitdate>
+                  <physdesc>
+                     <extent>14p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0075">
+            <did>
+               <unittitle>Editorial Agora (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0076">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Mujeres: 20 encuentros.</emph> Pilar Sánchez</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent>42p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernos de Editorial Agora 10)</p>
+               </scopecontent>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0077">
+            <did>
+               <unittitle altrender="Espejo (Buenos Aires)">El Espejo (Buenos Aires)</unittitle>
+               <unitdate normal="2005-10-04/2005-10-04">2005 October 4</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0078">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle altrender="espejo de Argentina y el mundo">
+                     <emph render="italic">El espejo de Argentina y el mundo</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0079">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>Año XI, No. 156 Extra</unittitle>
+                  <unitdate normal="2005-10-04">2005 October 4</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0080">
+            <did>
+               <unittitle>Federación Universitaria Marplatense (FUM) / Federación Universitaria
+                  Argentina (FUA) (s.l.)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0081">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0082">
+            <did>
+               <unittitle>Feministas Autorganizadas (FEAS) (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0083">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0084">
+            <did>
+               <unittitle>Foro de Mujeres en Accion (Fo.Mu.A) (Neuquén)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0085">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Agendita Solidaria</emph>
+                  </unittitle>
+                  <unitdate normal="2004-06-01/2004-06-30" type="inclusive">2004 June</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0086">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Edición Número 2</unittitle>
+                     <unitdate normal="2004-06">2004 June</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0087">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0088">
+            <did>
+               <unittitle>Frente Obrero Socialista (FOS) (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0089">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0090">
+            <did>
+               <unittitle>Fundación Agenda de las Mujeres (s.l.)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0091">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0092">
+            <did>
+               <unittitle>Fundación Género y Sociedad (s.l.)</unittitle>
+               <unitdate normal="2003-01-01/2003-01-31" type="inclusive">2003 January</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0093">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Pan para hoy: hambre para nadie</emph>
+                  </unittitle>
+                  <unitdate normal="2003-01-01/2003-01-31" type="inclusive">2003 January</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0094">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>No.2</unittitle>
+                     <unitdate normal="2003-01">2003 January</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0095">
+            <did>
+               <unittitle>Fundación para Estudio e Investigación de la Mujer (FEIM) (Buenos
+                  Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0096">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0097">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>3 pamphlets</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0098">
+            <did>
+               <unittitle>Fundación Poder Ciudadano (Buenos Aires)</unittitle>
+               <unitdate normal="1997-01-01/1997-12-31" type="inclusive">1997</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0099">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Herramientas de acción ciudadana para la defensa de los
+                        derechos de la mujer. Programa de participación y fiscalización
+                        ciudadana.</emph> Haydeé Birgin</unittitle>
+                  <unitdate normal="1997/1997">1997</unitdate>
+                  <physdesc>
+                     <extent>70p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0100">
+            <did>
+               <unittitle>Fundación Propuesta (Buenos Aires)</unittitle>
+               <unitdate normal="2004-08-01/2004-08-31" type="inclusive">2004 August</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0101">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Fundación Propuesta: un espacio para la mujer frente a la
+                        discriminación y la violencia</emph>
+                  </unittitle>
+                  <unitdate normal="2004-08-01/2004-08-31" type="inclusive">2004 August</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0102">
+                  <did>
+                     <container type="box">001</container>
+                     <unittitle>Año 7, No.7</unittitle>
+                     <unitdate normal="2004-08">2004 August</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0103">
+            <did>
+               <unittitle>Fundación TIDO (Trabajo, Investigación, Desarrollo y Organización de la
+                  Mujer) (Buenos Aires)</unittitle>
+               <unitdate normal="1999-01-01/1999-12-31" type="inclusive">1999</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0104">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Estrategias para microemprendedores/as.</emph> Juan José
+                     Greco</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>12p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernillos para Emprendedores/as; No. 4)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0105">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle altrender="globalización y inserción de las ONG's en este modelo. Miguel Cipriano">
+                     <emph render="italic">La globalización y inserción de las ONG's en este
+                        modelo.</emph> Miguel Cipriano</unittitle>
+                  <unitdate normal="1999/1999">1999</unitdate>
+                  <physdesc>
+                     <extent>18p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernillos para Emprendedores/as; No. 1)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0106">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Liderazgo femenino.</emph> Susana Gamba</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>26p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernillos para Emprendedores/as; No. 3)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0107">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Metodologías participativas y asociatividad.</emph>
+                     Cristina Jurnet</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>14p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernillos para Emprendedores/as; No. 2)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0108">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Planificación estratégica.</emph> Patricia Adriana
+                     Pinacho</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>16p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(Cuadernillos para Emprendedores/as; No. 5)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0109">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Reinventar trabajos, crear igualdad: hacia la autonomía
+                        económica de las mujeres</emph>
+                  </unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>47p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0110">
+            <did>
+               <unittitle>Gobierno de la Ciudad de Buenos Aires (gobBsAs) (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0111">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Guía bibliográfica: violencia contra la mujer, violencia
+                        doméstica, violencia sexual, maltrato infantil</emph>
+                  </unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>21p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0112">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>5 pamphlets</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0113">
+            <did>
+               <unittitle>Grupo Estrategias por el Derecho al Aborto (Buenos Aires)</unittitle>
+               <unitdate normal="2003-01-01/2003-12-31" type="inclusive">2003</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0114">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>
+                     <emph render="italic">Primer encuentro nacional por el derecho al aborto legal,
+                        seguro y gratuito</emph>
+                  </unittitle>
+                  <unitdate normal="2003/2003">2003</unitdate>
+                  <physdesc>
+                     <extent>38p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0115">
+            <did>
+               <unittitle>Grupo Estudios Lésbicos (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0116">
+               <did>
+                  <container type="box">001</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0117">
+            <did>
+               <unittitle>Huelga Mundial de Mujeres (HMM) (Santa Fe)</unittitle>
+               <unitdate normal="2002-07-01/2003-09-30" type="inclusive">2002 July-2003 September</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0118">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Huelga mundial de mujeres</emph>
+                  </unittitle>
+                  <unitdate normal="2002-07-01/2003-09-30" type="inclusive">2002 July-2003 September</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0119">
+                  <did>
+                     <container type="box">002</container>
+                     <unittitle>2002 July</unittitle>
+                     <unitdate normal="2002-07">2002 July</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+               <c level="file" id="LAE001_c0120">
+                  <did>
+                     <container type="box">002</container>
+                     <unittitle>No. 2</unittitle>
+                     <unitdate normal="2003-09">2003 September</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0121">
+            <did>
+               <unittitle>Instituto Social y Político de la Mujer (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0122">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>7 flyers, 6 pamphlets in a folder</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0123">
+            <did>
+               <unittitle>Juventud Comunista Revolucionario (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0124">
+               <did>
+                  <unittitle>
+                     <emph render="italic">Chispa: revista de la Juventud Comunista
+                        Revolucionaria</emph>
+                  </unittitle>
+                  <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0125">
+                  <did>
+                     <container type="box">002</container>
+                     <unittitle>2005 October</unittitle>
+                     <unitdate normal="2005-10">2005 October</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+            <c level="file" id="LAE001_c0126">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">circa 2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0127">
+               <did>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">1 item</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0128">
+            <did>
+               <unittitle>Marabunta Izquierda Revolucionaria (M-IR) (s.l.)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0129">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0130">
+            <did>
+               <unittitle>Mesa Feminista de Socialismo Libertario</unittitle>
+               <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0131">
+               <did>
+                  <unittitle>
+                     <emph render="italic">XX Encuentro Nacional de Mujeres en Mar del Plata</emph>
+                  </unittitle>
+                  <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0132">
+                  <did>
+                     <container type="box">002</container>
+                     <unittitle>No. 0</unittitle>
+                     <unitdate normal="2005-10">2005 October</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0133">
+            <did>
+               <unittitle>Ministerio de Desarrollo Social y Salud, Gobierno de Mendoza
+                  (Mendoza)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0134">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0135">
+            <did>
+               <unittitle>Movimiento de Mujeres Córdoba (Córdoba)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0136">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 CD cover undated (photocopy)</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0137">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 pamphlets</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0138">
+            <did>
+               <unittitle>Movimiento de Mujeres Evita / Ministerio de Salud y Ambiente de la Nación
+                  (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0139">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0140">
+            <did>
+               <unittitle>Movimiento Socialista de los Trabajadores (MST)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0141">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0142">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0143">
+            <did>
+               <unittitle>Movimiento Solidario por los Derechos de las Mujeres "Marie Langer"
+                  (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0144">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 flyers</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0145">
+            <did>
+               <unittitle>Mujeres al Oeste (Morón)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0146">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0147">
+            <did>
+               <unittitle>Mujeres de Convergencia Socialista (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2005-12-31" type="inclusive">2004-2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0148">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0149">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0150">
+            <did>
+               <unittitle>Mujeres de Empresa (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0151">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0152">
+            <did>
+               <unittitle>Mujeres de la Intersindical Clasista (Mar del Plata)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0153">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0154">
+            <did>
+               <unittitle>Mujeres de Socialismo Libertario (s.l.)</unittitle>
+               <unitdate normal="2003-01-01/2003-12-31" type="inclusive">2003</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0155">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2003/2003">2003</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0156">
+            <did>
+               <unittitle>Mujeres del Movimiento Socialista de los Trabajadores (MST)
+                  (Mendoza)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0157">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0158">
+            <did>
+               <unittitle>Mujeres en Encuentro Amplio (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0159">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">circa 2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0160">
+            <did>
+               <unittitle>Mujeres en Resistencia (s.l.)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0161">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>
+                     <emph render="italic">De la feminización de la pobreza a la feminización de la
+                        resistencia: feminismo de la solidaridad.</emph> María Elena Zavattiero y
+                     Diana Inés Rozas</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>6p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(photocopy)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0162">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0163">
+            <did>
+               <unittitle>Mujeres Feministas Autoconvocadas (Mendoza)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0164">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>4 flyers</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0165">
+            <did>
+               <unittitle>Mujeres Libres (Buenos Aires)</unittitle>
+               <unitdate normal="2001-01-01/2002-12-31" type="inclusive">2001-2002</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0166">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>7 flyers</unittitle>
+                  <unitdate type="inclusive" normal="2001/2002">circa 2001-2002</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0167">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 pamphlets</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0168">
+            <did>
+               <unittitle>Organización del XIV Encuentro Nacional de Mujeres</unittitle>
+               <unitdate normal="1999-01-01/1999-12-31" type="inclusive">1999</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0169">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>
+                     <emph render="italic">Mujeres en el encuentro</emph>
+                  </unittitle>
+                  <unitdate normal="1999/1999">circa 1999</unitdate>
+                  <physdesc>
+                     <extent>4p</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0170">
+            <did>
+               <unittitle>Organización del XIX Encuentro Nacional de Mujeres</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0171">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 flyers 2004 in a folder</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0172">
+            <did>
+               <unittitle>Organización Socialista Libertaria (OSL) (Buenos Aires)</unittitle>
+               <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0173">
+               <did>
+                  <unittitle>
+                     <emph render="italic">En la calle: órgano de difusión del anarquismo
+                        organizado</emph>
+                  </unittitle>
+                  <unitdate normal="2005-10-01/2005-10-31" type="inclusive">2005 October</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+               <c level="file" id="LAE001_c0174">
+                  <did>
+                     <container type="box">002</container>
+                     <unittitle>Edición Especial (XX Encuentro Nacional de Mujeres)</unittitle>
+                     <unitdate normal="2005-10">2005 October</unitdate>
+                     <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                     </physdesc>
+                  </did>
+               </c>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0175">
+            <did>
+               <unittitle>Partido Comunista Revolucionario (PCR) (Buenos Aires)</unittitle>
+               <unitdate normal="2004-01-01/2005-12-31" type="inclusive">2004-2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0176">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle altrender="liberación de la mujer. Comisión de Mujeres">
+                     <emph render="italic">La liberación de la mujer.</emph> Comisión de
+                     Mujeres</unittitle>
+                  <unitdate normal="2005/2005">2005</unitdate>
+                  <physdesc>
+                     <extent>25p</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0177">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate normal="2005/2005">circa 2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0178">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0179">
+            <did>
+               <unittitle>Partido de Trabajadores Socialistas (PTS) (Mendoza)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0180">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0181">
+            <did>
+               <unittitle>Partido Obrero (PO) (s.l.)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0182">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate normal="2004/2004">circa 2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0183">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0184">
+            <did>
+               <unittitle>Partido Socialista (Buenos Aires)</unittitle>
+               <unitdate normal="2005-01-01/2005-12-31" type="inclusive">2005</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0185">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate normal="2005/2005">circa 2005</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0186">
+            <did>
+               <unittitle>Plataforma del Movimiento Argentino de Mujeres y de Derechos Humanos por
+                  la Ratificación del Protocolo Facultativo de la Convención Sobre la Eliminación de
+                  Todas las Formas del Discriminación Contra la Mujer (CEDAW) (s.l.)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0187">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 sticker</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0188">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 flyers</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0189">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 pamphlets</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0190">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 poster</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0191">
+            <did>
+               <unittitle>Red de Mendocinos por la Vida (Mendoza)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0192">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0193">
+            <did>
+               <unittitle>Red de Mujeres Solidarias (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0194">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 flyers</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="LAE001_c0195">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>3 pamphlets</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0196">
+            <did>
+               <unittitle>Red Informativa de Mujeres de Argentina (RIMA) (Santa Fe)</unittitle>
+               <unitdate normal="2000-01-01/2009-12-31" type="inclusive">2000-2009</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0197">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate type="inclusive" normal="2000/2009">2000s</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0198">
+            <did>
+               <unittitle>Sindicato de Amas de Casa (Santa Fe)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0199">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0200">
+            <did>
+               <unittitle>Unión de la Mujeres de la Argentina (UMA) (Buenos Aires)</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0201">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 pamphlet</unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0202">
+            <did>
+               <unittitle>Unión del Personal Civil de la Nacion (UPCN) (Buenos Aires)</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0203">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>1 flyer</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c level="file" id="LAE001_c0204">
+            <did>
+               <unittitle>Unknown publishers</unittitle>
+               <unitdate normal="2004-01-01/2004-12-31" type="inclusive">2004</unitdate>
+               <physdesc>
+                  <extent type="computed">portion of 1 box</extent>
+               </physdesc>
+            </did>
+            <c level="file" id="LAE001_c0205">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>
+                     <emph render="italic">Mendoza, la provincia con más muertes por abortos
+                        ilegales</emph>
+                  </unittitle>
+                  <unitdate normal="2004/2004">2004</unitdate>
+                  <physdesc>
+                     <extent>1p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(photocopied newspaper article from Los Andes, September 23, 2004)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0206">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>
+                     <emph render="italic">Mujer y medios de comunicación.</emph> Nieves María
+                     Ámela</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent>4p</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>(photocopy)</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="LAE001_c0207">
+               <did>
+                  <container type="box">002</container>
+                  <unittitle>2 flyers</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

@@ -1,0 +1,785 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" scriptencoding="iso15924" >
+        <eadid url="http://arks.princeton.edu/ark:/88435/rb68xd23r" countrycode="US" mainagencycode="US-NjP" urn="ark:/88435/rb68xd23r">C1462</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>William Tipping Papers, <date type="inclusive" normal="1688/2001">1688-2001</date>: Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2014">2014</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2014-02-10">2014-02-10T10:52-0500</date>
+            </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2014-02-10">2014-02-10T10:53:28.722-05:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+        <did>
+            <unitid countrycode="US" repositorycode="US-NjP" type="collection">C1462</unitid>
+            <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>William Tipping Papers</unittitle>
+            <unitdate normal="1688/2001" type="inclusive">1688-2001</unitdate>
+            <physdesc>
+                <extent unit="footage">2.4 linear feet</extent>
+                <extent unit="boxes">3 archival boxes, 1 oversize box</extent>
+            </physdesc>
+            <origination>
+                <persname source="lcnaf" role="cre">Tipping, William.</persname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>Conists of personal papers of William Tipping Esq, of Brasted Park, Sevenoaks, in Kent, and Avray near Paris. He was the son of the successful Liverpool merchant John Tipping, who in his twenties traveled extensively in Europe and the Middle East before turning to Tory politics and serving as director of the London and North Western Railway.</abstract>
+            <physloc type="code">mss</physloc>
+        </did>
+        <bioghist>
+            <p>William Tipping Esq, of Brasted Park, Sevenoaks, in Kent, and Avray near Paris, was the only child of the successful Liverpool merchant John John Tipping Esq. of Liverpool. He married, in 1844, Maria, daughter of Benjamin Walker Esq. of Leeds. He travelled extensively in Europe and the Middle East when in his twenties before turning to Tory politics and serving as director of the London and North Western Railway. He was a Justice of the Peace for Kent, for Lancashire, and for the West Riding of Yorkshire, and Member of Parliament for Stockport 1868 1874, and 1885 1886. He was a Director of the North Western Railway. http://armorial.library.utoronto.ca/stamp-owners/TIP001</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>Includes a series of approximately one hundred and forty family letters, comprising some 450 pages, written on tours of Europe and the Middle East around 1840, several charmingly illustrated. Includes a copious run of retained drafts of letters to Isaac Taylor, the publishers Houlston &amp; Wright, Dr. Robert Traill, the painter Josiah Gilbert, and others, concerning publication of plates after drawings made on his tours, as well as a quantity of additional family material (manuscripts, letters, books, 1777-1960s and beyond). Also includes a signed portrait of William Tipping. There are is also a quantity of additional family material, such as manuscripts, letters, photographs, brochures, books, and periodicals dated 1777-1960s and beyond.</p>
+            </scopecontent>
+            <arrangement>
+                <p>This collection has been organized into the following series:</p>
+            </arrangement>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>The collection is open for research.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>Purchased in 2013.</p>
+            </acqinfo>
+            <appraisal>
+                <p>Nothing was removed from the collection.</p>
+            </appraisal>
+        </descgrp>
+        <descgrp id="dacs6">
+            <separatedmaterial>
+                <p>                The following printed maps have been transferred to the Historic Maps Collection: 1.Map of the Peninsula of Mount Sinai and Arabia Petraea from the itineraries of E. Robinson and E. Smith constructed and drawn by H. Kiepert, Berlin 1841. Published as the act directs by John Murray. 50 Albermale Str. London. April 1841. (HMC01.7067). 2. Die Insel St. Helena, [circa 1822-1840]. (HMC01.7070). 3. Konigreich Griechenland (Kingdom of Greece), nach den neuesten und besten Hulfsmitteln, entworfen und gezeichnet von C.F. Weiland. 1833. (HMC01.7069). 4. Plan of Jerusalem, sketched from Sieber and Catherwood, corrected by the Measurements of Robinson and Smith. Drawn by H. Kiepert. Published as the act directs by John Murray. 50 Albermale Str. London. April 1841. (HMC01.7068).
+</p>
+            </separatedmaterial>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); William Tipping Papers, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>This collection was processed by <name role="processor">Kalliopi Balatsouka</name> in <date normal="2014" type="processed">2014</date>. Finding aid written by <name role="author">Kalliopi Balatsouka</name> in <date normal="2014" type="processed">2014</date>.</p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+        <controlaccess>
+            <persname source="uncontrolled">Houlston and Wright.</persname>
+            <persname source="uncontrolled">Ottewill, David</persname>
+            <subject source="lcsh">Manuscripts, English -- New Jersey -- Princeton.</subject>
+            <genreform source="aat">Correspondence -- 18th century.</genreform>
+            <genreform source="aat">Correspondence -- 19th century.</genreform>
+            <genreform source="ftamc">Correspondence -- 20th century.</genreform>
+            <genreform source="aat">Diaries -- 19th century</genreform>
+            <genreform source="aat">Manuscripts, English -- 19th-century.</genreform>
+            <genreform source="aat">Manuscripts, English -- 20th century.</genreform>
+            <genreform source="aat">Photographic postcards.</genreform>
+            <genreform source="aat">Photographs.</genreform>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t30">Hellenic studies</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c level="series" id="C1462_c1">
+                <did>
+                    <unittitle>Series 1. Correspondence</unittitle>
+                    <unitdate normal="1755/1988" type="inclusive">1755-1988</unitdate>
+                <physdesc>
+                        <extent type="computed">more than 13 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This series consists of approximately one hundred and forty family letters, comprising some 450 pages, written on tours of Europe and the Middle East around 1840, several nicely illustrated. Includes a copius run of retained drafts of letters to Isaac Taylor, the publishers Houlston and Wright, Dr. Robert Trail, the painter Josiah Gilbert, and others, concerning publication of plates after drawings made on his tours. The present letters - many of which, written on large extended sheets of paper, are very long - display the élan of a young Englishman on the Grand Tour and provide the reader with a vivid view of Middle Eastern travel in the first half of the nineteenth century.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>This series has been arranged in an alphabetical order.</p>
+                </arrangement>
+                <c level="file" id="C1462_c2">
+                    <did>
+                        <unittitle>Mollet, John S.</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">1</container>
+                        <unitdate normal="1834/1835" type="inclusive">1834-1835</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes incoming correspondence from John S. Mollet to John Tipping.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c3">
+                    <did>
+                        <unittitle>Ottewill, David</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">2</container>
+                        <unitdate normal="1988/1988">1988</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes correspondence between David Ottewill and Gordon Singleton.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c4">
+                    <did>
+                        <unittitle>Tipping, John</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">3</container>
+                        <unitdate normal="1816/1835" type="inclusive">1816-1835</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence to his wife and his brother, Joseph Fearon.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c5">
+                    <did>
+                        <unittitle>Tipping, John</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">4</container>
+                        <unitdate normal="1841/1853" type="inclusive">1841-1853</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence to his friend, Isaac Taylor; one letter to James Lester; and one letter to his son William.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c6">
+                    <did>
+                        <unittitle>Tipping, Joseph Fearon</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">5</container>
+                        <unitdate normal="1834/1835" type="inclusive">1834-1835</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence to his brother John Tipping.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c7">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">6-9</container>
+                        <unitdate normal="1834/1836" type="inclusive">1834-1836</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">4 folders</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence from William Tipping to his father John and three letters to his uncle, Joseph Fearon. There are also contemporary handwritten copies of letters that were composed by William Tipping (see folder 7).</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c8">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">10</container>
+                        <unitdate normal="1837/1838" type="inclusive">1837-1838</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence from William Tipping to his father John. There is also one letter from John S. Mollet.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c9">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">11</container>
+                        <unitdate normal="1839/1839">1839</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence from William Tipping to his father, John Tipping.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c10">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">12</container>
+                        <unitdate normal="1840/1843" type="inclusive">1840-1843</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence from William Tipping to his father, John Tipping. At the end, there are a few undated letters.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c11">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">13</container>
+                        <unitdate normal="1841/1848" type="inclusive">1841-1848</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes outgoing correspondence to Isaac Taylor. The majority of the letters is undated.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c12">
+                    <did>
+                        <unittitle>Tipping, William</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">14</container>
+                        <unitdate normal="1847/1847">1847</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes undated letters written by William Tipping to Gilbert (probably the painter Josiah Gilbert) and one letter to the publisher Houlston and Wright (June 13, 1847).</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c13">
+                    <did>
+                        <unittitle>Miscellaneous</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">15</container>
+                        <unitdate normal="1755/1854" type="inclusive">1755-1854</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Consists of correspondence among family members, including letters from Mary Tipping, Thomas Tipping, and Jane Fearon to William Tipping; one letter from William Tipping to his mother; one letter from Fearon Tipping to his grandfather; two letters from John W. Tipping to his grandfather and to his uncle; one letter from Jane Fearon to Joseph Fearon and one letter from A. Tipping to John Tipping.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c14">
+                    <did>
+                        <unittitle>Miscellaneous</unittitle>
+                        
+                        <container type="folder" parent="C1462_i1">16</container>
+                        <unitdate normal="1821/1978" type="inclusive">1821-1978</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes correspondence between William Tipping and Edward Ford; one letter from Edward Ford to Isaac Taylor; one letter form William Tipping to Griffith; one letter from J. Holmes to John Tipping; one letter to John tipping fromn his cousin Th. Bewley (?); one letter from grandmother Fearon to Jane; two letters from unidentified senders (one in French); one letter from Anthony Titley to William Tipping (July 9, 1866); one letter from Henry Avaray Tipping to Joan (26.7.1921); a few letters sent to William Tipping from unidentified senders; one letter in Arabic.</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series" id="C1462_c15">
+                <did>
+                    <unittitle>Series 2. Writings</unittitle>
+                    <unitdate normal="1859/2001" type="inclusive">1859-2001</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">5 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This series consists of autograph manuscript drafts and notes regarding the history of Tipping family, William Tipping's trips to the Middle East, and one bound manuscript diary of a tour in South America.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>This series has been arranged in a chronological order.</p>
+                </arrangement>
+                <c level="file" id="C1462_c16">
+                    <did>
+                        <unittitle>Manuscript Diary</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">1</container>
+                        <unitdate normal="1859-03-24">1859 March 24</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes loose pages of a manuscript diary of a trip in the Middle East with mentions to Lebanon, Damascus, Kuwait, and Libya taken by an unknown author in 1859. The whole manuscript appears to have been written at the same time and with the same pen on blue paper, one must assume that it was created by Timming from earlier diaries (letters) and notes he kept on the trips. Inscription on first page reads: "Westerham - 24 March 1859".</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c17">
+                    <did>
+                        <unittitle>South America Tour</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">2</container>
+                        <unitdate normal="1925/1926" type="inclusive">1925-1926</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes a bound manuscript diary of a tour in South America from Decemeber 23, 1925 to April 4, 1926.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c18">
+                    <did>
+                        <unittitle altrender="English Garden Abroad">"The English Garden Abroad"</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">3</container>
+                        <unitdate normal="1998/2001" type="inclusive">1998-2001</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes an autograph manuscript of the above article prepared by Charles Quest-Ritson and published by Penguin Books in 1992. There are also miscellaneous notes.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c19">
+                    <did>
+                        <unittitle>William Tipping of Brasted: A Victorian Squire</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">4</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes contemporary autograph manuscript drafts of history of the Tipping family in pen and pencil. There is also a reproduction of a letter that was written by John Tipping on January 8, 1853.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c20">
+                    <did>
+                        <unittitle>Memorials of the Blaxland Family</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">5</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes contemporary autograph manuscript drafts in pencil.</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series" id="C1462_c21">
+                <did>
+                    <unittitle>Series 3. Documents</unittitle>
+                    <unitdate normal="1688/1980" type="inclusive">1688-1980</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">7 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This series consists of several legal documents, such as wills, deeds, mortgage, and certification of members of the Tipping family.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>This series has been arranged by type of material.</p>
+                </arrangement>
+                <c level="file" id="C1462_c22">
+                    <did>
+                        <unittitle>Will of Sir Thomas Tipping of Wheatfield</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">6</container>
+                        <unitdate normal="1688/1972" type="inclusive">1688-1972</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes the original will of Sir Thomas Tipping, nephew of William Tipping. There is also a handwritten contemporary copy of the Will dated 1972.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c23">
+                    <did>
+                        <unittitle>Will of James Blaxland</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">7</container>
+                        <unitdate normal="1710/1710">1710</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes an original copy extracted from the Registry of the Consistory Court of Canterbury.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c24">
+                    <did>
+                        <unittitle>Will of John Tipping</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">8</container>
+                        <unitdate normal="1822/1822">1822</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c25">
+                    <did>
+                        <unittitle>Wills of William Tipping and Maria Tipping</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">9</container>
+                        <unitdate normal="1837/1980" type="inclusive">1837-1980</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes contemporary autograph drafts of the will of William Tipping, photocopies of the original will, and probate copies. There is also a copy of the will of Maria Tipping of Brasted Park, wife of William Tipping Esquire; a letter from the Cheshire County Council dated August 15, 1952 and one letter from the District Probate Registry to H.G. Singleton Esq. regarding William Tipping's will.</p>
+                        <p>Included also is an affirmation signed by William Tipping dated 1837.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c26">
+                    <did>
+                        <unittitle>Copy of Tipping's Deed at the Society of Genealogists</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">10</container>
+                        <unitdate normal="1697/1697">1697</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c27">
+                    <did>
+                        <unittitle>Papers Relating to John Tipping of Skipton and William Tipping</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">11</container>
+                        <unitdate normal="1748/1859" type="inclusive">1748-1859</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes an indenture between William Tipping and John Tipping dated 1748 (has been transferred to oversize Box 4, folder 3); one indenture between John Tipping of Skipton and John Birkbeck et al. (1843); a letter from Lowndes, Bateson and Co. to John Tipping in reference to his inquiry on his will; a certification that William Tipping took duty in her Majesty's High Court of Chancery; correspondence; and two lists of hotel expenses in Rome. In addition, there are autograph manuscripts regarding the genealogical tree of William Tipping and related information of other family members; a birth certificate of William Tipping; one passport of John Tipping in French dated 1841-1842 and a few other documents (see oversize Box 4, folder 3).</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c28">
+                    <did>
+                        <unittitle>Miscellaneous</unittitle>
+                        
+                        <container type="folder" parent="C1462_i2">12</container>
+                        <unitdate normal="1718/1841" type="inclusive">1718-1841</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes one firman issued by Negib Pasha in Arabic script dated 1841; one document signed by Alice Wright dated 1803; one document signed by John Lanyon; and a few pages of a notebook dated 1718.</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series" id="C1462_c29">
+                <did>
+                    <unittitle>Series 4. Photographs and Postcards</unittitle>
+                    <unitdate normal="1835/1835">1835</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="boxes">2 boxes (1 partial)</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>This series has been arranged by type of material.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>This series consists of photographs and postcards of William Tipping and other literary figures or artists of the era.</p>
+                </scopecontent>
+                <c level="file" id="C1462_c30">
+                    <did>
+                        <unittitle>Tipping Memorial at Stokenchurch Brasted</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">1</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Included also is an undated photograph probably of a trip in Egypt (105 x 65 mm) and one photograph of a coat of arms (178 x 125 mm).</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c31">
+                    <did>
+                        <unittitle>William Tipping Portrait</unittitle>
+                        
+                        <container type="folder" parent="C1462_i4">1-2</container>
+                        <unitdate normal="1835/1835">1835</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">2 folders</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes a signed portrait of William Tipping (dated 17 Aug./22 Dec. [18]35), attributed to the Saxon portraitist E[rnst] Oertel (1804-69), "Presented to me by Hofrat Emil Pestel of the Koerner Museum Dresden 9/1/99 / W.I.T.". Charcoal on toned paper, 233 x 185 mm, framed and glazed (frame was removed; only the wooden board of the photograph was kept with studio imprint on verso).</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c32">
+                    <did>
+                        <unittitle>Photographic Portraits</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">2</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes thirteen albumen print photographs, carte de visite format, (105 x 63 mm) of William Powell Frith, William Holman Hunt, James Clarke Hook, Daniel Maclise (recto and verso with studio imprint of the stamp of the Victorian photography studio "Elliott &amp; Fry, 55. Baker Street Portman Square, verso also with contemporary inscription in pencil); of Gustave Doré and Sir Edwin Henry Landseer (verso with studio imprint "John Watkins Photographer to the Queen, the Prince of Wales and the ex Royal Family of France. 34, Parliament Street, London S.W.," verso also with contemporary inscription in pencil); Sir John Everett Millais and William Linnell (verso with studio imprint: "Photographers to HRH the Prince of Wales. The London Stereoscopic and Photographic Company"); Otto von Bismarck (verso with studio imprint: "Numa Blank. Photographe de S.M.Le Roi de Prusse. 29, Boulevart des Italiens, Paris"); John Leech (verso with studio imprint "McLean and Haes Photographers and Miniature Painters, 26. Haymarket, London S.W."); and Sir John Everett Millais (verso with studio imprint: "Patronized by her Majesty Caldesi, Blanford and Co. Photographers, 13. Pall Mall East, London"). There is also a photographic portrait of Edward Lear; and one portrait (165 x 105 mm) probably of William Tipping (recto and verso with studio imprint: "Priestley and Sons. Egremont Cheshire."</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series" id="C1462_c33">
+                <did>
+                    <unittitle>Series 5. Printed Material</unittitle>
+                    <unitdate normal="1833/1991" type="inclusive">1833-1991</unitdate>
+                <physdesc>
+                        <extent type="computed">more than 10 folders</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This series consists of printed maps, brochures, journals, and books.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>This series has been arranged in a chronological order and by type of material.</p>
+                </arrangement>
+<!--                <c level="file" id="C1462_c34">
+                    <did>
+                        <unittitle>Maps</unittitle>
+                        <unitdate normal="1833/1841" type="inclusive">1833-1841</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="items">1 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Included are the following printed maps, which have been transferred to the Historic Maps Collection: 1.Map of the Peninsula of Mount Sinai and Arabia Petraea from the itineraries of E. Robinson and E. Smith constructed and drawn by H. Kiepert, Berlin 1841. Published as the act directs by John Murray. 50 Albermale Str. London. April 1841. (HMC01.7067). 2. Die Insel St. Helena, [circa 1822-1840]. (HMC01.7070). 3. Konigreich Griechenland (Kingdom of Greece), nach den neuesten und besten Hulfsmitteln, entworfen und gezeichnet von C.F. Weiland. 1833. (HMC01.7069). 4. Plan of Jerusalem, sketched from Sieber and Catherwood, corrected by the Measurements of Robinson and Smith. Drawn by H. Kiepert. Published as the act directs by John Murray. 50 Albermale Str. London. April 1841. (HMC01.7068).</p>
+                    </scopecontent>
+                </c>-->
+                <c level="file" id="C1462_c35">
+                    <did>
+                        <unittitle altrender="Bookman. London : Hodder and Stoughton.">
+                            <emph render="italic">The Bookman</emph>. London : Hodder and Stoughton.</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">3</container>
+                        <unitdate normal="1908-10">1908 October</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c36">
+                    <did>
+                        <unittitle>
+                            <emph render="italic">Kent Between Sevenoaks and Westerham. The Beautiful Freehold and Residential Estate Known as Brasted Place</emph>
+                        </unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">4-5</container>
+                        <unitdate normal="1912/1912">1912</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">2 folders</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>This is a final edition made by the direction of the Executor of the late colonel W. Fearon Tipping. Included also is a photocopy of the first edition.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c37">
+                    <did>
+                        <unittitle>
+                            <emph render="italic">Kent. The Freehold Residential Property Known as Brasted Place</emph>
+                        </unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">6</container>
+                        <unitdate normal="1918/1918">1918</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>At the back of the book there is a folded color plan of the Brasted place estates between Seven Oaks and Westerham Kent for sale by private treaty by Messrs. Knight, Frank and Rutley dated 1918.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c38">
+                    <did>
+                        <unittitle>Tipping, H. Avray. <emph render="italic">Old English Furniture: Its True Value and Function</emph>. London : Country Life Limited</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">7</container>
+                        <unitdate normal="1928/1928">1928</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Included also are some loose page notes.</p>
+                    </scopecontent>
+                </c>
+                <c level="file" id="C1462_c39">
+                    <did>
+                        <unittitle>
+                            <emph render="italic">Brasted Place Near Sevenoaks Kent</emph>
+                        </unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">8</container>
+                        <unitdate normal="1933/1933">1933</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c40">
+                    <did>
+                        <unittitle>Darwin, Bernard. <emph render="italic">Fifty Years of "Country Life."</emph> London : Country Life Limited</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">9</container>
+                        <unitdate normal="1947/1947">1947</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c41">
+                    <did>
+                        <unittitle>Singleton, H.G.H. <emph render="italic">Brasted Place and Its Owners: A Short History</emph>
+                        </unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">10</container>
+                        <unitdate normal="1954/1954">1954</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c42">
+                    <did>
+                        <unittitle altrender="Brief History of Stokenchurch and the Parish Church of SS. Peter and Paul">
+                            <emph render="italic">A Brief History of Stokenchurch and the Parish Church of SS. Peter and Paul</emph>
+                        </unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">10</container>
+                        <unitdate normal="1960/1960">1960</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c43">
+                    <did>
+                        <unittitle>
+                            <emph render="italic">Ruskin and his Circle</emph>. [London, Arts Council, 1964] Arts Council Gallery, 17 January-15 February</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">10</container>
+                        <unitdate normal="1964-01-17/1964-02-15" type="inclusive">1964 January 17-February 15</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">portion of 1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c44">
+                    <did>
+                        <unittitle>
+                            <emph render="italic">Bygone Kent: A Monthly Journal of All Aspects of local history</emph>, 11 (12) and 12 (1)</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">11</container>
+                        <unitdate normal="1990/1991" type="inclusive">1990-1991</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c45">
+                    <did>
+                        <unittitle>Tipping, H. Avray. <emph render="italic">The Story of Montacute and its house</emph>. London : Country Life Limited</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">12</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="C1462_c46">
+                    <did>
+                        <unittitle>Article: "H. Avray Tipping in Monmouthshire" by H.G. Singleton</unittitle>
+                        
+                        <container type="folder" parent="C1462_i3">13</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed" unit="folders">1 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C1462_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101080595232</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C1462_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101080595224</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C1462_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101080595216</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C1462_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101080595208</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

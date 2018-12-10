@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd"
+     audience="external">
+    <eadheader repositoryencoding="iso15511"
+              countryencoding="iso3166-1"
+              dateencoding="iso8601"
+              langencoding="iso639-2b"
+              scriptencoding="iso15924">
+        <eadid url="http://arks.princeton.edu/ark:/88435/4m90dz138"
+             countrycode="US"
+             mainagencycode="US-NjP"
+             urn="ark:/88435/4m90dz138">MC277</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>H. Freeman Matthews, Jr. Papers, <date type="inclusive" normal="1947/1999">1947-1999</date> Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="muddAddress">
+                <publisher>Princeton University Library -- Manuscripts Collections</publisher>
+                <address>
+                    <addressline>Seeley G. Mudd Manuscript Library</addressline>
+                    <addressline>65 Olden Street</addressline>
+                    <addressline>Princeton, New Jersey 08540 USA</addressline>
+                    <addressline>Phone: 609-258-6345</addressline>
+                    <addressline>Fax: 609-258-3385</addressline>
+                    <addressline>mudd@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~mudd</addressline>
+                </address>
+                <date normal="2015">2015</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2015-08-27">2015-08-27T13:27-0400</date>
+            </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2015-08-27">2015-08-27T13:28:05.461-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+        <did>
+            <unitid countrycode="US" repositorycode="US-NjP" type="collection">MC277</unitid>
+            <repository id="publicpolicy">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections.</corpname>
+                <subarea>Seeley G. Mudd Manuscript Library.</subarea>
+                <subarea>Public Policy Papers.</subarea>
+                <address>
+                    <addressline>65 Olden Street</addressline>
+                    <addressline>Princeton, New Jersey 08540 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>H. Freeman Matthews, Jr. Papers,</unittitle>
+            <unitdate normal="1947/1999" type="inclusive">1947-1999</unitdate>
+            <physdesc>
+                <extent unit="footage">2.0 linear ft.</extent>
+                <extent>2 boxes</extent>
+            </physdesc>
+            <origination>
+                <persname source="local" role="cre">Matthews, H. Freeman, Jr., 1927-2006</persname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>H. Freeman Matthews, Jr., son of H. Freeman Matthews, was a career Foreign Service officer, serving with the State Department from 1952 to 1991. The collection consists of materials documenting Matthews, Jr.'s service with the State Department, in particular, his time as Deputy Chief of Mission in Cairo from 1976 to 1980.</abstract>
+            <physloc type="code">mudd</physloc>
+        </did>
+        <bioghist>
+            <p>H. Freeman Matthews, Jr., Princeton University class of 1949, was a career Foreign Service officer, serving the State Department in a range of capacities from 1952 to 1985. Prior to his career with the State Department, Matthews, Jr. worked for the Central Hanover Bank &amp; Trust Co. in New York. He joined the State Department in 1952 and served in Italy, Switzerland, Spain, Vietnam, and Mexico.</p>
+            <p>After returning from Mexico in 1974, he worked on the Garrison Diversion Unit project and became Director of Egyptian Affairs shortly thereafter. In 1976, the State Department transferred him to Egypt where he was Deputy Chief of Mission in Cairo from 1976 to 1980. He played a role in the peace negotians between Israel and Egypt, involving President Jimmy Carter, President Anwar Sadat, and Prime Minister Menachem Begin.</p>
+            <p>After returning from Egypt, Matthews, Jr. became a consultant with the Bureau of Diplomatic Security before officially retiring in 1985. After his retirement, he worked on the White House Iran-Contra Legal Task Force and Inter-Agency Review Committee from 1987 to 1991.</p>
+            <p>Matthews, Jr. died on July 22, 2006.</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The H. Freeman Matthews, Jr. papers document his career in the State Department and contain subject files, newspaper clippings, photographs, and day planners. The majority of the papers are related to his time in Egypt in the late 1970s and his work on the Garrison Diversion Unit project.</p>
+            </scopecontent>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>The collection is open for research use.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. For quotations that are fair use as defined under <extref xmlns:xlink="http://www.w3.org/1999/xlink"
+                       xlink:href="http://www.princeton.edu/copyright/copyright-basics/fair-use/"
+                       xlink:type="simple">U. S. Copyright Law</extref>, no permission to cite or publish is required. For those few instances beyond fair use, researchers are responsible for determining who may hold the copyright and obtaining approval from them. Researchers do not need anything further from the Mudd Library to move forward with their use.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>Gift of Nancy Matthews in 2015.</p>
+            </acqinfo>
+            <appraisal>
+                <p>The archivist separated two government publications from the collection.</p>
+            </appraisal>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>This collection was processed by <name>Alexis A. Antracoli</name> in <date normal="2015" type="processed">2015</date>. Finding aid written by <name>Alexis A. Antracoli</name> in <date normal="2015" type="processed">2015</date>
+                </p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Public Policy Collections"
+           xlink:href="bioghist-images/shieldlogo.jpg"
+           xlink:type="simple"/>
+        <controlaccess>
+            <persname source="local" role="Donor (dnr)">Matthews, Nancy</persname>
+            <subject source="lcsh">Diplomatic and consular service, American -- Egypt -- 20th century.</subject>
+            <subject source="local">Foreign Service</subject>
+            <subject source="local">State Department Administration</subject>
+            <geogname source="lcnaf">Middle East -- Politics and government -- 20th century.</geogname>
+            <geogname source="lcsh">South Dakota -- Politics and government -- 20th century.</geogname>
+            <geogname source="lcnaf">United States--Foreign relations--Middle East.</geogname>
+            <genreform source="aat">Born digital.</genreform>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t49">Public
+                policy/20th century</subject>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t22">Diplomacy</subject>
+      </controlaccess>
+        <dsc type="combined">
+            <c level="series" id="MC277_c1">
+                <did>
+                    <unittitle>Series I Cairo Files</unittitle>
+                    <unitdate normal="1976/1980" type="inclusive">1976-1980</unitdate>
+                <physdesc>
+                        <extent type="computed">1 boxes</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>The archivist has not imposed any arrangement on these files.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>Series I: Cairo Files contains files documenting Matthews, Jr.'s time as Deputy Chief of Mission in Cairo from 1976 to 1980. The files contain background materials, momentos, news clippings, cultural information, and photographs.</p>
+                </scopecontent>
+                <c level="file" id="MC277_c2">
+                    <did>
+                        <unittitle>Cairo Momentos</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1976/1980" type="inclusive">1976-1980</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c3">
+                    <did>
+                        <unittitle>Background Material</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1976/1980" type="inclusive">1976-1980</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c4">
+                    <did>
+                        <unittitle>Farewells - Cairo</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1980/1980">1980</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c5">
+                    <did>
+                        <unittitle>Cairo - Cultural</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1977/1980" type="inclusive">1977-1980</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c6">
+                    <did>
+                        <unittitle>Newsclippings</unittitle>
+                        <container type="box">1</container>
+                        <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c7">
+                    <did>
+                        <unittitle>Photographs</unittitle>
+                        <container type="box">1</container>
+                        <container type="box">2</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed">1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c level="series" id="MC277_c8">
+                <did>
+                    <unittitle>Series II: Garrison Diversion Unit</unittitle>
+                    <unitdate normal="1973/1974" type="inclusive">1973-1974</unitdate>
+                <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>The archivist has not imposed any arrangement on these files.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>Series II: Garrison Diversion Unit documents Matthews, Jr.'s time working on the international implications of the effort to divert water from the Garrison Dam for irrigation in North Dakota.</p>
+                </scopecontent>
+                <c level="file" id="MC277_c9">
+                    <did>
+                        <unittitle>Correspondence, Notes, and Maps</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1974/1974">1974</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c10">
+                    <did>
+                        <unittitle>Background Material</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1973/1973">1973</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c level="series" id="MC277_c11">
+                <did>
+                    <unittitle>Series III: General State Department Files</unittitle>
+                    <unitdate normal="1959/1999" type="inclusive">1959-1999</unitdate>
+                <physdesc>
+                        <extent type="computed">portions of 2 boxes</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>The archivist has not imposed any arrangement on these files.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>Series III: General State Department Files documents Matthews, Jr.'s day-to-day work and the award received.</p>
+                </scopecontent>
+                <c level="file" id="MC277_c12">
+                    <did>
+                        <unittitle>Awards</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1969/1997" type="inclusive">1969-1997</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c13">
+                    <did>
+                        <unittitle>Mid Careers Course</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1959/1959">1959</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c14">
+                    <did>
+                        <unittitle>Senior Seminar in Foreign Policy</unittitle>
+                        <container type="box">1</container>
+                        <unitdate type="inclusive" normal="1973/1974">1973-1974</unitdate>
+                        <physdesc>
+                            <extent>1.0 folder</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c15">
+                    <did>
+                        <unittitle>Service Plaque</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1985/1985">1985</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c16">
+                    <did>
+                        <unittitle>Identification Documents</unittitle>
+                        <container type="box">1</container>
+                        <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c17">
+                    <did>
+                        <unittitle>Day Planners</unittitle>
+                        <container type="box">2</container>
+                        <unitdate normal="1970/1990" type="inclusive">1970-1990</unitdate>
+                    <physdesc>
+                            <extent type="computed">1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+            <c level="series" id="MC277_c18">
+                <did>
+                    <unittitle>Series IV: Personal Materials</unittitle>
+                    <unitdate normal="1947/1947">1947</unitdate>
+                <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>The archivist has not imposed any arrangement on these files.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>Series IV: Personal Materials includes a letter written by H. Freeman Matthews, Jr. to his parents while in the army in 1947 as well as candid photographs and photographs of friends and colleagues.</p>
+                </scopecontent>
+                <c level="file" id="MC277_c19">
+                    <did>
+                        <unittitle>Letter from H. Freeman Matthews, Jr. to his parents</unittitle>
+                        <container type="box">1</container>
+                        <unitdate normal="1947/1947">1947</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+                <c level="file" id="MC277_c20">
+                    <did>
+                        <unittitle>Miscellaneous Photographs</unittitle>
+                        <container type="box">1</container>
+                        <unitdate>undated</unitdate>
+                    <physdesc>
+                            <extent type="computed">portion of 1 box</extent>
+                        </physdesc>
+                    </did>
+                </c>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

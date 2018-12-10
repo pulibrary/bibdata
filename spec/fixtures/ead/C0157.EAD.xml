@@ -1,0 +1,550 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader  scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b">
+      <eadid mainagencycode="US-NjP" countrycode="US" url="http://arks.princeton.edu/ark:/88435/k930bx06w" urn="ark:/88435/k930bx06w">C0157</eadid>
+      <filedesc>
+            <titlestmt>
+                <titleproper>Albany Fonblanque Collection, <date normal="1784/1875" type="inclusive">1784-1875</date>: Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2008">2008</date>
+            </publicationstmt>
+        </filedesc>
+      <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2012-06-29">2012-06-29T15:49-0400</date>
+            </creation>
+            <langusage>
+            <language langcode="eng"/>
+         </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+                    Describing Archives: A Content Standard. </emph>
+            </descrules>
+        </profiledesc>
+      <revisiondesc>
+            <change>
+                <date normal="2012-07-02">2012-07-02T12:01:59.722-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+   </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+      <did>
+         <unitid countrycode="US" repositorycode="US-NjP" type="collection">C0157</unitid>
+         <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+         <unittitle>Albany Fonblanque Collection</unittitle>
+         <unitdate normal="1784/1875" type="inclusive">1784-1875</unitdate>
+         <physdesc>
+                <extent unit="footage">0.2 linear feet</extent>
+                <extent unit="boxes">1 half-size archival box</extent>
+            </physdesc>
+         <origination>
+                <persname source="lcsh" role="cre">Fonblanque, Albany, 1793-1872.</persname>
+            </origination>
+         <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+         <abstract>Consists primarily of letters sent to Albany Fonblanque as editor of the <emph render="italic">Examiner</emph> (London).</abstract>
+         <physloc type="code">mss</physloc>
+      </did>
+      <bioghist>
+            <p>Albany Fonblanque was a nineteenth-century English editor and journalist.</p>
+        </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+                <p>The collection consists primarily of letters sent to Fonblanque as editor of the <emph render="italic">Examiner</emph> (London). Among the correspondents are Marguerite Blessington, William Lisle Bowles, Edward Bulwer-Lytton, Rosina Lytton, the comte d'Orsay, George Grote, Sir George Cornewall Lewis, and Lord John Russell. Also included are two letters by Fonblanque to Lord Lytton, one unidentified manuscript, and one autograph manuscript by Charles Reynell regarding Leigh Hunt's censorship trial.</p>
+            </scopecontent>
+         <arrangement>
+                <p>Folders are in alphabetical order by last name.</p>
+            </arrangement>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+                <p>The collection is open for research.</p>
+            </accessrestrict>
+         <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <acqinfo>
+                <p>AM 13115</p>
+            </acqinfo>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+                <p>Identification of specific item; Date (if known); Albany Fonblanque Collection, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+         <processinfo id="processing">
+                <p>Folder inventory added by Nicholas Williams '2015 in 2012.</p>
+            </processinfo>
+      </descgrp>
+      <dao xlink:type="simple" xlink:title="Princeton University Library's Manuscripts Division"/>
+      <controlaccess>
+            
+            <persname source="lcsh">Hunt, Leigh, 1784-1859 -- Trials, litigation, etc.</persname>
+            <persname source="lcsh">Orsay, Alfred Guillaume Gabriel, comte d', 1801-1852.</persname>
+            <subject source="lcsh">Censorship -- England -- 19th century.</subject>
+            <genreform source="aat">Correspondence -- 19th century.</genreform>
+            <genreform source="aat">Editors -- England -- London -- 19th century.</genreform>
+            
+            <subject rules="local" source="local" encodinganalog="690" authfilenumber="t16">British literature</subject>
+        </controlaccess>
+      <dsc type="combined">
+            <c id="C0157_c001" level="file">
+                <did>
+                    <unittitle>Blessington, Marguerite: 3 Letters to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">1</container>
+                    <unitdate normal="1849/1849">1849</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c002" level="file">
+                <did>
+                    <unittitle>Canon Bowles: Letter to Editor of the Examiner</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">2</container>
+                    <unitdate>17 January 1837</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c003" level="file">
+                <did>
+                    <unittitle>Brougham, Henry Peter: 2 Letters to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">3</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c004" level="file">
+                <did>
+                    <unittitle>Bulwer-Lytton, Edward George</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">4</container>
+                    <unitdate type="inclusive" normal="1839/1869">1839-1869</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c005" level="file">
+                <did>
+                    <unittitle>Bulwer, Henry Lytton</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">5</container>
+                    <unitdate type="inclusive" normal="1835/1842">1835-1842</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c006" level="file">
+                <did>
+                    <unittitle>Bulwer, Rosina Doyle</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">6</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c007" level="file">
+                <did>
+                    <unittitle>Campbell, George: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">7</container>
+                    <unitdate>24 February 1843</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c008" level="file">
+                <did>
+                    <unittitle>Clarendon, Lord: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">8</container>
+                    <unitdate>30 March 1852</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c009" level="file">
+                <did>
+                    <unittitle altrender="Orsay, Alfred Count of: 11 Letters to Albany Fonblanque">D'Orsay, Alfred Count of: 11 Letters to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">9</container>
+                    <unitdate type="inclusive" normal="1831/1847">1831-1847</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c010" level="file">
+                <did>
+                    <unittitle>Dunraven, Windham</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">10</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c011" level="file">
+                <did>
+                    <unittitle>Fellowes, Robert</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">11</container>
+                    <unitdate type="inclusive" normal="1830/1835">1830-1835</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c012" level="file">
+                <did>
+                    <unittitle>Fox, C. R: Letters to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">12</container>
+                    <unitdate type="inclusive" normal="1838/1848">1838-1848</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c013" level="file">
+                <did>
+                    <unittitle>Goff, Richard: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">13</container>
+                    <unitdate normal="1832/1832">1832</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c014" level="file">
+                <did>
+                    <unittitle>Granville, George Leveson Gower: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">14</container>
+                    <unitdate>30 January 1858</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c015" level="file">
+                <did>
+                    <unittitle>Grey, Lord: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">15</container>
+                    <unitdate>8 December 1834</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c016" level="file">
+                <did>
+                    <unittitle>Grote, George</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">16</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c017" level="file">
+                <did>
+                    <unittitle>Hobhouse, John Cam</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">17</container>
+                    <unitdate type="inclusive" normal="1855/1857">1855-1857</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c018" level="file">
+                <did>
+                    <unittitle>Hook, Theodore: Letter to John Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">18</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c019" level="file">
+                <did>
+                    <unittitle>Hunt, H: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">19</container>
+                    <unitdate>31 January 1854</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c020" level="file">
+                <did>
+                    <unittitle>Hunt, James Henry Leigh</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">20</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c021" level="file">
+                <did>
+                    <unittitle>Lambton, John George</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">21</container>
+                    <unitdate type="inclusive" normal="1834/1835">1834-1835</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c022" level="file">
+                <did>
+                    <unittitle>Lennox, Henry Gordon: Letter to John Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">22</container>
+                    <unitdate>12 April 1784</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c023" level="file">
+                <did>
+                    <unittitle>Lewis, George</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">23</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c024" level="file">
+                <did>
+                    <unittitle>Llandaff, Bishop of: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">24</container>
+                    <unitdate>23 December 1839</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c025" level="file">
+                <did>
+                    <unittitle>Minto, William</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">25</container>
+                    <unitdate>24 February 1875</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c026" level="file">
+                <did>
+                    <unittitle>Morgan, Sydney</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">26</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c027" level="file">
+                <did>
+                    <unittitle>Mulgrave, Lord: Letters to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">27</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c028" level="file">
+                <did>
+                    <unittitle>Murray, Charles: Letter to Lord Normanby</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">28</container>
+                    <unitdate>10 June 1842</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c029" level="file">
+                <did>
+                    <unittitle>Normanby, Constanten Henry</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">29</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c030" level="file">
+                <did>
+                    <unittitle>Nugent, George</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">30</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c031" level="file">
+                <did>
+                    <unittitle>Reynell, Charles</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">31</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c032" level="file">
+                <did>
+                    <unittitle>Russell, Lord John: 4 Letters to Geo. Poulett Scrope</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">32</container>
+                    <unitdate type="inclusive" normal="1843/1853">1843-1853</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c033" level="file">
+                <did>
+                    <unittitle>Savage, Marmion: Letter to Albany Fonblanque</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">33</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c034" level="file">
+                <did>
+                    <unittitle>Savage, Marmion</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">34</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c035" level="file">
+                <did>
+                    <unittitle>Trevelyan, Sir Charles Edward</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">35</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c036" level="file">
+                <did>
+                    <unittitle>Villiers, Charles</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">36</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c037" level="file">
+                <did>
+                    <unittitle>Ward, Sir Henry</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">37</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c038" level="file">
+                <did>
+                    <unittitle>Wood, C.</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">38</container>
+                    <unitdate>22 April 1841</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0157_c039" level="file">
+                <did>
+                    <unittitle>Unidentified Letters</unittitle>
+                    
+                    <container type="folder" parent="C0157_i1">39</container>
+                    <unitdate>undated</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0157_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101037584768</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

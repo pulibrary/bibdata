@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1"
+        dateencoding="iso8601" langencoding="iso639-2b">
+        <eadid countrycode="US" mainagencycode="US-NjP"
+            url="http://arks.princeton.edu/ark:/88435/g732d904n" urn="ark:/88435/g732d904n"
+            >AC001</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>General Manuscripts Collection, <date normal="1765/2016"
+                        type="inclusive">1765-2016</date>: Finding Aid</titleproper>
+            </titlestmt>
+            <publicationstmt id="muddAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special
+                    Collections.</publisher>
+                <address>
+                    <addressline>Seeley G. Mudd Manuscript Library</addressline>
+                    <addressline>65 Olden Street</addressline>
+                    <addressline>Princeton, New Jersey 08540 USA</addressline>
+                    <addressline>Phone: 609-258-6345</addressline>
+                    <addressline>Fax: 609-258-3385</addressline>
+                    <addressline>mudd@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~mudd</addressline>
+                </address>
+                <date type="publication" normal="2009/2009">2009</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid encoded in EAD 2002 by Daniel Brennan on <date
+                    normal="2009-03-24">March 24, 2009</date>. </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic"
+                    >Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-05-02">2012-05-02T15:34:41.922-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2012-07-10">2012-07-10T15:08:00.09-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2012-07-17">2012-07-17T12:16:18.999-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2017-04-27">2017-04-27T16:33:14.697-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2017-04-28">2017-04-28T16:27:30.575-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2018-04-24">2018-04-24T12:23:11.402-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+        <did>
+            <unitid type="collection" countrycode="US" repositorycode="US-NjP">AC001</unitid>
+            <repository id="univarchives">
+                <corpname source="viaf" authfilenumber="http://viaf.org/viaf/268919187">Princeton
+                    University. Library. Dept. of Rare Books and Special Collections.</corpname>
+                <subarea>Seeley G. Mudd Manuscript Library.</subarea>
+                <subarea>Princeton University Archives.</subarea>
+                <address>
+                    <addressline>65 Olden Street</addressline>
+                    <addressline>Princeton, New Jersey 08540 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>General Manuscripts Collection</unittitle>
+            <unitdate type="inclusive" normal="1765/2016">1765-2016</unitdate>
+            <unitdate type="bulk" normal="1836/2016">1836-2016</unitdate>
+            <physdesc>
+                <extent unit="footage">1.25 linear feet</extent>
+                <extent>3 boxes</extent>
+            </physdesc>
+            <origination>
+                <corpname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/129838879"
+                    >Seeley G. Mudd Manuscript Library.</corpname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>The General Manuscripts Collection consists of manuscripts and small
+                collections of papers and records which are related in some way to the history of
+                Princeton University. While most documents in the General Manuscripts collection
+                were produced by alumni or student organizations, there are several documents
+                produced by trustees, faculty, and other members of the University community. </abstract>
+            <physloc type="code">mudd</physloc>
+        </did>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The General Manuscripts Collection consists of individual manuscripts and small
+                    collections of papers and records which are related in some way to the history,
+                    students, and alumni of Princeton University. The vast majority of the documents
+                    in the General Manuscripts collection were produced by alumni, although there
+                    are several exceptions such as trustees or other members of the University
+                    community.</p>
+                <p>Notes within the contents list provide further details on the contents of
+                    individual folders.</p>
+            </scopecontent>
+            <arrangement>
+                <p>Documents within the General Manuscripts Collection are arranged alphabetically
+                    by the name of the individual or organization that authored or created them.</p>
+            </arrangement>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>Collection is open for research use.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. For quotations that are
+                    fair use as defined under <extref
+                        xlink:href="http://www.princeton.edu/copyright/copyright-basics/fair-use/"
+                        xlink:type="simple">U. S. Copyright Law</extref>, no permission to cite or
+                    publish is required. The Trustees of Princeton University hold copyright to all
+                    materials generated by Princeton University employees in the course of their
+                    work. If copyright is held by Princeton University, researchers will not need to
+                    obtain permission, complete any forms, or receive a letter to move forward with
+                    non-commercial use of materials from the Mudd Library. For materials where the
+                    copyright is not held by the University, researchers are responsible for
+                    determining who may hold the copyright and obtaining approval from them. If you
+                    have a question about who owns the copyright for an item, you may request
+                    clarification by emailing mudd@princeton.edu. </p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>The documents which comprise the General Manuscripts Collection have been
+                    collected by the Seeley G. Mudd Manuscript Library over a span of several years,
+                    primarily beginning in the 1990s. Whenever possible, accession numbers have been
+                    included with folder descriptions.</p>
+            </acqinfo>
+            <appraisal>
+                <p>No information on appraisal is available.</p>
+            </appraisal>
+            <accruals>
+                <p>Additions are made to the General Manuscripts Collection when materials which fit
+                    the scope of the collection are accessioned by the Library.</p>
+            </accruals>
+        </descgrp>
+        <descgrp id="dacs6">
+            <relatedmaterial>
+                <p>As the General Manuscripts collection touches upon such a broad range of subject,
+                    the Seeley G. Mudd Manuscript Library holds numerous collections which are
+                    related to it in some way. These include the Student Writings and Correspondence
+                    Collection, the Historic Subject Files, the Princetoniana Collection, and the
+                    Scrapbook and Autograph Book Collections. The Library also holds undergraduate
+                    alumni files for many of the authors of these materials.</p>
+            </relatedmaterial>
+        </descgrp>
+        <descgrp id="dacs7">
+            <note>
+                <p>The manuscripts and collections which comprise the General Manuscripts Collection
+                    have all been cataloged individually, and are searchable through the <extref
+                        xlink:href="http://catalog.princeton.edu" xlink:type="simple"> Princeton
+                        University Library's online catalog</extref> . The information presented in
+                    this finding aid duplicates that found in the online catalog records.</p>
+            </note>
+            <prefercite>
+                <p>Identification of specific item; Date (if known); General Manuscripts Collection,
+                    Box and Folder Number; University Archives, Department of Rare Books and Special
+                    Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>This collection was processed by <name role="processor">Mudd Library
+                    Staff</name>. Finding aid written by <name role="author">Daniel Brennan</name>
+                    in <date type="processed" normal="2009-03">March 2009</date>.</p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Shield." xlink:href="bioghist-images/shieldlogo.jpg"
+            xlink:type="simple"/>
+        <controlaccess>
+            <corpname source="lcnaf">Princeton University -- Student life.</corpname>
+            <corpname source="lcnaf">Princeton University -- Students -- 19th century.</corpname>
+            <corpname source="lcnaf">Princeton University -- Students -- 20th century.</corpname>
+            <subject source="lcsh">Education, Higher</subject>
+            <genreform source="aat">Correspondence.</genreform>
+            <subject source="local" encodinganalog="690" authfilenumber="t48" rules="local"
+                >Princeton University</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c level="file" id="AC001_c24">
+                <did>
+                    <unitid type="accessionnumber">AR.2016.136</unitid>
+                    <container type="box">3</container>
+                    <unittitle>C.H. Andrews Speech "On National Ingratitude"</unittitle>
+                    <unitdate normal="1820/1820">1820</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Speech given by C.H. Andrews titled "On National Ingratitude" at Nassau Hall
+                        on February 18, 1820 on the topic of a lack of gratitude for the country's
+                        veterans.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c002">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">1</container>
+                    <unittitle>
+                        <emph render="italic">Letter of A. Frank McFadden to the Princeton
+                            University Athletic Association</emph>
+                    </unittitle>
+                    <unitdate normal="1883-04-14">1883 April 14</unitdate>
+                    <unitid type="accessionnumber">AR.2001.042</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>The Athletic Association is the organization which oversees the
+                        administration of Princeton University's athletic programs.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of one letter containing an invitation for participation in the
+                        spring sports of the Philadelphia Fencing and Sparring Club/</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c003">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">2 to 3</container>
+                    <unittitle>
+                        <emph render="italic">Lafayette Butler Newsletters</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1905/1907">1905-1907</unitdate>
+                    <physdesc>
+                        <extent type="computed">2 folders</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Lafayette Butler was a member of the Princeton Class of 1908.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Contains copies of <emph render="italic">The Eagle, </emph>a campus
+                        newsletter written by Lafayette Butler, Class of 1908.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c004">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">4</container>
+                    <unittitle>
+                        <emph render="italic">James Campbell Davis Letter to David B. Smith</emph>
+                    </unittitle>
+                    <unitdate normal="1848-04-26">1848 April 26</unitdate>
+                    <unitid type="accessionnumber">AR.1992.041</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>James Campbell Davis was a member of the Princeton University Class of
+                        1849</p>
+                </bioghist>
+                <scopecontent>
+                    <p>One letter from James Campbell Davis to David B. Smith concerning the
+                        upcoming Presidential election of 1848 and other current affairs.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c005">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">5</container>
+                    <unittitle>
+                        <emph render="italic">Thomas H. English Papers Relating to Morris H.
+                            Croll</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1917/1965">1917-1965</unitdate>
+                    <unitid type="accessionnumber">AR.1993.027</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>(Correspondence between Thomas H. English, Class of 1918 and English
+                        Professor Morris H. Croll, as well as papers regarding the posthumous
+                        printing of Croll's work.)</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c006">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">6</container>
+                    <unittitle>
+                        <emph render="italic">Reminiscences of a Trustee</emph>
+                    </unittitle>
+                    <unitdate normal="1913/1913">1913</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Wilson Farrand was an active trustee of Princeton University during the early
+                        part 20th century.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of typed reminiscences of Princeton University trustee Wilson
+                        Farrand describing the dispute between then-president Woodrow Wilson and
+                        Andrew Fleming West regarding the location of the proposed graduate school.
+                        Also included is a retelling of Senator James Smith, Jr.'s nomination of
+                        Woodrow Wilson for the office of governor of New Jersey in 1910.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c007">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">7</container>
+                    <unittitle>
+                        <emph render="italic">Carole Grayson Student Teaching Journal</emph>
+                    </unittitle>
+                    <unitdate normal="1974/1974">1974</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Carole Grayson was a member of the Princeton University Class of 1974.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of the journal kept by Carole Grayson documenting her experiences as
+                        a student teacher at Princeton High School.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c008">
+                <did>
+                    <container type="box">1</container>
+                    <container type="folder">8</container>
+                    <unittitle>
+                        <emph render="italic">Minute Book</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1913/1915">1913-1915</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>The Hour-Glass Society was a short lived organization at Princeton
+                        University's Graduate College dedicated to the discussion of questions of a
+                        philosophical, ethical, or religious nature. The Society held regular Sunday
+                        evening meetings at which professors or other guest speakers would lecture
+                        on a chosen topic. Topics ranged from "the relation of reason to faith" to
+                        "what is sin?"</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of one book of meeting minutes documenting the organization and
+                        activities of the Hour-Glass Society. Mentioned in the entries are the
+                        lecture topic of given meetings as well as the speaker and the number of
+                        attendees.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c22">
+                <did>
+                    <unitid type="accessionnumber">AR.2016.135</unitid>
+                    <container type="box">3</container>
+                    <unittitle>Insurance Policy on the Life of Benedict Jaeger</unittitle>
+                    <unitdate type="inclusive" normal="1840/1840">1840</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Benedict Jaeger was a professor of Germanic Languages and Literature.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Insurance policy taken out by Professors John Maclean, Albert Dod, and Joseph
+                        Henry on the life of Jaeger for four hundred dollars.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c009">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">1</container>
+                    <unittitle>
+                        <emph render="italic">Edward MacMillan Letters</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1917/1919">1917-1919</unitdate>
+                    <unitid type="accessionnumber">AR.2003.089</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Edward Allen MacMillan was a member of Princeton's Class of 1918. He served
+                        in France with the American Expeditionary Force in World War I, and then
+                        returned to the campus as the head of Grounds and Buildings. MacMillan Hall
+                        was so named in recognition of his service to the University.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of 19 letters written by Edward MacMillan to the Kopp family of
+                        Princeton from the front lines in France during World War I. In the letters
+                        MacMillan discusses the trials of warfare as well as lighter matters, such
+                        as news of fellow Princetonians and regimental baseball games.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c010">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">2</container>
+                    <unittitle>
+                        <emph render="italic">Elementary Plates in Mechanical Drawing</emph>
+                    </unittitle>
+                    <unitdate normal="1890/1890">1890</unitdate>
+                    <unitid type="accessionnumber">AR.1998.076</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Gilbert MacMillan was a member of the Princeton Class of 1891.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Book of numbered and colored mechanical drawings produced by Gilbert
+                        MacMillan while an undergraduate.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c011">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">3</container>
+                    <unittitle>Nassau Hall, "Burning of Nassau Hall"</unittitle>
+                    <unitdate normal="1855/1855">1855</unitdate>
+                    <unitid type="accessionnumber">AR.2000.116</unitid>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>A detailed account of the 1855 fire which consumed Nassau Hall, penned by an
+                        unknown eyewitness.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c012">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">4</container>
+                    <unittitle>
+                        <emph render="italic">Minute and Subscription Books</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1836/1842">1836-1842</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>The Nassau Hall Missionary Society was an organization formed in 1836 by
+                        students and faculty of the College of New Jersey for the purpose of
+                        collecting donations for foreign missions. The first elected leader of the
+                        organization was President James Carnahan, and in its first year the group
+                        raised 78 dollars for charity. As the records cease after 1842, the eventual
+                        fate of the Nassau Hall Missionary Society is unclear.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of two volumes containing the meeting minutes and the financial
+                        accounts of the Nassau Hall Missionary Society.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c013">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">5-6</container>
+                    <unittitle>
+                        <emph render="italic">Henry Fairfield Osborn Papers</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1857/1935">1857-1935</unitdate>
+                    <physdesc>
+                        <extent type="computed">2 folders</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Henry Fairfield Osborn was a member of the Princeton class of 1877, one of
+                        the earliest graduates of the School of Science. He returned to Princeton in
+                        1883 after graduate study as a professor of comparative anatomy, where he
+                        distinguished himself as one of the foremost scholars in biology and
+                        paleontology in America. During this time Osborn also assisted in the
+                        administration of the college, balancing accounts and reorganizing the
+                        athletics program.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of numerous documents relating to the financial accounts of the
+                        College of New Jersey (later Princeton University) at the end of the 19th
+                        century. While there are some general reports of the treasurer present in
+                        the collection, most of the records directly relate to Henry Fairfield
+                        Osborn's efforts to fund the redevelopment of the college’s athletic fields
+                        and facilities.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c014">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">7</container>
+                    <unittitle>
+                        <emph render="italic">Princeton Postcards</emph>
+                    </unittitle>
+                    <unitdate normal="1996/1996">1996</unitdate>
+                    <unitid type="accessionnumber">AR.1997.049</unitid>
+                    <physdesc>
+                        <extent type="computed">portion of 1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Kenneth R. Perry is a member of the Princeton Class of 1950.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>A set of 52 postcards sent by R. Kenneth Perry to Princeton President Harold
+                        Shapiro from various towns and locations named Princeton throughout the
+                        United States.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c020">
+                <did>
+                    <container type="box">3</container>
+                    <unittitle>
+                        <emph render="italic">Correspondence Between Gerald H. Rosen '55 *59 and
+                            Professor John A. Wheeler</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1979/1989">1979-1989</unitdate>
+                    <unitid type="accessionnumber">AR.2012.070</unitid>
+                    <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Correspondence Between Gerald H. Rosen '55 *59 and Professor John A. Wheeler
+                        primarily consisting of letters of thanks from Rosen to Wheeler for having
+                        provided him letters of recommendation.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c015">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">7</container>
+                    <unittitle>
+                        <emph render="italic">Stevens Family Journal</emph>
+                    </unittitle>
+                    <unitdate type="inclusive" normal="1898/1912">1898-1912</unitdate>
+                    <unitid type="accessionnumber">AR.2009.002</unitid>
+                    <physdesc>
+                        <extent type="computed">portion of 1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Weld Merrick Stevens and his brother Laurance Stevens were members of the
+                        Princeton Class of 1904.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of one journal kept by the family of Weld Merrick and Laurance
+                        Stevens '04. The journal, written in many hands, describes weather, social
+                        events, outings, and family genealogy.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c016">
+                <did>
+                    <container type="box">3</container>
+                    <unittitle>
+                        <emph render="italic">Receipt for Expenses of a Woodworker, Signed by
+                            Richard Stockton as Trustee of College of New Jersey</emph>
+                    </unittitle>
+                    <unitdate normal="1765/1765">1765</unitdate>
+                    <unitid type="accessionnumber">AR.2010.071</unitid>
+                    <physdesc>
+                        <extent type="computed">1 box</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Richard Stockton, Class of 1748, served as a trustee of the College from
+                        1757-1781. Stockton was a signer of the Declaration of Independence.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>The receipt is for the expenses of woodworker Caleb Bruen. He lists charges
+                        for paying and boarding his apprentice, a "mantell tree," and a door frame,
+                        totaling 3 pounds. It is signed by Stockton and Judge John Berrien, a judge
+                        of the Supreme Court of New Jersey and fellow trustee.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c23">
+                <did>
+                    <unitid type="accessionnumber">AR.2016.134</unitid>
+                    <container type="box">3</container>
+                    <unittitle>
+                        <emph render="italic">Diary of John M. Van Dyke, Class of 1872</emph>
+                    </unittitle>
+                    <unitdate normal="1888/1889" type="inclusive">1888-1889</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="AC001_c017">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">9</container>
+                    <unittitle>
+                        <emph render="italic">Drawing of East College</emph>
+                    </unittitle>
+                    <unitdate normal="1868/1868">1868</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>George W. Van Wagenen was a member of the Princeton Class of 1868.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of a pencil on paper sketch labeled "Our Room - East College"
+                        depicting the artist's dorm room and furnishings.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c018">
+                <did>
+                    <container type="box">2</container>
+                    <container type="folder">10</container>
+                    <unittitle> Theodore Von Laue Letters</unittitle>
+                    <unitid type="accessionnumber">AR.2006.067</unitid>
+                    <unitdate type="inclusive" normal="1942/1943">1942-1943</unitdate>
+                    <physdesc>
+                        <extent type="computed">1 folder</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Theodore H. Von Laue was a member of the Princeton University Graduate School
+                        class of 1939. Upon the entrance of the United States into the Second World
+                        War, Von Laue began a newsletter for the purpose of distributing news about
+                        the activities of his fellow graduate students, particularly those in the
+                        Department of History.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Consists of 36 letters and postcards sent to Theodore Von Laue by Princeton
+                        graduate students serving in the armed forces during the early years of
+                        American involvement in the Second World War, which generally discuss
+                        military life and current events. Also included are four issues of Von
+                        Laue's informal newsletter, written to keep the history students in the
+                        service up to date on each other's locations as well as apprised of emerging
+                        trends in the study of history.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c019">
+                <did>
+                    <unittitle>Charles McAlpin, Certificate as life member of American National Red
+                        Cross</unittitle>
+                    <unitdate normal="1916-03-10">1916 March 10</unitdate>
+                    <unitid type="accessionnumber">AR.2010.157</unitid>
+                    <container type="cabinet">4</container>
+                    <container type="drawer">5</container>
+                    <physdesc>
+                        <extent type="computed">1 item</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>Signed by Woodrow Wilson</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c021">
+                <did>
+                    <container type="box">3</container>
+                    <unittitle>
+                        <emph render="italic">"Breakfast in Princeton, USA: A Year-Long Odyssey--1996"</emph>
+                    </unittitle>
+                    <unitdate normal="2016/2016">2016</unitdate>
+                    <unitid type="accessionnumber">AR.2016.096</unitid>
+                    <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+                <bioghist>
+                    <p>Kenneth R. Perry is a member of the Princeton Class of 1950.</p>
+                </bioghist>
+                <scopecontent>
+                    <p>Book, signed by the author, published by Kenneth Perry '1950 documenting road
+                        trips he and his wife took to every town in the United States named
+                        Princeton. Each stop along the journey includes photographs and historical
+                        information about each location.</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="AC001_c25">
+                <did>
+                    <container type="box">3</container>
+                    <unittitle>Robert Montgomery Brown '1930 Guest Book, News Clippings and
+                        Photographs</unittitle>
+                    <unitdate normal="1928/1930" type="inclusive">1928-1930</unitdate>
+                    <unitid type="accessionnumber">AR.2013.144</unitid>
+                    <physdesc>
+                        <extent type="computed">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This folder contains a guest book of signatures for Robert Montgomery Brown's
+                        dormitory room, #6 Middle Dod, as well as news clippings, both loose and
+                        glued into the guest book, and news photographs of Brown and his room.
+                        Robert Montgomery Brown, Class of 1930, attracted press attention for his
+                        domestic "Rube Goldberg" contraptions such as the alarm clock that would
+                        trigger the mechanics to boil an egg.</p>
+                </scopecontent>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

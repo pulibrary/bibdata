@@ -1,0 +1,440 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" scriptencoding="iso15924" >
+        <eadid url="http://arks.princeton.edu/ark:/88435/2b88qc23v" countrycode="US" mainagencycode="US-NjP" urn="ark:/88435/2b88qc23v">WC038</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>George C. Fraser Collection, <date normal="1886/1935" type="inclusive">1886-1935</date>: Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Rare Books Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2008">2008</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2012">2012-12-06T12:52-0500</date>
+            </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-12-06">2012-12-06T12:53:08.058-05:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+        <did>
+            <unitid countrycode="US" repositorycode="US-NjP" type="collection">WC038</unitid>
+            <repository id="rarebooks">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Rare Books Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>George C. Fraser Collection</unittitle>
+            <unitdate normal="1886/1935" type="inclusive">1886-1935</unitdate>
+            <physdesc>
+                <extent >4.0 linear feet</extent>
+                <extent unit="boxes">11 boxes</extent>
+            </physdesc>
+            <origination>
+                <persname source="uncontrolled" role="cre">Fraser, George C. (George Corning), 1872-1935.</persname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>Consists of twelve diaries (1886-1922) containing typed or hand-written notes, approximately 2,110 photographs, approximately 350 lantern
+                slides, and 100 postcards of Fraser (Princeton University Class of 1893) relating to his trips to the Southern and Southwestern United States
+                and Canada with different family members and one (1886-1889) from several trips as a youth to Europe and the Middle East.</abstract>
+            <physloc type="code">rcpxr</physloc>
+            <physloc type="code">rarebooks</physloc>
+            <physloc type="text">Boxes 1-7 are stored offsite at the ReCAP facility. Boxes 8-11 are stored onsite.</physloc>
+        </did>
+        <bioghist>
+            <p>George C. Fraser was a member of the Princeton University Class of 1893.</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The collection consists of twelve diaries (1886-1922) containing typed or hand-written notes, photographs, and postcards of Fraser (Princeton
+                    University Class of 1893) relating to his trips to the Southern and Southwestern United States and Canada with different family members and
+                    one (1886-1889) from several trips as a youth to Europe and the Middle East. There are approximately 350 glass lantern slides, many of them
+                    labeled with location and date information. In addition, there are loose papers removed from the diaries, such as maps, letters,
+                    photographs, and printed matter relating to the trips.</p>
+            </scopecontent>
+            <arrangement>
+                <p>This collection is arranged in two series by genre form.</p>
+            </arrangement>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="remotestorage">
+                <p>This collection is stored offsite. Please consult with the Department of Rare Books and Special Collections about having the collection
+                    recalled to Firestone Library for your use. This process normally requires 48-72 hours notice.</p>
+            </accessrestrict>
+            <accessrestrict type="open">
+                <p>This collection is open for research.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when
+                    Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the
+                    Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in
+                    the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <custodhist>
+                <p>The glass lantern slides were given the Princeton Geology Department by the Fraser family following Fraser's death, and were subsequently
+                    transferred to the library.</p>
+                <p>The collection was transferred to the Rare Books division in 2010.</p>
+            </custodhist>
+            <acqinfo>
+                <p>The composite 1914 map was a gift of Art Christiansen in <date normal="2010-10" type="acquisition">October 2010</date>.</p>
+            </acqinfo>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); George C. Fraser Collection, Box and Item Number; Department of Rare Books and Special
+                    Collections, Princeton University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>Finding aid expanded and updated by <name>Valerie Addonizio</name> in <date normal="2009" type="processed">2009</date> and <date normal="2012" type="processed">2012</date>.</p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Library's Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+        <controlaccess>
+            <subject source="lcsh">Travelers -- West (U.S.) -- 20th century.</subject>
+            <subject source="lcsh">Travelers' writings, American -- 20th century.</subject>
+            <geogname source="lcsh">Canada -- Description and travel -- 20th century.</geogname>
+            <geogname source="lcsh">Europe -- Description and travel -- 19th century.</geogname>
+            <geogname source="lcsh">Middle East -- Description and travel -- 19th century.</geogname>
+            <geogname source="lcsh">Southern States -- Description and travel -- 20th century.</geogname>
+            <geogname source="lcsh">West (U.S.) -- Description and travel -- 20th century.</geogname>
+            <geogname source="lcsh">West (U.S.) -- Photographs.</geogname>
+            <genreform source="aat">Clippings -- 20th century.</genreform>
+            <genreform source="aat">Diaries -- 20th century.</genreform>
+            <genreform source="aat">Photographic postcards -- 20th century.</genreform>
+            <genreform source="aat">Photographs -- 20th century.</genreform>
+            <genreform source="aat">Postcards -- 20th century.</genreform>
+            <genreform source="aat">Typescripts -- 20th century.</genreform>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t54">Travel</subject>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t55">Western Americana</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c level="series" id="WC038_c001">
+                <did>
+                    <unittitle>Series 1: Manuscript Travel Material</unittitle>
+                    <unitdate type="inclusive" normal="1886/1922">1886-1922</unitdate>
+                    <physdesc>
+                        <extent unit="boxes">7 boxes</extent>
+                    </physdesc>
+                </did>
+                <arrangement>
+                    <p>This series is arranged chronologically.</p>
+                </arrangement>
+                <scopecontent>
+                    <p>This series consists of diaries and a map containing descriptions and particulars of ordinary life and travel, noting historic events and
+                        scientific phenomena such as vegetation and soil erosion, on trips covering areas of Utah, Arizona, California, Texas, Mississippi,
+                        Louisiana, New Mexico, Kentucky, Tennessee and Ontario, Canada. Seven of the diaries contain approximately 2,110 photographs and
+                        photographic postcards, a majority of which are captioned silver gelatin snapshots made by Fraser himself, ranging from 4x5 cm. to 16x25
+                        cm., along with approximately 100 printed postcards.</p>
+                </scopecontent>
+                <c level="item" id="WC038_c002">
+                    <did>
+                        <unittitle>Diaries and Notes of Travel</unittitle>
+                        <container type="box">1</container>
+                        <container type="item">1</container>
+                        <unitdate normal="1886/1889" type="inclusive">1886-1889</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary of George C. Fraser, January 1, 1886 to August 1888 in four parts: "Book 1: January 1 to May 17, 1886 in Egypt, The
+                            Holy Land, The Eastern Mediterranean, and Constantinople;" "Book 2: May 18 to December 18, 1886, Switzerland, Germany, and London;"
+                            "Book 3: March 19 to April 25, 1888, Spain;" "Book 4: August 1888." 200 pages.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c003">
+                    <did>
+                        <unittitle>Diary</unittitle>
+                        <container type="box">1</container>
+                        <container type="item">2</container>
+                        <unitdate normal="1904/1904">1904</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Manuscript diary dated January 1 to December 31, 1904, written in a journal intended for 1903. Lacking any entries for May through
+                            August. Includes a hand-written Chippawa vocabulary.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c004">
+                    <did>
+                        <unittitle>Travel Diary</unittitle>
+                        <container type="box">1</container>
+                        <container type="item">3</container>
+                        <unitdate normal="1906/1906">1906</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Manuscript diary of a summer trip to Temagami, Ontario, Canada, dated July 5 to October 27, 1906. Includes a hand-written Native
+                            American vocabulary. 173 pages.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c005">
+                    <did>
+                        <unittitle>Diary</unittitle>
+                        <container type="box">1</container>
+                        <container type="item">4</container>
+                        <unitdate normal="1907/1908" type="inclusive">1907-1908</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Manuscript diary dated July 24, 1907 to January 31, 1908. 192 pages.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c006">
+                    <did>
+                        <unittitle>Diary</unittitle>
+                        <container type="box">1</container>
+                        <container type="item">5</container>
+                        <unitdate normal="1908/1908">1908</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Manuscript diary dated February 1, 1908 to June 21, 1908. 72 pages of text.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c007">
+                    <did>
+                        <unittitle>Trip in Southern Utah</unittitle>
+                        <container type="box">2</container>
+                        <container type="item">1</container>
+                        <unitdate normal="1914/1914">1914</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary additionally titled "Memoranda of trip taken by G.C. Fraser, Sr., and Jr., to Southwestern Utah and Northwestern
+                            Arizona." Dated Sunday June 28, 1914 to Thursday, August 6, 1914. Includes approximately 370 silver gelatin snapshots and
+                            photographic postcards (ranging from 4x6 cm. to 18x12.5 cm.), and approximately 15 printed postcards. Most of the photographs have
+                            type-written or hand-written caption information, which also correspond to a guide to illustrations provided at the front of the
+                            diary. Additionally there are clippings, hand-drawn diagrams, etc.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c008">
+                    <did>
+                        <unittitle>Map of Trip in Southern Utah</unittitle>
+                        <container type="box">2</container>
+                        <container type="item">2</container>
+                        <unitdate normal="1914/1914">1914</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>A composite map, made from 4 USGS topographical maps of Arizona/Utah canyon lands (1906 reprint versions of "Saint George," "Kanab,"
+                            "Mt. Dellenbaugh," and "Kaibab"), cut into 36 squares and mounted on cloth, used by Fraser on his July-August 1914 trip through the
+                            area with his son, bearing hand color of geologic features and manuscript notations regarding their route; with digital file of the
+                            map. Roughly 30" x 42". [The folder contains a small color copy; the original map is stored in the oversize folder.]</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c009">
+                    <did>
+                        <unittitle>Notes of a Journey to Southern Utah, California and Texas</unittitle>
+                        <container type="box">3</container>
+                        <unitdate normal="1915/1915">1915</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary additionally titled "Notes of a journey: June 24th to August 19, 1915, made by George C. Fraser &amp; George C.
+                            Fraser, Jr. from New York to San Francisco and return, including a 5 weeks' trip in Southern Utah." Includes approximately 330
+                            silver gelatin snapshots and photographic postcards (ranging from 4x6 cm. to 10.5x23 cm.), and approximately 40 printed postcards.
+                            Most of the photographs have type-written or hand-written caption information, which also correspond to a guide to illustrations
+                            provided at the front of the diary. Additionally there are clippings, hand-drawn diagrams, etc. 221 pages according to original
+                            pagination.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c010">
+                    <did>
+                        <unittitle>Notes of a Journey Summer of 1916 Through the Navajo Country</unittitle>
+                        <container type="box">4</container>
+                        <container type="item">1</container>
+                        <unitdate normal="1916/1916">1916</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary additionally titled "Notes of a journey taken by George C. Fraser and George C. Fraser, Jr., June 24, 1916 to August
+                            3, 1916 to Acoma, Meteor Creater, San Francisco Mountains and through the Navajo Country." Includes approximately 340 silver gelatin
+                            snapshots, ranging from 4x5 cm. to 5.5x17 cm. Most of the photographs have type-written or hand-written caption information, which
+                            also correspond to a guide to illustrations provided at the front of the diary. Additionally there are clippings, hand-drawn
+                            diagrams, etc. 259 pages according to original pagination.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c011">
+                    <did>
+                        <unittitle>Notes of Journeys in the South and Southwest</unittitle>
+                        <container type="box">4</container>
+                        <container type="item">2</container>
+                        <unitdate normal="1917/1918" type="inclusive">1917-1918</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary consisting of notes of journeys through the South (March 26th to April 18th, 1917) and the Southwest (June 30, 1918
+                            to July 26, 1918), including the states of Mississippi, Louisiana, Texas, and New Mexico. Includes approximately 140 silver gelatin
+                            and albumen snapshots and photographic postcards (ranging from 4.5x7.5 cm. to 12x17 cm.), and 7 printed postcards. Most of the
+                            photographs have type-written or hand-written caption information. Additionally there are clippings, hand-drawn diagrams, rubbings,
+                            etc.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c012">
+                    <did>
+                        <unittitle>Notes of Journeys into Mississippi, Texas and the Navajo Country</unittitle>
+                        <container type="box">5</container>
+                        <unitdate normal="1919/1919">1919</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary additionally titled "Notes of journey into Missippi <emph render="italic">[sic]</emph> and Texas, March 23rd to
+                            April 15, 1919." Includes approximately 260 silver gelatin snapshots, albumen prints, and photographic postcards (ranging from
+                            4.5x7.5 cm. to 16x25 cm.), and 6 printed postcards. Most of the photographs have type-written or hand-written caption information,
+                            which also correspond to a guide to illustrations provided at the front of the diary. Additionally there are clippings, hand-drawn
+                            diagrams, etc. 326 pages according to original pagination.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c013">
+                    <did>
+                        <unittitle>Notes of Journeys</unittitle>
+                        <container type="box">6</container>
+                        <unitdate normal="1920/1922" type="inclusive">1920-1922</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary of three separate trips over the span of three years. Includes photographs, postcards, pullman tickets, clippings,
+                            printed programs, etc.</p>
+                        <p>First section titled "Notes of journey to Texas, New Mexico, and Arizona, August 4th to September 15, 1920 with Ann C. Fraser."
+                            Includes approximately 180 silver gelatin snapshots and photographic postcards (ranging from 4.5x7.5 cm. to 8x13 cm.), and 14
+                            printed postcards. Most of the photographs have numbers which correspond to a list of captions provided at the front of the section.
+                            Comprises approximately 100 pages according to original pagination.</p>
+                        <p>Second section titled "Notes of a trip into Kentucky and Tennessee, March and April, 1921." Includes approximately 75 silver gelatin
+                            snapshots and photographic postcards (ranging from 4.5x7 cm. to 15x25 cm.), and 15 printed postcards. Most of the photographs have
+                            numbers which correspond to a list of captions provided at the front of the section. Comprises approximately 18 pages according to
+                            original pagination.</p>
+                        <p>Third section titled "Notes on a Journey to Niagra and Kentucky, March 24th - April 4th, 1922." Includes 17 silver gelatin snapshots
+                            (7x11 cm.). Most photographs have type-written caption information, which also correspond to a guide to illustrations provided at
+                            the back of the section. Comprises approximately 15 pages according to original pagination.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c014">
+                    <did>
+                        <unittitle>Notes of Journey 1922 to Southwestern Utah and Puget Sound</unittitle>
+                        <container type="box">7</container>
+                        <container type="item">1</container>
+                        <unitdate normal="1922/1922">1922</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Typescript diary additionally titled "Notes of a journey, June 23rd to August 11th 1922, with Jane Fraser, Jr. to South Southwestern
+                            Utah, Portland, Oregon, Victoria, B.C., Seattle, Washington, and East via C.M. &amp; St. Paul Railway." Includes approximately 400
+                            silver gelatin snapshots, ranging from 4.5x7 cm. to 9x24 cm. Most of the photographs have numbers which correspond to lists of
+                            captions provided throughout. Additionally there are clippings, hand-drawn maps, printed matter, etc.</p>
+                    </scopecontent>
+                </c>
+                <c level="item" id="WC038_c015">
+                    <did>
+                        <unittitle>Separated Material</unittitle>
+                        <container type="box">7</container>
+                        <container type="folder">1</container>
+                        <unitdate>undated</unitdate>
+                        <physdesc>
+                            <extent unit="items">1.0 item</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>Includes correspondence, maps, diagrams, clippings, printed material, etc. removed from diaries in the collection.</p>
+                    </scopecontent>
+                </c>
+            </c>
+            <c level="series" id="WC038_c016">
+                <did>
+                    <unittitle>Series 2: Glass Lantern Slides</unittitle>
+                    <unitdate type="inclusive" normal="1915/1923">1915-1923</unitdate>
+                    <physdesc>
+                        <extent unit="boxes">4 boxes</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>This series consists of approximately 350 glass lantern slides made by Fraser, possibly to accompany lectures.</p>
+                </scopecontent>
+                <arrangement>
+                    <p>This series has been arranged in 4 boxes.</p>
+                </arrangement>
+                <c level="file" id="WC038_c017">
+                    <did>
+                  <container type="box">8</container>
+                  <container type="box">9</container>
+                  <container type="box">10</container>
+                  <container type="box">11</container>
+                  <container type="box">8</container>
+                  <container type="box">9</container>
+                  <container type="box">10</container>
+                  <container type="box">11</container>
+                        <unittitle>Glass Lantern Slides</unittitle>
+                        
+                        
+                        <unitdate type="inclusive" normal="1915/1923">1915-1923</unitdate>
+                        <physdesc>
+                            <extent type="computed" unit="boxes">4 boxes</extent>
+                        </physdesc>
+                    </did>
+                    <scopecontent>
+                        <p>The slides in this series appear to have once been stored in an original order that has since been lost. Fraser labeled the slides
+                            into series and numbers, some of which appear to match an order that is no longer discernable. Many slides have titles, dates and
+                            numbers, but the original order has not survived. The photographs correspond with Fraser's trips to the western United States in
+                            1915, 1916, 1918, and 1919, all of which are documented in diaries in the collection. At least one slide taken in Zion National Park
+                            is dated 1921 and another slide in Utah dated to 1923.</p>
+                        <p>Topics include geology, local Native Americans (Navajos), landbridges, cliff dwellings, pueblos, and landscapes. Two images of a
+                            rodeo in Payson, Utah are present. Locations include Canyon de Chelly, Monument Valley, Mesa Verde, Acoma Pueblo, Zion, Oraibi Mesa,
+                            Bryce Canyon, Meteor Crater, Grand Canyon, Bright Angel canyon, Temple Creek Canyon, landscapes in New Mexico, Arizona, and
+                            Utah.</p>
+                        <p>There is a high concentration of images of cliff dwellings and pueblos in box 10.</p>
+                    </scopecontent>
+                </c>
+            </c>
+        </dsc>
+    </archdesc>
+</ead>

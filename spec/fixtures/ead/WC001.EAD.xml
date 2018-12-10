@@ -1,0 +1,2410 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9    http://www.loc.gov/ead/ead.xsd" audience="external">
+   <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b" repositoryencoding="iso15511" scriptencoding="iso15924">
+      <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/kw52j809r" urn="ark:/88435/kw52j809r">WC001</eadid>
+      <filedesc>
+         <titlestmt>
+            <titleproper>Philip Ashton Rollins Collection, <date normal="1887/1950" type="inclusive">1887-1950</date> (bulk <date normal="1900/1930" type="bulk">1900-1930</date>):
+               Finding Aid</titleproper>
+         </titlestmt>
+         <publicationstmt id="rbscAddress">
+            <publisher>Princeton University Library. Department of Rare Books and Special
+               Collections.</publisher>
+            <address>
+               <addressline>Manuscripts Division</addressline>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+               <addressline>Phone: (609) 258-3184</addressline>
+               <addressline>Fax: (609) 258-2324</addressline>
+               <addressline>rbsc@princeton.edu</addressline>
+               <addressline>http://www.princeton.edu/~rbsc</addressline>
+            </address>
+            <date type="publication" normal="2004">2004</date>
+         </publicationstmt>
+      </filedesc>
+      <profiledesc>
+         <creation>Machine-readable finding aid encoded in EAD 2002 by Techbooks, Cristela
+            García-Spitz, and Amy E. Armstrong on <date normal="2007-05-30">May 30, 2007</date>.
+            Created from MARC record via MarcEdit and XSL stylesheets in 2007.</creation>
+         <langusage>
+            <language langcode="eng"/>
+         </langusage>
+         <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+               Describing Archives: A Content Standard. </emph>
+         </descrules>
+      </profiledesc>
+      <revisiondesc>
+         <change>
+            <date normal="2012-05-02">2012-05-02T12:40:46.899-04:00</date>
+            <item>Run through PULFA 2.0 normalization routines.</item>
+         </change>
+      </revisiondesc>
+   </eadheader>
+   <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+      <did>
+         <unitid type="collection" countrycode="US" repositorycode="US-NjP">WC001</unitid>
+         <repository id="mss">
+            <corpname source="lcsh" authfilenumber="http://viaf.org/viaf/168350386">Princeton
+               University. Library. Dept. of Rare Books and Special Collections</corpname>
+            <subarea>Manuscripts Division</subarea>
+            <address>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+            </address>
+         </repository>
+         <unittitle>Philip Ashton Rollins Collection</unittitle>
+         <unitdate normal="1887/1950" type="inclusive">1887-1950</unitdate>
+         <unitdate normal="1900/1930" type="bulk">1900-1930</unitdate>
+         <physdesc>
+            <extent unit="footage">14 linear feet</extent>
+            <extent unit="boxes">14 archival boxes, 5 half-size archival boxes, 1 record center
+               carton, 3 flat boxes, 2 oversize flat boxes</extent>
+         </physdesc>
+         <origination>
+            <persname source="viaf" role="col" authfilenumber="http://viaf.org/viaf/71544264">Rollins, Philip Ashton, 1869-1950.</persname>
+         </origination>
+         <langmaterial>
+            <language langcode="eng"/>
+         </langmaterial>
+         <abstract>Consists of personal papers and material related to the American West collected
+            by Philip Ashton Rollins (1869-1950).</abstract>
+         <physloc type="code">mss</physloc>
+      </did>
+      <bioghist>
+         <p>Philip Ashton Rollins was born on January 20, 1869, in Somersworth, New Hampshire.
+            Rollins spent a good deal of time during his youth out West, where he developed a
+            fascination with a culture and lifestyle that would last his entire life. He attended
+            Princeton University and graduated in 1889. He and his wife, Beulah "Pack" Rollins,
+            settled in New York City, where he practiced law. Despite their East Coast home, Mr. and
+            Mrs. Rollins spent much of their time traveling through the western United States.
+            Rollins died in 1950.</p>
+         <p>Throughout his life, Rollins was known as a gentleman scholar, as equally adept at
+            providing a comprehensive look at the world of the cowboy as he was at telling an
+            engaging story. His best known book, <emph render="italic">The Cowboy</emph>, <emph render="italic">An Unconventional History of Civilization on the Old-Time Cattle
+               Range</emph>, was first published in 1922. It was an immediate success, and it has
+            gone through countless editions and printings. <emph render="italic">The Cowboy</emph>
+            has been praised as capturing the tools, trade, and life of American cowboys in a
+            remarkably honest and accurate manner. Another book that brought Rollins fame was <emph render="italic">Jinglebob</emph>, published in 1928. Geared towards a younger
+            audience, <emph render="italic">Jinglebob</emph> told the story of life on the ranch for
+            one cowboy out west. In addition to these well-known works, Rollins edited and wrote
+            several pieces and books that dealt with the Oregon Trail and the overland narratives of
+            early western settlers, as well as other articles that dealt with cowboys and the
+            American West.</p>
+         <p>Rollins was not only a lawyer and a scholar, he was also a benefactor of Princeton who
+            remained closely tied to his alma mater throughout his life. From 1911 until 1913 he
+            served as the president of the Princeton Club in New York City, and he gave a memorable
+            address memorializing Isabella McCosh at the opening of the new McCosh infirmary. He was
+            the chairman and co-founder of the Friends of the Princeton Library in 1930. In 1947,
+            Rollins and his wife presented the Princeton Library with a valuable collection of
+            Western Americana, consisting of a series of imprints and manuscripts that encompassed
+            overland narratives, the western cattle trade and industry, and the Rocky Mountain West.
+            This collection formed the basis for the Western Americana collection at Firestone
+            Library, and it helped to attract the donations of many other Western Americana
+            collectors, making it one of the finest collections of Western Americana in the
+            country.</p>
+      </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+            <p>Supplementing his collection of printed Western Americana, these papers comprise
+               manuscripts, correspondence, documents, photographs, and miscellanea relating to
+               Rollins's interest and involvement in the American West. Included are typed
+               manuscripts-of articles, stories, and a poem, including some variant copies and
+               revisions; of <emph render="italic">Gone Haywire</emph> (1930), his fictionalized
+               autobiography; and of <emph render="italic">The Journey and Travelling Memoranda of
+                  Robert Stuart . . .</emph>, edited by Rollins and published in 1935 as <emph render="italic">The Discovery of the Oregon Trail: Robert Stuart's
+                  Narratives</emph>. Correspondence of Rollins (Princeton Class of 1889), of his
+               wife, Beulah, and of her assistant, Elizabeth Shields, consists primarily of
+               responses from libraries, historical societies, and other sources in connection with
+               his research and collecting.</p>
+            <p>In addition, there are papers of others, including transcripts of 19th-century
+               journals, an autograph manuscript of a diary of an overland trip, and letters from
+               goldminers to their families giving vivid narratives of their experiences;
+               approximately 840 silver gelatin and albumen photographs and postcards (including one
+               photograph album), either taken or collected by Rollins, depicting rodeos, Western
+               towns, gold prospecting, fauna, cattle ranching, and frontier life and travel in such
+               states as Colorado, Arizona, Wyoming, etc. and including images by R.R. Doubleday,
+               J.E. Stimson, W.S. Bowman, and Major Lee Moorhouse; printed material and
+               miscellaneous clippings; and memorabilia/objects, including a lariat and spurs.</p>
+            <p>The following standard abbreviations, or their variations, are used to identify
+               materials in this collection: Ms = manuscript, AMsS = autograph manuscript
+               signed.</p>
+         </scopecontent>
+         <arrangement>
+            <p>The contents of each series are grouped more specifically by the items' natures; and,
+               when possible, they are arranged alphabetically, either according to author or
+               subject.</p>
+         </arrangement>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+            <p>Collection is open for research use.</p>
+         </accessrestrict>
+         <userestrict>
+            <p>Single photocopies may be made for research purposes. No further photoduplication of
+               copies of material in the collection can be made when Princeton University Library
+               does not own the original. Permission to publish material from the collection must be
+               requested from the Associate University Librarian for Rare Books and Special
+               Collections. The library has no information on the status of literary rights in the
+               collection and researchers are responsible for determining any questions of
+               copyright.</p>
+         </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <acqinfo>
+            <p>Likely gift of Philip A. and Beulah Rollins, <date type="acquisition" normal="1947">1947</date>. (AM 14436A, AM 2016-51)</p>
+         </acqinfo>
+      </descgrp>
+      <descgrp id="dacs6">
+         <relatedmaterial>
+            <p>Bound manuscripts and scrapbooks, formerly part of the collection, have been
+               cataloged separately as part of C0199 (General Bound Manuscripts).</p>
+         </relatedmaterial>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+            <p>Identification of specific item; Date (if known); Philip Ashton Rollins Collection,
+               Box and Folder Number; Department of Rare Books and Special Collections, Princeton
+               University Library.</p>
+         </prefercite>
+         <processinfo id="processing">
+            <p>This collection was processed by <name role="processor">Jessica Dye</name> in <date type="processed" normal="2004">2004</date>. Finding aid written by <name role="author">Jessica Dye</name> in <date type="processed" normal="2004">2004</date>. Updated by <name role="author">Valerie Addonizio</name> in <date type="processed" normal="2009">2009</date>.</p>
+         </processinfo>
+      </descgrp>
+      <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+      <controlaccess>
+         <persname source="uncontrolled" rules="rda">Doubleday, R.R. -- Sources</persname>
+         <persname source="viaf" authfilenumber="http://viaf.org/viaf/69221215">Moorhouse, Lee,
+            1850-1926 -- Sources.</persname>
+         <persname source="viaf" authfilenumber="http://viaf.org/viaf/45903745">Bowman, W. S.
+            (Walter S.) -- Sources.</persname>
+         <persname source="viaf" authfilenumber="http://viaf.org/viaf/50122765">Stimson, Joseph
+            Elam, 1870-1952 -- Sources.</persname>
+         <subject source="lcsh">Book collectors -- United States -- 20th century --
+            Correspondence.</subject>
+         <subject source="lcsh">Collectors and collecting -- United States -- 20th century --
+            Correspondence.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh88002108">Cowboys -- United States.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2008100232">Cattle trade -- West (U.S.)</subject>
+         <subject source="lcsh">Gold miners -- United States -- 19th century --
+            Correspondence.</subject>
+         <subject source="lcsh">Gold mines and mining -- United States -- History -- 19th century --
+            Sources.</subject>
+         <subject source="lcsh">Journals, American -- 19th century.</subject>
+         <subject source="lcsh">Oregon National Historic Trail -- History.</subject>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85096196">Overland journeys to the Pacific.</subject>
+         <geogname source="lcsh">West (U.S.) -- Description and travel.</geogname>
+         <geogname source="lcsh">West (U.S.) -- History -- To 1848.</geogname>
+         <geogname source="lcsh">West (U.S.) -- History -- 1848-1860.</geogname>
+         <geogname source="lcsh">West (U.S.) -- History -- 1860-1890.</geogname>
+         <genreform source="aat">Correspondence.</genreform>
+         <genreform source="aat">Diaries.</genreform>
+         <genreform source="aat">Manuscripts.</genreform>
+         <genreform source="aat">Photographic postcards.</genreform>
+         <genreform source="aat">Photograph albums.</genreform>
+         <genreform source="aat">Photographs.</genreform>
+         <subject source="local" encodinganalog="690" authfilenumber="t55">Western
+            Americana</subject>
+         <subject source="local" encodinganalog="690" authfilenumber="t2">American history</subject>
+         <subject source="local" encodinganalog="690" authfilenumber="t54">Travel</subject>
+      </controlaccess>
+      <dsc type="combined">
+         <c id="WC001_c0001" level="series">
+            <did>
+               <unittitle>Series 1: Writings of Philip Ashton Rollins</unittitle>
+               <unitdate normal="1922-05-20/1935-06-30" type="inclusive">1922 May 20-1935
+                  June</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">10 boxes (1 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists in part of short, undated manuscripts of stories and other
+                  short works relating to Western themes. It contains notes on and original material
+                  source for <emph render="italic">The Discovery of the Oregon Trail</emph>, edited
+                  by Rollins, and it also includes some of Rollins's works published in newspapers
+                  and periodicals. Additionally, this series contains research notes on a wide
+                  variety of subjects and press clippings, reviews, and editorials regarding his
+                  better-known works such as <emph render="italic">Jinglebob</emph> and <emph render="italic">The Cowboy</emph>. The manuscripts and published works are
+                  organized alphabetically; the original source material is kept together; the
+                  research notes are organized alphabetically by subject; the press clippings are
+                  found at the end of this series.</p>
+            </scopecontent>
+            <arrangement>
+               <p>The manuscripts and published works are organized alphabetically; the original
+                  source material is kept together; the research notes are organized alphabetically
+                  by subject; the press clippings are found at the end of this series.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0002">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">1</container>
+                  <unittitle>P.A. Rollins, short MSS <emph render="italic">Alyce Yvelyn or, The West
+                        Depopulated</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0003">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">2</container>
+                  <unittitle>Short MSS <emph render="italic">Dehorning the Cowboy</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0004">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">3</container>
+                  <unittitle>Short MSS <emph render="italic">Hoedus</emph> and "Inscriptions for
+                     Loaned Books"</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0005">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">4</container>
+                  <unittitle>Short MSS <emph render="italic">An Old Time Ranch</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0006">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">5</container>
+                  <unittitle>Short MSS <emph render="italic">The Penumbra of the Cattle Ranch</emph>
+                     and <emph render="italic">Puck in Camp, or The Whimsical Phases of Tent
+                        Life</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0007">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">6</container>
+                  <unittitle>Short MSS "Victor Hugo as a Novelist" and <emph render="italic">Visiting a Cow-Town</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0008">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">7</container>
+                  <unittitle>Short MSS <emph render="italic">Woman's Share in Colonial New England
+                        Wars</emph>; letter to Mr. de Forest from Rollins; notes regarding news
+                     clippings and story ideas (sources unidentified)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0009">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">8</container>
+                  <unittitle>Notes on proposed works</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0010">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i1">9</container>
+                  <unittitle>Rollins's notes on Wertenbaker's <emph render="italic">Princeton,
+                        1746-1896</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0011">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i2">1</container>
+                  <unittitle>Bound AMsS, <emph render="italic">Gone Haywire: Two Tenderfoots on the
+                        Montana Cattle Range in 1886-A Sequel to</emph> Jinglebob; author's working
+                     copy</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0012">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i2">2</container>
+                  <unittitle>Bound AMsS, <emph render="italic">Dehorning the Cowboy</emph>; author's
+                     working copy</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0013">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i2">3</container>
+                  <unittitle>Bound AMsS, <emph render="italic">The Penumbra of the Cattle
+                        Ranch</emph>; author's working copy</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0014">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i3">1</container>
+                  <unittitle>Notes and manuscript of <emph render="italic">The Journey and</emph>
+                     [sic] <emph render="italic">Travelling Memoranda of Robert Stuart</emph>, ed.
+                     P.A. Rollins</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0015">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i3">2</container>
+                  <unittitle>Robert Stuart's <emph render="italic">Journal</emph> with accompanying
+                     notes, ed. by Rollins; manuscript chapters I-VI</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0016">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i3">3</container>
+                  <unittitle>Robert Stuart's <emph render="italic">Journal</emph>, Rollins'
+                     notes</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0017">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i3">4</container>
+                  <unittitle>Rollins' notes (2 notebooks) on Stuart's <emph render="italic">Journal</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0018">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">1</container>
+                  <unittitle>P.A. Rollins, "Reminiscences of Mrs. McCosh: An Informal Address at the
+                     Annual Meeting of the Ladies Auxiliary to the Isabella McCosh Infirmary", 1935
+                     June8 copies</unittitle>
+                  <unitdate normal="1935-06">1935 June</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0019">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">2</container>
+                  <unittitle>Rollins, "The Kuykendall Collection of Cowboy Equipment" in <emph render="italic">The Colorado Magazine</emph>, Vol. IV, No. 5, 1927
+                     Decemberpgs 191-194</unittitle>
+                  <unitdate normal="1927-12">1927 December</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">portion of 1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0020">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">2</container>
+                  <unittitle>Rollins, "Exit the Cave Man-A Glimpse of Arizona" in <emph render="italic">Progressive Arizona</emph>, Vol. XII, No. 1932 April 4pp. 1,
+                     10</unittitle>
+                  <unitdate normal="1932-04-04">1932 April 4</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">portion of 1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0021">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">3</container>
+                  <unittitle>Rollins, Works published in periodicals, titles beginning with R and T.
+                     [folder empty; see separate package after last box for oversize)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0022">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">4</container>
+                  <unittitle>Rollins, Works published in periodicals, title(s) beginning with T
+                     [folder empty]</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0023">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i4">5</container>
+                  <unittitle>Rollins, "Will James, Author of the Cowboy" in <emph render="italic">The Elementary English Review</emph>, Vol. V, No. 1, 1928 Januarypp.
+                     5-7</unittitle>
+                  <unitdate normal="1928-01">1928 January</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0024">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">1</container>
+                  <unittitle>Research notes, mixed subjects</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0025">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">2</container>
+                  <unittitle>Research notes, by subject: A-F</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0026">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">3</container>
+                  <unittitle>Research notes, by subject: G-M</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0027">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">4</container>
+                  <unittitle>Research notes, by subject: N-R</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0028">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">5</container>
+                  <unittitle>Research notes, by subject: S-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0029">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i5">6</container>
+                  <unittitle>Research notes: miscellaneous</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0030">
+               <did>
+                  <container>
+                     <ptr target="WC001_i6"/>
+                  </container>
+                  <unittitle>Correspondence and reviews on the subject of Rollins's books, v. 1
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0031">
+               <did>
+                  <container>
+                     <ptr target="WC001_i6"/>
+                  </container>
+                  <unittitle>Correspondence and reviews on the subject of Rollins's books, v. 2
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0032">
+               <did>
+                  <container>
+                     <ptr target="WC001_i7"/>
+                  </container>
+                  <unittitle>Correspondence and reviews on the subject of Rollins's books, v. 3
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0033">
+               <did>
+                  <container>
+                     <ptr target="WC001_i7"/>
+                  </container>
+                  <unittitle>Correspondence and reviews on the subject of Rollins's books, v. 4
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0034">
+               <did>
+                  <container>
+                     <ptr target="WC001_i8"/>
+                  </container>
+                  <unittitle altrender="Saturday Evening Post, Vol. 195, no. 46 1923 May 12featuring                      an article by Rollins">The Saturday Evening Post, Vol. 195, no. 46 1923 May
+                     12featuring an article by Rollins</unittitle>
+                  <unitdate normal="1923-05-12">1923 May 12</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0035">
+               <did>
+                  <container>
+                     <ptr target="WC001_i8"/>
+                  </container>
+                  <unittitle altrender="Saturday Evening Post, Vol. 195, no. 46 1926 May 22featuring                      an article by Rollins">The Saturday Evening Post, Vol. 195, no. 46 1926 May
+                     22featuring an article by Rollins</unittitle>
+                  <unitdate normal="1926-05-22">1926 May 22</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0036">
+               <did>
+                  <container>
+                     <ptr target="WC001_i9"/>
+                  </container>
+                  <unittitle>Various newspaper pages, photographs, including portraits of
+                     Rollins</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0037">
+               <did>
+                  <container>
+                     <ptr target="WC001_i9"/>
+                  </container>
+                  <unittitle>Copies of The New York Herald Tribune articles, either by or about
+                     Rollins, also a copy of an American West graphic</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0038">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">1</container>
+                  <unittitle>Pamphlets mentioning Rollins (2)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0039">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">2</container>
+                  <unittitle>Rollins's works published in newspapers (various)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0040">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">3</container>
+                  <unittitle>Various newspaper/periodical articles written by Rollins
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0041">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">4</container>
+                  <unittitle>Assorted reviews of Rollins' <emph render="italic">Gone Haywire</emph>
+                     (scrapbook)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0042">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">5</container>
+                  <unittitle>Rollins' <emph render="italic">The Cowboy</emph>: publisher's
+                     promotional pamphlet</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0043">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">6</container>
+                  <unittitle altrender="Cowboy, editorials/reviews">
+                     <emph render="italic">The Cowboy</emph>, editorials/reviews</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0044">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">7</container>
+                  <unittitle>
+                     <emph render="italic">New York Herald</emph> article "Is the American Cowboy
+                     Passing?" by Maxwell Struthers Burt inscribed to Rollins by the
+                     author</unittitle>
+                  <unitdate normal="1922-05-21">1922 May 21</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0045">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">8</container>
+                  <unittitle>Press clippings for <emph render="italic">The Discovery of the Oregon
+                        Trail</emph>, edited by Rollins</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0046">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">9</container>
+                  <unittitle>Press clippings, <emph render="italic">Jinglebob</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0047">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">10</container>
+                  <unittitle>Additional press clippings, <emph render="italic">The Discovery of the
+                        Oregon Trail</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0048">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">11</container>
+                  <unittitle>Miscellaneous press clippings</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0049">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">12</container>
+                  <unittitle>Press clippings, <emph render="italic">The Cowboy</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0050">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i10">13</container>
+                  <unittitle altrender="Literary Digest, Vol. 73, no. 8; 1922 May 20featuring review                      of Rollins">
+                     <emph render="italic">The Literary Digest</emph>, Vol. 73, no. 8; 1922 May
+                     20featuring review of Rollins</unittitle>
+                  <unitdate normal="1922-05-20">1922 May 20</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0051" level="series">
+            <did>
+               <unittitle>Series 2: Correspondence</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">2 boxes</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of correspondence from Philip Rollins, his wife, Beulah
+                  "Pack" Rollins, and Elizabeth Shields, who was either a friend or relation of the
+                  Rollins (her address was the same as theirs). This series is organized
+                  alphabetically by correspondent.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by correspondent.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0052">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">1</container>
+                  <unittitle>Various correspondence of historical societies (small
+                     envelope)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0053">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">2</container>
+                  <unittitle>Rollins to The Clowns at the Circus (framed)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0054">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">3</container>
+                  <unittitle>Letters re: historical collection (mainly to/by Mrs. B.
+                     Rollins)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0055">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">4</container>
+                  <unittitle>B. Rollins correspondence, unidentified</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0056">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">5</container>
+                  <unittitle>B. Rollins correspondence, A-F</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0057">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">6</container>
+                  <unittitle>B. Rollins correspondence, G-M</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0058">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">7</container>
+                  <unittitle>B. Rollins correspondence, N-R</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0059">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">8</container>
+                  <unittitle>B. Rollins correspondence, S-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0060">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">9</container>
+                  <unittitle>P. Rollins correspondence re: automobile accident</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0061">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">10</container>
+                  <unittitle>P. Rollins correspondence re: friends</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0062">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">11</container>
+                  <unittitle>P. Rollins correspondence, unidentified</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0063">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">12</container>
+                  <unittitle>P. Rollins correspondence, A-F</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0064">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">13</container>
+                  <unittitle>P. Rollins correspondence, G-M</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0065">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">14</container>
+                  <unittitle>P. Rollins correspondence, N-R</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0066">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i11">15</container>
+                  <unittitle>P. Rollins correspondence, S-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0067">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i12">1</container>
+                  <unittitle>Elizabeth Shields correspondence, A-M</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0068">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i12">2</container>
+                  <unittitle>Elizabeth Shields correspondence, N-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0069" level="series">
+            <did>
+               <unittitle>Series 3: Documents</unittitle>
+               <unitdate normal="1924-01-01/1950-12-31" type="inclusive">1924-1950</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">8 folders</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of various documents belonging to or pertaining to Rollins.
+                  This series is organized as follows: miscellaneous documents (organized
+                  alphabetically), financial documents, Princeton documents (divided according to
+                  those from his time as an undergraduate and those from his time as an alumnus),
+                  legal documents, and various documents relating to Rollins. Included at the end of
+                  this series is the inaugural issue of <emph render="italic">Biblia</emph>.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged by genre of material.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0070">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">1</container>
+                  <unittitle>Miscellaneous documents, A-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0071">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">2</container>
+                  <unittitle>Financial documents: notes, tax receipts, etc.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0072">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">3</container>
+                  <unittitle>Princeton documents, 1887-1889</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0073">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">4</container>
+                  <unittitle>Princeton documents</unittitle>
+                  <unitdate type="inclusive" normal="1924/1950">1924-1950</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0074">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">5</container>
+                  <unittitle>Legal documents</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0075">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">6</container>
+                  <unittitle>Copies of letters reacting to <emph render="italic">The Cowboy</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0076">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">7</container>
+                  <unittitle>Various documents re: P. Rollins</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0077">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i13">8</container>
+                  <unittitle>Documents, newsletters (<emph render="italic">Biblia</emph>) re:
+                     Friends of the Princeton Library</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0163">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i14">1</container>
+                  <unittitle>Edward A. Rollins (Father), Official Documents</unittitle>
+                  <unitdate type="inclusive" normal="1863/1882">1863-1882</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">1 box</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>Includes a passport and certificates of government appointments as Cashier of
+                     Internal Duties and Deputy Commissioner and Commissioner of Internal Revenue,
+                     signed by Abraham Lincoln and Andrew Johnson.</p>
+               </scopecontent>
+            </c>
+         </c>
+         <c id="WC001_c0078" level="series">
+            <did>
+               <unittitle>Series 4: Writings of Authors Other Than Rollins</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">2 boxes (1 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists primarily of original source material, possibly as research
+                  for Rollins's works. Included are typed, unpublished manuscripts, bibliographies,
+                  letters, notebooks, Rollins's own notes, and journals. This series is organized by
+                  author.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged by author.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0079">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">1</container>
+                  <unittitle>Photocopy of the cover of O. Allen's <emph render="italic">Guide
+                        Book</emph>: <emph render="italic">Map to the Gold Fields of Kansas and
+                        Nebraska</emph>
+                  </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0080">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">2</container>
+                  <unittitle>William W. Austin, "Three Unpublished Manuscript Letters written from
+                     the Overland Trail and Sacramento, California", 1850</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0081">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">3</container>
+                  <unittitle>George Belshaw, "Journey from Indiana to Oregon", March 23 to September
+                     27, 1853</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0082">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">4</container>
+                  <unittitle>Margaret Bierschwale, "English of the Texas Range" (submitted for MA at
+                     Columbia University)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0083">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">5</container>
+                  <unittitle>"Graphical Record of the End of the War", inscribed to Rollins
+                     (author's unknown)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0084">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">6</container>
+                  <unittitle>Various Correspondence/Documents</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0085">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">7</container>
+                  <unittitle>Charles Wells Hayes: Bibliography of his collection (?) from the
+                     Buffalo Historical Society-part 1, A-L</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0086">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i15">8</container>
+                  <unittitle>Charles Wells Hayes: Bibliography of his collection (?) from the
+                     Buffalo Historical Society-part 2, M-Z</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0087">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">1</container>
+                  <unittitle>Patrick H. McLeod: Notebook #1</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0088">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">2</container>
+                  <unittitle>McLeod: Notebook #2</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0089">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">3</container>
+                  <unittitle>McLeod: Notebook #3</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0090">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">4</container>
+                  <unittitle>McLeod: Notebook #4</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0091">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">5</container>
+                  <unittitle>McLeod: Notebook #5</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0092">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">6</container>
+                  <unittitle>McLeod: six letters to his wife</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0093">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">7</container>
+                  <unittitle>McLeod: Journal of school proceedings in Township (??) 56</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0094">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">8</container>
+                  <unittitle>J. Frank Dobie: "Life and Literature of the Southwest-An Incomplete
+                     Guide to Books on Texas and the Southwest," manuscript inscribed by the
+                     author</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0095">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">9</container>
+                  <unittitle>Letter from Howard Egean (?) dated January 18, 1841</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0096">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">10</container>
+                  <unittitle>Thomas Gundry et als., 35 manuscript letters from miners in Colorado,
+                     Idaho, and Washington Territories</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0097">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">11</container>
+                  <unittitle>Walter Hawed, "The Rise of the Livestock Industry in Southeastern
+                     Wyoming", two copies</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0098">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">12</container>
+                  <unittitle>James O. Raynor, "Journal of a Tour from Iowa to Oregon, April 1847
+                     (published 1848)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0099">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">13</container>
+                  <unittitle>James O. Raynor, 16 Letters with notes from Rollins (?)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0100">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">14</container>
+                  <unittitle>Mrs. Ada Hinckley Chapman, "Recollections of my grandfather, Riley
+                     Root, regarding incidents and facts of his life" (1939), incl. a letter from
+                     Edward Caldwell</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0101">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">15</container>
+                  <unittitle>Various notes from an unidentifiable author on Cyrus Shepherd's (???)
+                     journal (1834)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0102">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">16</container>
+                  <unittitle>Extracts from book written (never printed) by J.L. Sanderson
+                     (proprietors of Slide &amp; American Mines)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0103">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">17</container>
+                  <unittitle>Rev. Herman Snow, "Journal of a Trip to Utah in 1863", notes extracted
+                     from Snow's diary</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0104" level="series">
+            <did>
+               <unittitle>Series 5: Correspondence of Authors Other Than Rollins</unittitle>
+               <unitdate normal="1937-01-01/1937-12-31" type="inclusive">1937</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portions of 2 boxes</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of correspondence to and from authors other than Rollins. It
+                  is organized according to author.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged by author.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0105">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">18</container>
+                  <unittitle>Various writers' correspondence</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0106">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">19</container>
+                  <unittitle>M.A. Violette, "Day Book", 1849</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0107">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">20</container>
+                  <unittitle>Sam P. Ridings, 1937letter to B. Rollins</unittitle>
+                  <unitdate normal="1937/1937">1937</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0108">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i16">[21]</container>
+                  <unittitle>Bound transcript, "Journal of Cyrus Shepherd", 1834-5 (Series
+                     IV)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0109">
+               <did>
+                  <container>
+                     <ptr target="WC001_i6"/>
+                  </container>
+                  <unittitle>"Autographs of Americans" (scrapbook), including note by Abraham
+                     Lincoln</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0110" level="series">
+            <did>
+               <unittitle>Series 6: Photographs and Films</unittitle>
+               <unitdate normal="1922-01-01/1922-12-31" type="inclusive">1922</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">5 boxes</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of approximately 840 photographs depicting a diverse array of
+                  subjects, mainly focused on the Western way of life, including landscapes, ranch
+                  scenes, wildlife, cattle drives, rodeos, and photographs of Rollins or his wife
+                  traveling through the West. There is a large collection of original postcards
+                  (approximately 290) produced by the Pendleton Drug Company to celebrate the
+                  Pendleton (Oregon) Round Up circa 1922. They include images by Oregon and other
+                  Western photographers such as R.R. Doubleday, J.E. Stimson, W.S. Bowman, and Major
+                  Lee Moorhouse. There is one photograph album dedicated to gold prospecting and
+                  mining; photographs are on a variety of mounts, including board, and vary in size.
+                  This series is organized loosely by subject of the photographs. Box 16 contains
+                  twelve canisters and boxes of home movies, variously titled "Beaver," "Moose,"
+                  etc. Box 23 contains Rollins' photographs taken as part of the Princeton
+                  Scientific Expedition of 1889.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0111">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">1-3</container>
+                  <unittitle>Rodeo Postcards, mostly from the Pendleton Roundup</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">3 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0112">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">4</container>
+                  <unittitle>Duplicate Rodeo Postcards</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0113">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">5</container>
+                  <unittitle>Photographs of P. Rollins out West</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0114">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">6</container>
+                  <unittitle>Photographs from Rollins' miscellaneous trips West</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0115">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">7</container>
+                  <unittitle>Photographs of baby bears</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0116">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">8</container>
+                  <unittitle>Photographs from an unspecified canyon (Grand Canyon?)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0117">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">9</container>
+                  <unittitle>Photographs from Santa Fe</unittitle>
+                  <unitdate normal="1922/1922">1922</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0118">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i17">10</container>
+                  <unittitle>Photographs of the Cowboy Statue in Austin, TX</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0119">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">1</container>
+                  <unittitle>Photographs: Canyons (Grand Canyon?) and mountains (Rocky
+                     Mountains?)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0120">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">2</container>
+                  <unittitle>Photographs from a Rollins trip West/Northwest</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0121">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">3</container>
+                  <unittitle>Photographs of B. Rollins out West</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0122">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">4</container>
+                  <unittitle>Photographs from a Western U.S. city (Denver?)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0123">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">5</container>
+                  <unittitle>Miscellaneous rodeo photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0124">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">6</container>
+                  <unittitle>Photographs from a trip to Colorado</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0125">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">7</container>
+                  <unittitle>Nature photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0126">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">8</container>
+                  <unittitle>Photographs from Venice (?) and non-Western photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0127">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i18">[9]</container>
+                  <unittitle>Photograph album containing gold prospecting photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0128">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">1</container>
+                  <unittitle>Various large rodeo photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0129">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">2</container>
+                  <unittitle>Mounted photographs-western/ranch life</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0130">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">3</container>
+                  <unittitle>Photographs of P. Rollins in the West</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0131">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">4</container>
+                  <unittitle>Photographs of chipmunks and longhorns</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0132">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">5</container>
+                  <unittitle>Photographs from Chester A. Arthur's trip through Wyoming</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0133">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">6</container>
+                  <unittitle>Photographs-Santa Fe, 1922cattle in New Mexico</unittitle>
+                  <unitdate normal="1922/1922">1922</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0134">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">7</container>
+                  <unittitle>Photographs-Ranch; rodeo champion</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0135">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">8</container>
+                  <unittitle>Miscellaneous western/ranch photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0136">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">9-10</container>
+                  <unittitle>Mounted photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">2 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0137">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">11</container>
+                  <unittitle>Negatives for some of Rollins' photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0138">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">12</container>
+                  <unittitle>Duplicate photographs and pictures</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0139">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">13</container>
+                  <unittitle>Papers included with the photograph collection</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0140">
+               <did>
+                  
+                  <container type="folder" parent="WC001_i19">14</container>
+                  <unittitle>Original drawing, "Zane Grey, Karl Edwin Harriman, Emerson Hough and
+                     Philip Ashton Rollins discuss Western Fiction," signed "G.M."</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0141">
+               <did>
+                  <container>
+                     <ptr target="WC001_i20"/>
+                  </container>
+                  <unittitle>9 reel-to-reel films in 7" canisters: titled "Round Up I," "Round Up
+                     II," "Goats 1928," "Colorado" [empty], "Mouse," "Beaver," "Part of Beaver,"
+                     "Moose," "Goat's Reproduction (?)"</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0142">
+               <did>
+                  <container>
+                     <ptr target="WC001_i20"/>
+                  </container>
+                  <unittitle>2 reel-to-reel films (3.75") in boxes: titled "Sam Thompson's birthday,
+                     All Leaving Round Up" and untitled</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0143">
+               <did>
+                  <container>
+                     <ptr target="WC001_i20"/>
+                  </container>
+                  <unittitle>1 reel-to-reel film (3"): titled "Junius Morgan at Ivy Club June
+                     1929"</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0144">
+               <did>
+                  <container type="box">23</container>
+                  <unittitle>"Photographs Taken during the Princeton Scientific Expedition of
+                     1889"</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">1 box</extent>
+                  </physdesc>
+               </did>
+               <scopecontent>
+                  <p>Photograph album presented to the Library by Rollins, Class of 1889. The
+                     photographs are captioned; participants include Prof. W. B. Scott, H. M.
+                     Alexander (Class of 1890), James Boyd (Class of 1886), Furman Kneeland (Class
+                     of 1889), and Arthur M. Miller (Class of 1884). Numerous camp scenes and daily
+                     activities.</p>
+               </scopecontent>
+            </c>
+            <c level="file" id="WC001_c0159">
+               <did>
+                  <unitid type="accessionnumber">AM 2016-51</unitid>
+                  
+                  <container type="folder" parent="WC001_i21">1</container>
+                  <unittitle>Portraits of Rollins</unittitle>
+                  <unitdate type="inclusive" normal="1870/1905">circa 1870-1905</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0160">
+               <did>
+                  <unitid type="accessionnumber">AM 2016-51</unitid>
+                  
+                  <container type="folder" parent="WC001_i21">2</container>
+                  <unittitle>Portraits of Rollins</unittitle>
+                  <unitdate type="inclusive" normal="1905/1945">circa 1905-1945</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0161">
+               <did>
+                  <unitid type="accessionnumber">AM 2016-51</unitid>
+                  
+                  <container type="folder" parent="WC001_i21">3</container>
+                  <unittitle>Family and Group Photographs</unittitle>
+                  <unitdate type="inclusive" normal="1875/1915">circa 1875-1915</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0162">
+               <did>
+                  <unitid type="accessionnumber">AM 2016-51</unitid>
+                  
+                  <container type="folder" parent="WC001_i21">4</container>
+                  <unittitle>Miscellaneous Photographs</unittitle>
+                  <unitdate type="inclusive" normal="1915/1923">circa 1915-1923</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0145" level="series">
+            <did>
+               <unittitle>Series 7: Clippings</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of various press clippings and entire periodicals that focus
+                  either on Rollins or the West.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged by genre of material.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0146">
+               <did>
+                  <container>
+                     <ptr target="WC001_i22"/>
+                  </container>
+                  <unittitle>Miscellaneous clippings (2 folders)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0147">
+               <did>
+                  <container>
+                     <ptr target="WC001_i22"/>
+                  </container>
+                  <unittitle>Miscellaneous publications (1 folder)</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0148" level="series">
+            <did>
+               <unittitle>Series 8: Printed Material</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of pamphlets and assorted printed ephemera. Some make mention
+                  of Rollins or his work.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0149">
+               <did>
+                  <container>
+                     <ptr target="WC001_i23"/>
+                  </container>
+                  <unittitle>Pamphlets and ephemera</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="WC001_c0150" level="series">
+            <did>
+               <unittitle>Series 9: Souvenirs/Objects</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>This series consists of an assortment of souvenirs acquired by Rollins. Among them
+                  include souvenirs from his Western travels as well as some souvenirs from his
+                  Princeton days.</p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="WC001_c0151">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>Cloth sign from Yellowstone National Park</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0152">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>Sign bearing the Rollins names used on an ambulance during WWI and a
+                     small metal plate commemorating Princeton's involvement in the signing of the
+                     Declaration of Independence</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0153">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>Paper bag bearing Rollins's signature</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0154">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>leather lariat (EX 4517)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0155">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>2 pairs of spurs (EX 4518)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0156">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>leather stirrup (broken) (EX 4519)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0157">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>horse shoe fragment (EX 4520)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="WC001_c0158">
+               <did>
+                  <container>
+                     <ptr target="WC001_i24"/>
+                  </container>
+                  <unittitle>2 bronze horse heads (EX 4522, 4523), signed on base "Gutzon Borglum"
+                     (creator of the presidential faces on Mt. Rushmore)</unittitle>
+                  <unitdate>undated</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">portion of 1 box</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+      </dsc>
+      <!--<dsc type="othertype">
+         <c level="otherlevel" otherlevel="item" id="WC001_i1">
+            <did>
+               <container type="box">B-000089</container>
+               <unitid type="barcode">32101080599127</unitid>
+               <physloc type="code">mss</physloc>
+            </did>
+         </c>
+      </dsc>-->
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101037676093</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101037676085</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101037676077</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101037676069</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i5">
+            <did>
+               <container type="box">5</container>
+               <unitid type="barcode">32101037676051</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i6">
+            <did>
+               <container type="box">19</container>
+               <unitid type="barcode">32101036944641</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i7">
+            <did>
+               <container type="box">20</container>
+               <unitid type="barcode">32101036944658</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i8">
+            <did>
+               <container type="box">21</container>
+               <unitid type="barcode">32101036944674</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i9">
+            <did>
+               <container type="box">22</container>
+               <unitid type="barcode">32101036944666</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i10">
+            <did>
+               <container type="box">6</container>
+               <unitid type="barcode">32101037676044</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i11">
+            <did>
+               <container type="box">7</container>
+               <unitid type="barcode">32101037676036</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i12">
+            <did>
+               <container type="box">8</container>
+               <unitid type="barcode">32101037676028</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i13">
+            <did>
+               <container type="box">9</container>
+               <unitid type="barcode">32101037676010</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i14">
+            <did>
+               <container type="box">25</container>
+               <unitid type="barcode">32101080848185</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i15">
+            <did>
+               <container type="box">10</container>
+               <unitid type="barcode">32101037676002</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i16">
+            <did>
+               <container type="box">11</container>
+               <unitid type="barcode">32101037676317</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i17">
+            <did>
+               <container type="box">12</container>
+               <unitid type="barcode">32101037676309</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i18">
+            <did>
+               <container type="box">13</container>
+               <unitid type="barcode">32101037676291</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i19">
+            <did>
+               <container type="box">14</container>
+               <unitid type="barcode">32101037676283</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i20">
+            <did>
+               <container type="box">15</container>
+               <unitid type="barcode">32101037676275</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i21">
+            <did>
+               <container type="box">B-000089</container>
+               <unitid type="barcode">32101080599127</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i22">
+            <did>
+               <container type="box">16</container>
+               <unitid type="barcode">32101037676267</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i23">
+            <did>
+               <container type="box">17</container>
+               <unitid type="barcode">32101037676259</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="WC001_i24">
+            <did>
+               <container type="box">18</container>
+               <unitid type="barcode">32101037676242</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

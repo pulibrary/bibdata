@@ -1,0 +1,810 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"  repositoryencoding="iso15511" scriptencoding="iso15924">
+        <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/0c483j422" urn="ark:/88435/0c483j422">C0426</eadid>
+        <filedesc>
+            <titlestmt>
+                <titleproper>N. Howell Furman Papers, <date normal="1903/1961" type="inclusive">1903-1961</date>: Inventory</titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of
+                    Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date type="publication" normal="2007">2007</date>
+            </publicationstmt>
+        </filedesc>
+        <profiledesc>
+            <creation>Machine-readable finding aid encoded in EAD 2002 by Techbook and Cristela
+                García-Spitz on <date normal="2007-10-12">12 October 2007</date>. Created from MARC
+                record via MarcEdit and XSL stylesheets in 2007. </creation>
+            <langusage>
+                <language langcode="eng"/>
+            </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">Describing Archives: A Content Standard.</emph>
+            </descrules>
+        </profiledesc>
+        <revisiondesc>
+            <change>
+                <date normal="2012-05-02">2012-05-02T12:11:50.585-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+            <change>
+                <date normal="2014-01-08">2014-01-08T15:06:02.466-05:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+    </eadheader>
+    <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+        <did>
+            <unitid type="collection" countrycode="US" repositorycode="US-NjP">C0426</unitid>
+            <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare
+                    Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+            <unittitle>N. Howell Furman Papers</unittitle>
+            <unitdate normal="1903/1961" type="inclusive">1903-1961</unitdate>
+            <physdesc>
+                <extent unit="footage">22.5 linear feet</extent>
+                <extent unit="boxes">21 record center cartons</extent>
+            </physdesc>
+            <origination>
+                <persname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/34521280">Furman, N. Howell (Nathaniel
+                    Howell), 1892-1965.</persname>
+            </origination>
+            <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+            <abstract>N. Howell Furman (Princeton Class of 1913) was a professor of analytical
+                chemistry at Princeton. His collection consists of scholarly papers, correspondence,
+                miscellaneous material relating to the teaching of chemistry at
+                Princeton.</abstract>
+            <physloc type="code">rcpxm</physloc>
+        </did>
+        <bioghist>
+            <p>N. Howell Furman (Princeton Class of 1913) was a professor of analytical chemistry at
+                Princeton.</p>
+        </bioghist>
+        <descgrp id="dacs3">
+            <scopecontent>
+                <p>The collection consists of scholarly papers, correspondence, miscellaneous
+                    material relating to the teaching of chemistry at Princeton, and printed matter
+                    of Furman (Princeton Class of 1913), professor of analytical chemistry. The
+                    collection contains his lecture notes, articles, papers, and notebooks, as well
+                    as his professional correspondence. There are files of student papers,
+                    laboratory work, notebooks, and undergraduate and Ph.D. general examinations.
+                    Also included are reports of chemical analyses, minutes of departmental
+                    meetings, records of supplies and equipment, notebooks of students' grades,
+                    files regarding the Atomic Energy Commission, and material relating to his
+                    interest in polarography. Furman’s "Report of Travel," a typewritten manuscript
+                    illustrated with photographs, documents his fellowship-funded trip to European
+                    chemical plants and university laboratories in 1927 and 1928; it includes a
+                    large copy of Bartholomew’s map of Europe (1925) with Furman’s route shown in
+                    red ink. In addition, there is printed material including abstracts of papers
+                    and offprints of articles by Furman and others.</p>
+            </scopecontent>
+            <arrangement>
+                <p>This is an unprocessed collection and remains in its original arrangement.</p>
+            </arrangement>
+        </descgrp>
+        <descgrp id="dacs4">
+            <accessrestrict type="open">
+                <p>Collection is open for research use.</p>
+            </accessrestrict>
+            <accessrestrict type="remotestorage">
+                <p>Please consult with Rare Books and Special Collections about having the
+                    collection recalled to Firestone Library for your use. This process normally
+                    requires 48-72 hours notice.</p>
+            </accessrestrict>
+            <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication
+                    of copies of material in the collection can be made when Princeton University
+                    Library does not own the original. Permission to publish material from the
+                    collection must be requested from the Associate University Librarian for Rare
+                    Books and Special Collections. The library has no information on the status of
+                    literary rights in the collection and researchers are responsible for
+                    determining any questions of copyright.</p>
+            </userestrict>
+        </descgrp>
+        <descgrp id="dacs5">
+            <acqinfo>
+                <p>The papers were a gift of Mrs. Nathaniel Howell Furman. Furman's "Report of
+                    Travel" was a gift of Lisa Hawley in 2014.</p>
+            </acqinfo>
+        </descgrp>
+        <descgrp id="dacs7">
+            <prefercite>
+                <p>Identification of specific item; Date (if known); N. Howell Furman Papers, Box
+                    and Folder Number; Department of Rare Books and Special Collections, Princeton
+                    University Library.</p>
+            </prefercite>
+            <processinfo id="processing">
+                <p>This is an unprocessed collection. The contents list provided is a preliminary
+                    inventory.</p>
+                <p>The collection inventory was created by <name role="processor">Michael
+                        Heist</name> in <date type="processed" normal="2007-08">August
+                    2007</date>.</p>
+            </processinfo>
+        </descgrp>
+        <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+        <controlaccess>
+            <corpname source="viaf" authfilenumber="http://viaf.org/viaf/134242404">U.S. Atomic Energy
+                Commission.</corpname>
+            <subject source="lcsh">Chemistry, Analytic -- New
+                Jersey -- Princeton -- 20th century.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh2010103938">Nuclear energy
+                -- United States.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85104165">Polarograph and
+                polarography.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85023012">Chemistry,
+                Analytic -- Qualitative.</subject>
+            <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85023013">Chemistry,
+                Analytic -- Quantitative.</subject>
+            <subject source="lcsh">Chemistry, Analytic -- Study
+                and teaching -- New Jersey -- Princeton -- 20th century.</subject>
+            <genreform source="aat">Correspondence.</genreform>
+            <genreform source="aat">Lecture notes.</genreform>
+            <genreform source="aat">Examinations.</genreform>
+            <occupation source="lcsh">Chemists -- New Jersey --
+                Princeton.</occupation>
+            <occupation source="lcsh">Princeton University --
+                Faculty.</occupation>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t31">History
+                of science</subject>
+            <subject source="local" encodinganalog="690" rules="local" authfilenumber="t48">Princeton University</subject>
+        </controlaccess>
+        <dsc type="combined">
+            <c level="file" id="C0426_c001">
+                <did>
+                    <container>
+                  <ptr target="C0426_i1"/>
+               </container>
+                    <unittitle>Exams</unittitle>
+                    <unitdate type="inclusive" normal="1930/1959">1930s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c002">
+                <did>
+                    <container>
+                  <ptr target="C0426_i2"/>
+               </container>
+                    <unittitle>Exams</unittitle>
+                    <unitdate type="inclusive" normal="1930/1959">1930s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c003">
+                <did>
+                    <container>
+                  <ptr target="C0426_i3"/>
+               </container>
+                    <unittitle>Exams</unittitle>
+                    <unitdate type="inclusive" normal="1930/1959">1930s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c004">
+                <did>
+                    <container>
+                  <ptr target="C0426_i4"/>
+               </container>
+                    <unittitle>Exams and lecture notes</unittitle>
+                    <unitdate type="inclusive" normal="1933/1946">circa 1933-1946</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c005">
+                <did>
+                    <container>
+                  <ptr target="C0426_i5"/>
+               </container>
+                    <unittitle>Lecture notes</unittitle>
+                    <unitdate type="inclusive" normal="1938/1950">circa 1938-1950</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c006">
+                <did>
+                    <container>
+                  <ptr target="C0426_i6"/>
+               </container>
+                    <unittitle>Course notes, Chemistry 301 - 302</unittitle>
+                    <unitdate type="inclusive" normal="1937/1956">circa 1937-1956</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c007">
+                <did>
+                    <container>
+                  <ptr target="C0426_i6"/>
+               </container>
+                    <unittitle>Notes on chemical equilibrium by Robert M. Pease, student</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c008">
+                <did>
+                    <container>
+                  <ptr target="C0426_i7"/>
+               </container>
+                    <unittitle>Notebooks - experiments</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c009">
+                <did>
+                    <container>
+                  <ptr target="C0426_i7"/>
+               </container>
+                    <unittitle>Research notes</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c010">
+                <did>
+                    <container>
+                  <ptr target="C0426_i7"/>
+               </container>
+                    <unittitle>Lecture notes</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c011">
+                <did>
+                    <container>
+                  <ptr target="C0426_i7"/>
+               </container>
+                    <unittitle>circa 1918-1946</unittitle>
+                    <unitdate type="inclusive" normal="1918/1946">circa 1918-1946</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c012">
+                <did>
+                    <container>
+                  <ptr target="C0426_i8"/>
+               </container>
+                    <unittitle>Class notes and student materials - graduate course in
+                        Chemistry</unittitle>
+                    <unitdate type="inclusive" normal="1941/1955">1941-1955</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c013">
+                <did>
+                    <container>
+                  <ptr target="C0426_i9"/>
+               </container>
+                    <unittitle>A.E.C. materials</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c014">
+                <did>
+                    <container>
+                  <ptr target="C0426_i9"/>
+               </container>
+                    <unittitle>Research notebooks from Furman's research team</unittitle>
+                    <unitdate type="inclusive" normal="1945/1948">1945-1948</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c015">
+                <did>
+                    <container>
+                  <ptr target="C0426_i9"/>
+               </container>
+                    <unittitle>Lab records</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c016">
+                <did>
+                    <container>
+                  <ptr target="C0426_i9"/>
+               </container>
+                    <unittitle>Student records</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c017">
+                <did>
+                    <container>
+                  <ptr target="C0426_i10"/>
+               </container>
+                    <unittitle>Research at Princeton, Furman and others, including some work for the
+                        Department of Defense</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c018">
+                <did>
+                    <container>
+                  <ptr target="C0426_i11"/>
+               </container>
+                    <unittitle>Miscellaneous reports and project data, Princeton
+                        University</unittitle>
+                    <unitdate type="inclusive" normal="1940/1949">1940s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>[some DOD research]</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="C0426_c019">
+                <did>
+                    <container>
+                  <ptr target="C0426_i12"/>
+               </container>
+                    <unittitle>Miscellaneous reports and project data, Princeton
+                        University</unittitle>
+                    <unitdate type="inclusive" normal="1940/1949">1940s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+                <scopecontent>
+                    <p>[some DOD research]</p>
+                </scopecontent>
+            </c>
+            <c level="file" id="C0426_c020">
+                <did>
+                    <container>
+                  <ptr target="C0426_i13"/>
+               </container>
+                    <unittitle>Notes, reports, and publications regarding Polarography</unittitle>
+                    <unitdate type="inclusive" normal="1947/1949">1947-1949</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c021">
+                <did>
+                    <container>
+                  <ptr target="C0426_i14"/>
+               </container>
+                    <unittitle>Publications by others and correspondence regarding
+                        Polarography</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c022">
+                <did>
+                    <container>
+                  <ptr target="C0426_i14"/>
+               </container>
+                    <unittitle>Graduate student materials</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c023">
+                <did>
+                    <container>
+                  <ptr target="C0426_i14"/>
+               </container>
+                    <unittitle>Undergraduate gradebooks</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c024">
+                <did>
+                    <container>
+                  <ptr target="C0426_i15"/>
+               </container>
+                    <unittitle>Research notes, experiments, reports</unittitle>
+                    <unitdate type="inclusive" normal="1940/1959">1940s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c025">
+                <did>
+                    <container>
+                  <ptr target="C0426_i16"/>
+               </container>
+                    <unittitle>Research notes: projects by organization/company</unittitle>
+                    <unitdate type="inclusive" normal="1940/1959">1940s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c026">
+                <did>
+                    <container>
+                  <ptr target="C0426_i16"/>
+               </container>
+                    <unittitle>Reports, de-classification bulletins</unittitle>
+                    <unitdate type="inclusive" normal="1940/1959">1940s - 1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c027">
+                <did>
+                    <container>
+                  <ptr target="C0426_i17"/>
+               </container>
+                    <unittitle>Reports, correspondence and submissions by others for "Scott's
+                        Standard Methods of Chemistry," 6th edition, which Furman edited</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c028">
+                <did>
+                    <container>
+                  <ptr target="C0426_i17"/>
+               </container>
+                    <unittitle>Research notes and reports - Merck and other chemical /
+                        pharmaceutical companies</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c029">
+                <did>
+                    <container>
+                  <ptr target="C0426_i18"/>
+               </container>
+                    <unittitle>Graduate student records, laboratory timesheets, and miscellaneous
+                        correspondence</unittitle>
+                    <unitdate type="inclusive" normal="1940/1949">1940s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c030">
+                <did>
+                    <container>
+                  <ptr target="C0426_i19"/>
+               </container>
+                    <unittitle>Class / student records</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c031">
+                <did>
+                    <container>
+                  <ptr target="C0426_i19"/>
+               </container>
+                    <unittitle>Research notes</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c032">
+                <did>
+                    <container>
+                  <ptr target="C0426_i19"/>
+               </container>
+                    <unittitle>Reviews of award nominees and/or PhD candidates</unittitle>
+                    <unitdate>dates not examined</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c033">
+                <did>
+                    <container>
+                  <ptr target="C0426_i20"/>
+               </container>
+                    <unittitle>Class notes, student records</unittitle>
+                    <unitdate type="inclusive" normal="1940/1949">1940s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c034">
+                <did>
+                    <container>
+                  <ptr target="C0426_i21"/>
+               </container>
+                    <unittitle>PhD propositions</unittitle>
+                    <unitdate type="inclusive" normal="1950/1959">1950s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c035">
+                <did>
+                    <container>
+                  <ptr target="C0426_i21"/>
+               </container>
+                    <unittitle>Department notebooks, Princeton Department of Chemistry</unittitle>
+                    <unitdate type="inclusive" normal="1904/1931">1904-1931</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c036">
+                <did>
+                    <container>
+                  <ptr target="C0426_i21"/>
+               </container>
+                    <unittitle>Letters of recommendation</unittitle>
+                    <unitdate type="inclusive" normal="1960/1969">1960s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c037">
+                <did>
+                    <container>
+                  <ptr target="C0426_i21"/>
+               </container>
+                    <unittitle>Fellowship reports</unittitle>
+                    <unitdate type="inclusive" normal="1920/1929">1920s</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c level="file" id="C0426_c38">
+                <did>
+                    <container>
+                  <ptr target="C0426_i21"/>
+               </container>
+                    <unittitle>"Report of Travel" to Europe</unittitle>
+                    <unitdate type="inclusive" normal="1927/1928">1927-1928</unitdate>
+                    <physdesc>
+                        <extent type="computed" unit="boxes">portion of 1 box</extent>
+                    </physdesc>
+                </did>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101040811380</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101040811398</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101040811406</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101040811414</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i5">
+            <did>
+               <container type="box">5</container>
+               <unitid type="barcode">32101040811422</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i6">
+            <did>
+               <container type="box">6</container>
+               <unitid type="barcode">32101040811430</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i7">
+            <did>
+               <container type="box">7</container>
+               <unitid type="barcode">32101040811448</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i8">
+            <did>
+               <container type="box">8</container>
+               <unitid type="barcode">32101040811455</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i9">
+            <did>
+               <container type="box">9</container>
+               <unitid type="barcode">32101040811463</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i10">
+            <did>
+               <container type="box">10</container>
+               <unitid type="barcode">32101040811471</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i11">
+            <did>
+               <container type="box">11</container>
+               <unitid type="barcode">32101040811489</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i12">
+            <did>
+               <container type="box">12</container>
+               <unitid type="barcode">32101040811497</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i13">
+            <did>
+               <container type="box">13</container>
+               <unitid type="barcode">32101040811505</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i14">
+            <did>
+               <container type="box">14</container>
+               <unitid type="barcode">32101040811513</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i15">
+            <did>
+               <container type="box">15</container>
+               <unitid type="barcode">32101040811521</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i16">
+            <did>
+               <container type="box">16</container>
+               <unitid type="barcode">32101040811539</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i17">
+            <did>
+               <container type="box">17</container>
+               <unitid type="barcode">32101040811547</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i18">
+            <did>
+               <container type="box">18</container>
+               <unitid type="barcode">32101040811554</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i19">
+            <did>
+               <container type="box">19</container>
+               <unitid type="barcode">32101040811562</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i20">
+            <did>
+               <container type="box">20</container>
+               <unitid type="barcode">32101040811570</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0426_i21">
+            <did>
+               <container type="box">21</container>
+               <unitid type="barcode">32101040811588</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

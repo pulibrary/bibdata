@@ -1,0 +1,2863 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+   <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"  repositoryencoding="iso15511" scriptencoding="iso15924">
+      <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/nv9352861" urn="ark:/88435/nv9352861">C0295</eadid>
+      <filedesc>
+         <titlestmt>
+            <titleproper>Thomas Mann Collection, <date normal="1881/1971" type="inclusive">1881-1971</date>: Finding Aid</titleproper>
+         </titlestmt>
+         <publicationstmt id="rbscAddress">
+            <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+            <address>
+               <addressline>Manuscripts Division</addressline>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+               <addressline>Phone: (609) 258-3184</addressline>
+               <addressline>Fax: (609) 258-2324</addressline>
+               <addressline>rbsc@princeton.edu</addressline>
+               <addressline>http://www.princeton.edu/~rbsc</addressline>
+            </address>
+            <date type="publication" normal="2000">2000</date>
+         </publicationstmt>
+      </filedesc>
+      <profiledesc>
+         <creation>Machine-readable finding aid encoded in EAD 2002 by Techbooks, Cristela García-Spitz, and Diann Benti on <date normal="2007-05-11">May 11, 2007</date>. Created from MARC record via MarcEdit and XSL stylesheets in 2007. </creation>
+         <langusage>
+            <language langcode="eng"/>
+         </langusage>
+         <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+               Describing Archives: A Content Standard. </emph>
+         </descrules>
+      </profiledesc>
+      <revisiondesc>
+         <change>
+            <date normal="2012-05-02">2012-05-02T13:04:13.494-04:00</date>
+            <item>Run through PULFA 2.0 normalization routines.</item>
+         </change>
+      </revisiondesc>
+   </eadheader>
+   <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+      <did>
+         <unitid type="collection" countrycode="US" repositorycode="US-NjP">C0295</unitid>
+         <repository id="mss">
+            <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+            <subarea>Manuscripts Division</subarea>
+            <address>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+            </address>
+         </repository>
+         <unittitle>Thomas Mann Collection</unittitle>
+         <unitdate normal="1881/1971" type="inclusive">1881-1971</unitdate>
+         <physdesc>
+            <extent unit="footage">6.1 linear feet</extent>
+            <extent unit="boxes">13 boxes</extent>
+         </physdesc>
+         <origination>
+            <persname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/54151065">Mann, Thomas, 1875-1955.</persname>
+         </origination>
+         <langmaterial>
+            <language langcode="eng"/>
+            <language langcode="ger"/>
+         </langmaterial>
+         <abstract>Consists of letters, manuscripts, photographs, and other materials from Nobel Prize winning author Thomas Mann, given by Caroline Newton, and also of those collected by Princeton University Library with funds provided by Caroline Newton.</abstract>
+         <physloc type="code">mss</physloc>
+      </did>
+      <bioghist>
+         
+         <p>Caroline Newton was a psychoanalyst, once a student of Freud in Vienna. Newton gave generously to Princeton of her books as well as her manuscripts. She was the daughter of the well-known collector A. Edward Newton. The Thomas Mann Collection consists of letters, manuscripts, photographs, and other materials given by Caroline Newton, and also of those collected by Princeton University Library with funds provided by Caroline Newton.</p>
+         <p>Thomas Mann, brother of Heinrich Mann, was an author of novels, plays, and essays. He won the Nobel Prize for Literature in 1929, fled Germany and came to the U.S. (to Princeton) in 1938, and became a citizen in 1944. Among his best-known works (in English translation) are <emph render="italic">Buddenbrooks</emph> (1901), <emph render="italic">Death in Venice</emph> (1912), and <emph render="italic">The Magic Mountain</emph> (1924). Other publications by Mann include <emph render="italic">The Holy Sinner</emph> (New York: Knopf, 1951), <emph render="italic">Die Betrogene</emph> (Frankfurt am Main: Fischer, 1953), <emph render="italic">Der Erwahlte</emph> (Frankfurt am Main: Fischer, 1967).</p>
+         <p>Caroline Newton first met Thomas Mann in Berlin in 1929. When he had to leave Germany in 1937, she offered him her house in Jamestown, Rhode Island, and then she helped the Manns establish their home at 65 Stockton Street, Princeton, New Jersey, in 1938. By then Mann was a major German novelist, winner of the 1929 Nobel Prize for Literature, and author of <emph render="italic">Buddenbrooks</emph>. He wrote <emph render="italic">Lotte in Weimar</emph> and began <emph render="italic">Joseph The Provider </emph> while in Princeton. He died August 12, 1955. Caroline Newton arranged for two Mann commemorations at Princeton in 1964 and 1970. Newton died January 20, 1975 at age 82.</p>
+      </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+            <p>The collection contains works of Mann including lectures, addresses, radio broadcasts (1942-1943), proofs for <emph render="italic">Der Erwahlte </emph>and a chapter of <emph render="italic">Lotte in Weimar, </emph>and a facsimile of <emph render="italic">Die Betrogene, </emph>as well as correspondence between Mann and many German and American intellectuals, such as Charles Neider, Arthur Hubscher, Hans Hulsen, Erich von Kahler, and Caroline Newton. In addition, there are memorabilia, photographs of Mann and several friends (Arturo Toscanini, Bruno Walter, etc.), and printed matter relating to Mann, as well as articles and essays of which he is the subject.</p>
+         </scopecontent>
+
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+            <p>Collection is open for research use.</p>
+         </accessrestrict>
+         <userestrict>
+            <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+         </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <acqinfo>
+            <p>Most of the collection was given to the Library by Caroline Newton and added to with funds she provided. A student of Freud in Vienna, Newton first met Mann in 1929, and later helped the Manns establish their home in Princeton in 1938.</p>
+         </acqinfo>
+      </descgrp>
+      <descgrp id="dacs6">
+         <relatedmaterial>
+            <p>Related collection: Caroline Newton Papers (C0517)</p>
+            <p>
+               <emph render="italic">The Letters of Thomas Mann to Caroline Newton</emph> were printed by Princeton University Library in 1971, with English translation of all 57 letters (1937-1955). A selection of Mann correspondence is printed in <emph render="italic">Thomas Mann Briefe</emph>, S. Fischer Verlag, 1961-1965, 3 volumes, and references are given in this List (call number 3471.73.3185 and EX). Thomas Mann's letters to Caroline Newton are in the Thomas Mann Collection, but letters to her from other members of the Mann family are in the Caroline Newton Papers (C0517).</p>
+         </relatedmaterial>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+            <p>Identification of specific item; Date (if known); Thomas Mann Collection, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+         </prefercite>
+         <processinfo id="processing">
+            <p>Finding aid written in <date type="processed" normal="2000">2000</date>.</p>
+         </processinfo>
+      </descgrp>
+      <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+      <controlaccess>
+         
+         <persname source="lcnaf">Newton, Caroline, 1893- , collector.</persname>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85054360">German fiction -- 20th century.</subject>
+         <subject source="lcsh">Exiles' writings -- 20th century.</subject>
+         <subject source="lcsh">Novelists, German -- 20th century.</subject>
+         <genreform source="aat">Correspondence.</genreform>
+         <genreform source="aat">Galley Proofs (Printing) -- 20th century.</genreform>
+         <genreform source="aat">Lectures.</genreform>
+         <genreform source="aat">Photographic prints.</genreform>
+         <genreform source="aat">Radio scripts.</genreform>
+         <subject rules="local" source="local" encodinganalog="690" authfilenumber="t28">European literature</subject>
+      </controlaccess>
+      <dsc type="combined">
+         <c id="C0295_c0001" level="series">
+            <did>
+               <unittitle>Series 1: Works</unittitle>
+               <unitdate normal="1915-05-01/1959-02-08" type="inclusive">1915 May-1959 February 8</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">14 folders</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of the works of Thomas Mann, primarily addresses and lectures.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0002">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">1</container>
+                  <unittitle>Address: To American guild for German Cultural Freedom, New York, 1937 April 20 (xerox of typescript, in English)</unittitle>
+                  <unitdate normal="1937-04-20">1937 April 20</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">portion of 1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0003">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">1</container>
+                  <unittitle>Address: To World Congress of Writers, 1939 May 9 (xerox of typescript, in English)</unittitle>
+                  <unitdate normal="1939-05-09">1939 May 9</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">portion of 1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0004">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">1</container>
+                  <unittitle>Address: "Dear Friends, Allow me to use this form of address. It is inspired by the words in which you characterise the meaning and purpose of your Congress..." (Translated by Barthold Fles. photocopy of typescript, n.d.)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">portion of 1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0005">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">2</container>
+                  <unittitle>Address to Princeton University Convocation, upon receiving honorary degree of Doctor of Letters, 1939 May 18Original manuscript in German with typescript of English translation</unittitle>
+                  <unitdate normal="1939-05-18">1939 May 18</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0006">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">3</container>
+                  <unittitle>"Die Bertrogene." Facsimile (no. 171) of original AMs, 91 pp.</unittitle>
+                  <unitdate normal="1953/1953">1953</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0007">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">4</container>
+                  <unittitle>
+                     <emph render="italic">Der Erwählte</emph>. Boxed page-proofs, 323 pp.</unittitle>
+                  <unitdate normal="1951/1951">1951</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0008">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">5</container>
+                  <unittitle>Letter to "Svenska Dagbladet," TMsS with holograph corrections, 13 pp., Stockholm</unittitle>
+                  <unitdate normal="1915-05">1915 May</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0009">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">6</container>
+                  <unittitle>"Die Lager" (statement on concentration camps), TMs (carbon), 1945Corrected typescript, 3 pp., and telegraphic version sent to Charles Neider</unittitle>
+                  <unitdate normal="1945/1945">1945</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0010">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">7</container>
+                  <unittitle>Autobiographical lecture (in English), TMs (carbon) with holograph correction, 34 pp. n.d.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0011">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">8</container>
+                  <unittitle>"From Childhood Play to <emph render="italic">Death in Venice</emph>" (lecture), TMs (carbon) with holograph corrections, 19pp., Princeton</unittitle>
+                  <unitdate normal="1940/1940">1940</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0012">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">9</container>
+                  <unittitle>Lecture (in German) on <emph render="italic">Der Zauberberg</emph>, TMs (carbon) with holograph corrections, 16 pp., Princeton, May 1939 and TMs (carbon) with holograph corrections, 17 pp., Princeton</unittitle>
+                  <unitdate normal="1939-05">1939 May</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0013">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">10</container>
+                  <unittitle>
+                     <emph render="italic">Lotte in Weimar</emph>. Galley proofs of Chapter 5, 1938 April 19. (16 galleys)</unittitle>
+                  <unitdate normal="1938-04-19">1938 April 19</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0014">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">11</container>
+                  <unittitle>"My relation to psychoanalysis," (essay), TMs (carbon) with holograph corrections, 2 pp.</unittitle>
+                  <unitdate normal="1926/1926">1926</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0015">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">12</container>
+                  <unittitle>"Lübeck," transcript of radio broadcast (April 12, 1942) by European Service of the BBC, TMsS (carbon) with holograph corrections, 1942(includes transcript of English translation)</unittitle>
+                  <unitdate normal="1942/1942">1942</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0016">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">13</container>
+                  <unittitle>"America talks to Australia," transcript of radio broadcast, AMs, 3pp., 1943 February 2 (in German)</unittitle>
+                  <unitdate normal="1943-02-02">1943 February 2</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0017">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i1">14</container>
+                  <unittitle>Statement on the German occupation of Austria taken during an interview with Albert Hubbell, TMs with holograph corrections, 3 pp., New York, February 1939 (?). Includes explanatory letter from Albert Hubbell to Charles Neider, January 29, 1959 and Neider's reply</unittitle>
+                  <unitdate normal="1959-02-08">1959 February 8</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0018" level="series">
+            <did>
+               <unittitle>Series 2: Letters from Thomas Mann</unittitle>
+               <unitdate normal="1901-01-01/1975-12-31" type="inclusive">1901-1975</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">3 boxes (1 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of letters written by Thomas Mann to individuals such as Félix Bertaux, Paul Nikolaus Cossmann, and Caroline Newton, as well as others.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by correspondent.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0019">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">1</container>
+                  <unittitle>Paul Bekker (1882-1937) musicologist. 1 letter, Munich</unittitle>
+                  <unitdate normal="1925-09-01">1925 September 1</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0020">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">2</container>
+                  <unittitle>Madame Celine Bertaux, 1 letter, 1948 October 19 ( <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate normal="1948-10-19">1948 October 19</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0021">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">3-7</container>
+                  <unittitle>Félix Bertaux (1881-1948), French translator and critic. 63 letters and postcards, 1923-1948 (4 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1923/1948">1923-1948</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">5 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0022">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">8</container>
+                  <unittitle>Hans Block. 1 letter, Paris</unittitle>
+                  <unitdate normal="1926-01-24">1926 January 24</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0023">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">9</container>
+                  <unittitle>Ida Boy-Ed (1852-1928) novelist. 1 letter, 1922 December 5 ( <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate normal="1922-12-05">1922 December 5</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0024">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">10</container>
+                  <unittitle>Julian P. Boyd. 1 letter</unittitle>
+                  <unitdate normal="1942-09-26">1942 September 26</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0025">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">11</container>
+                  <unittitle>Anna Brenner. 1 letter</unittitle>
+                  <unitdate normal="1947-05-04">1947 May 4</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0026">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">12</container>
+                  <unittitle>Joseph Chapiro (José) (1893-1962). 1 letter and 11 cards</unittitle>
+                  <unitdate type="inclusive" normal="1912/1928">1912-1928</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0027">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">13</container>
+                  <unittitle>Paul Nikolaus Cossmann (1869-1941). 11 letters and 11 cards</unittitle>
+                  <unitdate type="inclusive" normal="1912/1928">1912-1928</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0028">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">14</container>
+                  <unittitle>Edward Cushing. 2 letters, 1938-1939. Regarding aid to Genia Schwarzwald (1940), an Austrian educator</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0029">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">15</container>
+                  <unittitle>J. R. de la Torre Bueno. 1 letter</unittitle>
+                  <unitdate normal="1941-09-07">1941 September 7</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0030">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">16</container>
+                  <unittitle>Dr. Arthur Elösser (1870-1937). 4 cards</unittitle>
+                  <unitdate type="inclusive" normal="1920/1937">1920-1937</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0031">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">17</container>
+                  <unittitle>Fritz Endress (1886-1945), journalist. 11 letters and 9 cards, 1918-1930 (5 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1918/1930">1918-1930</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0032">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">18</container>
+                  <unittitle>Edward Engel. 1 letter, Munich</unittitle>
+                  <unitdate normal="1920-12-02">1920 December 2</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0033">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">19</container>
+                  <unittitle>Ludwig Ewers (1870-1946). 1 letter and 1 card, Munich</unittitle>
+                  <unitdate type="inclusive" normal="1910/1922">1910-1922</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0034">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">20</container>
+                  <unittitle>Dr. Hans Feist (1887-1952), translator. 6 letters, 1946-1949. (1 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1946/1949">1946-1949</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0035">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">21</container>
+                  <unittitle>Hedwig Fischer (Mrs. Samuel Fischer) (1871-1952). 1 letter</unittitle>
+                  <unitdate normal="1935-06-08">1935 June 8</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0036">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">22</container>
+                  <unittitle>Samuel Fischer (1859-1934), publisher. 8 letters and 4 transcripts</unittitle>
+                  <unitdate type="inclusive" normal="1903/1924">1903-1924</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0037">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">23-26</container>
+                  <unittitle>Alexander M. Frey (1881-1957), author. 50 letters, 7 cards, and 1 telegram, 1929-1954 (10 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1929/1954">1929-1954</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">4 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0038">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">27</container>
+                  <unittitle>Herr Frisch. 2 letters, 1947 and 1949</unittitle>
+                  <unitdate normal="1947/1947">1947</unitdate>
+                  <unitdate normal="1949/1949">1949</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0039">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">28</container>
+                  <unittitle>William D. Geer. 1 letter, n.d.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0040">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">29</container>
+                  <unittitle>Herr Gottlieb. 1 letter</unittitle>
+                  <unitdate normal="1936-01-03">1936 January 3</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0041">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">30</container>
+                  <unittitle>Dr. Hahne. 2 letters</unittitle>
+                  <unitdate normal="1951/1951">1951</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0042">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">31</container>
+                  <unittitle>Dr. Ernst Hanhart. 3 letters, 15 cards</unittitle>
+                  <unitdate type="inclusive" normal="1921/1936">1921-1936</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0043">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">32</container>
+                  <unittitle>Herr Hannecher. 1 letter, Munich</unittitle>
+                  <unitdate normal="1916-01-06">1916 January 6</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0044">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">33</container>
+                  <unittitle>Rudolf Heidler. 1 letter, Munich</unittitle>
+                  <unitdate normal="1915-10-15">1915 October 15</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0045">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">34</container>
+                  <unittitle>Dr. Carl Heine, theatre director. 1 letter, 1907 March 12 (published?)</unittitle>
+                  <unitdate normal="1907-03-12">1907 March 12</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0046">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">35</container>
+                  <unittitle>Herr Himminghoffer. 1 letter, Munich</unittitle>
+                  <unitdate normal="1930-06-23">1930 June 23</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0047">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">36</container>
+                  <unittitle>Ludwig von Hofman (1861-1945). 1 card</unittitle>
+                  <unitdate normal="1931-08-16">1931 August 16</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0048">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">37</container>
+                  <unittitle>Karl Hönn (1883-). 3 letters</unittitle>
+                  <unitdate type="inclusive" normal="1916/1925">1916-1925</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0049">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">38-41</container>
+                  <unittitle>Dr. Arthur Hübscher (1899-), editor of <emph render="italic">Suddeutsche Monatshifte</emph>. 1.) 4 letters, 1926-1928; 2.) "Antwort an Arthur Hübscher" (corrected typescript and galley proof); 3.) 20 letters to Hübscher from various people about Thomas Mann's "Betrachtungen eines Unpolitischen,"</unittitle>
+                  <unitdate normal="1928/1928">1928</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">4 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0050">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i2">42-48</container>
+                  <unittitle>Hans von Hülsen (1890-), critic and Hauptmann biographer. 54 letters and 48 cards, 1908-1934 (with typed transcriptions)</unittitle>
+                  <unitdate type="inclusive" normal="1908/1934">1908-1934</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">7 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0051">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">1</container>
+                  <unittitle>George B. de Huszar. 2 letters</unittitle>
+                  <unitdate normal="1945/1945">1945</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0052">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">2</container>
+                  <unittitle>Herr Isaac. 1 letter, 1946 August 31 (with author's corrections)</unittitle>
+                  <unitdate normal="1946-08-31">1946 August 31</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0053">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">3</container>
+                  <unittitle>Arnold Eugene Jenny. 1 letter in English</unittitle>
+                  <unitdate normal="1945-09-18">1945 September 18</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0054">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">4</container>
+                  <unittitle>Charles H. Jordan. 1 letter, Tulsa, 1938 March 18 (with English translation in pencil)</unittitle>
+                  <unitdate normal="1938-03-18">1938 March 18</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0055">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">5</container>
+                  <unittitle>Antoinette von Kahler. 3 letters</unittitle>
+                  <unitdate type="inclusive" normal="1940/1947">1940-1947</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0056">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">6-9</container>
+                  <unittitle>Erich von Kahler (1885-1970). 55 letters and 2 cards, 1931-1955 (these have all been published, in German and in English; translation in <emph render="italic">An Exceptional Friendship</emph>, )</unittitle>
+                  <unitdate normal="1975/1975">1975</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">4 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0057">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">10</container>
+                  <unittitle>Dr. Alfred Kantorowicz. 5 letters</unittitle>
+                  <unitdate type="inclusive" normal="1943/1954">1943-1954</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0058">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">11</container>
+                  <unittitle>Robert Klein. 1 letter, Princeton</unittitle>
+                  <unitdate normal="1940-12-04">1940 December 4</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0059">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">12</container>
+                  <unittitle>Herr Klöber. 1 letter</unittitle>
+                  <unitdate normal="1951-04-09">1951 April 9</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0060">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">13</container>
+                  <unittitle>Max Krell. 2 letters, Munich, 1915 and 1919</unittitle>
+                  <unitdate normal="1915/1915">1915</unitdate>
+                  <unitdate normal="1919/1919">1919</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0061">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">14</container>
+                  <unittitle>Herr Ludwig. 1 letter</unittitle>
+                  <unitdate normal="1950-03-05">1950 March 5</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0062">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">15</container>
+                  <unittitle>Professor John H. H. Lyon. 1 letter (in English), Princeton</unittitle>
+                  <unitdate normal="1940-10-30">1940 October 30</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0063">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">16</container>
+                  <unittitle>Nellie (Mrs. Viktor) Mann (1895-1962). 2 letters, 1949 (published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate normal="1949/1949">1949</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0064">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">17-18</container>
+                  <unittitle>Viktor Mann (1890-1949), Mann's brother. 19 letters, 1945-1947. (8 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1945/1947">1945-1947</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">2 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0065">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">19</container>
+                  <unittitle>Hans Mühlestein (1887-), art Historian and translator. 9 letters and 1 card</unittitle>
+                  <unitdate type="inclusive" normal="1913/1952">1913-1952</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0066">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">20</container>
+                  <unittitle>Charles Neider (1915-), author and editor. 51 letters, 1939-1954. Includes 2 telegrams regarding Neider's book <emph render="italic">Stature of Thomas Mann</emph>
+                 </unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0067">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">21-25</container>
+                  <unittitle>Caroline Newton (1893-1975). 56 letters, 3 cards, and 4 telegrams, 1937-1955 (with notes by Caroline Newton attached to the last 2 Mann letters to her). All are privately printed in German and in English translation, Princeton, 1971 (10 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate normal="1971/1971">1971</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">5 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0068">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">26</container>
+                  <unittitle>Walter H. Perl (1909-). 17 letters and 1 card (1 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0069">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">27</container>
+                  <unittitle>George M. Priest, Professor at Princeton University. 7 letters, 1939-1941 (1 in English)</unittitle>
+                  <unitdate type="inclusive" normal="1939/1941">1939-1941</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0070">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">28</container>
+                  <unittitle>Dr. Paul Raché, Hamburg critic. 2 letters</unittitle>
+                  <unitdate type="inclusive" normal="1902/1931">1902-1931</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0071">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i3">29</container>
+                  <unittitle>Hans Reisiger (1884-1968), author and translator. 10 letters and 3 cards, 1925-1953 (2 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate type="inclusive" normal="1925/1953">1925-1953</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0072">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">1-5</container>
+                  <unittitle>George Martin Richter. 17 letters and 38 cards</unittitle>
+                  <unitdate type="inclusive" normal="1901/1926">1901-1926</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">5 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0073">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">6</container>
+                  <unittitle>Gigi Richter, Mann's godchild. 1 card</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0074">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">7</container>
+                  <unittitle>Dr. David Riesmann (1909-). 1 letter in English</unittitle>
+                  <unitdate normal="1940/1940">1940</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0075">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">8</container>
+                  <unittitle>Carl F. Riter. 2 letters in English</unittitle>
+                  <unitdate normal="1939/1939">1939</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0076">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">9</container>
+                  <unittitle>Roger Senhouse. 2 letters and 1 card</unittitle>
+                  <unitdate type="inclusive" normal="1946/1955">1946-1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0077">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">9a</container>
+                  <unittitle>Shaffer</unittitle>
+                  <unitdate normal="1922-03-28">1922 March 28</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0078">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">10</container>
+                  <unittitle>Roger Gregor Smith. 1 letter in English, n. d.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0079">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">11</container>
+                  <unittitle>Agnes Speyer-Ulmann. 9 letters and 10 cards (1 published in <emph render="italic">Briefe</emph>)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0080">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">12</container>
+                  <unittitle>Dr. Steiner. 1 letter, St. Moritz</unittitle>
+                  <unitdate normal="1950-08-02">1950 August 2</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0081">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">13</container>
+                  <unittitle>Dr. Hudson Strode. 1 letter in English</unittitle>
+                  <unitdate normal="1941-02-15">1941 February 15</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0082">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">14</container>
+                  <unittitle>George Sylvester Viereck, American journalist. 1 letter, Munich</unittitle>
+                  <unitdate normal="1928-03-13">1928 March 13</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0083">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">15</container>
+                  <unittitle>Bruno Walter (1876-1962), editor. 2 letters</unittitle>
+                  <unitdate normal="1933/1933">1933</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0084">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">16</container>
+                  <unittitle>Hans von Weber (1872-1924), editor. 1 letter and 2 cards</unittitle>
+                  <unitdate type="inclusive" normal="1913/1918">1913-1918</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0085">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">17</container>
+                  <unittitle>Wolfgang von Weber. 1 letter</unittitle>
+                  <unitdate normal="1924-10-17">1924 October 17</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0086">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">18</container>
+                  <unittitle>Dr. Widmer. 1 letter, Kusnacht, 1935 April 22 (letter regards Erich von Kahler)</unittitle>
+                  <unitdate normal="1935-04-22">1935 April 22</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0087">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">19</container>
+                  <unittitle>Friderike Zweig (1882-). 1 letter, 1942 (letter regards the suicide of Stefan Zweig)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0088">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">20</container>
+                  <unittitle>Unidentified recipients. 19 letters and 1 card</unittitle>
+                  <unitdate type="inclusive" normal="1902/1930">1902-1930</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0089">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">21</container>
+                  <unittitle>Unidentified "Verehrte Frau." 1 letter, Stockholm</unittitle>
+                  <unitdate normal="1949-05-28">1949 May 28</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0090">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">22</container>
+                  <unittitle>Unidentified publisher. 1 letter, Erlenbach, 1953 November 18 (letter regards Frau Lennartz "Die Dichter unserer Zeit")</unittitle>
+                  <unitdate normal="1953-11-18">1953 November 18</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0091" level="series">
+            <did>
+               <unittitle>Series 3: Letters to Thomas Mann</unittitle>
+               <unitdate normal="1911-01-01/1954-12-31" type="inclusive">1911-1954</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">5 folders</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of letters received by Thomas Mann from Paul Nikolas Cossmann, Alexander M. Frey, Hans von Hülsen, Graf Hermann Keyserling, and Charles Neider.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by correspondent.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0092">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">23</container>
+                  <unittitle>Paul Nikolas Cossmann (1869-1941), editor of <emph render="italic">Suddeutschen Monatshefte</emph>. 11 letters</unittitle>
+                  <unitdate type="inclusive" normal="1911/1921">1911-1921</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0093">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">24</container>
+                  <unittitle>Alexander M. Frey (1881-1957), author. 13 letters</unittitle>
+                  <unitdate type="inclusive" normal="1934/1954">1934-1954</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0094">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">25</container>
+                  <unittitle>Hans von Hülsen (1890-), author and journalist. 3 letters</unittitle>
+                  <unitdate type="inclusive" normal="1924/1929">1924-1929</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0095">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">26</container>
+                  <unittitle>Graf Hermann Keyserling (1880-1946), historian. 1 letter</unittitle>
+                  <unitdate normal="1919/1919">1919</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0096">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">27</container>
+                  <unittitle>Charles Neider (1915-), author and journalist. 27 letters and 3 telegrams (copies)</unittitle>
+                  <unitdate type="inclusive" normal="1940/1953">1940-1953</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0097" level="series">
+            <did>
+               <unittitle>Series 4: Correspondence of Others</unittitle>
+               <unitdate normal="1911-01-01/1964-10-23" type="inclusive">1911-1964 October 23</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">8 folders</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of the correspondence of others, including Heinrich Mann, Katja (Pringsheim) Mann, Klaus Mann, Monika Mann, and Charles Neider.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by correspondent.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0098">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">28</container>
+                  <unittitle>Heinrich Mann (1872-1950). 2 letters and 2 cards to Agnes Speyer-Ulmann</unittitle>
+                  <unitdate type="inclusive" normal="1911/1912">1911-1912</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0099">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">29</container>
+                  <unittitle>Katja (Pringsheim) Mann. 7 letters in English, 1946-1955 to Charles Neider. 1 printed card and one reply from Neider to Mrs. Mann</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0100">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">30</container>
+                  <unittitle>Katja (Pringsheim) Mann. 1 telegram, 1964 October 23 to Princeton University</unittitle>
+                  <unitdate normal="1964-10-23">1964 October 23</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0101">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">31</container>
+                  <unittitle>Klaus Mann (1906-1949). Correspondence with Charles Neider. 17 letters in English from Klaus to Neider and 4 letters in English from Neider to Klaus</unittitle>
+                  <unitdate type="inclusive" normal="1942/1946">1942-1946</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0102">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">32</container>
+                  <unittitle>Monika Mann (1910-). Correspondence with Charles and Vivian Neider. 15 letters and 4 cards in English from Monika to Neider and 2 letter in English from Neider to Monika</unittitle>
+                  <unitdate type="inclusive" normal="1947/1954">1947-1954</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0103">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">33</container>
+                  <unittitle>Charles Neider (1915-). Correspondence with various writers an scholars soliciting contributions to his anthology <emph render="italic">The Stature of Thomas Mann</emph>, 1947. (57 letters dated 1946). Letters to Neider: Conrad Aiken, 2; W. H. Auden, 2; Joseph Warren Beach, 2; Hermann Broch, 4; Pearl S. Buck; Kenneth Burke; Willa Cather; Cyril Connolly; David Daiches; Lion Feuchtwanger; Frederic Fischer; André Gide (signed by secretary); Martin Gumpert; Henry Hatfield, 2; Aldous Huxley; Christopher Isherwood; Charles Jackson, 2; F. R. Leavis; Harry Levin, 3; Ludwig Lewisohn, 2; Robert Morse Lovell, 2; E. A. Lowe; Helen Tracy (Porter) Lowe, 2; Heinrich Mann; F. O. Mathiessen; H. L. Mencken, 2; Gabriela Mistral, 2; Lewis Mumford, 2; Alfred Neumann, 2; J. B. Priestley, 2 (signed by secretary); Eleanor Roosevelt, Arnold Schoenberg; Bernard Shaw; Lionel Trilling; Bruno Walter; Glenway Wescott; Hermann J. Weigand, Frank Lloyd Wright (signed by secretary); Sigrid Undset</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0104">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">34</container>
+                  <unittitle>Charles Neider. 4 letters from Thomas Mann's secretary</unittitle>
+                  <unitdate type="inclusive" normal="1939/1947">1939-1947</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0105">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i4">35</container>
+                  <unittitle>Charles Neider. Envelopes (11) written by Mann and 3 lists</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0106" level="series">
+            <did>
+               <unittitle>Series 5: Photocopies and Photostats of Correspondence of Others</unittitle>
+               <unitdate normal="1939-01-01/1969-12-31" type="inclusive">1939-1969</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">3 boxes (1 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of photocopies and photostats of correspondence of others, including Félix Bertaux, Erich von Kahler, Caroline Newton, and Charles Neider, as well as others.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by correspondent.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0107">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">1</container>
+                  <unittitle>Bertaux, Félix</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0108">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">2</container>
+                  <unittitle>Chapiro, Joseph (José)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0109">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">3</container>
+                  <unittitle>Fischer, Samuel</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0110">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">4</container>
+                  <unittitle>Fles, Barthold</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0111">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">5</container>
+                  <unittitle>Frey, Alexander</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0112">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">6</container>
+                  <unittitle>Frey to Mann (originals in box 4)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0113">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">7</container>
+                  <unittitle>Hanhart, Ernst</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0114">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">8-9</container>
+                  <unittitle>Hülsen, Hans von</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">2 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0115">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">10</container>
+                  <unittitle>Hülsen to Mann (originals in box 4)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0116">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i5">11-12</container>
+                  <unittitle>Kahler, Erich von</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">2 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0117">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">1</container>
+                  <unittitle>Mann, Viktor</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0118">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">2</container>
+                  <unittitle>Mather, Frank Jewett</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0119">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">3-5</container>
+                  <unittitle>Miscellaneous and unidentified</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">3 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0120">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">6</container>
+                  <unittitle>Mühlestein, Hans</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0121">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">7-8</container>
+                  <unittitle>Newton, Caroline</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">2 folders</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0122">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">9</container>
+                  <unittitle>Perl, Walter H.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0123">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">10</container>
+                  <unittitle>Priest, George M.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0124">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">11</container>
+                  <unittitle>Reisiger, Hans</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0125">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">12</container>
+                  <unittitle>Richter, George Martin</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0126">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i6">13</container>
+                  <unittitle>Weber, Hans von</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0127">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">1</container>
+                  <unittitle>Fles, Barthold to Albert Einstein, 1939 and to Erich von Kahler</unittitle>
+                  <unitdate normal="1939/1939">1939</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0128">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">2</container>
+                  <unittitle>Mann, Katharine (Katja). 25 letters to Erich and Mrs. Kahler</unittitle>
+                  <unitdate type="inclusive" normal="1940/1969">1940-1969</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0129">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">3</container>
+                  <unittitle>Mann, Klaus (1906-1949) to Charles Neider</unittitle>
+                  <unitdate type="inclusive" normal="1942/1949">1942-1949</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0130">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">4</container>
+                  <unittitle>Mann, Monika (1910-) to Charles and Vivian Neider</unittitle>
+                  <unitdate type="inclusive" normal="1947/1954">1947-1954</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0131">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">5</container>
+                  <unittitle>Neider, Charles (1915-) to Thomas and Katja Mann</unittitle>
+                  <unitdate type="inclusive" normal="1939/1955">1939-1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0132">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">6</container>
+                  <unittitle>Neider, Charles (1915-) to various authors and scholars, 1946 (regarding <emph render="italic">The Stature of Thomas Mann</emph>; originals in Box 4, Folder 33)</unittitle>
+                  <unitdate normal="1946/1946">1946</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0133" level="series">
+            <did>
+               <unittitle>Series 6: Thomas Mann as Subject</unittitle>
+               <unitdate normal="1913-02-13/1988-03-31" type="inclusive">1913 February 13-1988 March</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">17 folders</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of works with Thomas Mann as subject from authors such as Andreas Dorpalen, Herbert Lehnert, and Mark Van Doren, as well as others.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by author.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0134">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">7</container>
+                  <unittitle>Dorpalen, Andreas. 2 essays: "Germany: 1871-1890," 12 pp. and "Germany: 1890-1918," 25 pp. Quotes Thomas Mann especially his "Betrachtungen eines Unpolitischen"</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0135">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">8</container>
+                  <unittitle>Hallgarten, Wolfgang. "My Recollections of Thomas Mann and his Family's Life in Europe," TMs, 29 pp. with plan of neighborhood in Munich</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0136">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">9</container>
+                  <unittitle>Hülsen, Hans von (1890-). "Die Bruder Mann," TMs (photocopy) with holograph corrections by Thomas Mann, 4 pp.</unittitle>
+                  <unitdate normal="1913-02-13">1913 February 13</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0137">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">10</container>
+                  <unittitle>Jonas, Klaus W., Dr. (Professor at University of Pittsburgh). 2 articles: "Thomas Mann Collections," 14 pp. and "Thomas Mann und Amerika," 8 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0138">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">11</container>
+                  <unittitle>Kahler, Erich V. (1885-1970), historian. 4 articles: "Sakularisiering des Teufels," AMs (in pencil), 34 pp., 1948; "Thomas Mann's Dr. Faustus" (offprint from <emph render="italic">Commentary</emph>, April 1949); "Die Erwahlten" ( <emph render="italic">Die Neue Rundschau</emph>, 1955), TMs, 18 pp.; "Gedenkrede auf Thomas Mann" ( <emph render="italic">Die Neue Randschau</emph> 1956), AMs, 35 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0139">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">12</container>
+                  <unittitle>Lange, Viktor, Professor. Address delivered October 24, 1964 at unveiling of tablet on 65 Stockton Street, Princeton, N. J., TMs with holograph corrections, 3 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0140">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">13</container>
+                  <unittitle>Lange, Viktor, Professor. "Thomas Mann as a Critic of his Age," TMs (carbon), 21 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0141">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">14</container>
+                  <unittitle>Lehnert, Herbert (Rice University). "Thomas Mann in Exile, 1933-1938," TMs, 32 pp. and 14 pp. of footnotes</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0142">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">15</container>
+                  <unittitle>Lehnert, Herbert (Rice University). "Thomas Mann in Princeton," TMs, 31 pp. and 10 pp. of footnotes</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0143">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">16</container>
+                  <unittitle>Pringsheim, Klaus H. "Thomas Mann in America: Some Political Comments," TMs, 17 pp. (lecture given at Columbia, Missouri, February 15, 1962)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0144">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">17</container>
+                  <unittitle>Thiemer, Horst. Typescript of radio talk, Documentation of Deutschland Funk, 4/1/1971, "Thomas Mann in Princeton," TMs, 14 pp. (in German), with remarks of V. Lange, H. Leynert, and Mrs. V. Kahler</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0145">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">18</container>
+                  <unittitle>Van Doren, Mark (1894-1972). "Joseph and His Brothers," TMs (carbon), 21 pp. with cover letter, October 31, 1956 (lecture given at Bryn Mawr on October 5, 1958)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0146">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">19</container>
+                  <unittitle>Zucker Kandl, Victor, professor and musicologist. "Thomas Mann, the Musician," an address delivered October 24, 1964 at unveiling of tablet on 65 Stockton Street, Princeton, N. J., TMs (carbon), 12 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0147">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">20</container>
+                  <unittitle>Memorabilia and Souvenirs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0148">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">21</container>
+                  <unittitle>Miscellaneous lists</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0149">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">22</container>
+                  <unittitle>Agnes Speyer-Ulmann. "Heinrich Mann," AMsS, 2 pp.</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0150">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i7">23</container>
+                  <unittitle>Papers from a Mann symposium at University of California, Irvine</unittitle>
+                  <unitdate normal="1988-03">1988 March</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0151" level="series">
+            <did>
+               <unittitle>Series 7: Photographs and Pictures</unittitle>
+               <unitdate normal="1881-01-01/1960-12-31" type="inclusive">1881-1960</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">2 boxes (1 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of photographs and pictures of Thomas Mann, Katja Mann, and various locations.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged by subject of photograph.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0152">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">1</container>
+                  <unittitle>Thomas Mann, 3 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1881/1899">1881-1899</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0153">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">2</container>
+                  <unittitle>Thomas Mann, 5 photographs, 1925-1930s (photograph dated 12/23/29 has autographed notes)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0154">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">3</container>
+                  <unittitle>Thomas Mann, 12 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1940/1959">1940s-1950s</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0155">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">4</container>
+                  <unittitle>Thomas Mann, 1 photograph, award of honorary doctorate, Oxford</unittitle>
+                  <unitdate normal="1949-05-13">1949 May 13</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0156">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">5</container>
+                  <unittitle>Thomas Mann with poodle, 1 photograph, inscription to Caroline Newton</unittitle>
+                  <unitdate normal="1952/1952">1952</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0157">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">6</container>
+                  <unittitle>Thomas Mann, 12 photographs</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0158">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">7</container>
+                  <unittitle>Thomas Mann, 6 photographs, Kilchberg, Switzerland</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0159">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">8</container>
+                  <unittitle>Thomas Mann, 2 photographs, delivering Schiller address</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0160">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">9</container>
+                  <unittitle>Thomas and Katja Mann, 7 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1930/1955">1930-1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0161">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">10</container>
+                  <unittitle>Thomas Mann Family, 9 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1909/1950">1909-1950</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0162">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">11</container>
+                  <unittitle>Thomas and Katja Mann with group, 1 photograph</unittitle>
+                  <unitdate normal="1906/1906">circa 1906</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0163">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">12</container>
+                  <unittitle>Thomas Mann with grandchildren, 4 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1941/1947">1941-1947</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0164">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">13</container>
+                  <unittitle>Thomas Mann with Harold W. Dodds, 1 photographs, Princeton</unittitle>
+                  <unitdate normal="1939-05-18">1939 May 18</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0165">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">14</container>
+                  <unittitle>Thomas Mann with Dorothy Thompson, 1 photograph, New York</unittitle>
+                  <unitdate normal="1938-05">1938 May</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0166">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">15</container>
+                  <unittitle>Thomas Mann with Arturo Toscanini and Bruno Walter, 2 photographs, Salzburg</unittitle>
+                  <unitdate normal="1935/1935">1935</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0167">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">16</container>
+                  <unittitle>Thomas Mann at a reception for Alvin Johnson (educator), 3 photographs with booklet to A. Johnson (introduction by Mann), Philadelphia</unittitle>
+                  <unitdate normal="1943-11-27">1943 November 27</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0168">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">17</container>
+                  <unittitle>Julia Mann (née daSilva-Bruhns) (Mann's mother), 1 photograph, Lübeck</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0169">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">18</container>
+                  <unittitle>Katja Mann, 9 photographs</unittitle>
+                  <unitdate normal="1960/1960">1960</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0170">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">19</container>
+                  <unittitle>Monika Mann (Thomas Mann's daughter), 1 photograph</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0171">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">20</container>
+                  <unittitle>Caroline Newton with Thomas Mann, 8 photographs (some duplicates)</unittitle>
+                  <unitdate normal="1956-10">1956 October</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0172">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">21</container>
+                  <unittitle>Caroline Newton, 21 photographs (some duplicates), Commemoration, Bryn Mawr</unittitle>
+                  <unitdate normal="1956-10">1956 October</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0173">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">22</container>
+                  <unittitle>Buddenbrook House, 1 photograph, Lübeck</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0174">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">23</container>
+                  <unittitle>Herzogpark House, 2 photographs, Munich</unittitle>
+                  <unitdate normal="1914/1914">1914</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0175">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">24</container>
+                  <unittitle>Kilchberg House, 2 photographs, Switzerland</unittitle>
+                  <unitdate normal="1930/1939" type="inclusive">1930s</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0176">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">25</container>
+                  <unittitle>Thomas Mann, studio, and desk, 16 photographs (some duplicates), Kilchberg, Switzerland</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0177">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">26</container>
+                  <unittitle>Princeton House, 65 Stockton Street, 1 photograph</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0178">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">27</container>
+                  <unittitle>Jamestown, R. I. Cottage (cottage of Caroline Newton), 1 photograph (see also Box 12)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0179">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">28</container>
+                  <unittitle>Thomas Mann Archive, 2 photographs, Zurich, Switzerland</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0180">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">29</container>
+                  <unittitle>Thomas Mann grave, 10 photographs, 2 slides, Kilchberg, Switzerland</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0181">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">30</container>
+                  <unittitle>Church near grave, 4 photographs, Kilchberg, Switzerland</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0182">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">31</container>
+                  <unittitle>Bust and Death Mask, 3 photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0183">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">32</container>
+                  <unittitle>1 caricature of Thomas Mann by Jack Rosen, signed by artist and subject; 1 etching of Thomas Mann</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0184">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">33</container>
+                  <unittitle>Portrait of Thomas Mann by Rudolf V. Ripper (watercolor), 1 photograph</unittitle>
+                  <unitdate normal="1940/1940">1940</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0185">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">33a</container>
+                  <unittitle>Portrait drawing by J. J. Muller, Princeton, 17.XII.</unittitle>
+                  <unitdate normal="1938/1938">1938</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0186">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i8">34</container>
+                  <unittitle>Negatives</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0187">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">1</container>
+                  <unittitle>Thomas Mann, 6 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1906/1955">1906-1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0188">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">2</container>
+                  <unittitle>Thomas Mann by Edward Steichen, 2 (original) photographs</unittitle>
+                  <unitdate normal="1934/1934">1934</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0189">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">3</container>
+                  <unittitle>Thomas Mann by "Mopp," original etching</unittitle>
+                  <unitdate normal="1930/1930">1930</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0190">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">4</container>
+                  <unittitle>Katja Mann, 1 photograph</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0191">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">5</container>
+                  <unittitle>Michael Mann (1919-1977) with his wife (Gret) and Caroline Newton, 3 photographs</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0192">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">6</container>
+                  <unittitle>Early family photographs, 2 photographs</unittitle>
+                  <unitdate type="inclusive" normal="1906/1915">1906-1915</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0193">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">7</container>
+                  <unittitle>Thomas Mann with grandson Frido, 1 photograph</unittitle>
+                  <unitdate normal="1942/1942">1942</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0194">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">8</container>
+                  <unittitle>"Buddenbrook" House, 1 photograph, Lübeck</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0195">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">9</container>
+                  <unittitle>Jamestown, R. I. Cottage (cottage of Caroline Newton), 1 photograph</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0196">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">10</container>
+                  <unittitle>Thomas Mann, 1 photograph (rolled), (?)</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0197">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">11</container>
+                  <unittitle>Plaque, 65 Stockton Street, Princeton, N. J., 1 photograph (rolled)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0198" level="series">
+            <did>
+               <unittitle>Series 8: Printed Matter by Thomas Mann</unittitle>
+               <unitdate normal="1930-10-17/1970-12-31" type="inclusive">1930 October 17-1970</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portions of 2 boxes</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of printed matter by Thomas Mann, including addresses, essays, and published correspondence.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Arranged alphabetically by title.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0199">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">35</container>
+                  <unittitle>3 addresses by Thomas Mann, 1939-1943 (negatives)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0200">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">36</container>
+                  <unittitle>"Ansprache in Geothejahr," 21 pp.</unittitle>
+                  <unitdate normal="1949/1949">1949</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0201">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">37</container>
+                  <unittitle>"Bruder Hitler," essay in <emph render="italic">Das neue Tagebuch</emph>
+                 </unittitle>
+                  <unitdate normal="1939-03-25">1939 March 25</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0202">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i9">38</container>
+                  <unittitle>"Ein Appell an die Vernunft," Deutsche Ansprache, Berlin, 1930 October 17 (2 copies, boxed)</unittitle>
+                  <unitdate normal="1930-10-17">1930 October 17</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0203">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">1</container>
+                  <unittitle>"Jaacobs Hochzeit" (boxed) in "Corona," Oldenburg Verlag, 1931-1932, with inscription to Hedwig Fischer, 12/16/31</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0204">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">2</container>
+                  <unittitle>"Lob der Verganglichkeit," 4 pp, 1952, with inscription to Caroline Newton</unittitle>
+                  <unitdate normal="1952/1952">1952</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0205">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">3</container>
+                  <unittitle>"Versuch uber Schiller," 104 pp., 1955, with inscription to Caroline Newton</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0206">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">4</container>
+                  <unittitle>"Versuch uber Tschechow," in <emph render="italic">Die Neue Rundschau</emph>, 22 pp.</unittitle>
+                  <unitdate normal="1956/1956">1956</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0207">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">5</container>
+                  <unittitle>"Walsungenblut," 2 pp. Original ending of story</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0208">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">6</container>
+                  <unittitle>Published correspondence between Thomas Mann and Erich V. Kahler (1938-1955), 67 pp.</unittitle>
+                  <unitdate normal="1970/1970">1970</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0209">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">7</container>
+                  <unittitle>Published correspondence between Thomas Mann and the Philosophy faculty of Bonn (1936-1937)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0210">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">8</container>
+                  <unittitle>Published correspondence between Thomas Mann and Hans Reisiger (1933-1955), 43 pp.</unittitle>
+                  <unitdate normal="1938/1938">1938</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0211" level="series">
+            <did>
+               <unittitle>Series 9: Printed Matter about Thomas Mann</unittitle>
+               <unitdate normal="1928-01-01/1963-04-27" type="inclusive">1928-1963 April 27</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">3 boxes (2 partial)</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of printed matter about Thomas Mann, including announcements, articles, clippings, essays, interviews, and reviews.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0212">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">9</container>
+                  <unittitle>Announcement of new editions, films, dealers lists</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0213">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">10</container>
+                  <unittitle>Thomas Mann Archive, Zurich. 2 announcements, 1958; 1 guide, 1963; and 3 news clippings</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0214">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">11</container>
+                  <unittitle>Thomas Mann Issue of <emph render="italic">Du</emph>, 1955 June, for Mann's 80th birthday</unittitle>
+                  <unitdate normal="1955-06">1955 June</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0215">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">12</container>
+                  <unittitle>Miscellaneous writings (clippings) regarding Thomas Mann</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0216">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">13</container>
+                  <unittitle>Miscellaneous writings (articles and photocopies) regarding Thomas Mann</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0217">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">14</container>
+                  <unittitle>Photographs-printed material, announcements, clippings</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0218">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">15</container>
+                  <unittitle>Lowe-Porter, H. T. (1877-1963), Thomas Mann translator. Obituary, N. Y. Times, 1963 April 27 (clipping)</unittitle>
+                  <unitdate normal="1963-04-27">1963 April 27</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0219">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">16</container>
+                  <unittitle>Mann, Klaus (1906-1949). Articles by and about K. Mann (clippings and periodicals)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0220">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i10">17</container>
+                  <unittitle>Reviews ( <emph render="italic">Kritiken</emph>), 1928, German scrapbook</unittitle>
+                  <unitdate normal="1928/1928">1928</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0221">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">1</container>
+                  <unittitle>Miscellaneous clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0222">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">2</container>
+                  <unittitle>Miscellaneous clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0223">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">3</container>
+                  <unittitle>Miscellaneous clippings, mounted (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0224">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">4</container>
+                  <unittitle>Miscellaneous clippings, mounted (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0225">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">5</container>
+                  <unittitle>Miscellaneous clippings, mounted (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0226">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i11">6</container>
+                  <unittitle>Miscellaneous clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0227">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i12">1</container>
+                  <unittitle>Articles, essays, interviews by Thomas Mann, clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0228">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i12">2</container>
+                  <unittitle>Articles about Thomas Mann, newspaper clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0229">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i12">3</container>
+                  <unittitle>Book reviews of Thomas Mann works, newspaper clippings (in German and in English)</unittitle>
+                  <unitdate>dates not examined</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0230">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i12">4</container>
+                  <unittitle>Thomas Mann, 80th birthday, 1955, newspaper clippings</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+            <c level="file" id="C0295_c0231">
+               <did>
+                  
+                  <container type="folder" parent="C0295_i12">5</container>
+                  <unittitle>Thomas Mann, death, 1955, newspaper clippings (in German and in English)</unittitle>
+                  <unitdate normal="1955/1955">1955</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="folders">1 folder</extent>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+         <c id="C0295_c0232" level="series">
+            <did>
+               <unittitle>Series 10: Recordings</unittitle>
+               <unitdate normal="1942-01-01/1942-12-31" type="inclusive">1942</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="folders">1 folder</extent>
+               </physdesc>
+            </did>
+            <scopecontent>
+               <p>
+                  Consists of <emph render="italic">Joseph and His Brothers</emph>, Thomas Mann reads selections from his work, in German and in English, recorded at Columbia University as well as 5 phonograph recordings.
+               </p>
+            </scopecontent>
+            <arrangement>
+               <p>Not arranged according to any arrangement scheme.</p>
+            </arrangement>
+            <c level="file" id="C0295_c0233">
+               <did>
+                  <container>
+                     <ptr target="C0295_i13"/>
+                  </container>
+                  <unittitle>
+                     <emph render="italic">Joseph and His Brothers</emph>, Thomas Mann reads selections from his work, in German and in English, recorded at Columbia University</unittitle>
+                  <unitdate normal="1942/1942">1942</unitdate>
+                  <physdesc>
+                     <extent type="computed" unit="boxes">1 box</extent>
+                     <physfacet>5 phonograph recordings</physfacet>
+                  </physdesc>
+               </did>
+            </c>
+         </c>
+      </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101037090428</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101037090436</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101037090444</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101037090451</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i5">
+            <did>
+               <container type="box">5</container>
+               <unitid type="barcode">32101037090469</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i6">
+            <did>
+               <container type="box">6</container>
+               <unitid type="barcode">32101037090477</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i7">
+            <did>
+               <container type="box">7</container>
+               <unitid type="barcode">32101037090485</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i8">
+            <did>
+               <container type="box">8</container>
+               <unitid type="barcode">32101037090493</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i9">
+            <did>
+               <container type="box">12</container>
+               <unitid type="barcode">32101037090535</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i10">
+            <did>
+               <container type="box">9</container>
+               <unitid type="barcode">32101037090501</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i11">
+            <did>
+               <container type="box">10</container>
+               <unitid type="barcode">32101037090519</unitid>
+               <physloc type="code">mss</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i12">
+            <did>
+               <container type="box">11</container>
+               <unitid type="barcode">32101037090527</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0295_i13">
+            <did>
+               <container type="box">13</container>
+               <unitid type="barcode">32101080519430</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

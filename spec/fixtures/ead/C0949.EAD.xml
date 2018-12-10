@@ -1,0 +1,162 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+    <eadheader  scriptencoding="iso15924" repositoryencoding="iso15511" countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b">
+      <eadid mainagencycode="US-NjP" countrycode="US" url="http://arks.princeton.edu/ark:/88435/wh246s19h" urn="ark:/88435/wh246s19h">C0949</eadid>
+      <filedesc>
+            <titlestmt>
+                <titleproper>Greek-American Community of New York Photographs, <date normal="1940/1949" type="inclusive">circa 1940s</date>: Finding Aid </titleproper>
+            </titlestmt>
+            <publicationstmt id="rbscAddress">
+                <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+                <address>
+                    <addressline>Manuscripts Division</addressline>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                    <addressline>Phone: (609) 258-3184</addressline>
+                    <addressline>Fax: (609) 258-2324</addressline>
+                    <addressline>rbsc@princeton.edu</addressline>
+                    <addressline>http://www.princeton.edu/~rbsc</addressline>
+                </address>
+                <date normal="2008">2008</date>
+            </publicationstmt>
+        </filedesc>
+      <profiledesc>
+            <creation>This finding aid was produced using the Archivists' Toolkit <date normal="2012-06-14">2012-06-14T11:18-0400</date>
+            </creation>
+            <langusage>
+            <language langcode="eng"/>
+         </langusage>
+            <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+                    Describing Archives: A Content Standard. </emph>
+            </descrules>
+        </profiledesc>
+      <revisiondesc>
+            <change>
+                <date normal="2012-06-14">2012-06-14T11:27:53.589-04:00</date>
+                <item>Run through PULFA 2.0 normalization routines.</item>
+            </change>
+        </revisiondesc>
+   </eadheader>
+    <archdesc level="collection" relatedencoding="marc21" type="findingaid">
+      <did>
+         <unitid countrycode="US" repositorycode="US-NjP" type="collection">C0949</unitid>
+         <repository id="mss">
+                <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+                <subarea>Manuscripts Division</subarea>
+                <address>
+                    <addressline>One Washington Road</addressline>
+                    <addressline>Princeton, New Jersey 08544 USA</addressline>
+                </address>
+            </repository>
+         <unittitle>Greek-American Community of New York Photographs</unittitle>
+         <unitdate normal="1940/1949" type="inclusive">1940s</unitdate>
+         <physdesc>
+                <extent unit="footage">1.35 linear feet</extent>
+                <extent unit="boxes">1 flat box</extent>
+            </physdesc>
+         <origination>
+                <corpname source="lcsh" role="cre">Princeton University. Dept. of Rare Books and Special Collections.</corpname>
+            </origination>
+         <langmaterial>
+                <language langcode="eng"/>
+            </langmaterial>
+         <abstract>Consists of photographs of the Greek-American community of New York in the 1940s.</abstract>
+         <physloc type="code">mss</physloc>
+      </did>
+      <bioghist>
+            <p>According to the State Department in 2005, an estimated 3,000,000 residents in the United States claim Greek descent. Greek Americans have a heavy concentration in Chicago, Detroit, Boston, Baltimore, Cleveland, Houston, and New York City. Two factors in the early 20th century changed attitudes and facilitated permanent immigration: 1) Loss of homeland: In 1913 at the conclusion of the Balkan Wars, the home towns of 60,000 Greeks in America were converted to Bulgarian territory, and, in 1923, the homes of approximately 250,000 Greeks in America were converted from Ottoman to Turkish territory and, in both cases, these Greeks were de jure denaturalized from those homelands and lost the right to return and their families were made refugees. 2) The first widely implemented U.S. immigration limits against Europeans were made in 1923, creating an impetus for immigrants to apply for citizenship, bring their families and permanently settle in the U.S. Less than 30,000 arrived between 1925 and 1945, many of whom were "picture brides" for single Greek men. The events of the early 1920s also provided the stimulus for the first permanent national Greek American religious and civic organizations. [from Wikipedia]</p>
+        </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+                <p>The collection consists of 50 photographs of the Greek-American community of New York in the 1940s. Most are stamped "Olympic Press Photo" or "Art Photo Service." Subjects include Greek-American community organizations, press conferences and social events, 25th of March Greek National Independence Day parade in New York, individuals and groups in traditional costumes, and official visits of dignitaries.</p>
+            </scopecontent>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+                <p>The collection is open for research.</p>
+            </accessrestrict>
+         <userestrict>
+                <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+            </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <acqinfo>
+                <p>Gift of the Program in Hellenic Studies with support of the Stanley J. Seeger Hellenic Fund in 2003.</p>
+            </acqinfo>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+                <p>Identification of specific item; Date (if known); Greek-American Community of New York Photographs, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+            </prefercite>
+         <processinfo id="processing">
+                <p>Folder inventory added by Nicholas Williams '2015 in 2012.</p>
+            </processinfo>
+      </descgrp>
+      <dao xlink:type="simple" xlink:title="Photograph of 25th of March Greek National Independence parade in New York City, ca. 1940s" xlink:href="bioghist-images/C0949.jpg"/>
+      <controlaccess>
+            
+            <subject source="lcsh">Greek Americans -- New York (State) -- New York -- 20th century -- Photographs.</subject>
+            <subject source="lcsh">Greek Americans -- New York (State) -- New York -- Social life and customs -- 20th century.</subject>
+            <genreform source="aat">Photographs -- 20th century.</genreform>
+            
+            <subject rules="local" source="local" encodinganalog="690" authfilenumber="t30">Hellenic studies</subject>
+            <subject rules="local" source="local" encodinganalog="690" authfilenumber="t46">Photography</subject>
+        </controlaccess>
+      <dsc type="combined">
+            <c id="C0949_c01" level="file">
+                <did>
+                    <unittitle>Photographs of Dignitary Visits</unittitle>
+                    
+                    <container type="folder" parent="C0949_i1">1</container>
+                    <unitdate normal="1940/1949" type="inclusive">1940s</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0949_c02" level="file">
+                <did>
+                    <unittitle>Photographs of Press Conferences and Social Events</unittitle>
+                    
+                    <container type="folder" parent="C0949_i1">2</container>
+                    <unitdate normal="1940/1949" type="inclusive">1940s</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0949_c03" level="file">
+                <did>
+                    <unittitle>Photographs of Individuals and Groups in Traditional Costumes</unittitle>
+                    
+                    <container type="folder" parent="C0949_i1">3</container>
+                    <unitdate normal="1940/1949" type="inclusive">1940s</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+            <c id="C0949_c04" level="file">
+                <did>
+                    <unittitle altrender="25th of March Greek National Independence Day Parade in New York">The 25th of March Greek National Independence Day Parade in New York</unittitle>
+                    
+                    <container type="folder" parent="C0949_i1">4</container>
+                    <unitdate normal="1940/1949" type="inclusive">1940s</unitdate>
+                <physdesc>
+                        <extent type="computed" unit="folders">1 folder</extent>
+                    </physdesc>
+                </did>
+            </c>
+        </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0949_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101037475298</unitid>
+               <physloc type="code">mss</physloc>
+               
+               <physloc type="text">P</physloc>
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>

@@ -1,0 +1,651 @@
+<ead xmlns="urn:isbn:1-931666-22-9" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:isbn:1-931666-22-9 http://www.loc.gov/ead/ead.xsd" audience="external">
+   <eadheader countryencoding="iso3166-1" dateencoding="iso8601" langencoding="iso639-2b"  repositoryencoding="iso15511" scriptencoding="iso15924">
+      <eadid countrycode="US" mainagencycode="US-NjP" url="http://arks.princeton.edu/ark:/88435/fn106x96k" urn="ark:/88435/fn106x96k">C0563</eadid>
+      <filedesc>
+         <titlestmt>
+            <titleproper>Hugh S. Taylor Papers, <date normal="1911/1972" type="inclusive"> 1911-1972</date>: Finding Aid</titleproper>
+         </titlestmt>
+         <publicationstmt id="rbscAddress">
+            <publisher>Princeton University Library. Department of Rare Books and Special Collections.</publisher>
+            <address>
+               <addressline>Manuscripts Division</addressline>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+               <addressline>Phone: (609) 258-3184</addressline>
+               <addressline>Fax: (609) 258-2324</addressline>
+               <addressline>rbsc@princeton.edu</addressline>
+               <addressline>http://www.princeton.edu/~rbsc</addressline>
+            </address>
+            <date type="publication" normal="2001">2001</date>
+         </publicationstmt>
+      </filedesc>
+      <profiledesc>
+         <creation>Machine-readable finding aid encoded in EAD 2002 by Techbooks, Cristela García-Spitz, and Amy E. Armstrong on <date normal="2007-06-22">June 22, 2007</date>. </creation>
+         <langusage>
+            <language langcode="eng"/>
+         </langusage>
+         <descrules>Finding aid content adheres to that prescribed by <emph render="italic">
+               Describing Archives: A Content Standard. </emph>
+         </descrules>
+      </profiledesc>
+      <revisiondesc>
+         <change>
+            <date normal="2012-05-02">2012-05-02T13:56:41.297-04:00</date>
+            <item>Run through PULFA 2.0 normalization routines.</item>
+         </change>
+      </revisiondesc>
+   </eadheader>
+   <archdesc type="findingaid" level="collection" relatedencoding="marc21">
+      <did>
+         <unitid type="collection" countrycode="US" repositorycode="US-NjP">C0563</unitid>
+         <repository id="mss">
+            <corpname source="lcsh">Princeton University. Library. Dept. of Rare Books and Special Collections</corpname>
+            <subarea>Manuscripts Division</subarea>
+            <address>
+               <addressline>One Washington Road</addressline>
+               <addressline>Princeton, New Jersey 08544 USA</addressline>
+            </address>
+         </repository>
+         <unittitle>Hugh S. Taylor Papers</unittitle>
+         <unitdate normal="1911/1972" type="inclusive">1911-1972</unitdate>
+         <physdesc>
+            <extent >13 linear feet</extent>
+            <extent unit="boxes">5 archival boxes, 4 record center cartons, 1 oversize flat box, 2 large flat boxes, 1 small box</extent>
+            <extent unit="tubes">1 tube</extent>
+         </physdesc>
+         <origination>
+            <persname source="viaf" role="cre" authfilenumber="http://viaf.org/viaf/27431011">Taylor, Hugh S. (Hugh Stott), 1890-1974.</persname>
+         </origination>
+         <langmaterial>
+            <language langcode="eng"/>
+         </langmaterial>
+         <abstract>Consists of articles, correspondence, and printed matter of Hugh S.Taylor, chairman of the Princeton Chemistry Department (1926-1951) and dean of the graduate school (1945-1958).</abstract>
+         <physloc type="code">rcpxm</physloc>
+      </did>
+      <bioghist>
+         
+         <p>Hugh Stott Taylor (1890-1974) was born in Lancashire, England. He attended the University of Liverpool where he received his Doctorate in Science in 1914. While pursuing his graduate degree, Taylor completed research in the field of physical chemistry at the Nobel Institute in Stockholm, Sweden between 1912-1913 and the Technische Hochschule in Hanover, Germany in 1913-1914. Taylor came to Princeton University as a chemistry instructor and achieved full professor status by the age of thirty-two and later became the first David B. Jones Professor in 1927. His work in the field of physical chemistry, particularly catalysis, was widely recognized by the scientific community when in 1919 he coauthored, with Sir Eric Rideal, the first notable book on catalysis. As a result of his reputation in the field, Taylor was often called upon for consultation by government and industry and was active in several projects during the First and Second World Wars. He received numerous international honors over his lifetime, which include the Nichols Medal of the American Chemical Society in 1928 and Fellow of the Royal Society of London in 1932. In 1953 he was twice knighted, first by Pope Pius XII in the Order of St. Gregory the Great and then by Queen Elizabeth in the Order of the British Empire.</p>
+         <p>Taylor was chairman of the Chemistry Department at Princeton University from 1926 to 1951. Under his twenty-five years of leadership, Taylor successfully promoted the chemistry program and recruited great scientific talent to the university, significantly increasing enrollment. While serving as dean of the Graduate College between 1945 until his retirement in 1958, Taylor strengthened Princeton's graduate program by adding nine Ph.D. programs. Taylor also was active in his faith and assisted in establishing the Catholic chaplaincy at Princeton in 1928. He was president of Pax Romana, the international Roman Catholic movement for intellectual and cultural affairs, and a member of the Pontifical Academy of Sciences. In 1962 an anonymous donor provided an enduring memorial of Sir Hugh's lifelong contribution to Princeton with a $500,000 gift establishing the Hugh Stott Taylor Chair of Chemistry. Hugh Stott Taylor died on April 17, 1974.</p>
+      </bioghist>
+      <descgrp id="dacs3">
+         <scopecontent>
+            <p>The collection consists of articles, correspondence, and printed matter of Taylor, chairman of the Princeton chemistry department (1926-1951) and dean of the graduate school (1945-1958). The collection, for the most part, is comprised of offprints of articles by Taylor and others, but there are also chemistry notes, articles, and accompanying correspondence on catalysis for the <emph render="italic">Encyclopaedia Britannica</emph>, <emph render="italic">Collier's Encyclopedia</emph>, and <emph render="italic">Annual Review Of Physical Chemistry</emph> as well as a bibliography of Taylor's articles.</p>
+         </scopecontent>
+         <arrangement>
+            <p>Collection is unprocessed but a small portion is arranged in this order: manuscripts, correspondence, bound articles, and offprints.</p>
+         </arrangement>
+      </descgrp>
+      <descgrp id="dacs4">
+         <accessrestrict type="open">
+            <p>Collection is open for research use.</p>
+         </accessrestrict>
+         <accessrestrict type="remotestorage">
+            <p>Please consult with Rare Books and Special Collections about having the collection recalled to Firestone Library for your use. This process normally requires 48-72 hours notice.</p>
+         </accessrestrict>
+         <userestrict>
+            <p>Single photocopies may be made for research purposes. No further photoduplication of copies of material in the collection can be made when Princeton University Library does not own the original. Permission to publish material from the collection must be requested from the Associate University Librarian for Rare Books and Special Collections. The library has no information on the status of literary rights in the collection and researchers are responsible for determining any questions of copyright.</p>
+         </userestrict>
+      </descgrp>
+      <descgrp id="dacs5">
+         <custodhist>
+            <p>The collection was formed as a result of a departmental practice of combining into one collection manuscript material of various accessions relating to a particular author.</p>
+         </custodhist>
+         <acqinfo>
+            <p>Gift of Mrs. Maurice Healy.</p>
+         </acqinfo>
+      </descgrp>
+      <descgrp id="dacs7">
+         <prefercite>
+            <p>Identification of specific item; Date (if known); Hugh S. Taylor Papers, Box and Folder Number; Department of Rare Books and Special Collections, Princeton University Library.</p>
+         </prefercite>
+         <processinfo id="processing">
+            <p>This collection was processed in <date type="processed" normal="2001">2001</date>. Finding aid written in <date type="processed" normal="2001">2001</date>.</p>
+            <p>Biography written by Amy Armstrong.</p>
+         </processinfo>
+         <bibliography>
+            <p>The following sources were consulted during preparation of biographical note: Leitch, Alexander. <emph render="italic">A Princeton Companion</emph>, (Princeton University Press, 1978) and Marquis Who's Who on the Web.</p>
+         </bibliography>
+      </descgrp>
+      <dao xlink:title="Princeton University Manuscripts Division" xlink:href="bioghist-images/msslogo.jpg" xlink:type="simple"/>
+      <controlaccess>
+         
+         <corpname source="lcnaf">Princeton University. Dept. of Chemistry -- 20th century.</corpname>
+         <subject source="lcsh" authfilenumber="http://id.loc.gov/authorities/subjects/sh85020938">Catalysis.</subject>
+         <subject source="lcsh">Chemistry -- Study and teaching -- New Jersey -- Princeton -- 20th century.</subject>
+         <genreform source="aat">Articles.</genreform>
+         <genreform source="aat">Correspondence.</genreform>
+         <genreform source="aat">Faculty papers.</genreform>
+         <occupation source="lcsh">Chemists -- New Jersey -- Princeton.</occupation>
+         <subject rules="local" source="local" encodinganalog="690" authfilenumber="t31">History of science</subject>
+         <subject rules="local" source="local" encodinganalog="690" authfilenumber="t48">Princeton University</subject>
+      </controlaccess>
+      <dsc type="combined">
+         <c level="file" id="C0563_c001">
+            <did>
+               <container>
+                  <ptr target="C0563_i1"/>
+               </container>
+               <unittitle>Addresses</unittitle>
+               <unitdate type="inclusive" normal="1927/1963">1927-1963</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c002">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Addresses</unittitle>
+               <unitdate type="inclusive" normal="1964/1974">1964-1974</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c003">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Addresses</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c004">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Writings</unittitle>
+               <unitdate type="inclusive" normal="1933/1974">1933-1974</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c005">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Writings</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c006">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Correspondence re Treatise on Physical Chemistry</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c007">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>14 pp ms. of unknown work</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c008">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Religious perspective of college teaching - mimeo copy and material about misc. documents and notes mainly on chemistry</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c009">
+            <did>
+               <container>
+                  <ptr target="C0563_i2"/>
+               </container>
+               <unittitle>Taylor - Eyring broadcast</unittitle>
+               <unitdate normal="1945-12-30">1945 December 30</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c010">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Graduate School miscellaneous papers</unittitle>
+               <unitdate type="inclusive" normal="1945/1958">1945-1958</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c011">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>University Research Committee</unittitle>
+               <unitdate type="inclusive" normal="1924/1930">1924-1930</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c012">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Woodrow Wilson National Fellowship Foundation</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c013">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Miscellaneous material about HST</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c014">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Biography and bibliography by Charles Kemball - Royal Society obit</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c015">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Bibliography from Kemball bibliography</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c016">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Miscellaneous correspondence</unittitle>
+               <unitdate type="inclusive" normal="1953/1974">1953-1974</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c017">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Correspondence and material about scientific work of H. Austin and Monica Taylor</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c018">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Correspondence with Joseph T. Brandt</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c019">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Jacques Maritain Trust Fund</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c020">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Writings of others</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c021">
+            <did>
+               <container>
+                  <ptr target="C0563_i3"/>
+               </container>
+               <unittitle>Photos</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c022">
+            <did>
+               <container>
+                  <ptr target="C0563_i4"/>
+               </container>
+               <unittitle>Pax Romana material. Correspondence with Maurice Wright. Awards, citations, diplomas, honorary degrees, etc.</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c023">
+            <did>
+               <container>
+                  <ptr target="C0563_i4"/>
+               </container>
+               <unittitle>Pax Romana material</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c024">
+            <did>
+               <container>
+                  <ptr target="C0563_i4"/>
+               </container>
+               <unittitle>Correspondence with Maurice Wright. Awards, citations, diplomas, honorary degrees, etc.</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c025">
+            <did>
+               <container>
+                  <ptr target="C0563_i5"/>
+               </container>
+               <unittitle>Honorary degrees and awards</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">multiple boxes</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c026">
+            <did>
+               <container>
+                  <ptr target="C0563_i6"/>
+               </container>
+               <unittitle>Catalysis: ms. and t.s.</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c027">
+            <did>
+               <container>
+                  <ptr target="C0563_i6"/>
+               </container>
+               <unittitle>Reprinted articles from various scientific journals</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">portion of 1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c028">
+            <did>
+               <container>
+                  <ptr target="C0563_i7"/>
+               </container>
+               <container>
+                  <ptr target="C0563_i8"/>
+               </container>
+               
+               <unittitle>Hoods</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed">multiple boxes</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c029">
+            <did>
+               <container>
+                  <ptr target="C0563_i9"/>
+               </container>
+               <unittitle>Reprinted articles from various scientific journals</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c030">
+            <did>
+               <container>
+                  <ptr target="C0563_i10"/>
+               </container>
+               <unittitle>Offprints</unittitle>
+               <unitdate type="inclusive" normal="1911/1938">1911-1938</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c031">
+            <did>
+               <container>
+                  <ptr target="C0563_i11"/>
+               </container>
+               <unittitle>Offprints</unittitle>
+               <unitdate type="inclusive" normal="1939/1961">1939-1961</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c032">
+            <did>
+               <container>
+                  <ptr target="C0563_i12"/>
+               </container>
+               <unittitle>Offprints</unittitle>
+               <unitdate type="inclusive" normal="1962/1972">1962-1972</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c033">
+            <did>
+               <container>
+                  <ptr target="C0563_i13"/>
+               </container>
+               <unittitle>Pamphlet volumes</unittitle>
+               <unitdate>undated</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+         <c level="file" id="C0563_c034">
+            <did>
+               <container>
+                  <ptr target="C0563_i14"/>
+               </container>
+               <unittitle>Drawing and photo of Pontifica Academia Scientiarum</unittitle>
+               <unitdate>dates not examined</unitdate>
+               <physdesc>
+                  <extent type="computed" unit="boxes">1 box</extent>
+               </physdesc>
+            </did>
+         </c>
+      </dsc>
+      <dsc type="othertype" othertype="physicalholdings">
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i1">
+            <did>
+               <container type="box">1</container>
+               <unitid type="barcode">32101040880807</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i2">
+            <did>
+               <container type="box">2</container>
+               <unitid type="barcode">32101040880815</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i3">
+            <did>
+               <container type="box">3</container>
+               <unitid type="barcode">32101040880823</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i4">
+            <did>
+               <container type="box">4</container>
+               <unitid type="barcode">32101040880831</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i5">
+            <did>
+               <container type="box">5</container>
+               <unitid type="barcode">32101040880849</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i6">
+            <did>
+               <container type="box">6</container>
+               <unitid type="barcode">32101040880856</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i7">
+            <did>
+               <container type="box">7</container>
+               <unitid type="barcode">32101040880864</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i8">
+            <did>
+               <container type="box">8</container>
+               <unitid type="barcode">32101040880872</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i9">
+            <did>
+               <container type="box">9</container>
+               <unitid type="barcode">32101040813725</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i10">
+            <did>
+               <container type="box">10</container>
+               <unitid type="barcode">32101040813733</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i11">
+            <did>
+               <container type="box">11</container>
+               <unitid type="barcode">32101040813741</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i12">
+            <did>
+               <container type="box">12</container>
+               <unitid type="barcode">32101040813758</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i13">
+            <did>
+               <container type="box">13</container>
+               <unitid type="barcode">32101040813766</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+         <c level="otherlevel" otherlevel="physicalitem" id="C0563_i14">
+            <did>
+               <container type="tube">1</container>
+               <unitid type="barcode">32101040880880</unitid>
+               <physloc type="code">rcpxm</physloc>
+               
+            </did>
+         </c>
+      </dsc>
+   </archdesc>
+</ead>
