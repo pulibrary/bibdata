@@ -8,6 +8,14 @@ def norm(s)
   CGI.unescapeHTML(s.to_s.gsub(/\s+/, " ").strip)
 end
 
+def format_dates(dates)
+  return norm(dates.first.text) if dates.length == 1
+
+  incl_date = dates.select { |d| d.attribute("type").value == "inclusive" }
+  bulk_date = dates.select { |d| d.attribute("type").value == "bulk" }
+  "#{norm(incl_date.first.text)} (bulk #{norm(bulk_date.first.text)})"
+end
+
 def parse_control(s, parse_dates = false)
   s.map do |val|
     source = val.attribute("source").to_s
@@ -49,17 +57,18 @@ namespace :ead2marc do
 
       # basic
       title = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:unittitle/text()", ns)
-      dates = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:unitdate/text()", ns)
+      dates = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:unitdate", ns)
+      date_string = format_dates(dates)
 
       extent = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:physdesc/ead:extent/text()", ns).map(&:to_s)
       if extent.length > 1
         extent[1].gsub!(/^/, "(")
         extent[-1].gsub!(/$/, ")")
       end
-      access = ead.xpath("/ead:ead/ead:archdesc//ead:accessrestrict//text()", ns).map { |e| norm(e) }.reject(&:empty?)
+      access = ead.xpath("/ead:ead/ead:archdesc/ead:descgrp/ead:accessrestrict//text()", ns).map { |e| norm(e) }.reject(&:empty?)
 
       bioghist = ead.xpath("/ead:ead/ead:archdesc/ead:bioghist//text()", ns).to_s
-      scopecontent = ead.xpath("/ead:ead/ead:archdesc//ead:scopecontent//text()", ns)
+      abstract = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:abstract//text()", ns)
       lang = ead.xpath("/ead:ead/ead:archdesc/ead:did/ead:langmaterial/ead:language", ns).map do |e|
         e.attribute("langcode").value
       end
@@ -83,7 +92,7 @@ namespace :ead2marc do
       record = MARC::Record.new
 
       # codes
-      record.append(MARC::ControlField.new("001", id))
+      record.append(MARC::ControlField.new("001", id.tr('.', '-')))
       record.append(MARC::DataField.new("041", " ", " ", *lang.map { |code| ["a", code.to_s] }))
 
       # names
@@ -99,13 +108,13 @@ namespace :ead2marc do
       end
 
       # title
-      record.append(MARC::DataField.new("245", " ", " ", ["a", norm(title)], ["f", norm(dates)]))
+      record.append(MARC::DataField.new("245", " ", " ", ["a", norm(title)], ["f", date_string]))
 
       # notes
       record.append(MARC::DataField.new("300", " ", " ", *extent.map { |ex| ["a", norm(ex)] }))
       record.append(MARC::DataField.new("351", " ", " ", ["a", norm(contents)]))
       record.append(MARC::DataField.new("506", " ", " ", *access.map { |ac| ["a", norm(ac)] }))
-      record.append(MARC::DataField.new("520", " ", " ", ["a", norm(scopecontent)]))
+      record.append(MARC::DataField.new("520", " ", " ", ["a", norm(abstract)]))
       record.append(MARC::DataField.new("545", " ", " ", ["a", norm(bioghist)]))
 
       # control fields
