@@ -457,4 +457,12 @@ describe 'From traject_config.rb' do
       expect(thesis_bc_marc['format']).to include 'Senior thesis'
     end
   end
+  describe 'combined subject_facet field' do
+    let(:g655) { { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Genre" }, { "2"=>"lcgft" }] } } }
+    let(:genre_subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [g655], 'leader' => leader)) }
+
+    it 'includes lcgft heading when subject headings are excluded from record' do
+      expect(genre_subject_marc['subject_facet']).to include 'Genre'
+    end
+  end
 end

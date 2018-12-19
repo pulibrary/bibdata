@@ -270,22 +270,27 @@ end
 
 SEPARATOR = '—'
 
-# for the hierarchical subject display and facet
+# for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
-def process_subject_facet record, fields
-  subjects = []
+# optional vocabulary argument for whitelisting subfield $2 vocabularies
+def process_hierarchy(record, fields, vocabulary = [])
+  headings = []
+  split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
-    subject = extractor.collect_subfields(field, spec).first
-    unless subject.nil?
+    heading = extractor.collect_subfields(field, spec).first
+    include_heading = vocabulary.empty? # always include the heading if a vocabulary is not specified
+    unless heading.nil?
       field.subfields.each do |s_field|
-        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 't' || s_field.code == 'v' || s_field.code == 'x' || s_field.code == 'y' || s_field.code == 'z')
+        # when specified, only include heading if it is part of the vocabulary
+        include_heading = vocabulary.include?(s_field.value) if s_field.code == '2' && !vocabulary.empty?
+        heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
-      subject = subject.split(SEPARATOR)
-      subject = subject.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
-      subjects << subject
+      heading = heading.split(SEPARATOR)
+      heading = heading.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
+      headings << heading if include_heading
     end
   end
-  subjects
+  headings
 end
 
 # for the split subject facet
