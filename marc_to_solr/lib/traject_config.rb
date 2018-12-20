@@ -1090,14 +1090,6 @@ each_record do |_record, context|
   end
 end
 
-# Add genre facets to subject browse facet
-each_record do |_record, context|
-  context.output_hash['subject_facet'] ||= []
-  context.output_hash['subject_facet'] << context.output_hash['lcgft_s'] if context.output_hash['lcgft_s']
-  context.output_hash['subject_facet'] << context.output_hash['rbgenr_s'] if context.output_hash['rbgenr_s']
-  context.output_hash['subject_facet'].flatten!
-end
-
 each_record do |_record, context|
   if context.output_hash['form_genre_display']
     remaining_genres = context.output_hash['form_genre_display']
