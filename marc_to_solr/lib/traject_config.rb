@@ -746,12 +746,12 @@ to_field 'subject_facet' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
-to_field 'lcgft_facet' do |record, accumulator|
+to_field 'lcgft_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft'])
   accumulator.replace(genres)
 end
 
-to_field 'rbgenr_facet' do |record, accumulator|
+to_field 'rbgenr_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz', ['rbgenr'])
   accumulator.replace(genres)
 end
@@ -1093,10 +1093,20 @@ end
 # Add genre facets to subject browse facet
 each_record do |_record, context|
   context.output_hash['subject_facet'] ||= []
-  context.output_hash['subject_facet'] << context.output_hash['lcgft_facet'] if context.output_hash['lcgft_facet']
-  context.output_hash['subject_facet'] << context.output_hash['rbgenr_facet'] if context.output_hash['rbgenr_facet']
+  context.output_hash['subject_facet'] << context.output_hash['lcgft_s'] if context.output_hash['lcgft_s']
+  context.output_hash['subject_facet'] << context.output_hash['rbgenr_s'] if context.output_hash['rbgenr_s']
   context.output_hash['subject_facet'].flatten!
 end
+
+each_record do |_record, context|
+  if context.output_hash['form_genre_display']
+    remaining_genres = context.output_hash['form_genre_display']
+    remaining_genres -= context.output_hash['lcgft_s'] if context.output_hash['lcgft_s']
+    remaining_genres -= context.output_hash['rbgenr_s'] if context.output_hash['rbgenr_s']
+    context.output_hash['form_genre_remaining_display'] = remaining_genres unless remaining_genres.empty?
+  end
+end
+
 
 # Process location code once
 each_record do |record, context|
