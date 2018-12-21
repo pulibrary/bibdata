@@ -429,6 +429,65 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+  describe 'form_genre_display' do
+    subject(:form_genre_display) { indexer.map_record(marc_record) }
+    let(:leader) { '1234567890' }
+    let(:field_655) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "0",
+          "subfields" => [
+            {
+              "a" => "Culture."
+            },
+            {
+              "v" => "Awesome"
+            },
+            {
+              "x" => "Dramatic rendition"
+            },
+            {
+              "y" => "19th century."
+            }
+          ]
+        }
+      }
+    end
+    let(:field_655_2) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "7",
+          "subfields" => [
+            {
+              "a" => "Poetry"
+            },
+            {
+              "x" => "Translations into French"
+            },
+            {
+              "v" => "Maps"
+            },
+            {
+              "y" => "19th century."
+            }
+          ]
+        }
+      }
+    end
+    let(:marc_record) do
+      MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
+    end
+    it "indexes the subfields as semicolon-delimited values" do
+      expect(form_genre_display).not_to be_empty
+      expect(form_genre_display).to include "form_genre_display"
+      expect(form_genre_display["form_genre_display"].length).to eq(2)
+      expect(form_genre_display["form_genre_display"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
+      expect(form_genre_display["form_genre_display"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
+    end
+  end
+
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Exclude" }, { "v"=>"John" }, { "x"=>"Join" }] } }
@@ -467,24 +526,37 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'process_subject_facet function' do
+  describe 'process_hierarchy function' do
     before(:all) do
       @s610_ind2_5 = { "600"=>{ "ind1"=>"", "ind2"=>"5", "subfields"=>[{ "a"=>"Exclude" }] } }
       @s600_ind2_7 = { "600"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Also Exclude" }] } }
-      @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "t"=>"Title." }, { "v"=>"split genre" }, { "d"=>"2015" }] } }
+      @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "t"=>"Title." }, { "v"=>"split genre" }, { "d"=>"2015" }, { "2"=>"special" }] } }
       @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "t"=>"TITLE." }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@s610_ind2_5, @s600, @s630])
-      @subjects = process_subject_facet(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
+      @subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
+      @vocab_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz', ['vocab'])
+      @special_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz', ['special'])
     end
 
-    it 'excludes subjects without 0 in the 2nd indicator' do
-      expect(@subjects).not_to include("Exclude")
-      expect(@subjects).not_to include("Also Exclude")
+    describe 'when an optional vocabulary limit is not provided' do
+      it 'excludes subjects without 0 in the 2nd indicator' do
+        expect(@subjects).not_to include("Exclude")
+        expect(@subjects).not_to include("Also Exclude")
+      end
+
+      it 'only separates t,v,x,y,z with em dash, strips punctuation' do
+        expect(@subjects).to include("John#{SEPARATOR}Title#{SEPARATOR}split genre 2015")
+        expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore#{SEPARATOR}TITLE")
+      end
     end
 
-    it 'only separates v,x,y,z with em dash, strips punctuation' do
-      expect(@subjects).to include("John. Title#{SEPARATOR}split genre 2015")
-      expect(@subjects).to include("Fiction#{SEPARATOR}1492#{SEPARATOR}don't ignore TITLE")
+    describe 'when a vocabulary limit is provided' do
+      it 'excludes headings missing a subfield 2 or part of a different vocab' do
+        expect(@vocab_subjects).to eq []
+      end
+      it 'only includes the heading from a matching subfield 2 value' do
+        expect(@special_subjects).to eq ["John#{SEPARATOR}Title#{SEPARATOR}split genre 2015"]
+      end
     end
   end
 

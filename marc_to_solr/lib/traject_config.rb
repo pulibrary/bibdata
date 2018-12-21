@@ -736,14 +736,24 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'subject_display' do |record, accumulator|
-  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   accumulator.replace(subjects)
 end
 
 # used for the browse lists and hierarchical subject facet
 to_field 'subject_facet' do |record, accumulator|
-  subjects = process_subject_facet(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   accumulator.replace(subjects)
+end
+
+to_field 'lcgft_s' do |record, accumulator|
+  genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft'])
+  accumulator.replace(genres)
+end
+
+to_field 'rbgenr_s' do |record, accumulator|
+  genres = process_hierarchy(record, '655|*7|avxyz', ['rbgenr'])
+  accumulator.replace(genres)
 end
 
 to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz', alternate_script: :only)
@@ -827,7 +837,10 @@ end
 
 # Form/Genre
 #    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display', extract_marc('655avxyz')
+to_field 'form_genre_display' do |record, accumulator|
+  subjects = process_hierarchy(record, '655avxyz')
+  accumulator.replace(subjects)
+end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
@@ -1076,6 +1089,16 @@ each_record do |_record, context|
     context.output_hash['format'] << Traject::TranslationMap.new("format")['ST']
   end
 end
+
+each_record do |_record, context|
+  if context.output_hash['form_genre_display']
+    remaining_genres = context.output_hash['form_genre_display']
+    remaining_genres -= context.output_hash['lcgft_s'] if context.output_hash['lcgft_s']
+    remaining_genres -= context.output_hash['rbgenr_s'] if context.output_hash['rbgenr_s']
+    context.output_hash['form_genre_remaining_display'] = remaining_genres unless remaining_genres.empty?
+  end
+end
+
 
 # Process location code once
 each_record do |record, context|
