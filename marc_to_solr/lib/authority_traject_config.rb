@@ -3,6 +3,7 @@
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
+require 'pry-byebug'
 
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
@@ -14,15 +15,26 @@ settings do
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
   provide "log.error_file", "./log/traject-error.log"
-  provide "allow_duplicate_values",  false
+  provide "allow_duplicate_values", false
   provide "solr_writer.commit_on_close", "true"
 end
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
-to_field 'id', extract_marc('001', first: true)
+to_field 'id' do |record, _accumulator|
+  extract_marc('001', first: true) if record['001']
+end
 
-to_field 'marc_display', serialized_marc(:format => 'xml', :binary_escape => false, :allow_oversized => true)
+to_field 'auth_001_s' do |record, accumulator|
+  value = nil
+  if record['001']
+    record_field = record.fields('001').first
+    value = record_field.value.gsub(/\s+/, '')
+  end
+  accumulator << value
+end
+
+to_field 'marc_display', serialized_marc(format: 'xml', binary_escape: false, allow_oversized: true)
 
 to_field 'name_s', extract_marc('100abcdefghjklmnopqrstvxyz:110abcdefghklmnoprstvxyz:111acdefghjklnpqstvxyz')
 
@@ -103,14 +115,12 @@ to_field 'alternative_performance_medium_s', extract_marc('382p')
 to_field 'total_number_of_performers_s', extract_marc('382s')
 to_field 'performance_medium_note_s', extract_marc('382v')
 
-
 to_field 'music_work_number_s', extract_marc('383a')
 to_field 'music_key_s', extract_marc('384|0*|a:384| *|a')
 to_field 'transposed_key_s', extract_marc('384|1*|a')
 
 to_field 'creator_characteristics_s', extract_marc('386abimn')
 to_field 'creation_time_period_s', extract_marc('388a')
-
 
 to_field 'references_name_s', extract_marc('400abcdefghjklmnopqrstvxyz:410abcdefghklmnoprstvxyz:411acdefghjklnpqstvxyz')
 to_field 'references_title_s', extract_marc('430adfghklmnoprstvxyz')
