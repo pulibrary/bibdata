@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_103_045_037) do
+ActiveRecord::Schema.define(version: 20170103045037) do
+
   create_table "dump_file_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.string "label"
     t.string "constant"
@@ -41,11 +42,11 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
   create_table "dumps", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
     t.integer "event_id"
     t.integer "dump_type_id"
-    t.text "delete_ids", limit: 4_294_967_295
+    t.text "delete_ids", limit: 4294967295
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "update_ids", limit: 4_294_967_295
-    t.text "create_ids", limit: 4_294_967_295
+    t.text "update_ids", limit: 4294967295
+    t.text "create_ids", limit: 4294967295
     t.index ["dump_type_id"], name: "index_dumps_on_dump_type_id"
     t.index ["event_id"], name: "index_dumps_on_event_id"
   end
