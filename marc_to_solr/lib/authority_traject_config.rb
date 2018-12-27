@@ -14,7 +14,7 @@ settings do
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
   provide "log.error_file", "./log/traject-error.log"
-  provide "allow_duplicate_values",  false
+  provide "allow_duplicate_values", false
   provide "solr_writer.commit_on_close", "true"
 end
 
@@ -22,7 +22,7 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 
 to_field 'id', extract_marc('001', first: true)
 
-to_field 'marc_display', serialized_marc(:format => 'xml', :binary_escape => false, :allow_oversized => true)
+to_field 'marc_display', serialized_marc(format: 'xml', binary_escape: false, allow_oversized: true)
 
 to_field 'name_s', extract_marc('100abcdefghjklmnopqrstvxyz:110abcdefghklmnoprstvxyz:111acdefghjklnpqstvxyz')
 
@@ -103,14 +103,12 @@ to_field 'alternative_performance_medium_s', extract_marc('382p')
 to_field 'total_number_of_performers_s', extract_marc('382s')
 to_field 'performance_medium_note_s', extract_marc('382v')
 
-
 to_field 'music_work_number_s', extract_marc('383a')
 to_field 'music_key_s', extract_marc('384|0*|a:384| *|a')
 to_field 'transposed_key_s', extract_marc('384|1*|a')
 
 to_field 'creator_characteristics_s', extract_marc('386abimn')
 to_field 'creation_time_period_s', extract_marc('388a')
-
 
 to_field 'references_name_s', extract_marc('400abcdefghjklmnopqrstvxyz:410abcdefghklmnoprstvxyz:411acdefghjklnpqstvxyz')
 to_field 'references_title_s', extract_marc('430adfghklmnoprstvxyz')
@@ -137,3 +135,23 @@ to_field 'see_also_general_subdivision_s', extract_marc('580vxyz')
 to_field 'see_also_geographic_subdivision_s', extract_marc('581vxyz')
 to_field 'see_also_chronological_subdivision_s', extract_marc('582vxyz')
 to_field 'see_also_form_subdivision_s', extract_marc('585vxyz')
+
+to_field 'vocab_type_s' do |record, accumulator|
+  if record['010'] && record['010']['a']
+    vocab = nil
+    main_field = record.fields('100'..'199').first
+    if %w[100 110 111 130].include?(main_field.tag)
+      subfields = main_field.subfields.map(&:code)
+      vocab = if (%w[v x] & subfields).empty?
+                'names'
+              else
+                'subjects'
+              end
+    elsif main_field.tag == '150'
+      vocab = 'subjects'
+    elsif main_field.tag == '155'
+      vocab = 'genreForms'
+    end
+  end
+  accumulator << vocab
+end
