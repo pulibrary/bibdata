@@ -207,6 +207,12 @@ describe 'From princeton_marc.rb' do
         expect(links).to include('http://www.archivesdirect.amdigital.co.uk/Documents/Details/FO%20424_144' => ['www.archivesdirect.amdigital.co.uk'])
       end
     end
+    context 'with a URL fragment' do
+      let(:url) { 'http://libweb5.princeton.edu/visual_materials/maps/globes-objects/hmc05.html#stella' }
+      it 'preserves fragment' do
+        expect(links).to include('http://libweb5.princeton.edu/visual_materials/maps/globes-objects/hmc05.html#stella' => ['libweb5.princeton.edu'])
+      end
+    end
   end
 
   describe 'standard_no_hash with keys based on the first indicator' do

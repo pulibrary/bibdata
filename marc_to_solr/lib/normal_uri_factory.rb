@@ -18,7 +18,7 @@ class NormalUriFactory
     # Clean the URL value
     # @param value [String] String value for the URL
     def clean(value)
-      return value if value =~ /#view/
+      return value if value =~ /#.+/
       URI.escape(URI.unescape(value).scrub)
     end
 end
