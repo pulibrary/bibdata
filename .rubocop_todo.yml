@@ -544,6 +544,7 @@ RSpec/DescribeClass:
     - 'marc_to_solr/spec/lib/format_spec.rb'
     - 'marc_to_solr/spec/lib/geo_spec.rb'
     - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'marc_to_solr/spec/lib/authority_config_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: CustomIncludeMethods.
@@ -580,6 +581,7 @@ RSpec/InstanceVariable:
     - 'marc_to_solr/spec/lib/config_spec.rb'
     - 'marc_to_solr/spec/lib/geo_spec.rb'
     - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'marc_to_solr/spec/lib/authority_config_spec.rb'
 
 # Offense count: 7
 RSpec/LeadingSubject:
