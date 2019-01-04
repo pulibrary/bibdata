@@ -13,7 +13,7 @@ settings do
   provide "marc_source.type", "binary"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
-  provide "log.error_file", "./log/traject-error.log"
+  provide "log.error_file", "./log/authority-traject-error.log"
   provide "allow_duplicate_values", false
   provide "solr_writer.commit_on_close", "true"
 end
@@ -21,6 +21,8 @@ end
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 to_field 'id', extract_marc('001', first: true)
+
+to_field 'auth_010_s', extract_marc('010a', first: true)
 
 to_field 'marc_display', serialized_marc(format: 'xml', binary_escape: false, allow_oversized: true)
 
@@ -140,7 +142,9 @@ to_field 'vocab_type_s' do |record, accumulator|
   if record['010'] && record['010']['a']
     vocab = nil
     main_field = record.fields('100'..'199').first
-    if %w[100 110 111 130].include?(main_field.tag)
+    if main_field.nil?
+      logger.error "#{record} - Missing fields 100..199"
+    elsif %w[100 110 111 130].include?(main_field.tag)
       subfields = main_field.subfields.map(&:code)
       vocab = if (%w[v x] & subfields).empty?
                 'names'
