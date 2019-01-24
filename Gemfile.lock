@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/voyager_helpers.git
-  revision: 7238ce24b5434ffca59a2dcb75a7a71e3ff3174c
+  revision: 531b853a64a7ffd0899ab4917429060515536b6c
   branch: master
   specs:
-    voyager_helpers (0.7.1)
+    voyager_helpers (0.7.2)
       activesupport (~> 5.1)
       diffy (~> 3.0.7)
       marc (~> 1.0)
@@ -134,7 +134,7 @@ GEM
     chronic (0.10.2)
     cliver (0.3.2)
     coderay (1.1.2)
-    concurrent-ruby (1.0.5)
+    concurrent-ruby (1.1.4)
     connection_pool (2.2.1)
     coveralls (0.8.21)
       json (>= 1.8, < 3)
@@ -182,7 +182,7 @@ GEM
     hitimes (1.2.6)
     honeybadger (3.3.0)
     httpclient (2.8.3)
-    i18n (1.1.1)
+    i18n (1.5.3)
       concurrent-ruby (~> 1.0)
     iso-639 (0.2.8)
     jbuilder (2.7.0)
