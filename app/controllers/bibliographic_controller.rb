@@ -89,7 +89,7 @@ class BibliographicController < ApplicationController
 
   def bib_items
     records = VoyagerHelpers::Liberator.get_items_for_bib(sanitize(params[:bib_id]))
-    if records.empty?
+    if records.nil? || records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|

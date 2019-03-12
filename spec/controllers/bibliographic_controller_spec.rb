@@ -132,5 +132,18 @@ RSpec.describe BibliographicController, type: :controller do
         expect(Rails.logger).to have_received(:error).with('Failed to retrieve the Voyager record using the bib. ID: 10002695: ORA-01722: invalid number')
       end
     end
+
+    describe '#bib_tems' do
+      context 'when no items are found' do
+        before do
+          allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(nil)
+        end
+
+        it 'renders a 404 HTTP response' do
+          get :bib_items, params: { bib_id: '1234567' }
+          expect(response.status).to be 404
+        end
+      end
+    end
   end
 end
