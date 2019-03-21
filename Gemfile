@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
 gem 'bixby', '~> 1.0'
-gem 'bootstrap-sass', '~> 3.3.3'
+gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capybara'
 gem 'ddtrace'
-gem 'devise', '~> 4.3'
+gem 'devise', '~> 4.6.0'
 gem 'faraday', '~> 0.13'
 gem 'faraday_middleware', '~> 0.12'
 gem 'ffi', '>= 1.9.25'
