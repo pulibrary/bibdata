@@ -42,10 +42,10 @@ job_type :liberate_latest_staging, "cd :path && :environment_variable=:environme
 job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
 
 # 1 update to catalog-staging per day
-every :sunday, at: "5:15am", roles: [:cron_staging] do
+every 1.day, at: ["2:40am", "11:55am", "8:55pm"], roles: [:cron_staging] do
   liberate_latest_staging(
     "liberate:latest",
-    bibdata_url: "https://bibdata-staging.princeton.edu",
+    bibdata_url: "https://bibdata.princeton.edu",
     set_url: ENV["SOLR_URL"],
     update_locations: "true",
     output: "/tmp/cron_log.log"
