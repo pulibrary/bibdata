@@ -52,6 +52,14 @@ One may clear the cache using the following Rake Task:
 rake liberate:arks:clear_cache
 ```
 
+### Indexing a single record
+
+To index a single record from Voyager into Orangelight:
+
+```
+SET_URL=http://localhost:8983/solr/orangelight-core-development BIB=123456 rake liberate:bib
+```
+
 ## Tests
 
 A couple of the tests require some fixtures to be in place; for now they must be copied as in this CI configuration: https://github.com/pulibrary/marc_liberation/blob/6b7b9e60d65f313fede5a70e5a2cd6e56d634003/.circleci/config.yml#L36-L46
