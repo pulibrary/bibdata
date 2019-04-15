@@ -41,7 +41,8 @@ end
 job_type :liberate_latest_staging, "cd :path && :environment_variable=:environment BIBDATA_URL=:bibdata_url SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
 job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
 
-# 1 update to catalog-staging per day
+# 3 updates to catalog-staging per day
+# Currently catalog staging is using Voyager prod which updates 3 times per day
 every 1.day, at: ["2:40am", "11:55am", "8:55pm"], roles: [:cron_staging] do
   liberate_latest_staging(
     "liberate:latest",
@@ -62,10 +63,8 @@ every 1.day, at: ["12:40am", "10:55am", "2:55pm"], roles: [:cron_production] do
   )
 end
 
-# 3 updates to catalog-rebuild per day
-# These are earlier than production to stagger the load on solr but ensure that
-#   no updates get lost when indices are swapped
-every 1.day, at: ["12:00am", "10:30am", "2:30pm"], roles: [:cron_production] do
+# 3 updates to catalog-rebuild per day on Solr staging cluster
+every 1.day, at: ["1:00am", "11:30am", "3:30pm"], roles: [:cron_production] do
   liberate_latest_production(
     "liberate:latest",
     set_url: ENV["SOLR_REINDEX_URL"],
@@ -79,10 +78,21 @@ every 1.day, at: "3:00pm", roles: [:cron_production] do
   rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
 end
 
+# Daily recap shared collection update to Solr
 every 1.day, at: "6:30am", roles: [:cron_production] do
   liberate_latest_production(
     "scsb:latest",
     set_url: ENV["SOLR_URL"],
+    update_locations: "true",
+    output: "/tmp/daily_updates.log"
+  )
+end
+
+# Daily recap shared collection update to Solr staging cluster
+every 1.day, at: "7:00am", roles: [:cron_production] do
+  liberate_latest_production(
+    "scsb:latest",
+    set_url: ENV["SOLR_REINDEX_URL"],
     update_locations: "true",
     output: "/tmp/daily_updates.log"
   )
