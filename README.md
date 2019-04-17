@@ -10,6 +10,10 @@ For now look at `config/routes.rb` for what's available.
 
 ## Installation
 
+### Dependencies
+  * Mysql
+  * PhantomJS
+
 ### Oci8
 
 Oci8 is a little bit of a pain. See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for details.
