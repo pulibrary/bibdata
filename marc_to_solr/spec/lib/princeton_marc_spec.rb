@@ -682,23 +682,29 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @oversize_mfhd_id = "3723853"
       @other_mfhd_id = "4191919"
+      @exclude_mfhd_id = "9999"
       @call_number = "M23.L5S6 1973q"
       @include_loc = "f"
       @f_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "b"=>"anxa" },{ "t"=>"2" },{ "t"=>"BAD" },{ "c"=>"Oversize" },{ "h"=>@call_number }] } }
       @other_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@other_mfhd_id },{ "b"=>@include_loc },{ "b"=>"elf1" }] } }
+      @invalid_loc_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@exclude_mfhd_id },{ "b"=>"baddd" }] } }
       @l_866 = { "866"=>{ "ind1"=>"3","ind2"=>"1","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"volume 1" },{ "z"=>"full" }] } }
       @l_866_2nd = { "866"=>{ "ind1"=>"3","ind2"=>"1","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"In reading room" }] } }
       @c_866 = { "866"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"v2" },{ "z"=>"available" }] } }
       @s_867 = { "867"=>{ "ind1"=>"9","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v454" }] } }
       @i_868 = { "868"=>{ "ind1"=>" ","ind2"=>"0","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "z"=>"lost" }] } }
       @other_866 = { "866"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v4" },{ "z"=>"p3" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852])
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852, @invalid_loc_852])
 
       @holding_block = process_holdings(@sample_marc)
     end
 
     it 'includes only first location code in 852 $b' do
       expect(@holding_block[@other_mfhd_id]['location_code']).to eq(@include_loc)
+    end
+
+    it 'excludes holdings with an invalid location code' do
+      expect(@holding_block).not_to have_key(@exclude_mfhd_id)
     end
 
     it 'excludes $c for call_number_browse key' do

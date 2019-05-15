@@ -590,7 +590,7 @@ end
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868
 # assumes exactly 1 852 is present per mfhd (it saves the last 852 it finds)
-def process_holdings record
+def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   all_holdings = {}
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
@@ -599,7 +599,6 @@ def process_holdings record
       if s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        ## Location and Library aren't loading correctly with SCSB Records
         holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
         holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
@@ -622,7 +621,7 @@ def process_holdings record
     end
     holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
     holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
-    all_holdings[holding_id] = holding unless holding_id.nil?
+    all_holdings[holding_id] = holding unless holding_id.nil? || invalid_location?(holding['location_code'])
   end
   Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
@@ -706,6 +705,10 @@ def process_holdings record
     end
   end
   all_holdings
+end
+
+def invalid_location?(code)
+  Traject::TranslationMap.new("locations")[code].nil?
 end
 
 def process_recap_notes record
