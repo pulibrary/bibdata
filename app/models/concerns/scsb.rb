@@ -75,7 +75,7 @@ module Scsb
         req.body = request_body
       end
       parse_scsb_response(response)
-    rescue Faraday::ConnectionFailed => connection_failed
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError => connection_failed
       Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
       raise connection_failed
     end
