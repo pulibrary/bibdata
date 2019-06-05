@@ -737,13 +737,15 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  accumulator.replace(subjects)
+  sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
+  accumulator.replace([subjects, sk_subjects].flatten)
 end
 
 # used for the browse lists and hierarchical subject facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  accumulator.replace(subjects)
+  sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
+  accumulator.replace([subjects, sk_subjects].flatten)
 end
 
 to_field 'lcgft_s' do |record, accumulator|
