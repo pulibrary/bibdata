@@ -457,13 +457,24 @@ describe 'From traject_config.rb' do
       expect(thesis_bc_marc['format']).to include 'Senior thesis'
     end
   end
-  describe 'combined subject_facet field' do
+  describe 'combined genre field' do
     let(:g655_lcgft) { { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Genre" }, { "2"=>"lcgft" }] } } }
     let(:g655) { { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Exclude from subject browse" }] } } }
     let(:genre_subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [g655, g655_lcgft], 'leader' => leader)) }
 
     it 'form_genre_remaining_display field excludes lcgft headings' do
         expect(genre_subject_marc['form_genre_remaining_display']).to eq ['Exclude from subject browse']
+    end
+  end
+
+  describe 'subject fields' do
+    let(:s650_lcsh) { { "650"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"LC Subject" }] } } }
+    let(:s650_sk) { { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Siku Subject" }, { "2"=>"sk" }] } } }
+    let(:s650_exclude) { { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Exclude from subject browse" }, { "2"=>"bad" }] } } }
+    let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
+
+    it 'include the sk subjects but exclude other non-lc subjects' do
+        expect(subject_marc['subject_display']).to match_array(['LC Subject', 'Siku Subject'])
     end
   end
 end
