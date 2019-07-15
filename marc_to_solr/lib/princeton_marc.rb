@@ -68,8 +68,8 @@ module MARC
     def end_date_from_008
       if self['008']
         d = self['008'].value[11,4]
-        d = d.gsub 'u', '0' unless d == 'uuuu'
-        d = d.gsub ' ', '0' unless d == '    '
+        d = d.gsub 'u', '9' unless d == 'uuuu'
+        d = d.gsub ' ', '9' unless d == '    '
         d if d =~ /^[0-9]{4}$/
       end
     end
