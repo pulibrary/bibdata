@@ -3,6 +3,7 @@ require 'faraday'
 require 'zlib'
 require 'rsolr'
 require 'time'
+require 'logger'
 
 module IndexFunctions
 
@@ -19,8 +20,17 @@ module IndexFunctions
     dump['ids']['delete_ids']
   end
 
+  def self.logger
+    return Rails.logger if defined?(Rails)
+
+    @logger ||= Logger.new(STDOUT)
+  end
+
   def self.rsolr_connection(solr_url)
     RSolr.connect(url: solr_url, read_timeout: 300, open_timeout: 300)
+  rescue StandardError => error
+    logger.error "Failed to connect to Solr: #{error.message}"
+    nil
   end
 
   def self.full_dump(event)
@@ -57,6 +67,8 @@ module IndexFunctions
 
   def self.process_scsb_dumps(dumps, solr_url)
     solr = rsolr_connection(solr_url)
+    return if solr.nil?
+
     dumps.each do |dump|
       dump.dump_files.each do |df|
         next unless df.recap_record_type?
