@@ -48,4 +48,59 @@ RSpec.describe ScsbLookup do
       expect(Rails.logger).to have_received(:warn).with("No items could be retrieved for the barcodes: some_id,another_id")
     end
   end
+
+  describe "#scsb_response_json" do
+    let(:lookup) { described_class.new }
+
+    context "when the SCSB service encounters an error" do
+      let(:scsb_response) { instance_double(ActionDispatch::Response) }
+      let(:json_response) { lookup.scsb_response_json(scsb_response) }
+
+      before do
+        allow(Rails.logger).to receive(:error)
+        allow(scsb_response).to receive(:body)
+        allow(scsb_response).to receive(:status).and_return(500)
+      end
+
+      it "logs the error and returns an empty Hash" do
+        expect(json_response).to eq({})
+        expect(Rails.logger).to have_received(:error).with(/The request to the SCSB server failed/)
+      end
+    end
+
+    context "when the SCSB service endpoint returns non-JSON as a response" do
+      let(:scsb_response) { instance_double(ActionDispatch::Response) }
+      let(:scsb_response_body) { "{invalid" }
+      let(:json_response) { lookup.scsb_response_json(scsb_response) }
+
+      before do
+        allow(Rails.logger).to receive(:error)
+        allow(scsb_response).to receive(:body).and_return(scsb_response_body)
+        allow(scsb_response).to receive(:status).and_return(200)
+      end
+
+      it "logs the error and returns an empty Hash" do
+        expect(json_response).to eq({})
+        expect(Rails.logger).to have_received(:error).with("Failed to parse the response from the SCSB server: {invalid")
+      end
+    end
+  end
+
+  describe "#parse_scsb_message" do
+    let(:lookup) { described_class.new }
+
+    context "when the SCSB service endpoint returns non-JSON as a response" do
+      let(:scsb_response) { "{invalid" }
+      let(:parsed) { lookup.parse_scsb_message(scsb_response) }
+
+      before do
+        allow(Rails.logger).to receive(:error)
+      end
+
+      it "logs the error and returns an empty Hash" do
+        expect(parsed).to eq({})
+        expect(Rails.logger).to have_received(:error).with("Failed to parse a message from the SCSB server: {invalid")
+      end
+    end
+  end
 end
