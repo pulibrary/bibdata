@@ -41,10 +41,25 @@ module Scsb
   def parse_scsb_message(message)
     parsed = JSON.parse(message)
     parsed.class == Hash ? parsed.with_indifferent_access : parsed
+  rescue JSON::ParserError
+    Rails.logger.error("Failed to parse a message from the SCSB server: #{message}")
+    {}
+  end
+
+  def scsb_response_json(response)
+    if response.status != 200
+      Rails.logger.error("The request to the SCSB server failed: #{response.body}")
+      return {}
+    end
+
+    JSON.parse(response.body)
+  rescue JSON::ParserError
+    Rails.logger.error("Failed to parse the response from the SCSB server: #{response.body}")
+    {}
   end
 
   def parse_scsb_response(response)
-    parsed = response.status == 200 ? JSON.parse(response.body) : {}
+    parsed = scsb_response_json(response)
     parsed.class == Hash ? parsed.with_indifferent_access : parsed
   end
 
