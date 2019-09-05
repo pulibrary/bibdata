@@ -39,6 +39,20 @@ RSpec.describe "Course Reserves", type: :request do
         }
       ]
     end
+
+    context "when an Oracle error is encountered when attempting to query Voyager for the related bib. IDs" do
+      before do
+        allow(Rails.logger).to receive(:error)
+        allow(VoyagerHelpers::Liberator).to receive(:course_bibs).and_raise(OCIError, "ORA-01008: not all variables bound")
+      end
+
+      it "returns no bib. IDs and logs an error" do
+        get "/bib_ids?reserve_id[]=1&reserve_id[]=2"
+
+        expect(json_response).to eq [{}]
+        expect(Rails.logger).to have_received(:error).with("An error was encountered when querying Voyager for course reserves: ORA-01008: not all variables bound")
+      end
+    end
   end
 
   def stub_all_courses

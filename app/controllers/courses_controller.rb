@@ -10,7 +10,13 @@ class CoursesController < ApplicationController
 
   def bibs
     @reserve_ids = params.fetch(:reserve_id)
-    @bib_relations = VoyagerHelpers::Liberator.course_bibs(@reserve_ids)
+    begin
+      @bib_relations = VoyagerHelpers::Liberator.course_bibs(@reserve_ids)
+    rescue OCIError => oci_error
+      Rails.logger.error("An error was encountered when querying Voyager for course reserves: #{oci_error}")
+      @bib_relations = [{}]
+    end
+
     respond_to do |f|
       f.json do
         render json: MultiJson.dump(@bib_relations)
