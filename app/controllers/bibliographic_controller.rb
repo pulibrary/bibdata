@@ -88,12 +88,12 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = VoyagerHelpers::Liberator.get_items_for_bib(sanitize(params[:bib_id]))
+    records = VoyagerHelpers::Liberator.get_items_for_bib(bib_id_param)
     if records.nil? || records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
       respond_to do |wants|
-        wants.json  { render json: MultiJson.dump(records) }
+        wants.json  { render json: MultiJson.dump(add_locator_call_no(records)) }
         wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
       end
     end
@@ -202,5 +202,34 @@ class BibliographicController < ApplicationController
     # @return [String]
     def bib_id_param
       sanitize(params[:bib_id])
+    end
+
+    def add_locator_call_no(records)
+      records["f"] = records["f"].map do |record|
+        record[:sortable_call_number] = sortable_call_number(record[:call_number])
+        record
+      end
+      records
+    end
+
+    def sortable_call_number(call_no)
+      return call_no unless call_no =~ /^[A-Za-z]/
+      lsort_result = Lcsort.normalize(call_no)
+      return lsort_result.gsub('..', '.') unless lsort_result.nil?
+      force_number_part_to_have_4_digits(call_no)
+    rescue
+      return call_no
+    end
+
+    # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes
+    #
+    def force_number_part_to_have_4_digits(call_no)
+      dot_parts = call_no.tr(',', '.').split('.')
+      return call_no if dot_parts.count <= 1
+
+      parts = dot_parts[0].scan(/[A-Za-z]+|\d+/)
+      parts[1] = parts[1].rjust(4, '0')
+      dot_parts[0] = parts.join('.')
+      dot_parts.join('.')
     end
 end

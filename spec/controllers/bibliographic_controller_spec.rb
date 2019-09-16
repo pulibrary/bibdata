@@ -133,14 +133,42 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
 
-    describe '#bib_tems' do
+    describe '#bib_items' do
+      context 'when call number is not handeled by lcsort' do
+        before do
+          allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(
+            "f" => [{ holding_id: 1137735, call_number: "B785.W54xH6.1973", items: [{ id: 1230549, on_reserve: "N", copy_number: 1, item_sequence_number: 1, temp_location: nil, perm_location: "f", enum: nil, chron: nil, barcode: "32101028648937", due_date: nil, status: ["Not Charged"] }] }]
+          )
+        end
+
+        it 'renders a 200 HTTP response and adds a normalized call number for locator' do
+          get :bib_items, params: { bib_id: '987479' }, format: 'json'
+          expect(response.status).to be 200
+          expect(response.body).to eq("{\"f\":[{\"holding_id\":1137735,\"call_number\":\"B785.W54xH6.1973\",\"items\":[{\"id\":1230549,\"on_reserve\":\"N\",\"copy_number\":1,\"item_sequence_number\":1,\"temp_location\":null,\"perm_location\":\"f\",\"enum\":null,\"chron\":null,\"barcode\":\"32101028648937\",\"due_date\":null,\"status\":[\"Not Charged\"]}],\"sortable_call_number\":\"B.0785.W54xH6.1973\"}]}")
+        end
+      end
+
+      context 'when call number is handeled by lcsort' do
+        before do
+          allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(
+            "f" => [{ holding_id: 1412398, call_number: "UB357.E33.1973", items: [{ id: 1503428, on_reserve: "N", copy_number: 1, item_sequence_number: 1, temp_location: nil, perm_location: "f", enum: nil, chron: nil, barcode: "32101004147094", due_date: nil, status: ["Not Charged", "Missing"] }] }, { holding_id: 5434239, call_number: "UB357.E33.1973", items: [{ id: 4647744, on_reserve: "N", copy_number: 2, item_sequence_number: 1, temp_location: nil, perm_location: "f", enum: nil, chron: nil, barcode: "32101072966698", due_date: nil, status: ["Not Charged"] }] }]
+          )
+        end
+
+        it 'renders a 200 HTTP response and adds a normalized call number for locator' do
+          get :bib_items, params: { bib_id: '1234567' }, format: 'json'
+          expect(response.status).to be 200
+          expect(response.body).to eq("{\"f\":[{\"holding_id\":1412398,\"call_number\":\"UB357.E33.1973\",\"items\":[{\"id\":1503428,\"on_reserve\":\"N\",\"copy_number\":1,\"item_sequence_number\":1,\"temp_location\":null,\"perm_location\":\"f\",\"enum\":null,\"chron\":null,\"barcode\":\"32101004147094\",\"due_date\":null,\"status\":[\"Not Charged\",\"Missing\"]}],\"sortable_call_number\":\"UB.0357.E33.1973\"},{\"holding_id\":5434239,\"call_number\":\"UB357.E33.1973\",\"items\":[{\"id\":4647744,\"on_reserve\":\"N\",\"copy_number\":2,\"item_sequence_number\":1,\"temp_location\":null,\"perm_location\":\"f\",\"enum\":null,\"chron\":null,\"barcode\":\"32101072966698\",\"due_date\":null,\"status\":[\"Not Charged\"]}],\"sortable_call_number\":\"UB.0357.E33.1973\"}]}")
+        end
+      end
+
       context 'when no items are found' do
         before do
           allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(nil)
         end
 
         it 'renders a 404 HTTP response' do
-          get :bib_items, params: { bib_id: '1234567' }
+          get :bib_items, params: { bib_id: '1234567' }, format: 'json'
           expect(response.status).to be 404
         end
       end
