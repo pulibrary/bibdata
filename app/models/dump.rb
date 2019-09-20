@@ -39,7 +39,14 @@ class Dump < ActiveRecord::Base
 
   private
   def dump_records(ids, dump_file_type, priority = 'default')
-    slice_size = Rails.env.test? ? MARC_LIBERATION_CONFIG['test_records_per_file'] : MARC_LIBERATION_CONFIG['records_per_file']
+    slice_size = if Rails.env.test?
+      MARC_LIBERATION_CONFIG['test_records_per_file']
+                 elsif dump_file_type.constant == 'RECAP_RECORDS'
+      MARC_LIBERATION_CONFIG['recap_dump_records_per_file']
+                 else
+      MARC_LIBERATION_CONFIG['records_per_file']
+                 end
+
     ids.each_slice(slice_size).each do |id_slice|
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
