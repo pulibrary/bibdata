@@ -195,6 +195,7 @@ GEM
     jquery-tablesorter (1.25.0)
       railties (>= 3.2, < 6)
     json (1.8.6)
+    lcsort (0.9.1)
     library_stdnums (1.6.0)
     lightly (0.2.1)
     listen (2.10.1)
@@ -453,6 +454,7 @@ DEPENDENCIES
   iso-639
   jbuilder (~> 2.0)
   jquery-rails
+  lcsort
   library_stdnums
   lightly
   locations!
