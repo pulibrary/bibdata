@@ -162,12 +162,8 @@ class Dump < ActiveRecord::Base
         elsif type == 'MERGED_IDS'
           VoyagerHelpers::SyncFu.bibs_with_holdings_to_file(dump_file.path)
         elsif type == 'PRINCETON_RECAP'
-          if last_recap_dump.nil?
-            last_dump_date = Time.now - 1.day
-          else
-            last_dump_date = last_recap_dump.updated_at
-          end
-          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(last_dump_date)
+          timestamp = incremental_update_timestamp(type).to_time
+          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(timestamp)
           dump.update_ids = barcodes
           dump.save
           dump.dump_updated_recap_records(barcodes)
