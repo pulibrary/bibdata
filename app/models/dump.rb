@@ -39,7 +39,14 @@ class Dump < ActiveRecord::Base
 
   private
   def dump_records(ids, dump_file_type, priority = 'default')
-    slice_size = Rails.env.test? ? MARC_LIBERATION_CONFIG['test_records_per_file'] : MARC_LIBERATION_CONFIG['records_per_file']
+    slice_size = if Rails.env.test?
+      MARC_LIBERATION_CONFIG['test_records_per_file']
+                 elsif dump_file_type.constant == 'RECAP_RECORDS'
+      MARC_LIBERATION_CONFIG['recap_dump_records_per_file']
+                 else
+      MARC_LIBERATION_CONFIG['records_per_file']
+                 end
+
     ids.each_slice(slice_size).each do |id_slice|
       df = DumpFile.create(dump_file_type: dump_file_type)
       self.dump_files << df
@@ -155,12 +162,8 @@ class Dump < ActiveRecord::Base
         elsif type == 'MERGED_IDS'
           VoyagerHelpers::SyncFu.bibs_with_holdings_to_file(dump_file.path)
         elsif type == 'PRINCETON_RECAP'
-          if last_recap_dump.nil?
-            last_dump_date = Time.now - 1.day
-          else
-            last_dump_date = last_recap_dump.updated_at
-          end
-          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(last_dump_date)
+          timestamp = incremental_update_timestamp(type).to_time
+          barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(timestamp)
           dump.update_ids = barcodes
           dump.save
           dump.dump_updated_recap_records(barcodes)
