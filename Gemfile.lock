@@ -27,8 +27,8 @@ GIT
 
 GIT
   remote: git://github.com/pulibrary/orangetheses.git
-  revision: 84774b0b5a9811a11884c98138f7ad9b65653073
-  tag: v1.0
+  revision: ab605df8dc3a810571e85e4b0baddd42157dd5ef
+  tag: v1.1
   specs:
     orangetheses (0.3.0)
       chronic
