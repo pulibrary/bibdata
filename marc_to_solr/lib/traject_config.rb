@@ -1127,7 +1127,7 @@ each_record do |record, context|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
-        context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Rare Books and Special Collections', 'Marquand Library'].include?(holding_library[l])
+        context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
