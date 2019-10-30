@@ -645,7 +645,7 @@ to_field 'participant_performer_display', extract_marc('511a')
 
 # Language(s):
 #    546 XX 3a
-to_field 'language_display', extract_marc('5463ab')
+to_field 'language_display', extract_marc('5463a')
 
 to_field 'language_facet', marc_languages
 
