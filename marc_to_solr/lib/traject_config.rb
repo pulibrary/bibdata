@@ -741,11 +741,22 @@ to_field 'subject_display' do |record, accumulator|
   accumulator.replace([subjects, sk_subjects].flatten)
 end
 
-# used for the browse lists and hierarchical subject facet
+to_field 'lc_subject_display' do |record, accumulator|
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  accumulator.replace(subjects)
+end
+
+to_field 'siku_subject_display' do |record, accumulator|
+  genres = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
+  accumulator.replace(genres)
+end
+
+# used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
-  accumulator.replace([subjects, sk_subjects].flatten)
+  genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft', 'aat', 'rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
+  accumulator.replace([subjects, sk_subjects, genres].flatten)
 end
 
 to_field 'lcgft_s' do |record, accumulator|
@@ -753,12 +764,17 @@ to_field 'lcgft_s' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'rbgenr_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz', ['rbgenr'])
+to_field 'aat_s' do |record, accumulator|
+  genres = process_hierarchy(record, '655|*7|avxyz', ['aat'])
   accumulator.replace(genres)
 end
 
-to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz', alternate_script: :only)
+to_field 'rbgenr_s' do |record, accumulator|
+  genres = process_hierarchy(record, '655|*7|avxyz', ['rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
+  accumulator.replace(genres)
+end
+
+to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz', alternate_script: :only)
 
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
@@ -835,13 +851,6 @@ to_field 'call_number_full_facet' do |record, accumulator|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
     accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
-end
-
-# Form/Genre
-#    655 |7 a{v--%}{x--%}{y--%}{z--%} S avxyz
-to_field 'form_genre_display' do |record, accumulator|
-  subjects = process_hierarchy(record, '655avxyz')
-  accumulator.replace(subjects)
 end
 
 # 600/610/650/651 $v, $x filtered
@@ -1091,16 +1100,6 @@ each_record do |_record, context|
     context.output_hash['format'] << Traject::TranslationMap.new("format")['ST']
   end
 end
-
-each_record do |_record, context|
-  if context.output_hash['form_genre_display']
-    remaining_genres = context.output_hash['form_genre_display']
-    remaining_genres -= context.output_hash['lcgft_s'] if context.output_hash['lcgft_s']
-    remaining_genres -= context.output_hash['rbgenr_s'] if context.output_hash['rbgenr_s']
-    context.output_hash['form_genre_remaining_display'] = remaining_genres unless remaining_genres.empty?
-  end
-end
-
 
 # Process location code once
 each_record do |record, context|

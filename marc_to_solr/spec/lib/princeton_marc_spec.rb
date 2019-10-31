@@ -435,72 +435,14 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'form_genre_display' do
-    subject(:form_genre_display) { indexer.map_record(marc_record) }
-    let(:leader) { '1234567890' }
-    let(:field_655) do
-      {
-        "655" => {
-          "ind1" => "",
-          "ind2" => "0",
-          "subfields" => [
-            {
-              "a" => "Culture."
-            },
-            {
-              "v" => "Awesome"
-            },
-            {
-              "x" => "Dramatic rendition"
-            },
-            {
-              "y" => "19th century."
-            }
-          ]
-        }
-      }
-    end
-    let(:field_655_2) do
-      {
-        "655" => {
-          "ind1" => "",
-          "ind2" => "7",
-          "subfields" => [
-            {
-              "a" => "Poetry"
-            },
-            {
-              "x" => "Translations into French"
-            },
-            {
-              "v" => "Maps"
-            },
-            {
-              "y" => "19th century."
-            }
-          ]
-        }
-      }
-    end
-    let(:marc_record) do
-      MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
-    end
-    it "indexes the subfields as semicolon-delimited values" do
-      expect(form_genre_display).not_to be_empty
-      expect(form_genre_display).to include "form_genre_display"
-      expect(form_genre_display["form_genre_display"].length).to eq(2)
-      expect(form_genre_display["form_genre_display"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
-      expect(form_genre_display["form_genre_display"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
-    end
-  end
-
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Exclude" }, { "v"=>"John" }, { "x"=>"Join" }] } }
       @g630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction." }] } }
       @g655 = { "655"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Culture." }, { "x"=>"Dramatic rendition" }, { "v"=>"Awesome" }] } }
       @g655_2 = { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Poetry" }, { "x"=>"Translations into French" }, { "v"=>"Maps" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@g600, @g630, @g655, @g655_2])
+      @g655_3 = { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Manuscript" }, { "x"=>"Translations into French" }, { "v"=>"Genre" }, { "2"=>"rbgenr" }] } }
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@g600, @g630, @g655, @g655_2, @g655_3])
       @genres = process_genre_facet(@sample_marc)
     end
 
@@ -512,9 +454,14 @@ describe 'From princeton_marc.rb' do
       expect(@genres).not_to include("Exclude")
     end
 
-    it 'excludes 2nd indicator of 7' do
-      expect(@genres).not_to include("Poetry")
+    it 'excludes 2nd indicator of 7 if vocab type is not in approved list' do
       expect(@genres).not_to include("Maps")
+      expect(@genres).not_to include("Poetry")
+    end
+
+    it 'includes 2nd indicator of 7 if vocab type is in approved list' do
+      expect(@genres).to include("Manuscript")
+      expect(@genres).to include("Genre")
     end
 
     it 'includes 6xx $v and 655 $a' do
@@ -570,7 +517,9 @@ describe 'From princeton_marc.rb' do
     before(:all) do
       @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "x"=>"Join" }, { "t"=>"Title" }, { "d"=>"2015" }] } }
       @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "v"=>"split genre" }, { "t"=>"TITLE" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630])
+      @s650_sk = { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Siku subject" }, { "x"=>"Siku hierarchy" }, { "2"=>"sk" }] } }
+      @s650_exclude = { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Bad subject" }, { "2"=>"bad" }] } }
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk])
       @subjects = process_subject_topic_facet(@sample_marc)
     end
 
@@ -581,6 +530,10 @@ describe 'From princeton_marc.rb' do
     it 'excludes v and y' do
       expect(@subjects).not_to include("1492")
       expect(@subjects).not_to include("split genre")
+    end
+
+    it 'excludes non-approved subfield $2 vocab types' do
+      expect(@subjects).not_to include("Bad subject")
     end
 
     it 'includes subjects split along x or z' do
