@@ -466,15 +466,6 @@ describe 'From traject_config.rb' do
       expect(thesis_bc_marc['format']).to include 'Senior thesis'
     end
   end
-  describe 'combined genre field' do
-    let(:g655_lcgft) { { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Genre" }, { "2"=>"lcgft" }] } } }
-    let(:g655) { { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Exclude from subject browse" }] } } }
-    let(:genre_subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [g655, g655_lcgft], 'leader' => leader)) }
-
-    it 'form_genre_remaining_display field excludes lcgft headings' do
-        expect(genre_subject_marc['form_genre_remaining_display']).to eq ['Exclude from subject browse']
-    end
-  end
 
   describe 'subject fields' do
     let(:s650_lcsh) { { "650"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"LC Subject" }] } } }
@@ -484,6 +475,67 @@ describe 'From traject_config.rb' do
 
     it 'include the sk subjects but exclude other non-lc subjects' do
         expect(subject_marc['subject_display']).to match_array(['LC Subject', 'Siku Subject'])
+    end
+  end
+  describe 'form_genre_display' do
+    subject(:form_genre_display) { @indexer.map_record(marc_record) }
+    let(:leader) { '1234567890' }
+    let(:field_655) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "7",
+          "subfields" => [
+            {
+              "a" => "Culture."
+            },
+            {
+              "v" => "Awesome"
+            },
+            {
+              "x" => "Dramatic rendition"
+            },
+            {
+              "y" => "19th century."
+            },
+            {
+              "2" => "lcgft"
+            }
+          ]
+        }
+      }
+    end
+    let(:field_655_2) do
+      {
+        "655" => {
+          "ind1" => "",
+          "ind2" => "7",
+          "subfields" => [
+            {
+              "a" => "Poetry"
+            },
+            {
+              "x" => "Translations into French"
+            },
+            {
+              "v" => "Maps"
+            },
+            {
+              "y" => "19th century."
+            },
+            {
+              "2" => "aat"
+            }
+          ]
+        }
+      }
+    end
+    let(:marc_record) do
+      MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
+    end
+    it "indexes the subfields as semicolon-delimited values" do
+      expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
+      expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
     end
   end
 end

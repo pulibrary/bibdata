@@ -307,6 +307,18 @@ def process_subject_topic_facet record
       subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
     end
   end
+  Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
+    subject = extractor.collect_subfields(field, spec).first
+    should_include = false
+    unless subject.nil?
+      field.subfields.each do |s_field|
+        should_include = s_field.value == 'sk' if s_field.code == '2'
+        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
+      end
+      subject = subject.split(SEPARATOR)
+      subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) } if should_include
+    end
+  end
   subjects.flatten
 end
 
@@ -467,6 +479,9 @@ GENRE_STARTS_WITH = [
   'Translations into '
 ]
 
+SUBJECT_GENRE_VOCABULARIES = ['sk', 'aat', 'lcgft', 'rbbin', 'rbgenr', 'rbmscv',
+                              'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp']
+
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
 def process_genre_facet record
@@ -476,6 +491,22 @@ def process_genre_facet record
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
       genres << genre if GENRES.include?(genre) || GENRE_STARTS_WITH.any? { |g| genre[g] }
+    end
+  end
+  Traject::MarcExtractor.cached('650|*7|v:655|*7|a:655|*7|v').collect_matching_lines(record) do |field, spec, extractor|
+    should_include = false
+    field.subfields.each do |s_field|
+      # only include heading if it is part of the vocabulary
+      should_include = SUBJECT_GENRE_VOCABULARIES.include?(s_field.value) if s_field.code == '2'
+    end
+    genre = extractor.collect_subfields(field, spec).first
+    unless genre.nil?
+      genre = Traject::Macros::Marc21.trim_punctuation(genre)
+      if genre.match(/^\s+$/)
+        logger.error "#{record['001']} - Blank genre field"
+      elsif should_include
+        genres << genre
+      end
     end
   end
   Traject::MarcExtractor.cached('600|*0|v:610|*0|v:611|*0|v:630|*0|v:650|*0|v:651|*0|v:655|*0|a:655|*0|v').collect_matching_lines(record) do |field, spec, extractor|
