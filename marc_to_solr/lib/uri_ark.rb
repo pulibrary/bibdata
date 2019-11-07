@@ -25,6 +25,7 @@ class URI::ARK < URI::Generic
   # @param uri [URI::Generic] a URL
   # @return [TrueClass, FalseClass]
   def self.princeton_ark?(url:)
+    return false if url.to_s.start_with?('http:http:')
     m = /[\/?]ark\:\/88435\/(.+)\/?/.match(url.to_s)
     !!m
   end
