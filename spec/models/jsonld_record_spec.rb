@@ -62,7 +62,7 @@ RSpec.describe JSONLDRecord, type: :model do
         references: ['Stillwell B460.', 'Goff B-526.'],
         indexed_by: 'Example',
         location: ['F ND623.C3 M8', 'ANXAFST ND623.C3 M8'],
-        electronic_links: [{ "@id" => "http://arks.princeton.edu/ark:/88435/47429918s", "label" => "arks.princeton.edu" }]
+        electronic_locations: [{ "@id" => "http://arks.princeton.edu/ark:/88435/47429918s", "label" => "arks.princeton.edu" }]
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
     end
@@ -74,7 +74,7 @@ RSpec.describe JSONLDRecord, type: :model do
     }}
     subject { described_class.new solr_doc }
     it "displays it" do
-      expect(subject.to_h["electronic_links"]).to eq [
+      expect(subject.to_h["electronic_locations"]).to eq [
         {
           "@id" => "http://lib-dbserver.princeton.edu/music/programs/2015-04-24-25.pdf",
           "label" => "Program."
