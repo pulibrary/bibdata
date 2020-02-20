@@ -27,7 +27,7 @@ class JSONLDRecord
     metadata['identifier'] = identifier if identifier
     metadata['local_identifier'] = local_identifier if local_identifier
     metadata['location'] = location if location
-    metadata['electronic_links'] = electronic_links if electronic_links.present?
+    metadata['electronic_locations'] = electronic_links if electronic_links.present?
 
     metadata
   end
