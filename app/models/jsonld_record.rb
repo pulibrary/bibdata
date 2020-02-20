@@ -27,6 +27,7 @@ class JSONLDRecord
     metadata['identifier'] = identifier if identifier
     metadata['local_identifier'] = local_identifier if local_identifier
     metadata['location'] = location if location
+    metadata['electronic_links'] = electronic_links if electronic_links.present?
 
     metadata
   end
@@ -113,6 +114,15 @@ class JSONLDRecord
     identifiers = electronic_locations.flat_map(&:identifiers).select { |x| x.to_s.include?("ark") }
     identifiers.find do |identifier|
       !ArkResolver.new(ark: identifier).location.to_s.include?("findingaids")
+    end
+  end
+
+  def electronic_links
+    electronic_locations.map do |location|
+      {
+        "@id" => location.uri,
+        "label" => location.label
+      }
     end
   end
 

@@ -61,9 +61,25 @@ RSpec.describe JSONLDRecord, type: :model do
         source_acquisition: 'Obtained, Nov. 16, 1961, at Stargardt Sale of the collection of Dr. Robert Ammann.',
         references: ['Stillwell B460.', 'Goff B-526.'],
         indexed_by: 'Example',
-        location: ['F ND623.C3 M8', 'ANXAFST ND623.C3 M8']
+        location: ['F ND623.C3 M8', 'ANXAFST ND623.C3 M8'],
+        electronic_links: [{ "@id" => "http://arks.princeton.edu/ark:/88435/47429918s", "label" => "arks.princeton.edu" }]
       }
       expect(subject.to_h.symbolize_keys).to eq(json_ld)
+    end
+  end
+
+  context "with a program linked" do
+    let(:solr_doc) {{
+      'electronic_access_1display' => ["{\"http://lib-dbserver.princeton.edu/music/programs/2015-04-24-25.pdf\":[\"Program.\"]}"]
+    }}
+    subject { described_class.new solr_doc }
+    it "displays it" do
+      expect(subject.to_h["electronic_links"]).to eq [
+        {
+          "@id" => "http://lib-dbserver.princeton.edu/music/programs/2015-04-24-25.pdf",
+          "label" => "Program."
+        }
+      ]
     end
   end
 
