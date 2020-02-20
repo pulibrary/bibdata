@@ -13,7 +13,7 @@ class ElectronicLocation
     @relationship = relationship
     @subfields = subfields
     index_holdings!(holdings)
-    @manifests = iiif_manifest_uris.map { |uri| uri.to_s }
+    @manifests = iiif_manifest_uris.map(&:to_s)
     @iiif_manifest_uris = iiif_manifest_uris
   end
 
@@ -23,6 +23,14 @@ class ElectronicLocation
     iiif_manifest_arks + @subfields.select do |subfield|
       subfield.key?(ElectronicLocations::SubfieldCodes::URI) && /arks\.princeton\.edu/.match(subfield[ElectronicLocations::SubfieldCodes::URI])
     end.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
+  end
+
+  def uri
+    @subfields.flat_map { |x| x["u"] }.compact.first
+  end
+
+  def label
+    @subfields.flat_map { |x| x["y"] }.compact.first || uri
   end
 
   private
