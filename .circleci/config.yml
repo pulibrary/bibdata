@@ -35,11 +35,12 @@ jobs:
           keys:
           - marc_liberation-{{ checksum "Gemfile.lock" }}
           - marc_liberation-
-
+      - run:
+          name: Install phantomjs
+          command: sudo apt install phantomjs
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --without development production --jobs 4 --retry 3
-
       - save_cache:
           key: marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
