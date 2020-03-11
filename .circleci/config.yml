@@ -35,6 +35,7 @@ jobs:
           keys:
           - marc_liberation-{{ checksum "Gemfile.lock" }}
           - marc_liberation-
+      - run: sudo apt update
       - run:
           name: Install phantomjs
           command: sudo apt install phantomjs
