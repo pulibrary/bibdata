@@ -38,7 +38,7 @@ jobs:
       - run: sudo apt update
       - run:
           name: Install phantomjs
-          command: sudo apt install phantomjs
+          command: sudo apt install libmysqlclient-dev phantomjs
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --without development production --jobs 4 --retry 3
