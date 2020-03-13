@@ -5,7 +5,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.4.2-node-browsers
+      - image: circleci/ruby:2.4.5-node-browsers
         environment:
           RAILS_ENV: test
 
@@ -16,20 +16,33 @@ jobs:
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
           MYSQL_ROOT_PASSWORD: ''
 
-    steps:
+    steps: &test_steps
       - checkout
-
+      - run:
+          name: Install node@8.17.0 (need right version for `yarn`)
+          command: |
+            set +e
+            touch $BASH_ENV
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            echo 'nvm install v8.17.0' >> $BASH_ENV
+            echo 'nvm alias default v8.17.0' >> $BASH_ENV
+      - run:
+          name: Check current version of node
+          command: node -v
       - restore_cache:
           keys:
-          - marc_liberation-{{ checksum "Gemfile.lock" }}
-          - marc_liberation-
-
+          - marc_liberation-{{ checksum "Gemfile.lock" }}-2
+      - run: sudo apt update
+      - run:
+          name: Install phantomjs
+          command: sudo apt install phantomjs
       - run:
           name: Install dependencies
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --without development production --jobs 4 --retry 3
-
       - save_cache:
-          key: marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: marc_liberation-{{ checksum "Gemfile.lock" }}-2
           paths:
             - vendor/bundle
 
@@ -65,3 +78,26 @@ jobs:
             FIGGY_ARK_CACHE_PATH: marc_to_solr/spec/fixtures/figgy_ark_cache
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
+  
+  test_2_6:
+    working_directory: ~/marc_liberation
+
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+
+      # Service container image available at 'host: localhost'
+      - image: tkuchiki/delayed-mysql
+        environment:
+          MYSQL_DATABASE: marc_liberation_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+    steps: *test_steps
+workflows:
+  version: 2
+  build_accept_deploy:
+    jobs:
+      - build 
+      - test_2_6
