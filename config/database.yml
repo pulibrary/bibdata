@@ -1,29 +1,22 @@
 development:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: marc_liberation_dev
-  username: root
-  password:
   pool: 5
   timeout: 5000
   host: localhost
 
 test:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: marc_liberation_test
   pool: 5
-  username: root
-  password:
   timeout: 5000
   host: 127.0.0.1
 
 production:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
+  adapter: postgresql
+  encoding: unicode
   database: <%= ENV['BIBDATA_DB'] %>
   pool: 20
   username: <%= ENV['BIBDATA_DB_USERNAME'] %>
