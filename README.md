@@ -64,6 +64,22 @@ To index a single record from Voyager into Orangelight:
 SET_URL=http://localhost:8983/solr/orangelight-core-development BIB=123456 rake liberate:bib
 ```
 
+## Export the location data
+1. export the database in production
+  ```
+  ssh deploy@bibdata1
+  cd /opt/marc_liberation/current
+  RAILS_ENV=production bundle exec rake db:data:dump
+  exit
+  ```
+1. copy the file locally 
+  ```
+  scp deploy@bibdata1:/opt/marc_liberation/current/db/data.yml db/data.yml
+  ```
+1. edit the dump and remove everything except `locations_*` . Move locations_library first and locations_hours_locations second
+
+1. to update the database you need to clear it and then load it: `rake db:drop db:create db:migrate db:data:load db:seed`
+
 ## Tests
 
 A couple of the tests require some fixtures to be in place; for now they must be copied as in this CI configuration: https://github.com/pulibrary/marc_liberation/blob/6b7b9e60d65f313fede5a70e5a2cd6e56d634003/.circleci/config.yml#L36-L46
