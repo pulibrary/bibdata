@@ -427,8 +427,8 @@ GEM
       chronic (>= 0.6.3)
     xpath (3.0.0)
       nokogiri (~> 1.8)
-    yaml_db (0.6.0)
-      rails (>= 3.0, < 5.2)
+    yaml_db (0.7.0)
+      rails (>= 3.0)
       rake (>= 0.8.7)
     yell (2.0.7)
 
@@ -497,7 +497,7 @@ DEPENDENCIES
   voyager_helpers!
   webmock
   whenever (~> 0.10)
-  yaml_db (~> 0.6.0)
+  yaml_db (~> 0.7.0)
 
 BUNDLED WITH
    2.1.4
