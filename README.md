@@ -35,7 +35,31 @@ Prepend the below with `RUBY_ENV=test` as appropriate
 ```bash
 rake db:create
 rake db:migrate
-rake db:seed
+```
+
+Get data from the production server
+```
+ssh deploy@bibdata1
+cat app_configs/marc_liberation # grab the password
+pg_dump -h $BIBDATA_DB_HOST -U $BIBDATA_DB_USERNAME marc_liberation_prod > marc_liberation.dump
+exit
+```
+import the data to you local machine
+```
+cd <your location for marc_liberation>
+scp deploy@bibdata1:marc_liberation.dump .
+vi marc_liberation.dump
+:%s/marc_liberation_prod/marc_liberation_dev/g
+:wq
+```
+Import data into your local database
+```
+rake db:drop db:create
+psql marc_liberation_dev < marc_liberation.dump
+rake db:migrate
+rails db:environment:set RAILS_ENV=development
+psql marc_liberation_dev
+alter database marc_liberation_dev set search_path to marc_liberation_dev, public;
 ```
 
 ## ARK Caching
