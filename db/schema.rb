@@ -10,8 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_170_103_045_037) do
-  create_table "dump_file_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+ActiveRecord::Schema.define(version: 20170103045037) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "dump_file_types", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "constant"
     t.datetime "created_at", null: false
@@ -19,7 +23,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["constant"], name: "index_dump_file_types_on_constant"
   end
 
-  create_table "dump_files", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "dump_files", id: :serial, force: :cascade do |t|
     t.integer "dump_id"
     t.string "path"
     t.string "md5"
@@ -30,7 +34,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["dump_id"], name: "index_dump_files_on_dump_id"
   end
 
-  create_table "dump_types", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "dump_types", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "constant"
     t.datetime "created_at", null: false
@@ -38,19 +42,19 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["constant"], name: "index_dump_types_on_constant"
   end
 
-  create_table "dumps", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "dumps", id: :serial, force: :cascade do |t|
     t.integer "event_id"
     t.integer "dump_type_id"
-    t.text "delete_ids", limit: 4_294_967_295
+    t.text "delete_ids"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.text "update_ids", limit: 4_294_967_295
-    t.text "create_ids", limit: 4_294_967_295
+    t.text "update_ids"
+    t.text "create_ids"
     t.index ["dump_type_id"], name: "index_dumps_on_dump_type_id"
     t.index ["event_id"], name: "index_dumps_on_event_id"
   end
 
-  create_table "events", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "events", id: :serial, force: :cascade do |t|
     t.datetime "start"
     t.datetime "finish"
     t.text "error"
@@ -59,7 +63,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "friendly_id_slugs", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -71,7 +75,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "locations_delivery_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_delivery_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.text "address"
     t.string "phone_number"
@@ -86,7 +90,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id"
   end
 
-  create_table "locations_floors", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_floors", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "floor_plan_image"
     t.string "starting_point"
@@ -97,7 +101,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.index ["locations_library_id"], name: "index_locations_floors_on_locations_library_id"
   end
 
-  create_table "locations_holding_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_holding_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
     t.datetime "created_at", null: false
@@ -111,26 +115,24 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.integer "locations_hours_location_id"
     t.boolean "circulates", default: true
     t.integer "holding_library_id"
-    t.index ["holding_library_id"], name: "fk_rails_9d6bef4ef6"
-    t.index ["locations_hours_location_id"], name: "fk_rails_41d5ab8754"
     t.index ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id"
   end
 
-  create_table "locations_holdings_delivery", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_holdings_delivery", id: false, force: :cascade do |t|
     t.integer "locations_delivery_location_id"
     t.integer "locations_holding_location_id"
     t.index ["locations_delivery_location_id"], name: "index_lhd_on_ldl_id"
     t.index ["locations_holding_location_id"], name: "index_ldl_on_lhd_id"
   end
 
-  create_table "locations_hours_locations", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_hours_locations", id: :serial, force: :cascade do |t|
     t.string "code"
     t.string "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "locations_libraries", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "locations_libraries", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
     t.datetime "created_at", null: false
@@ -138,7 +140,7 @@ ActiveRecord::Schema.define(version: 20_170_103_045_037) do
     t.integer "order", default: 0
   end
 
-  create_table "users", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin" do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

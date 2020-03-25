@@ -1,32 +1,23 @@
-development:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
-  database: marc_liberation_dev
-  username: root
-  password:
-  pool: 5
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
   timeout: 5000
-  host: localhost
+
+development:
+  <<: *default
+  database: marc_liberation_dev
+  pool: 5
 
 test:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
+  <<: *default
   database: marc_liberation_test
   pool: 5
-  username: root
-  password:
-  timeout: 5000
-  host: 127.0.0.1
 
 production:
-  adapter: mysql2
-  collation: utf8_bin
-  encoding: utf8
+  <<: *default
   database: <%= ENV['BIBDATA_DB'] %>
   pool: 20
   username: <%= ENV['BIBDATA_DB_USERNAME'] %>
   password: <%= ENV['BIBDATA_DB_PASSWORD'] %>
-  timeout: 5000
   host: <%= ENV['BIBDATA_DB_HOST'] %>
