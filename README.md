@@ -24,7 +24,7 @@ As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http:
 
 ## Configuration
 
-Set env vars in `config/initializers/voyager_helpers.rb` and `config/initializers/devise.rb`, as appropriate.
+Set env vars in `config/initializers/voyager_helpers.rb` and `config/initializers/devise.rb`, as appropriate (see [bibdata](https://github.com/pulibrary/princeton_ansible/blob/master/group_vars/bibdata/vault.yml)).
 
 You can run tests without setting up a voyager connection, but it is required for a development environment.
 
