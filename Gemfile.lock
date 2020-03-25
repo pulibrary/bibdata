@@ -1,12 +1,12 @@
 GIT
-  remote: https://github.com/kovyrin/loops.git
+  remote: git://github.com/kovyrin/loops.git
   revision: da4cc4727236de3c585b7825ea78bb893ea03df1
   branch: master
   specs:
     loops (2.1.0.dev)
 
 GIT
-  remote: https://github.com/pulibrary/locations.git
+  remote: git://github.com/pulibrary/locations.git
   revision: 334da3bd6f1c1482c2e0485b31d9dd3e2c8bc551
   tag: v1.2.0
   specs:
@@ -18,7 +18,7 @@ GIT
       yaml_db (~> 0.6)
 
 GIT
-  remote: https://github.com/pulibrary/marc_cleanup.git
+  remote: git://github.com/pulibrary/marc_cleanup.git
   revision: 523cf5432c14e6654eadb8b99962f4f96fbdc94c
   tag: v0.7.0
   specs:
@@ -26,7 +26,7 @@ GIT
       marc (~> 1.0)
 
 GIT
-  remote: https://github.com/pulibrary/orangetheses.git
+  remote: git://github.com/pulibrary/orangetheses.git
   revision: ab605df8dc3a810571e85e4b0baddd42157dd5ef
   tag: v1.1
   specs:
@@ -38,14 +38,14 @@ GIT
       rsolr
 
 GIT
-  remote: https://github.com/pulibrary/stringex.git
+  remote: git://github.com/pulibrary/stringex.git
   revision: 357f70511532a35b11a240e5ae06d02725cb8d0a
   tag: vpton.2.5.2.2
   specs:
     stringex (2.5.2)
 
 GIT
-  remote: https://github.com/pulibrary/voyager_helpers.git
+  remote: git://github.com/pulibrary/voyager_helpers.git
   revision: 26166ac7e68bfce5d5326f11c0a05933f2b07880
   branch: master
   specs:

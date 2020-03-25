@@ -3,10 +3,12 @@ require 'rails_helper'
 RSpec.describe PatronController, type: :controller do
   context "with an authorized ip" do
     let(:whitelisted_ip) { '192.168.0.1'}
+    let(:whitelisted_range) { '192.168.0.0/16'}
+    let(:whitelisted_another_ip) { '192.169.0.3'}
 
     before do
      controller.request.remote_addr = whitelisted_ip
-     allow(Rails.application.config).to receive(:ip_whitelist).and_return([whitelisted_ip])
+     allow(Rails.application.config).to receive(:ip_whitelist).and_return([whitelisted_range, whitelisted_another_ip, whitelisted_ip])
    end
 
     it "can access patron info" do
@@ -15,6 +17,12 @@ RSpec.describe PatronController, type: :controller do
       expect(response).to have_http_status(200)
     end
 
+    it "can access patron info with an identical match" do
+      controller.request.remote_addr = whitelisted_another_ip
+      stub_patron('steve')
+      get :patron_info, params: { patron_id: 'steve', format: :json }
+      expect(response).to have_http_status(200)
+    end
 
     it "can return patron stat codes" do
       stub_patron_codes('steve')
