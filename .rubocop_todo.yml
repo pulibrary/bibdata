@@ -392,7 +392,7 @@ Lint/AssignmentInCondition:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleAlignWith.
 # SupportedStylesAlignWith: either, start_of_block, start_of_line
-Lint/BlockAlignment:
+Layout/BlockAlignment:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/spec/lib/config_spec.rb'
@@ -509,14 +509,6 @@ Naming/VariableNumber:
 Performance/Casecmp:
   Exclude:
     - 'marc_to_solr/lib/format/bib_types.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect.
-Performance/HashEachMethods:
-  Exclude:
-    - 'app/controllers/availability_controller.rb'
-    - 'app/services/electronic_locations_factory.rb'
 
 # Offense count: 10
 # Cop supports --auto-correct.
@@ -869,7 +861,7 @@ Style/SymbolProc:
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.
 # SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
   Exclude:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
