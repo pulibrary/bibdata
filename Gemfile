@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'bixby', '~> 1.0'
+gem 'bixby', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capybara'
@@ -39,8 +39,8 @@ gem 'rails', '~> 5.1'
 gem 'responders', '~> 2.3'
 gem 'rsolr'
 gem 'rspec-rails', '~> 3.8'
-gem 'rubocop', '~> 0.52.1'
-gem 'rubocop-rspec', '~> 1.22'
+gem 'rubocop'
+gem 'rubocop-rspec'
 gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'

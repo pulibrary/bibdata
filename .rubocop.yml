@@ -16,7 +16,7 @@ Rails/TimeZone:
 
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.6
   Include:
     - '**/Capfile'
     - '**/Gemfile'
