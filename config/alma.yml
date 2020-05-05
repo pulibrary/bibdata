@@ -1,0 +1,2 @@
+apikey: <%= ENV['ALMA_BIBS_READ_ONLY'] %> 
+region: <%= ENV['ALMA_REGION'] %>

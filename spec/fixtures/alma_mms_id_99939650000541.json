@@ -1,0 +1,116 @@
+{
+  "bib": [
+    {
+      "mms_id": "99939650000541",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "War and peace /",
+      "author": "Tolstoy, Leo,",
+      "issn": null,
+      "isbn": null,
+      "network_number": [
+        "CNV02431156 //r89"
+      ],
+      "place_of_publication": "New York :",
+      "date_of_publication": "1942.",
+      "publisher_const": "Simon and Schuster",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99939650000541/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2011-12-17Z",
+      "last_modified_by": "System",
+      "last_modified_date": "2019-12-12Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "22133-train20072_c2db",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00740cam a2200229 a 4500</leader><controlfield tag=\"001\">99939650000541</controlfield><controlfield tag=\"005\">20191212130857.0</controlfield><controlfield tag=\"008\">841221s1942    paua          000 1 eng</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">CNV02431156 //r89</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"049\"><subfield code=\"a\">SHCM</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"050\"><subfield code=\"a\">PG3366</subfield><subfield code=\"b\">.V6 1984</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"082\"><subfield code=\"a\">891.73/3</subfield><subfield code=\"2\">19</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"092\"><subfield code=\"a\">891.7 T654w</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Tolstoy, Leo,</subfield><subfield code=\"c\">graf,</subfield><subfield code=\"d\">1828-1910.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"240\"><subfield code=\"a\">Voĭna i mir.</subfield><subfield code=\"l\">English</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">War and peace /</subfield><subfield code=\"c\">Leo Tolstoy.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">New York :</subfield><subfield code=\"b\">Simon and Schuster,</subfield><subfield code=\"c\">1942.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">1370 p. :</subfield><subfield code=\"b\">illus.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Translation of: Voĭna i mir.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">\"Inner sanctum edition.\"</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Napoleonic Wars, 1800-1815</subfield><subfield code=\"x\">Campaigns</subfield><subfield code=\"z\">Russia</subfield><subfield code=\"x\">Fiction.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">Russia</subfield><subfield code=\"x\">History</subfield><subfield code=\"y\">Alexander I, 1801-1825</subfield><subfield code=\"x\">Fiction.</subfield></datafield></record>"
+      ],
+      "requests": null,
+      "link": null
+    },
+    {
+      "mms_id": "99939680000541",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "The content of our character : a new vision of race in America /",
+      "author": "Steele, Shelby.",
+      "issn": null,
+      "isbn": "006097415X (pbk.) :",
+      "complete_edition": "1st HarperPerennial ed.",
+      "network_number": [
+        "(OCoLC)39159",
+        "ocm23692723"
+      ],
+      "place_of_publication": "New York, NY :",
+      "date_of_publication": "1991.",
+      "publisher_const": "HarperPerennial",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99939680000541/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2011-12-17Z",
+      "last_modified_by": "System",
+      "last_modified_date": "2019-12-12Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "39159-train20072_c2db",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00846cam a22002778a 4500</leader><controlfield tag=\"001\">99939680000541</controlfield><controlfield tag=\"005\">20191212130851.0</controlfield><controlfield tag=\"008\">901226r19911990nyu           000 0 eng</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"010\"><subfield code=\"a\">90056430</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">006097415X (pbk.) :</subfield><subfield code=\"c\">$8.95</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">ocm23692723</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)39159</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">DLC</subfield><subfield code=\"c\">DLC</subfield><subfield code=\"d\">PMD</subfield><subfield code=\"d\">SHC</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"043\"><subfield code=\"a\">n-us---</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"049\"><subfield code=\"a\">SHCM</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"050\"><subfield code=\"a\">E185.615</subfield><subfield code=\"b\">.S74 1991</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"082\"><subfield code=\"a\">305.896/073</subfield><subfield code=\"2\">20</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Steele, Shelby.</subfield></datafield><datafield ind1=\"1\" ind2=\"4\" tag=\"245\"><subfield code=\"a\">The content of our character :</subfield><subfield code=\"b\">a new vision of race in America /</subfield><subfield code=\"c\">Shelby Steele.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"250\"><subfield code=\"a\">1st HarperPerennial ed.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">New York, NY :</subfield><subfield code=\"b\">HarperPerennial,</subfield><subfield code=\"c\">1991.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"263\"><subfield code=\"a\">9109</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">xii, 175 p. ;</subfield><subfield code=\"c\">21 cm.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">$9.52  B&amp;T  10-25-94  (Davis)  RAB</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Afro-Americans</subfield><subfield code=\"x\">Social conditions</subfield><subfield code=\"y\">1975-</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">United States</subfield><subfield code=\"x\">Race relations.</subfield></datafield></record>"
+      ],
+      "requests": null,
+      "link": null
+    },
+    {
+      "mms_id": "99939690000541",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "War and peace /",
+      "author": "Silva-Vigier, Anil de.",
+      "issn": null,
+      "isbn": null,
+      "complete_edition": "[1st ed.]",
+      "network_number": [
+        "CNV02431130 830428"
+      ],
+      "place_of_publication": "Greenwich, Conn. :",
+      "date_of_publication": "[1965].",
+      "publisher_const": "New York Graphic Society",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99939690000541/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2011-12-17Z",
+      "last_modified_by": "System",
+      "last_modified_date": "2019-12-12Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "22131-train20072_c2db",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00951cam a2200265I  4500</leader><controlfield tag=\"001\">99939690000541</controlfield><controlfield tag=\"005\">20191212130856.0</controlfield><controlfield tag=\"008\">721218s1965    ctuaf    b    000 0 eng</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"010\"><subfield code=\"a\">65003851 //r67</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">CNV02431130 830428</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">DLC</subfield><subfield code=\"c\">WSU</subfield><subfield code=\"d\">OCL</subfield><subfield code=\"d\">m.c.</subfield><subfield code=\"d\">SER</subfield><subfield code=\"d\">NBC</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"049\"><subfield code=\"a\">SHCM</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"050\"><subfield code=\"a\">N8260</subfield><subfield code=\"b\">.W35 1965</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"092\"><subfield code=\"a\">704.949399 W2532</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">War and peace /</subfield><subfield code=\"c\">[Editors: Anil de Silva, and others].</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"250\"><subfield code=\"a\">[1st ed.]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">Greenwich, Conn. :</subfield><subfield code=\"b\">New York Graphic Society,</subfield><subfield code=\"c\">[1965].</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">64 p. :</subfield><subfield code=\"b\">illus., plates (part col.) ;</subfield><subfield code=\"c\">32 cm.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">\"Published ... with the sponsorship of the World Confederation of Organizations of the Teaching Profession.\"</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"504\"><subfield code=\"a\">Includes bibliographies.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">War in art.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Peace in art.</subfield></datafield><datafield ind1=\"2\" ind2=\" \" tag=\"700\"><subfield code=\"a\">Silva-Vigier, Anil de.</subfield></datafield><datafield ind1=\"2\" ind2=\" \" tag=\"710\"><subfield code=\"a\">World Confederation of Organizations of the Teaching Profession.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"830\"><subfield code=\"a\">Man through his art ;</subfield><subfield code=\"v\">v. 1.</subfield></datafield></record>"
+      ],
+      "requests": null,
+      "link": null
+    }
+  ],
+  "total_record_count": null
+}

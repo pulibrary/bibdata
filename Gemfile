@@ -41,7 +41,7 @@ gem 'rsolr'
 gem 'rspec-rails', '~> 3.8'
 gem 'rubocop'
 gem 'rubocop-rspec'
-gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
+gem 'ruby-oci8', '~> 2.2', '>= 2.2.8' unless ENV['CI']
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
@@ -51,7 +51,7 @@ gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'master'
+# gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'master'
 gem 'whenever', "~> 0.10"
 gem 'yaml_db', '~> 0.7.0'
 

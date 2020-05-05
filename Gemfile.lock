@@ -44,16 +44,6 @@ GIT
   specs:
     stringex (2.5.2)
 
-GIT
-  remote: https://github.com/pulibrary/voyager_helpers.git
-  revision: 26166ac7e68bfce5d5326f11c0a05933f2b07880
-  branch: master
-  specs:
-    voyager_helpers (0.7.2)
-      activesupport (~> 5.1)
-      diffy (~> 3.0.7)
-      marc (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -155,7 +145,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
-    diffy (3.0.7)
     docile (1.1.5)
     dot-properties (0.1.3)
     erubi (1.8.0)
@@ -342,7 +331,7 @@ GEM
       unicode-display_width (~> 1.4.0)
     rubocop-rspec (1.31.0)
       rubocop (>= 0.60.0)
-    ruby-oci8 (2.2.5.1)
+    ruby-oci8 (2.2.8)
     ruby-progressbar (1.10.1)
     rubyzip (1.2.2)
     safe_yaml (1.0.5)
@@ -484,7 +473,7 @@ DEPENDENCIES
   rspec-rails (~> 3.8)
   rubocop
   rubocop-rspec
-  ruby-oci8 (~> 2.2.1)
+  ruby-oci8 (~> 2.2, >= 2.2.8)
   rubyzip (>= 1.2.2)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
@@ -496,7 +485,6 @@ DEPENDENCIES
   traject (= 2.3.1)
   turbolinks
   uglifier (>= 1.3.0)
-  voyager_helpers!
   webmock
   whenever (~> 0.10)
   yaml_db (~> 0.7.0)

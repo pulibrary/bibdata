@@ -1,0 +1,3 @@
+dbname: <%= ENV['VOYAGER_DB_NAME'] %> 
+dbpassword: <%= ENV['VOYAGER_DB_PASSWORD'] %>
+dbuser: <%= ENV['VOYAGER_DB_USER'] %>
