@@ -7,4 +7,11 @@ namespace :hathi do
     end
   end
 
+  desc 'Compact hathi_full file to include only the identifier and the oclc'
+  task compact_full: :environment do
+    if ENV['HATHI_FULL'] && ENV['OUTPUT_HATHI']
+      Hathi::CompactFull.compact_full
+    end  
+  end
+
 end

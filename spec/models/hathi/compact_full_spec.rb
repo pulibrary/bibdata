@@ -13,16 +13,15 @@ RSpec.describe Hathi::CompactFull do
       output_file = File.open(compact_file)
       described_class.compact_full
       expect(output_file.read).to eq("identifier\toclc\n"\
-      	                             "mdp.39015066356547\t2779601\n"\
-      	                             "mdp.39015066356406\t2779601\n"\
-      	                             "mdp.39015066356695\t2779601\n"\
-      	                             "mdp.39015066356554\t2779601\n"\
-      	                             "uc1.$b759626\t2779601\n"\
+                                     "mdp.39015066356547\t2779601\n"\
+                                     "mdp.39015066356406\t2779601\n"\
+                                     "mdp.39015066356695\t2779601\n"\
+                                     "mdp.39015066356554\t2779601\n"\
+                                     "uc1.$b759626\t2779601\n"\
                                      "uc1.$b759627\t2779601\n"\
-      	                             "uc1.$b759628\t2779601\n"\
-      	                             "mdp.39015033913115\t23536349\n"\
-      	                             "mdp.39015061455294\t60561774\n") 
+                                     "uc1.$b759628\t2779601\n"\
+                                     "mdp.39015033913115\t23536349\n"\
+                                     "mdp.39015061455294\t60561774\n") 
     end
-  end    
+  end
 end
-
