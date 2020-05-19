@@ -10,8 +10,8 @@ RSpec.describe Hathi::CompactFull do
     it 'compacts the full hathi file' do
       ENV['OUTPUT_HATHI'] = hathi_output
       ENV['HATHI_FULL'] = hathi_directory
-      output_file = File.open(compact_file)
       described_class.compact_full
+      output_file = File.open(compact_file)
       expect(output_file.read).to eq("identifier\toclc\n"\
                                      "mdp.39015066356547\t2779601\n"\
                                      "mdp.39015066356406\t2779601\n"\
