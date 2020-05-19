@@ -12,16 +12,8 @@ module Hathi
       output_hathi_dir = ENV['OUTPUT_HATHI']
       CSV.open("#{output_hathi_dir}/compact_hathi_full.csv", "wb", col_sep: "\t") do |csv|
         csv << ["identifier","oclc"]
-        CSV.open(get_full_hathi_file, col_sep: "\t", headers: true, liberal_parsing: true) do |input|
-          loop do
-            begin
-              row = input.shift
-              break unless row
-              csv << [row[0],row[7]]
-            rescue CSV::MalformedCSVError => e
-              puts e.message
-            end
-          end
+        CSV.foreach(get_full_hathi_file, col_sep: "\t", liberal_parsing: true) do |row|
+          csv << [row[0],row[7]]
         end
       end
     end
