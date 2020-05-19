@@ -5,7 +5,7 @@ RSpec.describe Hathi::CompactFull do
     
     let(:hathi_directory) { File.expand_path('../../../fixtures/', __FILE__)}
     let(:hathi_output) { File.expand_path('../../../../tmp', __FILE__)}
-    let(:compact_file) {File.join(hathi_output, 'compact_hathi_full.csv')}
+    let(:compact_file) {File.join(hathi_output, 'compact_hathi_full.tsv')}
     
     it 'compacts the full hathi file' do
       ENV['OUTPUT_HATHI'] = hathi_output

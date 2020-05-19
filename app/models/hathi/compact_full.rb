@@ -10,7 +10,7 @@ module Hathi
 
     def self.compact_full
       output_hathi_dir = ENV['OUTPUT_HATHI']
-      CSV.open("#{output_hathi_dir}/compact_hathi_full.csv", "wb", col_sep: "\t") do |csv|
+      CSV.open("#{output_hathi_dir}/compact_hathi_full.tsv", "wb", col_sep: "\t") do |csv|
         csv << ["identifier","oclc"]
         CSV.foreach(get_full_hathi_file, col_sep: "\t", liberal_parsing: true) do |row|
           csv << [row[0],row[7]]
