@@ -1,9 +1,12 @@
 namespace :hathi do
   
   desc "compact hathi overlap report to only include files that overlap"
-  task compact_overlap: :environment do |t, args|
-    if ENV['HATHI_OVERLAP'] && ENV['HATHI_OVERLAP_COMPACTED']
+  task compact_overlap: :environment do
+    if ENV['HATHI_OVERLAP'] && ENV['HATHI_OVERLAP_COMPACTED'] 
       Hathi::CompactOverlap.perform
+      output_file = ENV['HATHI_OVERLAP_COMPACTED']
+      sorted_file = ENV['HATHI_OVERLAP_COMPACTED_SORTED'] || "#{output_file}.sorted"
+      `sort -t: -k 1n #{output_file} > #{sorted_file}`
     end
   end
 
