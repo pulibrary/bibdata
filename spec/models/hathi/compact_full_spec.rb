@@ -5,11 +5,11 @@ RSpec.describe Hathi::CompactFull do
     
     let(:hathi_directory) { File.expand_path('../../../fixtures/', __FILE__)}
     let(:hathi_output) { File.expand_path('../../../../tmp', __FILE__)}
-    let(:compact_file) {File.join(hathi_output, 'compact_hathi_full.tsv')}
+    let(:compact_file) {File.join(hathi_output, 'hathi_full_20200501_compacted.tsv')}
     
     it 'compacts the full hathi file' do
-      ENV['OUTPUT_HATHI'] = hathi_output
-      ENV['HATHI_FULL'] = hathi_directory
+      ENV['HATHI_INPUT_DIR'] = hathi_directory
+      ENV['HATHI_OUTPUT_DIR'] = hathi_output
       described_class.compact_full
       output_file = File.open(compact_file)
       expect(output_file.read).to eq("identifier\toclc\n"\
@@ -23,6 +23,7 @@ RSpec.describe Hathi::CompactFull do
                                      "uc1.$b759628\t2779601\n"\
                                      "mdp.39015033913115\t23536349\n"\
                                      "mdp.39015061455294\t60561774\n") 
+      File.delete(output_file.path)
     end
   end
 end

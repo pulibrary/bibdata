@@ -4,15 +4,20 @@ module Hathi
   class CompactFull
 
     def self.get_full_hathi_file
-      hathi_dir = ENV['HATHI_FULL']
-      Dir.glob("#{hathi_dir}/hathi_full*").sort_by { |filename| filename.to_date.strftime}.last
+      hathi_dir = ENV['HATHI_INPUT_DIR']
+      get_hathi_file(hathi_dir, "hathi_full*")
+    end  
+
+    def self.get_hathi_file(directory, pattern)
+      Dir.glob("#{directory}/#{pattern}").sort_by { |filename| filename.to_date.strftime}.last
     end  
 
     def self.compact_full
-      output_hathi_dir = ENV['OUTPUT_HATHI']
-      CSV.open("#{output_hathi_dir}/compact_hathi_full.tsv", "wb", col_sep: "\t") do |csv|
+      full_hathi_file = get_full_hathi_file
+      output_hathi_file = File.join(ENV['HATHI_OUTPUT_DIR'],File.basename(full_hathi_file).gsub('.tsv','_compacted.tsv'))
+      CSV.open(output_hathi_file, "wb", col_sep: "\t") do |csv|
         csv << ["identifier","oclc"]
-        CSV.foreach(get_full_hathi_file, col_sep: "\t", liberal_parsing: true) do |row|
+        CSV.foreach(full_hathi_file, col_sep: "\t", liberal_parsing: true) do |row|
           csv << [row[0],row[7]]
         end
       end
