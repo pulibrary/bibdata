@@ -15,7 +15,8 @@ namespace :hathi do
     if ENV['HATHI_FULL'] && ENV['OUTPUT_HATHI']
       Hathi::CompactFull.compact_full
       output_file = "#{ENV['OUTPUT_HATHI']}/compact_hathi_full.tsv"
-      `sort -t$'\t' -k 2n #{output_file} > #{ENV['OUTPUT_HATHI']}/compact_hathi_full_sorted.tsv`
+      sorted_file = "#{ENV['OUTPUT_HATHI']}/compact_hathi_full_sorted.tsv"
+      `sort -t$'\t' -k 2n #{output_file} > #{sorted_file}`
     end  
   end
 
@@ -23,7 +24,7 @@ namespace :hathi do
   task merge: :environment do
      sorted_file1 = ENV['HATHI_OVERLAP_COMPACTED_SORTED']
      sorted_file2 = "#{ENV['OUTPUT_HATHI']}/compact_hathi_full_sorted.tsv"
-     hathi_final = "#{ENV['OUTPUT_HATHI']}"
+     hathi_final = "#{ENV['OUTPUT_HATHI']}/hathi_final.tsv"
     `join -t$'\t' -1 1 -2 2 #{sorted_file1 sorted_file2} > #{hathi_final}`
   end  
 end
