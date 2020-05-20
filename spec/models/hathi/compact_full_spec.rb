@@ -22,7 +22,9 @@ RSpec.describe Hathi::CompactFull do
                                      "uc1.$b759627\t2779601\n"\
                                      "uc1.$b759628\t2779601\n"\
                                      "mdp.39015033913115\t23536349\n"\
-                                     "mdp.39015061455294\t60561774\n") 
+                                     "mdp.39015061455294\t60561774\n"\
+                                     "mdp.39015069868340\t214394419\n"\
+                                     "mdp.39015069868340\t28015\n")
       File.delete(output_file.path)
     end
   end
