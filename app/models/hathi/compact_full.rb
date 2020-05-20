@@ -14,11 +14,13 @@ module Hathi
 
     def self.compact_full
       full_hathi_file = get_full_hathi_file
-      output_hathi_file = File.join(ENV['HATHI_OUTPUT_DIR'],File.basename(full_hathi_file).gsub('.tsv','_compacted.tsv'))
+      output_hathi_file = File.join(ENV['HATHI_OUTPUT_DIR'],File.basename(full_hathi_file).gsub('.txt','_compacted.tsv'))
       CSV.open(output_hathi_file, "wb", col_sep: "\t") do |csv|
         csv << ["identifier","oclc"]
-        CSV.foreach(full_hathi_file, col_sep: "\t", liberal_parsing: true) do |row|
-          csv << [row[0],row[7]]
+        # setting quote character to cool emoji so we will not loose rows
+        CSV.foreach(full_hathi_file, col_sep: "\t", liberal_parsing: true, quote_char: "\u{1f60e}") do |row|
+          oclc_ids = (row[7] || "").split(',')
+          oclc_ids.each {|oclc_id| csv << [row[0],oclc_id]}
         end
       end
     end
