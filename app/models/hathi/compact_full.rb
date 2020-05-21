@@ -5,11 +5,11 @@ module Hathi
 
     def self.get_full_hathi_file
       hathi_dir = ENV['HATHI_INPUT_DIR']
-      get_hathi_file(hathi_dir, "hathi_full*")
+      get_hathi_file(directory: hathi_dir, pattern: "hathi_full*", date_pattern:"hathi_full_%Y%m%d.txt")
     end  
 
-    def self.get_hathi_file(directory, pattern)
-      Dir.glob("#{directory}/#{pattern}").sort_by { |filename| filename.to_date.strftime}.last
+    def self.get_hathi_file(directory:, pattern:, date_pattern:)
+      Dir.glob("#{directory}/#{pattern}").sort_by { |filename| Date.strptime(filename,"#{directory}/#{date_pattern}") }.last
     end  
 
     def self.compact_full
