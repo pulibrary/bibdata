@@ -257,12 +257,12 @@ describe 'From traject_config.rb' do
       expect(@online_at_library['access_facet']).to include 'In the Library'
     end
     it 'value include hathi locations when record is present in hathi report' do
-      expect(@hathi_present['location_code_s']).to contain_exactly('sci','hathi','hathi_temp')
+      expect(@hathi_present['location_code_s']).to contain_exactly('sci')
       expect(@hathi_present['access_facet']).to contain_exactly('Temporary Hathi','Online','In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
     it 'value include online when record is present in hathi report with permanent access' do
-      expect(@hathi_permanent['location_code_s']).to contain_exactly('rcppa','hathi')
+      expect(@hathi_permanent['location_code_s']).to contain_exactly('rcppa')
       expect(@hathi_permanent['access_facet']).to contain_exactly('Online','In the Library')
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
