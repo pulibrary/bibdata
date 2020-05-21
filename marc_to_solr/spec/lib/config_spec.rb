@@ -258,7 +258,7 @@ describe 'From traject_config.rb' do
     end
     it 'value include hathi locations when record is present in hathi report' do
       expect(@hathi_present['location_code_s']).to contain_exactly('sci')
-      expect(@hathi_present['access_facet']).to contain_exactly('Temporary Hathi','Online','In the Library')
+      expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access','Online','In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
     it 'value include online when record is present in hathi report with permanent access' do
