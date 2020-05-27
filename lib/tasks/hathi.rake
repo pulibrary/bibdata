@@ -14,7 +14,7 @@ namespace :hathi do
     end
   end
 
-  desc 'Compact hathi_full file to include only the identifier and the oclc'
+  desc 'Compact hathi_full file to only include the identifier and the oclc'
   task compact_full: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR'] 
       puts "compacting the Hathi Trust full index file" 
