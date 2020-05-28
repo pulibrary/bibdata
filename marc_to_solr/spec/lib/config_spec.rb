@@ -35,8 +35,10 @@ describe 'From traject_config.rb' do
     @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
+    ENV['RUN_HATHI_COMPARE']='true'
     @hathi_present = @indexer.map_record(fixture_record('1590302'))
     @hathi_permanent = @indexer.map_record(fixture_record('1459166'))
+    ENV['RUN_HATHI_COMPARE']=''
 	end
 
   describe 'the language_iana_s field' do

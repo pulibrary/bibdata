@@ -776,6 +776,7 @@ def process_recap_notes record
 end
 
 def find_hathi_by_oclc(oclc)
+  return if ENV["RUN_HATHI_COMPARE"].blank?
   output_dir = ENV['HATHI_OUTPUT_DIR']
   if output_dir.blank?
     puts "The output directory must be set for Hathi comparison to work!!! ENV['HATHI_OUTPUT_DIR']"
