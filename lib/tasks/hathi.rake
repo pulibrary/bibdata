@@ -72,24 +72,28 @@ namespace :hathi do
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
     if ENV['HATHI_OUTPUT_DIR']
       hathi_file = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: 'overlap*compacted_sorted_final.tsv', date_pattern: 'overlap_%Y%m%d_compacted_sorted_final.tsv')
-      CSV.foreach(hathi_file, col_sep: "\t", headers: true) do |row|
-        if row[1].present?
-          ENV['BIB']=row[1]
-          #`SET_ULR=#{solr_url} BIB=#{ENV['BIB']} bundle exec bin/rake #{Rake::Task["liberate:bib"].execute}`
-          if ENV['BIB']
-            resp = conn.get "/bibliographic/#{ENV['BIB']}"
-            File.binwrite('./tmp/tmp.xml', resp.body)
-            sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg}"
+      if hathi_file.present?
+        CSV.foreach(hathi_file, col_sep: "\t", headers: true) do |row|
+          if row[1].present?
+            ENV['BIB']=row[1]
+            #`SET_ULR=#{solr_url} BIB=#{ENV['BIB']} bundle exec bin/rake #{Rake::Task["liberate:bib"].execute}`
+            if ENV['BIB']
+              resp = conn.get "/bibliographic/#{ENV['BIB']}"
+              File.binwrite('./tmp/tmp.xml', resp.body)
+              sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg}"
+            else
+              puts 'Please provide a BIB argument (BIB=####)'
+            end
           else
-            puts 'Please provide a BIB argument (BIB=####)'
+            Rails.logger.error("#{row} is missing oclc")
           end
-        else
-          Rails.logger.error("#{row} is missing oclc")
         end
+        solr.commit
+      else
+        puts "hathi_file is missing from #{ENV['HATHI_OUTPUT_DIR']}"
       end
     else
       puts "Environment variable HATHI_OUTPUT_DIR must be set!"
     end
-    solr.commit
   end
 end
