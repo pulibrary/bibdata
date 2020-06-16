@@ -35,7 +35,7 @@ gem 'pg'
 gem 'poltergeist'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2.4'
 gem 'responders', '~> 2.3'
 gem 'rsolr'
 gem 'rspec-rails', '~> 3.8'
