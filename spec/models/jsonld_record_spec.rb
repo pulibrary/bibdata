@@ -173,6 +173,10 @@ RSpec.describe JSONLDRecord, type: :model do
   context 'with vernacular title' do
     let(:solr_doc) {{
       'title_citation_display'     => ['Kitāb al-Manāhil al-ṣāfīyah /', 'كتاب المناهل الصافية /'],
+      "title_no_h_index" =>  [
+        "Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī.",
+        "كتاب المناهل الصافية / لطف الله بن محمد] [ظفيري"
+      ],
       'language_facet'             => ['Arabic'],
       'language_code_s'            => ['ara'],
       'author_display'             => ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626',
@@ -183,8 +187,8 @@ RSpec.describe JSONLDRecord, type: :model do
 
     it 'includes both the vernacular and english titles' do
       json_ld = {
-        title: [{ '@value':'كتاب المناهل الصافية', '@language': 'ara' },
-                { '@value':'Kitāb al-Manāhil al-ṣāfīyah', '@language': 'ara-Latn' }],
+        title: [{ '@value':'كتاب المناهل الصافية / لطف الله بن محمد] [ظفيري', '@language': 'ara' },
+                { '@value':'Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī.', '@language': 'ara-Latn' }],
         language: 'ara',
         creator: ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626', 'ظفيري، لطف الله بن محمد'],
         author: 'Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626'

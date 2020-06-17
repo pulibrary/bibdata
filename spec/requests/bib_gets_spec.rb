@@ -157,7 +157,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       expect(response.content_type).to eq('application/ld+json')
 
       json_ld_doc = JSON.parse(response.body)
-      expect(json_ld_doc['title']).to eq('@value' => 'Christopher and his kind, 1929-1939', '@language' => 'eng')
+      expect(json_ld_doc['title']).to eq('@value' => 'Christopher and his kind, 1929-1939 / Christopher Isherwood', '@language' => 'eng')
     end
 
     context 'with a bib record which has an ARK' do
