@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe PatronController, type: :controller do
   context "with an authorized ip" do
-    let(:whitelisted_ip) { '192.168.0.1'}
+    let(:allowed_ip) { '192.168.0.1'}
 
     before do
-     controller.request.remote_addr = whitelisted_ip
-     allow(Rails.application.config).to receive(:ip_whitelist).and_return([whitelisted_ip])
+     controller.request.remote_addr = allowed_ip
+     allow(Rails.application.config).to receive(:ip_allowlist).and_return([allowed_ip])
    end
 
     it "can access patron info" do
