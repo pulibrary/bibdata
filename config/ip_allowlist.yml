@@ -5,4 +5,4 @@ test:
   addresses: "127.0.0.1"
 
 production:
-  addresses: <%= ENV["BIBDATA_IP_WHITELIST"] || "" %>
+  addresses: <%= ENV["BIBDATA_IP_ALLOWLIST"] || ENV["BIBDATA_IP_WHITELIST"] || "" %>

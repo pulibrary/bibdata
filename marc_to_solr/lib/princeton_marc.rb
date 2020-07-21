@@ -272,7 +272,7 @@ SEPARATOR = '—'
 
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
-# optional vocabulary argument for whitelisting subfield $2 vocabularies
+# optional vocabulary argument for allowing certain subfield $2 vocabularies
 def process_hierarchy(record, fields, vocabulary = [])
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']

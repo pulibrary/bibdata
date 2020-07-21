@@ -28,10 +28,10 @@ module MarcLiberation
       'Access-Control-Allow-Headers' => 'Origin, Content-Type, Accept, Authorization, Token'
     }
 
-    config.ip_whitelist = []
-    ip_whitelist = config_for(:ip_whitelist)
-    ip_whitelist_addresses = ip_whitelist["addresses"]
-    config.ip_whitelist = ip_whitelist_addresses.split if ip_whitelist_addresses
+    config.ip_allowlist = []
+    ip_allowlist = config_for(:ip_allowlist)
+    ip_allowlist_addresses = ip_allowlist["addresses"]
+    config.ip_allowlist = ip_allowlist_addresses.split if ip_allowlist_addresses
 
     config.traject = config_for(:traject)
     config.solr = config_for(:solr)
