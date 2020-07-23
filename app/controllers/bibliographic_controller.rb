@@ -2,14 +2,19 @@ class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
 
+  def bib_adapter
+    return Alma::Bib if params[:adapter].present? && params[:adapter].downcase == "alma"
+    VoyagerHelpers::Liberator
+  end
+
   def index
     if params[:bib_id]
       if params.fetch(:holdings_only, '0') == '1'
-        redirect_to action: :bib_holdings, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib_holdings, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       elsif params.fetch(:items_only, '0') == '1'
-        redirect_to action: :bib_items, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib_items, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       else
-        redirect_to action: :bib, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       end
     else
       render plain: "Record please supply a bib id", status: 404
@@ -23,7 +28,10 @@ class BibliographicController < ApplicationController
     }
 
     begin
-      records = VoyagerHelpers::Liberator.get_bib_record(bib_id_param, nil, opts)
+      records = bib_adapter.get_bib_record(bib_id_param, nil, opts)
+      #records = VoyagerHelpers::Liberator.get_bib_record(bib_id_param, nil, opts)
+      # Switching to the Alma::Adapter
+      # records = Alma::Bib.get_bib_record(bib_id_param, nil, opts)
     rescue OCIError => oci_error
       Rails.logger.error "Failed to retrieve the Voyager record using the bib. ID: #{bib_id_param}: #{oci_error}"
       return head :bad_request
@@ -45,14 +53,17 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # Alma /bibliographic/991227840000541/solr?adapter=alma
+  # Voyager /bibliographic/12345/solr
   def bib_solr(format: nil)
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-
-    records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
-
+    records = bib_adapter.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+    # records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+    # Switching to the Alma::Adapter
+    #alma_records = Alma::Bib.get_bib_record(ids: sanitize(params[:bib_id]))
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -66,11 +77,13 @@ class BibliographicController < ApplicationController
   end
 
   def bib_jsonld
+    # Alma /bibliographic/991227840000541/jsonld?adapter=alma
+    # Voyager /bibliographic/12345/jsonld
     bib_solr format: :jsonld
   end
 
   def bib_holdings
-    records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
+    records = bib_adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -100,8 +113,8 @@ class BibliographicController < ApplicationController
   end
 
   def update
+    # Switching to the Alma::Adapter
     records = find_by_id(sanitized_id, voyager_opts)
-
     if records.nil?
       render plain: "Record #{sanitized_id} not found or suppressed", status: 404
     else
@@ -109,7 +122,6 @@ class BibliographicController < ApplicationController
       file.write(records_to_xml_string(records))
       file.close
       index_job_queue.add(file: file.path)
-
       flash[:notice] = "Reindexing job scheduled for #{sanitized_id}"
     end
   rescue StandardError => error
@@ -158,7 +170,10 @@ class BibliographicController < ApplicationController
     # @param opts [Hash] optional arguments
     # @return [Array<Object>] the set of bib. records
     def find_by_id(id, opts)
-      VoyagerHelpers::Liberator.get_bib_record(id, nil, opts)
+      bib_adapter.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+      # VoyagerHelpers::Liberator.get_bib_record(id, nil, opts)
+      # Switching to the Alma::Adapter
+      # Alma::Bib.get_alma_records(ids: sanitize(params[:bib_id]))
     end
 
     # Access the URL helpers for the application

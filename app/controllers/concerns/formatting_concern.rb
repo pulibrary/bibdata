@@ -14,14 +14,27 @@ module FormattingConcern
         writer.close()
       end
       VoyagerHelpers::Liberator.valid_xml(xml_str)
+    elsif records.kind_of? (String)
+      # example response from /almaws/v1/bibs/{mms_id}/holdings
+      valid_xml(records)
     else
-      VoyagerHelpers::Liberator.valid_xml(records.to_xml.to_s)
+      # When switching to the Alma::Adapter
+      valid_xml(records.to_xml.to_s)
+      # VoyagerHelpers::Liberator.valid_xml(records.to_xml.to_s)
     end
   end
 
-  # Quick cheat to help clean up character encoding problems by passing the
+   # When switching to the Alma::Adapter
+   # from voyager-helpers
+   # strips invalid xml characters to prevent parsing errors
+   # only used for "cleaning" individually retrieved records
+   def valid_xml(xml_string)
+     invalid_xml_range = /[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD]/
+     xml_string.gsub(invalid_xml_range, '')
+   end
+
+  # Clean up character encoding problems by passing the
   # records through an XML parser
-  #
   # @param records [MARC::Record] Could be one or a collection
   # @return [Hash] If only one record was passed
   # @return [Array<Hash>]
