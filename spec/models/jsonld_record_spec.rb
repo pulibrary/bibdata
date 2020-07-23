@@ -177,6 +177,8 @@ RSpec.describe JSONLDRecord, type: :model do
         "Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī.",
         "كتاب المناهل الصافية / لطف الله بن محمد] [ظفيري"
       ],
+      'title_display' => ['Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī.'],
+      'title_vern_display' => ['كتاب المناهل الصافية / لطف الله بن محمد] [ظفيري'],
       'language_facet'             => ['Arabic'],
       'language_code_s'            => ['ara'],
       'author_display'             => ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626',
@@ -217,6 +219,24 @@ RSpec.describe JSONLDRecord, type: :model do
 
     it 'includes the digital cicognara number in the local_identifier field' do
       expect(subject.to_h['local_identifier']).to include 'cico:bk5'
+    end
+  end
+
+  context "with a title and a sort title" do
+    let(:solr_doc) do
+      {
+        "title_no_h_index" => [
+          "Almanach des beaux-arts",
+          "anach des beaux-arts"
+        ],
+        "title_display" => [
+          "Almanach des beaux-arts [microform]."
+        ]
+      }
+    end
+    subject { described_class.new solr_doc }
+    it "doesn't include the sort title" do
+      expect(subject.to_h[:title]).to eq "Almanach des beaux-arts [microform]."
     end
   end
 
