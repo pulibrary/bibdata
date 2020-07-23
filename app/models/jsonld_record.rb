@@ -82,7 +82,7 @@ class JSONLDRecord
 
   def vernacular_title
     @vernacular_title ||= begin
-      vtitle = Traject::Macros::Marc21.trim_punctuation(title_field.second)
+      vtitle = Traject::Macros::Marc21.trim_punctuation(vernacular_title_field)
       return vtitle unless title_language
       { "@value": vtitle, "@language": title_language } if vtitle
     end
@@ -98,13 +98,18 @@ class JSONLDRecord
   end
 
   def roman_display_title
-    return unless title_field
-    Traject::Macros::Marc21.trim_punctuation title_field.first
+    return unless roman_title_field
+    Traject::Macros::Marc21.trim_punctuation roman_title_field.first
   end
 
-  def title_field
-    return @solr_doc['title_no_h_index'] if @solr_doc['title_no_h_index'].present?
+  def roman_title_field
+    return @solr_doc['title_display'] if @solr_doc['title_display'].present?
     @solr_doc['title_citation_display'] || []
+  end
+
+  def vernacular_title_field
+    return @solr_doc['title_vern_display'].first if @solr_doc['title_vern_display'].present?
+    (@solr_doc['title_citation_display'] || []).second
   end
 
   def title_language
