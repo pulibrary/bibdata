@@ -4,9 +4,9 @@ require "rails_helper"
 RSpec.describe Alma::Bib do
   let(:bibs) { "991227850000541, 991227840000541, 991227830000541" }
   let(:one_bib) { "991227850000541" }
-  let(:alma_record) { file_fixture("#{one_bib}.xml").read }
+  let(:alma_record) { file_fixture("alma/#{one_bib}.xml").read }
   let(:alma_marc_record) { MARC::XMLReader.new(StringIO.new(alma_record)).first }
-  let(:alma_records) { file_fixture("alma_three_records.xml").read }
+  let(:alma_records) { file_fixture("alma/alma_three_records.xml").read }
   let(:records) { [] }
   let(:alma_marc_records) { MARC::XMLReader.new(StringIO.new(alma_records)).select {|record| records << record} }
 

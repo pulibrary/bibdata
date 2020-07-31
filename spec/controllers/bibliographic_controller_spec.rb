@@ -7,13 +7,13 @@ RSpec.describe BibliographicController, type: :controller do
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }
   let(:bib_record_xml) { File.read(file_path) }
   let(:one_bib) { "991227850000541" }
-  let(:alma_record) { file_fixture("#{one_bib}.xml").read }
+  let(:alma_record) { file_fixture("alma/#{one_bib}.xml").read }
   let(:alma_marc_record) { MARC::XMLReader.new(StringIO.new(alma_record)).first }
 
   before do
-   # allow(bib_record).to receive(:to_xml).and_return bib_record_xml
+    allow(bib_record).to receive(:to_xml).and_return bib_record_xml
     allow(Alma::Bib).to receive(:get_alma_records).and_return alma_marc_record
-    # allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return bib_record
+    allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return bib_record
   end
 
   describe '#update' do
@@ -125,7 +125,7 @@ RSpec.describe BibliographicController, type: :controller do
         class OCIError < StandardError; end if ENV['CI']
         allow(Rails.logger).to receive(:error)
         allow(Alma::Bib).to receive(:get_alma_records).and_raise(OCIError, 'ORA-01722: invalid number')
-        # allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_raise(OCIError, 'ORA-01722: invalid number')
+        allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_raise(OCIError, 'ORA-01722: invalid number')
       end
       after do
         Object.send(:remove_const, :OCIError) if ENV['CI']
