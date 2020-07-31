@@ -60,6 +60,7 @@ RSpec.describe Alma::Bib do
     it "displays ..." do
     end
   end
+
   # no need to check for a 959 in Alma. This will be a check after the index
   describe "alma holding with order information" do
     it "has a PO line" do
@@ -72,6 +73,7 @@ RSpec.describe Alma::Bib do
       # What does the AVA tag display after the PO is accepted.
     end
   end
+
   describe '#get_holding_records' do
     it "returns the holdings for a bib" do
       allow(described_class).to receive(:get_holding_records).with(one_bib).and_return(holdings_991227840000541)
@@ -79,3 +81,5 @@ RSpec.describe Alma::Bib do
     end
   end
 end
+
+
