@@ -44,4 +44,37 @@ RSpec.describe Alma::Bib do
       expect(described_class.ids_build_array(ids: bibs)).to eq ["991227850000541", "991227840000541", "991227830000541"]
     end
   end
+  describe "records with no availability" do
+    it "doesn't have an AVA tag" do
+      # find an alma record with no 952 from the publishing job to add it as a fixture.
+    end
+  end
+  describe "with an alma record that has an ARK" do
+    it "exposes the ark" do
+      # find an alma record with an ark.princeton.edu
+    end
+  end
+  describe "alma record with no item" do
+    # it has a holding
+    # it doesn't have an item. This should be checked on the Alma::Holding
+    it "has a holding" do
+    end
+  end
+  describe "alma holding with order information" do
+    # alma record with a po line.
+    it "displays ..." do
+    end
+  end
+  describe "alma holding with order information" do
+    it "has a PO line" do
+      # we added a PO for a holding
+      # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
+      # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
+      # we might want to test this on the item level or in the availability.
+      # when we first added the PO line it created the item 2384011050006421 with an on order status.
+      # This is different from voyager where it doesn't add an item when the user creates a PO line.
+      # What does the AVA tag display after the PO is accepted.
+    end
+  end
+    # no need to check for a 959 in Alma. This will be a check after the index
 end
