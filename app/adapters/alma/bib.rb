@@ -15,7 +15,7 @@ module Alma
     # get one bib record is supported in the bibdata UI and in the bibliographic_controller
     # @param records an array of MARC::Record records
     class << self
-      def get_alma_records(ids:)
+      def get_bib_record(ids, conn=nil, opts={})
         res = Alma::Adapter.connection.get "bibs?mms_id=#{self.ids_remove_spaces(ids: ids)}", {
           :apikey => self.apikey, # I can't stub this in the bib_spec
           :expand => "p_avail,e_avail,d_avail,requests",

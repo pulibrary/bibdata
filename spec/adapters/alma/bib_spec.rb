@@ -10,7 +10,7 @@ RSpec.describe Alma::Bib do
   let(:records) { [] }
   let(:alma_marc_records) { MARC::XMLReader.new(StringIO.new(alma_records)).select {|record| records << record} }
 
-  describe "#get_alma_records" do
+  describe "#get_bib_record" do
     context "if one bib is provided" do
       # before do
 #         stub_request(:get, "#{Alma::Adapter.base_path}/bibs?apikey=TESTME&expand=p_avail%2Ce_avail%2Cd_avail%2Crequests&mms_id=#{one_bib}&view=full").
@@ -21,16 +21,16 @@ RSpec.describe Alma::Bib do
 #                       })
 #       end
       it "returns one record" do
-        allow(described_class).to receive(:get_alma_records).with(ids: one_bib).and_return(alma_marc_record)
-        expect(described_class.get_alma_records(ids: one_bib)['001'].value).to eq "991227850000541"
+        allow(described_class).to receive(:get_bib_record).with(one_bib).and_return(alma_marc_record)
+        expect(described_class.get_bib_record(one_bib)['001'].value).to eq "991227850000541"
       end
     end
     context "if an array of bibs is provided" do
       it "returns multiple records" do
-        allow(described_class).to receive(:get_alma_records).with(ids: bibs).and_return(alma_marc_records)
-        expect(described_class.get_alma_records(ids: bibs)[0]['001'].value).to eq "991227830000541"
-        expect(described_class.get_alma_records(ids: bibs)[1]['001'].value).to eq "991227840000541"
-        expect(described_class.get_alma_records(ids: bibs)[2]['001'].value).to eq "991227850000541"
+        allow(described_class).to receive(:get_bib_record).with(bibs).and_return(alma_marc_records)
+        expect(described_class.get_bib_record(bibs)[0]['001'].value).to eq "991227830000541"
+        expect(described_class.get_bib_record(bibs)[1]['001'].value).to eq "991227840000541"
+        expect(described_class.get_bib_record(bibs)[2]['001'].value).to eq "991227850000541"
       end
     end
   end
