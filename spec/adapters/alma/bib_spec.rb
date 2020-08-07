@@ -6,20 +6,14 @@ RSpec.describe Alma::Bib do
   let(:one_bib) { "991227850000541" }
   let(:alma_record) { file_fixture("alma/#{one_bib}.xml").read }
   let(:alma_marc_record) { MARC::XMLReader.new(StringIO.new(alma_record)).first }
-  let(:alma_records) { file_fixture("alma/alma_three_records.xml").read }
+  let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
+  # let(:holdings_record) { MARC::XMLReader.new(StringIO.new(holdings_991227840000541)).first }
   let(:records) { [] }
+  let(:alma_records) { file_fixture("alma/alma_three_records.xml").read }
   let(:alma_marc_records) { MARC::XMLReader.new(StringIO.new(alma_records)).select {|record| records << record} }
 
   describe "#get_bib_record" do
     context "if one bib is provided" do
-      # before do
-#         stub_request(:get, "#{Alma::Adapter.base_path}/bibs?apikey=TESTME&expand=p_avail%2Ce_avail%2Cd_avail%2Crequests&mms_id=#{one_bib}&view=full").
-#           to_return(status: 200, body: file_fixture("#{one_bib}.xml"), headers: {
-#                      'Accept'=>'application/xml',
-#                      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3'
-#                      # 'apikey' => 'TESTME'
-#                       })
-#       end
       it "returns one record" do
         allow(described_class).to receive(:get_bib_record).with(one_bib).and_return(alma_marc_record)
         expect(described_class.get_bib_record(one_bib)['001'].value).to eq "991227850000541"
@@ -65,6 +59,7 @@ RSpec.describe Alma::Bib do
     it "displays ..." do
     end
   end
+  # no need to check for a 959 in Alma. This will be a check after the index
   describe "alma holding with order information" do
     it "has a PO line" do
       # we added a PO for a holding
@@ -76,5 +71,10 @@ RSpec.describe Alma::Bib do
       # What does the AVA tag display after the PO is accepted.
     end
   end
-    # no need to check for a 959 in Alma. This will be a check after the index
+  describe '#get_holding_records' do
+    it "returns the holdings for a bib" do
+      allow(described_class).to receive(:get_holding_records).with(one_bib).and_return(holdings_991227840000541)
+      expect(described_class.get_holding_records(one_bib)).to be_a(String)
+    end
+  end
 end

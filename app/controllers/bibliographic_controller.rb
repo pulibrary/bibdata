@@ -83,7 +83,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_holdings
-    records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
+    records = bib_adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else

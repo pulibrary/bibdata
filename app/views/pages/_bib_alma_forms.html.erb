@@ -25,33 +25,3 @@
   </div>
 <% end %>
 
-<%= form_tag('/bibliographic', method: 'get', class: 'form-horizontal') do %>
-  <div class="form-group">
-    <%= label_tag(:bib_id, 'Get Items (and Status):', class: 'col-sm-2 control-label') %>
-    <div class="col-sm-2">
-      <%= hidden_field_tag(:items_only, 1) %>
-      <%= hidden_field_tag(:holdings_only, 0) %>
-      <%= hidden_field_tag(:adapter, "alma") %>
-      <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'BibID') %>
-    </div>
-    <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
-  </div>
-<% end %>
-
-<% if user_signed_in? && current_user.catalog_admin? %>
-  <%= form_tag('/bibliographic', method: 'post', class: 'form-horizontal') do %>
-    <div class="form-group">
-      <%= label_tag(:bib_id, 'Reindex a Bib Record:', class: 'col-sm-2 control-label') %>
-      <div class="col-sm-2">
-        <%= hidden_field_tag(:items_only, 0) %>
-        <%= hidden_field_tag(:holdings_only, 0) %>
-        <%= hidden_field_tag(:adapter, "alma") %>
-        <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'BibID') %>
-      </div>
-      <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
-    </div>
-  <% end %>
-  <div class="container-fluid">
-    <span class="info-message">Please note that reindexing may take 5 minutes to fully complete.</span>
-  </div>
-<% end %>

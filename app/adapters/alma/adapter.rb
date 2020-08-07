@@ -1,14 +1,6 @@
 module Alma
   class Adapter
 
-    # attr_reader :base_path, :users_path, :url, :region
-#     def initialize(base_path:, users_path:, url:, region:, api_key: nil)
-#       @base_path = Alma::Adapter.base_path
-#       @users_path = Alma::Adapter.users_path
-#       @url = Alma::Adapter.url
-#       @region = Alma::Adapter.region
-#     end
-
     def initialize(connection:)
       @connection = Alma::Adapter.connection
     end

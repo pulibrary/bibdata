@@ -4,4 +4,3 @@ module Alma
     # VoyagerHelpers::Liberator.get_items_for_holding
   end
 end
-    

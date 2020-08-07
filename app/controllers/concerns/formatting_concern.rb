@@ -14,6 +14,9 @@ module FormattingConcern
         writer.close()
       end
       VoyagerHelpers::Liberator.valid_xml(xml_str)
+    elsif records.kind_of? (String)
+      # example response from /almaws/v1/bibs/{mms_id}/holdings
+      valid_xml(records)
     else
       # When switching to the Alma::Adapter
       valid_xml(records.to_xml.to_s)
