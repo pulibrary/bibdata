@@ -35,7 +35,7 @@ RSpec.describe AvailabilityController, type: :controller do
 
   describe 'bib availability hash' do
     it 'provides availability for only the first 2 holdings by default' do
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("929437"=>{ "1068356"=>{ more_items: false, location: "rcppa", status: ["Not Charged"] }, "1068357"=>{ more_items: false, location: "fnc", status: ["Not Charged"] } })
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("929437"=>{ "1068356"=>{ more_items: false, location: "rcppa", status: ["Not Charged"] }, "1068357"=>{ more_items: false, location: "fnc", patron_group_charged: nil, status: ["Not Charged"] } })
       bib_3_holdings = '929437'
       get :index, params: { ids: [bib_3_holdings], format: :json }
       availability = JSON.parse(response.body)
@@ -47,7 +47,7 @@ RSpec.describe AvailabilityController, type: :controller do
     end
 
     it 'provides availability for all holdings if full availability requested' do
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("1068356"=>{ more_items: false, location: "rcppa", status: ["Not Charged"] }, "1068357"=>{ more_items: false, location: "fnc", status: ["Not Charged"] }, "1068358"=>{ more_items: false, location: "anxb", status: ["Not Charged"] })
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("1068356"=>{ more_items: false, location: "rcppa", status: ["Not Charged"] }, "1068357"=>{ more_items: false, location: "fnc", status: ["Not Charged"] }, "1068358"=>{ more_items: false, location: "anxb", patron_group_charged: nil, status: ["Not Charged"] })
       bib_3_holdings = '929437'
       get :index, params: { id: bib_3_holdings, format: :json }
       availability = JSON.parse(response.body)
@@ -64,7 +64,7 @@ RSpec.describe AvailabilityController, type: :controller do
     let(:holding_loc_always_req) { Locations::HoldingLocation.new(circulates: false, always_requestable: true, library: lib_loc, label: '') }
     let(:holding_loc_label) { Locations::HoldingLocation.new(circulates: false, label: 'Special Room', library: lib_loc) }
     it 'voyager status is returned for item' do
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("35345"=>{ "39176"=>{ more_items: false, location: "f", status: ["Not Charged"] } })
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("35345"=>{ "39176"=>{ more_items: false, location: "f", patron_group_charged: nil, status: ["Not Charged"] } })
       bib_with_item = '35345'
       holding_id = '39176'
       item_id = 36736
@@ -127,7 +127,7 @@ RSpec.describe AvailabilityController, type: :controller do
     end
 
     it 'items without a temp_loc have a location display label' do
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("9355531"=>{ more_items: false, location: "sa", status: "On-Order" })
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("9355531"=>{ more_items: false, location: "sa", status: "On-Order", patron_group_charged: nil })
       allow_any_instance_of(described_class).to receive(:get_holding_location).and_return(holding_loc_always_req)
       marquand = '9497429'
       get :index, params: { id: marquand, format: :json }
@@ -203,10 +203,12 @@ RSpec.describe AvailabilityController, type: :controller do
       end
     end
 
-    it 'Items with temp location codes are have a temp_loc key' do
+    it 'Items with temp location codes have a temp_loc key' do
       allow_any_instance_of(described_class).to receive(:get_holding_location).and_return(holding_loc_label)
       temp_loc = 'woooo'
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("9329199"=>{ more_items: false, location: "f", temp_loc: temp_loc, status: ["Charged"] })
+      # due_date will display if it is more recent than 30 days
+      two_weeks_from_now = Time.now + (2*7*24*60*60)
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("9329199"=>{ more_items: false, location: "f", temp_loc: temp_loc, patron_group_charged: "CDL", status: ["Charged"], due_date: two_weeks_from_now })
       bib_received_order = '9468468'
       get :index, params: { id: bib_received_order, format: :json }
       availability = JSON.parse(response.body)
@@ -263,7 +265,7 @@ RSpec.describe AvailabilityController, type: :controller do
     it 'returns status with highest priority' do
       bib_id = '7135944'
       holding_id = '7002641'
-      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(7135944=>{ "7002641"=>{ more_items: false, location: "mus", copy_number: 1, item_id: 6406359, on_reserve: "N", status: ["Overdue", "Lost--System Applied", "In Process"] } } )
+      allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(7135944=>{ "7002641"=>{ more_items: false, location: "mus", copy_number: 1, item_id: 6406359, on_reserve: "N", patron_group_charged: "LMAN", status: ["Overdue", "Lost--System Applied", "In Process"] } } )
       get :index, params: { ids: [bib_id], format: :json }
       availability = JSON.parse(response.body)
       expect(availability[bib_id][holding_id]['status']).to eq('Lost--System Applied')
@@ -308,9 +310,9 @@ RSpec.describe AvailabilityController, type: :controller do
   describe 'full mfhd availability array' do
     it 'returns info for all items for a given mfhd' do
       allow(VoyagerHelpers::Liberator).to receive(:get_full_mfhd_availability).and_return([
-       { barcode:"32101033513878", id:282630, location:"f", copy_number:1, item_sequence_number:12, status:["Not Charged"], on_reserve:"N", item_type:"NoCirc", pickup_location_id:299, pickup_location_code:"fcirc", enum:"vol.20(inc.)", chron:"1994", enum_display:"vol.20(inc.) (1994)", label:"Firestone Library" },
-       { barcode:"32101024070318", id:282629, location:"f", copy_number:1, item_sequence_number:11, status:["Not Charged"], on_reserve:"N", item_type:"Gen", pickup_location_id:299, pickup_location_code:"fcirc", enum:"vol.19", chron:"1993", enum_display:"vol.19 (1993)", label:"Firestone Library" },
-       { barcode:"32101086430665", id:6786508, location:"f", copy_number:1, item_sequence_number:26, status:["Not Charged"], on_reserve:"N", item_type:"Gen", pickup_location_id:299, pickup_location_code:"fcirc", enum:"vol. 38", chron:"2012", enum_display:"vol. 38 (2012)", label:"Firestone Library" } 
+       { barcode:"32101033513878", id:282630, location:"f", copy_number:1, item_sequence_number:12, status:["Not Charged"], on_reserve:"N", item_type:"NoCirc", pickup_location_id:299, patron_group_charged: nil, pickup_location_code:"fcirc", enum:"vol.20(inc.)", chron:"1994", enum_display:"vol.20(inc.) (1994)", label:"Firestone Library" },
+       { barcode:"32101024070318", id:282629, location:"f", copy_number:1, item_sequence_number:11, status:["Not Charged"], on_reserve:"N", item_type:"Gen", pickup_location_id:299, patron_group_charged: nil, pickup_location_code:"fcirc", enum:"vol.19", chron:"1993", enum_display:"vol.19 (1993)", label:"Firestone Library" },
+       { barcode:"32101086430665", id:6786508, location:"f", copy_number:1, item_sequence_number:26, status:["Not Charged"], on_reserve:"N", item_type:"Gen", pickup_location_id:299, patron_group_charged: nil, pickup_location_code:"fcirc", enum:"vol. 38", chron:"2012", enum_display:"vol. 38 (2012)", label:"Firestone Library" } 
       ])
       holding_id = '282033'
       get :index, params: { mfhd: holding_id, format: :json }
