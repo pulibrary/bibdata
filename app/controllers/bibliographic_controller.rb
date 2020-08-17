@@ -2,6 +2,11 @@ class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
 
+  def bib_adapter
+    return Alma::Bib if params[:adapter].present? && params[:adapter].downcase == "alma"
+    VoyagerHelpers::Liberator
+  end
+
   def index
     if params[:bib_id]
       if params.fetch(:holdings_only, '0') == '1'
@@ -14,11 +19,6 @@ class BibliographicController < ApplicationController
     else
       render plain: "Record please supply a bib id", status: 404
     end
-  end
-
-  def bib_adapter
-    return Alma::Bib if params[:adapter].present? && params[:adapter].downcase == "alma"
-    VoyagerHelpers::Liberator
   end
 
   def bib

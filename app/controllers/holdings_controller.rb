@@ -1,5 +1,9 @@
 class HoldingsController < ApplicationController
   include FormattingConcern
+  def holding_adapter
+    return Alma::Holding if params[:adapter].present? && params[:adapter].downcase == "alma"
+    VoyagerHelpers::Liberator
+  end
 
   def index
     if params[:items_only] == '1'
@@ -12,7 +16,7 @@ class HoldingsController < ApplicationController
   end
 
   def holding
-    record = VoyagerHelpers::Liberator.get_holding_record(sanitize(params[:holding_id]))
+    record = holding_adapter.get_holding_record(sanitize(params[:holding_id]))
     if record.nil?
       render plain: "Record #{params[:holding_id]} not found or suppressed.", status: 404
     else
@@ -24,7 +28,7 @@ class HoldingsController < ApplicationController
   end
 
   def holding_items
-    records = VoyagerHelpers::Liberator.get_items_for_holding(sanitize(params[:holding_id]))
+    records = holding_adapter.get_items_for_holding(sanitize(params[:holding_id]))
     if records.nil?
       render plain: "Holding #{params[:holding_id]} not found or suppressed.", status: 404
     else

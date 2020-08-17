@@ -36,6 +36,12 @@ module Alma
         doc = res.body
       end
 
+      # /almaws/v1/bibs/{mms_id}/holdings/{holding_id}/items
+      # Retrieve items list. holding_id=ALL witll retrieve all holdings for a bib.
+      def get_bib_items
+        
+      end
+      
       # apikey only to read alma bibs.
       def apikey
         Alma.config[:alma_bibs_read_only_key]
