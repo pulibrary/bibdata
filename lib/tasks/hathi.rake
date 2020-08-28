@@ -15,9 +15,9 @@ namespace :hathi do
   desc "compact hathi overlap report to only include files that overlap"
   task compact_overlap: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
-      puts "compacting the Princeton Hathi Trust overlap file" 
-      Hathi::CompactOverlap.perform
-      output_file = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: 'overlap*compacted.tsv', date_pattern: 'overlap_%Y%m%d_compacted.tsv')
+      school = ENV['HATHI_SCHOOL'] || 'princeton'
+      puts "compacting the #{school} Hathi Trust overlap file" 
+      output_file = Hathi::CompactOverlap.perform(school: school)
       puts "Sorting the compacted overlap file #{output_file}" 
       sorted_file = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(output_file).gsub('.tsv','_sorted.tsv'))
       `sort -t$'\t' -k 1n #{output_file} > #{sorted_file}`
@@ -43,7 +43,8 @@ namespace :hathi do
   desc 'Combine Hathi_full and Hathi_overlap_compact files'
   task merge: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR'] 
-      sorted_file1 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'],pattern: 'overlap*sorted.tsv', date_pattern: 'overlap_%Y%m%d_compacted_sorted.tsv')
+      school = ENV['HATHI_SCHOOL'] || 'princeton'
+      sorted_file1 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'],pattern: "overlap*_#{school}_sorted.tsv", date_pattern: "overlap_%Y%m%d_compacted_#{school}_sorted.tsv")
       sorted_file2 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'],pattern: 'hathi_full*sorted.tsv', date_pattern:"hathi_full_%Y%m%d_compacted_sorted.tsv")
       hathi_final = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(sorted_file1).gsub('.tsv','_final.tsv'))
       puts "Merging #{sorted_file1} & #{sorted_file2} on oclc number" 
