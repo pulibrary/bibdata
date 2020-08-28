@@ -11,7 +11,7 @@ RSpec.describe Hathi::CompactOverlap do
     ENV['HATHI_OUTPUT_DIR'] = output_dir
 
     described_class.perform
-    output_file = File.open(File.join(output_dir,'overlap_20200429_compacted.tsv')) 
+    output_file = File.open(File.join(output_dir,'overlap_20200429_compacted_princeton.tsv')) 
     output_file.rewind
     expect(output_file.read).to eq("oclc\tlocal_id\titem_type\taccess\trights\n" \
                                    "32005963\t1000037\tmono\tdeny\tic\n" \
