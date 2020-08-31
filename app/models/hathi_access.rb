@@ -1,0 +1,2 @@
+class HathiAccess < ApplicationRecord
+end
