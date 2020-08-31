@@ -1,6 +1,9 @@
 require "csv"
 
 module Hathi
+  # The Full report is everything Hathi has: includes oclc number and hathi id
+  # Removes unneeded column values so we only have 'identifier' and 'oclc'
+  # This was helpful when we were grepping the csv at index time
   class CompactFull
 
     def self.get_full_hathi_file

@@ -11,7 +11,7 @@ conn = Faraday.new(url: bibdata_url) do |faraday|
 end
 
 namespace :hathi do
-  
+
   desc "compact hathi overlap report to only include files that overlap"
   task compact_overlap: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
@@ -53,7 +53,7 @@ namespace :hathi do
       puts "Environment variable HATHI_INPUT_DIR & HATHI_OUTPUT_DIR must be set!"
     end
   end
-  
+
   desc 'Compact the Full Hathi Data the Overlap file and combine the files'
   task compact_and_merge: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
