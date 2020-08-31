@@ -4,7 +4,7 @@ module Hathi
   # with the given origin
   # expected header rows are
   # oclcl, local_id, item_type, access, rights
-  class LoadOverlapFile
+  class LoadAccessFile
     attr_reader :input_location, :source
     def initialize(input_location:, source:)
       @input_location = input_location

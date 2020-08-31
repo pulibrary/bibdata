@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Hathi::LoadOverlapFile do
+RSpec.describe Hathi::LoadAccessFile do
   describe ".load" do
     it "loads the records from the CSV" do
       input_location = Rails.root.join("spec", "fixtures", "files", "overlap_20200429_columbia_abbreviated.tsv")
