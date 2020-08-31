@@ -11,6 +11,16 @@ conn = Faraday.new(url: bibdata_url) do |faraday|
 end
 
 namespace :hathi do
+  desc "load institution-specific hathi access file into HathiAccess objects"
+  task load_access: :environment do
+    input_location = ENV['HATHI_INPUT']
+    source = ENV['HATHI_SOURCE']
+    abort "usage: HATHI_INPUT=/path/to/file.tsv HATHI_SOURCE=CUL rake hathi:load_access" unless input_location && source
+    before_count = HathiAccess.all.count
+    Hathi::LoadAccessFile.new(input_location: input_location, source: source).load
+    after_count = HathiAccess.all.count
+    puts "#{after_count - before_count} records created"
+  end
 
   desc "compact hathi overlap report to only include files that overlap"
   task compact_overlap: :environment do
