@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_140238) do
     t.string "origin"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["oclc_number"], name: "index_hathi_accesses_on_oclc_number", unique: true
+    t.index ["oclc_number"], name: "index_hathi_accesses_on_oclc_number"
     t.index ["origin"], name: "index_hathi_accesses_on_origin"
     t.index ["status"], name: "index_hathi_accesses_on_status"
   end

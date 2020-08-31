@@ -8,7 +8,7 @@ class CreateHathiAccesses < ActiveRecord::Migration[5.2]
 
       t.timestamps
 
-      t.index :oclc_number, unique: true
+      t.index :oclc_number
       t.index :origin
       t.index :status
     end
