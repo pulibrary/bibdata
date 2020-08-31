@@ -14,10 +14,10 @@ namespace :hathi do
   desc "load institution-specific hathi access file into HathiAccess objects"
   task load_access: :environment do
     input_location = ENV['HATHI_INPUT']
-    source = ENV['HATHI_SOURCE']
-    abort "usage: HATHI_INPUT=/path/to/file.tsv HATHI_SOURCE=CUL rake hathi:load_access" unless input_location && source
+    origin = ENV['HATHI_ORIGIN']
+    abort "usage: HATHI_INPUT=/path/to/file.tsv HATHI_ORIGIN=CUL rake hathi:load_access" unless input_location && origin
     before_count = HathiAccess.all.count
-    Hathi::LoadAccessFile.new(input_location: input_location, source: source).load
+    Hathi::LoadAccessFile.new(input_location: input_location, origin: origin).load
     after_count = HathiAccess.all.count
     puts "#{after_count - before_count} records created"
   end

@@ -5,10 +5,10 @@ module Hathi
   # expected header rows are
   # oclcl, local_id, item_type, access, rights
   class LoadAccessFile
-    attr_reader :input_location, :source
-    def initialize(input_location:, source:)
+    attr_reader :input_location, :origin
+    def initialize(input_location:, origin:)
       @input_location = input_location
-      @source = source
+      @origin = origin
     end
 
     def load
@@ -18,7 +18,7 @@ module Hathi
           oclc_number: row["oclc"],
           bibid: row["local_id"],
           status: row["access"].upcase,
-          origin: source
+          origin: origin
         )
       end
     end
