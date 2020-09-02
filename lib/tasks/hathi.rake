@@ -11,7 +11,7 @@ conn = Faraday.new(url: bibdata_url) do |faraday|
 end
 
 namespace :hathi do
-  desc "load institution-specific hathi access file into HathiAccess objects"
+  desc "load institution-specific hathi overlap file into HathiAccess objects"
   task load_access: :environment do
     input_location = ENV['HATHI_INPUT']
     origin = ENV['HATHI_ORIGIN']
