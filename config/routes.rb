@@ -34,10 +34,10 @@ Rails.application.routes.draw do
   get '/courses', to: 'courses#index', defaults: { format: :json }
   get "/bib_ids", to: 'courses#bibs', defaults: { format: :json }
   
-  # remove hathi#hathi_access_bib_status after we update the requests and orangelight
-
-  get '/hathi/access', to: 'hathi#hathi_access', defaults: { format: :json }
+  # ToDo Remove hathi#hathi_access_bib_status when requests and orangelight will be updated with the new route hathi#hathi_access
   get '/hathi/access', to: 'hathi#hathi_access_bib_status', defaults: { format: :json }
+  get '/hathi/access', to: 'hathi#hathi_access', defaults: { format: :json }
+
   require 'sidekiq/web'
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'

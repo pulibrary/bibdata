@@ -8,6 +8,8 @@ RSpec.describe HathiController, type: :controller do
      FactoryBot.create(:hathi_access, status: "DENY", oclc_number: "2243109", bibid: "1000", origin: "CUL" )
      FactoryBot.create(:hathi_access, status: "ALLOW", oclc_number: "2243109", bibid: "1000", origin: "CUL" )
   end
+
+  # ToDo Remove this test when the old route hathi#hathi_access_bib_status will be removed
   describe '#hathi_access_bib_status' do
     context 'when a bibid is provided' do
       context 'when the bib exists' do
