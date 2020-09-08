@@ -389,7 +389,9 @@ def electronic_access_links(record, figgy_dir_path)
 
       if orangelight_url
         # Index this by the domain for Orangelight
-        orangelight_link = electronic_access_link.clone url_key: orangelight_url.to_s, anchor_text: 'Digital content'
+        anchor_text = electronic_access_link.anchor_text
+        anchor_text = 'Digital content' if electronic_access_link.url&.host == electronic_access_link.anchor_text
+        orangelight_link = electronic_access_link.clone url_key: orangelight_url.to_s, anchor_text: anchor_text
         # Only add the link to the current page if it resolves to a resource with a IIIF Manifest
         output << orangelight_link
       else
