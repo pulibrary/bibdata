@@ -125,7 +125,7 @@ class IlsLookup
     def single_bib_circulation(bib)
       return [] if bib.nil?
       bib.each do |_mfhd_id, mfhd|
-        update_item_status(mfhd)
+        update_item_values(mfhd)
       end
       bib
     end
@@ -133,17 +133,82 @@ class IlsLookup
     def single_mfhd_circulation(mfhd)
       return [] if mfhd.nil?
       mfhd.each do |item|
-        update_item_status(item)
+        update_item_values(item)
       end
       mfhd
+    end
+
+    def update_item_values(item)
+      loc = get_holding_location(item)
+      item[:label] = location_full_display(loc) unless loc.nil?
+      item[:status] = context_based_status(loc, item[:status])
+    end
+
+    def get_holding_location(item)
+      loc_code = item[:temp_loc] || item[:location]
+      Locations::HoldingLocation.find_by(code: loc_code)
     end
 
     def location_full_display(loc)
       loc.label == '' ? loc.library.label : loc.library.label + ' - ' + loc.label
     end
 
-    def get_holding_location(loc_code)
-      Locations::HoldingLocation.find_by(code: loc_code)
+    # non-circulating items that are available should have status 'limited'
+    # always requestable non-circulating items should always have 'limited' status,
+    # even with unavailable Voyager status
+    def context_based_status(loc, status)
+      status = initial_status(status)
+      return status unless loc
+      return status if order_status?(status)
+      status = hold_status(loc, status)
+      if loc.always_requestable
+        on_site_status(status)
+      elsif !loc.circulates
+        non_circulating_status(status)
+      else
+        status
+      end
+    end
+
+    def initial_status(status)
+      if status.is_a?(Array)
+        (status_priority & status).last
+      else
+        status
+      end
+    end
+
+    def order_status?(status)
+      !order_statuses.select { |s| status.match(s) }.empty?
+    end
+
+    # only recap non-aeon items retain the hold request status
+    def hold_status(loc, status)
+      return status unless status == 'Hold Request'
+      if loc.library.code == 'recap' && !loc.aeon_location
+        hold_request
+      else
+        not_charged
+      end
+    end
+
+    def on_site_status(status)
+      return on_site if available_statuses.include?(status)
+      "#{on_site} - #{status}"
+    end
+
+    def non_circulating_status(status)
+      if available_statuses.include?(status)
+        on_site
+      else
+        status
+      end
+    end
+
+    def status_priority
+      ['Not Charged', 'Discharged', 'In Process', 'Hold Request', 'Charged', 'Renewed', 'Overdue',
+       'On Hold', 'In Transit', 'In Transit On Hold', 'In Transit Discharged', 'Withdrawn',
+       'Claims Returned', 'Lost--Library Applied', 'Missing', 'Lost--System Applied']
     end
 
     def available_statuses
@@ -164,75 +229,6 @@ class IlsLookup
 
     def on_site
       'On-Site'
-    end
-
-    # only recap non-aeon items retain the hold request status
-    def scsb_status(loc, _status)
-      if loc.library.code == 'recap' && !loc.aeon_location
-        hold_request
-      else
-        not_charged
-      end
-    end
-
-    def order_status?(status)
-      !order_statuses.select { |s| status.match(s) }.empty?
-    end
-
-    def always_requestable_status(status)
-      if order_status?(status)
-        status
-      elsif !available_statuses.include?(status)
-        %(#{on_site} - #{status})
-      else
-        on_site
-      end
-    end
-
-    def non_circulating_status(status)
-      if available_statuses.include?(status)
-        on_site
-      else
-        status
-      end
-    end
-
-    def status_priority
-      ['Not Charged', 'Discharged', 'In Process', 'Hold Request', 'Charged', 'Renewed', 'Overdue',
-       'On Hold', 'In Transit', 'In Transit On Hold', 'In Transit Discharged', 'Withdrawn',
-       'Claims Returned', 'Lost--Library Applied', 'Missing', 'Lost--System Applied']
-    end
-
-    def display_status(status)
-      if status.is_a?(Array)
-        (status_priority & status).last
-      else
-        status
-      end
-    end
-
-    # non-circulating items that are available should have status 'limited'
-    # always requestable non-circulating items should always have 'limited' status,
-    # even with unavailable Voyager status
-    def location_based_status(loc, status)
-      status = scsb_status(loc, status) if status == 'Hold Request'
-      if loc.always_requestable
-        always_requestable_status(status)
-      elsif !loc.circulates
-        non_circulating_status(status)
-      else
-        status
-      end
-    end
-
-    def update_item_status(item)
-      item[:status] = display_status(item[:status])
-      loc_code = item[:temp_loc] || item[:location]
-      loc = get_holding_location(loc_code)
-      unless loc.nil?
-        item[:label] = location_full_display(loc)
-        item[:status] = location_based_status(loc, item[:status]) unless order_status?(item[:status])
-      end
     end
   end
 end
