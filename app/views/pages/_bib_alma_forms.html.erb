@@ -6,7 +6,7 @@
       <%= hidden_field_tag(:items_only, 0) %>
       <%= hidden_field_tag(:holdings_only, 0) %>
       <%= hidden_field_tag(:adapter, "alma") %>
-      <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'BibID') %>
+      <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'AlmaID') %>
     </div>
     <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
   </div>
@@ -19,7 +19,7 @@
       <%= hidden_field_tag(:items_only, 0) %>
       <%= hidden_field_tag(:holdings_only, 1) %>
       <%= hidden_field_tag(:adapter, "alma") %>
-      <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'BibID') %>
+      <%= number_field_tag(:bib_id, nil,  class: 'form-control', placeholder: 'AlmaID') %>
     </div>
     <%= submit_tag('Submit', class: 'col-sm-1 btn btn-default') %>
   </div>
