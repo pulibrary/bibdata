@@ -3,7 +3,7 @@ class AvailabilityController < ApplicationController
   def index
     if params[:ids]
       ids_param = sanitize_array(params[:ids])
-      avail = IlsLookup.multiple_bib_availability(bib_ids: ids_param)
+      avail = VoyagerLookup.multiple_bib_availability(bib_ids: ids_param)
 
       if avail.empty?
         render plain: "Record(s): #{ids_param} not found.", status: 404
@@ -14,7 +14,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:id]
       id_param = sanitize(params[:id])
-      avail = IlsLookup.single_bib_availability(bib_id: id_param)
+      avail = VoyagerLookup.single_bib_availability(bib_id: id_param)
 
       if avail.empty?
         render plain: "Record: #{id_param} not found.", status: 404
@@ -25,7 +25,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:mfhd]
       mfhd_param = sanitize(params[:mfhd])
-      avail = IlsLookup.single_mfhd_availability(mfhd: mfhd_param.to_i)
+      avail = VoyagerLookup.single_mfhd_availability(mfhd: mfhd_param.to_i)
 
       if avail.empty?
         render plain: "Record: #{mfhd_param} not found.", status: 404
@@ -36,7 +36,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:mfhd_serial]
       mfhd_serial_param = sanitize(params[:mfhd_serial])
-      avail = IlsLookup.mfhd_serial_availability(mfhd_serial: mfhd_serial_param.to_i)
+      avail = VoyagerLookup.mfhd_serial_availability(mfhd_serial: mfhd_serial_param.to_i)
 
       if avail.empty?
         render plain: "No current issues found for record #{mfhd_serial_param}.", status: 404
@@ -71,7 +71,7 @@ class AvailabilityController < ApplicationController
   end
 end
 
-class IlsLookup
+class VoyagerLookup
   class << self
     # Retrieves the availability status of a holding from Voyager
     # @param [Array<String>] bib_ids the IDs for bib. items
