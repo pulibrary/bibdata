@@ -3,8 +3,7 @@ class AvailabilityController < ApplicationController
   def index
     if params[:ids]
       ids_param = sanitize_array(params[:ids])
-      avail_response = find_availability(bib_ids: ids_param, full: false)
-      avail = multiple_bib_circulation(avail_response)
+      avail = IlsLookup.multiple_bib_availability(bib_ids: ids_param)
 
       if avail.empty?
         render plain: "Record(s): #{ids_param} not found.", status: 404
@@ -15,8 +14,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:id]
       id_param = sanitize(params[:id])
-      avail_response = find_availability(bib_ids: [id_param])
-      avail = single_bib_circulation(avail_response)
+      avail = IlsLookup.single_bib_availability(bib_id: id_param)
 
       if avail.empty?
         render plain: "Record: #{id_param} not found.", status: 404
@@ -27,8 +25,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:mfhd]
       mfhd_param = sanitize(params[:mfhd])
-      avail_response = find_availability(mfhd: mfhd_param.to_i)
-      avail = single_mfhd_circulation(avail_response)
+      avail = IlsLookup.single_mfhd_availability(mfhd: mfhd_param.to_i)
 
       if avail.empty?
         render plain: "Record: #{mfhd_param} not found.", status: 404
@@ -39,7 +36,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:mfhd_serial]
       mfhd_serial_param = sanitize(params[:mfhd_serial])
-      avail = find_availability(mfhd_serial: mfhd_serial_param.to_i)
+      avail = IlsLookup.mfhd_serial_availability(mfhd_serial: mfhd_serial_param.to_i)
 
       if avail.empty?
         render plain: "No current issues found for record #{mfhd_serial_param}.", status: 404
@@ -72,18 +69,48 @@ class AvailabilityController < ApplicationController
       render plain: "Please provide a bib id.", status: 404
     end
   end
+end
 
-  private
-
+class IlsLookup
+  class << self
     # Retrieves the availability status of a holding from Voyager
     # @param [Array<String>] bib_ids the IDs for bib. items
+    # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
+    def multiple_bib_availability(bib_ids:, full: false)
+      availability = VoyagerHelpers::Liberator.get_availability(bib_ids, full)
+      multiple_bib_circulation(availability)
+    rescue OCIError => oci_error
+      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+      {}
+    end
+
+    # Retrieves the availability status of a holding from Voyager
+    # @param [String] bib_id the IDs for bib. item
+    # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
+    def single_bib_availability(bib_id:, full: true)
+      availability = VoyagerHelpers::Liberator.get_availability([bib_id], full)
+      single_bib_circulation(availability)
+    rescue OCIError => oci_error
+      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+      {}
+    end
+
+    # Retrieves the availability status of a holding from Voyager
     # @param [Integer] mfhd the ID for MFHD information
+    # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
+    def single_mfhd_availability(mfhd:)
+      availability = VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd)
+      single_mfhd_circulation(availability)
+    rescue OCIError => oci_error
+      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+      {}
+    end
+
+    # Retrieves the availability status of a holding from Voyager
     # @param [Integer] mfhd_serial the ID for MFHD information describing a series
     # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
-    def find_availability(bib_ids: nil, mfhd: nil, mfhd_serial: nil, full: true)
-      return VoyagerHelpers::Liberator.get_current_issues(mfhd_serial) unless mfhd_serial.nil?
-      return VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd) unless mfhd.nil?
-      VoyagerHelpers::Liberator.get_availability(bib_ids, full)
+    def mfhd_serial_availability(mfhd_serial:)
+      VoyagerHelpers::Liberator.get_current_issues(mfhd_serial)
     rescue OCIError => oci_error
       Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
       {}
@@ -98,7 +125,7 @@ class AvailabilityController < ApplicationController
     def single_bib_circulation(bib)
       return [] if bib.nil?
       bib.each do |_mfhd_id, mfhd|
-        update_item_loc(mfhd)
+        update_item_status(mfhd)
       end
       bib
     end
@@ -106,7 +133,7 @@ class AvailabilityController < ApplicationController
     def single_mfhd_circulation(mfhd)
       return [] if mfhd.nil?
       mfhd.each do |item|
-        update_item_loc(item)
+        update_item_status(item)
       end
       mfhd
     end
@@ -198,7 +225,7 @@ class AvailabilityController < ApplicationController
       end
     end
 
-    def update_item_loc(item)
+    def update_item_status(item)
       item[:status] = display_status(item[:status])
       loc_code = item[:temp_loc] || item[:location]
       loc = get_holding_location(loc_code)
@@ -207,4 +234,5 @@ class AvailabilityController < ApplicationController
         item[:status] = location_based_status(loc, item[:status]) unless order_status?(item[:status])
       end
     end
+  end
 end
