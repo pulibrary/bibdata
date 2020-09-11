@@ -6,6 +6,7 @@ development:
 
 test:
   <<: *default
+  netids: admin123
 
 production:
   <<: *default
