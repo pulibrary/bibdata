@@ -44,7 +44,7 @@ module Alma
       
       # apikey only to read alma bibs.
       def apikey
-        Alma.config[:alma_bibs_read_only_key]
+        Alma.config[:bibs_read_only]
       end
 
       def ids_remove_spaces(ids:)
