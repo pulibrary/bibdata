@@ -21,7 +21,7 @@ RSpec.describe BibliographicController, type: :controller do
     context 'when authenticated as an administrator' do
       login_admin
 
-      it 'enqueues an Index Job for a bib. record using a bib. ID', unless: !ENV['CI'].nil? do
+      it 'enqueues an Index Job for a bib. record using a bib. ID' do
         post :update, params: { bib_id: bib_id }
         expect(response).to redirect_to(index_path)
         expect(flash[:notice]).to be_present
