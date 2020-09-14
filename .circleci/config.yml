@@ -45,7 +45,7 @@ jobs:
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
-          command: bundle install --path=vendor/bundle --without development production --jobs 4 --retry 3
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
           key: marc_liberation-{{ checksum "Gemfile.lock" }}-2
           paths:
