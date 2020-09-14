@@ -29,7 +29,9 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
 
     scenario "only authenticated users can delete events" do
       visit "/events"
-      click_link "Delete"
+      accept_alert do
+        click_link "Delete"
+      end
       find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
     end
   end

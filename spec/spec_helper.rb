@@ -2,7 +2,6 @@
 require 'simplecov'
 require 'coveralls'
 require 'webmock/rspec'
-require 'capybara/poltergeist'
 require 'traject'
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
@@ -15,7 +14,3 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
 SimpleCov.start('rails') do
   add_filter '/spec'
 end
-
-WebMock.disable_net_connect!(allow_localhost: true)
-
-Capybara.javascript_driver = :poltergeist
