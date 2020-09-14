@@ -32,7 +32,6 @@ gem 'oj'
 gem 'omniauth-cas'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.1'
 gem 'pg'
-gem 'poltergeist'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
 gem 'rails', '~> 5.2.4'
@@ -45,6 +44,7 @@ gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'selenium-webdriver'
 gem 'sidekiq'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
@@ -64,8 +64,10 @@ group :development, :test do
   gem 'coveralls', '0.8.21'
   gem "factory_bot_rails", "~> 4.0"
   gem 'pry-byebug', '~> 3.0'
+  gem 'puma'
   gem 'rails-controller-testing'
   gem 'rerun', '~> 0.10.0'
   gem 'simplecov', '0.14.1'
+  gem "webdrivers"
   gem 'webmock'
 end
