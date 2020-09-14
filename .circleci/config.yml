@@ -34,9 +34,9 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - marc_liberation-{{ checksum "Gemfile.lock" }}-2
+            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - marc_liberation-
+            - v2-marc_liberation-
       - run:
           name: Install phantomjs
           command: sudo apt install phantomjs
@@ -47,7 +47,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: marc_liberation-{{ checksum "Gemfile.lock" }}-2
+          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
