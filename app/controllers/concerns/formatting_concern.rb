@@ -18,14 +18,11 @@ module FormattingConcern
       # example response from /almaws/v1/bibs/{mms_id}/holdings
       valid_xml(records)
     else
-      # When switching to the Alma::Adapter
       valid_xml(records.to_xml.to_s)
-      # VoyagerHelpers::Liberator.valid_xml(records.to_xml.to_s)
     end
   end
 
-   # When switching to the Alma::Adapter
-   # from voyager-helpers
+   # Moved from voyager-helpers
    # strips invalid xml characters to prevent parsing errors
    # only used for "cleaning" individually retrieved records
    def valid_xml(xml_string)

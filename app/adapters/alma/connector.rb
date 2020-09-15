@@ -1,10 +1,6 @@
 module Alma
-  class Adapter
+  class Connector
 
-    def initialize(connection:)
-      @connection = Alma::Adapter.connection
-    end
-    
     class << self
       def base_path
         "#{self.region}/almaws/v1"
