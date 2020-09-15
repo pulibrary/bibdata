@@ -109,18 +109,15 @@ class BibliographicController < ApplicationController
   def update
     records = find_by_id(sanitized_id, voyager_opts)
     if records.nil?
-      render plain: "Record #{sanitized_id} not found or suppressed", status: 404
-    else
-      file = Tempfile.new("#{sanitized_id}.mrx")
-      file.write(records_to_xml_string(records))
-      file.close
-      index_job_queue.add(file: file.path)
-      flash[:notice] = "Reindexing job scheduled for #{sanitized_id}"
+      return render plain: "Record #{sanitized_id} not found or suppressed", status: 404
     end
+    file = Tempfile.new("#{sanitized_id}.mrx")
+    file.write(records_to_xml_string(records))
+    file.close
+    index_job_queue.add(file: file.path)
+    redirect_to index_path, flash: { notice: "Reindexing job scheduled for #{sanitized_id}" }
   rescue StandardError => error
-    flash[:alert] = "Failed to schedule the reindexing job for #{sanitized_id}: #{error}"
-  ensure
-    redirect_to index_path
+    redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
   end
 
   private
