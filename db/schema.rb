@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_140238) do
+ActiveRecord::Schema.define(version: 2020_09_16_154354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campus_accesses", force: :cascade do |t|
+    t.string "uid"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_campus_accesses_on_uid"
+  end
 
   create_table "dump_file_types", id: :serial, force: :cascade do |t|
     t.string "label"
