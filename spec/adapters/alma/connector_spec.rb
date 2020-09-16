@@ -23,4 +23,10 @@ RSpec.describe Alma::Connector do
       expect(described_class.users_path).to eq('jupiter/almaws/v1/users')
     end
   end
+
+  describe "#connection" do
+    it "creates an Alma connection" do
+      expect(described_class.connection.class).to be Faraday::Connection
+    end
+  end
 end

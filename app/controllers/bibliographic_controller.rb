@@ -50,8 +50,6 @@ class BibliographicController < ApplicationController
     end
   end
 
-  # Alma /bibliographic/991227840000541/solr?adapter=alma
-  # Voyager /bibliographic/12345/solr
   def bib_solr(format: nil)
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
@@ -71,8 +69,6 @@ class BibliographicController < ApplicationController
   end
 
   def bib_jsonld
-    # Alma /bibliographic/991227840000541/jsonld?adapter=alma
-    # Voyager /bibliographic/12345/jsonld
     bib_solr format: :jsonld
   end
 
@@ -156,7 +152,6 @@ class BibliographicController < ApplicationController
     end
 
     # Find all bib. records from Voyager using a bib. ID and optional arguments
-    # @param id [String] the bib. ID
     # @param opts [Hash] optional arguments
     # @return [Array<Object>] the set of bib. records
     def find_by_id(id, opts)
