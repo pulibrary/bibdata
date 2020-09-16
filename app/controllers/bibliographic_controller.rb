@@ -103,7 +103,7 @@ class BibliographicController < ApplicationController
   end
 
   def update
-    records = find_by_id(sanitized_id, voyager_opts)
+    records = find_by_id(voyager_opts)
     if records.nil?
       return render plain: "Record #{sanitized_id} not found or suppressed", status: 404
     end
@@ -154,7 +154,7 @@ class BibliographicController < ApplicationController
     # Find all bib. records from Voyager using a bib. ID and optional arguments
     # @param opts [Hash] optional arguments
     # @return [Array<Object>] the set of bib. records
-    def find_by_id(id, opts)
+    def find_by_id(opts)
       bib_adapter.get_bib_record(sanitized_id, nil, opts)
     end
 

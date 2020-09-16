@@ -6,7 +6,6 @@ RSpec.describe BibliographicController, type: :controller do
   let(:bib_record) { instance_double(MARC::Record) }
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }
   let(:bib_record_xml) { File.read(file_path) }
-  let(:bib_record_not_found) { nil }
   let(:one_bib) { "991227850000541" }
 
   before do
@@ -35,7 +34,7 @@ RSpec.describe BibliographicController, type: :controller do
         end
         it 'when record is not found or is suppressed' do
           post :update, params: { bib_id: bib_id }
-          
+
           expect(response).not_to redirect_to(index_path)
           expect(flash[:notice]).not_to be_present
           expect(response.body).to eq("Record #{bib_id} not found or suppressed")
