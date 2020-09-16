@@ -6,6 +6,7 @@ RSpec.describe BibliographicController, type: :controller do
   let(:bib_record) { instance_double(MARC::Record) }
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }
   let(:bib_record_xml) { File.read(file_path) }
+  let(:one_bib) { "991227850000541" }
 
   before do
     allow(bib_record).to receive(:to_xml).and_return bib_record_xml
@@ -26,6 +27,18 @@ RSpec.describe BibliographicController, type: :controller do
         expect(response).to redirect_to(index_path)
         expect(flash[:notice]).to be_present
         expect(flash[:notice]).to eq "Reindexing job scheduled for #{bib_id}"
+      end
+      context 'renders a flash message' do
+        before do
+          allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return nil
+        end
+        it 'when record is not found or is suppressed' do
+          post :update, params: { bib_id: bib_id }
+
+          expect(response).not_to redirect_to(index_path)
+          expect(flash[:notice]).not_to be_present
+          expect(response.body).to eq("Record #{bib_id} not found or suppressed")
+        end
       end
     end
   end

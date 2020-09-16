@@ -2,14 +2,19 @@ class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
 
+  def bib_adapter
+    return Alma::Bib if params[:adapter].present? && params[:adapter].downcase == "alma"
+    VoyagerHelpers::Liberator
+  end
+
   def index
     if params[:bib_id]
       if params.fetch(:holdings_only, '0') == '1'
-        redirect_to action: :bib_holdings, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib_holdings, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       elsif params.fetch(:items_only, '0') == '1'
-        redirect_to action: :bib_items, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib_items, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       else
-        redirect_to action: :bib, bib_id: params[:bib_id], status: :moved_permanently
+        redirect_to action: :bib, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       end
     else
       render plain: "Record please supply a bib id", status: 404
@@ -23,7 +28,7 @@ class BibliographicController < ApplicationController
     }
 
     begin
-      records = VoyagerHelpers::Liberator.get_bib_record(bib_id_param, nil, opts)
+      records = bib_adapter.get_bib_record(bib_id_param, nil, opts)
     rescue OCIError => oci_error
       Rails.logger.error "Failed to retrieve the Voyager record using the bib. ID: #{bib_id_param}: #{oci_error}"
       return head :bad_request
@@ -50,9 +55,7 @@ class BibliographicController < ApplicationController
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-
-    records = VoyagerHelpers::Liberator.get_bib_record(sanitize(params[:bib_id]), nil, opts)
-
+    records = bib_adapter.get_bib_record(sanitize(params[:bib_id]), nil, opts)
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -70,7 +73,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_holdings
-    records = VoyagerHelpers::Liberator.get_holding_records(sanitize(params[:bib_id]))
+    records = bib_adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -100,22 +103,17 @@ class BibliographicController < ApplicationController
   end
 
   def update
-    records = find_by_id(sanitized_id, voyager_opts)
-
+    records = find_by_id(voyager_opts)
     if records.nil?
-      render plain: "Record #{sanitized_id} not found or suppressed", status: 404
-    else
-      file = Tempfile.new("#{sanitized_id}.mrx")
-      file.write(records_to_xml_string(records))
-      file.close
-      index_job_queue.add(file: file.path)
-
-      flash[:notice] = "Reindexing job scheduled for #{sanitized_id}"
+      return render plain: "Record #{sanitized_id} not found or suppressed", status: 404
     end
+    file = Tempfile.new("#{sanitized_id}.mrx")
+    file.write(records_to_xml_string(records))
+    file.close
+    index_job_queue.add(file: file.path)
+    redirect_to index_path, flash: { notice: "Reindexing job scheduled for #{sanitized_id}" }
   rescue StandardError => error
-    flash[:alert] = "Failed to schedule the reindexing job for #{sanitized_id}: #{error}"
-  ensure
-    redirect_to index_path
+    redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
   end
 
   private
@@ -154,11 +152,10 @@ class BibliographicController < ApplicationController
     end
 
     # Find all bib. records from Voyager using a bib. ID and optional arguments
-    # @param id [String] the bib. ID
     # @param opts [Hash] optional arguments
     # @return [Array<Object>] the set of bib. records
-    def find_by_id(id, opts)
-      VoyagerHelpers::Liberator.get_bib_record(id, nil, opts)
+    def find_by_id(opts)
+      bib_adapter.get_bib_record(sanitized_id, nil, opts)
     end
 
     # Access the URL helpers for the application
