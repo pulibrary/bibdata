@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   get '/hathi/access', to: 'hathi#hathi_access', defaults: { format: :json }
 
+  get "/campus_access", to: 'campus_access#index', defaults: { format: :csv }
+
   require 'sidekiq/web'
   authenticate :user do
     mount Sidekiq::Web => '/sidekiq'

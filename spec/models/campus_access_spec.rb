@@ -22,11 +22,11 @@ RSpec.describe CampusAccess, type: :model do
 
   describe '#to_csv' do
     before do
-      described_class.create(uid: 'user1')
+      described_class.create(uid: 'USER1')
       described_class.create(uid: 'user2')
     end
     it 'creates a csv' do
-      expect(described_class.to_csv).to eq("user1\nuser2\n")
+      expect(described_class.to_csv).to eq("user1@princeton.edu\nuser2@princeton.edu\n")
     end
   end
 

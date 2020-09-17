@@ -9,13 +9,13 @@ class CampusAccess < ActiveRecord::Base
     # single column CSV file that can be used by libcal and others who need a list of active users
     def to_csv
       ::CSV.generate(headers: false) do |csv|
-        all.each do |user|
-          csv << [user.uid]
+        all.find_each do |user|
+          csv << ["#{user.uid.downcase}@princeton.edu"]
         end
       end
     end
 
-    def load_access(xlsx_filename, header_rows=4, trailer_rows=4)
+    def load_access(xlsx_filename, header_rows = 4, trailer_rows = 4)
       return unless File.exist?(xlsx_filename)
       unique_users = load_users(xlsx_filename, header_rows, trailer_rows)
       CampusAccess.transaction do
@@ -27,17 +27,18 @@ class CampusAccess < ActiveRecord::Base
     end
 
     private
+
       def load_users(xlsx_filename, header_rows, trailer_rows)
         workbook = RubyXL::Parser.parse(xlsx_filename)
         worksheet = workbook[0]
         users = []
         header_rows
-        for row_number in (header_rows-1)..(worksheet.count-(trailer_rows+1))
+        ((header_rows - 1)..(worksheet.count - (trailer_rows + 1))).each do |row_number|
           row = worksheet[row_number]
           course = row[0].value
           access = row[11].value
           # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 (Safe Practices for Resumption of On-Campus Operations)
-          users << row[2].value if (course ==  1534 || course == 1512) && access == "Y"
+          users << row[2].value if (course == 1534 || course == 1512) && access == "Y"
         end
         users.uniq
       end
