@@ -2,10 +2,12 @@ class PatronController < ApplicationController
   before_action :protect
 
   def patron_info
-    data = VoyagerHelpers::Liberator.get_patron_info(sanitize(params[:patron_id]))
+    patron_id = sanitize(params[:patron_id])
+    data = VoyagerHelpers::Liberator.get_patron_info(patron_id)    
     if data.blank?
       render json: {}, status: 404
     else
+      data[:campus_authorized] = CampusAccess.has_access?(patron_id)
       respond_to do |wants|
         wants.json  { render json: MultiJson.dump(data) }
       end
