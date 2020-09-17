@@ -41,6 +41,7 @@ gem 'rspec-rails', '~> 3.8'
 gem 'rubocop'
 gem 'rubocop-rspec'
 gem 'ruby-oci8', '~> 2.2.1' unless ENV['CI']
+gem 'rubyXL'
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
