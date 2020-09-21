@@ -36,7 +36,7 @@ RSpec.describe CampusAccess, type: :model do
       f=File.expand_path("../../fixtures/access.xlsx",__FILE__)
       described_class.load_access(f)
       expect(CampusAccess.count).to eq(4)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("TEST1", "TEST2", "TEST3", "TEST6")
+      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test6")
     end
 
     it "leaves the database alone if the file does not exist" do

@@ -1,6 +1,11 @@
 require 'csv'
 
 class CampusAccess < ActiveRecord::Base
+  def initialize( attributes)
+    attributes[:uid] = attributes[:uid]&.downcase
+    super(attributes)
+  end
+
   class << self
     def has_access?(uid)
       where(uid: uid).count.positive?
@@ -10,7 +15,7 @@ class CampusAccess < ActiveRecord::Base
     def to_csv
       ::CSV.generate(headers: false) do |csv|
         all.find_each do |user|
-          csv << ["#{user.uid.downcase}@princeton.edu"]
+          csv << ["#{user.uid}@princeton.edu"]
         end
       end
     end
