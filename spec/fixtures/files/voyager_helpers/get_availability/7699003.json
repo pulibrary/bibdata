@@ -1,0 +1,362 @@
+{
+    "7500479": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 1,
+        "item_id": 6687457,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "7504001": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 2,
+        "item_id": 6687458,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "7504003": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 3,
+        "item_id": 6687459,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664737": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 4,
+        "item_id": 8350641,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664739": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 5,
+        "item_id": 8350644,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664742": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 6,
+        "item_id": 8350645,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664743": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 7,
+        "item_id": 8350646,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664744": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 8,
+        "item_id": 8350647,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664745": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 9,
+        "item_id": 8350648,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664746": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 10,
+        "item_id": 8350650,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664747": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 11,
+        "item_id": 8350652,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664749": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 12,
+        "item_id": 8350654,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664750": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 13,
+        "item_id": 8350656,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664752": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 14,
+        "item_id": 8350657,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Renewed"
+        ]
+    },
+    "11664753": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 15,
+        "item_id": 8350658,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664754": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 16,
+        "item_id": 8350659,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664755": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 17,
+        "item_id": 8350660,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664756": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 18,
+        "item_id": 8350661,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664757": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 19,
+        "item_id": 8350662,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664758": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 20,
+        "item_id": 8350663,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664759": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 21,
+        "item_id": 8350664,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664760": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 22,
+        "item_id": 8350665,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664761": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 23,
+        "item_id": 8350666,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664762": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 24,
+        "item_id": 8350667,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664763": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 25,
+        "item_id": 8350668,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664764": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 26,
+        "item_id": 8350669,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664765": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 27,
+        "item_id": 8350670,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664766": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 28,
+        "item_id": 8350671,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664768": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 29,
+        "item_id": 8350673,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    },
+    "11664770": {
+        "more_items": false,
+        "location": "spia",
+        "copy_number": 30,
+        "item_id": 8350675,
+        "on_reserve": "N",
+        "due_date": "6/15/2021",
+        "patron_group_charged": "CDL",
+        "status": [
+            "Charged"
+        ]
+    }
+}

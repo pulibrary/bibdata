@@ -16,9 +16,9 @@ RSpec.describe VoyagerLookup do
 
     it 'returns a holdings hash' do
       availability_hash = {
-        "1068356" => { more_items: false, location: "rcppa", status: "Not Charged" },
-        "1068357" => { more_items: false, location: "fnc", status: "Not Charged" },
-        "1068358" => { more_items: false, location: "anxb", patron_group_charged: nil, status: "Not Charged" } }
+        "1068356" => { more_items: false, location: "rcppa", status: "Not Charged", status_label: "Available" },
+        "1068357" => { more_items: false, location: "fnc", status: "Not Charged", status_label: "Available" },
+        "1068358" => { more_items: false, location: "anxb", patron_group_charged: nil, status: "Not Charged", status_label: "Available" } }
       allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return("1068356"=>{ more_items: false, location: "rcppa", status: ["Not Charged"] }, "1068357"=>{ more_items: false, location: "fnc", status: ["Not Charged"] }, "1068358"=>{ more_items: false, location: "anxb", patron_group_charged: nil, status: ["Not Charged"] })
       bib_id = '929437'
       availability = described_class.single_bib_availability(bib_id: bib_id)
@@ -41,10 +41,10 @@ RSpec.describe VoyagerLookup do
       availability_hash = {
         bib_id => {
           holding1 => {
-            more_items: false, location: "rcppa", status: "Not Charged"
+            more_items: false, location: "rcppa", status: "Not Charged", status_label: "Available"
           },
           holding2 => {
-            more_items: false, location: "fnc", patron_group_charged: nil, status: "Not Charged"
+            more_items: false, location: "fnc", patron_group_charged: nil, status: "Not Charged", status_label: "Available"
           }
         }
       }
@@ -232,6 +232,144 @@ RSpec.describe VoyagerLookup do
     end
   end
 
+  describe 'status_label values' do
+    context 'An item with status "Not Charged"' do
+      it 'has status_label "Available"' do
+        bib_id = '9685905'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Available"
+      end
+    end
+
+    context 'An item with status "Lost--System Applied"' do
+      it 'has status_label "Long overdue"' do
+        bib_id = '1350'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Long overdue"
+      end
+    end
+
+    context 'An item with a lost status' do
+      it 'has status_label "Lost"' do
+        bib_id = '10420804'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Lost"
+      end
+    end
+
+    context 'An item with status "Discharged"' do
+      it 'has status_label "Lost"' do
+        bib_id = '11832106'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Returned"
+      end
+    end
+
+    context 'An in-transit item' do
+      it 'has status_label "In transit"' do
+        bib_id = '11831975'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "In transit"
+      end
+    end
+
+    context 'An in-process item' do
+      it 'has status_label "In process"' do
+        bib_id = '11961598'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "In process"
+      end
+    end
+
+    context 'An item with status Charged' do
+      it 'has status_label "Checked out"' do
+        bib_id = '1903918'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Checked out"
+      end
+    end
+
+    context 'An item with status Claims Returned' do
+      it 'has status_label "Missing"' do
+        bib_id = '11630989'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Missing"
+      end
+    end
+
+    context 'An item with status "Discharged" and an on-site location' do
+      it 'has status_label "See front desk"' do
+        bib_id = '7720165'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        allow(Locations::HoldingLocation).to receive(:find_by).and_return(holding_loc_always_req)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "See front desk"
+      end
+    end
+
+    context 'An item with an on-order status' do
+      it 'has status_label "Pending order" with date stripped' do
+        bib_id = '12079550'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        allow(Locations::HoldingLocation).to receive(:find_by).and_return(holding_loc_always_req)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Pending order"
+      end
+    end
+
+    context 'An item with an on-site location' do
+      it 'has status_label "On-site access"' do
+        bib_id = '7777379'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        allow(Locations::HoldingLocation).to receive(:find_by).and_return(holding_loc_always_req)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "On-site access"
+      end
+    end
+
+    context 'An item charged to the CDL patron group' do
+      it 'has status_label "Reserved for digital lending"' do
+        bib_id = '7699003'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Reserved for digital lending"
+      end
+    end
+
+  end
+
   describe 'location values' do
     context 'when the record has no temp_loc' do
       it 'returns a location display label' do
@@ -323,6 +461,18 @@ RSpec.describe VoyagerLookup do
       expect(item1[:pickup_location_code]).to eq "fcirc"
       expect(item2[:item_type]).to eq "Gen"
       expect(availability.length).to eq(3)
+    end
+  end
+end
+
+# Converts json stored in a file to the response hash returned by voyager
+# helpers get_availability
+def voyager_helpers_availability_fixture(filename)
+  filename = File.join('voyager_helpers/get_availability', filename).to_s
+  json = JSON.parse(File.read(file_fixture(filename)))
+  json.each_with_object({}) do |(key, value), hash|
+    hash[key] = value.each_with_object({}) do |(k, v), h|
+      h[k.to_sym] = v
     end
   end
 end

@@ -65,10 +65,14 @@ class VoyagerLookup
       mfhd
     end
 
+    # label is a location display label
+    # status is the ILS status value
+    # status_label is the status value to display to users
     def update_item_values(item)
       loc = get_holding_location(item)
       item[:label] = location_full_display(loc) unless loc.nil?
       item[:status] = context_based_status(loc, item[:status])
+      item[:status_label] = status_label(item)
     end
 
     def get_holding_location(item)
@@ -94,6 +98,40 @@ class VoyagerLookup
         non_circulating_status(status)
       else
         status
+      end
+    end
+
+    def status_label(item)
+      if item[:patron_group_charged] == "CDL"
+        "Reserved for digital lending"
+      elsif status_includes?(available_statuses, item[:status])
+        "Available"
+      elsif status_includes?(long_overdue_statuses, item[:status])
+        "Long overdue"
+      elsif status_includes?(lost_statuses, item[:status])
+        "Lost"
+      elsif status_includes?(returned_statuses, item[:status])
+        "Returned"
+      elsif status_includes?(transit_statuses, item[:status])
+        "In transit"
+      elsif status_includes?(in_process_statuses, item[:status])
+        "In process"
+      elsif status_includes?(checked_out_statuses, item[:status])
+        "Checked out"
+      elsif status_includes?(missing_statuses, item[:status])
+        "Missing"
+      elsif status_starts?('on-site - ', item[:status])
+        "See front desk"
+      elsif status_starts?('on-site', item[:status])
+        "On-site access"
+      elsif status_starts?('pending order', item[:status])
+        "Pending order"
+      elsif status_starts?('order received', item[:status])
+        "Order received"
+      elsif status_starts?('on-order', item[:status])
+        "On-order"
+      else
+        item[:status]
       end
     end
 
@@ -132,6 +170,16 @@ class VoyagerLookup
       end
     end
 
+    def status_includes?(status_array, status)
+      return false unless status
+      status_array.map(&:downcase).include?(status.downcase)
+    end
+
+    def status_starts?(str, status)
+      return false unless status
+      status.downcase.starts_with? str.downcase
+    end
+
     def status_priority
       ['Not Charged', 'Discharged', 'In Process', 'Hold Request', 'Charged', 'Renewed', 'Overdue',
        'On Hold', 'In Transit', 'In Transit On Hold', 'In Transit Discharged', 'Withdrawn',
@@ -140,6 +188,37 @@ class VoyagerLookup
 
     def available_statuses
       ['Not Charged', 'On Shelf']
+    end
+
+    def long_overdue_statuses
+      ['Lost--system applied', 'On-site - lost--system applied']
+    end
+
+    def lost_statuses
+      ['Lost--library applied', 'On-site - lost--library applied']
+    end
+
+    def returned_statuses
+      ['Discharged']
+    end
+
+    def transit_statuses
+      ['In transit discharged']
+    end
+
+    def in_process_statuses
+      ['In process', 'On-site - in process']
+    end
+
+    def checked_out_statuses
+      ['Charged', 'Renewed', 'Overdue', 'On hold', 'In transit',
+       'In transit on hold', 'In transit discharged', 'At bindery',
+       'Remote storage request', 'Hold request', 'Recall request']
+    end
+
+    def missing_statuses
+      ['Missing', 'Claims returned', 'Withdrawn', 'On-site - missing',
+       'On-site - claims returned', 'On-site - withdrawn']
     end
 
     def order_statuses
