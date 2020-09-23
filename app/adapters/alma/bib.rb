@@ -13,13 +13,16 @@ module Alma
     # @param records an array of MARC::Record records
     class << self
       def get_bib_record(ids, conn=nil, opts={})
-        res = Alma::Connector.connection.get "bibs?mms_id=#{self.ids_remove_spaces(ids: ids)}", {
-          :apikey => self.apikey, # I can't stub this in the bib_spec
-          :expand => "p_avail,e_avail,d_avail,requests",
-          :view => "full"
-        }
-        reader = MARC::XMLReader.new(StringIO.new(res.body))
-        return reader.first unless self.ids_build_array(ids: ids).count > 1
+        res = Alma::Connector.connection.get("bibs?mms_id=#{self.ids_remove_spaces(ids: ids)}",
+        {query: { :expand => "p_avail,e_avail,d_avail,requests" }, :apikey => self.apikey},
+        {'Accept' => 'application/xml'} )
+
+        doc = Nokogiri::XML(res.body)
+        doc.search('//bib').each {|node| node.remove if node.xpath('suppress_from_publishing').text == 'true'}
+        doc.xpath('//mms_id')
+        reader = MARC::XMLReader.new(StringIO.new(doc.at_xpath('//bibs').to_xml))
+
+        return reader.first if doc.xpath('//mms_id').count < 2
         records = []
         reader.select {|record| records << record}
       end
@@ -45,6 +48,7 @@ module Alma
       def ids_build_array(ids:)
         ids.gsub(/\s+/,"").split(',')
       end
+
     end
   end
 end

@@ -21,7 +21,7 @@ module Alma
 
       # Exlibris Alma connection
       def connection
-        Faraday.new(url: "#{url}/almaws/v1", headers: {'Content-Type'=> 'application/xml;charset=UTF-8'} ) do |builder|
+        Faraday.new(url: "#{url}/almaws/v1" ) do |builder|
           builder.adapter Faraday.default_adapter
           builder.response :logger
           builder.request :url_encoded
