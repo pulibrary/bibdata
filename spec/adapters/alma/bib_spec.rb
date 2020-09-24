@@ -74,11 +74,6 @@ RSpec.describe Alma::Bib do
       expect(described_class.ids_remove_spaces(ids: bibs)).to eq "991227850000541,991227840000541,991227830000541,99222441306421"
     end
   end
-  describe "#ids_build_array" do
-    it "builds an array of ids" do
-      expect(described_class.ids_build_array(ids: bibs)).to eq ["991227850000541", "991227840000541", "991227830000541", "99222441306421"]
-    end
-  end
 
   describe '#get_holding_records' do
     it "returns the holdings for a bib" do

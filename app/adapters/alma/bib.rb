@@ -48,10 +48,6 @@ module Alma
         ids.gsub(/\s+/,"")
       end
 
-      def ids_build_array(ids:)
-        ids.gsub(/\s+/,"").split(',')
-      end
-
     end
   end
 end
