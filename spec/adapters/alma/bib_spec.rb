@@ -4,10 +4,8 @@ require "rails_helper"
 RSpec.describe Alma::Bib do
   let(:bibs) { "991227850000541, 991227840000541, 991227830000541, 99222441306421" }
   let(:unsuppressed_991227850000541) { "991227850000541" }
-  let(:unsuppressed_991227840000541) { "991227840000541" }
   let(:suppressed_99222441306421) { "99222441306421" }
   let(:suppressed_unsuppressed_ids) { "991227850000541,991227840000541,99222441306421" }
-  let(:unsuppressed_xml_991227840000541) { file_fixture("alma/unsuppressed_#{unsuppressed_991227840000541}.xml").read }
   let(:unsuppressed_xml_991227850000541) { file_fixture("alma/unsuppressed_#{unsuppressed_991227850000541}.xml").read }
   let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
   let(:suppressed_xml_99222441306421) { file_fixture("alma/suppressed_#{suppressed_99222441306421}.xml").read }
@@ -22,7 +20,7 @@ RSpec.describe Alma::Bib do
   before do
     Alma.config[:bibs_read_only] = 'TESTME'
     Alma.config[:region]='ALMA'
-    stub_unsuppressed_suppressed = stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=991227850000541,991227840000541,99222441306421&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=991227850000541,991227840000541,99222441306421&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
        to_return(status: 200, body: unsuppressed_suppressed, headers: {
         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
         'Content-Type'=>'application/xml;charset=UTF-8',
@@ -30,7 +28,7 @@ RSpec.describe Alma::Bib do
         'User-Agent'=>'Faraday v1.0.1',
         'Apikey' => 'TESTME'
       })
-    stub_suppressed_99222441306421 = stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_99222441306421}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_99222441306421}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
        to_return(status: 200, body: suppressed_xml_99222441306421, headers: {
         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
         'Content-Type'=>'application/xml;charset=UTF-8',
@@ -38,21 +36,13 @@ RSpec.describe Alma::Bib do
         'User-Agent'=>'Faraday v1.0.1',
         'Apikey' => 'TESTME'
       })
-    stub_unsuppressed_991227850000541 = stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed_991227850000541}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed_991227850000541}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
          to_return(status: 200, body: unsuppressed_xml_991227850000541, headers: {
          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
          'Content-Type'=>'application/xml;charset=UTF-8',
          'Accept' => 'application/xml',
          'User-Agent'=>'Faraday v1.0.1',
          'Apikey' => 'TESTME'
-       })
-    stub_unsuppressed_991227840000541 = stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed_991227840000541}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
-          to_return(status: 200, body: unsuppressed_xml_991227840000541, headers: {
-          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-          'Content-Type'=>'application/xml;charset=UTF-8',
-          'Accept' => 'application/xml',
-          'User-Agent'=>'Faraday v1.0.1',
-          'Apikey' => 'TESTME'
        })
   end
   describe "#get_bib_record" do
