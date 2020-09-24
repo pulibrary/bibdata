@@ -58,17 +58,14 @@ RSpec.describe Alma::Bib do
   describe "#get_bib_record" do
     context "if one bib is provided" do
       it "returns one record" do
-        #allow(described_class).to receive(:get_bib_record).with(unsuppressed_991227850000541).and_return(alma_marc_991227850000541)
         expect(described_class.get_bib_record(unsuppressed_991227850000541)['001'].value).to eq "991227850000541"
       end
     end
     context "if an array of bibs is provided" do
       it "returns multiple unsuppressed records" do
-        #allow(described_class).to receive(:get_bib_record).with(suppressed_unsuppressed_ids).and_return(alma_marc_records)
         expect(described_class.get_bib_record(suppressed_unsuppressed_ids)[0]['001'].value).to eq "991227840000541"
         expect(described_class.get_bib_record(suppressed_unsuppressed_ids)[1]['001'].value).to eq "991227850000541"
         expect(described_class.get_bib_record(suppressed_unsuppressed_ids).count).to eq 2
-        #expect(described_class.get_bib_record(suppressed_unsuppressed_ids)[2]['001'].value).not_to eq "99222441306421"
       end
     end
   end

@@ -18,13 +18,16 @@ module Alma
         {'Accept' => 'application/xml'} )
 
         doc = Nokogiri::XML(res.body)
-        doc.search('//bib').each {|node| node.remove if node.xpath('suppress_from_publishing').text == 'true'}
-        doc.xpath('//mms_id')
-        reader = MARC::XMLReader.new(StringIO.new(doc.at_xpath('//bibs').to_xml))
+        doc_unsuppressed = doc_unsuppressed(doc)
+        reader = MARC::XMLReader.new(StringIO.new(doc_unsuppressed.at_xpath('//bibs').to_xml))
 
-        return reader.first if doc.xpath('//mms_id').count < 2
+        return reader.first if doc_unsuppressed.xpath('//mms_id').count < 2
         records = []
         reader.select {|record| records << record}
+      end
+
+      def doc_unsuppressed(doc)
+        doc.search('//bib').each {|node| node.remove if node.xpath('suppress_from_publishing').text == 'true'}
       end
 
       # Returns list of holding records for a given MMS
