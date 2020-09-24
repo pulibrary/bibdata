@@ -3,8 +3,8 @@ namespace :campus_access do
   task load: :environment do
     if ENV['BIBDATA_ACCESS_DIRECTORY']
       today = DateTime.now.strftime('%F')
-      file_prefix = ENV['BIBDATA_ACCESS_FILE_PREFIX'] || 'Daily file to the Library-'
-      file_name = File.join(ENV['BIBDATA_ACCESS_DIRECTORY'],"#{file_prefix}#{today}.xlsx")
+      file_part = ENV['BIBDATA_ACCESS_FILE_NAME'] || 'Daily file to the Library_fileshare-en.xlsx'
+      file_name = File.join(ENV['BIBDATA_ACCESS_DIRECTORY'],file_part)
       if (File.exist?(file_name))
         puts "Reading in the daily access file #{file_name}"
         CampusAccess.load_access(file_name) 
