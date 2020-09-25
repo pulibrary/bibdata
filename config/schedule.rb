@@ -101,6 +101,6 @@ every 1.day, at: "6:00am", roles: [:cron_production] do
 end
 
 # process the access file daily
-every 1.day, at: "10:00am", roles: [:cron_production, :cron_staging] do
+every 1.day, at: "10:00am", roles: [:hr_cron] do
   rake "campus_access:load", output: "/tmp/campus_access_log.log"
 end
