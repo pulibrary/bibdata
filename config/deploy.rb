@@ -44,7 +44,7 @@ set :linked_dirs, %w{
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
-set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production] }
+set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production, :hr_cron] }
 
 namespace :sidekiq do
   task :restart do
