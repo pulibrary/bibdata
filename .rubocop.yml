@@ -23,6 +23,8 @@ AllCops:
     - '**/Rakefile'
     - '**/config.ru'
     - 'marc_to_solr/translation_maps/*.rb.tmpl'
+    - 'app/models/ldap.rb'
+    - 'spec/models/ldap_spec.rb'
   Exclude:
     - 'db/**/*'
     - 'bin/*'
