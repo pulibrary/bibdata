@@ -12,7 +12,6 @@ For now look at `config/routes.rb` for what's available.
 
 ### Dependencies
   * Mysql
-  * PhantomJS
 
 ### Oci8
 
