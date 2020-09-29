@@ -8,6 +8,9 @@ class PatronController < ApplicationController
       render json: {}, status: 404
     else
       data[:campus_authorized] = CampusAccess.has_access?(patron_id)
+      if params[:ldap].present? && sanitize(params[:ldap])=="true"
+        data[:ldap] = Ldap.find_by_netid(patron_id)
+      end
       respond_to do |wants|
         wants.json  { render json: MultiJson.dump(data) }
       end
