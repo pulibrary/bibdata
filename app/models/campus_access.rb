@@ -43,7 +43,7 @@ class CampusAccess < ActiveRecord::Base
           course = row[0].value
           access = row[11].value
           # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 (Safe Practices for Resumption of On-Campus Operations)
-          users << row[2].value if (course == 1534 || course == 1512) && access == "Y"
+          users << row[2].value if (course == 1534 || course == 1512 || course == 1507) && access == "Y"
         end
         users.uniq
       end
