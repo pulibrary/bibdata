@@ -2,40 +2,74 @@
 require "rails_helper"
 
 RSpec.describe Alma::Bib do
-  let(:bibs) { "991227850000541, 991227840000541, 991227830000541" }
-  let(:one_bib) { "991227850000541" }
-  let(:alma_record) { file_fixture("alma/#{one_bib}.xml").read }
-  let(:alma_marc_record) { MARC::XMLReader.new(StringIO.new(alma_record)).first }
+  let(:unsuppressed) { "991227850000541" }
+  let(:unsuppressed_two) { "991227840000541" }
+  let(:suppressed) { "99222441306421" }
+  let(:suppressed_unsuppressed_ids) { ["991227850000541" , "991227840000541", "99222441306421"] }
+  let(:suppressed_xml) { file_fixture("alma/suppressed_#{suppressed}.xml").read }
+  let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
+  let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
+  let(:alma_marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
   let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
-  # let(:holdings_record) { MARC::XMLReader.new(StringIO.new(holdings_991227840000541)).first }
-  let(:records) { [] }
-  let(:alma_records) { file_fixture("alma/alma_three_records.xml").read }
-  let(:alma_marc_records) { MARC::XMLReader.new(StringIO.new(alma_records)).select {|record| records << record} }
 
+  before do
+    allow(described_class).to receive(:apikey).and_return('TESTME')
+    Alma.config[:region]='ALMA'
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(",")}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+       to_return(status: 200, body: unsuppressed_suppressed, headers: {
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Type'=>'application/xml;charset=UTF-8',
+        'Accept' => 'application/xml',
+        'User-Agent'=>'Faraday v1.0.1'
+      })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+       to_return(status: 200, body: suppressed_xml, headers: {
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'Content-Type'=>'application/xml;charset=UTF-8',
+        'Accept' => 'application/xml',
+        'User-Agent'=>'Faraday v1.0.1'
+      })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
+         to_return(status: 200, body: unsuppressed_xml, headers: {
+         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         'Content-Type'=>'application/xml;charset=UTF-8',
+         'Accept' => 'application/xml',
+         'User-Agent'=>'Faraday v1.0.1'
+       })
+     stub_request(:get, "https://alma/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME").
+         to_return(status: 200, body: holdings_991227840000541, headers: {
+           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+           'Content-Type'=>'application/xml;charset=UTF-8',
+           'Accept' => 'application/xml',
+           'User-Agent'=>'Faraday v1.0.1'
+       })
+  end
   describe "#get_bib_record" do
-    context "if one bib is provided" do
+    context "when an unsuppressed bib is provided" do
       it "returns one record" do
-        allow(described_class).to receive(:get_bib_record).with(one_bib).and_return(alma_marc_record)
-        expect(described_class.get_bib_record(one_bib)['001'].value).to eq "991227850000541"
+        expect(described_class.get_bib_record(unsuppressed)['001'].value).to eq "991227850000541"
       end
     end
-    context "if an array of bibs is provided" do
-      it "returns multiple records" do
-        allow(described_class).to receive(:get_bib_record).with(bibs).and_return(alma_marc_records)
-        expect(described_class.get_bib_record(bibs)[0]['001'].value).to eq "991227830000541"
-        expect(described_class.get_bib_record(bibs)[1]['001'].value).to eq "991227840000541"
-        expect(described_class.get_bib_record(bibs)[2]['001'].value).to eq "991227850000541"
+    context "when a suppressed bib is provided" do
+      it "returns nil" do
+        expect(described_class.get_bib_record(suppressed)).to be nil
       end
     end
   end
-  describe "#ids_remove_spaces" do
-    it "removes the spaces from the ids" do
-      expect(described_class.ids_remove_spaces(ids: bibs)).to eq "991227850000541,991227840000541,991227830000541"
+
+  describe "#get_bib_records" do
+    context "if a string of bibs is provided" do
+      it "returns multiple unsuppressed records" do
+        expect(described_class.get_bib_records(suppressed_unsuppressed_ids)[0]['001'].value).to eq unsuppressed_two
+        expect(described_class.get_bib_records(suppressed_unsuppressed_ids)[1]['001'].value).to eq unsuppressed
+        expect(described_class.get_bib_records(suppressed_unsuppressed_ids).count).to eq 2
+      end
     end
   end
-  describe "#ids_build_array" do
-    it "builds an array of ids" do
-      expect(described_class.ids_build_array(ids: bibs)).to eq ["991227850000541", "991227840000541", "991227830000541"]
+
+  describe '#get_holding_records' do
+    it "returns the holdings for a bib" do
+      expect(described_class.get_holding_records(unsuppressed)).to be_a(String)
     end
   end
 
@@ -44,17 +78,20 @@ RSpec.describe Alma::Bib do
       # find an alma record with no 952 from the publishing job to add it as a fixture.
     end
   end
+
   describe "with an alma record that has an ARK" do
     it "exposes the ark" do
       # find an alma record with an ark.princeton.edu
     end
   end
+
   describe "alma record with no item" do
     # it has a holding
     # it doesn't have an item. This should be checked on the Alma::Holding
     it "has a holding" do
     end
   end
+
   describe "alma holding with order information" do
     # alma record with a po line.
     it "displays ..." do
@@ -73,13 +110,4 @@ RSpec.describe Alma::Bib do
       # What does the AVA tag display after the PO is accepted.
     end
   end
-
-  describe '#get_holding_records' do
-    it "returns the holdings for a bib" do
-      allow(described_class).to receive(:get_holding_records).with(one_bib).and_return(holdings_991227840000541)
-      expect(described_class.get_holding_records(one_bib)).to be_a(String)
-    end
-  end
 end
-
-
