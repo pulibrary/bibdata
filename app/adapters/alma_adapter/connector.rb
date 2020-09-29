@@ -1,4 +1,4 @@
-module Alma
+module AlmaAdapter
   class Connector
 
     class << self
@@ -9,10 +9,10 @@ module Alma
       def users_path
         "#{base_path}/users"
       end
-      
+
       # ExLibris Alma region
       def region
-        Alma.config[:region]
+        AlmaAdapter.config[:region]
       end
 
       def url
@@ -21,7 +21,7 @@ module Alma
 
       # Exlibris Alma connection
       def connection
-        Faraday.new(url: "#{url}/almaws/v1" ) do |builder|
+        Faraday.new(url: "#{url}/almaws/v1") do |builder|
           builder.adapter Faraday.default_adapter
           builder.response :logger
           builder.request :url_encoded

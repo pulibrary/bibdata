@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe Alma::Bib do
+RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:suppressed) { "99222441306421" }
@@ -14,7 +14,7 @@ RSpec.describe Alma::Bib do
 
   before do
     allow(described_class).to receive(:apikey).and_return('TESTME')
-    Alma.config[:region]='ALMA'
+    AlmaAdapter.config[:region] = 'ALMA'
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(",")}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
        to_return(status: 200, body: unsuppressed_suppressed, headers: {
         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -87,7 +87,7 @@ RSpec.describe Alma::Bib do
 
   describe "alma record with no item" do
     # it has a holding
-    # it doesn't have an item. This should be checked on the Alma::Holding
+    # it doesn't have an item. This should be checked on the Holding
     it "has a holding" do
     end
   end
