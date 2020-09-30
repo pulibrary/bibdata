@@ -1,5 +1,5 @@
 default: &default
-  bibs_read_only: <%= ENV['BIBS_READ_ONLY'] %>
+  bibs_read_only: <%= ENV['ALMA_BIBS_READ_ONLY'] %>
   region: <%= ENV['ALMA_REGION'] %>
 
 development:
