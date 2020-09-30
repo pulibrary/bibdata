@@ -1,5 +1,5 @@
 Alma.configure do |config|
-  config.apikey = ENV['BIBS_READ_ONLY']
+  config.apikey = Rails.configuration.alma[:bibs_read_only]
 
   # Alma gem defaults to querying Ex Libris's North American API servers. You can override that here.
   # config.region   = "https://api-eu.hosted.exlibrisgroup.com"
