@@ -33,18 +33,34 @@ RSpec.describe CampusAccess, type: :model do
   describe "#load_access" do
     it "loads the database with the xslx file removing existing rows" do
       CampusAccess.create(uid: 'abc123')
-      f=File.expand_path("../../fixtures/access.xlsx",__FILE__)
+      f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       described_class.load_access(f)
       expect(CampusAccess.count).to eq(4)
       expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test6")
     end
 
-    it "leaves the database alone if the file does not exist" do
+    it "loads the database with the xslx file and additional ids removing existing rows" do
       CampusAccess.create(uid: 'abc123')
-      f=File.expand_path("../../fixtures/access2.xlsx",__FILE__)
+      f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
+      described_class.load_access(f, additional_ids: ['elephant1', 'dog2'])
+      expect(CampusAccess.count).to eq(6)
+      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test6", 'elephant1', 'dog2')
+    end
+
+    it "leaves the database alone if the file does not exist and no ids are given" do
+      CampusAccess.create(uid: 'abc123')
+      f = File.expand_path("../../fixtures/access2.xlsx", __FILE__)
       described_class.load_access(f)
       expect(CampusAccess.count).to eq(1)
       expect(CampusAccess.all.map(&:uid)).to contain_exactly("abc123")
+    end
+
+    it "loads additional is only if the file does not exist" do
+      CampusAccess.create(uid: 'abc123')
+      f = File.expand_path("../../fixtures/access2.xlsx", __FILE__)
+      described_class.load_access(f, additional_ids: ['elephant1', 'dog2'])
+      expect(CampusAccess.count).to eq(3)
+      expect(CampusAccess.all.map(&:uid)).to contain_exactly("abc123", 'elephant1', 'dog2')
     end
   end
 end
