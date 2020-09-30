@@ -7,7 +7,9 @@ class PatronController < ApplicationController
     if data.blank?
       render json: {}, status: 404
     else
-      data[:campus_authorized] = CampusAccess.has_access?(patron_id)
+      patron_access = CampusAccess.where(uid: patron_id).first || CampusAccess.new(uid: patron_id, category: "none")
+      data[:campus_authorized] = patron_access.access?
+      data[:campus_authorized_category] = patron_access.category
       if params[:ldap].present? && sanitize(params[:ldap])=="true"
         data[:ldap] = Ldap.find_by_netid(patron_id)
       end
