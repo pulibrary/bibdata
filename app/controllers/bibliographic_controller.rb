@@ -3,7 +3,7 @@ class BibliographicController < ApplicationController
   before_action :protect, only: [:update]
 
   def bib_adapter
-    return AlmaAdapter::Bib if params[:adapter].present? && params[:adapter].downcase == "alma"
+    return AlmaAdapter::Bib if params[:adapter].present? && params[:adapter].casecmp("alma").zero?
     VoyagerHelpers::Liberator
   end
 
@@ -104,9 +104,7 @@ class BibliographicController < ApplicationController
 
   def update
     records = find_by_id(voyager_opts)
-    if records.nil?
-      return render plain: "Record #{sanitized_id} not found or suppressed", status: 404
-    end
+    return render plain: "Record #{sanitized_id} not found or suppressed", status: 404 if records.nil?
     file = Tempfile.new("#{sanitized_id}.mrx")
     file.write(records_to_xml_string(records))
     file.close
@@ -215,7 +213,7 @@ class BibliographicController < ApplicationController
       return lsort_result.gsub('..', '.') unless lsort_result.nil?
       force_number_part_to_have_4_digits(call_no)
     rescue
-      return call_no
+      call_no
     end
 
     # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes

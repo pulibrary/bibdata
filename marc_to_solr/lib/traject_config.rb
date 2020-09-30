@@ -34,7 +34,7 @@ to_field 'id', extract_marc('001', first: true)
 
 # if the id contains only numbers we know it's a princeton item
 to_field 'numeric_id_b', extract_marc('001', first: true) do |_record, accumulator|
-  accumulator.map! { |v| /^[0-9]+$/.match(v) ? true : false }
+  accumulator.map! { |v| /^[0-9]+$/.match?(v) ? true : false }
 end
 
 # for scsb local system id
@@ -829,7 +829,7 @@ end
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         first_letter = record['050']['a'].lstrip.slice(0, 1)
         accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
@@ -845,7 +845,7 @@ end
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
       end
@@ -1125,7 +1125,7 @@ each_record do |record, context|
     hathi_locations = parse_locations_from_hathi_line(hathi_line)
     hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
     context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
-  end  
+  end
   if location_codes.present? || hathi_locations.present?
     location_codes.uniq!
     ## need to through any location code that isn't from voyager, thesis, or graphic arts

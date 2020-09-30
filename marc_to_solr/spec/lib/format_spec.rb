@@ -12,7 +12,7 @@ describe 'From format.rb' do
     'Musical score' => ['c ', 'd '],
     'Audio' => ['i ', 'j '],
     'Map' => ['e '],
-    'Manuscript' => ['d ', 'f ', 't ', 'p '],
+    'Manuscript' => ['d ', 'f ', 't ', 'p ']
     # 'Unknown' => ['  ', 'zz']
   }.each do |k, v|
     it "properly determines format for #{k}" do

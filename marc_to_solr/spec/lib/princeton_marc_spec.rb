@@ -43,22 +43,22 @@ describe 'From princeton_marc.rb' do
         ],
         source_metadata_identifier_tesim: [
           bib_id
-        ],
+        ]
 
       }
     ]
   end
   let(:pages) do
     {
-      "current_page":1,
-      "next_page":2,
-      "prev_page":nil,
-      "total_pages":1,
-      "limit_value":10,
-      "offset_value":0,
-      "total_count":1,
-      "first_page?":true,
-      "last_page?":true
+      "current_page": 1,
+      "next_page": 2,
+      "prev_page": nil,
+      "total_pages": 1,
+      "limit_value": 10,
+      "offset_value": 0,
+      "total_count": 1,
+      "first_page?": true,
+      "last_page?": true
     }
   end
   let(:results) do

@@ -2,11 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Hathi::CompactFull do
   describe '#compact_full' do
-    
-    let(:hathi_directory) { File.expand_path('../../../fixtures/', __FILE__)}
-    let(:hathi_output) { File.expand_path('../../../../tmp', __FILE__)}
-    let(:compact_file) {File.join(hathi_output, 'hathi_full_20200501_compacted.tsv')}
-    
+    let(:hathi_directory) { File.expand_path('../../../fixtures/', __FILE__) }
+    let(:hathi_output) { File.expand_path('../../../../tmp', __FILE__) }
+    let(:compact_file) { File.join(hathi_output, 'hathi_full_20200501_compacted.tsv') }
+
     it 'compacts the full hathi file' do
       original_outputdir = ENV['HATHI_OUTPUT_DIR']
       original_inputdir = ENV['HATHI_OUTPUT_DIR']

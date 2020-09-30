@@ -28,4 +28,3 @@ class HathiController < ApplicationController
   end
 
 end
-

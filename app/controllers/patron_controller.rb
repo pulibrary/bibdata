@@ -3,16 +3,14 @@ class PatronController < ApplicationController
 
   def patron_info
     patron_id = sanitize(params[:patron_id])
-    data = VoyagerHelpers::Liberator.get_patron_info(patron_id)    
+    data = VoyagerHelpers::Liberator.get_patron_info(patron_id)
     if data.blank?
       render json: {}, status: 404
     else
       patron_access = CampusAccess.where(uid: patron_id).first || CampusAccess.new(uid: patron_id, category: "none")
       data[:campus_authorized] = patron_access.access?
       data[:campus_authorized_category] = patron_access.category
-      if params[:ldap].present? && sanitize(params[:ldap])=="true"
-        data[:ldap] = Ldap.find_by_netid(patron_id)
-      end
+      data[:ldap] = Ldap.find_by_netid(patron_id) if params[:ldap].present? && sanitize(params[:ldap]) == "true"
       respond_to do |wants|
         wants.json  { render json: MultiJson.dump(data) }
       end

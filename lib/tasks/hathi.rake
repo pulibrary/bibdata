@@ -26,10 +26,10 @@ namespace :hathi do
   task compact_overlap: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
       school = ENV['HATHI_SCHOOL'] || 'princeton'
-      puts "compacting the #{school} Hathi Trust overlap file" 
+      puts "compacting the #{school} Hathi Trust overlap file"
       output_file = Hathi::CompactOverlap.perform(school: school)
-      puts "Sorting the compacted overlap file #{output_file}" 
-      sorted_file = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(output_file).gsub('.tsv','_sorted.tsv'))
+      puts "Sorting the compacted overlap file #{output_file}"
+      sorted_file = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(output_file).gsub('.tsv', '_sorted.tsv'))
       `sort -t$'\t' -k 1n #{output_file} > #{sorted_file}`
     else
       puts "Environment variable HATHI_INPUT_DIR & HATHI_OUTPUT_DIR must be set!"
@@ -38,26 +38,26 @@ namespace :hathi do
 
   desc 'Compact hathi_full file to only include the identifier and the oclc'
   task compact_full: :environment do
-    if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR'] 
-      puts "compacting the Hathi Trust full index file" 
+    if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
+      puts "compacting the Hathi Trust full index file"
       Hathi::CompactFull.compact_full
-      output_file = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: 'hathi_full*compacted.tsv', date_pattern:"hathi_full_%Y%m%d_compacted.tsv")
-      puts "Sorting the compacted Hathi Trust full index file: #{output_file}" 
-      sorted_file = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(output_file).gsub('.tsv','_sorted.tsv'))
+      output_file = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: 'hathi_full*compacted.tsv', date_pattern: "hathi_full_%Y%m%d_compacted.tsv")
+      puts "Sorting the compacted Hathi Trust full index file: #{output_file}"
+      sorted_file = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(output_file).gsub('.tsv', '_sorted.tsv'))
       `sort -t$'\t' -k 2n #{output_file} > #{sorted_file}`
     else
       puts "Environment variable HATHI_INPUT_DIR & HATHI_OUTPUT_DIR must be set!"
-    end  
+    end
   end
 
   desc 'Combine Hathi_full and Hathi_overlap_compact files'
   task merge: :environment do
-    if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR'] 
+    if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
       school = ENV['HATHI_SCHOOL'] || 'princeton'
-      sorted_file1 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'],pattern: "overlap*_#{school}_sorted.tsv", date_pattern: "overlap_%Y%m%d_compacted_#{school}_sorted.tsv")
-      sorted_file2 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'],pattern: 'hathi_full*sorted.tsv', date_pattern:"hathi_full_%Y%m%d_compacted_sorted.tsv")
-      hathi_final = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(sorted_file1).gsub('.tsv','_final.tsv'))
-      puts "Merging #{sorted_file1} & #{sorted_file2} on oclc number" 
+      sorted_file1 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: "overlap*_#{school}_sorted.tsv", date_pattern: "overlap_%Y%m%d_compacted_#{school}_sorted.tsv")
+      sorted_file2 = Hathi::CompactFull.get_hathi_file(directory: ENV['HATHI_OUTPUT_DIR'], pattern: 'hathi_full*sorted.tsv', date_pattern: "hathi_full_%Y%m%d_compacted_sorted.tsv")
+      hathi_final = File.join(ENV['HATHI_OUTPUT_DIR'], File.basename(sorted_file1).gsub('.tsv', '_final.tsv'))
+      puts "Merging #{sorted_file1} & #{sorted_file2} on oclc number"
       `join -t$'\t' -1 1 -2 2 #{sorted_file1} #{sorted_file2} > #{hathi_final}`
     else
       puts "Environment variable HATHI_INPUT_DIR & HATHI_OUTPUT_DIR must be set!"
@@ -67,9 +67,9 @@ namespace :hathi do
   desc 'Compact the Full Hathi Data the Overlap file and combine the files'
   task compact_and_merge: :environment do
     if ENV['HATHI_INPUT_DIR'] && ENV['HATHI_OUTPUT_DIR']
-      Rake::Task["hathi:compact_overlap"].invoke 
-      Rake::Task["hathi:compact_full"].invoke 
-      Rake::Task["hathi:merge"].invoke 
+      Rake::Task["hathi:compact_overlap"].invoke
+      Rake::Task["hathi:compact_full"].invoke
+      Rake::Task["hathi:merge"].invoke
     else
       puts "Environment variable HATHI_INPUT_DIR & HATHI_OUTPUT_DIR must be set!"
     end
@@ -77,7 +77,7 @@ namespace :hathi do
 
   desc 'Index Hathi records using the Hathi final file. (SET_URL: set the solr url)'
   task index_csv: :environment do
-    ENV['RUN_HATHI_COMPARE']='true'
+    ENV['RUN_HATHI_COMPARE'] = 'true'
     solr_url = ENV['SET_URL']
     solr = IndexFunctions.rsolr_connection(solr_url)
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
@@ -86,8 +86,8 @@ namespace :hathi do
       if hathi_file.present?
         CSV.foreach(hathi_file, col_sep: "\t", headers: true) do |row|
           if row[1].present?
-            ENV['BIB']=row[1]
-            #`SET_ULR=#{solr_url} BIB=#{ENV['BIB']} bundle exec bin/rake #{Rake::Task["liberate:bib"].execute}`
+            ENV['BIB'] = row[1]
+            # `SET_ULR=#{solr_url} BIB=#{ENV['BIB']} bundle exec bin/rake #{Rake::Task["liberate:bib"].execute}`
             if ENV['BIB']
               resp = conn.get "/bibliographic/#{ENV['BIB']}"
               File.binwrite('./tmp/tmp.xml', resp.body)

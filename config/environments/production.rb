@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.action_mailer.delivery_method = :sendmail
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'lib-ponyexpr.princeton.edu'
+    address: 'lib-ponyexpr.princeton.edu'
   }
   config.action_mailer.default_options = {
     from: 'no-reply@princeton.edu'

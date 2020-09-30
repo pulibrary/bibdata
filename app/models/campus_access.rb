@@ -3,7 +3,7 @@ require 'csv'
 class CampusAccess < ActiveRecord::Base
   FULL = "full".freeze
   TRAINED = "trained".freeze
-  
+
   def initialize(attributes)
     attributes[:uid] = attributes[:uid]&.downcase
     super(attributes)
@@ -56,7 +56,7 @@ class CampusAccess < ActiveRecord::Base
         ((header_rows - 1)..(worksheet.count - (trailer_rows + 1))).each do |row_number|
           row = worksheet[row_number]
           # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 (Safe Practices for Resumption of On-Campus Operations)
-          id = send(filter,row)
+          id = send(filter, row)
           users << id if id.present?
         end
         users.uniq
@@ -65,25 +65,17 @@ class CampusAccess < ActiveRecord::Base
       def filter_full(row)
         course = row[0].value
         access = row[11].value
-        if valid_courses.include?(course) && access == "Y"
-          row[2].value 
-        else
-          nil
-        end
+        row[2].value if valid_courses.include?(course) && access == "Y"
       end
 
       def filter_learn(row)
         course = row[1].value
-        if valid_courses.include?(course)
-          row[0].value 
-        else
-          nil
-        end
+        row[0].value if valid_courses.include?(course)
       end
 
       def valid_courses
         # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 & 1507 (Safe Practices for Resumption of On-Campus Operations) or 1505 1507 (COVID-19 Safety Precautions)
-        [1534,1511,1512,1507,1505,1514]
+        [1534, 1511, 1512, 1507, 1505, 1514]
       end
   end
 end

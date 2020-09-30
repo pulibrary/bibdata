@@ -25,7 +25,7 @@ RSpec.describe ElectronicLocationsFactory, type: :service do
   end
   let(:document) do
     {
-      'electronic_access_1display': [JSON.dump(electronic_access_links)],
+      'electronic_access_1display': [JSON.dump(electronic_access_links)]
     }.stringify_keys
   end
 

@@ -14,7 +14,7 @@ module FormattingConcern
         writer.close()
       end
       VoyagerHelpers::Liberator.valid_xml(xml_str)
-    elsif records.kind_of? (String)
+    elsif records.kind_of? String
       # example response from /almaws/v1/bibs/{mms_id}/holdings
       valid_xml(records)
     else
@@ -22,13 +22,13 @@ module FormattingConcern
     end
   end
 
-   # Moved from voyager-helpers
-   # strips invalid xml characters to prevent parsing errors
-   # only used for "cleaning" individually retrieved records
-   def valid_xml(xml_string)
-     invalid_xml_range = /[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD]/
-     xml_string.gsub(invalid_xml_range, '')
-   end
+  # Moved from voyager-helpers
+  # strips invalid xml characters to prevent parsing errors
+  # only used for "cleaning" individually retrieved records
+  def valid_xml(xml_string)
+    invalid_xml_range = /[^\u0009\u000A\u000D\u0020-\uD7FF\uE000-\uFFFD]/
+    xml_string.gsub(invalid_xml_range, '')
+  end
 
   # Clean up character encoding problems by passing the
   # records through an XML parser

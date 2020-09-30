@@ -220,7 +220,7 @@ def process_author_roles record
       name = Traject::Macros::Marc21.trim_punctuation(name)
 
       # If name is from 1xx field, it is the primary author.
-      if /1../.match(field.tag)
+      if /1../.match?(field.tag)
         names['primary_author'] = name
       else
         relator = ""
@@ -504,7 +504,7 @@ def process_genre_facet record
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
-      if genre.match(/^\s+$/)
+      if genre.match?(/^\s+$/)
         logger.error "#{record['001']} - Blank genre field"
       elsif should_include
         genres << genre
@@ -515,7 +515,7 @@ def process_genre_facet record
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
-      if genre.match(/^\s+$/)
+      if genre.match?(/^\s+$/)
         logger.error "#{record['001']} - Blank genre field"
       else
         genres << genre
@@ -635,7 +635,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
         holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
-      elsif /[ckhij]/.match(s_field.code)
+      elsif /[ckhij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
         unless s_field.code == 'c'
@@ -784,7 +784,7 @@ def find_hathi_by_oclc(oclc)
     puts "The output directory must be set for Hathi comparison to work!!! ENV['HATHI_OUTPUT_DIR']"
     return ""
   end
-  overlap_file=Dir.glob("#{output_dir}/overlap*final.tsv").sort_by { |filename| filename.to_date.strftime}.last
+  overlap_file = Dir.glob("#{output_dir}/overlap*final.tsv").sort_by { |filename| filename.to_date.strftime }.last
   if overlap_file.blank?
     puts "The overlap file is missing from #{output_dir}!!"
     return ""
@@ -795,7 +795,7 @@ end
 # "980\t1590302\tmono\tdeny\tic\tmdp.39015002162876\n980\t1590302\tmono\tdeny\tic\tmdp.39015010651894\n980\t1590302\tmono\tdeny\tic\tmdp.39015066013585\n"
 def parse_locations_from_hathi_line(line)
   return [] if line.blank?
-  access= line.split("\t")[3]
+  access = line.split("\t")[3]
   locs = ["hathi"]
   locs << "hathi_temp" if access == "deny"
   locs

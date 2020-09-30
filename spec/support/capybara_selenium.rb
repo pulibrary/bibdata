@@ -23,7 +23,7 @@ end
 
 Capybara.default_max_wait_time = 60
 Capybara.javascript_driver = :chrome
-WebMock.disable_net_connect!({
+WebMock.disable_net_connect!(
   allow_localhost: true,
   allow: 'chromedriver.storage.googleapis.com'
-})
+)
