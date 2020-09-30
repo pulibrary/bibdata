@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe Alma::Connector do
+RSpec.describe AlmaAdapter::Connector do
   before do
-    Alma.config[:region]='jupiter'
+    AlmaAdapter.config[:region] = 'jupiter'
   end
 
   describe "#base_path" do

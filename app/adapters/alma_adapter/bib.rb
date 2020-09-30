@@ -1,4 +1,4 @@
-module Alma
+module AlmaAdapter
   class Bib
     class << self
       # Get /almaws/v1/bibs Retrieve bibs
@@ -9,7 +9,7 @@ module Alma
       # get one bib record is supported in the bibdata UI and in the bibliographic_controller
       # @return [MARC::Record]
       def get_bib_record(id, conn=nil, opts={})
-        res = Alma::Connector.connection.get("bibs?mms_id=#{id}",
+        res = AlmaAdapter::Connector.connection.get("bibs?mms_id=#{id}",
         {query: { :expand => "p_avail,e_avail,d_avail,requests" }, :apikey => apikey},
         {'Accept' => 'application/xml'} )
 
@@ -25,7 +25,7 @@ module Alma
       # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
       # @return [Array<MARC::Record>]
       def get_bib_records(ids, conn=nil, opts={})
-        res = Alma::Connector.connection.get("bibs?mms_id=#{ids_array_to_string(ids)}",
+        res = AlmaAdapter::Connector.connection.get("bibs?mms_id=#{ids_array_to_string(ids)}",
         {query: { :expand => "p_avail,e_avail,d_avail,requests" }, :apikey => apikey},
         {'Accept' => 'application/xml'} )
 
@@ -38,10 +38,18 @@ module Alma
       # Returns list of holding records for a given MMS
       # @params id [string]. e.g id = "991227850000541"
       def get_holding_records(id)
-        res = Alma::Connector.connection.get "bibs/#{id}/holdings", {
+        res = AlmaAdapter::Connector.connection.get "bibs/#{id}/holdings", {
           :apikey => self.apikey
         }
         doc = res.body
+      end
+
+      # @params id [string]. e.g id = "991227850000541"
+      # @return [Hash] of holdings / items data
+      def get_items_for_bib(id)
+        opts = { limit: 100, expand: "due_date_policy,due_date" }
+        Alma::BibItem.find(id, opts)
+        # todo: transform alma response to marc liberation format
       end
 
       private
@@ -59,7 +67,7 @@ module Alma
       end
 
       def apikey
-        Alma.config[:bibs_read_only]
+        AlmaAdapter.config[:bibs_read_only]
       end
 
     end

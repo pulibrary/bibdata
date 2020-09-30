@@ -1,13 +1,12 @@
-module Alma
-  def config
-    @config ||= config_yaml.with_indifferent_access
-  end
+Alma.configure do |config|
+  config.apikey = Rails.configuration.alma[:bibs_read_only]
 
- private
+  # Alma gem defaults to querying Ex Libris's North American API servers. You can override that here.
+  # config.region   = "https://api-eu.hosted.exlibrisgroup.com"
 
- def config_yaml
-   YAML.safe_load(ERB.new(File.read(Rails.root.join("config", "alma.yml"))).result, [], [], true)
- end
+  # By default enable_loggable is set to false
+  # config.enable_loggable = false
 
- module_function :config, :config_yaml
+  # By default timeout is set to 5 seconds; can only provide integers
+  # config.timeout = 5
 end

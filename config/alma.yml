@@ -1,2 +1,13 @@
-bibs_read_only: <%= ENV['BIBS_READ_ONLY'] %> 
-region: <%= ENV['ALMA_REGION'] %>
+default: &default
+  bibs_read_only: <%= ENV['BIBS_READ_ONLY'] %>
+  region: <%= ENV['ALMA_REGION'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+  bibs_read_only: 'TESTME'
+
+production:
+  <<: *default

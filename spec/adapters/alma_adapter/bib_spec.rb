@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require "rails_helper"
 
-RSpec.describe Alma::Bib do
+RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:suppressed) { "99222441306421" }
@@ -14,7 +14,7 @@ RSpec.describe Alma::Bib do
 
   before do
     allow(described_class).to receive(:apikey).and_return('TESTME')
-    Alma.config[:region]='ALMA'
+    AlmaAdapter.config[:region] = 'ALMA'
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(",")}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
        to_return(status: 200, body: unsuppressed_suppressed, headers: {
         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -87,7 +87,7 @@ RSpec.describe Alma::Bib do
 
   describe "alma record with no item" do
     # it has a holding
-    # it doesn't have an item. This should be checked on the Alma::Holding
+    # it doesn't have an item. This should be checked on the Holding
     it "has a holding" do
     end
   end
@@ -108,6 +108,26 @@ RSpec.describe Alma::Bib do
       # when we first added the PO line it created the item 2384011050006421 with an on order status.
       # This is different from voyager where it doesn't add an item when the user creates a PO line.
       # What does the AVA tag display after the PO is accepted.
+    end
+  end
+
+  describe ".get_items_for_bib" do
+    it "exists" do
+      fixture_file = File.open(Rails.root.join("spec", "fixtures", "files", "alma", "bib_items_list_#{unsuppressed}.json"))
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Authorization'=>'apikey TESTME'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "content-Type" => "application/json" },
+          body: fixture_file
+        )
+      items_data = described_class.get_items_for_bib(unsuppressed)
+      expect(items_data).to be_a Alma::BibItemSet
     end
   end
 end
