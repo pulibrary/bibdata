@@ -4,7 +4,6 @@ RSpec.describe Hathi::CompactOverlap do
   it 'distributes an email message to staff when a request fails via the scsb_request queue' do
     input_dir = File.expand_path("../../../fixtures/", __FILE__)
     output_dir = File.expand_path("../../../../tmp/", __FILE__)
-    overlap_file = File.expand_path("../../../fixtures/overlap.tsv", __FILE__)
     original_outputdir = ENV['HATHI_OUTPUT_DIR']
     original_inputdir = ENV['HATHI_OUTPUT_DIR']
     ENV['HATHI_INPUT_DIR'] = input_dir

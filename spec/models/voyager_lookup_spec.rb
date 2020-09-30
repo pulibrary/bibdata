@@ -440,9 +440,6 @@ RSpec.describe VoyagerLookup do
     end
   end
 
-  describe 'status label values' do
-  end
-
   describe 'full mfhd availability array' do
     it 'returns info for all items for a given mfhd' do
       allow(VoyagerHelpers::Liberator).to receive(:get_full_mfhd_availability).and_return([

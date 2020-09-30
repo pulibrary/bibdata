@@ -439,6 +439,10 @@ Lint/UselessAssignment:
     - 'spec/controllers/availability_controller_spec.rb'
     - 'app/models/concerns/scsb_partner_updates.rb'
 
+Lint/Void:
+  Exclude:
+    - 'app/models/campus_access.rb'
+
 # Offense count: 13
 Metrics/AbcSize:
   Max: 176
@@ -482,6 +486,16 @@ Metrics/MethodLength:
 # Offense count: 19
 Metrics/PerceivedComplexity:
   Max: 43
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/models/concerns/scsb_partner_updates.rb'
+    - 'marc_to_solr/lib/princeton_marc.rb'
+    - 'app/models/hathi/compact_full.rb'
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/campus_access.rb'
 
 # Offense count: 10
 # Configuration parameters: EnforcedStyle.
@@ -577,6 +591,10 @@ RSpec/InstanceVariable:
 RSpec/LeadingSubject:
   Exclude:
     - 'spec/models/jsonld_record_spec.rb'
+
+RSpec/MessageSpies:
+  Exclude:
+    - 'spec/controllers/patron_controller_spec.rb'
 
 # Offense count: 20
 RSpec/NamedSubject:
