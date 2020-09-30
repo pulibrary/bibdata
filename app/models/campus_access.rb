@@ -1,7 +1,7 @@
 require 'csv'
 
 class CampusAccess < ActiveRecord::Base
-  def initialize( attributes)
+  def initialize(attributes)
     attributes[:uid] = attributes[:uid]&.downcase
     super(attributes)
   end
@@ -20,20 +20,25 @@ class CampusAccess < ActiveRecord::Base
       end
     end
 
-    def load_access(xlsx_filename, header_rows = 4, trailer_rows = 4)
-      return unless File.exist?(xlsx_filename)
+    def load_access(xlsx_filename, header_rows = 4, trailer_rows = 4, additional_ids: [])
       unique_users = load_users(xlsx_filename, header_rows, trailer_rows)
       CampusAccess.transaction do
-        delete_all # chosen for speed If call backs are needed we should use destroy_all
-        unique_users.each do |user|
-          create(uid: user)
-        end
+        delete_all if unique_users.count.positive? # delete_all chosen for speed If call backs are needed we should use destroy_all
+        create_ids(unique_users)
+        create_ids(additional_ids)
       end
     end
 
     private
 
+      def create_ids(id_list)
+        id_list.each do |user|
+          create(uid: user)
+        end
+      end
+
       def load_users(xlsx_filename, header_rows, trailer_rows)
+        return [] unless File.exist?(xlsx_filename)
         workbook = RubyXL::Parser.parse(xlsx_filename)
         worksheet = workbook[0]
         users = []
