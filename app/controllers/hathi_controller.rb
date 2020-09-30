@@ -1,5 +1,4 @@
 class HathiController < ApplicationController
-
   def hathi_access
     return hathi_access_bib if params[:bib_id]
     return hathi_access_oclc if params[:oclc]
@@ -26,5 +25,4 @@ class HathiController < ApplicationController
   def status_404
     render json: @record, status: 404
   end
-
 end

@@ -1,5 +1,4 @@
 namespace :marc_liberation do
-
   desc 'Runs holding and bib ID dumps and diffs against previous'
   task get_changes: :environment do
     Dump.dump_merged_ids
@@ -13,7 +12,7 @@ namespace :marc_liberation do
 
   desc 'Adds updated partner recap records'
   task partner_update: :environment do
-  	Dump.partner_update
+    Dump.partner_update
   end
 
   desc 'Dumps file of bibs with attached holdings'

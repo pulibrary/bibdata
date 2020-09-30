@@ -43,15 +43,15 @@ RSpec.describe "Course Reserves", type: :request do
 
   def stub_all_courses
     allow(VoyagerHelpers::Liberator).to receive(:active_courses).and_return([
-      VoyagerHelpers::Course.new(1958, "Molecular Biology", "MOL", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
-    ])
+                                                                              VoyagerHelpers::Course.new(1958, "Molecular Biology", "MOL", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
+                                                                            ])
   end
 
   def stub_bib_ids
     allow(VoyagerHelpers::Liberator).to receive(:course_bibs).with(['1', '2']).and_return([
-      VoyagerHelpers::CourseBib.new(1,3),
-      VoyagerHelpers::CourseBib.new(2,4)
-    ])
+                                                                                            VoyagerHelpers::CourseBib.new(1, 3),
+                                                                                            VoyagerHelpers::CourseBib.new(2, 4)
+                                                                                          ])
   end
 
   def json_response

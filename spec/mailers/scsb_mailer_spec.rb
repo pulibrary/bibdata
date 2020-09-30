@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ScsbMailer, type: :mailer do
-
   context "Retrieval Request" do
     let(:args) do
       {
@@ -55,7 +54,7 @@ RSpec.describe ScsbMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
-      expect(mail.subject).to eq( I18n.t('scsb.request.email_subject'))
+      expect(mail.subject).to eq(I18n.t('scsb.request.email_subject'))
     end
 
     it "renders the body" do
@@ -122,7 +121,7 @@ RSpec.describe ScsbMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.to).to eq([I18n.t('scsb.default_error_to')])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
-      expect(mail.subject).to eq( I18n.t('scsb.default_error_subject'))
+      expect(mail.subject).to eq(I18n.t('scsb.default_error_subject'))
     end
 
     it "renders the body" do
@@ -183,7 +182,7 @@ RSpec.describe ScsbMailer, type: :mailer do
     it "renders the headers" do
       expect(mail.to).to eq(['test@account.edu'])
       expect(mail.from).to eq([I18n.t('scsb.default_from')])
-      expect(mail.subject).to eq( I18n.t('scsb.edd.email_subject'))
+      expect(mail.subject).to eq(I18n.t('scsb.edd.email_subject'))
     end
 
     it "renders the body" do

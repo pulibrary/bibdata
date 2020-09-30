@@ -74,7 +74,6 @@ module AlmaAdapter
         def apikey
           AlmaAdapter.config[:bibs_read_only]
         end
-
     end
   end
 end

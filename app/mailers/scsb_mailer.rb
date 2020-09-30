@@ -1,5 +1,4 @@
 class ScsbMailer < ApplicationMailer
-
   def error_email(args)
     @success = args[:success]
     @screen_message = args[:screenMessage]
@@ -16,7 +15,7 @@ class ScsbMailer < ApplicationMailer
     destination_email = @email
     subject_line = I18n.t('scsb.edd.email_subject')
     mail(to: destination_email,
-         subject: subject_line )
+         subject: subject_line)
   end
 
   def recall_email(args)
@@ -27,7 +26,7 @@ class ScsbMailer < ApplicationMailer
     destination_email = @email
     subject_line = I18n.t('scsb.recall.email_subject')
     mail(to: destination_email,
-         subject: subject_line )
+         subject: subject_line)
   end
 
   def request_email(args)
@@ -38,7 +37,7 @@ class ScsbMailer < ApplicationMailer
     destination_email = @email
     subject_line = I18n.t('scsb.request.email_subject')
     mail(to: destination_email,
-         subject: subject_line )
+         subject: subject_line)
   end
 
   def export_email(message)

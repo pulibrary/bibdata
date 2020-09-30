@@ -23,7 +23,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       stub_voyager('6815537')
       get '/bibliographic/6815537.json'
       bib = JSON.parse(response.body)
-      has_852 = bib["fields"].any? {|f| f.has_key?('852')}
+      has_852 = bib["fields"].any? { |f| f.has_key?('852') }
       expect(has_852).to be(false)
     end
   end
@@ -252,18 +252,17 @@ RSpec.describe "Bibliographic Gets", type: :request do
       stub_voyager('8637182')
       get '/bibliographic/8637182.json'
       bib = JSON.parse(response.body)
-      has_866 = bib["fields"].any? {|f| f.has_key?('866')}
+      has_866 = bib["fields"].any? { |f| f.has_key?('866') }
       expect(has_866).to be(false)
     end
   end
 
   describe '#get_catalog_date added to 959' do
-
     it 'adds item create_date when bib has associated items' do
       stub_voyager('4461315')
       get '/bibliographic/4461315.json'
       bib = JSON.parse(response.body)
-      has_959 = bib["fields"].any? {|f| f.has_key?('959')}
+      has_959 = bib["fields"].any? { |f| f.has_key?('959') }
       expect(has_959).to be(true)
     end
 
@@ -271,7 +270,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       stub_voyager('491668')
       get '/bibliographic/491668.json'
       bib = JSON.parse(response.body)
-      has_959 = bib["fields"].any? {|f| f.has_key?('959')}
+      has_959 = bib["fields"].any? { |f| f.has_key?('959') }
       expect(has_959).to be(true)
     end
 
@@ -279,7 +278,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       stub_voyager('4609321')
       get '/bibliographic/4609321.json'
       bib = JSON.parse(response.body)
-      has_959 = bib["fields"].any? {|f| f.has_key?('959')}
+      has_959 = bib["fields"].any? { |f| f.has_key?('959') }
       expect(has_959).to be(false)
     end
   end
@@ -297,12 +296,11 @@ RSpec.describe "Bibliographic Gets", type: :request do
         holding = JSON.parse(response.body)
         holding = MARC::Record.new_from_hash(holding)
         eight52 = holding['852'].to_hash
-        eight52['852']['subfields'].prepend("0"=>id.to_s)
+        eight52['852']['subfields'].prepend("0" => id.to_s)
         eight56 = holding['856'].to_hash
-        eight56['856']['subfields'].prepend("0"=>id.to_s)
+        eight56['856']['subfields'].prepend("0" => id.to_s)
         expect(ipad_bib_record['fields']).to include(eight52)
         expect(ipad_bib_record['fields']).to include(eight56)
-
       end
     end
 
@@ -318,7 +316,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
         holding = JSON.parse(response.body)
         holding = MARC::Record.new_from_hash(holding)
         eight66 = holding['866'].to_hash
-        eight66['866']['subfields'].prepend("0"=>id.to_s)
+        eight66['866']['subfields'].prepend("0" => id.to_s)
         expect(ipad_bib_record['fields']).to include(eight66)
       end
     end
@@ -326,21 +324,21 @@ RSpec.describe "Bibliographic Gets", type: :request do
 end
 
 def stub_voyager(bibid)
-  f=File.expand_path("../../fixtures/#{bibid}.mrx",__FILE__)
+  f = File.expand_path("../../fixtures/#{bibid}.mrx", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return MARC::XMLReader.new(f).first
 end
 
 def stub_voyager_holding(bibid)
-  f=File.expand_path("../../fixtures/#{bibid}-holding.xml",__FILE__)
+  f = File.expand_path("../../fixtures/#{bibid}-holding.xml", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_holding_record).and_return MARC::XMLReader.new(f).first
 end
 
 def stub_voyager_holdings(bibid)
-  f=File.expand_path("../../fixtures/#{bibid}-holdings.xml",__FILE__)
+  f = File.expand_path("../../fixtures/#{bibid}-holdings.xml", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_holding_records).and_return [MARC::XMLReader.new(f).first]
 end
 
 def stub_voyager_items(bibid)
-  f=File.expand_path("../../fixtures/#{bibid}-items.json",__FILE__)
+  f = File.expand_path("../../fixtures/#{bibid}-items.json", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return JSON.parse(File.read(f))
 end

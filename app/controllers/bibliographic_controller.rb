@@ -189,7 +189,7 @@ class BibliographicController < ApplicationController
     # Converts a Solr Document into a JSON-LD graph
     # @param solr_doc [SolrDocument] the Solr Document being transformed
     # @return [Hash] the JSON-LD graph serialized as a Hash
-    def solr_to_jsonld(solr_doc=nil)
+    def solr_to_jsonld(solr_doc = nil)
       { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
     end
 

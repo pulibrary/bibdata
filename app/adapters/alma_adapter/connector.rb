@@ -1,6 +1,5 @@
 module AlmaAdapter
   class Connector
-
     class << self
       def base_path
         "#{region}/almaws/v1"

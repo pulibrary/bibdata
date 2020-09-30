@@ -1,6 +1,5 @@
 
 class ElectronicAccessLinkFactory
-
   # Extract values from a given MARC subfield
   # @param s_field the MARC subfield
   # @return [Hash] the extracted values

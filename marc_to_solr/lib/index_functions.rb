@@ -6,7 +6,6 @@ require 'time'
 require 'logger'
 
 module IndexFunctions
-
   def self.update_records(dump)
     file_paths = []
     dump['files']['updated_records'].each_with_index do |update, i|

@@ -82,7 +82,7 @@ describe 'From princeton_marc.rb' do
 
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
-    let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url } ] } } }
+    let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }] } } }
     let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856]) }
     let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
 
@@ -99,8 +99,8 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
-      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url, "z" => "label" } ] } } }
-      let(:l856_3) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [ { "u" => url, "3" => "Selected images" } ] } } }
+      let(:l856_2) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url, "z" => "label" }] } } }
+      let(:l856_3) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url, "3" => "Selected images" }] } } }
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3]) }
 
@@ -119,7 +119,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a holding ID in the 856$0 subfield' do
-      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "0" => "test-holding-id" } ] } } }
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "0" => "test-holding-id" }] } } }
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('holding_record_856s' => { 'test-holding-id' => { 'https://domain.edu/test-resource' => ['domain.edu'] } })
@@ -127,7 +127,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a label' do
-      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "z" => "test label" } ] } } }
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "z" => "test label" }] } } }
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('https://domain.edu/test-resource' => ['domain.edu', 'test label'])
@@ -135,7 +135,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with link text in the 856$y subfield' do
-      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "y" => "test text1" } ] } } }
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "y" => "test text1" }] } } }
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('https://domain.edu/test-resource' => ['test text1'])
@@ -143,7 +143,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with link text in the 856$3 subfield' do
-      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "3" => "test text2" } ] } } }
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "3" => "test text2" }] } } }
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('https://domain.edu/test-resource' => ['test text2'])
@@ -151,7 +151,7 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with link text in the 856$x subfield' do
-      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "x" => "test text3" } ] } } }
+      let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "x" => "test text3" }] } } }
 
       it 'retrieves the URLs and the link labels' do
         expect(links).to include('https://domain.edu/test-resource' => ['test text3'])
@@ -223,14 +223,14 @@ describe 'From princeton_marc.rb' do
       @key_for_4 = "Serial Item and Contribution Identifier"
       @default_key = "Other standard number"
       @sub2_key = "Special number"
-      @ind1_3 = { "024"=>{ "ind1"=>"3", "ind2"=>" ", "subfields"=>[{ "a"=>'111' }] } }
-      @ind1_4 = { "024"=>{ "ind1"=>"4", "ind2"=>" ", "subfields"=>[{ "a"=>'123' }] } }
-      @ind1_4_second = { "024"=>{ "ind1"=>"4", "ind2"=>" ", "subfields"=>[{ "a"=>'456' }] } }
-      @ind1_8 = { "024"=>{ "ind1"=>"8", "ind2"=>" ", "subfields"=>[{ "a"=>'654' }] } }
-      @ind1_blank = { "024"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>'321' }] } }
-      @ind1_7 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'789' }, "2"=>@sub2_key] } }
-      @missing_sub2 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'987' }] } }
-      @empty_sub2 = { "024"=>{ "ind1"=>"7", "ind2"=>" ", "subfields"=>[{ "a"=>'000', "2"=>'' }] } }
+      @ind1_3 = { "024" => { "ind1" => "3", "ind2" => " ", "subfields" => [{ "a" => '111' }] } }
+      @ind1_4 = { "024" => { "ind1" => "4", "ind2" => " ", "subfields" => [{ "a" => '123' }] } }
+      @ind1_4_second = { "024" => { "ind1" => "4", "ind2" => " ", "subfields" => [{ "a" => '456' }] } }
+      @ind1_8 = { "024" => { "ind1" => "8", "ind2" => " ", "subfields" => [{ "a" => '654' }] } }
+      @ind1_blank = { "024" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => '321' }] } }
+      @ind1_7 = { "024" => { "ind1" => "7", "ind2" => " ", "subfields" => [{ "a" => '789' }, "2" => @sub2_key] } }
+      @missing_sub2 = { "024" => { "ind1" => "7", "ind2" => " ", "subfields" => [{ "a" => '987' }] } }
+      @empty_sub2 = { "024" => { "ind1" => "7", "ind2" => " ", "subfields" => [{ "a" => '000', "2" => '' }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@ind1_3, @ind1_4, @ind1_4_second, @ind1_8, @ind1_blank, @ind1_7, @missing_sub2, @empty_sub2])
       @standard_nos = standard_no_hash(@sample_marc)
     end
@@ -283,25 +283,25 @@ describe 'From princeton_marc.rb' do
   describe 'other_versions function' do
     before(:all) do
       @bib = '12345678'
-      @bib_776w = { "776"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "w"=>@bib }] } }
+      @bib_776w = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @bib }] } }
       @non_oclc_non_bib = '(DLC)12345678'
-      @non_oclc_non_bib_776w = { "776"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "w"=>@non_oclc_non_bib }] } }
+      @non_oclc_non_bib_776w = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @non_oclc_non_bib }] } }
       @oclc_num = '(OCoLC)on9990014350'
-      @oclc_776w = { "776"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "w"=>@oclc_num }] } }
+      @oclc_776w = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @oclc_num }] } }
       @oclc_num2 = '(OCoLC)on9990014351'
       @oclc_num3 = '(OCoLC)on9990014352'
-      @oclc_787w = { "787"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "w"=>@oclc_num2 }, { "z"=>@oclc_num3 }] } }
+      @oclc_787w = { "787" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @oclc_num2 }, { "z" => @oclc_num3 }] } }
       @oclc_num4 = '(OCoLC)on9990014353'
-      @oclc_035a = { "035"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>@oclc_num4 }] } }
+      @oclc_035a = { "035" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => @oclc_num4 }] } }
       @issn_num = "0378-5955"
-      @issn_022 = { "022"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "l"=>@issn_num }, { "y"=>@issn_num }] } }
+      @issn_022 = { "022" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "l" => @issn_num }, { "y" => @issn_num }] } }
       @issn_num2 = "1234-5679"
-      @issn_776x = { "776"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "x"=>@issn_num2 }] } }
+      @issn_776x = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "x" => @issn_num2 }] } }
       @isbn_num = '0-9752298-0-X'
-      @isbn_776z = { "776"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "z"=>@isbn_num }] } }
+      @isbn_776z = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "z" => @isbn_num }] } }
       @isbn_num2 = 'ISBN: 978-0-306-40615-7'
       @isbn_num2_10d = '0-306-40615-2'
-      @isbn_020 = { "020"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>@isbn_num2 }, { "z"=>@isbn_num2_10d }] } }
+      @isbn_020 = { "020" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => @isbn_num2 }, { "z" => @isbn_num2_10d }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@bib_776w, @non_oclc_non_bib_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020])
       @linked_nums = other_versions(@sample_marc)
     end
@@ -335,9 +335,9 @@ describe 'From princeton_marc.rb' do
 
   describe 'process_names, process_alt_script_names function' do
     before(:all) do
-      @t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
-      @t700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "k"=>"don't ignore" }, { "t"=>"TITLE" }] } }
-      @t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1" }, { "a"=>"Κινέζικα" }, { "t"=>"TITLE" }, { "k"=>"ignore" }] } }
+      @t100 = { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
+      @t700 = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "k" => "don't ignore" }, { "t" => "TITLE" }] } }
+      @t880 = { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-1" }, { "a" => "Κινέζικα" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@t100, @t700, @t880])
     end
 
@@ -357,11 +357,11 @@ describe 'From princeton_marc.rb' do
 
   describe '#everything_after_t, #everything_after_t_alt_script' do
     before(:all) do
-      t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"IGNORE" }, { "d"=>"me" }, { "t"=>"TITLE" }] } }
-      t710 = { "710"=>{ "ind1"=>"1", "ind2"=>"2", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "d"=>"1492" }, { "k"=>"dont ignore" }] } }
-      t880 = { "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-1" },{ "a"=>"IGNORE" }, { "d"=>"me" }, { "t"=>"Τίτλος" }] } }
-      ignore700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"should not include" }, { "a"=>"when missing indicators" }] } }
-      no_t = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"please" }, { "d"=>"disregard" }, { "k"=>"no title" }] } }
+      t100 = { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "IGNORE" }, { "d" => "me" }, { "t" => "TITLE" }] } }
+      t710 = { "710" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "t" => "AWESOME" }, { "a" => "John" }, { "d" => "1492" }, { "k" => "dont ignore" }] } }
+      t880 = { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-1" }, { "a" => "IGNORE" }, { "d" => "me" }, { "t" => "Τίτλος" }] } }
+      ignore700 = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "should not include" }, { "a" => "when missing indicators" }] } }
+      no_t = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "please" }, { "d" => "disregard" }, { "k" => "no title" }] } }
       sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t, t880])
       @titles = everything_after_t(sample_marc, '100:700:710')
       @alt_titles = everything_after_t_alt_script(sample_marc, '100:700:710')
@@ -393,9 +393,9 @@ describe 'From princeton_marc.rb' do
 
   describe '#everything_through_t' do
     before(:all) do
-      t100 = { "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "d"=>"me" }, { "t"=>"TITLE" }, { "a"=>"IGNORE" }] } }
-      t710 = { "710"=>{ "ind1"=>"1", "ind2"=>"2", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "d"=>"1492" }, { "k"=>"ignore" }] } }
-      no_t = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"please" }, { "d"=>"disregard" }, { "k"=>"no title" }] } }
+      t100 = { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "d" => "me" }, { "t" => "TITLE" }, { "a" => "IGNORE" }] } }
+      t710 = { "710" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "t" => "AWESOME" }, { "a" => "John" }, { "d" => "1492" }, { "k" => "ignore" }] } }
+      no_t = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "please" }, { "d" => "disregard" }, { "k" => "no title" }] } }
       sample_marc = MARC::Record.new_from_hash('fields' => [t100, t710, no_t])
       @titles = everything_through_t(sample_marc, '100:700:710')
     end
@@ -411,13 +411,12 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-
   describe '#prep_name_title, each hierarchical component is array element' do
     before(:all) do
-      t700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"John" }, { "d"=>"1492" }, { "t"=>"TITLE" }, { "0"=>"(uri)" }] } }
-      no_title_700 = { "700"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Mike" }, { "p"=>"part" }] } }
-      no_author_710 = { "710"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "d"=>"1500" }, { "t"=>"Title" }, { "p"=>"part" }] } }
-      t710 = { "710"=>{ "ind1"=>"", "ind2"=>"2", "subfields"=>[{ "a"=>"Sean" }, { "d"=>"2011" }, { "t"=>"work" }, { "n"=>"53" }, { "p"=>"Allegro" }] } }
+      t700 = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "t" => "TITLE" }, { "0" => "(uri)" }] } }
+      no_title_700 = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Mike" }, { "p" => "part" }] } }
+      no_author_710 = { "710" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "d" => "1500" }, { "t" => "Title" }, { "p" => "part" }] } }
+      t710 = { "710" => { "ind1" => "", "ind2" => "2", "subfields" => [{ "a" => "Sean" }, { "d" => "2011" }, { "t" => "work" }, { "n" => "53" }, { "p" => "Allegro" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [t700, no_title_700, no_author_710, t710])
     end
 
@@ -439,11 +438,11 @@ describe 'From princeton_marc.rb' do
 
   describe 'process_genre_facet function' do
     before(:all) do
-      @g600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Exclude" }, { "v"=>"John" }, { "x"=>"Join" }] } }
-      @g630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction." }] } }
-      @g655 = { "655"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"Culture." }, { "x"=>"Dramatic rendition" }, { "v"=>"Awesome" }] } }
-      @g655_2 = { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Poetry" }, { "x"=>"Translations into French" }, { "v"=>"Maps" }] } }
-      @g655_3 = { "655"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Manuscript" }, { "x"=>"Translations into French" }, { "v"=>"Genre" }, { "2"=>"rbgenr" }] } }
+      @g600 = { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Exclude" }, { "v" => "John" }, { "x" => "Join" }] } }
+      @g630 = { "630" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "x" => "Fiction." }] } }
+      @g655 = { "655" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Culture." }, { "x" => "Dramatic rendition" }, { "v" => "Awesome" }] } }
+      @g655_2 = { "655" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Poetry" }, { "x" => "Translations into French" }, { "v" => "Maps" }] } }
+      @g655_3 = { "655" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Manuscript" }, { "x" => "Translations into French" }, { "v" => "Genre" }, { "2" => "rbgenr" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@g600, @g630, @g655, @g655_2, @g655_3])
       @genres = process_genre_facet(@sample_marc)
     end
@@ -483,10 +482,10 @@ describe 'From princeton_marc.rb' do
 
   describe 'process_hierarchy function' do
     before(:all) do
-      @s610_ind2_5 = { "600"=>{ "ind1"=>"", "ind2"=>"5", "subfields"=>[{ "a"=>"Exclude" }] } }
-      @s600_ind2_7 = { "600"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Also Exclude" }] } }
-      @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "t"=>"Title." }, { "v"=>"split genre" }, { "d"=>"2015" }, { "2"=>"special" }] } }
-      @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "t"=>"TITLE." }] } }
+      @s610_ind2_5 = { "600" => { "ind1" => "", "ind2" => "5", "subfields" => [{ "a" => "Exclude" }] } }
+      @s600_ind2_7 = { "600" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Also Exclude" }] } }
+      @s600 = { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "John." }, { "t" => "Title." }, { "v" => "split genre" }, { "d" => "2015" }, { "2" => "special" }] } }
+      @s630 = { "630" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "x" => "Fiction" }, { "y" => "1492" }, { "z" => "don't ignore" }, { "t" => "TITLE." }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@s610_ind2_5, @s600, @s630])
       @subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
       @vocab_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz', ['vocab'])
@@ -517,10 +516,10 @@ describe 'From princeton_marc.rb' do
 
   describe 'process_subject_topic_facet function' do
     before(:all) do
-      @s600 = { "600"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"John." }, { "x"=>"Join" }, { "t"=>"Title" }, { "d"=>"2015" }] } }
-      @s630 = { "630"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "x"=>"Fiction" }, { "y"=>"1492" }, { "z"=>"don't ignore" }, { "v"=>"split genre" }, { "t"=>"TITLE" }] } }
-      @s650_sk = { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Siku subject" }, { "x"=>"Siku hierarchy" }, { "2"=>"sk" }] } }
-      @s650_exclude = { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Bad subject" }, { "2"=>"bad" }] } }
+      @s600 = { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "John." }, { "x" => "Join" }, { "t" => "Title" }, { "d" => "2015" }] } }
+      @s630 = { "630" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "x" => "Fiction" }, { "y" => "1492" }, { "z" => "don't ignore" }, { "v" => "split genre" }, { "t" => "TITLE" }] } }
+      @s650_sk = { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku subject" }, { "x" => "Siku hierarchy" }, { "2" => "sk" }] } }
+      @s650_exclude = { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Bad subject" }, { "2" => "bad" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk])
       @subjects = process_subject_topic_facet(@sample_marc)
     end
@@ -556,19 +555,19 @@ describe 'From princeton_marc.rb' do
       @aut7 = "Marchesi, Simone"
       @aut8 = "Fitzgerald, F. Scott"
 
-      @a100 = { "100"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut1 }] } }
-      @a700_1 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut2 }, { "4"=> 'edt' }] } }
-      @a700_2 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut3 }, { "4"=> 'com' }] } }
-      @a700_3 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut4 }, { "4"=> 'trl' }] } }
-      @a700_4 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut5 }, { "4"=> 'aaa' }] } }
-      @a700_5 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut6 }] } }
-      @a700_6 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut7 }, { "e"=>'translator.' }] } }
-      @a700_7 = { "700"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@aut8 }, { "e"=>'ed.' }] } }
+      @a100 = { "100" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut1 }] } }
+      @a700_1 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut2 }, { "4" => 'edt' }] } }
+      @a700_2 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut3 }, { "4" => 'com' }] } }
+      @a700_3 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut4 }, { "4" => 'trl' }] } }
+      @a700_4 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut5 }, { "4" => 'aaa' }] } }
+      @a700_5 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut6 }] } }
+      @a700_6 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut7 }, { "e" => 'translator.' }] } }
+      @a700_7 = { "700" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @aut8 }, { "e" => 'ed.' }] } }
 
       @sample_marc = MARC::Record
-                      .new_from_hash('fields' => [@a100, @a700_1, @a700_2,
-                                                  @a700_3, @a700_4, @a700_5,
-                                                  @a700_6, @a700_7])
+                     .new_from_hash('fields' => [@a100, @a700_1, @a700_2,
+                                                 @a700_3, @a700_4, @a700_5,
+                                                 @a700_6, @a700_7])
       @roles = process_author_roles(@sample_marc)
     end
 
@@ -603,12 +602,12 @@ describe 'From princeton_marc.rb' do
       @place2 = 'Brooklyn'
       @name2 = 'Archipelago Books'
 
-      @p260_a = { "260"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@place1 }] } }
-      @p260_b = { "260"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "b"=>@name1 }] } }
-      @p260_a_b = { "260"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@place1 }, { "b"=>@name1 }] } }
-      @p264_a = { "264"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@place2 }] } }
-      @p264_b = { "264"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "b"=>@name2 }] } }
-      @p264_a_b = { "264"=>{ "ind1"=>" ", "ind2"=>" ", "subfields"=>[{ "a"=>@place2 }, { "b"=>@name2 }] } }
+      @p260_a = { "260" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @place1 }] } }
+      @p260_b = { "260" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => @name1 }] } }
+      @p260_a_b = { "260" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @place1 }, { "b" => @name1 }] } }
+      @p264_a = { "264" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @place2 }] } }
+      @p264_b = { "264" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => @name2 }] } }
+      @p264_a_b = { "264" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => @place2 }, { "b" => @name2 }] } }
 
       @sample_marc_a = MARC::Record.new_from_hash('fields' => [@p260_a, @p264_a])
       @sample_marc_b = MARC::Record.new_from_hash('fields' => [@p260_b, @p264_b])
@@ -640,15 +639,15 @@ describe 'From princeton_marc.rb' do
       @exclude_mfhd_id = "9999"
       @call_number = "M23.L5S6 1973q"
       @include_loc = "f"
-      @f_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "b"=>"anxa" },{ "t"=>"2" },{ "t"=>"BAD" },{ "c"=>"Oversize" },{ "h"=>@call_number }] } }
-      @other_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@other_mfhd_id },{ "b"=>@include_loc },{ "b"=>"elf1" }] } }
-      @invalid_loc_852 = { "852"=>{ "ind1"=>"0","ind2"=>"0","subfields"=>[{ "0"=>@exclude_mfhd_id },{ "b"=>"baddd" }] } }
-      @l_866 = { "866"=>{ "ind1"=>"3","ind2"=>"1","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"volume 1" },{ "z"=>"full" }] } }
-      @l_866_2nd = { "866"=>{ "ind1"=>"3","ind2"=>"1","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"In reading room" }] } }
-      @c_866 = { "866"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "a"=>"v2" },{ "z"=>"available" }] } }
-      @s_867 = { "867"=>{ "ind1"=>"9","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v454" }] } }
-      @i_868 = { "868"=>{ "ind1"=>" ","ind2"=>"0","subfields"=>[{ "0"=>@oversize_mfhd_id },{ "z"=>"lost" }] } }
-      @other_866 = { "866"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "0"=>@other_mfhd_id },{ "a"=>"v4" },{ "z"=>"p3" }] } }
+      @f_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "b" => "anxa" }, { "t" => "2" }, { "t" => "BAD" }, { "c" => "Oversize" }, { "h" => @call_number }] } }
+      @other_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @other_mfhd_id }, { "b" => @include_loc }, { "b" => "elf1" }] } }
+      @invalid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @exclude_mfhd_id }, { "b" => "baddd" }] } }
+      @l_866 = { "866" => { "ind1" => "3", "ind2" => "1", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "volume 1" }, { "z" => "full" }] } }
+      @l_866_2nd = { "866" => { "ind1" => "3", "ind2" => "1", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "In reading room" }] } }
+      @c_866 = { "866" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "v2" }, { "z" => "available" }] } }
+      @s_867 = { "867" => { "ind1" => "9", "ind2" => " ", "subfields" => [{ "0" => @other_mfhd_id }, { "a" => "v454" }] } }
+      @i_868 = { "868" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "z" => "lost" }] } }
+      @other_866 = { "866" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "0" => @other_mfhd_id }, { "a" => "v4" }, { "z" => "p3" }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852, @invalid_loc_852])
 
       @holding_block = process_holdings(@sample_marc)

@@ -5,7 +5,6 @@ module Hathi
   # Removes unneeded column values so we only have 'identifier' and 'oclc'
   # This was helpful when we were grepping the csv at index time
   class CompactFull
-
     def self.get_full_hathi_file
       hathi_dir = ENV['HATHI_INPUT_DIR']
       get_hathi_file(directory: hathi_dir, pattern: "hathi_full*", date_pattern: "hathi_full_%Y%m%d.txt")
@@ -27,6 +26,5 @@ module Hathi
         end
       end
     end
-
   end
 end

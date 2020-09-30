@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe DumpFile, type: :model do
-
   subject do
     instance = described_class.create
     FileUtils.touch(instance.path)
@@ -56,5 +55,4 @@ RSpec.describe DumpFile, type: :model do
       expect(subject.path.end_with?('.gz')).to be_falsey
     end
   end
-
 end

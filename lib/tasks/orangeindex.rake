@@ -40,7 +40,7 @@ end
 desc "Index MARC_PATH files against SET_URL"
 task :index_folder do
   solr_url = ENV['SET_URL'] || default_solr_url
-  Dir["#{ENV['MARC_PATH']}/*.xml"].sort.each {|fixtures| sh "rake index SET_URL=#{solr_url} MARC=#{fixtures} NO_COMMIT=1; true"}
+  Dir["#{ENV['MARC_PATH']}/*.xml"].sort.each { |fixtures| sh "rake index SET_URL=#{solr_url} MARC=#{fixtures} NO_COMMIT=1; true" }
   solr = IndexFunctions.rsolr_connection(solr_url)
   solr.commit
 end
@@ -91,7 +91,6 @@ task :delete_bib do
 end
 
 namespace :liberate do
-
   desc "Index VoyRec for given BIB, against SET_URL"
   task :bib do
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
@@ -109,8 +108,8 @@ namespace :liberate do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
     resp = conn.get '/events.json'
-    comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today-1)
-    all_events = JSON.parse(resp.body).select {|e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS'}.each do |event|
+    comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today - 1)
+    all_events = JSON.parse(resp.body).select { |e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }.each do |event|
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
       IndexFunctions.update_records(dump).each do |marc|
         IndexFunctions.unzip_mrc(marc)
@@ -128,7 +127,7 @@ namespace :liberate do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
     resp = conn.get '/events.json'
-    if event = JSON.parse(resp.body).detect {|e| Date.parse(e['start']) == Date.parse(ENV['SET_DATE']) && e['success'] && e['dump_type'] == 'CHANGED_RECORDS'}
+    if event = JSON.parse(resp.body).detect { |e| Date.parse(e['start']) == Date.parse(ENV['SET_DATE']) && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }
       dump = JSON.parse(Faraday.get(event['dump_url']).body)
       IndexFunctions.update_records(dump).each do |marc|
         IndexFunctions.unzip_mrc(marc)
@@ -165,7 +164,7 @@ namespace :liberate do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
     resp = conn.get '/events.json'
-    if event = JSON.parse(resp.body).select {|e| e['success'] && e['dump_type'] == 'ALL_RECORDS'}.last
+    if event = JSON.parse(resp.body).select { |e| e['success'] && e['dump_type'] == 'ALL_RECORDS' }.last
       IndexFunctions.full_dump(event).each do |marc|
         IndexFunctions.unzip_mrc(marc)
         sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"

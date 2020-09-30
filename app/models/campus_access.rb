@@ -14,7 +14,6 @@ class CampusAccess < ActiveRecord::Base
   end
 
   class << self
-
     def has_access?(uid)
       where(uid: uid, category: const_get("FULL")).count.positive?
     end

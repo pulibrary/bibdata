@@ -1,7 +1,6 @@
 # Model for electronic location (MARC 856) fields
 # @see https://www.loc.gov/marc/bibliographic/bd856.html
 class ElectronicLocation
-
   # Constructor
   # @param access_method [String] code for the access method
   # @param relationship [String] code for the relationship

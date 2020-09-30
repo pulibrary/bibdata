@@ -1,6 +1,5 @@
 # Class for building normalized URIs
 class NormalUriFactory
-
   # Constructor
   # @param value [String] String value for the URL
   def initialize(value:)

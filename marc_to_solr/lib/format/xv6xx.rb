@@ -1,7 +1,6 @@
 # A utility class to get all the 6XX $v and $x, which
 # are used over and over again in the format finder
 class XV6XX
-
   # Find all the 6XXxv values in the given record
   # @param [MARC::Record] record
   def initialize(record)
@@ -20,5 +19,4 @@ class XV6XX
   def match?(regex)
     return @vals.grep(regex).size > 0
   end
-
 end

@@ -9,5 +9,4 @@ class ScsbRecallJob < ActiveJob::Base
     # end
     ScsbMailer.send('error_email', args).deliver_now if args[:success] == false
   end
-
 end

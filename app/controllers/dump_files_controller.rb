@@ -1,5 +1,4 @@
 class DumpFilesController < ApplicationController
-
   before_action :set_dump_file, only: [:show]
 
   def show
@@ -7,11 +6,12 @@ class DumpFilesController < ApplicationController
   end
 
   private
-  def set_dump_file
-    @dump_file = DumpFile.find(params[:id])
-  end
 
-  def dump_file_params
-    params.require(:dump_file).permit(:dump_id)#(:dump_id, :path, :md5)
-  end
+    def set_dump_file
+      @dump_file = DumpFile.find(params[:id])
+    end
+
+    def dump_file_params
+      params.require(:dump_file).permit(:dump_id) # (:dump_id, :path, :md5)
+    end
 end

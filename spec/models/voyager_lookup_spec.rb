@@ -443,10 +443,10 @@ RSpec.describe VoyagerLookup do
   describe 'full mfhd availability array' do
     it 'returns info for all items for a given mfhd' do
       allow(VoyagerHelpers::Liberator).to receive(:get_full_mfhd_availability).and_return([
-        { barcode: "32101033513878", id: 282630, location: "f", copy_number: 1, item_sequence_number: 12, status: ["Not Charged"], on_reserve: "N", item_type: "NoCirc", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol.20(inc.)", chron: "1994", enum_display: "vol.20(inc.) (1994)", label: "Firestone Library" },
-        { barcode: "32101024070318", id: 282629, location: "f", copy_number: 1, item_sequence_number: 11, status: ["Not Charged"], on_reserve: "N", item_type: "Gen", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol.19", chron: "1993", enum_display: "vol.19 (1993)", label: "Firestone Library" },
-        { barcode: "32101086430665", id: 6786508, location: "f", copy_number: 1, item_sequence_number: 26, status: ["Not Charged"], on_reserve: "N", item_type: "Gen", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol. 38", chron: "2012", enum_display: "vol. 38 (2012)", label: "Firestone Library" }
-      ])
+                                                                                            { barcode: "32101033513878", id: 282630, location: "f", copy_number: 1, item_sequence_number: 12, status: ["Not Charged"], on_reserve: "N", item_type: "NoCirc", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol.20(inc.)", chron: "1994", enum_display: "vol.20(inc.) (1994)", label: "Firestone Library" },
+                                                                                            { barcode: "32101024070318", id: 282629, location: "f", copy_number: 1, item_sequence_number: 11, status: ["Not Charged"], on_reserve: "N", item_type: "Gen", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol.19", chron: "1993", enum_display: "vol.19 (1993)", label: "Firestone Library" },
+                                                                                            { barcode: "32101086430665", id: 6786508, location: "f", copy_number: 1, item_sequence_number: 26, status: ["Not Charged"], on_reserve: "N", item_type: "Gen", pickup_location_id: 299, patron_group_charged: nil, pickup_location_code: "fcirc", enum: "vol. 38", chron: "2012", enum_display: "vol. 38 (2012)", label: "Firestone Library" }
+                                                                                          ])
       holding_id = '282033'
       availability = described_class.single_mfhd_availability(mfhd: holding_id)
       item1 = availability[0]

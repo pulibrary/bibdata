@@ -7,7 +7,8 @@ RSpec.describe ElectronicLocation, type: :model do
       relationship: ElectronicLocations::Relationships::VERSION,
       subfields: subfields,
       holdings: holdings,
-      iiif_manifest_uris: iiif_manifest_uris)
+      iiif_manifest_uris: iiif_manifest_uris
+    )
   end
   let(:subfields) do
     [

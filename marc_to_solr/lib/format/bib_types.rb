@@ -1,14 +1,12 @@
 require 'traject/macros/marc21_semantics'
 require_relative '../format/xv6xx'
 
-
 # Determine the "types" of material represented by the bib record.
 # The comments below come from the Ex Libris Aleph system and represent
 # the logic used within it to determine types. This file is based
 # on the logic use at the University of Michigan
 
 class BibTypes
-
   attr_reader :bib_format, :record
 
   def initialize(bib_format, record)
@@ -20,7 +18,6 @@ class BibTypes
     # Need these a lot -- the sub x and v from any 6XX field
     @xv6XX      = XV6XX.new(@record)
   end
-
 
   def codes
     codes = []
@@ -45,8 +42,6 @@ class BibTypes
     codes
   end
 
-
-
   # Provide memoized values for on-the-fly created MarcExtractor
   # objects
   #
@@ -55,7 +50,6 @@ class BibTypes
   def [](spec_string)
     @spec_vals[spec_string]
   end
-
 
   ### Video stuff
 
@@ -90,18 +84,16 @@ class BibTypes
     types << 'VB' if self['007[0-5]'].grep(/v...s/i).size > 0
     types << 'VB' if self['852j'].grep(/\A(?:bd-rom|video-b)/i).size > 0
 
-    @record.fields('007').map{|f| f.value}.each do |f|
+    @record.fields('007').map { |f| f.value }.each do |f|
       if (f[0] == 'v') || self['008[33]'].include?('v')
         types << 'VD' if f[4] == 'v'
         types << 'VH' if f[4] == 'b'
       end
     end
 
-
     types << 'VD' if self['538a'].grep(/\Advd(?!\-rom)/i).size > 0
 
     types << 'VH' if self['538a'].grep(/\AVHS/i).size > 0
-
 
     types << 'VL' if self['007[0]'].include?('m')
     types << 'VL' if (self.bib_format == 'VM') && self['008[33]'].include?('m')
@@ -109,7 +101,6 @@ class BibTypes
     types.uniq!
     return types
   end
-
 
   # Audio/music
   # ! Recording: Compact disc
@@ -151,11 +142,11 @@ class BibTypes
     types = []
 
     # Get the 8524* fields
-    f8524 = record.fields('852').select{|f| f.indicator1 == '4'}
+    f8524 = record.fields('852').select { |f| f.indicator1 == '4' }
 
     # RC
     if %w[i j].include?(ldr6) && (bib_format == 'MU')
-      @record.fields('007').map{|f| f.value}.each do |f|
+      @record.fields('007').map { |f| f.value }.each do |f|
         if f[1] == 'd' && f[12] == 'e'
           types << 'RC'
           break
@@ -172,16 +163,15 @@ class BibTypes
 
     # RL
 
-    if  (bib_format == 'MU') && %w[i j].include?(ldr6) && self['007[1]'].include?('d')
+    if (bib_format == 'MU') && %w[i j].include?(ldr6) && self['007[1]'].include?('d')
       record.fields('300').each do |f|
-        str = f.subfields.collect {|s| s.value}.join(' ')
+        str = f.subfields.collect { |s| s.value }.join(' ')
         if (str =~ /DISC/i) && str =~ /33 1\/3 RPM/i
           types << 'RL'
           break
         end
       end
     end
-
 
     f8524.each do |f|
       if  (f['j'] =~ /\ALP/i) &&
@@ -203,7 +193,6 @@ class BibTypes
     types.uniq!
     return types
   end
-
 
   # Microform
   # ! MicroForms
@@ -230,14 +219,13 @@ class BibTypes
     return types if %w[BK MU SE MX].include?(bib_format) && %w[a b c].include?(f8_23)
 
     f8_29 = record['008'].value[29]
-    return types if %w[MP VM].include?(bib_format) &&  %w[a b c].include?(f8_29)
+    return types if %w[MP VM].include?(bib_format) && %w[a b c].include?(f8_29)
 
     return types if record['245'] && (record['245']['h'] =~ /micro/i)
 
     # Nope. Not microform
     return []
   end
-
 
   # ! Musical Score
   # TYP   MS Musical Score                  LDR   F06-01     EQUAL      [c,d]
@@ -248,7 +236,6 @@ class BibTypes
     return types
   end
 
-
   # ! Maps: Numerous
   # TYP   MN Maps-Atlas                     FMT   F00-02     EQUAL      MP
   # TYP   MN Maps-Atlas                     LDR   F06-01     EQUAL      [e,f]
@@ -258,13 +245,11 @@ class BibTypes
   # !TYP   MO Map                            FMT   F00-02     EQUAL      MP
   # !TYP   MO Map                            007   F00-01     EQUAL      a
 
-
   def map_types
     types = []
-    types << 'MN' if (bib_format == 'MP') || %w[e f].include?(record.leader[6]) ||  self['007[0]'].include?('a')
+    types << 'MN' if (bib_format == 'MP') || %w[e f].include?(record.leader[6]) || self['007[0]'].include?('a')
     return types
   end
-
 
   # Serials
   # ! serial: A Journal
@@ -287,7 +272,6 @@ class BibTypes
   # ! serial: All, including serials with other FMT codes
   # TYP   SX All Serials                    LDR   F07-01     EQUAL      [b,s]
 
-
   # Wrap it all up in serial_types
   def serial_types
     types = []
@@ -298,26 +282,23 @@ class BibTypes
     return types
   end
 
-
   def journal_types
-
     types = []
     # gotta be SE and have a 008
     return types unless (bib_format == 'SE') && record['008']
-
 
     # We need lots of chars from the 008
     f8 = record['008'].value
 
     if  (f8[21] == 'p') &&
-        [' ','a','b','c','d','f','g','h','i','s','x','z','|'].include?(f8[22]) &&
+        [' ', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 's', 'x', 'z', '|'].include?(f8[22]) &&
         ['0', '|'].include?(f8[29])
       types << 'AJ'
     end
 
-    if  [' ','d','l','m','p','w','|'].include?(f8[21]) &&
-        [' ','a','b','c','d','f','g','h','i','s','x','z','|'].include?(f8[22]) &&
-        ['a','b','g','m','n','o','p','s','w','x','y',' '].include?(f8[24]) &&
+    if  [' ', 'd', 'l', 'm', 'p', 'w', '|'].include?(f8[21]) &&
+        [' ', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 's', 'x', 'z', '|'].include?(f8[22]) &&
+        ['a', 'b', 'g', 'm', 'n', 'o', 'p', 's', 'w', 'x', 'y', ' '].include?(f8[24]) &&
         ['0', '|'].include?(f8[29])
       types << 'AJ'
     end
@@ -329,10 +310,9 @@ class BibTypes
   def newspaper_types
     types = []
     types << 'AN' if (bib_format == 'SE') && record['008'] &&
-        ((record['008'].value[21] == 'n') || (record['008'].value[22] == 'e'))
+                     ((record['008'].value[21] == 'n') || (record['008'].value[22] == 'e'))
     return types
   end
-
 
   # ! Mixed material: archi-V-e
   # TYP   MV Archive                        FMT   F00-02     EQUAL      MX
@@ -381,11 +361,11 @@ class BibTypes
   def conference_types
     # Get the easy stuff done first
 
-    return ['XC'] if  (record['008'] && (record['008'].value[29] == '1')) || record.fields(['111', '711', '811']).size > 0
+    return ['XC'] if (record['008'] && (record['008'].value[29] == '1')) || record.fields(['111', '711', '811']).size > 0
 
-    if  (bib_format == 'CF')
-      @record.fields('006').map{|f| f.value}.each do |f|
-        return ['XC'] if  %w[a s].include?(f[0]) && (f[12] == '1')
+    if (bib_format == 'CF')
+      @record.fields('006').map { |f| f.value }.each do |f|
+        return ['XC'] if %w[a s].include?(f[0]) && (f[12] == '1')
       end
     end
 
@@ -413,9 +393,7 @@ class BibTypes
   # TYP   XS Statistics                     FMT   F00-02     EQUAL      BK
   #                                         008   F27-01     EQUAL      s
 
-
   def statistics_types
-
     if bib_format == 'BK'
       return ['XS'] if record['008'] && record['008'].value[24..27] =~ /s/
     end
@@ -425,8 +403,6 @@ class BibTypes
     # Nope
     return []
   end
-
-
 
   # TYP   EN Encyclopedias                  6#### xv         MATCH      *encyclopedias*
   # TYP   EN Encyclopedias                  008   F24-01     EQUAL      e
@@ -444,10 +420,8 @@ class BibTypes
     types = []
 
     # Will need the 008[24] and 006[7]
-    f8_24 =  self['008[24]']
+    f8_24 = self['008[24]']
     f6_7 = self['006[7]']
-
-
 
     types << 'EN' if (f8_24.include? 'e') || (f6_7.include? 'e')
 
@@ -468,7 +442,6 @@ class BibTypes
     return types
   end
 
-
   # TYP   BI Biography                      6#### xv         MATCH      *biography*
   # TYP   BI Biography                      6#### xv         MATCH      *diaries*
   # TYP   BI Biography                      008   F34-01     EQUAL      [a,b,c]
@@ -476,14 +449,13 @@ class BibTypes
 
   def biography_types
     return ['BI'] if record['008'] && %w[a b c].include?(record['008'].value[34])
-    return ['BI'] if (%w[a b c ] & self['006[17]']).size > 0
+    return ['BI'] if (%w[a b c] & self['006[17]']).size > 0
 
     return ['BI'] if @xv6XX.match? /(?:biography|diaries)/i
 
     # Nope
     return []
   end
-
 
   # TYP   PP Photographs & Pictorial Works  6#### xv         MATCH      pictorial works
   # TYP   PP Photographs & Pictorial Works  6#### xv         MATCH      views
@@ -502,18 +474,17 @@ class BibTypes
     attr_accessor :pp_regexp
   end
 
-  self.pp_regexp = Regexp.union [ 'pictorial works',
-                                  'views',
-                                  'photographs',
-                                  'in art',
-                                  'aerial views',
-                                  'aerial photographs',
-                                  'cariacatures and cartoons',
-                                  'comic books',
-                                  'illustrations',
-                                  'drawings',
-                                  'slides',
-                                ].map{|s| Regexp.new('\b'+s+'\b', true)}
+  self.pp_regexp = Regexp.union ['pictorial works',
+                                 'views',
+                                 'photographs',
+                                 'in art',
+                                 'aerial views',
+                                 'aerial photographs',
+                                 'cariacatures and cartoons',
+                                 'comic books',
+                                 'illustrations',
+                                 'drawings',
+                                 'slides',].map { |s| Regexp.new('\b' + s + '\b', true) }
   self.pp_regexp = Regexp.union(self.pp_regexp, /\bart\b/i)
 
   def pp_types
@@ -523,8 +494,6 @@ class BibTypes
       return []
     end
   end
-
-
 
   # TYP   VG Video Games                    FMT   F00-02     EQUAL      CF
   #                                         008   F26-01     EQUAL      g
@@ -536,6 +505,4 @@ class BibTypes
       return []
     end
   end
-
-
 end

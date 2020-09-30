@@ -36,7 +36,7 @@ module FormattingConcern
   # @return [Hash] If only one record was passed
   # @return [Array<Hash>]
   def pass_records_through_xml_parser(records)
-    reader = MARC::XMLReader.new(StringIO.new( records_to_xml_string(records) ))
+    reader = MARC::XMLReader.new(StringIO.new(records_to_xml_string(records)))
     record_hashes = []
     reader.each { |r| record_hashes << r.to_hash }
     if record_hashes.length == 1
@@ -54,7 +54,7 @@ module FormattingConcern
     # yep!
     s = []
     s << '<statuses>'
-    data.each { |k,v| s << %(<status code="#{k}" label="#{v}" />) }
+    data.each { |k, v| s << %(<status code="#{k}" label="#{v}" />) }
     s << '</statuses>'
     s.join('')
   end
