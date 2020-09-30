@@ -37,7 +37,7 @@ RSpec.describe PatronController, type: :controller do
       allow(controller).to receive(:current_user) { user }
       get :patron_info, params: { patron_id: 'steve', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false}")
+      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\"}")
     end
 
     it "allows authenticated users to access patron info and ldap data when desired" do
@@ -48,7 +48,7 @@ RSpec.describe PatronController, type: :controller do
       expect(Ldap).to receive(:find_by_netid).with('steve').and_return({ldap_data: "is here"})
       get :patron_info, params: { patron_id: 'steve', ldap: true, format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"ldap\":{\"ldap_data\":\"is here\"}}")
+      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\",\"ldap\":{\"ldap_data\":\"is here\"}}")
     end
 
     it "allows authenticated users to access just patron info when desired" do
@@ -59,7 +59,7 @@ RSpec.describe PatronController, type: :controller do
       expect(Ldap).not_to receive(:find_by_netid)
       get :patron_info, params: { patron_id: 'steve', ldap: 'other', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false}")
+      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\"}")
     end
 
     it "allows authenticated users to access patron info and includes campus access" do
@@ -70,7 +70,7 @@ RSpec.describe PatronController, type: :controller do
       allow(controller).to receive(:current_user) { user }
       get :patron_info, params: { patron_id: 'steve', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":true}")
+      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":true,\"campus_authorized_category\":\"full\"}")
     end
   end
 

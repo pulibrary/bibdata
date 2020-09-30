@@ -18,25 +18,38 @@ RSpec.describe CampusAccess, type: :model do
         expect(described_class.has_access?(uid)).to be_truthy
       end
     end
+
+    context 'with a training record present' do
+      let(:uid) { 'admin123' }
+      before do
+        described_class.create(uid: uid, category: 'trained')
+      end
+
+      it 'finds a user with access' do
+        expect(described_class.has_access?(uid)).to be_falsey
+      end
+    end
   end
 
   describe '#to_csv' do
     before do
       described_class.create(uid: 'USER1')
       described_class.create(uid: 'user2')
+      described_class.create(uid: 'user3', category: 'trained')
     end
-    it 'creates a csv' do
+    it 'creates a csv with only the full users' do
       expect(described_class.to_csv).to eq("user1@princeton.edu\nuser2@princeton.edu\n")
     end
   end
 
   describe "#load_access" do
-    it "loads the database with the xslx file removing existing rows" do
+    it "loads the database with the xslx and trained file removing existing rows" do
       CampusAccess.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
-      described_class.load_access(f)
-      expect(CampusAccess.count).to eq(4)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test6")
+      trained_file = File.expand_path("../../fixtures/access_learn.xlsx", __FILE__)
+      described_class.load_access(f, trained_file: trained_file)
+      expect(CampusAccess.count).to eq(7)
+      expect(CampusAccess.all.map{|access| [access.uid, access.category]}).to contain_exactly(["test1", "full"], ["test2", "full"], ["test3", "full"], ["test6", "full"], ["learn1", "trained"], ["learn2", "trained"], ["learn4", "trained"])
     end
 
     it "loads the database with the xslx file and additional ids removing existing rows" do
