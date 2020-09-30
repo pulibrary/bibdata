@@ -27,6 +27,30 @@ Set env vars in `config/initializers/voyager_helpers.rb` and `config/initializer
 
 You can run tests without setting up a voyager connection, but it is required for a development environment.
 
+## Creating Alma Fixtures
+
+Go to the sandbox and login:
+https://developers.exlibrisgroup.com/console/
+
+If you don't have an account ask our local administrator to create one for you.
+
+1. You will get an invitation email and be prompted to create an account
+1. Once the account is created, wait for a 2nd email to activate that account
+1. Once you've activated the account, go back to the first email and use the
+   bottom link to accept the invitation. You should now have access to our keys.
+
+To generate the fixture:
+
+1. Select the 'api-na' north america server
+1. Select the read-only API key
+1. Click the api endpoint you want to use
+1. Click 'try it out'
+1. Set all desired parameters
+1. Select media type: application/json or application/xml (below the 'Execute'
+   button)
+1. Click 'Execute'
+1. You can download the file with the little "Download" button
+
 ## Database Configuration
 
 Prepend the below with `RUBY_ENV=test` as appropriate
