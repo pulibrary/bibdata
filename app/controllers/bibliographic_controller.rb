@@ -91,7 +91,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = VoyagerHelpers::Liberator.get_items_for_bib(bib_id_param)
+    records = bib_adapter.get_items_for_bib(bib_id_param)
     if records.nil? || records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else

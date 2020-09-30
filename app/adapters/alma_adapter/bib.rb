@@ -44,6 +44,14 @@ module AlmaAdapter
         doc = res.body
       end
 
+      # @params id [string]. e.g id = "991227850000541"
+      # @return [Hash] of holdings / items data
+      def get_items_for_bib(id)
+        opts = { limit: 100, expand: "due_date_policy,due_date" }
+        Alma::BibItem.find(id, opts)
+        # todo: transform alma response to marc liberation format
+      end
+
       private
 
       def doc_unsuppressed(doc)

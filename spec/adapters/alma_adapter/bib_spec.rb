@@ -110,4 +110,19 @@ RSpec.describe AlmaAdapter::Bib do
       # What does the AVA tag display after the PO is accepted.
     end
   end
+
+  describe ".get_items_for_bib" do
+    it "exists" do
+      fixture_file = File.open(Rails.root.join("spec", "fixtures", "files", "alma", "bib_items_list_#{unsuppressed}.json"))
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+        .with(headers: { 'Accept' => 'application/json' })
+        .to_return(
+          status: 200,
+          headers: { "content-Type" => "application/json" },
+          body: fixture_file
+        )
+      items_data = described_class.get_items_for_bib(unsuppressed)
+      expect(items_data).to be_a Alma::BibItemSet
+    end
+  end
 end
