@@ -8,6 +8,7 @@ development:
 test:
   <<: *default
   bibs_read_only: 'TESTME'
+  region: 'ALMA'
 
 production:
   <<: *default

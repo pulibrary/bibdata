@@ -3,7 +3,8 @@ require "rails_helper"
 
 RSpec.describe AlmaAdapter::Connector do
   before do
-    AlmaAdapter.config[:region] = 'jupiter'
+    updated_config = Rails.configuration.alma.merge(region: 'jupiter')
+    allow(Rails.configuration).to receive(:alma).and_return(updated_config)
   end
 
   describe "#base_path" do

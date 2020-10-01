@@ -72,7 +72,7 @@ module AlmaAdapter
         end
 
         def apikey
-          AlmaAdapter.config[:bibs_read_only]
+          Rails.configuration.alma[:bibs_read_only]
         end
     end
   end

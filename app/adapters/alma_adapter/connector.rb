@@ -11,11 +11,11 @@ module AlmaAdapter
 
       # ExLibris Alma region
       def region
-        AlmaAdapter.config[:region]
+        Rails.configuration.alma[:region]
       end
 
       def url
-        @url ||= URI::HTTPS.build(host: region)
+        URI::HTTPS.build(host: region)
       end
 
       # Exlibris Alma connection
