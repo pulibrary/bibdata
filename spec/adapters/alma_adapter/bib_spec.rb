@@ -11,6 +11,8 @@ RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
   let(:alma_marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
   let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
+  let(:unsuppressed_no_ava) { "99171146000521" }
+  let(:unsuppressed_no_ava_xml) { file_fixture("alma/99171146000521_no_AVA.xml").read }
 
   before do
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
@@ -34,8 +36,15 @@ RSpec.describe AlmaAdapter::Bib do
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
-    stub_request(:get, "https://alma/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
+    stub_request(:get, "https://ALMA/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
       .to_return(status: 200, body: holdings_991227840000541, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed_no_ava}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
+      .to_return(status: 200, body: unsuppressed_no_ava_xml, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                    'Content-Type' => 'application/xml;charset=UTF-8',
                    'Accept' => 'application/xml',
@@ -71,9 +80,15 @@ RSpec.describe AlmaAdapter::Bib do
     end
   end
 
-  describe "records with no availability" do
+  describe "record with no physical availability" do
     it "doesn't have an AVA tag" do
-      # find an alma record with no 952 from the publishing job to add it as a fixture.
+      expect(described_class.get_bib_record(unsuppressed_no_ava)['AVA']).to be nil
+    end
+  end
+
+  describe "record with electronic availability" do
+    it "has an AVE tag" do
+      expect(described_class.get_bib_record(unsuppressed_no_ava)['AVE']).not_to be nil
     end
   end
 
@@ -106,6 +121,9 @@ RSpec.describe AlmaAdapter::Bib do
       # when we first added the PO line it created the item 2384011050006421 with an on order status.
       # This is different from voyager where it doesn't add an item when the user creates a PO line.
       # What does the AVA tag display after the PO is accepted.
+      # it has a process type of ACQ. because it is still not received.
+      # it has a base_status with 'Item not in place'
+      # test what info is returned when this process type is complete.
     end
   end
 
