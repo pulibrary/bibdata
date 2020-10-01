@@ -11,7 +11,7 @@ module AlmaAdapter
 
       # ExLibris Alma region
       def region
-        AlmaAdapter.config[:region]
+        Rails.configuration.alma[:region]
       end
 
       def url
