@@ -13,8 +13,6 @@ RSpec.describe AlmaAdapter::Bib do
   let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
 
   before do
-    allow(described_class).to receive(:apikey).and_return('TESTME')
-    AlmaAdapter.config[:region] = 'ALMA'
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
       .to_return(status: 200, body: unsuppressed_suppressed, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',

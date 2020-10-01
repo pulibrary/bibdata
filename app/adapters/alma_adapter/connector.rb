@@ -15,7 +15,7 @@ module AlmaAdapter
       end
 
       def url
-        @url ||= URI::HTTPS.build(host: region)
+        URI::HTTPS.build(host: region)
       end
 
       # Exlibris Alma connection
