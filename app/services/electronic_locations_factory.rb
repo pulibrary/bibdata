@@ -1,6 +1,5 @@
 # Factory for constructing ElectronicLocation Objects
 class ElectronicLocationsFactory
-
   # Construct IIIFManifestURI Objects from Solr Document values
   # @param values [Hash] Solr Document values for links Hash by URL
   # @return [Array<IIIFManifestURI>]

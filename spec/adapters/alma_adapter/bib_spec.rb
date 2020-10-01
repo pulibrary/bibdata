@@ -5,7 +5,7 @@ RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:suppressed) { "99222441306421" }
-  let(:suppressed_unsuppressed_ids) { ["991227850000541" , "991227840000541", "99222441306421"] }
+  let(:suppressed_unsuppressed_ids) { ["991227850000541", "991227840000541", "99222441306421"] }
   let(:suppressed_xml) { file_fixture("alma/suppressed_#{suppressed}.xml").read }
   let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
   let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
@@ -15,34 +15,34 @@ RSpec.describe AlmaAdapter::Bib do
   before do
     allow(described_class).to receive(:apikey).and_return('TESTME')
     AlmaAdapter.config[:region] = 'ALMA'
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(",")}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
-       to_return(status: 200, body: unsuppressed_suppressed, headers: {
-        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type'=>'application/xml;charset=UTF-8',
-        'Accept' => 'application/xml',
-        'User-Agent'=>'Faraday v1.0.1'
-      })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
-       to_return(status: 200, body: suppressed_xml, headers: {
-        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-        'Content-Type'=>'application/xml;charset=UTF-8',
-        'Accept' => 'application/xml',
-        'User-Agent'=>'Faraday v1.0.1'
-      })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests").
-         to_return(status: 200, body: unsuppressed_xml, headers: {
-         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-         'Content-Type'=>'application/xml;charset=UTF-8',
-         'Accept' => 'application/xml',
-         'User-Agent'=>'Faraday v1.0.1'
-       })
-     stub_request(:get, "https://alma/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME").
-         to_return(status: 200, body: holdings_991227840000541, headers: {
-           'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-           'Content-Type'=>'application/xml;charset=UTF-8',
-           'Accept' => 'application/xml',
-           'User-Agent'=>'Faraday v1.0.1'
-       })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
+      .to_return(status: 200, body: unsuppressed_suppressed, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
+      .to_return(status: 200, body: suppressed_xml, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
+      .to_return(status: 200, body: unsuppressed_xml, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
+    stub_request(:get, "https://alma/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
+      .to_return(status: 200, body: holdings_991227840000541, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
   end
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
@@ -118,7 +118,7 @@ RSpec.describe AlmaAdapter::Bib do
         .with(
           headers: {
             'Accept' => 'application/json',
-            'Authorization'=>'apikey TESTME'
+            'Authorization' => 'apikey TESTME'
           }
         )
         .to_return(

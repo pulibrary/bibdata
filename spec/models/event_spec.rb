@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'fileutils'
 
 RSpec.describe Event, type: :model do
-
   before(:all) do
     system 'rake db:seed'
     bibs = './spec/fixtures/sample_bib_ids.txt'
@@ -80,5 +79,4 @@ RSpec.describe Event, type: :model do
   def dump_count(type)
     Dump.where(dump_type: DumpType.find_by(constant: type)).count
   end
-
 end

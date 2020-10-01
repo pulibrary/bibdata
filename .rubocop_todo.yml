@@ -6,368 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 5
-# Cop supports --auto-correct.
-Layout/AlignArray:
-  Exclude:
-    - 'app/models/dump.rb'
-    - 'config/initializers/friendly_id.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'spec/features/devise_spec.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: with_first_parameter, with_fixed_indentation
-Layout/AlignParameters:
-  Exclude:
-    - 'config/initializers/locations_decorator.rb'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentOneStep, IndentationWidth.
-# SupportedStyles: case, end
-Layout/CaseIndentation:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Layout/CommentIndentation:
-  Exclude:
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/translation_maps/format.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: leading, trailing
-Layout/DotPosition:
-  Exclude:
-    - 'spec/controllers/availability_controller_spec.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAdjacentOneLineDefs, NumberOfEmptyLines.
-Layout/EmptyLineBetweenDefs:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/index_functions.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-
-# Offense count: 51
-# Cop supports --auto-correct.
-Layout/EmptyLines:
-  Exclude:
-    - 'app/controllers/codes_controller.rb'
-    - 'config/deploy.rb'
-    - 'config/deploy/production.rb'
-    - 'config/deploy/staging.rb'
-    - 'config/initializers/devise.rb'
-    - 'marc_to_solr/lib/format.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/index_functions.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/controllers/patron_controller_spec.rb'
-
-# Offense count: 5
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundAccessModifier:
-  Exclude:
-    - 'app/controllers/dump_files_controller.rb'
-    - 'app/controllers/dumps_controller.rb'
-    - 'app/controllers/patron_controller.rb'
-    - 'app/models/dump.rb'
-    - 'marc_to_solr/lib/uri_ark.rb'
-
-# Offense count: 25
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, no_empty_lines
-Layout/EmptyLinesAroundBlockBody:
-  Exclude:
-    - 'app/models/dump_file.rb'
-    - 'config/deploy.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'lib/tasks/scsb.rake'
-    - 'lib/tasks/sync.rake'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/controllers/patron_controller_spec.rb'
-    - 'spec/mailers/scsb_mailer_spec.rb'
-    - 'spec/models/dump_file_spec.rb'
-    - 'spec/models/event_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-    - 'spec/routing/dump_files_routing_spec.rb'
-    - 'spec/routing/events_routing_spec.rb'
-
-# Offense count: 26
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-
-# Offense count: 2
-# Cop supports --auto-correct.
-Layout/EmptyLinesAroundMethodBody:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty_lines, empty_lines_except_namespace, empty_lines_special, no_empty_lines
-Layout/EmptyLinesAroundModuleBody:
-  Exclude:
-    - 'config/initializers/locations_decorator.rb'
-    - 'marc_to_solr/lib/index_functions.rb'
-
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment, ForceEqualSignAlignment.
-Layout/ExtraSpacing:
-  Exclude:
-    - 'bin/setup'
-    - 'config.ru'
-    - 'config/environments/test.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_brackets
-Layout/IndentArray:
-  EnforcedStyle: consistent
-
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: special_inside_parentheses, consistent, align_braces
-Layout/IndentHash:
-  Exclude:
-    - 'config/application.rb'
-    - 'marc_to_solr/translation_maps/format.rb'
-    - 'marc_to_solr/translation_maps/relators.rb'
-    - 'marc_to_solr/translation_maps/sudocs.rb'
-    - 'marc_to_solr/translation_maps/sudocs_split.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: normal, rails
-Layout/IndentationConsistency:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
-
-# Offense count: 13
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'app/controllers/availability_controller.rb'
-    - 'app/controllers/dump_files_controller.rb'
-    - 'app/controllers/patron_controller.rb'
-    - 'app/models/dump.rb'
-    - 'config/initializers/locations_decorator.rb'
-    - 'lib/tasks/sync.rake'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-
-# Offense count: 23
-# Cop supports --auto-correct.
-Layout/LeadingCommentSpace:
-  Exclude:
-    - 'app/controllers/dump_files_controller.rb'
-    - 'app/controllers/dumps_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/translation_maps/format.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineArrayBraceLayout:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-
-# Offense count: 7
-# Cop supports --auto-correct.
-Layout/MultilineBlockLayout:
-  Exclude:
-    - 'spec/models/jsonld_record_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineHashBraceLayout:
-  Exclude:
-    - 'marc_to_solr/spec/lib/format_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineMethodCallBraceLayout:
-  Exclude:
-    - 'spec/models/electronic_location_spec.rb'
-
-# Offense count: 17
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented, indented_relative_to_receiver
-Layout/MultilineMethodCallIndentation:
-  Exclude:
-    - 'app/models/event.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented
-Layout/MultilineOperationIndentation:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-
-# Offense count: 26
-# Cop supports --auto-correct.
-Layout/SpaceAfterColon:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-
-# Offense count: 102
-# Cop supports --auto-correct.
-Layout/SpaceAfterComma:
-  Exclude:
-    - 'app/controllers/concerns/formatting_concern.rb'
-    - 'config/initializers/relators.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'spec/controllers/patron_controller_spec.rb'
-    - 'spec/requests/barcode_gets_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-    - 'spec/requests/course_reserves_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, no_space
-Layout/SpaceAroundEqualsInParameterDefault:
-  Exclude:
-    - 'app/controllers/bibliographic_controller.rb'
-
-# Offense count: 829
-# Cop supports --auto-correct.
-# Configuration parameters: AllowForAlignment.
-Layout/SpaceAroundOperators:
-  Exclude:
-    - 'config/environments/test.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'marc_to_solr/translation_maps/access.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/mailers/scsb_mailer_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
-    - 'spec/requests/barcode_gets_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-
-# Offense count: 8
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceBeforeBlockBraces:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Layout/SpaceBeforeComment:
-  Exclude:
-    - 'app/controllers/dump_files_controller.rb'
-    - 'app/controllers/dumps_controller.rb'
-    - 'app/controllers/events_controller.rb'
-
-# Offense count: 16
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBrackets.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBrackets: space, no_space
-Layout/SpaceInsideArrayLiteralBrackets:
-  Exclude:
-    - 'app/models/jsonld_record.rb'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-
-# Offense count: 82
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces, SpaceBeforeBlockParameters.
-# SupportedStyles: space, no_space
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideBlockBraces:
-  Exclude:
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/dump.rb'
-    - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/format/bib_types.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/format_spec.rb'
-    - 'spec/controllers/patron_controller_spec.rb'
-    - 'spec/models/jsonld_record_spec.rb'
-    - 'spec/requests/bib_gets_spec.rb'
-
-# Offense count: 9
-# Cop supports --auto-correct.
-Layout/SpaceInsideParens:
-  Exclude:
-    - 'app/controllers/concerns/formatting_concern.rb'
-    - 'app/mailers/scsb_mailer.rb'
-    - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/mailers/scsb_mailer_spec.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Layout/SpaceInsidePercentLiteralDelimiters:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
-
-# Offense count: 136
-# Cop supports --auto-correct.
-# Configuration parameters: IndentationWidth.
-Layout/Tab:
-  Exclude:
-    - 'config/initializers/locations_decorator.rb'
-    - 'lib/tasks/sync.rake'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/translation_maps/sudocs.rb'
-    - 'marc_to_solr/translation_maps/sudocs_split.rb'
-
 # Offense count: 1
 Lint/AmbiguousOperator:
   Exclude:
@@ -387,16 +25,6 @@ Lint/AssignmentInCondition:
     - 'bin/spring'
     - 'lib/tasks/orangeindex.rake'
     - 'marc_to_solr/lib/index_functions.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleAlignWith.
-# SupportedStylesAlignWith: either, start_of_block, start_of_line
-Layout/BlockAlignment:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'spec/controllers/patron_controller_spec.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -438,6 +66,10 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/traject_config.rb'
     - 'spec/controllers/availability_controller_spec.rb'
     - 'app/models/concerns/scsb_partner_updates.rb'
+
+Lint/Void:
+  Exclude:
+    - 'app/models/campus_access.rb'
 
 # Offense count: 13
 Metrics/AbcSize:
@@ -482,6 +114,16 @@ Metrics/MethodLength:
 # Offense count: 19
 Metrics/PerceivedComplexity:
   Max: 43
+
+Naming/AccessorMethodName:
+  Exclude:
+    - 'app/models/concerns/scsb_partner_updates.rb'
+    - 'marc_to_solr/lib/princeton_marc.rb'
+    - 'app/models/hathi/compact_full.rb'
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/models/campus_access.rb'
 
 # Offense count: 10
 # Configuration parameters: EnforcedStyle.
@@ -577,6 +219,10 @@ RSpec/InstanceVariable:
 RSpec/LeadingSubject:
   Exclude:
     - 'spec/models/jsonld_record_spec.rb'
+
+RSpec/MessageSpies:
+  Exclude:
+    - 'spec/controllers/patron_controller_spec.rb'
 
 # Offense count: 20
 RSpec/NamedSubject:

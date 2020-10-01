@@ -3,10 +3,10 @@ require 'json'
 
 RSpec.describe HathiController, type: :controller do
   before do
-     FactoryBot.create(:hathi_access)
-     FactoryBot.create(:hathi_access, status: "ALLOW", oclc_number: "2243200" )
-     FactoryBot.create(:hathi_access, status: "DENY", oclc_number: "2243109", bibid: "1000", origin: "CUL" )
-     FactoryBot.create(:hathi_access, status: "ALLOW", oclc_number: "2243109", bibid: "1000", origin: "CUL" )
+    FactoryBot.create(:hathi_access)
+    FactoryBot.create(:hathi_access, status: "ALLOW", oclc_number: "2243200")
+    FactoryBot.create(:hathi_access, status: "DENY", oclc_number: "2243109", bibid: "1000", origin: "CUL")
+    FactoryBot.create(:hathi_access, status: "ALLOW", oclc_number: "2243109", bibid: "1000", origin: "CUL")
   end
 
   describe '#hathi_access' do

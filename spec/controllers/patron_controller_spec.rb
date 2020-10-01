@@ -2,19 +2,18 @@ require 'rails_helper'
 
 RSpec.describe PatronController, type: :controller do
   context "with an authorized ip" do
-    let(:allowed_ip) { '192.168.0.1'}
+    let(:allowed_ip) { '192.168.0.1' }
 
     before do
-     controller.request.remote_addr = allowed_ip
-     allow(Rails.application.config).to receive(:ip_allowlist).and_return([allowed_ip])
-   end
+      controller.request.remote_addr = allowed_ip
+      allow(Rails.application.config).to receive(:ip_allowlist).and_return([allowed_ip])
+    end
 
     it "can access patron info" do
       stub_patron('steve')
       get :patron_info, params: { patron_id: 'steve', format: :json }
       expect(response).to have_http_status(200)
     end
-
 
     it "can return patron stat codes" do
       stub_patron_codes('steve')
@@ -45,7 +44,7 @@ RSpec.describe PatronController, type: :controller do
       user = double('user')
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
-      expect(Ldap).to receive(:find_by_netid).with('steve').and_return({ldap_data: "is here"})
+      expect(Ldap).to receive(:find_by_netid).with('steve').and_return(ldap_data: "is here")
       get :patron_info, params: { patron_id: 'steve', ldap: true, format: :json }
       expect(response).to have_http_status(200)
       expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\",\"ldap\":{\"ldap_data\":\"is here\"}}")
@@ -82,15 +81,14 @@ RSpec.describe PatronController, type: :controller do
     get :patron_info, params: { patron_id: 123456789, format: :json }
     expect(response).to have_http_status(404)
   end
-
 end
 
 def stub_patron(netid)
-  f = File.expand_path("../../fixtures/patron-#{netid}.json",__FILE__)
+  f = File.expand_path("../../fixtures/patron-#{netid}.json", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_patron_info).and_return(JSON.parse(File.read(f)))
 end
 
 def stub_patron_codes(netid)
-  f = File.expand_path("../../fixtures/patron-#{netid}-codes.json",__FILE__)
+  f = File.expand_path("../../fixtures/patron-#{netid}-codes.json", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_patron_stat_codes).and_return(JSON.parse(File.read(f)))
 end

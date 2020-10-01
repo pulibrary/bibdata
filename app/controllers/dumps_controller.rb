@@ -1,5 +1,5 @@
 class DumpsController < ApplicationController
-  before_action :set_dump, only: [:show]#, :edit, :update, :destroy]
+  before_action :set_dump, only: [:show] # , :edit, :update, :destroy]
 
   respond_to :json
 
@@ -12,11 +12,12 @@ class DumpsController < ApplicationController
   end
 
   private
+
     def set_dump
       @dump = Dump.find(params[:id])
     end
 
     def dump_params
-      params.require(:dump).permit(:dump_id)#(:dump_id, :path, :md5)
+      params.require(:dump).permit(:dump_id) # (:dump_id, :path, :md5)
     end
 end

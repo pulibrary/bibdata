@@ -25,6 +25,6 @@ RSpec.describe "Barcode Gets", type: :request do
   end
 end
 def stub_voyager_barcodes(barcode)
-  f=File.expand_path("../../fixtures/#{barcode}.mrx",__FILE__)
+  f = File.expand_path("../../fixtures/#{barcode}.mrx", __FILE__)
   allow(VoyagerHelpers::Liberator).to receive(:get_records_from_barcode).and_return MARC::XMLReader.new(f).to_a
 end

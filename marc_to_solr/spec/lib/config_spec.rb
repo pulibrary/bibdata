@@ -8,14 +8,14 @@ describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
 
   def fixture_record(fixture_name)
-    f=File.expand_path("../../fixtures/#{fixture_name}.mrx",__FILE__)
+    f = File.expand_path("../../fixtures/#{fixture_name}.mrx", __FILE__)
     MARC::XMLReader.new(f).first
   end
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
-    c=File.expand_path('../../../lib/traject_config.rb',__FILE__)
+    c = File.expand_path('../../../lib/traject_config.rb', __FILE__)
     @indexer = Traject::Indexer.new
     @indexer.load_config_file(c)
     @sample1 = @indexer.map_record(fixture_record('sample1'))
@@ -24,22 +24,22 @@ describe 'From traject_config.rb' do
     @sample34 = @indexer.map_record(fixture_record('sample34'))
     @sample35 = @indexer.map_record(fixture_record('sample35'))
     @sample36 = @indexer.map_record(fixture_record('8181849'))
-    @manuscript_book=@indexer.map_record(fixture_record('sample17'))
-    @added_title_246=@indexer.map_record(fixture_record('sample18'))
-    @related_names=@indexer.map_record(fixture_record('sample27'))
-    @label_i_246=@indexer.map_record(fixture_record('sample28'))
-    @online_at_library=@indexer.map_record(fixture_record('sample29'))
-    @online=@indexer.map_record(fixture_record('sample30'))
-    @elf2=@indexer.map_record(fixture_record('elf2'))
-    @other_title_246=@indexer.map_record(fixture_record('7910599'))
+    @manuscript_book = @indexer.map_record(fixture_record('sample17'))
+    @added_title_246 = @indexer.map_record(fixture_record('sample18'))
+    @related_names = @indexer.map_record(fixture_record('sample27'))
+    @label_i_246 = @indexer.map_record(fixture_record('sample28'))
+    @online_at_library = @indexer.map_record(fixture_record('sample29'))
+    @online = @indexer.map_record(fixture_record('sample30'))
+    @elf2 = @indexer.map_record(fixture_record('elf2'))
+    @other_title_246 = @indexer.map_record(fixture_record('7910599'))
     @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
-    ENV['RUN_HATHI_COMPARE']='true'
+    ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_present = @indexer.map_record(fixture_record('1590302'))
     @hathi_permanent = @indexer.map_record(fixture_record('1459166'))
-    ENV['RUN_HATHI_COMPARE']=''
-	end
+    ENV['RUN_HATHI_COMPARE'] = ''
+  end
 
   describe 'the language_iana_s field' do
     it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
@@ -133,7 +133,7 @@ describe 'From traject_config.rb' do
   end
   describe 'notes from record show up in the notes_index' do
     it 'shows tag 500 and 538' do
-       expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', '"Digitized and restored in 2K with the support of the Centre National du Cinéma."')
+      expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', '"Digitized and restored in 2K with the support of the Centre National du Cinéma."')
     end
   end
   describe 'publication end date' do
@@ -171,7 +171,7 @@ describe 'From traject_config.rb' do
         "260" => {
           "ind1" => " ",
           "ind2" => " ",
-          "subfields" => [ { "a" => place }, { "b" => name }, { "c" => date } ]
+          "subfields" => [{ "a" => place }, { "b" => name }, { "c" => date }]
         }
       }
     end
@@ -180,7 +180,7 @@ describe 'From traject_config.rb' do
         "260" => {
           "ind1" => " ",
           "ind2" => " ",
-          "subfields" => [ { "a" => place }, { "b" => name }, { "c" => date_full } ]
+          "subfields" => [{ "a" => place }, { "b" => name }, { "c" => date_full }]
         }
       }
     end
@@ -229,7 +229,7 @@ describe 'From traject_config.rb' do
   describe 'related_name_json_1display' do
     let(:rel_names) { JSON.parse(@related_names['related_name_json_1display'][0]) }
     it 'trims punctuation the same way as author_s facet' do
-      rel_names['Related name'].each {|n| expect(@related_names['author_s']).to include(n)}
+      rel_names['Related name'].each { |n| expect(@related_names['author_s']).to include(n) }
     end
     it 'allows multiple roles from single field' do
       expect(rel_names['Editor']).to include('Someone')
@@ -260,12 +260,12 @@ describe 'From traject_config.rb' do
     end
     it 'value include hathi locations when record is present in hathi report' do
       expect(@hathi_present['location_code_s']).to contain_exactly('sci')
-      expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access','Online','In the Library')
+      expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access', 'Online', 'In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
     it 'value include online when record is present in hathi report with permanent access' do
       expect(@hathi_permanent['location_code_s']).to contain_exactly('rcppa')
-      expect(@hathi_permanent['access_facet']).to contain_exactly('Online','In the Library')
+      expect(@hathi_permanent['access_facet']).to contain_exactly('Online', 'In the Library')
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
   end
@@ -274,10 +274,10 @@ describe 'From traject_config.rb' do
       marcxml = fixture_record('7617477')
       @solr_hash = @indexer.map_record(marcxml)
       @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
-      holdings_file=File.expand_path("../../fixtures/7617477-holdings.json",__FILE__)
+      holdings_file = File.expand_path("../../fixtures/7617477-holdings.json", __FILE__)
       holdings = JSON.parse(File.read(holdings_file))
       @holding_records = []
-      holdings.each {|h| @holding_records << MARC::Record.new_from_hash(h) }
+      holdings.each { |h| @holding_records << MARC::Record.new_from_hash(h) }
     end
     it 'groups holding info into a hash keyed on the mfhd id' do
       @holding_records.each do |holding|
@@ -350,7 +350,6 @@ describe 'From traject_config.rb' do
     it 'excludes other title when subfield $i is present' do
       expect(@label_i_246['other_title_display']).to be_nil
     end
-
   end
   describe 'other_title_1display 246s hash' do
     it 'excludes titles with 2nd indicator labels' do
@@ -385,8 +384,8 @@ describe 'From traject_config.rb' do
   end
 
   describe 'mixing extract_marc and everything_after_t' do
-    let(:t400) {{ "400"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"TITLE" }] } }}
-    let(:t440) {{ "440"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"AWESOME" }, { "a"=>"John" }, { "n"=>"1492" }, { "k"=>"dont ignore" }] } }}
+    let(:t400) { { "400" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
+    let(:t440) { { "440" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "AWESOME" }, { "a" => "John" }, { "n" => "1492" }, { "k" => "dont ignore" }] } } }
 
     it 'includes 400 field when 440 missing for series_title_index field' do
       no_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400], 'leader' => leader))
@@ -402,9 +401,9 @@ describe 'From traject_config.rb' do
   end
 
   describe 'both a and t must be present in linked title field' do
-    let(:t760) {{ "760"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "t"=>"TITLE" }] } }}
-    let(:a762) {{ "762"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"NAME" }] } }}
-    let(:at765) {{ "765"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Both" }, { "t"=>"name and title" }] } }}
+    let(:t760) { { "760" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
+    let(:a762) { { "762" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "NAME" }] } } }
+    let(:at765) { { "765" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Both" }, { "t" => "name and title" }] } } }
     let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t760, a762, at765], 'leader' => leader)) }
 
     it 'only includes 765at' do
@@ -417,7 +416,7 @@ describe 'From traject_config.rb' do
   end
 
   describe '#related_record_info_display' do
-    let(:i776) {{ "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } }}
+    let(:i776) { { "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } } }
     let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [i776], 'leader' => leader)) }
 
     it 'indexes the 776$i value' do
@@ -426,18 +425,18 @@ describe 'From traject_config.rb' do
   end
 
   describe 'name_uniform_title_display field' do
-    let(:n100) {{ "100"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-01" }, { "a"=>"Name," }] } }}
-    let(:n100_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"100-01" }, { "a"=>"AltName ;" }] } }}
-    let(:t240) {{ "240"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-02" }, { "a"=>"Uniform Title," }, { "p"=>"5" }] } }}
-    let(:t240_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"240-02" }, { "a"=>"AltUniform Title," }, { "p"=>"5" }] } }}
-    let(:t245) {{ "245"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"880-03" }, { "a"=>"Title 245a" }] } }}
-    let(:t245_vern) {{ "880"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "6"=>"245-03" }, { "a"=>"VernTitle 245a" }] } }}
+    let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Name," }] } } }
+    let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "AltName ;" }] } } }
+    let(:t240) { { "240" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-02" }, { "a" => "Uniform Title," }, { "p" => "5" }] } } }
+    let(:t240_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "240-02" }, { "a" => "AltUniform Title," }, { "p" => "5" }] } } }
+    let(:t245) { { "245" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-03" }, { "a" => "Title 245a" }] } } }
+    let(:t245_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "245-03" }, { "a" => "VernTitle 245a" }] } } }
     let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
     let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader)) }
 
     it 'name title browse field includes both scripts, excludes 245 with uniform title present' do
       expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to match_array([['Name.', 'Uniform Title,', '5'],
-                                                                                      ['AltName.', 'AltUniform Title,', '5']])
+                                                                                          ['AltName.', 'AltUniform Title,', '5']])
       expect(uniform_title['name_title_browse_s']).to match_array(['Name. Uniform Title', 'Name. Uniform Title, 5',
                                                                    'AltName. AltUniform Title', 'AltName. AltUniform Title, 5'])
     end
@@ -449,9 +448,9 @@ describe 'From traject_config.rb' do
   end
 
   describe 'series 490 dedup, non-filing' do
-    let(:s490) {{ "490"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title" }] } }}
-    let(:s830) {{ "830"=>{ "ind1"=>"", "ind2"=>" ", "subfields"=>[{ "a"=>"Series title." }] } }}
-    let(:s440) {{ "440"=>{ "ind1"=>"", "ind2"=>"4", "subfields"=>[{ "a"=>"The Series" }] } }}
+    let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
+    let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
+    let(:s440) { { "440" => { "ind1" => "", "ind2" => "4", "subfields" => [{ "a" => "The Series" }] } } }
     let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
 
     it '490s are not included when they are covered by another series field' do
@@ -463,11 +462,11 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'senior thesis 502 note' do
-    let(:senior_thesis_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)-Princeton University" }] } } }
+    let(:senior_thesis_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)-Princeton University" }] } } }
     let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
-    let(:whitespace_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "a"=>"Thesis (Senior)  -- Princeton University" }] } } }
+    let(:whitespace_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)  -- Princeton University" }] } } }
     let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [whitespace_502], 'leader' => leader)) }
-    let(:subfield_bc_502) { { "502"=>{ "ind1"=>" ","ind2"=>" ","subfields"=>[{ "b"=>"Senior" }, { "c"=>"Princeton University" }] } } }
+    let(:subfield_bc_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => "Senior" }, { "c" => "Princeton University" }] } } }
     let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [subfield_bc_502], 'leader' => leader)) }
 
     it 'Princeton senior theses are properly classified' do
@@ -482,9 +481,9 @@ describe 'From traject_config.rb' do
   end
 
   describe 'subject display and unstem fields' do
-    let(:s650_lcsh) { { "650"=>{ "ind1"=>"", "ind2"=>"0", "subfields"=>[{ "a"=>"LC Subject" }] } } }
-    let(:s650_sk) { { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Siku Subject" }, { "2"=>"sk" }] } } }
-    let(:s650_exclude) { { "650"=>{ "ind1"=>"", "ind2"=>"7", "subfields"=>[{ "a"=>"Exclude from subject browse" }, { "2"=>"bad" }] } } }
+    let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
+    let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
+    let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
     let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
 
     it 'include the sk and lc subjects in separate fields, exlcude other subject types' do

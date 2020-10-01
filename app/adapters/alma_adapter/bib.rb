@@ -8,10 +8,12 @@ module AlmaAdapter
       # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
       # get one bib record is supported in the bibdata UI and in the bibliographic_controller
       # @return [MARC::Record]
-      def get_bib_record(id, conn=nil, opts={})
-        res = AlmaAdapter::Connector.connection.get("bibs?mms_id=#{id}",
-        {query: { :expand => "p_avail,e_avail,d_avail,requests" }, :apikey => apikey},
-        {'Accept' => 'application/xml'} )
+      def get_bib_record(id, _conn = nil, _opts = {})
+        res = AlmaAdapter::Connector.connection.get(
+          "bibs?mms_id=#{id}",
+          { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
+          'Accept' => 'application/xml'
+        )
 
         doc = Nokogiri::XML(res.body)
         doc_unsuppressed(doc)
@@ -24,10 +26,12 @@ module AlmaAdapter
       # @param _conn not used in the Alma API
       # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
       # @return [Array<MARC::Record>]
-      def get_bib_records(ids, conn=nil, opts={})
-        res = AlmaAdapter::Connector.connection.get("bibs?mms_id=#{ids_array_to_string(ids)}",
-        {query: { :expand => "p_avail,e_avail,d_avail,requests" }, :apikey => apikey},
-        {'Accept' => 'application/xml'} )
+      def get_bib_records(ids, _conn = nil, _opts = {})
+        res = AlmaAdapter::Connector.connection.get(
+          "bibs?mms_id=#{ids_array_to_string(ids)}",
+          { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
+          'Accept' => 'application/xml'
+        )
 
         doc = Nokogiri::XML(res.body)
         doc_unsuppressed(doc)
@@ -38,10 +42,11 @@ module AlmaAdapter
       # Returns list of holding records for a given MMS
       # @params id [string]. e.g id = "991227850000541"
       def get_holding_records(id)
-        res = AlmaAdapter::Connector.connection.get "bibs/#{id}/holdings", {
-          :apikey => self.apikey
-        }
-        doc = res.body
+        res = AlmaAdapter::Connector.connection.get(
+          "bibs/#{id}/holdings",
+          apikey: apikey
+        )
+        res.body
       end
 
       # @params id [string]. e.g id = "991227850000541"
@@ -49,27 +54,26 @@ module AlmaAdapter
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date" }
         Alma::BibItem.find(id, opts)
-        # todo: transform alma response to marc liberation format
+        # TODO: transform alma response to marc liberation format
       end
 
       private
 
-      def doc_unsuppressed(doc)
-        @doc_unsuppressed = doc.search('//bib').each {|node| node.remove if node.xpath('suppress_from_publishing').text == 'true'}
-      end
+        def doc_unsuppressed(doc)
+          @doc_unsuppressed = doc.search('//bib').each { |node| node.remove if node.xpath('suppress_from_publishing').text == 'true' }
+        end
 
-      def unsuppressed_marc
-        MARC::XMLReader.new(StringIO.new(@doc_unsuppressed.at_xpath('//bibs').to_xml))
-      end
+        def unsuppressed_marc
+          MARC::XMLReader.new(StringIO.new(@doc_unsuppressed.at_xpath('//bibs').to_xml))
+        end
 
-      def ids_array_to_string(ids)
-        ids.join(",")
-      end
+        def ids_array_to_string(ids)
+          ids.join(",")
+        end
 
-      def apikey
-        AlmaAdapter.config[:bibs_read_only]
-      end
-
+        def apikey
+          AlmaAdapter.config[:bibs_read_only]
+        end
     end
   end
 end

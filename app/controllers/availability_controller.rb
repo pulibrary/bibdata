@@ -1,5 +1,4 @@
 class AvailabilityController < ApplicationController
-
   def index
     if params[:ids]
       ids_param = sanitize_array(params[:ids])

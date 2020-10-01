@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def sanitize_array(arr)
-    arr.map {|s| sanitize(s)}
+    arr.map { |s| sanitize(s) }
   end
 end

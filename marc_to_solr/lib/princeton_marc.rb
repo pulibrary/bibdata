@@ -13,7 +13,6 @@ require_relative 'orangelight_url_builder'
 
 module MARC
   class Record
-
     # Taken from pul-store marc.rb lib extension
     # Shamelessly lifted from SolrMARC, with a few changes; no doubt there will
     # be more.
@@ -30,26 +29,26 @@ module MARC
       date = nil
       if self['260']
         if self['260']['c']
-        field_260c = self['260']['c']
+          field_260c = self['260']['c']
           case field_260c
-            when @@THREE_OR_FOUR_DIGITS
-              date = "#{$1}#{$2}"
-            when @@FOUR_DIGIT_PATTERN_BRACES
-              date = $1
-            when @@FOUR_DIGIT_PATTERN_ONE_BRACE
-              date = $1
-            when @@FOUR_DIGIT_PATTERN_OTHER_1
-              date = "1#{$1}"
-            when @@FOUR_DIGIT_PATTERN_OTHER_2
-              date = "#{$1}#{$2}"
-            when @@FOUR_DIGIT_PATTERN_OTHER_3
-              date = "#{$1}#{$2}0"
-            when @@FOUR_DIGIT_PATTERN_OTHER_4
-              date = "#{$1}#{$2}"
-            when @@FOUR_DIGIT_PATTERN_OTHER_5
-              date = "#{$1}00"
-            when @@BC_DATE_PATTERN
-              date = nil
+          when @@THREE_OR_FOUR_DIGITS
+            date = "#{$1}#{$2}"
+          when @@FOUR_DIGIT_PATTERN_BRACES
+            date = $1
+          when @@FOUR_DIGIT_PATTERN_ONE_BRACE
+            date = $1
+          when @@FOUR_DIGIT_PATTERN_OTHER_1
+            date = "1#{$1}"
+          when @@FOUR_DIGIT_PATTERN_OTHER_2
+            date = "#{$1}#{$2}"
+          when @@FOUR_DIGIT_PATTERN_OTHER_3
+            date = "#{$1}#{$2}0"
+          when @@FOUR_DIGIT_PATTERN_OTHER_4
+            date = "#{$1}#{$2}"
+          when @@FOUR_DIGIT_PATTERN_OTHER_5
+            date = "#{$1}00"
+          when @@BC_DATE_PATTERN
+            date = nil
           end
         end
       end
@@ -58,7 +57,7 @@ module MARC
 
     def date_from_008
       if self['008']
-        d = self['008'].value[7,4]
+        d = self['008'].value[7, 4]
         d = d.gsub 'u', '0' unless d == 'uuuu'
         d = d.gsub ' ', '0' unless d == '    '
         d if d =~ /^[0-9]{4}$/
@@ -67,7 +66,7 @@ module MARC
 
     def end_date_from_008
       if self['008']
-        d = self['008'].value[11,4]
+        d = self['008'].value[11, 4]
         d = d.gsub 'u', '9' unless d == 'uuuu'
         d = d.gsub ' ', '9' unless d == '    '
         d if d =~ /^[0-9]{4}$/
@@ -81,7 +80,6 @@ module MARC
       end
       date ||= self.date_from_008
     end
-
   end
 end
 
@@ -113,7 +111,7 @@ def indicator_label_246 i
 end
 
 def subfield_specified_hash_key subfield_value, fallback
-  key = subfield_value.capitalize.gsub(/[[:punct:]]?$/,'')
+  key = subfield_value.capitalize.gsub(/[[:punct:]]?$/, '')
   key.empty? ? fallback : key
 end
 
@@ -131,7 +129,6 @@ def standard_no_hash record
   end
   standard_no
 end
-
 
 # Handles ISBNs, ISSNs, and OCLCs
 # ISBN: 020a, 020z, 776z
@@ -220,12 +217,11 @@ def process_author_roles record
       name = Traject::Macros::Marc21.trim_punctuation(name)
 
       # If name is from 1xx field, it is the primary author.
-      if /1../.match(field.tag)
+      if /1../.match?(field.tag)
         names['primary_author'] = name
       else
         relator = ""
         field.subfields.each do |s_field|
-
           # relator code (subfield 4)
           if s_field.code == '4'
             relator = s_field.value.upcase.gsub(/[[:punct:]]?$/, '')
@@ -286,7 +282,7 @@ def process_hierarchy(record, fields, vocabulary = [])
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
-      heading = heading.map{ |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
+      heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
       headings << heading if include_heading
     end
   end
@@ -355,7 +351,6 @@ def build_cache_manager(figgy_dir_path:)
   @cache_manager = CacheManager.current
 end
 
-
 # returns hash of links ($u) (key),
 # anchor text ($y, $3, hostname), and additional labels ($z) (array value)
 # @param [MARC::Record] the MARC record being parsed
@@ -400,7 +395,7 @@ def electronic_access_links(record, figgy_dir_path)
       end
 
       # Figgy URL's
-      figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host:'figgy.princeton.edu')
+      figgy_url_builder = IIIFManifestUrlBuilder.new(ark_cache: cache_manager.figgy_ark_cache, service_host: 'figgy.princeton.edu')
       figgy_iiif_manifest = figgy_url_builder.build(url: electronic_access_link.ark)
       if figgy_iiif_manifest
         figgy_iiif_manifest_link = electronic_access_link.clone url_key: figgy_iiif_manifest.to_s
@@ -436,7 +431,7 @@ def fragment_value(fragment_index)
 end
 
 def remove_parens_035 standard_no
-  standard_no.gsub(/^\(.*?\)/,'')
+  standard_no.gsub(/^\(.*?\)/, '')
 end
 
 GENRES = [
@@ -504,7 +499,7 @@ def process_genre_facet record
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
-      if genre.match(/^\s+$/)
+      if genre.match?(/^\s+$/)
         logger.error "#{record['001']} - Blank genre field"
       elsif should_include
         genres << genre
@@ -515,7 +510,7 @@ def process_genre_facet record
     genre = extractor.collect_subfields(field, spec).first
     unless genre.nil?
       genre = Traject::Macros::Marc21.trim_punctuation(genre)
-      if genre.match(/^\s+$/)
+      if genre.match?(/^\s+$/)
         logger.error "#{record['001']} - Blank genre field"
       else
         genres << genre
@@ -635,7 +630,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
         holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
-      elsif /[ckhij]/.match(s_field.code)
+      elsif /[ckhij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
         unless s_field.code == 'c'
@@ -732,7 +727,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       end
     end
     if all_holdings[item[:holding_id]]["items"].nil?
-      all_holdings[item[:holding_id]]["items"] = [ item ]
+      all_holdings[item[:holding_id]]["items"] = [item]
     else
       all_holdings[item[:holding_id]]["items"] << item
     end
@@ -750,7 +745,7 @@ def process_recap_notes record
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
       if s_field.code == 'b'
-        partner_lib = s_field.value #||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
+        partner_lib = s_field.value # ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
       end
     end
   end
@@ -773,7 +768,7 @@ def process_recap_notes record
       partner_display_string = 'C'
     end
     item_notes << "#{partner_display_string} - #{col_group}"
-    end
+  end
   item_notes
 end
 
@@ -784,7 +779,7 @@ def find_hathi_by_oclc(oclc)
     puts "The output directory must be set for Hathi comparison to work!!! ENV['HATHI_OUTPUT_DIR']"
     return ""
   end
-  overlap_file=Dir.glob("#{output_dir}/overlap*final.tsv").sort_by { |filename| filename.to_date.strftime}.last
+  overlap_file = Dir.glob("#{output_dir}/overlap*final.tsv").sort_by { |filename| filename.to_date.strftime }.last
   if overlap_file.blank?
     puts "The overlap file is missing from #{output_dir}!!"
     return ""
@@ -795,7 +790,7 @@ end
 # "980\t1590302\tmono\tdeny\tic\tmdp.39015002162876\n980\t1590302\tmono\tdeny\tic\tmdp.39015010651894\n980\t1590302\tmono\tdeny\tic\tmdp.39015066013585\n"
 def parse_locations_from_hathi_line(line)
   return [] if line.blank?
-  access= line.split("\t")[3]
+  access = line.split("\t")[3]
   locs = ["hathi"]
   locs << "hathi_temp" if access == "deny"
   locs

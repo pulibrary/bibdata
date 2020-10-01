@@ -45,7 +45,7 @@ class VoyagerLookup
 
     def multiple_bib_circulation(bibs)
       bibs.each do |_bib_id, bib|
-        bib = single_bib_circulation(bib)
+        single_bib_circulation(bib)
       end
     end
 

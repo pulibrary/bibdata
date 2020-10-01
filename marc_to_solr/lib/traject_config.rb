@@ -22,7 +22,7 @@ settings do
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
   provide "log.error_file", "./log/traject-error.log"
-  provide "allow_duplicate_values",  false
+  provide "allow_duplicate_values", false
   provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
 end
 
@@ -34,7 +34,7 @@ to_field 'id', extract_marc('001', first: true)
 
 # if the id contains only numbers we know it's a princeton item
 to_field 'numeric_id_b', extract_marc('001', first: true) do |_record, accumulator|
-  accumulator.map! { |v| /^[0-9]+$/.match(v) ? true : false }
+  accumulator.map! { |v| /^[0-9]+$/.match?(v) ? true : false }
 end
 
 # for scsb local system id
@@ -108,7 +108,7 @@ to_field 'marc_relator_display' do |record, accumulator|
     relator = 'Author'
     field.subfields.each do |s_field|
       if s_field.code == 'e'
-        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/,'')
+        relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/, '')
         break
       end
       relator = Traject::TranslationMap.new("relators")[s_field.value] if s_field.code == '4'
@@ -196,24 +196,26 @@ to_field 'linked_series_index', extract_marc('760acgst:762acgst')
 to_field 'original_version_series_index', extract_marc('534f')
 
 to_field 'cjk_title', extract_marc(%w(
-  130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
-  242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
-  440anpvx:490avx:
-  505t:534f:730aplskfmnor:740ahnp:
-  760acgst:762acgst:765kst:767kst:
-  770kst:772kst:773kst:774kst:775kst:776kst:777kst:
-  780kst:785kst:786kst:787kst:
-  830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+                                     130apldfhkmnorst:210ab:211a:212a:214a:222ab:240apldfhkmnors:
+                                     242abchnp:243adfklmnoprs:245abcfghknps:246abfnp:247abfhnp:
+                                     440anpvx:490avx:
+                                     505t:534f:730aplskfmnor:740ahnp:
+                                     760acgst:762acgst:765kst:767kst:
+                                     770kst:772kst:773kst:774kst:775kst:776kst:777kst:
+                                     780kst:785kst:786kst:787kst:
+                                     830adfghklmnoprstv:840anpv
+                                   ), alternate_script: :only) do |record, accumulator|
   accumulator << everything_after_t_alt_script(record, '100:110:111:400:410:411:700:710:711:800:810:811')
   accumulator.flatten!
 end
 
 to_field 'cjk_series_title', extract_marc(%w(
-  440anpvx:490avx:534f:
-  760acgst:762acgst:765k:767k:
-  770k:772k:773k:774k:775k:776k:777k:
-  780k:785k:786k:787k:
-  830adfghklmnoprstv:840anpv), alternate_script: :only) do |record, accumulator|
+                                            440anpvx:490avx:534f:
+                                            760acgst:762acgst:765k:767k:
+                                            770k:772k:773k:774k:775k:776k:777k:
+                                            780k:785k:786k:787k:
+                                            830adfghklmnoprstv:840anpv
+                                          ), alternate_script: :only) do |record, accumulator|
   accumulator << everything_after_t_alt_script(record, '400:410:411:800:810:811')
   accumulator.flatten!
 end
@@ -236,7 +238,7 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 #    260 XX abcefg
 #    264 XX abc
 to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulator|
-  if record['008'] && record['008'].value[6,1] == 'd'
+  if record['008'] && record['008'].value[6, 1] == 'd'
     end_date = record.end_date_from_008
     if end_date && end_date != '9999'
       accumulator.map! do |p|
@@ -253,8 +255,8 @@ to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulato
     MarcExtractor.cached("264abcefg3").collect_matching_lines(record) do |field, spec, extractor|
       rec_264 << [field, spec, extractor]
     end
-    rec_264.sort_by! {|r| r[0].indicator2.to_i if r[0].indicator2}
-    rec_264 = rec_264.map {|r| r[2].collect_subfields(r[0], r[1]).first }
+    rec_264.sort_by! { |r| r[0].indicator2.to_i if r[0].indicator2 }
+    rec_264 = rec_264.map { |r| r[2].collect_subfields(r[0], r[1]).first }
     accumulator << rec_264
     accumulator.flatten!
   end
@@ -268,16 +270,15 @@ to_field 'pub_citation_display' do |record, accumulator|
 end
 
 to_field 'pub_date_display' do |record, accumulator|
-    accumulator << record.date_from_008
+  accumulator << record.date_from_008
 end
 
-
 to_field 'pub_date_start_sort' do |record, accumulator|
-    accumulator << record.date_from_008
+  accumulator << record.date_from_008
 end
 
 to_field 'pub_date_end_sort' do |record, accumulator|
-    accumulator << record.end_date_from_008
+  accumulator << record.end_date_from_008
 end
 
 to_field 'cataloged_tdt', extract_marc('959a') do |_record, accumulator|
@@ -295,17 +296,15 @@ end
 #   end
 # end
 
-
 # format - allow multiple - "first" one is used for thumbnail
 to_field 'format' do |record, accumulator|
   formats = Format.new(record).bib_format
-  formats.each {|fmt| accumulator << Traject::TranslationMap.new("format")[fmt]}
+  formats.each { |fmt| accumulator << Traject::TranslationMap.new("format")[fmt] }
 end
 
 # Medium/Support:
 #    340 XX 3abcdefhl
 to_field 'medium_support_display', extract_marc('340')
-
 
 # Electronic access:
 #    3000 - really 856
@@ -323,21 +322,21 @@ end
 to_field 'electronic_access_index', extract_marc('856')
 
 # Description:
-   # 254 XX a
-   # 255 XX abcdefg
-   # 342 XX 2abcdefghijklmnopqrstuv
-   # 343 XX abcdefghi
-   # 352 XX abcdegi
-   # 355 XX abcdefghj
-   # 507 XX ab
-   # 256 XX a
-   # 516 XX a
-   # 753 XX abc
-   # 755 XX axyz
-   # 300 XX 3abcefg
-   # 306 XX a
-   # 515 XX a
-   # 362 XX az
+# 254 XX a
+# 255 XX abcdefg
+# 342 XX 2abcdefghijklmnopqrstuv
+# 343 XX abcdefghi
+# 352 XX abcdegi
+# 355 XX abcdefghj
+# 507 XX ab
+# 256 XX a
+# 516 XX a
+# 753 XX abc
+# 755 XX axyz
+# 300 XX 3abcefg
+# 306 XX a
+# 515 XX a
+# 362 XX az
 to_field 'description_display', extract_marc('254a:255bcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:362az')
 to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
 
@@ -350,7 +349,7 @@ end
 
 to_field "geocode_display" do |record, acc|
   marc_geo_map = Traject::TranslationMap.new("marc_geographic")
-  extractor_043a  = MarcExtractor.cached("043a", separator: nil)
+  extractor_043a = MarcExtractor.cached("043a", separator: nil)
   acc.concat(
     extractor_043a.extract(record).collect do |code|
       # remove any trailing hyphens, then map
@@ -370,7 +369,6 @@ to_field 'arrangement_display', extract_marc('351abc')
 # Translation of:
 #    765 XX at
 to_field 'translation_of_display', extract_marc('765at', trim_punctuation: true)
-
 
 # Translated as:
 #    767 XX at
@@ -503,7 +501,6 @@ to_field 'more_in_this_series_t' do |record, accumulator|
   accumulator.flatten!.map! { |f| Traject::Macros::Marc21.trim_punctuation(f) }
 end
 
-
 # Other version(s):
 #    3500 020Z020A
 #    3500 020A020Z
@@ -589,29 +586,29 @@ to_field 'summary_note_display', extract_marc('5203abc')
 #    570 XX a
 to_field 'notes_display', extract_marc('5003a:590a')
 to_field 'with_notes_display', extract_marc('501a')
-to_field 'bibliographic_notes_display', extract_marc('503a') #obsolete
+to_field 'bibliographic_notes_display', extract_marc('503a') # obsolete
 to_field 'dissertation_notes_display', extract_marc('502abcdgo')
 to_field 'bib_ref_notes_display', extract_marc('504ab')
-to_field 'scale_notes_display', extract_marc('507ab') #added
+to_field 'scale_notes_display', extract_marc('507ab') # added
 to_field 'credits_notes_display', extract_marc('508a')
 to_field 'type_period_notes_display', extract_marc('513ab')
 to_field 'data_quality_notes_display', extract_marc('514abcdefghijkm')
 to_field 'numbering_pec_notes_display', extract_marc('515a')
-to_field 'type_comp_data_notes_display', extract_marc('516a') #added
+to_field 'type_comp_data_notes_display', extract_marc('516a') # added
 to_field 'date_place_event_notes_display', extract_marc('5183adop')
 to_field 'target_aud_notes_display', extract_marc('5213ab')
 to_field 'geo_cov_notes_display', extract_marc('522a')
-to_field 'time_period_notes_display', extract_marc('523a') #obsolete
+to_field 'time_period_notes_display', extract_marc('523a') # obsolete
 to_field 'supplement_notes_display', extract_marc('525a')
-to_field 'study_prog_notes_display', extract_marc('526abcdixz') #added
-to_field 'censorship_notes_display', extract_marc('527a') #obsolete
+to_field 'study_prog_notes_display', extract_marc('526abcdixz') # added
+to_field 'censorship_notes_display', extract_marc('527a') # obsolete
 to_field 'reproduction_notes_display', extract_marc('5333abcdefmn')
 to_field 'original_version_notes_display', extract_marc('534abcefklmnpt3')
 to_field 'location_originals_notes_display', extract_marc('5353abcdg')
 to_field 'funding_info_notes_display', extract_marc('536abcdefgh')
-to_field 'source_data_notes_display', extract_marc('537a') #obsolete
+to_field 'source_data_notes_display', extract_marc('537a') # obsolete
 to_field 'system_details_notes_display', extract_marc('5383ai')
-to_field 'related_copyright_notes_display', extract_marc('542|1*|:542| *|') #is this in any record?
+to_field 'related_copyright_notes_display', extract_marc('542|1*|:542| *|') # is this in any record?
 to_field 'location_other_arch_notes_display', extract_marc('5443abcden')
 to_field 'former_title_complex_notes_display', extract_marc('547a')
 to_field 'issuing_body_notes_display', extract_marc('550a')
@@ -619,10 +616,10 @@ to_field 'info_document_notes_display', extract_marc('556a')
 to_field 'copy_version_notes_display', extract_marc('5623abcde')
 to_field 'case_file_notes_display', extract_marc('5653abcde')
 to_field 'methodology_notes_display', extract_marc('567a')
-to_field 'editor_notes_display', extract_marc('570a') #added
-to_field 'accumulation_notes_display', extract_marc('584ab3') #added
-to_field 'awards_notes_display', extract_marc('586a3') #added
-to_field 'source_desc_notes_display', extract_marc('588a') #added
+to_field 'editor_notes_display', extract_marc('570a') # added
+to_field 'accumulation_notes_display', extract_marc('584ab3') # added
+to_field 'awards_notes_display', extract_marc('586a3') # added
+to_field 'source_desc_notes_display', extract_marc('588a') # added
 
 # Binding note:
 #    563 XX au3
@@ -754,7 +751,6 @@ each_record do |_record, context|
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
 end
 
-
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
@@ -829,7 +825,7 @@ end
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         first_letter = record['050']['a'].lstrip.slice(0, 1)
         accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
@@ -845,7 +841,7 @@ end
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
     if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
         letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
         accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
       end
@@ -877,7 +873,7 @@ to_field 'related_name_json_1display' do |record, accumulator|
     relators = []
     non_t = true
     field.subfields.each do |s_field|
-      relators << s_field.value.capitalize.gsub(/[[:punct:]]?$/,'') if s_field.code == 'e'
+      relators << s_field.value.capitalize.gsub(/[[:punct:]]?$/, '') if s_field.code == 'e'
       if s_field.code == 't'
         non_t = false
         break
@@ -928,10 +924,9 @@ to_field 'other_title_index', extract_marc('246abfnp:210ab:211a:212a:214a:222ab:
 # only include 246 as 'other title' when 2nd indicator missing or 3 and missing $i
 to_field 'other_title_display' do |record, accumulator|
   MarcExtractor.cached(%w(246abfnp:210ab:211a:212a:214a:222ab:
-                          242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp
-                      )).collect_matching_lines(record) do |field, spec, extractor|
+                          242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp)).collect_matching_lines(record) do |field, spec, extractor|
     if field.tag == '246'
-      label = field.subfields.select{|s_field| s_field.code == 'i'}.first
+      label = field.subfields.select { |s_field| s_field.code == 'i' }.first
       accumulator << extractor.collect_subfields(field, spec).first if label.nil?
     else
       accumulator << extractor.collect_subfields(field, spec).first
@@ -946,7 +941,7 @@ to_field 'alt_title_246_display', extract_marc('246abfnp')
 to_field 'other_title_1display' do |record, accumulator|
   other_title_hash = {}
   MarcExtractor.cached('246abfnp').collect_matching_lines(record) do |field, spec, extractor|
-    label = field.subfields.select{|s_field| s_field.code == 'i'}.first
+    label = field.subfields.select { |s_field| s_field.code == 'i' }.first
     unless label.nil?
       label = label.value
       label = Traject::Macros::Marc21.trim_punctuation(label)
@@ -1068,8 +1063,6 @@ to_field 'other_version_s' do |record, accumulator|
   accumulator.replace(linked_nums)
 end
 
-
-
 # Original language:
 #    880 XX abc
 to_field 'original_language_display', extract_marc('880abc')
@@ -1125,7 +1118,7 @@ each_record do |record, context|
     hathi_locations = parse_locations_from_hathi_line(hathi_line)
     hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
     context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
-  end  
+  end
   if location_codes.present? || hathi_locations.present?
     location_codes.uniq!
     ## need to through any location code that isn't from voyager, thesis, or graphic arts
@@ -1153,7 +1146,6 @@ each_record do |record, context|
     context.output_hash['advanced_location_s'] = Array.new(location_codes)
     context.output_hash['advanced_location_s'] << context.output_hash['location']
     context.output_hash['advanced_location_s'].flatten!
-
 
     # do not index location field if empty (when location code invalid or online)
     context.output_hash['location'].delete('Online')
@@ -1193,8 +1185,7 @@ end
 
 to_field 'linked_title_s' do |record, accumulator|
   MarcExtractor.cached(%w(760at:762at:765at:767at:770at:772at:773at:774at:
-                          775at:776at:777at:780at:785at:786at:787at
-                      )).collect_matching_lines(record) do |field, spec, extractor|
+                          775at:776at:777at:780at:785at:786at:787at)).collect_matching_lines(record) do |field, spec, extractor|
     ae = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     non_t = true
     non_a = true
@@ -1207,10 +1198,10 @@ to_field 'linked_title_s' do |record, accumulator|
   end
 end
 
-  ########################################################
-  # Author-Title Browse field includes                   #
-  # combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
-  ########################################################
+########################################################
+# Author-Title Browse field includes                   #
+# combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
+########################################################
 each_record do |_record, context|
   doc = context.output_hash
   related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
@@ -1257,9 +1248,7 @@ end
 #    852 XX ckhij
 to_field 'call_number_display', extract_marc('852ckhij')
 
-
 to_field 'call_number_browse_s', extract_marc('852khij')
-
 
 # Location has:
 #    1040
@@ -1276,26 +1265,24 @@ to_field 'call_number_browse_s', extract_marc('852khij')
 #    866 51 az
 #    866 52 az
 #    899 XX a
-#to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
+# to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
 
 # Location has (current):
 #    866 || az
 #    1020
-#to_field 'location_has_current_display', extract_marc('866|  |az')
-
+# to_field 'location_has_current_display', extract_marc('866|  |az')
 
 # Supplements:
 #    1042
 #    867 XX az
 #    1022
-#to_field 'supplements_display', extract_marc('867az')
-
+# to_field 'supplements_display', extract_marc('867az')
 
 # Indexes:
 #    1044
 #    868 XX az
 #    1024
-#to_field 'indexes_display', extract_marc('868az')
+# to_field 'indexes_display', extract_marc('868az')
 
 ########################################################
 # Processing already-extracted fields                  #
@@ -1318,7 +1305,7 @@ each_record do |_record, context|
   if context.output_hash['title_display']
     if context.output_hash['title_display'].length > 1
       logger.error "#{context.output_hash['id'].first} - Multiple titles"
-      context.output_hash['title_display'] = context.output_hash['title_display'].slice(0,1)
+      context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
     end
   end
 end

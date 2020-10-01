@@ -37,7 +37,7 @@ feature 'Devise restricts features for unauthenticated users', type: :feature, j
   end
 
   ["libraries", "holding_locations", "delivery_locations",
-    "hours_locations"].each_with_index do |data_type, _i|
+   "hours_locations"].each_with_index do |data_type, _i|
     scenario "anyone can retrieve JSON feeds for #{data_type}" do
       visit "/locations/#{data_type}.json"
     end

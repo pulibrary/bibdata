@@ -8,6 +8,4 @@ class CodesController < ApplicationController
       wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
     end
   end
-
-
 end

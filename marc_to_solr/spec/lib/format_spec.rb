@@ -1,8 +1,9 @@
 require 'json'
 require_relative '../../lib/format'
 
+# rubocop:disable Layout/MultilineHashBraceLayout
 describe 'From format.rb' do
-  let(:marc) {MARC::Record.new}
+  let(:marc) { MARC::Record.new }
 
   { 'Book' => ['aa', 'ab', 'ac', 'ad', 'ai', 'am'],
     'Journal' => ['as'],
@@ -12,7 +13,7 @@ describe 'From format.rb' do
     'Musical score' => ['c ', 'd '],
     'Audio' => ['i ', 'j '],
     'Map' => ['e '],
-    'Manuscript' => ['d ', 'f ', 't ', 'p '],
+    'Manuscript' => ['d ', 'f ', 't ', 'p ']
     # 'Unknown' => ['  ', 'zz']
   }.each do |k, v|
     it "properly determines format for #{k}" do
@@ -24,3 +25,4 @@ describe 'From format.rb' do
     end
   end
 end
+# rubocop:enable Layout/MultilineHashBraceLayout

@@ -37,6 +37,7 @@ class URI::ARK < URI::Generic
   end
 
   private
+
     # Extract the components from the ARK URL into member variables
     def extract_components!
       raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.princeton_ark?(url: self)

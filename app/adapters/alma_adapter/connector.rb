@@ -1,9 +1,8 @@
 module AlmaAdapter
   class Connector
-
     class << self
       def base_path
-        "#{self.region}/almaws/v1"
+        "#{region}/almaws/v1"
       end
 
       def users_path
@@ -16,7 +15,7 @@ module AlmaAdapter
       end
 
       def url
-        @url ||= URI::HTTPS.build(host: self.region)
+        @url ||= URI::HTTPS.build(host: region)
       end
 
       # Exlibris Alma connection

@@ -2,7 +2,6 @@
 require_relative '../format.rb'
 
 class BibFormat
-
   attr_reader :code
 
   # Determine the bib format code
@@ -70,5 +69,4 @@ class BibFormat
   def bibformat_mw(type, _lev)
     %w[d f p t].include?(type)
   end
-
 end

@@ -12,7 +12,7 @@ module Hathi
     end
 
     def load
-      CSV.foreach(input_location, { headers: true, col_sep: "\t" }) do |row|
+      CSV.foreach(input_location, headers: true, col_sep: "\t") do |row|
         next unless row["access"]
         HathiAccess.find_or_create_by!(
           oclc_number: row["oclc"],

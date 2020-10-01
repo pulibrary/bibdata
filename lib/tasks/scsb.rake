@@ -28,5 +28,4 @@ namespace :scsb do
       IndexFunctions.process_scsb_dumps([dumps.last], ENV['SET_URL'])
     end
   end
-
 end

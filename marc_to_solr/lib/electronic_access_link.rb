@@ -41,7 +41,7 @@ class ElectronicAccessLink
       @url_key = nil
     else
       @url_key = normal_url.to_s
-      if @url_key !~ URI.regexp
+      if !@url_key&.match?(URI.regexp)
         @logger.error "#{@bib_id} - invalid URL for 856$u value: #{@url_key}"
         @url_key = nil
       else

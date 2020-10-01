@@ -26,8 +26,4 @@ class Format
     types.unshift bib_format
     types
   end
-
-
-
-
 end

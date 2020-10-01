@@ -4,7 +4,6 @@ require 'active_support/core_ext/string'
 # Cached mapping of ARKs to Bib IDs
 # Retrieves and stores paginated Solr responses containing the ARK's and BibID's
 class CacheMap
-
   def self.cache_key_for(ark:)
     ark.gsub(/[\:\/]/, '_')
   end

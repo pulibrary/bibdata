@@ -23,7 +23,6 @@ class DumpFile < ActiveRecord::Base
         digest
       end
     end
-
   end
 
   before_destroy do
@@ -77,5 +76,4 @@ class DumpFile < ActiveRecord::Base
     end
     self
   end
-
 end
