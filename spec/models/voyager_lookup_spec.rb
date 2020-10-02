@@ -358,6 +358,17 @@ RSpec.describe VoyagerLookup do
       end
     end
 
+    context 'A holding with multiple available items' do
+      it 'has status_label "All items available"' do
+        bib_id = '566103'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "All items available"
+      end
+    end
+
     context 'An item charged to the CDL patron group' do
       it 'has status_label "Reserved for digital lending"' do
         bib_id = '7699003'

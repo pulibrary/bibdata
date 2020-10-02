@@ -104,6 +104,11 @@ class VoyagerLookup
     def status_label(item)
       if item[:patron_group_charged] == "CDL"
         "Reserved for digital lending"
+      elsif item[:more_items] && !status_starts?('on-site', item[:status])
+        # This is a baseline value given no matter what the status of the other items are
+        # Orangelight has logic to check the items individually and replace this
+        # value if needed
+        "All items available"
       elsif status_includes?(available_statuses, item[:status])
         "Available"
       elsif status_includes?(long_overdue_statuses, item[:status])
