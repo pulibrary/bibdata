@@ -48,16 +48,16 @@ RSpec.describe CampusAccess, type: :model do
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       trained_file = File.expand_path("../../fixtures/access_learn.xlsx", __FILE__)
       described_class.load_access(f, trained_file: trained_file)
-      expect(CampusAccess.count).to eq(7)
-      expect(CampusAccess.all.map { |access| [access.uid, access.category] }).to contain_exactly(["test1", "full"], ["test2", "full"], ["test3", "full"], ["test6", "full"], ["learn1", "trained"], ["learn2", "trained"], ["learn4", "trained"])
+      expect(CampusAccess.count).to eq(8)
+      expect(CampusAccess.all.map { |access| [access.uid, access.category] }).to contain_exactly(["test1", "full"], ["test2", "full"], ["test3", "full"], ["test6", "full"], ["test5", "full"], ["learn1", "trained"], ["learn2", "trained"], ["learn4", "trained"])
     end
 
     it "loads the database with the xslx file and additional ids removing existing rows" do
       CampusAccess.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       described_class.load_access(f, additional_ids: ['elephant1', 'dog2'])
-      expect(CampusAccess.count).to eq(6)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test6", 'elephant1', 'dog2')
+      expect(CampusAccess.count).to eq(7)
+      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test5", "test6", 'elephant1', 'dog2')
     end
 
     it "leaves the database alone if the file does not exist and no ids are given" do
