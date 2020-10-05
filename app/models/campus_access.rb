@@ -56,7 +56,7 @@ class CampusAccess < ActiveRecord::Base
           row = worksheet[row_number]
           # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 (Safe Practices for Resumption of On-Campus Operations)
           id = send(filter, row)
-          users << id if id.present?
+          users << id.downcase if id.present?
         end
         users.uniq
       end
