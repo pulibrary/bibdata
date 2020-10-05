@@ -14,7 +14,6 @@ module AlmaAdapter
           { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
           'Accept' => 'application/xml'
         )
-
         doc = Nokogiri::XML(res.body)
         doc_unsuppressed(doc)
         unsuppressed_marc.first
@@ -53,8 +52,7 @@ module AlmaAdapter
       # @return [Hash] of holdings / items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date" }
-        Alma::BibItem.find(id, opts)
-        # TODO: transform alma response to marc liberation format
+        Alma::BibItem.find(id, opts).first.item
       end
 
       private

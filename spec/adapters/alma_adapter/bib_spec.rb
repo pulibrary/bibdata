@@ -13,6 +13,8 @@ RSpec.describe AlmaAdapter::Bib do
   let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
   let(:unsuppressed_no_ava) { "99171146000521" }
   let(:unsuppressed_no_ava_xml) { file_fixture("alma/99171146000521_no_AVA.xml").read }
+  let(:bib_items_po) { "99227515106421" }
+  let(:bib_items_po_json) { file_fixture("alma/99227515106421_po.json") }
 
   before do
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
@@ -50,6 +52,18 @@ RSpec.describe AlmaAdapter::Bib do
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99227515106421/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: bib_items_po_json
+      )
   end
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
@@ -80,20 +94,45 @@ RSpec.describe AlmaAdapter::Bib do
     end
   end
 
-  describe "record with no physical availability" do
+  describe "record with no physical inventory" do
     it "doesn't have an AVA tag" do
       expect(described_class.get_bib_record(unsuppressed_no_ava)['AVA']).to be nil
     end
   end
 
-  describe "record with electronic availability" do
+  describe "record with electronic inventory" do
     it "has an AVE tag" do
       expect(described_class.get_bib_record(unsuppressed_no_ava)['AVE']).not_to be nil
     end
   end
 
+  # no need to check for a 959 in Alma. This will be a check after the index
+  describe "alma holding with order information" do
+    it "has a PO line" do
+      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("po_line" => "POL-8129")
+      # we added a PO for a holding
+      # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
+      # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
+      # we might want to test this on the item level or in the availability.
+      # TODO What does the AVA tag display after the PO is accepted.
+      # TODO test what info is returned when this process type is complete.
+    end
+    it "has a process_type of ACQ-acquisition" do
+      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
+    end
+    it "has a barcode" do
+      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("barcode" => "A19129")
+    end
+    it "has an item" do
+      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("pid" => "2384011050006421")
+    end
+    it "has a base_status" do
+      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
+    end
+  end
+
   describe "with an alma record that has an ARK" do
-    it "exposes the ark" do
+    xit "exposes the ark" do
       # find an alma record with an ark.princeton.edu
     end
   end
@@ -101,29 +140,7 @@ RSpec.describe AlmaAdapter::Bib do
   describe "alma record with no item" do
     # it has a holding
     # it doesn't have an item. This should be checked on the Holding
-    it "has a holding" do
-    end
-  end
-
-  describe "alma holding with order information" do
-    # alma record with a po line.
-    it "displays ..." do
-    end
-  end
-
-  # no need to check for a 959 in Alma. This will be a check after the index
-  describe "alma holding with order information" do
-    it "has a PO line" do
-      # we added a PO for a holding
-      # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
-      # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
-      # we might want to test this on the item level or in the availability.
-      # when we first added the PO line it created the item 2384011050006421 with an on order status.
-      # This is different from voyager where it doesn't add an item when the user creates a PO line.
-      # What does the AVA tag display after the PO is accepted.
-      # it has a process type of ACQ. because it is still not received.
-      # it has a base_status with 'Item not in place'
-      # test what info is returned when this process type is complete.
+    xit "has a holding" do
     end
   end
 
@@ -143,7 +160,7 @@ RSpec.describe AlmaAdapter::Bib do
           body: fixture_file
         )
       items_data = described_class.get_items_for_bib(unsuppressed)
-      expect(items_data).to be_a Alma::BibItemSet
+      expect(items_data).to be_a Hash
     end
   end
 end
