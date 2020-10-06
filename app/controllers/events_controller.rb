@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @events = Event.all
+    @events = Event.paginate(page: params[:page], per_page: 50).order('id DESC')
     respond_with(@events)
   end
 
