@@ -2,9 +2,12 @@ require "rails_helper"
 
 RSpec.describe VoyagerLookup do
   let(:lib_loc) { Locations::Library.new(label: 'Library') }
+  let(:online_loc) { Locations::Library.new(label: 'Online') }
   let(:holding_loc_non_circ) { Locations::HoldingLocation.new(circulates: false, always_requestable: false, library: lib_loc, label: '') }
   let(:holding_loc_always_req) { Locations::HoldingLocation.new(circulates: false, always_requestable: true, library: lib_loc, label: '') }
   let(:holding_loc_label) { Locations::HoldingLocation.new(circulates: false, label: 'Special Room', library: lib_loc) }
+  let(:etas_location) { Locations::HoldingLocation.new(code: "etas", circulates: false, label: 'HathiTrust Emergency Temporary Access', library: online_loc) }
+  let(:etasrcp_location) { Locations::HoldingLocation.new(code: "etasrcp", circulates: false, label: 'HathiTrust Emergency Temporary Access', library: online_loc) }
 
   describe '#single_bib_availability' do
     it 'provides full availability' do
@@ -234,6 +237,30 @@ RSpec.describe VoyagerLookup do
   end
 
   describe 'status_label values' do
+    context 'An on-campus ETAS item' do
+      it 'has status_label "Online access"' do
+        bib_id = '11401609'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        allow(Locations::HoldingLocation).to receive(:find_by).and_return(etas_location)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Online access"
+      end
+    end
+
+    context 'An ETAS item at recap' do
+      it 'has status_label "Online access"' do
+        bib_id = '2160730'
+        voyager_helpers_response = voyager_helpers_availability_fixture("#{bib_id}.json")
+        allow(VoyagerHelpers::Liberator).to receive(:get_availability).and_return(voyager_helpers_response)
+        allow(Locations::HoldingLocation).to receive(:find_by).and_return(etasrcp_location)
+        availability = described_class.single_bib_availability(bib_id: bib_id)
+        status_label = availability.values.first[:status_label]
+        expect(status_label).to eq "Online access"
+      end
+    end
+
     context 'An item with status "Not Charged"' do
       it 'has status_label "Available"' do
         bib_id = '9685905'

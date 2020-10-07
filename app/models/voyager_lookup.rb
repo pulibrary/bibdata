@@ -90,6 +90,7 @@ class VoyagerLookup
     def context_based_status(loc, status)
       status = initial_status(status)
       return status unless loc
+      return "Online access" if online_temporary_access_locations.include?(loc[:code])
       return status if order_status?(status)
       status = hold_status(loc, status)
       if loc.always_requestable
@@ -240,6 +241,10 @@ class VoyagerLookup
 
     def on_site
       'On-Site'
+    end
+
+    def online_temporary_access_locations
+      ['etas', 'etasrcp']
     end
   end
 end
