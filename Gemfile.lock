@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/voyager_helpers.git
-  revision: 753232f8dd732d991aa95eaa08b6b475c2839549
-  branch: master
+  revision: 65f1ca96d89844624b0f39d598713e6a918058a3
+  branch: scsb_export
   specs:
     voyager_helpers (0.7.7)
       activesupport (~> 5.1)
@@ -202,8 +202,8 @@ GEM
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     io-console (0.5.6)
-    irb (1.2.4)
-      reline (>= 0.0.1)
+    irb (1.2.7)
+      reline (>= 0.1.5)
     iso-639 (0.2.8)
     jaro_winkler (1.5.4)
     jbuilder (2.7.0)
@@ -333,7 +333,7 @@ GEM
     rdoc (4.3.0)
     redis (4.0.1)
     regexp_parser (1.7.1)
-    reline (0.1.4)
+    reline (0.1.5)
       io-console (~> 0.5)
     request_store (1.4.1)
       rack (>= 1.4)
