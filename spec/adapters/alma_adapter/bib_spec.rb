@@ -10,11 +10,12 @@ RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
   let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
   let(:alma_marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
-  let(:holdings_991227840000541) { file_fixture("alma/991227840000541_holdings.xml").read }
+  let(:holdings_991227840000541) { file_fixture("alma/#{unsuppressed_two}_holdings.xml").read }
   let(:unsuppressed_no_ava) { "99171146000521" }
-  let(:unsuppressed_no_ava_xml) { file_fixture("alma/99171146000521_no_AVA.xml").read }
+  let(:unsuppressed_no_ava_xml) { file_fixture("alma/#{unsuppressed_no_ava}_no_AVA.xml").read }
   let(:bib_items_po) { "99227515106421" }
-  let(:bib_items_po_json) { file_fixture("alma/99227515106421_po.json") }
+  let(:bib_items_po_json) { file_fixture("alma/#{bib_items_po}_po.json") }
+  let(:bib_items_list_unsuppressed_json) { file_fixture("alma/bib_items_list_#{unsuppressed}.json") }
 
   before do
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
@@ -52,7 +53,7 @@ RSpec.describe AlmaAdapter::Bib do
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99227515106421/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{bib_items_po}/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
       .with(
         headers: {
           'Accept' => 'application/json',
@@ -63,6 +64,18 @@ RSpec.describe AlmaAdapter::Bib do
         status: 200,
         headers: { "content-Type" => "application/json" },
         body: bib_items_po_json
+      )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed}/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: bib_items_list_unsuppressed_json
       )
   end
   describe "#get_bib_record" do
@@ -106,8 +119,14 @@ RSpec.describe AlmaAdapter::Bib do
     end
   end
 
+  describe ".get_items_for_bib" do
+    it "returns a hash" do
+      expect(described_class.get_items_for_bib(unsuppressed)).to be_a Hash
+    end
+  end
+
   # no need to check for a 959 in Alma. This will be a check after the index
-  describe "alma holding with order information" do
+  describe "record with order information" do
     it "has a PO line" do
       expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("po_line" => "POL-8129")
       # we added a PO for a holding
@@ -131,36 +150,25 @@ RSpec.describe AlmaAdapter::Bib do
     end
   end
 
-  describe "with an alma record that has an ARK" do
+  describe "record with items" do
+    it "has base_status 'Item in place'" do
+      expect(described_class.get_items_for_bib(unsuppressed)["item_data"]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+    end
+    it "has a due_date_policy" do
+      expect(described_class.get_items_for_bib(unsuppressed)["item_data"]).to include("due_date_policy" => "Loanable")
+    end
+  end
+
+  describe "with an record that has an ARK" do
     xit "exposes the ark" do
       # find an alma record with an ark.princeton.edu
     end
   end
 
-  describe "alma record with no item" do
+  describe "record with no item" do
     # it has a holding
     # it doesn't have an item. This should be checked on the Holding
     xit "has a holding" do
-    end
-  end
-
-  describe ".get_items_for_bib" do
-    it "exists" do
-      fixture_file = File.open(Rails.root.join("spec", "fixtures", "files", "alma", "bib_items_list_#{unsuppressed}.json"))
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
-        .with(
-          headers: {
-            'Accept' => 'application/json',
-            'Authorization' => 'apikey TESTME'
-          }
-        )
-        .to_return(
-          status: 200,
-          headers: { "content-Type" => "application/json" },
-          body: fixture_file
-        )
-      items_data = described_class.get_items_for_bib(unsuppressed)
-      expect(items_data).to be_a Hash
     end
   end
 end
