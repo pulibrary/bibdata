@@ -120,15 +120,15 @@ RSpec.describe AlmaAdapter::Bib do
   end
 
   describe ".get_items_for_bib" do
-    it "returns a hash" do
-      expect(described_class.get_items_for_bib(unsuppressed)).to be_a Hash
+    it "returns an array" do
+      expect(described_class.get_items_for_bib(unsuppressed)).to be_a Array
     end
   end
 
   # no need to check for a 959 in Alma. This will be a check after the index
-  describe "record with order information" do
+  describe "A record with order information" do
     it "has a PO line" do
-      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("po_line" => "POL-8129")
+      expect(described_class.get_items_for_bib(bib_items_po).first["item_data"]).to include("po_line" => "POL-8129")
       # we added a PO for a holding
       # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
       # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
@@ -137,25 +137,50 @@ RSpec.describe AlmaAdapter::Bib do
       # TODO test what info is returned when this process type is complete.
     end
     it "has a process_type of ACQ-acquisition" do
-      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
+      expect(described_class.get_items_for_bib(bib_items_po).first["item_data"]).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
     end
     it "has a barcode" do
-      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("barcode" => "A19129")
+      expect(described_class.get_items_for_bib(bib_items_po).first["item_data"]).to include("barcode" => "A19129")
     end
     it "has an item" do
-      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("pid" => "2384011050006421")
+      expect(described_class.get_items_for_bib(bib_items_po).first["item_data"]).to include("pid" => "2384011050006421")
     end
     it "has a base_status" do
-      expect(described_class.get_items_for_bib(bib_items_po)["item_data"]).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
+      expect(described_class.get_items_for_bib(bib_items_po).first["item_data"]).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
     end
   end
 
-  describe "record with items" do
-    it "has base_status 'Item in place'" do
-      expect(described_class.get_items_for_bib(unsuppressed)["item_data"]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+  describe "A record with two items" do
+    it "returns an array of hashes" do
+      expect(described_class.get_items_for_bib(unsuppressed).count).to eq 2
     end
-    it "has a due_date_policy" do
-      expect(described_class.get_items_for_bib(unsuppressed)["item_data"]).to include("due_date_policy" => "Loanable")
+    describe "the first item" do
+      it "has an item id" do
+        expect(described_class.get_items_for_bib(unsuppressed)[0]["item_data"]["pid"]).to eq '2382456270006421'
+      end
+      it "is in the Law library" do
+        expect(described_class.get_items_for_bib(unsuppressed)[0]["item_data"]).to include("library" => { "value" => "LAW", "desc" => "Law Library" }, "location" => { "value" => "LAWRR", "desc" => "Reading Room" })
+      end
+      it "has base_status 'Item in place'" do
+        expect(described_class.get_items_for_bib(unsuppressed)[0]["item_data"]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+      end
+      it "has a due_date_policy" do
+        expect(described_class.get_items_for_bib(unsuppressed)[0]["item_data"]).to include("due_date_policy" => "Loanable")
+      end
+    end
+    describe "the second item" do
+      it "has an item id" do
+        expect(described_class.get_items_for_bib(unsuppressed)[1]["item_data"]["pid"]).to eq '234991080000541'
+      end
+      it "is in the Main library" do
+        expect(described_class.get_items_for_bib(unsuppressed)[1]["item_data"]).to include("library" => { "value" => "MAIN", "desc" => "Main Library" }, "location" => { "value" => "main", "desc" => "Stacks" })
+      end
+      it "has base_status 'Item in place'" do
+        expect(described_class.get_items_for_bib(unsuppressed)[1]["item_data"]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+      end
+      it "has a due_date_policy" do
+        expect(described_class.get_items_for_bib(unsuppressed)[1]["item_data"]).to include("due_date_policy" => "Loanable")
+      end
     end
   end
 

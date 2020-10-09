@@ -52,7 +52,7 @@ module AlmaAdapter
       # @return [Hash] of holdings / items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date" }
-        Alma::BibItem.find(id, opts).first.item
+        Alma::BibItem.find(id, opts).map(&:item)
       end
 
       private
