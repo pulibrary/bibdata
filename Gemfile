@@ -56,7 +56,6 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'voyager_helpers', github: "pulibrary/voyager_helpers", branch: 'master'
 gem 'whenever', "~> 0.10"
-gem 'will_paginate', '~> 3.3.0'
 gem 'yaml_db', '~> 0.7.0'
 
 group :development do
