@@ -52,26 +52,39 @@ module AlmaAdapter
       # @return [Hash] of holdings / items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date" }
-        alma_array = Alma::BibItem.find(id, opts).map(&:item)
-        byebug
-        build_items_hash(alma_array)
+        bib_item_set = Alma::BibItem.find(id, opts)
+
+        location_hash(bib_item_set)
       end
-      
-      def build_items_hash(alma_array)
-        alma_hash = {}
-        holdings_array = []
-        items_array = []
-        #alma_hash["holding_data"]['holding_id'] = holdings_array
-        alma_array.map do |a|
-          
-          alma_hash[a["item_data"]["location"]["value"]] = items_array << a["item_data"]
-          # alma_hash['holding_id']= a["holding_data"]['holding_id']
-          #alma_hash['holding_id'] = holdings_array
+
+      # def location_hash(bib_item_set)
+      #   items_hash = Hash.new
+      #   location_value_array = []
+      #
+      #   location_grouped = bib_item_set.group_by(&:location)
+      #   location_hash = location_grouped.inject({}) do |location, (key, value)|
+      #
+      #     location_value_array << value.map { |n| n.item_data }.flatten.uniq #n.holding_data["holding_id"], n.holding_data["call_number"]
+      #     #location_value_array << location_value
+      #     items_hash["items"] = location_value_array
+      #     #location_item_hash = Hash[location_value_array.collect { |l| l["holding_id"] = n.holding_data["holding_id"] }]
+      #     location[key] = items_hash
+      #     location
+      #   end
+      # end
+      def location_hash(bib_item_set)
+        holding_hash = Hash.new
+        location_value_array = []
+        item_array = []
+        location_grouped = bib_item_set.group_by(&:location)
+
+        location_hash = location_grouped.inject({}) do |location, (key, value)|
+          location_value_array << value.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data]}.flatten.uniq
+          holding_hash["items"] =location_value_array
+          #location_item_hash = Hash[location_value_array.collect { |l| l["holding_id"] = n.holding_data["holding_id"] }]
+          location[key] = holding_hash
+          location
         end
-        
-        alma_hash
-        #holdings_array
-        
       end
 
       private
