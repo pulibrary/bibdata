@@ -52,7 +52,26 @@ module AlmaAdapter
       # @return [Hash] of holdings / items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date" }
-        Alma::BibItem.find(id, opts).map(&:item)
+        alma_array = Alma::BibItem.find(id, opts).map(&:item)
+        byebug
+        build_items_hash(alma_array)
+      end
+      
+      def build_items_hash(alma_array)
+        alma_hash = {}
+        holdings_array = []
+        items_array = []
+        #alma_hash["holding_data"]['holding_id'] = holdings_array
+        alma_array.map do |a|
+          
+          alma_hash[a["item_data"]["location"]["value"]] = items_array << a["item_data"]
+          # alma_hash['holding_id']= a["holding_data"]['holding_id']
+          #alma_hash['holding_id'] = holdings_array
+        end
+        
+        alma_hash
+        #holdings_array
+        
       end
 
       private
