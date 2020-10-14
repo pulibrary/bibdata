@@ -166,7 +166,11 @@ RSpec.describe AlmaAdapter::Bib do
 
   describe "A record with two location" do
     it "returns a hash with 2 locations" do
-      expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items).length).to eq 2
+      items = described_class.get_items_for_bib(unsuppressed_two_loc_two_items)
+      expect(items.keys).to eq ["offsite", "RESERVES"]
+      expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
+      expect(items["offsite"].first["items"].count).to eq 2
+      expect(items["offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
       # bib_item_set.group_by(&:location).select {|k,v| v.first.holding_data}
       # location_grouped.map { |k,v| v.map { |n| n.item_data } }
       # location_grouped.map { |k,v| v.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data] } } #this will return holding_id call_number and the item hashes
