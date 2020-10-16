@@ -77,17 +77,21 @@ module AlmaAdapter
         location_grouped = bib_item_set.group_by(&:location)
         location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
           location_value_array = []
-          # holdings = bib_items_array.group_by{ |bi| bi["holding_data"]["holding_id"]
-          location_value_array << format_holding(bib_items_array)
+          holdings = bib_items_array.group_by { |bi| bi["holding_data"]["holding_id"] }
+          holdings.each_pair do |holding_id, items_array|
+            location_value_array << format_holding(items_array)
+          end
           location[location_code] = location_value_array
         end
       end
 
-      def format_holding(bib_items_array)
+      def format_holding(holding_items_array)
         holding_hash = {}
-        holding_hash["holding_id"] = bib_items_array.first.holding_data["holding_id"]
-        holding_hash["call_number"] = bib_items_array.first.holding_data["call_number"]
-        holding_hash["items"] = bib_items_array.map { |bib_item| bib_item.item["item_data"] }
+        # it's okay to call first here because we expect all items to be in the
+        # same holding
+        holding_hash["holding_id"] = holding_items_array.first.holding_data["holding_id"]
+        holding_hash["call_number"] = holding_items_array.first.holding_data["call_number"]
+        holding_hash["items"] = holding_items_array.map { |bib_item| bib_item.item["item_data"] }
         holding_hash
       end
 
