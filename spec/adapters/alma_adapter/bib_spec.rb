@@ -221,11 +221,20 @@ RSpec.describe AlmaAdapter::Bib do
   end
 
   describe "A record with two locations and two different holdings in one location" do
-    it "has music location with two holdings" do
+    xit "has main location with two holdings" do
       items = described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)
-      expect(items["music"].first["items"].count).to eq 2
-
+      expect(items["main"].first["items"].count).to eq 2
       # expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
+    end
+    xit "main location has two items in holding 2284629920006421" do
+      # holding key has value an array of hashes. Each hash has keys: holding_id, call_number and items array.
+      # items ids "pid": "2384629900006421", "pid": "2384621860006421"
+    end
+    xit "main location has two items in holding 2284621880006421" do
+      # items ids "pid": "2384621850006421", "pid": "2384621840006421"
+    end
+    xit "has music location with one holding" do
+      expect(items["music"].first["items"].count).to eq 1
     end
   end
 
