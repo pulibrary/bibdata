@@ -46,10 +46,10 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/voyager_helpers.git
-  revision: 65f1ca96d89844624b0f39d598713e6a918058a3
+  revision: a7e73c0807f9ec5de861135fd0f723fe707950cc
   branch: scsb_export
   specs:
-    voyager_helpers (0.7.7)
+    voyager_helpers (0.7.8)
       activesupport (~> 5.1)
       diffy (~> 3.0.7)
       irb
