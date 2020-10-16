@@ -5,6 +5,7 @@ RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:unsuppressed_two_loc_two_items) { "99223608406421" }
+  let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
   let(:suppressed) { "99222441306421" }
   let(:suppressed_unsuppressed_ids) { ["991227850000541", "991227840000541", "99222441306421"] }
   let(:suppressed_xml) { file_fixture("alma/suppressed_#{suppressed}.xml").read }
@@ -18,6 +19,7 @@ RSpec.describe AlmaAdapter::Bib do
   let(:bib_items_po_json) { file_fixture("alma/#{bib_items_po}_po.json") }
   let(:bib_items_list_unsuppressed_json) { file_fixture("alma/bib_items_list_#{unsuppressed}.json") }
   let(:unsuppressed_two_loc_two_items_json) { file_fixture("alma/#{unsuppressed_two_loc_two_items}_two_locations_two_items.json") }
+  let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
 
   before do
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
@@ -55,7 +57,7 @@ RSpec.describe AlmaAdapter::Bib do
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{bib_items_po}/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{bib_items_po}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
       .with(
         headers: {
           'Accept' => 'application/json',
@@ -67,7 +69,7 @@ RSpec.describe AlmaAdapter::Bib do
         headers: { "content-Type" => "application/json" },
         body: bib_items_po_json
       )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed}/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
       .with(
         headers: {
           'Accept' => 'application/json',
@@ -79,7 +81,7 @@ RSpec.describe AlmaAdapter::Bib do
         headers: { "content-Type" => "application/json" },
         body: bib_items_list_unsuppressed_json
       )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_two_loc_two_items}/holdings/ALL/items?expand=due_date_policy,due_date&limit=100")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_two_loc_two_items}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
       .with(
         headers: {
           'Accept' => 'application/json',
@@ -90,6 +92,18 @@ RSpec.describe AlmaAdapter::Bib do
         status: 200,
         headers: { "content-Type" => "application/json" },
         body: unsuppressed_two_loc_two_items_json
+      )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_loc_with_two_holdings}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: unsuppressed_loc_with_two_holdings_json
       )
   end
   describe "#get_bib_record" do
@@ -176,7 +190,7 @@ RSpec.describe AlmaAdapter::Bib do
       # location_grouped.map { |k,v| v.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data] } } #this will return holding_id call_number and the item hashes
       # Hash[*location_grouped.map { |k,v| v.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data] } }.flatten(1)]
     end
-    describe "the first item in offsite location" do
+    describe "the first item in the offsite location" do
       it "has an item id" do
         expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
       end
@@ -190,7 +204,7 @@ RSpec.describe AlmaAdapter::Bib do
         expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
       end
     end
-    describe "the first item in RESERVES location" do
+    describe "the first item in the RESERVES location" do
       it "has an item id" do
         expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
       end
@@ -203,6 +217,15 @@ RSpec.describe AlmaAdapter::Bib do
       it "has a due_date_policy" do
         expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
       end
+    end
+  end
+
+  describe "A record with two locations and two different holdings in one location" do
+    it "has music location with two holdings" do
+      items = described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)
+      expect(items["music"].first["items"].count).to eq 2
+
+      # expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
     end
   end
 

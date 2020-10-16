@@ -51,27 +51,27 @@ module AlmaAdapter
       # @params id [string]. e.g id = "991227850000541"
       # @return [Hash] of holdings / items data
       def get_items_for_bib(id)
-        opts = { limit: 100, expand: "due_date_policy,due_date" }
+        opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
         bib_item_set = Alma::BibItem.find(id, opts)
 
         format_bib_items(bib_item_set)
       end
 
       # # keep this until testing the next fixture
-#       def format_bib_items(bib_item_set)
-#         location_grouped = bib_item_set.group_by(&:location)
-#         location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
-#           location_value_array = []
-#           # holdings = bib_items_array.group_by{ |bi| bi["holding_data"]["holding_id"]
-#           holding_hash = {}
-#           holding_hash["holding_id"] = bib_items_array.first.holding_data["holding_id"]
-#           holding_hash["call_number"] = bib_items_array.first.holding_data["call_number"]
-#           holding_hash["items"] = bib_items_array.map { |bib_item| bib_item.item["item_data"] }
-#           # location_item_hash = Hash[location_value_array.collect { |l| l["holding_id"] = n.holding_data["holding_id"] }]
-#           location_value_array << holding_hash
-#           location[location_code] = location_value_array
-#         end
-#       end
+      #       def format_bib_items(bib_item_set)
+      #         location_grouped = bib_item_set.group_by(&:location)
+      #         location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
+      #           location_value_array = []
+      #           # holdings = bib_items_array.group_by{ |bi| bi["holding_data"]["holding_id"]
+      #           holding_hash = {}
+      #           holding_hash["holding_id"] = bib_items_array.first.holding_data["holding_id"]
+      #           holding_hash["call_number"] = bib_items_array.first.holding_data["call_number"]
+      #           holding_hash["items"] = bib_items_array.map { |bib_item| bib_item.item["item_data"] }
+      #           # location_item_hash = Hash[location_value_array.collect { |l| l["holding_id"] = n.holding_data["holding_id"] }]
+      #           location_value_array << holding_hash
+      #           location[location_code] = location_value_array
+      #         end
+      #       end
 
       def format_bib_items(bib_item_set)
         location_grouped = bib_item_set.group_by(&:location)
