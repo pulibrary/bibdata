@@ -7,7 +7,6 @@
 set :stage, :production
 set :rails_env, 'production'
 server 'bibdata-staging2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker, :cron, :cron_staging, :hr_cron]
-set :branch, ENV['BRANCH'] || 'master'
 
 # Extended Server Syntax
 # ======================

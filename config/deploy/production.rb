@@ -9,7 +9,6 @@ set :rails_env, 'production'
 server 'bibdata1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker]
 server 'bibdata2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker, :hr_cron]
 server 'bibdata-worker2.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_production]
-set :branch, ENV['BRANCH'] || 'master'
 
 # Extended Server Syntax
 # ======================
