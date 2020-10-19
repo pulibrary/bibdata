@@ -64,6 +64,7 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/normal_uri_factory.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
     - 'spec/controllers/availability_controller_spec.rb'
     - 'app/models/concerns/scsb_partner_updates.rb'
 
@@ -141,6 +142,7 @@ Naming/VariableNumber:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
     - 'marc_to_solr/spec/lib/config_spec.rb'
     - 'marc_to_solr/spec/lib/geo_spec.rb'
     - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
@@ -158,6 +160,11 @@ Performance/RedundantMatch:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
+
+Performance/RegexpMatch:
+  Exclude:
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
@@ -339,6 +346,7 @@ Style/IfUnlessModifierOfIfUnless:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -374,6 +382,7 @@ Style/NegatedIf:
     - 'app/controllers/patron_controller.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
@@ -384,6 +393,7 @@ Style/Next:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -411,6 +421,7 @@ Style/ParenthesesAroundCondition:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 7
 # Cop supports --auto-correct.
@@ -422,6 +433,7 @@ Style/PercentLiteralDelimiters:
     - 'lib/tasks/scsb.rake'
     - 'marc_to_solr/lib/format/xv6xx.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 12
 # Cop supports --auto-correct.
@@ -482,6 +494,7 @@ Style/SafeNavigation:
     - 'app/models/event.rb'
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/traject_config.rb'
+    - 'marc_to_solr/lib/alma_traject_config.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
