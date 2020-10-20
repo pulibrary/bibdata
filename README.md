@@ -15,7 +15,7 @@ For now look at `config/routes.rb` for what's available.
 
 ### Oci8
 
-Oci8 is a little bit of a pain. See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for details.
+See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for details.
 
 #### Using macOS/OS X releases and Homebrew
 
@@ -53,11 +53,14 @@ To generate the fixture:
 
 ## Database Configuration
 
-Prepend the below with `RUBY_ENV=test` as appropriate
-
 ```bash
-rake db:create
-rake db:migrate
+createdb marc_liberation_dev
+RAILS_ENV=development rake db:migrate
+RAILS_ENV=development rake db:seed
+
+createdb marc_liberation_test
+RAILS_ENV=test rake db:migrate
+RAILS_ENV=test rake db:seed
 ```
 
 Get data from the production server
