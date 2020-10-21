@@ -11,7 +11,7 @@ class RecapDumpJob < ActiveJob::Base
     VoyagerHelpers::Liberator.dump_merged_records_to_file(barcode_slice, df.path, true)
     df.zip
     df.save
-    # transfer_recap_dump_file(df)
+    transfer_recap_dump_file(df)
   end
 
   def transfer_recap_dump_file(dump_file)

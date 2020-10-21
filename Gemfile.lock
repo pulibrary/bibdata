@@ -46,8 +46,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/voyager_helpers.git
-  revision: a7e73c0807f9ec5de861135fd0f723fe707950cc
-  branch: scsb_export
+  revision: e468d9ae29367d74ba7e09620238e801a7ce7bad
+  tag: v0.7.8
   specs:
     voyager_helpers (0.7.8)
       activesupport (~> 5.1)
@@ -333,7 +333,7 @@ GEM
     rdoc (4.3.0)
     redis (4.0.1)
     regexp_parser (1.7.1)
-    reline (0.1.5)
+    reline (0.1.6)
       io-console (~> 0.5)
     request_store (1.4.1)
       rack (>= 1.4)
