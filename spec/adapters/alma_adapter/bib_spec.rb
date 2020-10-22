@@ -185,10 +185,6 @@ RSpec.describe AlmaAdapter::Bib do
       expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
       expect(items["offsite"].first["items"].count).to eq 2
       expect(items["offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
-      # bib_item_set.group_by(&:location).select {|k,v| v.first.holding_data}
-      # location_grouped.map { |k,v| v.map { |n| n.item_data } }
-      # location_grouped.map { |k,v| v.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data] } } #this will return holding_id call_number and the item hashes
-      # Hash[*location_grouped.map { |k,v| v.map { |n| [n.holding_data["holding_id"], n.holding_data["call_number"], n.item_data] } }.flatten(1)]
     end
     describe "the first item in the offsite location" do
       it "has an item id" do
@@ -222,21 +218,18 @@ RSpec.describe AlmaAdapter::Bib do
 
   describe "A record with two locations and two different holdings in one location" do
     describe "location main" do
-      xit "has two holdings" do
+      it "has two holdings with two items in each" do
         items = described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)
         expect(items["main"].first["items"].count).to eq 2
-        # expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
-      end
-      it "has two items in each holding" do
-        # holding key has value an array of hashes. Each hash has keys: holding_id, call_number and items array.
-        # items ids "pid": "2384629900006421", "pid": "2384621860006421"
-        # holding key 2284621880006421
-        # items ids "pid": "2384621850006421", "pid": "2384621840006421"
+        expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][0]).to include("pid" => "2384629900006421")
+        expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][1]).to include("pid" => "2384621860006421")
+        expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][0]).to include("pid" => "2384621850006421")
+        expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][1]).to include("pid" => "2384621840006421")
       end
     end
     describe "location music" do
-      xit "has one holding" do
-        expect(items["music"].first["items"].count).to eq 1
+      it "has one holding" do
+        expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["music"].count).to eq 1
       end
     end
   end
