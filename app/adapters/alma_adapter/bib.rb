@@ -78,7 +78,7 @@ module AlmaAdapter
         location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
           location_value_array = []
           holdings = bib_items_array.group_by { |bi| bi["holding_data"]["holding_id"] }
-          holdings.each_pair do |holding_id, items_array|
+          holdings.each_pair do |_holding_id, items_array|
             location_value_array << format_holding(items_array)
           end
           location[location_code] = location_value_array
