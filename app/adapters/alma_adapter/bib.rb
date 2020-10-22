@@ -49,14 +49,15 @@ module AlmaAdapter
       end
 
       # @params id [string]. e.g id = "991227850000541"
-      # @return [Hash] of holdings / items data
+      # @return [Hash] of locations/ holdings/ items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
         bib_item_set = Alma::BibItem.find(id, opts)
-
         format_bib_items(bib_item_set)
       end
 
+      # @param [Alma::BibItemSet]
+      # @return [Hash] of locations/ holdings/ items data
       def format_bib_items(bib_item_set)
         location_grouped = bib_item_set.group_by(&:location)
         location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
@@ -69,10 +70,10 @@ module AlmaAdapter
         end
       end
 
+      # @params holding_items_array [Array]
+      # @return [Hash] of holdings
       def format_holding(holding_items_array)
         holding_hash = {}
-        # it's okay to call first here because we expect all items to be in the
-        # same holding
         holding_hash["holding_id"] = holding_items_array.first.holding_data["holding_id"]
         holding_hash["call_number"] = holding_items_array.first.holding_data["call_number"]
         holding_hash["items"] = holding_items_array.map { |bib_item| bib_item.item["item_data"] }
