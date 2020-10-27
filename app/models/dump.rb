@@ -148,6 +148,7 @@ class Dump < ActiveRecord::Base
 
         def last_incremental_update(dump_type)
           last_dump = Dump.where(dump_type: DumpType.find_by(constant: dump_type)).last
+          last_dump = last_recap_dump if dump_type == "PRINCETON_RECAP"
           last_dump&.created_at
         end
 
