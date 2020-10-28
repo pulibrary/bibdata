@@ -73,11 +73,11 @@ module AlmaAdapter
       # @params holding_items_array [Array]
       # @return [Hash] of holdings
       def format_holding(holding_items_array)
-        holding_hash = {}
-        holding_hash["holding_id"] = holding_items_array.first.holding_data["holding_id"]
-        holding_hash["call_number"] = holding_items_array.first.holding_data["call_number"]
-        holding_hash["items"] = holding_items_array.map { |bib_item| bib_item.item["item_data"] }
-        holding_hash
+        {
+          "holding_id" => holding_items_array.first.holding_data["holding_id"],
+          "call_number" => holding_items_array.first.holding_data["call_number"],
+          "items" => holding_items_array.map { |bib_item| bib_item.item["item_data"] }
+        }
       end
 
       private
