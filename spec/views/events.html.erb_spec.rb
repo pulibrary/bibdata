@@ -6,7 +6,7 @@ RSpec.describe "events/index", type: :view do
     it "lists events ordered by start asc in localtime" do
       assign(:events, [
                event1 = FactoryBot.create(:event),
-               event2 = FactoryBot.create(:event, start: Time.now - 2.month, finish: Time.now - 2.month + 180, error: nil, success: true),
+               event2 = FactoryBot.create(:event, start: Time.now - 2.months, finish: Time.now - 2.months + 180, error: nil, success: true),
                event3 = FactoryBot.create(:event, start: Time.now - 1.month, finish: Time.now - 1.month + 180, error: nil, success: true)
              ])
       render
