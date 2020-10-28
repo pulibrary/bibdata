@@ -10,7 +10,7 @@ RSpec.describe EventsController, type: :controller do
         event3 = FactoryBot.create(:event, start: "2019-11-07 03:00:00", finish: "2019-11-07 20:00:00", error: nil, success: true, created_at: "2019-11-07 20:00:00", updated_at: "2019-11-07 20:00:00")
         event4 = FactoryBot.create(:event, start: "2019-12-07 03:00:00", finish: "2019-12-07 20:00:00", error: nil, success: true, created_at: "2019-12-07 20:00:00", updated_at: "2019-12-07 20:00:00")
         get :index
-        expect(assigns(:events)).to eq([event1, event2, event3, event4])
+        expect(assigns(:events)).to eq([event2, event3, event4, event1])
         expect(response.status).to eq(200)
       end
     end
