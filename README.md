@@ -80,7 +80,8 @@ vi marc_liberation.dump
 ```
 Import data into your local database
 ```
-rake db:drop db:create
+rake db:drop
+createdb marc_liberation_dev
 psql marc_liberation_dev < marc_liberation.dump
 rake db:migrate
 rails db:environment:set RAILS_ENV=development
