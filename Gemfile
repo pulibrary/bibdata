@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ahoy_matey'
 gem 'alma'
 gem 'bixby', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.4.1'
