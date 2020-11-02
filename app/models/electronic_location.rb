@@ -40,7 +40,7 @@ class ElectronicLocation
 
     # Index the electronic locations by labels
     # @param holdings [Holding] an array of electronic holdings
-    # @param [Hash] a Hash of Holdings indexed by their identifiers
+    # @param [Hash] Hash of Holdings indexed by their identifiers
     def index_holdings!(holdings)
       @holdings = {}
       holdings.each do |holding|

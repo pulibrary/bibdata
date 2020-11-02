@@ -473,6 +473,7 @@ GEM
     yaml_db (0.7.0)
       rails (>= 3.0)
       rake (>= 0.8.7)
+    yard (0.9.25)
     yell (2.2.2)
 
 PLATFORMS
@@ -546,6 +547,7 @@ DEPENDENCIES
   webmock
   whenever (~> 0.10)
   yaml_db (~> 0.7.0)
+  yard
 
 BUNDLED WITH
    2.1.4
