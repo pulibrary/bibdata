@@ -43,5 +43,5 @@ Lint/HandleExceptions:
     - 'lib/tasks/spec.rake'
     - 'marc_to_solr/lib/location_extract.rb'
 
-RSpect/ExampleLength:
+RSpec/ExampleLength:
   Enabled: false
