@@ -4,6 +4,7 @@ Liberate MARC data from Voyager.
 
 [![CircleCI](https://circleci.com/gh/pulibrary/marc_liberation.svg?style=svg)](https://circleci.com/gh/pulibrary/marc_liberation)
 [![CoverageStatus](https://coveralls.io/repos/github/pulibrary/marc_liberation/badge.svg?branch=main)](https://coveralls.io/github/pulibrary/marc_liberation?branch=main)
+[![InchCI](https://inch-ci.org/github/pulibrary/marc_liberation.svg?branch=main)](https://inch-ci.org/github/pulibrary/marc_liberation)
 
 ## Services
 
@@ -131,7 +132,7 @@ To run all the tests use the rake task, which sets some environment variables fo
 `$ rake spec`
 
 ## Deploy
-Deployment is through capistrano. To deploy a branch other than "master", prepend an environment variable to your deploy command, e.g.:
+Deployment is through capistrano. To deploy a branch other than "main", prepend an environment variable to your deploy command, e.g.:
 `BRANCH=my_feature bundle exec cap staging deploy`
 
 ## License
