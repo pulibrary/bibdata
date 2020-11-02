@@ -37,9 +37,6 @@ jobs:
             - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
             - v2-marc_liberation-
-      - run:
-          name: Install phantomjs
-          command: sudo apt install phantomjs
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true    
       - run: gem install bundler -v '~> 2.0'
