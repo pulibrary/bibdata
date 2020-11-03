@@ -2,6 +2,9 @@
 
 Liberate MARC data from Voyager.
 
+[![CircleCI](https://circleci.com/gh/pulibrary/marc_liberation.svg?style=svg)](https://circleci.com/gh/pulibrary/marc_liberation)
+[![CoverageStatus](https://coveralls.io/repos/github/pulibrary/marc_liberation/badge.svg?branch=main)](https://coveralls.io/github/pulibrary/marc_liberation?branch=main)
+
 ## Services
 
 For now look at `config/routes.rb` for what's available.
