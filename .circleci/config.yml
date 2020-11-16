@@ -80,6 +80,9 @@ jobs:
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
             HATHI_OUTPUT_DIR: marc_to_solr/spec/fixtures/
+      - run:
+          name: Build the YARD documentation
+          command: bundle exec yardoc
 
 workflows:
   version: 2

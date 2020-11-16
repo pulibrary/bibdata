@@ -39,7 +39,7 @@ module AlmaAdapter
       end
 
       # Returns list of holding records for a given MMS
-      # @params id [string]. e.g id = "991227850000541"
+      # @param id [string]. e.g id = "991227850000541"
       def get_holding_records(id)
         res = AlmaAdapter::Connector.connection.get(
           "bibs/#{id}/holdings",
@@ -48,7 +48,7 @@ module AlmaAdapter
         res.body
       end
 
-      # @params id [string]. e.g id = "991227850000541"
+      # @param id [string]. e.g id = "991227850000541"
       # @return [Hash] of locations/ holdings/ items data
       def get_items_for_bib(id)
         opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
@@ -70,7 +70,7 @@ module AlmaAdapter
         end
       end
 
-      # @params holding_items_array [Array]
+      # @param holding_items_array [Array]
       # @return [Hash] of holdings
       def format_holding(holding_items_array)
         {
