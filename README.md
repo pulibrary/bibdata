@@ -16,6 +16,8 @@ For now look at `config/routes.rb` for what's available.
 
 ### Dependencies
   * Mysql
+  * Redis
+    * Start Redis with `redis-server`.
 
 ### Oci8
 
