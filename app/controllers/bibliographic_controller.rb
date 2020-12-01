@@ -3,8 +3,7 @@ class BibliographicController < ApplicationController
   before_action :protect, only: [:update]
 
   def bib_adapter
-    return AlmaAdapter::Bib if params[:adapter].present? && params[:adapter].casecmp("alma").zero?
-    VoyagerHelpers::Liberator
+    return AlmaAdapter::Bib
   end
 
   def index
