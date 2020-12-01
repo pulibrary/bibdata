@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Course Reserves", type: :request do
   describe "GET /courses.json" do
     it "returns JSON courses from VoyagerHelpers" do
+      pending "Replace with Alma"
       stub_all_courses
 
       get "/courses.json"
@@ -24,6 +25,7 @@ RSpec.describe "Course Reserves", type: :request do
 
   describe "GET /bib_ids?reserve_id[]=x" do
     it "returns all bib IDs with the given reserve ids" do
+      pending "Replace with Alma"
       stub_bib_ids
 
       get "/bib_ids?reserve_id[]=1&reserve_id[]=2"
@@ -42,16 +44,16 @@ RSpec.describe "Course Reserves", type: :request do
   end
 
   def stub_all_courses
-    allow(VoyagerHelpers::Liberator).to receive(:active_courses).and_return([
-                                                                              VoyagerHelpers::Course.new(1958, "Molecular Biology", "MOL", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
-                                                                            ])
+    # allow(VoyagerHelpers::Liberator).to receive(:active_courses).and_return([
+    #                                                                           VoyagerHelpers::Course.new(1958, "Molecular Biology", "MOL", "Genetics", "MOL 342", 171, "Gertrud M.", "Schupbach")
+    #                                                                         ])
   end
 
   def stub_bib_ids
-    allow(VoyagerHelpers::Liberator).to receive(:course_bibs).with(['1', '2']).and_return([
-                                                                                            VoyagerHelpers::CourseBib.new(1, 3),
-                                                                                            VoyagerHelpers::CourseBib.new(2, 4)
-                                                                                          ])
+    # allow(VoyagerHelpers::Liberator).to receive(:course_bibs).with(['1', '2']).and_return([
+    #                                                                                         VoyagerHelpers::CourseBib.new(1, 3),
+    #                                                                                         VoyagerHelpers::CourseBib.new(2, 4)
+    #                                                                                       ])
   end
 
   def json_response
