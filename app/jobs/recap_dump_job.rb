@@ -5,13 +5,14 @@ class RecapDumpJob < ActiveJob::Base
   queue_as :default
 
   def perform(barcode_slice, df_id)
-    df = DumpFile.find(df_id)
-    File.truncate(df.path, 0) if File.exist?(df.path)
-    # true is passed to make sure this returns recap flavored data
-    VoyagerHelpers::Liberator.dump_merged_records_to_file(barcode_slice, df.path, true)
-    df.zip
-    df.save
-    transfer_recap_dump_file(df)
+    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+    # df = DumpFile.find(df_id)
+    # File.truncate(df.path, 0) if File.exist?(df.path)
+    # # true is passed to make sure this returns recap flavored data
+    # VoyagerHelpers::Liberator.dump_merged_records_to_file(barcode_slice, df.path, true)
+    # df.zip
+    # df.save
+    # transfer_recap_dump_file(df)
   end
 
   def transfer_recap_dump_file(dump_file)

@@ -10,14 +10,15 @@ class ItemsController < ApplicationController
   end
 
   def item
-    record = VoyagerHelpers::Liberator.get_item(sanitize(params[:item_id]))
-    if record.nil?
-      render plain: "Item #{params[:item_id]} not found.", status: 404
-    else
-      respond_to do |wants|
-        wants.json  { render json: MultiJson.dump(record) }
-        wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
-      end
-    end
+    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+    # record = VoyagerHelpers::Liberator.get_item(sanitize(params[:item_id]))
+    # if record.nil?
+    #   render plain: "Item #{params[:item_id]} not found.", status: 404
+    # else
+    #   respond_to do |wants|
+    #     wants.json  { render json: MultiJson.dump(record) }
+    #     wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
+    #   end
+    # end
   end
 end

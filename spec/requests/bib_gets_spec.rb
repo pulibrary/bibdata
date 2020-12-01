@@ -4,6 +4,7 @@ require 'marc'
 RSpec.describe "Bibliographic Gets", type: :request do
   describe "GET /bibliographic/430472/items" do
     it "Properly encoded item records" do
+      pending "Replace with Alma"
       stub_voyager_items('430472')
       get '/bibliographic/430472/items'
       expect(response.status).to be(200)
@@ -12,7 +13,8 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe "GET /bibliographic/00000000/items" do
     it "returns an error when the bib record does not exist" do
-      allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return([])
+      pending "Replace with Alma"
+      # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return([])
       get '/bibliographic/00000000/items'
       expect(response.status).to be(404)
     end
@@ -20,6 +22,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe "GET /bibliographic/6815537" do
     it "Removes bib 852 when there is no holding record" do
+      pending "Replace with Alma"
       stub_voyager('6815537')
       get '/bibliographic/6815537.json'
       bib = JSON.parse(response.body)
@@ -94,6 +97,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     it 'retrieves solr json for a bib record' do
+      pending "Replace with Alma"
       bib_id = '1234567'
       stub_voyager('1234567')
       get "/bibliographic/#{bib_id}/solr"
@@ -105,6 +109,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK' do
       it 'exposes the ARK' do
+        pending "Replace with Alma"
         bib_id = '10372293'
         stub_voyager('10372293')
         get "/bibliographic/#{bib_id}/solr"
@@ -122,6 +127,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK in Figgy' do
       it 'exposes a link to the catalog' do
+        pending "Replace with Alma"
         bib_id = '4765221'
         stub_voyager('4765221')
         stub_ezid(shoulder: "88435", blade: "00000140q")
@@ -143,6 +149,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     it 'displays an error when the bib record does not exist' do
+      pending "Replace with Alma"
       stub_voyager('00000000')
       get '/bibliographic/00000000/solr'
       expect(response.status).to be(404)
@@ -151,6 +158,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe 'retrieving json+ld' do
     it 'retrieves json+ld for a bib record' do
+      pending "Replace with Alma"
       stub_voyager('1234567')
       get "/bibliographic/1234567/jsonld"
       expect(response.status).to be(200)
@@ -162,6 +170,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK' do
       it 'exposes the ARK' do
+        pending "Replace with Alma"
         bib_id = '10372293'
         stub_voyager('10372293')
         stub_ezid(shoulder: "88435", blade: "dsp015425kd270")
@@ -176,6 +185,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
     context 'with a bib record which has an ARK for a Figgy resource' do
       it 'exposes the ARK' do
+        pending "Replace with Alma"
         bib_id = '4609321'
         stub_voyager('4609321')
         stub_ezid(shoulder: "88435", blade: "xp68kg247")
@@ -192,12 +202,14 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe "GET /bibliographic/:bib_id" do
     it "returns an error when the bib record does not exist" do
+      pending "Replace with Alma"
       stub_voyager('00000000')
       get '/bibliographic/00000000'
       expect(response.status).to be(404)
     end
 
     it "returns xml" do
+      pending "Replace with Alma"
       stub_voyager('1234567')
       get '/bibliographic/1234567.xml'
       expect(response.status).to be(200)
@@ -229,19 +241,23 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe 'holdings' do
     it 'provides json' do
+      pending "Replace with Alma"
       stub_voyager_holdings('1234567')
       get '/bibliographic/1234567/holdings.json' # XXX timeout
       expect(response.content_type).to eq('application/json')
     end
 
     it 'provides xml' do
+      pending "Replace with Alma"
       stub_voyager_holdings('1234567')
       get '/bibliographic/1234567/holdings.xml' # XXX timeout
       expect(response.content_type).to eq('application/xml')
     end
 
     it "returns an error when the bib record does not exist" do
-      allow(VoyagerHelpers::Liberator).to receive(:get_holding_records).and_return []
+      pending "Replace with Alma"
+      # allow(VoyagerHelpers::Liberator).to receive(:get_holding_records).and_return []
+      pending "Replace with Alma"
       get '/bibliographic/00000000/holdings'
       expect(response.status).to be(404)
     end
@@ -249,6 +265,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe "GET /bibliographic/8637182" do
     it "Removes bib 866" do
+      pending "Replace with Alma"
       stub_voyager('8637182')
       get '/bibliographic/8637182.json'
       bib = JSON.parse(response.body)
@@ -259,6 +276,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe '#get_catalog_date added to 959' do
     it 'adds item create_date when bib has associated items' do
+      pending "Replace with Alma"
       stub_voyager('4461315')
       get '/bibliographic/4461315.json'
       bib = JSON.parse(response.body)
@@ -267,6 +285,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     it 'adds item create_date when bib without items is an elf' do
+      pending "Replace with Alma"
       stub_voyager('491668')
       get '/bibliographic/491668.json'
       bib = JSON.parse(response.body)
@@ -275,6 +294,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     it 'does not add item create_date when bib without items is not elf' do
+      pending "Replace with Alma"
       stub_voyager('4609321')
       get '/bibliographic/4609321.json'
       bib = JSON.parse(response.body)
@@ -285,6 +305,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
 
   describe 'holding record info is coupled with holding id in bib record' do
     it 'merges 852s and 856s from holding record into bib record' do
+      pending "Replace with Alma"
       bib_id = '7617477'
       stub_voyager('7617477')
       get "/bibliographic/#{bib_id}.json"
@@ -305,6 +326,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     it 'merges 866s from holding record into bib record when present' do
+      pending "Replace with Alma"
       bib_id = '4609321'
       stub_voyager('4609321')
       get "/bibliographic/#{bib_id}.json"
@@ -325,20 +347,20 @@ end
 
 def stub_voyager(bibid)
   f = File.expand_path("../../fixtures/#{bibid}.mrx", __FILE__)
-  allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return MARC::XMLReader.new(f).first
+  # allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return MARC::XMLReader.new(f).first
 end
 
 def stub_voyager_holding(bibid)
   f = File.expand_path("../../fixtures/#{bibid}-holding.xml", __FILE__)
-  allow(VoyagerHelpers::Liberator).to receive(:get_holding_record).and_return MARC::XMLReader.new(f).first
+  # allow(VoyagerHelpers::Liberator).to receive(:get_holding_record).and_return MARC::XMLReader.new(f).first
 end
 
 def stub_voyager_holdings(bibid)
   f = File.expand_path("../../fixtures/#{bibid}-holdings.xml", __FILE__)
-  allow(VoyagerHelpers::Liberator).to receive(:get_holding_records).and_return [MARC::XMLReader.new(f).first]
+  # allow(VoyagerHelpers::Liberator).to receive(:get_holding_records).and_return [MARC::XMLReader.new(f).first]
 end
 
 def stub_voyager_items(bibid)
   f = File.expand_path("../../fixtures/#{bibid}-items.json", __FILE__)
-  allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return JSON.parse(File.read(f))
+  # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return JSON.parse(File.read(f))
 end

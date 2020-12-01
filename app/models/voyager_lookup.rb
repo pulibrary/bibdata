@@ -4,43 +4,47 @@ class VoyagerLookup
     # @param [Array<String>] bib_ids the IDs for bib. items
     # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
     def multiple_bib_availability(bib_ids:, full: false)
-      availability = VoyagerHelpers::Liberator.get_availability(bib_ids, full)
-      multiple_bib_circulation(availability)
-    rescue OCIError => oci_error
-      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
-      {}
+      # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+      # availability = VoyagerHelpers::Liberator.get_availability(bib_ids, full)
+      # multiple_bib_circulation(availability)
+    # rescue OCIError => oci_error
+    #   Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+    #   {}
     end
 
     # Retrieves the availability status of a holding from Voyager
     # @param [String] bib_id the IDs for bib. item
     # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
     def single_bib_availability(bib_id:, full: true)
-      availability = VoyagerHelpers::Liberator.get_availability([bib_id], full)
-      single_bib_circulation(availability)
-    rescue OCIError => oci_error
-      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
-      {}
+      # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+      #   availability = VoyagerHelpers::Liberator.get_availability([bib_id], full)
+      #   single_bib_circulation(availability)
+      # rescue OCIError => oci_error
+      #   Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+      #   {}
     end
 
     # Retrieves the availability status of a holding from Voyager
     # @param [Integer] mfhd the ID for MFHD information
     # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
     def single_mfhd_availability(mfhd:)
-      availability = VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd)
-      single_mfhd_circulation(availability)
-    rescue OCIError => oci_error
-      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
-      {}
+      # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+      #   availability = VoyagerHelpers::Liberator.get_full_mfhd_availability(mfhd)
+      #   single_mfhd_circulation(availability)
+      # rescue OCIError => oci_error
+      #   Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+      #   {}
     end
 
     # Retrieves the availability status of a holding from Voyager
     # @param [Integer] mfhd_serial the ID for MFHD information describing a series
     # @return [Hash] the response containing MFHDs (location and status information) for the requested item(s)
     def mfhd_serial_availability(mfhd_serial:)
-      VoyagerHelpers::Liberator.get_current_issues(mfhd_serial)
-    rescue OCIError => oci_error
-      Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
-      {}
+      # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+    #   VoyagerHelpers::Liberator.get_current_issues(mfhd_serial)
+    # rescue OCIError => oci_error
+    #   Rails.logger.error "Error encountered when requesting availability status: #{oci_error}"
+    #   {}
     end
 
     def multiple_bib_circulation(bibs)
