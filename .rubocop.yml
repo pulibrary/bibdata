@@ -45,3 +45,6 @@ Lint/HandleExceptions:
 
 RSpec/ExampleLength:
   Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false

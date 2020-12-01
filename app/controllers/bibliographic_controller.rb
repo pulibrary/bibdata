@@ -3,7 +3,7 @@ class BibliographicController < ApplicationController
   before_action :protect, only: [:update]
 
   def bib_adapter
-    return AlmaAdapter::Bib
+    AlmaAdapter::Bib
   end
 
   def index
