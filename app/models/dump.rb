@@ -1,5 +1,4 @@
 # encoding: utf-8
-require 'voyager_helpers'
 require 'zip'
 require 'net/sftp'
 require 'date'
@@ -69,42 +68,44 @@ class Dump < ActiveRecord::Base
       end
 
       def diff_since_last
-        dump = nil
-        dump_type = 'CHANGED_RECORDS'
-        timestamp = incremental_update_timestamp(dump_type)
-        Event.record do |event|
-          # Get the objects
-          earlier_merged_dump, later_merged_dump = last_two_merged_dumps
-
-          # Unzip them and get the paths
-          [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.unzip }
-
-          earlier_p, later_p = earlier_merged_dump.dump_files.first.path, later_merged_dump.dump_files.first.path
-          bib_changes_report = VoyagerHelpers::SyncFu.compare_id_dumps(earlier_p, later_p)
-          updated_bibs_supplement = VoyagerHelpers::Liberator.get_updated_bibs(timestamp)
-          bib_changes_report.updated += updated_bibs_supplement
-          dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
-          dump.event = event
-          dump.update_ids = bib_changes_report.updated.uniq
-          dump.delete_ids = bib_changes_report.deleted
-          dump.save
-          # Zip again
-          [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.zip }
-          dump.dump_updated_records
-        end
-        dump
+        # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+        # dump = nil
+        # dump_type = 'CHANGED_RECORDS'
+        # timestamp = incremental_update_timestamp(dump_type)
+        # Event.record do |event|
+        #   # Get the objects
+        #   earlier_merged_dump, later_merged_dump = last_two_merged_dumps
+        #
+        #   # Unzip them and get the paths
+        #   [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.unzip }
+        #
+        #   earlier_p, later_p = earlier_merged_dump.dump_files.first.path, later_merged_dump.dump_files.first.path
+        #   bib_changes_report = VoyagerHelpers::SyncFu.compare_id_dumps(earlier_p, later_p)
+        #   updated_bibs_supplement = VoyagerHelpers::Liberator.get_updated_bibs(timestamp)
+        #   bib_changes_report.updated += updated_bibs_supplement
+        #   dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
+        #   dump.event = event
+        #   dump.update_ids = bib_changes_report.updated.uniq
+        #   dump.delete_ids = bib_changes_report.deleted
+        #   dump.save
+        #   # Zip again
+        #   [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.zip }
+        #   dump.dump_updated_records
+        # end
+        # dump
       end
 
       def full_bib_dump
-        dump = nil
-        Event.record do |event|
-          dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
-          bibs = VoyagerHelpers::Liberator.get_all_bib_ids
-          dump.dump_bib_records(bibs, 'super_low')
-          dump.event = event
-          dump.save
-        end
-        dump
+        # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+        # dump = nil
+        # Event.record do |event|
+        #   dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
+        #   bibs = VoyagerHelpers::Liberator.get_all_bib_ids
+        #   dump.dump_bib_records(bibs, 'super_low')
+        #   dump.event = event
+        #   dump.save
+        # end
+        # dump
       end
 
       def partner_update
@@ -152,32 +153,33 @@ class Dump < ActiveRecord::Base
         end
 
         def dump_ids(type)
-          dump = nil
-          Event.record do |event|
-            dump = Dump.create(dump_type: DumpType.find_by(constant: type))
-            dump.event = event
-            dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type)) unless type == 'PRINCETON_RECAP'
-            if type == 'BIB_IDS'
-              VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
-            elsif type == 'MERGED_IDS'
-              VoyagerHelpers::SyncFu.bibs_with_holdings_to_file(dump_file.path)
-            elsif type == 'PRINCETON_RECAP'
-              timestamp = incremental_update_timestamp(type).to_time
-              barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(timestamp)
-              dump.update_ids = barcodes
-              dump.save
-              dump.dump_updated_recap_records(barcodes)
-            else
-              raise 'Unrecognized DumpType'
-            end
-            unless type == 'PRINCETON_RECAP'
-              dump_file.save
-              dump_file.zip
-              dump.dump_files << dump_file
-            end
-            dump.save
-          end
-          dump
+          # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
+          # dump = nil
+          # Event.record do |event|
+          #   dump = Dump.create(dump_type: DumpType.find_by(constant: type))
+          #   dump.event = event
+          #   dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type)) unless type == 'PRINCETON_RECAP'
+          #   if type == 'BIB_IDS'
+          #     VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
+          #   elsif type == 'MERGED_IDS'
+          #     VoyagerHelpers::SyncFu.bibs_with_holdings_to_file(dump_file.path)
+          #   elsif type == 'PRINCETON_RECAP'
+          #     timestamp = incremental_update_timestamp(type).to_time
+          #     barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(timestamp)
+          #     dump.update_ids = barcodes
+          #     dump.save
+          #     dump.dump_updated_recap_records(barcodes)
+          #   else
+          #     raise 'Unrecognized DumpType'
+          #   end
+          #   unless type == 'PRINCETON_RECAP'
+          #     dump_file.save
+          #     dump_file.zip
+          #     dump.dump_files << dump_file
+          #   end
+          #   dump.save
+          # end
+          # dump
         end
     end # class << self
 end
