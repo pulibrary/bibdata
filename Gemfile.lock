@@ -44,17 +44,6 @@ GIT
   specs:
     stringex (2.5.2)
 
-GIT
-  remote: https://github.com/pulibrary/voyager_helpers.git
-  revision: 0ae062a25177187fb6b47ae19e29b45ea469acb0
-  tag: v0.7.9
-  specs:
-    voyager_helpers (0.7.9)
-      activesupport (~> 5.1)
-      diffy (~> 3.0.7)
-      irb
-      marc (~> 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -182,7 +171,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
-    diffy (3.0.7)
     docile (1.1.5)
     dot-properties (0.1.3)
     erubi (1.9.0)
@@ -217,9 +205,6 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
-    io-console (0.5.8)
-    irb (1.3.3)
-      reline (>= 0.1.5)
     iso-639 (0.2.8)
     jaro_winkler (1.5.4)
     jbuilder (2.7.0)
@@ -354,8 +339,6 @@ GEM
     rdoc (4.3.0)
     redis (4.0.1)
     regexp_parser (1.7.1)
-    reline (0.2.3)
-      io-console (~> 0.5)
     request_store (1.4.1)
       rack (>= 1.4)
     rerun (0.10.0)
@@ -393,7 +376,6 @@ GEM
       unicode-display_width (~> 1.4.0)
     rubocop-rspec (1.31.0)
       rubocop (>= 0.60.0)
-    ruby-oci8 (2.2.5.1)
     ruby-progressbar (1.10.1)
     rubyXL (3.4.15)
       nokogiri (>= 1.10.8)
@@ -550,7 +532,6 @@ DEPENDENCIES
   rspec-rails (~> 3.8)
   rubocop
   rubocop-rspec
-  ruby-oci8 (~> 2.2.1)
   rubyXL
   rubyzip (>= 1.2.2)
   sass-rails (~> 5.0)
@@ -564,7 +545,6 @@ DEPENDENCIES
   traject (= 2.3.1)
   turbolinks
   uglifier (>= 1.3.0)
-  voyager_helpers!
   webdrivers
   webmock
   whenever (~> 0.10)
