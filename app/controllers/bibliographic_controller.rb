@@ -28,8 +28,8 @@ class BibliographicController < ApplicationController
 
     begin
       records = bib_adapter.get_bib_record(bib_id_param, nil, opts)
-    rescue OCIError => oci_error
-      Rails.logger.error "Failed to retrieve the Voyager record using the bib. ID: #{bib_id_param}: #{oci_error}"
+    rescue StandardError => e
+      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{e}"
       return head :bad_request
     end
 
