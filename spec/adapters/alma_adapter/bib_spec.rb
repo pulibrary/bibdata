@@ -2,12 +2,14 @@
 require "rails_helper"
 
 RSpec.describe AlmaAdapter::Bib do
+  let(:invalid_record) { "1234" }
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:unsuppressed_two_loc_two_items) { "99223608406421" }
   let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
   let(:suppressed) { "99222441306421" }
   let(:suppressed_unsuppressed_ids) { ["991227850000541", "991227840000541", "99222441306421"] }
+  let(:bad_request_xml) { file_fixture("alma/bad_request.xml").read }
   let(:suppressed_xml) { file_fixture("alma/suppressed_#{suppressed}.xml").read }
   let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
   let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
@@ -22,6 +24,13 @@ RSpec.describe AlmaAdapter::Bib do
   let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
 
   before do
+    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{invalid_record}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
+      .to_return(status: 400, body: bad_request_xml, headers: {
+                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+                   'Content-Type' => 'application/xml;charset=UTF-8',
+                   'Accept' => 'application/xml',
+                   'User-Agent' => 'Faraday v1.0.1'
+                 })
     stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
       .to_return(status: 200, body: unsuppressed_suppressed, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
@@ -115,6 +124,11 @@ RSpec.describe AlmaAdapter::Bib do
     context "when a suppressed bib is provided" do
       it "returns nil" do
         expect(described_class.get_bib_record(suppressed)).to be nil
+      end
+    end
+    context "when a record is not found" do
+      it "returns nil" do
+        expect(described_class.get_bib_record(invalid_record)).to be nil
       end
     end
   end
