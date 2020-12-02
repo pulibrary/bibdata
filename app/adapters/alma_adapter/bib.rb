@@ -8,7 +8,7 @@ module AlmaAdapter
       # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
       # get one bib record is supported in the bibdata UI and in the bibliographic_controller
       # @return [MARC::Record]
-      def get_bib_record(id, _conn = nil, _opts = {})
+      def get_bib_record(id)
         res = AlmaAdapter::Connector.connection.get(
           "bibs?mms_id=#{id}",
           { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
@@ -25,7 +25,7 @@ module AlmaAdapter
       # @param _conn not used in the Alma API
       # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
       # @return [Array<MARC::Record>]
-      def get_bib_records(ids, _conn = nil, _opts = {})
+      def get_bib_records(ids)
         res = AlmaAdapter::Connector.connection.get(
           "bibs?mms_id=#{ids_array_to_string(ids)}",
           { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
