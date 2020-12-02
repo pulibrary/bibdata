@@ -16,6 +16,7 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#update' do
+    before { skip("Replace with Alma") }
     it 'does not enqueue a job unless the client is authenticated' do
       post :update, params: { bib_id: bib_id }
       expect(response).to redirect_to user_cas_omniauth_authorize_path
