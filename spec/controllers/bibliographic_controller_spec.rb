@@ -132,13 +132,11 @@ RSpec.describe BibliographicController, type: :controller do
       expect(json_ld['identifier']).to include 'http://arks.princeton.edu/ark:/88435/d504rp938'
     end
 
-    context "it returns an xml record" do
-      it 'renders a marc xml record' do
-        get :bib, params: { bib_id: unsuppressed }, format: :xml
-        expect(response.body).not_to be_empty
-        expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
-        expect(response.body).to eq(marc_991227850000541.to_xml.to_s)
-      end
+    it 'renders a marc xml record' do
+      get :bib, params: { bib_id: unsuppressed }, format: :xml
+      expect(response.body).not_to be_empty
+      expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
+      expect(response.body).to eq(marc_991227850000541.to_xml.to_s)
     end
 
     context 'when an error is encountered while querying Voyager' do
