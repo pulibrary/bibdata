@@ -35,6 +35,7 @@ class BibliographicController < ApplicationController
 
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+      Rails.logger.error "Record #{params[:bib_id]} not found or suppressed"
     else
       respond_to do |wants|
         wants.json  do

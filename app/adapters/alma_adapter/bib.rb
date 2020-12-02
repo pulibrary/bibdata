@@ -87,6 +87,7 @@ module AlmaAdapter
         end
 
         def unsuppressed_marc
+          return [] unless @doc_unsuppressed.present?
           MARC::XMLReader.new(StringIO.new(@doc_unsuppressed.at_xpath('//bibs').to_xml))
         end
 
