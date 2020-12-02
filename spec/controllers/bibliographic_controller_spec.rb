@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BibliographicController, type: :controller do
   render_views
+  let(:unsuppressed) { "991227850000541" }
   let(:bib_id) { '1234567' }
   let(:bib_record) { instance_double(MARC::Record) }
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }
@@ -126,6 +127,12 @@ RSpec.describe BibliographicController, type: :controller do
       json_ld = JSON.parse(response.body)
       expect(json_ld).to include 'identifier'
       expect(json_ld['identifier']).to include 'http://arks.princeton.edu/ark:/88435/d504rp938'
+    end
+
+    it 'renders a marc xml record' do
+      get :bib, params: { bib_id: unsuppressed }, format: :xml
+      expect(response.body).not_to be_empty
+      expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
     end
 
     context 'when an error is encountered while querying Voyager' do
