@@ -1,4 +1,3 @@
-require 'voyager_helpers'
 require 'net/sftp'
 
 class RecapDumpJob < ActiveJob::Base
