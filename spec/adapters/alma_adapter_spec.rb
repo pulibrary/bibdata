@@ -1,7 +1,8 @@
-# frozen_string_literal: true
-require "rails_helper"
+require 'rails_helper'
 
-RSpec.describe AlmaAdapter::Bib do
+RSpec.describe AlmaAdapter do
+  subject(:adapter) { described_class.new }
+
   let(:invalid_record) { "1234" }
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
@@ -118,17 +119,17 @@ RSpec.describe AlmaAdapter::Bib do
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
       it "returns one record" do
-        expect(described_class.get_bib_record(unsuppressed)['001'].value).to eq "991227850000541"
+        expect(adapter.get_bib_record(unsuppressed)['001'].value).to eq "991227850000541"
       end
     end
     context "when a suppressed bib is provided" do
       it "returns nil" do
-        expect(described_class.get_bib_record(suppressed)).to be nil
+        expect(adapter.get_bib_record(suppressed)).to be nil
       end
     end
     context "when a record is not found" do
       it "returns nil" do
-        expect(described_class.get_bib_record(invalid_record)).to be nil
+        expect(adapter.get_bib_record(invalid_record)).to be nil
       end
     end
   end
@@ -136,40 +137,40 @@ RSpec.describe AlmaAdapter::Bib do
   describe "#get_bib_records" do
     context "if a string of bibs is provided" do
       it "returns multiple unsuppressed records" do
-        expect(described_class.get_bib_records(suppressed_unsuppressed_ids)[0]['001'].value).to eq unsuppressed_two
-        expect(described_class.get_bib_records(suppressed_unsuppressed_ids)[1]['001'].value).to eq unsuppressed
-        expect(described_class.get_bib_records(suppressed_unsuppressed_ids).count).to eq 2
+        expect(adapter.get_bib_records(suppressed_unsuppressed_ids)[0]['001'].value).to eq unsuppressed_two
+        expect(adapter.get_bib_records(suppressed_unsuppressed_ids)[1]['001'].value).to eq unsuppressed
+        expect(adapter.get_bib_records(suppressed_unsuppressed_ids).count).to eq 2
       end
     end
   end
 
   describe '#get_holding_records' do
     it "returns the holdings for a bib" do
-      expect(described_class.get_holding_records(unsuppressed)).to be_a(String)
+      expect(adapter.get_holding_records(unsuppressed)).to be_a(String)
     end
   end
 
   describe "record with no physical inventory" do
     it "doesn't have an AVA tag" do
-      expect(described_class.get_bib_record(unsuppressed_no_ava)['AVA']).to be nil
+      expect(adapter.get_bib_record(unsuppressed_no_ava)['AVA']).to be nil
     end
   end
 
   describe "record with electronic inventory" do
     it "has an AVE tag" do
-      expect(described_class.get_bib_record(unsuppressed_no_ava)['AVE']).not_to be nil
+      expect(adapter.get_bib_record(unsuppressed_no_ava)['AVE']).not_to be nil
     end
   end
 
   describe ".get_items_for_bib" do
     it "returns a Hash" do
-      expect(described_class.get_items_for_bib(unsuppressed)).to be_a Hash
+      expect(adapter.get_items_for_bib(unsuppressed)).to be_a Hash
     end
 
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
       it "has a PO line" do
-        expect(described_class.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("po_line" => "POL-8129")
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("po_line" => "POL-8129")
         # we added a PO for a holding
         # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
         # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
@@ -178,22 +179,22 @@ RSpec.describe AlmaAdapter::Bib do
         # TODO test what info is returned when this process type is complete.
       end
       it "has a process_type of ACQ-acquisition" do
-        expect(described_class.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
       end
       it "has a barcode" do
-        expect(described_class.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("barcode" => "A19129")
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("barcode" => "A19129")
       end
       it "has an item" do
-        expect(described_class.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("pid" => "2384011050006421")
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("pid" => "2384011050006421")
       end
       it "has a base_status" do
-        expect(described_class.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
       end
     end
 
     context "A record with two locations and two items in each location" do
       it "returns a hash with 2 locations" do
-        items = described_class.get_items_for_bib(unsuppressed_two_loc_two_items)
+        items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
         expect(items.keys).to eq ["offsite", "RESERVES"]
         expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
         expect(items["offsite"].first["items"].count).to eq 2
@@ -201,30 +202,30 @@ RSpec.describe AlmaAdapter::Bib do
       end
       describe "the first item in the offsite location" do
         it "has an item id" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
         end
         it "is in the Main library" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Building 9", "value" => "offsite" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Building 9", "value" => "offsite" })
         end
         it "has base_status 'Item in place'" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
         end
         it "has a due_date_policy" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
         end
       end
       describe "the first item in the RESERVES location" do
         it "has an item id" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
         end
         it "is in the Main library" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Course Reserves", "value" => "RESERVES" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Course Reserves", "value" => "RESERVES" })
         end
         it "has base_status 'Item in place'" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
         end
         it "has a due_date_policy" do
-          expect(described_class.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
         end
       end
     end
@@ -232,17 +233,17 @@ RSpec.describe AlmaAdapter::Bib do
     context "A record with two locations and two different holdings in one location" do
       describe "location main" do
         it "has two holdings with two items in each" do
-          items = described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)
+          items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
           expect(items["main"].first["items"].count).to eq 2
-          expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][0]).to include("pid" => "2384629900006421")
-          expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][1]).to include("pid" => "2384621860006421")
-          expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][0]).to include("pid" => "2384621850006421")
-          expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][1]).to include("pid" => "2384621840006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][0]).to include("pid" => "2384629900006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][1]).to include("pid" => "2384621860006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][0]).to include("pid" => "2384621850006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][1]).to include("pid" => "2384621840006421")
         end
       end
       describe "location music" do
         it "has one holding" do
-          expect(described_class.get_items_for_bib(unsuppressed_loc_with_two_holdings)["music"].count).to eq 1
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["music"].count).to eq 1
         end
       end
     end
