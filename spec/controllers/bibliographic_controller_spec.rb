@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe BibliographicController, type: :controller do
   render_views
   let(:unsuppressed) { "991227850000541" }
+  let(:ark_record) { "99226236706421" }
+  let(:ark_record_xml) { file_fixture("alma/ark_#{ark_record}.xml").read }
+  let(:marc_99226236706421) { MARC::XMLReader.new(StringIO.new(ark_record_xml)).first }
   let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
   let(:marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
   let(:bib_id) { '1234567' }
@@ -16,7 +19,6 @@ RSpec.describe BibliographicController, type: :controller do
     # allow(bib_record).to receive(:to_xml).and_return bib_record_xml
     # allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return bib_record
     allow(AlmaAdapter).to receive(:new).and_return(adapter)
-    allow(adapter).to receive(:get_bib_record).and_return(marc_991227850000541)
   end
 
   describe '#update' do
@@ -49,89 +51,8 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#bib' do
-    # let(:bib_id) { '10002695' }
-    #     let(:bib_record) do
-    #       MARC::XMLReader.new(file_path.to_s).first
-    #     end
-    #     let(:ark) { "ark:/88435/d504rp938" }
-    #     let(:docs) do
-    #       [
-    #         {
-    #           id: "b65cd851-ef01-45f2-b5bd-28c6616574ca",
-    #           internal_resource_tsim: [
-    #             "ScannedResource"
-    #           ],
-    #           internal_resource_ssim: [
-    #             "ScannedResource"
-    #           ],
-    #           internal_resource_tesim: [
-    #             "ScannedResource"
-    #           ],
-    #           identifier_tsim: [
-    #             ark
-    #           ],
-    #           identifier_ssim: [
-    #             ark
-    #           ],
-    #           identifier_tesim: [
-    #             ark
-    #           ],
-    #           source_metadata_identifier_tsim: [
-    #             bib_id
-    #           ],
-    #           source_metadata_identifier_ssim: [
-    #             bib_id
-    #           ],
-    #           source_metadata_identifier_tesim: [
-    #             bib_id
-    #           ]
-    #
-    #         }
-    #       ]
-    #     end
-    #     let(:pages) do
-    #       {
-    #         "current_page": 1,
-    #         "next_page": 2,
-    #         "prev_page": nil,
-    #         "total_pages": 1,
-    #         "limit_value": 10,
-    #         "offset_value": 0,
-    #         "total_count": 1,
-    #         "first_page?": true,
-    #         "last_page?": true
-    #       }
-    #     end
-    #     let(:results) do
-    #       {
-    #         "response": {
-    #           "docs": docs,
-    #           "facets": [],
-    #           "pages": pages
-    #         }
-    #       }
-    #     end
-    #     let(:solr_doc) do
-    #       {
-    #         "id" => ["10002695"],
-    #         "electronic_access_1display" => ["{\"http://arks.princeton.edu/ark:/88435/d504rp938\":[\"Table of contents\"]}"]
-    #       }
-    #     end
-    #     let(:indexer) { instance_double(Traject::Indexer) }
-    #     before do
-    #       stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-    #       allow(indexer).to receive(:map_record).and_return(solr_doc)
-    #       stub_const("TRAJECT_INDEXER", indexer)
-    #       stub_ezid(shoulder: "88435", blade: "d504rp938")
-    #     end
-
-    it 'generates JSON-LD' do
-      pending "Replace with Alma"
-      get :bib_jsonld, params: { bib_id: unsuppressed }
-      expect(response.body).not_to be_empty
-      json_ld = JSON.parse(response.body)
-      expect(json_ld).to include 'identifier'
-      expect(json_ld['identifier']).to include 'http://arks.princeton.edu/ark:/88435/d504rp938'
+    before do
+      allow(adapter).to receive(:get_bib_record).and_return(marc_991227850000541)
     end
 
     it 'renders a marc xml record' do
@@ -151,6 +72,100 @@ RSpec.describe BibliographicController, type: :controller do
 
         expect(response.status).to be 400
         expect(Rails.logger).to have_received(:error).with("Failed to retrieve the record using the bib. ID: 1234567: it's broken")
+      end
+    end
+  end
+
+  describe '#bib_jsonld' do
+    before do
+      allow(adapter).to receive(:get_bib_record).and_return(marc_99226236706421)
+      allow(indexer).to receive(:map_record).and_return(solr_doc)
+      stub_const("TRAJECT_INDEXER", indexer)
+      stub_ezid(shoulder: "88435", blade: "h702qb15q")
+      stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+        .with(
+          headers: {
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent' => 'Faraday v1.0.1'
+          }
+        )
+        .to_return(status: 200, body: JSON.generate(results))
+    end
+    context 'when a jsonld is requested' do
+      let(:ark) { "ark:/88435/h702qb15q" }
+      let(:bib_id) { "99226236706421" }
+      let(:docs) do
+        [
+          {
+            id: "7531f427-74a0-4986-ba52-fb3362a591b5",
+            internal_resource_tsim: [
+              "ScannedResource"
+            ],
+            internal_resource_ssim: [
+              "ScannedResource"
+            ],
+            internal_resource_tesim: [
+              "ScannedResource"
+            ],
+            identifier_tsim: [
+              ark
+            ],
+            identifier_ssim: [
+              ark
+            ],
+            identifier_tesim: [
+              ark
+            ],
+            source_metadata_identifier_tsim: [
+              bib_id
+            ],
+            source_metadata_identifier_ssim: [
+              bib_id
+            ],
+            source_metadata_identifier_tesim: [
+              bib_id
+            ]
+
+          }
+        ]
+      end
+      let(:pages) do
+        {
+          "current_page": 1,
+          "next_page": 2,
+          "prev_page": nil,
+          "total_pages": 1,
+          "limit_value": 10,
+          "offset_value": 0,
+          "total_count": 1,
+          "first_page?": true,
+          "last_page?": true
+        }
+      end
+      let(:results) do
+        {
+          "response": {
+            "docs": docs,
+            "facets": [],
+            "pages": pages
+          }
+        }
+      end
+      let(:solr_doc) do
+        {
+          "id" => ["99226236706421"],
+          "electronic_access_1display" => ["{\"http://arks.princeton.edu/ark:/88435/h702qb15q\":[\"Table of contents\"]}"]
+        }
+      end
+      let(:indexer) { instance_double(Traject::Indexer) }
+
+      it 'generates JSON-LD' do
+        get :bib_jsonld, params: { bib_id: ark_record }, format: :jsonld
+        expect(response.body).not_to be_empty
+        json_ld = JSON.parse(response.body)
+        expect(json_ld).to include 'identifier'
+        expect(json_ld['identifier']).to include 'http://arks.princeton.edu/ark:/88435/h702qb15q'
       end
     end
   end
