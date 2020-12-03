@@ -2,8 +2,8 @@ class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
 
-  def bib_adapter
-    AlmaAdapter::Bib
+  def adapter
+    @adapter ||= AlmaAdapter.new
   end
 
   def index
@@ -27,7 +27,7 @@ class BibliographicController < ApplicationController
     }
 
     begin
-      records = bib_adapter.get_bib_record(bib_id_param)
+      records = adapter.get_bib_record(bib_id_param)
     rescue StandardError => e
       Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{e}"
       return head :bad_request
@@ -55,7 +55,7 @@ class BibliographicController < ApplicationController
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-    records = bib_adapter.get_bib_record(sanitize(params[:bib_id]))
+    records = adapter.get_bib_record(sanitize(params[:bib_id]))
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -73,7 +73,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_holdings
-    records = bib_adapter.get_holding_records(sanitize(params[:bib_id]))
+    records = adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -91,7 +91,7 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = bib_adapter.get_items_for_bib(bib_id_param)
+    records = adapter.get_items_for_bib(bib_id_param)
     if records.nil? || records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -153,7 +153,7 @@ class BibliographicController < ApplicationController
     # @param opts [Hash] optional arguments
     # @return [Array<Object>] the set of bib. records
     def find_by_id(opts)
-      bib_adapter.get_bib_record(sanitized_id, nil, opts)
+      adapter.get_bib_record(sanitized_id, nil, opts)
     end
 
     # Access the URL helpers for the application
