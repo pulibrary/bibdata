@@ -55,7 +55,7 @@ class BibliographicController < ApplicationController
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-    records = adapter.get_bib_record(sanitize(params[:bib_id]))
+    records = adapter.get_bib_record(bib_id_param)
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
