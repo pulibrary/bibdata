@@ -1,0 +1,104 @@
+class AlmaAdapter
+  attr_reader :connection
+  def initialize(connection: AlmaAdapter::Connector.connection)
+    @connection = connection
+  end
+
+  # Get /almaws/v1/bibs Retrieve bibs
+  # @param id [String] e.g. id = "991227830000541"
+  # @param _opts not used in the Alma API
+  # @param _conn not used in the Alma API
+  # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
+  # get one bib record is supported in the bibdata UI and in the bibliographic_controller
+  # @return [MARC::Record]
+  def get_bib_record(id)
+    res = connection.get(
+      "bibs?mms_id=#{id}",
+      { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
+      'Accept' => 'application/xml'
+    )
+    doc = Nokogiri::XML(res.body)
+    doc_unsuppressed(doc)
+    unsuppressed_marc.first
+  end
+
+  # Get /almaws/v1/bibs Retrieve bibs
+  # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
+  # @param _opts not used in the Alma API
+  # @param _conn not used in the Alma API
+  # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
+  # @return [Array<MARC::Record>]
+  def get_bib_records(ids)
+    res = connection.get(
+      "bibs?mms_id=#{ids_array_to_string(ids)}",
+      { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
+      'Accept' => 'application/xml'
+    )
+
+    doc = Nokogiri::XML(res.body)
+    doc_unsuppressed(doc)
+
+    unsuppressed_marc.to_a
+  end
+
+  # Returns list of holding records for a given MMS
+  # @param id [string]. e.g id = "991227850000541"
+  def get_holding_records(id)
+    res = connection.get(
+      "bibs/#{id}/holdings",
+      apikey: apikey
+    )
+    res.body
+  end
+
+  # @param id [string]. e.g id = "991227850000541"
+  # @return [Hash] of locations/ holdings/ items data
+  def get_items_for_bib(id)
+    opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
+    bib_item_set = Alma::BibItem.find(id, opts)
+    format_bib_items(bib_item_set)
+  end
+
+  # @param [Alma::BibItemSet]
+  # @return [Hash] of locations/ holdings/ items data
+  def format_bib_items(bib_item_set)
+    location_grouped = bib_item_set.group_by(&:location)
+    location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
+      location_value_array = []
+      holdings = bib_items_array.group_by { |bi| bi["holding_data"]["holding_id"] }
+      holdings.each_pair do |_holding_id, items_array|
+        location_value_array << format_holding(items_array)
+      end
+      location[location_code] = location_value_array
+    end
+  end
+
+  # @param holding_items_array [Array]
+  # @return [Hash] of holdings
+  def format_holding(holding_items_array)
+    {
+      "holding_id" => holding_items_array.first.holding_data["holding_id"],
+      "call_number" => holding_items_array.first.holding_data["call_number"],
+      "items" => holding_items_array.map { |bib_item| bib_item.item["item_data"] }
+    }
+  end
+
+  private
+
+    def doc_unsuppressed(doc)
+      @doc_unsuppressed = doc.search('//bib').each { |node| node.remove if node.xpath('suppress_from_publishing').text == 'true' }
+    end
+
+    def unsuppressed_marc
+      return [] unless @doc_unsuppressed.present?
+      MARC::XMLReader.new(StringIO.new(@doc_unsuppressed.at_xpath('//bibs').to_xml))
+    end
+
+    def ids_array_to_string(ids)
+      ids.join(",")
+    end
+
+    def apikey
+      Rails.configuration.alma[:bibs_read_only]
+    end
+end
