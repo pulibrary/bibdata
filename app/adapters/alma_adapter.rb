@@ -6,39 +6,54 @@ class AlmaAdapter
 
   # Get /almaws/v1/bibs Retrieve bibs
   # @param id [String] e.g. id = "991227830000541"
-  # @param _opts not used in the Alma API
-  # @param _conn not used in the Alma API
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
   # get one bib record is supported in the bibdata UI and in the bibliographic_controller
   # @return [MARC::Record]
   def get_bib_record(id)
-    res = connection.get(
-      "bibs?mms_id=#{id}",
-      { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
-      'Accept' => 'application/xml'
-    )
-    doc = Nokogiri::XML(res.body)
-    doc_unsuppressed(doc)
-    unsuppressed_marc.first
+    get_bib_records([id])&.first
   end
 
   # Get /almaws/v1/bibs Retrieve bibs
   # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
-  # @param _opts not used in the Alma API
-  # @param _conn not used in the Alma API
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
   # @return [Array<MARC::Record>]
   def get_bib_records(ids)
-    res = connection.get(
-      "bibs?mms_id=#{ids_array_to_string(ids)}",
-      { query: { expand: "p_avail,e_avail,d_avail,requests" }, apikey: apikey },
-      'Accept' => 'application/xml'
-    )
+    bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+    MarcResponse.new(bibs: bibs).unsuppressed_marc
+  rescue Alma::StandardError
+    []
+  end
 
-    doc = Nokogiri::XML(res.body)
-    doc_unsuppressed(doc)
+  # Responsible for converting an Alma::BibSet to an array of unsuppressed MARC
+  # records.
+  class MarcResponse
+    attr_reader :bibs
+    # @param bibs [Alma::BibSet]
+    def initialize(bibs:)
+      @bibs = bibs
+      remove_suppressed!
+    end
 
-    unsuppressed_marc.to_a
+    def unsuppressed_marc
+      return [] unless bibs.present?
+      MARC::XMLReader.new(bib_marc_xml).to_a
+    end
+
+    private
+
+      def bib_marc_xml
+        StringIO.new(
+          bibs.flat_map do |bib|
+            bib["anies"]
+          end.join("")
+        )
+      end
+
+      def remove_suppressed!
+        bibs.reject! do |bib|
+          bib["suppress_from_publishing"] == "true"
+        end
+      end
   end
 
   # Returns list of holding records for a given MMS
