@@ -10,11 +10,13 @@ RSpec.describe BibliographicController, type: :controller do
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }
   let(:bib_record_xml) { File.read(file_path) }
   let(:one_bib) { "991227850000541" }
+  let(:adapter) { AlmaAdapter.new }
 
   before do
     # allow(bib_record).to receive(:to_xml).and_return bib_record_xml
     # allow(VoyagerHelpers::Liberator).to receive(:get_bib_record).and_return bib_record
-    allow(AlmaAdapter::Bib).to receive(:get_bib_record).and_return(marc_991227850000541)
+    allow(AlmaAdapter).to receive(:new).and_return(adapter)
+    allow(adapter).to receive(:get_bib_record).and_return(marc_991227850000541)
   end
 
   describe '#update' do
@@ -142,7 +144,7 @@ RSpec.describe BibliographicController, type: :controller do
     context 'when an error is encountered while querying Voyager' do
       before do
         allow(Rails.logger).to receive(:error)
-        allow(AlmaAdapter::Bib).to receive(:get_bib_record).and_raise("it's broken")
+        allow(adapter).to receive(:get_bib_record).and_raise("it's broken")
       end
       it 'returns a 400 HTTP response and logs an error' do
         get :bib, params: { bib_id: bib_id }
