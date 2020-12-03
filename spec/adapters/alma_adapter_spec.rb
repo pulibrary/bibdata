@@ -77,7 +77,6 @@ RSpec.describe AlmaAdapter do
       it "returns one record" do
         unsuppressed_id = "991227850000541"
         stub_alma_ids(ids: unsuppressed_id, status: 200, fixture: "unsuppressed_991227850000541")
-
         expect(adapter.get_bib_record(unsuppressed_id)['001'].value).to eq "991227850000541"
       end
     end
