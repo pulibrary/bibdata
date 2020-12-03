@@ -39,6 +39,8 @@ end
 
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', first: true)
+
+# cjk
 to_field 'cjk_all' do |record, accumulator|
   keep_fields = %w[880]
   result = []
@@ -281,6 +283,7 @@ to_field 'pub_date_end_sort' do |record, accumulator|
   accumulator << record.end_date_from_008
 end
 
+# Alma:needs to change https://github.com/pulibrary/marc_liberation/issues/822
 to_field 'cataloged_tdt', extract_marc('959a') do |_record, accumulator|
   accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
 end
@@ -314,11 +317,13 @@ to_field 'medium_support_display', extract_marc('340')
 #    $y and $3 for display text for link
 #    $z additional display text
 #    display host name if missing $y or $3
+# Alma:needs to change.
 to_field 'electronic_access_1display' do |record, accumulator|
   links = electronic_access_links(record, settings['figgy_cache_dir'])
   accumulator[0] = JSON.generate(links) unless links == {}
 end
 
+# Alma:needs to change
 to_field 'electronic_access_index', extract_marc('856')
 
 # Description:
@@ -528,6 +533,11 @@ to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:77
 
 # Contained in:
 #    3500 BBID773W
+# # Alma:it will not change but we need to do more work to retrieve info from the link record.
+# if there is a 773 we need to retrieve the holding and item information from that linked record.
+# example: there are 3 bibs attached to one item. Bib1 has the holding and item attached.
+# Bib1 has 774 fields for Bib2 and Bib3.
+# Bib2 and Bib3 have a 773 field linking to Bib1.
 to_field 'contained_in_s', extract_marc('773w')
 
 # Related record(s):
@@ -1099,6 +1109,9 @@ each_record do |_record, context|
 end
 
 # Process location code once
+# Alma:needs to change. Will no longer look 852b.
+# Alma:needs to change We will look 952bc. (Alma)
+# Alma:will change the way we get/index location_code (Alma)
 each_record do |record, context|
   location_codes = []
   MarcExtractor.cached("852b").collect_matching_lines(record) do |field, _spec, _extractor|
@@ -1126,7 +1139,7 @@ each_record do |record, context|
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
-    holding_library = Traject::TranslationMap.new("holding_library")
+    holding_library = Traject::TranslationMap.new("holding_library") # Alma:needs to change. It will be in the record itself (Alma)
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
@@ -1246,6 +1259,7 @@ end
 
 # Call number: +No call number available
 #    852 XX ckhij
+# Alma:needs to change We will add 852hikj. (Alma)
 to_field 'call_number_display', extract_marc('852ckhij')
 
 to_field 'call_number_browse_s', extract_marc('852khij')
@@ -1289,6 +1303,7 @@ to_field 'call_number_browse_s', extract_marc('852khij')
 # Remove holding 856s from electronic_access_1display  #
 # and put into holdings_1display                       #
 ########################################################
+# Alma:needs to change
 each_record do |_record, context|
   if context.output_hash['electronic_access_1display']
     bib_856s = JSON.parse(context.output_hash['electronic_access_1display'].first)
