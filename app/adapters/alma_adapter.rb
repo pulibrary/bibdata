@@ -100,19 +100,6 @@ class AlmaAdapter
 
   private
 
-    def doc_unsuppressed(doc)
-      @doc_unsuppressed = doc.search('//bib').each { |node| node.remove if node.xpath('suppress_from_publishing').text == 'true' }
-    end
-
-    def unsuppressed_marc
-      return [] unless @doc_unsuppressed.present?
-      MARC::XMLReader.new(StringIO.new(@doc_unsuppressed.at_xpath('//bibs').to_xml))
-    end
-
-    def ids_array_to_string(ids)
-      ids.join(",")
-    end
-
     def apikey
       Rails.configuration.alma[:bibs_read_only]
     end
