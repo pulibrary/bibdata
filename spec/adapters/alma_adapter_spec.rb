@@ -3,65 +3,27 @@ require 'rails_helper'
 RSpec.describe AlmaAdapter do
   subject(:adapter) { described_class.new }
 
-  let(:invalid_record) { "1234" }
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:unsuppressed_two_loc_two_items) { "99223608406421" }
   let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
   let(:suppressed) { "99222441306421" }
-  let(:suppressed_unsuppressed_ids) { ["991227850000541", "991227840000541", "99222441306421"] }
-  let(:bad_request_xml) { file_fixture("alma/bad_request.xml").read }
-  let(:suppressed_xml) { file_fixture("alma/suppressed_#{suppressed}.xml").read }
-  let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
-  let(:unsuppressed_suppressed) { file_fixture("alma/unsuppressed_suppressed.xml").read }
-  let(:alma_marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
   let(:holdings_991227840000541) { file_fixture("alma/#{unsuppressed_two}_holdings.xml").read }
-  let(:unsuppressed_no_ava) { "99171146000521" }
-  let(:unsuppressed_no_ava_xml) { file_fixture("alma/#{unsuppressed_no_ava}_no_AVA.xml").read }
   let(:bib_items_po) { "99227515106421" }
   let(:bib_items_po_json) { file_fixture("alma/#{bib_items_po}_po.json") }
   let(:bib_items_list_unsuppressed_json) { file_fixture("alma/bib_items_list_#{unsuppressed}.json") }
   let(:unsuppressed_two_loc_two_items_json) { file_fixture("alma/#{unsuppressed_two_loc_two_items}_two_locations_two_items.json") }
   let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
 
+  def stub_alma_ids(ids:, status:, fixture: nil)
+    json_body = file_fixture("alma/#{fixture}.json")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{Array.wrap(ids).join(',')}")
+      .to_return(status: status, body: json_body)
+  end
+
   before do
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{invalid_record}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
-      .to_return(status: 400, body: bad_request_xml, headers: {
-                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                   'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
-                 })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed_unsuppressed_ids.join(',')}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
-      .to_return(status: 200, body: unsuppressed_suppressed, headers: {
-                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                   'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
-                 })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{suppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
-      .to_return(status: 200, body: suppressed_xml, headers: {
-                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                   'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
-                 })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
-      .to_return(status: 200, body: unsuppressed_xml, headers: {
-                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                   'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
-                 })
     stub_request(:get, "https://ALMA/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
       .to_return(status: 200, body: holdings_991227840000541, headers: {
-                   'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-                   'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
-                 })
-    stub_request(:get, "https://ALMA/almaws/v1/bibs?apikey=TESTME&mms_id=#{unsuppressed_no_ava}&query%5Bexpand%5D=p_avail,e_avail,d_avail,requests")
-      .to_return(status: 200, body: unsuppressed_no_ava_xml, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                    'Content-Type' => 'application/xml;charset=UTF-8',
                    'Accept' => 'application/xml',
@@ -119,17 +81,49 @@ RSpec.describe AlmaAdapter do
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
       it "returns one record" do
-        expect(adapter.get_bib_record(unsuppressed)['001'].value).to eq "991227850000541"
+        unsuppressed_id = "991227850000541"
+        stub_alma_ids(ids: unsuppressed_id, status: 200, fixture: "unsuppressed_991227850000541")
+
+        expect(adapter.get_bib_record(unsuppressed_id)['001'].value).to eq "991227850000541"
       end
     end
     context "when a suppressed bib is provided" do
       it "returns nil" do
+        id = "99222441306421"
+        stub_alma_ids(ids: id, status: 200, fixture: "suppressed_#{id}")
         expect(adapter.get_bib_record(suppressed)).to be nil
       end
     end
     context "when a record is not found" do
       it "returns nil" do
-        expect(adapter.get_bib_record(invalid_record)).to be nil
+        stub_alma_ids(ids: "1234", status: 200, fixture: "not_found")
+
+        expect(adapter.get_bib_record("1234")).to be nil
+      end
+    end
+    context "when a bad ID is given" do
+      it "returns nil" do
+        stub_alma_ids(ids: "bananas", status: 400, fixture: "bad_request")
+
+        expect(adapter.get_bib_record("bananas")).to be nil
+      end
+    end
+
+    context "record with no physical inventory" do
+      it "doesn't have an AVA tag" do
+        id = "99171146000521"
+        stub_alma_ids(ids: id, status: 200, fixture: "#{id}_no_AVA")
+
+        expect(adapter.get_bib_record(id)['AVA']).to be nil
+      end
+    end
+
+    context "record with electronic inventory" do
+      it "has an AVE tag" do
+        id = "99171146000521"
+        stub_alma_ids(ids: id, status: 200, fixture: "#{id}_no_AVA")
+
+        expect(adapter.get_bib_record(id)['AVE']).not_to be nil
       end
     end
   end
@@ -137,9 +131,12 @@ RSpec.describe AlmaAdapter do
   describe "#get_bib_records" do
     context "if a string of bibs is provided" do
       it "returns multiple unsuppressed records" do
-        expect(adapter.get_bib_records(suppressed_unsuppressed_ids)[0]['001'].value).to eq unsuppressed_two
-        expect(adapter.get_bib_records(suppressed_unsuppressed_ids)[1]['001'].value).to eq unsuppressed
-        expect(adapter.get_bib_records(suppressed_unsuppressed_ids).count).to eq 2
+        ids = ["991227850000541", "991227840000541", "99222441306421"]
+        stub_alma_ids(ids: ids, status: 200, fixture: "unsuppressed_suppressed")
+
+        expect(adapter.get_bib_records(ids)[0]['001'].value).to eq unsuppressed_two
+        expect(adapter.get_bib_records(ids)[1]['001'].value).to eq unsuppressed
+        expect(adapter.get_bib_records(ids).count).to eq 2
       end
     end
   end
@@ -147,18 +144,6 @@ RSpec.describe AlmaAdapter do
   describe '#get_holding_records' do
     it "returns the holdings for a bib" do
       expect(adapter.get_holding_records(unsuppressed)).to be_a(String)
-    end
-  end
-
-  describe "record with no physical inventory" do
-    it "doesn't have an AVA tag" do
-      expect(adapter.get_bib_record(unsuppressed_no_ava)['AVA']).to be nil
-    end
-  end
-
-  describe "record with electronic inventory" do
-    it "has an AVE tag" do
-      expect(adapter.get_bib_record(unsuppressed_no_ava)['AVE']).not_to be nil
     end
   end
 
