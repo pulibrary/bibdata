@@ -27,9 +27,11 @@ As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http:
 
 ## Configuration
 
-Set env vars in `config/initializers/voyager_helpers.rb` and `config/initializers/devise.rb`, as appropriate (see [bibdata](https://github.com/pulibrary/princeton_ansible/blob/main/group_vars/bibdata/vault.yml)).
+### Configure Alma keys for Development
 
-You can run tests without setting up a voyager connection, but it is required for a development environment.
+1. `brew install lpass`
+2. `lpass login emailhere`
+3. `bundle exec rake alma:setup_keys`
 
 ## Creating Alma Fixtures
 
