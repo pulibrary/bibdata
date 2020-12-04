@@ -44,6 +44,7 @@ for this webhook.
   - search for Integration Profiles
   - select Webhook Monitoring
   - In the actions tab there's a place for the secret and the URL
+  - make sure to click "activate"
 
 Here is some alma documentation about webhooks:
 https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
