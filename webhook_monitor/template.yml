@@ -1,0 +1,118 @@
+Transform: "AWS::Serverless-2016-10-31"
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: alma-webhook-monitor
+    Description: Receive webhooks from Alma and log them.
+    Author: eliotjordan, hackartisan, tpendragon
+    SpdxLicenseId: Apache-2.0
+    Labels: ["alma", "monitoring"]
+    HomePageUrl: https://github.com/pulibrary/marc_liberation
+    SemanticVersion: 1.0.0
+    SourceCodeUrl: https://github.com/pulibrary/marc_liberation
+Parameters:
+  StageName:
+    Type: String
+    Description: Name of the API stage to be deployed
+    Default: latest
+Resources:
+  APIGateway:
+    Type: "AWS::Serverless::Api"
+    Properties:
+      Name: !Sub "${AWS::StackName}-api"
+      StageName: !Sub "${StageName}"
+      EndpointConfiguration: "REGIONAL"
+      Cors:
+        AllowMethods: "'GET','POST'"
+        AllowOrigin: "'*'"
+      DefinitionBody:
+        swagger: "2.0"
+        info:
+          version: "2018-12-14T18:28:00Z"
+        schemes:
+          - "http"
+          - "https"
+        paths:
+          /webhooks:
+            get:
+              produces:
+                - "application/json"
+              parameters:
+                - name: "challenge"
+                  in: "query"
+                  required: true
+                  type: "string"
+              responses:
+                "200":
+                  description: "200 response"
+                  schema:
+                    $ref: "#/definitions/Empty"
+              x-amazon-apigateway-integration:
+                responses:
+                  default:
+                    statusCode: 200
+                    responseTemplates:
+                      application/json: "{\"challenge\":\"$input.params('challenge')\"}"
+                requestTemplates:
+                  application/json: "{ \"statusCode\": 200}"
+                passthroughBehavior: "when_no_match"
+                type: "mock"
+            post:
+              produces:
+                - "application/json"
+              responses:
+                "200":
+                  description: "200 response"
+                  schema:
+                    $ref: "#/definitions/Empty"
+                "401":
+                  description: "Invalid Secret"
+                  schema:
+                    $ref: "#/definitions/Empty"
+              x-amazon-apigateway-integration:
+                uri:
+                  Fn::Sub: "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${WebhookReceiver.Arn}/invocations"
+                responses:
+                  default:
+                    statusCode: "200"
+                  "Signature Invalid":
+                    statusCode: 401
+                passthroughBehavior: "when_no_match"
+                httpMethod: "POST"
+                requestTemplates:
+                  application/json: >-
+                    #set($inputRoot = $input.path('$')) {
+                      "signature": "$input.params().header.get('X-Exl-Signature')",
+                      "body": $input.json('$')
+                    }
+                type: "aws"
+  WebhookReceiver:
+    Type: "AWS::Serverless::Function"
+    Properties:
+      Runtime: ruby2.5
+      Handler: index.handler
+      MemorySize: 512
+      Timeout: 30
+      CodeUri: ./src
+      Layers:
+        - 'arn:aws:lambda:us-east-1:464622532012:layer:Datadog-Ruby2-5:10'
+      Policies:
+        - AWSLambdaExecute
+        - Version: "2012-10-17"
+          Statement: 
+            - Effect: "Allow"
+              Action: "secretsmanager:GetSecretValue"
+              Resource: "*"
+      Environment:
+        Variables:
+          DD_FLUSH_TO_LOG: True
+      Events:
+        PostWebhook:
+          Type: Api
+          Properties:
+            Path: /webhooks
+            Method: POST
+            RestApiId: !Ref APIGateway
+Outputs:
+  Endpoint:
+    Description: Endpoint URL
+    Value: !Sub "https://${APIGateway}.execute-api.${AWS::Region}.amazonaws.com/${APIGateway.Stage}/webhooks"
