@@ -224,6 +224,24 @@ jobs:
           path: ~/marc_liberation/doc
           destination: doc
 
+  build_and_test_webhook:
+    working_directory: ~/marc_liberation
+
+    # Primary command image where all commands run
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+    steps:
+      - checkout
+      - run: gem install bundler -v '~> 2.0'
+      - run:
+          name: Install dependencies
+          working_directory: ~/marc_liberation/webhook_monitor/src/
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - run:
+          name: Rspec
+          working_directory: ~/marc_liberation/webhook_monitor/src/
+          command: bundle exec rspec spec
+
 workflows:
   version: 2
   default:
@@ -238,3 +256,4 @@ workflows:
       - doc:
           requires:
             - build
+      - build_and_test_webhook

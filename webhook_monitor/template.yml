@@ -98,9 +98,19 @@ Resources:
       Policies:
         - AWSLambdaExecute
         - Version: "2012-10-17"
-          Statement: 
+          Statement:
             - Effect: "Allow"
               Action: "secretsmanager:GetSecretValue"
+              Resource: "*"
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action: "sqs:SendMessage"
+              Resource: "*"
+        - Version: "2012-10-17"
+          Statement:
+            - Effect: "Allow"
+              Action: "sqs:GetQueueUrl"
               Resource: "*"
       Environment:
         Variables:
