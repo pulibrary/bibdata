@@ -16,3 +16,4 @@ marc_to_solr/spec/fixtures/figgy_ark_cache
 .yardoc/
 doc/
 .env
+.aws-sam/
