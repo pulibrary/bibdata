@@ -64,6 +64,11 @@ In the API sandbox (see above)
 1. Click 'Execute'
 1. You can download the file with the little "Download" button
 
+### Finding a Voyager item in Alma
+
+Voyager items, once the migration is finished, will have an ID in Alma equal to
+`99<voyager_id>3405314`
+
 ## Database Configuration
 
 ```bash
