@@ -16,7 +16,7 @@ jobs:
           POSTGRES_DB: marc_liberation_test
           POSTGRES_HOST_AUTH_METHOD: trust
 
-    steps: 
+    steps:
       - checkout
       - run:
           name: Install node@lts/erbium (need right version for `yarn`)
@@ -38,7 +38,7 @@ jobs:
             # use a partial cache restore
             - v2-marc_liberation-
       - run: sudo apt-get -y update
-      - run: sudo apt-get install -y postgresql-client || true    
+      - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
@@ -70,12 +70,105 @@ jobs:
           name: Database setup
           command: bundle exec rake db:setup
 
+  lint:
+    working_directory: ~/marc_liberation
+
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bibdata
+
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # this cache is never found because ruby-oci8 isn't included in ci
+            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            # use a partial cache restore
+            - v2-marc_liberation-
+      - run: gem install bundler -v '~> 2.0'
       - run:
-          name: Rubocop
+          name: Install dependencies
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Lint with Rubocop
           command: bundle exec rubocop
 
+  test:
+    working_directory: ~/marc_liberation
+
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bibdata
+      - image: postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: bibdata
+          POSTGRES_DB: marc_liberation_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+
+    steps:
+      - checkout
       - run:
-          name: Rspec
+          name: Install node@lts/erbium (need right version for `yarn`)
+          command: |
+            set +e
+            touch $BASH_ENV
+            curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+            echo 'export NVM_DIR="$HOME/.nvm"' >> $BASH_ENV
+            echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
+            echo 'nvm install lts/erbium' >> $BASH_ENV
+            echo 'nvm alias default lts/erbium' >> $BASH_ENV
+      - run:
+          name: Check current version of node
+          command: node -v
+      - restore_cache:
+          keys:
+            # this cache is never found because ruby-oci8 isn't included in ci
+            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            # use a partial cache restore
+            - v2-marc_liberation-
+      - run: sudo apt-get -y update
+      - run: sudo apt-get install -y postgresql-client || true
+      - run: gem install bundler -v '~> 2.0'
+      - run:
+          name: Install dependencies
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Configure location display
+          command: cp -v marc_to_solr/translation_maps/location_display.rb.tmpl marc_to_solr/translation_maps/location_display.rb
+
+      - run:
+          name: Configure locations
+          command: cp -v marc_to_solr/translation_maps/locations.rb.tmpl marc_to_solr/translation_maps/locations.rb
+
+      - run:
+          name: Configure holding libraries
+          command: cp -v marc_to_solr/translation_maps/holding_library.rb.tmpl marc_to_solr/translation_maps/holding_library.rb
+
+      - run:
+          name: Wait for Postgres
+          command: dockerize -wait tcp://localhost:5432 -timeout 120s
+
+      - run:
+          name: Database setup
+          command: bundle exec rake db:setup
+
+      - run:
+          name: Test with RSpec
           command: bundle exec rspec spec marc_to_solr/spec
           environment:
             RAILS_ENV: test
@@ -83,13 +176,53 @@ jobs:
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
             HATHI_OUTPUT_DIR: marc_to_solr/spec/fixtures/
+      - store_artifacts:
+          path: ~/marc_liberation/coverage
+          destination: coverage
+
+  doc:
+    working_directory: ~/marc_liberation
+
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bibdata
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # this cache is never found because ruby-oci8 isn't included in ci
+            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            # use a partial cache restore
+            - v2-marc_liberation-
+      - run: gem install bundler -v '~> 2.0'
+      - run:
+          name: Install dependencies
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
       - run:
           name: Build the YARD documentation
           command: bundle exec yardoc
+      - store_artifacts:
+          path: ~/marc_liberation/doc
+          destination: doc
 
 workflows:
   version: 2
-  build_accept_deploy:
+  default:
     jobs:
-      - build 
-      
+      - build
+      - lint:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
+      - doc:
+          requires:
+            - build
