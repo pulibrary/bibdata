@@ -126,6 +126,17 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     context 'with a bib record which has an ARK in Figgy' do
+      let(:iiif_manifest_url_builder) { instance_double(IIIFManifestUrlBuilder) }
+      let(:orangelight_url_builder) { instance_double(OrangelightUrlBuilder) }
+
+      before do
+        allow(orangelight_url_builder).to receive(:build).and_return("https://catalog.princeton.edu/catalog/4765221#view")
+        allow(OrangelightUrlBuilder).to receive(:new).and_return(orangelight_url_builder)
+
+        allow(iiif_manifest_url_builder).to receive(:build).and_return("https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest")
+        allow(IIIFManifestUrlBuilder).to receive(:new).and_return(iiif_manifest_url_builder)
+      end
+
       it 'exposes a link to the catalog' do
         pending "Replace with Alma"
         bib_id = '4765221'
@@ -169,6 +180,18 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     context 'with a bib record which has an ARK' do
+      let(:figgy_query_url) do
+        "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000"
+      end
+      let(:figgy_query_fixture_path) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'figgy_query_response.json') }
+      let(:figgy_query_response) do
+        File.read(figgy_query_fixture_path)
+      end
+
+      before do
+        stub_request(:get, figgy_query_url).to_return(status: 200, body: figgy_query_response)
+      end
+
       it 'exposes the ARK' do
         pending "Replace with Alma"
         bib_id = '10372293'
@@ -184,6 +207,18 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
 
     context 'with a bib record which has an ARK for a Figgy resource' do
+      let(:figgy_query_url) do
+        "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000"
+      end
+      let(:figgy_query_fixture_path) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'figgy_query_response.json') }
+      let(:figgy_query_response) do
+        File.read(figgy_query_fixture_path)
+      end
+
+      before do
+        stub_request(:get, figgy_query_url).to_return(status: 200, body: figgy_query_response)
+      end
+
       it 'exposes the ARK' do
         pending "Replace with Alma"
         bib_id = '4609321'
