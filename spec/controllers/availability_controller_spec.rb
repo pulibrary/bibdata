@@ -46,7 +46,7 @@ RSpec.describe AvailabilityController, type: :controller do
           # "on_reserve": "N", TODO: Implement
           # "patron_group_charged": null, TODO: Implement
           # "status": "On-Site", TODO: Implement
-          "label" => "Law Library",
+          "label" => "Law Library"
           # "status_label": "On-site access" TODO: Implement
         },
         # This isn't in Voyager's bibdata, I don't know why.
