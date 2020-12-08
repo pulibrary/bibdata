@@ -1,0 +1,260 @@
+{
+    "item": [
+        {
+            "bib_data": {
+                "author": "Goodyear, Frank Henry,",
+                "complete_edition": "",
+                "date_of_publication": "1985.",
+                "isbn": "0847805972 :",
+                "issn": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541",
+                "mms_id": "991227850000541",
+                "network_number": [
+                    "263059",
+                    "(CStRLIN)NJPG85-B14944",
+                    "(OCoLC)11814035"
+                ],
+                "place_of_publication": "New York :",
+                "publisher_const": "Rizzoli",
+                "title": "Welliver /"
+            },
+            "holding_data": {
+                "accession_number": "",
+                "call_number": "N6537.W36 G66 1985",
+                "call_number_type": {
+                    "desc": "Library of Congress classification",
+                    "value": "0"
+                },
+                "copy_id": "",
+                "holding_id": "2282456310006421",
+                "in_temp_location": false,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/2282456310006421",
+                "temp_call_number": "",
+                "temp_call_number_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "temp_library": {
+                    "desc": null,
+                    "value": null
+                },
+                "temp_location": {
+                    "desc": null,
+                    "value": null
+                },
+                "temp_policy": {
+                    "desc": null,
+                    "value": ""
+                }
+            },
+            "item_data": {
+                "alternative_call_number": "",
+                "alternative_call_number_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "awaiting_reshelving": false,
+                "barcode": "32101010412490",
+                "base_status": {
+                    "desc": "Item in place",
+                    "value": "1"
+                },
+                "chronology_i": "",
+                "chronology_j": "",
+                "chronology_k": "",
+                "chronology_l": "",
+                "chronology_m": "",
+                "creation_date": "2020-06-01Z",
+                "description": "",
+                "edition": null,
+                "enumeration_a": "",
+                "enumeration_b": "",
+                "enumeration_c": "",
+                "enumeration_d": "",
+                "enumeration_e": "",
+                "enumeration_f": "",
+                "enumeration_g": "",
+                "enumeration_h": "",
+                "fulfillment_note": "",
+                "imprint": null,
+                "internal_note_1": "",
+                "internal_note_2": "",
+                "internal_note_3": "",
+                "inventory_number": "",
+                "inventory_price": "",
+                "language": null,
+                "library": {
+                    "desc": "Law Library",
+                    "value": "LAW"
+                },
+                "location": {
+                    "desc": "Reading Room",
+                    "value": "LAWRR"
+                },
+                "modification_date": "2020-06-01Z",
+                "pages": "",
+                "physical_condition": {
+                    "desc": null,
+                    "value": null
+                },
+                "physical_material_type": {
+                    "desc": "Book",
+                    "value": "BOOK"
+                },
+                "pid": "2382456270006421",
+                "pieces": "",
+                "po_line": "",
+                "policy": {
+                    "desc": "Academic Year Loan",
+                    "value": "AcademicYearLoan"
+                },
+                "process_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "provenance": {
+                    "desc": null,
+                    "value": ""
+                },
+                "public_note": "",
+                "receiving_operator": "",
+                "requested": false,
+                "statistics_note_1": "",
+                "statistics_note_2": "",
+                "statistics_note_3": "",
+                "storage_location_id": "",
+                "year_of_issue": ""
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/2282456310006421/items/2382456270006421"
+        },
+        {
+            "bib_data": {
+                "author": "Goodyear, Frank Henry,",
+                "complete_edition": "",
+                "date_of_publication": "1985.",
+                "isbn": "0847805972 :",
+                "issn": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541",
+                "mms_id": "991227850000541",
+                "network_number": [
+                    "263059",
+                    "(CStRLIN)NJPG85-B14944",
+                    "(OCoLC)11814035"
+                ],
+                "place_of_publication": "New York :",
+                "publisher_const": "Rizzoli",
+                "title": "Welliver /"
+            },
+            "holding_data": {
+                "accession_number": "",
+                "call_number": "N6537.W36 G66 1985",
+                "call_number_type": {
+                    "desc": "Library of Congress classification",
+                    "value": "0"
+                },
+                "copy_id": "0",
+                "holding_id": "224991090000541",
+                "in_temp_location": false,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/224991090000541",
+                "temp_call_number": "",
+                "temp_call_number_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "temp_library": {
+                    "desc": null,
+                    "value": null
+                },
+                "temp_location": {
+                    "desc": null,
+                    "value": null
+                },
+                "temp_policy": {
+                    "desc": null,
+                    "value": ""
+                }
+            },
+            "item_data": {
+                "alternative_call_number": "",
+                "alternative_call_number_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "awaiting_reshelving": false,
+                "barcode": "60290",
+                "base_status": {
+                    "desc": "Item in place",
+                    "value": "1"
+                },
+                "chronology_i": "",
+                "chronology_j": "",
+                "chronology_k": "",
+                "chronology_l": "",
+                "chronology_m": "",
+                "creation_date": "2011-12-17Z",
+                "description": "",
+                "edition": null,
+                "enumeration_a": "",
+                "enumeration_b": "",
+                "enumeration_c": "",
+                "enumeration_d": "",
+                "enumeration_e": "",
+                "enumeration_f": "",
+                "enumeration_g": "",
+                "enumeration_h": "",
+                "fulfillment_note": "",
+                "imprint": null,
+                "internal_note_1": "",
+                "internal_note_2": "",
+                "internal_note_3": "",
+                "inventory_number": "",
+                "inventory_price": "",
+                "is_magnetic": false,
+                "language": null,
+                "library": {
+                    "desc": "Main Library",
+                    "value": "MAIN"
+                },
+                "location": {
+                    "desc": "Stacks",
+                    "value": "main"
+                },
+                "modification_date": "2018-06-13Z",
+                "pages": "",
+                "physical_condition": {
+                    "desc": null,
+                    "value": null
+                },
+                "physical_material_type": {
+                    "desc": "Book",
+                    "value": "BOOK"
+                },
+                "pid": "234991080000541",
+                "pieces": "1",
+                "po_line": "",
+                "policy": {
+                    "desc": null,
+                    "value": ""
+                },
+                "process_type": {
+                    "desc": null,
+                    "value": ""
+                },
+                "provenance": {
+                    "desc": null,
+                    "value": ""
+                },
+                "public_note": "",
+                "receiving_operator": "",
+                "requested": false,
+                "statistics_note_1": "",
+                "statistics_note_2": "",
+                "statistics_note_3": "",
+                "storage_location_id": "",
+                "year_of_issue": ""
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/224991090000541/items/234991080000541"
+        }
+    ],
+    "total_record_count": 2
+}
