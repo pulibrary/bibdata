@@ -40,8 +40,7 @@ RSpec.describe AvailabilityController, type: :controller do
       expect(availability).to eq(
         "2282456310006421" => {
           "more_items" => false,
-          # "location" => "sa", TODO: Implement. This will be different - do not
-          #   trust 852b.
+          "location" => "LAW-LAWRR",
           # "copy_number" => 1, TODO => Implement
           "item_id" => "2382456270006421"
           # "on_reserve": "N", TODO: Implement
@@ -53,7 +52,8 @@ RSpec.describe AvailabilityController, type: :controller do
         # This isn't in Voyager's bibdata, I don't know why.
         "224991090000541" => {
           "more_items" => false,
-          "item_id" => "234991080000541"
+          "item_id" => "234991080000541",
+          "location" => "MAIN-main"
         }
       )
     end
