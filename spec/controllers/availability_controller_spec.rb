@@ -41,7 +41,7 @@ RSpec.describe AvailabilityController, type: :controller do
         "2282456310006421" => {
           "more_items" => false,
           "location" => "LAW-LAWRR",
-          # "copy_number" => 1, TODO => Implement
+          "copy_number" => "",
           "item_id" => "2382456270006421"
           # "on_reserve": "N", TODO: Implement
           # "patron_group_charged": null, TODO: Implement
@@ -53,7 +53,8 @@ RSpec.describe AvailabilityController, type: :controller do
         "224991090000541" => {
           "more_items" => false,
           "item_id" => "234991080000541",
-          "location" => "MAIN-main"
+          "location" => "MAIN-main",
+          "copy_number" => "0"
         }
       )
     end
