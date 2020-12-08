@@ -25,7 +25,7 @@ See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for det
 
 As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http://www.rubydoc.info/github/kubo/ruby-oci8/file/docs/install-on-osx.md#Install_Oracle_Instant_Client_Packages) for how best to track versions of the Oracle Client packages in Apple OS environments.
 
-## Configuration
+## Alma
 
 ### Configure Alma keys for Development
 
@@ -33,9 +33,14 @@ As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http:
 2. `lpass login emailhere`
 3. `bundle exec rake alma:setup_keys`
 
-## Creating Alma Fixtures
+### Accessing the Alma instance
 
-Go to the sandbox and login:
+https://sandbox02-na.alma.exlibrisgroup.com/mng/login?institute=01PRI_INST&auth=local
+
+Credentials are in LastPass; use the AlmaAdmin account
+
+## Accessing the API sandbox
+
 https://developers.exlibrisgroup.com/console/
 
 If you don't have an account ask our local administrator to create one for you.
@@ -45,7 +50,9 @@ If you don't have an account ask our local administrator to create one for you.
 1. Once you've activated the account, go back to the first email and use the
    bottom link to accept the invitation. You should now have access to our keys.
 
-To generate the fixture:
+### Creating Alma Fixtures
+
+In the API sandbox (see above)
 
 1. Select the 'api-na' north america server
 1. Select the read-only API key
@@ -56,6 +63,11 @@ To generate the fixture:
    button)
 1. Click 'Execute'
 1. You can download the file with the little "Download" button
+
+### Finding a Voyager item in Alma
+
+Voyager items, once the migration is finished, will have an ID in Alma equal to
+`99<voyager_id>3405314`
 
 ## Database Configuration
 
