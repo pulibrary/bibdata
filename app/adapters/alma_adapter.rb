@@ -19,41 +19,14 @@ class AlmaAdapter
   # @return [Array<MARC::Record>]
   def get_bib_records(ids)
     bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    MarcResponse.new(bibs: bibs).unsuppressed_marc
+    AlmaAdapter::MarcResponse.new(bibs: bibs).unsuppressed_marc
   rescue Alma::StandardError
     []
   end
 
-  # Responsible for converting an Alma::BibSet to an array of unsuppressed MARC
-  # records.
-  class MarcResponse
-    attr_reader :bibs
-    # @param bibs [Alma::BibSet]
-    def initialize(bibs:)
-      @bibs = bibs
-      remove_suppressed!
-    end
-
-    def unsuppressed_marc
-      return [] unless bibs.present?
-      MARC::XMLReader.new(bib_marc_xml).to_a
-    end
-
-    private
-
-      def bib_marc_xml
-        StringIO.new(
-          bibs.flat_map do |bib|
-            bib["anies"]
-          end.join("")
-        )
-      end
-
-      def remove_suppressed!
-        bibs.reject! do |bib|
-          bib["suppress_from_publishing"] == "true"
-        end
-      end
+  def get_availability(ids:)
+    bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+    AvailabilityStatus.from_bib(bib: bibs&.first).to_h
   end
 
   # Returns list of holding records for a given MMS
