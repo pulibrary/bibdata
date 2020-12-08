@@ -1,5 +1,6 @@
 class AlmaAdapter
   class AvailabilityStatus
+    # @param bib [Alma::Bib]
     def self.from_bib(bib:)
       new(bib: bib)
     end
@@ -18,7 +19,6 @@ class AlmaAdapter
     def holding_summary(holding)
       {
         more_items: holding["total_items"].to_i > 1,
-        location: marc_record["852"]["b"], # Location of bib record
         item_id: item_data[holding["holding_id"]]&.first&.item_data&.fetch("pid", nil)
       }
     end
