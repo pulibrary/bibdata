@@ -17,10 +17,12 @@ class AlmaAdapter
     end
 
     def holding_summary(holding)
+      holding_item_data = item_data[holding["holding_id"]]
       {
         more_items: holding["total_items"].to_i > 1,
-        item_id: item_data[holding["holding_id"]]&.first&.item_data&.fetch("pid", nil),
-        location: "#{holding['library_code']}-#{holding['location_code']}"
+        item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
+        location: "#{holding['library_code']}-#{holding['location_code']}",
+        copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', "")
       }
     end
 
