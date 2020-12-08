@@ -22,7 +22,8 @@ class AlmaAdapter
         more_items: holding["total_items"].to_i > 1,
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
-        copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', "")
+        copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', ""),
+        label: holding['library']
       }
     end
 
