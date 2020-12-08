@@ -15,12 +15,6 @@ RSpec.describe AlmaAdapter do
   let(:unsuppressed_two_loc_two_items_json) { file_fixture("alma/#{unsuppressed_two_loc_two_items}_two_locations_two_items.json") }
   let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
 
-  def stub_alma_ids(ids:, status:, fixture: nil)
-    json_body = file_fixture("alma/#{fixture}.json")
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{Array.wrap(ids).join(',')}")
-      .to_return(status: status, body: json_body)
-  end
-
   before do
     stub_request(:get, "https://ALMA/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
       .to_return(status: 200, body: holdings_991227840000541, headers: {
