@@ -1,4 +1,8 @@
 class AvailabilityController < ApplicationController
+  def adapter
+    @adapter ||= AlmaAdapter.new
+  end
+
   def index
     if params[:ids]
       ids_param = sanitize_array(params[:ids])
@@ -13,7 +17,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:id]
       id_param = sanitize(params[:id])
-      avail = VoyagerLookup.single_bib_availability(bib_id: id_param)
+      avail = adapter.get_availability(ids: [id_param])
 
       if avail.empty?
         render plain: "Record: #{id_param} not found.", status: 404

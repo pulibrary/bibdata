@@ -27,6 +27,36 @@ RSpec.describe AvailabilityController, type: :controller do
   end
 
   describe '#index with id param' do
+    it "returns availability for a single item" do
+      bib_id = "991227850000541" # Equivalent to 263059 in Voyager
+      stub_alma_ids(ids: bib_id, status: 200, fixture: "unsuppressed_991227850000541")
+
+      get :index, params: { id: bib_id, format: :json }
+      availability = JSON.parse(response.body)
+      # Useful
+      # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541?expand=p_avail
+      # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/991227850000541/holdings/all/items
+      # https://bibdata.princeton.edu/availability?id=263059
+      expect(availability).to eq(
+        "2282456310006421" => {
+          "more_items" => false,
+          "location" => "LAW-LAWRR",
+          # "copy_number" => 1, TODO => Implement
+          "item_id" => "2382456270006421"
+          # "on_reserve": "N", TODO: Implement
+          # "patron_group_charged": null, TODO: Implement
+          # "status": "On-Site", TODO: Implement
+          # "label": "Marquand Library", TODO: Implement
+          # "status_label": "On-site access" TODO: Implement
+        },
+        # This isn't in Voyager's bibdata, I don't know why.
+        "224991090000541" => {
+          "more_items" => false,
+          "item_id" => "234991080000541",
+          "location" => "MAIN-main"
+        }
+      )
+    end
     it 'responds with holdings availability json' do
       pending "Replace with Alma"
       holding1 = "1068356"
