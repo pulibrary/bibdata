@@ -48,3 +48,7 @@ RSpec/ExampleLength:
 
 Lint/UselessAssignment:
   Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - 'marc_to_solr/lib/princeton_marc.rb'
