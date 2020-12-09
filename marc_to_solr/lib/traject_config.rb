@@ -7,6 +7,7 @@ require_relative './format'
 require_relative './princeton_marc'
 require_relative './geo'
 require_relative './location_extract'
+require_relative './alma_reader'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -18,6 +19,7 @@ extend Traject::Macros::MarcFormats
 settings do
   provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
   provide "solr.version", "4.10.0"
+  provide "reader_class_name", "AlmaReader"
   provide "marc_source.type", "xml"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
