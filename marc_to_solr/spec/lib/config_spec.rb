@@ -9,7 +9,7 @@ describe 'From traject_config.rb' do
 
   def fixture_record(fixture_name)
     f = File.expand_path("../../fixtures/#{fixture_name}.mrx", __FILE__)
-    MARC::XMLReader.new(f).first
+    @indexer.reader!(f).first
   end
 
   before(:all) do
@@ -39,6 +39,12 @@ describe 'From traject_config.rb' do
     @hathi_present = @indexer.map_record(fixture_record('1590302'))
     @hathi_permanent = @indexer.map_record(fixture_record('1459166'))
     ENV['RUN_HATHI_COMPARE'] = ''
+  end
+
+  describe "alma loading" do
+    it "can map an alma record" do
+      record = @indexer.map_record(fixture_record('alma1'))
+    end
   end
 
   describe 'the language_iana_s field' do
