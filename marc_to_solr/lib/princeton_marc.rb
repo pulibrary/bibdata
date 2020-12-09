@@ -726,10 +726,12 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         item[:collection_code] = s_field.value
       end
     end
-    if all_holdings[item[:holding_id]]["items"].nil?
-      all_holdings[item[:holding_id]]["items"] = [item]
-    else
-      all_holdings[item[:holding_id]]["items"] << item
+    if all_holdings[item[:holding_id]].present?
+      if all_holdings[item[:holding_id]]["items"].nil?
+        all_holdings[item[:holding_id]]["items"] = [item]
+      else
+        all_holdings[item[:holding_id]]["items"] << item
+      end
     end
   end
   all_holdings
