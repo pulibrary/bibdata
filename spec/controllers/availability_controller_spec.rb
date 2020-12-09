@@ -45,7 +45,7 @@ RSpec.describe AvailabilityController, type: :controller do
           "item_id" => "2382456270006421",
           # "on_reserve": "N", TODO: Implement
           # "patron_group_charged": null, TODO: Implement
-          "status" => "On-Site", # TODO: Implement
+          "status" => "On-Site",
           "label" => "Law Library"
           # "status_label": "On-site access"
         },
