@@ -41,19 +41,22 @@ RSpec.describe AvailabilityController, type: :controller do
         "2282456310006421" => {
           "more_items" => false,
           "location" => "LAW-LAWRR",
-          # "copy_number" => 1, TODO => Implement
-          "item_id" => "2382456270006421"
+          "copy_number" => "",
+          "item_id" => "2382456270006421",
           # "on_reserve": "N", TODO: Implement
           # "patron_group_charged": null, TODO: Implement
-          # "status": "On-Site", TODO: Implement
-          # "label": "Marquand Library", TODO: Implement
-          # "status_label": "On-site access" TODO: Implement
+          "status" => "On-Site",
+          "label" => "Law Library"
+          # "status_label": "On-site access"
         },
         # This isn't in Voyager's bibdata, I don't know why.
         "224991090000541" => {
           "more_items" => false,
           "item_id" => "234991080000541",
-          "location" => "MAIN-main"
+          "location" => "MAIN-main",
+          "label" => "Main Library",
+          "copy_number" => "0",
+          "status" => "On-Site"
         }
       )
     end
