@@ -1,0 +1,2 @@
+class Alma::Indexer
+end
