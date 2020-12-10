@@ -1,0 +1,16 @@
+name: marc_liberation
+services:
+  marc_liberation_test_solr:
+    type: solr:8.4
+    portforward: true
+    core: marc-liberation-core-test
+    config:
+      dir: "solr/conf"
+  marc_liberation_database:
+    type: postgres:10
+    portforward: true
+proxy:
+  marc_liberation_test_solr:
+    - marc-liberation.test.solr.lndo.site:8983
+  marc_liberation_development_solr:
+    - marc-liberation.dev.solr.lndo.site:8983
