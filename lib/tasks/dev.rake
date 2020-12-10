@@ -1,4 +1,21 @@
 namespace :server do
+  desc "Configures and starts dependent servers"
+  task initialize: :environment do
+    Rake::Task["db:create"].invoke
+    Rake::Task["db:migrate"].invoke
+  end
+
+  desc "Start solr and postgres servers using lando."
+  task start: :environment do
+    system("lando start")
+    system("rake server:initialize")
+    system("rake server:initialize RAILS_ENV=test")
+  end
+
+  desc "Stop lando solr and postgres servers."
+  task stop: :environment do
+    system("lando stop")
+  end
   namespace :solr do
     namespace :configs do
       desc "Updates solr config files from github"
