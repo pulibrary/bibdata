@@ -11,7 +11,7 @@ class Alma::Indexer
     end
   end
 
-  def url_options
+  def default_url_options
     Rails.configuration.action_mailer.default_url_options
   end
 
