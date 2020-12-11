@@ -39,4 +39,6 @@ Rails.application.configure do
 
   # Don't use sidekiq in tests
   config.active_job.queue_adapter = :test
+
+  config.action_mailer.default_url_options = { host: "www.example.com" }
 end
