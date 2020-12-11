@@ -75,6 +75,7 @@ group :development, :test do
   gem 'rerun', '~> 0.10.0'
   gem 'simplecov', '0.14.1'
   gem 'solargraph'
+  gem 'solr_wrapper'
   gem "webdrivers"
   gem 'webmock'
 end
