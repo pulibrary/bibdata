@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
-# This determines which services are running, as `lando info` does not exclude containers which are not active.
-lando_list = JSON.parse(`lando list --format json`, symbolize_names: true)
-return if lando_list.empty?
+begin
+  # This determines which services are running, as `lando info` does not exclude containers which are not active.
+  lando_list = JSON.parse(`lando list --format json`, symbolize_names: true)
+rescue StandardError => error
+  Rails.logger.warn("Failed to find the `lando` containers in the environment (is Lando installed?)")
+  lando_list = []
+end
 
-if Rails.env.development? || Rails.env.test?
+if !lando_list.empty? && (Rails.env.development? || Rails.env.test?)
   begin
     lando_services = JSON.parse(`lando info --format json`, symbolize_names: true)
     lando_services.each do |service|
