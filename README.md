@@ -36,9 +36,6 @@ As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http:
 1. To stop: `bundle exec rake marc_liberation:server:stop` or `lando stop`
 
 ## Alma
-=======
-
-## Configuration
 
 ### Configure Alma keys for Development
 

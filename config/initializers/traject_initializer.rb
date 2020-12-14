@@ -2,10 +2,15 @@ require 'pp'
 
 def setup_indexer
   process_locations unless Rails.env.test? || !ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
+
   c = File.join(Rails.root, 'marc_to_solr', 'lib', 'traject_config.rb')
   indexer = Traject::Indexer.new
   indexer.load_config_file(c)
   indexer
+rescue PG::Error => database_error
+  Rails.logger.warn("Failed to seed the holding locations for Traject due to a database error: #{database_error}.")
+rescue StandardError => error
+  Rails.logger.warn("Failed to seed the holding locations for Traject: #{error}.")
 end
 
 def process_locations
