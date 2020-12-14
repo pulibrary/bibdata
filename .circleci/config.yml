@@ -106,6 +106,7 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
+          SOLR_URL: http://127.0.0.1:8983/solr/marc-liberation-core-test
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: bibdata
@@ -143,6 +144,11 @@ jobs:
           key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
+
+      - run:
+          command: bundle exec rake server:solr:start_solr_wrapper
+          background: true
+      - run: bin/jetty_wait
 
       - run:
           name: Configure location display
