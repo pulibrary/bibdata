@@ -25,6 +25,16 @@ See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for det
 
 As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http://www.rubydoc.info/github/kubo/ruby-oci8/file/docs/install-on-osx.md#Install_Oracle_Instant_Client_Packages) for how best to track versions of the Oracle Client packages in Apple OS environments.
 
+## Setup server
+1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+1. To start: `bundle exec rake marc_liberation:server:start`
+1. For testing:
+   - `bundle exec rspec`
+1. For development:
+   - `bundle exec rails server`
+   - Access marc_liberation at http://localhost:3000/
+1. To stop: `bundle exec rake marc_liberation:server:stop` or `lando stop`
+
 ## Alma
 
 ### Configure Alma keys for Development

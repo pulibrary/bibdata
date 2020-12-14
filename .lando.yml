@@ -1,0 +1,23 @@
+---
+name: marc_liberation
+services:
+  bibdata_test_solr:
+    type: solr:8.4
+    portforward: true
+    core: blacklight-core-test
+    config:
+      dir: "solr/conf"
+  bibdata_development_solr:
+    type: solr:8.4
+    portforward: true
+    core: blacklight-core-development
+    config:
+      dir: "solr/conf"
+  bibdata_database:
+    type: postgres:10
+    portforward: true
+  proxy:
+    bibdata_test_solr:
+      - bibdata.test.solr.lndo.site:8983
+    bibdata_development_solr:
+      - bibdata.dev.solr.lndo.site:8983
