@@ -4,13 +4,13 @@ services:
   bibdata_test_solr:
     type: solr:8.4
     portforward: true
-    core: bibdata-core-test
+    core: blacklight-core-test
     config:
       dir: "solr/conf"
   bibdata_development_solr:
     type: solr:8.4
     portforward: true
-    core: bibdata-core-dev
+    core: blacklight-core-development
     config:
       dir: "solr/conf"
   bibdata_database:
