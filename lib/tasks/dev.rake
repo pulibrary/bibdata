@@ -1,22 +1,4 @@
 namespace :server do
-  desc "Configures and starts dependent servers"
-  task initialize: :environment do
-    Rake::Task["db:create"].invoke
-    Rake::Task["db:migrate"].invoke
-  end
-
-  desc "Start solr and postgres servers using lando."
-  task start: :environment do
-    system("lando start")
-    system("rake server:initialize")
-    system("rake server:initialize RAILS_ENV=test")
-  end
-
-  desc "Stop lando solr and postgres servers."
-  task stop: :environment do
-    system("lando stop")
-  end
-
   namespace :solr do
     task start_solr_wrapper: :environment do
       SolrWrapper.wrap(port: 8983, verbose: true, managed: true, download_dir: 'tmp', version: '8.4.1') do |solr|
