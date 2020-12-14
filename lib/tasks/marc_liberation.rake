@@ -5,6 +5,7 @@ namespace :marc_liberation do
     task initialize: :environment do
       Rake::Task["db:create"].invoke
       Rake::Task["db:migrate"].invoke
+      Rake::Task["db:seed"].invoke
     end
 
     desc "Start the Apache Solr and PostgreSQL container services using Lando."
