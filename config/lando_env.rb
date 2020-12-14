@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
+logger = Logger.new(STDOUT)
 begin
   # This determines which services are running, as `lando info` does not exclude containers which are not active.
   lando_list = JSON.parse(`lando list --format json`, symbolize_names: true)
 rescue StandardError => error
-  Rails.logger.warn("Failed to find the `lando` containers in the environment (is Lando installed?)")
+  logger.warn("Failed to find the `lando` containers in the environment (is Lando installed?)")
   lando_list = []
 end
 
@@ -21,6 +22,6 @@ if !lando_list.empty? && (Rails.env.development? || Rails.env.test?)
       end
     end
   rescue StandardError => error
-    Rails.logger.warn("Failed to start the container services using Lando: #{error}")
+    logger.warn("Failed to start the container services using Lando: #{error}")
   end
 end
