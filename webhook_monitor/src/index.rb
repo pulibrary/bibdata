@@ -48,7 +48,7 @@ class MessageHandler
   end
 
   def run
-    return unless JSON.parse(event["body"])["action"].eql? "JOB_END"
+    return unless event["body"]["action"].eql? "JOB_END"
     sqs = Aws::SQS::Client.new(region: 'us-east-1')
     queue_name = "AlmaBibExportStaging.fifo"
     queue_url = sqs.get_queue_url(queue_name: queue_name).queue_url

@@ -14,7 +14,7 @@ RSpec.describe MessageHandler do
   end
 
   context "when the webhook sends a full dump job end event" do
-    let(:alma_full_dump_message) { File.read(File.join("spec", "fixtures", "alma_full_dump_message.json")) }
+    let(:alma_full_dump_message) { JSON.parse(File.read(File.join("spec", "fixtures", "alma_full_dump_message.json"))) }
     let(:event) do
       {
         "signature" => "secretstuff",
@@ -29,11 +29,11 @@ RSpec.describe MessageHandler do
   end
 
   context "when the webhook sends a bib event" do
-    let(:alma_full_dump_message) { File.read(File.join("spec", "fixtures", "alma_bib_message.json")) }
+    let(:alma_bib_message) { JSON.parse(File.read(File.join("spec", "fixtures", "alma_bib_message.json"))) }
     let(:event) do
       {
         "signature" => "secretstuff",
-        "body" => alma_full_dump_message
+        "body" => alma_bib_message
       }
     end
 
