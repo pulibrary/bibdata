@@ -54,7 +54,7 @@ describe 'From traject_config.rb' do
           expect(fixture_record('99211662100521')['876']['d']).to be_truthy
           expect(fixture_record('99211662100521')['950']['b']).to be_truthy
           record = @indexer.map_record(fixture_record('99211662100521'))
-          expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('99211662100521')['876']['d']).utc
         end
       end
       context "When the record has only a 950b field" do
@@ -63,7 +63,7 @@ describe 'From traject_config.rb' do
           expect(fixture_record('991491000000541')['876']).to be_falsey
           expect(fixture_record('991491000000541')['951']).to be_falsey
           record = @indexer.map_record(fixture_record('991491000000541'))
-          expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('991491000000541')['950']['b']).utc
         end
       end
     end
@@ -78,7 +78,7 @@ describe 'From traject_config.rb' do
         expect(fixture_record('electronic')['876']).to be_falsey
         expect(fixture_record('electronic')['950']).to be_truthy
         record = @indexer.map_record(fixture_record('electronic'))
-        expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+        expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('electronic')['951']['w']).utc
       end
     end
   end
