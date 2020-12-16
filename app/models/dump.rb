@@ -96,19 +96,6 @@ class Dump < ActiveRecord::Base
         # dump
       end
 
-      def full_bib_dump
-        # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-        # dump = nil
-        # Event.record do |event|
-        #   dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
-        #   bibs = VoyagerHelpers::Liberator.get_all_bib_ids
-        #   dump.dump_bib_records(bibs, 'super_low')
-        #   dump.event = event
-        #   dump.save
-        # end
-        # dump
-      end
-
       def partner_update
         dump = nil
         dump_type = 'PARTNER_RECAP'
