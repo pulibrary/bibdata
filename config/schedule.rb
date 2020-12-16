@@ -23,11 +23,6 @@ every 1.day, at: '3:00am' do
   rake "liberate:arks:clear_and_seed_cache"
 end
 
-# 2 full dumps per month
-every "0 5 13,28 * *", roles: [:cron_production] do
-  rake "marc_liberation:bib_dump", output: "/tmp/cron_log.log"
-end
-
 # check voyager for updates 3 times per day in prod; 1nce per week in staging
 every 1.day, at: ["10:10am", "2:10pm", "10:35pm"], roles: [:cron_production] do
   rake "marc_liberation:get_changes", output: "/tmp/cron_log.log"
