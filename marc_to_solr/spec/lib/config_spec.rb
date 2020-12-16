@@ -30,7 +30,7 @@ describe 'From traject_config.rb' do
     @label_i_246 = @indexer.map_record(fixture_record('sample28'))
     @online_at_library = @indexer.map_record(fixture_record('sample29'))
     @online = @indexer.map_record(fixture_record('sample30'))
-    @elf2 = @indexer.map_record(fixture_record('elf2'))
+    # @elf2 = @indexer.map_record(fixture_record('elf2'))
     @other_title_246 = @indexer.map_record(fixture_record('7910599'))
     @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
@@ -43,7 +43,43 @@ describe 'From traject_config.rb' do
 
   describe "alma loading" do
     it "can map an alma record" do
-      record = @indexer.map_record(fixture_record('alma1'))
+      record = @indexer.map_record(fixture_record('99211662100521'))
+    end
+  end
+  describe 'the cataloged_date from publishing job' do
+    describe "the date cataloged facets" do
+      context "When the record has 876d and 951w fields" do
+        it "will index the 876d field" do
+          expect(fixture_record('99211662100521')['951']['w']).to be_truthy
+          expect(fixture_record('99211662100521')['876']['d']).to be_truthy
+          expect(fixture_record('99211662100521')['950']['b']).to be_truthy
+          record = @indexer.map_record(fixture_record('99211662100521'))
+          expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+        end
+      end
+      context "When the record has only a 950b field" do
+        it "will index the 950b field" do
+          expect(fixture_record('991491000000541')['950']['b']).to be_truthy
+          expect(fixture_record('991491000000541')['876']).to be_falsey
+          expect(fixture_record('991491000000541')['951']).to be_falsey
+          record = @indexer.map_record(fixture_record('991491000000541'))
+          expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+        end
+      end
+    end
+    context "When it is a SCSB partner record" do
+      it "does not have a date cataloged facet" do
+        expect(@scsb_journal['cataloged_tdt']).to be_nil
+      end
+    end
+    context "When it is an eletronic record" do
+      it "will index the 951w field" do
+        expect(fixture_record('electronic')['951']['w']).to be_truthy
+        expect(fixture_record('electronic')['876']).to be_falsey
+        expect(fixture_record('electronic')['950']).to be_truthy
+        record = @indexer.map_record(fixture_record('electronic'))
+        expect(Time.parse(record['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
+      end
     end
   end
 
@@ -77,18 +113,6 @@ describe 'From traject_config.rb' do
     it 'returns desired bool' do
       expect(@sample1['numeric_id_b'].first).to eq true
       expect(@scsb_journal['numeric_id_b'].first).to eq false
-    end
-  end
-  describe 'the date cataloged facets' do
-    it 'has a single date cataloged facet when the 959a is present' do
-      expect(@elf2['cataloged_tdt'].length).to eq 1
-    end
-    it 'is a formatted date' do
-      expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to be_truthy
-      expect(Time.parse(@elf2['cataloged_tdt'].first).utc.strftime("%Y-%m-%dT%H:%M:%SZ")).to eq('2001-11-15T16:55:33Z')
-    end
-    xit 'does not have a date cataloged facet when the record is a SCSB partner record' do
-      expect(@scsb_journal['cataloged_tdt']).to be_nil
     end
   end
   describe 'the title_sort field' do
@@ -248,7 +272,8 @@ describe 'From traject_config.rb' do
       expect(@sample3['access_facet']).to include 'In the Library'
       expect(@sample3['access_facet']).not_to include 'Online'
     end
-    it 'value is at the library for elf2 holding location' do
+    # TODO: Replace with Alma
+    xit 'value is at the library for elf2 holding location' do
       expect(@elf2['location_code_s'][0]).to eq 'elf2'
       expect(@elf2['access_facet']).not_to include 'Online'
       expect(@elf2['access_facet']).to include 'In the Library'
@@ -335,7 +360,8 @@ describe 'From traject_config.rb' do
       expect(@sample3['advanced_location_s']).to include 'scidoc'
       expect(@sample3['advanced_location_s']).to include 'Lewis Library'
     end
-    it 'online is included' do
+    # TODO: Replace with Alma
+    xit 'online is included' do
       expect(@elf2['advanced_location_s']).to include 'elf2'
       expect(@elf2['advanced_location_s']).to include 'Online'
     end

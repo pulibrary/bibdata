@@ -285,11 +285,29 @@ to_field 'pub_date_end_sort' do |record, accumulator|
   accumulator << record.end_date_from_008
 end
 
-# Alma:needs to change https://github.com/pulibrary/marc_liberation/issues/822
-to_field 'cataloged_tdt', extract_marc('959a') do |_record, accumulator|
-  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# catalog_date https://github.com/pulibrary/marc_liberation/issues/926
+# Bibliographic Enrichment -> Create date subfield 950b
+# Physical Items Enrichment -> Create date subfield 876d
+# Electronic Inventory Enrichment -> Activation date subfield 951w
+to_field 'cataloged_tdt' do |record, accumulator|
+  extractor_doc_id = MarcExtractor.cached("001")
+  doc_id = extractor_doc_id.extract(record).first
+  extractor_876d = MarcExtractor.cached("876d")
+  extractor_951w = MarcExtractor.cached("951w")
+  extractor_950b = MarcExtractor.cached("950b")
+  unless /^SCSB-\d+/.match?(doc_id)
+    cataloged_date = if record['876']
+                       extractor_876d.extract(record).first
+                     elsif record['951']
+                       extractor_951w.extract(record).first
+                     else
+                       extractor_950b.extract(record).first
+                     end
+    accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+  end
 end
 
+# TODO: Remove after completing https://github.com/pulibrary/marc_liberation/issues/822
 # to_field 'cataloged_tdt' do |record, accumulator|
 #   extractor_doc_id =  MarcExtractor.cached("001")
 #   doc_id = extractor_doc_id.extract(record).first
