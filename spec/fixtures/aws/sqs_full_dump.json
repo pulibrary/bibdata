@@ -1,0 +1,112 @@
+{
+  "id": "1434818870006421",
+  "action": "JOB_END",
+  "institution": {
+    "value": "01PRI_INST",
+    "desc": "Princeton University"
+  },
+  "time": "2020-12-15T19:56:55.145Z",
+  "event": null,
+  "job_instance": {
+    "id": "1434818870006421",
+    "external_id": "1434818880006421",
+    "name": "Publishing Platform Job FTP Dump",
+    "submitted_by": {
+      "value": "AlmaAdmin",
+      "desc": "Administrator, Alma"
+    },
+    "submit_time": "2020-12-15T19:56:37.675Z",
+    "start_time": "2020-12-15T19:56:37.694Z",
+    "end_time": "2020-12-15T19:56:55.145Z",
+    "progress": 100,
+    "status": {
+      "value": "COMPLETED_FAILED",
+      "desc": "Completed with Errors"
+    },
+    "status_date": "2020-12-15Z",
+    "alert": [
+      {
+        "value": "alert_general_error",
+        "desc": "The job completed with errors. For more information view the report details (or contact Support using the process ID)."
+      }
+    ],
+    "counter": [
+      {
+        "type": {
+          "value": "label.new.records",
+          "desc": "New Records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "label.updated.records",
+          "desc": "Updated Records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "label.deleted.records",
+          "desc": "Deleted Records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.failed.publishing",
+          "desc": "Unpublished failed records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.skipped",
+          "desc": "Skipped records (update date changed but no data change)"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.filtered_out",
+          "desc": "Filtered records (not published due to filter)"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.totalRecordsWrittenToFile",
+          "desc": "Total records written to file"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "Failed to process record",
+          "desc": ""
+        },
+        "value": "9927964200521"
+      }
+    ],
+    "job_info": {
+      "id": "S1434512240006421",
+      "name": "Publishing Platform Job FTP Dump",
+      "description": "Publishing Platform Job",
+      "type": {
+        "value": "SCHEDULED",
+        "desc": "Scheduled"
+      },
+      "category": {
+        "value": "PUBLISHING",
+        "desc": "Publishing"
+      },
+      "link": "/almaws/v1/conf/jobs/S1434512240006421"
+    },
+    "link": "/almaws/v1/conf/jobs/M0/instances/1434818870006421"
+  },
+  "bib": null,
+  "holding": null,
+  "item": null,
+  "portfolio": null,
+  "representation": null
+}
