@@ -292,16 +292,13 @@ end
 to_field 'cataloged_tdt' do |record, accumulator|
   extractor_doc_id = MarcExtractor.cached("001")
   doc_id = extractor_doc_id.extract(record).first
-  extractor_876d = MarcExtractor.cached("876d")
-  extractor_951w = MarcExtractor.cached("951w")
-  extractor_950b = MarcExtractor.cached("950b")
   unless /^SCSB-\d+/.match?(doc_id)
     cataloged_date = if record['876']
-                       extractor_876d.extract(record).first
+                       MarcExtractor.cached("876d").extract(record).first
                      elsif record['951']
-                       extractor_951w.extract(record).first
+                       MarcExtractor.cached("951w").extract(record).first
                      else
-                       extractor_950b.extract(record).first
+                       MarcExtractor.cached("950b").extract(record).first
                      end
     accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
   end
