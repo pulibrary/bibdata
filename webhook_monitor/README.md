@@ -1,12 +1,24 @@
+## Webhook monitor
+
+Alma can be configured to issue webhooks in response to certain events in the
+ILS. This is an AWS lambda function that listens for the webhooks and posts
+their contents to a queue. In marc_liberation proper we poll that queue in order
+to create our own events and dumps.
+
+TODO: Add an architecture diagram
+
 ## Tests
 
 To run the tests for the alma webhook monitor:
-`$ cd webhook_monitor`
+* `$ cd webhook_monitor/src`
+* `$ bundle exec rspec`
 
 ## Webhook Deploy Instructions
 
-Run the following commands in the `webhook_monitor` directory.
+When the webhook monitor code is updated, a deploy will be needed. We do this
+using AWS deployment tools.
 
+### Deploy setup
 * Install the AWS CLI:
 [Directions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-confirm)
 * Install the AWS SAM CLI:
@@ -16,6 +28,11 @@ Run the following commands in the `webhook_monitor` directory.
 * Configure the profile via `aws configure --profile alma-events`
   - Set default region to us-east-1
   - Set default output format to json
+
+### Deploy the webhook monitor code
+
+The deploy must be run from within the `webhook_monitor` directory.
+
 * `sam deploy`
 
 ## Monitoring
@@ -30,20 +47,32 @@ for this webhook.
 
 ### Alma Webhook Setup
 
+Construct the URL:
+
 - In AWS Lambda
-  - go to the application section and select "alma-webhook-monitor"
-  - the API Endpoint is the base URL
-  - go to the Resources section and click WebhookReceiver
-  - click "API Gateway" in configuration tab and expand "details"
-  - get the resource path
+  - In the left sidebar click on `applications`
+  - Select "alma-webhook-monitor"
+  - The API Endpoint is the base URL
+  - Under 'Resources' click WebhookReceiver
+  - click "API Gateway" in configuration tab and scroll down to expand "details"
+  - Get the resource path
+  - The base URL and resource path together form the URL alma needs
+
+Get the secret:
+
 - In AWS Secrets Manager
   - Find (or generate) the secret in AWS Secrets Manager
     - It's called alma/sandbox/webhookSecret
+    - Use the "Retrieve secret value" button
+
+Configure the URL and secret in Alma:
+
 - In Alma
-  - go to the admin area (click the gear)
-  - search for Integration Profiles
-  - select Webhook Monitoring
+  - Go to the admin area (click the gear)
+  - Search for Integration Profiles
+  - Select Webhook Monitoring
   - In the actions tab there's a place for the secret and the URL
+  - Make sure to click "activate"
 
 Here is some alma documentation about webhooks:
 https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
@@ -81,5 +110,3 @@ log on this lambda fire the datadog lambda".
 The datadog lambda then looks at the logs and finds / ships datadog-y ones.
 
 (Your lambda and datadog's lambda use the same cloudwatch.)
-
-

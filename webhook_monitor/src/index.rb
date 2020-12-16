@@ -1,7 +1,10 @@
+# frozen_string_literal: true
+
 require "json"
 require "base64"
 require "securerandom"
 require "aws-sdk-lambda"
+require "aws-sdk-sqs"
 require "aws-sdk-secretsmanager"
 require 'ddtrace'
 require "datadog/lambda"
@@ -27,12 +30,29 @@ end
 def handler(event:, context:)
   Datadog::Lambda.wrap(event, context) do
     raise "Signature Invalid" unless validate_signature(event)
+    MessageHandler.new(event).run
     Datadog::Lambda.metric(
       'alma.webhook.action',
       1,
       "environment": "production",
-      "action": event["body"]["action"]
+      "action": event["body"]["action"],
+      "body": event["body"].to_json
     )
-    return event['body'].to_json
+  end
+end
+
+class MessageHandler
+  attr_reader :event
+  def initialize(event)
+    @event = event
+  end
+
+  def run
+    return unless event["body"]["action"].eql? "JOB_END"
+    sqs = Aws::SQS::Client.new(region: 'us-east-1')
+    queue_name = "AlmaBibExportStaging.fifo"
+    queue_url = sqs.get_queue_url(queue_name: queue_name).queue_url
+    message_body = event["body"].to_json
+    sqs.send_message(queue_url: queue_url, message_body: message_body, message_group_id: "alma_event")
   end
 end
