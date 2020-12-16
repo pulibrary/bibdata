@@ -12,20 +12,10 @@ For now look at `config/routes.rb` for what's available.
 
 ## Development and testing
 
-## Installation
-
 ### Dependencies
-  * Mysql
+  * Postgresql (provided in development by lando)
 
-### Oci8
-
-See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for details.
-
-#### Using macOS/OS X releases and Homebrew
-
-As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http://www.rubydoc.info/github/kubo/ruby-oci8/file/docs/install-on-osx.md#Install_Oracle_Instant_Client_Packages) for how best to track versions of the Oracle Client packages in Apple OS environments.
-
-## Setup server
+### Setup server
 1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
 1. To start: `bundle exec rake marc_liberation:server:start`
 1. For testing:
