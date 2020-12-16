@@ -59,11 +59,11 @@ describe 'From traject_config.rb' do
       end
       context "When the record has only a 950b field" do
         it "will index the 950b field" do
-          expect(fixture_record('991491000000541')['950']['b']).to be_truthy
-          expect(fixture_record('991491000000541')['876']).to be_falsey
-          expect(fixture_record('991491000000541')['951']).to be_falsey
-          record = @indexer.map_record(fixture_record('991491000000541'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('991491000000541')['950']['b']).utc
+          expect(fixture_record('991330600000541')['950']['b']).to be_truthy
+          expect(fixture_record('991330600000541')['876']).to be_falsey
+          expect(fixture_record('991330600000541')['951']).to be_falsey
+          record = @indexer.map_record(fixture_record('991330600000541'))
+          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('991330600000541')['950']['b']).utc
         end
       end
     end
