@@ -47,6 +47,13 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe "call_number_display field" do
+    it "returns a call_number_display field" do
+      record = @indexer.map_record(fixture_record('99211662100521'))
+      expect(record['call_number_display']).to eq(["AP4 .T45"])
+    end
+  end
+
   describe 'the language_iana_s field' do
     it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
       expect(@sample1['language_code_s']).to eq(['eng', '|||'])
