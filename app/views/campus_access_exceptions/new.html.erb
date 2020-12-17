@@ -1,0 +1,12 @@
+<% if @invalid_exceptions %>
+    <h2> The following user have not completed the training and can not be included as Exceptions </h2>
+    <ul>
+      <% @invalid_exceptions.each do |user| %>
+        <li><%= user %> </li>
+      <% end %>
+    </ul>
+<% end %>
+<%= form_with url: campus_access_exceptions_path, method: :post do |form| %>
+  <%= form.file_field :exception_file, accept: "application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" %>
+  <%= form.submit "Add Exceptions" %>
+<% end %>

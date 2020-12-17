@@ -49,7 +49,7 @@ RSpec.describe CampusAccess, type: :model do
       trained_file = File.expand_path("../../fixtures/access_learn.xlsx", __FILE__)
       described_class.load_access(f, trained_file: trained_file, additional_ids: ['learn4'])
       expect(CampusAccess.count).to eq(8)
-      expect(CampusAccess.all.map { |access| [access.uid, access.category] }).to contain_exactly(["test1", "full"], ["test2", "full"], ["test3", "full"], ["test6", "full"], ["test5", "full"], ["learn1", "trained"], ["learn2", "trained"], ["learn4", "full"])
+      expect(CampusAccess.all.map { |access| [access.uid, access.category, access.employee_id] }).to contain_exactly(["test1", "full", '010001112'], ["test2", "full", '010001111'], ["test3", "full", '010001113'], ["test6", "full", '010001116'], ["test5", "full", '010001115'], ["learn1", "trained", '999999999'], ["learn2", "trained", '999999998'], ["learn4", "full", '999999996'])
     end
 
     it "loads the database with the xslx file and additional ids removing existing rows" do

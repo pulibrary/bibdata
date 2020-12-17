@@ -48,6 +48,9 @@ jobs:
           paths:
             - vendor/bundle
       - run:
+          name: create a temp directory
+          command: mkdir tmp
+      - run:
           name: Configure location display
           command: cp -v marc_to_solr/translation_maps/location_display.rb.tmpl marc_to_solr/translation_maps/location_display.rb
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]
   resources :dumps, only: [:show]
+  resources :campus_access_exceptions, only: [:new, :create]
 
   get '/bibliographic', to: 'bibliographic#index', defaults: { format: :txt }
   get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }, as: :show_bib
