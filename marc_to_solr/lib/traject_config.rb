@@ -1275,11 +1275,10 @@ each_record do |_record, context|
 end
 
 # Call number: +No call number available
-#    852 XX ckhij
-# Alma:needs to change We will add 852hikj. (Alma)
-to_field 'call_number_display', extract_marc('852ckhij')
-
-to_field 'call_number_browse_s', extract_marc('852khij')
+#    852 XX hik
+to_field 'call_number_display', extract_marc('852hik')
+# Alma:needs to decide if subfield k should be considered for browse list
+to_field 'call_number_browse_s', extract_marc('852hik')
 
 # Location has:
 #    1040
