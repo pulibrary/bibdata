@@ -1,0 +1,2 @@
+ftp_username: <%= ENV['FTP_USERNAME'] %>
+ftp_password: <%= ENV['FTP_PASSWORD'] %>

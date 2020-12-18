@@ -33,6 +33,8 @@ For now look at `config/routes.rb` for what's available.
 2. `lpass login emailhere`
 3. `bundle exec rake alma:setup_keys`
 
+This will add a .env with credentials to Rails.root
+
 ### Accessing the Alma instance
 
 https://sandbox02-na.alma.exlibrisgroup.com/mng/login?institute=01PRI_INST&auth=local
