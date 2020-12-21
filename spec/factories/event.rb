@@ -18,6 +18,9 @@ FactoryBot.define do
   factory :dump_file do
     association :dump_file_type, factory: :full_dump_file_type
   end
+  factory :empty_dump, class: "Dump" do
+    association :dump_type, factory: :full_dump_type
+  end
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
     delete_ids []
