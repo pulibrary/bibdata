@@ -13,8 +13,7 @@ class AwsSqsPoller
       # event from timing out and requeuing
       AlmaFullDumpTransferJob.perform_later(
         dump: dump,
-        start: dump.event.start,
-        finish: dump.event.finish,
+        job_id: msg["job_instance"]["id"],
         type_constant: 'BIB_RECORDS'
       )
     end
