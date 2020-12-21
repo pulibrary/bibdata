@@ -1,6 +1,9 @@
 default: &default
   bibs_read_only: <%= ENV['ALMA_BIBS_READ_ONLY'] %>
   region: <%= ENV['ALMA_REGION'] %>
+  sftp_username: <%= ENV['SFTP_USERNAME'] %>
+  sftp_password: <%= ENV['SFTP_PASSWORD'] %>
+  sftp_host: <%= ENV['SFTP_HOST'] %>
 
 development:
   <<: *default
