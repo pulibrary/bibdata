@@ -9,6 +9,9 @@
         <li class="<%= 'active' if params[:controller] == 'locations/libraries' %>"><%= link_to 'Libraries', locations.libraries_path %></li>
         <li class="<%= 'active' if params[:controller] == 'locations/hours_locations' %>"><%= link_to 'Hours Locations', locations.hours_locations_path %></li>
         <% if current_user %>
+          <% if current_user.catalog_admin? %>
+        <li class="<%= 'active' if params[:controller] == 'campus_access_exceptions' %>"><%= link_to 'Add Access Exceptions', main_app.new_campus_access_exception_path %></li>
+          <% end %>
         <li>
           <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete %>
         </li>

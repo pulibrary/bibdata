@@ -39,11 +39,6 @@ class CampusAccess < ActiveRecord::Base
       end
     end
 
-    def valid_courses
-      # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 & 1507 (Safe Practices for Resumption of On-Campus Operations) or 1505 1507 (COVID-19 Safety Precautions)
-      [1534, 1511, 1512, 1507, 1505, 1514, 1509, 1506]
-    end
-
     private
 
       def create_ids(id_list, category: const_get("FULL"), employee_id_lookup:)
@@ -79,6 +74,12 @@ class CampusAccess < ActiveRecord::Base
       def filter_learn(row)
         course = row[1].value
         row[0].value.downcase if valid_courses.include?(course)
+      end
+
+      def valid_courses
+        # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1507, 1511, & 1512 (Safe Practices for Resumption of On-Campus Operations)
+        #  or 1505, 1514 (COVID-19 Safety Precautions) or 1506, 1509 (Safe Practices for the Resumption of Research)
+        [1534, 1511, 1512, 1507, 1505, 1514, 1509, 1506]
       end
   end
 end
