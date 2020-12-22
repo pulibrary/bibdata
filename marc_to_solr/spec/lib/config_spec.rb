@@ -12,6 +12,11 @@ describe 'From traject_config.rb' do
     @indexer.reader!(f).first
   end
 
+  def fixture_alma_record(fixture_name)
+    f = File.expand_path("../../fixtures/alma/#{fixture_name}.mrx", __FILE__)
+    @indexer.reader!(f).first
+  end
+
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
@@ -43,27 +48,27 @@ describe 'From traject_config.rb' do
 
   describe "alma loading" do
     it "can map an alma record" do
-      record = @indexer.map_record(fixture_record('99211662100521'))
+      record = @indexer.map_record(fixture_alma_record('99211662100521'))
     end
   end
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
         it "will index the 876d field" do
-          expect(fixture_record('99211662100521')['951']['w']).to be_truthy
-          expect(fixture_record('99211662100521')['876']['d']).to be_truthy
-          expect(fixture_record('99211662100521')['950']['b']).to be_truthy
-          record = @indexer.map_record(fixture_record('99211662100521'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('99211662100521')['876']['d']).utc
+          expect(fixture_alma_record('99211662100521')['951']['w']).to be_truthy
+          expect(fixture_alma_record('99211662100521')['876']['d']).to be_truthy
+          expect(fixture_alma_record('99211662100521')['950']['b']).to be_truthy
+          record = @indexer.map_record(fixture_alma_record('99211662100521'))
+          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('99211662100521')['876']['d']).utc
         end
       end
       context "When the record has only a 950b field" do
         it "will index the 950b field" do
-          expect(fixture_record('991330600000541')['950']['b']).to be_truthy
-          expect(fixture_record('991330600000541')['876']).to be_falsey
-          expect(fixture_record('991330600000541')['951']).to be_falsey
-          record = @indexer.map_record(fixture_record('991330600000541'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('991330600000541')['950']['b']).utc
+          expect(fixture_alma_record('991330600000541')['950']['b']).to be_truthy
+          expect(fixture_alma_record('991330600000541')['876']).to be_falsey
+          expect(fixture_alma_record('991330600000541')['951']).to be_falsey
+          record = @indexer.map_record(fixture_alma_record('991330600000541'))
+          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('991330600000541')['950']['b']).utc
         end
       end
     end
@@ -85,7 +90,7 @@ describe 'From traject_config.rb' do
 
   describe "call_number_display field" do
     it "returns a call_number_display field" do
-      record = @indexer.map_record(fixture_record('99211662100521'))
+      record = @indexer.map_record(fixture_alma_record('99211662100521'))
       expect(record['call_number_display']).to eq(["AP4 .T45"])
     end
   end
