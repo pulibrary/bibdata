@@ -35,6 +35,7 @@ set :linked_dirs, %w{
   log
   hathi/input
   hathi/output
+  campus_access
 }
 
 
