@@ -24,6 +24,12 @@ RSpec.describe CampusAccessExceptionsController, type: :controller do
         expect(assigns["campus_access_filename"]).to eq("#{ENV['CAMPUS_ACCESS_DIRECTORY']}/additional_campus_access.csv")
         expect(File.exist?(assigns["campus_access_filename"])).to be_truthy
       end
+
+      it "requires the file" do
+        post :create, params: { exception_file: nil }
+        expect(response).to redirect_to("http://test.host/campus_access_exceptions/new")
+        expect(flash[:alert]).to eq('param is missing or the value is empty: exception_file')
+      end
     end
   end
 
