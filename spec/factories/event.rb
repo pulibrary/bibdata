@@ -8,10 +8,15 @@ FactoryBot.define do
     updated_at { finish }
   end
   factory :full_dump_type, class: "DumpType" do
+    constant "ALL_RECORDS"
+    label "All Records"
+  end
+  factory :full_dump_file_type, class: "DumpFileType" do
     constant "BIB_RECORDS"
     label "All Bib Records"
   end
   factory :dump_file do
+    association :dump_file_type, factory: :full_dump_file_type
   end
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
