@@ -35,6 +35,7 @@ class Alma::Indexer
       tar_extract.rewind
       tar_extract.each.map do |entry|
         file_name, extension = entry.full_name.split(".")
+        extension ||= "xml"
         unzipped_file = Tempfile.new(["full_reindex_file_unzip_#{file_name}", "." + extension])
         while (chunk = entry.read(16 * 1024))
           unzipped_file.write chunk
