@@ -1,3 +1,4 @@
+require 'rubygems/package'
 class Alma::Indexer
   include Rails.application.routes.url_helpers
   attr_reader :solr_url
