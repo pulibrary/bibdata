@@ -12,8 +12,6 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
       remote_paths(job_id: job_id, sftp_session: sftp).each do |path|
         df = DumpFile.create(dump_file_type: dump_file_type)
         download = transfer_file(sftp_session: sftp, remote_path: path, local_path: df.path)
-        # df.zip
-        # df.save
         dump.dump_files << df
         downloads << download
       end
@@ -24,32 +22,32 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
     end
   end
 
-  # look to sftp server and identify the desired files using job_id
-  def remote_paths(job_id:, sftp_session:)
-    sftp_session.dir.entries(REMOTE_BASE_PATH).select { |entry| parse_job_id(entry.name) == job_id }.map { |entry| File.join(REMOTE_BASE_PATH, entry.name) }
-  end
-
-  # alma documentation and observed file names have a discrepancy in the form of
-  # the timestamp. So we configured the job_id to come before the timestamp to
-  # protect against future variation in the timestamp format.
-  # configured form is:
-  # fulldump_<job ID>_<time stamp>_<new or update or delete>_<counter>.xml.tar.gz
-  #
-  # Documented timestamp includes an underscore between date and time. Observed
-  # timestamp has no underscore.
-  # documentation is at
-  # https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/080Publishing_and_Inventory_Enrichment#File_name
-  def parse_job_id(name)
-    name.split("_")[1]
-  end
-
-  # Do the actual download from the sftp server
-  def transfer_file(sftp_session:, remote_path:, local_path:)
-    # File.truncate(local_path, 0) if File.exist?(local_path)
-    download = sftp_session.download(remote_path, local_path)
-  end
-
   private
+
+    # look to sftp server and identify the desired files using job_id
+    def remote_paths(job_id:, sftp_session:)
+      sftp_session.dir.entries(REMOTE_BASE_PATH).select { |entry| parse_job_id(entry.name) == job_id }.map { |entry| File.join(REMOTE_BASE_PATH, entry.name) }
+    end
+
+    # By default alma puts the timestamp before the job_id in filenames, and the
+    #   default timestamp used differed from the documented timestamp
+    #
+    # So we configured the job_id to come before the timestamp to
+    # protect against future variation in the timestamp format.
+    # configured form is:
+    # fulldump_<job ID>_<time stamp>_<new or update or delete>_<counter>.xml.tar.gz
+    #
+    # documentation is at
+    # https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/080Publishing_and_Inventory_Enrichment#File_name
+    def parse_job_id(name)
+      name.split("_")[1]
+    end
+
+    # Do the actual download from the sftp server
+    def transfer_file(sftp_session:, remote_path:, local_path:)
+      File.truncate(local_path, 0) if File.exist?(local_path)
+      sftp_session.download(remote_path, local_path)
+    end
 
     def sftp_options
       {
