@@ -20,7 +20,7 @@ class Alma::Indexer
     def downloaded_full_reindex_files
       @downloaded_full_reindex_files ||=
         begin
-          full_reindex_file_urls.map do |url|
+          full_reindex_file_urls.flat_map do |url|
             extension = "." + url.split("/").last.split(".", 2).last
             temp_file = Tempfile.new(["full_reindex_file", extension])
             temp_file.puts Faraday.get(url).body
@@ -30,16 +30,18 @@ class Alma::Indexer
         end
     end
 
-    def unzip(file, extension)
-      unzipped_file = Tempfile.new(["full_reindex_file_unzip", "." + extension.split(".").second])
-      Zlib::GzipReader.open(file.path) do |gz|
-        while (chunk = gz.read(16 * 1024))
+    def unzip(file, _ext)
+      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(file.path))
+      tar_extract.rewind
+      tar_extract.each.map do |entry|
+        file_name, extension = entry.full_name.split(".")
+        unzipped_file = Tempfile.new(["full_reindex_file_unzip_#{file_name}", "." + extension])
+        while (chunk = entry.read(16 * 1024))
           unzipped_file.write chunk
         end
-        gz.close
+        entry.close
+        unzipped_file.tap(&:rewind)
       end
-      unzipped_file.rewind
-      unzipped_file
     end
 
     def full_reindex_event
