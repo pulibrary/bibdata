@@ -58,7 +58,7 @@ class Alma::Indexer
       @full_reindex_file_urls ||=
         begin
           full_reindex_files.map do |file|
-            dump_file_url(file.path)
+            dump_file_url(file.id)
           end
         end
     end
