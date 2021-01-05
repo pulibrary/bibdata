@@ -43,11 +43,11 @@ class Alma::Indexer
     end
 
     def full_reindex_event
-      Event.joins(dump: :dump_type).where(success: true, 'dump_types.constant': "BIB_RECORDS").order(finish: 'DESC').first!
+      Event.joins(dump: :dump_type).where(success: true, 'dump_types.constant': "ALL_RECORDS").order(finish: 'DESC').first!
     end
 
     def full_reindex_files
-      full_reindex_event.dump.dump_files
+      full_reindex_event.dump.dump_files.joins(:dump_file_type).where('dump_file_types.constant': 'BIB_RECORDS')
     end
 
     def full_reindex_file_urls
