@@ -77,8 +77,15 @@ class AlmaAdapter
       "copy_number" => bib_item.item["holding_data"]["copy_id"].to_i,
       "item_sequence_number" => idx + 1,
       "temp_location" => temp_location(bib_item),
-      "perm_location" => perm_location(bib_item)
+      "perm_location" => perm_location(bib_item),
+      "item_type" => item_type(bib_item)
     )
+  end
+
+  def item_type(bib_item)
+    item_data = bib_item.item["item_data"]
+    return "Gen" unless item_data["policy"]["value"].present?
+    item_data["policy"]["value"]
   end
 
   def temp_location(bib_item)

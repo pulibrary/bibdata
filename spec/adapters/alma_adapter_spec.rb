@@ -162,7 +162,7 @@ RSpec.describe AlmaAdapter do
         # expect(item["enum"]).to eq nil # TODO: Implement
         # expect(item["chron"]).to eq nil # TODO: Implement
         expect(item["barcode"]).to eq "A19129"
-        # expect(item["item_type"]).to eq "Gen" # TODO: Implement
+        expect(item["item_type"]).to eq "Gen"
         # expect(item["due_date"]).to eq nil #TODO: Implement
         # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
         # expect(item["status"]).to eq ["Not Charged"] # TODO: Implement
