@@ -6,9 +6,9 @@ RSpec.describe Alma::Indexer do
       event = FactoryBot.create(:full_dump_event)
       solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       stub_request(:get, "http://www.example.com/dump_files/spec%2Ffixtures%2Ffiles%2Falma%2Ffull_dump%2F1.xml.gz")
-        .to_return(status: 200, body: file_fixture("alma/full_dump/1.xml.gz").read, headers: {})
+        .to_return(status: 200, body: file_fixture("alma/full_dump/1.xml.tar.gz").read, headers: {})
       stub_request(:get, "http://www.example.com/dump_files/spec%2Ffixtures%2Ffiles%2Falma%2Ffull_dump%2F2.xml.gz")
-        .to_return(status: 200, body: file_fixture("alma/full_dump/2.xml.gz").read, headers: {})
+        .to_return(status: 200, body: file_fixture("alma/full_dump/2.xml.tar.gz").read, headers: {})
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
