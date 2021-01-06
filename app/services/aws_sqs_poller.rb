@@ -10,12 +10,13 @@ class AwsSqsPoller
     poller = Aws::SQS::QueuePoller.new(queue_url)
 
     poller.poll do |msg|
-      dump = AlmaFullDumpFactory.full_bib_dump(msg[:body])
+      message_body = JSON.parse(msg[:body])
+      dump = AlmaFullDumpFactory.full_bib_dump(message_body)
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
       AlmaFullDumpTransferJob.perform_later(
         dump: dump,
-        job_id: msg[:body]["job_instance"]["id"]
+        job_id: message_body["job_instance"]["id"]
       )
     end
   end
@@ -35,6 +36,7 @@ class AlmaFullDumpFactory
     dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
     dump.event = dump_event
     dump.save
+    dump
   end
 
   def dump_event

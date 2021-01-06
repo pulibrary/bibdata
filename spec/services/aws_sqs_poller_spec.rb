@@ -10,15 +10,17 @@ RSpec.describe AwsSqsPoller do
       idle_timeout: 1 # stop the polling in test after 1 second so we can run expectations; seems to work as long as we send a final empty message
     )
   end
+  let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
+  let(:message1) do
+    { message_id: 'id1', receipt_handle: 'rh1', body: message_body }
+  end
 
   before do
     Aws.config[:sqs] = {
       stub_responses: {
         receive_message: [
           {
-            messages: [
-              { message_id: 'id1', receipt_handle: 'rh1', body: '{"job_instance": { "id": job_id, "start_time": "start", "end_time": "end"}}' }
-            ]
+            messages: [message1]
           },
           { messages: [] }
         ]
@@ -40,9 +42,10 @@ RSpec.describe AwsSqsPoller do
       dump: instance_of(Dump)
     )
 
-    # expect one Dump to have been created
-    # expect the Dump to have the body as its message
-    # expect the Dump to have an Event
-    # expect event to have the start and end time
+    expect(Dump.all.count).to eq 1
+    event = Dump.first.event
+    expect(event.message_body).to eq message_body
+    expect(event.start).to eq "2020-12-15T19:56:37.694Z"
+    expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
   end
 end
