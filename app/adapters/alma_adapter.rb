@@ -71,11 +71,10 @@ class AlmaAdapter
     }
   end
 
-  def format_item(bib_item, idx)
+  def format_item(bib_item, _idx)
     bib_item.item["item_data"].merge(
       "id" => bib_item.item["item_data"]["pid"],
       "copy_number" => bib_item.item["holding_data"]["copy_id"].to_i,
-      "item_sequence_number" => idx + 1,
       "temp_location" => temp_location(bib_item),
       "perm_location" => perm_location(bib_item),
       "item_type" => item_type(bib_item)
