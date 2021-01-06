@@ -1,3 +1,5 @@
+# This service is intended to be run by a daemon. It watches the AWS SQS poll
+# for full dump events and kicks off a job to process them.
 class AwsSqsPoller
   attr_reader :queue_url
   def initialize(queue_url: nil)
@@ -8,13 +10,12 @@ class AwsSqsPoller
     poller = Aws::SQS::QueuePoller.new(queue_url)
 
     poller.poll do |msg|
-      dump = AlmaFullDumpFactory.full_bib_dump(msg)
+      dump = AlmaFullDumpFactory.full_bib_dump(msg[:body])
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
       AlmaFullDumpTransferJob.perform_later(
         dump: dump,
-        job_id: msg["job_instance"]["id"],
-        type_constant: 'BIB_RECORDS'
+        job_id: msg[:body]["job_instance"]["id"]
       )
     end
   end
@@ -32,7 +33,7 @@ class AlmaFullDumpFactory
 
   def full_bib_dump
     dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
-    dump.event = event
+    dump.event = dump_event
     dump.save
   end
 
@@ -40,7 +41,7 @@ class AlmaFullDumpFactory
     @event ||= Event.create(
       start: event_start,
       finish: event_finish,
-      succes: true,
+      success: true,
       message_body: message.to_json
     )
   end
