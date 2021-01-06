@@ -147,6 +147,26 @@ RSpec.describe AlmaAdapter do
 
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
+      it "has all the relevant item keys" do
+        item = adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first
+        expect(item["id"]).to eq "2384011050006421"
+        # expect(item["on_reserve"]).to eq "N" # TODO: Implement
+        expect(item["copy_number"]).to eq 0
+        # expect(item["item_sequence_number"]).to eq 1 # TODO: Implement.
+        expect(item["temp_location"]).to eq nil
+        expect(item["perm_location"]).to eq "MAIN-main"
+        # expect(item["circ_group_id"]).to eq 1 # TODO: Implement.
+        # expect(item["pickup_location_code"]).to eq "MAIN-main" # TODO:
+        # Implement
+        # expect(item["pickup_location_id"]).to eq 1 # TODO: Implement
+        # expect(item["enum"]).to eq nil # TODO: Implement
+        # expect(item["chron"]).to eq nil # TODO: Implement
+        expect(item["barcode"]).to eq "A19129"
+        expect(item["item_type"]).to eq "Gen"
+        # expect(item["due_date"]).to eq nil #TODO: Implement
+        # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
+        # expect(item["status"]).to eq ["Not Charged"] # TODO: Implement
+      end
       it "has a PO line" do
         expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("po_line" => "POL-8129")
         # we added a PO for a holding
@@ -167,6 +187,9 @@ RSpec.describe AlmaAdapter do
       end
       it "has a base_status" do
         expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
+      end
+      it "has a copy number" do
+        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("copy_number" => 0)
       end
     end
 

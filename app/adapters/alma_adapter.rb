@@ -67,8 +67,35 @@ class AlmaAdapter
     {
       "holding_id" => holding_items_array.first.holding_data["holding_id"],
       "call_number" => holding_items_array.first.holding_data["call_number"],
-      "items" => holding_items_array.map { |bib_item| bib_item.item["item_data"] }
+      "items" => holding_items_array.each_with_index.map { |bib_item, idx| format_item(bib_item, idx) }
     }
+  end
+
+  def format_item(bib_item, _idx)
+    bib_item.item["item_data"].merge(
+      "id" => bib_item.item["item_data"]["pid"],
+      "copy_number" => bib_item.item["holding_data"]["copy_id"].to_i,
+      "temp_location" => temp_location(bib_item),
+      "perm_location" => perm_location(bib_item),
+      "item_type" => item_type(bib_item)
+    )
+  end
+
+  def item_type(bib_item)
+    item_data = bib_item.item["item_data"]
+    return "Gen" unless item_data["policy"]["value"].present?
+    item_data["policy"]["value"]
+  end
+
+  def temp_location(bib_item)
+    holding_data = bib_item.item["holding_data"]
+    return nil unless holding_data["in_temp_location"]
+    "#{holding_data['temp_library']['value']}-#{holding_data['temp_location']['value']}"
+  end
+
+  def perm_location(bib_item)
+    item_data = bib_item.item["item_data"]
+    "#{item_data['library']['value']}-#{item_data['location']['value']}"
   end
 
   private
