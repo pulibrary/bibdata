@@ -1,3 +1,4 @@
+require 'rubygems/package'
 class Alma::Indexer
   include Rails.application.routes.url_helpers
   attr_reader :solr_url
@@ -20,9 +21,9 @@ class Alma::Indexer
     def downloaded_full_reindex_files
       @downloaded_full_reindex_files ||=
         begin
-          full_reindex_file_urls.map do |url|
+          full_reindex_file_urls.flat_map do |url|
             extension = "." + url.split("/").last.split(".", 2).last
-            temp_file = Tempfile.new(["full_reindex_file", extension])
+            temp_file = Tempfile.new(["full_reindex_file", extension], binmode: true)
             temp_file.puts Faraday.get(url).body
             temp_file.rewind
             unzip(temp_file, extension)
@@ -30,31 +31,34 @@ class Alma::Indexer
         end
     end
 
-    def unzip(file, extension)
-      unzipped_file = Tempfile.new(["full_reindex_file_unzip", "." + extension.split(".").second])
-      Zlib::GzipReader.open(file.path) do |gz|
-        while (chunk = gz.read(16 * 1024))
+    def unzip(file, _ext)
+      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(file.path))
+      tar_extract.rewind
+      tar_extract.each.map do |entry|
+        file_name, extension = entry.full_name.split(".")
+        extension ||= "xml"
+        unzipped_file = Tempfile.new(["full_reindex_file_unzip_#{file_name}", "." + extension], binmode: true)
+        while (chunk = entry.read(16 * 1024))
           unzipped_file.write chunk
         end
-        gz.close
+        entry.close
+        unzipped_file.tap(&:rewind)
       end
-      unzipped_file.rewind
-      unzipped_file
     end
 
     def full_reindex_event
-      Event.joins(dump: :dump_type).where(success: true, 'dump_types.constant': "BIB_RECORDS").order(finish: 'DESC').first!
+      Event.joins(dump: :dump_type).where(success: true, 'dump_types.constant': "ALL_RECORDS").order(finish: 'DESC').first!
     end
 
     def full_reindex_files
-      full_reindex_event.dump.dump_files
+      full_reindex_event.dump.dump_files.joins(:dump_file_type).where('dump_file_types.constant': 'BIB_RECORDS')
     end
 
     def full_reindex_file_urls
       @full_reindex_file_urls ||=
         begin
           full_reindex_files.map do |file|
-            dump_file_url(file.path)
+            dump_file_url(file.id)
           end
         end
     end
