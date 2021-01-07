@@ -2,8 +2,6 @@ require 'zlib'
 require 'digest'
 
 class DumpFile < ActiveRecord::Base
-  include FilePathGenerator
-
   belongs_to :dump
   belongs_to :dump_file_type
 
@@ -75,5 +73,9 @@ class DumpFile < ActiveRecord::Base
       self.save
     end
     self
+  end
+
+  def generate_fp
+    File.join(MARC_LIBERATION_CONFIG['data_dir'], Time.now.to_i.to_s)
   end
 end
