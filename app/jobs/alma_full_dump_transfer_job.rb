@@ -9,9 +9,9 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
     dump_file_type = DumpFileType.find_by(constant: type_constant)
     Net::SFTP.start(sftp_host, sftp_username, password: sftp_password) do |sftp|
       downloads = []
-      remote_paths(job_id: job_id, sftp_session: sftp).each do |path|
-        df = DumpFile.create(dump_file_type: dump_file_type)
-        download = transfer_file(sftp_session: sftp, remote_path: path, local_path: df.path)
+      remote_paths(job_id: job_id, sftp_session: sftp).each do |remote_path|
+        df = DumpFile.create(dump_file_type: dump_file_type, path: dump_file_path(remote_path))
+        download = transfer_file(sftp_session: sftp, remote_path: remote_path, local_path: df.path)
         dump.dump_files << df
         downloads << download
       end
@@ -23,6 +23,10 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
   end
 
   private
+
+    def dump_file_path(remote_path)
+      File.join(MARC_LIBERATION_CONFIG['data_dir'], File.basename(remote_path))
+    end
 
     # look to sftp server and identify the desired files using job_id
     def remote_paths(job_id:, sftp_session:)
