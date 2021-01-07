@@ -11,6 +11,8 @@ RSpec.describe AlmaFullDumpTransferJob, type: :job do
   end
   let(:remote_path1) { "/home/alma/fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz" }
   let(:remote_path2) { "/home/alma/fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz" }
+  let(:local_path1) { File.join(MARC_LIBERATION_CONFIG['data_dir'], "fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz") }
+  let(:local_path2) { File.join(MARC_LIBERATION_CONFIG['data_dir'], "fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz") }
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
   let(:name2) do
     Net::SFTP::Protocol::V01::Name.new(
@@ -39,11 +41,11 @@ RSpec.describe AlmaFullDumpTransferJob, type: :job do
       allow(download_stub).to receive(:wait)
       dump = FactoryBot.create(:empty_dump)
       described_class.perform_now(dump: dump, job_id: job_id)
-      local_path = DumpFile.all.first.path
-      expect(session_stub).to have_received(:download).once.with(remote_path1, local_path)
-      expect(session_stub).to have_received(:download).once.with(remote_path2, local_path)
+      expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
+      expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
       expect(Dump.all.count).to eq 1
       expect(Dump.first.dump_files.count).to eq 2
+      expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], "fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz")
     end
   end
 end
