@@ -29,6 +29,10 @@ RSpec.describe AlmaFullDumpTransferJob, type: :job do
     )
   end
 
+  before do
+    FactoryBot.create(:full_dump_file_type)
+  end
+
   describe 'perform' do
     it 'downloads a file' do
       session_stub = instance_double(Net::SFTP::Session)
@@ -45,6 +49,7 @@ RSpec.describe AlmaFullDumpTransferJob, type: :job do
       expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
       expect(Dump.all.count).to eq 1
       expect(Dump.first.dump_files.count).to eq 2
+      expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
       expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], "fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz")
     end
   end
