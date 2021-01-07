@@ -16,6 +16,7 @@ RSpec.describe AwsSqsPoller do
   end
 
   before do
+    FactoryBot.create(:full_dump_type)
     Aws.config[:sqs] = {
       stub_responses: {
         receive_message: [
@@ -34,7 +35,7 @@ RSpec.describe AwsSqsPoller do
     Aws.config.clear
   end
 
-  it "kicks off a background job" do
+  it "Creates an event and kicks off a background job" do
     expect { described_class.new.poll }.to have_enqueued_job(
       AlmaFullDumpTransferJob
     ).with(
@@ -43,6 +44,7 @@ RSpec.describe AwsSqsPoller do
     )
 
     expect(Dump.all.count).to eq 1
+    expect(Dump.first.dump_type.constant).to eq "ALL_RECORDS"
     event = Dump.first.event
     expect(event.message_body).to eq message_body
     expect(event.start).to eq "2020-12-15T19:56:37.694Z"
