@@ -4,34 +4,59 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
   queue_as :default
 
   REMOTE_BASE_PATH = "/home/alma".freeze
-  TYPE_CONSTANT = "BIB_RECORDS"
 
   def perform(dump:, job_id:)
-    dump_file_type = DumpFileType.find_by(constant: TYPE_CONSTANT)
-    Net::SFTP.start(sftp_host, sftp_username, password: sftp_password) do |sftp|
-      downloads = []
-      remote_paths(job_id: job_id, sftp_session: sftp).each do |remote_path|
-        df = DumpFile.create(dump_file_type: dump_file_type, path: dump_file_path(remote_path))
-        download = transfer_file(sftp_session: sftp, remote_path: remote_path, local_path: df.path)
-        dump.dump_files << df
-        downloads << download
-      end
-      dump.save
-      # wait for all asynchronous downloads to complete before closing sftp
-      # session
-      downloads.each(&:wait)
+    AlmaDownloader.files_for(job_id: job_id).each do |file|
+      dump.dump_files << file
     end
+
+    dump.save
   end
 
-  private
+  # When writing the code for the incremental dumps we may want to move this out
+  # to its own file
+  class AlmaDownloader
+    TYPE_CONSTANT = "BIB_RECORDS".freeze
 
-    def dump_file_path(remote_path)
-      File.join(MARC_LIBERATION_CONFIG['data_dir'], File.basename(remote_path))
+    def self.files_for(job_id:)
+      new(job_id: job_id).files_for
+    end
+
+    attr_reader :job_id
+    def initialize(job_id:)
+      @job_id = job_id
+    end
+
+    def files_for
+      dump_files = []
+      Net::SFTP.start(sftp_host, sftp_username, password: sftp_password) do |sftp|
+        downloads = []
+        remote_paths(sftp_session: sftp).each do |remote_path|
+          df = DumpFile.create(dump_file_type: dump_file_type, path: dump_file_path(remote_path))
+          dump_files << df
+          download = transfer_file(sftp_session: sftp, remote_path: remote_path, local_path: df.path)
+          downloads << download
+        end
+
+        # wait for all asynchronous downloads to complete before closing sftp
+        # session
+        downloads.each(&:wait)
+      end
+
+      dump_files
+    end
+
+    def dump_file_type
+      DumpFileType.find_by(constant: TYPE_CONSTANT)
     end
 
     # look to sftp server and identify the desired files using job_id
-    def remote_paths(job_id:, sftp_session:)
+    def remote_paths(sftp_session:)
       sftp_session.dir.entries(REMOTE_BASE_PATH).select { |entry| parse_job_id(entry.name) == job_id }.map { |entry| File.join(REMOTE_BASE_PATH, entry.name) }
+    end
+
+    def dump_file_path(remote_path)
+      File.join(MARC_LIBERATION_CONFIG['data_dir'], File.basename(remote_path))
     end
 
     # By default alma puts the timestamp before the job_id in filenames, and the
@@ -74,4 +99,5 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
     def sftp_host
       Rails.configuration.alma["sftp_host"]
     end
+  end
 end
