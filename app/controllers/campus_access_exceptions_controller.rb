@@ -6,7 +6,7 @@ class CampusAccessExceptionsController < ApplicationController
   end
 
   def create
-    uploaded_io = params[:exception_file]
+    uploaded_io = file_params
     file_name = Rails.root.join('tmp', uploaded_io.original_filename)
     File.open(file_name, 'wb') do |file|
       file.write(uploaded_io.read)
@@ -17,6 +17,9 @@ class CampusAccessExceptionsController < ApplicationController
     @invalid_exceptions = campus_exceptions.invalid_exceptions
     campus_exceptions.export_to_file(@campus_access_filename)
     render :new
+  rescue ActionController::ParameterMissing => e
+    flash[:alert] = e.message
+    redirect_to action: :new
   end
 
   private
@@ -29,5 +32,9 @@ class CampusAccessExceptionsController < ApplicationController
         store_location_for(:user, new_campus_access_exception_path)
         redirect_to user_cas_omniauth_authorize_path
       end
+    end
+
+    def file_params
+      params.require(:exception_file)
     end
 end
