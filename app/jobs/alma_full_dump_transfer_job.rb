@@ -4,9 +4,10 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
   queue_as :default
 
   REMOTE_BASE_PATH = "/home/alma".freeze
+  TYPE_CONSTANT = "BIB_RECORDS"
 
-  def perform(dump:, job_id:, type_constant: 'BIB_RECORDS')
-    dump_file_type = DumpFileType.find_by(constant: type_constant)
+  def perform(dump:, job_id:)
+    dump_file_type = DumpFileType.find_by(constant: TYPE_CONSTANT)
     Net::SFTP.start(sftp_host, sftp_username, password: sftp_password) do |sftp|
       downloads = []
       remote_paths(job_id: job_id, sftp_session: sftp).each do |remote_path|
