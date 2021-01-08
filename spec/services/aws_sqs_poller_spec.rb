@@ -36,7 +36,7 @@ RSpec.describe AwsSqsPoller do
   end
 
   it "Creates an event and kicks off a background job" do
-    expect { described_class.new.poll }.to have_enqueued_job(
+    expect { described_class.poll }.to have_enqueued_job(
       AlmaFullDumpTransferJob
     ).with(
       job_id: job_id,

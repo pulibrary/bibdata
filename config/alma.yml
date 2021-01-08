@@ -4,6 +4,7 @@ default: &default
   sftp_username: <%= ENV['SFTP_USERNAME'] %>
   sftp_password: <%= ENV['SFTP_PASSWORD'] %>
   sftp_host: <%= ENV['SFTP_HOST'] %>
+  sqs_queue_url: <%= ENV['SQS_QUEUE_URL'] %>
 
 development:
   <<: *default
@@ -12,6 +13,7 @@ test:
   <<: *default
   bibs_read_only: 'TESTME'
   region: 'ALMA'
+  sqs_queue_url: "https://example.com"
 
 production:
   <<: *default

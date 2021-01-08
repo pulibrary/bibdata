@@ -1,12 +1,8 @@
 # This service is intended to be run by a daemon. It watches the AWS SQS poll
 # for full dump events and kicks off a job to process them.
 class AwsSqsPoller
-  attr_reader :queue_url
-  def initialize(queue_url: nil)
-    @queue_url = queue_url || "https://example.com"
-  end
-
-  def poll
+  def self.poll
+    queue_url = Rails.configuration.alma["sqs_queue_url"]
     poller = Aws::SQS::QueuePoller.new(queue_url)
 
     poller.poll do |msg|
