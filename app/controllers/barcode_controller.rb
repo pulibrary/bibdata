@@ -9,27 +9,29 @@ class BarcodeController < ApplicationController
     end
   end
 
+  # TODO: Add SCSB record enrichments. See
+  # https://github.com/pulibrary/voyager_helpers/blob/e468d9ae29367d74ba7e09620238e801a7ce7bad/lib/voyager_helpers/liberator.rb#L1108-L1127
   def scsb
-    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-    # if !valid_barcode?(params[:barcode])
-    #   render plain: "Barcode #{params[:barcode]} not valid.", status: 404
-    # else
-    #   records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]), true)
-    #   if records == []
-    #     render plain: "Barcode #{params[:barcode]} not found.", status: 404
-    #   else
-    #     respond_to do |wants|
-    #       wants.json  do
-    #         json = MultiJson.dump(pass_records_through_xml_parser(records))
-    #         render json: json
-    #       end
-    #       wants.xml do
-    #         xml = records_to_xml_string(records)
-    #         render xml: xml
-    #       end
-    #     end
-    #   end
-    # end
+    if !valid_barcode?(params[:barcode])
+      render plain: "Barcode #{params[:barcode]} not valid.", status: 404
+    else
+      item = Alma::BibItem.find_by_barcode(params[:barcode])
+      records = AlmaAdapter.new.get_bib_records(item.item["bib_data"]["mms_id"])
+      if records == []
+        render plain: "Barcode #{params[:barcode]} not found.", status: 404
+      else
+        respond_to do |wants|
+          wants.json  do
+            json = MultiJson.dump(pass_records_through_xml_parser(records))
+            render json: json
+          end
+          wants.xml do
+            xml = records_to_xml_string(records)
+            render xml: xml
+          end
+        end
+      end
+    end
   end
 
   def barcode
