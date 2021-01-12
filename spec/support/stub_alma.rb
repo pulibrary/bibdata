@@ -10,6 +10,18 @@ module AlmaStubbing
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{ids.first}/holdings/ALL/items")
       .to_return(status: status, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
   end
+
+  def stub_alma_item_barcode(mms_id:, item_id:, barcode:, holding_id:)
+    alma_path = Pathname.new(file_fixture_path).join("alma")
+    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/items.*/)
+      .with(query: { item_barcode: barcode })
+      .to_return(status: 302,
+                 headers: { "Location" => "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items/#{item_id}" })
+    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/#{mms_id}\/holdings\/#{holding_id}\/items\/#{item_id}.*/)
+      .to_return(status: 200,
+                 headers: { "Content-Type" => "application/json" },
+                 body: alma_path.join("barcode_#{barcode}.json"))
+  end
 end
 
 RSpec.configure do |config|
