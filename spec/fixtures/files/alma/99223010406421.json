@@ -1,0 +1,52 @@
+{
+    "bib": [
+        {
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>02243pam a2200445 i 4500</leader><controlfield tag=\"001\">99223010406421</controlfield><controlfield tag=\"005\">20200723145041.0</controlfield><controlfield tag=\"008\">190405t20202020nyu           000 1 eng  </controlfield><datafield ind1=\" \" ind2=\" \" tag=\"010\"><subfield code=\"a\">  2019014779</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">9781324002895</subfield><subfield code=\"q\">(hardcover)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">1324002891</subfield><subfield code=\"q\">(hardcover)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)1084333011</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)on1084333011</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">11711076</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">DLC</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">rda</subfield><subfield code=\"c\">DLC</subfield><subfield code=\"d\">MJ8</subfield><subfield code=\"d\">OCLCO</subfield><subfield code=\"d\">UAP</subfield><subfield code=\"d\">IH9</subfield><subfield code=\"d\">OCLCF</subfield><subfield code=\"d\">CDX</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"042\"><subfield code=\"a\">pcc</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"050\"><subfield code=\"a\">PS3566.R3944</subfield><subfield code=\"b\">A614 2020</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"082\"><subfield code=\"a\">813/.54</subfield><subfield code=\"2\">23</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Pressfield, Steven,</subfield><subfield code=\"e\">author.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">36 righteous men :</subfield><subfield code=\"b\">a novel /</subfield><subfield code=\"c\">Steven Pressfield.</subfield></datafield><datafield ind1=\"3\" ind2=\"0\" tag=\"246\"><subfield code=\"a\">Thirty-six righteous men</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"250\"><subfield code=\"a\">First edition.</subfield></datafield><datafield ind1=\" \" ind2=\"1\" tag=\"264\"><subfield code=\"a\">New York :</subfield><subfield code=\"b\">W.W. Norton &amp; Company, Inc.,</subfield><subfield code=\"c\">[2020]</subfield></datafield><datafield ind1=\" \" ind2=\"4\" tag=\"264\"><subfield code=\"c\">\u00a92020</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">340 pages ;</subfield><subfield code=\"c\">25 cm</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"520\"><subfield code=\"a\">\"New York homicide detectives pursue a serial killer in this apocalyptic thriller. When detectives James Manning and Covina \"Dewey\" Duwai are called in to investigate a series of bizarre murders, they make a shocking discovery: the legend of the hidden righteous ones, the 36 who preserve the world from destruction, is no legend at all. They are real, and they are being murdered. As the bodies pile up and the world tilts into chaos, Manning and Dewey must protect the righteous ones from a ruthless killer able to beguile his victims and command them against their will\"--</subfield><subfield code=\"c\">Provided by publisher.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Serial murderers</subfield><subfield code=\"v\">Fiction.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh2008111435</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Serial murder investigation</subfield><subfield code=\"v\">Fiction.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh2010112687</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Serial murder investigation.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01113109</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Serial murderers.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01113110</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Detective and mystery fiction.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01726581</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Fiction.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01423787</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Thrillers (Fiction)</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01726755</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"852\"><subfield code=\"b\">dixn</subfield><subfield code=\"h\">PS3566.R3944</subfield><subfield code=\"i\">A614 2020</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"852\"><subfield code=\"0\">11380335</subfield><subfield code=\"b\">dixn</subfield><subfield code=\"h\">PS3566.R3944</subfield><subfield code=\"i\">A614 2020</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"902\"><subfield code=\"a\">yj</subfield><subfield code=\"b\">s</subfield><subfield code=\"6\">a</subfield><subfield code=\"7\">m</subfield><subfield code=\"d\">v</subfield><subfield code=\"f\">1</subfield><subfield code=\"e\">20191127</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"904\"><subfield code=\"a\">yj</subfield><subfield code=\"b\">a</subfield><subfield code=\"h\">m</subfield><subfield code=\"c\">b</subfield><subfield code=\"e\">20191127</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">99223010406421</subfield><subfield code=\"8\">2281872070006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">MAIN</subfield><subfield code=\"c\">New Books Display</subfield><subfield code=\"d\">PS3566.R3944 A614 2020</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">new</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Main Library</subfield></datafield></record>"
+            ],
+            "author": "Pressfield, Steven,",
+            "cataloging_level": {
+                "desc": "Default Level",
+                "value": "00"
+            },
+            "complete_edition": "First edition.",
+            "created_by": "System",
+            "created_date": "2020-06-01Z",
+            "date_of_publication": "[2020]",
+            "holdings": {
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99223010406421/holdings",
+                "value": null
+            },
+            "isbn": "1324002891",
+            "issn": null,
+            "last_modified_by": "System",
+            "last_modified_date": "2020-07-23Z",
+            "link": null,
+            "linked_record_id": {
+                "type": null,
+                "value": null
+            },
+            "mms_id": "99223010406421",
+            "network_number": [
+                "11711076",
+                "(OCoLC)on1084333011",
+                "(OCoLC)1084333011"
+            ],
+            "originating_system": "OTHER",
+            "originating_system_id": "11711076",
+            "place_of_publication": "New York :",
+            "publisher_const": "W.W. Norton & Company, Inc.,",
+            "record_format": "marc21",
+            "requests": {
+                "link": null,
+                "value": 0
+            },
+            "suppress_from_external_search": "false",
+            "suppress_from_publishing": "false",
+            "sync_with_libraries_australia": "NONE",
+            "sync_with_oclc": "NONE",
+            "title": "36 righteous men : a novel /"
+        }
+    ],
+    "total_record_count": 1
+}

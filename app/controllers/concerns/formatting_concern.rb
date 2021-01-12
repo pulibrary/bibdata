@@ -4,24 +4,22 @@ module FormattingConcern
   # @return [String] A serialized <mrx:record/> or <mrx:collection/>
   # "Cleans" the record of invalid xml characters
   def records_to_xml_string(records)
-    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-    # if records.kind_of? Array
-    #           xml_str = ''
-    #           StringIO.open(xml_str) do |io|
-    #             writer = MARC::XMLWriter.new(io)
-    #             records.each do |r|
-    #               writer.write(r) unless r.nil?
-    #             end
-    #             writer.close()
-    #           end
-    #           valid_xml(xml_str)
-    #         elsif records.kind_of? String
-    #           # example response from /almaws/v1/bibs/{mms_id}/holdings
-    #           valid_xml(records)
-    #         else
-    #           valid_xml(records.to_xml.to_s)
-    records.to_xml.to_s
-    #         end
+    if records.kind_of? Array
+      xml_str = ''
+      StringIO.open(xml_str) do |io|
+        writer = MARC::XMLWriter.new(io)
+        records.each do |r|
+          writer.write(r) unless r.nil?
+        end
+        writer.close()
+      end
+      valid_xml(xml_str)
+    elsif records.kind_of? String
+      # example response from /almaws/v1/bibs/{mms_id}/holdings
+      valid_xml(records)
+    else
+      valid_xml(records.to_xml.to_s)
+    end
   end
 
   # Moved from voyager-helpers
