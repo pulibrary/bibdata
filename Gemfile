@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'alma'
+gem 'alma', github: "tulibraries/alma_rb", branch: "main"
 gem 'aws-sdk-sqs'
 gem 'bixby', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.4.1'
