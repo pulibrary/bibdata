@@ -14,6 +14,11 @@ class AlmaAdapter
 
     class MarcRecord < SimpleDelegator
       attr_reader :bib, :marc_record
+      # @param bib [Alma::Bib]
+      # @param marc_record [MARC::Record]
+      # @note We accept these two separately because parsing a bunch of MARC
+      # records at once is more performant than doing one at a time, so it's
+      # done before initializing this.
       def initialize(bib, marc_record)
         super(marc_record)
         @marc_record = marc_record
