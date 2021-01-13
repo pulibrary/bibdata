@@ -31,6 +31,7 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["876"]["t"]).to eq voyager_comparison["876"]["t"] # Copy Number
         # expect(record["876"]["j"]).to eq "Not Charged" # Status. TODO: Enable
         #   when we figure out statuses.
+        expect(record["876"]["h"]).to eq voyager_comparison["876"]["h"] # ReCAP Use Restriciton
       end
     end
   end
