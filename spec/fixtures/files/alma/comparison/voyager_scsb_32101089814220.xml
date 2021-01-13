@@ -1,0 +1,104 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<record>
+<leader>01032cam a2200289 a 4500</leader>
+<controlfield tag="001">7991903</controlfield>
+<controlfield tag="005">20201001201754.0</controlfield>
+<controlfield tag="008">131112s2013 mau b 000 0 eng d</controlfield>
+<datafield ind1=" " ind2=" " tag="020">
+<subfield code="a">1584351268 (pbk.)</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="020">
+<subfield code="a">9781584351269 (pbk.)</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">7991903</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="040">
+<subfield code="a">CDX</subfield>
+<subfield code="c">CDX</subfield>
+<subfield code="d">NjP</subfield>
+</datafield>
+<datafield ind1=" " ind2="4" tag="050">
+<subfield code="a">PS3561.R2873</subfield>
+<subfield code="b">A68 2013</subfield>
+</datafield>
+<datafield ind1=" " ind2="4" tag="082">
+<subfield code="a">813.5</subfield>
+<subfield code="b">23</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="019">
+<subfield code="a">842500102</subfield>
+<subfield code="a">862844408</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">(OCoLC)ocn851826743</subfield>
+<subfield code="z">(OCoLC)ocn842500102</subfield>
+<subfield code="z">(OCoLC)ocn862844408</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="100">
+<subfield code="a">Kraus, Chris,</subfield>
+<subfield code="e">author.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/nr98030545</subfield>
+</datafield>
+<datafield ind1="1" ind2="0" tag="245">
+<subfield code="a">Aliens & anorexia /</subfield>
+<subfield code="c">Chris Kraus.</subfield>
+</datafield>
+<datafield ind1="3" ind2=" " tag="246">
+<subfield code="a">Aliens and anorexia</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="260">
+<subfield code="a">Los Angeles, CA :</subfield>
+<subfield code="b">Semiotext(e),</subfield>
+<subfield code="c">c2013.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="300">
+<subfield code="a">261 pages :</subfield>
+<subfield code="b">ill. ;</subfield>
+<subfield code="c">23 cm</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="490">
+<subfield code="a">Semiotext(e) native agents series</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="504">
+<subfield code="a">Includes bibliographical references.</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="650">
+<subfield code="a">Experimental fiction.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/subjects/sh86005295</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="830">
+<subfield code="a">Semiotext(e) native agents series.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="904">
+<subfield code="a">wcs</subfield>
+<subfield code="b">o</subfield>
+<subfield code="h">m</subfield>
+<subfield code="c">b</subfield>
+<subfield code="e">20131216</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="902">
+<subfield code="a">lm</subfield>
+<subfield code="b">m</subfield>
+<subfield code="6">a</subfield>
+<subfield code="7">m</subfield>
+<subfield code="d">v</subfield>
+<subfield code="f">1</subfield>
+<subfield code="e">20140320</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="852">
+<subfield code="0">7770428</subfield>
+<subfield code="b">f</subfield>
+<subfield code="h">PS3561.R2873</subfield>
+<subfield code="i">A68 2013</subfield>
+</datafield>
+<datafield ind1="0" ind2="0" tag="876">
+<subfield code="0">7770428</subfield>
+<subfield code="3"/>
+<subfield code="a">6800460</subfield>
+<subfield code="j">Renewed</subfield>
+<subfield code="p">32101089814220</subfield>
+<subfield code="t">1</subfield>
+</datafield>
+</record>
+</collection>

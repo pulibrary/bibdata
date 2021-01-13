@@ -14,6 +14,18 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record).to be_present
         expect(record["001"].value).to eq "99223010406421"
       end
+      it "enriches the MARC record with holdings and item info" do
+        stub_alma_item_barcode(mms_id: "9979919033506421", item_id: "23137536560006421", holding_id: "22137536570006421", barcode: "32101089814220")
+        stub_alma_ids(ids: "9979919033506421", status: 200, fixture: "9979919033506421")
+
+        voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join("alma", "comparison", "voyager_scsb_32101089814220.xml"))).first
+        get :scsb, params: { barcode: "32101089814220" }, format: :xml
+
+        expect(response).to be_success
+        record = MARC::XMLReader.new(StringIO.new(response.body)).first
+        expect(record["001"].value).to eq "9979919033506421"
+        expect(record["876"].as_json).to eq voyager_comparison["876"].as_json
+      end
     end
   end
   describe '#valid_barcode' do
