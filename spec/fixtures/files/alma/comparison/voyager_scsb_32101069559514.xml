@@ -1,0 +1,88 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<record>
+<leader>00781cam a2200241 a 4500</leader>
+<controlfield tag="001">7262574</controlfield>
+<controlfield tag="005">20200929154513.0</controlfield>
+<controlfield tag="008">121022s2012 fr 000 0 fre d</controlfield>
+<datafield ind1=" " ind2=" " tag="020">
+<subfield code="a">9782851948502</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="020">
+<subfield code="a">2851948504</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">(OCoLC)818134486</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">(OCoLC)ocn818134486</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">7262574</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="040">
+<subfield code="a">TZT</subfield>
+<subfield code="c">TZT</subfield>
+</datafield>
+<datafield ind1=" " ind2="4" tag="050">
+<subfield code="a">PQ2603.A695</subfield>
+<subfield code="b">S35 2012</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="100">
+<subfield code="a">Bataille, Georges.</subfield>
+</datafield>
+<datafield ind1="1" ind2="3" tag="245">
+<subfield code="a">La scissiparité /</subfield>
+<subfield code="c">Georges Bataille ; dessins de Jean-Gilles Badaire.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="260">
+<subfield code="a">[Saint-Clément de Rivière] :</subfield>
+<subfield code="b">Fata Morgana,</subfield>
+<subfield code="c">[2012].</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="300">
+<subfield code="a">41 p.:</subfield>
+<subfield code="b">ill.;</subfield>
+<subfield code="c">22 cm.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="653">
+<subfield code="a">Literature</subfield>
+<subfield code="a">Narrative</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="700">
+<subfield code="a">Badaire, Jean-Gilles.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/n96092946</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="904">
+<subfield code="a">wcs</subfield>
+<subfield code="b">o</subfield>
+<subfield code="h">m</subfield>
+<subfield code="c">b</subfield>
+<subfield code="e">20121212</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="902">
+<subfield code="a">of</subfield>
+<subfield code="b">m</subfield>
+<subfield code="6">a</subfield>
+<subfield code="7">m</subfield>
+<subfield code="d">v</subfield>
+<subfield code="f">1</subfield>
+<subfield code="e">20130320</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="852">
+<subfield code="0">7106336</subfield>
+<subfield code="b">rcppa</subfield>
+<subfield code="h">PQ2603.A695 S35 2012</subfield>
+</datafield>
+<datafield ind1="0" ind2="0" tag="876">
+<subfield code="0">7106336</subfield>
+<subfield code="3"/>
+<subfield code="a">6554859</subfield>
+<subfield code="h"/>
+<subfield code="j">Not Charged</subfield>
+<subfield code="p">32101069559514</subfield>
+<subfield code="t">1</subfield>
+<subfield code="x">Shared</subfield>
+<subfield code="z">PA</subfield>
+</datafield>
+</record>
+</collection>
