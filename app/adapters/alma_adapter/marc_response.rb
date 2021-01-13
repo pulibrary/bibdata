@@ -6,15 +6,34 @@ class AlmaAdapter
     # @param bibs [Alma::BibSet]
     def initialize(bibs:)
       @bibs = bibs
-      remove_suppressed!
     end
 
     def unsuppressed_marc
-      return [] unless bibs.present?
-      MARC::XMLReader.new(bib_marc_xml).to_a
+      marc_records.reject(&:suppressed?)
+    end
+
+    class MarcRecord < SimpleDelegator
+      attr_reader :bib
+      def initialize(bib, marc_record)
+        super(marc_record)
+        @bib = bib
+      end
+
+      def suppressed?
+        bib["suppress_from_publishing"] == "true"
+      end
     end
 
     private
+
+      def marc_records
+        @marc_records ||=
+          begin
+            MARC::XMLReader.new(bib_marc_xml).to_a.each_with_index.map do |record, idx|
+              MarcRecord.new(bibs[idx], record)
+            end
+          end
+      end
 
       def bib_marc_xml
         StringIO.new(
@@ -22,12 +41,6 @@ class AlmaAdapter
             bib["anies"]
           end.join("")
         )
-      end
-
-      def remove_suppressed!
-        bibs.reject! do |bib|
-          bib["suppress_from_publishing"] == "true"
-        end
       end
   end
 end
