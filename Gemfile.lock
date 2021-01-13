@@ -6,6 +6,17 @@ GIT
     loops (2.1.0.dev)
 
 GIT
+  remote: https://github.com/pulibrary/alma_rb.git
+  revision: 0df55c3348477eb28c96fee8b4223088a0c5ed15
+  branch: item_from_barcode_fix
+  specs:
+    alma (0.3.1)
+      activesupport
+      ezwadl
+      httparty
+      xml-simple
+
+GIT
   remote: https://github.com/pulibrary/locations.git
   revision: 334da3bd6f1c1482c2e0485b31d9dd3e2c8bc551
   tag: v1.2.0
@@ -43,17 +54,6 @@ GIT
   tag: vpton.2.5.2.2
   specs:
     stringex (2.5.2)
-
-GIT
-  remote: https://github.com/tulibraries/alma_rb.git
-  revision: 4bf8a35eb0902517036993d06ce9316533301e1a
-  branch: main
-  specs:
-    alma (0.3.1)
-      activesupport
-      ezwadl
-      httparty
-      xml-simple
 
 GEM
   remote: https://rubygems.org/
