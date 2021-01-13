@@ -3,6 +3,7 @@ require 'traject'
 require 'faraday'
 require 'time'
 require 'iso-639'
+require 'byebug'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
@@ -89,9 +90,16 @@ describe 'From traject_config.rb' do
   end
 
   describe "call_number_display field" do
-    it "returns a call_number_display field" do
-      record = @indexer.map_record(fixture_alma_record('99211662100521'))
-      expect(record['call_number_display']).to eq(["AP4 .T45"])
+    it "returns the call_number_display field with k subfield at the end" do
+      record = @indexer.map_record(fixture_alma_record('9957270023506421'))
+      expect(record['call_number_display']).to eq(["6819 Eng 20Q"])
+    end
+  end
+
+  describe "call_number_browse field" do
+    it "returns the call_number_browse field with k subfield at the end" do
+      record = @indexer.map_record(fixture_alma_record('9957270023506421'))
+      expect(record['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
   end
 
