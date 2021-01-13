@@ -31,53 +31,19 @@ class AlmaAdapter
 
       def enrich_with_item(item)
         # The following is what happens in VoyagerHelpers right now.
-        item = AlmaItem.new(item)
+        item = ::AlmaAdapter::AlmaItem.new(item)
         marc_record.append(item.enrichment_876)
-          # merged_bib.append(MARC::DataField.new('876', '0', '0',
-          #   MARC::Subfield.new('0', holding_id),
-          #   MARC::Subfield.new('3', item_enum_chron),
-          #   MARC::Subfield.new('a', item[:id].to_s),
-          #   MARC::Subfield.new('h', recap_item_hash[:recap_use_restriction]),
-          #   MARC::Subfield.new('j', item[:status].join(', ')),
-          #   MARC::Subfield.new('p', item[:barcode].to_s),
-          #   MARC::Subfield.new('t', item[:copy_number].to_s),
-          #   MARC::Subfield.new('x', recap_item_hash[:group_designation]),
-          #   MARC::Subfield.new('z', recap_item_hash[:customer_code]))
-          # )
-      end
-    end
-
-    class AlmaItem
-      attr_reader :item
-      # @param item [Alma::BibItem]
-      def initialize(item)
-        @item = item
-      end
-
-      def enrichment_876
-        MARC::DataField.new(
-          '876', '0', '0',
-          MARC::Subfield.new('0', holding_id),
-          MARC::Subfield.new('a', item_id),
-          MARC::Subfield.new('p', barcode),
-          MARC::Subfield.new('t', copy_number)
-        )
-      end
-
-      def holding_id
-        item.holding_data["holding_id"]
-      end
-
-      def item_id
-        item.item_data["pid"]
-      end
-
-      def barcode
-        item.item_data["barcode"]
-      end
-
-      def copy_number
-        item.holding_data["copy_id"]
+        # merged_bib.append(MARC::DataField.new('876', '0', '0',
+        #   MARC::Subfield.new('0', holding_id),
+        #   MARC::Subfield.new('3', item_enum_chron),
+        #   MARC::Subfield.new('a', item[:id].to_s),
+        #   MARC::Subfield.new('h', recap_item_hash[:recap_use_restriction]),
+        #   MARC::Subfield.new('j', item[:status].join(', ')),
+        #   MARC::Subfield.new('p', item[:barcode].to_s),
+        #   MARC::Subfield.new('t', item[:copy_number].to_s),
+        #   MARC::Subfield.new('x', recap_item_hash[:group_designation]),
+        #   MARC::Subfield.new('z', recap_item_hash[:customer_code]))
+        # )
       end
     end
 
