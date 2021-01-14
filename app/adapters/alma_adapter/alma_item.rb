@@ -26,7 +26,8 @@ class AlmaAdapter
       return [] unless item.library == "recap"
       [
         MARC::Subfield.new('h', recap_use_restriction),
-        MARC::Subfield.new('x', group_designation)
+        MARC::Subfield.new('x', group_designation),
+        MARC::Subfield.new('z', recap_customer_code)
       ]
     end
 
@@ -44,6 +45,12 @@ class AlmaAdapter
 
     def copy_number
       item.holding_data["copy_id"]
+    end
+
+    def recap_customer_code
+      return unless item.library == "recap"
+      return "PG" if item.location[0].downcase == "x"
+      return item.location.upcase
     end
 
     def recap_use_restriction
