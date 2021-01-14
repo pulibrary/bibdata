@@ -16,7 +16,7 @@ RSpec.describe AlmaAdapter do
   let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
 
   before do
-    stub_request(:get, "https://ALMA/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
+    stub_request(:get, "https://alma/almaws/v1/bibs/991227850000541/holdings?apikey=TESTME")
       .to_return(status: 200, body: holdings_991227840000541, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                    'Content-Type' => 'application/xml;charset=UTF-8',
