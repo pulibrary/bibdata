@@ -18,6 +18,7 @@ class AlmaAdapter
     def subfields_for_876
       [
         MARC::Subfield.new('0', holding_id),
+        MARC::Subfield.new('3', enum_cron),
         MARC::Subfield.new('a', item_id),
         MARC::Subfield.new('p', barcode),
         MARC::Subfield.new('t', copy_number)
@@ -31,6 +32,21 @@ class AlmaAdapter
         MARC::Subfield.new('x', group_designation),
         MARC::Subfield.new('z', recap_customer_code)
       ]
+    end
+
+    def enum_cron
+      return if enumeration.blank? && chronology.blank?
+      return enumeration if chronology.blank?
+      return chronology if enumeration.blank?
+      "#{enumeration} (#{chronology})"
+    end
+
+    def enumeration
+      item.item_data["enumeration_a"]
+    end
+
+    def chronology
+      item.item_data["chronology_i"]
     end
 
     def holding_id
