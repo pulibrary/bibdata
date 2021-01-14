@@ -1,0 +1,155 @@
+{
+    "location": [
+        {
+            "code": "stacks",
+            "name": "Architecture Library Stacks",
+            "external_name": "Architecture Library",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "",
+                "desc": "null"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/stacks"
+        },
+        {
+            "code": "reserves",
+            "name": "Course Reserves",
+            "external_name": "",
+            "type": {
+                "value": "CLOSED",
+                "desc": "Closed"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "1HourLoan",
+                "desc": "1 hour loan"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/reserves"
+        },
+        {
+            "code": "govdocs",
+            "name": "Government Documents",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "3",
+                "desc": "Superintendent of Documents classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/govdocs"
+        },
+        {
+            "code": "internat",
+            "name": "International Collection",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/internat"
+        },
+        {
+            "code": "edujuv",
+            "name": "Juvenile Education Collection",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/edujuv"
+        },
+        {
+            "code": "media",
+            "name": "Media Collection",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "Media",
+                "desc": "Media"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "8",
+                "desc": "Other scheme"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/media"
+        }
+    ],
+    "total_record_count": 6
+}

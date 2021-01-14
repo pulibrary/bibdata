@@ -1,0 +1,180 @@
+{
+    "location": [
+        {
+            "code": "stacks",
+            "name": "Main Library Stacks",
+            "external_name": "Main Library",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "",
+                "desc": "null"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/stacks"
+        },
+        {
+            "code": "microforms",
+            "name": "Microform Room",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "Limited",
+                "desc": "Limited"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "6",
+                "desc": "Shelved separately "
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/microforms"
+        },
+        {
+            "code": "new",
+            "name": "New Books Display",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "",
+                "desc": null
+            },
+            "call_number_type": {
+                "value": "",
+                "desc": null
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/new"
+        },
+        {
+            "code": "perroom",
+            "name": "Periodicals",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "Limited",
+                "desc": "Limited"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/perroom"
+        },
+        {
+            "code": "rare",
+            "name": "Rare Books Collection",
+            "external_name": "",
+            "type": {
+                "value": "CLOSED",
+                "desc": "Closed"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "Closed",
+                "desc": "Closed"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "8",
+                "desc": "Other scheme"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/rare"
+        },
+        {
+            "code": "reference",
+            "name": "Reference",
+            "external_name": "",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "Limited",
+                "desc": "Limited"
+            },
+            "accession_placement": {
+                "value": "none",
+                "desc": "None"
+            },
+            "call_number_type": {
+                "value": "0",
+                "desc": "Library of Congress classification"
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/reference"
+        },
+        {
+            "code": "selfpickup",
+            "name": "\u9884\u7ea6\u67dc",
+            "external_name": "\u9884\u7ea6\u67dc",
+            "type": {
+                "value": "OPEN",
+                "desc": "Open"
+            },
+            "remote_storage": "",
+            "map": "",
+            "suppress_from_publishing": "false",
+            "fulfillment_unit": {
+                "value": "General",
+                "desc": "General"
+            },
+            "accession_placement": {
+                "value": "",
+                "desc": null
+            },
+            "call_number_type": {
+                "value": "",
+                "desc": null
+            },
+            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/selfpickup"
+        }
+    ],
+    "total_record_count": 7
+}
