@@ -17,7 +17,7 @@ class BarcodeController < ApplicationController
     else
       item = Alma::BibItem.find_by_barcode(params[:barcode])
       records = AlmaAdapter.new.get_bib_records(item.item["bib_data"]["mms_id"])
-      records[0].enrich_with_item(item)
+      records[0]&.enrich_with_item(item)
       if records == []
         render plain: "Barcode #{params[:barcode]} not found.", status: 404
       else
