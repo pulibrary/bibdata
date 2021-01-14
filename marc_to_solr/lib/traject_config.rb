@@ -1278,34 +1278,16 @@ end
 #    852 XX hik
 # Position 852|k at the end of the call_number_display
 to_field 'call_number_display' do |record, accumulator|
-  subfield_h = nil
-  subfield_i = nil
-  subfield_k = nil
-  subfields_array = []
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    field.subfields.each do |s_field|
-      subfield_h = s_field.value if s_field.code == 'h'
-      subfield_i = s_field.value if s_field.code == 'i'
-      subfield_k = s_field.value if s_field.code == 'k'
-    end
+    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
   end
-  accumulator << subfields_array.push(subfield_h, subfield_i, subfield_k).compact.join(" ")
 end
 
 # Position 852|k at the end of the call_number_browse_s
 to_field 'call_number_browse_s' do |record, accumulator|
-  subfield_h = nil
-  subfield_i = nil
-  subfield_k = nil
-  subfields_array = []
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    field.subfields.each do |s_field|
-      subfield_h = s_field.value if s_field.code == 'h'
-      subfield_i = s_field.value if s_field.code == 'i'
-      subfield_k = s_field.value if s_field.code == 'k'
-    end
+    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
   end
-  accumulator << subfields_array.push(subfield_h, subfield_i, subfield_k).compact.join(" ")
 end
 
 # Location has:
