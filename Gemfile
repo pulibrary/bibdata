@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'alma', github: "pulibrary/alma_rb", branch: "item_from_barcode_fix"
+gem 'alma', github: "pulibrary/alma_rb", branch: "holding_support"
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
 gem 'bixby', '~> 2.0'
