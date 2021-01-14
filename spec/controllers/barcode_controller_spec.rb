@@ -14,6 +14,27 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record).to be_present
         expect(record["001"].value).to eq "99223010406421"
       end
+      it "enriches the MARC record with holdings and item info" do
+        stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
+        stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
+
+        voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join("alma", "comparison", "voyager_scsb_32101069559514.xml"))).first
+        get :scsb, params: { barcode: "32101069559514" }, format: :xml
+
+        expect(response).to be_success
+        record = MARC::XMLReader.new(StringIO.new(response.body)).first
+        expect(record["001"].value).to eq "9972625743506421"
+        expect(record["876"]["0"]).to eq "2240957220006421" # Holding ID
+        # expect(record["876"]["3"]).to eq voyager_comparison["876"]["3"] # enum_cron TODO: Enable after we figure this out.
+        expect(record["876"]["a"]).to eq "2340957190006421" # Item ID
+        expect(record["876"]["p"]).to eq "32101069559514" # Barcode
+        expect(record["876"]["t"]).to eq voyager_comparison["876"]["t"] # Copy Number
+        # expect(record["876"]["j"]).to eq "Not Charged" # Status. TODO: Enable
+        #   when we figure out statuses.
+        expect(record["876"]["h"]).to eq voyager_comparison["876"]["h"] # ReCAP Use Restriciton
+        expect(record["876"]["x"]).to eq voyager_comparison["876"]["x"] # ReCAP Group Designation
+        expect(record["876"]["z"]).to eq voyager_comparison["876"]["z"] # ReCAP Customer Code
+      end
     end
   end
   describe '#valid_barcode' do
