@@ -7,8 +7,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/alma_rb.git
-  revision: 0df55c3348477eb28c96fee8b4223088a0c5ed15
-  branch: item_from_barcode_fix
+  revision: 3321017f24b45ffd4f357c42354ec15e50833180
+  branch: holding_support
   specs:
     alma (0.3.1)
       activesupport
