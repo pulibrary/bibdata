@@ -6,6 +6,8 @@ class AlmaAdapter
       @item = item
     end
 
+    # 876 field used for enrichment in
+    # AlmaAdapter::MarcResponse::MarcRecord#enrich_with_item
     def enrichment_876
       MARC::DataField.new(
         '876', '0', '0',
@@ -49,8 +51,8 @@ class AlmaAdapter
 
     def recap_customer_code
       return unless item.library == "recap"
-      return "PG" if item.location[0].downcase == "x"
-      return item.location.upcase
+      return "PG" if item.location[0].casecmp("x").zero?
+      item.location.upcase
     end
 
     def recap_use_restriction
