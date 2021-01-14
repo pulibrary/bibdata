@@ -3,9 +3,10 @@ namespace :alma do
   task :setup_keys do
     sftp_credentials = build_sftp_credentials_hash
     File.open(".env", "w") do |f|
-      f.puts "ALMA_BIBS_READ_ONLY=#{read_key}"
-      f.puts "FTP_USERNAME=#{ftp_credentials['Username']}"
-      f.puts "FTP_PASSWORD=#{ftp_credentials['Password']}"
+      f.puts "ALMA_READ_ONLY_APIKEY=#{read_key}"
+      f.puts "ALMA_REGION=#{region_key}"
+      f.puts "FTP_USERNAME=#{sftp_credentials['Username']}"
+      f.puts "FTP_PASSWORD=#{sftp_credentials['Password']}"
       f.puts "SFTP_HOST=#{sftp_credentials['URL'].split('/').last}"
     end
     puts "Generated .env file"
@@ -15,7 +16,13 @@ end
 def read_key
   keys = `lpass show Shared-ITIMS-Passwords/alma/AlmaKeys --notes`
   keys = build_hash(keys)
-  keys["bibs_read_only"].split(" ").first
+  keys["production_read_only"].split(" ").first
+end
+
+def region_key
+  keys = `lpass show Shared-ITIMS-Passwords/alma/AlmaKeys --notes`
+  keys = build_hash(keys)
+  keys["alma_region"].split(" ").first
 end
 
 def build_sftp_credentials_hash

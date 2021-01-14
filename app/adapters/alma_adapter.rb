@@ -101,6 +101,6 @@ class AlmaAdapter
   private
 
     def apikey
-      Rails.configuration.alma[:bibs_read_only]
+      Rails.configuration.alma[:read_only_apikey]
     end
 end
