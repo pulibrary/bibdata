@@ -25,7 +25,8 @@ class AlmaAdapter
     def recap_876_fields
       return [] unless item.library == "recap"
       [
-        MARC::Subfield.new('h', recap_use_restriction)
+        MARC::Subfield.new('h', recap_use_restriction),
+        MARC::Subfield.new('x', group_designation)
       ]
     end
 
@@ -48,11 +49,33 @@ class AlmaAdapter
     def recap_use_restriction
       return unless item.library == "recap"
       case item.location
-      when 'pj', 'pk', 'pl', 'pm', 'pn', 'pt'
+      when *in_library_recap_groups
         "In Library Use"
-      when "pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx"
+      when *supervised_recap_groups
         "Supervised Use"
       end
+    end
+
+    def group_designation
+      return unless item.library == "recap"
+      case item.location
+      when 'pa', 'gp', 'qk', 'pf'
+        "Shared"
+      when *(in_library_recap_groups + supervised_recap_groups + no_access_recap_groups)
+        "Private"
+      end
+    end
+
+    def in_library_recap_groups
+      ['pj', 'pk', 'pl', 'pm', 'pn', 'pt']
+    end
+
+    def supervised_recap_groups
+      ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx"]
+    end
+
+    def no_access_recap_groups
+      ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx']
     end
   end
 end
