@@ -1276,9 +1276,19 @@ end
 
 # Call number: +No call number available
 #    852 XX hik
-to_field 'call_number_display', extract_marc('852hik')
-# Alma:needs to decide if subfield k should be considered for browse list
-to_field 'call_number_browse_s', extract_marc('852hik')
+# Position 852|k at the end of the call_number_display
+to_field 'call_number_display' do |record, accumulator|
+  MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
+    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
+  end
+end
+
+# Position 852|k at the end of the call_number_browse_s
+to_field 'call_number_browse_s' do |record, accumulator|
+  MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
+    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
+  end
+end
 
 # Location has:
 #    1040
