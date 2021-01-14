@@ -1,5 +1,5 @@
 default: &default
-  bibs_read_only: <%= ENV['ALMA_BIBS_READ_ONLY'] %>
+  read_only_apikey: <%= ENV['ALMA_READ_ONLY_APIKEY'] %>
   region: <%= ENV['ALMA_REGION'] %>
   sftp_username: <%= ENV['SFTP_USERNAME'] %>
   sftp_password: <%= ENV['SFTP_PASSWORD'] %>
@@ -11,7 +11,7 @@ development:
 
 test:
   <<: *default
-  bibs_read_only: 'TESTME'
+  read_only_apikey: 'TESTME'
   region: 'ALMA'
   sqs_queue_url: "https://example.com"
 
