@@ -1,0 +1,174 @@
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/MARC21/slim http://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd">
+<record>
+<leader>02318cas a2200481 a 4500</leader>
+<controlfield tag="001">857469</controlfield>
+<controlfield tag="005">20200731143352.0</controlfield>
+<controlfield tag="008">940113c18839999dcuwn p 0 a0eng d</controlfield>
+<datafield ind1=" " ind2=" " tag="010">
+<subfield code="a"> 17024346 //r862 </subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="022">
+<subfield code="a">0036-8075</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">(CStRLIN)NJPG94-S192</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">857469</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="040">
+<subfield code="a">MnMULS</subfield>
+<subfield code="c">MnMULS</subfield>
+<subfield code="d">NjP</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="019">
+<subfield code="a">3638006</subfield>
+<subfield code="a">12333704</subfield>
+<subfield code="a">53849218</subfield>
+<subfield code="a">516785848</subfield>
+<subfield code="a">818817037</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="035">
+<subfield code="a">(OCoLC)ocm05933538</subfield>
+<subfield code="z">(OCoLC)ocm03638006</subfield>
+<subfield code="z">(OCoLC)ocm12333704</subfield>
+<subfield code="z">(OCoLC)ocm53849218</subfield>
+<subfield code="z">(OCoLC)ocn516785848</subfield>
+<subfield code="z">(OCoLC)ocn818817037</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="130">
+<subfield code="a">Science (Cambridge, Mass.)</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="222">
+<subfield code="a">Science</subfield>
+<subfield code="b">(Washington, D.C.)</subfield>
+</datafield>
+<datafield ind1="0" ind2="0" tag="245">
+<subfield code="a">Science.</subfield>
+</datafield>
+<datafield ind1="1" ind2="3" tag="246">
+<subfield code="a">Science magazine</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="260">
+<subfield code="a">Cambridge, Mass. :</subfield>
+<subfield code="b">M. King,</subfield>
+<subfield code="c">1883-</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="300">
+<subfield code="a">v. :</subfield>
+<subfield code="b">ill. ;</subfield>
+<subfield code="c">26-32 cm.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="310">
+<subfield code="a">Weekly (except last week in Dec.)</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="362">
+<subfield code="a">[Vol. 1], no. 1 (Feb. 9, 1883)-v. 23, no. 581 (Mar. 23, 1894) ; new ser., v. 1, no. 1 (Jan. 4, 1895)-</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="500">
+<subfield code="a">Since Jan. 1901, includes the official proceedings and most of the papers of the American Association for the Advancement of Science.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="500">
+<subfield code="a">Place of publication varies.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="580">
+<subfield code="a">Vols. for 1911-1913 contain: the Proceedings of the Helminthological Society of Washington, 1st-15th meeting.</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="588">
+<subfield code="a">Title from caption.</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="650">
+<subfield code="a">Science</subfield>
+<subfield code="v">Periodicals.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/subjects/sh85118580</subfield>
+</datafield>
+<datafield ind1=" " ind2="7" tag="655">
+<subfield code="a">Periodicals.</subfield>
+<subfield code="2">lcgft</subfield>
+<subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026139</subfield>
+</datafield>
+<datafield ind1="2" ind2=" " tag="710">
+<subfield code="a">American Association for the Advancement of Science.</subfield>
+<subfield code="0">http://id.loc.gov/authorities/names/n79053772</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="770">
+<subfield code="t">Guide to scientific instruments</subfield>
+<subfield code="x">0533-5426</subfield>
+</datafield>
+<datafield ind1="0" ind2=" " tag="770">
+<subfield code="t">AAAS observer</subfield>
+<subfield code="g">Sept. 1988-Nov. 1989</subfield>
+</datafield>
+<datafield ind1="1" ind2=" " tag="777">
+<subfield code="a">Helminthological Society of Washington.</subfield>
+<subfield code="t">Proceedings of the Helminthological Society of Washington</subfield>
+<subfield code="x">0018-0130</subfield>
+</datafield>
+<datafield ind1="0" ind2="0" tag="780">
+<subfield code="t">Science (New York, N.Y.)</subfield>
+<subfield code="x">0036-8075</subfield>
+</datafield>
+<datafield ind1="0" ind2="5" tag="780">
+<subfield code="t">Scientific monthly</subfield>
+<subfield code="g">Jan.1985</subfield>
+<subfield code="x">0096-3771</subfield>
+</datafield>
+<datafield ind1="4" ind2=" " tag="856">
+<subfield code="u">http://catalog.hathitrust.org/Record/008883092</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="911">
+<subfield code="a">19950330</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="912">
+<subfield code="a">20000315045448.0</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="948">
+<subfield code="a">S-RECON</subfield>
+</datafield>
+<datafield ind1=" " ind2=" " tag="998">
+<subfield code="a">03/24/95</subfield>
+<subfield code="s">9114</subfield>
+<subfield code="n">NjP</subfield>
+<subfield code="w">DCLC1724346S</subfield>
+<subfield code="d">01/13/94</subfield>
+<subfield code="c">LRP</subfield>
+<subfield code="b">SZF</subfield>
+<subfield code="i">950324</subfield>
+<subfield code="l">NJPG</subfield>
+</datafield>
+<datafield ind1="4" ind2="1" tag="866">
+<subfield code="0">977097</subfield>
+<subfield code="a">Vol. 91 (Jan. 1940)-v. 360, no. 6391 (25 May 2018)</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="866">
+<subfield code="0">977097</subfield>
+<subfield code="z">LACKS: no. 6367-6378</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="866">
+<subfield code="0">977097</subfield>
+<subfield code="z">CURRENT ISSUES IN: Lewis Library (SCI)</subfield>
+</datafield>
+<datafield ind1=" " ind2="0" tag="866">
+<subfield code="0">977097</subfield>
+<subfield code="x">DESIGNATOR: vol., no. (4 v./year)</subfield>
+</datafield>
+<datafield ind1="8" ind2=" " tag="852">
+<subfield code="0">977097</subfield>
+<subfield code="b">rcppn</subfield>
+<subfield code="t">1</subfield>
+<subfield code="x">tr fr smir</subfield>
+<subfield code="h">8001.846</subfield>
+</datafield>
+<datafield ind1="0" ind2="0" tag="876">
+<subfield code="0">977097</subfield>
+<subfield code="3">v. 93 (1941)</subfield>
+<subfield code="a">3114083</subfield>
+<subfield code="h">In Library Use</subfield>
+<subfield code="j">Not Charged</subfield>
+<subfield code="p">32101044947941</subfield>
+<subfield code="t">1</subfield>
+<subfield code="x">Private</subfield>
+<subfield code="z">PN</subfield>
+</datafield>
+</record>
+</collection>
