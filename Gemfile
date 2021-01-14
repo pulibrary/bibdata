@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'alma', github: "tulibraries/alma_rb", branch: "main"
+gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
 gem 'aws-sdk-sqs'
 gem 'bixby', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.4.1'
@@ -21,7 +21,7 @@ gem 'jquery-rails'
 gem 'lcsort'
 gem 'library_stdnums'
 gem 'lightly'
-gem 'locations', github: "pulibrary/locations", tag: 'v1.2.0'
+gem 'locations', github: "pulibrary/locations", tag: 'v1.3.0'
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.2.3'
