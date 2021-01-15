@@ -3,14 +3,12 @@ require "rails_helper"
 RSpec.describe AwsSqsPoller do
   include ActiveJob::TestHelper
 
-  let(:job_id) { "1434818870006421" }
   let(:poller_mock) do
     Aws::SQS::QueuePoller.new(
       "https://example.com",
       idle_timeout: 1 # stop the polling in test after 1 second so we can run expectations; seems to work as long as we send a final empty message
     )
   end
-  let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
   let(:message1) do
     { message_id: 'id1', receipt_handle: 'rh1', body: message_body }
   end
@@ -35,19 +33,34 @@ RSpec.describe AwsSqsPoller do
     Aws.config.clear
   end
 
-  it "Creates an event and kicks off a background job" do
-    expect { described_class.poll }.to have_enqueued_job(
-      AlmaFullDumpTransferJob
-    ).with(
-      job_id: job_id,
-      dump: instance_of(Dump)
-    )
+  context "when a full dump job comes through" do
+    let(:job_id) { "1434818870006421" }
+    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
 
-    expect(Dump.all.count).to eq 1
-    expect(Dump.first.dump_type.constant).to eq "ALL_RECORDS"
-    event = Dump.first.event
-    expect(event.message_body).to eq message_body
-    expect(event.start).to eq "2020-12-15T19:56:37.694Z"
-    expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
+    it "Creates an event and kicks off a background job" do
+      expect { described_class.poll }.to have_enqueued_job(
+        AlmaFullDumpTransferJob
+      ).with(
+        job_id: job_id,
+        dump: instance_of(Dump)
+      )
+
+      expect(Dump.all.count).to eq 1
+      expect(Dump.first.dump_type.constant).to eq "ALL_RECORDS"
+      event = Dump.first.event
+      expect(event.message_body).to eq message_body
+      expect(event.start).to eq "2020-12-15T19:56:37.694Z"
+      expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
+    end
+  end
+
+  context "when some other job comes through" do
+    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json'))).to_json }
+
+    it "Does nothing" do
+      expect { described_class.poll }.not_to have_enqueued_job
+      expect(Dump.all.count).to eq 0
+      expect(Event.all.count).to eq 0
+    end
   end
 end
