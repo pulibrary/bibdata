@@ -1,0 +1,207 @@
+{
+    "record_type": {
+        "value": "PUBLIC",
+        "desc": "Public"
+    },
+    "primary_id": "100000000",
+    "first_name": "Big",
+    "middle_name": "",
+    "last_name": "Bird",
+    "full_name": "Big Bird",
+    "user_title": {
+        "value": "bbird",
+        "desc": null
+    },
+    "job_category": {
+        "value": "",
+        "desc": ""
+    },
+    "job_description": "",
+    "gender": {
+        "value": "",
+        "desc": ""
+    },
+    "user_group": {
+        "value": "P",
+        "desc": "P Faculty & Professional"
+    },
+    "campus_code": {
+        "value": null,
+        "desc": ""
+    },
+    "web_site_url": "",
+    "cataloger_level": {
+        "value": "00",
+        "desc": "[00] Default Level"
+    },
+    "preferred_language": {
+        "value": "en",
+        "desc": "English"
+    },
+    "expiry_date": "2022-10-31Z",
+    "purge_date": "2021-10-31Z",
+    "account_type": {
+        "value": "EXTERNAL",
+        "desc": "External"
+    },
+    "external_id": "SIS",
+    "password": "",
+    "force_password_change": "",
+    "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+    },
+    "status_date": "2020-12-07Z",
+    "requests": null,
+    "loans": null,
+    "fees": null,
+    "contact_info": {
+        "address": [
+            {
+                "line1": "1 Sesame Street",
+                "line2": null,
+                "line3": null,
+                "line4": null,
+                "line5": null,
+                "city": "New York",
+                "state_province": "NY",
+                "postal_code": "10128",
+                "country": {
+                    "value": "United States",
+                    "desc": null
+                },
+                "address_note": "",
+                "start_date": "2020-11-09Z",
+                "end_date": "2021-11-09Z",
+                "preferred": true,
+                "segment_type": "External",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ]
+            },
+            {
+                "line1": "Firestone Library",
+                "line2": "Library Information Technology",
+                "line3": null,
+                "line4": null,
+                "line5": null,
+                "city": "Princeton",
+                "state_province": "NJ",
+                "postal_code": "08544",
+                "country": {
+                    "value": "United States",
+                    "desc": null
+                },
+                "address_note": "",
+                "start_date": "2020-08-24Z",
+                "end_date": "2021-10-31Z",
+                "preferred": false,
+                "segment_type": "External",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ]
+            }
+        ],
+        "email": [
+            {
+                "email_address": "bbird@SCRUBBED_princeton.edu",
+                "description": null,
+                "preferred": true,
+                "segment_type": "External",
+                "email_type": [
+                    {
+                        "value": "personal",
+                        "desc": "Personal"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    }
+                ]
+            }
+        ],
+        "phone": []
+    },
+    "pref_first_name": "",
+    "pref_middle_name": "",
+    "pref_last_name": "",
+    "pref_name_suffix": "",
+    "is_researcher": false,
+    "researcher": null,
+    "link": null,
+    "user_identifier": [
+        {
+            "value": "00000000000000",
+            "id_type": {
+                "value": "BARCODE",
+                "desc": "Barcode"
+            },
+            "note": "1 Jan 2021",
+            "status": "ACTIVE",
+            "segment_type": "External"
+        }
+    ],
+    "user_role": [
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "01PRI_INST",
+                "desc": "Princeton University"
+            },
+            "role_type": {
+                "value": "200",
+                "desc": "Patron"
+            },
+            "parameter": []
+        }
+    ],
+    "user_block": [],
+    "user_note": [],
+    "user_statistic": [
+        {
+            "statistic_category": {
+                "value": "EM",
+                "desc": "EM"
+            },
+            "segment_type": "External"
+        }
+    ],
+    "proxy_for_user": []
+}
