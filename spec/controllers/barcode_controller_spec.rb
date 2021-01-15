@@ -24,15 +24,28 @@ RSpec.describe BarcodeController, type: :controller do
 
         expect(response).to be_success
         record = MARC::XMLReader.new(StringIO.new(response.body)).first
+        holding_id = "22153448500006421"
         expect(record["001"].value).to eq "998574693506421"
         expect(record["876"]["3"]).to eq voyager_comparison["876"]["3"] # Enum Chron
         # Ensure 852 fields come through
-        expect(record["852"]["0"]).to eq "22153448500006421"
+        expect(record["852"]["0"]).to eq holding_id
         expect(record["852"]["b"]).to eq "recap"
         expect(record["852"]["c"]).to eq "pn"
         expect(record["852"]["t"]).to eq voyager_comparison["852"]["t"]
         expect(record["852"]["h"]).to eq voyager_comparison["852"]["h"]
+        expect(record["852"]["i"]).to be_blank
         expect(record["852"]["x"]).to eq voyager_comparison["852"]["x"]
+        # Ensure 866 fields come through
+        expect(record["866"]["0"]).to eq holding_id
+        expect(record["866"]["a"]).to eq voyager_comparison["866"]["a"]
+        # Ensure 867 fields come through
+        expect(record["867"]).to eq voyager_comparison["867"]
+        # Ensure 868 fields come through
+        expect(record["868"]).to eq voyager_comparison["868"]
+        # Ensure 856 is correct
+        expect(record["856"].as_json).to eq voyager_comparison["856"].as_json
+        # Ensure 959 is correct (empty)
+        expect(record["959"]).to be_nil
       end
       it "enriches the MARC record with holdings and item info" do
         stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
