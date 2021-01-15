@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/alma_rb.git
-  revision: 3321017f24b45ffd4f357c42354ec15e50833180
+  revision: 9651928888b854508c72abd1c6ccf653766474e0
   branch: holding_support
   specs:
     alma (0.3.1)
