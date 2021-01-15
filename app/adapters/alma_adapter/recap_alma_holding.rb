@@ -4,10 +4,12 @@ class AlmaAdapter
     # ReCAP can't handle a call number with both an 'h' and an 'i' subfield, so
     # combine them both into 'h'
     def enriched_852
-      super.tap do |field|
-        call_no = callno_from_852(field)
-        field.subfields.delete_if { |s| ['h', 'i'].include? s.code }
-        field.append(MARC::Subfield.new('h', call_no))
+      super.map do |original_field|
+        original_field.tap do |field|
+          call_no = callno_from_852(field)
+          field.subfields.delete_if { |s| ['h', 'i'].include? s.code }
+          field.append(MARC::Subfield.new('h', call_no))
+        end
       end
     end
 
