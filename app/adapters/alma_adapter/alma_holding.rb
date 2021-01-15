@@ -1,5 +1,9 @@
 class AlmaAdapter
   class AlmaHolding
+    def self.for(holding, recap: false)
+      return new(holding) unless recap
+      AlmaAdapter::RecapAlmaHolding.new(holding)
+    end
     attr_reader :holding
     # @param item [Alma::BibHolding]
     def initialize(holding)
@@ -8,11 +12,15 @@ class AlmaAdapter
 
     def marc_record_enrichment
       [
-        prepend_holding_id(holding_record["852"]),
+        enriched_852,
         prepend_holding_id(holding_record["856"]),
         prepend_holding_id(holding_record["866"]),
         prepend_holding_id(holding_record["867"])
       ].compact
+    end
+
+    def enriched_852
+      prepend_holding_id(holding_record["852"])
     end
 
     def prepend_holding_id(field)

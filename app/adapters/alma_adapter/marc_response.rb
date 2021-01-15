@@ -34,9 +34,9 @@ class AlmaAdapter
         marc_record.append(item.enrichment_876)
       end
 
-      def enrich_with_holding(holding)
+      def enrich_with_holding(holding, recap: false)
         delete_conflicting_holding_data!
-        holding = ::AlmaAdapter::AlmaHolding.new(holding)
+        holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap)
         marc_record.fields.concat(holding.marc_record_enrichment)
       end
 
