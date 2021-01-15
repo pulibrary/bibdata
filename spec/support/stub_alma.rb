@@ -11,6 +11,14 @@ module AlmaStubbing
       .to_return(status: status, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
   end
 
+  def stub_alma_holding(mms_id:, holding_id:)
+    alma_path = Pathname.new(file_fixture_path).join("alma")
+    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/#{mms_id}\/holdings\/#{holding_id}$/)
+      .to_return(status: 200,
+                 headers: { "Content-Type" => "application/json" },
+                 body: alma_path.join("holding_#{holding_id}.json"))
+  end
+
   def stub_alma_item_barcode(mms_id:, item_id:, barcode:, holding_id:)
     alma_path = Pathname.new(file_fixture_path).join("alma")
     stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/items.*/)
