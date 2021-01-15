@@ -10,7 +10,7 @@
   "job_instance": {
     "id": "1434818870006421",
     "external_id": "1434818880006421",
-    "name": "Publishing Platform Job General Publishing via FTP",
+    "name": "Publishing Platform Job Some Other Job",
     "submitted_by": {
       "value": "AlmaAdmin",
       "desc": "Administrator, Alma"
@@ -90,7 +90,7 @@
     ],
     "job_info": {
       "id": "S1434512240006421",
-      "name": "Publishing Platform Job General Publishing via FTP",
+      "name": "Publishing Platform Job Some Other Job",
       "description": "Publishing Platform Job",
       "type": {
         "value": "SCHEDULED",
