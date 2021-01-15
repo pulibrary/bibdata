@@ -27,6 +27,7 @@ RSpec.describe BarcodeController, type: :controller do
         # Ensure 866 fields come through
         expect(record["866"]["0"]).to eq holding_id
         expect(record["866"]["a"]).to eq voyager_comparison["866"]["a"]
+        expect(record.fields("866").size).to eq voyager_comparison.fields("866").size
         # Ensure 867 fields come through
         expect(record["867"]).to eq voyager_comparison["867"]
         # Ensure 868 fields come through

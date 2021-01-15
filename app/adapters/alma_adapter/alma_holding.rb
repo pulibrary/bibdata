@@ -13,20 +13,22 @@ class AlmaAdapter
     def marc_record_enrichment
       [
         enriched_852,
-        prepend_holding_id(holding_record["856"]),
-        prepend_holding_id(holding_record["866"]),
-        prepend_holding_id(holding_record["867"])
-      ].compact
+        prepend_holding_id(holding_record.fields("856")),
+        prepend_holding_id(holding_record.fields("866")),
+        prepend_holding_id(holding_record.fields("867"))
+      ].flatten.compact
     end
 
     def enriched_852
-      prepend_holding_id(holding_record["852"])
+      prepend_holding_id(holding_record.fields("852"))
     end
 
-    def prepend_holding_id(field)
-      return unless field
-      field.tap do |f|
-        f.subfields.unshift(MARC::Subfield.new('0', holding_id))
+    def prepend_holding_id(fields)
+      return unless fields.present?
+      fields.map do |field|
+        field.tap do |f|
+          f.subfields.unshift(MARC::Subfield.new('0', holding_id))
+        end
       end
     end
 
