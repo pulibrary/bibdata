@@ -33,6 +33,17 @@ class AlmaAdapter
         item = ::AlmaAdapter::AlmaItem.new(item)
         marc_record.append(item.enrichment_876)
       end
+
+      # Remove source record 852s and 86Xs, to reduce confusion when holding
+      # data is added.
+      def delete_conflicting_holding_data!
+        marc_record.fields.delete_if { |f| ['852', '866', '867', '868'].include? f.tag }
+      end
+
+      def enrich_with_holding(holding, recap: false)
+        holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap)
+        marc_record.fields.concat(holding.marc_record_enrichment)
+      end
     end
 
     private
