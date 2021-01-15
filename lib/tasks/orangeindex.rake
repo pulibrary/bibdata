@@ -163,15 +163,7 @@ namespace :liberate do
   task :full do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
-    resp = conn.get '/events.json'
-    if event = JSON.parse(resp.body).select { |e| e['success'] && e['dump_type'] == 'ALL_RECORDS' }.last
-      IndexFunctions.full_dump(event).each do |marc|
-        IndexFunctions.unzip_mrc(marc)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
-        File.delete("#{marc}.mrc")
-        File.delete("#{marc}.gz")
-      end
-    end
+    Alma::Indexer.new(solr_url: solr_url).full_reindex!
     solr.commit
   end
 
