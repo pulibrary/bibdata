@@ -7,6 +7,7 @@ class AwsSqsPoller
 
     poller.poll do |msg|
       message_body = JSON.parse(msg[:body])
+      next unless message_body["job_instance"]["name"] == Rails.configuration.alma[:full_dump_job_name]
       dump = AlmaFullDumpFactory.full_bib_dump(message_body)
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
