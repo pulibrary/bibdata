@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'alma', github: "pulibrary/alma_rb", branch: "holding_support"
+gem 'alma', github: "tulibraries/alma_rb", branch: "main"
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
 gem 'bixby', '~> 2.0'
