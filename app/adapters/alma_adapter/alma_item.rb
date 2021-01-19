@@ -30,8 +30,14 @@ class AlmaAdapter
       [
         MARC::Subfield.new('h', recap_use_restriction),
         MARC::Subfield.new('x', group_designation),
-        MARC::Subfield.new('z', recap_customer_code)
+        MARC::Subfield.new('z', recap_customer_code),
+        MARC::Subfield.new('j', recap_status)
       ]
+    end
+
+    # Status isn't used for recap records, but 876j is a required field.
+    def recap_status
+      "Not Used"
     end
 
     def enum_cron
