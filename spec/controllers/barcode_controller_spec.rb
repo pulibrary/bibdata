@@ -53,8 +53,7 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["876"]["a"]).to eq "2340957190006421" # Item ID
         expect(record["876"]["p"]).to eq "32101069559514" # Barcode
         expect(record["876"]["t"]).to eq voyager_comparison["876"]["t"] # Copy Number
-        # expect(record["876"]["j"]).to eq "Not Charged" # Status. TODO: Enable
-        #   when we figure out statuses.
+        expect(record["876"]["j"]).to eq "Not Used"
         expect(record["876"]["h"]).to eq voyager_comparison["876"]["h"] # ReCAP Use Restriciton
         expect(record["876"]["x"]).to eq voyager_comparison["876"]["x"] # ReCAP Group Designation
         expect(record["876"]["z"]).to eq voyager_comparison["876"]["z"] # ReCAP Customer Code
