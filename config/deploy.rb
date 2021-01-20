@@ -54,8 +54,19 @@ namespace :sidekiq do
     end
   end
 end
+
 after 'deploy:reverted', 'sidekiq:restart'
 after 'deploy:published', 'sidekiq:restart'
+
+namespace :sqs_poller do
+  task :restart do
+    on roles(:poller) do
+      execute :sudo, :service, "bibdata-sqs-poller", :restart
+    end
+  end
+end
+
+after 'deploy:restart', 'sqs_poller:restart'
 
 namespace :deploy do
 
