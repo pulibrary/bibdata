@@ -2,10 +2,11 @@
 # Start with a '/' for absolute paths. Otherwise we assume this is relative to
 # Rails.root
 data_dir: <%= ENV['BIBDATA_DATA_DIR'] || 'data' %>
+tmpdir: <%= Rails.env.production? ? "/mnt/isilon/ingest_scratch" : Dir.tmpdir %>
 records_per_file: 500_000
 recap_dump_records_per_file: 5000
 test_records_per_file: 25
-tmpdir: <%= Rails.env.production? ? "/mnt/isilon/ingest_scratch" : Dir.tmpdir %>
+
 dump_types:
 - label: 'Changed Records'
   constant: 'CHANGED_RECORDS'
