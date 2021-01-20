@@ -1,0 +1,207 @@
+{
+    "record_type": {
+        "value": "PUBLIC",
+        "desc": "Public"
+    },
+    "primary_id": "100000000",
+    "first_name": "Cookie",
+    "middle_name": "",
+    "last_name": "Monster",
+    "full_name": "Cookie Monster",
+    "user_title": {
+        "value": "cmonster",
+        "desc": null
+    },
+    "job_category": {
+        "value": "",
+        "desc": ""
+    },
+    "job_description": "",
+    "gender": {
+        "value": "",
+        "desc": ""
+    },
+    "user_group": {
+        "value": "UGRD",
+        "desc": "UGRD Undergraduate"
+    },
+    "campus_code": {
+        "value": null,
+        "desc": ""
+    },
+    "web_site_url": "",
+    "cataloger_level": {
+        "value": "00",
+        "desc": "[00] Default Level"
+    },
+    "preferred_language": {
+        "value": "en",
+        "desc": "English"
+    },
+    "expiry_date": "2022-10-31Z",
+    "purge_date": "2021-10-31Z",
+    "account_type": {
+        "value": "EXTERNAL",
+        "desc": "External"
+    },
+    "external_id": "SIS",
+    "password": "",
+    "force_password_change": "",
+    "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+    },
+    "status_date": "2020-12-07Z",
+    "requests": null,
+    "loans": null,
+    "fees": null,
+    "contact_info": {
+        "address": [
+            {
+                "line1": "1 Sesame Street",
+                "line2": null,
+                "line3": null,
+                "line4": null,
+                "line5": null,
+                "city": "New York",
+                "state_province": "NY",
+                "postal_code": "10128",
+                "country": {
+                    "value": "United States",
+                    "desc": null
+                },
+                "address_note": "",
+                "start_date": "2020-09-17Z",
+                "end_date": "2021-05-08Z",
+                "preferred": false,
+                "segment_type": "External",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ]
+            },
+            {
+                "line1": "1 Sesame Street",
+                "line2": null,
+                "line3": null,
+                "line4": null,
+                "line5": null,
+                "city": "New York",
+                "state_province": "NY",
+                "postal_code": "10128",
+                "country": {
+                    "value": "United States",
+                    "desc": null
+                },
+                "address_note": "",
+                "start_date": "2020-11-09Z",
+                "end_date": "2021-11-09Z",
+                "preferred": true,
+                "segment_type": "External",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ]
+            }
+        ],
+        "email": [
+            {
+                "email_address": "cmonster@SCRUBBED_Princeton.EDU",
+                "description": null,
+                "preferred": true,
+                "segment_type": "External",
+                "email_type": [
+                    {
+                        "value": "personal",
+                        "desc": "Personal"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    }
+                ]
+            }
+        ],
+        "phone": []
+    },
+    "pref_first_name": "",
+    "pref_middle_name": "",
+    "pref_last_name": "",
+    "pref_name_suffix": "",
+    "is_researcher": false,
+    "researcher": null,
+    "link": null,
+    "user_identifier": [
+        {
+            "value": "00000000000000",
+            "id_type": {
+                "value": "BARCODE",
+                "desc": "Barcode"
+            },
+            "note": "25 Jul 2019",
+            "status": "ACTIVE",
+            "segment_type": "External"
+        }
+    ],
+    "user_role": [
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "01PRI_INST",
+                "desc": "Princeton University"
+            },
+            "role_type": {
+                "value": "200",
+                "desc": "Patron"
+            },
+            "parameter": []
+        }
+    ],
+    "user_block": [],
+    "user_note": [],
+    "user_statistic": [
+        {
+            "statistic_category": {
+                "value": "23",
+                "desc": "23"
+            },
+            "segment_type": "External"
+        }
+    ],
+    "proxy_for_user": []
+}
