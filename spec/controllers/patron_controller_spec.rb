@@ -37,23 +37,52 @@ RSpec.describe PatronController, type: :controller do
       allow(controller).to receive(:current_user) { user }
       get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "patron_info endpoint" do
+    it "allows authenticated users to access patron info" do
+      stub_patron('cmonster')
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: 'cmonster', format: :json }
+      expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)).to eq(
-        {
-          "netid" => "bbird",
-          "first_name" => "Big",
-          "last_name" => "Bird",
-          "barcode" => "00000000000000",
-          "university_id" => "100000000",
-          "patron_id" => "100000000",
-          "patron_group" => "staff",
-          "patron_group_desc" => "P Faculty & Professional",
-          "campus_authorized" => false,
-          "campus_authorized_category" => "none"
-        }
+        "netid" => "cmonster",
+        "first_name" => "Cookie",
+        "last_name" => "Monster",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "UGRD",
+        "patron_group_desc" => "UGRD Undergraduate",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
       )
     end
 
-    # TODO: test a non-staff user
+    it "converts patron group to 'staff'" do
+      stub_patron
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
+      )
+    end
+
     it "allows authenticated users to access patron info and ldap data when desired" do
       stub_patron
       user = double('user')
@@ -63,19 +92,17 @@ RSpec.describe PatronController, type: :controller do
       get :patron_info, params: { patron_id: 'bbird', ldap: true, format: :json }
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)).to eq(
-        {
-          "netid" => "bbird",
-          "first_name" => "Big",
-          "last_name" => "Bird",
-          "barcode" => "00000000000000",
-          "university_id" => "100000000",
-          "patron_id" => "100000000",
-          "patron_group" => "staff",
-          "patron_group_desc" => "P Faculty & Professional",
-          "campus_authorized" => false,
-          "campus_authorized_category" => "none",
-          "ldap" => { "ldap_data" => "is here" }
-        }
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none",
+        "ldap" => { "ldap_data" => "is here" }
       )
     end
 
@@ -88,18 +115,16 @@ RSpec.describe PatronController, type: :controller do
       get :patron_info, params: { patron_id: 'bbird', ldap: 'other', format: :json }
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)).to eq(
-        {
-          "netid" => "bbird",
-          "first_name" => "Big",
-          "last_name" => "Bird",
-          "barcode" => "00000000000000",
-          "university_id" => "100000000",
-          "patron_id" => "100000000",
-          "patron_group" => "staff",
-          "patron_group_desc" => "P Faculty & Professional",
-          "campus_authorized" => false,
-          "campus_authorized_category" => "none"
-        }
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
       )
     end
 
@@ -112,30 +137,28 @@ RSpec.describe PatronController, type: :controller do
       get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)).to eq(
-        {
-          "netid" => "bbird",
-          "first_name" => "Big",
-          "last_name" => "Bird",
-          "barcode" => "00000000000000",
-          "university_id" => "100000000",
-          "patron_id" => "100000000",
-          "patron_group" => "staff",
-          "patron_group_desc" => "P Faculty & Professional",
-          "campus_authorized" => true,
-          "campus_authorized_category" => "full"
-        }
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => true,
+        "campus_authorized_category" => "full"
       )
     end
-  end
 
-  it "retuns 404 when patron info is not found" do
-    user = double('user')
-    allow(request.env['warden']).to receive(:authenticate!) { user }
-    allow(controller).to receive(:current_user) { user }
-    netid = "ogrouch"
-    stub_patron(netid, 400)
-    get :patron_info, params: { patron_id: netid, format: :json }
-    expect(response).to have_http_status(404)
+    it "retuns 404 when patron info is not found" do
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      netid = "ogrouch"
+      stub_patron(netid, 400)
+      get :patron_info, params: { patron_id: netid, format: :json }
+      expect(response).to have_http_status(404)
+    end
   end
 end
 
