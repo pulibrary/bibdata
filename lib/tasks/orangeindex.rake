@@ -160,7 +160,7 @@ namespace :liberate do
   end
 
   desc "Index latest full record dump against SET_URL"
-  task :full do
+  task full: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
     Alma::Indexer.new(solr_url: solr_url).full_reindex!
