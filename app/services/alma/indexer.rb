@@ -19,8 +19,7 @@ class Alma::Indexer
   private
 
     def tmpdir
-      return "/mnt/isilon/ingest_scratch" if File.exist?("mnt/isilon/ingest_scratch")
-      Dir.tmpdir
+      MARC_LIBERATION_CONFIG["tmpdir"]
     end
 
     def downloaded_full_reindex_files
