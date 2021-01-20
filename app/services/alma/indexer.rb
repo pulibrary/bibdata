@@ -18,12 +18,16 @@ class Alma::Indexer
 
   private
 
+    def tmpdir
+      MARC_LIBERATION_CONFIG["tmpdir"]
+    end
+
     def downloaded_full_reindex_files
       @downloaded_full_reindex_files ||=
         begin
           full_reindex_file_urls.flat_map do |url|
             extension = "." + url.split("/").last.split(".", 2).last
-            temp_file = Tempfile.new(["full_reindex_file", extension], binmode: true)
+            temp_file = Tempfile.new(["full_reindex_file", extension], tmpdir, binmode: true)
             temp_file.puts Faraday.get(url).body
             temp_file.rewind
             unzip(temp_file, extension)
@@ -37,7 +41,7 @@ class Alma::Indexer
       tar_extract.each.map do |entry|
         file_name, extension = entry.full_name.split(".")
         extension ||= "xml"
-        unzipped_file = Tempfile.new(["full_reindex_file_unzip_#{file_name}", "." + extension], binmode: true)
+        unzipped_file = Tempfile.new(["full_reindex_file_unzip_#{file_name}", "." + extension], tmpdir, binmode: true)
         while (chunk = entry.read(16 * 1024))
           unzipped_file.write chunk
         end
