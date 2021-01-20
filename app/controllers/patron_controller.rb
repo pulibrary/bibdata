@@ -4,16 +4,7 @@ class PatronController < ApplicationController
   def patron_info
     patron_id = sanitize(params[:patron_id])
     data = Alma::User.find(patron_id)
-    info = {
-      netid: data["user_title"]["value"], # TODO: change once netids are in an id field
-      first_name: data["first_name"],
-      last_name: data["last_name"],
-      barcode: data["user_identifier"].select { |id| id["id_type"]["value"] == "BARCODE" && id["status"] == "ACTIVE" }.first["value"],
-      university_id: data["primary_id"],
-      patron_id: data["primary_id"],
-      patron_group: data["user_group"]["value"] == "P" ? "staff" : data["user_group"]["value"],
-      patron_group_desc: data["user_group"]["desc"]
-    }
+    info = parse_data(data)
     patron_access = CampusAccess.where(uid: patron_id).first || CampusAccess.new(uid: patron_id, category: "none")
     info[:campus_authorized] = patron_access.access?
     info[:campus_authorized_category] = patron_access.category
@@ -38,6 +29,19 @@ class PatronController < ApplicationController
   end
 
   private
+
+    def parse_data(data)
+      {
+        netid: data["user_title"]["value"], # TODO: change once netids are in an id field
+        first_name: data["first_name"],
+        last_name: data["last_name"],
+        barcode: data["user_identifier"].select { |id| id["id_type"]["value"] == "BARCODE" && id["status"] == "ACTIVE" }.first["value"],
+        university_id: data["primary_id"],
+        patron_id: data["primary_id"],
+        patron_group: data["user_group"]["value"] == "P" ? "staff" : data["user_group"]["value"],
+        patron_group_desc: data["user_group"]["desc"]
+      }
+    end
 
     def protect
       unless user_signed_in?
