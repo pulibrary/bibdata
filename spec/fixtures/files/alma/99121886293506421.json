@@ -1,0 +1,37 @@
+{
+    "bib": [
+        {
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n          <leader>00096nam a2200049 i 4500</leader>\n          <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n            <subfield code=\"a\">Host bibliographic record for boundwith item barcode 32101066958685</subfield>\n          </datafield>\n          <datafield ind1=\"1\" ind2=\" \" tag=\"774\">\n            <subfield code=\"t\">Suchende seelen;</subfield>\n            <subfield code=\"w\">9929455783506421</subfield>\n          </datafield>\n          <datafield ind1=\"1\" ind2=\" \" tag=\"774\">\n            <subfield code=\"t\">Zwischenakt; sittenroman,</subfield>\n            <subfield code=\"w\">9929455793506421</subfield>\n          </datafield>\n          <datafield ind1=\"1\" ind2=\" \" tag=\"774\">\n            <subfield code=\"t\">Das ewige ra\u0308tsel; roman,</subfield>\n            <subfield code=\"w\">9929455773506421</subfield>\n          </datafield>\n        <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">99121886293506421</subfield><subfield code=\"8\">22269289940006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">recap</subfield><subfield code=\"c\">RECAP</subfield><subfield code=\"d\">3488.93344.333</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">pa</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">ReCAP</subfield></datafield></record>"
+            ],
+            "author": null,
+            "created_by": "import",
+            "created_date": "2020-12-03Z",
+            "holdings": {
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99121886293506421/holdings",
+                "value": null
+            },
+            "isbn": null,
+            "issn": null,
+            "link": null,
+            "linked_record_id": {
+                "type": null,
+                "value": null
+            },
+            "mms_id": "99121886293506421",
+            "originating_system": "ILS",
+            "originating_system_id": "12188629-princetondb",
+            "record_format": "marc21",
+            "requests": {
+                "link": null,
+                "value": 0
+            },
+            "suppress_from_external_search": "false",
+            "suppress_from_publishing": "false",
+            "sync_with_libraries_australia": "NONE",
+            "sync_with_oclc": "NONE",
+            "title": "Host bibliographic record for boundwith item barcode 32101066958685"
+        }
+    ],
+    "total_record_count": 1
+}
