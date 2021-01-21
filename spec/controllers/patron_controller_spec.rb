@@ -10,89 +10,164 @@ RSpec.describe PatronController, type: :controller do
     end
 
     it "can access patron info" do
-      pending "Replace with Alma"
-      stub_patron('steve')
-      get :patron_info, params: { patron_id: 'steve', format: :json }
+      stub_patron
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
     end
 
     it "can return patron stat codes" do
       pending "Replace with Alma"
-      stub_patron_codes('steve')
-      get :patron_codes, params: { patron_id: 'steve', format: :json }
+      stub_patron_codes('bbird')
+      get :patron_codes, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
     end
   end
 
   context "with an unuathorized ip" do
     it "does not allow users that are not signed in to access patron info" do
-      stub_patron('steve')
-      get :patron_info, params: { patron_id: 'steve', format: :json }
+      stub_patron
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(403)
     end
 
     it "allows authenticated users to access patron info" do
-      pending "Replace with Alma"
-      stub_patron('steve')
+      stub_patron
       user = double('user')
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
-      get :patron_info, params: { patron_id: 'steve', format: :json }
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\"}")
+    end
+  end
+
+  describe "patron_info endpoint" do
+    it "allows authenticated users to access patron info" do
+      stub_patron('cmonster')
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: 'cmonster', format: :json }
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "cmonster",
+        "first_name" => "Cookie",
+        "last_name" => "Monster",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "UGRD",
+        "patron_group_desc" => "UGRD Undergraduate",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
+      )
+    end
+
+    it "converts patron group to 'staff'" do
+      stub_patron
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
+      )
     end
 
     it "allows authenticated users to access patron info and ldap data when desired" do
-      pending "Replace with Alma"
-      stub_patron('steve')
+      stub_patron
       user = double('user')
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
-      expect(Ldap).to receive(:find_by_netid).with('steve').and_return(ldap_data: "is here")
-      get :patron_info, params: { patron_id: 'steve', ldap: true, format: :json }
+      expect(Ldap).to receive(:find_by_netid).with('bbird').and_return(ldap_data: "is here")
+      get :patron_info, params: { patron_id: 'bbird', ldap: true, format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\",\"ldap\":{\"ldap_data\":\"is here\"}}")
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none",
+        "ldap" => { "ldap_data" => "is here" }
+      )
     end
 
     it "allows authenticated users to access just patron info when desired" do
-      pending "Replace with Alma"
-      stub_patron('steve')
+      stub_patron
       user = double('user')
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
       expect(Ldap).not_to receive(:find_by_netid)
-      get :patron_info, params: { patron_id: 'steve', ldap: 'other', format: :json }
+      get :patron_info, params: { patron_id: 'bbird', ldap: 'other', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":false,\"campus_authorized_category\":\"none\"}")
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => false,
+        "campus_authorized_category" => "none"
+      )
     end
 
     it "allows authenticated users to access patron info and includes campus access" do
-      pending "Replace with Alma"
-      CampusAccess.create(uid: 'steve')
-      stub_patron('steve')
+      CampusAccess.create(uid: 'bbird')
+      stub_patron
       user = double('user')
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
-      get :patron_info, params: { patron_id: 'steve', format: :json }
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
-      expect(response.body).to eq("{\"netid\":\"steve\",\"first_name\":\"Steven\",\"last_name\":\"Smith\",\"barcode\":\"00000000000000\",\"barcode_status\":1,\"barcode_status_date\":\"2013-10-17T16:11:29.000-05:00\",\"university_id\":\"000000000\",\"patron_group\":\"staff\",\"purge_date\":\"2016-10-31T23:00:06.000-05:00\",\"expire_date\":\"2017-10-31T23:00:06.000-05:00\",\"patron_id\":\"0000\",\"campus_authorized\":true,\"campus_authorized_category\":\"full\"}")
+      expect(JSON.parse(response.body)).to eq(
+        "netid" => "bbird",
+        "first_name" => "Big",
+        "last_name" => "Bird",
+        "barcode" => "00000000000000",
+        "university_id" => "100000000",
+        "patron_id" => "100000000",
+        "patron_group" => "staff",
+        "patron_group_desc" => "P Faculty & Professional",
+        "campus_authorized" => true,
+        "campus_authorized_category" => "full"
+      )
     end
-  end
 
-  it "retuns 404 when patron info is not found" do
-    pending "Replace with Alma"
-    user = double('user')
-    allow(request.env['warden']).to receive(:authenticate!) { user }
-    allow(controller).to receive(:current_user) { user }
-    # allow(VoyagerHelpers::Liberator).to receive(:get_patron_info).and_return(nil)
-    get :patron_info, params: { patron_id: 123456789, format: :json }
-    expect(response).to have_http_status(404)
+    it "retuns 404 when patron info is not found" do
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      netid = "ogrouch"
+      stub_patron(netid, 400)
+      get :patron_info, params: { patron_id: netid, format: :json }
+      expect(response).to have_http_status(404)
+    end
   end
 end
 
-def stub_patron(netid)
-  f = File.expand_path("../../fixtures/patron-#{netid}.json", __FILE__)
-  # allow(VoyagerHelpers::Liberator).to receive(:get_patron_info).and_return(JSON.parse(File.read(f)))
+def stub_patron(netid = "bbird", status = 200)
+  alma_path = Pathname.new(file_fixture_path).join("alma", "patrons")
+  stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/users\/#{netid}/)
+    .to_return(status: status,
+               headers: { "Content-Type" => "application/json" },
+               body: alma_path.join("#{netid}.json"))
 end
 
 def stub_patron_codes(netid)

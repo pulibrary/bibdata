@@ -1,0 +1,13 @@
+{
+  "errorsExist": true,
+  "errorList": {
+    "error": [
+      {
+        "errorCode": "401861",
+        "errorMessage": "User with identifier ogrouch was not found.",
+        "trackingId": "E02-2001144552-5DTGF-AWAE1595806974"
+      }
+    ]
+  },
+  "result": null
+}
