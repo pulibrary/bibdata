@@ -17,10 +17,17 @@ class BarcodeController < ApplicationController
     else
       item = Alma::BibItem.find_by_barcode(params[:barcode])
       holding = Alma::BibHolding.find(mms_id: item.item["bib_data"]["mms_id"], holding_id: item.holding_data["holding_id"])
-      records = AlmaAdapter.new.get_bib_records(item.item["bib_data"]["mms_id"])
-      records[0]&.enrich_with_item(item)
-      records[0]&.delete_conflicting_holding_data!
-      records[0]&.enrich_with_holding(holding, recap: true)
+      record = AlmaAdapter.new.get_bib_record(item.item["bib_data"]["mms_id"])
+      records = if record.linked_record_ids.present?
+                  AlmaAdapter.new.get_bib_records(record.linked_record_ids)
+                else
+                  [record]
+                end
+      records.each do |bib_record|
+        bib_record.enrich_with_item(item)
+        bib_record.delete_conflicting_holding_data!
+        bib_record.enrich_with_holding(holding, recap: true)
+      end
       if records == []
         render plain: "Barcode #{params[:barcode]} not found.", status: 404
       else
