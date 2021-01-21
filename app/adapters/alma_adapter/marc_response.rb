@@ -29,6 +29,15 @@ class AlmaAdapter
         bib["suppress_from_publishing"] == "true"
       end
 
+      def linked_record_ids
+        linked_record_fields = marc_record.fields.select do |field|
+          field.tag == "774"
+        end
+        linked_record_fields.map do |field|
+          field["w"]
+        end
+      end
+
       def enrich_with_item(item)
         item = ::AlmaAdapter::AlmaItem.new(item)
         marc_record.append(item.enrichment_876)
