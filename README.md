@@ -32,7 +32,7 @@ For now look at `config/routes.rb` for what's available.
 
 ### Configure Alma keys for Development
 
-1. `brew install lpass`
+1. `brew install lastpass-cli`
 2. `lpass login emailhere`
 3. `bundle exec rake alma:setup_keys`
 
