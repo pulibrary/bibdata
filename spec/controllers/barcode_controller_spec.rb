@@ -37,6 +37,23 @@ RSpec.describe BarcodeController, type: :controller do
         # Ensure 959 is correct (empty)
         expect(record["959"]).to be_nil
       end
+      it "enriches a bound-with item with multiple bibs it's attached to" do
+        stub_alma_item_barcode(mms_id: "99121886293506421", item_id: "23269289930006421", holding_id: "22269289940006421", barcode: "32101066958685")
+        stub_alma_ids(ids: "99121886293506421", status: 200, fixture: "99121886293506421")
+        stub_alma_holding(mms_id: "99121886293506421", holding_id: "22269289940006421")
+        stub_alma_ids(ids: ["9929455783506421", "9929455793506421", "9929455773506421"], status: 200, fixture: "bound_with_linked_records")
+
+        get :scsb, params: { barcode: "32101066958685" }, format: :xml
+
+        expect(response).to be_success
+        records = MARC::XMLReader.new(StringIO.new(response.body)).to_a
+        expect(records.length).to eq 3
+        expect(records.map { |x| x["001"].value }).to eq ["9929455773506421", "9929455783506421", "9929455793506421"]
+        records.each do |record|
+          expect(record["876"]["z"]).to eq "PA"
+          expect(record["852"]["h"]).to eq "3488.93344.333"
+        end
+      end
       it "enriches the MARC record with holdings and item info" do
         stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
         stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
