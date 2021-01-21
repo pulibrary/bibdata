@@ -1,0 +1,11 @@
+{
+    "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n            <leader>00293cx  a2200133z  4500</leader>\n            <controlfield tag=\"001\">3260356</controlfield>\n            <controlfield tag=\"004\">2945577</controlfield>\n            <controlfield tag=\"005\">20081204142559.0</controlfield>\n            <controlfield tag=\"008\">0006132u    0   1001uu   0000000</controlfield>\n            <datafield ind1=\"1\" ind2=\" \" tag=\"014\">\n              <subfield code=\"a\">CPH6727TS001</subfield>\n            </datafield>\n            <datafield ind1=\"0\" ind2=\" \" tag=\"014\">\n              <subfield code=\"9\">003260356</subfield>\n            </datafield>\n            <datafield ind1=\"1\" ind2=\" \" tag=\"014\">\n              <subfield code=\"a\">2945579</subfield>\n            </datafield>\n            <datafield ind1=\"1\" ind2=\" \" tag=\"014\">\n              <subfield code=\"a\">2945578</subfield>\n            </datafield>\n            <datafield ind1=\"8\" ind2=\"0\" tag=\"852\">\n              <subfield code=\"b\">recap</subfield>\n              <subfield code=\"c\">pa</subfield>\n              <subfield code=\"t\">1</subfield>\n              <subfield code=\"h\">3488.93344.333</subfield>\n              <subfield code=\"x\">tr fr f</subfield>\n            </datafield>\n          </record>"
+    ],
+    "created_by": "import",
+    "created_date": "2020-12-03Z",
+    "holding_id": "22269289940006421",
+    "originating_system": "ILS",
+    "originating_system_id": "3260356-princetondb",
+    "suppress_from_publishing": "false"
+}
