@@ -300,7 +300,11 @@ to_field 'cataloged_tdt' do |record, accumulator|
                      else
                        MarcExtractor.cached("950b").extract(record).first
                      end
-    accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+    begin
+      accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+    rescue
+      logger.error "#{record['001']} - error parsing cataloged date #{cataloged_date}"
+    end
   end
 end
 

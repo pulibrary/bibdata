@@ -72,7 +72,15 @@ describe 'From traject_config.rb' do
           expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('991330600000541')['950']['b']).utc
         end
       end
+
+      context "When the record fails to parse the time" do
+        it "logs the error and moves on" do
+          allow(Time).to receive(:parse).and_raise(ArgumentError)
+          expect { @indexer.map_record(fixture_alma_record('991330600000541')) }.not_to raise_error
+        end
+      end
     end
+
     context "When it is a SCSB partner record" do
       it "does not have a date cataloged facet" do
         expect(@scsb_journal['cataloged_tdt']).to be_nil
