@@ -41,7 +41,8 @@ class CampusAccess < ActiveRecord::Base
 
     def valid_courses
       # To be allowed in the libraries the user must have taken 1534 (Fall 2020 COVID-19 Training For Undergraduate and Graduate Students) or 1512 & 1507 (Safe Practices for Resumption of On-Campus Operations) or 1505 1507 (COVID-19 Safety Precautions)
-      [1534, 1511, 1512, 1507, 1505, 1514, 1509, 1506]
+      # 1586 (Spring 2021 COVID-19 Training For Students)
+      [1534, 1511, 1512, 1507, 1505, 1514, 1509, 1506, 1586]
     end
 
     private
