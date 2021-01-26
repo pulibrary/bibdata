@@ -46,25 +46,6 @@ class BarcodeController < ApplicationController
   end
 
   def barcode
-    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-    # unless valid_barcode?(params[:barcode])
-    #   render plain: "Barcode #{params[:barcode]} not valid.", status: 404
-    # else
-    #   records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]))
-    #   if records == []
-    #     render plain: "Barcode #{params[:barcode]} not found.", status: 404
-    #   else
-    #     respond_to do |wants|
-    #       wants.json  do
-    #         json = MultiJson.dump(pass_records_through_xml_parser(records))
-    #         render json: json
-    #       end
-    #       wants.xml do
-    #         xml = records_to_xml_string(records)
-    #         render xml: xml
-    #       end
-    #     end
-    #   end
-    # end
+    render plain: "Deprecated endpoint", status: 410
   end
 end
