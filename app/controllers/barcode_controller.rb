@@ -44,8 +44,4 @@ class BarcodeController < ApplicationController
       end
     end
   end
-
-  def barcode
-    render plain: "Deprecated endpoint", status: 410
-  end
 end
