@@ -16,18 +16,6 @@ class PatronController < ApplicationController
     render json: {}, status: 404
   end
 
-  def patron_codes
-    # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-    # data = VoyagerHelpers::Liberator.get_patron_stat_codes(sanitize(params[:patron_id]))
-    # if data.blank?
-    #   render json: {}, status: 404
-    # else
-    #   respond_to do |wants|
-    #     wants.json  { render json: MultiJson.dump(data) }
-    #   end
-    # end
-  end
-
   private
 
     def parse_data(data)
