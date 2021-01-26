@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   get '/items/:item_id', to: 'items#item', defaults: { format: :json }
 
   get '/barcode', to: 'barcode#index', defaults: { format: :txt }
-  get '/barcode/:barcode', to: 'barcode#barcode', defaults: { format: :xml }
+  get '/barcode/:barcode', to: 'deprecated_endpoints#gone'
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
   get '/codes/:location', to: 'codes#locations', defaults: { format: :json }
