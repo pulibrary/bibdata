@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
   get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
-  get '/patron/:patron_id/codes', to: 'patron#patron_codes', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
 
   get '/courses', to: 'courses#index', defaults: { format: :json }
   get "/bib_ids", to: 'courses#bibs', defaults: { format: :json }
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
   # deprecated endpoints
   get '/barcode/:barcode', to: 'deprecated_endpoints#gone'
   get '/codes/:location', to: 'deprecated_endpoints#gone'
+  get '/patron/:patron_id/codes', to: 'deprecated_endpoints#gone', constraints: { patron_id: /[^\/]+/ }
 
   require 'sidekiq/web'
   authenticate :user do
