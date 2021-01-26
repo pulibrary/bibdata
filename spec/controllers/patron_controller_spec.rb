@@ -14,13 +14,6 @@ RSpec.describe PatronController, type: :controller do
       get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
     end
-
-    it "can return patron stat codes" do
-      pending "Replace with Alma"
-      stub_patron_codes('bbird')
-      get :patron_codes, params: { patron_id: 'bbird', format: :json }
-      expect(response).to have_http_status(200)
-    end
   end
 
   context "with an unuathorized ip" do
@@ -168,9 +161,4 @@ def stub_patron(netid = "bbird", status = 200)
     .to_return(status: status,
                headers: { "Content-Type" => "application/json" },
                body: alma_path.join("#{netid}.json"))
-end
-
-def stub_patron_codes(netid)
-  f = File.expand_path("../../fixtures/patron-#{netid}-codes.json", __FILE__)
-  # allow(VoyagerHelpers::Liberator).to receive(:get_patron_stat_codes).and_return(JSON.parse(File.read(f)))
 end
