@@ -32,6 +32,16 @@ update_locations if ENV['UPDATE_LOCATIONS']
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
+each_record do |record, context|
+  context.skip!("SKIPPED INDEXING #{record['001']}: record suppressed") if suppressed?(record)
+end
+
+def suppressed?(record)
+  fields = record.fields(filter = "950").each
+  a_values = fields.flat_map { |f| f.subfields.select { |sf| sf.code == 'a' } }.map(&:value)
+  a_values.include? "true"
+end
+
 to_field 'id', extract_marc('001', first: true)
 
 # if the id contains only numbers we know it's a princeton item

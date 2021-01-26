@@ -52,6 +52,14 @@ describe 'From traject_config.rb' do
       record = @indexer.map_record(fixture_alma_record('99211662100521'))
     end
   end
+
+  describe "when a record is suppresed" do
+    it "skips the record" do
+      record = @indexer.map_record(fixture_alma_record('9938589053506421'))
+      expect(record).to be_empty
+    end
+  end
+
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
@@ -137,6 +145,7 @@ describe 'From traject_config.rb' do
       expect(@sample1['id'].length).to eq 1
     end
   end
+
   describe 'numeric_id_b' do
     it 'returns desired bool' do
       expect(@sample1['numeric_id_b'].first).to eq true
