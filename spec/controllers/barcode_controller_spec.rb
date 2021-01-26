@@ -1,6 +1,13 @@
 require 'rails_helper'
 include FormattingConcern
 RSpec.describe BarcodeController, type: :controller do
+  describe "#barcode" do
+    it "routes directly to 410 gone" do
+      get :barcode, params: { barcode: "32101044947941" }, format: :xml
+      expect(response.status).to eq 410
+    end
+  end
+
   describe "#scsb" do
     context "when given a valid barcode" do
       it "enriches a complex MARC with holdings and item info" do
