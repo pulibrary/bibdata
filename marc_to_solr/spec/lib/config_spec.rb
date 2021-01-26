@@ -111,6 +111,13 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe "contained_in_s field" do
+    it "indexes the 773w of the constituent record" do
+      record = @indexer.map_record(fixture_alma_record('9939073273506421'))
+      expect(record['contained_in_s']).to eq(["992953283506421"])
+    end
+  end
+
   describe 'the language_iana_s field' do
     it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
       expect(@sample1['language_code_s']).to eq(['eng', '|||'])
