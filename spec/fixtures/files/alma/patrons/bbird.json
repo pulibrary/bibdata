@@ -52,9 +52,18 @@
         "desc": "Active"
     },
     "status_date": "2020-12-07Z",
-    "requests": null,
-    "loans": null,
-    "fees": null,
+    "requests": {
+        "value": 0,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/100000000/requests"
+    },
+    "loans": {
+        "value": 0,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/100000000/loans"
+    },
+    "fees": {
+        "value": 0.0,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/100000000/fees"
+    },
     "contact_info": {
         "address": [
             {
@@ -164,6 +173,16 @@
     "researcher": null,
     "link": null,
     "user_identifier": [
+        {
+            "value": "bbird",
+            "id_type": {
+                "value": "NET_ID",
+                "desc": "NetID"
+            },
+            "note": null,
+            "status": "ACTIVE",
+            "segment_type": "Internal"
+        },
         {
             "value": "00000000000000",
             "id_type": {
