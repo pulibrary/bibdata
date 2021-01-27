@@ -103,7 +103,7 @@
       <subfield code="a">&#x53CC;&#x516D;&#x5927;&#x6771;&#x4E9E;&#x5171;&#x69AE;&#x5708;&#x3081;&#x3050;&#x30EA;</subfield>
     </datafield>
     <datafield ind1="8" ind2=" " tag="852">
-      <subfield code="b">hsvc</subfield>
+      <subfield code="b">rare$hsvc</subfield>
       <subfield code="c">Print Case LA / Box 71</subfield>
       <subfield code="h">101132</subfield>
       <subfield code="p">32101054263189</subfield>

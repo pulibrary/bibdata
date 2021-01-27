@@ -74,7 +74,7 @@
       <marc:subfield code="v">Biography.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">nec</marc:subfield>
+      <marc:subfield code="b">firestone$nec</marc:subfield>
       <marc:subfield code="h">BP192.8</marc:subfield>
       <marc:subfield code="i">.K575 1900z</marc:subfield>
     </marc:datafield>
