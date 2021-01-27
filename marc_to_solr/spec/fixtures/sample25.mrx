@@ -144,30 +144,30 @@
       <marc:subfield code="u">http://purl.access.gpo.gov/GPO/LPS29932</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">HA202</marc:subfield>
       <marc:subfield code="i">.U581</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">drrr</marc:subfield>
+      <marc:subfield code="b">firestone$drrr</marc:subfield>
       <marc:subfield code="h">HA202</marc:subfield>
       <marc:subfield code="i">.U581</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">sci</marc:subfield>
+      <marc:subfield code="b">lewis$stacks</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">HA202</marc:subfield>
       <marc:subfield code="i">.A36</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">spr</marc:subfield>
+      <marc:subfield code="b">stokes$spr</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">HA202</marc:subfield>
       <marc:subfield code="i">.U581</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">dss</marc:subfield>
+      <marc:subfield code="b">firestone$dss</marc:subfield>
       <marc:subfield code="h">HA202</marc:subfield>
       <marc:subfield code="i">.U581</marc:subfield>
       <marc:subfield code="x">tr fr sxf</marc:subfield>

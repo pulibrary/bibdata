@@ -176,7 +176,7 @@
     <subfield code="l">NJPG</subfield>
   </datafield>
   <datafield ind1="8" ind2="0" tag="852">
-    <subfield code="b">rcpxm</subfield>
+    <subfield code="b">recap$xm</subfield>
     <subfield code="h">C0821</subfield>
   </datafield>
 </record>
