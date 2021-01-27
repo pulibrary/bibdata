@@ -15,10 +15,6 @@ Rails.application.routes.draw do
   get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
   post '/bibliographic', to: 'bibliographic#update'
 
-  get '/holdings', to: 'holdings#index', defaults: { format: :txt }
-  get '/holdings/:holding_id', to: 'holdings#holding', defaults: { format: :json }
-  get '/holdings/:holding_id/items', to: 'holdings#holding_items', defaults: { format: :json }
-
   get '/availability', to: 'availability#index', defaults: { format: :json }
 
   get '/items', to: 'items#index', defaults: { format: :txt }
@@ -39,6 +35,10 @@ Rails.application.routes.draw do
   # deprecated endpoints
   get '/barcode/:barcode', to: 'deprecated_endpoints#gone'
   get '/codes/:location', to: 'deprecated_endpoints#gone'
+  get '/holdings', to: 'deprecated_endpoints#gone'
+  get '/holdings/:holding_id', to: 'deprecated_endpoints#gone'
+  get '/holdings/:holding_id/items', to: 'deprecated_endpoints#gone'
+
   get '/patron/:patron_id/codes', to: 'deprecated_endpoints#gone', constraints: { patron_id: /[^\/]+/ }
 
   require 'sidekiq/web'
