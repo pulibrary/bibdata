@@ -303,7 +303,7 @@ describe 'From traject_config.rb' do
   end
   describe 'access_facet' do
     it 'value is in the library for all non-online holding locations' do
-      expect(@sample3['location_code_s'][0]).to eq 'scidoc' # Lewis Library
+      expect(@sample3['location_code_s'][0]).to eq 'lewis$doc' # Lewis Library
       expect(@sample3['access_facet']).to include 'In the Library'
       expect(@sample3['access_facet']).not_to include 'Online'
     end
@@ -314,13 +314,13 @@ describe 'From traject_config.rb' do
       expect(@elf2['access_facet']).to include 'In the Library'
     end
     it 'value is online for all other elf holding locations' do
-      expect(@online['location_code_s'][0]).to eq 'elf1'
+      expect(@online['location_code_s'][0]).to eq 'online$elf1'
       expect(@online['access_facet']).to include 'Online'
       expect(@online['access_facet']).not_to include 'In the Library'
     end
     it 'value can be both in the library and online when there are multiple holdings' do
-      expect(@online_at_library['location_code_s']).to include 'elf1'
-      expect(@online_at_library['location_code_s']).to include 'rcpph'
+      expect(@online_at_library['location_code_s']).to include 'online$elf1'
+      expect(@online_at_library['location_code_s']).to include 'recap$ph'
       expect(@online_at_library['access_facet']).to include 'Online'
       expect(@online_at_library['access_facet']).to include 'In the Library'
     end
@@ -368,9 +368,9 @@ describe 'From traject_config.rb' do
   end
   describe 'excluding locations from library facet' do
     it 'when location is online' do
-      expect(@online['location_code_s']).to include 'elf1'
-      expect(@online['location_display']).to include 'Online - *ONLINE*'
-      expect(@online['location']).to be_nil
+      expect(@online['location_code_s']).to include 'online$elf1'
+      expect(@online['location_display']).to include 'Electronic Access - elf1 Internet Resources'
+      expect(@online['location']).to eq ['Electronic Access']
     end
 
     it 'when location codes that do not map to labels' do
@@ -381,18 +381,18 @@ describe 'From traject_config.rb' do
   end
   describe 'location facet values for Recap items' do
     it 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['ReCAP - Marquand Library use only']
+      expect(@added_title_246['location_display']).to eq ['ReCAP - rcppj RECAP Marq. Lib.']
       expect(@added_title_246['location']).to eq ['ReCAP', 'Marquand Library']
     end
     it 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'ReCAP - Mudd Off-Site Storage'
+      expect(@online_at_library['location_display']).to include 'ReCAP - rcpph RECAP Mudd Lib.'
       expect(@online_at_library['location']).to include 'ReCAP'
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
   end
   describe 'including libraries and codes in advanced_location_s facet' do
     it 'lewis library included with lewis code' do
-      expect(@sample3['advanced_location_s']).to include 'scidoc'
+      expect(@sample3['advanced_location_s']).to include 'lewis$doc'
       expect(@sample3['advanced_location_s']).to include 'Lewis Library'
     end
     # TODO: Replace with Alma
@@ -401,7 +401,7 @@ describe 'From traject_config.rb' do
       expect(@elf2['advanced_location_s']).to include 'Online'
     end
     it 'library is excluded from location_code_s' do
-      expect(@sample3['location_code_s']).to include 'scidoc'
+      expect(@sample3['location_code_s']).to include 'lewis$doc'
       expect(@sample3['location_code_s']).not_to include 'Lewis Library'
     end
   end
