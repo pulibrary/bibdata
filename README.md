@@ -18,6 +18,11 @@ For now look at `config/routes.rb` for what's available.
 ### Dependencies
   * Postgresql (provided in development by lando)
 
+Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
+
+### Config files
+You'll need to copy a few files manually [as indicated in the CircleCI config file](https://github.com/pulibrary/marc_liberation/blob/6b7b9e60d65f313fede5a70e5a2cd6e56d634003/.circleci/config.yml#L36-L46).
+
 ### Setup server
 1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
 1. To start: `bundle exec rake marc_liberation:server:start`
