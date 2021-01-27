@@ -109,7 +109,7 @@
         <marc:controlfield tag="005">20110201122252.0</marc:controlfield>
         <marc:controlfield tag="008">1005290u||||8|||4001uu|||0000000</marc:controlfield>
         <marc:datafield tag="852" ind1="0" ind2=" ">
-            <marc:subfield code="b">rcppj</marc:subfield>
+            <marc:subfield code="b">recap$pj</marc:subfield>
             <marc:subfield code="h">N5273.2.M47</marc:subfield>
             <marc:subfield code="i">F36 2009</marc:subfield>
         </marc:datafield>

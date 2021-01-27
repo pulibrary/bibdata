@@ -77,7 +77,7 @@
       <marc:subfield code="y">20th century.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">sa</marc:subfield>
+      <marc:subfield code="b">marquand$stacks</marc:subfield>
       <marc:subfield code="h">N6850</marc:subfield>
       <marc:subfield code="i">.G475 2003</marc:subfield>
     </marc:datafield>

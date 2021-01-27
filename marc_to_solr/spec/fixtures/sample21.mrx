@@ -62,7 +62,7 @@
       <marc:subfield code="a">Cortazzi, Hugh.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="h">DA47.9.J3</marc:subfield>
       <marc:subfield code="i">B75 2004</marc:subfield>
     </marc:datafield>
@@ -149,18 +149,18 @@
       <marc:subfield code="a">Editions de Minuit.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">beac</marc:subfield>
+      <marc:subfield code="b">rare$beac</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">DA47.1</marc:subfield>
       <marc:subfield code="i">.D35 1945</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2="0">
-      <marc:subfield code="b">ex</marc:subfield>
+      <marc:subfield code="b">rare$ex</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">3229.319.28</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="b">recap$pa</marc:subfield>
       <marc:subfield code="h">1459.287</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="911" ind1=" " ind2=" ">
@@ -259,20 +259,20 @@
       <marc:subfield code="y">Allied intervention, 1918-1920.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="h">DA47.65</marc:subfield>
       <marc:subfield code="i">.U4 1961</marc:subfield>
       <marc:subfield code="p">2261797</marc:subfield>
       <marc:subfield code="x">reclassed from: 1457.794.92</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">spia</marc:subfield>
+      <marc:subfield code="b">stokes$spia</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">DA47.65</marc:subfield>
       <marc:subfield code="i">.U4</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">DA47.65</marc:subfield>
       <marc:subfield code="i">.U4 1961</marc:subfield>
@@ -386,7 +386,7 @@
       <marc:subfield code="y">17th century.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">spc</marc:subfield>
+      <marc:subfield code="b">firestone$spc</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">DA47.1</marc:subfield>
       <marc:subfield code="i">.B3513 1971</marc:subfield>
