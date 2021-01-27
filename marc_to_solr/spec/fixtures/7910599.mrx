@@ -119,7 +119,7 @@
         <marc:controlfield tag="005">20131121163541.0</marc:controlfield>
         <marc:controlfield tag="008">1311124u    8   1001uu   0901128</marc:controlfield>
         <marc:datafield tag="852" ind1="0" ind2=" ">
-            <marc:subfield code="b">sa</marc:subfield>
+            <marc:subfield code="b">marquand$stacks</marc:subfield>
             <marc:subfield code="h">BR131</marc:subfield>
             <marc:subfield code="i">.C66 2008</marc:subfield>
         </marc:datafield>

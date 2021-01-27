@@ -71,14 +71,14 @@
       <marc:subfield code="a">Korean resistance movements, 1905-1945.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">k</marc:subfield>
+      <marc:subfield code="b">eastasian$cjk</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">DS916.55</marc:subfield>
       <marc:subfield code="i">.M56 vol.4</marc:subfield>
       <marc:subfield code="x">AnnexA</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="950" ind1=" " ind2=" ">
-      <marc:subfield code="l">K</marc:subfield>
+      <marc:subfield code="l">k</marc:subfield>
       <marc:subfield code="d">\AnnexA\</marc:subfield>
       <marc:subfield code="p">7</marc:subfield>
       <marc:subfield code="h">02/27/1997 C</marc:subfield>

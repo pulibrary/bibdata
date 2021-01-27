@@ -152,7 +152,7 @@
       <marc:subfield code="6">710-08/$1</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">rcppj</marc:subfield>
+      <marc:subfield code="b">recap$pj</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="c">Oversize</marc:subfield>
       <marc:subfield code="h">TR647</marc:subfield>

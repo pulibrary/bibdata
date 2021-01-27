@@ -67,14 +67,14 @@
       <marc:subfield code="3">Inhaltsverzeichnis</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="b">recap$pa</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">Z342</marc:subfield>
       <marc:subfield code="i">.M48 1988</marc:subfield>
       <marc:subfield code="x">tr fr f</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">rcpxc</marc:subfield>
+      <marc:subfield code="b">recap$xc</marc:subfield>
       <marc:subfield code="h">Z342</marc:subfield>
       <marc:subfield code="i">.M48 1988</marc:subfield>
       <marc:subfield code="x">tr fr ctsnrf</marc:subfield>

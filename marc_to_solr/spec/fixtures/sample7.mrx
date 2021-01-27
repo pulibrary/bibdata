@@ -86,14 +86,14 @@
       <marc:subfield code="t">Büchse der Pandora.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">sv</marc:subfield>
+      <marc:subfield code="b">mendel$ref</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">M1500.B37</marc:subfield>
       <marc:subfield code="i">L9 1985</marc:subfield>
       <marc:subfield code="x">tr fr svl</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="0">
-      <marc:subfield code="b">mus</marc:subfield>
+      <marc:subfield code="b">mendel$stacks</marc:subfield>
       <marc:subfield code="t">2</marc:subfield>
       <marc:subfield code="h">M1500.B37</marc:subfield>
       <marc:subfield code="i">L9 1985</marc:subfield>

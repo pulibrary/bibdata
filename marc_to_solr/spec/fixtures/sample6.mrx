@@ -173,7 +173,7 @@
     </marc:datafield>
     <marc:datafield tag="852" ind1=" " ind2=" ">
       <marc:subfield code="a">NjP-G</marc:subfield>
-      <marc:subfield code="b">HYC</marc:subfield>
+      <marc:subfield code="b">eastasian$hy</marc:subfield>
       <marc:subfield code="j">TC348/371</marc:subfield>
       <marc:subfield code="k">Rare</marc:subfield>
       <marc:subfield code="x">c.1 (vol. 1-8) Gillis 371. All vols. bound separately, in case</marc:subfield>
@@ -206,7 +206,7 @@
       <marc:subfield code="a">"重刻事文類聚序"後鐫"萬曆甲辰孟春之吉金谿唐富春精校補遺重刻".</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">hycrare</marc:subfield>
+      <marc:subfield code="b">rare$hycrare</marc:subfield>
       <marc:subfield code="h">TC348/371</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="994" ind1=" " ind2=" ">

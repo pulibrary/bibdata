@@ -114,7 +114,7 @@
     <subfield code="l">NJPG</subfield>
   </datafield>
   <datafield ind1="8" ind2="0" tag="852">
-    <subfield code="b">mss</subfield>
+    <subfield code="b">rare$mss</subfield>
     <subfield code="h">C0683</subfield>
   </datafield>
 </record>

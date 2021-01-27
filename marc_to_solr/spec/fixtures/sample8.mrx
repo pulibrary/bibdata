@@ -112,12 +112,12 @@
       <marc:subfield code="5">NjP</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">whs</marc:subfield>
+      <marc:subfield code="b">rare$whs</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">16.5.14</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">hsvr</marc:subfield>
+      <marc:subfield code="b">rare$hsvr</marc:subfield>
       <marc:subfield code="c">EX</marc:subfield>
       <marc:subfield code="h">Lapidus 2.28</marc:subfield>
     </marc:datafield>

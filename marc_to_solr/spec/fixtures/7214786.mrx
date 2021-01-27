@@ -100,7 +100,7 @@
         <marc:controlfield tag="005">20130528140704.0</marc:controlfield>
         <marc:controlfield tag="008">1210240p    8   1001uu   0000000</marc:controlfield>
         <marc:datafield tag="852" ind1="0" ind2=" ">
-            <marc:subfield code="b">rcppa</marc:subfield>
+            <marc:subfield code="b">recap$pa</marc:subfield>
             <marc:subfield code="h">BM700</marc:subfield>
             <marc:subfield code="i">.P474 2012</marc:subfield>
         </marc:datafield>

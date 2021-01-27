@@ -59,7 +59,7 @@
       <marc:subfield code="v">raqm 83, etc.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">nec</marc:subfield>
+      <marc:subfield code="b">firestone$nec</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">Z6611.T3F545 1987</marc:subfield>
     </marc:datafield>

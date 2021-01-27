@@ -96,7 +96,7 @@
       <marc:subfield code="t">孟子.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">hyg</marc:subfield>
+      <marc:subfield code="b">eastasian$hy</marc:subfield>
       <marc:subfield code="h">C338/4352 vol.500</marc:subfield>
       <marc:subfield code="z">NOT TO CIRCULATE</marc:subfield>
     </marc:datafield>

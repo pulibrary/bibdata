@@ -88,7 +88,7 @@
       <marc:subfield code="w">5905966</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2="0">
-      <marc:subfield code="b">mss</marc:subfield>
+      <marc:subfield code="b">rare$mss</marc:subfield>
       <marc:subfield code="h">Islamic Manuscripts, Third Series no. 99</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="999" ind1=" " ind2=" ">
