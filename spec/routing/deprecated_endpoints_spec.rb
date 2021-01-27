@@ -13,6 +13,24 @@ RSpec.describe "deprecated endpoint routes", type: :routing do
     end
   end
 
+  describe "holdings" do
+    it "routes to 410 gone" do
+      expect(get: "/holdings").to route_to("deprecated_endpoints#gone")
+    end
+  end
+
+  describe "holdings/:holding_id" do
+    it "routes to 410 gone" do
+      expect(get: "/holdings/1234").to route_to("deprecated_endpoints#gone", holding_id: "1234")
+    end
+  end
+
+  describe "holdings/:holding_id/items" do
+    it "routes to 410 gone" do
+      expect(get: "/holdings/1234/items").to route_to("deprecated_endpoints#gone", holding_id: "1234")
+    end
+  end
+
   describe "patron/:patron_id/codes" do
     it "routes to 410 gone" do
       expect(get: "/patron/bbird/codes").to route_to("deprecated_endpoints#gone", patron_id: "bbird")
