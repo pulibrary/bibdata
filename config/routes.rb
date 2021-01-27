@@ -17,9 +17,6 @@ Rails.application.routes.draw do
 
   get '/availability', to: 'availability#index', defaults: { format: :json }
 
-  get '/items', to: 'items#index', defaults: { format: :txt }
-  get '/items/:item_id', to: 'items#item', defaults: { format: :json }
-
   get '/barcode', to: 'barcode#index', defaults: { format: :txt }
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
@@ -38,7 +35,8 @@ Rails.application.routes.draw do
   get '/holdings', to: 'deprecated_endpoints#gone'
   get '/holdings/:holding_id', to: 'deprecated_endpoints#gone'
   get '/holdings/:holding_id/items', to: 'deprecated_endpoints#gone'
-
+  get '/items', to: 'deprecated_endpoints#gone'
+  get '/items/:item_id', to: 'deprecated_endpoints#gone'
   get '/patron/:patron_id/codes', to: 'deprecated_endpoints#gone', constraints: { patron_id: /[^\/]+/ }
 
   require 'sidekiq/web'
