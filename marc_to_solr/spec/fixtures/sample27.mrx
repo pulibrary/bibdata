@@ -66,7 +66,7 @@
       <subfield code="a">19981027</subfield>
     </datafield>
     <datafield ind1="0" ind2="0" tag="852">
-      <subfield code="b">sax</subfield>
+      <subfield code="b">marquand$x</subfield>
       <subfield code="t">1</subfield>
       <subfield code="c">Oversize</subfield>
       <subfield code="c">Oversize</subfield>
@@ -74,7 +74,7 @@
       <subfield code="i">.R31e</subfield>
     </datafield>
     <datafield ind1="8" ind2=" " tag="852">
-      <subfield code="b">gax</subfield>
+      <subfield code="b">rare$gax</subfield>
       <subfield code="c">Oversize</subfield>
       <subfield code="h">2006-0102E</subfield>
       <subfield code="x">Former call number: Adler Ref 2503</subfield>

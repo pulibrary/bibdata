@@ -91,7 +91,7 @@
       <marc:subfield code="4">arr</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">rcpqk</marc:subfield>
+      <marc:subfield code="b">recap$pq</marc:subfield>
       <marc:subfield code="h">LS- 1074</marc:subfield>
       <marc:subfield code="x">tr fr mus</marc:subfield>
     </marc:datafield>
