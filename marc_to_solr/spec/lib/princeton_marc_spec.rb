@@ -638,8 +638,8 @@ describe 'From princeton_marc.rb' do
       @other_mfhd_id = "4191919"
       @exclude_mfhd_id = "9999"
       @call_number = "M23.L5S6 1973q"
-      @include_loc = "f"
-      @f_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "b" => "anxa" }, { "t" => "2" }, { "t" => "BAD" }, { "c" => "Oversize" }, { "h" => @call_number }] } }
+      @include_loc = "firestone$stacks"
+      @f_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "b" => "annex$stacks" }, { "t" => "2" }, { "t" => "BAD" }, { "c" => "Oversize" }, { "h" => @call_number }] } }
       @other_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @other_mfhd_id }, { "b" => @include_loc }, { "b" => "elf1" }] } }
       @invalid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @exclude_mfhd_id }, { "b" => "baddd" }] } }
       @l_866 = { "866" => { "ind1" => "3", "ind2" => "1", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "volume 1" }, { "z" => "full" }] } }

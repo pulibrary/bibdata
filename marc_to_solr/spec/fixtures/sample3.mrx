@@ -78,7 +78,7 @@
       <marc:subfield code="b">Cooperative Institute for Research in Environmental Sciences.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2="1">
-      <marc:subfield code="b">scidoc</marc:subfield>
+      <marc:subfield code="b">lewis$doc</marc:subfield>
       <marc:subfield code="t">1</marc:subfield>
       <marc:subfield code="h">Z6033.G5</marc:subfield>
       <marc:subfield code="i">xW6</marc:subfield>

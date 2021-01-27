@@ -47,7 +47,7 @@
             <marc:subfield code="y">Revolution, 1895-1898.</marc:subfield>
         </marc:datafield>
         <marc:datafield tag="852" ind1="0" ind2=" ">
-            <marc:subfield code="b">f</marc:subfield>
+            <marc:subfield code="b">firestone$stacks</marc:subfield>
             <marc:subfield code="h">F1786</marc:subfield>
             <marc:subfield code="i">.C677 1899</marc:subfield>
             <marc:subfield code="p">1329236</marc:subfield>
@@ -73,7 +73,7 @@
             <marc:subfield code="9">001329236</marc:subfield>
         </marc:datafield>
         <marc:datafield tag="852" ind1="0" ind2="0">
-            <marc:subfield code="b">f</marc:subfield>
+            <marc:subfield code="b">firestone$stacks</marc:subfield>
             <marc:subfield code="t">1</marc:subfield>
             <marc:subfield code="h">F1786</marc:subfield>
             <marc:subfield code="i">.C677 1899</marc:subfield>
