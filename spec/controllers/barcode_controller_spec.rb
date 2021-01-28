@@ -18,7 +18,7 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["876"]["3"]).to eq voyager_comparison["876"]["3"] # Enum Chron
         # Ensure 852 fields come through
         expect(record["852"]["0"]).to eq holding_id
-        expect(record["852"]["b"]).to eq "recap"
+        expect(record["852"]["b"]).to eq "recap$pn"
         expect(record["852"]["c"]).to eq "pn"
         expect(record["852"]["t"]).to eq voyager_comparison["852"]["t"]
         expect(record["852"]["h"]).to eq voyager_comparison["852"]["h"]
