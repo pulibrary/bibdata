@@ -21,9 +21,9 @@ class Alma::Indexer
   private
 
     def download_and_decompress(url)
-      Tempfile.create(downloaded_filename(url), tmpdir, binmode: true) do |downloaded_tmp|
+      Tempfile.create(downloaded_filename(url), binmode: true) do |downloaded_tmp|
         tar_reader(url, downloaded_tmp).each.map do |entry|
-          Tempfile.create(decompressed_filename(entry), tmpdir, binmode: true) do |decompressed_tmp|
+          Tempfile.create(decompressed_filename(entry), binmode: true) do |decompressed_tmp|
             decompressed_file = decompress(entry, decompressed_tmp)
             entry.close
             yield(decompressed_file)
@@ -55,10 +55,6 @@ class Alma::Indexer
     def downloaded_filename(url)
       extension = "." + url.split("/").last.split(".", 2).last
       ["full_reindex_file", extension]
-    end
-
-    def tmpdir
-      MARC_LIBERATION_CONFIG["tmpdir"]
     end
 
     def full_reindex_event
