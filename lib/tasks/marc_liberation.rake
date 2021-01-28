@@ -1,5 +1,3 @@
-require Rails.root.join('marc_to_solr', 'lib', 'location_processor_service')
-
 namespace :marc_liberation do
   namespace :server do
     task initialize: :environment do
@@ -23,6 +21,6 @@ namespace :marc_liberation do
 
   desc "Populate the holding locations values."
   task process_locations: :environment do
-    LocationProcessorService.process
+    LocationMapsGeneratorService.generate
   end
 end
