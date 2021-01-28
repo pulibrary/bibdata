@@ -86,14 +86,4 @@ class LocationProcessorService
   def self.logger
     @logger ||= Rails.logger || Logger.new(STDOUT)
   end
-
-  def self.traject_config_file_path
-    Rails.root.join('marc_to_solr', 'lib', 'traject_config.rb')
-  end
-
-  def self.build_indexer
-    indexer = Traject::Indexer.new
-    indexer.load_config_file(traject_config_file_path.to_s)
-    indexer
-  end
 end
