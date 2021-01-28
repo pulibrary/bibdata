@@ -96,29 +96,29 @@
       <marc:subfield code="v">Biography.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">exb</marc:subfield>
+      <marc:subfield code="b">rare$exb</marc:subfield>
       <marc:subfield code="h">PS3539.A74</marc:subfield>
       <marc:subfield code="i">Z93 2000</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="h">PS3539.A74</marc:subfield>
       <marc:subfield code="i">Z93 2000</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">rcppa</marc:subfield>
+      <marc:subfield code="b">recap$pa</marc:subfield>
       <marc:subfield code="h">PS3539.A74</marc:subfield>
       <marc:subfield code="i">Z93 2000</marc:subfield>
       <marc:subfield code="x">tr fr anxa</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="t">2</marc:subfield>
       <marc:subfield code="h">PS3539.A74</marc:subfield>
       <marc:subfield code="i">Z93 2000</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="0" ind2=" ">
-      <marc:subfield code="b">f</marc:subfield>
+      <marc:subfield code="b">firestone$stacks</marc:subfield>
       <marc:subfield code="h">PS3539.A74</marc:subfield>
       <marc:subfield code="i">Z93 2000</marc:subfield>
       <marc:subfield code="x">tr fr dixn</marc:subfield>

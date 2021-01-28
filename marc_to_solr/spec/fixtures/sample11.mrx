@@ -158,7 +158,7 @@
       <marc:subfield code="u">http://arks.princeton.edu/ark:/88435/9k41zd556</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">hsvm</marc:subfield>
+      <marc:subfield code="b">rare$hsvm</marc:subfield>
       <marc:subfield code="h">Islamic Manuscripts, New Series no. 1948</marc:subfield>
       <marc:subfield code="x">tr fr mss</marc:subfield>
     </marc:datafield>

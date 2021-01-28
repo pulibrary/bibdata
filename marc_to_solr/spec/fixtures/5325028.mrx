@@ -271,7 +271,7 @@
         <marc:controlfield tag="005">20071127163319.0</marc:controlfield>
         <marc:controlfield tag="008">0711274u    8   1001uu   0901128</marc:controlfield>
         <marc:datafield tag="852" ind1="8" ind2=" ">
-            <marc:subfield code="b">mss</marc:subfield>
+            <marc:subfield code="b">rare$mss</marc:subfield>
             <marc:subfield code="h">Islamic Manuscripts, Garrett no. 4181Y</marc:subfield>
         </marc:datafield>
     </marc:record>

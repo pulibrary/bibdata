@@ -32,7 +32,7 @@
       <marc:subfield code="a">Thesis (Senior)--Princeton University, 2011.</marc:subfield>
     </marc:datafield>
     <marc:datafield tag="852" ind1="8" ind2=" ">
-      <marc:subfield code="b">uesla</marc:subfield>
+      <marc:subfield code="b">arch$la</marc:subfield>
       <marc:subfield code="h">Sen. Th. 2011 Vel</marc:subfield>
     </marc:datafield>
   </marc:record>
