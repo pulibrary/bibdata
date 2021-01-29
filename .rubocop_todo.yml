@@ -24,7 +24,7 @@ Lint/AssignmentInCondition:
     - 'app/services/language_service.rb'
     - 'bin/spring'
     - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/index_functions.rb'
+    - 'app/services/index_functions.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -80,8 +80,8 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 533
   Exclude:
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
 
 # Offense count: 3
 # Configuration parameters: CountBlocks.
@@ -142,9 +142,9 @@ Naming/VariableNumber:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
     - 'spec/requests/bib_gets_spec.rb'
 
 # Offense count: 3
@@ -175,10 +175,10 @@ RSpec/AnyInstance:
 # Offense count: 4
 RSpec/DescribeClass:
   Exclude:
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/format_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/format_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: CustomIncludeMethods.
@@ -212,9 +212,9 @@ RSpec/HookArgument:
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
 
 # Offense count: 7
 RSpec/LeadingSubject:
