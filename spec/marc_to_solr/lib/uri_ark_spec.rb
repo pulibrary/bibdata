@@ -1,4 +1,4 @@
-require_relative '../../lib/uri_ark'
+require 'rails_helper'
 
 RSpec.describe URI::ARK do
   describe '#princeton_ark?' do
