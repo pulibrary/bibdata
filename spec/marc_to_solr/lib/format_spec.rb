@@ -1,5 +1,4 @@
-require 'json'
-require_relative '../../lib/format'
+require 'rails_helper'
 
 # rubocop:disable Layout/MultilineHashBraceLayout
 describe 'From format.rb' do
