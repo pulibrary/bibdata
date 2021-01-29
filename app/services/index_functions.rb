@@ -1,10 +1,3 @@
-require 'json'
-require 'faraday'
-require 'zlib'
-require 'rsolr'
-require 'time'
-require 'logger'
-
 module IndexFunctions
   def self.update_records(dump)
     file_paths = []
@@ -45,7 +38,7 @@ module IndexFunctions
   def self.unzip_mrc(marc_dump)
     Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
       File.open("#{marc_dump}.mrc", 'wb') do |fp|
-        while chunk = gz.read(16 * 1024) do
+        while chunk = gz.read(16 * 1024)
           fp.write chunk
         end
       end
@@ -56,7 +49,7 @@ module IndexFunctions
   def self.unzip_xml(marc_dump)
     Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
       File.open("#{marc_dump}.xml", 'wb') do |fp|
-        while chunk = gz.read(16 * 1024) do
+        while chunk = gz.read(16 * 1024)
           fp.write chunk
         end
       end

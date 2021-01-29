@@ -5,7 +5,6 @@ require 'rsolr'
 require 'time'
 require 'zlib'
 
-require './marc_to_solr/lib/index_functions'
 require_relative '../../marc_to_solr/lib/cache_adapter'
 require_relative '../../marc_to_solr/lib/cache_manager'
 require_relative '../../marc_to_solr/lib/cache_map'

@@ -1,5 +1,3 @@
-require './marc_to_solr/lib/index_functions'
-
 namespace :scsb do
   desc 'starts monitoring jobs for loops'
   task :start_daemon do
