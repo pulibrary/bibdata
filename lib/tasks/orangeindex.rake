@@ -167,6 +167,16 @@ namespace :liberate do
     solr.commit
   end
 
+  desc "Index a single MARC XML file against SET_URL"
+  task :index_file, [:file_name] => :environment do |_t, args|
+    solr_url = ENV['SET_URL'] || default_solr_url
+    file_name = args[:file_name]
+    abort "MARC XML file name must be indicated" if file_name == nil
+    solr = IndexFunctions.rsolr_connection(solr_url)
+    Alma::Indexer.new(solr_url: solr_url).index_file(file_name)
+    solr.commit
+  end
+
   namespace :arks do
     desc "Seed the ARK cache"
     task :seed_cache, [:figgy_dir_path] do |_t, args|
