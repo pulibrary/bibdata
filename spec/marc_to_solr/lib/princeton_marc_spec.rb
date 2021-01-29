@@ -1,15 +1,8 @@
 # encoding: UTF-8
-require 'json'
-require_relative '../../lib/princeton_marc'
-require 'traject'
-require 'library_stdnums'
-require 'pry-byebug'
-
-$LOAD_PATH.unshift('.') # include current directory so local translation_maps can be loaded
+require 'rails_helper'
 
 describe 'From princeton_marc.rb' do
-  let(:config) { File.expand_path('../../../lib/traject_config.rb', __FILE__) }
-  let(:indexer) { Traject::Indexer.new }
+  let(:indexer) { IndexerService.build }
 
   let(:ark) { "ark:/88435/xp68kg247" }
   let(:bib_id) { "4715189" }
@@ -73,12 +66,11 @@ describe 'From princeton_marc.rb' do
 
   before do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
-    indexer.load_config_file(config)
   end
 
   describe '#electronic_access_links' do
     subject(:links) { electronic_access_links(marc_record, figgy_dir_path) }
-    let(:figgy_dir_path) { ENV['FIGGY_ARK_CACHE_PATH'] || 'marc_to_solr/spec/fixtures/figgy_ark_cache' }
+    let(:figgy_dir_path) { ENV['FIGGY_ARK_CACHE_PATH'] || 'spec/fixtures/marc_to_solr/figgy_ark_cache' }
 
     let(:url) { 'https://domain.edu/test-resource' }
     let(:l001) { { '001' => '4609321' } }
