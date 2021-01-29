@@ -1,4 +1,4 @@
-require_relative '../../lib/index_functions'
+require 'rails_helper'
 
 RSpec.describe IndexFunctions do
   describe '#delete_ids' do
@@ -20,11 +20,6 @@ RSpec.describe IndexFunctions do
       let(:logger) { instance_double(Logger) }
 
       before do
-        unless defined?(Rails)
-          class Rails
-            def self.logger; end
-          end
-        end
         allow(Rails).to receive(:logger).and_return(logger)
       end
 
