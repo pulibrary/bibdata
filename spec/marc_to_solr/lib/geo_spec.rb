@@ -1,13 +1,9 @@
 # encoding: UTF-8
-require 'json'
-require 'traject'
-require_relative '../../lib/geo'
+require 'rails_helper'
 
 describe 'From geo.rb' do
   before(:all) do
-    c = File.expand_path('../../../lib/traject_config.rb', __FILE__)
-    @indexer = Traject::Indexer.new
-    @indexer.load_config_file(c)
+    @indexer = IndexerService.build
   end
 
   describe '#decimal_coordinate format for dc:coverage' do
