@@ -1,4 +1,7 @@
-require File.join(Rails.root, 'marc_to_solr', 'lib', 'location_processor_service')
+if Rails.env.test? || Rails.env.development?
+  LocationMapsGeneratorService.generate_from_templates
+else
+  LocationMapsGeneratorService.generate
+end
 
-LocationProcessorService.process unless Rails.env.test?
-TRAJECT_INDEXER ||= LocationProcessorService.build_indexer
+TRAJECT_INDEXER ||= IndexerService.build

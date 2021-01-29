@@ -1,5 +1,3 @@
-require Rails.root.join('marc_to_solr', 'lib', 'location_processor_service')
-
 namespace :marc_liberation do
   namespace :server do
     task initialize: :environment do
@@ -12,7 +10,7 @@ namespace :marc_liberation do
     task start: :environment do
       system("lando start")
       system("rake marc_liberation:server:initialize")
-      Rake::Task["marc_liberation:process_locations"].invoke unless LocationProcessorService.processed?
+      LocationMapsGeneratorService.generate_from_templates
     end
 
     desc "Stop the Lando Apache Solr and PostgreSQL container services."
@@ -21,8 +19,8 @@ namespace :marc_liberation do
     end
   end
 
-  desc "Populate the holding locations values."
+  desc "Populate holding location values from database."
   task process_locations: :environment do
-    LocationProcessorService.process
+    LocationMapsGeneratorService.generate
   end
 end
