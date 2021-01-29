@@ -57,18 +57,6 @@ jobs:
       - run: bin/jetty_wait
 
       - run:
-          name: Configure location display
-          command: cp -v marc_to_solr/translation_maps/location_display.rb.tmpl marc_to_solr/translation_maps/location_display.rb
-
-      - run:
-          name: Configure locations
-          command: cp -v marc_to_solr/translation_maps/locations.rb.tmpl marc_to_solr/translation_maps/locations.rb
-
-      - run:
-          name: Configure holding libraries
-          command: cp -v marc_to_solr/translation_maps/holding_library.rb.tmpl marc_to_solr/translation_maps/holding_library.rb
-
-      - run:
           name: Wait for Postgres
           command: dockerize -wait tcp://localhost:5432 -timeout 120s
 
@@ -160,18 +148,6 @@ jobs:
       - run: bin/jetty_wait
 
       - run:
-          name: Configure location display
-          command: cp -v marc_to_solr/translation_maps/location_display.rb.tmpl marc_to_solr/translation_maps/location_display.rb
-
-      - run:
-          name: Configure locations
-          command: cp -v marc_to_solr/translation_maps/locations.rb.tmpl marc_to_solr/translation_maps/locations.rb
-
-      - run:
-          name: Configure holding libraries
-          command: cp -v marc_to_solr/translation_maps/holding_library.rb.tmpl marc_to_solr/translation_maps/holding_library.rb
-
-      - run:
           name: Wait for Postgres
           command: dockerize -wait tcp://localhost:5432 -timeout 120s
 
@@ -181,13 +157,13 @@ jobs:
 
       - run:
           name: Test with RSpec
-          command: bundle exec rspec spec marc_to_solr/spec
+          command: bundle exec rspec spec
           environment:
             RAILS_ENV: test
-            FIGGY_ARK_CACHE_PATH: marc_to_solr/spec/fixtures/figgy_ark_cache
+            FIGGY_ARK_CACHE_PATH: spec/fixtures/marc_to_solr/figgy_ark_cache
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
-            HATHI_OUTPUT_DIR: marc_to_solr/spec/fixtures/
+            HATHI_OUTPUT_DIR: spec/fixtures/marc_to_solr/
       - store_artifacts:
           path: ~/marc_liberation/coverage
           destination: coverage
