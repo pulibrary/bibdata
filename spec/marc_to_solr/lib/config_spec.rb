@@ -1,29 +1,22 @@
-require 'json'
-require 'traject'
-require 'faraday'
-require 'time'
-require 'iso-639'
-require 'byebug'
+require 'rails_helper'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
 
   def fixture_record(fixture_name)
-    f = File.expand_path("../../fixtures/#{fixture_name}.mrx", __FILE__)
+    f = File.expand_path("../../../fixtures/marc_to_solr/#{fixture_name}.mrx", __FILE__)
     @indexer.reader!(f).first
   end
 
   def fixture_alma_record(fixture_name)
-    f = File.expand_path("../../fixtures/alma/#{fixture_name}.mrx", __FILE__)
+    f = File.expand_path("../../../fixtures/marc_to_solr/alma/#{fixture_name}.mrx", __FILE__)
     @indexer.reader!(f).first
   end
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
-    c = File.expand_path('../../../lib/traject_config.rb', __FILE__)
-    @indexer = Traject::Indexer.new
-    @indexer.load_config_file(c)
+    @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_record('sample1'))
     @sample2 = @indexer.map_record(fixture_record('sample2'))
     @sample3 = @indexer.map_record(fixture_record('sample3'))
@@ -325,7 +318,7 @@ describe 'From traject_config.rb' do
       expect(@online_at_library['access_facet']).to include 'In the Library'
     end
     it 'value include hathi locations when record is present in hathi report' do
-      expect(@hathi_present['location_code_s']).to contain_exactly('sci')
+      expect(@hathi_present['location_code_s']).to contain_exactly('lewis$stacks')
       expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access', 'Online', 'In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
@@ -340,7 +333,7 @@ describe 'From traject_config.rb' do
       marcxml = fixture_record('7617477')
       @solr_hash = @indexer.map_record(marcxml)
       @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
-      holdings_file = File.expand_path("../../fixtures/7617477-holdings.json", __FILE__)
+      holdings_file = File.expand_path("../../../fixtures/marc_to_solr/7617477-holdings.json", __FILE__)
       holdings = JSON.parse(File.read(holdings_file))
       @holding_records = []
       holdings.each { |h| @holding_records << MARC::Record.new_from_hash(h) }
