@@ -168,7 +168,7 @@ namespace :liberate do
   end
 
   desc "Index a single MARC XML file against SET_URL"
-  task index_file: :environment do |_t, args|
+  task index_file: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     file_name = ENV['FILE']
     abort "MARC XML file name must be indicated" unless file_name
