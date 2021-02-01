@@ -1,7 +1,7 @@
 require 'faraday'
 require 'rsolr'
 
-default_bibdata_url = 'https://bibdata.princeton.edu'
+default_bibdata_url = 'https://bibdata-alma-staging.princeton.edu'
 bibdata_url = ENV['BIBDATA_URL'] || default_bibdata_url
 
 conn = Faraday.new(url: bibdata_url) do |faraday|
