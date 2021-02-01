@@ -12,6 +12,7 @@ require 'stringex'
 require 'library_stdnums'
 require 'time'
 require 'iso-639'
+require 'byebug'
 
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
@@ -1128,21 +1129,26 @@ each_record do |_record, context|
 end
 
 # Process location code once
-# Alma:needs to change. Will no longer look 852b.
-# Alma:needs to change We will look 952bc. (Alma)
-# Alma:will change the way we get/index location_code (Alma)
+# 852|b and 852|c
 each_record do |record, context|
   location_codes = []
-  MarcExtractor.cached("852b").collect_matching_lines(record) do |field, _spec, _extractor|
+  MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
+    is_alma = alma_code?(field['8'])
     field.subfields.each do |s_field|
+      # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
       if s_field.code == 'b'
-        logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value
+        # update the logged error. It doesn't look right as it is and we need to see in alma if we
+        # still need to log multiple $b in 852.
+        # logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
+        holding_b ||= s_field.value if is_alma
+        holding_b += "$#{field['c']}" if field['c'] && is_alma
       end
     end
     location_codes << holding_b
+    location_codes.compact!
   end
+  # Hathi Locations
   # Don't check for hathi if the oclc is missing.
   hathi_locations = []
   if context.output_hash['oclc_s'].present?
@@ -1151,14 +1157,14 @@ each_record do |record, context|
     hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
     context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
   end
-  if location_codes.present? || hathi_locations.present?
+  if location_codes.any? || hathi_locations.any?
     location_codes.uniq!
-    ## need to through any location code that isn't from voyager, thesis, or graphic arts
+    ## need to go through any location code that isn't from voyager, thesis, or graphic arts
     ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
-    holding_library = Traject::TranslationMap.new("holding_library") # Alma:needs to change. It will be in the record itself (Alma)
+    holding_library = Traject::TranslationMap.new("holding_library")
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
@@ -1168,7 +1174,6 @@ each_record do |record, context|
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-
     context.output_hash['access_facet'] = Traject::TranslationMap.new("access", default: "In the Library").translate_array(location_codes | hathi_locations)
     context.output_hash['access_facet'].uniq!
 
