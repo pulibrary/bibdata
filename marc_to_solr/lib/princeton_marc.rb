@@ -614,6 +614,7 @@ def join_hierarchy fields
   join_hierarchy_without_author(fields).map { |a| a[1..-1] }
 end
 
+# Alma Princeton item 
 def alma_code?(code)
   code.to_s.start_with?("22") && code.to_s.end_with?("06421")
 end
@@ -634,12 +635,11 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       elsif s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] ||= is_alma ? record["952"]&.[]("c") : Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
-        holding['library'] ||= is_alma ? record["952"]&.[]("b") : Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
-        holding['location_code'] ||= s_field.value
-        # Append 852c to location code if it's an Alma item - holding starts
-        # with 22.
-        holding['location_code'] += "-#{field['c']}" if field['c'] && is_alma
+        holding['location_code'] ||= s_field.value if is_alma
+        # Append 852c to location code 852b if it's an Alma item
+        holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
+        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']] if is_alma
+        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']] if is_alma
       elsif /[ckhij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
