@@ -8,7 +8,7 @@ namespace :servers do
   desc "Start the Apache Solr and PostgreSQL container services using Lando."
   task start: :environment do
     system("lando start")
-    system("rake marc_liberation:server:initialize")
+    system("rake servers:initialize")
     LocationMapsGeneratorService.generate_from_templates
   end
 
