@@ -71,6 +71,15 @@ In the API sandbox (see above)
 1. Click 'Execute'
 1. You can download the file with the little "Download" button
 
+### Export a set of test records from production
+1. Login as admin in https://princeton.alma.exlibrisgroup.com/
+1. In the left side bar click 'Admin' -> Select 'Manage sets'
+1. The screen will display a list of sets. Click on the elipsis button of the 'test records' set. -> Select 'Members'
+1. If there are records in the set that it is not desired to export, select the records using the checkbox to the left and click 'Remove Selected'
+1. Click 'Add Memebers'. Add in the search bar the desired mms_id. -> 'Search' -> Select the listed record using the checkbox -> Click Add Selected.
+1. In the left bar, click 'Resources' -> 'Publishing Profiles' -> Find the 'Test Record export' publishing profile. -> Click the elipsis button and select 'Republish'. -> Select 'Rebuild Entire Index' -> Click 'Run Now'.
+1. The new tar.gz file with the selected records will be in the lib-sftp server '/alma/test_records_new.tar.gz'
+
 ### Finding a Voyager item in Alma
 
 Voyager items, once the migration is finished, will have an ID in Alma equal to
