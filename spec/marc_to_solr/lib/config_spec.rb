@@ -48,6 +48,7 @@ describe 'From traject_config.rb' do
       record = @indexer.map_record(fixture_alma_record('9918573506421'))
       access_links = record["electronic_access_1display"]
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
+    end
   end
   describe "locations" do
     it "will index the location_code_s" do
@@ -61,10 +62,10 @@ describe 'From traject_config.rb' do
       holdings = JSON.parse(record["holdings_1display"][0])
       holding_1 = holdings["22188107110006421"]
       holding_2 = holdings["22188107090006421"]
-      expect(holding_1["location"]).to eq "Lewis Library - Lewis Library"
+      expect(holding_1["location"]).to eq "Lewis Library - Lewis Library - Lewis Library"
       expect(holding_1["library"]).to eq "Lewis Library"
       expect(holding_1["location_code"]).to eq "lewis$stacks"
-      expect(holding_2["location"]).to eq "Firestone Library - Firestone Library"
+      expect(holding_2["location"]).to eq "Firestone Library - Firestone Library - Firestone Library"
       expect(holding_2["library"]).to eq "Firestone Library"
       expect(holding_2["location_code"]).to eq "firestone$stacks"
     end
@@ -476,17 +477,12 @@ describe 'From traject_config.rb' do
     end
   end
   describe '852 $b $c location code processing' do
-    # let(:extra_b_record) { fixture_record('sample27') }
-    # let(:single_b)  { extra_b_record.fields('852')[0]['b'] }
-    # let(:extra_b) { extra_b_record.fields('852')[1].map { |f| f.value if f.code == 'b' }.compact }
     it 'supports multiple location codes in separate 852s' do
-      # expect(fixture_alma_record('9992320213506421')['852']['b']).to be_truthy
-      # expect(fixture_alma_record('9992320213506421')['852']['c']).to be_truthy
       record = @indexer.map_record(fixture_alma_record('9992320213506421'))
       expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
     end
+    # TODO: ALMA
     # it 'only includes the first $b within a single tag' do
-    #   expect(@related_names['location_code_s']).not_to include(extra_b.last)
     # end
   end
 

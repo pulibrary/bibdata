@@ -2,6 +2,15 @@
 require 'rails_helper'
 
 describe 'From princeton_marc.rb' do
+  before(:all) do
+    @indexer = IndexerService.build
+  end
+
+  def fixture_alma_record(fixture_name)
+    f = File.expand_path("../../../fixtures/marc_to_solr/alma/#{fixture_name}.mrx", __FILE__)
+    @indexer.reader!(f).first
+  end
+
   let(:indexer) { IndexerService.build }
 
   let(:ark) { "ark:/88435/xp68kg247" }
@@ -625,60 +634,61 @@ describe 'From princeton_marc.rb' do
   end
 
   describe '#process_holdings' do
+    # voyager record: https://catalog.princeton.edu/catalog/1414145/
+    # alma record: https://bibdata-alma-staging.princeton.edu/bibliographic/9914141453506421
     before(:all) do
-      @oversize_mfhd_id = "3723853"
-      @other_mfhd_id = "4191919"
-      @exclude_mfhd_id = "9999"
-      @call_number = "M23.L5S6 1973q"
-      @include_loc = "firestone$stacks"
-      @f_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "b" => "annex$stacks" }, { "t" => "2" }, { "t" => "BAD" }, { "c" => "Oversize" }, { "h" => @call_number }] } }
-      @other_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @other_mfhd_id }, { "b" => @include_loc }, { "b" => "elf1" }] } }
-      @invalid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "0" => @exclude_mfhd_id }, { "b" => "baddd" }] } }
-      @l_866 = { "866" => { "ind1" => "3", "ind2" => "1", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "volume 1" }, { "z" => "full" }] } }
-      @l_866_2nd = { "866" => { "ind1" => "3", "ind2" => "1", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "In reading room" }] } }
-      @c_866 = { "866" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "0" => @oversize_mfhd_id }, { "a" => "v2" }, { "z" => "available" }] } }
-      @s_867 = { "867" => { "ind1" => "9", "ind2" => " ", "subfields" => [{ "0" => @other_mfhd_id }, { "a" => "v454" }] } }
-      @i_868 = { "868" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "0" => @oversize_mfhd_id }, { "z" => "lost" }] } }
-      @other_866 = { "866" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "0" => @other_mfhd_id }, { "a" => "v4" }, { "z" => "p3" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@f_852, @l_866, @l_866_2nd, @c_866, @s_867, @i_868, @other_866, @other_852, @invalid_loc_852])
+      @record = @indexer.map_record(fixture_alma_record('9914141453506421'))
+      @holdings = JSON.parse(@record["holdings_1display"][0])
+      @oversize_holding_id = "22242008800006421"
+      @oversize_holding_block = @holdings[@oversize_holding_id]
 
-      @holding_block = process_holdings(@sample_marc)
+      @record_866_867 = @indexer.map_record(fixture_alma_record('991583506421'))
+      @holdings_866_867 = JSON.parse(@record_866_867["holdings_1display"][0])
+      @holding_id_866_867 = "22262098640006421"
+      @holdings_866_867_block = @holdings_866_867[@holding_id_866_867]
+
+      @record_868 = @indexer.map_record(fixture_alma_record('991213506421'))
+      @holdings_868 = JSON.parse(@record_868["holdings_1display"][0])
+      @holding_id_868 = "22261907460006421"
+      @holdings_868_block = @holdings_868[@holding_id_868]
     end
 
-    it 'includes only first location code in 852 $b' do
-      expect(@holding_block[@other_mfhd_id]['location_code']).to eq(@include_loc)
+    it 'includes only first location code' do
+      expect(@oversize_holding_block['location_code']).to eq("annex$stacks")
     end
 
-    it 'excludes holdings with an invalid location code' do
+    # TODO: ALMA
+    xit 'excludes holdings with an invalid location code' do
       expect(@holding_block).not_to have_key(@exclude_mfhd_id)
     end
 
-    it 'excludes $c for call_number_browse key' do
-      expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).not_to include('Oversize')
-      expect(@holding_block[@oversize_mfhd_id]['call_number_browse']).to eq(@call_number)
+    it 'positions $k at the end for call_number_browse field' do
+      expect(@oversize_holding_block['call_number_browse']).to include('Oversize')
+      expect(@oversize_holding_block['call_number_browse']).to eq("M23.L5S6 1973q Oversize")
     end
 
-    it 'includes first instance of 852 $t as copy_number' do
-      expect(@holding_block[@oversize_mfhd_id]['copy_number']).to eq('2')
-    end
-
-    it 'only includes copy_number if there is an 852 $t' do
-      expect(@holding_block[@other_mfhd_id]['copy_number']).to be_nil
+    describe 'copy_number is included in the items' do
+      it "includes copy_number from first instance of 852 $t" do
+        expect(@oversize_holding_block["items"].first["copy_number"]).to eq('10')
+      end
+      # TODO: :ALMA https://github.com/pulibrary/marc_liberation/issues/1071
+      xit 'only includes copy_number if there is an 852 $t' do
+        expect(@oversize_holding_block['copy_number']).to be_nil
+      end
     end
 
     it 'separates call_number subfields with whitespace' do
-      expect(@holding_block[@oversize_mfhd_id]['call_number']).to eq("Oversize #{@call_number}")
+      expect(@oversize_holding_block['call_number']).to eq("M23.L5S6 1973q Oversize")
     end
 
     it 'location_has takes from 866 $a and $z regardless of indicators' do
-      expect(@holding_block[@oversize_mfhd_id]['location_has']).to include("volume 1 full", "In reading room", "v2 available")
-      expect(@holding_block[@other_mfhd_id]['location_has']).to include("v4 p3")
+      expect(@holdings_866_867_block['location_has']).to include("No. 1 (Feb. 1975)-no. 68", "LACKS: no. 25-26,29,49-50, 56")
     end
     it 'supplements takes from 867 $a and $z' do
-      expect(@holding_block[@other_mfhd_id]['supplements']).to include("v454")
+      expect(@holdings_866_867_block['supplements']).to include("no. 20")
     end
     it 'indexes takes from 868 $a and $z' do
-      expect(@holding_block[@oversize_mfhd_id]['indexes']).to include("lost")
+      expect(@holdings_868_block['indexes']).to include("Index, v. 1/17")
     end
   end
 end
