@@ -36,7 +36,7 @@ class AlmaAdapter
       "bibs/#{id}/holdings",
       apikey: apikey
     )
-    res.body
+    res.body.force_encoding("utf-8")
   end
 
   # @param id [string]. e.g id = "991227850000541"
