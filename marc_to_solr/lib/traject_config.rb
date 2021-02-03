@@ -12,7 +12,6 @@ require 'stringex'
 require 'library_stdnums'
 require 'time'
 require 'iso-639'
-require 'byebug'
 
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
