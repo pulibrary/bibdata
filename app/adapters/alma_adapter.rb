@@ -44,18 +44,62 @@ class AlmaAdapter
   def get_items_for_bib(id)
     opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
     bib_item_set = Alma::BibItem.find(id, opts)
-    format_bib_items(bib_item_set)
+    notes_by_holding = bib_item_holding_notes(bib_item_set)
+    format_bib_items(bib_item_set, notes_by_holding)
+  end
+
+  def bib_item_holding_notes(bib_item_set)
+    mms_id = bib_item_set.first["bib_data"]["mms_id"]
+    record = get_bib_record(mms_id)
+    notes_by_holding = {}
+
+    # Get all AVA subfields with notes and add to notes hash
+    ava_subfields = record.fields.select { |f| f.tag == "AVA" }.select { |s| s.codes.include? "t" }
+    ava_subfields.each do |subfield|
+      holding_id = subfield["8"]
+      note = subfield["t"]
+      if notes_by_holding.key?(holding_id)
+        notes_by_holding[holding_id] << note
+      else
+        notes_by_holding[holding_id] = [note]
+      end
+    end
+
+    # Fetch notes from individual holding record 866 fields
+    holding_ids = bib_item_set.map { |item| item.holding_data["holding_id"] }.uniq
+    holding_ids.each do |holding_id|
+      # Skip if holding record already has notes from the AVA field
+      next if notes_by_holding.key?(holding_id)
+      notes = holding_notes_from_866(mms_id, holding_id)
+      notes_by_holding[holding_id] = notes
+    end
+
+    notes_by_holding
+  end
+
+  def holding_notes_from_866(mms_id, holding_id)
+    holding_record = Alma::BibHolding.find(mms_id: mms_id, holding_id: holding_id)
+    xml_str = holding_record.holding.fetch("anies", []).first
+    xml_doc = Nokogiri::XML(xml_str)
+    field_866a = xml_doc.xpath('//record/datafield[@tag="866"]/subfield[@code="a"]')
+    notes = []
+    field_866a.each do |field|
+      notes << field.text
+    end
+
+    notes
   end
 
   # @param [Alma::BibItemSet]
+  # @param [Hash<String, Array>] hash with holding id as key and notes as values
   # @return [Hash] of locations/ holdings/ items data
-  def format_bib_items(bib_item_set)
+  def format_bib_items(bib_item_set, notes_by_holding)
     location_grouped = bib_item_set.group_by(&:location)
     location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
       location_value_array = []
       holdings = bib_items_array.group_by { |bi| bi["holding_data"]["holding_id"] }
-      holdings.each_pair do |_holding_id, items_array|
-        location_value_array << format_holding(items_array)
+      holdings.each_pair do |holding_id, items_array|
+        location_value_array << format_holding(items_array, notes_by_holding[holding_id])
       end
       location[location_code] = location_value_array
     end
@@ -63,12 +107,13 @@ class AlmaAdapter
 
   # @param holding_items_array [Array]
   # @return [Hash] of holdings
-  def format_holding(holding_items_array)
+  def format_holding(holding_items_array, notes)
     {
       "holding_id" => holding_items_array.first.holding_data["holding_id"],
       "call_number" => holding_items_array.first.holding_data["call_number"],
+      "notes" => notes,
       "items" => holding_items_array.each_with_index.map { |bib_item, idx| format_item(bib_item, idx) }
-    }
+    }.compact
   end
 
   def format_item(bib_item, _idx)

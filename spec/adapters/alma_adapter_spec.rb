@@ -145,6 +145,54 @@ RSpec.describe AlmaAdapter do
       expect(adapter.get_items_for_bib(unsuppressed)).to be_a Hash
     end
 
+    context "when a record has holdings with notes" do
+      let(:bib_record) { file_fixture("alma/9930766283506421.json") }
+      let(:bib_items_notes) { file_fixture("alma/9930766283506421_items.json") }
+      let(:holding) { file_fixture("alma/22133197750006421.json") }
+      before do
+       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library").
+         with(
+           headers: {
+          'Accept'=>'application/json',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization'=>'apikey TESTME',
+          'Content-Type'=>'application/json',
+          'User-Agent'=>'Ruby'
+           }).
+         to_return(status: 200, body: bib_items_notes, headers: { "content-Type" => "application/json" })
+
+       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9930766283506421").
+         with(
+           headers: {
+       	  'Accept'=>'application/json',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'Authorization'=>'apikey TESTME',
+       	  'Content-Type'=>'application/json',
+       	  'User-Agent'=>'Ruby'
+           }).
+         to_return(status: 200, body: bib_record, headers: { "content-Type" => "application/json" })
+
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/22133197750006421").
+         with(
+           headers: {
+       	  'Accept'=>'application/json',
+       	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+       	  'Authorization'=>'apikey TESTME',
+       	  'Content-Type'=>'application/json',
+       	  'User-Agent'=>'Ruby'
+           }).
+        to_return(status: 200, body: holding, headers: { "content-Type" => "application/json" })
+      end
+
+      it "returns a notes field per holding location" do
+        items = adapter.get_items_for_bib("9930766283506421")
+        expect(items["cjk"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
+        expect(items["etasrcp"][0]["notes"]).to eq ["No. [1] (1981)-no. 409 (2015)"]
+        expect(items["etas"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
+        expect(items["invalid"]).to eq nil
+      end
+    end
+
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
       it "has all the relevant item keys" do
