@@ -1,0 +1,11 @@
+{
+    "holding_id": "22133197750006421",
+    "created_by": "import",
+    "created_date": "2020-12-02Z",
+    "originating_system": "ILS",
+    "originating_system_id": "6776267-princetondb",
+    "suppress_from_publishing": "false",
+    "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00378cy  a2200145m  4500</leader>\n    <controlfield tag=\"001\">6776267</controlfield>\n    <controlfield tag=\"004\">3076628</controlfield>\n    <controlfield tag=\"005\">20181022101200.0</controlfield>\n    <controlfield tag=\"008\">111013||    |   |000||chi1000000</controlfield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"014\">\n      <subfield code=\"a\">AAB5969EA001</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\" \" tag=\"014\">\n      <subfield code=\"9\">003390275</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocm12296277</subfield>\n    </datafield>\n    <datafield ind1=\"8\" ind2=\" \" tag=\"852\">\n      <subfield code=\"b\">recap</subfield>\n      <subfield code=\"c\">pa</subfield>\n      <subfield code=\"h\">KQK</subfield>\n      <subfield code=\"i\">.F33</subfield>\n      <subfield code=\"x\">tr fr gest cjk</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"866\">\n      <subfield code=\"a\">No. [1] (1981)-no. 409 (2015)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"866\">\n      <subfield code=\"x\">For holdings, see Gest serial record</subfield>\n    </datafield>\n  </record>"
+    ]
+}
