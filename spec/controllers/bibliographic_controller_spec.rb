@@ -170,6 +170,23 @@ RSpec.describe BibliographicController, type: :controller do
     end
   end
 
+  describe '#bib_holdings' do
+    # see https://github.com/pulibrary/marc_liberation/issues/1041
+    # if we migrate the implementation to alma-rb we may not have this issue
+    context 'when the endpoint comes back with ascii-8bit' do
+      let(:ascii_8bit_response) { "994304723506421" }
+      it 'converts to utf-8' do
+        fixture = file_fixture("alma/#{ascii_8bit_response}.xml")
+        stub_request(:get, "https://alma/almaws/v1/bibs/#{ascii_8bit_response}/holdings?apikey=TESTME")
+          .to_return(status: 200, body: IO.binread(fixture))
+
+        get :bib_holdings, params: { bib_id: ascii_8bit_response }, format: 'xml'
+
+        expect(response.body.encoding.to_s).to eq "UTF-8"
+      end
+    end
+  end
+
   describe '#bib_items' do
     context 'when call number is not handeled by lcsort' do
       before do
