@@ -614,7 +614,7 @@ def join_hierarchy fields
   join_hierarchy_without_author(fields).map { |a| a[1..-1] }
 end
 
-# Alma Princeton item 
+# Alma Princeton item
 def alma_code?(code)
   code.to_s.start_with?("22") && code.to_s.end_with?("06421")
 end
@@ -640,7 +640,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
         holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']] if is_alma
         holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']] if is_alma
-      elsif /[ckhij]/.match?(s_field.code)
+      elsif /[khij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
         unless s_field.code == 'c'
@@ -665,7 +665,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value
@@ -682,7 +682,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value
@@ -699,7 +699,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value
