@@ -47,11 +47,11 @@ namespace :server do
            response = Faraday.get url_for_file(file)
            if response.success?
              File.open(File.join(solr_dir, "conf", file), "wb") do |f|
-              #  byebug
+               # byebug
                body = response.body
                if file == "solrconfig.xml"
                  body = "<!-- first line -->\n" + body
-                 puts "fixed #{file}"
+                 puts "fixed #{file} - source: #{url_for_file(file)}"
                end
                f.write(body)
              end
