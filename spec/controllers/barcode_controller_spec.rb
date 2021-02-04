@@ -37,6 +37,7 @@ RSpec.describe BarcodeController, type: :controller do
         # Ensure 959 is correct (empty)
         expect(record["959"]).to be_nil
       end
+
       it "enriches a bound-with item with multiple bibs it's attached to" do
         stub_alma_item_barcode(mms_id: "99121886293506421", item_id: "23269289930006421", holding_id: "22269289940006421", barcode: "32101066958685")
         stub_alma_ids(ids: "99121886293506421", status: 200, fixture: "99121886293506421")
@@ -54,6 +55,7 @@ RSpec.describe BarcodeController, type: :controller do
           expect(record["852"]["h"]).to eq "3488.93344.333"
         end
       end
+
       it "enriches the MARC record with holdings and item info" do
         stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
         stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
@@ -77,8 +79,23 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["852"]["h"]).to eq voyager_comparison["852"]["h"]
         expect(record["852"]["i"]).to be_blank
       end
+
+      it "returns a 404 when the barcode is not found" do
+        barcode = "32101108683143"
+        alma_path = Pathname.new(file_fixture_path).join("alma")
+        stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/items.*/)
+          .with(query: { item_barcode: barcode })
+          .to_return(status: 400,
+                     headers: { "Content-Type" => "application/json" },
+                     body: alma_path.join("barcode_#{barcode}.json"))
+
+        get :scsb, params: { barcode: barcode }, format: :xml
+
+        expect(response).to be_not_found
+      end
     end
   end
+
   describe '#valid_barcode' do
     context 'barcode is valid' do
       let(:valid_barcode1) { '32101123456789' }
