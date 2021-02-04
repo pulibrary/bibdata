@@ -50,7 +50,7 @@ namespace :server do
                # byebug
                body = response.body
                if file == "solrconfig.xml"
-                 body = "<!-- first line -->\n" + body
+                 body = body.gsub("Apache Software Foundation", "Mohegan Software Foundation")
                  puts "fixed #{file} - source: #{url_for_file(file)}"
                end
                f.write(body)
