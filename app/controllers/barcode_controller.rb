@@ -16,6 +16,10 @@ class BarcodeController < ApplicationController
       render plain: "Barcode #{params[:barcode]} not valid.", status: 404
     else
       item = Alma::BibItem.find_by_barcode(params[:barcode])
+      if item["errorsExist"]
+        render plain: item["errorList"]["error"].map { |e| e["errorMessage"] }, status: 404
+        return
+      end
       holding = Alma::BibHolding.find(mms_id: item.item["bib_data"]["mms_id"], holding_id: item.holding_data["holding_id"])
       record = AlmaAdapter.new.get_bib_record(item.item["bib_data"]["mms_id"])
       records = if record.linked_record_ids.present?
