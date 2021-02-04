@@ -7,31 +7,31 @@ recap_dump_records_per_file: 5000
 test_records_per_file: 25
 
 dump_types:
-- label: 'Changed Records'
-  constant: 'CHANGED_RECORDS'
-- label: 'All Bib IDs'
-  constant: 'BIB_IDS'
-- label: 'All Bib IDs with Holdings'
-  constant: 'MERGED_IDS'
-- label: 'All Records'
+- label: 'All Records' # used for full dumps
   constant: 'ALL_RECORDS'
-- label: 'Updated Princeton ReCAP Records'
+- label: 'Changed Records' # used for incremental dumps
+  constant: 'CHANGED_RECORDS'
+- label: 'Updated Princeton ReCAP Records' # used for Princeton records we send to SCSB
   constant: 'PRINCETON_RECAP'
-- label: 'Updated Partner ReCAP Records'
+- label: 'Updated Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
   constant: 'PARTNER_RECAP'
+- label: 'All Bib IDs' # no longer used
+  constant: 'BIB_IDS'
+- label: 'All Bib IDs with Holdings' # no longer used
+  constant: 'MERGED_IDS'
 
 dump_file_types:
-- label: 'Updated Records'
-  constant: 'UPDATED_RECORDS'
-- label: 'New Records'
-  constant: 'NEW_RECORDS'
-- label: 'All Bib IDs with Holdings'
-  constant: 'MERGED_IDS'
-- label: 'All Bib IDs'
-  constant: 'BIB_IDS'
-- label: 'All Bib Records'
+- label: 'All Bib Records' # used with ALL_RECORDS dumps
   constant: 'BIB_RECORDS'
-- label: 'Updated ReCAP Records'
+- label: 'Updated Records' # used with CHANGED_RECORDS dumps
+  constant: 'UPDATED_RECORDS'
+- label: 'Updated ReCAP Records' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'RECAP_RECORDS'
-- label: 'Log File'
+- label: 'Log File' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'LOG_FILE'
+- label: 'New Records' # no longer used
+  constant: 'NEW_RECORDS'
+- label: 'All Bib IDs with Holdings' #no longer used
+  constant: 'MERGED_IDS'
+- label: 'All Bib IDs' #no longer used
+  constant: 'BIB_IDS'
