@@ -39,13 +39,23 @@ namespace :server do
       desc "Updates solr config files from github"
       task :update, [:solr_dir] => :environment do |_t, args|
         solr_dir = args[:solr_dir] || Rails.root.join("solr")
-
+        puts solr_dir
         ["_rest_managed.json", "admin-extra.html", "elevate.xml",
          "mapping-ISOLatin1Accent.txt", "protwords.txt", "schema.xml",
          "scripts.conf", "solrconfig.xml", "spellings.txt", "stopwords.txt",
          "stopwords_en.txt", "synonyms.txt"].each do |file|
            response = Faraday.get url_for_file(file)
-           File.open(File.join(solr_dir, "conf", file), "wb") { |f| f.write(response.body) } if response.success?
+           if response.success?
+             File.open(File.join(solr_dir, "conf", file), "wb") do |f|
+              #  byebug
+               body = response.body
+               if file == "solrconfig.xml"
+                 body = "<!-- first line -->\n" + body
+                 puts "fixed #{file}"
+               end
+               f.write(body)
+             end
+           end
          end
       end
 
