@@ -28,6 +28,8 @@ end
 #   rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
 # end
 
+job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
+
 # Daily recap shared collection update to Solr
 every 1.day, at: "6:30am", roles: [:cron_production] do
   liberate_latest_production(
