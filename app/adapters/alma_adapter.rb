@@ -39,55 +39,14 @@ class AlmaAdapter
     res.body.force_encoding("utf-8")
   end
 
-  # @param id [string]. e.g id = "991227850000541"
+  # @param id [String]. e.g id = "991227850000541"
   # @return [Hash] of locations/ holdings/ items data
   def get_items_for_bib(id)
     opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
     bib_item_set = Alma::BibItem.find(id, opts)
-    notes_by_holding = bib_item_holding_notes(bib_item_set)
-    format_bib_items(bib_item_set, notes_by_holding)
-  end
-
-  def bib_item_holding_notes(bib_item_set)
-    mms_id = bib_item_set.first["bib_data"]["mms_id"]
-    record = get_bib_record(mms_id)
-    notes_by_holding = {}
-
-    # Get all AVA subfields with notes and add to notes hash
-    ava_subfields = record.fields.select { |f| f.tag == "AVA" }.select { |s| s.codes.include? "t" }
-    ava_subfields.each do |subfield|
-      holding_id = subfield["8"]
-      note = subfield["t"]
-      if notes_by_holding.key?(holding_id)
-        notes_by_holding[holding_id] << note
-      else
-        notes_by_holding[holding_id] = [note]
-      end
-    end
-
-    # Fetch notes from individual holding record 866 fields
     holding_ids = bib_item_set.map { |item| item.holding_data["holding_id"] }.uniq
-    holding_ids.each do |holding_id|
-      # Skip if holding record already has notes from the AVA field
-      next if notes_by_holding.key?(holding_id)
-      notes = holding_notes_from_866(mms_id, holding_id)
-      notes_by_holding[holding_id] = notes
-    end
-
-    notes_by_holding
-  end
-
-  def holding_notes_from_866(mms_id, holding_id)
-    holding_record = Alma::BibHolding.find(mms_id: mms_id, holding_id: holding_id)
-    xml_str = holding_record.holding.fetch("anies", []).first
-    xml_doc = Nokogiri::XML(xml_str)
-    field_866a = xml_doc.xpath('//record/datafield[@tag="866"]/subfield[@code="a"]')
-    notes = []
-    field_866a.each do |field|
-      notes << field.text
-    end
-
-    notes
+    notes_by_holding = bib_item_holding_notes(id, holding_ids)
+    format_bib_items(bib_item_set, notes_by_holding)
   end
 
   # @param [Alma::BibItemSet]
@@ -147,5 +106,56 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
+    end
+
+    # @param mms_id [String]. e.g id = "991227850000541"
+    # @param all_holding_ids [Array<String>]
+    # @return [Hash<String, Array>] hash with holding id as key and notes as values
+    def bib_item_holding_notes(mms_id, all_holding_ids)
+      notes_from_bib_record = holding_notes_from_bib_record(mms_id)
+
+      # Get list of holding ids not included in bib record AVA fields
+      missing_holding_ids = all_holding_ids - notes_from_bib_record.keys
+
+      # Bib record AVA fields do not include the holding ID for temporary holding locations.
+      # We have to fetch notes for these holdings individually using their 866
+      # value.
+      notes_from_holdings = holding_notes_from_holding_records(mms_id, missing_holding_ids)
+
+      # Return all notes
+      notes_from_bib_record.merge(notes_from_holdings)
+    end
+
+    # Get notes from AVA subfields on bib record
+    # @param mms_id [String]. e.g id = "991227850000541"
+    # @param [Hash<String, Array>] hash with holding id as key and notes as values
+    def holding_notes_from_bib_record(mms_id)
+      record = get_bib_record(mms_id)
+      return {} unless record&.try(:fields)
+      notes_by_holding = {}
+      ava_subfields = record.fields.select { |f| f.tag == "AVA" }.select { |s| s.codes.include? "t" }
+      ava_subfields.each do |subfield|
+        holding_id = subfield["8"]
+        note = subfield["t"]
+        notes_by_holding[holding_id] = notes_by_holding.fetch(holding_id, []) << note
+      end
+
+      notes_by_holding
+    end
+
+    # Get notes from holding records
+    # @param id [String]. e.g id = "991227850000541"
+    # @param [Hash<String, Array>] hash with holding id as key and notes as values
+    def holding_notes_from_holding_records(mms_id, holding_ids)
+      notes_by_holding = {}
+      holding_ids.each do |holding_id|
+        holding_record = Alma::BibHolding.find(mms_id: mms_id, holding_id: holding_id)
+        xml_str = holding_record.holding.fetch("anies", []).first
+        xml_doc = Nokogiri::XML(xml_str)
+        field_866a = xml_doc.xpath('//record/datafield[@tag="866"]/subfield[@code="a"]')
+        notes_by_holding[holding_id] = field_866a.map(&:text)
+      end
+
+      notes_by_holding
     end
 end
