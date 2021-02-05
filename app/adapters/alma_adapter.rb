@@ -153,6 +153,7 @@ class AlmaAdapter
         xml_str = holding_record.holding.fetch("anies", []).first
         xml_doc = Nokogiri::XML(xml_str)
         field_866a = xml_doc.xpath('//record/datafield[@tag="866"]/subfield[@code="a"]')
+        next if field_866a.empty?
         notes_by_holding[holding_id] = field_866a.map(&:text)
       end
 
