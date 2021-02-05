@@ -192,6 +192,43 @@ RSpec.describe AlmaAdapter do
       end
     end
 
+    context "when a record only has a holding with a permanent location" do
+      let(:bib_record) { file_fixture("alma/9985772903506421.json") }
+      let(:bib_items) { file_fixture("alma/9985772903506421_items.json") }
+      before do
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9985772903506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
+          .with(
+            headers: {
+              'Accept' => 'application/json',
+              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Authorization' => 'apikey TESTME',
+              'Content-Type' => 'application/json',
+              'User-Agent' => 'Ruby'
+            }
+          )
+          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
+
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9985772903506421")
+          .with(
+            headers: {
+              'Accept' => 'application/json',
+              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Authorization' => 'apikey TESTME',
+              'Content-Type' => 'application/json',
+              'User-Agent' => 'Ruby'
+            }
+          )
+          .to_return(status: 200, body: bib_record, headers: { "content-Type" => "application/json" })
+      end
+
+      it "returns a notes value extracted only from the bib record AVA field" do
+        allow(Alma::BibHolding).to receive(:find)
+        items = adapter.get_items_for_bib("9985772903506421")
+        expect(Alma::BibHolding).not_to have_received(:find)
+        expect(items["stacks"][0]["notes"]).to eq ["notes"]
+      end
+    end
+
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
       before do
@@ -266,7 +303,7 @@ RSpec.describe AlmaAdapter do
       end
     end
 
-    context "A record with two locations and two items in each location" do
+    context "A record with two locations, two items in each location, and no holding notes" do
       before do
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{unsuppressed_two_loc_two_items}")
           .with(
@@ -305,12 +342,13 @@ RSpec.describe AlmaAdapter do
           .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
       end
 
-      it "returns a hash with 2 locations" do
+      it "returns a hash with 2 locations and no notes field" do
         items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
         expect(items.keys).to eq ["offsite", "RESERVES"]
         expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
         expect(items["offsite"].first["items"].count).to eq 2
-        expect(items["offsite"].first.keys).to eq ["holding_id", "call_number", "notes", "items"]
+        expect(items["offsite"].first.keys).not_to include "notes"
+        expect(items["offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
       end
       describe "the first item in the offsite location" do
         it "has an item id" do
