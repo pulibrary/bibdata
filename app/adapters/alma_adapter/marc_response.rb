@@ -53,6 +53,18 @@ class AlmaAdapter
         holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap)
         marc_record.fields.concat(holding.marc_record_enrichment)
       end
+
+      # Strips non-numeric tags for ReCAP, whose parser can't handle them.
+      # Integer() is faster than to_i, per
+      # https://stackoverflow.com/questions/5661466/test-if-string-is-a-number-in-ruby-on-rails
+      def strip_non_numeric!
+        marc_record.fields.delete_if do |field|
+          Integer(field.tag)
+          false
+        rescue
+          true
+        end
+      end
     end
 
     private
