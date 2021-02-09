@@ -1,30 +1,38 @@
 require 'net/sftp'
 
-class AlmaFullDumpTransferJob < ActiveJob::Base
+class AlmaDumpTransferJob < ActiveJob::Base
   queue_as :default
 
   REMOTE_BASE_PATH = "/alma/publishing".freeze
 
   def perform(dump:, job_id:)
-    AlmaDownloader.files_for(job_id: job_id).each do |file|
+    AlmaDownloader.files_for(job_id: job_id, type_constant: file_type_constant(dump)).each do |file|
       dump.dump_files << file
     end
 
     dump.save
   end
 
+  def file_type_constant(dump)
+    case dump.dump_type.constant
+    when "ALL_RECORDS"
+      "BIB_RECORDS"
+    when "CHANGED_RECORDS"
+      "UPDATED_RECORDS"
+    end
+  end
+
   # When writing the code for the incremental dumps we may want to move this out
   # to its own file
   class AlmaDownloader
-    TYPE_CONSTANT = "BIB_RECORDS".freeze
-
-    def self.files_for(job_id:)
-      new(job_id: job_id).files_for
+    def self.files_for(job_id:, type_constant:)
+      new(job_id: job_id, type_constant: type_constant).files_for
     end
 
-    attr_reader :job_id
-    def initialize(job_id:)
+    attr_reader :job_id, :type_constant
+    def initialize(job_id:, type_constant:)
       @job_id = job_id
+      @type_constant = type_constant
     end
 
     def files_for
@@ -47,7 +55,7 @@ class AlmaFullDumpTransferJob < ActiveJob::Base
     end
 
     def dump_file_type
-      DumpFileType.find_by(constant: TYPE_CONSTANT)
+      DumpFileType.find_by(constant: type_constant)
     end
 
     # look to sftp server and identify the desired files using job_id
