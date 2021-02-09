@@ -60,6 +60,7 @@ gem 'yaml_db', '~> 0.7.0'
 gem 'yard'
 
 group :development do
+  gem 'solargraph'
   gem 'spring'
 end
 
