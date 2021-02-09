@@ -40,6 +40,10 @@ FactoryBot.define do
     association :dump_type, factory: :full_dump_type
   end
 
+  factory :empty_incremental_dump, class: "Dump" do
+    association :dump_type, factory: :incremental_dump_type
+  end
+
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
     delete_ids []
