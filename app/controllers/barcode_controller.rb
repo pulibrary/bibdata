@@ -31,6 +31,7 @@ class BarcodeController < ApplicationController
         bib_record.enrich_with_item(item)
         bib_record.delete_conflicting_holding_data!
         bib_record.enrich_with_holding(holding, recap: true)
+        bib_record.strip_non_numeric!
       end
       if records == []
         render plain: "Barcode #{params[:barcode]} not found.", status: 404
