@@ -5,7 +5,9 @@ default: &default
   sftp_password: <%= ENV['SFTP_PASSWORD'] %>
   sftp_host: <%= ENV['SFTP_HOST'] %>
   sqs_queue_url: <%= ENV['SQS_QUEUE_URL'] %>
-  full_dump_job_name: "Publishing Platform Job General Publishing via FTP"
+  job_name_record_type:
+    "Publishing Platform Job General Publishing via FTP": "ALL_RECORDS"
+    "Publishing Platform Job Incremental Publishing via FTP": "CHANGED_RECORDS"
 
 development:
   <<: *default

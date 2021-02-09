@@ -15,6 +15,7 @@ RSpec.describe AwsSqsPoller do
 
   before do
     FactoryBot.create(:full_dump_type)
+    FactoryBot.create(:incremental_dump_type)
     Aws.config[:sqs] = {
       stub_responses: {
         receive_message: [
@@ -39,7 +40,7 @@ RSpec.describe AwsSqsPoller do
 
     it "Creates an event and kicks off a background job" do
       expect { described_class.poll }.to have_enqueued_job(
-        AlmaFullDumpTransferJob
+        AlmaDumpTransferJob
       ).with(
         job_id: job_id,
         dump: instance_of(Dump)
@@ -51,6 +52,27 @@ RSpec.describe AwsSqsPoller do
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2020-12-15T19:56:37.694Z"
       expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
+    end
+  end
+
+  context "when a incremental dump job comes through" do
+    let(:job_id) { "6587815790006421" }
+    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
+
+    it "Creates an event and kicks off a background job" do
+      expect { described_class.poll }.to have_enqueued_job(
+        AlmaDumpTransferJob
+      ).with(
+        job_id: job_id,
+        dump: instance_of(Dump)
+      )
+
+      expect(Dump.all.count).to eq 1
+      expect(Dump.first.dump_type.constant).to eq "CHANGED_RECORDS"
+      event = Dump.first.event
+      expect(event.message_body).to eq message_body
+      expect(event.start).to eq "2021-02-08T17:03:52.894Z"
+      expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
     end
   end
 
