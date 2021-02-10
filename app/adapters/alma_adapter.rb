@@ -43,7 +43,7 @@ class AlmaAdapter
   # @return [Hash] of locations/ holdings/ items data
   def get_items_for_bib(id)
     opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
-    bib_item_set = Alma::BibItem.find(id, opts)
+    bib_item_set = Alma::BibItem.find(id, opts).map { |item| AlmaAdapter::BibItem.new(item) }
     holding_ids = bib_item_set.map { |item| item.holding_data["holding_id"] }.uniq
     notes_by_holding = bib_item_holding_notes(id, holding_ids)
     format_bib_items(bib_item_set, notes_by_holding)
@@ -53,7 +53,7 @@ class AlmaAdapter
   # @param [Hash<String, Array>] hash with holding id as key and notes as values
   # @return [Hash] of locations/ holdings/ items data
   def format_bib_items(bib_item_set, notes_by_holding)
-    location_grouped = bib_item_set.group_by(&:location)
+    location_grouped = bib_item_set.group_by(&:composite_location)
     location_grouped.each_with_object({}) do |(location_code, bib_items_array), location|
       location_value_array = []
       holdings = bib_items_array.group_by { |bi| bi["holding_data"]["holding_id"] }
