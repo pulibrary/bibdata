@@ -331,20 +331,18 @@ end
 to_field 'medium_support_display', extract_marc('340')
 
 # Electronic access:
-#    3000 - really 856
+#    856
 #    most have first sub as 4, a few 0,1,7
 #    treat the same
 #    $u is for the link
 #    $y and $3 for display text for link
 #    $z additional display text
 #    display host name if missing $y or $3
-# Alma:needs to change.
 to_field 'electronic_access_1display' do |record, accumulator|
   links = electronic_access_links(record, settings['figgy_cache_dir'])
   accumulator[0] = JSON.generate(links) unless links == {}
 end
 
-# Alma:needs to change
 to_field 'electronic_access_index', extract_marc('856')
 
 # Description:
@@ -1333,7 +1331,6 @@ end
 # Remove holding 856s from electronic_access_1display  #
 # and put into holdings_1display                       #
 ########################################################
-# Alma:needs to change
 each_record do |_record, context|
   if context.output_hash['electronic_access_1display']
     bib_856s = JSON.parse(context.output_hash['electronic_access_1display'].first)

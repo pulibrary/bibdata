@@ -44,6 +44,11 @@ describe 'From traject_config.rb' do
     it "can map an alma record" do
       record = @indexer.map_record(fixture_alma_record('99211662100521'))
     end
+    it "can index electronic locations for alma" do
+      record = @indexer.map_record(fixture_alma_record('9918573506421'))
+      access_links = record["electronic_access_1display"]
+      expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
+    end
   end
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
