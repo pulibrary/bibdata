@@ -158,17 +158,7 @@ RSpec.describe AlmaAdapter do
           )
           .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9930766283506421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: bib_record, headers: { "content-Type" => "application/json" })
+        stub_alma_ids(ids: "9930766283506421", status: 200)
 
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/22133197750006421")
           .with(
@@ -185,9 +175,9 @@ RSpec.describe AlmaAdapter do
 
       it "returns a notes field per holding location" do
         items = adapter.get_items_for_bib("9930766283506421")
-        expect(items["cjk"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
-        expect(items["etasrcp"][0]["notes"]).to eq ["No. [1] (1981)-no. 409 (2015)"]
-        expect(items["etas"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
+        expect(items["eastasian$cjk"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
+        expect(items["online$etasrcp"][0]["notes"]).to eq ["No. [1] (1981)-no. 409 (2015)"]
+        expect(items["online$etas"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
         expect(items["invalid"]).to eq nil
       end
     end
@@ -225,7 +215,7 @@ RSpec.describe AlmaAdapter do
         allow(Alma::BibHolding).to receive(:find)
         items = adapter.get_items_for_bib("9985772903506421")
         expect(Alma::BibHolding).not_to have_received(:find)
-        expect(items["stacks"][0]["notes"]).to eq ["notes"]
+        expect(items["firestone$stacks"][0]["notes"]).to eq ["notes"]
       end
     end
 
@@ -258,7 +248,7 @@ RSpec.describe AlmaAdapter do
       end
 
       it "has all the relevant item keys" do
-        item = adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first
+        item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
         expect(item["id"]).to eq "2384011050006421"
         # expect(item["on_reserve"]).to eq "N" # TODO: Implement
         expect(item["copy_number"]).to eq 0
@@ -278,7 +268,7 @@ RSpec.describe AlmaAdapter do
         # expect(item["status"]).to eq ["Not Charged"] # TODO: Implement
       end
       it "has a PO line" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("po_line" => "POL-8129")
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("po_line" => "POL-8129")
         # we added a PO for a holding
         # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
         # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
@@ -287,19 +277,19 @@ RSpec.describe AlmaAdapter do
         # TODO test what info is returned when this process type is complete.
       end
       it "has a process_type of ACQ-acquisition" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
       end
       it "has a barcode" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("barcode" => "A19129")
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("barcode" => "A19129")
       end
       it "has an item" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("pid" => "2384011050006421")
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("pid" => "2384011050006421")
       end
       it "has a base_status" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
       end
       it "has a copy number" do
-        expect(adapter.get_items_for_bib(bib_items_po)["main"].first["items"].first).to include("copy_number" => 0)
+        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("copy_number" => 0)
       end
     end
 
@@ -344,38 +334,38 @@ RSpec.describe AlmaAdapter do
 
       it "returns a hash with 2 locations and no notes field" do
         items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
-        expect(items.keys).to eq ["offsite", "RESERVES"]
+        expect(items.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
         expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
-        expect(items["offsite"].first["items"].count).to eq 2
-        expect(items["offsite"].first.keys).not_to include "notes"
-        expect(items["offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
+        expect(items["MAIN$offsite"].first["items"].count).to eq 2
+        expect(items["MAIN$offsite"].first.keys).not_to include "notes"
+        expect(items["MAIN$offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
       end
       describe "the first item in the offsite location" do
         it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("pid" => "2382260930006421")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("pid" => "2382260930006421")
         end
         it "is in the Main library" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Building 9", "value" => "offsite" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Building 9", "value" => "offsite" })
         end
         it "has base_status 'Item in place'" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
         end
         it "has a due_date_policy" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
         end
       end
       describe "the first item in the RESERVES location" do
         it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
         end
         it "is in the Main library" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Course Reserves", "value" => "RESERVES" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Course Reserves", "value" => "RESERVES" })
         end
         it "has base_status 'Item in place'" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
         end
         it "has a due_date_policy" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
+          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
         end
       end
     end
@@ -434,16 +424,16 @@ RSpec.describe AlmaAdapter do
       describe "location main" do
         it "has two holdings with two items in each" do
           items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
-          expect(items["main"].first["items"].count).to eq 2
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][0]).to include("pid" => "2384629900006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][0]["items"][1]).to include("pid" => "2384621860006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][0]).to include("pid" => "2384621850006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["main"][1]["items"][1]).to include("pid" => "2384621840006421")
+          expect(items["MAIN$main"].first["items"].count).to eq 2
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][0]).to include("pid" => "2384629900006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][1]).to include("pid" => "2384621860006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][0]).to include("pid" => "2384621850006421")
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][1]).to include("pid" => "2384621840006421")
         end
       end
       describe "location music" do
         it "has one holding" do
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["music"].count).to eq 1
+          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MUS$music"].count).to eq 1
         end
       end
     end
