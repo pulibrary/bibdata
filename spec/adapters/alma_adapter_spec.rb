@@ -254,7 +254,7 @@ RSpec.describe AlmaAdapter do
         expect(item["copy_number"]).to eq 0
         # expect(item["item_sequence_number"]).to eq 1 # TODO: Implement.
         expect(item["temp_location"]).to eq nil
-        expect(item["perm_location"]).to eq "MAIN-main"
+        expect(item["perm_location"]).to eq "MAIN$main"
         # expect(item["circ_group_id"]).to eq 1 # TODO: Implement.
         # expect(item["pickup_location_code"]).to eq "MAIN-main" # TODO:
         # Implement
