@@ -6,6 +6,7 @@ module Scsb
 
     def initialize(dump:, timestamp:)
       @dump = dump
+      @s3_bucket = Scsb::S3Bucket.new
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
       @last_dump = timestamp.to_time
@@ -28,26 +29,14 @@ module Scsb
 
       def get_partner_updates
         prepare_directory
-        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']]) do |ssh|
-          files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_UPDATE_DIR'], '*.zip').map { |entry| { name: "#{ENV['RECAP_PARTNER_UPDATE_DIR']}/#{entry.name}", mod_time: Time.at(entry.attributes.mtime) } }
-          files.each do |file|
-            next unless file[:mod_time] > @last_dump
-            filename = File.basename(file[:name])
-            ssh.sftp.download!(file[:name], "#{@update_directory}/#{filename}")
-          end
-        end
+        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/')
+        @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
       def get_partner_deletes
         prepare_directory
-        Net::SSH.start(ENV['RECAP_SERVER'], ENV['RECAP_UPDATE_USER'], port: 2222, keys: [ENV['RECAP_TRANSFER_KEY']]) do |ssh|
-          files = ssh.sftp.dir.glob(ENV['RECAP_PARTNER_DELETE_DIR'], '*.zip').map { |entry| { name: "#{ENV['RECAP_PARTNER_DELETE_DIR']}/#{entry.name}", mod_time: Time.at(entry.attributes.mtime) } }
-          files.each do |file|
-            next unless file[:mod_time] > @last_dump
-            filename = File.basename(file[:name])
-            ssh.sftp.download!(file[:name], "#{@update_directory}/#{filename}")
-          end
-        end
+        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_DELETES'] || 'data-exports/PUL/Json/Incremental')
+        @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
       def process_partner_deletes
