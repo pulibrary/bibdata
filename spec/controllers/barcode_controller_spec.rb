@@ -36,6 +36,9 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["856"].as_json).to eq voyager_comparison["856"].as_json
         # Ensure 959 is correct (empty)
         expect(record["959"]).to be_nil
+        # Ensure there are no non-numeric fields
+        # ReCAP's parser can't handle them.
+        expect(record.fields.map { |x| format("%03d", x.tag.to_i) }).to contain_exactly(*record.fields.map(&:tag))
       end
 
       it "enriches a bound-with item with multiple bibs it's attached to" do
