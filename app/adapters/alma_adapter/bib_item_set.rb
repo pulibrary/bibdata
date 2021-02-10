@@ -43,8 +43,6 @@ class AlmaAdapter
     end
 
     # Get notes from holding records
-    # @param id [String]. e.g id = "991227850000541"
-    # @param [Hash<String, Array>] hash with holding id as key and notes as values
     def holding_notes_from_holding_records(holding_ids)
       notes_by_holding = {}
       holding_ids.each do |holding_id|
@@ -56,8 +54,6 @@ class AlmaAdapter
       notes_by_holding
     end
 
-    # @param [Alma::BibItemSet]
-    # @param [Hash<String, Array>] hash with holding id as key and notes as values
     # @return [Hash] of locations/ holdings/ items data
     def holding_summary
       location_grouped = items.group_by(&:composite_location)
