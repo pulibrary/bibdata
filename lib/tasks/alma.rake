@@ -5,8 +5,8 @@ namespace :alma do
     File.open(".env", "w") do |f|
       f.puts "ALMA_READ_ONLY_APIKEY=#{read_key}"
       f.puts "ALMA_REGION=#{region_key}"
-      f.puts "FTP_USERNAME=#{sftp_credentials['Username']}"
-      f.puts "FTP_PASSWORD=#{sftp_credentials['Password']}"
+      f.puts "SFTP_USERNAME=#{sftp_credentials['Username']}"
+      f.puts "SFTP_PASSWORD=#{sftp_credentials['Password']}"
       f.puts "SFTP_HOST=#{sftp_credentials['URL'].split('/').last}"
     end
     puts "Generated .env file"
