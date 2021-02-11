@@ -286,6 +286,31 @@ RSpec.describe AlmaAdapter do
         end
       end
     end
+
+    context "when a record has holdings with a temporary location" do
+      let(:bib_record) { file_fixture("alma/9930766283506421.json") }
+      let(:bib_items) { file_fixture("alma/9930766283506421_items.json") }
+      before do
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
+          .with(
+            headers: {
+              'Accept' => 'application/json',
+              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Authorization' => 'apikey TESTME',
+              'Content-Type' => 'application/json',
+              'User-Agent' => 'Ruby'
+            }
+          )
+          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
+
+        stub_alma_ids(ids: "9930766283506421", status: 200)
+      end
+
+      it "returns holdings item with a temp location value" do
+        items = adapter.get_items_for_bib("9930766283506421")
+        expect(items["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
+      end
+    end
   end
 
   describe "a record that has an ARK" do
