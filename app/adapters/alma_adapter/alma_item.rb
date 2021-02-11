@@ -11,10 +11,6 @@ class AlmaAdapter
       "#{library}$#{location}"
     end
 
-    def mms_id
-      item&.item&.dig("bib_data", "mms_id")
-    end
-
     def composite_temp_location
       return unless in_temp_location?
       "#{temp_library}$#{temp_location}"

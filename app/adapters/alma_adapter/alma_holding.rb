@@ -46,11 +46,5 @@ class AlmaAdapter
     def holding_id
       holding["holding_id"]
     end
-
-    def holding_note
-      holding_record.fields("866").map do |field|
-        field["a"]
-      end.select(&:present?)
-    end
   end
 end
