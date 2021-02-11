@@ -54,18 +54,5 @@ class AlmaAdapter
         true
       end
     end
-
-    # Returns all notes by holding ID contained in AVA fields.
-    def holding_notes
-      notes_by_holding = {}
-      ava_subfields = marc_record.fields.select { |f| f.tag == "AVA" }.select { |s| s.codes.include? "t" }
-      ava_subfields.each do |subfield|
-        holding_id = subfield["8"]
-        note = subfield["t"]
-        notes_by_holding[holding_id] = notes_by_holding.fetch(holding_id, []) << note
-      end
-
-      notes_by_holding
-    end
   end
 end
