@@ -1,4 +1,6 @@
 class AlmaAdapter
+  # Adds functionality to an Alma::Bib to handle the various ways we manipulate
+  # or access the MARC data for an individual record.
   class MarcRecord < SimpleDelegator
     attr_reader :bib, :marc_record
     # @param bib [Alma::Bib]

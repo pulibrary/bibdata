@@ -1,9 +1,13 @@
 class AlmaAdapter
+  # Composite object for a set of items. Wraps up functionality for summarizing
+  # all the items of a specific bib.
   class BibItemSet
     include Enumerable
 
     attr_reader :items, :adapter
     delegate :get_bib_record, to: :adapter
+    # @param [Array<AlmaAdapter::AlmaItem>] items Array of items to wrap up.
+    # @param [AlmaAdapter] adapter
     def initialize(items:, adapter:)
       @items = items
       @adapter = adapter
