@@ -6,20 +6,16 @@ class AlmaDumpTransferJob < ActiveJob::Base
   REMOTE_BASE_PATH = "/alma/publishing".freeze
 
   def perform(dump:, job_id:)
-    AlmaDownloader.files_for(job_id: job_id, type_constant: file_type_constant(dump)).each do |file|
+    AlmaDownloader.files_for(job_id: job_id, type_constant: dump_file_type(dump)).each do |file|
       dump.dump_files << file
     end
 
     dump.save
   end
 
-  def file_type_constant(dump)
-    case dump.dump_type.constant
-    when "ALL_RECORDS"
-      "BIB_RECORDS"
-    when "CHANGED_RECORDS"
-      "UPDATED_RECORDS"
-    end
+  def dump_file_type(dump)
+    job_name = JSON.parse(dump.event.message_body)["job_instance"]["name"]
+    Rails.configuration.alma[:jobs][job_name]["dump_file_type"]
   end
 
   # When writing the code for the incremental dumps we may want to move this out

@@ -38,10 +38,12 @@ FactoryBot.define do
 
   factory :empty_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
+    association :event
   end
 
   factory :empty_incremental_dump, class: "Dump" do
     association :dump_type, factory: :incremental_dump_type
+    association :event
   end
 
   factory :full_dump, class: "Dump" do
