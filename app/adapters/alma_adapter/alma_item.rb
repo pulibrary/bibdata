@@ -1,13 +1,39 @@
 class AlmaAdapter
-  class AlmaItem
+  class AlmaItem < SimpleDelegator
     attr_reader :item
     # @param item [Alma::BibItem]
     def initialize(item)
       @item = item
+      super(item)
+    end
+
+    def composite_location
+      "#{library}$#{location}"
+    end
+
+    def mms_id
+      item&.item&.dig("bib_data", "mms_id")
+    end
+
+    def composite_temp_location
+      return unless in_temp_location?
+      "#{temp_library}$#{temp_location}"
+    end
+
+    def composite_perm_location
+      "#{holding_library}$#{holding_location}"
+    end
+
+    # @note This is called type because item_type is the value used in the
+    #   /items endpoint. In migrating to Alma this is largely the policy value
+    #   with a fallback.
+    def type
+      return "Gen" unless item_data["policy"]["value"].present?
+      item_data["policy"]["value"]
     end
 
     # 876 field used for enrichment in
-    # AlmaAdapter::MarcResponse::MarcRecord#enrich_with_item
+    # AlmaAdapter::MarcRecord#enrich_with_item
     def enrichment_876
       MARC::DataField.new(
         '876', '0', '0',
@@ -71,6 +97,10 @@ class AlmaAdapter
       item.holding_data["copy_id"]
     end
 
+    def call_number
+      item.holding_data["call_number"]
+    end
+
     def recap_customer_code
       return unless item.library == "recap"
       return "PG" if item.location[0].casecmp("x").zero?
@@ -107,6 +137,17 @@ class AlmaAdapter
 
     def no_access_recap_groups
       ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx']
+    end
+
+    # Returns a JSON representation used for the /items endpoint.
+    def as_json
+      item["item_data"].merge(
+        "id" => item_id,
+        "copy_number" => copy_number.to_i,
+        "temp_location" => composite_temp_location,
+        "perm_location" => composite_perm_location,
+        "item_type" => type
+      )
     end
   end
 end
