@@ -7,11 +7,12 @@ class AwsSqsPoller
 
     poller.poll do |msg|
       message_body = JSON.parse(msg[:body])
-      next unless message_body["job_instance"]["name"] == Rails.configuration.alma[:full_dump_job_name]
-      dump = AlmaFullDumpFactory.full_bib_dump(message_body)
+      job_name = message_body["job_instance"]["name"]
+      next unless Rails.configuration.alma[:jobs].keys.include?(job_name)
+      dump = AlmaDumpFactory.bib_dump(message_body)
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
-      AlmaFullDumpTransferJob.perform_later(
+      AlmaDumpTransferJob.perform_later(
         dump: dump,
         job_id: message_body["job_instance"]["id"]
       )
@@ -19,21 +20,29 @@ class AwsSqsPoller
   end
 end
 
-class AlmaFullDumpFactory
+class AlmaDumpFactory
   attr_reader :message
   def initialize(message)
     @message = message
   end
 
-  def self.full_bib_dump(message)
-    new(message).full_bib_dump
+  def self.bib_dump(message)
+    new(message).bib_dump
   end
 
-  def full_bib_dump
-    dump = Dump.create(dump_type: DumpType.find_by(constant: 'ALL_RECORDS'))
+  def bib_dump
+    dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
     dump.event = dump_event
     dump.save
     dump
+  end
+
+  def dump_type
+    Rails.configuration.alma[:jobs][job_name]["dump_type"]
+  end
+
+  def job_name
+    message["job_instance"]["name"]
   end
 
   def dump_event
