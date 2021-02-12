@@ -9,7 +9,7 @@ RSpec.describe DumpFile, type: :model do
   end
 
   after(:each) do
-    File.delete(subject.path) unless subject.nil? || !File.exists?(subject.path)
+    File.delete(subject.path) unless subject.nil? || !File.exist?(subject.path)
   end
 
   describe 'when a new instance is created' do
