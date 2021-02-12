@@ -12,16 +12,24 @@ class BarcodeController < ApplicationController
   # TODO: Add SCSB record enrichments. See
   # https://github.com/pulibrary/voyager_helpers/blob/e468d9ae29367d74ba7e09620238e801a7ce7bad/lib/voyager_helpers/liberator.rb#L1108-L1127
   def scsb
-    if !valid_barcode?(params[:barcode])
-      render plain: "Barcode #{params[:barcode]} not valid.", status: 404
+    barcode = params[:barcode]
+    if !valid_barcode?(barcode)
+      render plain: "Barcode #{barcode} not valid.", status: 404
     else
-      item = Alma::BibItem.find_by_barcode(params[:barcode])
+      item = Alma::BibItem.find_by_barcode(barcode)
       if item["errorsExist"]
         render plain: item["errorList"]["error"].map { |e| e["errorMessage"] }, status: 404
         return
       end
-      holding = Alma::BibHolding.find(mms_id: item.item["bib_data"]["mms_id"], holding_id: item.holding_data["holding_id"])
-      record = AlmaAdapter.new.get_bib_record(item.item["bib_data"]["mms_id"])
+      mms_id = item.item["bib_data"]["mms_id"]
+      record = AlmaAdapter.new.get_bib_record(mms_id)
+
+      # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
+      if record.nil?
+        render plain: "Record #{mms_id} not found or suppressed", status: 404
+        return
+      end
+      holding = Alma::BibHolding.find(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
       records = if record.linked_record_ids.present?
                   AlmaAdapter.new.get_bib_records(record.linked_record_ids)
                 else
@@ -34,7 +42,7 @@ class BarcodeController < ApplicationController
         bib_record.strip_non_numeric!
       end
       if records == []
-        render plain: "Barcode #{params[:barcode]} not found.", status: 404
+        render plain: "Barcode #{barcode} not found.", status: 404
       else
         respond_to do |wants|
           wants.json  do
