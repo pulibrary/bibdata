@@ -143,20 +143,6 @@ RSpec.describe AlmaAdapter do
   describe "#get_items_for_bib" do
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{bib_items_po}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
       it "has all the relevant item keys" do
         item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
         expect(item["id"]).to eq "2384011050006421"
@@ -204,20 +190,6 @@ RSpec.describe AlmaAdapter do
     end
 
     context "A record with two locations, two items in each location, and no holding notes" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{unsuppressed_two_loc_two_items}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
       it "returns a hash with 2 locations" do
         items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
         expect(items.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
@@ -256,20 +228,6 @@ RSpec.describe AlmaAdapter do
     end
 
     context "A record with two locations and two different holdings in one location" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{unsuppressed_loc_with_two_holdings}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
       describe "location main" do
         it "has two holdings with two items in each" do
           items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
