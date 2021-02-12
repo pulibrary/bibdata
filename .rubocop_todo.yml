@@ -6,11 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'app/models/dump.rb'
-
 # Offense count: 6
 Lint/AmbiguousRegexpLiteral:
   Exclude:
@@ -25,12 +20,6 @@ Lint/AssignmentInCondition:
     - 'bin/spring'
     - 'lib/tasks/orangeindex.rake'
     - 'app/services/index_functions.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/DeprecatedClassMethods:
-  Exclude:
-    - 'spec/models/dump_file_spec.rb'
 
 # Offense count: 1
 Lint/EnsureReturn:
