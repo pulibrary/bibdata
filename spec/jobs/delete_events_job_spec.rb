@@ -9,18 +9,18 @@ RSpec.describe DeleteEventsJob, type: :job do
       it "deletes full dump Events, their Dumps, DumpFiles, and files on disk" do
         old_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months
+          e.start = Time.zone.now - 6.months - 1.day
           e.save
         end
         new_event = FactoryBot.create(:full_dump_event).tap { |e| tmp_dump_files(e) }
         # doesn't delete old incremental events
         incremental_event = FactoryBot.create(:incremental_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months
+          e.start = Time.zone.now - 6.months - 1.day
           e.save
         end
 
-        described_class.perform_now(dump_type: 'ALL_RECORDS', older_than: 6.months.ago)
+        described_class.perform_now(dump_type: 'ALL_RECORDS', older_than: 6.months.ago.to_i)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, incremental_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, incremental_event.dump.id)
@@ -35,18 +35,18 @@ RSpec.describe DeleteEventsJob, type: :job do
       it "deletes incremental dump Events, their Dumps, DumpFiles, and files on disk" do
         old_event = FactoryBot.create(:incremental_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 2.months
+          e.start = Time.zone.now - 2.months - 1.day
           e.save
         end
         new_event = FactoryBot.create(:incremental_dump_event).tap { |e| tmp_dump_files(e) }
         # doesn't delete old full events
         full_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months
+          e.start = Time.zone.now - 6.months - 1.day
           e.save
         end
 
-        described_class.perform_now(dump_type: 'CHANGED_RECORDS', older_than: 2.months.ago)
+        described_class.perform_now(dump_type: 'CHANGED_RECORDS', older_than: 2.months.ago.to_i)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, full_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, full_event.dump.id)
