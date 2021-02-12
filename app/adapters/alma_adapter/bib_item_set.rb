@@ -13,6 +13,10 @@ class AlmaAdapter
       @adapter = adapter
     end
 
+    def each(&block)
+      items.each(&block)
+    end
+
     # @return [Hash] of locations/ holdings/ items data
     def holding_summary
       location_grouped = items.group_by(&:composite_location)
