@@ -97,6 +97,15 @@ RSpec.describe BarcodeController, type: :controller do
         expect(response).to be_not_found
       end
     end
+    context "when the bib record linked to a barcode is supressed" do
+      it "returns a 404" do
+        stub_alma_item_barcode(mms_id: "9958708973506421", item_id: "23178060180006421", holding_id: "22178060190006421", barcode: "32101076720315")
+        stub_alma_ids(ids: "9958708973506421", status: 200, fixture: "9958708973506421")
+        get :scsb, params: { barcode: "32101076720315" }, format: :xml
+
+        expect(response.status).to eq(404)
+      end
+    end
   end
 
   describe '#valid_barcode' do
