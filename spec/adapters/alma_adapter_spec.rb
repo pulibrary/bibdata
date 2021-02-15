@@ -141,112 +141,8 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "#get_items_for_bib" do
-    context "when a record has holdings with permanent and temporary locations" do
-      let(:bib_record) { file_fixture("alma/9930766283506421.json") }
-      let(:bib_items) { file_fixture("alma/9930766283506421_items.json") }
-      let(:holding) { file_fixture("alma/22133197750006421.json") }
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
-
-        stub_alma_ids(ids: "9930766283506421", status: 200)
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/22133197750006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: holding, headers: { "content-Type" => "application/json" })
-      end
-
-      it "returns a notes field per holding location" do
-        items = adapter.get_items_for_bib("9930766283506421")
-        expect(items["eastasian$cjk"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
-        expect(items["online$etasrcp"][0]["notes"]).to eq ["No. [1] (1981)-no. 409 (2015)"]
-        expect(items["online$etas"][0]["notes"]).to eq ["No. 410 (2016)-no. 445 (2018) ; 2019, no. 1-3, 10-12 ; 2020, no. 1-6"]
-        expect(items["invalid"]).to eq nil
-      end
-    end
-
-    context "when a record only has a holding with a permanent location" do
-      let(:bib_record) { file_fixture("alma/9985772903506421.json") }
-      let(:bib_items) { file_fixture("alma/9985772903506421_items.json") }
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9985772903506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9985772903506421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: bib_record, headers: { "content-Type" => "application/json" })
-      end
-
-      it "returns a notes value extracted only from the bib record AVA field" do
-        allow(Alma::BibHolding).to receive(:find)
-        items = adapter.get_items_for_bib("9985772903506421")
-        expect(Alma::BibHolding).not_to have_received(:find)
-        expect(items["firestone$stacks"][0]["notes"]).to eq ["notes"]
-      end
-    end
-
     # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{bib_items_po}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99227515106421/holdings/2284011070006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
       it "has all the relevant item keys" do
         item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
         expect(item["id"]).to eq "2384011050006421"
@@ -294,50 +190,11 @@ RSpec.describe AlmaAdapter do
     end
 
     context "A record with two locations, two items in each location, and no holding notes" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{unsuppressed_two_loc_two_items}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_two_loc_two_items}/holdings/2282241870006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_two_loc_two_items}/holdings/2282241690006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
-      it "returns a hash with 2 locations and no notes field" do
+      it "returns a hash with 2 locations" do
         items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
         expect(items.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
         expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
         expect(items["MAIN$offsite"].first["items"].count).to eq 2
-        expect(items["MAIN$offsite"].first.keys).not_to include "notes"
         expect(items["MAIN$offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
       end
       describe "the first item in the offsite location" do
@@ -371,56 +228,6 @@ RSpec.describe AlmaAdapter do
     end
 
     context "A record with two locations and two different holdings in one location" do
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{unsuppressed_loc_with_two_holdings}")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_loc_with_two_holdings}/holdings/2284621870006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_loc_with_two_holdings}/holdings/2284629920006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_loc_with_two_holdings}/holdings/2284621880006421")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
-      end
-
       describe "location main" do
         it "has two holdings with two items in each" do
           items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
@@ -435,6 +242,31 @@ RSpec.describe AlmaAdapter do
         it "has one holding" do
           expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MUS$music"].count).to eq 1
         end
+      end
+    end
+
+    context "when a record has holdings with a temporary location" do
+      let(:bib_record) { file_fixture("alma/9930766283506421.json") }
+      let(:bib_items) { file_fixture("alma/9930766283506421_items.json") }
+      before do
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
+          .with(
+            headers: {
+              'Accept' => 'application/json',
+              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'Authorization' => 'apikey TESTME',
+              'Content-Type' => 'application/json',
+              'User-Agent' => 'Ruby'
+            }
+          )
+          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
+
+        stub_alma_ids(ids: "9930766283506421", status: 200)
+      end
+
+      it "returns holdings item with a temp location value" do
+        items = adapter.get_items_for_bib("9930766283506421")
+        expect(items["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
       end
     end
   end
