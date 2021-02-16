@@ -63,14 +63,15 @@ RSpec.describe Alma::Indexer do
       solr = RSolr.connect(url: url)
       solr.delete_by_query("*:*")
       solr.commit
-      
+
       dump = FactoryBot.create(:incremental_dump)
       indexer = described_class.new(solr_url: url)
       indexer.incremental_index!(dump)
-      
+      solr.commit
+
       # expect solr to have stuff
       response = solr.get("select", params: { q: "*:*" })
-      expect(response['response']['numFound']).to eq 20
+      expect(response['response']['numFound']).to eq 21
     end
   end
 end
