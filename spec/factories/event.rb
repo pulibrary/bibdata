@@ -64,8 +64,8 @@ FactoryBot.define do
     update_ids []
     dump_files do
       [
-        association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/1.xml.tar.gz'),
-        association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/2.xml.tar.gz')
+        association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/1.tar.gz'),
+        association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/2.tar.gz')
       ]
     end
   end

@@ -15,11 +15,12 @@ class Alma::Indexer
   end
 
   def incremental_index!(dump)
-    # incremental_reindex_file_paths(dump).each do |url|
-    #   decompress(url) do |file|
-    #     index_file(file.path)
-    #   end
-    # end
+    dump.dump_files.each do |dump_file|
+      just_decompress(dump_file.path) do |file|
+        puts "traject ==> #{file.path}"
+        index_file(file.path)
+      end
+    end
   end
 
   def index_file(file_name)
@@ -42,6 +43,25 @@ class Alma::Indexer
           end
         end
       end
+    end
+
+    def just_decompress(downloaded_tmp)
+
+      puts downloaded_tmp
+      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(downloaded_tmp))
+      entries = tar_extract.tap(&:rewind)
+
+      puts entries.count
+      entries.each.map do |entry|
+        puts "inside entries loop"
+        Tempfile.create(decompressed_filename(entry), binmode: true) do |decompressed_tmp|
+          puts "inside decompress loop"
+          decompressed_file = decompress(entry, decompressed_tmp)
+          entry.close
+          yield(decompressed_file)
+        end
+      end
+
     end
 
     def tar_reader(url, temp_file)
