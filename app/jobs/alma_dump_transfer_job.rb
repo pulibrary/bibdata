@@ -11,6 +11,7 @@ class AlmaDumpTransferJob < ActiveJob::Base
     end
 
     dump.save
+    IncrementalIndexJob.perform_later(dump)
   end
 
   def dump_file_type(dump)
@@ -18,8 +19,6 @@ class AlmaDumpTransferJob < ActiveJob::Base
     Rails.configuration.alma[:jobs][job_name]["dump_file_type"]
   end
 
-  # When writing the code for the incremental dumps we may want to move this out
-  # to its own file
   class AlmaDownloader
     def self.files_for(job_id:, type_constant:)
       new(job_id: job_id, type_constant: type_constant).files_for
