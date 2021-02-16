@@ -103,13 +103,13 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(download_stub).to receive(:wait)
 
         described_class.perform_now(dump: dump, job_id: job_id)
-        
+
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["UPDATED_RECORDS"]
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
-        expect(IncrementalIndexJob).to have_been_enqueued
+        expect(IncrementalIndexJob).to have_been_enqueued.once
       end
     end
   end

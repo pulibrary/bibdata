@@ -6,12 +6,18 @@ class AlmaDumpTransferJob < ActiveJob::Base
   REMOTE_BASE_PATH = "/alma/publishing".freeze
 
   def perform(dump:, job_id:)
-    AlmaDownloader.files_for(job_id: job_id, type_constant: dump_file_type(dump)).each do |file|
+    type_constant = dump_file_type(dump)
+    AlmaDownloader.files_for(job_id: job_id, type_constant: type_constant).each do |file|
       dump.dump_files << file
     end
 
     dump.save
-    IncrementalIndexJob.perform_later(dump)
+
+    IncrementalIndexJob.perform_later(dump) if incremental_dump?(type_constant)
+  end
+
+  def incremental_dump?(type_constant)
+    type_constant == "UPDATED_RECORDS"
   end
 
   def dump_file_type(dump)
