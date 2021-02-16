@@ -1,7 +1,6 @@
 class IncrementalIndexJob < ActiveJob::Base
-    queue_as :default
+  queue_as :default
 
-    def perform(dump)
-    end
+  def perform(dump)
+  end
 end
-  

@@ -14,6 +14,14 @@ class Alma::Indexer
     end
   end
 
+  def incremental_reindex!(dump)
+    incremental_reindex_file_paths(dump).each do |url|
+      decompress(url) do |file|
+        index_file(file.path)
+      end
+    end
+  end
+
   def index_file(file_name)
     `traject -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url}; true`
   end
