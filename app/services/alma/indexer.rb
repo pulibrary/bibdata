@@ -14,12 +14,12 @@ class Alma::Indexer
     end
   end
 
-  def incremental_reindex!(dump)
-    incremental_reindex_file_paths(dump).each do |url|
-      decompress(url) do |file|
-        index_file(file.path)
-      end
-    end
+  def incremental_index!(dump)
+    # incremental_reindex_file_paths(dump).each do |url|
+    #   decompress(url) do |file|
+    #     index_file(file.path)
+    #   end
+    # end
   end
 
   def index_file(file_name)
