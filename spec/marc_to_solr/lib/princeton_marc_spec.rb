@@ -651,15 +651,21 @@ describe 'From princeton_marc.rb' do
       @holdings_868 = JSON.parse(@record_868["holdings_1display"][0])
       @holding_id_868 = "22261907460006421"
       @holdings_868_block = @holdings_868[@holding_id_868]
+
+      @not_valid_holding_id = "999999"
+      @invalid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "8" => @not_valid_holding_id }, { "b" => "invalid" }] } }
+      @valid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "8" => @holding_id_868 }, { "b" => "annex" }, { "c" => "stacks" }] } }
+      @custom_marc = MARC::Record.new_from_hash('fields' => [@invalid_loc_852, @valid_loc_852])
+      @holding_block = process_holdings(@custom_marc)
     end
 
     it 'includes only first location code' do
       expect(@oversize_holding_block['location_code']).to eq("annex$stacks")
     end
 
-    # TODO: ALMA
-    xit 'excludes holdings with an invalid location code' do
-      expect(@holding_block).not_to have_key(@exclude_mfhd_id)
+    it 'excludes holdings with an invalid location code' do
+      expect(@holding_block).not_to have_key(@not_valid_holding_id)
+      expect(@holding_block).to have_key(@holding_id_868)
     end
 
     it 'positions $k at the end for call_number_browse field' do
