@@ -643,10 +643,8 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       elsif /[khij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
-        unless s_field.code == 'c'
-          holding['call_number_browse'] ||= []
-          holding['call_number_browse'] << s_field.value
-        end
+        holding['call_number_browse'] ||= []
+        holding['call_number_browse'] << s_field.value
       elsif s_field.code == 'l'
         holding['shelving_title'] ||= []
         holding['shelving_title'] << s_field.value
@@ -659,7 +657,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     end
     holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
     holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
-    all_holdings[holding_id] = holding unless holding_id.nil? || (!is_alma && invalid_location?(holding['location_code']))
+    all_holdings[holding_id] = holding unless holding_id.nil? || invalid_location?(holding['location_code'])
   end
   Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
