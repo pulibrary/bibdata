@@ -230,4 +230,35 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
   end
+
+  describe '#item_discharge' do
+    before do
+      stub_request(:post, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/.*\/holdings\/.*\/items\/.*/)
+        .with(headers: { 'Authorization' => 'apikey TEST_WR_KEY' })
+        .to_return(status: 200,
+                   headers: { "Content-Type" => "application/json" },
+                   body: Rails.root.join('spec', 'fixtures', 'files', 'alma', 'scan_23258767460006421.json'))
+    end
+
+    it "scans and returns the item, using the correct alma api key and re-setting the key after" do
+      post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421", auth_token: "hard_coded_secret" }, format: :json
+      expect(response).to have_http_status(:success)
+      expect(response.body).to start_with "{\"bib_data\":{\"mms_id\":\"9968643943506421\""
+      expect(Alma.configuration.apikey).to eq "TESTME"
+    end
+
+    context "when no auth token is provided" do
+      it "returns 401 unauthorized" do
+        post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421" }, format: :json
+        expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    context "when the wrong auth token is provided" do
+      it "returns 403 forbidden" do
+        post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421", auth_token: "wrong_secret" }, format: :json
+        expect(response).to have_http_status(:forbidden)
+      end
+    end
+  end
 end
