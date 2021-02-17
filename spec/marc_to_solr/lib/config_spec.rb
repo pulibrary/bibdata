@@ -50,6 +50,26 @@ describe 'From traject_config.rb' do
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
     end
   end
+  describe "locations" do
+    it "will index the location_code_s" do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
+    end
+  end
+  describe "holdings" do
+    it "can index holdings" do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      holdings = JSON.parse(record["holdings_1display"][0])
+      holding_1 = holdings["22188107110006421"]
+      holding_2 = holdings["22188107090006421"]
+      expect(holding_1["location"]).to eq "Lewis Library - Lewis Library - Lewis Library"
+      expect(holding_1["library"]).to eq "Lewis Library"
+      expect(holding_1["location_code"]).to eq "lewis$stacks"
+      expect(holding_2["location"]).to eq "Firestone Library - Firestone Library - Firestone Library"
+      expect(holding_2["library"]).to eq "Firestone Library"
+      expect(holding_2["location_code"]).to eq "firestone$stacks"
+    end
+  end
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
@@ -300,7 +320,8 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'access_facet' do
-    it 'value is in the library for all non-online holding locations' do
+    # TODO: Replace with Alma
+    xit 'value is in the library for all non-online holding locations' do
       expect(@sample3['location_code_s'][0]).to eq 'lewis$doc' # Lewis Library
       expect(@sample3['access_facet']).to include 'In the Library'
       expect(@sample3['access_facet']).not_to include 'Online'
@@ -311,85 +332,104 @@ describe 'From traject_config.rb' do
       expect(@elf2['access_facet']).not_to include 'Online'
       expect(@elf2['access_facet']).to include 'In the Library'
     end
-    it 'value is online for all other elf holding locations' do
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'value is online for all other elf holding locations' do
       expect(@online['location_code_s'][0]).to eq 'online$elf1'
       expect(@online['access_facet']).to include 'Online'
       expect(@online['access_facet']).not_to include 'In the Library'
     end
-    it 'value can be both in the library and online when there are multiple holdings' do
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'value can be both in the library and online when there are multiple holdings' do
       expect(@online_at_library['location_code_s']).to include 'online$elf1'
       expect(@online_at_library['location_code_s']).to include 'recap$ph'
       expect(@online_at_library['access_facet']).to include 'Online'
       expect(@online_at_library['access_facet']).to include 'In the Library'
     end
-    it 'value include hathi locations when record is present in hathi report' do
+    # TODO: Replace with Alma
+    xit 'value include hathi locations when record is present in hathi report' do
       expect(@hathi_present['location_code_s']).to contain_exactly('lewis$stacks')
       expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access', 'Online', 'In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
-    it 'value include online when record is present in hathi report with permanent access' do
+    # TODO: Replace with Alma
+    xit 'value include online when record is present in hathi report with permanent access' do
       expect(@hathi_permanent['location_code_s']).to contain_exactly('rcppa')
       expect(@hathi_permanent['access_facet']).to contain_exactly('Online', 'In the Library')
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
   end
+  # TODO: Replace with Alma
   describe 'holdings_1display' do
-    before(:all) do
-      marcxml = fixture_record('7617477')
-      @solr_hash = @indexer.map_record(marcxml)
-      @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
-      holdings_file = File.expand_path("../../../fixtures/marc_to_solr/7617477-holdings.json", __FILE__)
-      holdings = JSON.parse(File.read(holdings_file))
-      @holding_records = []
-      holdings.each { |h| @holding_records << MARC::Record.new_from_hash(h) }
-    end
-    it 'groups holding info into a hash keyed on the mfhd id' do
+    # before(:all) do
+    #   marcxml = fixture_record('7617477')
+    #   @solr_hash = @indexer.map_record(marcxml)
+    #   @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
+    #   holdings_file = File.expand_path("../../../fixtures/marc_to_solr/7617477-holdings.json", __FILE__)
+    #   holdings = JSON.parse(File.read(holdings_file))
+    #   @holding_records = []
+    #   holdings.each { |h| @holding_records << MARC::Record.new_from_hash(h) }
+    # end
+
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'groups holding info into a hash keyed on the mfhd id' do
       @holding_records.each do |holding|
         holding_id = holding['001'].value
         expect(@holding_block[holding_id]['location_code']).to include(holding['852']['b'])
         expect(@holding_block[holding_id]['location_note']).to include(holding['852']['z'])
       end
     end
-
-    it 'includes holding 856s keyed on mfhd id' do
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'includes holding 856s keyed on mfhd id' do
       @holding_records.each do |holding|
         holding_id = holding['001'].value
         electronic_access = @holding_block[holding_id]['electronic_access']
         expect(electronic_access[holding['856']['u']]).to include(holding['856']['z'])
       end
     end
-
-    it 'holding 856s are excluded from electronic_access_1display' do
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'holding 856s are excluded from electronic_access_1display' do
       electronic_access = JSON.parse(@solr_hash['electronic_access_1display'].first)
       expect(electronic_access).not_to include('holding_record_856s')
     end
   end
   describe 'excluding locations from library facet' do
-    it 'when location is online' do
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'when location is online' do
       expect(@online['location_code_s']).to include 'online$elf1'
-      expect(@online['location_display']).to include 'Electronic Access - Electronic Access - elf1 Internet Resources'
+      expect(@online['location_display']).to include 'Electronic Access - elf1 Internet Resources'
       expect(@online['location']).to eq ['Electronic Access']
     end
-
-    it 'when location codes that do not map to labels' do
+    # TODO: Replace with Alma
+    xit 'when location codes that do not map to labels' do
       expect(@sample1['location_code_s']).to include 'invalidcode'
       expect(@sample1['location_display']).to be_nil
       expect(@sample1['location']).to be_nil
     end
   end
   describe 'location facet values for Recap items' do
-    it 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['ReCAP - ReCAP - rcppj RECAP Marq. Lib.']
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'marquand recap items have a location value of marquand and recap' do
+      expect(@added_title_246['location_display']).to eq ['ReCAP - rcppj RECAP Marq. Lib.']
       expect(@added_title_246['location']).to eq ['ReCAP', 'Marquand Library']
     end
-    it 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'Electronic Access - Electronic Access - elf1 Internet Resources'
+    # TODO: Replace with Alma
+    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
+    xit 'non-rare recap items only have a location value of recap' do
+      expect(@online_at_library['location_display']).to include 'Electronic Access - elf1 Internet Resources", "ReCAP - rcpph RECAP Mudd Lib.'
       expect(@online_at_library['location']).to include 'ReCAP'
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
   end
   describe 'including libraries and codes in advanced_location_s facet' do
-    it 'lewis library included with lewis code' do
+    # TODO: Replace with Alma
+    xit 'lewis library included with lewis code' do
       expect(@sample3['advanced_location_s']).to include 'lewis$doc'
       expect(@sample3['advanced_location_s']).to include 'Lewis Library'
     end
@@ -398,7 +438,8 @@ describe 'From traject_config.rb' do
       expect(@elf2['advanced_location_s']).to include 'elf2'
       expect(@elf2['advanced_location_s']).to include 'Online'
     end
-    it 'library is excluded from location_code_s' do
+    # TODO: Replace with Alma
+    xit 'library is excluded from location_code_s' do
       expect(@sample3['location_code_s']).to include 'lewis$doc'
       expect(@sample3['location_code_s']).not_to include 'Lewis Library'
     end
@@ -435,17 +476,14 @@ describe 'From traject_config.rb' do
       expect(@manuscript_book['format']).to eq ['Manuscript', 'Book']
     end
   end
-  describe '852 $b location processing' do
-    let(:extra_b_record) { fixture_record('sample27') }
-    let(:single_b)  { extra_b_record.fields('852')[0]['b'] }
-    let(:extra_b) { extra_b_record.fields('852')[1].map { |f| f.value if f.code == 'b' }.compact }
-
+  describe '852 $b $c location code processing' do
     it 'supports multiple location codes in separate 852s' do
-      expect(@related_names['location_code_s']).to include(single_b, extra_b.first)
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
     end
-    it 'only includes the first $b within a single tag' do
-      expect(@related_names['location_code_s']).not_to include(extra_b.last)
-    end
+    # TODO: ALMA
+    # it 'only includes the first $b within a single tag' do
+    # end
   end
 
   describe 'mixing extract_marc and everything_after_t' do

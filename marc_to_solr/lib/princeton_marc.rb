@@ -614,6 +614,11 @@ def join_hierarchy fields
   join_hierarchy_without_author(fields).map { |a| a[1..-1] }
 end
 
+# Alma Princeton item
+def alma_code?(code)
+  code.to_s.start_with?("22") && code.to_s.end_with?("06421")
+end
+
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868
@@ -623,20 +628,23 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
     holding_id = nil
+    is_alma = alma_code?(field['8'])
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
+        holding_id = s_field.value if is_alma
+      elsif s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
-        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
-        holding['location_code'] ||= s_field.value
-      elsif /[ckhij]/.match?(s_field.code)
+        holding['location_code'] ||= s_field.value if is_alma
+        # Append 852c to location code 852b if it's an Alma item
+        holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
+        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']] if is_alma
+        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']] if is_alma
+      elsif /[khij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
-        unless s_field.code == 'c'
-          holding['call_number_browse'] ||= []
-          holding['call_number_browse'] << s_field.value
-        end
+        holding['call_number_browse'] ||= []
+        holding['call_number_browse'] << s_field.value
       elsif s_field.code == 'l'
         holding['shelving_title'] ||= []
         holding['shelving_title'] << s_field.value
@@ -655,7 +663,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value
@@ -672,7 +680,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value
@@ -689,7 +697,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     value = []
     holding_id = nil
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      if s_field.code == '8'
         holding_id = s_field.value
       elsif s_field.code == 'a'
         value << s_field.value

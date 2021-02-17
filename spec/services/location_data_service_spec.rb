@@ -54,7 +54,7 @@ RSpec.describe LocationDataService, type: :service do
       end
     end
 
-    it "deletes exsiting data and populates library and location data from Alma" do
+    it "deletes existing data and populates library and location data from Alma" do
       LocationDataService.delete_existing_and_repopulate
       library_record = Locations::Library.find_by(code: 'main')
       location_record1 = Locations::HoldingLocation.find_by(code: 'main$stacks')
