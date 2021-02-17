@@ -8,6 +8,7 @@ require_relative './princeton_marc'
 require_relative './geo'
 require_relative './location_extract'
 require_relative './alma_reader'
+require_relative './solr_deleter'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -31,6 +32,20 @@ end
 update_locations if ENV['UPDATE_LOCATIONS']
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+
+id_extractor = Traject::MarcExtractor.new('001', first: true)
+deleted_ids = Concurrent::Set.new
+each_record do |record, context|
+  if record.leader[5] == 'd'
+      id = id_extractor.extract(record).first
+      deleted_ids << id if id
+  end
+end
+
+after_processing do
+  deleter = SolrDeleter.new(@settings["solr.url"])
+  deleter.delete(deleted_ids)
+end
 
 to_field 'id', extract_marc('001', first: true)
 
