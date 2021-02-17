@@ -1,5 +1,7 @@
 default: &default
   read_only_apikey: <%= ENV['ALMA_READ_ONLY_APIKEY'] %>
+  item_discharge_apikey: <%= ENV['ALMA_BIB_DISCHARGE_KEY'] %>
+  htc_auth_token: <%= ENV['HTC_AUTH_TOKEN'] %>
   region: <%= ENV['ALMA_REGION'] %>
   sftp_username: <%= ENV['SFTP_USERNAME'] %>
   sftp_password: <%= ENV['SFTP_PASSWORD'] %>
@@ -19,8 +21,10 @@ development:
 test:
   <<: *default
   read_only_apikey: 'TESTME'
+  item_discharge_apikey: 'TEST_WR_KEY'
   region: 'ALMA'
   sqs_queue_url: "https://example.com"
+  htc_auth_token: 'hard_coded_secret'
 
 production:
   <<: *default

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
   get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
   post '/bibliographic', to: 'bibliographic#update'
+  post '/bibliographic/:mms_id/holdings/:holding_id/items/:item_pid', to: 'bibliographic#item_discharge', defaults: { format: :json }
 
   get '/availability', to: 'availability#index', defaults: { format: :json }
 
