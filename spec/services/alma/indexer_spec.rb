@@ -59,13 +59,14 @@ RSpec.describe Alma::Indexer do
 
   describe "incremental_index!" do
     it "indexes a dump's files" do
-      url = Rails.application.config.solr['url']
-      solr = RSolr.connect(url: url)
+      # url = Rails.application.config.solr['url']
+      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
+      solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
       solr.commit
 
       dump = FactoryBot.create(:incremental_dump)
-      indexer = described_class.new(solr_url: url)
+      indexer = described_class.new(solr_url: solr_url)
       indexer.incremental_index!(dump)
       solr.commit
 
