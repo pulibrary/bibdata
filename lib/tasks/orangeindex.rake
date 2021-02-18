@@ -170,9 +170,10 @@ namespace :liberate do
   task index_file: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     file_name = ENV['FILE']
-    abort "MARC XML file name must be indicated" unless file_name
+    debug = ENV["DEBUG"] == "true"
+    abort "MARC XML file name must be indicated via FILE environment variable" unless file_name
     solr = IndexFunctions.rsolr_connection(solr_url)
-    Alma::Indexer.new(solr_url: solr_url).index_file(file_name)
+    Alma::Indexer.new(solr_url: solr_url).index_file(file_name, debug)
     solr.commit
   end
 
