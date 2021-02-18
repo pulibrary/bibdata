@@ -1,6 +1,7 @@
 class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
+  skip_before_action :verify_authenticity_token, only: [:item_discharge]
 
   def adapter
     @adapter ||= AlmaAdapter.new
