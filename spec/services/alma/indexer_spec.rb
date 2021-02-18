@@ -56,4 +56,23 @@ RSpec.describe Alma::Indexer do
       expect(response['response']['numFound']).to eq 1
     end
   end
+
+  describe "incremental_index!" do
+    it "indexes a dump's files" do
+      # url = Rails.application.config.solr['url']
+      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
+      solr = RSolr.connect(url: solr_url)
+      solr.delete_by_query("*:*")
+      solr.commit
+
+      dump = FactoryBot.create(:incremental_dump)
+      indexer = described_class.new(solr_url: solr_url)
+      indexer.incremental_index!(dump)
+      solr.commit
+
+      # expect solr to have stuff
+      response = solr.get("select", params: { q: "*:*" })
+      expect(response['response']['numFound']).to eq 21
+    end
+  end
 end
