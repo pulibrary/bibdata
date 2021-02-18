@@ -36,6 +36,7 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
 each_record do |record, _context|
+  # Collect records that need to be deleted
   if record.leader[5] == 'd'
     id = id_extractor.extract(record).first
     deleted_ids << id if id
@@ -43,8 +44,16 @@ each_record do |record, _context|
 end
 
 after_processing do
-  deleter = SolrDeleter.new(@settings["solr.url"])
-  deleter.delete(deleted_ids)
+  if @settings["writer_class_name"] == "Traject::SolrJsonWriter"
+    # Delete records from Solr
+    deleter = SolrDeleter.new(@settings["solr.url"], logger)
+    deleter.delete(deleted_ids)
+  else
+    # In debug mode just log what would be deleted
+    deleted_ids.each do |id|
+      logger.info "Record #{id} would be deleted"
+    end
+  end
 end
 
 to_field 'id', extract_marc('001', first: true)
