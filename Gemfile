@@ -54,7 +54,7 @@ gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
-gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.7.8'
+gem 'voyager_helpers', github: "pulibrary/voyager_helpers", tag: 'v0.7.9'
 gem 'whenever', "~> 0.10"
 gem 'yaml_db', '~> 0.7.0'
 gem 'yard'
