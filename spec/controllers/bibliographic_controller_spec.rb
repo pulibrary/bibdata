@@ -240,7 +240,7 @@ RSpec.describe BibliographicController, type: :controller do
                    body: Rails.root.join('spec', 'fixtures', 'files', 'alma', 'scan_23258767460006421.json'))
     end
 
-    it "scans and returns the item, using the correct alma api key and re-setting the key after" do
+    it "scans (discharges) the item and returns the record, using the correct alma api key and re-setting the key after" do
       post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421", auth_token: "hard_coded_secret" }, format: :json
       expect(response).to have_http_status(:success)
       expect(response.body).to start_with "{\"bib_data\":{\"mms_id\":\"9968643943506421\""
