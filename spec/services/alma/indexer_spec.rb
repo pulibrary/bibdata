@@ -101,7 +101,7 @@ RSpec.describe Alma::Indexer do
 
       # expect solr to have stuff
       response = solr.get("select", params: { q: "*:*" })
-      expect(response['response']['numFound']).to eq 21
+      expect(response['response']['numFound']).to eq 7
     end
   end
 end
