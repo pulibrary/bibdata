@@ -1189,6 +1189,8 @@ each_record do |record, context|
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
+    # The holding_library is used with some locations to add an additional owning library,
+    # which is included in advanced search but not facets.
     holding_library = Traject::TranslationMap.new("holding_library")
     location_codes.each do |l|
       if mapped_codes[l]
@@ -1201,7 +1203,6 @@ each_record do |record, context|
     end
     context.output_hash['access_facet'] = Traject::TranslationMap.new("access", default: "In the Library").translate_array(location_codes | hathi_locations)
     context.output_hash['access_facet'].uniq!
-
     context.output_hash['location'].uniq!
 
     # Add library and location for advanced multi-select facet
