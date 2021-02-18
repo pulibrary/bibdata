@@ -13,12 +13,6 @@ require_relative '../../marc_to_solr/lib/composite_cache_map'
 default_bibdata_url = 'https://bibdata-alma-staging.princeton.edu'
 bibdata_url = ENV['BIBDATA_URL'] || default_bibdata_url
 
-conn = Faraday.new(url: bibdata_url) do |faraday|
-  faraday.request  :url_encoded             # form-encode POST params
-  faraday.response :logger                  # log requests to STDOUT
-  faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-end
-
 default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'
 commit = "-s solrj_writer.commit_on_close=true"
 binary = "-t binary"
@@ -102,60 +96,29 @@ namespace :liberate do
     end
   end
 
+  # TODO: Reimplement using Alma::Indexer.incremental_index
   desc "Index VoyRec with all changed records since SET_DATE, against SET_URL"
   task :updates do
-    solr_url = ENV['SET_URL'] || default_solr_url
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    resp = conn.get '/events.json'
-    comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today - 1)
-    all_events = JSON.parse(resp.body).select { |e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }.each do |event|
-      dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc|
-        IndexFunctions.unzip_mrc(marc)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
-        File.delete("#{marc}.mrc")
-        File.delete("#{marc}.gz")
-      end
-      solr.delete_by_id(IndexFunctions.delete_ids(dump))
-    end
-    solr.commit
-  end
-
-  desc "Index VoyRec updates on SET_DATE against SET_URL"
-  task :on do
-    solr_url = ENV['SET_URL'] || default_solr_url
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    resp = conn.get '/events.json'
-    if event = JSON.parse(resp.body).detect { |e| Date.parse(e['start']) == Date.parse(ENV['SET_DATE']) && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }
-      dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc|
-        IndexFunctions.unzip_mrc(marc)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
-        File.delete("#{marc}.mrc")
-        File.delete("#{marc}.gz")
-      end
-      solr.delete_by_id(IndexFunctions.delete_ids(dump))
-    end
-    solr.commit
-  end
-
-  desc "Index VoyRec with today's changed records, against SET_URL"
-  task :latest do
-    solr_url = ENV['SET_URL'] || default_solr_url
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    resp = conn.get '/events.json'
-    event = JSON.parse(resp.body).last
-    if event['success'] && event['dump_type'] == 'CHANGED_RECORDS'
-      dump = JSON.parse(Faraday.get(event['dump_url']).body)
-      IndexFunctions.update_records(dump).each do |marc|
-        IndexFunctions.unzip_mrc(marc)
-        sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
-        File.delete("#{marc}.mrc")
-        File.delete("#{marc}.gz")
-      end
-      solr.delete_by_id(IndexFunctions.delete_ids(dump))
-    end
-    solr.commit
+    # conn = Faraday.new(url: bibdata_url) do |faraday|
+    #   faraday.request  :url_encoded             # form-encode POST params
+    #   faraday.response :logger                  # log requests to STDOUT
+    #   faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    # end
+    # solr_url = ENV['SET_URL'] || default_solr_url
+    # solr = IndexFunctions.rsolr_connection(solr_url)
+    # resp = conn.get '/events.json'
+    # comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today - 1)
+    # all_events = JSON.parse(resp.body).select { |e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }.each do |event|
+    #   dump = JSON.parse(Faraday.get(event['dump_url']).body)
+    #   IndexFunctions.update_records(dump).each do |marc|
+    #     IndexFunctions.unzip_mrc(marc)
+    #     sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
+    #     File.delete("#{marc}.mrc")
+    #     File.delete("#{marc}.gz")
+    #   end
+    #   solr.delete_by_id(IndexFunctions.delete_ids(dump))
+    # end
+    # solr.commit
   end
 
   desc "Index latest full record dump against SET_URL"
