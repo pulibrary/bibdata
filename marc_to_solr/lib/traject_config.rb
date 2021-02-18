@@ -35,10 +35,12 @@ $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr 
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
-each_record do |record, _context|
+each_record do |record, context|
   # Collect records that need to be deleted
+  # and skip processing logic for them.
   if record.leader[5] == 'd'
     id = id_extractor.extract(record).first
+    context.skip!("#{id} marked as deleted")
     deleted_ids << id if id
   end
 end
