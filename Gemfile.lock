@@ -6,17 +6,6 @@ GIT
     loops (2.1.0.dev)
 
 GIT
-  remote: https://github.com/pulibrary/alma_rb.git
-  revision: 1c3b1d83e8017063cc371c25945bcf30d8645791
-  branch: discharge-item
-  specs:
-    alma (0.3.1)
-      activesupport
-      ezwadl
-      httparty
-      xml-simple
-
-GIT
   remote: https://github.com/pulibrary/locations.git
   revision: d4811ca74d82411a2783076fb307ca43f4f3b6d1
   tag: v1.3.0
@@ -54,6 +43,17 @@ GIT
   tag: vpton.2.5.2.2
   specs:
     stringex (2.5.2)
+
+GIT
+  remote: https://github.com/tulibraries/alma_rb.git
+  revision: a01d04cea8283348802c3c33b9c8c07b7dde6dcf
+  branch: main
+  specs:
+    alma (0.3.1)
+      activesupport
+      ezwadl
+      httparty
+      xml-simple
 
 GEM
   remote: https://rubygems.org/
