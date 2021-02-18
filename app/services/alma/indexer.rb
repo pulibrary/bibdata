@@ -22,8 +22,9 @@ class Alma::Indexer
     end
   end
 
-  def index_file(file_name)
-    `traject -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url}; true`
+  def index_file(file_name, debug_mode = false)
+    debug_flag = debug_mode ? "--debug-mode" : ""
+    `traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url}; true`
   end
 
   def default_url_options
