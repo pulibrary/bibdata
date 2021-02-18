@@ -27,7 +27,7 @@ class SolrDeleter
       url = @solr_url + "/update?commit=true&wt=json"
       payload = "<delete>" + batch.map { |id| "<id>#{id}</id>" }.join("") + "</delete>"
       content_type = "text/xml" # request payload is XML (even if the response is in JSON via the wt=json param)
-      @logger.info "Deleting #{payload}" if @logger
+      @logger&.info "Deleting #{payload}"
       Faraday.post(url, payload, "Content-Type" => content_type)
     end
 end
