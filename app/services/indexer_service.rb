@@ -1,3 +1,11 @@
+# Allows to process a MARC record through Traject
+# as a class without having to invoke Traject from
+# the command line and without having to push it
+# to Solr.
+#
+# indexer = IndexerService.new
+# hash = indexer.map_record(<MARC record goes here>)
+#
 class IndexerService
   def self.build
     new.build
