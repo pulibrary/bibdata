@@ -8,6 +8,7 @@ require_relative './princeton_marc'
 require_relative './geo'
 require_relative './location_extract'
 require_relative './alma_reader'
+require_relative './solr_deleter'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -31,6 +32,31 @@ end
 update_locations if ENV['UPDATE_LOCATIONS']
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+
+id_extractor = Traject::MarcExtractor.new('001', first: true)
+deleted_ids = Concurrent::Set.new
+each_record do |record, context|
+  # Collect records that need to be deleted
+  # and skip processing logic for them.
+  if record.leader[5] == 'd'
+    id = id_extractor.extract(record).first
+    context.skip!("#{id} marked as deleted")
+    deleted_ids << id if id
+  end
+end
+
+after_processing do
+  if @settings["writer_class_name"] == "Traject::SolrJsonWriter"
+    # Delete records from Solr
+    deleter = SolrDeleter.new(@settings["solr.url"], logger)
+    deleter.delete(deleted_ids)
+  else
+    # In debug mode just log what would be deleted
+    deleted_ids.each do |id|
+      logger.info "Record #{id} would be deleted"
+    end
+  end
+end
 
 to_field 'id', extract_marc('001', first: true)
 
