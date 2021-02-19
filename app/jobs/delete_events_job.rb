@@ -6,13 +6,13 @@ class DeleteEventsJob < ActiveJob::Base
     ids = Event
           .joins(dump: :dump_type)
           .where('dump_types.constant': dump_type)
-          .where(start.lt(deserialize(older_than)))
+          .where(start.lt(deserialize_time(older_than)))
           .map(&:id)
 
     Event.destroy(ids)
   end
 
-  def deserialize(time)
+  def deserialize_time(time)
     Time.zone.at(time)
   end
 end
