@@ -29,14 +29,6 @@ RSpec.describe Event, type: :model do
       expect(dump_count('CHANGED_RECORDS')).to eq 8
       expect(dump_count('ALL_RECORDS')).to eq 3
     end
-
-    it 'creates unique dumpfile path names for each dump' do
-      bib_ids = (1..175).to_a
-      dump = Dump.new
-      dump.dump_bib_records(bib_ids)
-      paths = dump.dump_files.collect { |df| df.path }
-      expect(paths).to eq paths.uniq
-    end
   end
 
   describe 'Failed dump' do
