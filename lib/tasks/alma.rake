@@ -11,6 +11,20 @@ namespace :alma do
     end
     puts "Generated .env file"
   end
+
+  # TODO: move this to a test
+  task catalog_date: :environment do
+    adapter = AlmaAdapter.new
+
+    ava_example = "9922486553506421"
+    puts adapter.get_catalog_date(ava_example)
+
+    ave_example = "9989390623506421"
+    puts adapter.get_catalog_date(ave_example)
+
+    rec_example = "99122426947506421"
+    puts adapter.get_catalog_date(rec_example)
+  end
 end
 
 def read_key

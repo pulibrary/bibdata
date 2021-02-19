@@ -24,6 +24,13 @@ class AlmaAdapter
     []
   end
 
+  # @param id [String]. e.g id = "991227850000541"
+  # @return [String] date record was created e.g. "2019-10-18Z"
+  def get_catalog_date(id)
+    record = get_bib_record(id)
+    get_catalog_date_from_record(record)
+  end
+
   def get_availability(ids:)
     bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     AvailabilityStatus.from_bib(bib: bibs&.first).to_h
@@ -52,5 +59,33 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
+    end
+
+    # @param record [AlmaAdapter::MarcRecord]
+    # @return [String] date record was created e.g. "2019-10-18Z"
+    def get_catalog_date_from_record(record)
+      return nil if record == nil
+      ava = record.select {|f| f.tag == "AVA"}
+      if ava.count > 0
+        # Get the creation date from the physical items
+        dates = []
+        get_items_for_bib(record.bib.id).each do |location, holdings|
+          items = holdings.map {|h| h["items"] }.compact.flatten
+          dates += items.map {|i| i["creation_date"]}.compact.flatten
+        end
+        return dates.sort.first if dates.count > 0
+      end
+
+      # Note: For now we are not searching for the activation date in portfolios
+      # indicated in the AVE fields.
+      #
+      # If needed we could use the alma/:mms_id/portfolios/:portfolio_id endpoint
+      # to get this information one by one. ExLibris has indicated that this information
+      # will also be available on the alma/:mms_id/portfolios endpoint in May
+      # (see https://3.basecamp.com/3765443/buckets/20717908/messages/3475344037)
+      # which will result in one call per bib rather than one call per portfolio.
+
+      # Default to the Bib record created date
+      record.bib["created_date"]
     end
 end
