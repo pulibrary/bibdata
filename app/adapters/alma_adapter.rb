@@ -64,14 +64,14 @@ class AlmaAdapter
     # @param record [AlmaAdapter::MarcRecord]
     # @return [String] date record was created e.g. "2019-10-18Z"
     def get_catalog_date_from_record(record)
-      return nil if record == nil
-      ava = record.select {|f| f.tag == "AVA"}
+      return nil if record.nil?
+      ava = record.select { |f| f.tag == "AVA" }
       if ava.count > 0
         # Get the creation date from the physical items
         dates = []
-        get_items_for_bib(record.bib.id).each do |location, holdings|
-          items = holdings.map {|h| h["items"] }.compact.flatten
-          dates += items.map {|i| i["creation_date"]}.compact.flatten
+        get_items_for_bib(record.bib.id).each do |_location, holdings|
+          items = holdings.map { |h| h["items"] }.compact.flatten
+          dates += items.map { |i| i["creation_date"] }.compact.flatten
         end
         return dates.sort.first if dates.count > 0
       end
