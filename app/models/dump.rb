@@ -19,12 +19,6 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  def dump_updated_records
-    ids = self.update_ids
-    dump_file_type = DumpFileType.find_by(constant: 'UPDATED_RECORDS')
-    dump_records(ids, dump_file_type)
-  end
-
   def dump_bib_records(bib_ids, priority = 'default')
     dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
     dump_records(bib_ids, dump_file_type, priority)
@@ -60,40 +54,8 @@ class Dump < ActiveRecord::Base
     end
 
     class << self
-      def dump_merged_ids
-        dump_ids('MERGED_IDS')
-      end
-
       def dump_recap_records
         dump_ids('PRINCETON_RECAP')
-      end
-
-      def diff_since_last
-        # TODO: Re-enable. Disabled as we no longer have VoyagerHelpers.
-        # dump = nil
-        # dump_type = 'CHANGED_RECORDS'
-        # timestamp = incremental_update_timestamp(dump_type)
-        # Event.record do |event|
-        #   # Get the objects
-        #   earlier_merged_dump, later_merged_dump = last_two_merged_dumps
-        #
-        #   # Unzip them and get the paths
-        #   [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.unzip }
-        #
-        #   earlier_p, later_p = earlier_merged_dump.dump_files.first.path, later_merged_dump.dump_files.first.path
-        #   bib_changes_report = VoyagerHelpers::SyncFu.compare_id_dumps(earlier_p, later_p)
-        #   updated_bibs_supplement = VoyagerHelpers::Liberator.get_updated_bibs(timestamp)
-        #   bib_changes_report.updated += updated_bibs_supplement
-        #   dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
-        #   dump.event = event
-        #   dump.update_ids = bib_changes_report.updated.uniq
-        #   dump.delete_ids = bib_changes_report.deleted
-        #   dump.save
-        #   # Zip again
-        #   [earlier_merged_dump, later_merged_dump].map { |d| d.dump_files.first.zip }
-        #   dump.dump_updated_records
-        # end
-        # dump
       end
 
       def partner_update
@@ -110,15 +72,6 @@ class Dump < ActiveRecord::Base
       end
 
       private
-
-        def last_two_merged_dumps
-          last_two_id_dumps('MERGED_IDS')
-        end
-
-        def last_two_id_dumps(dump_type)
-          dump_type = DumpType.where(constant: dump_type)
-          dumps = Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').limit(2).reverse
-        end
 
         def last_bib_id_dump
           dump_type = DumpType.where(constant: 'BIB_IDS')
@@ -149,8 +102,6 @@ class Dump < ActiveRecord::Base
           #   dump_file = DumpFile.create(dump: dump, dump_file_type: DumpFileType.find_by(constant: type)) unless type == 'PRINCETON_RECAP'
           #   if type == 'BIB_IDS'
           #     VoyagerHelpers::SyncFu.bib_ids_to_file(dump_file.path)
-          #   elsif type == 'MERGED_IDS'
-          #     VoyagerHelpers::SyncFu.bibs_with_holdings_to_file(dump_file.path)
           #   elsif type == 'PRINCETON_RECAP'
           #     timestamp = incremental_update_timestamp(type).to_time
           #     barcodes = VoyagerHelpers::SyncFu.recap_barcodes_since(timestamp)
