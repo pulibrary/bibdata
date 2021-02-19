@@ -153,13 +153,13 @@
         <lst><str name="fq">location:Stokes Library</str></lst>
         <lst><str name="fq">location:Video Library</str></lst>
 
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-7DAYS NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-14DAYS NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-21DAYS NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-1MONTH NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-2MONTHS NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-3MONTHS NOW/DAY+1DAY]</str></lst>
-        <lst><str name="fq">cataloged_tdt:[NOW/DAY-6MONTHS NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-7DAYS TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-14DAYS TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-21DAYS TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-1MONTH TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-2MONTHS TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-3MONTHS TO NOW/DAY+1DAY]</str></lst>
+        <lst><str name="fq">cataloged_tdt:[NOW/DAY-6MONTHS TO NOW/DAY+1DAY]</str></lst>
 
         <lst><str name="fq">language_facet:English</str></lst>
         <lst><str name="fq">language_facet:German</str></lst>
@@ -269,7 +269,9 @@
         author_unstem_search^40
         subject_topic_unstem_search^18
         subject_unstem_search^15
+        siku_subject_unstem_search^15
         subject_topic_index^12
+        genre_unstem_search^10
         subject_t^10
         subject_addl_unstem_search^8
         subject_addl_t^4
@@ -279,6 +281,7 @@
         text
         description_t
         cjk_all
+        cjk_text
       </str>
       <str name="pf">
         title_245a_lr^16000
@@ -290,7 +293,9 @@
         author_unstem_search^400
         subject_topic_unstem_search^180
         subject_unstem_search^150
+        siku_subject_unstem_search^150
         subject_topic_index^120
+        genre_unstem_search^100
         subject_t^100
         subject_addl_unstem_search^80
         subject_addl_t^40
@@ -300,6 +305,7 @@
         text^10
         description_t^10
         cjk_all^10
+        cjk_text^10
       </str>
       <str name="author_qf">
         author_main_unstem_search^20
@@ -343,10 +349,12 @@
       <str name="notes_qf">
         notes_index
         cjk_notes
+        cjk_notes_copied
       </str>
       <str name="notes_pf">
         notes_index
         cjk_notes
+        cjk_notes_copied
       </str>
       <str name="series_title_qf">
         series_title_index^5
@@ -407,11 +415,15 @@
       <str name="subject_qf">
         subject_topic_unstem_search^25
         subject_unstem_search^20
+        genre_unstem_search^15
+        siku_subject_unstem_search
         cjk_subject
       </str>
       <str name="subject_pf">
         subject_topic_unstem_search^250
         subject_unstem_search^200
+        genre_unstem_search^150
+        siku_subject_unstem_search^10
         cjk_subject^10
       </str>
 
