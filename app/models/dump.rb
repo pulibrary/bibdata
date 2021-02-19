@@ -19,11 +19,6 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  def dump_bib_records(bib_ids, priority = 'default')
-    dump_file_type = DumpFileType.find_by(constant: 'BIB_RECORDS')
-    dump_records(bib_ids, dump_file_type, priority)
-  end
-
   def dump_updated_recap_records(updated_barcodes)
     dump_file_type = DumpFileType.find_by(constant: 'RECAP_RECORDS')
     dump_records(updated_barcodes, dump_file_type)
