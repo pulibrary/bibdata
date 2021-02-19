@@ -141,51 +141,17 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "#get_items_for_bib" do
-    # no need to check for a 959 in Alma. This will be a check after the index
     context "A record with order information" do
       it "has all the relevant item keys" do
         item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
+
+        expect(item.keys).to contain_exactly("id", "pid", "perm_location", "temp_location")
         expect(item["id"]).to eq "2384011050006421"
-        # expect(item["on_reserve"]).to eq "N" # TODO: Implement
-        expect(item["copy_number"]).to eq 0
-        # expect(item["item_sequence_number"]).to eq 1 # TODO: Implement.
-        expect(item["temp_location"]).to eq nil
+        expect(item["pid"]).to eq "2384011050006421"
         expect(item["perm_location"]).to eq "MAIN$main"
-        # expect(item["circ_group_id"]).to eq 1 # TODO: Implement.
-        # expect(item["pickup_location_code"]).to eq "MAIN-main" # TODO:
-        # Implement
-        # expect(item["pickup_location_id"]).to eq 1 # TODO: Implement
-        # expect(item["enum"]).to eq nil # TODO: Implement
-        # expect(item["chron"]).to eq nil # TODO: Implement
-        expect(item["barcode"]).to eq "A19129"
-        expect(item["item_type"]).to eq "Gen"
-        # expect(item["due_date"]).to eq nil #TODO: Implement
-        # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
         # expect(item["status"]).to eq ["Not Charged"] # TODO: Implement
-      end
-      it "has a PO line" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("po_line" => "POL-8129")
-        # we added a PO for a holding
-        # MMS ID 99227515106421 Holdings ID 2284011070006421 Item ID 2384011050006421
-        # it has in the AVA $e unavailable <subfield code="e">unavailable</subfield>
-        # we might want to test this on the item level or in the availability.
-        # TODO What does the AVA tag display after the PO is accepted.
-        # TODO test what info is returned when this process type is complete.
-      end
-      it "has a process_type of ACQ-acquisition" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("process_type" => { "desc" => "Acquisition", "value" => "ACQ" })
-      end
-      it "has a barcode" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("barcode" => "A19129")
-      end
-      it "has an item" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("pid" => "2384011050006421")
-      end
-      it "has a base_status" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("base_status" => { "desc" => "Item not in place", "value" => "0" })
-      end
-      it "has a copy number" do
-        expect(adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first).to include("copy_number" => 0)
+        expect(item["temp_location"]).to eq nil
+        # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
       end
     end
 
@@ -201,28 +167,10 @@ RSpec.describe AlmaAdapter do
         it "has an item id" do
           expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("pid" => "2382260930006421")
         end
-        it "is in the Main library" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Building 9", "value" => "offsite" })
-        end
-        it "has base_status 'Item in place'" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
-        end
-        it "has a due_date_policy" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("due_date_policy" => "Loanable")
-        end
       end
       describe "the first item in the RESERVES location" do
         it "has an item id" do
           expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
-        end
-        it "is in the Main library" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("library" => { "desc" => "Main Library", "value" => "MAIN" }, "location" => { "desc" => "Course Reserves", "value" => "RESERVES" })
-        end
-        it "has base_status 'Item in place'" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("base_status" => { "value" => "1", "desc" => "Item in place" })
-        end
-        it "has a due_date_policy" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("due_date_policy" => "Loanable")
         end
       end
     end

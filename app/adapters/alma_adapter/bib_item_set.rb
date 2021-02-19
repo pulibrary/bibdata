@@ -17,6 +17,8 @@ class AlmaAdapter
       items.each(&block)
     end
 
+    # minimal summary of locations / holdings / items data used for bib_items
+    # response
     # @return [Hash] of locations/ holdings/ items data
     def holding_summary
       location_grouped = items.group_by(&:composite_location)
@@ -25,11 +27,19 @@ class AlmaAdapter
           {
             "holding_id" => holding_id,
             "call_number" => holding_items.first.call_number,
-            "items" => holding_items.map(&:as_json)
+            "items" => holding_items_filter(holding_items)
           }.compact
         end
         [location_code, holdings]
       end.to_h
+    end
+
+    def holding_items_filter(items)
+      items.map(&:as_json).map do |h|
+        h.keep_if do |k, _v|
+          ["id", "pid", "perm_location", "temp_location"].include? k
+        end
+      end
     end
   end
 end
