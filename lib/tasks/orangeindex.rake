@@ -17,6 +17,12 @@ default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'
 commit = "-s solrj_writer.commit_on_close=true"
 binary = "-t binary"
 
+bibdata_connection = Faraday.new(url: bibdata_url) do |faraday|
+  faraday.request  :url_encoded             # form-encode POST params
+  faraday.response :logger                  # log requests to STDOUT
+  faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+end
+
 desc "Index MARC against SET_URL, set NO_COMMIT to 1 to skip commit"
 task :index do
   if ENV['MARC']
@@ -88,7 +94,7 @@ namespace :liberate do
   task :bib do
     url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
     if ENV['BIB']
-      resp = conn.get "/bibliographic/#{ENV['BIB']}"
+      resp = bibdata_connection.get "/bibliographic/#{ENV['BIB']}"
       File.binwrite('./tmp/tmp.xml', resp.body)
       sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg} #{commit}"
     else
@@ -99,14 +105,9 @@ namespace :liberate do
   # TODO: Reimplement using Alma::Indexer.incremental_index
   desc "Index VoyRec with all changed records since SET_DATE, against SET_URL"
   task :updates do
-    # conn = Faraday.new(url: bibdata_url) do |faraday|
-    #   faraday.request  :url_encoded             # form-encode POST params
-    #   faraday.response :logger                  # log requests to STDOUT
-    #   faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-    # end
     # solr_url = ENV['SET_URL'] || default_solr_url
     # solr = IndexFunctions.rsolr_connection(solr_url)
-    # resp = conn.get '/events.json'
+    # resp = bibdata_connection.get '/events.json'
     # comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today - 1)
     # all_events = JSON.parse(resp.body).select { |e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }.each do |event|
     #   dump = JSON.parse(Faraday.get(event['dump_url']).body)
