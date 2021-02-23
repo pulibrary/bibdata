@@ -149,7 +149,6 @@ RSpec.describe AlmaAdapter do
         expect(item["id"]).to eq "2384011050006421"
         expect(item["pid"]).to eq "2384011050006421"
         expect(item["perm_location"]).to eq "MAIN$main"
-        # expect(item["status"]).to eq ["Not Charged"] # TODO: Implement
         expect(item["temp_location"]).to eq nil
         # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
       end
