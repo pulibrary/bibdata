@@ -4,7 +4,14 @@ This documentation does not include all API endpoints. See [config/routes.rb](..
 
 ## POST '/bibliographic/:mms_id/holdings/:holding_id/items/:item_pid/discharge' (item discharge)
 
-example: `curl -i -d "auth_token=[htc_auth_token]" -X POST "https://bibdata-alma-staging.princeton.edu/bibliographic/9968643943506421/holdings/22258767470006421/items/23258767460006421/discharge"`
+example curl: `curl -i -d "auth_token=[htc_auth_token]" -X POST "https://bibdata-alma-staging.princeton.edu/bibliographic/9968643943506421/holdings/22258767470006421/items/23258767460006421/discharge"`
+
+example POST body:
+```
+{
+  "auth_token": "[htc_auth_token]"
+}
+```
 
 The endpoint will return status 401 if no auth token is provided and 403 if the
 auth token is incorrect.
