@@ -8,7 +8,8 @@ RSpec.describe IncrementalIndexJob, type: :job do
       dump = Dump.new
 
       indexer = instance_double(Alma::Indexer)
-      allow(Alma::Indexer).to receive(:new).and_return(indexer)
+      solr_url = Rails.application.config.solr["url"]
+      allow(Alma::Indexer).to receive(:new).with(solr_url: solr_url).and_return(indexer)
       allow(indexer).to receive(:incremental_index!)
 
       described_class.perform_now(dump)
