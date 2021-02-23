@@ -9,9 +9,9 @@ Formerly known as MARC Liberation (since it liberates MARC data from Voyager).
 Find Internal Documentation on our [confluence
 wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&title=Alma)
 
-## Services
+## API Endpoints
 
-For now look at `config/routes.rb` for what's available.
+[API Endpoint documentation](docs/api_endpoints.md)
 
 ## Development and testing
 
