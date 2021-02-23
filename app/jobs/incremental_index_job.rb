@@ -3,7 +3,7 @@ class IncrementalIndexJob < ActiveJob::Base
 
   def perform(dump)
     solr_config = Rails.application.config.solr
-    indexer = Alma::Indexer.new(solr_config['url'])
+    indexer = Alma::Indexer.new(solr_url: solr_config['url'])
     indexer.incremental_index!(dump)
   end
 end
