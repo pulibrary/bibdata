@@ -126,8 +126,10 @@ class BibliographicController < ApplicationController
     use_discharge_key do
       item = Alma::BibItem.scan(mms_id: mms_id, holding_id: holding_id, item_pid: item_pid, options: options)
       respond_to do |wants|
-        wants.json  do
+        wants.json do
           json = item
+          return render json: json, status: :bad_request if item["errorsExist"] && item["errorList"]["error"].first["errorMessage"].start_with?("The parameter item_pid is invalid")
+          return render json: json, status: :internal_server_error if item["errorsExist"]
           render json: json
         end
       end
