@@ -275,12 +275,14 @@ RSpec.describe AlmaAdapter do
     end
 
     it "uses date from AVA fields" do
-      date = adapter.get_catalog_date("9922486553506421")
+      record = adapter.get_bib_record("9922486553506421")
+      date = adapter.get_catalog_date_from_record(record)
       expect(date).to eq "2020-12-03Z"
     end
 
     it "defaults to date in bib record (when neither AVA nor AVE exist)" do
-      date = adapter.get_catalog_date("99122426947506421")
+      record = adapter.get_bib_record("99122426947506421")
+      date = adapter.get_catalog_date_from_record(record)
       expect(date).to eq "2016-01-23Z"
     end
   end
