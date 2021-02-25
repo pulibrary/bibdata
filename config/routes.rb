@@ -23,9 +23,6 @@ Rails.application.routes.draw do
 
   get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
 
-  get '/courses', to: 'courses#index', defaults: { format: :json }
-  get "/bib_ids", to: 'courses#bibs', defaults: { format: :json }
-
   get '/hathi/access', to: 'hathi#hathi_access', defaults: { format: :json }
 
   get "/campus_access", to: 'campus_access#index', defaults: { format: :csv }
@@ -39,6 +36,8 @@ Rails.application.routes.draw do
   get '/items', to: 'deprecated_endpoints#gone'
   get '/items/:item_id', to: 'deprecated_endpoints#gone'
   get '/patron/:patron_id/codes', to: 'deprecated_endpoints#gone', constraints: { patron_id: /[^\/]+/ }
+  get '/courses', to: 'deprecated_endpoints#gone'
+  get '/bib_ids', to: 'deprecated_endpoints#gone'
 
   require 'sidekiq/web'
   authenticate :user do

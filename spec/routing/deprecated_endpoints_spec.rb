@@ -52,4 +52,17 @@ RSpec.describe "deprecated endpoint routes", type: :routing do
       expect(get: "/patron/ma.dee.e/codes").to route_to("deprecated_endpoints#gone", patron_id: "ma.dee.e")
     end
   end
+
+  describe "courses" do
+    it "routes to 410 gone" do
+      expect(get: "/courses").to route_to("deprecated_endpoints#gone")
+    end
+  end
+
+  # get "/bib_ids", to: 'courses#bibs', defaults: { format: :json }
+  describe "bib_ids" do
+    it "routes to 410 gone" do
+      expect(get: "/bib_ids").to route_to("deprecated_endpoints#gone")
+    end
+  end
 end
