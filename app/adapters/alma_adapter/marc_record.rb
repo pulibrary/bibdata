@@ -43,6 +43,12 @@ class AlmaAdapter
       marc_record.fields.concat(holding.marc_record_enrichment)
     end
 
+    def enrich_with_catalog_date(date)
+      field = MARC::DataField.new("876")
+      field.subfields << MARC::Subfield.new("d", date)
+      fields << field
+    end
+
     # Strips non-numeric tags for ReCAP, whose parser can't handle them.
     # Integer() is faster than to_i, per
     # https://stackoverflow.com/questions/5661466/test-if-string-is-a-number-in-ruby-on-rails
