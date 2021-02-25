@@ -48,13 +48,6 @@ class AlmaAdapter
     bib_item_set.holding_summary
   end
 
-  # @param id [String]. e.g id = "991227850000541"
-  # @return [String] date record was created e.g. "2019-10-18Z"
-  def get_catalog_date(id)
-    record = get_bib_record(id)
-    get_catalog_date_from_record(record)
-  end
-
   # @param record [AlmaAdapter::MarcRecord]
   # @return [String] date record was created e.g. "2019-10-18Z"
   def get_catalog_date_from_record(record)
