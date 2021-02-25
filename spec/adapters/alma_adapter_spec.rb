@@ -145,7 +145,7 @@ RSpec.describe AlmaAdapter do
       it "has all the relevant item keys" do
         item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
 
-        expect(item.keys).to contain_exactly("id", "pid", "perm_location", "temp_location")
+        expect(item.keys).to contain_exactly("id", "pid", "perm_location", "temp_location", "creation_date")
         expect(item["id"]).to eq "2384011050006421"
         expect(item["pid"]).to eq "2384011050006421"
         expect(item["perm_location"]).to eq "MAIN$main"
@@ -276,7 +276,7 @@ RSpec.describe AlmaAdapter do
 
     it "uses date from AVA fields" do
       date = adapter.get_catalog_date("9922486553506421")
-      expect(date).to eq "2020-12-02Z"
+      expect(date).to eq "2020-12-03Z"
     end
 
     it "defaults to date in bib record (when neither AVA nor AVE exist)" do
