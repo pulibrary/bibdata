@@ -37,7 +37,7 @@ class AlmaAdapter
     def holding_items_filter(items)
       items.map(&:as_json).map do |h|
         h.keep_if do |k, _v|
-          ["id", "pid", "perm_location", "temp_location"].include? k
+          ["id", "pid", "perm_location", "temp_location", "creation_date"].include? k
         end
       end
     end
