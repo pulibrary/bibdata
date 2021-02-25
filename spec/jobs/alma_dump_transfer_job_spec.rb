@@ -4,6 +4,10 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
 
   describe 'perform' do
+    after do
+      ActiveJob::Base.queue_adapter.enqueued_jobs = []
+    end
+
     context "with a full dump" do
       let(:job_id) { "1436402400006421" }
 
