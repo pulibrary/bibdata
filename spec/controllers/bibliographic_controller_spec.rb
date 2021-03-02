@@ -188,6 +188,36 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#bib_items' do
+    context "A record with one location" do
+      let(:bib_items_po) { "99227515106421" }
+      before do
+        stub_alma_bib_items(mms_id: bib_items_po, filename: "#{bib_items_po}_po.json")
+      end
+
+      it "has the exact required keys, values" do
+        get :bib_items, params: { bib_id: bib_items_po }, format: 'json'
+
+        expect(response.status).to be 200
+        locations = JSON.parse(response.body)
+
+        expected_response = {
+          "MAIN$main" => [
+            { "holding_id" => "2284011070006421",
+              "call_number" => "PN1993.I",
+              "items" => [
+                { "pid" => "2384011050006421",
+                  "id" => "2384011050006421",
+                  # "patron_group_charged" => nil, # TODO: Implement
+                  "temp_location" => nil,
+                  "perm_location" => "MAIN$main" }
+              ] }
+          ]
+        }
+
+        expect(locations).to eq expected_response
+      end
+    end
+
     context 'when call number is not handeled by lcsort' do
       before do
         # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(

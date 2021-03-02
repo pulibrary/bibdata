@@ -92,7 +92,8 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = adapter.get_items_for_bib(bib_id_param)
+    item_keys = ["id", "pid", "perm_location", "temp_location"]
+    records = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
     if records.nil? || records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -232,6 +233,7 @@ class BibliographicController < ApplicationController
     end
 
     def add_locator_call_no(records)
+      return records unless records["f"]
       records["f"] = records["f"].map do |record|
         record[:sortable_call_number] = sortable_call_number(record[:call_number])
         record
