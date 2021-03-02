@@ -9,8 +9,6 @@ RSpec.describe AlmaAdapter do
   let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
   let(:suppressed) { "99222441306421" }
   let(:holdings_991227840000541) { file_fixture("alma/#{unsuppressed_two}_holdings.xml").read }
-  let(:bib_items_po) { "99227515106421" }
-  let(:bib_items_po_json) { file_fixture("alma/#{bib_items_po}_po.json") }
   let(:bib_items_list_unsuppressed_json) { file_fixture("alma/bib_items_list_#{unsuppressed}.json") }
   let(:unsuppressed_two_loc_two_items_json) { file_fixture("alma/#{unsuppressed_two_loc_two_items}_two_locations_two_items.json") }
   let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
@@ -23,18 +21,6 @@ RSpec.describe AlmaAdapter do
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{bib_items_po}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: bib_items_po_json
-      )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
       .with(
         headers: {
@@ -141,38 +127,33 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "#get_items_for_bib" do
-    context "A record with one location" do
-      it "has all the relevant item keys" do
-        locations = adapter.get_items_for_bib(bib_items_po)
-        expect(locations.count).to eq 1
-        items = locations["MAIN$main"].first["items"]
-        expect(items.count).to eq 1
-
-        item = items.first
-        expect(item["id"]).to eq "2384011050006421"
-        expect(item["pid"]).to eq "2384011050006421"
-        expect(item["perm_location"]).to eq "MAIN$main"
-        expect(item["temp_location"]).to eq nil
-        # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
+    context "A record with two locations, two items in each location" do
+      it "returns the item as a set" do
+        set = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
+        expect(set.map(&:composite_location).uniq).to eq ["MAIN$offsite", "MAIN$RESERVES"]
+        expect(set.count).to eq 4
       end
     end
 
     context "A record with two locations, two items in each location, and no holding notes" do
       it "returns a hash with 2 locations" do
-        items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
-        expect(items.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
-        expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
-        expect(items["MAIN$offsite"].first["items"].count).to eq 2
-        expect(items["MAIN$offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
+        locations = adapter.get_items_for_bib(unsuppressed_two_loc_two_items).holding_summary
+        expect(locations.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
+        expect(locations.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
+        expect(locations["MAIN$offsite"].first["items"].count).to eq 2
+        expect(locations["MAIN$offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
       end
+
       describe "the first item in the offsite location" do
         it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("pid" => "2382260930006421")
+          locations = adapter.get_items_for_bib(unsuppressed_two_loc_two_items).holding_summary
+          expect(locations["MAIN$offsite"].first["items"][0]).to include("pid" => "2382260930006421")
         end
       end
       describe "the first item in the RESERVES location" do
         it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
+          locations = adapter.get_items_for_bib(unsuppressed_two_loc_two_items).holding_summary
+          expect(locations["MAIN$RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
         end
       end
     end
@@ -180,17 +161,19 @@ RSpec.describe AlmaAdapter do
     context "A record with two locations and two different holdings in one location" do
       describe "location main" do
         it "has two holdings with two items in each" do
-          items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
-          expect(items["MAIN$main"].first["items"].count).to eq 2
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][0]).to include("pid" => "2384629900006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][1]).to include("pid" => "2384621860006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][0]).to include("pid" => "2384621850006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][1]).to include("pid" => "2384621840006421")
+          holdings = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings).holding_summary["MAIN$main"]
+          expect(holdings.first["items"].count).to eq 2
+          expect(holdings[0]["items"][0]).to include("pid" => "2384629900006421")
+          expect(holdings[0]["items"][1]).to include("pid" => "2384621860006421")
+          expect(holdings[1]["items"][0]).to include("pid" => "2384621850006421")
+          expect(holdings[1]["items"][1]).to include("pid" => "2384621840006421")
         end
       end
+
       describe "location music" do
         it "has one holding" do
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MUS$music"].count).to eq 1
+          locations = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings).holding_summary
+          expect(locations["MUS$music"].count).to eq 1
         end
       end
     end
@@ -215,7 +198,7 @@ RSpec.describe AlmaAdapter do
       end
 
       it "returns holdings item with a temp location value" do
-        items = adapter.get_items_for_bib("9930766283506421")
+        items = adapter.get_items_for_bib("9930766283506421").holding_summary
         expect(items["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
       end
     end
