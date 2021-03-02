@@ -141,11 +141,14 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "#get_items_for_bib" do
-    context "A record with order information" do
+    context "A record with one location" do
       it "has all the relevant item keys" do
-        item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
+        locations = adapter.get_items_for_bib(bib_items_po)
+        expect(locations.count).to eq 1
+        items = locations["MAIN$main"].first["items"]
+        expect(items.count).to eq 1
 
-        expect(item.keys).to contain_exactly("id", "pid", "perm_location", "temp_location", "creation_date")
+        item = items.first
         expect(item["id"]).to eq "2384011050006421"
         expect(item["pid"]).to eq "2384011050006421"
         expect(item["perm_location"]).to eq "MAIN$main"
