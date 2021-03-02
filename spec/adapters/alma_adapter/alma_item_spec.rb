@@ -35,6 +35,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       end
     end
   end
+
   describe "#group_designation" do
     ['pa', 'gp', 'qk', 'pf'].each do |code|
       context "when location is #{code}" do
@@ -58,6 +59,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       end
     end
   end
+
   describe "#recap_use_restriction" do
     ["pj", "pk", "pl", "pm", "pn", "pt"].each do |code|
       context "when location is #{code}" do
