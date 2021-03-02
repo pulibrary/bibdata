@@ -40,12 +40,11 @@ class AlmaAdapter
   end
 
   # @param id [String]. e.g id = "991227850000541"
-  # @return [Hash] of locations/ holdings/ items data
+  # @return [AlmaAdapter::BibItemSet]
   def get_items_for_bib(id)
     opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
     bib_item_set = Alma::BibItem.find(id, opts).map { |item| AlmaAdapter::AlmaItem.new(item) }
-    bib_item_set = AlmaAdapter::BibItemSet.new(items: bib_item_set, adapter: self)
-    bib_item_set.holding_summary
+    AlmaAdapter::BibItemSet.new(items: bib_item_set, adapter: self)
   end
 
   # @param record [AlmaAdapter::MarcRecord]
@@ -57,7 +56,7 @@ class AlmaAdapter
     if ava.count > 0
       # Get the creation date from the physical items
       dates = []
-      get_items_for_bib(record.bib.id).each do |_location, holdings|
+      get_items_for_bib(record.bib.id).holding_summary.each do |_location, holdings|
         items = holdings.map { |h| h["items"] }.compact.flatten
         dates += items.map { |i| i["creation_date"] }.compact.flatten
       end
