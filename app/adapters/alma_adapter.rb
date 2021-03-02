@@ -55,11 +55,8 @@ class AlmaAdapter
     ava = record.select { |f| f.tag == "AVA" }
     if ava.count > 0
       # Get the creation date from the physical items
-      dates = []
-      get_items_for_bib(record.bib.id).holding_summary.each do |_location, holdings|
-        items = holdings.map { |h| h["items"] }.compact.flatten
-        dates += items.map { |i| i["creation_date"] }.compact.flatten
-      end
+      item_set = get_items_for_bib(record.bib.id)
+      dates = item_set.items.map { |i| i["item_data"]["creation_date"] }
       return dates.sort.first if dates.count > 0
     end
 
