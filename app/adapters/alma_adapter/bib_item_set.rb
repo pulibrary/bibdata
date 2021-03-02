@@ -19,27 +19,31 @@ class AlmaAdapter
 
     # minimal summary of locations / holdings / items data used for bib_items
     # response
+    # @param [String] item_key_filter Keys to include in the items hash
     # @return [Hash] of locations/ holdings/ items data
-    def holding_summary
+    def holding_summary(item_key_filter: nil)
       location_grouped = items.group_by(&:composite_location)
       location_grouped.map do |location_code, location_items|
         holdings = location_items.group_by(&:holding_id).map do |holding_id, holding_items|
           {
             "holding_id" => holding_id,
             "call_number" => holding_items.first.call_number,
-            "items" => holding_items_filter(holding_items)
+            "items" => holding_items_filter(holding_items.map(&:as_json), item_key_filter)
           }.compact
         end
         [location_code, holdings]
       end.to_h
     end
 
-    def holding_items_filter(items)
-      items.map(&:as_json).map do |h|
-        h.keep_if do |k, _v|
-          ["id", "pid", "perm_location", "temp_location", "creation_date"].include? k
+    private
+
+      def holding_items_filter(items, keys)
+        return items unless keys
+        items.map do |h|
+          h.keep_if do |k, _v|
+            keys.include? k
+          end
         end
       end
-    end
   end
 end
