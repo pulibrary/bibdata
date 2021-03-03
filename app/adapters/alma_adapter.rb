@@ -43,8 +43,8 @@ class AlmaAdapter
   # @return [AlmaAdapter::BibItemSet]
   def get_items_for_bib(id)
     opts = { limit: 100, expand: "due_date_policy,due_date", order_by: "library", direction: "asc" }
-    bib_item_set = Alma::BibItem.find(id, opts).map { |item| AlmaAdapter::AlmaItem.new(item) }
-    AlmaAdapter::BibItemSet.new(items: bib_item_set, adapter: self)
+    bib_items = Alma::BibItem.find(id, opts).map { |item| AlmaAdapter::AlmaItem.new(item) }
+    AlmaAdapter::BibItemSet.new(items: bib_items, adapter: self)
   end
 
   # @param record [AlmaAdapter::MarcRecord]

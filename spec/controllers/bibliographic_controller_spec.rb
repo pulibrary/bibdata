@@ -248,14 +248,11 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
 
+    # a bound-with constituent item will have this response
     context 'when no items are found' do
-      before do
-        # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(nil)
-      end
-
       it 'renders a 404 HTTP response' do
-        pending "Replace with Alma"
-        get :bib_items, params: { bib_id: '1234567' }, format: 'json'
+        stub_alma_bib_items(mms_id: "9920809213506421", status: 400, filename: "not_found_items.json")
+        get :bib_items, params: { bib_id: '9920809213506421' }, format: 'json'
         expect(response.status).to be 404
       end
     end
