@@ -94,14 +94,17 @@ class BibliographicController < ApplicationController
   def bib_items
     item_keys = ["id", "pid", "perm_location", "temp_location"]
     records = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
-    if records.nil? || records.empty?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
-    else
-      respond_to do |wants|
-        wants.json  { render json: MultiJson.dump(add_locator_call_no(records)) }
-        wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
-      end
+
+    respond_to do |wants|
+      wants.json  { render json: MultiJson.dump(add_locator_call_no(records)) }
+      wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
     end
+  rescue Alma::BibItemSet::ResponseError
+    render_not_found(params[:bib_id])
+  end
+
+  def render_not_found(id)
+    render plain: "Record #{id} not found or suppressed", status: 404
   end
 
   def update
