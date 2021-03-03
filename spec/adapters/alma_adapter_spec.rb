@@ -6,72 +6,27 @@ RSpec.describe AlmaAdapter do
   let(:unsuppressed) { "991227850000541" }
   let(:unsuppressed_two) { "991227840000541" }
   let(:unsuppressed_two_loc_two_items) { "99223608406421" }
-  let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
   let(:suppressed) { "99222441306421" }
-  let(:holdings_991227840000541) { file_fixture("alma/#{unsuppressed_two}_holdings.xml").read }
-  let(:bib_items_po) { "99227515106421" }
-  let(:bib_items_po_json) { file_fixture("alma/#{bib_items_po}_po.json") }
-  let(:bib_items_list_unsuppressed_json) { file_fixture("alma/bib_items_list_#{unsuppressed}.json") }
-  let(:unsuppressed_two_loc_two_items_json) { file_fixture("alma/#{unsuppressed_two_loc_two_items}_two_locations_two_items.json") }
-  let(:unsuppressed_loc_with_two_holdings_json) { file_fixture("alma/#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json") }
+  let(:unsuppressed_two_holdings_fixture) { file_fixture("alma/#{unsuppressed_two}_holdings.xml") }
 
   before do
     stub_request(:get, "https://alma/almaws/v1/bibs/#{unsuppressed}/holdings?apikey=TESTME")
-      .to_return(status: 200, body: holdings_991227840000541, headers: {
+      .to_return(status: 200, body: unsuppressed_two_holdings_fixture, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                    'Content-Type' => 'application/xml;charset=UTF-8',
                    'Accept' => 'application/xml',
                    'User-Agent' => 'Faraday v1.0.1'
                  })
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{bib_items_po}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: bib_items_po_json
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: bib_items_list_unsuppressed_json
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_two_loc_two_items}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: unsuppressed_two_loc_two_items_json
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{unsuppressed_loc_with_two_holdings}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: unsuppressed_loc_with_two_holdings_json
-      )
+    stub_alma_bib_items(
+      mms_id: unsuppressed,
+      filename: "bib_items_list_#{unsuppressed}.json"
+    )
+    stub_alma_bib_items(
+      mms_id: unsuppressed_two_loc_two_items,
+      filename: "#{unsuppressed_two_loc_two_items}_two_locations_two_items.json"
+    )
   end
+
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
       it "returns one record" do
@@ -141,79 +96,11 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "#get_items_for_bib" do
-    context "A record with order information" do
-      it "has all the relevant item keys" do
-        item = adapter.get_items_for_bib(bib_items_po)["MAIN$main"].first["items"].first
-
-        expect(item.keys).to contain_exactly("id", "pid", "perm_location", "temp_location", "creation_date")
-        expect(item["id"]).to eq "2384011050006421"
-        expect(item["pid"]).to eq "2384011050006421"
-        expect(item["perm_location"]).to eq "MAIN$main"
-        expect(item["temp_location"]).to eq nil
-        # expect(item["patron_group_charged"]).to eq nil # TODO: Implement
-      end
-    end
-
-    context "A record with two locations, two items in each location, and no holding notes" do
-      it "returns a hash with 2 locations" do
-        items = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
-        expect(items.keys).to eq ["MAIN$offsite", "MAIN$RESERVES"]
-        expect(items.values.map(&:count)).to eq [1, 1] # each array has a single holdings hash
-        expect(items["MAIN$offsite"].first["items"].count).to eq 2
-        expect(items["MAIN$offsite"].first.keys).to eq ["holding_id", "call_number", "items"]
-      end
-      describe "the first item in the offsite location" do
-        it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$offsite"].first["items"][0]).to include("pid" => "2382260930006421")
-        end
-      end
-      describe "the first item in the RESERVES location" do
-        it "has an item id" do
-          expect(adapter.get_items_for_bib(unsuppressed_two_loc_two_items)["MAIN$RESERVES"].first["items"][0]).to include("pid" => "2382260850006421")
-        end
-      end
-    end
-
-    context "A record with two locations and two different holdings in one location" do
-      describe "location main" do
-        it "has two holdings with two items in each" do
-          items = adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)
-          expect(items["MAIN$main"].first["items"].count).to eq 2
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][0]).to include("pid" => "2384629900006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][0]["items"][1]).to include("pid" => "2384621860006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][0]).to include("pid" => "2384621850006421")
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MAIN$main"][1]["items"][1]).to include("pid" => "2384621840006421")
-        end
-      end
-      describe "location music" do
-        it "has one holding" do
-          expect(adapter.get_items_for_bib(unsuppressed_loc_with_two_holdings)["MUS$music"].count).to eq 1
-        end
-      end
-    end
-
-    context "when a record has holdings with a temporary location" do
-      let(:bib_record) { file_fixture("alma/9930766283506421.json") }
-      let(:bib_items) { file_fixture("alma/9930766283506421_items.json") }
-      before do
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9930766283506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
-          .with(
-            headers: {
-              'Accept' => 'application/json',
-              'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-              'Authorization' => 'apikey TESTME',
-              'Content-Type' => 'application/json',
-              'User-Agent' => 'Ruby'
-            }
-          )
-          .to_return(status: 200, body: bib_items, headers: { "content-Type" => "application/json" })
-
-        stub_alma_ids(ids: "9930766283506421", status: 200)
-      end
-
-      it "returns holdings item with a temp location value" do
-        items = adapter.get_items_for_bib("9930766283506421")
-        expect(items["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
+    context "A record with two locations, two items in each location" do
+      it "returns the item as a set" do
+        set = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
+        expect(set.map(&:composite_location).uniq).to eq ["MAIN$offsite", "MAIN$RESERVES"]
+        expect(set.count).to eq 4
       end
     end
   end

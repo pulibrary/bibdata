@@ -92,15 +92,19 @@ class BibliographicController < ApplicationController
   end
 
   def bib_items
-    records = adapter.get_items_for_bib(bib_id_param)
-    if records.nil? || records.empty?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
-    else
-      respond_to do |wants|
-        wants.json  { render json: MultiJson.dump(add_locator_call_no(records)) }
-        wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
-      end
+    item_keys = ["id", "pid", "perm_location", "temp_location"]
+    holding_summary = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
+
+    respond_to do |wants|
+      wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
+      wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
     end
+  rescue Alma::BibItemSet::ResponseError
+    render_not_found(params[:bib_id])
+  end
+
+  def render_not_found(id)
+    render plain: "Record #{id} not found or suppressed", status: 404
   end
 
   def update
@@ -232,6 +236,7 @@ class BibliographicController < ApplicationController
     end
 
     def add_locator_call_no(records)
+      return records unless records["f"]
       records["f"] = records["f"].map do |record|
         record[:sortable_call_number] = sortable_call_number(record[:call_number])
         record

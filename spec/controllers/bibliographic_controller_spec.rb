@@ -188,6 +188,93 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#bib_items' do
+    context "A record with one location" do
+      let(:bib_items_po) { "99227515106421" }
+      let(:expected_response) do
+        {
+          "MAIN$main" => [
+            { "holding_id" => "2284011070006421",
+              "call_number" => "PN1993.I",
+              "items" => [
+                { "pid" => "2384011050006421",
+                  "id" => "2384011050006421",
+                  # "patron_group_charged" => nil, # TODO: Implement
+                  "temp_location" => nil,
+                  "perm_location" => "MAIN$main" }
+              ] }
+          ]
+        }
+      end
+
+      it "has the exact required keys, values" do
+        stub_alma_bib_items(mms_id: bib_items_po, filename: "#{bib_items_po}_po.json")
+        get :bib_items, params: { bib_id: bib_items_po }, format: 'json'
+        expect(response.status).to be 200
+        locations = JSON.parse(response.body)
+        expect(locations).to eq expected_response
+      end
+    end
+
+    context "A record with two locations, two items in each location" do
+      let(:unsuppressed_two_loc_two_items) { "99223608406421" }
+      let(:fixture) { "#{unsuppressed_two_loc_two_items}_two_locations_two_items.json" }
+      let(:expected_response) do
+        {
+          "MAIN$RESERVES" => [
+            { "call_number" => "Q175 .N3885 1984", "holding_id" => "2282241690006421", "items" => [
+              { "id" => "2382260850006421", "perm_location" => "MAIN$RESERVES", "pid" => "2382260850006421", "temp_location" => nil },
+              { "id" => "2382241620006421", "perm_location" => "MAIN$RESERVES", "pid" => "2382241620006421", "temp_location" => nil }
+            ] }
+          ],
+          "MAIN$offsite" => [
+            { "call_number" => "Q175 .N3885 1984", "holding_id" => "2282241870006421", "items" => [
+              { "id" => "2382260930006421", "perm_location" => "MAIN$offsite", "pid" => "2382260930006421", "temp_location" => nil },
+              { "id" => "2382241780006421", "perm_location" => "MAIN$offsite", "pid" => "2382241780006421", "temp_location" => nil }
+            ] }
+          ]
+        }
+      end
+      it "returns a hash with 2 locations" do
+        stub_alma_bib_items(mms_id: unsuppressed_two_loc_two_items, filename: fixture)
+        get :bib_items, params: { bib_id: unsuppressed_two_loc_two_items }, format: 'json'
+        expect(response.status).to be 200
+        locations = JSON.parse(response.body)
+        expect(locations).to eq expected_response
+      end
+    end
+
+    context "A record with two locations and two different holdings in one location" do
+      let(:unsuppressed_loc_with_two_holdings) { "99229556706421" }
+      let(:fixture) { "#{unsuppressed_loc_with_two_holdings}_two_loc_two_holdings_sort_library_asc.json" }
+      let(:expected_response) do
+        {
+          "MAIN$main" => [{ "call_number" => "HG2491 .S65 1996", "holding_id" => "2284629920006421", "items" => [{ "id" => "2384629900006421", "perm_location" => "MAIN$main", "pid" => "2384629900006421", "temp_location" => nil }, { "id" => "2384621860006421", "perm_location" => "MAIN$main", "pid" => "2384621860006421", "temp_location" => nil }] }, { "call_number" => "HG2491 .S65 1996 c. 3", "holding_id" => "2284621880006421", "items" => [{ "id" => "2384621850006421", "perm_location" => "MAIN$main", "pid" => "2384621850006421", "temp_location" => nil }, { "id" => "2384621840006421", "perm_location" => "MAIN$main", "pid" => "2384621840006421", "temp_location" => nil }] }],
+          "MUS$music" => [{ "call_number" => "HG2491 .S65 1996", "holding_id" => "2284621870006421", "items" => [{ "id" => "2384621830006421", "perm_location" => "MUS$music", "pid" => "2384621830006421", "temp_location" => nil }, { "id" => "2384621820006421", "perm_location" => "MUS$music", "pid" => "2384621820006421", "temp_location" => nil }] }]
+        }
+      end
+
+      it "returns the locations, holdings, and items JSON" do
+        stub_alma_bib_items(mms_id: unsuppressed_loc_with_two_holdings, filename: fixture)
+        get :bib_items, params: { bib_id: unsuppressed_loc_with_two_holdings }, format: 'json'
+        expect(response.status).to be 200
+        locations = JSON.parse(response.body)
+        expect(locations).to eq expected_response
+      end
+    end
+
+    context "when a record has holdings with a temporary location" do
+      let(:bib_items) { "9930766283506421" }
+      let(:fixture) { "#{bib_items}_items.json" }
+
+      it "returns holdings item with a temp location value" do
+        stub_alma_bib_items(mms_id: bib_items, filename: fixture)
+        get :bib_items, params: { bib_id: bib_items }, format: 'json'
+        expect(response.status).to be 200
+        locations = JSON.parse(response.body)
+        expect(locations["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
+      end
+    end
+
     context 'when call number is not handeled by lcsort' do
       before do
         # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(
@@ -218,14 +305,11 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
 
+    # a bound-with constituent item will have this response
     context 'when no items are found' do
-      before do
-        # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(nil)
-      end
-
       it 'renders a 404 HTTP response' do
-        pending "Replace with Alma"
-        get :bib_items, params: { bib_id: '1234567' }, format: 'json'
+        stub_alma_bib_items(mms_id: "9920809213506421", status: 400, filename: "not_found_items.json")
+        get :bib_items, params: { bib_id: '9920809213506421' }, format: 'json'
         expect(response.status).to be 404
       end
     end
