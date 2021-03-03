@@ -56,7 +56,7 @@ class AlmaAdapter
     if ava.count > 0
       # Get the creation date from the physical items
       item_set = get_items_for_bib(record.bib.id)
-      dates = item_set.items.map { |i| i["item_data"]["creation_date"] }
+      dates = item_set.items.map { |i| i["item_data"]["creation_date"] }.compact
       return dates.sort.first if dates.count > 0
     end
 
