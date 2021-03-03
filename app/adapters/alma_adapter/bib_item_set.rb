@@ -19,7 +19,7 @@ class AlmaAdapter
 
     # minimal summary of locations / holdings / items data used for bib_items
     # response
-    # @param [String] item_key_filter Keys to include in the items hash
+    # @param item_key_filter [String] keys to include in the items hash
     # @return [Hash] of locations/ holdings/ items data
     def holding_summary(item_key_filter: nil)
       location_grouped = items.group_by(&:composite_location)
@@ -37,11 +37,11 @@ class AlmaAdapter
 
     private
 
-      def holding_items_filter(items, keys)
-        return items unless keys
+      def holding_items_filter(items, filter)
+        return items unless filter
         items.map do |h|
           h.keep_if do |k, _v|
-            keys.include? k
+            filter.include? k
           end
         end
       end
