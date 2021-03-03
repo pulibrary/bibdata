@@ -11,11 +11,11 @@ module AlmaStubbing
       .to_return(status: status, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
   end
 
-  def stub_alma_bib_items(mms_id:, filename:)
+  def stub_alma_bib_items(mms_id:, status: 200, filename:)
     alma_path = Pathname.new(file_fixture_path).join("alma")
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=100")
       .to_return(
-        status: 200,
+        status: status,
         headers: { "content-Type" => "application/json" },
         body: alma_path.join(filename)
       )
