@@ -9,8 +9,6 @@ class BarcodeController < ApplicationController
     end
   end
 
-  # TODO: Add SCSB record enrichments. See
-  # https://github.com/pulibrary/voyager_helpers/blob/e468d9ae29367d74ba7e09620238e801a7ce7bad/lib/voyager_helpers/liberator.rb#L1108-L1127
   def scsb
     barcode = params[:barcode]
     if !valid_barcode?(barcode)
