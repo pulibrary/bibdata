@@ -296,17 +296,19 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'cjk-only fields' do
+    before do
+      @record_cjk = @indexer.map_record(fixture_alma_record('9939238033506421'))
+    end
     it 'displays 880 in pub_created_vern_display and subject field' do
-      expect(@sample36['pub_created_vern_display']).to eq ['東京 : 勉誠出版, 2014.']
-      expect(@sample36['cjk_subject']).to eq ['石塚晴通']
+      expect(@record_cjk['pub_created_vern_display']).to eq ['[China : s.n.], 清乾隆癸亥 [8年, 1743]']
+      expect(@record_cjk['cjk_subject']).to eq ['子部 醫家類 兒科.']
     end
     it 'cjk_all contains 880 fields in a single string' do
-      expect(@sample36['cjk_all'][0]).to include('東京 : 勉誠出版')
-      expect(@sample36['cjk_all'][0]).to include('石塚晴通')
+      expect(@record_cjk['cjk_all'][0]).to include('葉其蓁. 抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述. 幼科指掌.  [China : s.n.], 清乾隆癸亥 [8年, 1743] 子部 醫家類 兒科. ')
     end
     it 'cjk_notes contains 880 fields associated with 5xx fields' do
-      expect(@sample36['cjk_notes'][0]).to include('蘭臺')
-      expect(@sample36['cjk_notes'][0]).not_to include('石塚晴通')
+      expect(@record_cjk['cjk_notes'][0]).to include('乾隆癸亥李大倫"序"言刻書事.')
+      expect(@record_cjk['cjk_notes'][0]).not_to include('子部')
     end
   end
   describe 'related_name_json_1display' do
