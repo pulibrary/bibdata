@@ -85,23 +85,24 @@ to_field 'cjk_all' do |record, accumulator|
   accumulator << result.join(' ')
 end
 
-# only include the 5xx alt script values for cjk field
+# 880 field is "vernacular" and may link to a translation in a 5xx
+# Only add 880 alt script values associated with a 5xx field
 to_field 'cjk_notes' do |record, accumulator|
-  keep_fields = %w[880]
-  result = []
-  record.each do |field|
-    next unless  keep_fields.include?(field.tag)
-    linked_tag = field.subfields.select { |sf| sf.code == '6' }.collect(&:value)
-    next unless linked_tag.first&.start_with?('5')
+  fields = record.fields.select { |f| f.tag == "880" }
+  linked_fields = fields.select do |f|
+    f.subfields.find { |sf| sf.code == '6' && sf.value.start_with?('5') }.present?
+  end
+  values = linked_fields.map do |field|
     subfield_values = field.subfields
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
 
-    next unless !subfield_values.empty?
+    next if subfield_values.empty?
 
-    result << subfield_values.join(' ')
+    subfield_values.join(' ')
   end
-  accumulator << result.join(' ')
+
+  accumulator << values.compact.join(' ')
 end
 
 # Author/Artist:
