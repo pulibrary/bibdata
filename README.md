@@ -1,10 +1,9 @@
-# MARC Liberation
+# Bibdata
 
-Liberate MARC data from Voyager.
+Formerly known as MARC Liberation (since it liberates MARC data from Voyager).
 
 [![CircleCI](https://circleci.com/gh/pulibrary/bibdata.svg?style=svg)](https://circleci.com/gh/pulibrary/bibdata)
-[![CoverageStatus](https://coveralls.io/repos/github/pulibrary/bibdata/badge.svg?branch=main)](https://coveralls.io/github/pulibrary/bibdata?branch=main)
-[![InchCI](https://inch-ci.org/github/pulibrary/bibdata.svg?branch=main)](https://inch-ci.org/github/pulibrary/bibdata)
+[![BSD 2-Clause License](https://img.shields.io/badge/license-BSD-blue.svg?style=plastic)](./LICENSE)
 
 ## Services
 
