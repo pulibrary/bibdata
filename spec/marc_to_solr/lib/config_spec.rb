@@ -129,6 +129,13 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe "call_number_locator_display field" do
+    it "returns the call_number_locator_display field with no subfield k" do
+      record = @indexer.map_record(fixture_alma_record('9941598513506421'))
+      expect(record['call_number_locator_display']).to eq([" .B7544 2003q"])
+    end
+  end
+
   describe "contained_in_s field" do
     it "indexes the 773w of the constituent record" do
       record = @indexer.map_record(fixture_alma_record('9939073273506421'))
