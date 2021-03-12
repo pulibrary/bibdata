@@ -1311,6 +1311,7 @@ end
 # Call number: +No call number available
 #    852 XX hik
 # Position 852|k at the end of the call_number_display
+# The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |record, accumulator|
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
     accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
@@ -1318,11 +1319,16 @@ to_field 'call_number_display' do |record, accumulator|
 end
 
 # Position 852|k at the end of the call_number_browse_s
+# The call_number_browse_s is used in the call_number browselists
 to_field 'call_number_browse_s' do |record, accumulator|
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
     accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
   end
 end
+
+# The call_number_locator_display is used in the 'Where to find it' feature in the record page,
+# when the location is firestone$stacks.
+to_field 'call_number_locator_display', extract_marc('852hi')
 
 # Location has:
 #    1040
