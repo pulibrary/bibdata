@@ -940,7 +940,10 @@ to_field 'related_name_json_1display' do |record, accumulator|
     end
     relators << 'Related name' if relators.empty?
     relators.each do |relator|
-      rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+      if (non_t && rel_name.present?)
+        rel_name_hash[relator] ||= []
+        rel_name_hash[relator] << rel_name
+      end
     end
   end
   accumulator[0] = rel_name_hash.to_json.to_s unless rel_name_hash == {}
