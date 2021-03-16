@@ -27,7 +27,10 @@ class PatronController < ApplicationController
         university_id: data["primary_id"],
         patron_id: data["primary_id"],
         patron_group: patron_group,
-        patron_group_desc: data["user_group"]["desc"]
+        patron_group_desc: data["user_group"]["desc"],
+        requests_total: data["requests"]["value"],
+        loans_total: data["loans"]["value"],
+        fees_total: data["fees"]["value"]
       }
     end
 
