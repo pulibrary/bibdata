@@ -51,7 +51,10 @@ RSpec.describe PatronController, type: :controller do
         "patron_group" => "UGRD",
         "patron_group_desc" => "UGRD Undergraduate",
         "campus_authorized" => false,
-        "campus_authorized_category" => "none"
+        "campus_authorized_category" => "none",
+        "requests_total" => 0,
+        "loans_total" => 0,
+        "fees_total" => 0.0
       )
     end
 
@@ -62,18 +65,7 @@ RSpec.describe PatronController, type: :controller do
       allow(controller).to receive(:current_user) { user }
       get :patron_info, params: { patron_id: 'bbird', format: :json }
       expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)).to eq(
-        "netid" => "bbird",
-        "first_name" => "Big",
-        "last_name" => "Bird",
-        "barcode" => "00000000000000",
-        "university_id" => "100000000",
-        "patron_id" => "100000000",
-        "patron_group" => "staff",
-        "patron_group_desc" => "P Faculty & Professional",
-        "campus_authorized" => false,
-        "campus_authorized_category" => "none"
-      )
+      expect(JSON.parse(response.body)["patron_group"]).to eq "staff"
     end
 
     it "allows authenticated users to access patron info and ldap data when desired" do
@@ -95,6 +87,9 @@ RSpec.describe PatronController, type: :controller do
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
         "campus_authorized_category" => "none",
+        "requests_total" => 0,
+        "loans_total" => 0,
+        "fees_total" => 0.0,
         "ldap" => { "ldap_data" => "is here" }
       )
     end
@@ -117,7 +112,10 @@ RSpec.describe PatronController, type: :controller do
         "patron_group" => "staff",
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
-        "campus_authorized_category" => "none"
+        "campus_authorized_category" => "none",
+        "requests_total" => 0,
+        "loans_total" => 0,
+        "fees_total" => 0.0
       )
     end
 
@@ -139,7 +137,10 @@ RSpec.describe PatronController, type: :controller do
         "patron_group" => "staff",
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => true,
-        "campus_authorized_category" => "full"
+        "campus_authorized_category" => "full",
+        "requests_total" => 0,
+        "loans_total" => 0,
+        "fees_total" => 0.0
       )
     end
 
