@@ -73,9 +73,9 @@ every 1.day, at: ["1:00am", "11:30am", "3:30pm"], roles: [:cron_production] do
 end
 
 # Daily racap / partner jobs
-# every 1.day, at: "3:00pm", roles: [:cron_production] do
-#   rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
-# end
+every 1.day, at: "3:00pm", roles: [:cron_production] do
+  rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
+end
 
 # Daily recap shared collection update to Solr
 every 1.day, at: "6:30am", roles: [:cron_production] do
