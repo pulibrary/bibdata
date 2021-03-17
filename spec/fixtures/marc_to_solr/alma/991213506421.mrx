@@ -1,1 +1,731 @@
-<record><leader>01585cas a2200421 a 4500</leader><controlfield tag="005">20200728155602.0</controlfield><controlfield tag="008">801003c19789999enkbr p       0    0eng d</controlfield><controlfield tag="001">991213506421</controlfield><datafield tag="010" ind1=" " ind2=" "><subfield code="a">   80642988  </subfield></datafield><datafield tag="022" ind1=" " ind2=" "><subfield code="a">0142-0798</subfield><subfield code="0">(uri) http://worldcat.org/issn/0142-0798</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(OCoLC)5083241</subfield><subfield code="0">(uri) http://www.worldcat.org/oclc/5083241</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(CStRLIN)NJPG0326-S</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="9">AAF4355TS</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">121</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(NjP)121-princetondb</subfield></datafield><datafield tag="040" ind1=" " ind2=" "><subfield code="a">DNG-A</subfield><subfield code="b">eng</subfield><subfield code="c">DNG-A</subfield><subfield code="d">CtY</subfield><subfield code="d">DLC</subfield><subfield code="d">NjP</subfield></datafield><datafield tag="041" ind1="0" ind2=" "><subfield code="a">eng</subfield><subfield code="a">ger</subfield></datafield><datafield tag="042" ind1=" " ind2=" "><subfield code="a">lc</subfield></datafield><datafield tag="050" ind1="0" ind2="0"><subfield code="a">NK2808</subfield><subfield code="b">.H17</subfield></datafield><datafield tag="245" ind1="0" ind2="0"><subfield code="a">HALI :</subfield><subfield code="b">the international journal of Oriental carpets and textiles.</subfield></datafield><datafield tag="260" ind1=" " ind2=" "><subfield code="a">London :</subfield><subfield code="b">Oguz Press,</subfield><subfield code="c">1978-</subfield></datafield><datafield tag="300" ind1=" " ind2=" "><subfield code="a">v. :</subfield><subfield code="b">ill. ;</subfield><subfield code="c">31 cm.</subfield></datafield><datafield tag="310" ind1=" " ind2=" "><subfield code="a">Quarterly,</subfield><subfield code="b">&lt;2013&gt;-</subfield></datafield><datafield tag="321" ind1=" " ind2=" "><subfield code="a">Quarterly,</subfield><subfield code="b">1978-1987</subfield></datafield><datafield tag="321" ind1=" " ind2=" "><subfield code="a">Bimonthly,</subfield><subfield code="b">1988-&lt;2005&gt;</subfield></datafield><datafield tag="362" ind1="0" ind2=" "><subfield code="a">Vol. 1, no. 1 (spring 1978)-v. 17, no. 6 (Jan./Feb. 1996) ; issue 85 (Mar./Apr. 1996)-</subfield></datafield><datafield tag="500" ind1=" " ind2=" "><subfield code="a">Subtitle varies.</subfield></datafield><datafield tag="500" ind1=" " ind2=" "><subfield code="a">Each issue has also a distinctive title.</subfield></datafield><datafield tag="515" ind1=" " ind2=" "><subfield code="a">Vol. 6, no. 3-v. 17, no. 6 called also issue 23-84; beginning with issue 85, issues carry whole numbering only.</subfield></datafield><datafield tag="546" ind1=" " ind2=" "><subfield code="a">English and German.</subfield></datafield><datafield tag="555" ind1=" " ind2=" "><subfield code="a">Vols. 1 (1978)-17 (1995/96). 1 v.</subfield></datafield><datafield tag="588" ind1=" " ind2=" "><subfield code="a">Description based on: Vol. 2, no. 1 (spring 1979); title from cover.</subfield></datafield><datafield tag="588" ind1=" " ind2=" "><subfield code="a">Latest issue consulted: Issue 175 (spring 2013).</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Rugs, Oriental</subfield><subfield code="v">Periodicals.</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Textile fabrics, Oriental</subfield><subfield code="v">Periodicals.</subfield></datafield><datafield tag="655" ind1=" " ind2="7"><subfield code="a">Periodicals.</subfield><subfield code="2">lcgft</subfield><subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026139</subfield></datafield><datafield tag="998" ind1=" " ind2=" "><subfield code="a">03/30/95</subfield><subfield code="s">9110</subfield><subfield code="n">NjP</subfield><subfield code="w">DCLC80642988S</subfield><subfield code="d">10/05/81</subfield><subfield code="c">HS</subfield><subfield code="b">EE</subfield><subfield code="i">950330</subfield><subfield code="l">NJPG</subfield></datafield><datafield tag="911" ind1=" " ind2=" "><subfield code="a">19950425</subfield></datafield><datafield tag="912" ind1=" " ind2=" "><subfield code="a">19990830034636.0</subfield></datafield><datafield tag="950" ind1=" " ind2=" "><subfield code="b">2020-12-02 20:58:19 US/Eastern</subfield><subfield code="a">false</subfield></datafield><datafield tag="852" ind1="0" ind2="1"><subfield code="b">firestone</subfield><subfield code="c">nec</subfield><subfield code="h">NK2808</subfield><subfield code="i">.H17q</subfield><subfield code="k">Oversize</subfield><subfield code="8">22261907460006421</subfield></datafield><datafield tag="866" ind1=" " ind2="0"><subfield code="a">Vol. 1, no. 1 (spring 1978)-v. 17, no. 6 (Jan./Feb. 1996) ; issue 85 (Mar./Apr. 1996)-issue 144 (Jan./Feb. 2006); issue 150 (Jan./Feb. 2007); issue 175 (spring 2013); issue 179 (spring 2014)-issue 181 (autumn 2014)</subfield><subfield code="8">22261907460006421</subfield></datafield><datafield tag="866" ind1=" " ind2="0"><subfield code="z">LACKS: v. 2, no. 2; issue 180</subfield><subfield code="8">22261907460006421</subfield></datafield><datafield tag="866" ind1=" " ind2="0"><subfield code="z">CURRENT ISSUES IN: Near East Periodicals Collection (PRNE). Firestone</subfield><subfield code="8">22261907460006421</subfield></datafield><datafield tag="868" ind1=" " ind2="0"><subfield code="a">Index, v. 1/17</subfield><subfield code="8">22261907460006421</subfield></datafield><datafield tag="952" ind1=" " ind2=" "><subfield code="a">2020-12-03 01:58:19</subfield><subfield code="8">22261907460006421</subfield><subfield code="b">Firestone Library</subfield><subfield code="c">nec Near East Coll</subfield><subfield code="e">false</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906900006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 6, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1983-1984</subfield><subfield code="p">32101014612715</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906920006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 5, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1983</subfield><subfield code="p">32101014612699</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907450006421</subfield><subfield code="j">1</subfield><subfield code="3">183</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">2012</subfield><subfield code="p">ISSitm101-2432.760-princetondb</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907240006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 4, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1981</subfield><subfield code="p">32101014612681</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907060006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 111-113</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2000</subfield><subfield code="p">32101039388556</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907080006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 12, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 52-54;  Aug.-Dec. 1990</subfield><subfield code="p">32101024132431</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907170006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 8, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 31-32; July/Sept.-Oct./Dec. 1986</subfield><subfield code="p">32101014612749</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907130006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1980-1981</subfield><subfield code="p">32101014630279</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907150006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 9, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 35-36; July/Sept.-Oct./Dec. 1987</subfield><subfield code="p">32101014612798</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907400006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 15, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 70-72; Aug./Sept. 1993-Dec. 1993/Jan. 1994</subfield><subfield code="p">32101024303628</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907420006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 14, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 64-66; Aug.-Dec. 1992</subfield><subfield code="p">32101022760753</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907440006421</subfield><subfield code="j">0</subfield><subfield code="3">184</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">2012</subfield><subfield code="p">ISSitm2432.770-princetondb</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907280006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 96-98</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan.-May 1998</subfield><subfield code="p">32101037117965</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907190006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 7, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 27-28; July/Sept.-Oct./Dec. 1985</subfield><subfield code="p">32101014612764</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907200006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 7, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 25-26; Jan.-Apr./June 1985</subfield><subfield code="p">32101014612756</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906980006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 10, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 37-39; Jan./Feb.-May/June 1988</subfield><subfield code="p">32101014612806</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907350006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 84-86</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May 1996</subfield><subfield code="p">32101024588467</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907370006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 79-81</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">vol. 17, no. 1-3; Feb./Mar.-June/July 1995</subfield><subfield code="p">32101080904475</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907260006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 117-119</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2001</subfield><subfield code="p">32101044801387</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907310006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 90-92</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan.-May 1997</subfield><subfield code="p">32101033765445</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907220006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 126-128</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2003</subfield><subfield code="p">32101050543139</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906870006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 135-137</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2004</subfield><subfield code="p">32101059702140</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907000006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 13, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 55-57; Feb.-June 1991</subfield><subfield code="p">32101021888985</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906780006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 150</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan/Feb 2007</subfield><subfield code="p">32101085146635</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906940006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 4, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1982</subfield><subfield code="p">32101014612673</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906890006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 6, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 23-24; 1984</subfield><subfield code="p">32101014612723</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906830006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 141-143</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2005</subfield><subfield code="p">32101060531801</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907040006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 123-125</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2002</subfield><subfield code="p">32101047547243</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907020006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 11, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 46-48; Aug.-Dec. 1989</subfield><subfield code="p">32101016294272</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906800006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 82-83</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">vol. 17, no. 4-5; Aug./Sept.-Oct./Nov. 1995</subfield><subfield code="p">32101080904541</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906810006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 175</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">spring 2013</subfield><subfield code="p">32101085141941</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907390006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 16, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 73-74; Feb./Mar.-Apr. 1994</subfield><subfield code="p">32101028666939</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907380006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 16, no. 3-4</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 75-76; June/July-Aug./Sept. 1994</subfield><subfield code="p">32101028666947</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907160006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 9, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 33-34; Jan./Mar.-Apr./June 1987</subfield><subfield code="p">32101014612780</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907410006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 15, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 67-69; Feb./Mar.-June/July 1993</subfield><subfield code="p">32101024303636</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907070006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 108-110</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2000</subfield><subfield code="p">32101039388549</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907340006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 87-89</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July-Nov. 1996</subfield><subfield code="p">32101024588475</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907090006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 105-107</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 1999</subfield><subfield code="p">32101038939375</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907140006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 2 (inc.)</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1979-1980</subfield><subfield code="p">32101014630428</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907430006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 14, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 61-63; Feb.-June 1992</subfield><subfield code="p">32101022760746</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907180006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 8, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 29-30; Jan./Mar.-Apr./June 1986</subfield><subfield code="p">32101014612731</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906990006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 13, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 58-60; Aug.-Dec. 1991</subfield><subfield code="p">32101021888977</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907120006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 102-104</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan.-May/June 1999</subfield><subfield code="p">32101038939367</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907210006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 129-131</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July/Aug.-Nov./Dec. 2003</subfield><subfield code="p">32101050543345</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907360006421</subfield><subfield code="j">1</subfield><subfield code="3">Index, v. 1/17</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 1/84; 1978/95</subfield><subfield code="p">32101024588707</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907230006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 5, no. 1-2</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">1982</subfield><subfield code="p">32101014612707</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907250006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 114-116</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2001</subfield><subfield code="p">32101044799086</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907270006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 99-101</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July-Nov. 1998</subfield><subfield code="p">32101037117973</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907290006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 93-95</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">July-Nov. 1997</subfield><subfield code="p">32101033765452</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906790006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 144</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan/Feb 2006</subfield><subfield code="p">32101085146627</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907010006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 12, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 49-51; Feb.-June 1990</subfield><subfield code="p">32101024132449</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906950006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 10, no. 4-6</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 40-42; Aug.-Dec. 1988</subfield><subfield code="p">32101014612772</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906860006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 138-140</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2005</subfield><subfield code="p">32101060530738</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906880006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 132-134</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2004</subfield><subfield code="p">32101054737976</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907030006421</subfield><subfield code="j">1</subfield><subfield code="3">vol. 11, no. 1-3</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">issue 43-45; Feb.-June 1989</subfield><subfield code="p">32101016294264</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261907050006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 120-122</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">Jan./Feb.-May/June 2002</subfield><subfield code="p">32101047547136</subfield><subfield code="t">1</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22261907460006421</subfield><subfield code="a">23261906770006421</subfield><subfield code="j">1</subfield><subfield code="3">issue 179-181 (inc)</subfield><subfield code="d">2020-12-03 01:58:19</subfield><subfield code="4">spring-Autumn 2014</subfield><subfield code="p">32101099861278</subfield><subfield code="t">1</subfield></datafield></record>
+<record>
+  <leader>01585cas a2200421 a 4500</leader>
+  <controlfield tag="005">20200728155602.0</controlfield>
+  <controlfield tag="008">801003c19789999enkbr p 0 0eng d</controlfield>
+  <controlfield tag="001">991213506421</controlfield>
+  <datafield tag="010" ind1="" ind2="">
+    <subfield code="a">80642988</subfield>
+  </datafield>
+  <datafield tag="022" ind1="" ind2="">
+    <subfield code="a">0142-0798</subfield>
+    <subfield code="0">(uri) http://worldcat.org/issn/0142-0798</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)5083241</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/5083241</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(CStRLIN)NJPG0326-S</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">AAF4355TS</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">121</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)121-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">DNG-A</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DNG-A</subfield>
+    <subfield code="d">CtY</subfield>
+    <subfield code="d">DLC</subfield>
+    <subfield code="d">NjP</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2="">
+    <subfield code="a">eng</subfield>
+    <subfield code="a">ger</subfield>
+  </datafield>
+  <datafield tag="042" ind1="" ind2="">
+    <subfield code="a">lc</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">NK2808</subfield>
+    <subfield code="b">.H17</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">HALI :</subfield>
+    <subfield code="b">the international journal of Oriental carpets and textiles.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">London :</subfield>
+    <subfield code="b">Oguz Press,</subfield>
+    <subfield code="c">1978-</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">v. :</subfield>
+    <subfield code="b">ill. ;</subfield>
+    <subfield code="c">31 cm.</subfield>
+  </datafield>
+  <datafield tag="310" ind1="" ind2="">
+    <subfield code="a">Quarterly,</subfield>
+    <subfield code="b">&lt;2013&gt;-</subfield>
+  </datafield>
+  <datafield tag="321" ind1="" ind2="">
+    <subfield code="a">Quarterly,</subfield>
+    <subfield code="b">1978-1987</subfield>
+  </datafield>
+  <datafield tag="321" ind1="" ind2="">
+    <subfield code="a">Bimonthly,</subfield>
+    <subfield code="b">1988-&lt;2005&gt;</subfield>
+  </datafield>
+  <datafield tag="362" ind1="0" ind2="">
+    <subfield code="a">Vol. 1, no. 1 (spring 1978)-v. 17, no. 6 (Jan./Feb. 1996) ; issue 85 (Mar./Apr. 1996)-</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Subtitle varies.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Each issue has also a distinctive title.</subfield>
+  </datafield>
+  <datafield tag="515" ind1="" ind2="">
+    <subfield code="a">Vol. 6, no. 3-v. 17, no. 6 called also issue 23-84; beginning with issue 85, issues carry whole numbering only.</subfield>
+  </datafield>
+  <datafield tag="546" ind1="" ind2="">
+    <subfield code="a">English and German.</subfield>
+  </datafield>
+  <datafield tag="555" ind1="" ind2="">
+    <subfield code="a">Vols. 1 (1978)-17 (1995/96). 1 v.</subfield>
+  </datafield>
+  <datafield tag="588" ind1="" ind2="">
+    <subfield code="a">Description based on: Vol. 2, no. 1 (spring 1979); title from cover.</subfield>
+  </datafield>
+  <datafield tag="588" ind1="" ind2="">
+    <subfield code="a">Latest issue consulted: Issue 175 (spring 2013).</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Rugs, Oriental</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Textile fabrics, Oriental</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026139</subfield>
+  </datafield>
+  <datafield tag="998" ind1="" ind2="">
+    <subfield code="a">03/30/95</subfield>
+    <subfield code="s">9110</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">DCLC80642988S</subfield>
+    <subfield code="d">10/05/81</subfield>
+    <subfield code="c">HS</subfield>
+    <subfield code="b">EE</subfield>
+    <subfield code="i">950330</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield tag="911" ind1="" ind2="">
+    <subfield code="a">19950425</subfield>
+  </datafield>
+  <datafield tag="912" ind1="" ind2="">
+    <subfield code="a">19990830034636.0</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 20:58:19 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="1">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">nec</subfield>
+    <subfield code="h">NK2808</subfield>
+    <subfield code="i">.H17q</subfield>
+    <subfield code="k">Oversize</subfield>
+    <subfield code="8">22261907460006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1="" ind2="0">
+    <subfield code="a">Vol. 1, no. 1 (spring 1978)-v. 17, no. 6 (Jan./Feb. 1996) ; issue 85 (Mar./Apr. 1996)-issue 144 (Jan./Feb. 2006); issue 150 (Jan./Feb. 2007); issue 175 (spring 2013); issue 179 (spring 2014)-issue 181 (autumn 2014)</subfield>
+    <subfield code="8">22261907460006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1="" ind2="0">
+    <subfield code="z">LACKS: v. 2, no. 2; issue 180</subfield>
+    <subfield code="8">22261907460006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1="" ind2="0">
+    <subfield code="z">CURRENT ISSUES IN: Near East Periodicals Collection (PRNE). Firestone</subfield>
+    <subfield code="8">22261907460006421</subfield>
+  </datafield>
+  <datafield tag="868" ind1="" ind2="0">
+    <subfield code="a">Index, v. 1/17</subfield>
+    <subfield code="8">22261907460006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-03 01:58:19</subfield>
+    <subfield code="8">22261907460006421</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">nec Near East Coll</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906900006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 6, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1983-1984</subfield>
+    <subfield code="p">32101014612715</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906920006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 5, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1983</subfield>
+    <subfield code="p">32101014612699</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907450006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">183</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">2012</subfield>
+    <subfield code="p">ISSitm101-2432.760-princetondb</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907240006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 4, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1981</subfield>
+    <subfield code="p">32101014612681</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907060006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 111-113</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2000</subfield>
+    <subfield code="p">32101039388556</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907080006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 12, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 52-54; Aug.-Dec. 1990</subfield>
+    <subfield code="p">32101024132431</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907170006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 8, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 31-32; July/Sept.-Oct./Dec. 1986</subfield>
+    <subfield code="p">32101014612749</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907130006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1980-1981</subfield>
+    <subfield code="p">32101014630279</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907150006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 9, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 35-36; July/Sept.-Oct./Dec. 1987</subfield>
+    <subfield code="p">32101014612798</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907400006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 15, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 70-72; Aug./Sept. 1993-Dec. 1993/Jan. 1994</subfield>
+    <subfield code="p">32101024303628</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907420006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 14, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 64-66; Aug.-Dec. 1992</subfield>
+    <subfield code="p">32101022760753</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907440006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="3">184</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">2012</subfield>
+    <subfield code="p">ISSitm2432.770-princetondb</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907280006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 96-98</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan.-May 1998</subfield>
+    <subfield code="p">32101037117965</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907190006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 7, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 27-28; July/Sept.-Oct./Dec. 1985</subfield>
+    <subfield code="p">32101014612764</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907200006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 7, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 25-26; Jan.-Apr./June 1985</subfield>
+    <subfield code="p">32101014612756</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906980006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 10, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 37-39; Jan./Feb.-May/June 1988</subfield>
+    <subfield code="p">32101014612806</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907350006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 84-86</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May 1996</subfield>
+    <subfield code="p">32101024588467</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907370006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 79-81</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">vol. 17, no. 1-3; Feb./Mar.-June/July 1995</subfield>
+    <subfield code="p">32101080904475</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907260006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 117-119</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2001</subfield>
+    <subfield code="p">32101044801387</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907310006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 90-92</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan.-May 1997</subfield>
+    <subfield code="p">32101033765445</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907220006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 126-128</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2003</subfield>
+    <subfield code="p">32101050543139</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906870006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 135-137</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2004</subfield>
+    <subfield code="p">32101059702140</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907000006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 13, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 55-57; Feb.-June 1991</subfield>
+    <subfield code="p">32101021888985</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906780006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 150</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan/Feb 2007</subfield>
+    <subfield code="p">32101085146635</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906940006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 4, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1982</subfield>
+    <subfield code="p">32101014612673</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906890006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 6, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 23-24; 1984</subfield>
+    <subfield code="p">32101014612723</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906830006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 141-143</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2005</subfield>
+    <subfield code="p">32101060531801</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907040006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 123-125</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2002</subfield>
+    <subfield code="p">32101047547243</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907020006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 11, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 46-48; Aug.-Dec. 1989</subfield>
+    <subfield code="p">32101016294272</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906800006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 82-83</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">vol. 17, no. 4-5; Aug./Sept.-Oct./Nov. 1995</subfield>
+    <subfield code="p">32101080904541</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906810006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 175</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">spring 2013</subfield>
+    <subfield code="p">32101085141941</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907390006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 16, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 73-74; Feb./Mar.-Apr. 1994</subfield>
+    <subfield code="p">32101028666939</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907380006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 16, no. 3-4</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 75-76; June/July-Aug./Sept. 1994</subfield>
+    <subfield code="p">32101028666947</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907160006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 9, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 33-34; Jan./Mar.-Apr./June 1987</subfield>
+    <subfield code="p">32101014612780</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907410006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 15, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 67-69; Feb./Mar.-June/July 1993</subfield>
+    <subfield code="p">32101024303636</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907070006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 108-110</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2000</subfield>
+    <subfield code="p">32101039388549</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907340006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 87-89</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July-Nov. 1996</subfield>
+    <subfield code="p">32101024588475</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907090006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 105-107</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 1999</subfield>
+    <subfield code="p">32101038939375</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907140006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 2 (inc.)</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1979-1980</subfield>
+    <subfield code="p">32101014630428</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907430006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 14, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 61-63; Feb.-June 1992</subfield>
+    <subfield code="p">32101022760746</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907180006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 8, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 29-30; Jan./Mar.-Apr./June 1986</subfield>
+    <subfield code="p">32101014612731</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906990006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 13, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 58-60; Aug.-Dec. 1991</subfield>
+    <subfield code="p">32101021888977</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907120006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 102-104</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan.-May/June 1999</subfield>
+    <subfield code="p">32101038939367</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907210006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 129-131</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July/Aug.-Nov./Dec. 2003</subfield>
+    <subfield code="p">32101050543345</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907360006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">Index, v. 1/17</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 1/84; 1978/95</subfield>
+    <subfield code="p">32101024588707</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907230006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 5, no. 1-2</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">1982</subfield>
+    <subfield code="p">32101014612707</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907250006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 114-116</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2001</subfield>
+    <subfield code="p">32101044799086</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907270006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 99-101</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July-Nov. 1998</subfield>
+    <subfield code="p">32101037117973</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907290006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 93-95</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">July-Nov. 1997</subfield>
+    <subfield code="p">32101033765452</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906790006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 144</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan/Feb 2006</subfield>
+    <subfield code="p">32101085146627</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907010006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 12, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 49-51; Feb.-June 1990</subfield>
+    <subfield code="p">32101024132449</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906950006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 10, no. 4-6</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 40-42; Aug.-Dec. 1988</subfield>
+    <subfield code="p">32101014612772</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906860006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 138-140</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2005</subfield>
+    <subfield code="p">32101060530738</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906880006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 132-134</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2004</subfield>
+    <subfield code="p">32101054737976</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907030006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol. 11, no. 1-3</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">issue 43-45; Feb.-June 1989</subfield>
+    <subfield code="p">32101016294264</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261907050006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 120-122</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">Jan./Feb.-May/June 2002</subfield>
+    <subfield code="p">32101047547136</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22261907460006421</subfield>
+    <subfield code="a">23261906770006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">issue 179-181 (inc)</subfield>
+    <subfield code="d">2020-12-03 01:58:19</subfield>
+    <subfield code="4">spring-Autumn 2014</subfield>
+    <subfield code="p">32101099861278</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
