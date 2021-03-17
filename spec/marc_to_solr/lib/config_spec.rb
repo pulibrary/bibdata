@@ -115,6 +115,29 @@ describe 'From traject_config.rb' do
     end
   end
 
+  describe "electronic_portfolio_s" do
+    it "returns the electronic_portfolio_s field" do
+      record = @indexer.map_record(fixture_alma_record('99122306151806421'))
+      portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
+      nature = portfolios.detect { |p| p['title'] == 'Nature' }
+      ebsco = portfolios.detect { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
+      proquest = portfolios.detect { |p| p['title'] == 'ProQuest Central' }
+
+      expect(nature['url']).to include '&portfolio_pid=53443322610006421'
+      expect(nature['desc']).to eq 'Available from 1869 volume: 1 issue: 1.'
+
+      # Date range with explicit start and no end date
+      expect(nature['start']).to eq '1869'
+      expect(nature['end']).to eq 'latest'
+
+      # Date range with explicit start and end
+      expect(ebsco['start']).to eq '1997'
+      expect(ebsco['end']).to eq '2015'
+
+      # Date range with embargo
+      expect(proquest['end']).to eq '2020'
+    end
+  end
   describe "call_number_display field" do
     it "returns the call_number_display field with k subfield at the end" do
       record = @indexer.map_record(fixture_alma_record('9957270023506421'))

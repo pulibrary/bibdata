@@ -6,6 +6,7 @@ require 'bundler/setup'
 require_relative './format'
 require_relative './princeton_marc'
 require_relative './geo'
+require_relative './electronic_portfolio_builder'
 require_relative './location_extract'
 require_relative './alma_reader'
 require_relative './solr_deleter'
@@ -1329,6 +1330,29 @@ end
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
 # when the location is firestone$stacks.
 to_field 'call_number_locator_display', extract_marc('852hi')
+
+to_field 'electronic_portfolio_s' do |record, accumulator|
+  fields = []
+  dates = []
+  embargoes = []
+  MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
+    fields << field
+  end
+
+  MarcExtractor.cached('953abc').collect_matching_lines(record) do |field, _spec, _extractor|
+    dates << field
+  end
+
+  MarcExtractor.cached('954ac').collect_matching_lines(record) do |field, _spec, _extractor|
+    embargoes << field
+  end
+
+  fields.map do |field|
+    date = dates.find { |d| d['a'] == field['8'] }
+    embargo = embargoes.find { |e| e['a'] == field['8'] }
+    accumulator << ElectronicPortfolioBuilder.build(field: field, date: date, embargo: embargo)
+  end
+end
 
 # Location has:
 #    1040
