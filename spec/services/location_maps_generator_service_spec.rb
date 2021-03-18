@@ -5,12 +5,10 @@ RSpec.describe LocationMapsGeneratorService do
   let(:base_path) { './tmp/' }
   let(:locations_path) { File.join(base_path, 'locations.rb') }
   let(:location_display_path) { File.join(base_path, 'location_display.rb') }
-  let(:holding_library_path) { File.join(base_path, 'holding_library.rb') }
 
   after do
     FileUtils.rm(locations_path)
     FileUtils.rm(location_display_path)
-    FileUtils.rm(holding_library_path)
   end
 
   describe '.generate' do
@@ -22,7 +20,6 @@ RSpec.describe LocationMapsGeneratorService do
       described_class.generate
       expect(File.exist?(locations_path)).to be true
       expect(File.exist?(location_display_path)).to be true
-      expect(File.exist?(holding_library_path)).to be true
     end
   end
 
@@ -48,7 +45,6 @@ RSpec.describe LocationMapsGeneratorService do
       described_class.generate_from_templates
       expect(File.exist?(locations_path)).to be true
       expect(File.exist?(location_display_path)).to be true
-      expect(File.exist?(holding_library_path)).to be true
     end
   end
 end
