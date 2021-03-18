@@ -21,36 +21,16 @@ class LocationMapsGeneratorService
 
     lib_display = {}
     locations_display = {}
-    holding_library = {}
     locations.each do |holding|
       holding_code = holding['code']
       lib_label = holding.library['label']
-      holding_label = holding['label'] == '' ? lib_label : holding['label']
+      holding_label = holding['label']
       lib_display[holding_code] = lib_label
       locations_display[holding_code] = holding_label
     end
 
-    # The Alma::Locations misses the location code: rare$warf
-    # As a result the locations.rb file does not include it.
-    # Do we need to add this location code ?
-    # It refers to: Western Americana: Reference Collection (WARF)
-    holding_libraries.each do |library|
-      holding_library[library.code] = library.label
-    end
-
     write_file('location_display.rb', lib_display)
     write_file('locations.rb', locations_display)
-    write_file('holding_library.rb', holding_library)
-  end
-
-  # Select the holding_libraries based on the holding location code from:
-  # https://github.com/pulibrary/bibdata/blob/main/marc_to_solr/translation_maps/holding_library.rb.tmpl
-  def holding_libraries
-    holding_codes = ["recap$gp", "recap$pb", "recap$pf", "recap$pg", "recap$ph", "recap$pj",
-                     "recap$pk", "recap$pl", "recap$pm", "recap$pn", "recap$pq", "recap$ps", "recap$pt", "recap$pw",
-                     "recap$pz", "recap$qk", "recap$ql", "recap$qv", "recap$xc", "recap$xg", "recap$xm", "recap$xn",
-                     "recap$xp", "recap$xr", "recap$xx", "recap$warf"]
-    locations.select { |l| holding_codes.include?(l.code) }
   end
 
   def generate_from_templates
