@@ -119,9 +119,12 @@ describe 'From traject_config.rb' do
     it "returns the electronic_portfolio_s field" do
       record = @indexer.map_record(fixture_alma_record('99122306151806421'))
       portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
-      nature = portfolios.detect { |p| p['title'] == 'Nature' }
-      ebsco = portfolios.detect { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
-      proquest = portfolios.detect { |p| p['title'] == 'ProQuest Central' }
+      nature = portfolios.find { |p| p['title'] == 'Nature' }
+      ebsco = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
+      resource1 = portfolios.find { |p| p['title'] == 'Resource1' }
+      resource2 = portfolios.find { |p| p['title'] == 'Resource2' }
+      resource3 = portfolios.find { |p| p['title'] == 'Resource3' }
+      resource4 = portfolios.find { |p| p['title'] == 'Resource4' }
 
       expect(nature['url']).to include '&portfolio_pid=53443322610006421'
       expect(nature['desc']).to eq 'Available from 1869 volume: 1 issue: 1.'
@@ -134,8 +137,21 @@ describe 'From traject_config.rb' do
       expect(ebsco['start']).to eq '1997'
       expect(ebsco['end']).to eq '2015'
 
-      # Date range with embargo
-      expect(proquest['end']).to eq '2020'
+      # Date range with less than or equal to embargo
+      expect(resource1['start']).to eq '2019'
+      expect(resource1['end']).to eq 'latest'
+
+      # Date range with less than embargo
+      expect(resource2['start']).to eq '2020'
+      expect(resource2['end']).to eq 'latest'
+
+      # Date range with greater than embargo
+      expect(resource3['start']).to eq '1990'
+      expect(resource3['end']).to eq '2018'
+
+      # Date range with greater than or equal to embargo
+      expect(resource4['start']).to eq '1990'
+      expect(resource4['end']).to eq '2019'
     end
   end
   describe "call_number_display field" do

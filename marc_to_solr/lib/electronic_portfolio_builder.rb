@@ -33,16 +33,32 @@ class ElectronicPortfolioBuilder
 
   private
 
+    # Formulas for start and end dates come from Alma
+    # documentation on the embargo operator:
+    # <=  Most recent X year(s) available
+    # >=  Most recent X year(s) not available
+    # <   Most recent X year(s)-1 available
+    # >   Most recent X year(s)+1 not available
     def start_date
-      return unless date
-      date['b']
+      if embargo && (embargo['b'] == '<=')
+        (DateTime.now.year - embargo['c'].to_i).to_s
+      elsif embargo && embargo['b'] == '<'
+        (DateTime.now.year - (embargo['c'].to_i - 1)).to_s
+      elsif date
+        date['b']
+      end
     end
 
     def end_date
-      return unless date
-      if embargo && embargo['c']
+      if embargo && (embargo['b'] == '>=')
         (DateTime.now.year - embargo['c'].to_i).to_s
-      elsif date['c']
+      elsif embargo && (embargo['b'] == '<=')
+        'latest'
+      elsif embargo && embargo['b'] == '<'
+        'latest'
+      elsif embargo && embargo['b'] == '>'
+        (DateTime.now.year - (embargo['c'].to_i + 1)).to_s
+      elsif date && date['c']
         date['c']
       else
         'latest'
