@@ -327,6 +327,131 @@
   </datafield>
   <datafield tag="951" ind1="" ind2="">
     <subfield code="v">2020-12-14 04:40:40 US/Eastern</subfield>
+    <subfield code="g">Resource1</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-14 04:40:34 US/Eastern</subfield>
+    <subfield code="x">https://example.com</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53443322630006421</subfield>
+    <subfield code="k">embargo operator less than or equals to</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61428538600006421</subfield>
+    <subfield code="n">Resource1</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428551430006421</subfield>
+    <subfield code="c">url</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000466</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">534433226300064211</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">534433226300064211</subfield>
+    <subfield code="b">1990</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">4</subfield>
+  </datafield>
+  <datafield tag="954" ind1="" ind2="">
+    <subfield code="a">534433226300064211</subfield>
+    <subfield code="b">&lt;=</subfield>
+    <subfield code="c">2</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 04:40:40 US/Eastern</subfield>
+    <subfield code="g">Resource2</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-14 04:40:34 US/Eastern</subfield>
+    <subfield code="x">https://example.com</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53443322630006421</subfield>
+    <subfield code="k">description</subfield>
+    <subfield code="k">embargo operator less than</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61428538600006421</subfield>
+    <subfield code="n">Resource2</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428551430006421</subfield>
+    <subfield code="c">url</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000466</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">534433226300064212</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">534433226300064212</subfield>
+    <subfield code="b">1990</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">4</subfield>
+  </datafield>
+  <datafield tag="954" ind1="" ind2="">
+    <subfield code="a">534433226300064212</subfield>
+    <subfield code="b">&lt;</subfield>
+    <subfield code="c">2</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 04:40:40 US/Eastern</subfield>
+    <subfield code="g">Resource3</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-14 04:40:34 US/Eastern</subfield>
+    <subfield code="x">https://example.com</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53443322630006421</subfield>
+    <subfield code="k">embargo operator greater than</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61428538600006421</subfield>
+    <subfield code="n">Resource3</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428551430006421</subfield>
+    <subfield code="c">url</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000466</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">534433226300064213</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">534433226300064213</subfield>
+    <subfield code="b">1990</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">4</subfield>
+  </datafield>
+  <datafield tag="954" ind1="" ind2="">
+    <subfield code="a">534433226300064213</subfield>
+    <subfield code="b">&gt;</subfield>
+    <subfield code="c">2</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 04:40:40 US/Eastern</subfield>
+    <subfield code="g">Resource4</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-14 04:40:34 US/Eastern</subfield>
+    <subfield code="x">https://example.com</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53443322630006421</subfield>
+    <subfield code="k">embargo operator greater than or equal to</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61428538600006421</subfield>
+    <subfield code="n">Resource4</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428551430006421</subfield>
+    <subfield code="c">url</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000466</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">534433226300064214</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">534433226300064214</subfield>
+    <subfield code="b">1990</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">4</subfield>
+  </datafield>
+  <datafield tag="954" ind1="" ind2="">
+    <subfield code="a">534433226300064214</subfield>
+    <subfield code="b">&gt;=</subfield>
+    <subfield code="c">2</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 04:40:40 US/Eastern</subfield>
     <subfield code="g">Free E- Journals</subfield>
     <subfield code="u">System</subfield>
     <subfield code="t">2020-12-14 04:40:34 US/Eastern</subfield>
