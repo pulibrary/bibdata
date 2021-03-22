@@ -46,7 +46,6 @@ class Dump < ActiveRecord::Base
                    else
                      MARC_LIBERATION_CONFIG['records_per_file']
                    end
-
       ids.each_slice(slice_size).each do |id_slice|
         df = DumpFile.create(dump_file_type: dump_file_type)
         self.dump_files << df
