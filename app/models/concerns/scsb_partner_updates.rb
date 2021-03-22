@@ -29,7 +29,7 @@ module Scsb
 
       def get_partner_updates
         prepare_directory
-        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/')
+        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/Incremental')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
