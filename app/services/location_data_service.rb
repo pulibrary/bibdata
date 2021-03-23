@@ -33,6 +33,25 @@ class LocationDataService
         end
       end
     end
+    populate_partners_holding_locations
+  end
+
+  def populate_partners_holding_locations
+    partners_locations.each do |p|
+      Locations::HoldingLocation.new do |location_record|
+        location_record.label = p[:label]
+        location_record.code = p[:code]
+        location_record.library = Locations::Library.find_by(code: "recap")
+        location_record.save
+      end
+    end
+  end
+
+  def partners_locations
+    [
+      { code: "scsbcul", label: "" },
+      { code: "scsbnypl", label: "" }
+    ]
   end
 
   private
