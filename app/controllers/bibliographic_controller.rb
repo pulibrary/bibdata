@@ -91,8 +91,9 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # bibliographic/:bib_id/items
   def bib_items
-    item_keys = ["id", "pid", "perm_location", "temp_location"]
+    item_keys = ["id", "pid", "perm_location", "temp_location", "cdl"]
     holding_summary = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
 
     respond_to do |wants|
