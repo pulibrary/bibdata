@@ -652,11 +652,10 @@ describe 'From princeton_marc.rb' do
       @holding_id_868 = "22261907460006421"
       @holdings_868_block = @holdings_868[@holding_id_868]
 
+      @record_invalid_location = @indexer.map_record(fixture_alma_record('9914141453506421_invalid_loc'))
       @not_valid_holding_id = "999999"
-      @invalid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "8" => @not_valid_holding_id }, { "b" => "invalid" }] } }
-      @valid_loc_852 = { "852" => { "ind1" => "0", "ind2" => "0", "subfields" => [{ "8" => @holding_id_868 }, { "b" => "annex" }, { "c" => "stacks" }] } }
-      @custom_marc = MARC::Record.new_from_hash('fields' => [@invalid_loc_852, @valid_loc_852])
-      @holding_block = process_holdings(@custom_marc)
+      @holdings_id_852 = "22242008800006421"
+      @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
     end
 
     it 'includes only first location code' do
@@ -664,8 +663,8 @@ describe 'From princeton_marc.rb' do
     end
 
     it 'excludes holdings with an invalid location code' do
-      expect(@holding_block).not_to have_key(@not_valid_holding_id)
-      expect(@holding_block).to have_key(@holding_id_868)
+      expect(@holdings_with_invalid_location).not_to have_key(@not_valid_holding_id)
+      expect(@holdings_with_invalid_location).to have_key(@holdings_id_852)
     end
 
     it 'positions $k at the end for call_number_browse field' do
