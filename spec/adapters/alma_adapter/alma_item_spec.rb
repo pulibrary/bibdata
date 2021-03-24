@@ -86,4 +86,40 @@ RSpec.describe AlmaAdapter::AlmaItem do
       end
     end
   end
+
+  describe "#cdl?" do
+    context "when there is no work order type" do
+      it "flags false" do
+        item = described_class.new(
+          build_item(code: "pa")
+        )
+
+        expect(item.cdl?).to eq false
+      end
+    end
+
+    context "when the work order type is CDL" do
+      it "flags true" do
+        item = described_class.new(
+          Alma::BibItem.new(
+            "item_data" => {
+              "library" => {
+                "desc" => "ReCAP", "value" => "recap"
+              },
+              "location" => {
+                "desc" => "pa",
+                "value" => "pa"
+              },
+              "work_order_type" => {
+                "value" => "CDL",
+                "desc" => "Controlled Digital Lending"
+              }
+            }
+          )
+        )
+
+        expect(item.cdl?).to eq true
+      end
+    end
+  end
 end
