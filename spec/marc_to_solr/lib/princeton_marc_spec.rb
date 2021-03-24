@@ -656,6 +656,12 @@ describe 'From princeton_marc.rb' do
       @not_valid_holding_id = "999999"
       @holdings_id_852 = "22242008800006421"
       @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
+
+      # scsb
+      @record_scsb = @indexer.map_record(fixture_alma_record('SCSB-8157262'))
+      @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
+      @holding_id_scsb = "9856684"
+      @holdings_scsb_block = @holdings_scsb[@holding_id_scsb]
     end
 
     it 'includes only first location code' do
@@ -694,6 +700,30 @@ describe 'From princeton_marc.rb' do
     end
     it 'indexes takes from 868 $a and $z' do
       expect(@holdings_868_block['indexes']).to include("Index, v. 1/17")
+    end
+
+    describe "scsb process holdings" do
+      it "indexes from 852" do
+        expect(@holdings_scsb).to have_key(@holding_id_scsb)
+        expect(@holdings_scsb_block['location_code']).to eq('scsbnypl')
+        expect(@holdings_scsb_block['location']).to eq('ReCAP')
+        expect(@holdings_scsb_block['library']).to eq('ReCAP')
+        expect(@holdings_scsb_block['call_number_browse']).to eq('JSM 95-216')
+        expect(@holdings_scsb_block['call_number']).to eq('JSM 95-216')
+      end
+      it "indexes location_has from 866" do
+        expect(@holdings_scsb_block['location_has']).to eq(["no. 107-112"])
+      end
+      it "indexes 876 for scsb" do
+        expect(@holdings_scsb_block['items'][0]['enumeration']).to eq("no. 107-112")
+        expect(@holdings_scsb_block['items'][0]['id']).to eq("15555520")
+        expect(@holdings_scsb_block['items'][0]['use_statement']).to eq("In Library Use")
+        expect(@holdings_scsb_block['items'][0]['status_at_load']).to eq("Available")
+        expect(@holdings_scsb_block['items'][0]['barcode']).to eq("33433022784528")
+        expect(@holdings_scsb_block['items'][0]['copy_number']).to eq("1")
+        expect(@holdings_scsb_block['items'][0]['cgc']).to eq("Open")
+        expect(@holdings_scsb_block['items'][0]['collection_code']).to eq("JS")
+      end
     end
   end
 end
