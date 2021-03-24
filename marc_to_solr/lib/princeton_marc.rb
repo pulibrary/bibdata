@@ -632,9 +632,6 @@ end
 # assumes exactly 1 852 is present per mfhd (it saves the last 852 it finds)
 def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   all_holdings = {}
-  # extractor_doc_id = Traject::MarcExtractor.cached("001")
-  # doc_id = extractor_doc_id.extract(record).first
-
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
     holding_id = nil
