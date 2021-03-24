@@ -176,6 +176,7 @@ RSpec.describe AlmaAdapter do
 
   describe "record availability" do
     let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
+    let(:bib_record_with_ave) { file_fixture("alma/99122426947506421.json") }
 
     before do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
@@ -189,20 +190,32 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=99122426947506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_ave, headers: { "content-Type" => "application/json" })
     end
 
-    it "reports physical availability" do
+    it "reports availability of physical holdings" do
       availability = adapter.get_availability_one(id: "9922486553506421")
-      holding_av = availability["9922486553506421"]["22117511410006421"]
-      expect(holding_av[:holding_type]).to eq "physical"
-      expect(holding_av[:status_label]).to eq "unavailable"
+      holding = availability["9922486553506421"]["22117511410006421"]
+      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:status_label]).to eq "unavailable"
     end
 
-    it "reports availability for more than one holding" do
-      availability = adapter.get_availability_one(id: "9922486553506421")
-      holding_av = availability["9922486553506421"]["22117511410006421"]
-      expect(holding_av[:holding_type]).to eq "physical"
-      expect(holding_av[:status_label]).to eq "unavailable"
+    it "reports availability of portfolios" do
+      availability = adapter.get_availability_one(id: "99122426947506421")
+      portfolio = availability["99122426947506421"]["53469873890006421"]
+      expect(portfolio[:holding_type]).to eq "portfolio"
+      expect(portfolio[:status_label]).to eq "Available"
     end
   end
 end

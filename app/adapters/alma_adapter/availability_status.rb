@@ -28,38 +28,38 @@ class AlmaAdapter
     # TODO: Confirm that we need all of these values with the Alma implementation.
     # TODO: Find out if we can get copy_number from Solr (i.e. without hitting ExLibris' API)
     def holding_status(holding)
-      case
-      when holding["holding_id"]
-        status = {
-          location: holding["location_code"],
-          label: holding["location"],
-          status_label: holding["availability"],
-          more_items: (holding["total_items"] || "").to_i > 1,
-          holding_type: "physical",
-          id: holding["holding_id"],
-        }
-      when holding["portfolio_pid"]
-        # This kind of data is new with Alma.
-        status = {
-          location: "N/A",
-          label: "N/A",
-          status_label: holding["activation_status"],
-          more_items: nil,
-          holding_type: "portfolio",
-          id: holding["portfolio_pid"]
-        }
-      else
-        # TODO: can there be more than one like this per bib?
-        # If so we'll need to use unique IDs here.
-        status = {
-          location: holding["location_code"],
-          label: holding["location"],
-          status_label: holding["availability"],
-          more_items: (holding["total_items"] || "").to_i > 1,
-          holding_type: "other",
-          id: "other"
-        }
-      end
+      status = if holding["holding_id"]
+                 {
+                   location: holding["location_code"],
+                   label: holding["location"],
+                   status_label: holding["availability"],
+                   more_items: (holding["total_items"] || "").to_i > 1,
+                   holding_type: "physical",
+                   id: holding["holding_id"]
+                 }
+               elsif holding["portfolio_pid"]
+                 # This kind of data is new with Alma.
+                 status = {
+                   location: "N/A",
+                   label: "N/A",
+                   status_label: holding["activation_status"],
+                   more_items: nil,
+                   holding_type: "portfolio",
+                   id: holding["portfolio_pid"]
+                 }
+               else
+                 # TODO: can there be more than one like this per bib?
+                 # If so we'll need to use unique IDs here.
+                 status = {
+                   location: holding["location_code"],
+                   label: holding["location"],
+                   status_label: holding["availability"],
+                   more_items: (holding["total_items"] || "").to_i > 1,
+                   holding_type: "other",
+                   id: "other"
+                 }
+               end
+      status
     end
 
     def to_h
