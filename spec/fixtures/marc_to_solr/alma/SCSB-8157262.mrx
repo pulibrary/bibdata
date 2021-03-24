@@ -1,0 +1,2302 @@
+<?xml version="1.0"?>
+<record>
+  <leader>00000cas  2200445 a 4500</leader>
+  <controlfield tag="001">SCSB-8157262</controlfield>
+  <controlfield tag="003">CStRLIN</controlfield>
+  <controlfield tag="005">19990702102652.2</controlfield>
+  <controlfield tag="008">950127c19599999au  x0m      i0   a0eng  cas a </controlfield>
+  <controlfield tag="009">.b118131060</controlfield>
+  <datafield ind1="2" ind2=" " tag="710">
+    <subfield code="a">International Atomic Energy Agency.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="710">
+    <subfield code="a">International Atomic Energy Agency.</subfield>
+    <subfield code="t">IAEA research contracts : annual report.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="650">
+    <subfield code="a">Nuclear energy</subfield>
+    <subfield code="x">Research.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="022">
+    <subfield code="a">0074-1914</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="010">
+    <subfield code="a">65040046 //r93</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="500">
+    <subfield code="a">Description based on: no. 2 (1960)</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="510">
+    <subfield code="a">Biological abstracts</subfield>
+    <subfield code="x">0006-3169</subfield>
+    <subfield code="b">1962-1978</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="510">
+    <subfield code="a">GeoRef</subfield>
+    <subfield code="x">0197-7482</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="510">
+    <subfield code="a">Chemical abstracts</subfield>
+    <subfield code="x">0009-2258</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="515">
+    <subfield code="a">No. 4- form also: IAEA research contracts: annual report, 1st- ;no. 96- also forms Enviromental isotope data no. 1- ; no. 25- also forms IAEA laboratory activities no. 1- .</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="260">
+    <subfield code="a">Vienna :</subfield>
+    <subfield code="b">The Agency,</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="952">
+    <subfield code="h">JSM 95-216</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">v. ;</subfield>
+    <subfield code="c">24-30 cm.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="310">
+    <subfield code="a">Irregular</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="362">
+    <subfield code="a">Began with no. 1 in 1959.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="245">
+    <subfield code="a">Technical reports series /</subfield>
+    <subfield code="c">International Atomic Energy Agency.</subfield>
+  </datafield>
+  <datafield ind1="0" ind2=" " tag="210">
+    <subfield code="a">Tech. rep. ser. - Int. At. Energy Agency</subfield>
+  </datafield>
+  <datafield ind1="0" ind2=" " tag="210">
+    <subfield code="a">Technical report series (Unipub)</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="210">
+    <subfield code="a">Technical report series (Unipub)</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="299">
+    <subfield code="a">Technical reports series /</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="030">
+    <subfield code="a">TRAEA2</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">MnMULS</subfield>
+    <subfield code="d">OCoLC</subfield>
+    <subfield code="d">m.c.</subfield>
+    <subfield code="d">WaU</subfield>
+    <subfield code="d">OCoLC</subfield>
+    <subfield code="d">AIP</subfield>
+    <subfield code="d">NSDP</subfield>
+    <subfield code="d">m/c</subfield>
+    <subfield code="d">NSDP</subfield>
+    <subfield code="d">NST</subfield>
+    <subfield code="d">DLC</subfield>
+    <subfield code="d">CStRLIN</subfield>
+    <subfield code="d">NN</subfield>
+    <subfield code="d">WaOLN</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="042">
+    <subfield code="a">nsdp</subfield>
+    <subfield code="a">lc</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="050">
+    <subfield code="a">HD9698.A1</subfield>
+    <subfield code="b">I6</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="222">
+    <subfield code="a">Technical reports series - International Atomic Energy Agency</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="908">
+    <subfield code="a">HD9698.A1</subfield>
+    <subfield code="b">I6</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="997">
+    <subfield code="a">b</subfield>
+    <subfield code="b">07-16-99</subfield>
+    <subfield code="c">s</subfield>
+    <subfield code="d">a</subfield>
+    <subfield code="e">-</subfield>
+    <subfield code="f">eng</subfield>
+    <subfield code="g">au</subfield>
+    <subfield code="h">0</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="991">
+    <subfield code="y">1642481</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="907">
+    <subfield code="a">.b118131060</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)1642481</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-217</subfield>
+    <subfield code="0">9887434</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">v. 338-346</subfield>
+    <subfield code="0">9887434</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9887434</subfield>
+    <subfield code="3">v. 338-346</subfield>
+    <subfield code="a">15567521</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022788024</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9887433</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">v. 333-337</subfield>
+    <subfield code="0">9887433</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9887433</subfield>
+    <subfield code="3">v. 333-337</subfield>
+    <subfield code="a">15567520</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022788016</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">8306713</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">2[1960]-472[2010], incomplete</subfield>
+    <subfield code="0">8306713</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 397-398, 402-403, 405-406</subfield>
+    <subfield code="a">13646514</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433017747126</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 414-420</subfield>
+    <subfield code="a">13646516</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433032482527</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 407-408, 410-411, 413</subfield>
+    <subfield code="a">13646515</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433032483855</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 421-428</subfield>
+    <subfield code="a">13646517</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433064139029</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 429-436</subfield>
+    <subfield code="a">13646518</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433068718984</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 439-440, 442-445</subfield>
+    <subfield code="a">13646519</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433072922663</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 446, 448-450, 452, 454, 456</subfield>
+    <subfield code="a">13646520</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433073430229</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 382-387</subfield>
+    <subfield code="a">13646512</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433105005197</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 388-395</subfield>
+    <subfield code="a">13646513</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433105006450</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 361, 369, 372</subfield>
+    <subfield code="a">13646511</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433114955622</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">8306713</subfield>
+    <subfield code="3">no. 362, 366, 370-371, 373-378</subfield>
+    <subfield code="a">13646521</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433105005080</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">NA</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846712</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 163-164</subfield>
+    <subfield code="0">9846712</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846712</subfield>
+    <subfield code="3">no. 163-164</subfield>
+    <subfield code="a">15546089</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784791</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857640</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 11-15</subfield>
+    <subfield code="0">9857640</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857640</subfield>
+    <subfield code="3">no. 11-15</subfield>
+    <subfield code="a">15556782</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786010</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9855723</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 84-87</subfield>
+    <subfield code="0">9855723</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9855723</subfield>
+    <subfield code="3">no. 84-87</subfield>
+    <subfield code="a">15554345</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786200</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856684</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 107-112</subfield>
+    <subfield code="0">9856684</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856684</subfield>
+    <subfield code="3">no. 107-112</subfield>
+    <subfield code="a">15555520</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784528</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844542</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 218-219</subfield>
+    <subfield code="0">9844542</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844542</subfield>
+    <subfield code="3">no. 218-219</subfield>
+    <subfield code="a">15543844</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787554</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9117330</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 225-228</subfield>
+    <subfield code="0">9117330</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9117330</subfield>
+    <subfield code="3">no. 225-228</subfield>
+    <subfield code="a">14723890</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787570</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9855648</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 88-92</subfield>
+    <subfield code="0">9855648</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9855648</subfield>
+    <subfield code="3">no. 88-92</subfield>
+    <subfield code="a">15554266</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784460</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856362</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 303-307</subfield>
+    <subfield code="0">9856362</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856362</subfield>
+    <subfield code="3">no. 303-307</subfield>
+    <subfield code="a">15555120</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787745</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9858065</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 472</subfield>
+    <subfield code="0">9858065</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9858065</subfield>
+    <subfield code="3">no. 472</subfield>
+    <subfield code="a">15557363</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433088894617</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856771</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 246</subfield>
+    <subfield code="0">9856771</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856771</subfield>
+    <subfield code="3">no. 246</subfield>
+    <subfield code="a">15555628</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787646</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857714</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 44-46</subfield>
+    <subfield code="0">9857714</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857714</subfield>
+    <subfield code="3">no. 44-46</subfield>
+    <subfield code="a">15556888</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786093</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846502</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 144-148</subfield>
+    <subfield code="0">9846502</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846502</subfield>
+    <subfield code="3">no. 144-148</subfield>
+    <subfield code="a">15545887</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784908</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856725</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 239-240</subfield>
+    <subfield code="0">9856725</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856725</subfield>
+    <subfield code="3">no. 239-240</subfield>
+    <subfield code="a">15555566</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787612</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856355</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 297-301</subfield>
+    <subfield code="0">9856355</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856355</subfield>
+    <subfield code="3">no. 297-301</subfield>
+    <subfield code="a">15555109</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787737</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856103</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 401</subfield>
+    <subfield code="0">9856103</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856103</subfield>
+    <subfield code="3">no. 401</subfield>
+    <subfield code="a">15554827</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433017666532</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9845758</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 235-238</subfield>
+    <subfield code="0">9845758</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9845758</subfield>
+    <subfield code="3">no. 235-238</subfield>
+    <subfield code="a">15545125</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787604</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844446</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 210-212</subfield>
+    <subfield code="0">9844446</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844446</subfield>
+    <subfield code="3">no. 210-212</subfield>
+    <subfield code="a">15543745</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787521</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857398</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 380</subfield>
+    <subfield code="0">9857398</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857398</subfield>
+    <subfield code="3">no. 380</subfield>
+    <subfield code="a">15556428</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433105005189</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9118651</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 241-242</subfield>
+    <subfield code="0">9118651</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9118651</subfield>
+    <subfield code="3">no. 241-242</subfield>
+    <subfield code="a">14725349</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787620</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856118</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 63</subfield>
+    <subfield code="0">9856118</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856118</subfield>
+    <subfield code="3">no. 63</subfield>
+    <subfield code="a">15554847</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786168</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846670</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 157-162</subfield>
+    <subfield code="0">9846670</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846670</subfield>
+    <subfield code="3">no. 157-162</subfield>
+    <subfield code="a">15546044</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784783</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9845036</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 198-199</subfield>
+    <subfield code="0">9845036</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9845036</subfield>
+    <subfield code="3">no. 198-199</subfield>
+    <subfield code="a">15544341</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787497</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844598</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 230-234</subfield>
+    <subfield code="0">9844598</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844598</subfield>
+    <subfield code="3">no. 230-234</subfield>
+    <subfield code="a">15543901</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787596</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856734</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 252-258</subfield>
+    <subfield code="0">9856734</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856734</subfield>
+    <subfield code="3">no. 252-258</subfield>
+    <subfield code="a">15555579</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787661</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856434</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 311-315</subfield>
+    <subfield code="0">9856434</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856434</subfield>
+    <subfield code="3">no. 311-315</subfield>
+    <subfield code="a">15555209</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787760</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856606</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 101-106</subfield>
+    <subfield code="0">9856606</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856606</subfield>
+    <subfield code="3">no. 101-106</subfield>
+    <subfield code="a">15555438</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784502</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844529</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 220-224</subfield>
+    <subfield code="0">9844529</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844529</subfield>
+    <subfield code="3">no. 220-224</subfield>
+    <subfield code="a">15543830</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787562</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856963</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 113-117</subfield>
+    <subfield code="0">9856963</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856963</subfield>
+    <subfield code="3">no. 113-117</subfield>
+    <subfield code="a">15555887</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784882</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856438</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 309-310</subfield>
+    <subfield code="0">9856438</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856438</subfield>
+    <subfield code="3">no. 309-310</subfield>
+    <subfield code="a">15555219</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787752</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857691</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 21-25</subfield>
+    <subfield code="0">9857691</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857691</subfield>
+    <subfield code="3">no. 21-25</subfield>
+    <subfield code="a">15556851</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786044</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857653</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 6-10</subfield>
+    <subfield code="0">9857653</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857653</subfield>
+    <subfield code="3">no. 6-10</subfield>
+    <subfield code="a">15556797</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786002</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9117953</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 73-78</subfield>
+    <subfield code="0">9117953</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9117953</subfield>
+    <subfield code="3">no. 73-78</subfield>
+    <subfield code="a">14724575</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786184</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856798</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 261-264</subfield>
+    <subfield code="0">9856798</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856798</subfield>
+    <subfield code="3">no. 261-264</subfield>
+    <subfield code="a">15555663</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787679</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857779</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">inc. no. 332-353</subfield>
+    <subfield code="0">9857779</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857779</subfield>
+    <subfield code="3">inc. no. 332-353</subfield>
+    <subfield code="a">15556970</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433124374871</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856104</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 471</subfield>
+    <subfield code="0">9856104</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856104</subfield>
+    <subfield code="3">no. 471</subfield>
+    <subfield code="a">15554828</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433067666721</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856086</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 51-53</subfield>
+    <subfield code="0">9856086</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856086</subfield>
+    <subfield code="3">no. 51-53</subfield>
+    <subfield code="a">15554803</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786119</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9880245</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 41-42</subfield>
+    <subfield code="0">9880245</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9880245</subfield>
+    <subfield code="3">no. 41-42</subfield>
+    <subfield code="a">15573124</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786085</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9118538</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 129-133</subfield>
+    <subfield code="0">9118538</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9118538</subfield>
+    <subfield code="3">no. 129-133</subfield>
+    <subfield code="a">14725224</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784957</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844462</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 203-206</subfield>
+    <subfield code="0">9844462</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844462</subfield>
+    <subfield code="3">no. 203-206</subfield>
+    <subfield code="a">15543761</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787513</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856417</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 316-317</subfield>
+    <subfield code="0">9856417</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856417</subfield>
+    <subfield code="3">no. 316-317</subfield>
+    <subfield code="a">15555182</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787778</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856097</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 48-50</subfield>
+    <subfield code="0">9856097</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856097</subfield>
+    <subfield code="3">no. 48-50</subfield>
+    <subfield code="a">15554819</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786101</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856092</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 10</subfield>
+    <subfield code="0">9856092</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856092</subfield>
+    <subfield code="3">no. 10</subfield>
+    <subfield code="a">15554810</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786127</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846586</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 140-143</subfield>
+    <subfield code="0">9846586</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846586</subfield>
+    <subfield code="3">no. 140-143</subfield>
+    <subfield code="a">15545968</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784916</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844753</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">inc. no. 229-278</subfield>
+    <subfield code="0">9844753</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844753</subfield>
+    <subfield code="3">inc. no. 229-278</subfield>
+    <subfield code="a">15544058</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433124374863</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856397</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 318-321</subfield>
+    <subfield code="0">9856397</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856397</subfield>
+    <subfield code="3">no. 318-321</subfield>
+    <subfield code="a">15555164</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787786</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857680</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 32-36</subfield>
+    <subfield code="0">9857680</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857680</subfield>
+    <subfield code="3">no. 32-36</subfield>
+    <subfield code="a">15556836</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786051</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857203</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 399</subfield>
+    <subfield code="0">9857203</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857203</subfield>
+    <subfield code="3">no. 399</subfield>
+    <subfield code="a">15556201</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433122875457</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844896</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 170-175</subfield>
+    <subfield code="0">9844896</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844896</subfield>
+    <subfield code="3">no. 170-175</subfield>
+    <subfield code="a">15544197</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787422</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857713</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 16-19</subfield>
+    <subfield code="0">9857713</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857713</subfield>
+    <subfield code="3">no. 16-19</subfield>
+    <subfield code="a">15556887</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786028</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857128</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 402</subfield>
+    <subfield code="0">9857128</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857128</subfield>
+    <subfield code="3">no. 402</subfield>
+    <subfield code="a">15556100</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433122875432</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9155460</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 412</subfield>
+    <subfield code="0">9155460</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9155460</subfield>
+    <subfield code="3">no. 412</subfield>
+    <subfield code="a">14768826</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433018546048</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9121953</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 191-193</subfield>
+    <subfield code="0">9121953</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9121953</subfield>
+    <subfield code="3">no. 191-193</subfield>
+    <subfield code="a">14729092</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787471</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9878213</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 60</subfield>
+    <subfield code="0">9878213</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9878213</subfield>
+    <subfield code="3">no. 60</subfield>
+    <subfield code="a">15571030</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786150</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857768</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 355-359</subfield>
+    <subfield code="0">9857768</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857768</subfield>
+    <subfield code="3">no. 355-359</subfield>
+    <subfield code="a">15556959</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433124374889</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844404</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 213-216</subfield>
+    <subfield code="0">9844404</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844404</subfield>
+    <subfield code="3">no. 213-216</subfield>
+    <subfield code="a">15543704</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787539</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9855725</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 93-96</subfield>
+    <subfield code="0">9855725</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9855725</subfield>
+    <subfield code="3">no. 93-96</subfield>
+    <subfield code="a">15554348</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784486</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856483</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 322-329</subfield>
+    <subfield code="0">9856483</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856483</subfield>
+    <subfield code="3">no. 322-329</subfield>
+    <subfield code="a">15555269</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787794</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9117612</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 330-331</subfield>
+    <subfield code="0">9117612</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9117612</subfield>
+    <subfield code="3">no. 330-331</subfield>
+    <subfield code="a">14724199</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787802</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856982</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 409</subfield>
+    <subfield code="0">9856982</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856982</subfield>
+    <subfield code="3">no. 409</subfield>
+    <subfield code="a">15555906</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433018543854</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857817</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 127</subfield>
+    <subfield code="0">9857817</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857817</subfield>
+    <subfield code="3">no. 127</subfield>
+    <subfield code="a">15557025</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784973</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857754</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 37-39</subfield>
+    <subfield code="0">9857754</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857754</subfield>
+    <subfield code="3">no. 37-39</subfield>
+    <subfield code="a">15556943</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786069</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857828</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 128</subfield>
+    <subfield code="0">9857828</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857828</subfield>
+    <subfield code="3">no. 128</subfield>
+    <subfield code="a">15557040</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784965</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856084</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 54-58</subfield>
+    <subfield code="0">9856084</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856084</subfield>
+    <subfield code="3">no. 54-58</subfield>
+    <subfield code="a">15554801</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786135</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9848501</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 134</subfield>
+    <subfield code="0">9848501</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9848501</subfield>
+    <subfield code="3">no. 134</subfield>
+    <subfield code="a">15547977</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784940</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856364</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 292-296</subfield>
+    <subfield code="0">9856364</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856364</subfield>
+    <subfield code="3">no. 292-296</subfield>
+    <subfield code="a">15555122</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787729</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857786</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">inc. no. 360-368</subfield>
+    <subfield code="0">9857786</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857786</subfield>
+    <subfield code="3">inc. no. 360-368</subfield>
+    <subfield code="a">15556981</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433124374897</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844460</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 200</subfield>
+    <subfield code="0">9844460</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844460</subfield>
+    <subfield code="3">no. 200</subfield>
+    <subfield code="a">15543759</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787505</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857857</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 118-121</subfield>
+    <subfield code="0">9857857</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857857</subfield>
+    <subfield code="3">no. 118-121</subfield>
+    <subfield code="a">15557084</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784999</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9845056</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 194-197</subfield>
+    <subfield code="0">9845056</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9845056</subfield>
+    <subfield code="3">no. 194-197</subfield>
+    <subfield code="a">15544362</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787489</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856753</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 248-251</subfield>
+    <subfield code="0">9856753</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856753</subfield>
+    <subfield code="3">no. 248-251</subfield>
+    <subfield code="a">15555604</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787653</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857696</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 20</subfield>
+    <subfield code="0">9857696</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857696</subfield>
+    <subfield code="3">no. 20</subfield>
+    <subfield code="a">15556864</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786036</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856748</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 245</subfield>
+    <subfield code="0">9856748</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856748</subfield>
+    <subfield code="3">no. 245</subfield>
+    <subfield code="a">15555600</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787638</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9855647</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 91 rev. ed.</subfield>
+    <subfield code="0">9855647</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9855647</subfield>
+    <subfield code="3">no. 91 rev. ed.</subfield>
+    <subfield code="a">15554265</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784478</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9877750</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 98-100</subfield>
+    <subfield code="0">9877750</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9877750</subfield>
+    <subfield code="3">no. 98-100</subfield>
+    <subfield code="a">15570547</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784494</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9855918</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 139-209 inc.</subfield>
+    <subfield code="0">9855918</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9855918</subfield>
+    <subfield code="3">no. 139-209 inc.</subfield>
+    <subfield code="a">15554599</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433124374855</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856380</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 273-275</subfield>
+    <subfield code="0">9856380</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856380</subfield>
+    <subfield code="3">no. 273-275</subfield>
+    <subfield code="a">15555139</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787703</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857198</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 400</subfield>
+    <subfield code="0">9857198</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857198</subfield>
+    <subfield code="3">no. 400</subfield>
+    <subfield code="a">15556191</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433122875440</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856504</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 396</subfield>
+    <subfield code="0">9856504</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856504</subfield>
+    <subfield code="3">no. 396</subfield>
+    <subfield code="a">15555301</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433122875606</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856101</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 67-72</subfield>
+    <subfield code="0">9856101</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856101</subfield>
+    <subfield code="3">no. 67-72</subfield>
+    <subfield code="a">15554825</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786176</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9880334</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 122</subfield>
+    <subfield code="0">9880334</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9880334</subfield>
+    <subfield code="3">no. 122</subfield>
+    <subfield code="a">15573211</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784981</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9845010</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 179-183</subfield>
+    <subfield code="0">9845010</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9845010</subfield>
+    <subfield code="3">no. 179-183</subfield>
+    <subfield code="a">15544308</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787448</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856917</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 123-126</subfield>
+    <subfield code="0">9856917</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856917</subfield>
+    <subfield code="3">no. 123-126</subfield>
+    <subfield code="a">15555825</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784874</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9878972</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 270-271</subfield>
+    <subfield code="0">9878972</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9878972</subfield>
+    <subfield code="3">no. 270-271</subfield>
+    <subfield code="a">15571815</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787695</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856784</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 265-269</subfield>
+    <subfield code="0">9856784</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856784</subfield>
+    <subfield code="3">no. 265-269</subfield>
+    <subfield code="a">15555643</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787687</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844424</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 217</subfield>
+    <subfield code="0">9844424</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844424</subfield>
+    <subfield code="3">no. 217</subfield>
+    <subfield code="a">15543722</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787547</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844965</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 188-190</subfield>
+    <subfield code="0">9844965</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844965</subfield>
+    <subfield code="3">no. 188-190</subfield>
+    <subfield code="a">15544263</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787463</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846721</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 156</subfield>
+    <subfield code="0">9846721</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846721</subfield>
+    <subfield code="3">no. 156</subfield>
+    <subfield code="a">15546098</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784775</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856174</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 79-83</subfield>
+    <subfield code="0">9856174</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856174</subfield>
+    <subfield code="3">no. 79-83</subfield>
+    <subfield code="a">15554909</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786192</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857745</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 40</subfield>
+    <subfield code="0">9857745</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857745</subfield>
+    <subfield code="3">no. 40</subfield>
+    <subfield code="a">15556926</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786077</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9845005</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 176-178</subfield>
+    <subfield code="0">9845005</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9845005</subfield>
+    <subfield code="3">no. 176-178</subfield>
+    <subfield code="a">15544303</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787430</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856137</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 59-62</subfield>
+    <subfield code="0">9856137</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856137</subfield>
+    <subfield code="3">no. 59-62</subfield>
+    <subfield code="a">15554867</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022786143</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9844984</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 184-187</subfield>
+    <subfield code="0">9844984</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9844984</subfield>
+    <subfield code="3">no. 184-187</subfield>
+    <subfield code="a">15544283</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787455</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9847115</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 165-168</subfield>
+    <subfield code="0">9847115</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9847115</subfield>
+    <subfield code="3">no. 165-168</subfield>
+    <subfield code="a">15546483</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784809</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846563</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 135-138</subfield>
+    <subfield code="0">9846563</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846563</subfield>
+    <subfield code="3">no. 135-138</subfield>
+    <subfield code="a">15545945</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784932</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857207</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 470</subfield>
+    <subfield code="0">9857207</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857207</subfield>
+    <subfield code="3">no. 470</subfield>
+    <subfield code="a">15556206</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433088892561</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9846207</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 150-155</subfield>
+    <subfield code="0">9846207</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9846207</subfield>
+    <subfield code="3">no. 150-155</subfield>
+    <subfield code="a">15545591</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022784890</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856288</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 2-5</subfield>
+    <subfield code="0">9856288</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856288</subfield>
+    <subfield code="3">no. 2-5</subfield>
+    <subfield code="a">15555040</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022785996</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856759</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 27-31</subfield>
+    <subfield code="0">9856759</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856759</subfield>
+    <subfield code="3">no. 27-31</subfield>
+    <subfield code="a">15555611</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022785004</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9856378</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 285-291</subfield>
+    <subfield code="0">9856378</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9856378</subfield>
+    <subfield code="3">no. 285-291</subfield>
+    <subfield code="a">15555137</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433022787711</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+  <datafield ind1="8" ind2=" " tag="852">
+    <subfield code="h">JSM 95-216</subfield>
+    <subfield code="0">9857197</subfield>
+    <subfield code="b">scsbnypl</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="866">
+    <subfield code="a">no. 469</subfield>
+    <subfield code="0">9857197</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="876">
+    <subfield code="0">9857197</subfield>
+    <subfield code="3">no. 469</subfield>
+    <subfield code="a">15556190</subfield>
+    <subfield code="h">In Library Use</subfield>
+    <subfield code="j">Available</subfield>
+    <subfield code="p">33433088892553</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="x">Open</subfield>
+    <subfield code="z">JS</subfield>
+  </datafield>
+</record>
