@@ -173,4 +173,36 @@ RSpec.describe AlmaAdapter do
       expect(date).to eq "2016-01-23Z"
     end
   end
+
+  describe "record availability" do
+    let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
+
+    before do
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
+    end
+
+    it "reports physical availability" do
+      availability = adapter.get_availability_one(id: "9922486553506421")
+      holding_av = availability["9922486553506421"]["22117511410006421"]
+      expect(holding_av[:holding_type]).to eq "physical"
+      expect(holding_av[:status_label]).to eq "unavailable"
+    end
+
+    it "reports availability for more than one holding" do
+      availability = adapter.get_availability_one(id: "9922486553506421")
+      holding_av = availability["9922486553506421"]["22117511410006421"]
+      expect(holding_av[:holding_type]).to eq "physical"
+      expect(holding_av[:status_label]).to eq "unavailable"
+    end
+  end
 end

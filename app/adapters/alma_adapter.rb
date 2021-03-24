@@ -29,6 +29,24 @@ class AlmaAdapter
     AvailabilityStatus.from_bib(bib: bibs&.first).to_h
   end
 
+  # Returns availability for one bib id
+  def get_availability_one(id:)
+    bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+    return nil if bibs.count == 0
+    { bibs.first.id => AvailabilityStatus.new(bib: bibs.first).bib_availability }
+  end
+
+  # Returns availability for a list of bib ids
+  def get_availability_many(ids:)
+    bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+    return nil if bibs.count == 0
+    availability = {}
+    bibs.each do |bib|
+      availability[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
+    end
+    availability
+  end
+
   # Returns list of holding records for a given MMS
   # @param id [string]. e.g id = "991227850000541"
   def get_holding_records(id)

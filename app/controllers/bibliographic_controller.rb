@@ -21,6 +21,26 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # Returns availability for a single ID
+  # Mimics the response that Orangelight needs for a single bib record.
+  def availability
+    id = params[:bib_id]
+    availability = adapter.get_availability_one(id: id)
+    respond_to do |wants|
+      wants.json { render json: availability }
+    end
+  end
+
+  # Returns availability for a single ID
+  # Mimics the response that Orangelight needs for a single bib record.
+  def availability_many
+    ids = (params[:bib_ids] || "").split(",")
+    availability = adapter.get_availability_many(ids: ids)
+    respond_to do |wants|
+      wants.json { render json: availability }
+    end
+  end
+
   def bib
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
