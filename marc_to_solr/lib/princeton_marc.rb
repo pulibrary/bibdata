@@ -619,6 +619,13 @@ def alma_code?(code)
   code.to_s.start_with?("22") && code.to_s.end_with?("06421")
 end
 
+# SCSB item
+# Keep this check with the alma_code? check
+# until we make sure that the records in alma are updated
+def scsb_doc?(record_id)
+  /^SCSB-\d+/.match?(record_id)
+end
+
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868
@@ -629,17 +636,18 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     holding = {}
     holding_id = nil
     is_alma = alma_code?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value)
     field.subfields.each do |s_field|
       if s_field.code == '8'
-        holding_id = s_field.value if is_alma
+        holding_id = s_field.value if is_alma || is_scsb
       elsif s_field.code == '0'
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location_code'] ||= s_field.value if is_alma
+        holding['location_code'] ||= s_field.value if is_alma || is_scsb
         # Append 852c to location code 852b if it's an Alma item
         holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
-        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']] if is_alma
-        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']] if is_alma
+        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']] if is_alma || is_scsb
+        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']] if is_alma || is_scsb
       elsif /[khij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value

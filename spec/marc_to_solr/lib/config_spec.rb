@@ -56,6 +56,16 @@ describe 'From traject_config.rb' do
       expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
     end
   end
+
+  describe 'scsb locations' do
+    it "will index a scsbnypl location" do
+      record = @indexer.map_record(fixture_alma_record('SCSB-8157262'))
+      expect(record["location_code_s"]).to eq ["scsbnypl"]
+      expect(record["location"]).to eq ["ReCAP"]
+      expect(record["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
+      expect(record["location_display"]).to eq ["ReCAP"]
+    end
+  end
   describe "holdings" do
     it "can index holdings" do
       record = @indexer.map_record(fixture_alma_record('9992320213506421'))
