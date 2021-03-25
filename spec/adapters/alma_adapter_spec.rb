@@ -177,6 +177,7 @@ RSpec.describe AlmaAdapter do
   describe "record availability" do
     let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
     let(:bib_record_with_ave) { file_fixture("alma/99122426947506421.json") }
+    let(:two_bib_records) { file_fixture("alma/two_bibs.json") }
 
     before do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
@@ -202,6 +203,18 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 200, body: bib_record_with_ave, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
+        .with(
+          headers: {
+            'Accept'=>'application/json',
+            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization'=>'apikey TESTME',
+            'Content-Type'=>'application/json',
+            'User-Agent'=>'Ruby'
+          }
+        )
+        .to_return(status: 200, body: two_bib_records, headers: {})
     end
 
     it "reports availability of physical holdings" do
@@ -216,6 +229,11 @@ RSpec.describe AlmaAdapter do
       portfolio = availability["99122426947506421"]["53469873890006421"]
       expect(portfolio[:holding_type]).to eq "portfolio"
       expect(portfolio[:status_label]).to eq "Available"
+    end
+
+    it "reports availability for many bib ids" do
+      availability = adapter.get_availability_many(ids: ["9922486553506421", "99122426947506421"])
+      expect(availability.keys.count).to eq 2
     end
   end
 end
