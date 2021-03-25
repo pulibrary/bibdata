@@ -44,7 +44,6 @@ class LocationMapsGeneratorService
     def copy_template(template_name)
       output_file_name = template_name.gsub('.tmpl', '')
       output_file_path = file_path(output_file_name)
-      return if File.exist?(output_file_path)
       template_file_path = file_path(template_name)
       FileUtils.cp(template_file_path, output_file_path)
     end
