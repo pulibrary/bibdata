@@ -32,7 +32,7 @@ class BibliographicController < ApplicationController
   end
 
   # Returns availability for a single ID
-  # Mimics the response that Orangelight needs for a single bib record.
+  # Mimics the response that Orangelight needs for a multiple bib records.
   def availability_many
     ids = (params[:bib_ids] || "").split(",")
     availability = adapter.get_availability_many(ids: ids)
