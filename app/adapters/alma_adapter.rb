@@ -40,9 +40,8 @@ class AlmaAdapter
   def get_availability_many(ids:)
     bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
-    availability = {}
-    bibs.each do |bib|
-      availability[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
+    availability = bibs.each_with_object({}) do |bib, acc|
+      acc[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
     end
     availability
   end

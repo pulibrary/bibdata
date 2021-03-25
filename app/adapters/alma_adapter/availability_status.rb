@@ -12,10 +12,9 @@ class AlmaAdapter
 
     # Returns availability information for each of the holdings in the Bib record.
     def bib_availability
-      availability = {}
-      holdings.each do |holding|
+      availability = holdings.each_with_object({}) do |holding, acc|
         status = holding_status(holding)
-        availability[status[:id]] = status
+        acc[status[:id]] = status
       end
       availability
     end
@@ -39,7 +38,7 @@ class AlmaAdapter
                  }
                elsif holding["portfolio_pid"]
                  # This kind of data is new with Alma.
-                 status = {
+                 {
                    on_reserve: "N",
                    location: "N/A",
                    label: "N/A",
@@ -51,7 +50,7 @@ class AlmaAdapter
                else
                  # TODO: can there be more than one like this per bib?
                  # If so we'll need to use unique IDs here.
-                 status = {
+                 {
                    on_reserve: "N",
                    location: holding["location_code"],
                    label: holding["location"],
