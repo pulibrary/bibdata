@@ -22,7 +22,6 @@ class AlmaAdapter
 
     # TODO: handle these properties
     #   "copy_number": item["copy_number"],
-    #   "on_reserve": "?",              # TODO: "N""
     #   "patron_group_charged": nil,    # TODO: nil
     #   "status": "???",                # TODO: "Not Charged"
     # TODO: Confirm that we need all of these values with the Alma implementation.
@@ -30,6 +29,7 @@ class AlmaAdapter
     def holding_status(holding)
       status = if holding["holding_id"]
                  {
+                   on_reserve: "N",
                    location: holding["location_code"],
                    label: holding["location"],
                    status_label: holding["availability"],
@@ -40,6 +40,7 @@ class AlmaAdapter
                elsif holding["portfolio_pid"]
                  # This kind of data is new with Alma.
                  status = {
+                   on_reserve: "N",
                    location: "N/A",
                    label: "N/A",
                    status_label: holding["activation_status"],
@@ -51,6 +52,7 @@ class AlmaAdapter
                  # TODO: can there be more than one like this per bib?
                  # If so we'll need to use unique IDs here.
                  status = {
+                   on_reserve: "N",
                    location: holding["location_code"],
                    label: holding["location"],
                    status_label: holding["availability"],
