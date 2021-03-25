@@ -19,9 +19,38 @@ RSpec.describe LocationMapsGeneratorService do
     end
 
     it 'generates location maps from data in holdings tables' do
+      FactoryBot.create(:holding_location)
       described_class.generate
-      expect(File.exist?(locations_path)).to be true
-      expect(File.exist?(location_display_path)).to be true
+      expect(File.read(locations_path)).to include('location-code', 'location-label')
+      expect(File.read(location_display_path)).to include('location-code', 'Firestone Library')
+    end
+
+    context 'when the holding locations table does not exist' do
+      let(:logger) { instance_double(ActiveSupport::Logger) }
+      let(:service) { described_class.new(base_path: base_path, logger: logger) }
+      before do
+        allow(logger).to receive(:warn)
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
+      end
+
+      it 'logs the  error' do
+        service.generate
+        expect(logger).to have_received(:warn).with(/has not been created/)
+      end
+    end
+
+    context 'when there is a database error' do
+      let(:logger) { instance_double(ActiveSupport::Logger) }
+      let(:service) { described_class.new(base_path: base_path, logger: logger) }
+      before do
+        allow(logger).to receive(:warn)
+        allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_raise(StandardError)
+      end
+
+      it 'logs the error' do
+        service.generate
+        expect(logger).to have_received(:warn).with(/database error/)
+      end
     end
   end
 

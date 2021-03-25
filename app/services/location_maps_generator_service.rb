@@ -14,10 +14,7 @@ class LocationMapsGeneratorService
   end
 
   def generate
-    unless holding_locations_table_exists?
-      logger.warn("Failed to seed the holding locations for Traject as the database table has not been created. Please invoke bundle exec rake db:create")
-      return
-    end
+    return unless holding_locations_table_exists?
 
     lib_display = {}
     locations_display = {}
@@ -53,9 +50,14 @@ class LocationMapsGeneratorService
     end
 
     def holding_locations_table_exists?
-      ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
+      if !ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
+        logger.warn("Failed to seed the holding locations for Traject as the database table has not been created. Please invoke bundle exec rake db:create")
+        false
+      else
+        true
+      end
     rescue StandardError => database_error
-      Rails.logger.warn("Failed to seed the holding locations for Traject due to a database error: #{database_error}.")
+      logger.warn("Failed to seed the holding locations for Traject due to a database error: #{database_error}.")
       false
     end
 
