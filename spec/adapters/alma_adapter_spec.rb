@@ -207,11 +207,11 @@ RSpec.describe AlmaAdapter do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
         .with(
           headers: {
-            'Accept'=>'application/json',
-            'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization'=>'apikey TESTME',
-            'Content-Type'=>'application/json',
-            'User-Agent'=>'Ruby'
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
           }
         )
         .to_return(status: 200, body: two_bib_records, headers: {})
