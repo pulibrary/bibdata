@@ -29,6 +29,34 @@ class AlmaAdapter
     AvailabilityStatus.from_bib(bib: bibs&.first).to_h
   end
 
+  def get_availability_holding(id:, holding_id:)
+    bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+    return nil if bibs.count == 0
+    availability = []
+    holding_items = get_holding_items(id, holding_id)
+    (holding_items["item"] || []).each do |item|
+      item_data = item["item_data"]
+      holding_data = item["holding_data"]
+      item_av = {
+          "barcode": item_data["barcode"],
+          "id": item_data["pid"],
+          "copy_number": holding_data["copy_id"],
+          "item_sequence_number": nil,                            # ??
+          "status": "Not Charged",                                # ??
+          "on_reserve": "N",                                      # ??
+          "item_type": item_data["policy"]["value"],
+          "pickup_location_id": item_data["location"]["value"],   # ??
+          "pickup_location_code": item_data["location"]["value"], # ??
+          "patron_group_charged": nil,                            # ??
+          "location": item_data["library"]["value"],
+          "label": item_data["library"]["desc"],
+          "status_label": ""                                      # ??
+      }
+      availability << item_av
+    end
+    availability
+  end
+
   # Returns list of holding records for a given MMS
   # @param id [string]. e.g id = "991227850000541"
   def get_holding_records(id)
@@ -37,6 +65,15 @@ class AlmaAdapter
       apikey: apikey
     )
     res.body.force_encoding("utf-8")
+  end
+
+  # Returns the holdings and items for a given holding_id
+  def get_holding_items(id, holding_id)
+    res = connection.get(
+      "bibs/#{id}/holdings/#{holding_id}/items?format=json",
+      apikey: apikey
+    )
+    JSON.parse(res.body.force_encoding("utf-8"))
   end
 
   # @param id [String]. e.g id = "991227850000541"
