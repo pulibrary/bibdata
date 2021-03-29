@@ -41,6 +41,19 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # Returns availability for a single holding in a bib record
+  # Mimics the response that the Request App needs for a single holding record.
+  def availability_holding
+    if params[:bib_id] && params[:holding_id]
+      availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id])
+      respond_to do |wants|
+        wants.json { render json: availability }
+      end
+    else
+      render plain: "Please supply a bib id and a holding id", status: 404
+    end
+  end
+
   def bib
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
