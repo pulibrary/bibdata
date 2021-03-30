@@ -236,6 +236,7 @@ RSpec.describe AlmaAdapter do
       expect(holding[:holding_type]).to eq "physical"
       expect(holding[:status_label]).to eq "unavailable"
       expect(holding[:more_items]).to be false
+      expect(holding[:location]).to eq "firestone$stacks"
     end
 
     it "reports availability of portfolios" do
