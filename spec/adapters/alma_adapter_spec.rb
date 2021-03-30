@@ -173,4 +173,93 @@ RSpec.describe AlmaAdapter do
       expect(date).to eq "2016-01-23Z"
     end
   end
+
+  describe "record availability" do
+    let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
+    let(:bib_record_with_ave) { file_fixture("alma/99122426947506421.json") }
+    let(:bib_record_with_av_other) { file_fixture("alma/9952822483506421.json") }
+    let(:two_bib_records) { file_fixture("alma/two_bibs.json") }
+
+    before do
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9952822483506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_av_other, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=99122426947506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_ave, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: two_bib_records, headers: {})
+    end
+
+    it "reports availability of physical holdings" do
+      availability = adapter.get_availability_one(id: "9922486553506421")
+      holding = availability["9922486553506421"]["22117511410006421"]
+      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:status_label]).to eq "unavailable"
+      expect(holding[:more_items]).to be false
+    end
+
+    it "reports availability of portfolios" do
+      availability = adapter.get_availability_one(id: "99122426947506421")
+      portfolio = availability["99122426947506421"]["53469873890006421"]
+      expect(portfolio[:holding_type]).to eq "portfolio"
+      expect(portfolio[:status_label]).to eq "Available"
+      expect(portfolio[:more_items]).to be nil
+    end
+
+    it "reports availability for other" do
+      # This kind of resource is new in Alma and still needs some work,
+      # but for now we at least test that we are executing the branch of
+      # code that handles them.
+      availability = adapter.get_availability_one(id: "9952822483506421")
+      other = availability["9952822483506421"]["other"]
+      expect(other[:holding_type]).to eq "other"
+      expect(other[:status_label]).to eq "available"
+      expect(other[:more_items]).to be true
+    end
+
+    it "reports availability for many bib ids" do
+      availability = adapter.get_availability_many(ids: ["9922486553506421", "99122426947506421"])
+      expect(availability.keys.count).to eq 2
+    end
+  end
 end
