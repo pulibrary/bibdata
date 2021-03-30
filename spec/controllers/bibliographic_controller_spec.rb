@@ -384,4 +384,34 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
   end
+
+  describe "#availability" do
+    before do
+      data = { "9922486553506421": { "22117511410006421": {} } }
+      allow(adapter).to receive(:get_availability_one).and_return(data)
+    end
+    it "handles one record" do
+      # For now we are just testing that the right call is made inside the controller.
+      get :availability, params: { bib_id: "9922486553506421" }, format: :json
+      expect(response.body).not_to be_empty
+      expect(response.body).to include("22117511410006421")
+    end
+  end
+
+  describe "#availability_many" do
+    before do
+      data = {
+        "9922486553506421": { "22117511410006421": {} },
+        "99122426947506421": { "53469873890006421": {}, "53469873880006421": {} }
+      }
+      allow(adapter).to receive(:get_availability_many).and_return(data)
+    end
+    it "handles many records" do
+      # For now we are just testing that the right call is made inside the controller.
+      get :availability_many, params: { bib_ids: "9922486553506421,99122426947506421" }, format: :json
+      expect(response.body).not_to be_empty
+      expect(response.body).to include("9922486553506421")
+      expect(response.body).to include("99122426947506421")
+    end
+  end
 end
