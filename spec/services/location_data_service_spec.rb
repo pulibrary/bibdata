@@ -46,7 +46,7 @@ RSpec.describe LocationDataService, type: :service do
 
   describe "#delete_existing_and_repopulate" do
     before do
-      # Setup dummy records to test if existing records are deleted
+      # Setup fake records to test if existing records are deleted
       test_library = Locations::Library.create(code: 'test', label: 'test')
       Locations::HoldingLocation.new(code: 'test', label: 'test') do |test_location|
         test_location.library = test_library
@@ -63,7 +63,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(Locations::Library.count).to eq 2
       expect(Locations::HoldingLocation.count).to eq 13
       expect(library_record.label).to eq 'Main Library'
-      expect(location_record1.label).to eq 'Main Library - Main Library Stacks'
+      expect(location_record1.label).to eq 'Main Library'
       expect(location_record1.open).to be true
       expect(location_record2.open).to be false
     end
