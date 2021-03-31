@@ -105,6 +105,19 @@ class AlmaAdapter
       @availability_response ||= Alma::AvailabilityResponse.new(Array.wrap(bib)).availability[bib.id][:holdings]
     end
 
+    def holding(holding_id:)
+      holdings.find { |h| h["holding_id"] == holding_id }
+    end
+
+    def get_holding_items(holding_id)
+      res = connection.get(
+        "bibs/#{bib.id}/holdings/#{holding_id}/items?format=json",
+        apikey: apikey
+      )
+      data = JSON.parse(res.body.force_encoding("utf-8")) || {}
+      data["item"] || []
+    end
+
     private
 
       def cdl_holding?(holding_id)
@@ -116,6 +129,16 @@ class AlmaAdapter
           end
         end
         cdl
+      end
+
+      # This method won't be needed once/if we move get_holding_items() to the Alma gem.
+      def connection
+        AlmaAdapter::Connector.connection
+      end
+
+      # This method won't be needed once/if we move get_holding_items() to the Alma gem.
+      def apikey
+        Rails.configuration.alma[:read_only_apikey]
       end
   end
 end

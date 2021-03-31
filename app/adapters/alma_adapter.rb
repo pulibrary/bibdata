@@ -47,28 +47,68 @@ class AlmaAdapter
   end
 
   def get_availability_holding(id:, holding_id:)
+    # Fetch the bib record and get the information for the individual holding
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
+
+    bib_status = AvailabilityStatus.from_bib(bib: bibs.first)
+    marc_holding = bib_status.holding(holding_id: holding_id) || {}
+
+    # Fetch the items for the holding and create the availability response
     availability = []
-    holding_items = get_holding_items(id, holding_id)
-    (holding_items["item"] || []).each do |item|
-      item_data = item["item_data"]
-      holding_data = item["holding_data"]
+    # holding_items = get_holding_items(id, holding_id)["item"] || []
+    bib_status.get_holding_items(holding_id).each do |item|
+      item_data = item["item_data"] || {}
+      holding_data = item["holding_data"] || {}
+
+      location = item_data["location"] || {}
+      library = item_data["library"] || {}
+      if holding_data["in_temp_location"]
+        # http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
+        library = holding_data["temp_library"] || {}
+        location = holding_data["temp_location"] || {}
+      end
+
+      status_label =  marc_holding["availability"]
+      if status_label.nil?
+        # TODO: Figure out if this is right.
+        #     When the marc_holding is nil it seems that there is a a single holding in the bib but
+        #     that holding does NOT have an ID, yet, I think for eresources that single holding
+        #     seems to have the data that we need and therefore we could take the "availability"
+        #     property from that holding.
+        #     For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
+        # For now use the data in the item.
+        #
+        # If we do use the item_data value we should normalize it so that it says "available"
+        # rather than "Item in place".
+        status_label = item_data["base_status"]["desc"]
+      end
+
+      policy = item_data["policy"] || {}
       item_av = {
           "barcode": item_data["barcode"],
           "id": item_data["pid"],
           "copy_number": holding_data["copy_id"],
-          "item_sequence_number": nil,                            # ??
-          "status": "Not Charged",                                # ??
-          "on_reserve": "N",                                      # ??
-          "item_type": item_data["policy"]["value"],
-          "pickup_location_id": item_data["location"]["value"],   # ??
-          "pickup_location_code": item_data["location"]["value"], # ??
-          "patron_group_charged": nil,                            # ??
-          "location": item_data["library"]["value"],
-          "label": item_data["library"]["desc"],
-          "status_label": ""                                      # ??
+          "status": nil,                                # ?? "Not Charged"
+          "item_sequence_number": nil,                  # not used ??
+          "on_reserve": nil,                            # ??
+          "item_type": policy["value"],                 # Gen
+          "pickup_location_id": location["value"],      # stacks
+          "pickup_location_code": location["value"],    # stacks
+          "patron_group_charged": nil,                  # ??
+          "location": library["value"],                 # firestone
+          "label": library["desc"],                     # Firestore Library
+          "status_label": status_label                  # available
       }
+
+      # Only populate the enum_display key if there is data.
+      enum_string = enum_diplay(item_data)
+      item_av["enum_display"] = enum_string unless enum_string.blank?
+
+      # Only populate the chron_display key if there is data.
+      chron_string = chron_display(item_data)
+      item_av["chron_display"] = chron_string unless chron_string.blank?
+
       availability << item_av
     end
     availability
@@ -82,15 +122,6 @@ class AlmaAdapter
       apikey: apikey
     )
     res.body.force_encoding("utf-8")
-  end
-
-  # Returns the holdings and items for a given holding_id
-  def get_holding_items(id, holding_id)
-    res = connection.get(
-      "bibs/#{id}/holdings/#{holding_id}/items?format=json",
-      apikey: apikey
-    )
-    JSON.parse(res.body.force_encoding("utf-8"))
   end
 
   # @param id [String]. e.g id = "991227850000541"
@@ -131,5 +162,30 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
+    end
+
+    # Voyager only had one field for enumeration but Alma has many.
+    def enum_diplay(item_data)
+      enums = []
+      enums << item_data["enumeration_a"]
+      enums << item_data["enumeration_b"]
+      enums << item_data["enumeration_c"]
+      enums << item_data["enumeration_d"]
+      enums << item_data["enumeration_e"]
+      enums << item_data["enumeration_f"]
+      enums << item_data["enumeration_g"]
+      enums << item_data["enumeration_h"]
+      enums.reject(&:blank?).join(", ")
+    end
+
+    # Voyager only had one field for chronology but Alma has many.
+    def chron_display(item_data)
+      chrons = []
+      chrons << item_data["chronology_i"]
+      chrons << item_data["chronology_j"]
+      chrons << item_data["chronology_k"]
+      chrons << item_data["chronology_l"]
+      chrons << item_data["chronology_m"]
+      chrons.reject(&:blank?).join(", ")
     end
 end
