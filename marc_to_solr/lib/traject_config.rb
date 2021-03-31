@@ -7,7 +7,6 @@ require_relative './format'
 require_relative './princeton_marc'
 require_relative './geo'
 require_relative './electronic_portfolio_builder'
-require_relative './location_extract'
 require_relative './alma_reader'
 require_relative './solr_deleter'
 require 'stringex'
@@ -29,8 +28,6 @@ settings do
   provide "allow_duplicate_values", false
   provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
 end
-
-update_locations if ENV['UPDATE_LOCATIONS']
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 

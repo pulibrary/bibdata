@@ -12,6 +12,7 @@ namespace :scsb do
   desc "Index SCSB records with all changed records since SET_DATE, against SET_URL"
   task updates: :environment do
     if ENV['SET_URL'] && ENV['SET_DATE']
+      LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
       comp_time = Time.parse(ENV['SET_DATE'])
       dumps = Dump.where(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP'),
                          created_at: comp_time..Time.now)
@@ -22,6 +23,7 @@ namespace :scsb do
   desc "Index SCSB records with most recent update, against SET_URL"
   task latest: :environment do
     if ENV['SET_URL']
+      LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
       dumps = Dump.where(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP'))
       IndexFunctions.process_scsb_dumps([dumps.last], ENV['SET_URL'])
     end
