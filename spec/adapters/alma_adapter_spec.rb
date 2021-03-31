@@ -230,7 +230,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: two_bib_records, headers: {})
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9921799253506421")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9921799253506421")
         .with(
           headers: {
             'Accept' => 'application/json',
