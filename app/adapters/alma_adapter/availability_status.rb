@@ -29,7 +29,7 @@ class AlmaAdapter
       status = if holding["holding_id"]
                  {
                    on_reserve: "N",
-                   location: holding["location_code"],
+                   location: holding["library_code"] + "$" + holding["location_code"],
                    label: holding["location"],
                    status_label: holding["availability"],
                    more_items: (holding["total_items"] || "").to_i > 1,
