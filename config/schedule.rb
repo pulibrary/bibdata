@@ -23,7 +23,7 @@ every 1.day, at: '3:00am' do
   rake "liberate:arks:clear_and_seed_cache"
 end
 
-# Daily racap / partner jobs
+# Daily recap / partner jobs
 every 1.day, at: "3:00pm", roles: [:cron_production] do
   rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
 end
