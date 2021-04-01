@@ -85,6 +85,11 @@ In the API sandbox (see above)
 Voyager items, once the migration is finished, will have an ID in Alma equal to
 `99<voyager_id>3405314`
 
+### Hitting the Alma API
+
+The Alma web API has a maximum concurrent hit limit of 25 / second. The API limits are documented at https://developers.exlibrisgroup.com/alma/apis/#threshold and Daily use stats can be viewed at https://developers.exlibrisgroup.com/manage/reports/.
+
+
 ## Database Configuration
 
 ```bash
