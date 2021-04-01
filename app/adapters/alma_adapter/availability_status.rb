@@ -26,13 +26,13 @@ class AlmaAdapter
     # TODO: Confirm that we need all of these values with the Alma implementation.
     # TODO: Find out if we can get copy_number from Solr (i.e. without hitting ExLibris' API)
     def holding_status(holding)
+      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
       status = if holding["holding_id"]
                  {
                    on_reserve: "N",
                    location: holding["library_code"] + "$" + holding["location_code"],
                    label: holding["location"],
-                   status_label: holding["availability"],
-                   more_items: (holding["total_items"] || "").to_i > 1,
+                   status_label: status_label,
                    holding_type: "physical",
                    id: holding["holding_id"]
                  }
@@ -42,8 +42,7 @@ class AlmaAdapter
                    on_reserve: "N",
                    location: "N/A",
                    label: "N/A",
-                   status_label: holding["activation_status"],
-                   more_items: nil,
+                   status_label: status_label,
                    holding_type: "portfolio",
                    id: holding["portfolio_pid"]
                  }
@@ -54,8 +53,7 @@ class AlmaAdapter
                    on_reserve: "N",
                    location: holding["location_code"],
                    label: holding["location"],
-                   status_label: holding["availability"],
-                   more_items: (holding["total_items"] || "").to_i > 1,
+                   status_label: status_label,
                    holding_type: "other",
                    id: "other"
                  }
@@ -73,7 +71,6 @@ class AlmaAdapter
       holding_item_data = item_data[holding["holding_id"]]
       status = Status.new(bib: bib, holding_item_data: holding_item_data, holding: holding)
       {
-        more_items: holding["total_items"].to_i > 1,
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
         copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', ""),

@@ -14,6 +14,10 @@ class AlmaAdapter::Status
   end
 
   def to_s
-    return "On-Site" if holding["availability"] == "available"
+    return "Some items not available" if holding["availability"] == "check_holdings"
+    return holding["availability"].titlecase if holding["availability"]
+
+    # For electronic holdings
+    return holding["activation_status"].titlecase if holding["activation_status"]
   end
 end

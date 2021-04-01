@@ -39,24 +39,22 @@ RSpec.describe AvailabilityController, type: :controller do
       # https://bibdata.princeton.edu/availability?id=263059
       expect(availability).to eq(
         "2282456310006421" => {
-          "more_items" => false,
           "location" => "LAW-LAWRR",
           "copy_number" => "",
           "item_id" => "2382456270006421",
           # "on_reserve": "N", TODO: Implement
           # "patron_group_charged": null, TODO: Implement
-          "status" => "On-Site",
+          "status" => "Available",
           "label" => "Law Library"
           # "status_label": "On-site access"
         },
         # This isn't in Voyager's bibdata, I don't know why.
         "224991090000541" => {
-          "more_items" => false,
           "item_id" => "234991080000541",
           "location" => "MAIN-main",
           "label" => "Main Library",
           "copy_number" => "0",
-          "status" => "On-Site"
+          "status" => "Available"
         }
       )
     end
