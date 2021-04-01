@@ -179,6 +179,7 @@ RSpec.describe AlmaAdapter do
     let(:bib_record_with_ave) { file_fixture("alma/99122426947506421.json") }
     let(:bib_record_with_av_other) { file_fixture("alma/9952822483506421.json") }
     let(:two_bib_records) { file_fixture("alma/two_bibs.json") }
+    let(:bib_record_with_some_available) { file_fixture("alma/9921799253506421.json") }
 
     before do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
@@ -228,15 +229,33 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 200, body: two_bib_records, headers: {})
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9921799253506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_some_available, headers: { "content-Type" => "application/json" })
     end
 
     it "reports availability of physical holdings" do
       availability = adapter.get_availability_one(id: "9922486553506421")
       holding = availability["9922486553506421"]["22117511410006421"]
       expect(holding[:holding_type]).to eq "physical"
-      expect(holding[:status_label]).to eq "unavailable"
-      expect(holding[:more_items]).to be false
+      expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:location]).to eq "firestone$stacks"
+    end
+
+    it "reports some items available" do
+      availability = adapter.get_availability_one(id: "9921799253506421")
+      holding = availability["9921799253506421"]["22201236200006421"]
+      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:status_label]).to eq "Some items not available"
     end
 
     it "reports availability of portfolios" do
@@ -244,7 +263,6 @@ RSpec.describe AlmaAdapter do
       portfolio = availability["99122426947506421"]["53469873890006421"]
       expect(portfolio[:holding_type]).to eq "portfolio"
       expect(portfolio[:status_label]).to eq "Available"
-      expect(portfolio[:more_items]).to be nil
     end
 
     it "reports availability for other" do
@@ -254,8 +272,7 @@ RSpec.describe AlmaAdapter do
       availability = adapter.get_availability_one(id: "9952822483506421")
       other = availability["9952822483506421"]["other"]
       expect(other[:holding_type]).to eq "other"
-      expect(other[:status_label]).to eq "available"
-      expect(other[:more_items]).to be true
+      expect(other[:status_label]).to eq "Available"
     end
 
     it "reports availability for many bib ids" do
