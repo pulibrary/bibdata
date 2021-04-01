@@ -1,0 +1,45 @@
+{
+  "bib": [
+    {
+      "mms_id": "9921799253506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "Short voluntaries for the organ : selected from the works of Abel, Arne, Beethoven ... [et al.] /",
+      "author": "Hiles, John,",
+      "issn": null,
+      "isbn": null,
+      "network_number": [
+        "(NjP)2179925-princetondb",
+        "2179925",
+        "(OCoLC)ocm29479765"
+      ],
+      "place_of_publication": "London : New York :",
+      "date_of_publication": "[19--]",
+      "publisher_const": "Novello",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9921799253506421/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2020-12-02Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "BIBS",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "2179925-princetondb",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00899ccm a2200229Ma 4500</leader>\n    <controlfield tag=\"001\">9921799253506421</controlfield>\n    <controlfield tag=\"005\">20200810114544.0</controlfield>\n    <controlfield tag=\"008\">931130q19001950enkzzz         n        d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocm29479765</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"9\">CJV0915TS</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">2179925</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)2179925-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">HMU</subfield>\n      <subfield code=\"c\">HMU</subfield>\n      <subfield code=\"d\">PUL</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"048\">\n      <subfield code=\"a\">kb01</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Short voluntaries for the organ :</subfield>\n      <subfield code=\"b\">selected from the works of Abel, Arne, Beethoven ... [et al.] /</subfield>\n      <subfield code=\"c\">arranged by John Hiles.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">London :</subfield>\n      <subfield code=\"b\">Novello ;</subfield>\n      <subfield code=\"a\">New York :</subfield>\n      <subfield code=\"b\">the H. W. Gray Co., sole agents for the U.S.A.,</subfield>\n      <subfield code=\"c\">[19--]</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">v. of music ;</subfield>\n      <subfield code=\"c\">19 x 26 cm.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">\"This work is published...in five volumes...\"--t.p.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Organ music.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh85095468</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n      <subfield code=\"a\">Hiles, John,</subfield>\n      <subfield code=\"d\">1810-1882.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/nb97058837</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\" \" tag=\"740\">\n      <subfield code=\"a\">Voluntaries for the organ.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"945\">\n      <subfield code=\"a\">MUS</subfield>\n      <subfield code=\"b\">1</subfield>\n      <subfield code=\"c\">M12.H5</subfield>\n      <subfield code=\"d\">S5</subfield>\n      <subfield code=\"e\">v.1-5</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"911\">\n      <subfield code=\"a\">19990206</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9921799253506421</subfield><subfield code=\"8\">22201236200006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">recap</subfield><subfield code=\"c\">RECAP</subfield><subfield code=\"d\">Oversize M12.H5 S5q</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">pa</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">ReCAP</subfield><subfield code=\"t\">Vol. 1-v.5</subfield><subfield code=\"t\"/></datafield></record>"
+      ],
+      "requests": {
+        "value": 0,
+        "link": null
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}
