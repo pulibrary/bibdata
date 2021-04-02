@@ -176,6 +176,9 @@ RSpec.describe AlmaAdapter do
 
   describe "record availability" do
     let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
+    let(:bib_record_with_ava_holding_items) { file_fixture("alma/9922486553506421_holding_items.json") }
+    let(:bib_record_with_cdl) { file_fixture("alma/9965126093506421.json") }
+    let(:bib_record_with_cdl_holding_items) { file_fixture("alma/9965126093506421_holding_items.json") }
     let(:bib_record_with_ave) { file_fixture("alma/99122426947506421.json") }
     let(:bib_record_with_av_other) { file_fixture("alma/9952822483506421.json") }
     let(:two_bib_records) { file_fixture("alma/two_bibs.json") }
@@ -193,6 +196,42 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/ALL/items")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_ava_holding_items, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9965126093506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_cdl, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/ALL/items")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: bib_record_with_cdl_holding_items, headers: { "content-Type" => "application/json" })
 
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9952822483506421")
         .with(
@@ -249,6 +288,15 @@ RSpec.describe AlmaAdapter do
       expect(holding[:holding_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:location]).to eq "firestone$stacks"
+      expect(holding[:cdl]).to eq false
+    end
+
+    it "reports CDL when available" do
+      availability = adapter.get_availability_one(id: "9965126093506421")
+      holding = availability["9965126093506421"]["22202918790006421"]
+      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:status_label]).to eq "Unavailable"
+      expect(holding[:cdl]).to eq true
     end
 
     it "reports some items available" do
