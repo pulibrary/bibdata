@@ -1,0 +1,148 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "9965126093506421",
+        "title": "Beautiful passing lives : poems /",
+        "author": "Harkness, Edward.",
+        "issn": null,
+        "isbn": "1929355734 (pbk.)",
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)6512609-princetondb",
+          "6512609",
+          "(OCoLC)700510448",
+          "(OCoLC)ocn700510448"
+        ],
+        "place_of_publication": "New York, NY :",
+        "date_of_publication": "c2010.",
+        "publisher_const": "Pleasure Boat Studios",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421"
+      },
+      "holding_data": {
+        "holding_id": "22202918790006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "PS3558.A62424 B43 2010",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "PS3558.A62424 B43 2010",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/22202918790006421"
+      },
+      "item_data": {
+        "pid": "23202918780006421",
+        "barcode": "32101082390301",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2021-03-03Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2011-05-06Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "WORK_ORDER_DEPARTMENT",
+          "desc": "In Process"
+        },
+        "work_order_type": {
+          "value": "CDL",
+          "desc": "Controlled Digital Lending"
+        },
+        "work_order_at": {
+          "value": "digitization",
+          "desc": "Digitization Department"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "location": {
+          "value": "stacks",
+          "desc": "Firestone Library"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": true,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/22202918790006421/items/23202918780006421"
+    }
+  ],
+  "total_record_count": 1
+}
