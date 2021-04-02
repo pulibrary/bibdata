@@ -33,6 +33,7 @@ class AlmaAdapter
                    location: holding["library_code"] + "$" + holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
+                   cdl: false,
                    holding_type: "physical",
                    id: holding["holding_id"]
                  }
@@ -43,6 +44,7 @@ class AlmaAdapter
                    location: "N/A",
                    label: "N/A",
                    status_label: status_label,
+                   cdl: false,
                    holding_type: "portfolio",
                    id: holding["portfolio_pid"]
                  }
@@ -54,10 +56,17 @@ class AlmaAdapter
                    location: holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
+                   cdl: false,
                    holding_type: "other",
                    id: "other"
                  }
                end
+
+      # Check if the item is available via CDL.
+      # Notice that we only do this when necessary because it requires an extra (slow-ish) API call.
+      check_cdl = status[:holding_type] == "physical" && status[:status_label] == "Unavailable"
+      status[:cdl] = cdl_holding?(holding["holding_id"]) if check_cdl
+
       status
     end
 
@@ -95,5 +104,19 @@ class AlmaAdapter
       # extracts the availability information (i.e. the AVA and AVE fields) from the bib record.
       @availability_response ||= Alma::AvailabilityResponse.new(Array.wrap(bib)).availability[bib.id][:holdings]
     end
+
+    private
+
+      def cdl_holding?(holding_id)
+        cdl = false
+        item_data[holding_id].each do |bib_item|
+          work_order_type = bib_item.item.fetch("item_data", {}).fetch("work_order_type", {})
+          if work_order_type["value"] == "CDL"
+            cdl = true
+            break
+          end
+        end
+        cdl
+      end
   end
 end
