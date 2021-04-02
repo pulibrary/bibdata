@@ -87,8 +87,10 @@ namespace :hathi do
         CSV.foreach(hathi_file, col_sep: "\t", headers: true) do |row|
           if row[1].present?
             ENV['BIB'] = row[1]
-            # `SET_ULR=#{solr_url} BIB=#{ENV['BIB']} bundle exec bin/rake #{Rake::Task["liberate:bib"].execute}`
             if ENV['BIB']
+              # this won't work with alma; the bib records from this
+              # endpoint aren't enhanced the same way they are coming out of the
+              # publishing job
               resp = conn.get "/bibliographic/#{ENV['BIB']}"
               File.binwrite('./tmp/tmp.xml', resp.body)
               sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg}"
