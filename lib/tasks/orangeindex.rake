@@ -90,18 +90,6 @@ task :delete_bib do
 end
 
 namespace :liberate do
-  desc "Index VoyRec for given BIB, against SET_URL"
-  task :bib do
-    url_arg = ENV['SET_URL'] ? "-u #{ENV['SET_URL']}" : ''
-    if ENV['BIB']
-      resp = bibdata_connection.get "/bibliographic/#{ENV['BIB']}"
-      File.binwrite('./tmp/tmp.xml', resp.body)
-      sh "traject -c marc_to_solr/lib/traject_config.rb ./tmp/tmp.xml #{url_arg} #{commit}"
-    else
-      puts 'Please provide a BIB argument (BIB=####)'
-    end
-  end
-
   # TODO: Reimplement using Alma::Indexer.incremental_index
   desc "Index VoyRec with all changed records since SET_DATE, against SET_URL"
   task :updates do
