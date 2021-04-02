@@ -110,8 +110,7 @@ class AlmaAdapter
       def cdl_holding?(holding_id)
         cdl = false
         item_data[holding_id].each do |bib_item|
-          work_order_type = bib_item.item.fetch("item_data", {}).fetch("work_order_type", {})
-          if work_order_type["value"] == "CDL"
+          if AlmaItem.new(bib_item).cdl?
             cdl = true
             break
           end
