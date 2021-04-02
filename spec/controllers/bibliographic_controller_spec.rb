@@ -51,15 +51,16 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#bib' do
+    let(:unsuppressed) { "99121886293506421" }
     before do
-      allow(adapter).to receive(:get_bib_record).and_return(marc_991227850000541)
+      stub_alma_ids(ids: "99121886293506421", status: 200)
     end
-
     it 'renders a marc xml record' do
       get :bib, params: { bib_id: unsuppressed }, format: :xml
       expect(response.body).not_to be_empty
       expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
-      expect(response.body).to eq(marc_991227850000541.to_xml.to_s)
+      record = MARC::XMLReader.new(StringIO.new(response.body)).first
+      expect(record["AVA"]).to be_present
     end
 
     context 'when an error is encountered while querying Voyager' do
