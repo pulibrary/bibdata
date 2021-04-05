@@ -69,7 +69,7 @@ class AlmaAdapter
         location = holding_data["temp_location"] || {}
       end
 
-      status_label =  marc_holding["availability"]
+      status_label = marc_holding["availability"]
       if status_label.nil?
         # TODO: Figure out if this is right.
         #     When the marc_holding is nil it seems that there is a a single holding in the bib but
@@ -86,19 +86,19 @@ class AlmaAdapter
 
       policy = item_data["policy"] || {}
       item_av = {
-          "barcode": item_data["barcode"],
-          "id": item_data["pid"],
-          "copy_number": holding_data["copy_id"],
-          "status": nil,                                # ?? "Not Charged"
-          "item_sequence_number": nil,                  # not used ??
-          "on_reserve": nil,                            # ??
-          "item_type": policy["value"],                 # Gen
-          "pickup_location_id": location["value"],      # stacks
-          "pickup_location_code": location["value"],    # stacks
-          "patron_group_charged": nil,                  # ??
-          "location": library["value"],                 # firestone
-          "label": library["desc"],                     # Firestore Library
-          "status_label": status_label                  # available
+        "barcode": item_data["barcode"],
+        "id": item_data["pid"],
+        "copy_number": holding_data["copy_id"],
+        "status": nil,                                # ?? "Not Charged"
+        "item_sequence_number": nil,                  # not used ??
+        "on_reserve": nil,                            # ??
+        "item_type": policy["value"],                 # Gen
+        "pickup_location_id": location["value"],      # stacks
+        "pickup_location_code": location["value"],    # stacks
+        "patron_group_charged": nil,                  # ??
+        "location": library["value"],                 # firestone
+        "label": library["desc"],                     # Firestore Library
+        "status_label": status_label                  # available
       }
 
       # Only populate the enum_display key if there is data.
