@@ -70,11 +70,26 @@ class AlmaAdapter
     end
 
     def enumeration
-      item.item_data["enumeration_a"]
+      enums = []
+      enums << item.item_data["enumeration_a"]
+      enums << item.item_data["enumeration_b"]
+      enums << item.item_data["enumeration_c"]
+      enums << item.item_data["enumeration_d"]
+      enums << item.item_data["enumeration_e"]
+      enums << item.item_data["enumeration_f"]
+      enums << item.item_data["enumeration_g"]
+      enums << item.item_data["enumeration_h"]
+      enums.reject(&:blank?).join(", ")
     end
 
     def chronology
-      item.item_data["chronology_i"]
+      chrons = []
+      chrons << item.item_data["chronology_i"]
+      chrons << item.item_data["chronology_j"]
+      chrons << item.item_data["chronology_k"]
+      chrons << item.item_data["chronology_l"]
+      chrons << item.item_data["chronology_m"]
+      chrons.reject(&:blank?).join(", ")
     end
 
     def holding_id
