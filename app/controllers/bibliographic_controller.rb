@@ -43,9 +43,10 @@ class BibliographicController < ApplicationController
 
   # Returns availability for a single holding in a bib record
   # Mimics the response that the Request App needs for a single holding record.
+  # The `q` query string parameter is optional and allows the client to filter the data to be retrieved.
   def availability_holding
     if params[:bib_id] && params[:holding_id]
-      availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id])
+      availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id], query: params[:q])
       respond_to do |wants|
         wants.json { render json: availability }
       end

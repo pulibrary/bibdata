@@ -109,13 +109,63 @@ class AlmaAdapter
       holdings.find { |h| h["holding_id"] == holding_id }
     end
 
-    def get_holding_items(holding_id)
-      res = connection.get(
-        "bibs/#{bib.id}/holdings/#{holding_id}/items?format=json",
-        apikey: apikey
-      )
+    # Returns all the items for a given holding_id in the current bib.
+    #
+    # Note: If the holding has more than 100 items this method will make multiple calls
+    #       to ExLibris to fetch them all. This is not a common occurrence but a few records,
+    #       like Nature and Science, fall under this category.
+    #
+    # TODO: This should be moved to the Alma gem.
+    def get_holding_items_all(holding_id:, query: nil)
+      data = {items: [], total_count: 0}
+      page = 0
+      page_size = 100
+      more_pages = true
+      while more_pages do
+        # Get the next page of items...
+        page += 1
+        items, total_count = get_holding_items_page(holding_id: holding_id, page: page, page_size: page_size, query: query)
+
+        # ...add it to our array
+        data[:items] += items
+        data[:total_count] = total_count
+
+        # ...check if there are more items to fetch
+        page_count = (total_count / page_size)
+        page_count += 1 if (total_count % page_size) > 0
+        more_pages = page < page_count
+      end
+      data
+    end
+
+    # Returns a page of items for a given holding_id in the current bib
+    #
+    # TODO: This should be moved to the Alma gem.
+    def get_holding_items_page(holding_id:, page: 1, page_size: 100, query: nil)
+      offset = (page - 1) * page_size
+      url = "bibs/#{bib.id}/holdings/#{holding_id}/items?format=json&limit=#{page_size}&offset=#{offset}"
+
+      # The query parameter has a very specific syntax: "field~search_value". The fields
+      # that are valid for this API call are: enum_a, enum_b, chron_i, chron_j, and description.
+      #
+      # The search is case insensitive.
+      #
+      # For more details see:
+      #   https://developers.exlibrisgroup.com/blog/How-we-re-building-APIs-at-Ex-Libris/#BriefSearch and
+      #   https://developers.exlibrisgroup.com/alma/apis/docs/bibs/R0VUIC9hbG1hd3MvdjEvYmlicy97bW1zX2lkfS9ob2xkaW5ncy97aG9sZGluZ19pZH0vaXRlbXM=/
+      #
+      # If needed we could add logic here to combine enum_a and enum_b into a single field for convenience to the Request
+      # application.
+      if query
+        query = query.gsub(" ", "_")  # ExLibris uses underscores instead of spaces in multi-word searches.
+        url += "&q=#{query}"
+      end
+
+      res = connection.get(url, apikey: apikey)
       data = JSON.parse(res.body.force_encoding("utf-8")) || {}
-      data["item"] || []
+      items = data["item"] || []
+      total = data["total_record_count"] || 0
+      return items, total
     end
 
     private
