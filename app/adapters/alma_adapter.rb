@@ -55,7 +55,7 @@ class AlmaAdapter
     marc_holding = bib_status.holding(holding_id: holding_id) || {}
 
     # Fetch the items for the holding...
-    holding_items = bib_status.get_holding_items_all(holding_id: holding_id, query: query)
+    holding_items = bib_status.holding_item_data(holding_id: holding_id, query: query)
 
     # ...create the availability response for each item
     availability = []
@@ -68,7 +68,7 @@ class AlmaAdapter
       in_temp_library = false
       temp_library = {}
       temp_location = {}
-      if holding_data["in_temp_location"] == true
+      if holding_data["in_temp_location"]
         # sample record: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
         in_temp_library = true
         temp_library = holding_data["temp_library"] || {}
@@ -104,7 +104,9 @@ class AlmaAdapter
         "label": library["desc"],                     # Firestore Library
         "in_temp_library": in_temp_library,
         "status_label": status_label,                 # available
-        "description": item_data["description"]       # new in Alma
+        "description": item_data["description"],      # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
+        "enum_display": item.enumeration,             # in Alma there are many enumerations
+        "chron_display": item.chronology              # in Alma there are many chronologies
       }
 
       if in_temp_library
@@ -113,14 +115,6 @@ class AlmaAdapter
         item_av["temp_location_code"] = temp_library["value"]
         item_av["temp_location_label"] = temp_library["desc"]
       end
-
-      # Only populate the enum_display key if there is data.
-      enum_string = enum_diplay(item_data)
-      item_av["enum_display"] = enum_string unless enum_string.blank?
-
-      # Only populate the chron_display key if there is data.
-      chron_string = chron_display(item_data)
-      item_av["chron_display"] = chron_string unless chron_string.blank?
 
       availability << item_av
     end
@@ -182,30 +176,5 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
-    end
-
-    # Voyager only had one field for enumeration but Alma has many.
-    def enum_diplay(item_data)
-      enums = []
-      enums << item_data["enumeration_a"]
-      enums << item_data["enumeration_b"]
-      enums << item_data["enumeration_c"]
-      enums << item_data["enumeration_d"]
-      enums << item_data["enumeration_e"]
-      enums << item_data["enumeration_f"]
-      enums << item_data["enumeration_g"]
-      enums << item_data["enumeration_h"]
-      enums.reject(&:blank?).join(", ")
-    end
-
-    # Voyager only had one field for chronology but Alma has many.
-    def chron_display(item_data)
-      chrons = []
-      chrons << item_data["chronology_i"]
-      chrons << item_data["chronology_j"]
-      chrons << item_data["chronology_k"]
-      chrons << item_data["chronology_l"]
-      chrons << item_data["chronology_m"]
-      chrons.reject(&:blank?).join(", ")
     end
 end
