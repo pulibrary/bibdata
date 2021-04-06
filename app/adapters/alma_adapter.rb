@@ -46,7 +46,7 @@ class AlmaAdapter
     availability
   end
 
-  def get_availability_holding(id:, holding_id:)
+  def get_availability_holding(id:, holding_id:, query: nil)
     # Fetch the bib record and get the information for the individual holding
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
@@ -54,19 +54,25 @@ class AlmaAdapter
     bib_status = AvailabilityStatus.from_bib(bib: bibs.first)
     marc_holding = bib_status.holding(holding_id: holding_id) || {}
 
-    # Fetch the items for the holding and create the availability response
+    # Fetch the items for the holding...
+    holding_items = bib_status.get_holding_items_all(holding_id: holding_id, query: query)
+
+    # ...create the availability response for each item
     availability = []
-    # holding_items = get_holding_items(id, holding_id)["item"] || []
-    bib_status.get_holding_items(holding_id).each do |item|
+    holding_items[:items].each do |item|
       item_data = item["item_data"] || {}
       holding_data = item["holding_data"] || {}
 
       location = item_data["location"] || {}
       library = item_data["library"] || {}
-      if holding_data["in_temp_location"]
-        # http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
-        library = holding_data["temp_library"] || {}
-        location = holding_data["temp_location"] || {}
+      in_temp_library = false
+      temp_library = {}
+      temp_location = {}
+      if holding_data["in_temp_location"] == true
+        # sample record: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
+        in_temp_library = true
+        temp_library = holding_data["temp_library"] || {}
+        temp_location = holding_data["temp_location"] || {}
       end
 
       status_label = marc_holding["availability"]
@@ -90,16 +96,23 @@ class AlmaAdapter
         "id": item_data["pid"],
         "copy_number": holding_data["copy_id"],
         "status": nil,                                # ?? "Not Charged"
-        "item_sequence_number": nil,                  # not used ??
         "on_reserve": nil,                            # ??
         "item_type": policy["value"],                 # Gen
         "pickup_location_id": location["value"],      # stacks
         "pickup_location_code": location["value"],    # stacks
-        "patron_group_charged": nil,                  # ??
         "location": library["value"],                 # firestone
         "label": library["desc"],                     # Firestore Library
-        "status_label": status_label                  # available
+        "in_temp_library": in_temp_library,
+        "status_label": status_label,                 # available
+        "description": item_data["description"]       # new in Alma
       }
+
+      if in_temp_library
+        item_av["temp_library_code"] = temp_library["value"]
+        item_av["temp_library_label"] = temp_library["desc"]
+        item_av["temp_location_code"] = temp_library["value"]
+        item_av["temp_location_label"] = temp_library["desc"]
+      end
 
       # Only populate the enum_display key if there is data.
       enum_string = enum_diplay(item_data)
@@ -111,7 +124,14 @@ class AlmaAdapter
 
       availability << item_av
     end
-    availability
+
+    # The `total_count` property might seem extra here but this is in preparation
+    # for when the client supports pagination and requests only a page of records.
+    response = {
+      total_count: holding_items[:total_count],
+      items: availability
+    }
+    response
   end
 
   # Returns list of holding records for a given MMS
