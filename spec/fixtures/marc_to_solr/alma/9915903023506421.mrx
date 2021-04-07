@@ -1,0 +1,111 @@
+<record>
+  <leader>00805cam a2200253 4500</leader>
+  <controlfield tag="005">20200805092101.0</controlfield>
+  <controlfield tag="008">690320s1968 ilua b 001 0 eng</controlfield>
+  <controlfield tag="001">9915903023506421</controlfield>
+  <datafield tag="010" ind1="" ind2="">
+    <subfield code="a">68016833 //r89</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocm00000980</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/00000980</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">CEZ8972TS</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">1590302</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)1590302-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">DLC</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">IAV</subfield>
+    <subfield code="d">SER</subfield>
+    <subfield code="d">PUL</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="">
+    <subfield code="a">BF311</subfield>
+    <subfield code="b">.T45</subfield>
+  </datafield>
+  <datafield tag="082" ind1="" ind2="">
+    <subfield code="a">153.4</subfield>
+  </datafield>
+  <datafield tag="096" ind1="" ind2="">
+    <subfield code="a">BF 311 T396 1968</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Theories of cognitive consistency; a sourcebook.</subfield>
+    <subfield code="c">Edited by Robert P. Abelson [and others]</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">Chicago,</subfield>
+    <subfield code="b">Rand McNally</subfield>
+    <subfield code="c">[c1968]</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">xvii, 901 p.</subfield>
+    <subfield code="b">illus.</subfield>
+    <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Bibliography: p. 837-877.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Cognitive consistency</subfield>
+    <subfield code="x">Philosophy.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="a">Abelson, Robert P.,</subfield>
+    <subfield code="e">editor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n83181964</subfield>
+  </datafield>
+  <datafield tag="947" ind1="" ind2="">
+    <subfield code="a">CEZ8972</subfield>
+  </datafield>
+  <datafield tag="911" ind1="" ind2="">
+    <subfield code="a">19981027</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 05:15:24 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="0">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">BF311</subfield>
+    <subfield code="i">.T45</subfield>
+    <subfield code="8">2252113410006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 10:15:24</subfield>
+    <subfield code="8">2252113410006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="0">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">BF311</subfield>
+    <subfield code="i">.T45</subfield>
+    <subfield code="8">2252113430006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 10:15:24</subfield>
+    <subfield code="8">2252113430006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">2252113430006421</subfield>
+    <subfield code="a">2352113420006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-02 10:15:24</subfield>
+    <subfield code="p">32101012944953</subfield>
+    <subfield code="t">2</subfield>
+  </datafield>
+</record>
