@@ -23,11 +23,6 @@ every 1.day, at: '3:00am' do
   rake "liberate:arks:clear_and_seed_cache"
 end
 
-# Daily recap / partner jobs
-every 1.day, at: "3:00pm", roles: [:cron_production] do
-  rake "marc_liberation:recap_dump", output: "/tmp/cron_log.log"
-end
-
 job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url UPDATE_LOCATIONS=:update_locations :bundle_command rake :task --silent :output"
 
 # Daily recap shared collection update to Solr
