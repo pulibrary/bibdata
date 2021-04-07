@@ -118,10 +118,9 @@ class AlmaAdapter
     #       to ExLibris to fetch them all. The need to iterate through multuple pages
     #       is not a common but it does happen for a few of our records, like Nature
     #       and Science.
-    def holding_item_data(holding_id:, query: nil)
+    def holding_item_data(holding_id:, page_size: 100, query: nil)
       data = { items: [], total_count: 0 }
       page = 0
-      page_size = 100
       more_pages = true
       while more_pages
         # Get the next page of items...
