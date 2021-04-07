@@ -76,6 +76,27 @@ RSpec.describe AwsSqsPoller do
     end
   end
 
+  context "when a ReCAP dump comes through" do
+    let(:job_id) { "6587815790006421" }
+    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json'))).to_json }
+
+    it "Creates an event and kicks off a background job" do
+      expect { described_class.poll }.to have_enqueued_job(
+        AlmaDumpTransferJob
+      ).with(
+        job_id: job_id,
+        dump: instance_of(Dump)
+      )
+
+      expect(Dump.all.count).to eq 1
+      expect(Dump.first.dump_type.constant).to eq "PRINCETON_RECAP"
+      event = Dump.first.event
+      expect(event.message_body).to eq message_body
+      expect(event.start).to eq "2021-02-08T17:03:52.894Z"
+      expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
+    end
+  end
+
   context "when some other job comes through" do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json'))).to_json }
 
