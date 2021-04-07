@@ -54,7 +54,8 @@ RSpec.describe PatronController, type: :controller do
         "campus_authorized_category" => "none",
         "requests_total" => 0,
         "loans_total" => 0,
-        "fees_total" => 0.0
+        "fees_total" => 0.0,
+        "active_email" => "cmonster@SCRUBBED_Princeton.EDU"
       )
     end
 
@@ -90,7 +91,8 @@ RSpec.describe PatronController, type: :controller do
         "requests_total" => 0,
         "loans_total" => 0,
         "fees_total" => 0.0,
-        "ldap" => { "ldap_data" => "is here" }
+        "ldap" => { "ldap_data" => "is here" },
+        "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
 
@@ -115,7 +117,8 @@ RSpec.describe PatronController, type: :controller do
         "campus_authorized_category" => "none",
         "requests_total" => 0,
         "loans_total" => 0,
-        "fees_total" => 0.0
+        "fees_total" => 0.0,
+        "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
 
@@ -140,7 +143,8 @@ RSpec.describe PatronController, type: :controller do
         "campus_authorized_category" => "full",
         "requests_total" => 0,
         "loans_total" => 0,
-        "fees_total" => 0.0
+        "fees_total" => 0.0,
+        "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
 
