@@ -63,6 +63,14 @@ RSpec.describe BibliographicController, type: :controller do
       expect(record["AVA"]).to be_present
     end
 
+    it "doesn't render AVA/AVE if holdings=false" do
+      get :bib, params: { bib_id: unsuppressed, holdings: false }, format: :xml
+      expect(response.body).not_to be_empty
+      expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
+      record = MARC::XMLReader.new(StringIO.new(response.body)).first
+      expect(record["AVA"]).not_to be_present
+    end
+
     context 'when an error is encountered while querying Voyager' do
       before do
         allow(Rails.logger).to receive(:error)
