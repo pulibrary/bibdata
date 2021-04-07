@@ -93,28 +93,28 @@ class AlmaAdapter
 
       policy = item_data["policy"] || {}
       item_av = {
-        "barcode": item_data["barcode"],
-        "id": item_data["pid"],
-        "copy_number": holding_data["copy_id"],
-        "status": nil,                                # ?? "Not Charged"
-        "on_reserve": nil,                            # ??
-        "item_type": policy["value"],                 # Gen
-        "pickup_location_id": location["value"],      # stacks
-        "pickup_location_code": location["value"],    # stacks
-        "location": library["value"],                 # firestone
-        "label": library["desc"],                     # Firestore Library
-        "in_temp_library": in_temp_library,
-        "status_label": status_label,                 # available
-        "description": item_data["description"],      # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
-        "enum_display": item.enumeration,             # in Alma there are many enumerations
-        "chron_display": item.chronology              # in Alma there are many chronologies
+        barcode: item_data["barcode"],
+        id: item_data["pid"],
+        copy_number: holding_data["copy_id"],
+        status: nil,                                # ?? "Not Charged"
+        on_reserve: nil,                            # ??
+        item_type: policy["value"],                 # Gen
+        pickup_location_id: location["value"],      # stacks
+        pickup_location_code: location["value"],    # stacks
+        location: library["value"],                 # firestone
+        label: library["desc"],                     # Firestore Library
+        in_temp_library: in_temp_library,
+        status_label: status_label,                 # available
+        description: item_data["description"],      # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
+        enum_display: item.enumeration,             # in Alma there are many enumerations
+        chron_display: item.chronology              # in Alma there are many chronologies
       }
 
       if in_temp_library
-        item_av["temp_library_code"] = temp_library["value"]
-        item_av["temp_library_label"] = temp_library["desc"]
-        item_av["temp_location_code"] = temp_library["value"]
-        item_av["temp_location_label"] = temp_library["desc"]
+        item_av[:temp_library_code] = temp_library["value"]
+        item_av[:temp_library_label] = temp_library["desc"]
+        item_av[:temp_location_code] = temp_library["value"]
+        item_av[:temp_location_label] = temp_library["desc"]
       end
 
       availability << item_av
