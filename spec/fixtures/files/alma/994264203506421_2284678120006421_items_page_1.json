@@ -1,0 +1,5405 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677660006421",
+        "barcode": "ISSitm5291-868.4300-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-12-16Z",
+        "expected_arrival_date": "2008-12-25Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7223",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "10",
+        "chronology_k": "16",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7223 (2008 Dec. 11)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677660006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677670006421",
+        "barcode": "ISSitm5291-868.4220-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-10-24Z",
+        "expected_arrival_date": "2008-10-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7215",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "8",
+        "chronology_k": "21",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7215 (2008 Oct. 16)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677670006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677680006421",
+        "barcode": "ISSitm5291-868.4180-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-09-26Z",
+        "expected_arrival_date": "2008-10-02Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7211",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "7",
+        "chronology_k": "24",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7211 (2008 Sept. 18)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677680006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677690006421",
+        "barcode": "ISSitm5291-868.4120-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-08-13Z",
+        "expected_arrival_date": "2008-08-21Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7205",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "6",
+        "chronology_k": "12",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7205 (2008 Aug. 7)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677690006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677700006421",
+        "barcode": "ISSitm5291-868.3970-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-04-29Z",
+        "expected_arrival_date": "2008-04-25Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7190",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "2",
+        "chronology_k": "28",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7190 (2008 April 24)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677700006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677710006421",
+        "barcode": "ISSitm5291-868.4130-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-08-21Z",
+        "expected_arrival_date": "2008-08-28Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7206",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "6",
+        "chronology_k": "19",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7206 (2008 Aug. 14))",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677710006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677720006421",
+        "barcode": "ISSitm5291-868.3850-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-02-06Z",
+        "expected_arrival_date": "2008-02-01Z",
+        "year_of_issue": "",
+        "enumeration_a": "449",
+        "enumeration_b": "7178",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2007",
+        "chronology_j": "12",
+        "chronology_k": "6",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 451, no. 7178 (2008 Jan. 31)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677720006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677730006421",
+        "barcode": "ISSitm5291-868.4230-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-11-05Z",
+        "expected_arrival_date": "2008-11-06Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7216",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "8",
+        "chronology_k": "28",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7216 (2008 Oct. 23)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677730006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677740006421",
+        "barcode": "ISSitm5291-868.4070-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-07-15Z",
+        "expected_arrival_date": "2008-07-23Z",
+        "year_of_issue": "",
+        "enumeration_a": "451",
+        "enumeration_b": "7200",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "5",
+        "chronology_k": "8",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7200 (2008 July 3)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677740006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677750006421",
+        "barcode": "ISSitm5291-868.4100-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-07-29Z",
+        "expected_arrival_date": "2008-08-07Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7203",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "5",
+        "chronology_k": "29",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7203 (2008 July 24)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677750006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677760006421",
+        "barcode": "ISSitm5291-868.3920-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-03-26Z",
+        "expected_arrival_date": "2008-03-21Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7185",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "1",
+        "chronology_k": "24",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7185 (2008 March 20)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677760006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677770006421",
+        "barcode": "ISSitm5291-868.3910-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-03-24Z",
+        "expected_arrival_date": "2008-03-14Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7184",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "1",
+        "chronology_k": "17",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7184 (2008 March 13)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677770006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677780006421",
+        "barcode": "ISSitm5291-868.4250-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-11-17Z",
+        "expected_arrival_date": "2008-11-20Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7218",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "9",
+        "chronology_k": "11",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7218 (2008 Nov. 6)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677780006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677790006421",
+        "barcode": "ISSitm5291-868.4200-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-10-06Z",
+        "expected_arrival_date": "2008-10-16Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7213",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "8",
+        "chronology_k": "7",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7213 (2008 Oct. 2)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677790006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677800006421",
+        "barcode": "ISSitm5291-868.4080-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-07-17Z",
+        "expected_arrival_date": "2008-07-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7201",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "5",
+        "chronology_k": "15",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7201 (2008 July 10)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677800006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677810006421",
+        "barcode": "ISSitm5291-868.4090-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-07-22Z",
+        "expected_arrival_date": "2008-07-31Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7202",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "5",
+        "chronology_k": "22",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7202 (2008 July 17)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677810006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677820006421",
+        "barcode": "ISSitm5291-868.3940-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-04-08Z",
+        "expected_arrival_date": "2008-04-04Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7187",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "2",
+        "chronology_k": "7",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7187 (2008 April 3)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677820006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677830006421",
+        "barcode": "ISSitm5291-868.3890-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-03-07Z",
+        "expected_arrival_date": "2008-02-29Z",
+        "year_of_issue": "",
+        "enumeration_a": "449",
+        "enumeration_b": "7182",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "1",
+        "chronology_k": "3",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 451, no. 7182 (2008 Feb. 28)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677830006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677840006421",
+        "barcode": "ISSitm5291-868.3860-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-02-14Z",
+        "expected_arrival_date": "2008-02-08Z",
+        "year_of_issue": "",
+        "enumeration_a": "449",
+        "enumeration_b": "7179",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2007",
+        "chronology_j": "12",
+        "chronology_k": "13",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 451, no. 7179 (2008 Feb. 7)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677840006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677850006421",
+        "barcode": "ISSitm5291-868.4350-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2009-01-28Z",
+        "expected_arrival_date": "2009-03-29Z",
+        "year_of_issue": "",
+        "enumeration_a": "455",
+        "enumeration_b": "7228",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "11",
+        "chronology_k": "20",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 457, no. 7228 (2009 Jan. 22)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677850006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677860006421",
+        "barcode": "ISSitm5291-868.4270-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-12-05Z",
+        "expected_arrival_date": "2008-12-04Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7220",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "9",
+        "chronology_k": "25",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7220 (2008 Nov.20)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677860006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677870006421",
+        "barcode": "ISSitm5291-868.4290-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-12-10Z",
+        "expected_arrival_date": "2008-12-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7222",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "10",
+        "chronology_k": "9",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7222 (2008 Dec.4)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677870006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677880006421",
+        "barcode": "ISSitm5291-868.4170-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-09-15Z",
+        "expected_arrival_date": "2008-09-25Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7210",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "7",
+        "chronology_k": "17",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7210 (2008 Sept. 11)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677880006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677890006421",
+        "barcode": "ISSitm5291-868.4210-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-10-21Z",
+        "expected_arrival_date": "2008-10-23Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7214",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "8",
+        "chronology_k": "14",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7214 (2008 Oct. 9)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677890006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677900006421",
+        "barcode": "ISSitm5291-868.4190-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-09-30Z",
+        "expected_arrival_date": "2008-10-09Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7212",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "7",
+        "chronology_k": "31",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7212 (2008 Sept. 25)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677900006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677910006421",
+        "barcode": "ISSitm5291-868.4160-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-09-08Z",
+        "expected_arrival_date": "2008-09-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7209",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "7",
+        "chronology_k": "10",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7209 (2008 Sept. 4)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677910006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677920006421",
+        "barcode": "ISSitm5291-868.4140-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-08-26Z",
+        "expected_arrival_date": "2008-09-04Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7207",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "6",
+        "chronology_k": "26",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7207 (2008 Aug. 21)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677920006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677930006421",
+        "barcode": "ISSitm5291-868.3810-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-02-04Z",
+        "expected_arrival_date": "2008-01-04Z",
+        "year_of_issue": "",
+        "enumeration_a": "449",
+        "enumeration_b": "7174",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2007",
+        "chronology_j": "11",
+        "chronology_k": "8",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 451, no. 7174 (2008 Jan. 3)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677930006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677940006421",
+        "barcode": "ISSitm5291-868.4310-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-12-23Z",
+        "expected_arrival_date": "2009-01-01Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7224",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "10",
+        "chronology_k": "23",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7224 (2008 Dec. 18/25)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677940006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677950006421",
+        "barcode": "ISSitm5291-868.4260-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-11-20Z",
+        "expected_arrival_date": "2008-11-27Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7219",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "9",
+        "chronology_k": "18",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7219 (2008 Nov. 13)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677950006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677960006421",
+        "barcode": "ISSitm5291-868.4240-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-11-17Z",
+        "expected_arrival_date": "2008-11-13Z",
+        "year_of_issue": "",
+        "enumeration_a": "453",
+        "enumeration_b": "7217",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "9",
+        "chronology_k": "4",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 455, no. 7217 (2008 Oct. 30)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677960006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677970006421",
+        "barcode": "ISSitm5291-868.4110-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-08-07Z",
+        "expected_arrival_date": "2008-08-14Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7204",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "6",
+        "chronology_k": "5",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7204 (2008 July 31)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677970006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384677980006421",
+        "barcode": "ISSitm5291-868.3960-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-04-25Z",
+        "expected_arrival_date": "2008-04-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7189",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "2",
+        "chronology_k": "21",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7189 (2008 April 17)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384677980006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678010006421",
+        "barcode": "ISSitm5291-868.3870-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-02-26Z",
+        "expected_arrival_date": "2008-02-15Z",
+        "year_of_issue": "",
+        "enumeration_a": "449",
+        "enumeration_b": "7180",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2007",
+        "chronology_j": "12",
+        "chronology_k": "20",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 451, no. 7180 (2008 Feb. 14)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678010006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678020006421",
+        "barcode": "ISSitm5291-868.4150-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-09-04Z",
+        "expected_arrival_date": "2008-09-11Z",
+        "year_of_issue": "",
+        "enumeration_a": "452",
+        "enumeration_b": "7208",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "7",
+        "chronology_k": "3",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 454, no. 7208 (2008 Aug. 28)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678020006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678030006421",
+        "barcode": "ISSitm5291-868.4280-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-12-05Z",
+        "expected_arrival_date": "2008-12-11Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7221",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "10",
+        "chronology_k": "2",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 456, no. 7221 (2008 Nov.27)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678030006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678040006421",
+        "barcode": "ISSitm5291-868.4330-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2009-01-28Z",
+        "expected_arrival_date": "2009-03-15Z",
+        "year_of_issue": "",
+        "enumeration_a": "454",
+        "enumeration_b": "7226",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "11",
+        "chronology_k": "6",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 457, no. 7226 (2009 Jan. 8)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678040006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678050006421",
+        "barcode": "ISSitm5291-868.3930-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-04-03Z",
+        "expected_arrival_date": "2008-03-28Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7186",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "1",
+        "chronology_k": "31",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7186 (2008 March 27)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678050006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678060006421",
+        "barcode": "ISSitm5291-868.3950-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-04-18Z",
+        "expected_arrival_date": "2008-04-11Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7188",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "2",
+        "chronology_k": "14",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 450, no. 7188 (2008 April 10)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678060006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "994264203506421",
+        "title": "Nature.",
+        "author": null,
+        "issn": "0028-0836",
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)426420-princetondb",
+          "426420",
+          "(CStRLIN)NJPG87-S3166",
+          "(OCoLC)1586310"
+        ],
+        "place_of_publication": "London :",
+        "date_of_publication": "1869-",
+        "publisher_const": "Macmillan Journals",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421"
+      },
+      "holding_data": {
+        "holding_id": "2284678120006421",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "Q1 .N3 wtd",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "Q1 .N3 wtd",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421"
+      },
+      "item_data": {
+        "pid": "2384678070006421",
+        "barcode": "ISSitm5291-868.3900-princetondb",
+        "creation_date": "2020-12-02Z",
+        "modification_date": "2020-12-02Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "ISSUE",
+          "desc": "Issue"
+        },
+        "policy": {
+          "value": "",
+          "desc": null
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "509651-princetondb",
+        "arrival_date": "2008-03-11Z",
+        "expected_arrival_date": "2008-03-07Z",
+        "year_of_issue": "",
+        "enumeration_a": "450",
+        "enumeration_b": "7183",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "2008",
+        "chronology_j": "1",
+        "chronology_k": "10",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v. 452, no. 7183 (2008 March 6)",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "serial",
+          "desc": "sciss: Lewis: Serials"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "CONV: Suppressed",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/994264203506421/holdings/2284678120006421/items/2384678070006421"
+    }
+  ],
+  "total_record_count": 44
+}
