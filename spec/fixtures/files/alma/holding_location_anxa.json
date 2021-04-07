@@ -1,0 +1,149 @@
+{
+    "label": "",
+    "code": "anxa",
+    "aeon_location": false,
+    "recap_electronic_delivery_location": false,
+    "open": false,
+    "requestable": true,
+    "always_requestable": false,
+    "circulates": true,
+    "library": {
+      "label": "Forrestal Annex",
+      "code": "annexa",
+      "order": 3
+    },
+    "holding_library": null,
+    "hours_location": null,
+    "delivery_locations": [
+      {
+        "label": "Plasma Physics Library",
+        "address": "Forrestal Campus Princeton, NJ 08544",
+        "phone_number": "609-243-3565",
+        "contact_email": "ppllib@princeton.edu",
+        "gfa_pickup": "PQ",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Technical Services 693",
+        "address": "693 Alexander Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "catalogn@princeton.edu",
+        "gfa_pickup": "QT",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false
+      },
+      {
+        "label": "Architecture Library",
+        "address": "School of Architecture Building, Second Floor Princeton, NJ 08544",
+        "phone_number": "609-258-3256",
+        "contact_email": "ues@princeton.edu",
+        "gfa_pickup": "PW",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "East Asian Library",
+        "address": "Frist Campus Center, Room 317 Princeton, NJ 08544",
+        "phone_number": "609-258-3182",
+        "contact_email": "gestcirc@princeton.edu",
+        "gfa_pickup": "PL",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Engineering Library",
+        "address": "Friend Center for Engineering Education Princeton, NJ 08544",
+        "phone_number": "609-258-3200",
+        "contact_email": "englib@princeton.edu",
+        "gfa_pickup": "PT",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Firestone Library, Microforms",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-3252",
+        "contact_email": "microfms@princeton.edu",
+        "gfa_pickup": "PF",
+        "staff_only": false,
+        "pickup_location": false,
+        "digital_location": false
+      },
+      {
+        "label": "Mendel Music Library",
+        "address": "Woolworth Center Princeton, NJ 08544",
+        "phone_number": "609-258-3230",
+        "contact_email": "muslib@princeton.edu",
+        "gfa_pickup": "PK",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Mudd Manuscript Library",
+        "address": "65 Olden Street Princeton, NJ 08544",
+        "phone_number": "609-258-6345",
+        "contact_email": "mudd@princeton.edu",
+        "gfa_pickup": "PH",
+        "staff_only": false,
+        "pickup_location": false,
+        "digital_location": true
+      },
+      {
+        "label": "Stokes Library",
+        "address": "Wallace Hall, Lower Level Princeton, NJ 08544",
+        "phone_number": "609-258-5455",
+        "contact_email": "piaprlib@princeton.edu",
+        "gfa_pickup": "PM",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Firestone Library, Resource Sharing",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "fstcirc@princeton.edu",
+        "gfa_pickup": "QA",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false
+      },
+      {
+        "label": "Lewis Library",
+        "address": "Washington Road and Ivy Lane Princeton, NJ 08544",
+        "phone_number": "609-258-6004",
+        "contact_email": "lewislib@princeton.edu",
+        "gfa_pickup": "PN",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Firestone Library",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "fstcirc@princeton.edu",
+        "gfa_pickup": "PA",
+        "staff_only": false,
+        "pickup_location": true,
+        "digital_location": true
+      },
+      {
+        "label": "Technical Services HMT",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "catalogn@princeton.edu",
+        "gfa_pickup": "QC",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false
+      }
+    ]
+  }

@@ -358,7 +358,7 @@ to_field 'medium_support_display', extract_marc('340')
 
 # Electronic access:
 #    856
-#    most have first sub as 4, a few 0,1,7
+#    most have first indicator as 4, a few 0,1,7
 #    treat the same
 #    $u is for the link
 #    $y and $3 for display text for link
