@@ -48,7 +48,7 @@ class BibliographicController < ApplicationController
     if params[:bib_id] && params[:holding_id]
       availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id], query: params[:q])
       respond_to do |wants|
-        wants.json { render json: availability }
+        wants.json { render json: availability, status: availability.nil? ? 404 : 200 }
       end
     else
       render plain: "Please supply a bib id and a holding id", status: 404
