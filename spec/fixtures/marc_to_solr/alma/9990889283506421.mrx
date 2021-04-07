@@ -1,0 +1,245 @@
+<record>
+  <leader>04966cmm a2200733 4500</leader>
+  <controlfield tag="005">20180418162528.0</controlfield>
+  <controlfield tag="006">m f a u</controlfield>
+  <controlfield tag="007">cr mn mmmmuuuu</controlfield>
+  <controlfield tag="008">150323s2015 miu f a eng d</controlfield>
+  <controlfield tag="001">9990889283506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">(ICPSR)ICPSR35465</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)9088928-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">MiAaI</subfield>
+    <subfield code="c">MiAaI</subfield>
+  </datafield>
+  <datafield tag="090" ind1="" ind2="">
+    <subfield code="a">Electronic Resource</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Afrobarometer Round 5</subfield>
+    <subfield code="h">[electronic resource] :</subfield>
+    <subfield code="b">The Quality of Democracy and Governance in Benin, 2011</subfield>
+    <subfield code="c">Institute for Empirical Research in Political Economy, Michael Bratton, E. Gyimah-Boadi, Carolyn Logan</subfield>
+  </datafield>
+  <datafield tag="250" ind1="" ind2="">
+    <subfield code="a">2015-03-19</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">Ann Arbor, Mich. :</subfield>
+    <subfield code="b">Inter-university Consortium for Political and Social Research [distributor],</subfield>
+    <subfield code="c">2015</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2="">
+    <subfield code="a">ICPSR ;</subfield>
+    <subfield code="v">35465</subfield>
+  </datafield>
+  <datafield tag="516" ind1="" ind2="">
+    <subfield code="a">Numeric</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Title from ICPSR DDI metadata of 2015-03-23.</subfield>
+  </datafield>
+  <datafield tag="506" ind1="" ind2="">
+    <subfield code="a">AVAILABLE. This study is freely available to ICPSR member institutions.</subfield>
+  </datafield>
+  <datafield tag="530" ind1="" ind2="">
+    <subfield code="a">Also available as downloadable files.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="3" ind2="">
+    <subfield code="a">The Afrobarometer project was designed to collect and disseminate information regarding Africans' views on democracy, governance, economic reform, civil society, and quality of life. This particular survey was concerned with the attitudes and opinions of the citizens of Benin. Respondents in a face-to-face interview were asked to rate their president and the president's administration in overall performance, to state the most important issues facing their nation, and to evaluate the effectiveness of certain continental and international institutions. Opinions were gathered on the role of the government in improving the economy, whether corruption existed in local and national government, whether government officials were responsive to problems of the general population, and whether local government officials, the police, the courts, the overall criminal justice system, the National Electoral Commission, and the government broadcasting service could be trusted. Respondents were polled on their knowledge of the government, including the identification of government officials, their level of personal involvement in political, governmental, and community affairs, their participation in national elections, and the inclusiveness of the government. Economic questions addressed the past, present, and future of the country's and the respondents' economic conditions, and respondents' living conditions. Round 5 surveys included special modules on taxation; gender issues; crime, conflict and insecurity; globalization; and social service delivery. Background variables include age, gender, ethnicity, education, religious affiliation and participation, political party affiliation, language spoken most at home, whether the respondent was the head of household, current and past employment status, whether a close friend or relative had died from AIDS, and language used in interview. In addition, the interviewer's gender, race, and education level is provided. Cf.: http://doi.org/10.3886/ICPSR35465</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">AIDS</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">community involvement</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">corruption</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">democracy</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">economic conditions</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">gender issues</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">globalization</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">government</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">government performance</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">HIV</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">information sources</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">legislatures</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">living conditions</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">local government</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">macroeconomics</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">markets</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">national interests</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">police</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">political attitudes</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">political change</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">political corruption</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">political participation</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">political systems</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">presidential performance</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">presidents</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">public confidence</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">public opinion</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">quality of life</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">social attitudes</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">social services</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">standard of living</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">taxes</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="7">
+    <subfield code="a">trust in government</subfield>
+    <subfield code="2">icpsr</subfield>
+  </datafield>
+  <datafield tag="653" ind1="0" ind2="">
+    <subfield code="a">ICPSR XIV.C.2. Mass Political Behavior and Attitudes, Public Opinion on Political Matters, Nations Other Than the United States</subfield>
+    <subfield code="a">ICPSR XIV. Mass Political Behavior and Attitudes</subfield>
+    <subfield code="a">ICPSR XIV.C. Mass Political Behavior and Attitudes, Public Opinion on Political Matters</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">Institute for Empirical Research in Political Economy</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="a">Bratton, Michael</subfield>
+    <subfield code="u">Michigan State University</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="a">Gyimah-Boadi, E.</subfield>
+    <subfield code="u">Ghana Center for Democratic Development</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="a">Logan, Carolyn</subfield>
+    <subfield code="u">Michigan State University</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">Inter-university Consortium for Political and Social Research.</subfield>
+  </datafield>
+  <datafield tag="830" ind1="" ind2="0">
+    <subfield code="a">ICPSR ;</subfield>
+    <subfield code="v">35465</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">http://doi.org/10.3886/ICPSR35465</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">jwl</subfield>
+    <subfield code="b">z</subfield>
+    <subfield code="6">m</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">w</subfield>
+    <subfield code="f">0</subfield>
+    <subfield code="e">20150602</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 21:20:09 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-08 08:14:59 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-08 08:14:55 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53324378100006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53324378100006421</subfield>
+    <subfield code="w">2020-12-08 13:14:55</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52324378110006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9990889283506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">DOCUMENT</subfield>
+    <subfield code="8">53324378100006421</subfield>
+  </datafield>
+</record>
