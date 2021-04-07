@@ -366,7 +366,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: bib_record_1, headers: { "content-Type" => "application/json" })
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100&offset=0")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -378,7 +378,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: holding_items_1, headers: { "content-Type" => "application/json" })
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9919392043506421")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9919392043506421")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -390,7 +390,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: bib_record_2, headers: { "content-Type" => "application/json" })
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100&offset=0")
         .with(
           headers: {
             'Accept' => 'application/json',
