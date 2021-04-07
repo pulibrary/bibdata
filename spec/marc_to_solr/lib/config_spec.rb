@@ -48,6 +48,16 @@ describe 'From traject_config.rb' do
       access_links = record["electronic_access_1display"]
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
     end
+    it "does not index elf locations for alma" do
+      # I need a record where this would break without this change - probably 99121576653506421
+      record = @indexer.map_record(fixture_alma_record('9918573506421'))
+
+      # No ELF code.
+      expect(record["location_code_s"]).to eq ["lewis$stacks"]
+      holdings = JSON.parse(record["holdings_1display"].first)
+      # No holdings - these are in electronic_access_1display
+      expect(holdings.keys.length).to eq 1
+    end
   end
   describe "locations" do
     it "will index the location_code_s" do
