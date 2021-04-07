@@ -6,6 +6,7 @@ gem 'aws-sdk-sqs'
 gem 'bixby', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rails-console', require: false
 gem 'capybara'
 gem 'ddtrace'
 gem 'devise', '~> 4.7.1'
