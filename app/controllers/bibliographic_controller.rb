@@ -49,6 +49,7 @@ class BibliographicController < ApplicationController
 
     begin
       records = adapter.get_bib_record(bib_id_param)
+      records.strip_non_numeric! unless opts[:holdings]
     rescue StandardError => e
       Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{e}"
       return head :bad_request
