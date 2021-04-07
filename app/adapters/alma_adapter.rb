@@ -70,7 +70,6 @@ class AlmaAdapter
       temp_library = {}
       temp_location = {}
       if holding_data["in_temp_location"]
-        # sample record: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
         in_temp_library = true
         temp_library = holding_data["temp_library"] || {}
         temp_location = holding_data["temp_location"] || {}
