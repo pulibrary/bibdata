@@ -19,7 +19,7 @@ describe 'From traject_config.rb' do
     @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_record('sample1'))
     @sample2 = @indexer.map_record(fixture_record('sample2'))
-    @sample3 = @indexer.map_record(fixture_record('sample3'))
+    @sample3 = @indexer.map_record(fixture_alma_record('993213506421'))
     @sample34 = @indexer.map_record(fixture_record('sample34'))
     @sample35 = @indexer.map_record(fixture_record('sample35'))
     @sample36 = @indexer.map_record(fixture_record('8181849'))
@@ -27,16 +27,16 @@ describe 'From traject_config.rb' do
     @added_title_246 = @indexer.map_record(fixture_record('sample18'))
     @related_names = @indexer.map_record(fixture_record('sample27'))
     @label_i_246 = @indexer.map_record(fixture_record('sample28'))
-    @online_at_library = @indexer.map_record(fixture_record('sample29'))
-    @online = @indexer.map_record(fixture_record('sample30'))
+    @online_at_library = @indexer.map_record(fixture_alma_record('9979160443506421'))
+    @online = @indexer.map_record(fixture_alma_record('9990889283506421'))
     # @elf2 = @indexer.map_record(fixture_record('elf2'))
     @other_title_246 = @indexer.map_record(fixture_record('7910599'))
     @title_vern_display = @indexer.map_record(fixture_record('4854502'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
-    @hathi_present = @indexer.map_record(fixture_record('1590302'))
-    @hathi_permanent = @indexer.map_record(fixture_record('1459166'))
+    @hathi_present = @indexer.map_record(fixture_alma_record('9915903023506421'))
+    @hathi_permanent = @indexer.map_record(fixture_alma_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
   end
 
@@ -378,42 +378,27 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'access_facet' do
-    # TODO: Replace with Alma
-    xit 'value is in the library for all non-online holding locations' do
-      expect(@sample3['location_code_s'][0]).to eq 'lewis$doc' # Lewis Library
+    it 'value is in the library for non-electronic records' do
       expect(@sample3['access_facet']).to include 'In the Library'
       expect(@sample3['access_facet']).not_to include 'Online'
     end
-    # TODO: Replace with Alma
-    xit 'value is at the library for elf2 holding location' do
-      expect(@elf2['location_code_s'][0]).to eq 'elf2'
-      expect(@elf2['access_facet']).not_to include 'Online'
-      expect(@elf2['access_facet']).to include 'In the Library'
-    end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'value is online for all other elf holding locations' do
-      expect(@online['location_code_s'][0]).to eq 'online$elf1'
+
+    it 'value is online for records where 856 field second indicator is 0' do
       expect(@online['access_facet']).to include 'Online'
       expect(@online['access_facet']).not_to include 'In the Library'
     end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'value can be both in the library and online when there are multiple holdings' do
-      expect(@online_at_library['location_code_s']).to include 'online$elf1'
-      expect(@online_at_library['location_code_s']).to include 'recap$ph'
+
+    it 'value can be both in the library and online when there are multiple holdings' do
       expect(@online_at_library['access_facet']).to include 'Online'
       expect(@online_at_library['access_facet']).to include 'In the Library'
     end
-    # TODO: Replace with Alma
-    xit 'value include hathi locations when record is present in hathi report' do
-      expect(@hathi_present['location_code_s']).to contain_exactly('lewis$stacks')
+
+    it 'value include hathi locations when record is present in hathi report' do
       expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access', 'Online', 'In the Library')
       expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
-    # TODO: Replace with Alma
-    xit 'value include online when record is present in hathi report with permanent access' do
-      expect(@hathi_permanent['location_code_s']).to contain_exactly('rcppa')
+
+    it 'value include online when record is present in hathi report with permanent access' do
       expect(@hathi_permanent['access_facet']).to contain_exactly('Online', 'In the Library')
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
