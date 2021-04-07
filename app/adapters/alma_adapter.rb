@@ -56,6 +56,7 @@ class AlmaAdapter
 
     # Fetch the items for the holding...
     holding_items = bib_status.holding_item_data(holding_id: holding_id, query: query)
+    return nil if holding_items[:total_count] == 0
 
     # ...create the availability response for each item
     availability = []

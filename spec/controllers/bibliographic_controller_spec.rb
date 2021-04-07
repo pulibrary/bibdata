@@ -476,10 +476,31 @@ RSpec.describe BibliographicController, type: :controller do
           headers: { "Content-Type" => "application/json" },
           body: holding_items
         )
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/not-exist/items?limit=100&offset=0")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: '{ "total_record_count": 0 }'
+        )
     end
 
     it "reports record not found for a non-existing bib_id" do
       get :availability_holding, params: { bib_id: "not-exist", holding_id: "not-exist" }, format: :json
+      expect(response.status).to be 404
+    end
+
+    it "reports record not found for a non-existing holding_id" do
+      get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "not-exist" }, format: :json
       expect(response.status).to be 404
     end
 
