@@ -30,8 +30,15 @@ class PatronController < ApplicationController
         patron_group_desc: data["user_group"]["desc"],
         requests_total: data["requests"]["value"],
         loans_total: data["loans"]["value"],
-        fees_total: data["fees"]["value"]
+        fees_total: data["fees"]["value"],
+        active_email: primary_email
       }
+    end
+
+    def primary_email
+      data["contact_info"]["email"].find do |email|
+        email["preferred"] == true
+      end&.fetch("email_address", nil)
     end
 
     def data
