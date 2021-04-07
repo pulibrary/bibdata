@@ -50,7 +50,7 @@ describe 'From traject_config.rb' do
     end
     it "does not index elf locations for alma" do
       # I need a record where this would break without this change - probably 99121576653506421
-      record = @indexer.map_record(fixture_alma_record('9918573506421'))
+      record = @indexer.map_record(fixture_alma_record('99121576653506421'))
 
       # No ELF code.
       expect(record["location_code_s"]).to eq ["lewis$stacks"]
