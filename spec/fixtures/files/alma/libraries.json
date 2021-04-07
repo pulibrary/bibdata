@@ -2,39 +2,39 @@
     "library": [
         {
             "code": "arch",
-            "id": "123456789123456",
+            "id": "124284330006421",
             "name": "Architecture Library",
-            "path": "API_GUEST.API_GUEST_INST.arch",
+            "path": "01PRI.01PRI_INST.arch",
             "description": null,
             "resource_sharing": false,
             "campus": {
-                "value": "",
-                "desc": null
+            "value": "",
+            "desc": null
             },
             "proxy": "",
             "default_location": {
-                "value": "stacks",
-                "desc": "Architecture Library"
+            "value": "stacks",
+            "desc": "stacks: Architecture Library"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch"
         },
         {
-            "code": "main",
-            "id": "12900830000231",
-            "name": "Main Library",
-            "path": "API_GUEST.API_GUEST_INST.main",
-            "description": "Supports undergraduate level programs",
+            "code": "annex",
+            "id": "124289270006421",
+            "name": "Forrestal Annex",
+            "path": "01PRI.01PRI_INST.annex",
+            "description": null,
             "resource_sharing": false,
             "campus": {
-                "desc": "string",
-                "value": "MAINCAMPUS"
+            "value": "",
+            "desc": null
             },
             "proxy": "",
             "default_location": {
-                "value": "main",
-                "desc": "string"
+            "value": "stacks",
+            "desc": "stacks: Annex Stacks"
             },
-            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main"
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex"
         }
     ]
 }

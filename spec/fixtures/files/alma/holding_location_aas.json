@@ -1,0 +1,33 @@
+{
+    "label": "African American Studies Reading Room (AAS). B-7-B",
+    "code": "aas",
+    "aeon_location": false,
+    "recap_electronic_delivery_location": false,
+    "open": true,
+    "requestable": true,
+    "always_requestable": false,
+    "circulates": false,
+    "library": {
+      "label": "Firestone Library",
+      "code": "firestone",
+      "order": 1
+    },
+    "holding_library": null,
+    "hours_location": {
+      "label": "Firestone Library - Building and Circulation/Reserves Hours",
+      "code": "firestone"
+    },
+    "delivery_locations": [
+      {
+        "label": "Lewis Library, Geosciences and Map Library",
+        "address": "Washington Road and Ivy Lane Princeton, NJ 08544",
+        "phone_number": "609-258-6004",
+        "contact_email": "lewislib@princeton.edu",
+        "gfa_pickup": "PN",
+        "staff_only": false,
+        "pickup_location": false,
+        "digital_location": false
+      }
+    ]
+  }
+  
