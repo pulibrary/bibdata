@@ -1,0 +1,143 @@
+<record>
+  <leader>02797cam a2200301 4500</leader>
+  <controlfield tag="005">20201001193932.0</controlfield>
+  <controlfield tag="008">131113s2013 xx |||||||||||||| ||eng d</controlfield>
+  <controlfield tag="001">9979160443506421</controlfield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9781303457036</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781303457036</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(UMI)AAI3597575</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">AAI3597575</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">7916044</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn869427278</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/869427278</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)7916044-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">UMI</subfield>
+    <subfield code="c">UMI</subfield>
+    <subfield code="d">NjP</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="a">Visnjic, Catherine.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Data characteristics and preliminary results from the atacama b-mode search (ABS).</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">113 p.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Source: Dissertation Abstracts International, Volume: 75-02(E), Section: B.</subfield>
+  </datafield>
+  <datafield tag="502" ind1="" ind2="">
+    <subfield code="b">Ph.D.</subfield>
+    <subfield code="c">Princeton University</subfield>
+    <subfield code="d">2013</subfield>
+  </datafield>
+  <datafield tag="520" ind1="" ind2="">
+    <subfield code="a">The Atacama B-Mode Search (ABS) is a 145 GHz polarimeter located at a high altitude site on Cerro Toco, in the Andes of northern Chile. Having deployed in early 2012, it is currently in its second year of operation, observing the polarization of the Cosmic Microwave Background (CMB). It seeks to probe the as yet undetected odd-parity B-modes of the polarization, which would have been created by the primordial gravitational wave background (GWB) predicted by theories of inflation. The magnitude of the B-mode signal is characterized by the tensor-to-scalar ratio, r. ABS features 60 cm cryogenic reflectors in the crossed-Dragone configuration, and a warm, continuously rotating sapphire half-wave plate to modulate the polarization of incoming radiation. The focal plane consists of 480 antenna-coupled transition edge sensor bolometers, arranged in orthogonal pairs for polarization sensitivity, and coupled to feedhorns in a hexagonal array. In this thesis we describe the ABS instrument in the state in which it is now operating, outline the first season of observations, and characterize the data obtained. Focusing on observations of the primary CMB field during a one month reference period, we detail the algorithms currently used to select the data suitable for making maps. This is the first pass at data cuts and provides a conservative estimate for the sensitivity of ABS to the polarization modes in the sky. We project that with one year total observation time of the primary CMB field, ABS should be able to detect the B-mode signal at roughly the level of r = 0.03.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Page, Lyman A., advisor</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Bialek, William, committee member</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Jones, William, committee member</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">Princeton University.</subfield>
+    <subfield code="b">Department of Physics.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/nr89004678</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/nr89004678</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|nr89004678</subfield>
+  </datafield>
+  <datafield tag="773" ind1="0" ind2="">
+    <subfield code="t">Dissertation Abstracts International</subfield>
+    <subfield code="g">75-02B(E).</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">http://gateway.proquest.com/openurl?url_ver=Z39.88-2004&amp;rft_val_fmt=info:ofi/fmt:kev:mtx:dissertation&amp;res_dat=xri:pqm&amp;rft_dat=xri:pqdiss:3597575</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/dsp018w32r5735</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">st8</subfield>
+    <subfield code="b">m</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20140123</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 10:05:50 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-08 09:12:13 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-08 09:12:07 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53336970180006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53336970180006421</subfield>
+    <subfield code="w">2020-12-08 14:12:07</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52336970190006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9979160443506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53336970180006421</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-08 09:12:13 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-08 09:12:07 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53336970200006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53336970200006421</subfield>
+    <subfield code="w">2020-12-08 14:12:07</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52336970210006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9979160443506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53336970200006421</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">ph</subfield>
+    <subfield code="h">PRIN 685 2013</subfield>
+    <subfield code="8">22116849690006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 15:05:50</subfield>
+    <subfield code="8">22116849690006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcpph: RECAP Mudd Lib.</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22116849690006421</subfield>
+    <subfield code="a">23116849680006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-02 15:05:50</subfield>
+    <subfield code="p">32101069542494</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
