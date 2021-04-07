@@ -423,4 +423,70 @@ RSpec.describe BibliographicController, type: :controller do
       expect(response.body).to include("99122426947506421")
     end
   end
+
+  describe "#availability_holding" do
+    let(:bib_record) { file_fixture("alma/9922486553506421.json") }
+    let(:holding_items) { file_fixture("alma/9922486553506421_holding_items.json") }
+
+    before do
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=not-exist")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: '{ "bib": [], "total_record_count": 0 }'
+        )
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: bib_record
+        )
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100&offset=0")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: holding_items
+        )
+    end
+
+    it "reports record not found for a non-existing bib_id" do
+      get :availability_holding, params: { bib_id: "not-exist", holding_id: "not-exist" }, format: :json
+      expect(response.status).to be 404
+    end
+
+    it "returns valid JSON for a valid bib_id/holding_id" do
+      get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "22117511410006421" }, format: :json
+      expect(response.status).to be 200
+      expect(JSON.parse(response.body)["total_count"]).to be 1
+    end
+  end
 end
