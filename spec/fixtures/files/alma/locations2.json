@@ -1,180 +1,430 @@
 {
     "location": [
-        {
-            "code": "stacks",
-            "name": "Main Library Stacks",
-            "external_name": "Main Library",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "",
-                "desc": "null"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/stacks"
+      {
+        "code": "cat",
+        "name": "Annex Cataloging",
+        "external_name": "Annex Cataloging",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
         },
-        {
-            "code": "microforms",
-            "name": "Microform Room",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "Limited",
-                "desc": "Limited"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "6",
-                "desc": "Shelved separately "
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/microforms"
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
         },
-        {
-            "code": "new",
-            "name": "New Books Display",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "",
-                "desc": null
-            },
-            "call_number_type": {
-                "value": "",
-                "desc": null
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/new"
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
         },
-        {
-            "code": "perroom",
-            "name": "Periodicals",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "Limited",
-                "desc": "Limited"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/perroom"
+        "call_number_type": {
+          "value": "",
+          "desc": null
         },
-        {
-            "code": "rare",
-            "name": "Rare Books Collection",
-            "external_name": "",
-            "type": {
-                "value": "CLOSED",
-                "desc": "Closed"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "Closed",
-                "desc": "Closed"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "8",
-                "desc": "Other scheme"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/rare"
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/cat"
+      },
+      {
+        "code": "circ",
+        "name": "Annex Circ",
+        "external_name": "Annex Circ",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
         },
-        {
-            "code": "reference",
-            "name": "Reference",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "Limited",
-                "desc": "Limited"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/reference"
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
         },
-        {
-            "code": "selfpickup",
-            "name": "\u9884\u7ea6\u67dc",
-            "external_name": "\u9884\u7ea6\u67dc",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "",
-                "desc": null
-            },
-            "call_number_type": {
-                "value": "",
-                "desc": null
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations/selfpickup"
-        }
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/circ"
+      },
+      {
+        "code": "doc",
+        "name": "doc: Annex A Docs Stor (anxadoc)",
+        "external_name": "Documents Off-Site Storage; contact docstor@Princeton.edu",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/doc"
+      },
+      {
+        "code": "fst",
+        "name": "fst: Annex A Staging (anxafst)",
+        "external_name": "Annex A, Forrestal",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/fst"
+      },
+      {
+        "code": "locked",
+        "name": "locked: Annex Locked",
+        "external_name": "Annex Locked",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/locked"
+      },
+      {
+        "code": "noncirc",
+        "name": "non-circ: Annex Non-Circ",
+        "external_name": "Annex Non-Circulating",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/noncirc"
+      },
+      {
+        "code": "princeton",
+        "name": "princeton: Annex Princeton Collection",
+        "external_name": "Annex Princeton Collection",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/princeton"
+      },
+      {
+        "code": "reserve",
+        "name": "reserve: Annex Reserve",
+        "external_name": "Annex Reserve",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/reserve"
+      },
+      {
+        "code": "sct",
+        "name": "sct: Annex Classics Theses",
+        "external_name": "Annex Classics Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/sct"
+      },
+      {
+        "code": "sdt",
+        "name": "sdt: Annex German Theses",
+        "external_name": "Annex German Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/sdt"
+      },
+      {
+        "code": "set",
+        "name": "set: Annex English Theses",
+        "external_name": "Annex English Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/set"
+      },
+      {
+        "code": "sht",
+        "name": "sht: Annex History Theses",
+        "external_name": "Annex History Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/sht"
+      },
+      {
+        "code": "spt",
+        "name": "spt: Annex Philosophy Theses",
+        "external_name": "Annex Philosophy Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/spt"
+      },
+      {
+        "code": "srt",
+        "name": "srt: Annex Romance Language Theses",
+        "external_name": "Annex A, Forrestal: Romance Language Theses",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/srt"
+      },
+      {
+        "code": "stacks",
+        "name": "stacks: Annex Stacks",
+        "external_name": "Annex Stacks",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/stacks"
+      },
+      {
+        "code": "t",
+        "name": "t: Annex Theses Collection",
+        "external_name": "Annex A, Forrestal: Theses Collection",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/t"
+      },
+      {
+        "code": "UNASSIGNED",
+        "name": "UNASSIGNED location",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "",
+          "desc": null
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations/UNASSIGNED"
+      }
     ],
-    "total_record_count": 7
-}
+    "total_record_count": 17
+  }

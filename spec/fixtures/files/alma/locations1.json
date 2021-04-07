@@ -1,155 +1,230 @@
 {
     "location": [
-        {
-            "code": "stacks",
-            "name": "Architecture Library Stacks",
-            "external_name": "Architecture Library",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "",
-                "desc": "null"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/stacks"
+      {
+        "code": "cat",
+        "name": "Architecture Cataloging",
+        "external_name": "Architecture Cataloging",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
         },
-        {
-            "code": "reserves",
-            "name": "Course Reserves",
-            "external_name": "",
-            "type": {
-                "value": "CLOSED",
-                "desc": "Closed"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "1HourLoan",
-                "desc": "1 hour loan"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/reserves"
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
         },
-        {
-            "code": "govdocs",
-            "name": "Government Documents",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "3",
-                "desc": "Superintendent of Documents classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/govdocs"
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
         },
-        {
-            "code": "internat",
-            "name": "International Collection",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/internat"
+        "call_number_type": {
+          "value": "",
+          "desc": null
         },
-        {
-            "code": "edujuv",
-            "name": "Juvenile Education Collection",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "General",
-                "desc": "General"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "0",
-                "desc": "Library of Congress classification"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/edujuv"
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/cat"
+      },
+      {
+        "code": "circ",
+        "name": "Architecture Circ",
+        "external_name": "Architecture Circ",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
         },
-        {
-            "code": "media",
-            "name": "Media Collection",
-            "external_name": "",
-            "type": {
-                "value": "OPEN",
-                "desc": "Open"
-            },
-            "remote_storage": "",
-            "map": "",
-            "suppress_from_publishing": "false",
-            "fulfillment_unit": {
-                "value": "Media",
-                "desc": "Media"
-            },
-            "accession_placement": {
-                "value": "none",
-                "desc": "None"
-            },
-            "call_number_type": {
-                "value": "8",
-                "desc": "Other scheme"
-            },
-            "link": "https://api-eu.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/media"
-        }
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/circ"
+      },
+      {
+        "code": "la",
+        "name": "la: Architecture Librarian's Office",
+        "external_name": "Architecture Librarian's Office",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/la"
+      },
+      {
+        "code": "newbook",
+        "name": "newbook: Architecture New Book Shelf",
+        "external_name": "Architecture New Book Shelf",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/newbook"
+      },
+      {
+        "code": "ref",
+        "name": "ref: Architecture Reference",
+        "external_name": "Architecture Reference",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/ref"
+      },
+      {
+        "code": "res3hr",
+        "name": "res3hr: Architecture Reserve 3-Hour",
+        "external_name": "Architecture Reserve 3-Hour",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/res3hr"
+      },
+      {
+        "code": "resclosed",
+        "name": "resclosed: Architecture Reserve Closed",
+        "external_name": "Architecture Reserve Closed",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/resclosed"
+      },
+      {
+        "code": "stacks",
+        "name": "stacks: Architecture Library",
+        "external_name": "Architecture Library",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/stacks"
+      },
+      {
+        "code": "UNASSIGNED",
+        "name": "UNASSIGNED location",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "",
+          "desc": null
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations/UNASSIGNED"
+      }
     ],
-    "total_record_count": 6
-}
+    "total_record_count": 9
+  }
