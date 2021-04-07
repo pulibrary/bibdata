@@ -9,6 +9,7 @@ require_relative './geo'
 require_relative './electronic_portfolio_builder'
 require_relative './alma_reader'
 require_relative './solr_deleter'
+require_relative './access_facet_builder'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -1176,16 +1177,7 @@ each_record do |record, context|
     location_codes << holding_b
     location_codes.compact!
   end
-  # Hathi Locations
-  # Don't check for hathi if the oclc is missing.
-  hathi_locations = []
-  if context.output_hash['oclc_s'].present?
-    hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
-    hathi_locations = parse_locations_from_hathi_line(hathi_line)
-    hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
-    context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
-  end
-  if location_codes.any? || hathi_locations.any?
+  if location_codes.any?
     location_codes.uniq!
     ## need to go through any location code that isn't from voyager, thesis, or graphic arts
     ## issue with the ReCAP project records
@@ -1204,8 +1196,6 @@ each_record do |record, context|
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-    context.output_hash['access_facet'] = Traject::TranslationMap.new("access", default: "In the Library").translate_array(location_codes | hathi_locations)
-    context.output_hash['access_facet'].uniq!
     context.output_hash['location'].uniq!
 
     # Add library and location for advanced multi-select facet
@@ -1353,6 +1343,20 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
     embargo = embargoes.find { |e| e['a'] == field['8'] }
     accumulator << ElectronicPortfolioBuilder.build(field: field, date: date, embargo: embargo)
   end
+end
+
+# Extract hathi_identifier
+each_record do |_record, context|
+  if context.output_hash['oclc_s'].present?
+    hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
+    hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
+    context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
+  end
+end
+
+# Generate access_facet
+each_record do |record, context|
+  context.output_hash['access_facet'] = AccessFacetBuilder.build(record: record, context: context)
 end
 
 # Location has:
