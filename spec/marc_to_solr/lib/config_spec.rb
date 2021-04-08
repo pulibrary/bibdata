@@ -49,7 +49,6 @@ describe 'From traject_config.rb' do
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
     end
     it "does not index elf locations for alma" do
-      # I need a record where this would break without this change - probably 99121576653506421
       record = @indexer.map_record(fixture_alma_record('99121576653506421'))
 
       # No ELF code.
