@@ -51,6 +51,8 @@ RSpec.describe AwsSqsPoller do
       end
 
       described_class.poll
+      # If it makes it this far polling didn't go infinitely and RSpec didn't
+      # get killed.
 
       # Fix the signal handler.
       Signal.trap 'TERM', old_signal_handler
