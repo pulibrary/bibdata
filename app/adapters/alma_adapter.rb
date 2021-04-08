@@ -46,7 +46,7 @@ class AlmaAdapter
     availability
   end
 
-  def get_availability_holding(id:, holding_id:, query: nil)
+  def get_availability_holding(id:, holding_id:)
     # Fetch the bib record and get the information for the individual holding
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
@@ -55,15 +55,7 @@ class AlmaAdapter
     marc_holding = bib_status.holding(holding_id: holding_id) || {}
 
     # Fetch the items for the holding...
-    holding_items = bib_status.holding_item_data(holding_id: holding_id, query: query)
-
-    # This is to protect in case the bib_id and the holding_id are valid but not related
-    # i.e. the holding_id is for a different bib_id than the one we received.
-    #
-    # In this case Alma will return the correct `total_count` of items for the holding_id
-    # (since the holding_id exists) but it will not return the items for the holding
-    # because the holding_id belongs to a different bib_id.
-    return nil if holding_items[:items].count == 0 && holding_items[:total_count] > 0
+    holding_items = bib_status.holding_item_data(holding_id: holding_id)
 
     # ...create the availability response for each item
     availability = []
@@ -84,16 +76,20 @@ class AlmaAdapter
 
       status_label = marc_holding["availability"]
       if status_label.nil?
-        # TODO: Figure out if this is right.
-        #     When the marc_holding is nil it seems that there is a a single holding in the bib but
-        #     that holding does NOT have an ID, yet, I think for eresources that single holding
-        #     seems to have the data that we need and therefore we could take the "availability"
-        #     property from that holding.
-        #     For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
-        # For now use the data in the item.
+        # TODO: This will need to be figure out later on.
         #
-        # If we do use the item_data value we should normalize it so that it says "available"
-        # rather than "Item in place".
+        #   It possible that we will never hit this case because Request might not need to
+        #   find out the availability for holding that meets this criteria but if it does
+        #   then the current code will handle it.
+        #
+        #   The issue here is that the holding information that comes for these records
+        #   does not have a holding for the holding_id that we are working with. Instead it has
+        #   a single holding that does NOT have an ID. This seems to be an issue only for
+        #   eresources.
+        #
+        #   For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
+        #
+        #   For now use the data in the item.
         status_label = item_data["base_status"]["desc"]
       end
 
@@ -107,7 +103,7 @@ class AlmaAdapter
         item_type: policy["value"],                 # Gen
         pickup_location_id: location["value"],      # stacks
         pickup_location_code: location["value"],    # stacks
-        location: library["value"],                 # firestone
+        location: item.composite_location,          # firestone$stacks
         label: library["desc"],                     # Firestore Library
         in_temp_library: in_temp_library,
         status_label: status_label,                 # available
@@ -119,20 +115,14 @@ class AlmaAdapter
       if in_temp_library
         item_av[:temp_library_code] = temp_library["value"]
         item_av[:temp_library_label] = temp_library["desc"]
-        item_av[:temp_location_code] = temp_library["value"]
+        item_av[:temp_location_code] = item.composite_temp_location
         item_av[:temp_location_label] = temp_library["desc"]
       end
 
       availability << item_av
     end
 
-    # The `total_count` property might seem extra here but this is in preparation
-    # for when the client supports pagination and requests only a page of records.
-    response = {
-      total_count: holding_items[:total_count],
-      items: availability
-    }
-    response
+    availability
   end
 
   # Returns list of holding records for a given MMS
