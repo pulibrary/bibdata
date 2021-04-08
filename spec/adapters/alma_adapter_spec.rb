@@ -349,7 +349,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: bib_record_1, headers: { "content-Type" => "application/json" })
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -373,7 +373,7 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: bib_record_2, headers: { "content-Type" => "application/json" })
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -388,15 +388,15 @@ RSpec.describe AlmaAdapter do
 
     it "reports holdings availability" do
       availability = adapter.get_availability_holding(id: "9922486553506421", holding_id: "22117511410006421")
-      item = availability[:items].first
-      expect(availability[:total_count]).to eq 1
+      item = availability.first
+      expect(availability.count).to eq 1
       expect(item[:barcode]).to eq "32101036144101"
       expect(item[:in_temp_library]).to eq false
       expect(item[:temp_library_code]).to eq nil
 
       # Make sure temp locations are handled
       availability = adapter.get_availability_holding(id: "9919392043506421", holding_id: "22105104420006421")
-      item = availability[:items].first
+      item = availability.first
       expect(item[:in_temp_library]).to eq true
       expect(item[:temp_library_code]).to eq "online"
     end
