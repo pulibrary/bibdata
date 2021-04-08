@@ -6,6 +6,7 @@ class AwsSqsPoller
     poller = Aws::SQS::QueuePoller.new(queue_url)
     end_polling = false
 
+    # End polling if the process is killed by restarting.
     Signal.trap("TERM") do
       end_polling = true
     end
