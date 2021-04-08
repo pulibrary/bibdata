@@ -50,8 +50,11 @@ class BibliographicController < ApplicationController
     begin
       records = adapter.get_bib_record(bib_id_param)
       records.strip_non_numeric! unless opts[:holdings]
-    rescue StandardError => e
-      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{e}"
+    rescue Alma::PerSecondThresholdError => alma_threshold_error
+      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{alma_threshold_error}"
+      return head :too_many_requests
+    rescue StandardError => bib_request_error
+      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{bib_request_error}"
       return head :bad_request
     end
 
@@ -88,6 +91,9 @@ class BibliographicController < ApplicationController
         render json: solr_doc
       end
     end
+  rescue Alma::PerSecondThresholdError => alma_client_error
+    Rails.logger.error "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}: #{alma_client_error}"
+    head(:too_many_requests)
   end
 
   def bib_jsonld
@@ -110,6 +116,9 @@ class BibliographicController < ApplicationController
         end
       end
     end
+  rescue Alma::PerSecondThresholdError => alma_client_error
+    Rails.logger.error "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}: #{alma_client_error}"
+    head(:too_many_requests)
   end
 
   # bibliographic/:bib_id/items
