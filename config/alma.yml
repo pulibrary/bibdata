@@ -14,6 +14,9 @@ default: &default
     "Publishing Platform Job Incremental Publishing via FTP":
       dump_type: "CHANGED_RECORDS"
       dump_file_type: "UPDATED_RECORDS"
+    "Publishing Platform Job Incremental ReCAP Records":
+      dump_type: "PRINCETON_RECAP"
+      dump_file_type: "RECAP_RECORDS"
 
 development:
   <<: *default
