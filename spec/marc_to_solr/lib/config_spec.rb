@@ -53,10 +53,9 @@ describe 'From traject_config.rb' do
       record = @indexer.map_record(fixture_alma_record('99121576653506421'))
 
       # No ELF code.
-      expect(record["location_code_s"]).to eq ["lewis$stacks"]
-      holdings = JSON.parse(record["holdings_1display"].first)
-      # No holdings - these are in electronic_access_1display
-      expect(holdings.keys.length).to eq 1
+      expect(record["location_display"]).to be_nil
+      expect(record["location"]).to be_nil
+      expect(record["holdings_1display"]).to be_nil
     end
   end
   describe "locations" do
