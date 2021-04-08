@@ -427,6 +427,7 @@ RSpec.describe BibliographicController, type: :controller do
   describe "#availability_holding" do
     let(:bib_record) { file_fixture("alma/9922486553506421.json") }
     let(:holding_items) { file_fixture("alma/9922486553506421_holding_items.json") }
+    let(:bib_record_no_holdings) { file_fixture("alma/9922868943506421.json") }
 
     before do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=not-exist")
@@ -492,22 +493,86 @@ RSpec.describe BibliographicController, type: :controller do
           headers: { "Content-Type" => "application/json" },
           body: '{ "total_record_count": 0 }'
         )
+
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922868943506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: bib_record_no_holdings
+        )
+
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings/22109192600006421/items?limit=100&offset=0")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: '{ "total_record_count": 0 }'
+        )
+
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22105104420006421/items?limit=100&offset=0")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(
+          status: 200,
+          headers: { "Content-Type" => "application/json" },
+          body: '{ "total_record_count": 3 }'
+        )
     end
 
     it "reports record not found for a non-existing bib_id" do
       get :availability_holding, params: { bib_id: "not-exist", holding_id: "not-exist" }, format: :json
-      expect(response.status).to be 404
+      expect(response.status).to eq 404
     end
 
-    it "reports record not found for a non-existing holding_id" do
+    it "handles a non-existing holding_id" do
+      # It would be nice if we could return 404 in this case but we have no way of
+      # distinguishing between a non-existing holding_id and a holding_id with no
+      # items. They both return total_count 0 in Alma.
       get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "not-exist" }, format: :json
-      expect(response.status).to be 404
+      expect(response.status).to eq 200
+      expect(JSON.parse(response.body)["total_count"]).to eq 0
+    end
+
+    it "reports record not found for a bib_id / holding_id mismatch" do
+      get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "22105104420006421" }, format: :json
+      expect(response.status).to eq 404
     end
 
     it "returns valid JSON for a valid bib_id/holding_id" do
       get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "22117511410006421" }, format: :json
-      expect(response.status).to be 200
+      expect(response.status).to eq 200
       expect(JSON.parse(response.body)["total_count"]).to be 1
     end
+
+    it "handles a holding without items correctly" do
+      get :availability_holding, params: { bib_id: "9922868943506421", holding_id: "22109192600006421" }, format: :json
+      expect(response.status).to eq 200
+      expect(JSON.parse(response.body)["total_count"]).to eq 0
+    end
+
   end
 end

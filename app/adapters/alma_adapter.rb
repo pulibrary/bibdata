@@ -55,14 +55,15 @@ class AlmaAdapter
     marc_holding = bib_status.holding(holding_id: holding_id) || {}
 
     # Fetch the items for the holding...
-    # Note: if the user passes a valid bib_id with a holding_id for a **different** bib_id
-    #       Alma will return the correct `total_count` of items for the holding_id
-    #       (since the holding_id exists) but it will not return the items for the holding
-    #       because the holding_id belongs to a different bib_id. Therefore we validate that
-    #       actual number of items in the result is not zero, to be sure the bib_id and
-    #       holding_id are in fact related.
     holding_items = bib_status.holding_item_data(holding_id: holding_id, query: query)
-    return nil if holding_items[:items].count == 0
+
+    # This is to protect in case the bib_id and the holding_id are valid but not related
+    # i.e. the holding_id is for a different bib_id than the one we received.
+    #
+    # In this case Alma will return the correct `total_count` of items for the holding_id
+    # (since the holding_id exists) but it will not return the items for the holding
+    # because the holding_id belongs to a different bib_id.
+    return nil if holding_items[:items].count == 0 && holding_items[:total_count] > 0
 
     # ...create the availability response for each item
     availability = []
