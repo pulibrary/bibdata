@@ -4,6 +4,16 @@ class AwsSqsPoller
   def self.poll
     queue_url = Rails.configuration.alma["sqs_queue_url"]
     poller = Aws::SQS::QueuePoller.new(queue_url)
+    end_polling = false
+
+    # End polling if the process is killed by restarting.
+    Signal.trap("TERM") do
+      end_polling = true
+    end
+
+    poller.before_request do |_stats|
+      throw :stop_polling if end_polling
+    end
 
     poller.poll do |msg|
       message_body = JSON.parse(msg[:body])
