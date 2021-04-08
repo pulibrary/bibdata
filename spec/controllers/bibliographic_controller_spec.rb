@@ -462,7 +462,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: bib_record
         )
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -478,7 +478,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: holding_items
         )
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/not-exist/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/not-exist/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -510,7 +510,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: bib_record_no_holdings
         )
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings/22109192600006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings/22109192600006421/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -526,7 +526,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: '{ "total_record_count": 0 }'
         )
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22105104420006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22105104420006421/items?limit=100")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -554,24 +554,28 @@ RSpec.describe BibliographicController, type: :controller do
       # items. They both return total_count 0 in Alma.
       get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "not-exist" }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body)["total_count"]).to eq 0
+      expect(JSON.parse(response.body).count).to eq 0
     end
 
     it "reports record not found for a bib_id / holding_id mismatch" do
+      # It would be nice if we could return 404 in this case but we have no way of
+      # distinguishing between a mismatched holding_id and a holding_id with no
+      # items.
       get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "22105104420006421" }, format: :json
-      expect(response.status).to eq 404
+      expect(response.status).to eq 200
+      expect(JSON.parse(response.body).count).to eq 0
     end
 
     it "returns valid JSON for a valid bib_id/holding_id" do
       get :availability_holding, params: { bib_id: "9922486553506421", holding_id: "22117511410006421" }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body)["total_count"]).to be 1
+      expect(JSON.parse(response.body).count).to be 1
     end
 
     it "handles a holding without items correctly" do
       get :availability_holding, params: { bib_id: "9922868943506421", holding_id: "22109192600006421" }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body)["total_count"]).to eq 0
+      expect(JSON.parse(response.body).count).to eq 0
     end
   end
 end

@@ -114,51 +114,13 @@ class AlmaAdapter
     # Returns all the items for a given holding_id in the current bib.
     # This is a more specific version of `item_data`.
     #
-    # Note: If the holding has more than 100 items this method will make multiple calls
-    #       to ExLibris to fetch them all. The need to iterate through multuple pages
-    #       is not a common but it does happen for a few of our records, like Nature
-    #       and Science.
-    def holding_item_data(holding_id:, page_size: 100, query: nil)
-      data = { items: [], total_count: 0 }
-      page = 0
-      more_pages = true
-      while more_pages
-        # Get the next page of items...
-        page += 1
-        response = holding_item_data_page(holding_id: holding_id, page: page, page_size: page_size, query: query)
-
-        # ...add it to our array
-        data[:items] += response.items.map { |item| AlmaAdapter::AlmaItem.new(item) }
-        data[:total_count] = response.total_record_count
-
-        # ...check if there are more items to fetch
-        page_count = (response.total_record_count / page_size)
-        page_count += 1 if (response.total_record_count % page_size) > 0
-        more_pages = page < page_count
-      end
+    # If the holding has more than ITEMS_PER_PAGE items the Alma gem will automatically
+    # make multiple calls to the Alma API.
+    def holding_item_data(holding_id:)
+      opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id }
+      items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
+      data = { items: items, total_count: items.count }
       data
-    end
-
-    # Returns a page of items for a given holding_id in the current bib
-    def holding_item_data_page(holding_id:, page:, page_size:, query: nil)
-      options = {
-        holding_id: holding_id,
-        limit: page_size,
-        offset: (page - 1) * page_size
-      }
-
-      # The query parameter has a very specific syntax: "field~search_value". The fields
-      # that are valid for this API call are: enum_a, enum_b, chron_i, chron_j, and description.
-      #
-      # The search is case insensitive and uses underscores (instead of spaces) to separate words
-      # in multi-word searches.
-      #
-      # For more details see:
-      #   https://developers.exlibrisgroup.com/blog/How-we-re-building-APIs-at-Ex-Libris/#BriefSearch and
-      #   https://developers.exlibrisgroup.com/alma/apis/docs/bibs/R0VUIC9hbG1hd3MvdjEvYmlicy97bW1zX2lkfS9ob2xkaW5ncy97aG9sZGluZ19pZH0vaXRlbXM=/
-      options[:q] = query.tr(" ", "_") if query
-
-      Alma::BibItem.find(bib.id, options)
     end
 
     private
