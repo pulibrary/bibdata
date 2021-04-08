@@ -486,7 +486,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: '{ "total_record_count": 0 }'
         )
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922868943506421")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922868943506421")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -502,7 +502,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: bib_record_no_holdings
         )
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings/22109192600006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings/22109192600006421/items?limit=100&offset=0")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -518,7 +518,7 @@ RSpec.describe BibliographicController, type: :controller do
           body: '{ "total_record_count": 0 }'
         )
 
-        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22105104420006421/items?limit=100&offset=0")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22105104420006421/items?limit=100&offset=0")
         .with(
           headers: {
             'Accept' => 'application/json',
@@ -565,6 +565,5 @@ RSpec.describe BibliographicController, type: :controller do
       expect(response.status).to eq 200
       expect(JSON.parse(response.body)["total_count"]).to eq 0
     end
-
   end
 end
