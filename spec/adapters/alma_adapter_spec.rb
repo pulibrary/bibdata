@@ -102,6 +102,23 @@ RSpec.describe AlmaAdapter do
         expect(set.map(&:composite_location).uniq).to eq ["MAIN$offsite", "MAIN$RESERVES"]
         expect(set.count).to eq 4
       end
+      it "paginates items" do
+        stub_const("Alma::BibItemSet::ITEMS_PER_PAGE", 2)
+        stub_alma_bib_items(
+          mms_id: unsuppressed_two_loc_two_items,
+          limit: 2,
+          filename: "#{unsuppressed_two_loc_two_items}_two_locations_two_items_page_1.json"
+        )
+        stub_alma_bib_items(
+          mms_id: unsuppressed_two_loc_two_items,
+          limit: 2,
+          offset: 2,
+          filename: "#{unsuppressed_two_loc_two_items}_two_locations_two_items_page_2.json"
+        )
+        set = adapter.get_items_for_bib(unsuppressed_two_loc_two_items)
+        expect(set.map(&:composite_location).uniq).to eq ["MAIN$offsite", "MAIN$RESERVES"]
+        expect(set.count).to eq 3
+      end
     end
   end
 
