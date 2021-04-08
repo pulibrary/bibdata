@@ -1,0 +1,49 @@
+{
+  "bib": [
+    {
+      "mms_id": "9922868943506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "Birth control news.",
+      "author": null,
+      "issn": null,
+      "isbn": null,
+      "network_number": [
+        "(NjP)2286894-princetondb",
+        "(OCoLC)ocm53175640",
+        "2286894",
+        "PITT NO. 1252800002",
+        "Ulp No. 1407900005",
+        "0112698",
+        "(OCoLC)1536494",
+        "(OCoLC)ocm01536494"
+      ],
+      "place_of_publication": "London.",
+      "date_of_publication": "1uuu",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2020-12-02Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "BIBS",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "2286894-princetondb",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00565cas a2200205M  4500</leader>\n    <controlfield tag=\"001\">9922868943506421</controlfield>\n    <controlfield tag=\"005\">20200810173737.0</controlfield>\n    <controlfield tag=\"008\">750812d1uuu1uuuenkuu p       0    0eng d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">0112698</subfield>\n      <subfield code=\"b\">MULS</subfield>\n      <subfield code=\"a\">Ulp No. 1407900005</subfield>\n      <subfield code=\"a\">PITT NO. 1252800002</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"9\">CKN7181TS</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">2286894</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocm53175640</subfield>\n      <subfield code=\"z\">(OCoLC)ocm01536494</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)2286894-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"z\">(OCoLC)1536494</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">MUL</subfield>\n      <subfield code=\"c\">MUL</subfield>\n      <subfield code=\"d\">OCL</subfield>\n      <subfield code=\"d\">PUL</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"019\">\n      <subfield code=\"a\">1536494</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Birth control news.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">London.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">Caption title.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"945\">\n      <subfield code=\"a\">L</subfield>\n      <subfield code=\"b\">1</subfield>\n      <subfield code=\"c\">HQ766</subfield>\n      <subfield code=\"d\">.B53f</subfield>\n      <subfield code=\"e\">v.[1]-7</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"945\">\n      <subfield code=\"a\">F</subfield>\n      <subfield code=\"b\">1</subfield>\n      <subfield code=\"c\">HQ766</subfield>\n      <subfield code=\"d\">.B53</subfield>\n      <subfield code=\"e\">v.8-23</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"911\">\n      <subfield code=\"a\">19990626</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9922868943506421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">online</subfield><subfield code=\"c\">ETAS</subfield><subfield code=\"d\">HQ766 .B53</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">8</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">etas</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Electronic Access</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9922868943506421</subfield><subfield code=\"8\">22109192600006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">annex</subfield><subfield code=\"c\">Annex Locked</subfield><subfield code=\"d\">Oversize HQ766 .B53f</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">locked</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">2</subfield><subfield code=\"q\">Forrestal Annex</subfield><subfield code=\"t\">v.[1]-7</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 1,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922868943506421/requests"
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}
