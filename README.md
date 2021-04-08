@@ -173,6 +173,17 @@ To run all the tests use the rake task, which sets some environment variables fo
 Deployment is through capistrano. To deploy a branch other than "main", prepend an environment variable to your deploy command, e.g.:
 `BRANCH=my_feature bundle exec cap staging deploy`
 
+## Production Locations Configuration
+
+To import locations from Alma for the first time in a production environment do
+the following:
+
+1. `cap [environment] rails:console`
+1. `LocationDataService.delete_existing_and_repopulate`
+
+This is a destructive action, only do this for initial setup or for a clean
+slate!
+
 ## License
 
 See `LICENSE`.
