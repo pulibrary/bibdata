@@ -35,7 +35,6 @@ describe 'From traject_config.rb' do
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
-    @hathi_present = @indexer.map_record(fixture_alma_record('9915903023506421'))
     @hathi_permanent = @indexer.map_record(fixture_alma_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
   end
@@ -391,11 +390,6 @@ describe 'From traject_config.rb' do
     it 'value can be both in the library and online when there are multiple holdings' do
       expect(@online_at_library['access_facet']).to include 'Online'
       expect(@online_at_library['access_facet']).to include 'In the Library'
-    end
-
-    it 'value include hathi locations when record is present in hathi report' do
-      expect(@hathi_present['access_facet']).to contain_exactly('Temporary Digital Access', 'Online', 'In the Library')
-      expect(@hathi_present['hathi_identifier_s']).to contain_exactly("mdp.39015002162876")
     end
 
     it 'value include online when record is present in hathi report with permanent access' do
