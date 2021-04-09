@@ -17,21 +17,21 @@ describe 'From traject_config.rb' do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
     @indexer = IndexerService.build
-    @sample1 = @indexer.map_record(fixture_record('sample1'))
-    @sample2 = @indexer.map_record(fixture_record('sample2'))
-    @sample3 = @indexer.map_record(fixture_alma_record('993213506421'))
-    @sample34 = @indexer.map_record(fixture_record('sample34'))
-    @sample35 = @indexer.map_record(fixture_record('sample35'))
-    @sample36 = @indexer.map_record(fixture_record('8181849'))
-    @manuscript_book = @indexer.map_record(fixture_record('sample17'))
-    @added_title_246 = @indexer.map_record(fixture_record('sample18'))
-    @related_names = @indexer.map_record(fixture_record('sample27'))
-    @label_i_246 = @indexer.map_record(fixture_record('sample28'))
+    @sample1 = @indexer.map_record(fixture_alma_record('99276293506421'))
+    @sample2 = @indexer.map_record(fixture_alma_record('993456823506421'))
+    @sample3 = @indexer.map_record(fixture_alma_record('99120519033506421'))
+    @sample34 = @indexer.map_record(fixture_alma_record('99105855523506421'))
+    @sample35 = @indexer.map_record(fixture_alma_record('9990567203506421'))
+    @sample36 = @indexer.map_record(fixture_alma_record('9981818493506421'))
+    @manuscript_book = @indexer.map_record(fixture_alma_record('9959060243506421'))
+    @added_title_246 = @indexer.map_record(fixture_alma_record('9930602883506421'))
+    @related_names = @indexer.map_record(fixture_alma_record('9919643053506421'))
+    @label_i_246 = @indexer.map_record(fixture_alma_record('9990315453506421'))
     @online_at_library = @indexer.map_record(fixture_alma_record('9979160443506421'))
     @online = @indexer.map_record(fixture_alma_record('9990889283506421'))
-    # @elf2 = @indexer.map_record(fixture_record('elf2'))
-    @other_title_246 = @indexer.map_record(fixture_record('7910599'))
-    @title_vern_display = @indexer.map_record(fixture_record('4854502'))
+    # @elf2 = @indexer.map_record(fixture_alma_record('elf2'))
+    @other_title_246 = @indexer.map_record(fixture_alma_record('9979105993506421'))
+    @title_vern_display = @indexer.map_record(fixture_alma_record('9948545023506421'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
@@ -279,7 +279,7 @@ describe 'From traject_config.rb' do
   end
   describe 'notes from record show up in the notes_index' do
     it 'shows tag 500 and 538' do
-      expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', '"Digitized and restored in 2K with the support of the Centre National du Cinéma."')
+      expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
     end
   end
   describe 'publication end date' do
@@ -337,7 +337,7 @@ describe 'From traject_config.rb' do
     let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
     let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
     it 'displays 264 tag sorted by indicator2' do
-      expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "©1956-1971"]
+      expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "Â©1956-1971"]
     end
     it 'displays when 008-6 is d and an end date is present in the 008' do
       expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'

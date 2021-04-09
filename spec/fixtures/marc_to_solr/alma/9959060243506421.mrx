@@ -1,0 +1,117 @@
+<record>
+  <leader>01439ctaaa2200325Mi 4500</leader>
+  <controlfield tag="005">20200925232624.0</controlfield>
+  <controlfield tag="008">090828q16581659xx 000 0 ara d</controlfield>
+  <controlfield tag="001">9959060243506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn436109995</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/436109995</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">5906024</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)436109995</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/436109995</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)5906024-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">NjP</subfield>
+    <subfield code="c">PUL</subfield>
+    <subfield code="e">amremm</subfield>
+    <subfield code="d">PUL</subfield>
+  </datafield>
+  <datafield tag="066" ind1="" ind2="">
+    <subfield code="c">(3</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Sharh&#204;&#163; S&#204;&#163;ughra&#204; al-Sanu&#204;&#8222;si&#204;&#8222;.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="c">[1658 or 9]</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Title from f. 1a.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Author listed on fol. 1a as al-Shaykh al-Mada&#204;&#8222;fi&#204;&#8222; al-Zad&#202;&#187;ami&#204;&#8222; (?).</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Original text in red.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Dated 1069 AH (1658 or 9) (fol. 23a).</subfield>
+  </datafield>
+  <datafield tag="520" ind1="8" ind2="">
+    <subfield code="a">A commentary on Sanu&#204;&#8222;si&#204;&#8222;'s doctrinal work, Umm al-bara&#204;&#8222;hi&#204;&#8222;n.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Sanu&#204;&#8222;si&#204;&#8222;, Muh&#204;&#163;ammad ibn Yu&#204;&#8222;suf,</subfield>
+    <subfield code="d">approximately 1427-approximately 1490.</subfield>
+    <subfield code="t">Umm al-bara&#204;&#8222;hi&#204;&#8222;n.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Islam</subfield>
+    <subfield code="x">Doctrines</subfield>
+    <subfield code="v">Early works to 1800.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh87000152</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Manuscripts, Arabic</subfield>
+    <subfield code="y">17th century.</subfield>
+    <subfield code="2">lcsh</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Manuscripts, Arabic.</subfield>
+    <subfield code="2">lcsh</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">Sanu&#204;&#8222;si&#204;&#8222;, Muh&#204;&#163;ammad ibn Yu&#204;&#8222;suf,</subfield>
+    <subfield code="d">approximately 1427-approximately 1490.</subfield>
+    <subfield code="t">Umm al-bara&#204;&#8222;hi&#204;&#8222;n.</subfield>
+  </datafield>
+  <datafield tag="773" ind1="0" ind2="">
+    <subfield code="t">[Collection of five Arabic texts].</subfield>
+    <subfield code="g">3a-23a</subfield>
+    <subfield code="w">9959059663506421</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="0">
+    <subfield code="6">245-01/(3/r</subfield>
+    <subfield code="a">&#216;&#180;&#216;&#177;&#216;&#173; &#216;&#181;&#216;&#186;&#216;&#177;&#217;&#8240; &#216;&#167;&#217;&#8222;&#216;&#179;&#217;&#8224;&#217;&#710;&#216;&#179;&#217;&#352;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="4">
+    <subfield code="6">600-02/(3/r</subfield>
+    <subfield code="a">&#216;&#179;&#217;&#8224;&#217;&#710;&#216;&#179;&#217;&#352;&#216;&#338; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#217;&#352;&#217;&#710;&#216;&#179;&#217;.</subfield>
+    <subfield code="t">&#216;&#167;&#217;&#8230; &#216;&#167;&#217;&#8222;&#216;&#168;&#216;&#177;&#216;&#167;&#217;&#8225;&#217;&#352;&#217;&#8224;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="2">
+    <subfield code="6">700-03/(3/r</subfield>
+    <subfield code="a">&#216;&#179;&#217;&#8224;&#217;&#710;&#216;&#179;&#217;&#352;&#216;&#338; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#217;&#352;&#217;&#710;&#216;&#179;&#217;.</subfield>
+    <subfield code="t">&#216;&#167;&#217;&#8230; &#216;&#167;&#217;&#8222;&#216;&#168;&#216;&#177;&#216;&#167;&#217;&#8225;&#217;&#352;&#217;&#8224;.</subfield>
+  </datafield>
+  <datafield tag="999" ind1="" ind2="">
+    <subfield code="a">5906024</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 21:26:50 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="0">
+    <subfield code="b">rare</subfield>
+    <subfield code="c">hsvm</subfield>
+    <subfield code="h">Islamic Manuscripts, Third Series no. 99</subfield>
+    <subfield code="8">22268293190006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-03 02:26:50</subfield>
+    <subfield code="8">22268293190006421</subfield>
+    <subfield code="b">Special Collections</subfield>
+    <subfield code="c">hsvm: Manuscripts South East</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+</record>
