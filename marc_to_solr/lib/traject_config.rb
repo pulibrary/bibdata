@@ -1131,11 +1131,7 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator|
   all_holdings = process_holdings(record)
-  if all_holdings == {}
-    logger.error "#{record['001']} - Missing holdings"
-  else
-    accumulator[0] = all_holdings.to_json.to_s
-  end
+  accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
 end
 
 ## for recap notes
