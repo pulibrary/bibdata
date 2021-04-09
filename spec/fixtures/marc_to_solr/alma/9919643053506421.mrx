@@ -1,0 +1,115 @@
+<record>
+  <leader>00907cam a22002655 4500</leader>
+  <controlfield tag="005">20200805204851.0</controlfield>
+  <controlfield tag="008">980330s1955 it fh 000 0 ita d</controlfield>
+  <controlfield tag="001">9919643053506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocm38866435</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/38866435</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">CHD8897TS</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">1964305</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)1964305-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">PUL</subfield>
+    <subfield code="c">PUL</subfield>
+  </datafield>
+  <datafield tag="050" ind1="" ind2="4">
+    <subfield code="a">NC1045</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="a">Resta, Sebastiano.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n85311670</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Cento tavole del codice Resta.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">[Milano,</subfield>
+    <subfield code="b">Officine grafiche A. Pizzi,</subfield>
+    <subfield code="c">1955]</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">facsim.: 100 pl.</subfield>
+    <subfield code="c">53 cm.</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2="">
+    <subfield code="a">Milan. Biblioteca ambrosiana. Fonti ambrosiane,</subfield>
+    <subfield code="v">29</subfield>
+  </datafield>
+  <datafield tag="546" ind1="" ind2="">
+    <subfield code="a">Introduction in Italian, French, English and German.</subfield>
+  </datafield>
+  <datafield tag="590" ind1="" ind2="">
+    <subfield code="a">Limited ed.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Drawing, Italian.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85039448</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">Biblioteca ambrosiana.</subfield>
+    <subfield code="k">Mss.</subfield>
+    <subfield code="n">(Codice Resta)</subfield>
+  </datafield>
+  <datafield tag="830" ind1="" ind2="0">
+    <subfield code="a">Fontes ambrosiani ;</subfield>
+    <subfield code="v">29.</subfield>
+  </datafield>
+  <datafield tag="945" ind1="" ind2="">
+    <subfield code="a">SAX</subfield>
+    <subfield code="b">1</subfield>
+    <subfield code="c">NC1045</subfield>
+    <subfield code="d">.R31e</subfield>
+  </datafield>
+  <datafield tag="911" ind1="" ind2="">
+    <subfield code="a">19981027</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 08:35:51 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="0">
+    <subfield code="b">marquand</subfield>
+    <subfield code="c">x</subfield>
+    <subfield code="h">NC1045</subfield>
+    <subfield code="i">.R31e</subfield>
+    <subfield code="k">Oversize</subfield>
+    <subfield code="8">2296742550006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 13:35:51</subfield>
+    <subfield code="8">2296742550006421</subfield>
+    <subfield code="b">Marquand Library</subfield>
+    <subfield code="c">sax: Marquand: Rare Books</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="">
+    <subfield code="b">rare</subfield>
+    <subfield code="c">gax</subfield>
+    <subfield code="h">2006-0102E</subfield>
+    <subfield code="k">Oversize</subfield>
+    <subfield code="8">2296742540006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 13:35:51</subfield>
+    <subfield code="8">2296742540006421</subfield>
+    <subfield code="b">Special Collections</subfield>
+    <subfield code="c">gax: Graphic Arts</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">2296742540006421</subfield>
+    <subfield code="a">2396742530006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-02 13:35:51</subfield>
+    <subfield code="p">32101053273544</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>

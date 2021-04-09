@@ -1,0 +1,165 @@
+<record>
+  <leader>01329cam a2200373 i 4500</leader>
+  <controlfield tag="005">20201006103519.0</controlfield>
+  <controlfield tag="008">140815s2015 mnua b 001 0 eng</controlfield>
+  <controlfield tag="001">9990567203506421</controlfield>
+  <datafield tag="010" ind1="" ind2="">
+    <subfield code="a">2014025342</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn887605369</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/887605369</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">9056720</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)887605369</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/887605369</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)9056720-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">DLC</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">YDX</subfield>
+    <subfield code="d">BDX</subfield>
+    <subfield code="d">YDXCP</subfield>
+    <subfield code="d">BTCTA</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">CDX</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9780816695706</subfield>
+    <subfield code="q">hardcover</subfield>
+    <subfield code="q">alkaline paper</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9780816695706</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">0816695709</subfield>
+    <subfield code="q">hardcover</subfield>
+    <subfield code="q">alkaline paper</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0816695709</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9780816695713</subfield>
+    <subfield code="q">paperback</subfield>
+    <subfield code="q">alkaline paper</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9780816695713</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">0816695717</subfield>
+    <subfield code="q">paperback</subfield>
+    <subfield code="q">alkaline paper</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0816695717</subfield>
+  </datafield>
+  <datafield tag="042" ind1="" ind2="">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">P90</subfield>
+    <subfield code="b">.O425 2015</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">302.23</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="049" ind1="" ind2="">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="a">O'Gorman, Marcel,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2006068509</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Necromedia /</subfield>
+    <subfield code="c">Marcel O'Gorman.</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="1">
+    <subfield code="a">Minneapolis, MN :</subfield>
+    <subfield code="b">University of Minnesota Press,</subfield>
+    <subfield code="c">[2015]</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">231 pages ;</subfield>
+    <subfield code="c">22 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1="" ind2="">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2="">
+    <subfield code="a">Posthumanities ;</subfield>
+    <subfield code="v">33</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Includes bibliographical references and index.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Mass media</subfield>
+    <subfield code="x">Philosophy.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008107500</subfield>
+  </datafield>
+  <datafield tag="830" ind1="" ind2="0">
+    <subfield code="a">Posthumanities ;</subfield>
+    <subfield code="v">33.</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">kl</subfield>
+    <subfield code="b">s</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20150526</subfield>
+  </datafield>
+  <datafield tag="904" ind1="" ind2="">
+    <subfield code="a">kl</subfield>
+    <subfield code="b">a</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20150526</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 21:34:53 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">P90</subfield>
+    <subfield code="i">.O425 2015</subfield>
+    <subfield code="8">22270106520006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-03 02:34:53</subfield>
+    <subfield code="8">22270106520006421</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">stacks: Firestone Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22270106520006421</subfield>
+    <subfield code="a">23270106510006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-03 02:34:53</subfield>
+    <subfield code="p">32101096652183</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
