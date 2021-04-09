@@ -27,9 +27,14 @@ AllCops:
     - 'marc_to_solr/translation_maps/location_display.rb'
     - 'marc_to_solr/translation_maps/locations.rb'
     - 'marc_to_solr/translation_maps/holding_library.rb'
+
 Style/BlockDelimiters:
   Exclude:
     - 'spec/models/jsonld_record_spec.rb'
+
+Style/BracesAroundHashParameters:
+  Exclude:
+    - 'spec/marc_to_solr/lib/solr_deleter_spec.rb'
 
 Style/FrozenStringLiteralComment:
   Enabled: false
