@@ -1,0 +1,285 @@
+<record>
+  <leader>03199cam a2200625 i 4500</leader>
+  <controlfield tag="005">20201002144956.0</controlfield>
+  <controlfield tag="008">140305r20140706ja a b 000 0 jpn c</controlfield>
+  <controlfield tag="001">9981818493506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn902811484</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/902811484</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">8181849</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)902811484</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/902811484</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)8181849-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">PAU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">PAU</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">ZCU</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">OCL</subfield>
+    <subfield code="d">STF</subfield>
+    <subfield code="d">OCL</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">PUL</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9784585220732</subfield>
+    <subfield code="q">(set)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9784585220732</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">4585220739</subfield>
+    <subfield code="q">(set)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/4585220739</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2="">
+    <subfield code="a">jpn</subfield>
+    <subfield code="a">chi</subfield>
+  </datafield>
+  <datafield tag="042" ind1="" ind2="">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="050" ind1="" ind2="4">
+    <subfield code="a">BQ2215</subfield>
+    <subfield code="b">.J59 2014</subfield>
+  </datafield>
+  <datafield tag="049" ind1="" ind2="">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield tag="100" ind1="0" ind2="">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Jizang,</subfield>
+    <subfield code="d">549-623,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n86099702</subfield>
+  </datafield>
+  <datafield tag="240" ind1="1" ind2="0">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Jing ming xuan lun</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">Jo&#204;&#8222;myo&#204;&#8222; genron /</subfield>
+    <subfield code="c">Kyo&#204;&#8222;to Kokuritsu Hakubutsukan hen ; kaisetsu Ishihara Harumichi (Hokkaido&#204;&#8222; Daigaku Meiyo Kyo&#204;&#8222;ju), Akao Eikei (Kyo&#204;&#8222;to Kokuritsu Hakubutsukan Gakugeibu Jo&#204;&#8222;seki Kenkyu&#204;&#8222;in).</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2="0">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Kokuho&#204;&#8222; Jo&#204;&#8222;myo&#204;&#8222; genron</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2="">
+    <subfield code="6">880-05</subfield>
+    <subfield code="a">Kyo&#204;&#8222;to Kokuritsu Hakubutsukan shozo&#204;&#8222; kokuho&#204;&#8222; Jo&#204;&#8222;myo&#204;&#8222; genron</subfield>
+  </datafield>
+  <datafield tag="250" ind1="" ind2="">
+    <subfield code="6">880-06</subfield>
+    <subfield code="a">Shohan.</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="1">
+    <subfield code="6">880-07</subfield>
+    <subfield code="a">To&#204;&#8222;kyo&#204;&#8222; :</subfield>
+    <subfield code="b">Bensei Shuppan,</subfield>
+    <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="4">
+    <subfield code="c">&#194;&#169;2014</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">2 volumes :</subfield>
+    <subfield code="b">illustrations ;</subfield>
+    <subfield code="c">31 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1="" ind2="">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Facsimile reproduction of a manuscript collection of scrolls dated between 706 and Kamakura period held at Kyo&#204;&#8222;to Kokuritsu Hakubutsukan.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Latter statement of responsibility from volume 1, colophon.</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="630" ind1="0" ind2="0">
+    <subfield code="a">Tripit&#204;&#163;aka.</subfield>
+    <subfield code="p">Su&#204;&#8222;trapit&#204;&#163;aka.</subfield>
+    <subfield code="p">Vimalaki&#204;&#8222;rtinirdes&#204;a</subfield>
+    <subfield code="v">Outlines, syllabi, etc.</subfield>
+  </datafield>
+  <datafield tag="630" ind1="0" ind2="7">
+    <subfield code="a">Tripit&#204;&#163;aka.</subfield>
+    <subfield code="p">Su&#204;&#8222;trapit&#204;&#163;aka.</subfield>
+    <subfield code="p">Vimalaki&#204;&#8222;rtinirdes&#204;a.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01361012</subfield>
+  </datafield>
+  <datafield tag="630" ind1="0" ind2="0">
+    <subfield code="a">Tripit&#204;&#163;aka.</subfield>
+    <subfield code="p">Su&#204;&#8222;trapit&#204;&#163;aka.</subfield>
+    <subfield code="p">Vimalaki&#204;&#8222;rtinirdes&#204;a</subfield>
+    <subfield code="v">Outlines, syllabi, etc.</subfield>
+    <subfield code="v">Early works to 1800.</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Early works.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01411636</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Outlines and syllabi.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01423836</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-08</subfield>
+    <subfield code="a">Ishizuka, Harumichi,</subfield>
+    <subfield code="d">1942-</subfield>
+    <subfield code="e">writer of supplementary textual content.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n78036923</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-09</subfield>
+    <subfield code="a">Akao, Eikei,</subfield>
+    <subfield code="d">1954-</subfield>
+    <subfield code="e">writer of supplementary textual content.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2014052088</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-10</subfield>
+    <subfield code="a">Kyo&#204;&#8222;to Kokuritsu Hakubutsukan,</subfield>
+    <subfield code="e">editor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n81053839</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="">
+    <subfield code="6">100-01</subfield>
+    <subfield code="a">&#229;&#8240;&#232;&#8212;,</subfield>
+    <subfield code="d">549-623,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+    <subfield code="6">240-02</subfield>
+    <subfield code="a">&#230;&#181;&#8222;&#229;&#231;&#381;&#8222;&#232;&#171;&#8211;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+    <subfield code="6">245-03</subfield>
+    <subfield code="a">&#230;&#181;&#8222;&#229;&#231;&#381;&#8222;&#232;&#171;&#8211; /</subfield>
+    <subfield code="c">&#228;&#186;&#172;&#233;&#402;&#189;&#229;&#8250;&#189;&#231;&#171;&#8249;&#229;&#353;&#231;&#8240;&#169;&#233;&#164;&#168;&#231;&#183;&#168; ; &#232;&#167;&#163;&#232;&#170;&#170;&#231;&#376;&#179;&#229;&#161;&#353;&#230;&#8482;&#180;&#233;&#8220; (&#229;&#338;&#8212;&#230;&#181;&#183;&#233;&#8220;&#229;&#164;&#167;&#229;&#173;&#166;&#229;&#232;&#170;&#8240;&#230;&#8226;&#8482;&#230;&#381;&#710;), &#232;&#181;&#164;&#229;&#176;&#190;&#230;&#160;&#8222;&#230;&#8230;&#182; (&#228;&#186;&#172;&#233;&#402;&#189;&#229;&#8250;&#189;&#231;&#171;&#8249;&#229;&#353;&#231;&#8240;&#169;&#233;&#164;&#168;&#229;&#173;&#166;&#232;&#352;&#184;&#233;&#402;&#168;&#228;&#184;&#352;&#229;&#184;&#173;&#231;&#160;&#8221;&#231;&#169;&#182;&#229;&#8220;&#161;).</subfield>
+  </datafield>
+  <datafield tag="880" ind1="3" ind2="0">
+    <subfield code="6">246-04</subfield>
+    <subfield code="a">&#229;&#8250;&#189;&#229;&#174;&#230;&#181;&#8222;&#229;&#231;&#381;&#8222;&#232;&#171;&#8211;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="3" ind2="">
+    <subfield code="6">246-05</subfield>
+    <subfield code="a">&#228;&#186;&#172;&#233;&#402;&#189;&#229;&#8250;&#189;&#231;&#171;&#8249;&#229;&#353;&#231;&#8240;&#169;&#233;&#164;&#168;&#230;&#8240;&#8364;&#232;&#8221;&#181;&#229;&#8250;&#189;&#229;&#174;&#230;&#181;&#8222;&#229;&#231;&#381;&#8222;&#232;&#171;&#8211;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="">
+    <subfield code="6">250-06</subfield>
+    <subfield code="a">&#229;&#710;&#231;&#8240;&#710;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="1">
+    <subfield code="6">264-07</subfield>
+    <subfield code="a">&#230;&#177;&#228;&#186;&#172; :</subfield>
+    <subfield code="b">&#229;&#8249;&#8240;&#232;&#170;&#160;&#229;&#8225;&#186;&#231;&#8240;&#710;,</subfield>
+    <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-08</subfield>
+    <subfield code="a">&#231;&#376;&#179;&#229;&#161;&#353;&#230;&#8482;&#180;&#233;&#8364;&#353;,</subfield>
+    <subfield code="d">1942-</subfield>
+    <subfield code="e">writer of supplementary textual content.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-09</subfield>
+    <subfield code="a">&#232;&#181;&#164;&#229;&#176;&#190;&#230;&#160;&#8222;&#230;&#8230;&#182;,</subfield>
+    <subfield code="d">1954-</subfield>
+    <subfield code="e">writer of supplementary textual content.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-10</subfield>
+    <subfield code="a">&#228;&#186;&#172;&#233;&#402;&#189;&#229;&#8250;&#189;&#231;&#171;&#8249;&#229;&#353;&#231;&#8240;&#169;&#233;&#164;&#168;,</subfield>
+    <subfield code="e">editor.</subfield>
+  </datafield>
+  <datafield tag="904" ind1="" ind2="">
+    <subfield code="a">tm</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20140305</subfield>
+  </datafield>
+  <datafield tag="994" ind1="" ind2="">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">PUL</subfield>
+  </datafield>
+  <datafield tag="999" ind1="" ind2="">
+    <subfield code="a">8181849</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">kh</subfield>
+    <subfield code="s">kh</subfield>
+    <subfield code="b">m</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">2</subfield>
+    <subfield code="e">20170530</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 14:27:27 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">pa</subfield>
+    <subfield code="h">BQ2215</subfield>
+    <subfield code="i">.J59 2014</subfield>
+    <subfield code="8">22175268310006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 19:27:27</subfield>
+    <subfield code="8">22175268310006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcppa: RECAP</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22175268310006421</subfield>
+    <subfield code="a">23175268290006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol.2</subfield>
+    <subfield code="d">2020-12-02 19:27:27</subfield>
+    <subfield code="p">32101100039328</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22175268310006421</subfield>
+    <subfield code="a">23175268300006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol.1</subfield>
+    <subfield code="d">2020-12-02 19:27:27</subfield>
+    <subfield code="p">32101100036720</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+</record>

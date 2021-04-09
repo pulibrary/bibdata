@@ -1,0 +1,158 @@
+<record>
+  <leader>02755cta a2200385Ia 4500</leader>
+  <controlfield tag="005">20200922213852.0</controlfield>
+  <controlfield tag="008">060919s1345 xx 000 0 ara d</controlfield>
+  <controlfield tag="001">9948545023506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocm71357256</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/71357256</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">4854502</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)4854502-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">PUL</subfield>
+    <subfield code="c">PUL</subfield>
+    <subfield code="e">amremm</subfield>
+  </datafield>
+  <datafield tag="043" ind1="" ind2="">
+    <subfield code="a">n-us-nj</subfield>
+  </datafield>
+  <datafield tag="049" ind1="" ind2="">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Shari&#204;&#8222;shi&#204;&#8222;, Muh&#204;&#163;ammad ibn Ah&#204;&#163;mad,</subfield>
+    <subfield code="d">1294?-1368?</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2007004887</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Fawa&#204;&#8222;&#202;&#188;id fiqhi&#204;&#8222;yah /</subfield>
+    <subfield code="c">lil-Shari&#204;&#8222;shi&#204;&#8222;.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="1" ind2="">
+    <subfield code="6">880-03</subfield>
+    <subfield code="i">Title in Mach, R. Yahuda:</subfield>
+    <subfield code="a">Fawa&#204;&#8222;&#202;&#188;id al-fiqhi&#204;&#8222;yah.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="c">[1345?]</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Ms. component part.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Title from table of contents (fol. 2a).</subfield>
+  </datafield>
+  <datafield tag="520" ind1="8" ind2="">
+    <subfield code="a">Collection of answers by Hibat Alla&#204;&#8222;h ibn al-Ba&#204;&#8222;rizi&#204;&#8222; (d. 1338) to questions by &#202;&#187;Abd al-Rah&#204;&#163;i&#204;&#8222;m al-Isnawi&#204;&#8222; (d. 1370) on several legal matters, with additional remarks by Muh&#204;&#163;ammad ibn Ah&#204;&#163;mad ibn Muh&#204;&#163;ammad al-Shari&#204;&#8222;shi&#204;&#8222;.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">The date of copy of this text is not explicitly mentioned. However another text in the same ms. is said to have been copied on 25 Rabi&#204;&#8222;&#202;&#187; al-A&#204;&#8222;khar 746 (fol. 16a).</subfield>
+  </datafield>
+  <datafield tag="510" ind1="4" ind2="">
+    <subfield code="a">Mach, R. Yahuda,</subfield>
+    <subfield code="c">1451</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Isnawi&#204;&#8222;, &#202;&#187;Abd al-Rah&#204;&#163;i&#204;&#8222;m ibn al-H&#204;&#163;asan,</subfield>
+    <subfield code="d">1305-1370.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n80165632</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Ibn al-Ba&#204;&#8222;rizi&#204;&#8222;, Hibat Alla&#204;&#8222;h ibn Najm al-Di&#204;&#8222;n,</subfield>
+    <subfield code="d">1247-1338.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2006202003</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Islamic law</subfield>
+    <subfield code="y">14th century.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Shafiites</subfield>
+    <subfield code="y">14th century.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Manuscripts, Arabic</subfield>
+    <subfield code="z">New Jersey</subfield>
+    <subfield code="z">Princeton.</subfield>
+  </datafield>
+  <datafield tag="773" ind1="0" ind2="">
+    <subfield code="7">nntm</subfield>
+    <subfield code="a">Shari&#204;&#8222;shi&#204;&#8222;, Muh&#204;&#163;ammad ibn Ah&#204;&#163;mad, d. 1368</subfield>
+    <subfield code="t">Fawa&#204;&#8222;&#202;&#188;id fiqhi&#204;&#8222;yah ... [etc.],</subfield>
+    <subfield code="g">fol. 3b-8b.</subfield>
+    <subfield code="w">9948544963506421</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/2227mp719</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">100-01/r</subfield>
+    <subfield code="a">&#216;&#180;&#216;&#177;&#217;&#352;&#216;&#180;&#217;&#352;&#216;&#338; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#216;&#167;&#216;&#173;&#217;&#8230;&#216;&#175;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+    <subfield code="6">245-02/r</subfield>
+    <subfield code="a">&#217;&#217;&#710;&#216;&#167;&#216;&#166;&#216;&#175; &#217;&#217;&#8218;&#217;&#8225;&#217;&#352;&#216;&#169; /</subfield>
+    <subfield code="c">&#217;&#8222;&#217;&#8222;&#216;&#180;&#216;&#177;&#217;&#352;&#216;&#180;&#217;&#352;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">246-03/r</subfield>
+    <subfield code="a">&#216;&#167;&#217;&#8222;&#217;&#217;&#710;&#216;&#167;&#216;&#166;&#216;&#175; &#216;&#167;&#217;&#8222;&#217;&#217;&#8218;&#217;&#8225;&#217;&#352;&#216;&#169;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="">
+    <subfield code="6">500-00/r</subfield>
+    <subfield code="a">Incipit: &#217;&#8218;&#216;&#167;&#217;&#8222; &#216;&#179;&#217;&#352;&#216;&#175;&#217;&#8224;&#216;&#167; &#217;&#710;&#216;&#180;&#217;&#352;&#216;&#174;&#217;&#8224;&#216;&#167; &#216;&#167;&#217;&#8222;&#217;&#8218;&#216;&#167;&#216;&#182;&#217;&#8240; &#216;&#172;&#217;&#8230;&#216;&#167;&#217;&#8222; &#216;&#167;&#217;&#8222;&#216;&#175;&#217;&#352;&#217;&#8224; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#216;&#167;&#217;&#8222;&#216;&#180;&#216;&#177;&#217;&#352;&#216;&#180;&#217;&#8240; &#217;&#352;&#217;&#8218;&#217;&#710;&#217;&#8222; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#216;&#167;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#168;&#217;&#8224; &#217;&#8230;&#216;&#173;&#217;&#8230;&#216;&#175; &#216;&#167;&#217;&#8222;&#216;&#180;&#216;&#177;&#217;&#352;&#216;&#180;&#217;&#8240; &#216;&#167;&#217;&#8222;&#216;&#180;&#216;&#167;&#217;&#216;&#185;&#217;&#8240; ... &#217;&#710;&#217;&#8218;&#217;&#216;&#170; &#216;&#185;&#217;&#8222;&#217;&#8240; &#216;&#179;&#217;&#710;&#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#170; &#217;&#217;&#8240; &#216;&#167;&#217;&#8222;&#217;&#217;&#8218;&#217;&#8225; &#216;&#175;&#217;&#8222;&#216;&#170; &#216;&#185;&#217;&#8222;&#217;&#8240; &#216;&#186;&#216;&#178;&#216;&#167;&#216;&#177;&#216;&#169; &#216;&#185;&#217;&#8222;&#217;&#8230; &#216;&#179;&#216;&#167;&#217;&#352;&#217;&#8222;&#217;&#8225;&#216;&#167; ... &#217;&#8230;&#217;&#8224;&#216;&#179;&#217;&#710;&#216;&#168;&#216;&#169; &#216;&#167;&#217;&#8222;&#217;&#8240; &#216;&#167;&#217;&#8222;&#216;&#180;&#217;&#352;&#216;&#174; ... &#216;&#172;&#217;&#8230;&#216;&#167;&#217;&#8222; &#216;&#167;&#217;&#8222;&#216;&#175;&#217;&#352;&#217;&#8224; &#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#179;&#217;&#8224;&#216;&#162;&#217;&#352;&#217;&#352; ... &#217;&#710;&#217;&#710;&#217;&#8218;&#217;&#216;&#170; &#216;&#167;&#217;&#352;&#216;&#182;&#216;&#167; &#216;&#185;&#217;&#8222;&#217;&#8240; &#216;&#167;&#216;&#172;&#217;&#710;&#216;&#168;&#216;&#169; &#216;&#170;&#217;&#8222;&#217;&#402; &#216;&#167;&#217;&#8222;&#217;&#8230;&#216;&#179;&#216;&#162;&#217;&#352;&#217;&#8222; &#217;&#8222;&#216;&#179;&#217;&#352;&#216;&#175;&#217;&#8224;&#216;&#167; ... &#216;&#167;&#217;&#8222;&#216;&#168;&#216;&#167;&#216;&#177;&#216;&#178;&#217;&#352; ... &#217;&#710;&#217;&#710;&#216;&#172;&#216;&#175;&#216;&#170; &#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#172;&#217;&#710;&#216;&#168;&#216;&#169; &#217;&#402;&#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#179;&#217;&#710;&#217;&#8222;&#216;&#169; &#217;&#402;&#217;&#8222; &#217;&#8230;&#217;&#8224;&#217;&#8225;&#217;&#8230;&#216;&#167; &#217;&#402;&#216;&#180;&#217;</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="">
+    <subfield code="6">500-00/r</subfield>
+    <subfield code="a">Explicit: &#217;&#710;&#217;&#8225;&#216;&#176;&#216;&#167; &#217;&#8225;&#217;&#710; &#216;&#167;&#217;&#8222;&#216;&#173;&#217;&#8218; &#217;&#710;&#217;&#8225;&#217;&#710; &#216;&#167;&#216;&#174;&#216;&#170;&#217;&#352;&#216;&#167;&#216;&#177; &#216;&#167;&#217;&#8222;&#216;&#180;&#217;&#352;&#216;&#174; &#216;&#179;&#217;&#352;&#217; &#216;&#167;&#217;&#8222;&#216;&#175;&#217;&#352;&#217;&#8224;(&#216;&#376;) &#217;&#8230;&#217;&#8224; &#216;&#167;&#217;&#8222;&#217;&#8230;&#216;&#170;&#216;&#167;&#216;&#174;&#216;&#177;&#217;&#352;&#217;&#8224; &#217;&#710;&#216;&#176;&#217;&#8225;&#216;&#168; &#216;&#167;&#217;&#8222;&#217;&#352;&#217;&#8225; &#216;&#172;&#217;&#8230;&#216;&#167;&#216;&#185;&#216;&#169; &#217;&#8230;&#217;&#8224;(&#216;&#376;) &#216;&#167;&#217;&#8222;&#217;&#8230;&#216;&#170;&#217;&#8218;&#216;&#175;&#217;&#8230;&#217;&#352;&#217;&#8224; &#217;&#710;&#217;&#8222;&#216;&#185;&#217;&#8222; &#217;&#8225;&#216;&#176;&#216;&#167; &#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#173;&#216;&#170;&#217;&#8230;&#216;&#167;&#217;&#8222; &#217;&#352;&#217;&#8218;&#216;&#175;&#216;&#173; &#217;&#217;&#352; &#216;&#176;&#217;&#8222;&#217;&#402; &#216;&#167;&#217;&#8222;&#216;&#167;&#216;&#179;&#216;&#170;&#216;&#175;&#217;&#8222;&#216;&#167;&#217;&#8222; &#217;&#710;&#216;&#167;&#217;&#8222;&#217;&#8222;&#217;&#8225; &#216;&#167;&#216;&#185;&#217;&#8222;&#217;&#8230;</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">ceb</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="6">t</subfield>
+    <subfield code="7">a</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">0</subfield>
+    <subfield code="e">20060919</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 09:03:01 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-08 06:06:10 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-08 06:06:06 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53297752150006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53297752150006421</subfield>
+    <subfield code="w">2020-12-08 11:06:06</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52297752170006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9948545023506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53297752150006421</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="">
+    <subfield code="b">rare</subfield>
+    <subfield code="c">hsvm</subfield>
+    <subfield code="h">Islamic Manuscripts, Garrett no. 1359Y</subfield>
+    <subfield code="8">22102635400006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 14:03:01</subfield>
+    <subfield code="8">22102635400006421</subfield>
+    <subfield code="b">Special Collections</subfield>
+    <subfield code="c">hsvm: Manuscripts South East</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+</record>

@@ -1,0 +1,168 @@
+<record>
+  <leader>01697cam a2200361 i 4500</leader>
+  <controlfield tag="005">20201001165517.0</controlfield>
+  <controlfield tag="008">131016s2013 vc a b 100 0 mul c</controlfield>
+  <controlfield tag="001">9979105993506421</controlfield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9788885991583 (pbk.)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9788885991583</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">8885991580 (pbk.)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/8885991580</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">7910599</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn864003946</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/864003946</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)7910599-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">NjP</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">NjP</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2="">
+    <subfield code="a">ita</subfield>
+    <subfield code="a">spa</subfield>
+    <subfield code="a">eng</subfield>
+    <subfield code="a">fre</subfield>
+    <subfield code="a">ger</subfield>
+  </datafield>
+  <datafield tag="042" ind1="" ind2="">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="050" ind1="" ind2="4">
+    <subfield code="a">BR131</subfield>
+    <subfield code="b">.C66 2008</subfield>
+  </datafield>
+  <datafield tag="111" ind1="2" ind2="">
+    <subfield code="a">Congresso internazionale di archeologia cristiana</subfield>
+    <subfield code="n">(15th :</subfield>
+    <subfield code="d">2008 :</subfield>
+    <subfield code="c">Toledo, Spain)</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2013140784</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Acta XV Congressus internationalis archaeologiae christianae, Toleti (8-12.9.2008) :</subfield>
+    <subfield code="b">episcopus, civitas, territorium /</subfield>
+    <subfield code="c">editionem curaverunt Olof Brandt, Silvia Cresci, Jorge Lo&#204;pez Quiroga, Carmelo Pappalardo.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2="">
+    <subfield code="a">Episcopus, civitas, territorium</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="1">
+    <subfield code="a">Citta&#204;&#8364; del Vaticano :</subfield>
+    <subfield code="b">Pontificio Istituto di Archeologia cristiana,</subfield>
+    <subfield code="c">2013.</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">2 volumes (lvii, 1790 pages) :</subfield>
+    <subfield code="b">illustrations ;</subfield>
+    <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">text</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1="" ind2="">
+    <subfield code="a">volume</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2="">
+    <subfield code="a">Studi di antichita&#204;&#8364; cristiana,</subfield>
+    <subfield code="x">1012-5779 ;</subfield>
+    <subfield code="v">LXV</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="546" ind1="" ind2="">
+    <subfield code="a">Contributions in Italian, Spanish, English, French or German.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Christian antiquities</subfield>
+    <subfield code="v">Congresses</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Church history</subfield>
+    <subfield code="y">Primitive and early church, ca. 30-600</subfield>
+    <subfield code="v">Congresses.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008100733</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="a">Brandt, Olof,</subfield>
+    <subfield code="e">editor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2002035504</subfield>
+  </datafield>
+  <datafield tag="830" ind1="" ind2="0">
+    <subfield code="a">Studi di antichita&#204;&#8364; cristiana ;</subfield>
+    <subfield code="v">65.</subfield>
+  </datafield>
+  <datafield tag="904" ind1="" ind2="">
+    <subfield code="a">dls</subfield>
+    <subfield code="b">m</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">t</subfield>
+    <subfield code="e">20131112</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">jrl</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">2</subfield>
+    <subfield code="g">p</subfield>
+    <subfield code="e">20131121</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 04:43:12 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">pj</subfield>
+    <subfield code="h">BR131</subfield>
+    <subfield code="i">.C66 2008</subfield>
+    <subfield code="8">2244739110006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1="" ind2="0">
+    <subfield code="a">Pars 1-pars 2</subfield>
+    <subfield code="8">2244739110006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 09:43:12</subfield>
+    <subfield code="8">2244739110006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcppj: RECAP Marq. Lib.</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">2244739110006421</subfield>
+    <subfield code="a">2344739090006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">pars 2</subfield>
+    <subfield code="d">2020-12-02 09:43:12</subfield>
+    <subfield code="p">32101090550458</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">2244739110006421</subfield>
+    <subfield code="a">2344739100006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">pars 1</subfield>
+    <subfield code="d">2020-12-02 09:43:12</subfield>
+    <subfield code="p">32101087921662</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>

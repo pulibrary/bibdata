@@ -1,0 +1,454 @@
+<record>
+  <leader>07166cgm a2201081Ii 4500</leader>
+  <controlfield tag="005">20201006114856.0</controlfield>
+  <controlfield tag="007">vd cvaizq</controlfield>
+  <controlfield tag="008">150413p20152013ko 113 vlkor d</controlfield>
+  <controlfield tag="001">9990315453506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">9031545</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn910337360</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/910337360</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)9031545-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">PUL</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">PUL</subfield>
+    <subfield code="d">PUL</subfield>
+  </datafield>
+  <datafield tag="024" ind1="3" ind2="">
+    <subfield code="a">8809306459831</subfield>
+  </datafield>
+  <datafield tag="043" ind1="" ind2="">
+    <subfield code="a">a-ko---</subfield>
+  </datafield>
+  <datafield tag="046" ind1="" ind2="">
+    <subfield code="k">2013</subfield>
+  </datafield>
+  <datafield tag="049" ind1="" ind2="">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield tag="130" ind1="0" ind2="">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Appa ru&#204;&#8224;l pillyo&#204;&#8224; tu&#204;&#8224;rimnida (Motion picture : 2013)</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Appa ru&#204;&#8224;l pillyo&#204;&#8224; tu&#204;&#8224;rimnida /</subfield>
+    <subfield code="c">paegu&#204;&#8224;p, Mega Paksu&#204;&#8224; (Chu) P'u&#204;&#8224;llo&#204;&#8224;su&#204;&#8224; Em ; paegu&#204;&#8224;p, chegong, (Chu) Redu&#204;&#8224; Robo&#204;&#8224; ; chejak, (Chu) Isu&#204;&#8224;t'u&#204;&#8224; Su&#204;&#8224;k'ai P'illu&#204;&#8224;m, (Chu) O&#204;&#8224;myuju&#204;&#8224; Ent'o&#204;&#8224;t'einmo&#204;&#8224;nt'u&#204;&#8224; ; kamdok, kakpon, Kim To&#204;&#8224;k-su.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="1" ind2="">
+    <subfield code="i">English title also known as :</subfield>
+    <subfield code="a">Dad for rent</subfield>
+  </datafield>
+  <datafield tag="257" ind1="" ind2="">
+    <subfield code="a">Korea</subfield>
+    <subfield code="2">naf</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="1">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">[Seoul] :</subfield>
+    <subfield code="b">(Chu) To&#204;&#8224; K'o&#204;&#8224;nt'ench'u&#204;&#8224; on Midio&#204;&#8224;,</subfield>
+    <subfield code="c">2015.</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">1 videodisc (113 min.) :</subfield>
+    <subfield code="b">sound, color ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="306" ind1="" ind2="">
+    <subfield code="a">015300</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">two-dimensional moving image</subfield>
+    <subfield code="b">tdi</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">video</subfield>
+    <subfield code="b">v</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1="" ind2="">
+    <subfield code="a">videodisc</subfield>
+    <subfield code="b">vd</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="340" ind1="" ind2="">
+    <subfield code="b">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="344" ind1="" ind2="">
+    <subfield code="a">digital</subfield>
+    <subfield code="b">optical</subfield>
+    <subfield code="g">surround</subfield>
+    <subfield code="h">Dolby digital 5.1</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="346" ind1="" ind2="">
+    <subfield code="a">laser optical</subfield>
+    <subfield code="b">NTSC</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="347" ind1="" ind2="">
+    <subfield code="a">video file</subfield>
+    <subfield code="b">DVD video</subfield>
+    <subfield code="e">region all</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="380" ind1="" ind2="">
+    <subfield code="a">Motion picture</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Originally produced as a motion picture in 2013.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">2.35:1 anamorphic widescreen.</subfield>
+  </datafield>
+  <datafield tag="508" ind1="" ind2="">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Chejak, Kim Hyo&#204;&#8224;n-ch'o&#204;&#8224;l, Kim Yo&#204;&#8224;ng-im ; ch'waryo&#204;&#8224;ng, Yi Chong-yo&#204;&#8224;l ; p'yo&#204;&#8224;njip, Ch'oe Chae-gu&#204;&#8224;n, Kim So-yo&#204;&#8224;n ; u&#204;&#8224;mak, Kim Tong-uk, Kwo&#204;&#8224;n So&#204;&#8224;ng-yo&#204;&#8224;n ; wo&#204;&#8224;njak, Hong Pu-yong.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="1" ind2="">
+    <subfield code="6">880-05</subfield>
+    <subfield code="a">Kim Sang-gyo&#204;&#8224;ng, Mun Cho&#204;&#8224;ng-hu&#204;&#8224;i, Ch'ae Cho&#204;&#8224;ng-an, Mun Ta-in, Cho Chae-yun, Pang Min-a.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="" ind2="">
+    <subfield code="a">"The story starts with A-young Chae, who came up with an idea of a rental business of her own father. On the day of her school garage sale, A-young presents her father Taeman Chae, claiming that he is her useful item which is not in use, and JT, who craves for a father figure in his life, takes the offer and rents Taeman. Since then, A-young's puts an advertisement on a website and Taeman's father rental business expands making it official. However, out of shame, Taeman carries on his business without letting his wife, Jisu know about it. Taeman plays an excellent father figure for others who pay for the service, while neglecting his real family due to his busy schedule. Meanwhile, Jisu suspects Taeman's double life and figures he is having an affair with JT's mother, thus making their marriage fall apart. Realizing the crisis upon her family, A-young pays all her savings to rent her own father, Taeman. Taeman and Jisu realizes they have not paid enough attention to their daughter and reclaims their family value once and for all."--Korean Movie Database (KMDb).</subfield>
+  </datafield>
+  <datafield tag="521" ind1="" ind2="">
+    <subfield code="6">880-06</subfield>
+    <subfield code="a">12-se isang kwallam ka.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Families</subfield>
+    <subfield code="z">Korea (South)</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Fathers</subfield>
+    <subfield code="z">Korea (South)</subfield>
+    <subfield code="v">Drama.</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Feature films.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026247</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Fiction films.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026250</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Drama.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026297</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Video recordings.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026723</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-07</subfield>
+    <subfield code="a">Kim, To&#204;&#8224;k-su,</subfield>
+    <subfield code="e">film director,</subfield>
+    <subfield code="e">screenwriter.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n87858451</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-08</subfield>
+    <subfield code="a">Kim, Sang-gyo&#204;&#8224;ng,</subfield>
+    <subfield code="d">1972-</subfield>
+    <subfield code="e">actor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2005073255</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-09</subfield>
+    <subfield code="a">Mun, Cho&#204;&#8224;ng-hu&#204;&#8224;i,</subfield>
+    <subfield code="d">1976-</subfield>
+    <subfield code="e">actor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2008091848</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-10</subfield>
+    <subfield code="a">Ch'ae, Cho&#204;&#8224;ng-an,</subfield>
+    <subfield code="d">1977-</subfield>
+    <subfield code="e">actor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2014116064</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-11</subfield>
+    <subfield code="a">Mun, Ta-in,</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-12</subfield>
+    <subfield code="a">Cho, Chae-yun,</subfield>
+    <subfield code="e">actor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2009045134</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-13</subfield>
+    <subfield code="a">Pang, Min-a,</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-14</subfield>
+    <subfield code="a">Kim, Hyo&#204;&#8224;n-ch'o&#204;&#8224;l,</subfield>
+    <subfield code="e">film producer.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-15</subfield>
+    <subfield code="a">Kim, Yo&#204;&#8224;ng-im,</subfield>
+    <subfield code="e">film producer.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2012048723</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-16</subfield>
+    <subfield code="a">Yi, Chong-yo&#204;&#8224;l,</subfield>
+    <subfield code="e">cinematographer.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/nr91021438</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-17</subfield>
+    <subfield code="a">Ch'oe, Chae-gun,</subfield>
+    <subfield code="e">film editor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2016050136</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-18</subfield>
+    <subfield code="a">Kim So-yo&#204;&#8224;n,</subfield>
+    <subfield code="e">film editor.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-19</subfield>
+    <subfield code="a">Kim, Tong-uk,</subfield>
+    <subfield code="e">musical director.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n83190041</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-20</subfield>
+    <subfield code="a">Kwon, Vicki Sung-yeon,</subfield>
+    <subfield code="e">musical director.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2018048813</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
+    <subfield code="6">880-21</subfield>
+    <subfield code="i">motion picture adaptation of (work) :</subfield>
+    <subfield code="a">Hong, Pu-yong.</subfield>
+    <subfield code="t">Appa ru&#204;&#8224;l pillyo&#204;&#8224; tu&#204;&#8224;rimnida.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-22</subfield>
+    <subfield code="a">Mega Paksu&#204;&#8224; (Chu) P'u&#204;&#8224;llo&#204;&#8224;su&#204;&#8224; Em (Firm),</subfield>
+    <subfield code="e">film distributer.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-23</subfield>
+    <subfield code="a">Redu&#204;&#8224; Robo&#204;&#8224; (Firm),</subfield>
+    <subfield code="e">presenter,</subfield>
+    <subfield code="e">film distributer.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-24</subfield>
+    <subfield code="a">Isu&#204;&#8224;t'u&#204;&#8224; Su&#204;&#8224;k'ai P'illu&#204;&#8224;m (Firm),</subfield>
+    <subfield code="e">production company.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-25</subfield>
+    <subfield code="a">O&#204;&#8224;myuju&#204;&#8224; Ent'o&#204;&#8224;t'einmo&#204;&#8224;nt'u&#204;&#8224; (Firm),</subfield>
+    <subfield code="e">production company.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="6">880-26</subfield>
+    <subfield code="a">To&#204;&#8224; K'o&#204;&#8224;nt'ench'u&#204;&#8224; on Midio&#204;&#8224; (Firm),</subfield>
+    <subfield code="e">publisher.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="">
+    <subfield code="6">130-01</subfield>
+    <subfield code="a">&#236;&#8226;&#8222;&#235;&#185;&#160;&#235;&#165;&#188;&#235;&#185;&#338;&#235;&#160;&#164;&#235;&#8220;&#339;&#235;&#166;&#189;&#235;&#8249;&#710;&#235;&#8249;&#164; (Motion picture : 2013)</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+    <subfield code="6">245-02</subfield>
+    <subfield code="a">&#236;&#8226;&#8222;&#235;&#185;&#160;&#235;&#165;&#188;&#235;&#185;&#338;&#235;&#160;&#164;&#235;&#8220;&#339;&#235;&#166;&#189;&#235;&#8249;&#710;&#235;&#8249;&#164; /</subfield>
+    <subfield code="c">&#235;&#176;&#176;&#234;&#184;&#8240;, &#235;&#169;&#8221;&#234;&#176;&#8364;&#235;&#176;&#8226;&#236;&#352;&#164;(&#236;&#163;&#188;)&#237;&#8221;&#338;&#235;&#376;&#172;&#236;&#352;&#164;&#236;&#8212;&#160; ; &#235;&#176;&#176;&#234;&#184;&#8240;, &#236;&#160;&#339;&#234;&#179;&#181;, (&#236;&#163;&#188;)&#235;&#160;&#710;&#235;&#8220;&#339;&#235;&#161;&#339;&#235;&#178;&#8222; ; &#236;&#160;&#339;&#236;&#382;&#8216;, (&#236;&#163;&#188;)&#236;&#180;&#236;&#352;&#164;&#237;&#352;&#184;&#236;&#352;&#164;&#236;&#185;&#180;&#236;&#180;&#237;&#8226;&#8222;&#235;&#166;&#8222;, (&#236;&#163;&#188;)&#236;&#8211;&#180;&#235;&#174;&#164;&#236;&#166;&#710;&#236;&#8212;&#8221;&#237;&#8222;&#176;&#237;&#8230;&#338;&#236;&#184;&#235;&#168;&#188;&#237;&#352;&#184; ; &#234;&#176;&#235;&#8230;, &#234;&#176;&#235;&#179;&#184;, &#234;&#185;&#8364;&#235;&#8226;&#236;&#710;&#732;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="1">
+    <subfield code="6">264-03</subfield>
+    <subfield code="a">[Seoul] :</subfield>
+    <subfield code="b">(&#236;&#163;&#188;)&#235;&#8221;&#236;&#187;&#168;&#237;&#8230;&#236;&#184;&#160;&#236;&#732;&#168;&#235;&#175;&#184;&#235;&#8221;&#8221;&#236;&#8211;&#180;,</subfield>
+    <subfield code="c">2015.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="">
+    <subfield code="6">508-04</subfield>
+    <subfield code="a">&#236;&#160;&#339;&#236;&#382;&#8216;, &#234;&#185;&#8364;&#237;&#732;&#8222;&#236;&#178;&#160;, &#234;&#185;&#8364;&#236;&#732;&#236;&#382;&#8222; ; &#236;&#180;&#172;&#236;&#732;, &#236;&#180;&#236;&#162;&#8230;&#236;&#8212;&#180; ; &#237;&#381;&#184;&#236;&#167;&#8216;, &#236;&#181;&#339;&#236;&#382;&#172;&#234;&#183;&#188;, &#234;&#185;&#8364;&#236;&#8224;&#338;&#236;&#8212;&#176; ; &#236;&#338;&#236;&#8226;&#8230;, &#234;&#185;&#8364;&#235;&#8482;&#236;&#353;&#177;, &#234;&#182;&#338;&#236;&#8222;&#177;&#236;&#8212;&#176; ; &#236;&#8250;&#236;&#382;&#8216;, &#237;&#8482;&#235;&#182;&#8364;&#236;&#353;&#169;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">511-05</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#236;&#402;&#234;&#178;&#189;, &#235;&#172;&#184;&#236;&#160;&#8226;&#237;&#172;, &#236;&#177;&#8222;&#236;&#160;&#8226;&#236;&#8226;&#710;, &#235;&#172;&#184;&#235;&#8249;&#164;&#236;&#184;, &#236;&#161;&#176;&#236;&#382;&#172;&#236;&#339;&#164;, &#235;&#176;&#169;&#235;&#175;&#188;&#236;&#8226;&#8222;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="" ind2="">
+    <subfield code="6">521-06</subfield>
+    <subfield code="a">12&#236;&#8222;&#184;&#236;&#180;&#236;&#402;&#234;&#180;&#8364;&#235;&#382;&#338;&#234;&#176;&#8364;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-07</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#235;&#8226;&#236;&#710;&#732;,</subfield>
+    <subfield code="e">film director,</subfield>
+    <subfield code="e">screenwriter.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-08</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#236;&#402;&#234;&#178;&#189;,</subfield>
+    <subfield code="d">1972-</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-09</subfield>
+    <subfield code="a">&#235;&#172;&#184;&#236;&#160;&#8226;&#237;&#172;,</subfield>
+    <subfield code="d">1976-</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-10</subfield>
+    <subfield code="a">&#236;&#177;&#8222;&#236;&#160;&#8226;&#236;&#8226;&#710;,</subfield>
+    <subfield code="d">1977-</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-11</subfield>
+    <subfield code="a">&#235;&#172;&#184;&#235;&#8249;&#164;&#236;&#184;,</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-12</subfield>
+    <subfield code="a">&#236;&#161;&#176;&#236;&#382;&#172;&#236;&#339;&#164;,</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-13</subfield>
+    <subfield code="a">&#235;&#176;&#169;&#235;&#175;&#188;&#236;&#8226;&#8222;,</subfield>
+    <subfield code="e">actor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-14</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#237;&#732;&#8222;&#236;&#178;&#160;,</subfield>
+    <subfield code="e">film producer.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-15</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#236;&#732;&#236;&#382;&#8222;,</subfield>
+    <subfield code="e">film producer.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-16</subfield>
+    <subfield code="a">&#236;&#180;&#236;&#162;&#8230;&#236;&#8212;&#180;,</subfield>
+    <subfield code="e">cinematographer.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-17</subfield>
+    <subfield code="a">&#236;&#181;&#339;&#236;&#382;&#172;&#234;&#183;&#188;,</subfield>
+    <subfield code="e">film editor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-18</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#236;&#8224;&#338;&#236;&#8212;&#176;,</subfield>
+    <subfield code="e">film editor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-19</subfield>
+    <subfield code="a">&#234;&#185;&#8364;&#235;&#8482;&#236;&#353;&#177;,</subfield>
+    <subfield code="e">musical director.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-20</subfield>
+    <subfield code="a">&#234;&#182;&#338;&#236;&#8222;&#177;&#236;&#8212;&#176;,</subfield>
+    <subfield code="e">musical director.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="">
+    <subfield code="6">700-21</subfield>
+    <subfield code="i">motion picture adaptation of (work) :</subfield>
+    <subfield code="a">&#237;&#8482;&#235;&#182;&#8364;&#236;&#353;&#169;,</subfield>
+    <subfield code="t">&#236;&#8226;&#8222;&#235;&#185;&#160;&#235;&#165;&#188;&#235;&#185;&#338;&#235;&#160;&#164;&#235;&#8220;&#339;&#235;&#166;&#189;&#235;&#8249;&#710;&#235;&#8249;&#164;.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-22</subfield>
+    <subfield code="a">&#235;&#169;&#8221;&#234;&#176;&#8364;&#235;&#176;&#8226;&#236;&#352;&#164;(&#236;&#163;&#188;)&#237;&#8221;&#338;&#235;&#376;&#172;&#236;&#352;&#164;&#236;&#8212;&#160; (Firm),</subfield>
+    <subfield code="e">film distributer.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-23</subfield>
+    <subfield code="a">&#235;&#160;&#710;&#235;&#8220;&#339;&#235;&#161;&#339;&#235;&#178;&#8222; (Firm),</subfield>
+    <subfield code="e">presenter,</subfield>
+    <subfield code="e">film distributer.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-24</subfield>
+    <subfield code="a">&#236;&#180;&#236;&#352;&#164;&#237;&#352;&#184;&#236;&#352;&#164;&#236;&#185;&#180;&#236;&#180;&#237;&#8226;&#8222;&#235;&#166;&#8222; (Firm),</subfield>
+    <subfield code="e">production company.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-25</subfield>
+    <subfield code="a">&#236;&#8211;&#180;&#235;&#174;&#164;&#236;&#166;&#710;&#236;&#8212;&#8221;&#237;&#8222;&#176;&#237;&#8230;&#338;&#236;&#184;&#235;&#168;&#188;&#237;&#352;&#184; (Firm),</subfield>
+    <subfield code="e">production company.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2="">
+    <subfield code="6">710-26</subfield>
+    <subfield code="a">&#235;&#8221;&#236;&#187;&#168;&#237;&#8230;&#236;&#184;&#160;&#236;&#732;&#168;&#235;&#175;&#184;&#235;&#8221;&#8221;&#236;&#8211;&#180; (Firm),</subfield>
+    <subfield code="e">publisher.</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">hle</subfield>
+    <subfield code="s">hle</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="6">g</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">e</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20150529</subfield>
+  </datafield>
+  <datafield tag="904" ind1="" ind2="">
+    <subfield code="a">hle</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">v</subfield>
+    <subfield code="e">20150413</subfield>
+  </datafield>
+  <datafield tag="994" ind1="" ind2="">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">PUL</subfield>
+  </datafield>
+  <datafield tag="979" ind1="" ind2="">
+    <subfield code="a">(OCoLC)ocn910337424</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 03:41:39 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">qv</subfield>
+    <subfield code="h">DVD 10193</subfield>
+    <subfield code="8">2231175030006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 08:41:39</subfield>
+    <subfield code="8">2231175030006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcpqv: RECAP Video Coll.</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">2231175030006421</subfield>
+    <subfield code="a">2331175000006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-02 08:41:39</subfield>
+    <subfield code="p">32101089411167</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
