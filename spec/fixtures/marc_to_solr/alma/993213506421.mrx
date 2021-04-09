@@ -1,0 +1,219 @@
+<record>
+  <leader>01616cas a2200337 a 4500</leader>
+  <controlfield tag="005">20200728155615.0</controlfield>
+  <controlfield tag="008">801208c19789999couqr p bc 0 a0eng d</controlfield>
+  <controlfield tag="001">993213506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)7375602</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/7375602</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(CStRLIN)NJPG0815-S</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">AAF4557TS</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">321</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)321-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">NjP</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">NjP</subfield>
+  </datafield>
+  <datafield tag="110" ind1="2" ind2="">
+    <subfield code="a">World Data Center A for Glaciology.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n78036105</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">New accessions list /</subfield>
+    <subfield code="c">World Data Center A for Glaciology [Snow and Ice].</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">Boulder, Col. :</subfield>
+    <subfield code="b">The Center,</subfield>
+    <subfield code="c">1978-</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">v. ;</subfield>
+    <subfield code="c">22x28 cm.</subfield>
+  </datafield>
+  <datafield tag="362" ind1="0" ind2="">
+    <subfield code="a">No. 1 (Dec. 1978)-</subfield>
+  </datafield>
+  <datafield tag="550" ind1="" ind2="">
+    <subfield code="a">"Operated for Environmental Data Service (later Environmental Data and Information Service) NOAA, by Cooperative Institute for Research in Environmental Sciences, University of Colorado."</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Description based on: No. 19 (Dec. 1983); title from caption.</subfield>
+  </datafield>
+  <datafield tag="610" ind1="2" ind2="0">
+    <subfield code="a">World Data Center A for Glaciology</subfield>
+    <subfield code="x">Catalogs.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Glaciology</subfield>
+    <subfield code="x">Bibliography</subfield>
+    <subfield code="x">Catalogs.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Snow</subfield>
+    <subfield code="x">Bibliography</subfield>
+    <subfield code="x">Catalogs.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Ice</subfield>
+    <subfield code="x">Bibliography</subfield>
+    <subfield code="x">Catalogs.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="1" ind2="">
+    <subfield code="a">United States.</subfield>
+    <subfield code="b">Environmental Data and Information Service.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n78085023</subfield>
+  </datafield>
+  <datafield tag="710" ind1="1" ind2="">
+    <subfield code="a">United States.</subfield>
+    <subfield code="b">Environmental Data Service.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n78085024</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">University of Colorado Boulder.</subfield>
+    <subfield code="b">Cooperative Institute for Research in Environmental Sciences.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n80021835</subfield>
+  </datafield>
+  <datafield tag="998" ind1="" ind2="">
+    <subfield code="a">02/02/90</subfield>
+    <subfield code="s">9114</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG0815S</subfield>
+    <subfield code="d">10/05/81</subfield>
+    <subfield code="c">APG</subfield>
+    <subfield code="b">EE</subfield>
+    <subfield code="i">900202</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield tag="948" ind1="" ind2="">
+    <subfield code="a">AACR2 CONV.</subfield>
+  </datafield>
+  <datafield tag="911" ind1="" ind2="">
+    <subfield code="a">19921028</subfield>
+  </datafield>
+  <datafield tag="912" ind1="" ind2="">
+    <subfield code="a">19951211061438.0</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 20:58:58 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="1">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">pn</subfield>
+    <subfield code="h">Z6033.G5</subfield>
+    <subfield code="i">xW6</subfield>
+    <subfield code="8">22262133190006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1="" ind2="0">
+    <subfield code="a">No. 1 (Dec. 1978)-no. 26; no. 30-no. 65/68 (Jan.-Dec. 1995)</subfield>
+    <subfield code="8">22262133190006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-03 01:58:58</subfield>
+    <subfield code="8">22262133190006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcppn: RECAP Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133110006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 1-5</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1978-79</subfield>
+    <subfield code="p">32101104682834</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133150006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 23-24</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1984</subfield>
+    <subfield code="p">32101104682792</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133100006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 53/56-65/68</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1992-1995</subfield>
+    <subfield code="p">32101059127405</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133120006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 6-11</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1980-81</subfield>
+    <subfield code="p">32101104682826</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133140006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 17-22</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1982-83</subfield>
+    <subfield code="p">32101104682800</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133160006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 25-26</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1985</subfield>
+    <subfield code="p">32101104682784</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133170006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 30-36</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1986-87</subfield>
+    <subfield code="p">32101104682776</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133180006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 37-52</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1987-91</subfield>
+    <subfield code="p">32101104682768</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22262133190006421</subfield>
+    <subfield code="a">23262133130006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">no. 12-16</subfield>
+    <subfield code="d">2020-12-03 01:58:58</subfield>
+    <subfield code="4">1981-82</subfield>
+    <subfield code="p">32101104682818</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
