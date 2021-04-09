@@ -1,0 +1,176 @@
+<record>
+  <leader>02836cam a2200409Ii 4500</leader>
+  <controlfield tag="005">20201016195135.0</controlfield>
+  <controlfield tag="008">200403s2020 enka b 001 0 eng d</controlfield>
+  <controlfield tag="001">99120519033506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">(YDXIT)16673253</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">12051903</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)1151895490</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1151895490</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)12051903-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">ERASA</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">ERASA</subfield>
+    <subfield code="d">BDX</subfield>
+    <subfield code="d">YDXIT</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">9781851245130</subfield>
+    <subfield code="q">hardcover</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781851245130</subfield>
+  </datafield>
+  <datafield tag="020" ind1="" ind2="">
+    <subfield code="a">1851245138</subfield>
+    <subfield code="q">hardcover</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1851245138</subfield>
+  </datafield>
+  <datafield tag="043" ind1="" ind2="">
+    <subfield code="a">e-uk-en</subfield>
+  </datafield>
+  <datafield tag="050" ind1="" ind2="4">
+    <subfield code="a">QK98.4.G7</subfield>
+    <subfield code="b">W55 2020</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">581.630942</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="a">Willes, Margaret,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n94012274</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">The domestic herbal :</subfield>
+    <subfield code="b">plants for the home in the seventeenth century /</subfield>
+    <subfield code="c">Margaret Willes.</subfield>
+  </datafield>
+  <datafield tag="264" ind1="" ind2="1">
+    <subfield code="a">Oxford :</subfield>
+    <subfield code="b">Bodleian Library</subfield>
+    <subfield code="c">2020.</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">224 pages :</subfield>
+    <subfield code="b">illustrations (black and white, and color) ;</subfield>
+    <subfield code="c">22 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">still image</subfield>
+    <subfield code="b">sti</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1="" ind2="">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Includes bibliographical references and index.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="8" ind2="">
+    <subfield code="a">In the seventeenth century, even the most elaborate and fashionable gardens had areas set aside for growing herbs, fruit, vegetables and flowers for domestic use, while those of more modest establishments were vital to the survival of the household. This was also a period of exciting introductions of plants from overseas.0Using manuscript household manuals, recipe books and printed herbals, this book takes the reader on a tour of the productive garden and of the various parts of the house - kitchens and service rooms, living rooms and bedrooms - to show how these plants were used for cooking and brewing, medicines and cosmetics, in the making and care of clothes, and finally to keep rooms fresh, fragrant and decorated. Recipes used by seventeenth-century households for preparations such as flower syrups, snail water and wormwood ale are also included.0A brief herbal gives descriptions of plants that are familiar today, others not so well known, such as the herbs used for dyeing and brewing, and those that held a particular cultural importance in the seventeenth century. 0Featuring exquisite coloured illustrations from John Gerard's herbal of 1597 as well as prints, archival material and manuscripts, this book provides an intriguing and original focus on the domestic history of Stuart England.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Plants, Useful</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">17th century.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Herbs</subfield>
+    <subfield code="x">Therapeutic use</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">17th century.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Formulas, recipes, etc.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85111822</subfield>
+  </datafield>
+  <datafield tag="650" ind1="" ind2="0">
+    <subfield code="a">Gardens</subfield>
+    <subfield code="z">England</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">17th century.</subfield>
+  </datafield>
+  <datafield tag="910" ind1="" ind2="">
+    <subfield code="c">e0201mon</subfield>
+  </datafield>
+  <datafield tag="980" ind1="" ind2="">
+    <subfield code="i">40.00</subfield>
+    <subfield code="j">32.80</subfield>
+    <subfield code="n">40030054447</subfield>
+  </datafield>
+  <datafield tag="982" ind1="" ind2="">
+    <subfield code="b">FY20</subfield>
+    <subfield code="n">2020</subfield>
+    <subfield code="q">32101110926803</subfield>
+  </datafield>
+  <datafield tag="986" ind1="" ind2="">
+    <subfield code="h">QK98.4.G7</subfield>
+    <subfield code="i">W55 2020</subfield>
+  </datafield>
+  <datafield tag="904" ind1="" ind2="">
+    <subfield code="a">pad</subfield>
+    <subfield code="b">a</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20200818</subfield>
+  </datafield>
+  <datafield tag="902" ind1="" ind2="">
+    <subfield code="a">kl</subfield>
+    <subfield code="b">s</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20200916</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 21:27:50 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2="">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">QK98.4.G7</subfield>
+    <subfield code="i">W55 2020</subfield>
+    <subfield code="8">22268492180006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-03 02:27:50</subfield>
+    <subfield code="8">22268492180006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22268492180006421</subfield>
+    <subfield code="a">23268492170006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-03 02:27:50</subfield>
+    <subfield code="p">32101110926803</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+</record>
