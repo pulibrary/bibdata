@@ -330,60 +330,11 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "holding availability" do
-    let(:bib_record_1) { file_fixture("alma/9922486553506421.json") }
-    let(:holding_items_1) { file_fixture("alma/9922486553506421_holding_items.json") }
-
-    let(:bib_record_2) { file_fixture("alma/9919392043506421.json") }
-    let(:holding_items_2) { file_fixture("alma/9919392043506421_holding_items.json") }
-
     before do
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
-        .with(
-          headers: {
-            'Accept' => 'application/json',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization' => 'apikey TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Ruby'
-          }
-        )
-        .to_return(status: 200, body: bib_record_1, headers: { "content-Type" => "application/json" })
-
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/22117511410006421/items?limit=100")
-        .with(
-          headers: {
-            'Accept' => 'application/json',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization' => 'apikey TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Ruby'
-          }
-        )
-        .to_return(status: 200, body: holding_items_1, headers: { "content-Type" => "application/json" })
-
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9919392043506421")
-        .with(
-          headers: {
-            'Accept' => 'application/json',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization' => 'apikey TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Ruby'
-          }
-        )
-        .to_return(status: 200, body: bib_record_2, headers: { "content-Type" => "application/json" })
-
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
-        .with(
-          headers: {
-            'Accept' => 'application/json',
-            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-            'Authorization' => 'apikey TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Ruby'
-          }
-        )
-        .to_return(status: 200, body: holding_items_2, headers: { "content-Type" => "application/json" })
+      stub_alma_ids(ids: "9922486553506421", status: 200)
+      stub_alma_holding_items(mms_id: "9922486553506421", holding_id: "22117511410006421", filename: "9922486553506421_holding_items.json")
+      stub_alma_ids(ids: "9919392043506421", status: 200)
+      stub_alma_holding_items(mms_id: "9919392043506421", holding_id: "22105104420006421", filename: "9919392043506421_holding_items.json")
     end
 
     it "reports holdings availability" do
