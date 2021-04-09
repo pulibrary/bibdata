@@ -24,7 +24,6 @@ class AccessFacetBuilder
       electronic_portfolio,
       in_library,
       hathi,
-      hathi_temp,
       marc_indicator
     ].uniq.compact
   end
@@ -47,10 +46,6 @@ class AccessFacetBuilder
       return [] unless context.output_hash['hathi_identifier_s'].present?
       hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
       parse_locations_from_hathi_line(hathi_line)
-    end
-
-    def hathi_temp
-      return 'Temporary Digital Access' if hathi_locations.include?('hathi_temp')
     end
 
     # Return 'online' if record has an 856 field and
