@@ -97,71 +97,9 @@ class AlmaAdapter
     holding_items = bib_status.holding_item_data(holding_id: holding_id)
 
     # ...create the availability response for each item
-    availability = []
-    holding_items[:items].each do |item|
-      item_data = item["item_data"] || {}
-      holding_data = item["holding_data"] || {}
-
-      location = item_data["location"] || {}
-      library = item_data["library"] || {}
-      in_temp_library = false
-      temp_library = {}
-      temp_location = {}
-      if holding_data["in_temp_location"]
-        in_temp_library = true
-        temp_library = holding_data["temp_library"] || {}
-        temp_location = holding_data["temp_location"] || {}
-      end
-
-      status_label = marc_holding["availability"]
-      if status_label.nil?
-        # TODO: This will need to be figure out later on.
-        #
-        #   It possible that we will never hit this case because Request might not need to
-        #   find out the availability for holding that meets this criteria but if it does
-        #   then the current code will handle it.
-        #
-        #   The issue here is that the holding information that comes for these records
-        #   does not have a holding for the holding_id that we are working with. Instead it has
-        #   a single holding that does NOT have an ID. This seems to be an issue only for
-        #   eresources.
-        #
-        #   For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
-        #
-        #   For now use the data in the item.
-        status_label = item_data["base_status"]["desc"]
-      end
-
-      policy = item_data["policy"] || {}
-      item_av = {
-        barcode: item_data["barcode"],
-        id: item_data["pid"],
-        copy_number: holding_data["copy_id"],
-        status: nil,                                # ?? "Not Charged"
-        on_reserve: nil,                            # ??
-        item_type: policy["value"],                 # Gen
-        pickup_location_id: location["value"],      # stacks
-        pickup_location_code: location["value"],    # stacks
-        location: item.composite_location,          # firestone$stacks
-        label: library["desc"],                     # Firestore Library
-        in_temp_library: in_temp_library,
-        status_label: status_label,                 # available
-        description: item_data["description"],      # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
-        enum_display: item.enumeration,             # in Alma there are many enumerations
-        chron_display: item.chronology              # in Alma there are many chronologies
-      }
-
-      if in_temp_library
-        item_av[:temp_library_code] = temp_library["value"]
-        item_av[:temp_library_label] = temp_library["desc"]
-        item_av[:temp_location_code] = item.composite_temp_location
-        item_av[:temp_location_label] = temp_library["desc"]
-      end
-
-      availability << item_av
+    holding_items[:items].map do |item|
+      item.availability_summary(marc_holding: marc_holding)
     end
-
-    availability
   end
 
   # Returns list of holding records for a given MMS
