@@ -78,6 +78,7 @@ group :development, :test do
   gem 'simplecov', '0.14.1'
   gem 'solargraph'
   gem 'solr_wrapper'
+  gem 'timecop'
   gem "webdrivers"
   gem 'webmock'
 end

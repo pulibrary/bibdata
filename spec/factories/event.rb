@@ -18,6 +18,11 @@ FactoryBot.define do
     label "Changed Records"
   end
 
+  factory :recap_incremental_dump_type, class: "DumpType" do
+    constant "PRINCETON_RECAP"
+    label "Princeton Recap"
+  end
+
   factory :full_dump_file_type, class: "DumpFileType" do
     constant "BIB_RECORDS"
     label "All Bib Records"
@@ -28,12 +33,21 @@ FactoryBot.define do
     label 'Updated Records'
   end
 
+  factory :recap_incremental_dump_file_type, class: "DumpFileType" do
+    constant 'RECAP_RECORDS'
+    label 'Recap Records'
+  end
+
   factory :dump_file do
     association :dump_file_type, factory: :full_dump_file_type
   end
 
   factory :incremental_dump_file, class: "DumpFile" do
     association :dump_file_type, factory: :incremental_dump_file_type
+  end
+
+  factory :recap_incremental_dump_file, class: "DumpFile" do
+    association :dump_file_type, factory: :recap_incremental_dump_file_type
   end
 
   factory :empty_dump, class: "Dump" do
@@ -43,6 +57,11 @@ FactoryBot.define do
 
   factory :empty_incremental_dump, class: "Dump" do
     association :dump_type, factory: :incremental_dump_type
+    association :event
+  end
+
+  factory :empty_recap_incremental_dump, class: "Dump" do
+    association :dump_type, factory: :recap_incremental_dump_type
     association :event
   end
 
