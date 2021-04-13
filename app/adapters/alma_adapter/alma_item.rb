@@ -205,7 +205,7 @@ class AlmaAdapter
         id: item_data["pid"],
         copy_number: holding_data["copy_id"],
         status: nil,                                # ?? "Not Charged"
-        on_reserve: nil,                            # ??
+        on_reserve: "N",
         item_type: policy["value"],                 # Gen
         pickup_location_id: holding_location,      # stacks
         pickup_location_code: holding_location,    # stacks
