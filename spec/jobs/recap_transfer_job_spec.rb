@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe RecapTransferJob do
   describe ".perform" do
     before do
-      Timecop.freeze(Time.local(2021, 4, 13, 3, 0, 0))
+      Timecop.freeze(Time.utc(2021, 4, 13, 3, 0, 0))
     end
     after do
       Timecop.return
@@ -16,7 +16,7 @@ RSpec.describe RecapTransferJob do
 
       described_class.perform_now(dump_file)
 
-      expect(bucket_mock).to have_received(:upload_file).with(file_path: "data/1618308000", key: "1618308000")
+      expect(bucket_mock).to have_received(:upload_file).with(file_path: "data/1618282800", key: "1618282800")
     end
   end
 end
