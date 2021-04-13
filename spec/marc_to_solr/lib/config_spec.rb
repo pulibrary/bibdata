@@ -233,7 +233,7 @@ describe 'From traject_config.rb' do
   end
   describe 'the title_sort field' do
     it 'does not have initial articles' do
-      expect(@sample1['title_sort'][0].start_with?('advanced concepts')).to be_truthy
+      expect(@sample1['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
     end
   end
   describe 'the author_display field' do
