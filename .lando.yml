@@ -21,3 +21,18 @@ proxy:
     - marc-liberation.test.solr.lndo.site:8983
   marc_liberation_development_solr:
     - marc-liberation.dev.solr.lndo.site:8983
+tooling:
+  'db-import <file>':
+    service: :host
+    description: Imports a dump file into a database service
+    cmd: /helpers/sql-import.sh
+    user: root
+    options:
+      host:
+        description: The database service to use
+        default: marc_liberation_database
+        alias:
+          - h
+      no-wipe:
+        description: Do not destroy the existing database before an import
+        boolean: true
