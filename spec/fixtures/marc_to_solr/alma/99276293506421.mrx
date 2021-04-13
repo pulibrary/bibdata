@@ -24,6 +24,9 @@
     <subfield code="b">eng</subfield>
     <subfield code="c">NjP</subfield>
   </datafield>
+  <datafield tag="041" ind1=" " ind2=" ">
+    <subfield code="a">|||</subfield>
+  </datafield>
   <datafield tag="100" ind1="1" ind2="">
     <subfield code="a">Singh, Digvijai,</subfield>
     <subfield code="d">1934-</subfield>
