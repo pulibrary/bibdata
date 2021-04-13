@@ -19,7 +19,7 @@ describe 'From traject_config.rb' do
     @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_alma_record('99276293506421'))
     @sample2 = @indexer.map_record(fixture_alma_record('993456823506421'))
-    @sample3 = @indexer.map_record(fixture_alma_record('99120519033506421'))
+    @sample3 = @indexer.map_record(fixture_alma_record('993213506421'))
     @sample34 = @indexer.map_record(fixture_alma_record('99105855523506421'))
     @sample35 = @indexer.map_record(fixture_alma_record('9990567203506421'))
     @sample36 = @indexer.map_record(fixture_alma_record('9981818493506421'))
@@ -244,7 +244,7 @@ describe 'From traject_config.rb' do
       expect(@sample2['author_display'][0]).to eq 'White, Michael M.'
     end
     it 'shows 110 field' do
-      expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
+     expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
     end
   end
   describe 'the author_citation_display field' do
