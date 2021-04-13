@@ -14,10 +14,18 @@ class AlmaDumpTransferJob < ActiveJob::Base
     dump.save
 
     IncrementalIndexJob.perform_later(dump) if incremental_dump?(type_constant)
+    return unless recap_incremental_dump?(type_constant)
+    dump.dump_files.each do |dump_file|
+      RecapTransferJob.perform_later(dump_file)
+    end
   end
 
   def incremental_dump?(type_constant)
     type_constant == "UPDATED_RECORDS"
+  end
+
+  def recap_incremental_dump?(type_constant)
+    type_constant == "RECAP_RECORDS"
   end
 
   def dump_file_type(dump)

@@ -116,5 +116,49 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(IncrementalIndexJob).to have_been_enqueued.once
       end
     end
+    context "with a recap incremental dump" do
+      let(:job_id) { "6836725000006421" }
+      let(:filename) { "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz" }
+      let(:name) do
+        Net::SFTP::Protocol::V01::Name.new(
+          filename,
+          "-rw-rw-r--    1 alma     alma        10342 Feb  8 15:40 #{filename}",
+          attrs
+        )
+      end
+      let(:remote_path) { "/alma/publishing/#{filename}" }
+      let(:local_path) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename) }
+      let(:dump) do
+        FactoryBot.create(:empty_recap_incremental_dump).tap do |d|
+          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job Incremental ReCAP Records\"}}"
+          d.event.save
+        end
+      end
+
+      before do
+        FactoryBot.create(:recap_incremental_dump_file_type)
+      end
+
+      it 'downloads the file' do
+        session_stub = instance_double(Net::SFTP::Session)
+        dir_stub = instance_double(Net::SFTP::Operations::Dir)
+        download_stub = instance_double(Net::SFTP::Operations::Download)
+        allow(Net::SFTP).to receive(:start).and_yield(session_stub)
+        allow(session_stub).to receive(:dir).and_return(dir_stub)
+        allow(dir_stub).to receive(:entries).and_return([name])
+        allow(session_stub).to receive(:download).and_return(download_stub)
+        allow(download_stub).to receive(:wait)
+
+        described_class.perform_now(dump: dump, job_id: job_id)
+
+        expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
+        expect(Dump.all.count).to eq 1
+        expect(Dump.first.dump_files.count).to eq 1
+        expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["RECAP_RECORDS"]
+        expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
+        # Ensure job is queued.
+        expect(RecapTransferJob).to have_been_enqueued.once
+      end
+    end
   end
 end
