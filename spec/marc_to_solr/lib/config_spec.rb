@@ -375,13 +375,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'related_name_json_1display' do
-    let(:rel_names) { JSON.parse(@related_names['related_name_json_1display'][0]) }
     it 'trims punctuation the same way as author_s facet' do
+      rel_names =  JSON.parse(@related_names['related_name_json_1display'][0])
       rel_names['Related name'].each { |n| expect(@related_names['author_s']).to include(n) }
     end
     it 'allows multiple roles from single field' do
-      expect(rel_names['Editor']).to include('Someone')
-      expect(rel_names['Painter']).to include('Someone')
+      rel_names = JSON.parse(@label_i_246['related_name_json_1display'][0])
+      expect(rel_names['Film director']).to include('Kim, ToÌ†k-su')
+      expect(rel_names['Screenwriter']).to include('Kim, ToÌ†k-su')
     end
   end
   describe 'access_facet' do
