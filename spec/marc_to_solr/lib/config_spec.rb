@@ -91,20 +91,22 @@ describe 'From traject_config.rb' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
         it "will index the 876d field" do
-          expect(fixture_alma_record('99211662100521')['951']['w']).to be_truthy
-          expect(fixture_alma_record('99211662100521')['876']['d']).to be_truthy
-          expect(fixture_alma_record('99211662100521')['950']['b']).to be_truthy
-          record = @indexer.map_record(fixture_alma_record('99211662100521'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('99211662100521')['876']['d']).utc
+          record = fixture_alma_record('99211662100521')
+          indexed_record = @indexer.map_record(record)
+          expect(record['951']['w']).to be_truthy
+          expect(record['876']['d']).to be_truthy
+          expect(record['950']['b']).to be_truthy
+          expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['876']['d']).utc
         end
       end
       context "When the record has only a 950b field" do
         it "will index the 950b field" do
-          expect(fixture_alma_record('991330600000541')['950']['b']).to be_truthy
-          expect(fixture_alma_record('991330600000541')['876']).to be_falsey
-          expect(fixture_alma_record('991330600000541')['951']).to be_falsey
-          record = @indexer.map_record(fixture_alma_record('991330600000541'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('991330600000541')['950']['b']).utc
+          record = fixture_alma_record('991330600000541')
+          indexed_record = @indexer.map_record(record)
+          expect(record['950']['b']).to be_truthy
+          expect(record['876']).to be_falsey
+          expect(record['951']).to be_falsey
+          expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['950']['b']).utc
         end
       end
 
@@ -123,11 +125,12 @@ describe 'From traject_config.rb' do
     end
     context "When it is an eletronic record" do
       it "will index the 951w field" do
-        expect(fixture_record('electronic')['951']['w']).to be_truthy
-        expect(fixture_record('electronic')['876']).to be_falsey
-        expect(fixture_record('electronic')['950']).to be_truthy
-        record = @indexer.map_record(fixture_record('electronic'))
-        expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('electronic')['951']['w']).utc
+        record = fixture_alma_record('99122424622606421')
+        indexed_record = @indexer.map_record(record)
+        expect(record['951']['w']).to be_truthy
+        expect(record['876']).to be_falsey
+        expect(record['950']).to be_truthy
+        expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['951']['w']).utc
       end
     end
   end
@@ -244,7 +247,7 @@ describe 'From traject_config.rb' do
       expect(@sample2['author_display'][0]).to eq 'White, Michael M.'
     end
     it 'shows 110 field' do
-     expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
+      expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
     end
   end
   describe 'the author_citation_display field' do
@@ -376,7 +379,7 @@ describe 'From traject_config.rb' do
   end
   describe 'related_name_json_1display' do
     it 'trims punctuation the same way as author_s facet' do
-      rel_names =  JSON.parse(@related_names['related_name_json_1display'][0])
+      rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
       rel_names['Related name'].each { |n| expect(@related_names['author_s']).to include(n) }
     end
     it 'allows multiple roles from single field' do
