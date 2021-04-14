@@ -1,7 +1,7 @@
 <record>
   <leader>00907cam a22002655 4500</leader>
   <controlfield tag="005">20200805204851.0</controlfield>
-  <controlfield tag="008">980330s1955 it fh 000 0 ita d</controlfield>
+  <controlfield tag="008">980330s1955    it fh         000 0 ita d</controlfield>
   <controlfield tag="001">9919643053506421</controlfield>
   <datafield tag="035" ind1="" ind2="">
     <subfield code="a">(OCoLC)ocm38866435</subfield>

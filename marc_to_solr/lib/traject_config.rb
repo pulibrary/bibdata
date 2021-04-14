@@ -704,7 +704,7 @@ to_field 'language_display', extract_marc('5463a')
 
 to_field 'language_facet', marc_languages
 
-to_field 'publication_place_facet', extract_marc('008[12-14]') do |_record, accumulator|
+to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator|
   places = accumulator.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
   accumulator.replace(places.compact)
 end
@@ -713,12 +713,12 @@ end
 #    546 XX b
 to_field 'script_display', extract_marc('546b')
 
-to_field 'language_code_s', extract_marc('008[26-28]:041a:041d') do |_record, accumulator|
+to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
   accumulator.replace(codes.flatten)
 end
 
-to_field 'language_iana_s', extract_marc('008[26-28]:041a:041d') do |_record, accumulator|
+to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }.flatten.uniq
   codes = codes.reject { |c| ISO_639.find(c).nil? }.map do |c|
     if ISO_639.find(c).alpha2.empty?
