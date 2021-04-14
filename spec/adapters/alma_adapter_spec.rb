@@ -385,4 +385,60 @@ RSpec.describe AlmaAdapter do
       expect(item).to eq item_test
     end
   end
+
+  describe "ExLibris rate limit" do
+    let(:http_429_response) do
+      # Sources: https://developers.exlibrisgroup.com/alma/apis/#error
+      #          and https://developers.exlibrisgroup.com/alma/apis/#threshold
+      <<-HTTP_RESPONSE
+        {
+          "errorsExist": true,
+          "errorList": {
+            "error": [
+              {
+                "errorCode": "PER_SECOND_THRESHOLD",
+                "errorMessage": "HTTP requests are more than allowed per second",
+                "trackingId": "E01-0101190932-VOBYO-AWAE1554214409"
+              }
+            ]
+          },
+          "result": null
+        }
+      HTTP_RESPONSE
+    end
+
+    before do
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 429, body: http_429_response, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 429, body: http_429_response, headers: { "content-Type" => "application/json" })
+    end
+
+    it "handles per second threshold exception in single bib availability" do
+      expect { adapter.get_availability_one(id: "9922486553506421") }.to raise_error(Alma::PerSecondThresholdError)
+    end
+
+    it "handles per second threshold exception in multi-bib availability" do
+      expect { adapter.get_availability_many(ids: ["9922486553506421", "99122426947506421"]) }.to raise_error(Alma::PerSecondThresholdError)
+    end
+  end
 end
