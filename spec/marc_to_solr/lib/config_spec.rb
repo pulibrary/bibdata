@@ -448,17 +448,18 @@ describe 'From traject_config.rb' do
   end
   describe 'excluding locations from library facet' do
     # TODO: Replace with Alma
+    # Question: Is this still valid?
     # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
     xit 'when location is online' do
       expect(@online['location_code_s']).to include 'online$elf1'
       expect(@online['location_display']).to include 'Electronic Access - elf1 Internet Resources'
       expect(@online['location']).to eq ['Electronic Access']
     end
-    # TODO: Replace with Alma
-    xit 'when location codes that do not map to labels' do
-      expect(@sample1['location_code_s']).to include 'invalidcode'
-      expect(@sample1['location_display']).to be_nil
-      expect(@sample1['location']).to be_nil
+    it 'when location codes that do not map to labels' do
+      record = @indexer.map_record(fixture_alma_record('99276293506421_invalid_location'))
+      expect(record['location_code_s']).to include 'invalidcode'
+      expect(record['location_display']).to be_nil
+      expect(record['location']).to be_nil
     end
   end
   describe 'location facet values for Recap items' do
