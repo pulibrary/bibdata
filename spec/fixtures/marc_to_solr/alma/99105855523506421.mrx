@@ -1,19 +1,27 @@
-<record xmlns="http://www.loc.gov/MARC21/slim">
-  <leader>03677cgm a2200577Ki 4500</leader>
-  <controlfield tag="001">10585552</controlfield>
-  <controlfield tag="005">20180112171856.0</controlfield>
+<record>
+  <leader>04300cgm a2200601Ki 4500</leader>
+  <controlfield tag="005">20201012134911.0</controlfield>
   <controlfield tag="007">vd mvauzu</controlfield>
   <controlfield tag="008">171127t20171956nyu574 vlfre d</controlfield>
-  <datafield ind1="1" ind2="" tag="024">
+  <controlfield tag="001">99105855523506421</controlfield>
+  <datafield tag="024" ind1="1" ind2="">
     <subfield code="a">854565002166</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="035">
+  <datafield tag="035" ind1="" ind2="">
     <subfield code="a">(OCoLC)1012941693</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1012941693</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="035">
+  <datafield tag="035" ind1="" ind2="">
     <subfield code="a">(OCoLC)on1012941693</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1012941693</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="040">
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">10585552</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)10585552-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
     <subfield code="a">BUF</subfield>
     <subfield code="b">eng</subfield>
     <subfield code="e">rda</subfield>
@@ -22,93 +30,93 @@
     <subfield code="d">FUG</subfield>
     <subfield code="d">NjP</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="041">
+  <datafield tag="041" ind1="" ind2="">
     <subfield code="a">fre</subfield>
     <subfield code="a">eng</subfield>
     <subfield code="j">eng</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="043">
+  <datafield tag="043" ind1="" ind2="">
     <subfield code="a">f------</subfield>
   </datafield>
-  <datafield ind1="" ind2="4" tag="050">
+  <datafield tag="050" ind1="" ind2="4">
     <subfield code="a">GN347</subfield>
     <subfield code="b">.E45 2017</subfield>
   </datafield>
-  <datafield ind1="0" ind2="4" tag="082">
+  <datafield tag="082" ind1="0" ind2="4">
     <subfield code="a">301</subfield>
     <subfield code="2">23</subfield>
   </datafield>
-  <datafield ind1="0" ind2="0" tag="245">
+  <datafield tag="245" ind1="0" ind2="0">
     <subfield code="a">Eight films by Jean Rouch.</subfield>
   </datafield>
-  <datafield ind1="3" ind2="3" tag="246">
+  <datafield tag="246" ind1="3" ind2="3">
     <subfield code="a">8 films by Jean Rouch</subfield>
   </datafield>
-  <datafield ind1="" ind2="2" tag="264">
+  <datafield tag="264" ind1="" ind2="2">
     <subfield code="a">[Brooklyn, N.Y.] :</subfield>
     <subfield code="b">Icarus Films,</subfield>
     <subfield code="c">[2017]</subfield>
   </datafield>
-  <datafield ind1="" ind2="1" tag="264">
+  <datafield tag="264" ind1="" ind2="1">
     <subfield code="a">[Paris] :</subfield>
     <subfield code="b">Les Films de La Pleiade,</subfield>
     <subfield code="c">1956-1971.</subfield>
   </datafield>
-  <datafield ind1="" ind2="4" tag="264">
-    <subfield code="c">©1956-1971</subfield>
+  <datafield tag="264" ind1="" ind2="4">
+    <subfield code="c">&#194;&#169;1956-1971</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="300">
+  <datafield tag="300" ind1="" ind2="">
     <subfield code="a">4 videodiscs (approximately 574 min.) :</subfield>
     <subfield code="b">sound, color and black and white ;</subfield>
     <subfield code="c">4 3/4 in. +</subfield>
     <subfield code="e">1 booklet (22 pages : illustrations (some color) ; 19 cm)</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="336">
+  <datafield tag="336" ind1="" ind2="">
     <subfield code="a">two-dimensional moving image</subfield>
     <subfield code="b">tdi</subfield>
     <subfield code="2">rdacontent</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="337">
+  <datafield tag="337" ind1="" ind2="">
     <subfield code="a">video</subfield>
     <subfield code="b">v</subfield>
     <subfield code="2">rdamedia</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="338">
+  <datafield tag="338" ind1="" ind2="">
     <subfield code="a">videodisc</subfield>
     <subfield code="b">vd</subfield>
     <subfield code="2">rdacarrier</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="344">
+  <datafield tag="344" ind1="" ind2="">
     <subfield code="a">digital</subfield>
     <subfield code="b">optical</subfield>
     <subfield code="2">rda</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="347">
+  <datafield tag="347" ind1="" ind2="">
     <subfield code="a">video file</subfield>
     <subfield code="b">DVD video</subfield>
     <subfield code="e">all regions</subfield>
     <subfield code="2">rda</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="380">
+  <datafield tag="380" ind1="" ind2="">
     <subfield code="a">Documentary films.</subfield>
     <subfield code="2">lcgft</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="538">
+  <datafield tag="538" ind1="" ind2="">
     <subfield code="a">DVD ; all regions ; Dolby digital.</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="546">
+  <datafield tag="546" ind1="" ind2="">
     <subfield code="a">In French and English with English subtitles.</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="500">
+  <datafield tag="500" ind1="" ind2="">
     <subfield code="a">Title from container.</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="500">
+  <datafield tag="500" ind1="" ind2="">
     <subfield code="a">Originally released as documentary films 1956-1971.</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="520">
+  <datafield tag="520" ind1="" ind2="">
     <subfield code="a">"Jean Rouch was an inspiration for the French New Wave, and a revolutionary force in ethnography and the study of Africa. Beginning in 1955 with his most controversial film The Mad Masters, through 1969's darkly comic Little by Little, these films represent the most sustained flourishing of Rouch's practice of "shared anthropology," a process of collaboration with his subjects. Astonishing on their own terms, now restored and released for the first time, Eight films by Jean Rouch is essential for anyone interested in better understanding the development of ethnography and the cross-currents of colonialism and post-colonial social change in Africa, as well as documentary film practice, film history, and world cinema as a whole. Included in this box set are eight newly restored films on four discs, a 24-page booklet with two essays about Rouch and his methodology, and a new documentary about Rouch, his films, and his influence on African cinema, Jean Rouch, "the Adventurous filmmaker" -- Icarus Films website.</subfield>
   </datafield>
-  <datafield ind1="0" ind2="0" tag="505">
+  <datafield tag="505" ind1="0" ind2="0">
     <subfield code="g">Disc 1.</subfield>
     <subfield code="t">Mammy water --</subfield>
     <subfield code="g">(1956, 19 min.) ;</subfield>
@@ -133,65 +141,80 @@
     <subfield code="r">Laurent Ve&#204;drine</subfield>
     <subfield code="g">(2017, 55 min.).</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="500">
-    <subfield code="a">"Digitized and restored in 2K with the support of the Centre National du Cinéma."</subfield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">"Digitized and restored in 2K with the support of the Centre National du Cine&#204;ma."</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="500">
+  <datafield tag="500" ind1="" ind2="">
     <subfield code="a">"Deluxe 4-disc set ; HD digital restorations ; booklet with essays by Paul Stoller and Eric Kohn" -- Back cover of container.</subfield>
   </datafield>
-  <datafield ind1="1" ind2="0" tag="600">
+  <datafield tag="600" ind1="1" ind2="0">
     <subfield code="a">Rouch, Jean.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n83040611</subfield>
   </datafield>
-  <datafield ind1="" ind2="0" tag="650">
+  <datafield tag="650" ind1="" ind2="0">
     <subfield code="a">Video recording in ethnology</subfield>
     <subfield code="z">Africa.</subfield>
   </datafield>
-  <datafield ind1="" ind2="0" tag="650">
+  <datafield tag="650" ind1="" ind2="0">
     <subfield code="a">Ethnographic films.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2002000131</subfield>
   </datafield>
-  <datafield ind1="" ind2="7" tag="655">
+  <datafield tag="655" ind1="" ind2="7">
     <subfield code="a">Documentary films.</subfield>
     <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026205</subfield>
   </datafield>
-  <datafield ind1="" ind2="7" tag="655">
+  <datafield tag="655" ind1="" ind2="7">
     <subfield code="a">Nonfiction films.</subfield>
     <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026423</subfield>
   </datafield>
-  <datafield ind1="" ind2="7" tag="655">
+  <datafield tag="655" ind1="" ind2="7">
     <subfield code="a">Video recordings for the hearing impaired.</subfield>
     <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026725</subfield>
   </datafield>
-  <datafield ind1="1" ind2="" tag="700">
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Video recordings.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026723</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="">
     <subfield code="a">Rouch, Jean,</subfield>
     <subfield code="e">film director.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n83040611</subfield>
   </datafield>
-  <datafield ind1="1" ind2="" tag="700">
+  <datafield tag="700" ind1="1" ind2="">
     <subfield code="a">Stoller, Paul,</subfield>
     <subfield code="e">writer of supplemental textual content.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n86012630</subfield>
   </datafield>
-  <datafield ind1="1" ind2="" tag="700">
+  <datafield tag="700" ind1="1" ind2="">
     <subfield code="a">Kohn, Eric,</subfield>
     <subfield code="e">writer of supplemental textual content.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2014044702</subfield>
   </datafield>
-  <datafield ind1="2" ind2="" tag="710">
+  <datafield tag="710" ind1="2" ind2="">
     <subfield code="a">Icarus Films,</subfield>
     <subfield code="e">Distributor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n79128911</subfield>
   </datafield>
-  <datafield ind1="2" ind2="" tag="710">
+  <datafield tag="710" ind1="2" ind2="">
     <subfield code="a">Films de la Ple&#204;iade (Firm),</subfield>
     <subfield code="e">Producer.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no99016694</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="904">
+  <datafield tag="904" ind1="" ind2="">
     <subfield code="a">nk</subfield>
     <subfield code="b">o</subfield>
     <subfield code="h">m</subfield>
     <subfield code="c">v</subfield>
     <subfield code="e">20180105</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="999">
+  <datafield tag="999" ind1="" ind2="">
     <subfield code="a">10585552</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="902">
+  <datafield tag="902" ind1="" ind2="">
     <subfield code="a">rph</subfield>
     <subfield code="b">m</subfield>
     <subfield code="6">g</subfield>
@@ -200,16 +223,34 @@
     <subfield code="f">4</subfield>
     <subfield code="e">20180112</subfield>
   </datafield>
-  <datafield ind1="8" ind2="" tag="852">
-    <subfield code="0">10329434</subfield>
-    <subfield code="b">firestone$vidl</subfield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 12:03:56 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">vidl</subfield>
     <subfield code="h">DVD 10921</subfield>
+    <subfield code="8">22143217040006421</subfield>
   </datafield>
-  <datafield ind1="" ind2="0" tag="866">
-    <subfield code="0">10329434</subfield>
+  <datafield tag="866" ind1="" ind2="0">
     <subfield code="a">disc 1-disc 4, booklet</subfield>
+    <subfield code="8">22143217040006421</subfield>
   </datafield>
-  <datafield ind1="" ind2="" tag="959">
-    <subfield code="a">2018-01-11 14:34:38 -0500</subfield>
+  <datafield tag="952" ind1="" ind2="">
+    <subfield code="a">2020-12-02 17:03:56</subfield>
+    <subfield code="8">22143217040006421</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">vidl: Firestone Circ Desk</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22143217040006421</subfield>
+    <subfield code="a">23143217030006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">disc 1-4</subfield>
+    <subfield code="d">2020-12-02 17:03:56</subfield>
+    <subfield code="p">32101103891741</subfield>
+    <subfield code="t">0</subfield>
   </datafield>
 </record>

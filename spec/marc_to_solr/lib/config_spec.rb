@@ -17,21 +17,21 @@ describe 'From traject_config.rb' do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
     @indexer = IndexerService.build
-    @sample1 = @indexer.map_record(fixture_record('sample1'))
-    @sample2 = @indexer.map_record(fixture_record('sample2'))
+    @sample1 = @indexer.map_record(fixture_alma_record('99276293506421'))
+    @sample2 = @indexer.map_record(fixture_alma_record('993456823506421'))
     @sample3 = @indexer.map_record(fixture_alma_record('993213506421'))
-    @sample34 = @indexer.map_record(fixture_record('sample34'))
-    @sample35 = @indexer.map_record(fixture_record('sample35'))
-    @sample36 = @indexer.map_record(fixture_record('8181849'))
-    @manuscript_book = @indexer.map_record(fixture_record('sample17'))
-    @added_title_246 = @indexer.map_record(fixture_record('sample18'))
-    @related_names = @indexer.map_record(fixture_record('sample27'))
-    @label_i_246 = @indexer.map_record(fixture_record('sample28'))
+    @sample34 = @indexer.map_record(fixture_alma_record('99105855523506421'))
+    @sample35 = @indexer.map_record(fixture_alma_record('9990567203506421'))
+    @sample36 = @indexer.map_record(fixture_alma_record('9981818493506421'))
+    @manuscript_book = @indexer.map_record(fixture_alma_record('9959060243506421'))
+    @added_title_246 = @indexer.map_record(fixture_alma_record('9930602883506421'))
+    @related_names = @indexer.map_record(fixture_alma_record('9919643053506421'))
+    @label_i_246 = @indexer.map_record(fixture_alma_record('9990315453506421'))
     @online_at_library = @indexer.map_record(fixture_alma_record('9979160443506421'))
     @online = @indexer.map_record(fixture_alma_record('9990889283506421'))
-    # @elf2 = @indexer.map_record(fixture_record('elf2'))
-    @other_title_246 = @indexer.map_record(fixture_record('7910599'))
-    @title_vern_display = @indexer.map_record(fixture_record('4854502'))
+    @elf2 = @indexer.map_record(fixture_alma_record('9934788983506421'))
+    @other_title_246 = @indexer.map_record(fixture_alma_record('9979105993506421'))
+    @title_vern_display = @indexer.map_record(fixture_alma_record('9948545023506421'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
@@ -91,20 +91,22 @@ describe 'From traject_config.rb' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
         it "will index the 876d field" do
-          expect(fixture_alma_record('99211662100521')['951']['w']).to be_truthy
-          expect(fixture_alma_record('99211662100521')['876']['d']).to be_truthy
-          expect(fixture_alma_record('99211662100521')['950']['b']).to be_truthy
-          record = @indexer.map_record(fixture_alma_record('99211662100521'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('99211662100521')['876']['d']).utc
+          record = fixture_alma_record('99211662100521')
+          indexed_record = @indexer.map_record(record)
+          expect(record['951']['w']).to be_truthy
+          expect(record['876']['d']).to be_truthy
+          expect(record['950']['b']).to be_truthy
+          expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['876']['d']).utc
         end
       end
       context "When the record has only a 950b field" do
         it "will index the 950b field" do
-          expect(fixture_alma_record('991330600000541')['950']['b']).to be_truthy
-          expect(fixture_alma_record('991330600000541')['876']).to be_falsey
-          expect(fixture_alma_record('991330600000541')['951']).to be_falsey
-          record = @indexer.map_record(fixture_alma_record('991330600000541'))
-          expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_alma_record('991330600000541')['950']['b']).utc
+          record = fixture_alma_record('991330600000541')
+          indexed_record = @indexer.map_record(record)
+          expect(record['950']['b']).to be_truthy
+          expect(record['876']).to be_falsey
+          expect(record['951']).to be_falsey
+          expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['950']['b']).utc
         end
       end
 
@@ -123,11 +125,12 @@ describe 'From traject_config.rb' do
     end
     context "When it is an eletronic record" do
       it "will index the 951w field" do
-        expect(fixture_record('electronic')['951']['w']).to be_truthy
-        expect(fixture_record('electronic')['876']).to be_falsey
-        expect(fixture_record('electronic')['950']).to be_truthy
-        record = @indexer.map_record(fixture_record('electronic'))
-        expect(Time.parse(record['cataloged_tdt'].first)).to eq Time.parse(fixture_record('electronic')['951']['w']).utc
+        record = fixture_alma_record('99122424622606421')
+        indexed_record = @indexer.map_record(record)
+        expect(record['951']['w']).to be_truthy
+        expect(record['876']).to be_falsey
+        expect(record['950']).to be_truthy
+        expect(Time.parse(indexed_record['cataloged_tdt'].first)).to eq Time.parse(record['951']['w']).utc
       end
     end
   end
@@ -233,7 +236,7 @@ describe 'From traject_config.rb' do
   end
   describe 'the title_sort field' do
     it 'does not have initial articles' do
-      expect(@sample1['title_sort'][0].start_with?('advanced concepts')).to be_truthy
+      expect(@sample1['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
     end
   end
   describe 'the author_display field' do
@@ -252,7 +255,7 @@ describe 'From traject_config.rb' do
       expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
     end
     it 'shows only the 700 a subfield' do
-      expect(@sample2['author_citation_display']).to include 'Jones, Mary'
+      expect(@sample36['author_citation_display']).to include 'Ishizuka, Harumichi'
     end
   end
   describe 'the title vernacular display' do
@@ -265,10 +268,10 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'publication_place_facet field' do
-    it 'maps the 3-digit code in the 008[15-17] to a name' do
+    it 'maps the 3-digit code in the 008[12-14] to a name' do
       expect(@sample1['publication_place_facet']).to eq ['Michigan']
     end
-    it 'maps the 2-digit code in the 008[15-17] to a name' do
+    it 'maps the 2-digit code in the 008[12-14] to a name' do
       expect(@added_title_246['publication_place_facet']).to eq ['Japan']
     end
   end
@@ -279,7 +282,7 @@ describe 'From traject_config.rb' do
   end
   describe 'notes from record show up in the notes_index' do
     it 'shows tag 500 and 538' do
-      expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', '"Digitized and restored in 2K with the support of the Centre National du Cinéma."')
+      expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
     end
   end
   describe 'publication end date' do
@@ -337,7 +340,7 @@ describe 'From traject_config.rb' do
     let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
     let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
     it 'displays 264 tag sorted by indicator2' do
-      expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "©1956-1971"]
+      expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "Â©1956-1971"]
     end
     it 'displays when 008-6 is d and an end date is present in the 008' do
       expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
@@ -375,13 +378,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'related_name_json_1display' do
-    let(:rel_names) { JSON.parse(@related_names['related_name_json_1display'][0]) }
     it 'trims punctuation the same way as author_s facet' do
+      rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
       rel_names['Related name'].each { |n| expect(@related_names['author_s']).to include(n) }
     end
     it 'allows multiple roles from single field' do
-      expect(rel_names['Editor']).to include('Someone')
-      expect(rel_names['Painter']).to include('Someone')
+      rel_names = JSON.parse(@label_i_246['related_name_json_1display'][0])
+      expect(rel_names['Film director']).to include('Kim, ToÌ†k-su')
+      expect(rel_names['Screenwriter']).to include('Kim, ToÌ†k-su')
     end
   end
   describe 'access_facet' do
@@ -444,49 +448,47 @@ describe 'From traject_config.rb' do
   end
   describe 'excluding locations from library facet' do
     # TODO: Replace with Alma
+    # Question: Is this still valid?
     # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
     xit 'when location is online' do
       expect(@online['location_code_s']).to include 'online$elf1'
       expect(@online['location_display']).to include 'Electronic Access - elf1 Internet Resources'
       expect(@online['location']).to eq ['Electronic Access']
     end
-    # TODO: Replace with Alma
-    xit 'when location codes that do not map to labels' do
-      expect(@sample1['location_code_s']).to include 'invalidcode'
-      expect(@sample1['location_display']).to be_nil
-      expect(@sample1['location']).to be_nil
+    it 'when location codes that do not map to labels' do
+      record = @indexer.map_record(fixture_alma_record('99276293506421_invalid_location'))
+      expect(record['location_code_s']).to include 'invalidcode'
+      expect(record['location_display']).to be_nil
+      expect(record['location']).to be_nil
     end
   end
   describe 'location facet values for Recap items' do
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['ReCAP - rcppj RECAP Marq. Lib.']
+    it 'marquand recap items have a location value of marquand and recap' do
+      expect(@added_title_246['location_display']).to eq ['ReCAP - Remote Storage: Marquand Library use only']
       expect(@added_title_246['location']).to eq ['ReCAP', 'Marquand Library']
     end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'Electronic Access - elf1 Internet Resources", "ReCAP - rcpph RECAP Mudd Lib.'
+    it 'non-rare recap items only have a location value of recap' do
+      expect(@online_at_library['location_display']).to include 'ReCAP - Mudd Off-Site Storage: Contact mudd@princeton.edu'
       expect(@online_at_library['location']).to include 'ReCAP'
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
   end
   describe 'including libraries and codes in advanced_location_s facet' do
-    # TODO: Replace with Alma
-    xit 'lewis library included with lewis code' do
-      expect(@sample3['advanced_location_s']).to include 'lewis$doc'
-      expect(@sample3['advanced_location_s']).to include 'Lewis Library'
+    it 'lewis library included with lewis code' do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record['advanced_location_s']).to include 'lewis$stacks'
+      expect(record['advanced_location_s']).to include 'Lewis Library'
     end
-    # TODO: Replace with Alma
+    # TODO: Replace with Alma.
+    # Question: Is this still valid?
     xit 'online is included' do
       expect(@elf2['advanced_location_s']).to include 'elf2'
       expect(@elf2['advanced_location_s']).to include 'Online'
     end
-    # TODO: Replace with Alma
-    xit 'library is excluded from location_code_s' do
-      expect(@sample3['location_code_s']).to include 'lewis$doc'
-      expect(@sample3['location_code_s']).not_to include 'Lewis Library'
+    it 'library is excluded from location_code_s' do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record['location_code_s']).to include 'lewis$stacks'
+      expect(record['location_code_s']).not_to include 'Lewis Library'
     end
   end
   describe 'other_title_display array 246s included' do
