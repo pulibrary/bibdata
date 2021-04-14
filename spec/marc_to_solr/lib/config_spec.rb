@@ -462,16 +462,12 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'location facet values for Recap items' do
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['ReCAP - rcppj RECAP Marq. Lib.']
+    it 'marquand recap items have a location value of marquand and recap' do
+      expect(@added_title_246['location_display']).to eq ['ReCAP - Remote Storage: Marquand Library use only']
       expect(@added_title_246['location']).to eq ['ReCAP', 'Marquand Library']
     end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'Electronic Access - elf1 Internet Resources", "ReCAP - rcpph RECAP Mudd Lib.'
+    it 'non-rare recap items only have a location value of recap' do
+      expect(@online_at_library['location_display']).to include 'ReCAP - Mudd Off-Site Storage: Contact mudd@princeton.edu'
       expect(@online_at_library['location']).to include 'ReCAP'
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
