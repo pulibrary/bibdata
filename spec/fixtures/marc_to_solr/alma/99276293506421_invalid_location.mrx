@@ -1,0 +1,98 @@
+<record>
+  <leader>00984cam a2200265 i 4500</leader>
+  <controlfield tag="005">20200728162955.0</controlfield>
+  <controlfield tag="008">801010s1964 miua ab 000 0 eng</controlfield>
+  <controlfield tag="001">99276293506421</controlfield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)83431252</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/83431252</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(CStRLIN)NJPG19035810-B</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="9">AAJ1990TS</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">27629</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(NjP)27629-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1="" ind2="">
+    <subfield code="a">NjP</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">NjP</subfield>
+  </datafield>
+  <datafield tag="041" ind1=" " ind2=" ">
+    <subfield code="a">|||</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2="">
+    <subfield code="a">Singh, Digvijai,</subfield>
+    <subfield code="d">1934-</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n88624837</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Advanced concepts of the stability of two-wheeled vehicles :</subfield>
+    <subfield code="b">application of mathematical analysis to actual vehicles /</subfield>
+    <subfield code="c">by Digvijai Singh.</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">Madison :</subfield>
+    <subfield code="b">University of Wisconsin,</subfield>
+    <subfield code="c">1964.</subfield>
+  </datafield>
+  <datafield tag="300" ind1="" ind2="">
+    <subfield code="a">x, 203 p. :</subfield>
+    <subfield code="b">ill.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Vita.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Thesis--University of Wisconsin.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Microfilm. Ann Arbor : University Microfilms, 1964. -- 1 reel ; 35 mm.</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">"64-10, 311"</subfield>
+  </datafield>
+  <datafield tag="504" ind1="" ind2="">
+    <subfield code="a">Bibliography: p. 202-203.</subfield>
+  </datafield>
+  <datafield tag="998" ind1="" ind2="">
+    <subfield code="a">10/10/80</subfield>
+    <subfield code="s">9114</subfield>
+    <subfield code="n">NjP</subfield>
+    <subfield code="w">NJPG19035810B</subfield>
+    <subfield code="d">05/05/81</subfield>
+    <subfield code="c">PMG</subfield>
+    <subfield code="b">KSG</subfield>
+    <subfield code="i">801010</subfield>
+    <subfield code="l">NJPG</subfield>
+  </datafield>
+  <datafield tag="911" ind1="" ind2="">
+    <subfield code="a">19921028</subfield>
+  </datafield>
+  <datafield tag="912" ind1="" ind2="">
+    <subfield code="a">19900820000000.0</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="b">2020-12-02 19:39:20 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="0">
+    <subfield code="b">invalidcode</subfield>
+    <subfield code="h">MICROFILM 03732</subfield>
+    <subfield code="8">22244487270006421</subfield>
+  </datafield>
+  <datafield tag="876" ind1="" ind2="">
+    <subfield code="0">22244487270006421</subfield>
+    <subfield code="a">23244487260006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-03 00:39:20</subfield>
+    <subfield code="p">32101053409122</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
