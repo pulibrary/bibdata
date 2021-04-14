@@ -29,7 +29,7 @@ describe 'From traject_config.rb' do
     @label_i_246 = @indexer.map_record(fixture_alma_record('9990315453506421'))
     @online_at_library = @indexer.map_record(fixture_alma_record('9979160443506421'))
     @online = @indexer.map_record(fixture_alma_record('9990889283506421'))
-    # @elf2 = @indexer.map_record(fixture_alma_record('elf2'))
+    @elf2 = @indexer.map_record(fixture_alma_record('9934788983506421'))
     @other_title_246 = @indexer.map_record(fixture_alma_record('9979105993506421'))
     @title_vern_display = @indexer.map_record(fixture_alma_record('9948545023506421'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
@@ -477,20 +477,21 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'including libraries and codes in advanced_location_s facet' do
-    # TODO: Replace with Alma
-    xit 'lewis library included with lewis code' do
-      expect(@sample3['advanced_location_s']).to include 'lewis$doc'
-      expect(@sample3['advanced_location_s']).to include 'Lewis Library'
+    it 'lewis library included with lewis code' do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record['advanced_location_s']).to include 'lewis$stacks'
+      expect(record['advanced_location_s']).to include 'Lewis Library'
     end
-    # TODO: Replace with Alma
+    # TODO: Replace with Alma.
+    # Question: Is this still valid?
     xit 'online is included' do
       expect(@elf2['advanced_location_s']).to include 'elf2'
       expect(@elf2['advanced_location_s']).to include 'Online'
     end
-    # TODO: Replace with Alma
-    xit 'library is excluded from location_code_s' do
-      expect(@sample3['location_code_s']).to include 'lewis$doc'
-      expect(@sample3['location_code_s']).not_to include 'Lewis Library'
+    it 'library is excluded from location_code_s' do
+      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      expect(record['location_code_s']).to include 'lewis$stacks'
+      expect(record['location_code_s']).not_to include 'Lewis Library'
     end
   end
   describe 'other_title_display array 246s included' do
