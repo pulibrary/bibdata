@@ -255,7 +255,7 @@ describe 'From traject_config.rb' do
       expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
     end
     it 'shows only the 700 a subfield' do
-      expect(@sample2['author_citation_display']).to include 'Jones, Mary'
+      expect(@sample36['author_citation_display']).to include 'Ishizuka, Harumichi'
     end
   end
   describe 'the title vernacular display' do
