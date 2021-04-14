@@ -147,7 +147,9 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(session_stub).to receive(:dir).and_return(dir_stub)
         allow(dir_stub).to receive(:entries).and_return([name])
         allow(session_stub).to receive(:download).and_return(download_stub)
-        allow(download_stub).to receive(:wait)
+        allow(download_stub).to receive(:wait) do
+          FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "1.xml.tar.gz"), local_path)
+        end
 
         described_class.perform_now(dump: dump, job_id: job_id)
 
@@ -155,7 +157,24 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["RECAP_RECORDS"]
-        expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
+        first_dump_file = Dump.first.dump_files.first
+        expect(first_dump_file.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
+
+        expect(File.exist?(first_dump_file.path)).to eq true
+
+        # Unzip it, get the MARC-XML
+        tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(first_dump_file.path))
+        tar_extract.tap(&:rewind)
+        content = StringIO.new(tar_extract.first.read)
+        records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
+        record = records[0]
+
+        # Assertions about the record.
+        holding_fields = record.fields("852")
+        expect(holding_fields.size).to eq 1
+        holding_field = holding_fields.first
+        expect(holding_field["b"]).to eq "recap$pa"
+
         # Ensure job is queued.
         expect(RecapTransferJob).to have_been_enqueued.once
       end
