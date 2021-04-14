@@ -268,10 +268,10 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'publication_place_facet field' do
-    it 'maps the 3-digit code in the 008[12-14] to a name' do
+    it 'maps the 3-digit code in the 008[15-17] to a name' do
       expect(@sample1['publication_place_facet']).to eq ['Michigan']
     end
-    it 'maps the 2-digit code in the 008[12-14] to a name' do
+    it 'maps the 2-digit code in the 008[15-17] to a name' do
       expect(@added_title_246['publication_place_facet']).to eq ['Japan']
     end
   end
