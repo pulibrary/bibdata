@@ -85,10 +85,6 @@ Resources:
                       "body": $input.json('$')
                     }
                 type: "aws"
-  StagingRecapBucket:
-    Type: "AWS::S3::Bucket"
-    Properties:
-      BucketName: "alma-recap-staging"
   WebhookReceiver:
     Type: "AWS::Serverless::Function"
     Properties:
