@@ -15,40 +15,6 @@ class AlmaAdapter
     get_bib_records([id])&.first
   end
 
-  def build_alma_error_from(json:)
-    error = json.deep_symbolize_keys
-    error_code = error[:errorCode]
-
-    case error_code
-    when "PER_SECOND_THRESHOLD"
-      Alma::PerSecondThresholdError.new(error[:errorMessage])
-    else
-      Alma::StandardError.new(error[:errorMessage])
-    end
-  end
-
-  def build_alma_errors_from(json:)
-    error_list = json["errorList"]
-    errors = error_list["error"]
-    errors.map { |error| build_alma_error_from(json: error) }
-  end
-
-  def build_alma_errors(from:)
-    message = from.message.gsub('=>', ':').gsub('nil', '"null"')
-    parsed_message = JSON.parse(message)
-    build_alma_errors_from(json: parsed_message)
-  end
-
-  def validate_response!(response:)
-    return true if response.status == 200
-
-    response_body = JSON.parse(response.body)
-    errors = build_alma_errors_from(json: response_body)
-    return true if errors.empty?
-
-    raise(errors.first)
-  end
-
   # Get /almaws/v1/bibs Retrieve bibs
   # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
@@ -73,6 +39,8 @@ class AlmaAdapter
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
     { bibs.first.id => AvailabilityStatus.new(bib: bibs.first).bib_availability }
+  rescue Alma::StandardError => client_error
+    handle_alma_error(client_error: client_error)
   end
 
   # Returns availability for a list of bib ids
@@ -83,6 +51,8 @@ class AlmaAdapter
       acc[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
     end
     availability
+  rescue Alma::StandardError => client_error
+    handle_alma_error(client_error: client_error)
   end
 
   def get_availability_holding(id:, holding_id:)
@@ -100,6 +70,8 @@ class AlmaAdapter
     holding_items[:items].map do |item|
       item.availability_summary(marc_holding: marc_holding)
     end
+  rescue Alma::StandardError => client_error
+    handle_alma_error(client_error: client_error)
   end
 
   # Returns list of holding records for a given MMS
@@ -152,5 +124,45 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
+    end
+
+    def build_alma_error_from(json:)
+      error = json.deep_symbolize_keys
+      error_code = error[:errorCode]
+
+      case error_code
+      when "PER_SECOND_THRESHOLD"
+        Alma::PerSecondThresholdError.new(error[:errorMessage])
+      else
+        Alma::StandardError.new(error[:errorMessage])
+      end
+    end
+
+    def build_alma_errors_from(json:)
+      error_list = json["errorList"]
+      errors = error_list["error"]
+      errors.map { |error| build_alma_error_from(json: error) }
+    end
+
+    def build_alma_errors(from:)
+      message = from.message.gsub('=>', ':').gsub('nil', '"null"')
+      parsed_message = JSON.parse(message)
+      build_alma_errors_from(json: parsed_message)
+    end
+
+    def validate_response!(response:)
+      return true if response.status == 200
+
+      response_body = JSON.parse(response.body)
+      errors = build_alma_errors_from(json: response_body)
+      return true if errors.empty?
+
+      raise(errors.first)
+    end
+
+    def handle_alma_error(client_error:)
+      errors = build_alma_errors(from: client_error)
+      raise errors.first if errors.first.is_a?(Alma::PerSecondThresholdError)
+      raise client_error
     end
 end
