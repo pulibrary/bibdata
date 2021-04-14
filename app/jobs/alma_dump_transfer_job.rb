@@ -15,6 +15,14 @@ class AlmaDumpTransferJob < ActiveJob::Base
 
     IncrementalIndexJob.perform_later(dump) if incremental_dump?(type_constant)
     return unless recap_incremental_dump?(type_constant)
+    # Recap files need mutated.
+    # Notes:
+    # https://htcrecap.atlassian.net/wiki/spaces/RTG/pages/27692276/Ongoing+Accession+Submit+Collection+through+API
+    # 852/866/867/868 fields which have a subfield "8" are all copied from
+    # holdings. Create an array of faux AlmaHoldings from them.
+    # 876 is physical holdings info. t is copy ID, 3 is Enum, 4 is Chron, y is
+    # current library, z is current location, 0 is holding ID, p is barcode, j
+    # is status, d is create date. Try to make a faux-AlmaItem from this info.
     dump.dump_files.each do |dump_file|
       RecapTransferJob.perform_later(dump_file)
     end
