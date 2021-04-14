@@ -1,0 +1,225 @@
+<record>
+  <leader>-----nas--2200397-a-4500</leader>
+  <controlfield tag="001">99122424622606421</controlfield>
+  <controlfield tag="005">20200415075720.2</controlfield>
+  <controlfield tag="008">110922c20119999hu-qr-p-o-----0----0eng--</controlfield>
+  <datafield tag="010" ind1="" ind2="">
+    <subfield code="a">2012243131</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2="">
+    <subfield code="a">101569896</subfield>
+    <subfield code="2">DNLM</subfield>
+  </datafield>
+  <datafield tag="022" ind1="" ind2="">
+    <subfield code="a">2062-8633</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(DE-599)ZDB2652327-9</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(OCoLC)775758673</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/775758673</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(CKB)3400000000000244</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(CONSER)--2012243131</subfield>
+  </datafield>
+  <datafield tag="035" ind1="" ind2="">
+    <subfield code="a">(EXLCZ)993400000000000244</subfield>
+  </datafield>
+  <datafield tag="042" ind1="" ind2="">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="060" ind1="0" ind2="0">
+    <subfield code="a">W1</subfield>
+    <subfield code="b">EU720L</subfield>
+  </datafield>
+  <datafield tag="210" ind1="" ind2="">
+    <subfield code="a">EUR J MICROBIOL IMMUNOL (BP)</subfield>
+  </datafield>
+  <datafield tag="210" ind1="1" ind2="0">
+    <subfield code="a">Eur J Microbiol Immunol (Bp)</subfield>
+    <subfield code="2">dnlm</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">European journal of microbiology &amp; immunology.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="1" ind2="">
+    <subfield code="a">European journal of microbiology and immunology</subfield>
+  </datafield>
+  <datafield tag="260" ind1="" ind2="">
+    <subfield code="a">Budapest :</subfield>
+    <subfield code="b">Akad&#195;&#169;miai Kiad&#195;&#179;</subfield>
+  </datafield>
+  <datafield tag="310" ind1="" ind2="">
+    <subfield code="a">Quarterly</subfield>
+  </datafield>
+  <datafield tag="336" ind1="" ind2="">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1="" ind2="">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="362" ind1="1" ind2="">
+    <subfield code="a">Began with vol. 1, no. 1 (Mar. 2011).</subfield>
+  </datafield>
+  <datafield tag="500" ind1="" ind2="">
+    <subfield code="a">Refereed/Peer-reviewed</subfield>
+  </datafield>
+  <datafield tag="588" ind1="" ind2="">
+    <subfield code="a">Description based on: Vol. 1, no. 1 (Mar. 2011); title from cover.</subfield>
+  </datafield>
+  <datafield tag="588" ind1="" ind2="">
+    <subfield code="a">Latest issue consulted: Vol. 1, no. 1 (Mar. 2011).</subfield>
+  </datafield>
+  <datafield tag="650" ind1="1" ind2="2">
+    <subfield code="a">Microbiological Phenomena.</subfield>
+  </datafield>
+  <datafield tag="650" ind1="2" ind2="2">
+    <subfield code="a">Immune System Phenomena.</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="0">
+    <subfield code="a">Electronic journals.</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01411641</subfield>
+  </datafield>
+  <datafield tag="655" ind1="" ind2="2">
+    <subfield code="a">Periodical.</subfield>
+  </datafield>
+  <datafield tag="776" ind1="" ind2="">
+    <subfield code="x">2062-509X</subfield>
+    <subfield code="0">(uri) http://worldcat.org/issn/2062-509X</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2="">
+    <subfield code="a">Akad&#195;&#169;miai Kiad&#195;&#179;.</subfield>
+  </datafield>
+  <datafield tag="906" ind1="" ind2="">
+    <subfield code="a">JOURNAL</subfield>
+  </datafield>
+  <datafield tag="950" ind1="" ind2="">
+    <subfield code="c">2020-04-23 18:17:20 US/Eastern</subfield>
+    <subfield code="b">2012-02-25 20:23:57 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 08:04:46 US/Eastern</subfield>
+    <subfield code="g">Free Medical Journals</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="j">significant overlap with other free targets, but also includes some unique titles --nb, 7/17</subfield>
+    <subfield code="t">2020-12-14 08:04:41 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53469315810006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code='w'>2015-09-16 14:53:16</subfield>
+    <subfield code="0">53469315810006421</subfield>
+    <subfield code="k">Available from 2011.</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="m">61428536990006421</subfield>
+    <subfield code="n">Free Medical Journals</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428547610006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99122424622606421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000824</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53469315810006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">53469315810006421</subfield>
+    <subfield code="b">2011</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 08:04:46 US/Eastern</subfield>
+    <subfield code="g">Universit&#195;&#164;tsbibliothek Regensburg</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="j">much overlap with Misc. Free EJs target, but many unique titles as well --nb, 10/17; activated all but deactivated Misc. Free duplicates --nb, 2/18</subfield>
+    <subfield code="t">2020-12-14 08:04:41 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53469315800006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53469315800006421</subfield>
+    <subfield code="k">Available from 2014.</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="m">61428532340006421</subfield>
+    <subfield code="n">Elektronische Zeitschriftenbibliothek Free E-Journals</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428557770006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99122424622606421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613790000000000930</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53469315800006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">53469315800006421</subfield>
+    <subfield code="b">2014</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 08:04:46 US/Eastern</subfield>
+    <subfield code="g">PubMed Central</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-14 08:04:41 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53469315820006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53469315820006421</subfield>
+    <subfield code="k">Available from 2011 volume: 1.</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="m">61428532150006421</subfield>
+    <subfield code="n">PubMed Central</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62428545910006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99122424622606421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">61111058563444000</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53469315820006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">53469315820006421</subfield>
+    <subfield code="b">2011</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="h">1</subfield>
+  </datafield>
+  <datafield tag="951" ind1="" ind2="">
+    <subfield code="v">2020-12-14 08:04:46 US/Eastern</subfield>
+    <subfield code="g">Akademiai Kiado</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="j">local parser/parse param needed in order for linking to work --nb, 9/20</subfield>
+    <subfield code="j">linking syntax changed; reporting to ExLibris --nb, 7/20</subfield>
+    <subfield code="t">2020-12-14 08:04:41 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53469315790006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53469315790006421</subfield>
+    <subfield code="k">Available from 2011 volume: 1 issue: 1.</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61428534030006421</subfield>
+    <subfield code="n">Akademiai Kiado</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">62428560270006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99122424622606421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">611000000000000691</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53469315790006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1="" ind2="">
+    <subfield code="a">53469315790006421</subfield>
+    <subfield code="b">2011</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="h">1</subfield>
+    <subfield code="j">1</subfield>
+  </datafield>
+</record>
