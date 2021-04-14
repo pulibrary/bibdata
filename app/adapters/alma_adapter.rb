@@ -15,40 +15,6 @@ class AlmaAdapter
     get_bib_records([id])&.first
   end
 
-  def build_alma_error_from(json:)
-    error = json.deep_symbolize_keys
-    error_code = error[:errorCode]
-
-    case error_code
-    when "PER_SECOND_THRESHOLD"
-      Alma::PerSecondThresholdError.new(error[:errorMessage])
-    else
-      Alma::StandardError.new(error[:errorMessage])
-    end
-  end
-
-  def build_alma_errors_from(json:)
-    error_list = json["errorList"]
-    errors = error_list["error"]
-    errors.map { |error| build_alma_error_from(json: error) }
-  end
-
-  def build_alma_errors(from:)
-    message = from.message.gsub('=>', ':').gsub('nil', '"null"')
-    parsed_message = JSON.parse(message)
-    build_alma_errors_from(json: parsed_message)
-  end
-
-  def validate_response!(response:)
-    return true if response.status == 200
-
-    response_body = JSON.parse(response.body)
-    errors = build_alma_errors_from(json: response_body)
-    return true if errors.empty?
-
-    raise(errors.first)
-  end
-
   # Get /almaws/v1/bibs Retrieve bibs
   # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
@@ -152,5 +118,39 @@ class AlmaAdapter
 
     def apikey
       Rails.configuration.alma[:read_only_apikey]
+    end
+
+    def build_alma_error_from(json:)
+      error = json.deep_symbolize_keys
+      error_code = error[:errorCode]
+
+      case error_code
+      when "PER_SECOND_THRESHOLD"
+        Alma::PerSecondThresholdError.new(error[:errorMessage])
+      else
+        Alma::StandardError.new(error[:errorMessage])
+      end
+    end
+
+    def build_alma_errors_from(json:)
+      error_list = json["errorList"]
+      errors = error_list["error"]
+      errors.map { |error| build_alma_error_from(json: error) }
+    end
+
+    def build_alma_errors(from:)
+      message = from.message.gsub('=>', ':').gsub('nil', '"null"')
+      parsed_message = JSON.parse(message)
+      build_alma_errors_from(json: parsed_message)
+    end
+
+    def validate_response!(response:)
+      return true if response.status == 200
+
+      response_body = JSON.parse(response.body)
+      errors = build_alma_errors_from(json: response_body)
+      return true if errors.empty?
+
+      raise(errors.first)
     end
 end
