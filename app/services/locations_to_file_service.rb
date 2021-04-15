@@ -4,10 +4,21 @@ class LocationsToFileService
     new.delivery_locations_to_file
   end
 
+  attr_reader :base_path
+  def initialize(base_path: Rails.root.join('config', 'locations'))
+    FileUtils.mkdir_p base_path
+    @base_path = base_path
+  end
+
+  def create_locations_directory
+    # make sure the directory exists
+    # if the dir doesn't exist cretate it
+  end
+
   # Writes a json file with holding locations.
   def holding_locations_to_file
     holding_locations_json_array = JSON.generate(alma_voyager_mapped_locations)
-    holding_locations_file = File.open("holding_locations.json", "w")
+    holding_locations_file = File.open(File.join(base_path, "holding_locations.json"), "w")
     holding_locations_file.write(holding_locations_json_array)
     holding_locations_file.close
   end
@@ -15,7 +26,7 @@ class LocationsToFileService
   # Writes a json file with delivery locations
   def delivery_locations_to_file
     delivery_locations_json_array = JSON.generate(delivery_holding_locations)
-    delivery_locations_file = File.open("delivery_locations.json", "w")
+    delivery_locations_file = File.open(File.join(base_path, "delivery_locations.json"), "w")
     delivery_locations_file.write(delivery_locations_json_array)
     delivery_locations_file.close
   end
