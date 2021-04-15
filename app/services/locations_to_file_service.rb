@@ -10,11 +10,6 @@ class LocationsToFileService
     @base_path = base_path
   end
 
-  def create_locations_directory
-    # make sure the directory exists
-    # if the dir doesn't exist cretate it
-  end
-
   # Writes a json file with holding locations.
   def holding_locations_to_file
     holding_locations_json_array = JSON.generate(alma_voyager_mapped_locations)
@@ -65,7 +60,7 @@ class LocationsToFileService
   def delivery_holding_locations
     retrieve_delivery_locations.each do |location|
       holding_location = holding_locations_array.find { |holding| holding['library']['code'] == location['library']['code'] }
-      location["alma_library_code"] = holding_location['alma_library_code']
+      location["alma_library_code"] = holding_location['alma_library_code'] if holding_location.present?
     end
   end
 
@@ -76,7 +71,9 @@ class LocationsToFileService
       alma_voyager_mapping_row = alma_voyager_mapping.find { |row| row['voyager_location_code'] == location["code"] }
       location["alma_library_code"] = alma_voyager_mapping_row[1] if alma_voyager_mapping_row.present?
       location["holding_location_code"] = "#{alma_voyager_mapping_row[1]}$#{alma_voyager_mapping_row[2]}" if alma_voyager_mapping_row.present?
-      location["delivery_locations"] = retrieve_holding_delivery_location(location["code"])["delivery_locations"].map { |m| m["gfa_pickup"] }
+      sliced_holding_delivery = retrieve_holding_delivery_location(location["code"]).slice("holding_library", "delivery_locations")
+      location["holding_library"] = sliced_holding_delivery.fetch("holding_library")
+      location["delivery_locations"] = sliced_holding_delivery.fetch("delivery_locations").map { |m| m["gfa_pickup"] }
     end
   end
 
@@ -90,14 +87,14 @@ class LocationsToFileService
   # Parses holding_locations.json file
   # Creates an array of holding_location hashes
   def holding_locations_array
-    file = File.read('./holding_locations.json')
+    file = File.read(File.join(base_path, "holding_locations.json"))
     JSON.parse(file)
   end
 
   # Parses delivery_locations.json file
   # Creates an array of delivery_locations hashes
   def delivery_locations_array
-    file = File.read('./delivery_locations.json')
+    file = File.read(File.join(base_path, "delivery_locations.json"))
     JSON.parse(file)
   end
 end
