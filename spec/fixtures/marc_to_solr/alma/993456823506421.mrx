@@ -1,7 +1,7 @@
 <record>
   <leader>00903cam a2200241 a 4500</leader>
   <controlfield tag="005">20200729173009.0</controlfield>
-  <controlfield tag="008">861209s1985 enk 000 0 eng d</controlfield>
+  <controlfield tag="008">861209s1985    enk           000 0 eng d</controlfield>
   <controlfield tag="001">993456823506421</controlfield>
   <datafield tag="020" ind1="" ind2="">
     <subfield code="a">0947752196</subfield>

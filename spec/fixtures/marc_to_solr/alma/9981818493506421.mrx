@@ -1,7 +1,7 @@
 <record>
   <leader>03199cam a2200625 i 4500</leader>
   <controlfield tag="005">20201002144956.0</controlfield>
-  <controlfield tag="008">140305r20140706ja a b 000 0 jpn c</controlfield>
+  <controlfield tag="008">140305r20140706ja a     b    000 0 jpn c</controlfield>
   <controlfield tag="001">9981818493506421</controlfield>
   <datafield tag="035" ind1="" ind2="">
     <subfield code="a">(OCoLC)ocn902811484</subfield>
