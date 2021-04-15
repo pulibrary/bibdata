@@ -6,8 +6,8 @@ describe 'From princeton_marc.rb' do
     @indexer = IndexerService.build
   end
 
-  def fixture_alma_record(fixture_name)
-    f = File.expand_path("../../../fixtures/marc_to_solr/alma/#{fixture_name}.mrx", __FILE__)
+  def fixture_record(fixture_name)
+    f = File.expand_path("../../../fixtures/marc_to_solr/#{fixture_name}.mrx", __FILE__)
     @indexer.reader!(f).first
   end
 
@@ -637,28 +637,28 @@ describe 'From princeton_marc.rb' do
     # voyager record: https://catalog.princeton.edu/catalog/1414145/
     # alma record: https://bibdata-alma-staging.princeton.edu/bibliographic/9914141453506421
     before(:all) do
-      @record = @indexer.map_record(fixture_alma_record('9914141453506421'))
+      @record = @indexer.map_record(fixture_record('9914141453506421'))
       @holdings = JSON.parse(@record["holdings_1display"][0])
       @oversize_holding_id = "22242008800006421"
       @oversize_holding_block = @holdings[@oversize_holding_id]
 
-      @record_866_867 = @indexer.map_record(fixture_alma_record('991583506421'))
+      @record_866_867 = @indexer.map_record(fixture_record('991583506421'))
       @holdings_866_867 = JSON.parse(@record_866_867["holdings_1display"][0])
       @holding_id_866_867 = "22262098640006421"
       @holdings_866_867_block = @holdings_866_867[@holding_id_866_867]
 
-      @record_868 = @indexer.map_record(fixture_alma_record('991213506421'))
+      @record_868 = @indexer.map_record(fixture_record('991213506421'))
       @holdings_868 = JSON.parse(@record_868["holdings_1display"][0])
       @holding_id_868 = "22261907460006421"
       @holdings_868_block = @holdings_868[@holding_id_868]
 
-      @record_invalid_location = @indexer.map_record(fixture_alma_record('9914141453506421_invalid_loc'))
+      @record_invalid_location = @indexer.map_record(fixture_record('9914141453506421_invalid_loc'))
       @not_valid_holding_id = "999999"
       @holdings_id_852 = "22242008800006421"
       @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
 
       # scsb
-      @record_scsb = @indexer.map_record(fixture_alma_record('SCSB-8157262'))
+      @record_scsb = @indexer.map_record(fixture_record('SCSB-8157262'))
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
       @holding_id_scsb = "9856684"
       @holdings_scsb_block = @holdings_scsb[@holding_id_scsb]
