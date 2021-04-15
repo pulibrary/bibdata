@@ -27,14 +27,14 @@ RSpec.describe Scsb::S3Bucket, type: :model do
     it "returns true when the file uploads" do
       output = Aws::S3::Types::PutObjectOutput.new
       allow(s3_client).to receive(:put_object).with(bucket: 'test', key: 'data-feed/submitcollections/PUL/cgd_protection/scsb_abc_123', body: kind_of(File)).and_return(output)
-      results = s3.upload_file(key: 'abc_123', file_path: Rails.root.join('spec', 'fixtures', '10002695.mrx'))
+      results = s3.upload_file(key: 'abc_123', file_path: Rails.root.join('spec', 'fixtures', '99100026953506421.mrx'))
       expect(results).to be_truthy
     end
 
     context "an error occurs" do
       it "returns false when the does not file upload" do
         allow(s3_client).to receive(:put_object).with(bucket: 'test', key: 'data-feed/submitcollections/PUL/cgd_protection/scsb_abc_123', body: kind_of(File)).and_raise(Aws::S3::Errors::AccessDenied.new(nil, "access denied"))
-        results = s3.upload_file(key: 'abc_123', file_path: Rails.root.join('spec', 'fixtures', '10002695.mrx'))
+        results = s3.upload_file(key: 'abc_123', file_path: Rails.root.join('spec', 'fixtures', '99100026953506421.mrx'))
         expect(results).to be_falsey
       end
     end
