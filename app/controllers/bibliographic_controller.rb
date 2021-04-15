@@ -320,4 +320,4 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         head :bad_request
       end
     end
-end
+end # rubocop:enable Metrics/ClassLength
