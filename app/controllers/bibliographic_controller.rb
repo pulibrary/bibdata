@@ -106,9 +106,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         render json: solr_doc
       end
     end
-  rescue Alma::PerSecondThresholdError => alma_client_error
-    Rails.logger.error "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}: #{alma_client_error}"
-    head(:too_many_requests)
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
   def bib_jsonld
@@ -131,9 +130,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         end
       end
     end
-  rescue Alma::PerSecondThresholdError => alma_client_error
-    Rails.logger.error "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}: #{alma_client_error}"
-    head(:too_many_requests)
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
   # bibliographic/:bib_id/items
@@ -147,6 +145,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
   rescue Alma::BibItemSet::ResponseError
     render_not_found(params[:bib_id])
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
   def render_not_found(id)
