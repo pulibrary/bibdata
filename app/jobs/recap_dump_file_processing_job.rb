@@ -10,6 +10,9 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     RecapTransferJob.perform_later(dump_file)
   end
 
+  # @param path [String] Path on disk to the records file.
+  # @return Hash<String, Array<MARC::Record>> Hash of filenames to the
+  #   MARC::Records that they represent.
   def extract_records(path)
     tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(path))
     tar_extract.tap(&:rewind)
@@ -21,6 +24,10 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     ]
   end
 
+  # Persist the mutated records back to the file.
+  # @param path [String] Path on disk to the records file.
+  # @param records [Hash<String, Array<MARC::Record>>] Hash of filenames to the
+  #   MARC::Records that they represent.
   def write_records(records, path)
     records_with_content = records.map do |filename, file_records|
       content = StringIO.new
