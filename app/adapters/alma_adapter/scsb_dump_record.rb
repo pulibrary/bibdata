@@ -47,6 +47,10 @@ class AlmaAdapter
         end
       end
 
+      # This mapping is pulled from Alma's ReCAP publishing job item enhancement
+      # page. The structure is as returned by the Alma API, if that structure
+      # changes then fixing the BarcodeController for the new API response
+      # for items should break tests for this appropriately.
       def item_hash_from_876(field)
         {
           "bib_data" => {

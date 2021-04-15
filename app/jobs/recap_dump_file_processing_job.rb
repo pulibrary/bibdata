@@ -21,7 +21,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
         content = StringIO.new(tar_entry.read)
         records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a.map do |record|
           # ScsbDumpRecord will handle converting from the dump's MARC-XML to
-          # the proper formta for submitCollection
+          # the proper format for submitCollection
           AlmaAdapter::ScsbDumpRecord.new(marc_record: record)
         end
         [tar_entry.header.name, records]
