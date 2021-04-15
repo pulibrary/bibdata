@@ -20,6 +20,11 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(holding_fields.size).to eq 1
       holding_field = holding_fields.first
       expect(holding_field["b"]).to eq "recap$pa"
+      expect(holding_field["c"]).to eq "pa"
+      expect(holding_field["0"]).to eq "22107520220006421"
+      expect(holding_field["t"]).to be_nil
+      expect(holding_field["h"]).to eq "HD1333.B6 S84 1999"
+      expect(holding_field["i"]).to be_nil
     end
   end
 end
