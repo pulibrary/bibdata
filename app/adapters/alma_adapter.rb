@@ -39,8 +39,8 @@ class AlmaAdapter
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
     { bibs.first.id => AvailabilityStatus.new(bib: bibs.first).bib_availability }
-  rescue Alma::StandardError => client_error
-    handle_alma_error(client_error: client_error)
+  rescue Alma::StandardError => e
+    handle_alma_error(client_error: e)
   end
 
   # Returns availability for a list of bib ids
@@ -51,8 +51,8 @@ class AlmaAdapter
       acc[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
     end
     availability
-  rescue Alma::StandardError => client_error
-    handle_alma_error(client_error: client_error)
+  rescue Alma::StandardError => e
+    handle_alma_error(client_error: e)
   end
 
   def get_availability_holding(id:, holding_id:)
@@ -70,8 +70,8 @@ class AlmaAdapter
     holding_items[:items].map do |item|
       item.availability_summary(marc_holding: marc_holding)
     end
-  rescue Alma::StandardError => client_error
-    handle_alma_error(client_error: client_error)
+  rescue Alma::StandardError => e
+    handle_alma_error(client_error: e)
   end
 
   # Returns list of holding records for a given MMS
