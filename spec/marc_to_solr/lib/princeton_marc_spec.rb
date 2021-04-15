@@ -14,7 +14,7 @@ describe 'From princeton_marc.rb' do
   let(:indexer) { IndexerService.build }
 
   let(:ark) { "ark:/88435/xp68kg247" }
-  let(:bib_id) { "4715189" }
+  let(:bib_id) { "9947151893506421" }
   let(:docs) do
     [
       {
