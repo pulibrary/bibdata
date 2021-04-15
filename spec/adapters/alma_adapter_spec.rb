@@ -431,6 +431,10 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 429, body: http_429_response, headers: { "content-Type" => "application/json" })
+
+      stub_alma_ids(ids: "9919392043506421", status: 200)
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
+        .to_return(status: 429, body: http_429_response, headers: { "Content-Type" => "application/json" } )
     end
 
     it "handles per second threshold exception in single bib availability" do
@@ -439,6 +443,10 @@ RSpec.describe AlmaAdapter do
 
     it "handles per second threshold exception in multi-bib availability" do
       expect { adapter.get_availability_many(ids: ["9922486553506421", "99122426947506421"]) }.to raise_error(Alma::PerSecondThresholdError)
+    end
+
+    it "handles per second threshold exception in holding availability" do
+      expect { adapter.get_availability_holding(id: "9919392043506421", holding_id: "22105104420006421") }.to raise_error(Alma::PerSecondThresholdError)
     end
   end
 end
