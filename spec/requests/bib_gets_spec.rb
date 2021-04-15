@@ -31,7 +31,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       alma_api_response.to_json
     end
     let(:alma_response_headers) do
-      {}
+      { "Content-Type" => "application/json" }
     end
 
     before do
@@ -42,6 +42,19 @@ RSpec.describe "Bibliographic Gets", type: :request do
         headers: alma_response_headers,
         body: alma_response_body
       )
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
+        .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421,99122426947506421")
+        .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
+
+      stub_alma_ids(ids: "9919392043506421", status: 200)
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
+        .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
     end
 
     describe "GET /bibliographic?bib_id=430472" do
@@ -140,6 +153,27 @@ RSpec.describe "Bibliographic Gets", type: :request do
       it "responds with an error message to the client" do
         get "/bibliographic/430472/holdings.json"
 
+        expect(response.status).to eq(429)
+      end
+    end
+
+    describe "GET /bibliographic/9922486553506421/availability.json" do
+      it "responds with an error message to the client" do
+        get "/bibliographic/9922486553506421/availability.json"
+        expect(response.status).to eq(429)
+      end
+    end
+
+    describe "GET /bibliographic/availability.json?bib_ids=9922486553506421,99122426947506421" do
+      it "responds with an error message to the client" do
+        get "/bibliographic/availability.json?bib_ids=9922486553506421,99122426947506421"
+        expect(response.status).to eq(429)
+      end
+    end
+
+    describe "GET /bibliographic/9919392043506421/holdings/22105104420006421/availability" do
+      it "responds with an error message to the client" do
+        get "/bibliographic/9919392043506421/holdings/22105104420006421/availability.json"
         expect(response.status).to eq(429)
       end
     end

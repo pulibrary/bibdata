@@ -1,4 +1,4 @@
-class BibliographicController < ApplicationController
+class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
   include FormattingConcern
   before_action :protect, only: [:update]
   skip_before_action :verify_authenticity_token, only: [:item_discharge]
@@ -29,6 +29,8 @@ class BibliographicController < ApplicationController
     respond_to do |wants|
       wants.json { render json: availability }
     end
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
   end
 
   # Returns availability for a single ID
@@ -39,6 +41,8 @@ class BibliographicController < ApplicationController
     respond_to do |wants|
       wants.json { render json: availability }
     end
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve availability for IDs: #{ids}")
   end
 
   # Returns availability for a single holding in a bib record
@@ -52,6 +56,8 @@ class BibliographicController < ApplicationController
     else
       render plain: "Please supply a bib id and a holding id", status: 404
     end
+  rescue => e
+    handle_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
   end
 
   def bib
@@ -63,12 +69,8 @@ class BibliographicController < ApplicationController
     begin
       records = adapter.get_bib_record(bib_id_param)
       records.strip_non_numeric! unless opts[:holdings]
-    rescue Alma::PerSecondThresholdError => alma_threshold_error
-      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{alma_threshold_error}"
-      return head :too_many_requests
-    rescue StandardError => bib_request_error
-      Rails.logger.error "Failed to retrieve the record using the bib. ID: #{bib_id_param}: #{bib_request_error}"
-      return head :bad_request
+    rescue => e
+      return handle_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{bib_id_param}")
     end
 
     if records.nil?
@@ -307,5 +309,15 @@ class BibliographicController < ApplicationController
       parts[1] = parts[1].rjust(4, '0')
       dot_parts[0] = parts.join('.')
       dot_parts.join('.')
+    end
+
+    def handle_exception(exception:, message:)
+      if exception.is_a?(Alma::PerSecondThresholdError)
+        Rails.logger.error "HTTP 429. #{message} #{exception}"
+        head :too_many_requests
+      else
+        Rails.logger.error "HTTP 400. #{message} #{exception}"
+        head :bad_request
+      end
     end
 end

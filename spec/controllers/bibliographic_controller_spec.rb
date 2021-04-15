@@ -80,7 +80,7 @@ RSpec.describe BibliographicController, type: :controller do
         get :bib, params: { bib_id: bib_id }
 
         expect(response.status).to be 400
-        expect(Rails.logger).to have_received(:error).with("Failed to retrieve the record using the bib. ID: 1234567: it's broken")
+        expect(Rails.logger).to have_received(:error).with("HTTP 400. Failed to retrieve the record using the bib. ID: 1234567 it's broken")
       end
     end
   end
