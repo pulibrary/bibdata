@@ -117,9 +117,12 @@ class AlmaAdapter
     # If the holding has more than ITEMS_PER_PAGE items the Alma gem will automatically
     # make multiple calls to the Alma API.
     def holding_item_data(holding_id:)
-      opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id }
-      items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
-      data = { items: items, total_count: items.count }
+      data = nil
+      alma_preserve_exception do
+        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id }
+        items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
+        data = { items: items, total_count: items.count }
+      end
       data
     end
 
@@ -134,6 +137,20 @@ class AlmaAdapter
           end
         end
         cdl
+      end
+
+      # In some instances the Alma gem hides the original exception and returns a string
+      # (rather than a hash) with the error information. This beheavior prevents us from
+      # handling PER_SECOND_THRESHOLD errors. In those instances we use this method to
+      # force the Alma gem to preserve the original exception.
+      def alma_preserve_exception
+        cached_value = Alma.configuration.enable_loggable
+        begin
+          Alma.configure { |config| config.enable_loggable = true }
+          yield
+        ensure
+          Alma.configure { |config| config.enable_loggable = cached_value }
+        end
       end
   end
 end
