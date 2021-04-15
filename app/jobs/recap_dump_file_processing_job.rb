@@ -26,21 +26,24 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     Hash[
       tar_extract.map do |tar_entry|
         content = StringIO.new(tar_entry.read)
-        [tar_entry.header.name, MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a]
+        records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a.map do |record|
+          AlmaAdapter::ScsbDumpRecord.new(marc_record: record)
+        end
+        [tar_entry.header.name, records]
       end
     ]
   end
 
   # Persist the mutated records back to the file.
   # @param path [String] Path on disk to the records file.
-  # @param records [Hash<String, Array<MARC::Record>>] Hash of filenames to the
+  # @param records [Hash<String, Array<AlmaAdapter::ScsbDumpRecord>>] Hash of filenames to the
   #   MARC::Records that they represent.
   def write_records(records, path)
     records_with_content = records.map do |filename, file_records|
       content = StringIO.new
       writer = MARC::XMLWriter.new(content)
       file_records.each do |record|
-        writer.write(record)
+        writer.write(record.transformed_record)
       end
       writer.close
       [filename, content.string]

@@ -39,7 +39,7 @@ class AlmaAdapter
     end
 
     def enrich_with_holding(holding, recap: false)
-      holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap)
+      holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap) unless holding.respond_to?(:marc_record_enrichment)
       marc_record.fields.concat(holding.marc_record_enrichment)
     end
 
