@@ -38,6 +38,8 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(record["876"]["j"]).to eq "Not Used"
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
+
+      expect(RecapTransferJob).to have_been_enqueued.once
     end
   end
 end
