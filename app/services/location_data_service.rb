@@ -23,14 +23,14 @@ class LocationDataService
   end
 
   # Iterates through Alma Libraries
-  # Finds voyager holding location with flag values from holding_locations_array based on the mapped alma_library_code
+  # Finds voyager holding location with flag values from holding_locations_array based on the mapped holding_location_code
   # Iterates through Alma holding_locations based on the Alma library code and
   def populate_holding_locations
     libraries.each do |library|
       library_record = Locations::Library.find_by(code: library.code)
-      # Use the holding_locations file to update the flags based on the alma_library_code
-      holding_location_record = holding_locations_array.find { |v| v["alma_library_code"] == library.code }
+      # Use the holding_locations file to update the flags based on the holding_location_code
       holding_locations(library.code).each do |holding_location|
+        holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == "#{library.code}$#{holding_location.code}" }
         Locations::HoldingLocation.new do |location_record|
           location_record.label = (library_record.label == holding_location.external_name ? library_record.label : "#{library_record.label} - #{holding_location.external_name}")
           location_record.code = "#{library.code}$#{holding_location.code}"
@@ -41,21 +41,22 @@ class LocationDataService
             location_record.always_requestable = holding_location_record['always_requestable']
             location_record.circulates = holding_location_record['circulates']
             location_record.open = holding_location_record['open']
-            location_record.library = library_record
-            location_record.save
+            location_record.holding_library_id = holding_library_id(holding_location_record["holding_library"]["code"]) if holding_location_record.present? && holding_location_record["holding_library"].present?
           end
+          location_record.library = library_record
+          location_record.save
         end
       end
     end
     populate_partners_holding_locations
-    update_holding_delivery_locations
+    set_holding_delivery_locations
   end
 
   # Populate delivery locations based on the delivery_locations.json
   # These values will not change when we move to alma.
   def populate_delivery_locations
     delivery_locations_array.each do |delivery_location|
-      library_record = Locations::Library.find_by(code: delivery_location["alma_library_code"])
+      library_record = find_library_by_code(delivery_location["alma_library_code"])
       Locations::DeliveryLocation.new do |delivery_record|
         delivery_record.label = delivery_location['label']
         delivery_record.address = delivery_location['address']
@@ -86,9 +87,9 @@ class LocationDataService
     end
   end
 
-  # Update join table for holding and delivery locations
+  # Update joined table for holding and delivery locations
   # based on the holding_locations file and the mapped holding_location_code value
-  def update_holding_delivery_locations
+  def set_holding_delivery_locations
     Locations::HoldingLocation.all.each do |location_record|
       holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == location_record.code }
       location_record.delivery_location_ids = delivery_library_ids(holding_location_record["delivery_locations"]) if holding_location_record.present? && holding_location_record["delivery_locations"].present?
@@ -96,6 +97,11 @@ class LocationDataService
   end
 
   private
+
+    def holding_library_id(holding_library_code)
+      library = find_library_by_code(holding_library_code)
+      library.id if library.present?
+    end
 
     # Find the delivery library using the gfa_pickup value
     # example: gfa_pickup = ["QT", "QA", "PA", "QC"] for anxbnc
@@ -109,7 +115,7 @@ class LocationDataService
     end
 
     # Find the library using the library code
-    def library_by_code(code)
+    def find_library_by_code(code)
       Locations::Library.find_by(code: code)
     end
 

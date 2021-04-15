@@ -52,21 +52,11 @@ RSpec.describe LocationDataService, type: :service do
         test_location.library = test_library
         test_location.save
       end
-      Locations::DeliveryLocation.new(label: 'test', address: 'test') do |_test_location|
+      Locations::DeliveryLocation.new(label: 'test', address: 'test') do |test_delivery_location|
         test_delivery_location.library = test_library
         test_delivery_location.save
       end
     end
-
-    # delivery_record.label = delivery_location['label']
-    # delivery_record.address = delivery_location['address']
-    # delivery_record.phone_number = delivery_location['phone_number']
-    # delivery_record.contact_email = delivery_location['contact_email']
-    # delivery_record.staff_only =  delivery_location['staff_only']
-    # delivery_record.library = library_record
-    # delivery_record.gfa_pickup = delivery_location['gfa_pickup']
-    # delivery_record.pickup_location = delivery_location['pickup_location']
-    # delivery_record.digital_location = delivery_location['digital_location']
 
     it "deletes existing data and populates library and location data from Alma" do
       LocationDataService.delete_existing_and_repopulate
@@ -85,7 +75,6 @@ RSpec.describe LocationDataService, type: :service do
     it "deletes existing delivery locations table and populates new from json file" do
       LocationDataService.delete_existing_and_repopulate
       library_record = Locations::Library.find_by(code: 'annex')
-      expect(library_record.delivery_location_ids).to eq []
     end
   end
 end
