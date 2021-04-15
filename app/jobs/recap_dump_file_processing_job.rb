@@ -2,6 +2,13 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
   def perform(dump_file)
     # Unzip/Parse dump file
     records = extract_records(dump_file.path)
+    # Notes:
+    # https://htcrecap.atlassian.net/wiki/spaces/RTG/pages/27692276/Ongoing+Accession+Submit+Collection+through+API
+    # 852/866/867/868 fields which have a subfield "8" are all copied from
+    # holdings. Create an array of faux AlmaHoldings from them.
+    # 876 is physical holdings info. t is copy ID, 3 is Enum, 4 is Chron, y is
+    # current library, z is current location, 0 is holding ID, p is barcode, j
+    # is status, d is create date. Try to make a faux-AlmaItem from this info.
     # For every record, build a fake AlmaItem/AlmaHolding
     # Create a MarcRecord for SCSB
     # Save the file.
