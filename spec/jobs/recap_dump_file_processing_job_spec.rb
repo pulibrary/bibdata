@@ -24,6 +24,20 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(holding_field["b"]).to eq "recap$pa"
       expect(holding_field["0"]).to eq "22107520220006421"
       expect(holding_field["h"]).to eq "HD1333.B6 S84 1999"
+
+      # Ensure there are no non-numeric fields
+      # ReCAP's parser can't handle them.
+      expect(record.fields.map { |x| format("%03d", x.tag.to_i) }).to contain_exactly(*record.fields.map(&:tag))
+
+      # 876 (item) tests
+      expect(record["876"]["0"]).to eq "22107520220006421"
+      expect(record["876"]["a"]).to eq "23107520210006421"
+      expect(record["876"]["p"]).to eq "32101082696012"
+      expect(record["876"]["x"]).to eq "Shared"
+      expect(record["876"]["z"]).to eq "PA"
+      expect(record["876"]["j"]).to eq "Not Used"
+
+      expect(record.leader).to eq "01334cam a2200361 a 4500"
     end
   end
 end
