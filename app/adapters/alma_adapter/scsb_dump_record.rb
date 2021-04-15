@@ -16,6 +16,10 @@ class AlmaAdapter
       @transformed_record ||=
         begin
           alma_marc_record.delete_conflicting_holding_data!
+          alma_marc_record.delete_conflicting_item_data!
+          items.each do |item|
+            alma_marc_record.enrich_with_item(item)
+          end
           holdings.each do |holding|
             alma_marc_record.enrich_with_holding(holding)
           end
@@ -29,12 +33,47 @@ class AlmaAdapter
         @alma_marc_record ||=
           begin
             new_record = MARC::Record.new
+            new_record.leader = marc_record.leader
             new_record.fields.concat(marc_record.fields)
-            marc_record.fields.each do |field|
-              new_record.append(field)
-            end
             AlmaAdapter::MarcRecord.new(nil, new_record)
           end
+      end
+
+      # Converts 876 fields in enriched dump file to AlmaAdapter::AlmaItems to
+      # properly enrich the marc record.
+      def items
+        marc_record.fields("876").map do |field|
+          AlmaAdapter::AlmaItem.new(Alma::BibItem.new(item_hash_from_876(field)))
+        end
+      end
+
+      def item_hash_from_876(field)
+        {
+          "bib_data" => {
+          },
+          "holding_data" => {
+            "holding_id" => field["0"]
+          },
+          "item_data" => {
+            "barcode" => field["p"],
+            "base_status" => {
+              # "desc"=> "Item in place",
+              "value" => field["j"]
+            },
+            "chronology_i" => field["4"],
+            "creation_date" => field["d"],
+            "enumeration_a" => field["3"],
+            "library" => {
+              "desc" => "",
+              "value" => field["y"]
+            },
+            "location" => {
+              "desc" => "",
+              "value" => field["z"]
+            },
+            "pid" => field["a"]
+          }
+        }
       end
 
       # 852/866/867/868 fields which have a subfield "8" are all copied from
