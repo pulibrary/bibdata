@@ -20,7 +20,7 @@ class AlmaAdapter
       def combine_location(field)
         return if field["b"].to_s.include?("$")
         b_code = "#{field['b']}$#{field['c']}"
-        field.subfields.delete_if { |s| ['b', 'c'].include? s.code }
+        field.subfields.delete_if { |s| s.code == 'b' }
         field.append(MARC::Subfield.new('b', b_code))
       end
 
