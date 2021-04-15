@@ -15,16 +15,15 @@ RSpec.describe RecapDumpFileProcessingJob do
       records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
       record = records[0]
 
+      # Requirements documentation:
+      # https://htcrecap.atlassian.net/wiki/spaces/RTG/pages/27692276/Ongoing+Accession+Submit+Collection+through+API
       # Assertions about the record.
       holding_fields = record.fields("852")
       expect(holding_fields.size).to eq 1
       holding_field = holding_fields.first
       expect(holding_field["b"]).to eq "recap$pa"
-      expect(holding_field["c"]).to eq "pa"
       expect(holding_field["0"]).to eq "22107520220006421"
-      expect(holding_field["t"]).to be_nil
       expect(holding_field["h"]).to eq "HD1333.B6 S84 1999"
-      expect(holding_field["i"]).to be_nil
     end
   end
 end
