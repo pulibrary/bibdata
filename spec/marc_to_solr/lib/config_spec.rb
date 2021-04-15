@@ -8,48 +8,43 @@ describe 'From traject_config.rb' do
     @indexer.reader!(f).first
   end
 
-  def fixture_alma_record(fixture_name)
-    f = File.expand_path("../../../fixtures/marc_to_solr/alma/#{fixture_name}.mrx", __FILE__)
-    @indexer.reader!(f).first
-  end
-
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
 
     @indexer = IndexerService.build
-    @sample1 = @indexer.map_record(fixture_alma_record('99276293506421'))
-    @sample2 = @indexer.map_record(fixture_alma_record('993456823506421'))
-    @sample3 = @indexer.map_record(fixture_alma_record('993213506421'))
-    @sample34 = @indexer.map_record(fixture_alma_record('99105855523506421'))
-    @sample35 = @indexer.map_record(fixture_alma_record('9990567203506421'))
-    @sample36 = @indexer.map_record(fixture_alma_record('9981818493506421'))
-    @manuscript_book = @indexer.map_record(fixture_alma_record('9959060243506421'))
-    @added_title_246 = @indexer.map_record(fixture_alma_record('9930602883506421'))
-    @related_names = @indexer.map_record(fixture_alma_record('9919643053506421'))
-    @label_i_246 = @indexer.map_record(fixture_alma_record('9990315453506421'))
-    @online_at_library = @indexer.map_record(fixture_alma_record('9979160443506421'))
-    @online = @indexer.map_record(fixture_alma_record('9990889283506421'))
-    @elf2 = @indexer.map_record(fixture_alma_record('9934788983506421'))
-    @other_title_246 = @indexer.map_record(fixture_alma_record('9979105993506421'))
-    @title_vern_display = @indexer.map_record(fixture_alma_record('9948545023506421'))
+    @sample1 = @indexer.map_record(fixture_record('99276293506421'))
+    @sample2 = @indexer.map_record(fixture_record('993456823506421'))
+    @sample3 = @indexer.map_record(fixture_record('993213506421'))
+    @sample34 = @indexer.map_record(fixture_record('99105855523506421'))
+    @sample35 = @indexer.map_record(fixture_record('9990567203506421'))
+    @sample36 = @indexer.map_record(fixture_record('9981818493506421'))
+    @manuscript_book = @indexer.map_record(fixture_record('9959060243506421'))
+    @added_title_246 = @indexer.map_record(fixture_record('9930602883506421'))
+    @related_names = @indexer.map_record(fixture_record('9919643053506421'))
+    @label_i_246 = @indexer.map_record(fixture_record('9990315453506421'))
+    @online_at_library = @indexer.map_record(fixture_record('9979160443506421'))
+    @online = @indexer.map_record(fixture_record('9990889283506421'))
+    @elf2 = @indexer.map_record(fixture_record('9934788983506421'))
+    @other_title_246 = @indexer.map_record(fixture_record('9979105993506421'))
+    @title_vern_display = @indexer.map_record(fixture_record('9948545023506421'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
-    @hathi_permanent = @indexer.map_record(fixture_alma_record('9914591663506421'))
+    @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
   end
 
   describe "alma loading" do
     it "can map an alma record" do
-      record = @indexer.map_record(fixture_alma_record('99211662100521'))
+      record = @indexer.map_record(fixture_record('99211662100521'))
     end
     it "can index electronic locations for alma" do
-      record = @indexer.map_record(fixture_alma_record('9918573506421'))
+      record = @indexer.map_record(fixture_record('9918573506421'))
       access_links = record["electronic_access_1display"]
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
     end
     it "does not index elf locations for alma" do
-      record = @indexer.map_record(fixture_alma_record('99121576653506421'))
+      record = @indexer.map_record(fixture_record('99121576653506421'))
 
       # No ELF code.
       expect(record["location_display"]).to be_nil
@@ -59,14 +54,14 @@ describe 'From traject_config.rb' do
   end
   describe "locations" do
     it "will index the location_code_s" do
-      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      record = @indexer.map_record(fixture_record('9992320213506421'))
       expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
     end
   end
 
   describe 'scsb locations' do
     it "will index a scsbnypl location" do
-      record = @indexer.map_record(fixture_alma_record('SCSB-8157262'))
+      record = @indexer.map_record(fixture_record('SCSB-8157262'))
       expect(record["location_code_s"]).to eq ["scsbnypl"]
       expect(record["location"]).to eq ["ReCAP"]
       expect(record["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
@@ -75,7 +70,7 @@ describe 'From traject_config.rb' do
   end
   describe "holdings" do
     it "can index holdings" do
-      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      record = @indexer.map_record(fixture_record('9992320213506421'))
       holdings = JSON.parse(record["holdings_1display"][0])
       holding_1 = holdings["22188107110006421"]
       holding_2 = holdings["22188107090006421"]
@@ -91,7 +86,7 @@ describe 'From traject_config.rb' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
         it "will index the 876d field" do
-          record = fixture_alma_record('99211662100521')
+          record = fixture_record('99211662100521')
           indexed_record = @indexer.map_record(record)
           expect(record['951']['w']).to be_truthy
           expect(record['876']['d']).to be_truthy
@@ -101,7 +96,7 @@ describe 'From traject_config.rb' do
       end
       context "When the record has only a 950b field" do
         it "will index the 950b field" do
-          record = fixture_alma_record('991330600000541')
+          record = fixture_record('991330600000541')
           indexed_record = @indexer.map_record(record)
           expect(record['950']['b']).to be_truthy
           expect(record['876']).to be_falsey
@@ -113,7 +108,7 @@ describe 'From traject_config.rb' do
       context "When the record fails to parse the time" do
         it "logs the error and moves on" do
           allow(Time).to receive(:parse).and_raise(ArgumentError)
-          expect { @indexer.map_record(fixture_alma_record('991330600000541')) }.not_to raise_error
+          expect { @indexer.map_record(fixture_record('991330600000541')) }.not_to raise_error
         end
       end
     end
@@ -125,7 +120,7 @@ describe 'From traject_config.rb' do
     end
     context "When it is an eletronic record" do
       it "will index the 951w field" do
-        record = fixture_alma_record('99122424622606421')
+        record = fixture_record('99122424622606421')
         indexed_record = @indexer.map_record(record)
         expect(record['951']['w']).to be_truthy
         expect(record['876']).to be_falsey
@@ -137,7 +132,7 @@ describe 'From traject_config.rb' do
 
   describe "electronic_portfolio_s" do
     it "returns the electronic_portfolio_s field" do
-      record = @indexer.map_record(fixture_alma_record('99122306151806421'))
+      record = @indexer.map_record(fixture_record('99122306151806421'))
       portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
       nature = portfolios.find { |p| p['title'] == 'Nature' }
       ebsco = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
@@ -176,28 +171,28 @@ describe 'From traject_config.rb' do
   end
   describe "call_number_display field" do
     it "returns the call_number_display field with k subfield at the end" do
-      record = @indexer.map_record(fixture_alma_record('9957270023506421'))
+      record = @indexer.map_record(fixture_record('9957270023506421'))
       expect(record['call_number_display']).to eq(["6819 Eng 20Q"])
     end
   end
 
   describe "call_number_browse field" do
     it "returns the call_number_browse field with k subfield at the end" do
-      record = @indexer.map_record(fixture_alma_record('9957270023506421'))
+      record = @indexer.map_record(fixture_record('9957270023506421'))
       expect(record['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
   end
 
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
-      record = @indexer.map_record(fixture_alma_record('9941598513506421'))
+      record = @indexer.map_record(fixture_record('9941598513506421'))
       expect(record['call_number_locator_display']).to eq([" .B7544 2003q"])
     end
   end
 
   describe "contained_in_s field" do
     it "indexes the 773w of the constituent record" do
-      record = @indexer.map_record(fixture_alma_record('9939073273506421'))
+      record = @indexer.map_record(fixture_record('9939073273506421'))
       expect(record['contained_in_s']).to eq(["992953283506421"])
     end
   end
@@ -363,7 +358,7 @@ describe 'From traject_config.rb' do
   end
   describe 'cjk-only fields' do
     before do
-      @record_cjk = @indexer.map_record(fixture_alma_record('9939238033506421'))
+      @record_cjk = @indexer.map_record(fixture_record('9939238033506421'))
     end
     it 'displays 880 in pub_created_vern_display and subject field' do
       expect(@record_cjk['pub_created_vern_display']).to eq ['[China : s.n.], 清乾隆癸亥 [8年, 1743]']
@@ -456,7 +451,7 @@ describe 'From traject_config.rb' do
       expect(@online['location']).to eq ['Electronic Access']
     end
     it 'when location codes that do not map to labels' do
-      record = @indexer.map_record(fixture_alma_record('99276293506421_invalid_location'))
+      record = @indexer.map_record(fixture_record('99276293506421_invalid_location'))
       expect(record['location_code_s']).to include 'invalidcode'
       expect(record['location_display']).to be_nil
       expect(record['location']).to be_nil
@@ -475,7 +470,7 @@ describe 'From traject_config.rb' do
   end
   describe 'including libraries and codes in advanced_location_s facet' do
     it 'lewis library included with lewis code' do
-      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      record = @indexer.map_record(fixture_record('9992320213506421'))
       expect(record['advanced_location_s']).to include 'lewis$stacks'
       expect(record['advanced_location_s']).to include 'Lewis Library'
     end
@@ -486,7 +481,7 @@ describe 'From traject_config.rb' do
       expect(@elf2['advanced_location_s']).to include 'Online'
     end
     it 'library is excluded from location_code_s' do
-      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      record = @indexer.map_record(fixture_record('9992320213506421'))
       expect(record['location_code_s']).to include 'lewis$stacks'
       expect(record['location_code_s']).not_to include 'Lewis Library'
     end
@@ -525,7 +520,7 @@ describe 'From traject_config.rb' do
   end
   describe '852 $b $c location code processing' do
     it 'supports multiple location codes in separate 852s' do
-      record = @indexer.map_record(fixture_alma_record('9992320213506421'))
+      record = @indexer.map_record(fixture_record('9992320213506421'))
       expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
     end
     # TODO: ALMA
