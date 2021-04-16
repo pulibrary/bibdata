@@ -106,6 +106,23 @@ RSpec.describe BarcodeController, type: :controller do
         expect(response.status).to eq(404)
       end
     end
+
+    context "When Alma returns PER_THRESHOLD errors" do
+      it "handles error on items API call" do
+        barcode = "32101076720316"
+        stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/items.*/)
+          .with(query: { item_barcode: barcode })
+          .to_return(status: 429,
+                     headers: { "Content-Type" => "application/json" },
+                     body: stub_alma_per_second_threshold())
+        get :scsb, params: { barcode: "32101076720316" }, format: :xml
+        expect(response.status).to eq(429)
+      end
+
+      # TODO: implement this test
+      # it "handles error on holdings API call" do
+      # end
+    end
   end
 
   describe '#valid_barcode' do

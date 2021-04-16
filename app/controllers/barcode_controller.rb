@@ -16,13 +16,10 @@ class BarcodeController < ApplicationController
     if !valid_barcode?(barcode)
       render plain: "Barcode #{barcode} not valid.", status: 404
     else
-      item = Alma::BibItem.find_by_barcode(barcode)
-      if item["errorsExist"]
-        render plain: item["errorList"]["error"].map { |e| e["errorMessage"] }, status: 404
-        return
-      end
-      mms_id = item.item["bib_data"]["mms_id"]
-      record = AlmaAdapter.new.get_bib_record(mms_id)
+      adapter = AlmaAdapter.new
+      item = adapter.item_by_barcode(barcode)
+      mms_id = item["bib_data"]["mms_id"]
+      record = adapter.get_bib_record(mms_id)
 
       # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
       if record.nil?
@@ -31,7 +28,7 @@ class BarcodeController < ApplicationController
       end
       holding = Alma::BibHolding.find(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
       records = if record.linked_record_ids.present?
-                  AlmaAdapter.new.get_bib_records(record.linked_record_ids)
+                  adapter.get_bib_records(record.linked_record_ids)
                 else
                   [record]
                 end
@@ -56,5 +53,7 @@ class BarcodeController < ApplicationController
         end
       end
     end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Error for barcode: #{barcode}")
   end
 end
