@@ -30,7 +30,7 @@ RSpec.describe LocationDataService, type: :service do
         body: file_fixture("alma/locations1.json")
       )
 
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/main/locations")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations")
       .with(
         headers: {
           'Accept' => 'application/json',
@@ -52,20 +52,29 @@ RSpec.describe LocationDataService, type: :service do
         test_location.library = test_library
         test_location.save
       end
+      Locations::DeliveryLocation.new(label: 'test', address: 'test') do |test_delivery_location|
+        test_delivery_location.library = test_library
+        test_delivery_location.save
+      end
     end
 
     it "deletes existing data and populates library and location data from Alma" do
       LocationDataService.delete_existing_and_repopulate
-      library_record = Locations::Library.find_by(code: 'main')
-      location_record1 = Locations::HoldingLocation.find_by(code: 'main$stacks')
-      location_record2 = Locations::HoldingLocation.find_by(code: 'arch$reserves')
+      library_record = Locations::Library.find_by(code: 'arch')
+      location_record1 = Locations::HoldingLocation.find_by(code: 'arch$stacks')
+      location_record2 = Locations::HoldingLocation.find_by(code: 'annex$stacks')
 
       expect(Locations::Library.count).to eq 2
-      expect(Locations::HoldingLocation.count).to eq 13
-      expect(library_record.label).to eq 'Main Library'
-      expect(location_record1.label).to eq 'Main Library'
+      expect(Locations::HoldingLocation.count).to eq 26
+      expect(library_record.label).to eq 'Architecture Library'
+      expect(location_record2.label).to eq 'Forrestal Annex - Annex Stacks'
       expect(location_record1.open).to be true
       expect(location_record2.open).to be false
+    end
+
+    it "deletes existing delivery locations table and populates new from json file" do
+      LocationDataService.delete_existing_and_repopulate
+      library_record = Locations::Library.find_by(code: 'annex')
     end
   end
 end

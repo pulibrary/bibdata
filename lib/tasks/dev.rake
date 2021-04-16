@@ -24,6 +24,14 @@ namespace :marc_liberation do
   end
 end
 
+# The json files have mapped content from voyager holding and delivery locations
+namespace :locations do
+  desc "Create delivery and holding location files with mapped values from voyager."
+  task delivery_holding_locations: :environment do
+    LocationsToFileService.call
+  end
+end
+
 namespace :server do
   namespace :solr do
     task start_solr_wrapper: :environment do
