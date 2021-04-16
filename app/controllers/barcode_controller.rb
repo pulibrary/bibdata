@@ -9,6 +9,8 @@ class BarcodeController < ApplicationController
     end
   end
 
+  # Client: This endpoint is used by the ReCAP inventory management system, LAS,
+  #   to pull data from our ILS when items are accessioned
   def scsb
     barcode = params[:barcode]
     if !valid_barcode?(barcode)
