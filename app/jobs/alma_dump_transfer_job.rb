@@ -16,7 +16,7 @@ class AlmaDumpTransferJob < ActiveJob::Base
     IncrementalIndexJob.perform_later(dump) if incremental_dump?(type_constant)
     return unless recap_incremental_dump?(type_constant)
     dump.dump_files.each do |dump_file|
-      RecapTransferJob.perform_later(dump_file)
+      RecapDumpFileProcessingJob.perform_later(dump_file)
     end
   end
 

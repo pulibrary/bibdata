@@ -155,9 +155,11 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["RECAP_RECORDS"]
-        expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
+        first_dump_file = Dump.first.dump_files.first
+        expect(first_dump_file.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
+
         # Ensure job is queued.
-        expect(RecapTransferJob).to have_been_enqueued.once
+        expect(RecapDumpFileProcessingJob).to have_been_enqueued.once
       end
     end
   end

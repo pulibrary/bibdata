@@ -38,8 +38,19 @@ class AlmaAdapter
       marc_record.fields.delete_if { |f| ['852', '866', '867', '868'].include? f.tag }
     end
 
+    # Remove source record 876s. These probably come from a publishing job, and
+    # if we're calling this they're probably getting added back via
+    # enrich_with_item to enable further processing.
+    def delete_conflicting_item_data!
+      marc_record.fields.delete_if { |f| ['876'].include? f.tag }
+    end
+
+    # @param holding [Alma::BibHolding | AlmaAdapter::AlmaHolding] Either a
+    #   holding from the API or an already built `AlmaAdapter::AlmaHolding`. The
+    #   holding may already be built in the case of
+    #   `AlmaAdapter::ScsbDumpRecord`
     def enrich_with_holding(holding, recap: false)
-      holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap)
+      holding = ::AlmaAdapter::AlmaHolding.for(holding, recap: recap) unless holding.respond_to?(:marc_record_enrichment)
       marc_record.fields.concat(holding.marc_record_enrichment)
     end
 
