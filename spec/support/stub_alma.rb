@@ -51,7 +51,7 @@ module AlmaStubbing
                  body: alma_path.join("barcode_#{barcode}.json"))
   end
 
-  def stub_alma_per_second_threshold()
+  def stub_alma_per_second_threshold
     # Sources: https://developers.exlibrisgroup.com/alma/apis/#error
     #          and https://developers.exlibrisgroup.com/alma/apis/#threshold
     <<-HTTP_RESPONSE
