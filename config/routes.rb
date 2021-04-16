@@ -8,14 +8,14 @@ Rails.application.routes.draw do
   resources :campus_access_exceptions, only: [:new, :create]
 
   get '/bibliographic', to: 'bibliographic#index', defaults: { format: :txt }
-  get '/bibliographic/availability', to: 'bibliographic#availability_many'
-  get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }, as: :show_bib
-  get '/bibliographic/:bib_id/holdings/:holding_id/availability', to: 'bibliographic#availability_holding'
-  get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
-  get '/bibliographic/:bib_id/jsonld', to: 'bibliographic#bib_jsonld'
-  get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
-  get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
   get '/bibliographic/:bib_id/availability', to: 'bibliographic#availability'
+  get '/bibliographic/availability', to: 'bibliographic#availability_many'
+  get '/bibliographic/:bib_id/holdings/:holding_id/availability', to: 'bibliographic#availability_holding'
+  get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }, as: :show_bib
+  get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
+  get '/bibliographic/:bib_id/jsonld', to: 'bibliographic#bib_jsonld'
+  get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
+  get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
   post '/bibliographic', to: 'bibliographic#update'
   post '/bibliographic/:mms_id/holdings/:holding_id/items/:item_pid/discharge', to: 'bibliographic#item_discharge', defaults: { format: :json }
 
