@@ -125,7 +125,7 @@ class AlmaAdapter
     item = Alma::BibItem.find_by_barcode(barcode)
     if item["errorsExist"]
       # In this case although `item` is an object of type Alma::BibItem, its
-      # content is really an HTTPartyResponse with the error information. ¯\_(ツ)_/¯
+      # content is really an HTTPartyResponse with the error information. :shrug:
       message = item.item.parsed_response.to_s
       error = message.include?("No items found") ? Alma::NotFoundError.new(message) : Alma::StandardError.new(message)
       handle_alma_error(client_error: error)

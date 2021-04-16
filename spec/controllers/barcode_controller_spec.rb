@@ -114,7 +114,7 @@ RSpec.describe BarcodeController, type: :controller do
           .with(query: { item_barcode: barcode })
           .to_return(status: 429,
                      headers: { "Content-Type" => "application/json" },
-                     body: stub_alma_per_second_threshold())
+                     body: stub_alma_per_second_threshold)
         get :scsb, params: { barcode: "32101076720316" }, format: :xml
         expect(response.status).to eq(429)
       end
