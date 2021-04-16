@@ -50,6 +50,26 @@ module AlmaStubbing
                  headers: { "Content-Type" => "application/json" },
                  body: alma_path.join("barcode_#{barcode}.json"))
   end
+
+  def stub_alma_per_second_threshold()
+    # Sources: https://developers.exlibrisgroup.com/alma/apis/#error
+    #          and https://developers.exlibrisgroup.com/alma/apis/#threshold
+    <<-HTTP_RESPONSE
+      {
+        "errorsExist": true,
+        "errorList": {
+          "error": [
+            {
+              "errorCode": "PER_SECOND_THRESHOLD",
+              "errorMessage": "HTTP requests are more than allowed per second",
+              "trackingId": "E01-0101190932-VOBYO-AWAE1554214409"
+            }
+          ]
+        },
+        "result": null
+      }
+    HTTP_RESPONSE
+  end
 end
 
 RSpec.configure do |config|

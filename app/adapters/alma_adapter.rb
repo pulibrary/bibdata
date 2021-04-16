@@ -1,5 +1,6 @@
 class AlmaAdapter
   class ::Alma::PerSecondThresholdError < Alma::StandardError; end
+  class ::Alma::NotFoundError < Alma::StandardError; end
 
   attr_reader :connection
   def initialize(connection: AlmaAdapter::Connector.connection)
@@ -118,6 +119,18 @@ class AlmaAdapter
 
     # Default to the Bib record created date
     record.bib["created_date"]
+  end
+
+  def item_by_barcode(barcode)
+    item = Alma::BibItem.find_by_barcode(barcode)
+    if item["errorsExist"]
+      # In this case although `item` is an object of type Alma::BibItem, its
+      # content is really an HTTPartyResponse with the error information. ¯\_(ツ)_/¯
+      message = item.item.parsed_response.to_s
+      error = message.include?("No items found") ? Alma::NotFoundError.new(message) : Alma::StandardError.new(message)
+      handle_alma_error(client_error: error)
+    end
+    item
   end
 
   private
