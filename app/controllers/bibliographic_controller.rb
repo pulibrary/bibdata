@@ -22,7 +22,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   end
 
   # Returns availability for a single ID
-  # Mimics the response that Orangelight needs for a single bib record.
+  # Client: This endpoint is used by orangelight to render status on the catalog
+  #   show page
   def availability
     id = params[:bib_id]
     availability = adapter.get_availability_one(id: id)
@@ -34,7 +35,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   end
 
   # Returns availability for a single ID
-  # Mimics the response that Orangelight needs for a multiple bib records.
+  # Client: This endpoint is used by orangelight to render status on the catalog
+  #   search results page
   def availability_many
     ids = (params[:bib_ids] || "").split(",")
     availability = adapter.get_availability_many(ids: ids)
@@ -46,7 +48,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   end
 
   # Returns availability for a single holding in a bib record
-  # Mimics the response that the Request App needs for a single holding record.
+  # Client: This endpoint is used by Requests to populate a request form and
+  #   submit requests to the ILS
   def availability_holding
     if params[:bib_id] && params[:holding_id]
       availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id])
@@ -60,6 +63,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     handle_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
   end
 
+  # Client: This endpoint is used by orangelight to present the staff view
+  #   and sometimes by individuals to pull records from the ILS
   def bib
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
@@ -90,6 +95,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
   end
 
+  # Client: Used by firestone_locator to pull bibliographic data
+  #   Also used to pull orangelight and pul_solr test fixtures
   def bib_solr(format: nil)
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
@@ -110,10 +117,12 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     handle_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
+  # Client: Used by figgy to pull bibliographic data
   def bib_jsonld
     bib_solr format: :jsonld
   end
 
+  # Client: No known use cases
   def bib_holdings
     records = adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
@@ -135,6 +144,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   end
 
   # bibliographic/:bib_id/items
+  # Client: Used by figgy to check CDL status. Used by firestone_locator for
+  #   call number and location data
   def bib_items
     item_keys = ["id", "pid", "perm_location", "temp_location", "cdl"]
     holding_summary = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
@@ -149,10 +160,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     handle_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
-  def render_not_found(id)
-    render plain: "Record #{id} not found or suppressed", status: 404
-  end
-
+  # Client: only used manually via the form on the home page
   def update
     records = find_by_id(voyager_opts)
     return render plain: "Record #{sanitized_id} not found or suppressed", status: 404 if records.nil?
@@ -165,6 +173,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
   end
 
+  # Client: This endpoint is used by the ReCAP inventory management system, LAS,
+  #   to register items at their location after transit
   def item_discharge
     return render plain: "no auth_token provided", status: :unauthorized unless params[:auth_token]
     return render plain: "incorrect auth_token provided", status: :forbidden unless params[:auth_token] == Rails.configuration.alma[:htc_auth_token]
@@ -187,6 +197,10 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   end
 
   private
+
+    def render_not_found(id)
+      render plain: "Record #{id} not found or suppressed", status: 404
+    end
 
     def use_discharge_key
       cached_key = Alma.configuration.apikey

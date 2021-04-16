@@ -2,6 +2,8 @@ class PatronController < ApplicationController
   before_action :protect
 
   attr_accessor :patron_id
+  # Client: This endpoint is used by requests and orangelight for auth and by figgy
+  #   to log patron types on CDL use
   def patron_info
     @patron_id = sanitize(params[:patron_id])
     info = parse_data
