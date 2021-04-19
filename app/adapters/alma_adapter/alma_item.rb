@@ -167,13 +167,45 @@ class AlmaAdapter
     end
 
     def availability_summary(marc_holding:)
-      # location = item_data["location"] || {}
-      library = item_data["library"] || {}
+      {
+        barcode: item_data["barcode"],
+        id: item_data["pid"],
+        copy_number: holding_data["copy_id"],
+        status: nil, # ?? "Not Charged"
+        on_reserve: "N",
+        item_type: item_type, # e.g., Gen
+        pickup_location_id: holding_location, # stacks
+        pickup_location_code: holding_location, # stacks
+        location: composite_location, # firestone$stacks
+        label: holding_library_name, # Firestore Library
+        status_label: status_label(marc_holding), # available
+        description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
+        enum_display: enumeration, # in Alma there are many enumerations
+        chron_display: chronology # in Alma there are many chronologies
+      }.merge(temp_library_availability_summary)
+    end
 
-      policy = item_data["policy"] || {}
+    def temp_library_availability_summary
+      if in_temp_location?
+        {
+          in_temp_library: true,
+          temp_library_code: temp_library,
+          temp_library_label: temp_library_name,
+          temp_location_code: composite_temp_location,
+          temp_location_label: temp_library_name
+        }
+      else
+        { in_temp_library: false }
+      end
+    end
 
-      status_label = marc_holding["availability"]
-      if status_label.nil?
+    def item_type
+      item_data.dig("policy", "value")
+    end
+
+    def status_label(marc_holding)
+      value = marc_holding["availability"]
+      if value.nil?
         # TODO: This will need to be figure out later on.
         #
         #   It possible that we will never hit this case because Request might not need to
@@ -188,44 +220,9 @@ class AlmaAdapter
         #   For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
         #
         #   For now use the data in the item.
-        status_label = item_data["base_status"]["desc"]
+        value = item_data["base_status"]["desc"]
       end
-
-      in_temp_library = false
-      temp_library = {}
-      temp_location = {}
-      if holding_data["in_temp_location"]
-        in_temp_library = true
-        temp_library = holding_data["temp_library"] || {}
-        temp_location = holding_data["temp_location"] || {}
-      end
-
-      item_av = {
-        barcode: item_data["barcode"],
-        id: item_data["pid"],
-        copy_number: holding_data["copy_id"],
-        status: nil,                                # ?? "Not Charged"
-        on_reserve: "N",
-        item_type: policy["value"],                 # Gen
-        pickup_location_id: holding_location,      # stacks
-        pickup_location_code: holding_location,    # stacks
-        location: composite_location,               # firestone$stacks
-        label: library["desc"],                     # Firestore Library
-        in_temp_library: in_temp_library,
-        status_label: status_label,                 # available
-        description: item_data["description"],      # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
-        enum_display: enumeration,             # in Alma there are many enumerations
-        chron_display: chronology              # in Alma there are many chronologies
-      }
-
-      if in_temp_library
-        item_av[:temp_library_code] = temp_library["value"]
-        item_av[:temp_library_label] = temp_library["desc"]
-        item_av[:temp_location_code] = composite_temp_location
-        item_av[:temp_location_label] = temp_library["desc"]
-      end
-
-      item_av
+      value
     end
   end
 end
