@@ -1,4 +1,4 @@
-class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
+class BibliographicController < ApplicationController
   include FormattingConcern
   before_action :protect, only: [:update]
   skip_before_action :verify_authenticity_token, only: [:item_discharge]
@@ -31,7 +31,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       wants.json { render json: availability }
     end
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
   end
 
   # Returns availability for a single ID
@@ -44,7 +44,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       wants.json { render json: availability }
     end
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve availability for IDs: #{ids}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve availability for IDs: #{ids}")
   end
 
   # Returns availability for a single holding in a bib record
@@ -60,7 +60,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       render plain: "Please supply a bib id and a holding id", status: 404
     end
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
   end
 
   # Client: This endpoint is used by orangelight to present the staff view
@@ -75,7 +75,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       records = adapter.get_bib_record(bib_id_param)
       records.strip_non_numeric! unless opts[:holdings]
     rescue => e
-      return handle_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{bib_id_param}")
+      return handle_alma_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{bib_id_param}")
     end
 
     if records.nil?
@@ -114,7 +114,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       end
     end
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
   # Client: Used by figgy to pull bibliographic data
@@ -140,7 +140,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       end
     end
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
   # bibliographic/:bib_id/items
@@ -157,7 +157,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   rescue Alma::BibItemSet::ResponseError
     render_not_found(params[:bib_id])
   rescue => e
-    handle_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
   # Client: only used manually via the form on the home page
@@ -324,14 +324,4 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       dot_parts[0] = parts.join('.')
       dot_parts.join('.')
     end
-
-    def handle_exception(exception:, message:)
-      if exception.is_a?(Alma::PerSecondThresholdError)
-        Rails.logger.error "HTTP 429. #{message} #{exception}"
-        head :too_many_requests
-      else
-        Rails.logger.error "HTTP 400. #{message} #{exception}"
-        head :bad_request
-      end
-    end
-end # rubocop:enable Metrics/ClassLength
+end
