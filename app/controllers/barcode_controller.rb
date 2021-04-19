@@ -26,7 +26,7 @@ class BarcodeController < ApplicationController
         render plain: "Record #{mms_id} not found or suppressed", status: 404
         return
       end
-      holdings = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
+      holding = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
       records = if record.linked_record_ids.present?
                   adapter.get_bib_records(record.linked_record_ids)
                 else
