@@ -133,6 +133,17 @@ class AlmaAdapter
     item
   end
 
+  def holding_by_id(mms_id:, holding_id:)
+    holding = Alma::BibHolding.find(mms_id: mms_id, holding_id: holding_id)
+    if holding["errorsExist"]
+      # In this case although `holding` is an object of type Alma::BibHolding, its
+      # content is really an HTTPartyResponse with the error information. :shrug:
+      error = Alma::StandardError.new(holding.holding.parsed_response.to_s)
+      handle_alma_error(client_error: error)
+    end
+    holding
+  end
+
   private
 
     def apikey
