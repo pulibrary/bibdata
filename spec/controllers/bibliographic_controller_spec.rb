@@ -71,15 +71,26 @@ RSpec.describe BibliographicController, type: :controller do
       expect(record["AVA"]).not_to be_present
     end
 
-    context 'when an error is encountered while querying Voyager' do
+    context 'when an error is encountered in the controller' do
       before do
         allow(Rails.logger).to receive(:error)
         allow(adapter).to receive(:get_bib_record).and_raise("it's broken")
       end
-      it 'returns a 400 HTTP response and logs an error' do
+      it 'returns HTTP 500 (internal error) response and logs an error' do
         get :bib, params: { bib_id: bib_id }
+        expect(response.status).to eq 500
+        expect(Rails.logger).to have_received(:error).with("HTTP 500. Failed to retrieve the record using the bib. ID: 1234567 it's broken")
+      end
+    end
 
-        expect(response.status).to be 400
+    context 'when an API error is encountered while querying Alma' do
+      before do
+        allow(Rails.logger).to receive(:error)
+        allow(adapter).to receive(:get_bib_record).and_raise(Alma::StandardError, "it's broken")
+      end
+      it 'returns HTTP 400 (bad request) response and logs an error' do
+        get :bib, params: { bib_id: bib_id }
+        expect(response.status).to eq 400
         expect(Rails.logger).to have_received(:error).with("HTTP 400. Failed to retrieve the record using the bib. ID: 1234567 it's broken")
       end
     end
