@@ -44,7 +44,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
 
       let(:dump) do
         FactoryBot.create(:empty_dump).tap do |d|
-          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job General Publishing via FTP\"}}"
+          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job General Publishing\"}}"
           d.event.save
         end
       end
@@ -87,7 +87,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       let(:local_path) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename) }
       let(:dump) do
         FactoryBot.create(:empty_incremental_dump).tap do |d|
-          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job Incremental Publishing via FTP\"}}"
+          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job Incremental Publishing\"}}"
           d.event.save
         end
       end
