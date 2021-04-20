@@ -168,8 +168,8 @@ class AlmaAdapter
       )
     end
 
-    def availability_summary(marc_holding:)
-      status = calculate_status()
+    def availability_summary()
+      status = calculate_status
 
       {
         barcode: item_data["barcode"],
@@ -207,6 +207,7 @@ class AlmaAdapter
       item_data.dig("policy", "value")
     end
 
+    # TODO: Do we still need this?
     def status_label(marc_holding)
       value = marc_holding["availability"]
       if value.nil?
@@ -231,40 +232,52 @@ class AlmaAdapter
 
     def calculate_status
       status = {}
-      if has_work_order_type?
-        status = status_from_work_order_type()
+      if work_order_type?
+        status = status_from_work_order_type
         status[:case] = "work_order"
-      elsif has_process_type?
-        status = status_from_process_type()
+      elsif process_type?
+        status = status_from_process_type
         status[:case] = "process_type"
       else
-        status = status_from_base_status()
+        status = status_from_base_status
         status[:case] = "base_status"
       end
-      puts "== status =="
-      puts status
-      puts "============"
+      # puts "== status =="
+      # puts status
+      # puts "============"
       status
     end
 
-    def has_work_order_type?
+    def work_order_type?
       !item_data.dig("work_order_type", "value").blank?
     end
 
-    def has_process_type?
+    def process_type?
       !item_data.dig("process_type", "value").blank?
-    end
-
-    def has_base_status?
-      !item_data.dig("base_status", "value").blank?
     end
 
     def status_from_work_order_type
       value = item_data["work_order_type"]["value"]
       desc = item_data["work_order_type"]["desc"]
-      # TODO: Implement this logic
-      # Source: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      return {code: "Available", status: desc}
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
+
+      # TODO: Confirm these values and availability with Mark.
+      case
+      when value == "Bind"
+        return { code: "Available", label: desc }
+      when value == "COURSE"
+        return { code: "Available", label: desc }
+      when value == "CDL"
+        return { code: "Available", label: desc }
+      when value == "PHYSICAL_TO_DIGITIZATION"
+        return { code: "Available", label: desc }
+      when value == "Pres"
+        return { code: "Available", label: desc }
+      end
+
+      # TODO: Default to available OK?
+      { code: "Available", label: desc }
     end
 
     def status_from_process_type
@@ -272,25 +285,27 @@ class AlmaAdapter
       desc = item_data.dig("process_type", "desc")
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+
+      # TODO: Confirm these values and availability with Mark.
       case
       # when value == "ACQ"
       # when value == "CLAIM_RETURNED_LOAN"
       # when value == "HOLDSHELF"
       # when value == "ILL"
       when value == "LOAN"
-        return {code: "Not Available", label: "On Loan"}
+        return { code: "Not Available", label: "On Loan" }
       when value == "LOST_ILL" || value == "LOST_LOAN" || value == "LOST_LOAN_AND_PAID"
-        return {code: "Not Available", label: desc}
+        return { code: "Not Available", label: desc }
       when value == "MISSING"
-        return {code: "Not Available", label: desc}
+        return { code: "Not Available", label: desc }
       # when value == "REQUESTED"
       # when value == "TECHNICAL"
       when value == "TRANSIT" || value == "TRANSIT_TO_REMOTE_STORAGE"
-        return {code: "Available", label: desc}
+        return { code: "Available", label: desc }
       end
 
-      # default to available OK?
-      {code: "Available", label: "Available"}
+      # TODO: default to available OK?
+      { code: "Available", label: "Available" }
     end
 
     def status_from_base_status
@@ -298,12 +313,10 @@ class AlmaAdapter
       desc = item_data.dig("base_status", "desc")
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      if value == "1"
-        return {code: "Available", label: desc}
-      end
+      return { code: "Available", label: desc } if value == "1"
 
-      # default to not available OK?
-      {code: "Not Available", label: desc}
+      # TODO: default to not available OK?
+      { code: "Not Available", label: desc }
     end
   end
 end
