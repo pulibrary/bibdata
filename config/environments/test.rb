@@ -41,4 +41,8 @@ Rails.application.configure do
   config.active_job.queue_adapter = :test
 
   config.action_mailer.default_url_options = { host: "www.example.com" }
+  config.webmock_disable_opts = {
+    allow_localhost: true,
+    allow: 'chromedriver.storage.googleapis.com'
+  }
 end
