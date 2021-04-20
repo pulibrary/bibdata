@@ -14,15 +14,11 @@ namespace :alma do
 end
 
 def read_key
-  keys = `lpass show Shared-ITIMS-Passwords/alma/AlmaKeys --notes`
-  keys = build_hash(keys)
-  keys["production_read_only"].split(" ").first
+  `lpass show Shared-ITIMS-Passwords/alma/api-key-production-read-only --notes`
 end
 
 def region_key
-  keys = `lpass show Shared-ITIMS-Passwords/alma/AlmaKeys --notes`
-  keys = build_hash(keys)
-  keys["alma_region"].split(" ").first
+  `lpass show Shared-ITIMS-Passwords/alma/alma_region --notes`
 end
 
 def build_sftp_credentials_hash
