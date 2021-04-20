@@ -64,13 +64,10 @@ class AlmaAdapter
     bib_status = AvailabilityStatus.from_bib(bib: bibs.first)
     # marc_holding = bib_status.holding(holding_id: holding_id) || {}
 
-    # Fetch the items for the holding...
+    # Fetch the items for the holding and create
+    # the availability response for each item
     holding_items = bib_status.holding_item_data(holding_id: holding_id)
-
-    # ...create the availability response for each item
-    holding_items[:items].map do |item|
-      item.availability_summary()
-    end
+    holding_items[:items].map(&:availability_summary)
   rescue Alma::StandardError => e
     handle_alma_error(client_error: e)
   end
