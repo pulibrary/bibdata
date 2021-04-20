@@ -119,9 +119,16 @@ RSpec.describe BarcodeController, type: :controller do
         expect(response.status).to eq(429)
       end
 
-      # TODO: implement this test
-      # it "handles error on holdings API call" do
-      # end
+      it "handles error on holdings API call" do
+        stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
+        stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
+        stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9972625743506421/holdings/2240957220006421")
+          .to_return(status: 429,
+                     headers: { "Content-Type" => "application/json" },
+                     body: stub_alma_per_second_threshold)
+        get :scsb, params: { barcode: "32101069559514" }, format: :xml
+        expect(response.status).to eq(429)
+      end
     end
   end
 
