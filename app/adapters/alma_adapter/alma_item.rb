@@ -166,7 +166,7 @@ class AlmaAdapter
       )
     end
 
-    def availability_summary()
+    def availability_summary
       status = calculate_status
 
       {
