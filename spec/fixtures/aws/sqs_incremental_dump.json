@@ -10,7 +10,7 @@
   "job_instance": {
     "id": "6587815790006421",
     "external_id": "6587815800006421",
-    "name": "Publishing Platform Job Incremental Publishing via FTP",
+    "name": "Publishing Platform Job Incremental Publishing",
     "submitted_by": {
       "value": "940000258",
       "desc": "Zelesky, Mark"
@@ -83,7 +83,7 @@
     ],
     "job_info": {
       "id": "S6423194610006421",
-      "name": "Publishing Platform Job Incremental Publishing via FTP",
+      "name": "Publishing Platform Job Incremental Publishing",
       "description": "Publishing Platform Job",
       "type": {
         "value": "SCHEDULED",
