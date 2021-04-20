@@ -167,18 +167,20 @@ class AlmaAdapter
     end
 
     def availability_summary(marc_holding:)
+      status = calculate_status()
+
       {
         barcode: item_data["barcode"],
         id: item_data["pid"],
         copy_number: holding_data["copy_id"],
-        status: nil, # ?? "Not Charged"
+        status: status[:code],        # Available or ?? "Not Charged"
+        status_label: status[:label], # available
         on_reserve: "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: holding_location, # stacks
         pickup_location_code: holding_location, # stacks
         location: composite_location, # firestone$stacks
         label: holding_library_name, # Firestore Library
-        status_label: status_label(marc_holding), # available
         description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
         enum_display: enumeration, # in Alma there are many enumerations
         chron_display: chronology # in Alma there are many chronologies
@@ -223,6 +225,83 @@ class AlmaAdapter
         value = item_data["base_status"]["desc"]
       end
       value
+    end
+
+    def calculate_status
+      status = {}
+      if has_work_order_type?
+        status = status_from_work_order_type()
+        status[:case] = "work_order"
+      elsif has_process_type?
+        status = status_from_process_type()
+        status[:case] = "process_type"
+      else
+        status = status_from_base_status()
+        status[:case] = "base_status"
+      end
+      puts "== status =="
+      puts status
+      puts "============"
+      status
+    end
+
+    def has_work_order_type?
+      !item_data.dig("work_order_type", "value").blank?
+    end
+
+    def has_process_type?
+      !item_data.dig("process_type", "value").blank?
+    end
+
+    def has_base_status?
+      !item_data.dig("base_status", "value").blank?
+    end
+
+    def status_from_work_order_type
+      value = item_data["work_order_type"]["value"]
+      desc = item_data["work_order_type"]["desc"]
+      # TODO: Implement this logic
+      # Source: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      return {code: "Available", status: desc}
+    end
+
+    def status_from_process_type
+      value = item_data.dig("process_type", "value")
+      desc = item_data.dig("process_type", "desc")
+
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      case
+      # when value == "ACQ"
+      # when value == "CLAIM_RETURNED_LOAN"
+      # when value == "HOLDSHELF"
+      # when value == "ILL"
+      when value == "LOAN"
+        return {code: "Not Available", label: "On Loan"}
+      when value == "LOST_ILL" || value == "LOST_LOAN" || value == "LOST_LOAN_AND_PAID"
+        return {code: "Not Available", label: desc}
+      when value == "MISSING"
+        return {code: "Not Available", label: desc}
+      # when value == "REQUESTED"
+      # when value == "TECHNICAL"
+      when value == "TRANSIT" || value == "TRANSIT_TO_REMOTE_STORAGE"
+        return {code: "Available", label: desc}
+      end
+
+      # default to available OK?
+      {code: "Available", label: "Available"}
+    end
+
+    def status_from_base_status
+      value = item_data.dig("base_status", "value")
+      desc = item_data.dig("base_status", "desc")
+
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      if value == "1"
+        return {code: "Available", label: desc}
+      end
+
+      # default to not available OK?
+      {code: "Not Available", label: desc}
     end
   end
 end
