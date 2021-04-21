@@ -79,6 +79,8 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record["876"]["h"]).to eq voyager_comparison["876"]["h"] # ReCAP Use Restriciton
         expect(record["876"]["x"]).to eq voyager_comparison["876"]["x"] # ReCAP Group Designation
         expect(record["876"]["z"]).to eq voyager_comparison["876"]["z"] # ReCAP Customer Code
+        expect(record["876"]["l"]).to eq "RECAP"
+        expect(record["876"]["k"]).to eq "recap"
         expect(record["852"]["h"]).to eq voyager_comparison["852"]["h"]
         expect(record["852"]["i"]).to be_blank
       end

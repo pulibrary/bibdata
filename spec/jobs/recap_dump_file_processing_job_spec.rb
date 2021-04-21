@@ -36,6 +36,8 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(record["876"]["x"]).to eq "Shared"
       expect(record["876"]["z"]).to eq "PA"
       expect(record["876"]["j"]).to eq "Not Used"
+      expect(record["876"]["l"]).to eq "RECAP"
+      expect(record["876"]["k"]).to eq "recap"
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
 
