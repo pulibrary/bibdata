@@ -170,10 +170,10 @@ class AlmaAdapter
 
     def availability_summary
       status = calculate_status
-
       {
         barcode: item_data["barcode"],
         id: item_data["pid"],
+        holding_id: holding_id,
         copy_number: holding_data["copy_id"],
         status: status[:code],        # Available
         status_label: status[:label], # Item in place
@@ -217,73 +217,41 @@ class AlmaAdapter
     def status_from_work_order_type
       value = item_data["work_order_type"]["value"]
       desc = item_data["work_order_type"]["desc"]
-      source = "work_order"
+
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
-
-      # TODO: Confirm these values and availability with Mark.
-      case
-      when value == "Bind"
-        return { code: "Available", label: desc, source: source }
-      when value == "COURSE"
-        return { code: "Available", label: desc, source: source }
-      when value == "CDL"
-        return { code: "Available", label: desc, source: source }
-      when value == "PHYSICAL_TO_DIGITIZATION"
-        return { code: "Available", label: desc, source: source }
-      when value == "Pres"
-        return { code: "Available", label: desc, source: source }
-      end
-
-      # TODO: Default to available OK?
-      { code: "Available", label: desc, source: source }
+      code = if value == "Bind" || value == "Pres" || value == "CDL"
+               "Not Available"
+             else
+               # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
+               "Available"
+             end
+      { code: code, label: desc, source: "work_order" }
     end
 
     def status_from_process_type
       value = item_data.dig("process_type", "value")
       desc = item_data.dig("process_type", "desc")
-      source = "process_type"
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-
-      # TODO: Confirm these values and availability with Mark.
-      case
-      when value == "ACQ"
-        return { code: "Available", label: desc, source: source }
-      when value == "CLAIM_RETURNED_LOAN"
-        return { code: "Available", label: desc, source: source }
-      when value == "HOLDSHELF"
-        return { code: "Available", label: desc, source: source }
-      when value == "ILL"
-        return { code: "Available", label: desc, source: source }
-      when value == "LOAN"
-        return { code: "Not Available", label: "On Loan", source: source }
-      when value == "LOST_ILL" || value == "LOST_LOAN" || value == "LOST_LOAN_AND_PAID"
-        return { code: "Not Available", label: desc, source: source }
-      when value == "MISSING"
-        return { code: "Not Available", label: desc, source: source }
-      when value == "REQUESTED"
-        return { code: "Available", label: desc, source: source }
-      when value == "TECHNICAL"
-        return { code: "Available", label: desc, source: source }
-      when value == "TRANSIT" || value == "TRANSIT_TO_REMOTE_STORAGE"
-        return { code: "Available", label: desc, source: source }
-      end
-
-      # TODO: default to available OK?
-      { code: "Available", label: "Available", source: source }
+      code = if value == "ACQ"
+               "Available"
+             else
+               # "CLAIM_RETURNED_LOAN", "HOLDSHELF", "ILL", "MISSING", "REQUESTED", "TECHNICAL",
+               # "LOAN", "LOST_ILL", "LOST_LOAN", "LOST_LOAN_AND_PAID",
+               # "TRANSIT", "TRANSIT_TO_REMOTE_STORAGE"
+               "Not Available"
+             end
+      { code: code, label: desc, source: "process_type" }
     end
 
     def status_from_base_status
       value = item_data.dig("base_status", "value")
       desc = item_data.dig("base_status", "desc")
-      source = "base_status"
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      return { code: "Available", label: desc, source: source } if value == "1"
-
-      # TODO: default to not available OK?
-      { code: "Not Available", label: desc, source: source }
+      code = value == "1" ? "Available" : "Not Available"
+      { code: code, label: desc, source: "base_status" }
     end
   end
 end
