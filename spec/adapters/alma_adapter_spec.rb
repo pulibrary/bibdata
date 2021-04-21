@@ -387,6 +387,39 @@ RSpec.describe AlmaAdapter do
     end
   end
 
+  describe "holding availability status fields" do
+    before do
+      stub_alma_ids(ids: "9965126093506421", status: 200)
+      stub_alma_holding_items(mms_id: "9965126093506421", holding_id: "22202918790006421", filename: "9965126093506421_holding_items.json")
+      stub_alma_ids(ids: "9943506421", status: 200)
+      stub_alma_holding_items(mms_id: "9943506421", holding_id: "22261963850006421", filename: "9943506421_holding_items.json")
+    end
+
+    it "uses the work_order to calculate status" do
+      availability = adapter.get_availability_holding(id: "9965126093506421", holding_id: "22202918790006421")
+      item = availability.first
+      expect(item[:status]).to eq "Not Available"
+      expect(item[:status_label]).to eq "Controlled Digital Lending"
+      expect(item[:status_source]).to eq "work_order"
+    end
+
+    it "uses the process_type to calculate status" do
+      availability = adapter.get_availability_holding(id: "9943506421", holding_id: "22261963850006421")
+      item = availability.find { |bib_item| bib_item[:id] == "23261963800006421" }
+      expect(item[:status]).to eq "Not Available"
+      expect(item[:status_label]).to eq "Transit"
+      expect(item[:status_source]).to eq "process_type"
+    end
+
+    it "uses the base_status to calculate status" do
+      availability = adapter.get_availability_holding(id: "9943506421", holding_id: "22261963850006421")
+      item = availability.first
+      expect(item[:status]).to eq "Available"
+      expect(item[:status_label]).to eq "Item in place"
+      expect(item[:status_source]).to eq "base_status"
+    end
+  end
+
   describe "ExLibris rate limit" do
     let(:http_429_response) do
       # Sources: https://developers.exlibrisgroup.com/alma/apis/#error
