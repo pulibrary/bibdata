@@ -173,8 +173,9 @@ class AlmaAdapter
         barcode: item_data["barcode"],
         id: item_data["pid"],
         copy_number: holding_data["copy_id"],
-        status: status[:code],        # Available or ?? "Not Charged"
-        status_label: status[:label], # available
+        status: status[:code],        # Available
+        status_label: status[:label], # Item in place
+        status_source: status[:source], # e.g. work_order, process_type, base_status
         on_reserve: "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: holding_location, # stacks
@@ -205,116 +206,82 @@ class AlmaAdapter
       item_data.dig("policy", "value")
     end
 
-    # TODO: Do we still need this?
-    def status_label(marc_holding)
-      value = marc_holding["availability"]
-      if value.nil?
-        # TODO: This will need to be figure out later on.
-        #
-        #   It possible that we will never hit this case because Request might not need to
-        #   find out the availability for holding that meets this criteria but if it does
-        #   then the current code will handle it.
-        #
-        #   The issue here is that the holding information that comes for these records
-        #   does not have a holding for the holding_id that we are working with. Instead it has
-        #   a single holding that does NOT have an ID. This seems to be an issue only for
-        #   eresources.
-        #
-        #   For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
-        #
-        #   For now use the data in the item.
-        value = item_data["base_status"]["desc"]
-      end
-      value
-    end
-
     def calculate_status
-      status = {}
-      if work_order_type?
-        status = status_from_work_order_type
-        status[:case] = "work_order"
-      elsif process_type?
-        status = status_from_process_type
-        status[:case] = "process_type"
-      else
-        status = status_from_base_status
-        status[:case] = "base_status"
-      end
-      # puts "== status =="
-      # puts status
-      # puts "============"
-      status
-    end
-
-    def work_order_type?
-      !item_data.dig("work_order_type", "value").blank?
-    end
-
-    def process_type?
-      !item_data.dig("process_type", "value").blank?
+      return status_from_work_order_type if item_data.dig("work_order_type", "value").present?
+      return status_from_process_type if item_data.dig("process_type", "value").present?
+      status_from_base_status
     end
 
     def status_from_work_order_type
       value = item_data["work_order_type"]["value"]
       desc = item_data["work_order_type"]["desc"]
+      source = "work_order"
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
 
       # TODO: Confirm these values and availability with Mark.
       case
       when value == "Bind"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       when value == "COURSE"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       when value == "CDL"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       when value == "PHYSICAL_TO_DIGITIZATION"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       when value == "Pres"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       end
 
       # TODO: Default to available OK?
-      { code: "Available", label: desc }
+      { code: "Available", label: desc, source: source }
     end
 
     def status_from_process_type
       value = item_data.dig("process_type", "value")
       desc = item_data.dig("process_type", "desc")
+      source = "process_type"
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
 
       # TODO: Confirm these values and availability with Mark.
       case
-      # when value == "ACQ"
-      # when value == "CLAIM_RETURNED_LOAN"
-      # when value == "HOLDSHELF"
-      # when value == "ILL"
+      when value == "ACQ"
+        return { code: "Available", label: desc, source: source }
+      when value == "CLAIM_RETURNED_LOAN"
+        return { code: "Available", label: desc, source: source }
+      when value == "HOLDSHELF"
+        return { code: "Available", label: desc, source: source }
+      when value == "ILL"
+        return { code: "Available", label: desc, source: source }
       when value == "LOAN"
-        return { code: "Not Available", label: "On Loan" }
+        return { code: "Not Available", label: "On Loan", source: source }
       when value == "LOST_ILL" || value == "LOST_LOAN" || value == "LOST_LOAN_AND_PAID"
-        return { code: "Not Available", label: desc }
+        return { code: "Not Available", label: desc, source: source }
       when value == "MISSING"
-        return { code: "Not Available", label: desc }
-      # when value == "REQUESTED"
-      # when value == "TECHNICAL"
+        return { code: "Not Available", label: desc, source: source }
+      when value == "REQUESTED"
+        return { code: "Available", label: desc, source: source }
+      when value == "TECHNICAL"
+        return { code: "Available", label: desc, source: source }
       when value == "TRANSIT" || value == "TRANSIT_TO_REMOTE_STORAGE"
-        return { code: "Available", label: desc }
+        return { code: "Available", label: desc, source: source }
       end
 
       # TODO: default to available OK?
-      { code: "Available", label: "Available" }
+      { code: "Available", label: "Available", source: source }
     end
 
     def status_from_base_status
       value = item_data.dig("base_status", "value")
       desc = item_data.dig("base_status", "desc")
+      source = "base_status"
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      return { code: "Available", label: desc } if value == "1"
+      return { code: "Available", label: desc, source: source } if value == "1"
 
       # TODO: default to not available OK?
-      { code: "Not Available", label: desc }
+      { code: "Not Available", label: desc, source: source }
     end
   end
 end
