@@ -1,0 +1,46 @@
+{
+  "bib": [
+    {
+      "mms_id": "9943506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "The works of Henry Fielding : with the life of the author.",
+      "author": "Fielding, Henry,",
+      "issn": null,
+      "isbn": null,
+      "complete_edition": "4th ed.",
+      "network_number": [
+        "(NjP)4-princetondb",
+        "4",
+        "(CStRLIN)NJPGSTK-B"
+      ],
+      "place_of_publication": "Edinburgh :",
+      "date_of_publication": "1767.",
+      "publisher_const": "Printed by Martin & Wotherspoon,",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2020-12-03Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "NONE",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "4-princetondb",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00728cam a2200229   4500</leader>\n    <controlfield tag=\"001\">9943506421</controlfield>\n    <controlfield tag=\"005\">20200728155554.0</controlfield>\n    <controlfield tag=\"008\">900328s1767    stka          000 0 eng d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(CStRLIN)NJPGSTK-B</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"9\">AAF4237TS</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">4</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)4-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">NjP</subfield>\n      <subfield code=\"b\">eng</subfield>\n      <subfield code=\"c\">NjP</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"100\">\n      <subfield code=\"a\">Fielding, Henry,</subfield>\n      <subfield code=\"d\">1707-1754.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/n79016886</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\"0\" tag=\"240\">\n      <subfield code=\"a\">Works.</subfield>\n      <subfield code=\"f\">1767</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\"4\" tag=\"245\">\n      <subfield code=\"a\">The works of Henry Fielding :</subfield>\n      <subfield code=\"b\">with the life of the author.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"250\">\n      <subfield code=\"a\">4th ed.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">Edinburgh :</subfield>\n      <subfield code=\"b\">Printed by Martin &amp; Wotherspoon,</subfield>\n      <subfield code=\"c\">1767.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">12 v. :</subfield>\n      <subfield code=\"b\">illus. ;</subfield>\n      <subfield code=\"c\">19 cm.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"998\">\n      <subfield code=\"a\">03/28/90</subfield>\n      <subfield code=\"s\">1924</subfield>\n      <subfield code=\"n\">NjP</subfield>\n      <subfield code=\"w\">NJPGSTKB</subfield>\n      <subfield code=\"d\">03/28/90</subfield>\n      <subfield code=\"c\">JKS</subfield>\n      <subfield code=\"b\">JKS</subfield>\n      <subfield code=\"i\">900328</subfield>\n      <subfield code=\"l\">NJPG</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"948\">\n      <subfield code=\"a\">CON AACR2x</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"911\">\n      <subfield code=\"a\">19921028</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"912\">\n      <subfield code=\"a\">19910104000000.0</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9943506421</subfield><subfield code=\"8\">22261963850006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">recap</subfield><subfield code=\"c\">Rare Books Off-Site Storage</subfield><subfield code=\"d\">3738.1767</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">xr</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">ReCAP</subfield><subfield code=\"t\">Vol.1-v.11</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 2,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/requests"
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}
