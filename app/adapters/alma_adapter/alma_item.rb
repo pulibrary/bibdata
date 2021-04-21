@@ -53,7 +53,9 @@ class AlmaAdapter
         MARC::Subfield.new('h', recap_use_restriction),
         MARC::Subfield.new('x', group_designation),
         MARC::Subfield.new('z', recap_customer_code),
-        MARC::Subfield.new('j', recap_status)
+        MARC::Subfield.new('j', recap_status),
+        MARC::Subfield.new('l', "RECAP"),
+        MARC::Subfield.new('k', item.holding_library)
       ]
     end
 
