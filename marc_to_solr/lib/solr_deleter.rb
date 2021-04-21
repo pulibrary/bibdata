@@ -15,19 +15,39 @@ class SolrDeleter
 
   def delete(ids, batch_size = 100)
     ids.each_slice(batch_size) do |batch|
-      response = delete_batch(batch)
-      raise StandardError, "Error deleting Solr documents. Status: #{response.status}. Body: #{response.body}" if response.status != 200
+      delete_batch(batch)
     end
   end
 
   private
 
+    # content_type = "text/xml"
+    # request payload is XML (even if the response is in JSON via the wt=json param)
+    def request_deletion(uri:, body:, content_type: 'text/xml')
+      @logger&.info "Deleting #{body}"
+
+      Faraday.post(uri, body, "Content-Type" => content_type)
+    end
+
+    def build_request_body(ids:)
+      output = ["<delete>"]
+      ids.each do |id|
+        output << "<id>#{id}</id>"
+      end
+
+      output << "</delete>"
+      output.join
+    end
+
     def delete_batch(batch)
-      # Passes the ids to delete as a single XML document
-      url = @solr_url + "/update?commit=true&wt=json"
-      payload = "<delete>" + batch.map { |id| "<id>#{id}</id>" }.join("") + "</delete>"
-      content_type = "text/xml" # request payload is XML (even if the response is in JSON via the wt=json param)
-      @logger&.info "Deleting #{payload}"
-      Faraday.post(url, payload, "Content-Type" => content_type)
+      uri = "#{@solr_url}/update?commit=true&wt=json"
+      body = build_request_body(ids: batch)
+
+      response = request_deletion(uri: uri, body: body)
+      return if response.status == 200
+
+      # Only retry once
+      retry_response = request_deletion(uri: uri, body: body)
+      Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}") if retry_response.status != 200
     end
 end
