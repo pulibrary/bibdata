@@ -158,6 +158,21 @@ RSpec.describe PatronController, type: :controller do
       expect(response).to have_http_status(404)
     end
   end
+
+  context "When Alma returns PER_THRESHOLD errors" do
+    it "returns HTTP 429" do
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/bbird?expand=fees,requests,loans")
+        .to_return(status: 429,
+                   headers: { "Content-Type" => "application/json" },
+                   body: stub_alma_per_second_threshold)
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
+      expect(response).to have_http_status(429)
+    end
+  end
 end
 
 def stub_patron(netid = "bbird", status = 200)
