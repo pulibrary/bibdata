@@ -30,9 +30,10 @@ class LocationDataService
       library_record = Locations::Library.find_by(code: library.code)
       # Use the holding_locations file to update the flags based on the holding_location_code
       holding_locations(library.code).each do |holding_location|
+        next if ["elf1", "elf2", "elf3", "elf4"].include? holding_location.code
         holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == "#{library.code}$#{holding_location.code}" }
         Locations::HoldingLocation.new do |location_record|
-          location_record.label = (library_record.label == holding_location.external_name ? library_record.label : "#{library_record.label} - #{holding_location.external_name}")
+          location_record.label = (holding_location.external_name.empty? ? library_record.label : holding_location.external_name)
           location_record.code = "#{library.code}$#{holding_location.code}"
           if holding_location_record.present?
             location_record.aeon_location = holding_location_record['aeon_location']

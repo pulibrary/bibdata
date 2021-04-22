@@ -1,1 +1,186 @@
-<record><leader>01986nam a2200541 i 4500</leader><controlfield tag="005">20201022201419.0</controlfield><controlfield tag="006">m     o  d |      </controlfield><controlfield tag="007">cr |n|||||||||</controlfield><controlfield tag="008">200303t20212021enka    ob    001 0 eng  </controlfield><controlfield tag="001">99121576653506421</controlfield><datafield tag="010" ind1=" " ind2=" "><subfield code="a">  2020010826</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="9">(YDXIT)16672091</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(OCoLC)1155487924</subfield><subfield code="0">(uri) http://www.worldcat.org/oclc/1155487924</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(NjP)12157665-princetondb</subfield></datafield><datafield tag="040" ind1=" " ind2=" "><subfield code="a">DLC</subfield><subfield code="b">eng</subfield><subfield code="e">rda</subfield><subfield code="c">DLC</subfield><subfield code="d">OCLCO</subfield><subfield code="d">YDX</subfield></datafield><datafield tag="020" ind1=" " ind2=" "><subfield code="a">9780429424304</subfield><subfield code="q">electronic book</subfield></datafield><datafield tag="020" ind1=" " ind2=" "><subfield code="a">0429424302</subfield><subfield code="q">electronic book</subfield></datafield><datafield tag="020" ind1=" " ind2=" "><subfield code="z">9781138388888</subfield><subfield code="q">hardcover</subfield><subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138388888</subfield></datafield><datafield tag="042" ind1=" " ind2=" "><subfield code="a">pcc</subfield></datafield><datafield tag="043" ind1=" " ind2=" "><subfield code="a">e-gr---</subfield></datafield><datafield tag="050" ind1=" " ind2="4"><subfield code="a">BL795.A54</subfield><subfield code="b">A55 2021</subfield></datafield><datafield tag="082" ind1="0" ind2="0"><subfield code="a">292.2/12</subfield><subfield code="2">23</subfield></datafield><datafield tag="245" ind1="0" ind2="0"><subfield code="a">Animals in ancient Greek religion /</subfield><subfield code="c">edited by Julia Kindt.</subfield></datafield><datafield tag="264" ind1=" " ind2="1"><subfield code="a">Abingdon, Oxon ;</subfield><subfield code="a">New York, NY :</subfield><subfield code="b">Routledge,</subfield><subfield code="c">2021.</subfield></datafield><datafield tag="264" ind1=" " ind2="4"><subfield code="c">©2021</subfield></datafield><datafield tag="300" ind1=" " ind2=" "><subfield code="a">1 online resource</subfield></datafield><datafield tag="336" ind1=" " ind2=" "><subfield code="a">text</subfield><subfield code="b">txt</subfield><subfield code="2">rdacontent</subfield></datafield><datafield tag="337" ind1=" " ind2=" "><subfield code="a">computer</subfield><subfield code="b">n</subfield><subfield code="2">rdamedia</subfield></datafield><datafield tag="338" ind1=" " ind2=" "><subfield code="a">online resource</subfield><subfield code="b">nc</subfield><subfield code="2">rdacarrier</subfield></datafield><datafield tag="490" ind1="1" ind2=" "><subfield code="a">Routledge monographs in classical studies</subfield></datafield><datafield tag="504" ind1=" " ind2=" "><subfield code="a">Includes bibliographical references and index.</subfield></datafield><datafield tag="533" ind1=" " ind2=" "><subfield code="a">Electronic reproduction.</subfield><subfield code="b">London</subfield><subfield code="n">Available via World Wide Web.</subfield></datafield><datafield tag="588" ind1=" " ind2=" "><subfield code="a">Description based on print version record and CIP data provided by publisher; resource not viewed.</subfield></datafield><datafield tag="599" ind1=" " ind2=" "><subfield code="a">Princeton permanent acquisition.</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Animals</subfield><subfield code="x">Religious aspects.</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Cults</subfield><subfield code="z">Greece.</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Mythology, Greek.</subfield></datafield><datafield tag="651" ind1=" " ind2="0"><subfield code="a">Greece</subfield><subfield code="x">Religion.</subfield></datafield><datafield tag="651" ind1=" " ind2="0"><subfield code="a">Greece</subfield><subfield code="x">Religious life and customs.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="a">Kindt, Julia,</subfield><subfield code="d">1975-</subfield><subfield code="e">editor.</subfield></datafield><datafield tag="710" ind1="2" ind2=" "><subfield code="a">Taylor &amp; Francis</subfield></datafield><datafield tag="776" ind1="0" ind2="8"><subfield code="i">Print version:</subfield><subfield code="t">Animals in ancient Greek religion</subfield><subfield code="d">Abingdon, Oxon ; New York, NY : Routledge, 2020.</subfield><subfield code="z">9781138388888</subfield><subfield code="w">(DLC)  2020010825</subfield><subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138388888</subfield></datafield><datafield tag="830" ind1=" " ind2="0"><subfield code="a">Routledge monographs in classical studies.</subfield></datafield><datafield tag="856" ind1="4" ind2="0"><subfield code="u">https://www.taylorfrancis.com/books/9780429424304</subfield></datafield><datafield tag="910" ind1=" " ind2=" "><subfield code="c">G0601ebk</subfield></datafield><datafield tag="980" ind1=" " ind2=" "><subfield code="i">175.00</subfield><subfield code="j">175.00</subfield><subfield code="n">40030160145</subfield></datafield><datafield tag="982" ind1=" " ind2=" "><subfield code="b">FY21</subfield><subfield code="c">elf3</subfield><subfield code="n">2021</subfield></datafield><datafield tag="986" ind1=" " ind2=" "><subfield code="h">Electronic Resource</subfield></datafield><datafield tag="904" ind1=" " ind2=" "><subfield code="a">pad</subfield><subfield code="b">a</subfield><subfield code="h">m</subfield><subfield code="c">b</subfield><subfield code="e">20201022</subfield></datafield><datafield tag="950" ind1=" " ind2=" "><subfield code="b">2020-12-02 09:19:46 US/Eastern</subfield><subfield code="a">false</subfield></datafield><datafield tag="852" ind1="8" ind2=" "><subfield code="b">online</subfield><subfield code="c">elf3</subfield><subfield code="h">Electronic Resource</subfield><subfield code="8">22106437260006421</subfield></datafield><datafield tag="952" ind1=" " ind2=" "><subfield code="a">2020-12-02 14:19:46</subfield><subfield code="8">22106437260006421</subfield><subfield code="b">Electronic Access</subfield><subfield code="c">elf3 Permanent Access</subfield><subfield code="e">false</subfield></datafield></record>
+<?xml version="1.0"?>
+<record>
+  <leader>01986nam a2200541 i 4500</leader>
+  <controlfield tag="005">20201022201419.0</controlfield>
+  <controlfield tag="006">m     o  d |      </controlfield>
+  <controlfield tag="007">cr |n|||||||||</controlfield>
+  <controlfield tag="008">200303t20212021enka    ob    001 0 eng  </controlfield>
+  <controlfield tag="001">99121576653506421</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2020010826</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(YDXIT)16672091</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)1155487924</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1155487924</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)12157665-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">YDX</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780429424304</subfield>
+    <subfield code="q">electronic book</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0429424302</subfield>
+    <subfield code="q">electronic book</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="z">9781138388888</subfield>
+    <subfield code="q">hardcover</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138388888</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">e-gr---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">BL795.A54</subfield>
+    <subfield code="b">A55 2021</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+    <subfield code="a">292.2/12</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Animals in ancient Greek religion /</subfield>
+    <subfield code="c">edited by Julia Kindt.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">Abingdon, Oxon ;</subfield>
+    <subfield code="a">New York, NY :</subfield>
+    <subfield code="b">Routledge,</subfield>
+    <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">&#xA9;2021</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="a">Routledge monographs in classical studies</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references and index.</subfield>
+  </datafield>
+  <datafield tag="533" ind1=" " ind2=" ">
+    <subfield code="a">Electronic reproduction.</subfield>
+    <subfield code="b">London</subfield>
+    <subfield code="n">Available via World Wide Web.</subfield>
+  </datafield>
+  <datafield tag="588" ind1=" " ind2=" ">
+    <subfield code="a">Description based on print version record and CIP data provided by publisher; resource not viewed.</subfield>
+  </datafield>
+  <datafield tag="599" ind1=" " ind2=" ">
+    <subfield code="a">Princeton permanent acquisition.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Animals</subfield>
+    <subfield code="x">Religious aspects.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Cults</subfield>
+    <subfield code="z">Greece.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Mythology, Greek.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Religion.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Greece</subfield>
+    <subfield code="x">Religious life and customs.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Kindt, Julia,</subfield>
+    <subfield code="d">1975-</subfield>
+    <subfield code="e">editor.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Taylor &amp; Francis</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+    <subfield code="i">Print version:</subfield>
+    <subfield code="t">Animals in ancient Greek religion</subfield>
+    <subfield code="d">Abingdon, Oxon ; New York, NY : Routledge, 2020.</subfield>
+    <subfield code="z">9781138388888</subfield>
+    <subfield code="w">(DLC)  2020010825</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138388888</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="a">Routledge monographs in classical studies.</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">https://www.taylorfrancis.com/books/9780429424304</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+    <subfield code="c">G0601ebk</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="i">175.00</subfield>
+    <subfield code="j">175.00</subfield>
+    <subfield code="n">40030160145</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="b">FY21</subfield>
+    <subfield code="c">elf3</subfield>
+    <subfield code="n">2021</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+    <subfield code="h">Electronic Resource</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+    <subfield code="a">pad</subfield>
+    <subfield code="b">a</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20201022</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="b">2020-12-02 09:19:46 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2=" ">
+    <subfield code="b">online</subfield>
+    <subfield code="c">elf3</subfield>
+    <subfield code="h">Electronic Resource</subfield>
+    <subfield code="8">22106437260006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2020-12-02 14:19:46</subfield>
+    <subfield code="8">22106437260006421</subfield>
+    <subfield code="b">Electronic Access</subfield>
+    <subfield code="c">elf3 Permanent Access</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+</record>
