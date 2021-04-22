@@ -139,6 +139,19 @@ class AlmaAdapter
     holding
   end
 
+  def item_discharge(mms_id:, holding_id:, item_pid:, options:)
+    use_discharge_key do
+      item = Alma::BibItem.scan(mms_id: mms_id, holding_id: holding_id, item_pid: item_pid, options: options)
+      if item["errorsExist"]
+        # In this case although `item` is an object of type Alma::BibItem, its
+        # content is really an HTTPartyResponse with the error information. :shrug:
+        error = Alma::StandardError.new(item.item.parsed_response.to_s)
+        handle_alma_error(client_error: error)
+      end
+      return item
+    end
+  end
+
   private
 
     def apikey
@@ -183,5 +196,15 @@ class AlmaAdapter
       errors = build_alma_errors(from: client_error)
       raise errors.first if errors.first.is_a?(Alma::PerSecondThresholdError)
       raise client_error
+    end
+
+    def use_discharge_key
+      cached_key = Alma.configuration.apikey
+      begin
+        Alma.configure { |config| config.apikey = Rails.configuration.alma[:item_discharge_apikey] }
+        yield
+      ensure
+        Alma.configure { |config| config.apikey = cached_key }
+      end
     end
 end

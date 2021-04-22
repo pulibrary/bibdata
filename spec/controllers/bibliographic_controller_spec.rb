@@ -386,7 +386,20 @@ RSpec.describe BibliographicController, type: :controller do
                      body: Rails.root.join('spec', 'fixtures', 'files', 'alma', 'scan_error_23258767460006421.json'))
 
         post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421", auth_token: "hard_coded_secret" }, format: :json
-        expect(response).to have_http_status(:internal_server_error)
+        expect(response).to have_http_status(:bad_request)
+      end
+    end
+
+    context "alma API returns PER_SECOND_THRESHOLD" do
+      it "returns a 429" do
+        stub_request(:post, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/.*\/holdings\/.*\/items\/.*/)
+          .with(headers: { 'Authorization' => 'apikey TEST_WR_KEY' })
+          .to_return(status: 429,
+                     headers: { "Content-Type" => "application/json" },
+                     body: stub_alma_per_second_threshold)
+
+        post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258767460006421", auth_token: "hard_coded_secret" }, format: :json
+        expect(response).to have_http_status(:too_many_requests)
       end
     end
 
