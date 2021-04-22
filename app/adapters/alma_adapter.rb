@@ -139,6 +139,17 @@ class AlmaAdapter
     holding
   end
 
+  def find_user(patron_id)
+    alma_preserve_exception do
+      return Alma::User.find(patron_id)
+    rescue Alma::StandardError => e
+      # The Alma gem throws "not found" for all errors but only error code 401861
+      # really represents a record not found.
+      raise Alma::NotFoundError, "User #{patron_id} was not found" if e.message.include?('"errorCode":"401861"')
+      handle_alma_error(client_error: e)
+    end
+  end
+
   private
 
     def apikey
@@ -183,5 +194,23 @@ class AlmaAdapter
       errors = build_alma_errors(from: client_error)
       raise errors.first if errors.first.is_a?(Alma::PerSecondThresholdError)
       raise client_error
+    end
+
+    # In some instances the Alma gem hides the original exception and returns a string
+    # (rather than a hash) with the error information. This beheavior prevents us from
+    # handling PER_SECOND_THRESHOLD errors. In those instances we use this method to
+    # force the Alma gem to preserve the original exception.
+    #
+    # Notice that this method is duplicated in availability_status.rb. At some point
+    # we might want to refactor this and have all calls to the Alma gem come through
+    # alma_adapter.rb and remove the duplicate.
+    def alma_preserve_exception
+      cached_value = Alma.configuration.enable_loggable
+      begin
+        Alma.configure { |config| config.enable_loggable = true }
+        yield
+      ensure
+        Alma.configure { |config| config.enable_loggable = cached_value }
+      end
     end
 end
