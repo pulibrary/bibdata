@@ -376,13 +376,48 @@ RSpec.describe AlmaAdapter do
 
       # Test an actual response. These values are not particularly meaningful, but to make sure we don't
       # inadvertently change them when refactoring.
-      item_test = { barcode: "32101080920208", id: "23105104390006421", copy_number: "1", status: nil,
+      item_test = { barcode: "32101080920208", id: "23105104390006421", holding_id: "22105104420006421", copy_number: "1",
+                    status: "Available", status_label: "Item in place", status_source: "base_status", process_type: nil,
                     on_reserve: "N", item_type: "Gen", pickup_location_id: "pa", pickup_location_code: "pa",
-                    location: "online$etasrcp", label: "ReCAP", in_temp_library: true, status_label: "Item in place",
+                    location: "online$etasrcp", label: "ReCAP", in_temp_library: true,
                     description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
                     temp_library_code: "online", temp_library_label: "Electronic Access",
                     temp_location_code: "online$etasrcp", temp_location_label: "Electronic Access" }
       expect(item).to eq item_test
+    end
+  end
+
+  describe "holding availability status fields" do
+    before do
+      stub_alma_ids(ids: "9965126093506421", status: 200)
+      stub_alma_holding_items(mms_id: "9965126093506421", holding_id: "22202918790006421", filename: "9965126093506421_holding_items.json")
+      stub_alma_ids(ids: "9943506421", status: 200)
+      stub_alma_holding_items(mms_id: "9943506421", holding_id: "22261963850006421", filename: "9943506421_holding_items.json")
+    end
+
+    it "uses the work_order to calculate status" do
+      availability = adapter.get_availability_holding(id: "9965126093506421", holding_id: "22202918790006421")
+      item = availability.first
+      expect(item[:status]).to eq "Not Available"
+      expect(item[:status_label]).to eq "Controlled Digital Lending"
+      expect(item[:status_source]).to eq "work_order"
+    end
+
+    it "uses the process_type to calculate status" do
+      availability = adapter.get_availability_holding(id: "9943506421", holding_id: "22261963850006421")
+      item = availability.find { |bib_item| bib_item[:id] == "23261963800006421" }
+      expect(item[:status]).to eq "Not Available"
+      expect(item[:status_label]).to eq "Transit"
+      expect(item[:status_source]).to eq "process_type"
+      expect(item[:process_type]).to eq "TRANSIT"
+    end
+
+    it "uses the base_status to calculate status" do
+      availability = adapter.get_availability_holding(id: "9943506421", holding_id: "22261963850006421")
+      item = availability.first
+      expect(item[:status]).to eq "Available"
+      expect(item[:status_label]).to eq "Item in place"
+      expect(item[:status_source]).to eq "base_status"
     end
   end
 

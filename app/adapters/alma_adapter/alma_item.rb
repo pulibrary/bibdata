@@ -168,19 +168,23 @@ class AlmaAdapter
       )
     end
 
-    def availability_summary(marc_holding:)
+    def availability_summary
+      status = calculate_status
       {
         barcode: item_data["barcode"],
         id: item_data["pid"],
+        holding_id: holding_id,
         copy_number: holding_data["copy_id"],
-        status: nil, # ?? "Not Charged"
+        status: status[:code],        # Available
+        status_label: status[:label], # Item in place
+        status_source: status[:source], # e.g. work_order, process_type, base_status
+        process_type: status[:process_type],
         on_reserve: "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: holding_location, # stacks
         pickup_location_code: holding_location, # stacks
         location: composite_location, # firestone$stacks
         label: holding_library_name, # Firestore Library
-        status_label: status_label(marc_holding), # available
         description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
         enum_display: enumeration, # in Alma there are many enumerations
         chron_display: chronology # in Alma there are many chronologies
@@ -205,26 +209,50 @@ class AlmaAdapter
       item_data.dig("policy", "value")
     end
 
-    def status_label(marc_holding)
-      value = marc_holding["availability"]
-      if value.nil?
-        # TODO: This will need to be figure out later on.
-        #
-        #   It possible that we will never hit this case because Request might not need to
-        #   find out the availability for holding that meets this criteria but if it does
-        #   then the current code will handle it.
-        #
-        #   The issue here is that the holding information that comes for these records
-        #   does not have a holding for the holding_id that we are working with. Instead it has
-        #   a single holding that does NOT have an ID. This seems to be an issue only for
-        #   eresources.
-        #
-        #   For an example see: http://localhost:3000/bibliographic/9919392043506421/holdings/22105104420006421/availability.json
-        #
-        #   For now use the data in the item.
-        value = item_data["base_status"]["desc"]
-      end
-      value
+    def calculate_status
+      return status_from_work_order_type if item_data.dig("work_order_type", "value").present?
+      return status_from_process_type if item_data.dig("process_type", "value").present?
+      status_from_base_status
+    end
+
+    def status_from_work_order_type
+      value = item_data["work_order_type"]["value"]
+      desc = item_data["work_order_type"]["desc"]
+
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
+      code = if value == "Bind" || value == "Pres" || value == "CDL"
+               "Not Available"
+             else
+               # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
+               "Available"
+             end
+      { code: code, label: desc, source: "work_order" }
+    end
+
+    def status_from_process_type
+      value = item_data.dig("process_type", "value")
+      desc = item_data.dig("process_type", "desc")
+
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      code = if value == "ACQ"
+               "Available"
+             else
+               # "CLAIM_RETURNED_LOAN", "HOLDSHELF", "ILL", "MISSING", "REQUESTED", "TECHNICAL",
+               # "LOAN", "LOST_ILL", "LOST_LOAN", "LOST_LOAN_AND_PAID",
+               # "TRANSIT", "TRANSIT_TO_REMOTE_STORAGE"
+               "Not Available"
+             end
+      { code: code, label: desc, source: "process_type", process_type: value }
+    end
+
+    def status_from_base_status
+      value = item_data.dig("base_status", "value")
+      desc = item_data.dig("base_status", "desc")
+
+      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
+      code = value == "1" ? "Available" : "Not Available"
+      { code: code, label: desc, source: "base_status" }
     end
   end
 end
