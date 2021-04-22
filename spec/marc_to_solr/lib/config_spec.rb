@@ -74,10 +74,10 @@ describe 'From traject_config.rb' do
       holdings = JSON.parse(record["holdings_1display"][0])
       holding_1 = holdings["22188107110006421"]
       holding_2 = holdings["22188107090006421"]
-      expect(holding_1["location"]).to eq "Lewis Library - Lewis Library (SCI)"
+      expect(holding_1["location"]).to eq "Lewis Library (SCI)"
       expect(holding_1["library"]).to eq "Lewis Library"
       expect(holding_1["location_code"]).to eq "lewis$stacks"
-      expect(holding_2["location"]).to eq "Firestone Library - Firestone Library Stacks"
+      expect(holding_2["location"]).to eq "Firestone Library Stacks"
       expect(holding_2["library"]).to eq "Firestone Library"
       expect(holding_2["location_code"]).to eq "firestone$stacks"
     end
@@ -459,11 +459,11 @@ describe 'From traject_config.rb' do
   end
   describe 'location facet values for Recap items' do
     it 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['ReCAP - Remote Storage: Marquand Library use only']
-      expect(@added_title_246['location']).to eq ['ReCAP', 'Marquand Library']
+      expect(@added_title_246['location_display']).to eq ['Remote Storage: Marquand Library use only']
+      expect(@added_title_246['location']).to eq ['ReCAP']
     end
     it 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'ReCAP - Mudd Off-Site Storage: Contact mudd@princeton.edu'
+      expect(@online_at_library['location_display']).to include 'Mudd Off-Site Storage: Contact mudd@princeton.edu'
       expect(@online_at_library['location']).to include 'ReCAP'
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
