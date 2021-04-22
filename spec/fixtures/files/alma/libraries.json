@@ -35,6 +35,24 @@
             "desc": "stacks: Annex Stacks"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex"
-        }
+        },
+        {
+            "code": "online",
+            "id": "124286990006421",
+            "name": "Electronic Access",
+            "path": "01PRI.01PRI_INST.online",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "elf1",
+            "desc": "elf1 Internet Resources"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online"
+            }
     ]
 }
