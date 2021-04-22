@@ -178,6 +178,7 @@ class AlmaAdapter
         status: status[:code],        # Available
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
+        process_type: status[:process_type],
         on_reserve: "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: holding_location, # stacks
@@ -242,7 +243,7 @@ class AlmaAdapter
                # "TRANSIT", "TRANSIT_TO_REMOTE_STORAGE"
                "Not Available"
              end
-      { code: code, label: desc, source: "process_type" }
+      { code: code, label: desc, source: "process_type", process_type: value }
     end
 
     def status_from_base_status

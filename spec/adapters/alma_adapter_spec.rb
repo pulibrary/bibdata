@@ -377,7 +377,7 @@ RSpec.describe AlmaAdapter do
       # Test an actual response. These values are not particularly meaningful, but to make sure we don't
       # inadvertently change them when refactoring.
       item_test = { barcode: "32101080920208", id: "23105104390006421", holding_id: "22105104420006421", copy_number: "1",
-                    status: "Available", status_label: "Item in place", status_source: "base_status",
+                    status: "Available", status_label: "Item in place", status_source: "base_status", process_type: nil,
                     on_reserve: "N", item_type: "Gen", pickup_location_id: "pa", pickup_location_code: "pa",
                     location: "online$etasrcp", label: "ReCAP", in_temp_library: true,
                     description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
@@ -409,6 +409,7 @@ RSpec.describe AlmaAdapter do
       expect(item[:status]).to eq "Not Available"
       expect(item[:status_label]).to eq "Transit"
       expect(item[:status_source]).to eq "process_type"
+      expect(item[:process_type]).to eq "TRANSIT"
     end
 
     it "uses the base_status to calculate status" do
