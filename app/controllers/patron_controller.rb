@@ -14,8 +14,8 @@ class PatronController < ApplicationController
     respond_to do |wants|
       wants.json  { render json: MultiJson.dump(info) }
     end
-  rescue Alma::User::ResponseError
-    render json: {}, status: 404
+  rescue => e
+    handle_alma_exception(exception: e, message: "Error fetching patron: #{@patron_id}")
   end
 
   private
@@ -44,7 +44,7 @@ class PatronController < ApplicationController
     end
 
     def data
-      @data ||= Alma::User.find(patron_id)
+      @data ||= AlmaAdapter.new.find_user(patron_id)
     end
 
     def identifiers
