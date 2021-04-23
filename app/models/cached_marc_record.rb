@@ -1,0 +1,2 @@
+class CachedMarcRecord < ApplicationRecord
+end
