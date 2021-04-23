@@ -65,6 +65,16 @@ FactoryBot.define do
     association :event
   end
 
+  factory :recap_incremental_dump, class: "Dump" do
+    association :dump_type, factory: :recap_incremental_dump_type
+    dump_files do
+      [
+        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/1.xml.tar.gz'),
+        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/boundwiths.tar.gz')
+      ]
+    end
+  end
+
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
     delete_ids []

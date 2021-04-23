@@ -159,7 +159,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(first_dump_file.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
 
         # Ensure job is queued.
-        expect(RecapDumpFileProcessingJob).to have_been_enqueued.once
+        expect(RecapDumpProcessingJob).to have_been_enqueued.once
       end
     end
   end

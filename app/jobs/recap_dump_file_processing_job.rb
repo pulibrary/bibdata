@@ -1,6 +1,7 @@
 # Processes an incremental dump file for SCSB coming from Alma and updates the
 # DumpFile for submission to the S3 Bucket.
 class RecapDumpFileProcessingJob < ActiveJob::Base
+  # def perform(dump_file, skip_boundwiths=true)
   def perform(dump_file)
     # Unzip/Parse dump file
     records = extract_records(dump_file.path)
@@ -14,6 +15,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
   # @return Hash<String, Array<MARC::Record>> Hash of filenames to the
   #   MARC::Records that they represent.
   def extract_records(path)
+    # TODO: skip it if it's a host or constituent record
     tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(path))
     tar_extract.tap(&:rewind)
     Hash[
@@ -38,6 +40,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
       content = StringIO.new
       writer = MARC::XMLWriter.new(content)
       file_records.each do |record|
+        # TODO: pass a host record? if it's a constituent?
         writer.write(record.transformed_record)
       end
       writer.close
