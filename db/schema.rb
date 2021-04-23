@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_143119) do
+ActiveRecord::Schema.define(version: 2021_05_06_152251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cached_marc_records", force: :cascade do |t|
+    t.string "bib_id"
+    t.text "marc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "campus_accesses", force: :cascade do |t|
     t.string "uid"
