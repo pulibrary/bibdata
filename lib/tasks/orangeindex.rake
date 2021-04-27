@@ -90,26 +90,6 @@ task :delete_bib do
 end
 
 namespace :liberate do
-  # TODO: Reimplement using Alma::Indexer.incremental_index
-  desc "Index VoyRec with all changed records since SET_DATE, against SET_URL"
-  task :updates do
-    # solr_url = ENV['SET_URL'] || default_solr_url
-    # solr = IndexFunctions.rsolr_connection(solr_url)
-    # resp = bibdata_connection.get '/events.json'
-    # comp_date = ENV['SET_DATE'] ? Date.parse(ENV['SET_DATE']) : (Date.today - 1)
-    # all_events = JSON.parse(resp.body).select { |e| Date.parse(e['start']) >= comp_date && e['success'] && e['dump_type'] == 'CHANGED_RECORDS' }.each do |event|
-    #   dump = JSON.parse(Faraday.get(event['dump_url']).body)
-    #   IndexFunctions.update_records(dump).each do |marc|
-    #     IndexFunctions.unzip_mrc(marc)
-    #     sh "traject -c marc_to_solr/lib/traject_config.rb #{marc}.mrc -u #{solr_url} #{binary}; true"
-    #     File.delete("#{marc}.mrc")
-    #     File.delete("#{marc}.gz")
-    #   end
-    #   solr.delete_by_id(IndexFunctions.delete_ids(dump))
-    # end
-    # solr.commit
-  end
-
   desc "Index latest full record dump against SET_URL"
   task full: :environment do
     LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
