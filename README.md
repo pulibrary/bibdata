@@ -17,6 +17,7 @@ wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&t
 
 ### Dependencies
   * Postgresql (provided in development by lando)
+  * `brew install shared-mime-info` (for `mimemagic` gem)
 
 Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
