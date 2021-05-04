@@ -302,7 +302,7 @@ RSpec.describe AlmaAdapter do
     it "reports availability of physical holdings" do
       availability = adapter.get_availability_one(id: "9922486553506421")
       holding = availability["9922486553506421"]["22117511410006421"]
-      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:inventory_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:location]).to eq "firestone$stacks"
       expect(holding[:cdl]).to eq false
@@ -311,7 +311,7 @@ RSpec.describe AlmaAdapter do
     it "reports CDL when available" do
       availability = adapter.get_availability_one(id: "9965126093506421")
       holding = availability["9965126093506421"]["22202918790006421"]
-      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:inventory_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:cdl]).to eq true
     end
@@ -319,25 +319,23 @@ RSpec.describe AlmaAdapter do
     it "reports some items available" do
       availability = adapter.get_availability_one(id: "9921799253506421")
       holding = availability["9921799253506421"]["22201236200006421"]
-      expect(holding[:holding_type]).to eq "physical"
+      expect(holding[:inventory_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Some items not available"
     end
 
     it "reports availability of portfolios" do
       availability = adapter.get_availability_one(id: "99122426947506421")
       portfolio = availability["99122426947506421"]["53469873890006421"]
-      expect(portfolio[:holding_type]).to eq "portfolio"
+      expect(portfolio[:inventory_type]).to eq "electronic"
       expect(portfolio[:status_label]).to eq "Available"
     end
 
-    it "reports availability for other" do
-      # This kind of resource is new in Alma and still needs some work,
-      # but for now we at least test that we are executing the branch of
-      # code that handles them.
+    it "reports availability for items in temporary locations" do
       availability = adapter.get_availability_one(id: "9952822483506421")
-      other = availability["9952822483506421"]["other"]
-      expect(other[:holding_type]).to eq "other"
-      expect(other[:status_label]).to eq "Available"
+      fake_holding = availability["9952822483506421"]["fake_id_1"]
+      expect(fake_holding[:inventory_type]).to eq "physical"
+      expect(fake_holding[:status_label]).to eq "Available"
+      expect(fake_holding[:temp_location]).to eq true
     end
 
     it "reports availability for many bib ids" do
