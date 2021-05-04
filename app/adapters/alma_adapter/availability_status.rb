@@ -12,59 +12,62 @@ class AlmaAdapter
 
     # Returns availability information for each of the holdings in the Bib record.
     def bib_availability
+      sequence = 0
       availability = holdings.each_with_object({}) do |holding, acc|
-        status = holding_status(holding)
+        sequence += 1
+        status = holding_status(holding: holding, sequence: sequence)
         acc[status[:id]] = status
       end
       availability
     end
 
-    # TODO: handle these properties
-    #   "copy_number": item["copy_number"],
-    #   "patron_group_charged": nil,    # TODO: nil
-    #   "status": "???",                # TODO: "Not Charged"
-    # TODO: Confirm that we need all of these values with the Alma implementation.
-    # TODO: Find out if we can get copy_number from Solr (i.e. without hitting ExLibris' API)
-    def holding_status(holding)
+    def holding_status(holding:, sequence:)
       status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
-      status = if holding["holding_id"]
+      inventory_type = holding["inventory_type"]
+      status = if inventory_type == "physical"
                  {
                    on_reserve: "N",
                    location: holding["library_code"] + "$" + holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
                    cdl: false,
-                   holding_type: "physical",
+                   temp_location: holding["holding_id"].nil?,
+                   inventory_type: inventory_type,
                    id: holding["holding_id"]
                  }
-               elsif holding["portfolio_pid"]
-                 # This kind of data is new with Alma.
+               elsif inventory_type == "electronic"
                  {
                    on_reserve: "N",
                    location: "N/A",
                    label: "N/A",
                    status_label: status_label,
                    cdl: false,
-                   holding_type: "portfolio",
+                   temp_location: false,
+                   inventory_type: inventory_type,
                    id: holding["portfolio_pid"]
                  }
-               else
-                 # TODO: can there be more than one like this per bib?
-                 # If so we'll need to use unique IDs here.
+               else # digital (we don't have this kind of resources)
                  {
                    on_reserve: "N",
                    location: holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
                    cdl: false,
-                   holding_type: "other",
-                   id: "other"
+                   temp_location: false,
+                   inventory_type: inventory_type,
+                   id: nil
                  }
                end
 
+      # Some physical resources can have a nil ID when they are in a temporary location
+      # because Alma does not tells us the holding_id that they belong to. For those
+      # records we create a fake ID so that we can handle multiple holdings with this
+      # condition.
+      status[:id] = "fake_id_#{sequence}" if status[:id].nil?
+
       # Check if the item is available via CDL.
       # Notice that we only do this when necessary because it requires an extra (slow-ish) API call.
-      check_cdl = status[:holding_type] == "physical" && status[:status_label] == "Unavailable"
+      check_cdl = status[:inventory_type] == "physical" && status[:status_label] == "Unavailable"
       status[:cdl] = cdl_holding?(holding["holding_id"]) if check_cdl
 
       status
