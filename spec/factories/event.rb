@@ -69,7 +69,7 @@ FactoryBot.define do
     association :dump_type, factory: :recap_incremental_dump_type
     dump_files do
       [
-        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/1.xml.tar.gz'),
+        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz'),
         association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/boundwiths.tar.gz')
       ]
     end

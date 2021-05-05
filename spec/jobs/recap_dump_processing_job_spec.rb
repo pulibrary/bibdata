@@ -13,6 +13,10 @@ RSpec.describe RecapDumpProcessingJob do
   end
 
   describe ".perform" do
+    after do
+      FileUtils.rm_rf Dir.glob("#{MARC_LIBERATION_CONFIG['data_dir']}/*")
+    end
+
     it "enqueues a RecapDumpFileProcessingJob for each DumpFile" do
       dump = FactoryBot.create(:recap_incremental_dump)
 
@@ -24,6 +28,7 @@ RSpec.describe RecapDumpProcessingJob do
       expect { described_class.perform_now(dump) }.to change { dump.reload.dump_files.count }.by(1)
       boundwiths_file = dump.dump_files.last
       expect(boundwiths_file.dump_file_type.constant).to eq "RECAP_RECORDS"
+      expect(File.basename(boundwiths_file.path)).to eq "recap_6836725000006421_20210401_010420[012]_boundwiths.xml.tar.gz"
       expect(File.exist?(boundwiths_file.path)).to eq true
 
       # Unzip it, get the MARC-XML

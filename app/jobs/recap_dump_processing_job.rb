@@ -21,15 +21,22 @@ class RecapDumpProcessingJob < ActiveJob::Base
       # Find related records and retrieve from Alma
       boundwith_records = find_related(boundwith_records)
 
-      # TODO: Give our boundwith file a better filename. Strip everything after
-      # the [] of the timestamp and use the front of one of the other filenames.
+      # Give our boundwith file a better filename
+      boundwiths_dump_file.path = process_path(boundwiths_dump_file.path, dump.dump_files.first.path)
 
       write_boundwith_file({ "boundwiths" => boundwith_records }, boundwiths_dump_file.path)
       dump.dump_files << boundwiths_dump_file
+      dump.save
     end
 
     def dump_file_type
       DumpFileType.find_by(constant: "RECAP_RECORDS")
+    end
+
+    def process_path(path, template_path)
+      basename = File.basename(template_path)
+      basepath = File.dirname(path)
+      File.join(basepath, basename.gsub(/new_[0-9]*/, 'boundwiths'))
     end
 
     # @param path [String] Path on disk to the records file.
