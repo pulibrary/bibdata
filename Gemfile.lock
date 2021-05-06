@@ -7,15 +7,15 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/locations.git
-  revision: d4811ca74d82411a2783076fb307ca43f4f3b6d1
-  tag: v1.3.0
+  revision: a236b554b953ef23049b43d85ed73b3799b2d82e
+  tag: v1.4.0
   specs:
     locations (1.2.0)
       bootstrap-sass (~> 3.3)
       friendly_id (~> 5.1.0)
       jquery-tablesorter (~> 1.21)
-      rails (~> 5.1)
-      yaml_db (~> 0.6)
+      rails (~> 5.2.4)
+      yaml_db (~> 0.7)
 
 GIT
   remote: https://github.com/pulibrary/marc_cleanup.git
@@ -614,4 +614,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.2.15
+   2.2.16

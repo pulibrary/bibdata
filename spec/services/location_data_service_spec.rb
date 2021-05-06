@@ -54,6 +54,18 @@ RSpec.describe LocationDataService, type: :service do
         headers: { "content-Type" => "application/json" },
         body: file_fixture("alma/locations3.json")
       )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: file_fixture("alma/locations4.json")
+      )
   end
 
   describe "#delete_existing_and_repopulate" do
@@ -80,9 +92,11 @@ RSpec.describe LocationDataService, type: :service do
       location_record5 = Locations::HoldingLocation.find_by(code: 'online$elf3')
       location_record6 = Locations::HoldingLocation.find_by(code: 'online$elf4')
       location_record7 = Locations::HoldingLocation.find_by(code: 'online$cdl')
+      location_record8 = Locations::HoldingLocation.find_by(code: 'recap$gp')
+      location_record9 = Locations::HoldingLocation.find_by(code: 'recap$pb')
 
-      expect(Locations::Library.count).to eq 3
-      expect(Locations::HoldingLocation.count).to eq 31
+      expect(Locations::Library.count).to eq 4
+      expect(Locations::HoldingLocation.count).to eq 37
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true
@@ -92,6 +106,8 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record5).to be nil
       expect(location_record6).to be nil
       expect(location_record7.code).to eq 'online$cdl'
+      expect(location_record8.remote_storage).to eq 'recap_rmt'
+      expect(location_record9.remote_storage).to eq ''
     end
 
     it "deletes existing delivery locations table and populates new from json file" do
