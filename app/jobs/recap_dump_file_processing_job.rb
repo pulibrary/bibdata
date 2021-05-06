@@ -1,7 +1,6 @@
 # Processes an incremental dump file for SCSB coming from Alma and updates the
 # DumpFile for submission to the S3 Bucket.
 class RecapDumpFileProcessingJob < ActiveJob::Base
-  # def perform(dump_file, skip_boundwiths=true)
   def perform(dump_file)
     # Unzip/Parse dump file
     records = extract_records(dump_file.path)
@@ -14,8 +13,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
   # @param path [String] Path on disk to the records file.
   # @return Hash<String, Array<MARC::Record>> Hash of filenames to the
   #   MARC::Records that they represent.
-  def extract_records(path)
-    # TODO: skip it if it's a host or constituent record
+  def extract_records(path, boundwiths: false)
     tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(path))
     tar_extract.tap(&:rewind)
     Hash[
@@ -24,7 +22,20 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
         records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a.map do |record|
           # ScsbDumpRecord will handle converting from the dump's MARC-XML to
           # the proper format for submitCollection
-          AlmaAdapter::ScsbDumpRecord.new(marc_record: record)
+          scsb_record = AlmaAdapter::ScsbDumpRecord.new(marc_record: record)
+          # If boundwith param is true; return record if it is a boundwith or
+          # skip record if it is not a boundwith.
+          # If boundwith param is false; return record if it is not a boundwith
+          # or skip record if it is a boundwith.
+          if boundwiths && scsb_record.boundwith?
+            scsb_record
+          elsif boundwiths && !scsb_record.boundwith?
+            next
+          elsif scsb_record.boundwith?
+            next
+          else
+            scsb_record
+          end
         end
         [tar_entry.header.name, records]
       end
