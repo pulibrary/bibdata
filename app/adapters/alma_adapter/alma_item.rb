@@ -20,6 +20,22 @@ class AlmaAdapter
       "#{holding_library}$#{holding_location}"
     end
 
+    def composite_location_display
+      if in_temp_location?
+        composite_temp_location
+      else
+        composite_location
+      end
+    end
+
+    def composite_location_label_display
+      if in_temp_location?
+        holding_data.dig("temp_location", "desc")
+      else
+        item_data.dig("location", "desc")
+      end
+    end
+
     # @note This is called type because item_type is the value used in the
     #   /items endpoint. In migrating to Alma this is largely the policy value
     #   with a fallback.

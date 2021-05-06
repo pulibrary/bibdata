@@ -333,6 +333,16 @@ RSpec.describe AlmaAdapter do
     it "reports availability for items in temporary locations" do
       availability = adapter.get_availability_one(id: "9952822483506421")
       fake_holding = availability["9952822483506421"]["fake_id_1"]
+      expect(fake_holding[:id]).to eq "fake_id_1"
+      expect(fake_holding[:inventory_type]).to eq "physical"
+      expect(fake_holding[:status_label]).to eq "Available"
+      expect(fake_holding[:temp_location]).to eq true
+    end
+
+    it "fetches holding_id for temporary locations when requested" do
+      availability = adapter.get_availability_one(id: "9952822483506421", deep: true)
+      fake_holding = availability["9952822483506421"]["fake_id_1"]
+      expect(fake_holding[:id]).to eq "fake_id_1"
       expect(fake_holding[:inventory_type]).to eq "physical"
       expect(fake_holding[:status_label]).to eq "Available"
       expect(fake_holding[:temp_location]).to eq true

@@ -21,6 +21,37 @@ class AlmaAdapter
       availability
     end
 
+    # Returns availability information for each of the holdings in the Bib record.
+    # Notice that although we return the information by holding, we drill into item
+    # information to get details.
+    def bib_availability_from_items
+      availability = {}
+      item_data.each do |key, value|
+        next if value.count == 0
+        raise StandardError.new "Multiple items found under the same key" if value.count > 1
+        alma_item = AlmaAdapter::AlmaItem.new(Alma::BibItem.new(value.first.item))
+        status = holding_status_from_item(alma_item)
+        raise StandardError.new "Holding found more than once" if availability[alma_item.holding_id]
+        availability[alma_item.holding_id] = status
+      end
+      availability
+    end
+
+    def holding_status_from_item(alma_item)
+      status = {
+        on_reserve: "N",
+        location: alma_item.composite_location_display,
+        label: alma_item.composite_location_label_display,
+        status_label: alma_item.calculate_status[:code],
+        copy_number: alma_item.copy_number,
+        cdl: alma_item.cdl?,
+        temp_location: alma_item.in_temp_location?,
+        inventory_type: "physical", # items are always for physical inventory
+        id: alma_item.holding_id
+      }
+      status
+    end
+
     def holding_status(holding:, sequence:)
       status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
       inventory_type = holding["inventory_type"]
@@ -30,6 +61,7 @@ class AlmaAdapter
                    location: holding["library_code"] + "$" + holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
+                   copy_number: nil,
                    cdl: false,
                    temp_location: holding["holding_id"].nil?,
                    inventory_type: inventory_type,
@@ -41,6 +73,7 @@ class AlmaAdapter
                    location: "N/A",
                    label: "N/A",
                    status_label: status_label,
+                   copy_number: nil,
                    cdl: false,
                    temp_location: false,
                    inventory_type: inventory_type,
@@ -52,6 +85,7 @@ class AlmaAdapter
                    location: holding["location_code"],
                    label: holding["location"],
                    status_label: status_label,
+                   copy_number: nil,
                    cdl: false,
                    temp_location: false,
                    inventory_type: inventory_type,
