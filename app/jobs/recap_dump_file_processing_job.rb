@@ -51,7 +51,6 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
       content = StringIO.new
       writer = MARC::XMLWriter.new(content)
       file_records.each do |record|
-        # TODO: pass a host record? if it's a constituent?
         writer.write(record.transformed_record)
       end
       writer.close
