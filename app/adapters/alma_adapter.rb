@@ -42,11 +42,8 @@ class AlmaAdapter
 
     av_info = AvailabilityStatus.new(bib: bibs.first).bib_availability
 
-    temp_locations = av_info.any? { |key, value| value[:temp_location] }
-    byebug
-
+    temp_locations = av_info.any? { |_key, value| value[:temp_location] }
     if temp_locations && deep_check
-      puts "=== Checking deep for temporary locations for #{id}"
       # We don't get enough information at the holding level for items located
       # in temporary locations. But if the client requests it we can drill into
       # the item information to get all the information (keep in mind that this
