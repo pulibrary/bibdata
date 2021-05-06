@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_164458) do
+ActiveRecord::Schema.define(version: 2021_05_06_143119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,17 +112,6 @@ ActiveRecord::Schema.define(version: 2021_01_04_164458) do
     t.index ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id"
   end
 
-  create_table "locations_floors", id: :serial, force: :cascade do |t|
-    t.string "label"
-    t.string "floor_plan_image"
-    t.string "starting_point"
-    t.string "walkable_areas"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "locations_library_id"
-    t.index ["locations_library_id"], name: "index_locations_floors_on_locations_library_id"
-  end
-
   create_table "locations_holding_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
@@ -137,6 +126,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_164458) do
     t.integer "locations_hours_location_id"
     t.boolean "circulates", default: true
     t.integer "holding_library_id"
+    t.string "remote_storage"
     t.index ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id"
   end
 
@@ -184,7 +174,6 @@ ActiveRecord::Schema.define(version: 2021_01_04_164458) do
   end
 
   add_foreign_key "locations_delivery_locations", "locations_libraries"
-  add_foreign_key "locations_floors", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_hours_locations"
   add_foreign_key "locations_holding_locations", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"
