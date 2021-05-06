@@ -112,6 +112,9 @@ class AlmaAdapter
 
     private
 
+      # Retrieve records by id from the local cache or from the Alma API.
+      # @param ids [Array<String>] bibids
+      # @return [Array<AlmaAdapter::ScsbDumpRecord>]
       def records_from_alma_or_cache(ids)
         cached_records = CachedMarcRecord.where(bib_id: ids)
         cached_records = cached_records.map { |r| AlmaAdapter::ScsbDumpRecord.new(marc_record: r.parsed_record) }
@@ -119,16 +122,17 @@ class AlmaAdapter
         non_cached_ids = ids - cached_ids
 
         if non_cached_ids.present?
-          records = AlmaAdapter.new.get_bib_records(non_cached_ids)
-          records = records.map { |r| AlmaAdapter::ScsbDumpRecord.new(marc_record: r) }
+          non_cached_records = AlmaAdapter.new.get_bib_records(non_cached_ids)
+          non_cached_records = non_cached_records.map { |r| AlmaAdapter::ScsbDumpRecord.new(marc_record: r) }
 
           # Cache records retrieved from Alma
-          records.each(&:cache)
-        else
-          records = []
-        end
+          non_cached_records.each(&:cache)
 
-        cached_records.concat(records)
+          # Return both cached and non-cached records
+          cached_records.concat(non_cached_records)
+        else
+          cached_records
+        end
       end
 
       def alma_marc_record

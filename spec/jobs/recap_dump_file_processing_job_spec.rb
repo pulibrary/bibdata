@@ -4,7 +4,7 @@ RSpec.describe RecapDumpFileProcessingJob do
   describe ".perform" do
     it "processes a dump file, converting all the MARC records for SCSB" do
       dump_file = FactoryBot.create(:recap_incremental_dump_file)
-      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "1.xml.tar.gz"), dump_file.path)
+      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz"), dump_file.path)
 
       described_class.perform_now(dump_file)
 
@@ -41,7 +41,7 @@ RSpec.describe RecapDumpFileProcessingJob do
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
 
-      expect(RecapTransferJob).to have_been_enqueued.once
+      expect(RecapTransferJob).to have_been_enqueued
     end
   end
 end
