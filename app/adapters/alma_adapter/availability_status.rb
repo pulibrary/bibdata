@@ -16,7 +16,7 @@ class AlmaAdapter
       availability = holdings.each_with_object({}) do |holding, acc|
         sequence += 1
         status = holding_status(holding: holding, sequence: sequence)
-        acc[status[:id]] = status if status.nil?
+        acc[status[:id]] = status unless status.nil?
       end
       availability
     end
