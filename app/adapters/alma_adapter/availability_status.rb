@@ -16,7 +16,7 @@ class AlmaAdapter
       availability = holdings.each_with_object({}) do |holding, acc|
         sequence += 1
         status = holding_status(holding: holding, sequence: sequence)
-        acc[status[:id]] = status
+        acc[status[:id]] = status if status.nil?
       end
       availability
     end
@@ -26,15 +26,44 @@ class AlmaAdapter
     # information to get details.
     def bib_availability_from_items
       availability = {}
-      item_data.each do |key, value|
+      item_data.each do |_key, value|
         next if value.count == 0
-        raise StandardError.new "Multiple items found under the same key" if value.count > 1
+        raise StandardError.new, "Multiple items found under the same key" if value.count > 1
         alma_item = AlmaAdapter::AlmaItem.new(Alma::BibItem.new(value.first.item))
         status = holding_status_from_item(alma_item)
-        raise StandardError.new "Holding found more than once" if availability[alma_item.holding_id]
+        raise StandardError.new, "Holding found more than once" if availability[alma_item.holding_id]
         availability[alma_item.holding_id] = status
       end
       availability
+    end
+
+    def holding_status(holding:, sequence:)
+      # Ignore electronic and digital records
+      return nil if holding["inventory_type"] != "physical"
+
+      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
+      status = {
+        on_reserve: "N",
+        location: holding["library_code"] + "$" + holding["location_code"],
+        label: holding["location"],
+        status_label: status_label,
+        copy_number: nil,
+        cdl: false,
+        temp_location: holding["holding_id"].nil?,
+        id: holding["holding_id"]
+      }
+
+      # Some physical resources can have a nil ID when they are in a temporary location
+      # because Alma does not tells us the holding_id that they belong to. For those
+      # records we create a fake ID so that we can handle multiple holdings with this
+      # condition.
+      status[:id] = "fake_id_#{sequence}" if holding["holding_id"].nil?
+
+      # Notice that we only check if a holding is available via CDL when necessary
+      # because it requires an extra (slow-ish) API call.
+      status[:cdl] = cdl_holding?(holding["holding_id"]) if status[:status_label] == "Unavailable"
+
+      status
     end
 
     def holding_status_from_item(alma_item)
@@ -46,64 +75,8 @@ class AlmaAdapter
         copy_number: alma_item.copy_number,
         cdl: alma_item.cdl?,
         temp_location: alma_item.in_temp_location?,
-        inventory_type: "physical", # items are always for physical inventory
         id: alma_item.holding_id
       }
-      status
-    end
-
-    def holding_status(holding:, sequence:)
-      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
-      inventory_type = holding["inventory_type"]
-      status = if inventory_type == "physical"
-                 {
-                   on_reserve: "N",
-                   location: holding["library_code"] + "$" + holding["location_code"],
-                   label: holding["location"],
-                   status_label: status_label,
-                   copy_number: nil,
-                   cdl: false,
-                   temp_location: holding["holding_id"].nil?,
-                   inventory_type: inventory_type,
-                   id: holding["holding_id"]
-                 }
-               elsif inventory_type == "electronic"
-                 {
-                   on_reserve: "N",
-                   location: "N/A",
-                   label: "N/A",
-                   status_label: status_label,
-                   copy_number: nil,
-                   cdl: false,
-                   temp_location: false,
-                   inventory_type: inventory_type,
-                   id: holding["portfolio_pid"]
-                 }
-               else # digital (we don't have this kind of resources)
-                 {
-                   on_reserve: "N",
-                   location: holding["location_code"],
-                   label: holding["location"],
-                   status_label: status_label,
-                   copy_number: nil,
-                   cdl: false,
-                   temp_location: false,
-                   inventory_type: inventory_type,
-                   id: nil
-                 }
-               end
-
-      # Some physical resources can have a nil ID when they are in a temporary location
-      # because Alma does not tells us the holding_id that they belong to. For those
-      # records we create a fake ID so that we can handle multiple holdings with this
-      # condition.
-      status[:id] = "fake_id_#{sequence}" if status[:id].nil?
-
-      # Check if the item is available via CDL.
-      # Notice that we only do this when necessary because it requires an extra (slow-ish) API call.
-      check_cdl = status[:inventory_type] == "physical" && status[:status_label] == "Unavailable"
-      status[:cdl] = cdl_holding?(holding["holding_id"]) if check_cdl
-
       status
     end
 
