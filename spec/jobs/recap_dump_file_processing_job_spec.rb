@@ -2,10 +2,17 @@ require 'rails_helper'
 
 RSpec.describe RecapDumpFileProcessingJob do
   describe ".perform" do
-    it "processes a dump file, converting all the MARC records for SCSB" do
-      dump_file = FactoryBot.create(:recap_incremental_dump_file)
-      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz"), dump_file.path)
+    let(:dump_file) { FactoryBot.create(:recap_incremental_dump_file) }
 
+    before do
+      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz"), dump_file.path)
+    end
+
+    after do
+      FileUtils.rm_rf Dir.glob("#{MARC_LIBERATION_CONFIG['data_dir']}/*")
+    end
+
+    it "processes a dump file, converting all the MARC records for SCSB" do
       described_class.perform_now(dump_file)
 
       # Unzip it, get the MARC-XML
@@ -40,8 +47,10 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(record["876"]["k"]).to eq "recap"
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
+    end
 
-      expect(RecapTransferJob).to have_been_enqueued
+    it "enqueues a recap transfer job" do
+      expect { described_class.perform_now(dump_file) }.to enqueue_job(RecapTransferJob).once
     end
   end
 end
