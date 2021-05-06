@@ -36,10 +36,25 @@ class AlmaAdapter
   end
 
   # Returns availability for one bib id
-  def get_availability_one(id:)
+  def get_availability_one(id:, deep_check: false)
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
-    { bibs.first.id => AvailabilityStatus.new(bib: bibs.first).bib_availability }
+
+    av_info = AvailabilityStatus.new(bib: bibs.first).bib_availability
+
+    temp_locations = av_info.any? { |key, value| value[:temp_location] }
+    byebug
+
+    if temp_locations && deep_check
+      puts "=== Checking deep for temporary locations for #{id}"
+      # We don't get enough information at the holding level for items located
+      # in temporary locations. But if the client requests it we can drill into
+      # the item information to get all the information (keep in mind that this
+      # involves an extra API call that is slow-ish.)
+      av_info = AvailabilityStatus.new(bib: bibs.first).bib_availability_from_items
+    end
+
+    { bibs.first.id => av_info }
   rescue Alma::StandardError => e
     handle_alma_error(client_error: e)
   end
