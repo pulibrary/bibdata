@@ -53,6 +53,24 @@
             "desc": "elf1 Internet Resources"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online"
+            },
+            {
+                "code": "recap",
+                "id": "124287370006421",
+                "name": "ReCAP",
+                "path": "01PRI.01PRI_INST.recap",
+                "description": null,
+                "resource_sharing": false,
+                "campus": {
+                "value": "",
+                "desc": null
+                },
+                "proxy": "",
+                "default_location": {
+                "value": "pa",
+                "desc": "rcppa: RECAP"
+                },
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap"
             }
     ]
 }
