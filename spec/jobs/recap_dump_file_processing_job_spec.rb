@@ -17,10 +17,7 @@ RSpec.describe RecapDumpFileProcessingJob do
       described_class.perform_now(dump_file)
 
       # Unzip it, get the MARC-XML
-      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(dump_file.path))
-      tar_extract.tap(&:rewind)
-      content = StringIO.new(tar_extract.first.read)
-      records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
+      records = dump_file_to_marc(path: dump_file.path)
       record = records[0]
 
       # Requirements documentation:
@@ -61,11 +58,7 @@ RSpec.describe RecapDumpFileProcessingJob do
         described_class.perform_now(dump_file)
 
         # Unzip it, get the MARC-XML
-        tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(dump_file.path))
-        tar_extract.tap(&:rewind)
-        content = StringIO.new(tar_extract.first.read)
-        records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
-
+        records = dump_file_to_marc(path: dump_file.path)
         expect(records.count).to eq 1
       end
     end
