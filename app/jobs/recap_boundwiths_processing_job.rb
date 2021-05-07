@@ -39,7 +39,11 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
     # @return [Array<AlmaAdapter::ScsbDumpRecord>]
     def boundwith_records
       @boundwith_records ||= dump.dump_files.map do |dump_file|
-        extract_records(dump_file.path, boundwiths: true).values
+        extract_records(dump_file.path) do |scsb_record|
+          # Skip record if it is not a boundwith
+          next unless scsb_record.boundwith?
+          scsb_record
+        end.values
       end.flatten.compact
     end
 

@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe RecapDumpFileProcessingJob do
   describe ".perform" do
     let(:dump_file) { FactoryBot.create(:recap_incremental_dump_file) }
+    let(:fixture_file) { "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz" }
 
     before do
-      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz"), dump_file.path)
+      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", fixture_file), dump_file.path)
     end
 
     after do
@@ -51,6 +52,22 @@ RSpec.describe RecapDumpFileProcessingJob do
 
     it "enqueues a recap transfer job" do
       expect { described_class.perform_now(dump_file) }.to enqueue_job(RecapTransferJob).once
+    end
+
+    context "with a dumpfile that contains boundwiths" do
+      let(:fixture_file) { "boundwiths.tar.gz" }
+
+      it "does not process boundwith records" do
+        described_class.perform_now(dump_file)
+
+        # Unzip it, get the MARC-XML
+        tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(dump_file.path))
+        tar_extract.tap(&:rewind)
+        content = StringIO.new(tar_extract.first.read)
+        records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
+
+        expect(records.count).to eq 1
+      end
     end
   end
 end
