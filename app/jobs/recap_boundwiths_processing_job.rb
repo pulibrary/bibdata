@@ -65,24 +65,19 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
       grouped_records.each do |host_id, records|
         host_record = records.find(&:host?)
         constituent_records = records.find_all(&:constituent?)
-        # Does grouping have a host record?
-        if host_record
-          # Fetch constituent record ids from host[774] and retrieve from Alma;
-          # skipping any constituents already in the dump file
-          skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
-          missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
-        elsif constituent_records.present?
-          # Get host record id from a constituent[773] and retreive from Alma
+
+        unless host_record
+          # Get host record id from a constituent[773] and
+          # retrieve from Alma or cache
           host_record = constituent_records.first.host_record
-          if host_record
-            # Fetch constituent record ids from host[774] and retrieve from Alma;
-            # skipping any constituents already in the dump file
-            skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
-            missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
-            # Add missing host record to group
-            grouped_records[host_id] << host_record
-          end
+          # Add missing host record to group
+          grouped_records[host_id] << host_record
         end
+
+        # Fetch constituent record ids from host[774] and retrieve from Alma or
+        # cache; skipping any constituents already in the dump file
+        skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
+        missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
 
         # Add missing constituent records to group
         grouped_records[host_id] << missing_constituents
