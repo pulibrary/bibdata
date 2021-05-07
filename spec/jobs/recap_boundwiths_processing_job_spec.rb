@@ -26,10 +26,7 @@ RSpec.describe RecapBoundwithsProcessingJob do
       expect(File.exist?(boundwiths_file.path)).to eq true
 
       # Unzip it, get the MARC-XML
-      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(boundwiths_file.path))
-      tar_extract.tap(&:rewind)
-      content = StringIO.new(tar_extract.first.read)
-      records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
+      records = dump_file_to_marc(path: boundwiths_file.path)
 
       ids = boundwith_ids_in_dumpfile +
             missing_constituent_ids_1 +
