@@ -26,7 +26,7 @@ class BibliographicController < ApplicationController
   #   show page
   def availability
     id = params[:bib_id]
-    availability = adapter.get_availability_one(id: id)
+    availability = adapter.get_availability_one(id: id, deep_check: (params[:deep] == "true"))
     respond_to do |wants|
       wants.json { render json: availability }
     end

@@ -297,12 +297,14 @@ RSpec.describe AlmaAdapter do
           }
         )
         .to_return(status: 200, body: bib_record_with_some_available, headers: { "content-Type" => "application/json" })
+
+      stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
+      stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
     end
 
     it "reports availability of physical holdings" do
       availability = adapter.get_availability_one(id: "9922486553506421")
       holding = availability["9922486553506421"]["22117511410006421"]
-      expect(holding[:holding_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:location]).to eq "firestone$stacks"
       expect(holding[:cdl]).to eq false
@@ -311,7 +313,6 @@ RSpec.describe AlmaAdapter do
     it "reports CDL when available" do
       availability = adapter.get_availability_one(id: "9965126093506421")
       holding = availability["9965126093506421"]["22202918790006421"]
-      expect(holding[:holding_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:cdl]).to eq true
     end
@@ -319,25 +320,31 @@ RSpec.describe AlmaAdapter do
     it "reports some items available" do
       availability = adapter.get_availability_one(id: "9921799253506421")
       holding = availability["9921799253506421"]["22201236200006421"]
-      expect(holding[:holding_type]).to eq "physical"
       expect(holding[:status_label]).to eq "Some items not available"
     end
 
-    it "reports availability of portfolios" do
+    it "ignores electronic resources" do
       availability = adapter.get_availability_one(id: "99122426947506421")
-      portfolio = availability["99122426947506421"]["53469873890006421"]
-      expect(portfolio[:holding_type]).to eq "portfolio"
-      expect(portfolio[:status_label]).to eq "Available"
+      empty_availability = { "99122426947506421" => {} }
+      expect(availability).to eq empty_availability
     end
 
-    it "reports availability for other" do
-      # This kind of resource is new in Alma and still needs some work,
-      # but for now we at least test that we are executing the branch of
-      # code that handles them.
+    it "reports availability (without holding_id) for items in temporary locations" do
       availability = adapter.get_availability_one(id: "9952822483506421")
-      other = availability["9952822483506421"]["other"]
-      expect(other[:holding_type]).to eq "other"
-      expect(other[:status_label]).to eq "Available"
+      fake_holding = availability["9952822483506421"]["fake_id_1"]
+      expect(fake_holding[:id]).to eq "fake_id_1"
+      expect(fake_holding[:status_label]).to eq "Available"
+      expect(fake_holding[:temp_location]).to eq true
+    end
+
+    it "reports availability (with holding_id) for items in temporary locations when requested" do
+      availability = adapter.get_availability_one(id: "9959958323506421", deep_check: true)
+      holding1 = availability["9959958323506421"]["22272063570006421"]
+      holding2 = availability["9959958323506421"]["22272063520006421"]
+      expect(holding1[:status_label]).to eq "Available"
+      expect(holding1[:temp_location]).to eq true
+      expect(holding1[:copy_number]).to eq "1"
+      expect(holding2[:copy_number]).to eq "2"
     end
 
     it "reports availability for many bib ids" do
