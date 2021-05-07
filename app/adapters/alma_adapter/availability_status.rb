@@ -66,6 +66,7 @@ class AlmaAdapter
       status
     end
 
+    # @param alma_item [AlmaAdapter::AlmaItem]
     def holding_status_from_item(alma_item)
       status = {
         on_reserve: "N",
