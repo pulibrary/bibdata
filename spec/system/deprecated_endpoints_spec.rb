@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "deprecated endpoint page", type: :feature do
+RSpec.describe "deprecated endpoint page", type: :system do
   describe "any deprecated endpoint" do
     it "returns 410 gone" do
       visit "/barcode/32101044947941"
