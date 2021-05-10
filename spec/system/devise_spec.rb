@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'fileutils'
 
-feature 'Devise restricts features for unauthenticated users', type: :feature, js: true do
+RSpec.describe 'Devise restricts features for unauthenticated users', type: :system, js: true do
   before(:all) do
     dump_test_bib_ids('./spec/fixtures/sample_bib_ids.txt')
     system 'rake db:seed'
