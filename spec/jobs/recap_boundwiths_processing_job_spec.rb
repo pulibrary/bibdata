@@ -10,23 +10,18 @@ RSpec.describe RecapBoundwithsProcessingJob do
     stub_alma_ids(ids: missing_constituent_ids_1, status: 200, fixture: "scsb_dump_fixtures/constituent_response1")
     stub_alma_ids(ids: missing_host_ids, status: 200, fixture: "scsb_dump_fixtures/host_response")
     stub_alma_ids(ids: missing_constituent_ids_2, status: 200, fixture: "scsb_dump_fixtures/constituent_response2")
+    allow(RecapTransferJob).to receive(:perform_now)
   end
 
   describe ".perform" do
-    after do
-      FileUtils.rm_rf Dir.glob("#{MARC_LIBERATION_CONFIG['data_dir']}/*")
-    end
-
     it "creates a new boundwith dump file and caches marc records" do
       dump = FactoryBot.create(:recap_incremental_dump)
-      expect { described_class.perform_now(dump) }.to change { dump.reload.dump_files.count }.by(1)
-      boundwiths_file = dump.dump_files.last
-      expect(boundwiths_file.dump_file_type.constant).to eq "RECAP_RECORDS"
-      expect(File.basename(boundwiths_file.path)).to eq "recap_6836725000006421_20210401_010420[012]_boundwiths.xml.tar.gz"
-      expect(File.exist?(boundwiths_file.path)).to eq true
+      boundwiths_file_path = described_class.perform_now(dump)
+      expect(File.basename(boundwiths_file_path)).to include("recap_6836725000006421_20210401_010420[012]_boundwiths", ".xml.tar.gz")
+      expect(File.exist?(boundwiths_file_path)).to eq true
 
       # Unzip it, get the MARC-XML
-      records = dump_file_to_marc(path: boundwiths_file.path)
+      records = dump_file_to_marc(path: boundwiths_file_path)
 
       ids = boundwith_ids_in_dumpfile +
             missing_constituent_ids_1 +
@@ -58,6 +53,9 @@ RSpec.describe RecapBoundwithsProcessingJob do
 
       # Updated records and records retrieved from the Alma API are cached
       expect(CachedMarcRecord.all.count).to eq 7
+
+      # File transferred to S3
+      expect(RecapTransferJob).to have_received(:perform_now)
     end
   end
 end
