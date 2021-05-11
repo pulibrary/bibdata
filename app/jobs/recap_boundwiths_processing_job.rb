@@ -34,7 +34,7 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
       end.flatten.compact
     end
 
-    # Find related host and constiuent records and add
+    # Find related host and constituent records and add
     # to set of boundwith records.
     # @return [Array<AlmaAdapter::ScsbDumpRecord>]
     def find_related
@@ -49,14 +49,14 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
         constituent_records = records.find_all(&:constituent?)
 
         unless host_record
-          # Get host record id from a constituent[773] and
+          # Get host record id from a constituent[773w] and
           # retrieve from Alma or cache
           host_record = constituent_records.first.host_record
           # Add missing host record to group
           grouped_records[host_id] << host_record
         end
 
-        # Fetch constituent record ids from host[774] and retrieve from Alma or
+        # Fetch constituent record ids from host[774w] and retrieve from Alma or
         # cache; skipping any constituents already in the dump file
         skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
         missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
