@@ -50,7 +50,7 @@ RSpec.describe RecapDumpFileProcessingJob do
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
 
-      # File transferred to S3
+      # File is transferred to S3
       expect(RecapTransferJob).to have_received(:perform_now)
     end
 

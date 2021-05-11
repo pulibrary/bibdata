@@ -8,7 +8,7 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
     # Extract boundwith from all dump files, process, and save in temp file
     process_boundwiths
     # Transfer it to S3.
-    RecapTransferJob.perform_now(tempfile.path)
+    RecapTransferJob.perform_now(tempfile.path) if boundwith_records.present?
     # Return the output file path
     tempfile.path
   end
