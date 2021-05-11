@@ -14,7 +14,7 @@ RSpec.describe RecapTransferJob do
       allow(Scsb::S3Bucket).to receive(:new).and_return(bucket_mock)
       allow(bucket_mock).to receive(:upload_file)
 
-      described_class.perform_now(dump_file)
+      described_class.perform_now(dump_file.path)
 
       expect(bucket_mock).to have_received(:upload_file).with(file_path: "data/1618282800", key: "1618282800")
     end

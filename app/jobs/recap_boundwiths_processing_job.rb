@@ -5,34 +5,21 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
   def perform(dump)
     @dump = dump
 
-    # Extract boundwith from all dump files, process, and create new dump file
-    dump_file = process_boundwiths
-
-    # Add new dump file that's just all the boundwiths
-    dump.dump_files << dump_file
-    dump.save
-
+    # Extract boundwith from all dump files, process, and save in temp file
+    process_boundwiths
     # Transfer it to S3.
-    RecapTransferJob.perform_later(dump_file)
+    RecapTransferJob.perform_now(tempfile.path)
+    # Return the output file path
+    tempfile.path
   end
 
   private
 
-    # @return [DumpFile]
     def process_boundwiths
-      # Create a new dump file to store boundwiths
-      boundwiths_dump_file = DumpFile.create(dump_file_type: dump_file_type)
-
-      # Rename dump file
-      boundwiths_dump_file.path = transform_file_name(boundwiths_dump_file.path, dump.dump_files.first.path)
-
       # Cache boundwith records from dump files
       boundwith_records.each(&:cache)
-
       # Save processed boundwith records in the dump file
-      write_records({ "boundwiths" => find_related }, boundwiths_dump_file.path)
-
-      boundwiths_dump_file
+      write_records("boundwiths" => find_related)
     end
 
     # Extract boundwith records from dumpfiles
@@ -45,11 +32,6 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
           scsb_record
         end.values
       end.flatten.compact
-    end
-
-    # @return [DumpFileType]
-    def dump_file_type
-      DumpFileType.find_by(constant: "RECAP_RECORDS")
     end
 
     # Find related host and constiuent records and add
@@ -86,12 +68,19 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
       grouped_records.values.flatten.compact
     end
 
-    # Rename boundwith dump file default name using
+    # Generate boundwith dump file name using
     # existing dump file name as a template.
     # @return [String]
-    def transform_file_name(path, template_path)
-      basename = File.basename(template_path)
-      basepath = File.dirname(path)
-      File.join(basepath, basename.gsub(/new_[0-9]*/, 'boundwiths'))
+    def boundwiths_file_name
+      basename = File.basename(dump.dump_files.first.path)
+      basename.gsub(/new_[0-9]*/, 'boundwiths')
+    end
+
+    def tempfile
+      @tempfile ||= begin
+        basename = File.basename(boundwiths_file_name).split(".")
+        extensions = "." + basename[1..-1].join(".")
+        Tempfile.new([basename[0], extensions])
+      end
     end
 end
