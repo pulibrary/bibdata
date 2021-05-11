@@ -54,8 +54,16 @@ RSpec.describe RecapBoundwithsProcessingJob do
       # Updated records and records retrieved from the Alma API are cached
       expect(CachedMarcRecord.all.count).to eq 7
 
-      # File transferred to S3
+      # File is transferred to S3
       expect(RecapTransferJob).to have_received(:perform_now)
+    end
+
+    context "with a dump that has no boundwiths" do
+      it "does not transfer a file to S3" do
+        dump = FactoryBot.create(:recap_incremental_dump_no_boundwiths)
+        described_class.perform_now(dump)
+        expect(RecapTransferJob).not_to have_received(:perform_now)
+      end
     end
   end
 end
