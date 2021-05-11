@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe RecapDumpFileProcessingJob do
+  before do
+    allow(RecapTransferJob).to receive(:perform_now)
+  end
+
   describe ".perform" do
     let(:dump_file) { FactoryBot.create(:recap_incremental_dump_file) }
     let(:fixture_file) { "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz" }
@@ -14,10 +18,10 @@ RSpec.describe RecapDumpFileProcessingJob do
     end
 
     it "processes a dump file, converting all the MARC records for SCSB" do
-      described_class.perform_now(dump_file)
+      output_file_path = described_class.perform_now(dump_file)
 
       # Unzip it, get the MARC-XML
-      records = dump_file_to_marc(path: dump_file.path)
+      records = dump_file_to_marc(path: output_file_path)
       record = records[0]
 
       # Requirements documentation:
@@ -45,20 +49,19 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(record["876"]["k"]).to eq "recap"
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
-    end
 
-    it "enqueues a recap transfer job" do
-      expect { described_class.perform_now(dump_file) }.to enqueue_job(RecapTransferJob).once
+      # File transferred to S3
+      expect(RecapTransferJob).to have_received(:perform_now)
     end
 
     context "with a dumpfile that contains boundwiths" do
       let(:fixture_file) { "boundwiths.tar.gz" }
 
       it "does not process boundwith records" do
-        described_class.perform_now(dump_file)
+        output_file_path = described_class.perform_now(dump_file)
 
         # Unzip it, get the MARC-XML
-        records = dump_file_to_marc(path: dump_file.path)
+        records = dump_file_to_marc(path: output_file_path)
         expect(records.count).to eq 1
       end
     end
