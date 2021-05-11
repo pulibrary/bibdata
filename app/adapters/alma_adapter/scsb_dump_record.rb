@@ -92,8 +92,9 @@ class AlmaAdapter
       end
     end
 
-    # 852/866/867/868 fields which have a subfield "8" are all copied from
-    # holdings. Create an array of faux AlmaHoldings from them.
+    # 852/866/867/868 fields which have a subfield "8" (holding_id)
+    # are all copied from holdings. Create an array of faux
+    # AlmaHoldings from them.
     def holdings
       holding_fields_by_id.map do |holding_id, fields|
         holding_record = MARC::Record.new
