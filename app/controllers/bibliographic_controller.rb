@@ -34,7 +34,7 @@ class BibliographicController < ApplicationController
     handle_alma_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
   end
 
-  # Returns availability for a single ID
+  # Returns availability for multiple IDs
   # Client: This endpoint is used by orangelight to render status on the catalog
   #   search results page
   def availability_many
