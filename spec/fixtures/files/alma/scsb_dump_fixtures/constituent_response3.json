@@ -1,0 +1,140 @@
+{
+    "bib": [
+        {
+            "mms_id": "9929455773506421",
+            "record_format": "marc21",
+            "linked_record_id": {
+                "value": null,
+                "type": null
+            },
+            "title": "Das ewige rätsel; roman,",
+            "author": "Schoeppl, Mizzi,",
+            "issn": null,
+            "isbn": null,
+            "network_number": [
+                "(NjP)2945577-princetondb",
+                "2945577",
+                "(OCoLC)ocm43257627"
+            ],
+            "place_of_publication": "Breslau,",
+            "date_of_publication": "1920]",
+            "holdings": {
+                "value": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9929455773506421/holdings"
+            },
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "last_modified_by": "940000258",
+            "last_modified_date": "2021-03-22Z",
+            "suppress_from_publishing": "false",
+            "suppress_from_external_search": "false",
+            "sync_with_oclc": "BIBS",
+            "sync_with_libraries_australia": "NONE",
+            "originating_system": "ILS",
+            "originating_system_id": "2945577-princetondb",
+            "cataloging_level": {
+                "value": "00",
+                "desc": "Default Level"
+            },
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00817cam a22002415  4500</leader><controlfield tag=\"001\">9929455773506421</controlfield><controlfield tag=\"005\">20210322111457.0</controlfield><controlfield tag=\"008\">000111s1920    gw            000 1 ger d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)ocm43257627</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"9\">CPH6727TS</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">2945577</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP)2945577-princetondb</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">PUL</subfield><subfield code=\"c\">PUL</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Schoeppl, Mizzi,</subfield><subfield code=\"d\">1895-</subfield></datafield><datafield ind1=\"0\" ind2=\"4\" tag=\"245\"><subfield code=\"a\">Das ewige rätsel;</subfield><subfield code=\"b\">roman,</subfield><subfield code=\"c\">von Oswald Strehlen [pseud.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">Breslau,</subfield><subfield code=\"c\">1920]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">128 p.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"490\"><subfield code=\"a\">Illustrierte grossstadt-romane.</subfield><subfield code=\"v\">XXXIX</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">No. 1 of a volume of pamphlets.</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Fiction.</subfield><subfield code=\"2\">lcgft</subfield><subfield code=\"0\">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"773\"><subfield code=\"a\">Host bibliographic record for boundwith item barcode 32101066958685</subfield><subfield code=\"w\">99121886293506421</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"911\"><subfield code=\"a\">20000402</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"945\"><subfield code=\"a\">F</subfield><subfield code=\"b\">1</subfield><subfield code=\"c\">3488.93344.333</subfield></datafield></record>"
+            ],
+            "requests": {
+                "value": 0,
+                "link": null
+            },
+            "link": null
+        },
+        {
+            "mms_id": "9929455783506421",
+            "record_format": "marc21",
+            "linked_record_id": {
+                "value": null,
+                "type": null
+            },
+            "title": "Suchende seelen;",
+            "author": "Schoeppl, Mizzi,",
+            "issn": null,
+            "isbn": null,
+            "network_number": [
+                "(NjP)2945578-princetondb",
+                "2945578",
+                "(OCoLC)ocm43257631"
+            ],
+            "place_of_publication": "Leipzig,",
+            "date_of_publication": "1920]",
+            "holdings": {
+                "value": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9929455783506421/holdings"
+            },
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "last_modified_by": "940000258",
+            "last_modified_date": "2021-03-22Z",
+            "suppress_from_publishing": "false",
+            "suppress_from_external_search": "false",
+            "sync_with_oclc": "BIBS",
+            "sync_with_libraries_australia": "NONE",
+            "originating_system": "ILS",
+            "originating_system_id": "2945578-princetondb",
+            "cataloging_level": {
+                "value": "00",
+                "desc": "Default Level"
+            },
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00808cam a22002415  4500</leader><controlfield tag=\"001\">9929455783506421</controlfield><controlfield tag=\"005\">20210322111303.0</controlfield><controlfield tag=\"008\">000111s1920    gw            000 1 ger d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)ocm43257631</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"9\">CPH6728TS</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">2945578</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP)2945578-princetondb</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">PUL</subfield><subfield code=\"c\">PUL</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Schoeppl, Mizzi,</subfield><subfield code=\"d\">1895-</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Suchende seelen;</subfield><subfield code=\"c\">roman von Oswald Strehlen [pseud.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">Leipzig,</subfield><subfield code=\"c\">1920]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">128 p.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"490\"><subfield code=\"a\">Illustrierte grossstadt-romane.</subfield><subfield code=\"v\">XXXXIII</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">No. 2 of a volume of pamphlets.</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Fiction.</subfield><subfield code=\"2\">lcgft</subfield><subfield code=\"0\">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"773\"><subfield code=\"a\">Host bibliographic record for boundwith item barcode 32101066958685</subfield><subfield code=\"w\">99121886293506421</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"911\"><subfield code=\"a\">20000402</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"945\"><subfield code=\"a\">F</subfield><subfield code=\"b\">1</subfield><subfield code=\"c\">3488.93344.333</subfield></datafield></record>"
+            ],
+            "requests": {
+                "value": 0,
+                "link": null
+            },
+            "link": null
+        },
+        {
+            "mms_id": "9929455793506421",
+            "record_format": "marc21",
+            "linked_record_id": {
+                "value": null,
+                "type": null
+            },
+            "title": "Zwischenakt; sittenroman,",
+            "author": "Schoeppl, Mizzi,",
+            "issn": null,
+            "isbn": null,
+            "network_number": [
+                "(NjP)2945579-princetondb",
+                "2945579",
+                "(OCoLC)ocm43257636"
+            ],
+            "place_of_publication": "Dresden",
+            "date_of_publication": "[c1921]",
+            "holdings": {
+                "value": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9929455793506421/holdings"
+            },
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "last_modified_by": "940000258",
+            "last_modified_date": "2021-03-22Z",
+            "suppress_from_publishing": "false",
+            "suppress_from_external_search": "false",
+            "sync_with_oclc": "BIBS",
+            "sync_with_libraries_australia": "NONE",
+            "originating_system": "ILS",
+            "originating_system_id": "2945579-princetondb",
+            "cataloging_level": {
+                "value": "00",
+                "desc": "Default Level"
+            },
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00801cam a22002415  4500</leader><controlfield tag=\"001\">9929455793506421</controlfield><controlfield tag=\"005\">20210322111414.0</controlfield><controlfield tag=\"008\">000111s1921    gw            000 1 ger d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)ocm43257636</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"9\">CPH6729TS</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">2945579</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP)2945579-princetondb</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">PUL</subfield><subfield code=\"c\">PUL</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Schoeppl, Mizzi,</subfield><subfield code=\"d\">1895-</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Zwischenakt;</subfield><subfield code=\"b\">sittenroman,</subfield><subfield code=\"c\">von Oswald Strehlen [pseud.]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">Dresden</subfield><subfield code=\"c\">[c1921]</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">80 p.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"490\"><subfield code=\"a\">Mascotte-bücher.</subfield><subfield code=\"v\">51</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"590\"><subfield code=\"a\">No. 3 of a volume of pamphlets.</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Fiction.</subfield><subfield code=\"2\">lcgft</subfield><subfield code=\"0\">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"773\"><subfield code=\"a\">Host bibliographic record for boundwith item barcode 32101066958685</subfield><subfield code=\"w\">99121886293506421</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"911\"><subfield code=\"a\">20000402</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"945\"><subfield code=\"a\">F</subfield><subfield code=\"b\">1</subfield><subfield code=\"c\">3488.93344.333</subfield></datafield></record>"
+            ],
+            "requests": {
+                "value": 0,
+                "link": null
+            },
+            "link": null
+        }
+    ],
+    "total_record_count": 3
+}

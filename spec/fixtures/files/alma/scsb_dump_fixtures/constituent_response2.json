@@ -1,0 +1,42 @@
+{
+    "bib": [
+        {
+            "mms_id": "9962645993506421",
+            "record_format": "marc21",
+            "linked_record_id": {
+                "value": null,
+                "type": null
+            },
+            "title": "Bidāyat al-hīdāyah.",
+            "author": "Ghazzālī,",
+            "issn": null,
+            "isbn": null,
+            "network_number": [
+                "(NjP)6264599-princetondb",
+                "6264599"
+            ],
+            "date_of_publication": "1600",
+            "holdings": {
+                "value": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9962645993506421/holdings"
+            },
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "suppress_from_publishing": "false",
+            "suppress_from_external_search": "false",
+            "sync_with_oclc": "NONE",
+            "sync_with_libraries_australia": "NONE",
+            "originating_system": "ILS",
+            "originating_system_id": "6264599-princetondb",
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00995ctmaa22002052a 4500</leader>\n    <controlfield tag=\"001\">9962645993506421</controlfield>\n    <controlfield tag=\"005\">20200927194846.0</controlfield>\n    <controlfield tag=\"008\">851121q16001699xx            000 0 ara d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">6264599</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)6264599-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">PUL</subfield>\n      <subfield code=\"c\">PUL</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"066\">\n      <subfield code=\"c\">(3</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\" \" tag=\"100\">\n      <subfield code=\"a\">Ghazzālī,</subfield>\n      <subfield code=\"d\">1058-1111.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/n82097778</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Bidāyat al-hīdāyah.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">fol. 1b-20a. 192 x 135; 168 x 90 mm. 21 lin. Jumādá I, 1087.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">Brockelmann, GAL, I, 540 (no. 26); S I, 746; Bouyges, Essai de chronologie des œuvres de al-Ghazali, no. 35.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">Incip.: ... الحمد لله حق حمده ... اما بعد فاعلم اىها الحرىص</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Religious life</subfield>\n      <subfield code=\"x\">Islam</subfield>\n      <subfield code=\"v\">Early works to 1800.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh86008165</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Islam</subfield>\n      <subfield code=\"x\">Customs and practices</subfield>\n      <subfield code=\"v\">Early works to 1800.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh2008104961</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"7\" tag=\"655\">\n      <subfield code=\"a\">Manuscripts, Arabic</subfield>\n      <subfield code=\"y\">17th century.</subfield>\n      <subfield code=\"2\">lcsh</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\" \" tag=\"773\">\n      <subfield code=\"t\">[Bidāyat al-hīdāyah ... etc.]</subfield>\n      <subfield code=\"w\">99116515383506421</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9962645993506421</subfield><subfield code=\"8\">2264725660006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">rare</subfield><subfield code=\"c\">Manuscripts South East</subfield><subfield code=\"d\">Islamic Manuscripts, Garrett no. 5931Y</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">hsvm</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Special Collections</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">99116515383506421</subfield><subfield code=\"8\">22129945300006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">rare</subfield><subfield code=\"c\">Manuscripts South East</subfield><subfield code=\"d\">Islamic Manuscripts, Garrett no. 5931Y</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">hsvm</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">2</subfield><subfield code=\"q\">Special Collections</subfield></datafield></record>"
+            ],
+            "requests": {
+                "value": 0,
+                "link": null
+            },
+            "link": null
+        }
+    ],
+    "total_record_count": 1
+}

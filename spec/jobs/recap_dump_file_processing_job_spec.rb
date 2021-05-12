@@ -1,18 +1,27 @@
 require 'rails_helper'
 
 RSpec.describe RecapDumpFileProcessingJob do
-  describe ".perform" do
-    it "processes a dump file, converting all the MARC records for SCSB" do
-      dump_file = FactoryBot.create(:recap_incremental_dump_file)
-      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", "1.xml.tar.gz"), dump_file.path)
+  before do
+    allow(RecapTransferJob).to receive(:perform_now)
+  end
 
-      described_class.perform_now(dump_file)
+  describe ".perform" do
+    let(:dump_file) { FactoryBot.create(:recap_incremental_dump_file) }
+    let(:fixture_file) { "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz" }
+
+    before do
+      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", fixture_file), dump_file.path)
+    end
+
+    after do
+      FileUtils.rm_rf Dir.glob("#{MARC_LIBERATION_CONFIG['data_dir']}/*")
+    end
+
+    it "processes a dump file, converting all the MARC records for SCSB" do
+      output_file_path = described_class.perform_now(dump_file)
 
       # Unzip it, get the MARC-XML
-      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(dump_file.path))
-      tar_extract.tap(&:rewind)
-      content = StringIO.new(tar_extract.first.read)
-      records = MARC::XMLReader.new(content, external_encoding: 'UTF-8').to_a
+      records = dump_file_to_marc(path: output_file_path)
       record = records[0]
 
       # Requirements documentation:
@@ -41,7 +50,20 @@ RSpec.describe RecapDumpFileProcessingJob do
 
       expect(record.leader).to eq "01334cam a2200361 a 4500"
 
-      expect(RecapTransferJob).to have_been_enqueued.once
+      # File is transferred to S3
+      expect(RecapTransferJob).to have_received(:perform_now)
+    end
+
+    context "with a dumpfile that contains boundwiths" do
+      let(:fixture_file) { "boundwiths.tar.gz" }
+
+      it "does not process boundwith records" do
+        output_file_path = described_class.perform_now(dump_file)
+
+        # Unzip it, get the MARC-XML
+        records = dump_file_to_marc(path: output_file_path)
+        expect(records.count).to eq 1
+      end
     end
   end
 end
