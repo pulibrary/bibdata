@@ -19,6 +19,9 @@ class ApplicationController < ActionController::Base
     elsif exception.is_a?(Alma::StandardError)
       Rails.logger.error "HTTP 400. #{message} #{exception}"
       head :bad_request
+    elsif exception.is_a?(Net::ReadTimeout)
+      Rails.logger.error "HTTP 504. #{message} #{exception}"
+      head :gateway_timeout
     else
       Rails.logger.error "HTTP 500. #{message} #{exception}"
       head :internal_server_error
