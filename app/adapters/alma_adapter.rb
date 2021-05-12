@@ -58,7 +58,7 @@ class AlmaAdapter
 
   # Returns availability for a list of bib ids
   def get_availability_many(ids:)
-    options = { timeout: 1 }
+    options = { timeout: 20 }
     AlmaAdapter::Execute.call(options: options, message: "Find bibs #{ids.join(',')}") do
       bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
       return nil if bibs.count == 0
