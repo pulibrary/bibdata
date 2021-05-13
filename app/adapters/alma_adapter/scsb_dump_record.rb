@@ -50,7 +50,7 @@ class AlmaAdapter
     # @return [Array<AlmaAdapter::ScsbDumpRecord>]
     def constituent_records(skip_ids: [])
       if constituent_ids.present?
-        records_from_alma_or_cache(constituent_ids - skip_ids)
+        records_from_cache(constituent_ids - skip_ids)
       else
         []
       end
@@ -75,7 +75,7 @@ class AlmaAdapter
     def host_record
       @host_record ||=
         begin
-          records_from_alma_or_cache([host_id]).first if host_id
+          records_from_cache([host_id]).first if host_id
         end
     end
 
@@ -116,24 +116,26 @@ class AlmaAdapter
       # Retrieve records by id from the local cache or from the Alma API.
       # @param ids [Array<String>] bibids
       # @return [Array<AlmaAdapter::ScsbDumpRecord>]
-      def records_from_alma_or_cache(ids)
+      def records_from_cache(ids)
         cached_records = CachedMarcRecord.where(bib_id: ids)
         cached_records = cached_records.map { |r| AlmaAdapter::ScsbDumpRecord.new(marc_record: r.parsed_record) }
         cached_ids = cached_records.map(&:id)
         non_cached_ids = ids - cached_ids
 
+        # rubocop:disable Style/GuardClause
         if non_cached_ids.present?
-          non_cached_records = AlmaAdapter.new.get_bib_records(non_cached_ids)
-          non_cached_records = non_cached_records.map { |r| AlmaAdapter::ScsbDumpRecord.new(marc_record: r) }
-
-          # Cache records retrieved from Alma
-          non_cached_records.each(&:cache)
-
-          # Return both cached and non-cached records
-          cached_records.concat(non_cached_records)
+          raise StandardError, cache_error_message(non_cached_ids)
         else
           cached_records
         end
+        # rubocop:enable Style/GuardClause
+      end
+
+      def cache_error_message(ids)
+        "Records with mmsids not found in the cache: #{ids.join(', ')}. " \
+          "Create a set of the missing records in Alma, publish using the " \
+          "DRDS ReCAP Records publishing profile, and load into the cache " \
+          "using the `cache_file` rake task"
       end
 
       def alma_marc_record
