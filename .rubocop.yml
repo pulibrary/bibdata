@@ -50,6 +50,11 @@ Lint/HandleExceptions:
     - 'lib/tasks/spec.rake'
     - 'marc_to_solr/lib/location_extract.rb'
 
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/db/seeds_spec.rb'
+    - 'spec/marc_to_solr/**/*'
+
 RSpec/ExampleLength:
   Enabled: false
 
