@@ -179,6 +179,18 @@ RSpec.describe "Bibliographic Gets", type: :request do
     end
   end
 
+  context "when an API call times out" do
+    let(:adapter) { AlmaAdapter.new }
+    before do
+      allow(AlmaAdapter).to receive(:new).and_return(adapter)
+      allow(adapter).to receive(:get_availability_many).and_raise(Net::ReadTimeout)
+    end
+    it "Returns proper status code" do
+      get "/bibliographic/availability.json?bib_ids=9918888023506421,9929723813506421,998968313506421"
+      expect(response.status).to be(504)
+    end
+  end
+
   describe "GET /bibliographic/430472/items" do
     it "Properly encoded item records" do
       pending "Replace with Alma"

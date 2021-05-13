@@ -58,12 +58,15 @@ class AlmaAdapter
 
   # Returns availability for a list of bib ids
   def get_availability_many(ids:)
-    bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    return nil if bibs.count == 0
-    availability = bibs.each_with_object({}) do |bib, acc|
-      acc[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
+    options = { timeout: 20 }
+    AlmaAdapter::Execute.call(options: options, message: "Find bibs #{ids.join(',')}") do
+      bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
+      return nil if bibs.count == 0
+      availability = bibs.each_with_object({}) do |bib, acc|
+        acc[bib.id] = AvailabilityStatus.new(bib: bib).bib_availability
+      end
+      availability
     end
-    availability
   rescue Alma::StandardError => e
     handle_alma_error(client_error: e)
   end
@@ -152,7 +155,8 @@ class AlmaAdapter
   end
 
   def find_user(patron_id)
-    alma_preserve_exception do
+    options = { enable_loggable: true }
+    AlmaAdapter::Execute.call(options: options, message: "Find user #{patron_id}") do
       return Alma::User.find(patron_id)
     rescue Alma::StandardError => e
       # The Alma gem throws "not found" for all errors but only error code 401861
@@ -206,23 +210,5 @@ class AlmaAdapter
       errors = build_alma_errors(from: client_error)
       raise errors.first if errors.first.is_a?(Alma::PerSecondThresholdError)
       raise client_error
-    end
-
-    # In some instances the Alma gem hides the original exception and returns a string
-    # (rather than a hash) with the error information. This beheavior prevents us from
-    # handling PER_SECOND_THRESHOLD errors. In those instances we use this method to
-    # force the Alma gem to preserve the original exception.
-    #
-    # Notice that this method is duplicated in availability_status.rb. At some point
-    # we might want to refactor this and have all calls to the Alma gem come through
-    # alma_adapter.rb and remove the duplicate.
-    def alma_preserve_exception
-      cached_value = Alma.configuration.enable_loggable
-      begin
-        Alma.configure { |config| config.enable_loggable = true }
-        yield
-      ensure
-        Alma.configure { |config| config.enable_loggable = cached_value }
-      end
     end
 end
