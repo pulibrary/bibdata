@@ -38,4 +38,24 @@ The staging catalog uses http://lib-solr8-staging.princeton.edu:8983/solr/catalo
 
 ## Creating a Full Index
 
-### 
+### Select a collection
+
+Tunnel to the solr admin panel using the cap task in pulibrary/pul_solr:
+
+$ bundle exec cap solr8-staging solr:console
+
+Click the 'collections' menu item and consult the `catalog-alma-staging` alias to see which collection is currently in use. Delete the other one and recreate it with the same settings.
+
+Create an alias called `catalog-alma-staging-reindex` and point it to the new collection.
+
+### Index Princeton's MARC records (Alma)
+
+SSH to a bibdata machine and start a tmux session
+
+as deploy user, in `/opt/marc_liberaton/current`
+
+$ cp marc_to_solr/translation_maps/holding_library.rb.tmpl marc_to_solr/translation_maps/holding_library.rb
+
+$ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1
+
+This step takes about 21 hours
