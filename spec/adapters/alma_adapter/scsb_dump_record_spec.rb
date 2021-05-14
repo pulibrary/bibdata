@@ -6,6 +6,11 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
     MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
   end
 
+  let(:host_record_uncached) do
+    file = file_fixture("alma/scsb_dump_fixtures/host-id-not-in-cache.xml").to_s
+    MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
+  end
+
   let(:constituent_record) do
     file = file_fixture("alma/scsb_dump_fixtures/constituent.xml").to_s
     MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
@@ -79,58 +84,41 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
     end
   end
 
-  describe "#host_record" do
+  context "with methods that make use of cached marc records" do
     before do
-      stub_alma_ids(ids: "99116515383506421", status: 200, fixture: "scsb_dump_fixtures/host_response")
+      PublishingJobFileService.new(path: "spec/fixtures/files/alma/scsb_dump_fixtures/cacheable_scsb_records.tar.gz").cache
     end
-    it "retrieves a host record from the Alma API" do
-      record = described_class.new(marc_record: constituent_record).host_record
-      expect(record.id).to eq "99116515383506421"
-    end
-  end
 
-  describe "#constituent_record" do
-    context "with no skipped records" do
-      let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421", "9929455773506421"] }
-
-      before do
-        stub_alma_ids(ids: missing_constituent_ids, status: 200, fixture: "scsb_dump_fixtures/constituent_response3")
-      end
-
-      it "retrieves all constituent records from the Alma API" do
-        records = described_class.new(marc_record: host_record).constituent_records
-        expect(records.map { |r| r.marc_record["001"].value }).to contain_exactly(*missing_constituent_ids)
+    describe "#host_record" do
+      it "retrieves a host record from the cache" do
+        record = described_class.new(marc_record: constituent_record).host_record
+        expect(record.id).to eq "99116515383506421"
       end
     end
 
-    context "with skipped records" do
-      let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421"] }
+    describe "#constituent_record" do
+      context "with no skipped records" do
+        let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421", "9929455773506421"] }
 
-      before do
-        stub_alma_ids(ids: missing_constituent_ids, status: 200, fixture: "scsb_dump_fixtures/constituent_response1")
+        it "retrieves all constituent records from the cache" do
+          records = described_class.new(marc_record: host_record).constituent_records
+          expect(records.map { |r| r.marc_record["001"].value }).to contain_exactly(*missing_constituent_ids)
+        end
       end
 
-      it "retrieves non-skipped constituent records from the Alma API" do
-        records = described_class.new(marc_record: host_record).constituent_records(skip_ids: ["9929455773506421"])
-        expect(records.map { |r| r.marc_record["001"].value }).to contain_exactly(*missing_constituent_ids)
+      context "with skipped records" do
+        let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421"] }
+
+        it "retrieves non-skipped constituent records from the cache" do
+          records = described_class.new(marc_record: host_record).constituent_records(skip_ids: ["9929455773506421"])
+          expect(records.map { |r| r.marc_record["001"].value }).to contain_exactly(*missing_constituent_ids)
+        end
       end
     end
 
-    context "with cached records" do
-      let(:constituent_record) do
-        file = file_fixture("alma/scsb_dump_fixtures/constituent2.xml").to_s
-        MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
-      end
-      let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421"] }
-
-      before do
-        stub_alma_ids(ids: missing_constituent_ids, status: 200, fixture: "scsb_dump_fixtures/constituent_response1")
-      end
-
-      it "retrieves non-cached constituent records from the Alma API and cached record from cache" do
-        described_class.new(marc_record: constituent_record).cache
-        records = described_class.new(marc_record: host_record).constituent_records
-        expect(records.map { |r| r.marc_record["001"].value }).to contain_exactly(*missing_constituent_ids.append("9929455773506421"))
+    context "with records missing from the cache" do
+      it "raises an exception" do
+        expect { described_class.new(marc_record: host_record_uncached).constituent_records }.to raise_error(StandardError, /mmsids not found in the cache: 9998765433506421, 9912345673506421/)
       end
     end
   end
