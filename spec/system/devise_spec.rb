@@ -4,12 +4,10 @@ require 'fileutils'
 RSpec.describe 'Devise restricts features for unauthenticated users', type: :system, js: true do
   before(:all) do
     dump_test_bib_ids('./spec/fixtures/sample_bib_ids.txt')
-    system 'rake db:seed'
   end
 
   after(:all) do
     Event.destroy_all
-    DumpFileType.destroy_all
     Locations::Library.destroy_all
     Locations::HoldingLocation.destroy_all
     Locations::DeliveryLocation.destroy_all
