@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Dump, type: :model do
-  before(:all) { system 'rake db:seed' }
-  after(:all) { DumpFileType.destroy_all }
-
   let(:partner_recap_dump_type) { DumpType.find_by(constant: 'PARTNER_RECAP') }
   let(:log_file_type) { DumpFileType.find_by(constant: 'LOG_FILE') }
   let(:recap_record_file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
