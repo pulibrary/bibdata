@@ -89,6 +89,15 @@ task :delete_bib do
   end
 end
 
+desc "Cache a tar.gz MARC XML file output from a publishing job"
+task cache_file: :environment do
+  if ENV["FILE"]
+    PublishingJobFileService.new(path: ENV["FILE"]).cache
+  else
+    puts "Please provide a path to a tar.gz MARC XML file (FILE=####)"
+  end
+end
+
 namespace :liberate do
   desc "Index latest full record dump against SET_URL"
   task full: :environment do

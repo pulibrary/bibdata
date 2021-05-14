@@ -2,18 +2,20 @@ require 'rails_helper'
 
 RSpec.describe RecapBoundwithsProcessingJob do
   let(:boundwith_ids_in_dumpfile) { ["99121886293506421", "9929455773506421", "9962646063506421"] }
-  let(:missing_constituent_ids_1) { ["9929455783506421", "9929455793506421"] }
+  let(:missing_constituent_ids) { ["9929455783506421", "9929455793506421", "9962645993506421"] }
   let(:missing_host_ids) { ["99116515383506421"] }
-  let(:missing_constituent_ids_2) { ["9962645993506421"] }
 
   before do
-    stub_alma_ids(ids: missing_constituent_ids_1, status: 200, fixture: "scsb_dump_fixtures/constituent_response1")
-    stub_alma_ids(ids: missing_host_ids, status: 200, fixture: "scsb_dump_fixtures/host_response")
-    stub_alma_ids(ids: missing_constituent_ids_2, status: 200, fixture: "scsb_dump_fixtures/constituent_response2")
     allow(RecapTransferJob).to receive(:perform_now)
   end
 
   describe ".perform" do
+    before do
+      # Cache related host and constituent records. Bibdata does not retrieve
+      # these from the Alma API.
+      PublishingJobFileService.new(path: "spec/fixtures/files/alma/scsb_dump_fixtures/cacheable_scsb_records.tar.gz").cache
+    end
+
     it "creates a new boundwith dump file and caches marc records" do
       dump = FactoryBot.create(:recap_incremental_dump)
       boundwiths_file_path = described_class.perform_now(dump)
@@ -24,8 +26,7 @@ RSpec.describe RecapBoundwithsProcessingJob do
       records = dump_file_to_marc(path: boundwiths_file_path)
 
       ids = boundwith_ids_in_dumpfile +
-            missing_constituent_ids_1 +
-            missing_constituent_ids_2 +
+            missing_constituent_ids +
             missing_host_ids
 
       expect(records.map { |r| r["001"].value }).to contain_exactly(*ids)
