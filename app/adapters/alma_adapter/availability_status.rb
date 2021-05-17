@@ -45,7 +45,7 @@ class AlmaAdapter
       status = {
         on_reserve: "N",
         location: holding["library_code"] + "$" + holding["location_code"],
-        label: holding["location"],
+        label: holding_location_label(holding),
         status_label: status_label,
         copy_number: nil,
         cdl: false,
@@ -158,6 +158,11 @@ class AlmaAdapter
           end
         end
         cdl
+      end
+
+      # status label including library name and location in library
+      def holding_location_label(holding)
+        holding["library"].present? ? "#{holding['library']} - #{holding['location']}" : holding["location"]
       end
   end
 end
