@@ -6,6 +6,11 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
     MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
   end
 
+  let(:bad_host_record) do
+    file = file_fixture("alma/scsb_dump_fixtures/bad-host.xml").to_s
+    MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
+  end
+
   let(:host_record_uncached) do
     file = file_fixture("alma/scsb_dump_fixtures/host-id-not-in-cache.xml").to_s
     MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
@@ -13,6 +18,11 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
 
   let(:constituent_record) do
     file = file_fixture("alma/scsb_dump_fixtures/constituent.xml").to_s
+    MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
+  end
+
+  let(:bad_constituent_record) do
+    file = file_fixture("alma/scsb_dump_fixtures/bad-constituent.xml").to_s
     MARC::XMLReader.new(file, external_encoding: 'UTF-8').first
   end
 
@@ -58,12 +68,24 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
         expect(described_class.new(marc_record: constituent_record).constituent?).to be true
       end
     end
+
+    context "with a malformed constituent record" do
+      it "returns false" do
+        expect(described_class.new(marc_record: bad_constituent_record).constituent?).to be false
+      end
+    end
   end
 
   describe "#host?" do
     context "with a host record" do
       it "returns true" do
         expect(described_class.new(marc_record: host_record).host?).to be true
+      end
+    end
+
+    context "with a malformed host record" do
+      it "returns false" do
+        expect(described_class.new(marc_record: bad_host_record).host?).to be false
       end
     end
 
