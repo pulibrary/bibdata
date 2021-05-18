@@ -35,8 +35,11 @@ class AlmaAdapter
     # Tests if the record is a constituent record in a boundwith
     # @return [Boolean]
     def constituent?
-      return true if marc_record["773"]
-      false
+      if marc_record["773"] && marc_record["773"]["w"]
+        true
+      else
+        false
+      end
     end
 
     # Gets ids of a host record's constituent records from the 774 field.
@@ -59,8 +62,11 @@ class AlmaAdapter
     # Tests if the record is a host record in a boundwith
     # @return [Boolean]
     def host?
-      return true if marc_record["774"]
-      false
+      if marc_record["774"] && marc_record["774"]["w"]
+        true
+      else
+        false
+      end
     end
 
     # Gets id of a constituent record's host record from the 773 field.
