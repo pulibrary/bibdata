@@ -2,8 +2,6 @@ require 'json'
 
 module Scsb
   class PartnerUpdates
-    extend ActiveSupport::Concern
-
     def initialize(dump:, timestamp:)
       @dump = dump
       @s3_bucket = Scsb::S3Bucket.new
@@ -18,22 +16,22 @@ module Scsb
     end
 
     def process_partner_files
-      get_partner_updates
+      download_partner_updates
       process_partner_updates
       log_record_fixes
-      get_partner_deletes
+      download_partner_deletes
       process_partner_deletes
     end
 
     private
 
-      def get_partner_updates
+      def download_partner_updates
         prepare_directory
         file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/Incremental')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
-      def get_partner_deletes
+      def download_partner_deletes
         prepare_directory
         file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_DELETES'] || 'data-exports/PUL/Json/Incremental')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
@@ -56,7 +54,6 @@ module Scsb
         files = Dir.glob("#{@update_directory}/*.json")
         ids = []
         files.each do |file|
-          filename = File.basename(file, '.json')
           scsb_ids(file, ids)
           File.unlink(file)
         end

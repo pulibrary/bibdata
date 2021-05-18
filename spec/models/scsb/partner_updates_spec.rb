@@ -10,19 +10,20 @@ RSpec.describe Dump, type: :model do
   describe '#process_partner_files' do
     let(:update_directory_path) { 'spec/fixtures/scsb_updates/tmp' }
     it 'partner delete ids get added to dump object' do
-      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:get_partner_updates)
+      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:download_partner_updates)
       allow_any_instance_of(Scsb::PartnerUpdates).to receive(:process_partner_updates)
       allow_any_instance_of(Scsb::PartnerUpdates).to receive(:log_record_fixes)
-      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:get_partner_deletes)
+      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:download_partner_deletes)
       ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] = update_directory_path
       FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path)
       scsb_update.process_partner_files
       expect(dump.delete_ids).to eq(['SCSB-4884608', 'SCSB-9062868', 'SCSB-9068022',
                                      'SCSB-9068024', 'SCSB-9068025', 'SCSB-9068026'])
     end
+
     it 'partner updates attach recap marcxml and log files' do
-      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:get_partner_updates)
-      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:get_partner_deletes)
+      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:download_partner_updates)
+      allow_any_instance_of(Scsb::PartnerUpdates).to receive(:download_partner_deletes)
       allow_any_instance_of(Scsb::PartnerUpdates).to receive(:process_partner_deletes)
       ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] = update_directory_path
       FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path)

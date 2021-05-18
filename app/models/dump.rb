@@ -2,7 +2,6 @@
 require 'zip'
 require 'net/sftp'
 require 'date'
-require_relative './concerns/scsb_partner_updates'
 
 class Dump < ActiveRecord::Base
   belongs_to :event
