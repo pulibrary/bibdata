@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<record>
+  <leader>00428nam a2200109 i 4500</leader>
+  <controlfield tag="005">20210423111453.0</controlfield>
+  <controlfield tag="008">201202s2013    xx      r     000 0 eng d</controlfield>
+  <controlfield tag="001">99121886293506421</controlfield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Host bibliographic record for boundwith item barcode 32101066958685 :</subfield>
+    <subfield code="b">updated 4-23-21 11:14 AM</subfield>
+  </datafield>
+  <datafield tag="774" ind1="1" ind2=" ">
+    <subfield code="t">Suchende seelen;</subfield>
+    <subfield code="x">9929455783506421</subfield>
+  </datafield>
+  <datafield tag="774" ind1="1" ind2=" ">
+    <subfield code="t">Zwischenakt; sittenroman,</subfield>
+    <subfield code="x">9929455793506421</subfield>
+  </datafield>
+  <datafield tag="774" ind1="1" ind2=" ">
+    <subfield code="t">Das ewige rätsel; roman,</subfield>
+    <subfield code="x">9929455773506421</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-04-23 11:14:53 US/Eastern</subfield>
+    <subfield code="b">2020-12-02 21:30:29 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2="0">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">pa</subfield>
+    <subfield code="h">3488.93344.333</subfield>
+    <subfield code="8">22269289940006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2020-12-03 02:30:29</subfield>
+    <subfield code="8">22269289940006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcppa: RECAP</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22269289940006421</subfield>
+    <subfield code="a">23269289930006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-03 02:30:29</subfield>
+    <subfield code="p">32101066958685</subfield>
+    <subfield code="t">1</subfield>
+  </datafield>
+</record>
