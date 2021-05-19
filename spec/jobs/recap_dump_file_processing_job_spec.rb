@@ -10,11 +10,8 @@ RSpec.describe RecapDumpFileProcessingJob do
     let(:fixture_file) { "recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz" }
 
     before do
-      FileUtils.cp(Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", fixture_file), dump_file.path)
-    end
-
-    after do
-      FileUtils.rm_rf Dir.glob("#{MARC_LIBERATION_CONFIG['data_dir']}/*")
+      dump_file.path = Rails.root.join("spec", "fixtures", "files", "alma", "scsb_dump_fixtures", fixture_file)
+      dump_file.save
     end
 
     it "processes a dump file, converting all the MARC records for SCSB" do
