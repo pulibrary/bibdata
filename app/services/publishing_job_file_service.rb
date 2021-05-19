@@ -1,3 +1,4 @@
+require 'rubygems/package'
 class PublishingJobFileService
   attr_reader :path
   def initialize(path:)
