@@ -64,7 +64,7 @@ class AlmaAdapter
     end
 
     def recap_876_fields
-      return [] unless item.library == "recap"
+      return [] unless recap_item?
       [
         MARC::Subfield.new('h', recap_use_restriction),
         MARC::Subfield.new('x', group_designation),
@@ -135,13 +135,13 @@ class AlmaAdapter
     end
 
     def recap_customer_code
-      return unless item.library == "recap"
+      return unless recap_item?
       return "PG" if item.location[0].casecmp("x").zero?
       item.location.upcase
     end
 
     def recap_use_restriction
-      return unless item.library == "recap"
+      return unless recap_item?
       case item.location
       when *in_library_recap_groups
         "In Library Use"
@@ -151,13 +151,28 @@ class AlmaAdapter
     end
 
     def group_designation
-      return unless item.library == "recap"
+      return unless recap_item?
       case item.location
       when 'pa', 'gp', 'qk', 'pf'
         "Shared"
       when *(in_library_recap_groups + supervised_recap_groups + no_access_recap_groups)
         "Private"
       end
+    end
+
+    def recap_item?
+      all_recap_groups.include?(holding_location)
+    end
+
+    def all_recap_groups
+      default_recap_groups +
+        in_library_recap_groups +
+        supervised_recap_groups +
+        no_access_recap_groups
+    end
+
+    def default_recap_groups
+      ["pa", "gp", "qk", "pf"]
     end
 
     def in_library_recap_groups
