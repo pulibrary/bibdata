@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RecapDumpFileProcessingJob do
   before do
-    allow(RecapTransferJob).to receive(:perform_now)
+    allow(RecapTransferService).to receive(:transfer).and_return(true)
   end
 
   describe ".perform" do
@@ -51,7 +51,7 @@ RSpec.describe RecapDumpFileProcessingJob do
       expect(record.leader).to eq "01334cam a2200361 a 4500"
 
       # File is transferred to S3
-      expect(RecapTransferJob).to have_received(:perform_now)
+      expect(RecapTransferService).to have_received(:transfer)
     end
 
     context "with a dumpfile that contains boundwiths" do
@@ -63,6 +63,16 @@ RSpec.describe RecapDumpFileProcessingJob do
         # Unzip it, get the MARC-XML
         records = dump_file_to_marc(path: output_file_path)
         expect(records.count).to eq 1
+      end
+    end
+
+    context "when there is a problem uploading a file to s3" do
+      before do
+        allow(RecapTransferService).to receive(:transfer).and_return(false)
+      end
+
+      it "raises an error" do
+        expect { described_class.perform_now(dump_file) }.to raise_error(StandardError, /Error uploading file/)
       end
     end
   end

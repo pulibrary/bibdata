@@ -6,7 +6,7 @@ RSpec.describe RecapBoundwithsProcessingJob do
   let(:missing_host_ids) { ["99116515383506421"] }
 
   before do
-    allow(RecapTransferJob).to receive(:perform_now)
+    allow(RecapTransferService).to receive(:transfer).and_return(true)
   end
 
   describe ".perform" do
@@ -56,14 +56,25 @@ RSpec.describe RecapBoundwithsProcessingJob do
       expect(CachedMarcRecord.all.count).to eq 7
 
       # File is transferred to S3
-      expect(RecapTransferJob).to have_received(:perform_now)
+      expect(RecapTransferService).to have_received(:transfer)
     end
 
     context "with a dump that has no boundwiths" do
       it "does not transfer a file to S3" do
         dump = FactoryBot.create(:recap_incremental_dump_no_boundwiths)
         described_class.perform_now(dump)
-        expect(RecapTransferJob).not_to have_received(:perform_now)
+        expect(RecapTransferService).not_to have_received(:transfer)
+      end
+    end
+
+    context "when there is a problem uploading a file to s3" do
+      before do
+        allow(RecapTransferService).to receive(:transfer).and_return(false)
+      end
+
+      it "raises an error" do
+        dump = FactoryBot.create(:recap_incremental_dump)
+        expect { described_class.perform_now(dump) }.to raise_error(StandardError, /Error uploading file/)
       end
     end
   end

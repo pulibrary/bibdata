@@ -14,9 +14,8 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     # Save the file.
     write_records(records)
     # Transfer it to S3.
-    RecapTransferJob.perform_now(tempfile.path)
-    # Return the output file path
-    tempfile.path
+    return tempfile.path if RecapTransferService.transfer(file_path: tempfile.path)
+    raise(StandardError, "Error uploading file to S3: #{tempfile.path}")
   end
 
   private
