@@ -77,7 +77,8 @@ class LocationDataService
   def populate_partners_holding_locations
     partners_locations = [
       { code: "scsbcul", label: "" },
-      { code: "scsbnypl", label: "" }
+      { code: "scsbnypl", label: "" },
+      { code: "scsbhl", label: "" }
     ]
     partners_locations.each do |p|
       Locations::HoldingLocation.new do |location_record|

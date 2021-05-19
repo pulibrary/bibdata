@@ -96,7 +96,7 @@ RSpec.describe LocationDataService, type: :service do
       location_record9 = Locations::HoldingLocation.find_by(code: 'recap$pb')
 
       expect(Locations::Library.count).to eq 4
-      expect(Locations::HoldingLocation.count).to eq 37
+      expect(Locations::HoldingLocation.count).to eq 38
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true

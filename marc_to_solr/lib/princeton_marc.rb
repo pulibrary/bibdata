@@ -815,6 +815,8 @@ def process_recap_notes record
       partner_display_string = 'N'
     elsif partner_lib == 'scsbcul'
       partner_display_string = 'C'
+    elsif partner_lib == "scsbhl"
+      partner_display_string = "H"
     end
     item_notes << "#{partner_display_string} - #{col_group}"
   end
