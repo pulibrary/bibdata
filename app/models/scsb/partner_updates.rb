@@ -15,7 +15,18 @@ module Scsb
       @bad_utf8 = []
     end
 
-    def process_partner_files
+    def process_full_files
+      @dump_file_constant = 'RECAP_RECORDS_FULL'
+      prepare_directory
+      nypl_file = download_full_file(/NYPL.*\.zip/)
+      cul_file = download_full_file(/CUL.*\.zip/)
+      process_partner_updates(files: [cul_file], file_prefix: 'scsbfull_cul_')
+      process_partner_updates(files: [nypl_file], file_prefix: 'scsbfull_nypl_')
+      log_record_fixes
+    end
+
+    def process_incremental_files
+      @dump_file_constant = 'RECAP_RECORDS'
       prepare_directory
       update_files = download_partner_updates
       process_partner_updates(files: update_files)
@@ -36,7 +47,12 @@ module Scsb
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
-      def process_partner_updates(files:)
+      def download_full_file(file_filter)
+        prefix = ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full'
+        @s3_bucket.download_recent(prefix: prefix, output_directory: @update_directory, file_filter: file_filter)
+      end
+
+      def process_partner_updates(files:, file_prefix: 'scsbupdate')
         xml_files = []
         files.each do |file|
           filename = File.basename(file, '.zip')
@@ -56,7 +72,7 @@ module Scsb
         xml_files.each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          filepath = "#{@scsb_file_dir}/scsbupdate#{filename}"
+          filepath = "#{@scsb_file_dir}/#{file_prefix}#{filename}"
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(process_record(record)) }
           writer.close
@@ -125,7 +141,8 @@ module Scsb
         empty_subfield_fix(record)
       end
 
-      def attach_dump_file(filepath, constant = 'RECAP_RECORDS')
+      def attach_dump_file(filepath, constant = nil)
+        constant ||= @dump_file_constant
         dump_file_type = DumpFileType.find_by(constant: constant)
         df = DumpFile.create(dump_file_type: dump_file_type, path: filepath)
         df.zip
