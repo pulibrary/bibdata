@@ -15,6 +15,8 @@ dump_types:
   constant: 'PRINCETON_RECAP'
 - label: 'Updated Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
   constant: 'PARTNER_RECAP'
+- label: 'Full Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
+  constant: 'PARTNER_RECAP_FULL'
 - label: 'All Bib IDs' # no longer used
   constant: 'BIB_IDS'
 - label: 'All Bib IDs with Holdings' # no longer used
@@ -27,6 +29,8 @@ dump_file_types:
   constant: 'UPDATED_RECORDS'
 - label: 'Updated ReCAP Records' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'RECAP_RECORDS'
+- label: 'Full ReCAP Records' # used with PARTNER_RECAP_FULL dumps
+  constant: 'RECAP_RECORDS_FULL'
 - label: 'Log File' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'LOG_FILE'
 - label: 'New Records' # no longer used

@@ -1,16 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe Dump, type: :model do
-  before(:all) { system 'rake db:seed' }
-  after(:all) { DumpFileType.destroy_all }
-
   let(:partner_recap) { 'PARTNER_RECAP' }
   let(:princeton_recap) { 'PRINCETON_RECAP' }
+  let(:partner_recap_full) { 'PARTNER_RECAP_FULL' }
   let(:princeton_recap_dump_type) { DumpType.find_by(constant: princeton_recap) }
   let(:partner_recap_dump_type) { DumpType.find_by(constant: partner_recap) }
+  let(:partner_recap_full_dump_type) { DumpType.find_by(constant: partner_recap_full) }
   let(:test_create_time) { '2017-04-29 20:10:29'.to_time }
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
   let(:dump_princeton_recap_success) { Dump.create(event_id: event_success.id, dump_type_id: princeton_recap_dump_type.id, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
+
+  describe '.partner_recap_full' do
+    it 'returns dumps with the desired dump_type' do
+      dump1 = Dump.create(dump_type: partner_recap_dump_type)
+      dump2 = Dump.create(dump_type: partner_recap_full_dump_type)
+      dump3 = Dump.create(dump_type: partner_recap_full_dump_type)
+      expect(Dump.partner_recap_full.map(&:id)).to contain_exactly(dump2.id, dump3.id)
+    end
+  end
+
+  describe '.latest' do
+    it 'returns the last-created dump' do
+      dump1 = Dump.create(dump_type: partner_recap_dump_type)
+      dump2 = Dump.create(dump_type: partner_recap_dump_type)
+      expect(Dump.latest.id).to eq dump2.id
+    end
+  end
 
   describe '#last_incremental_update' do
     it 'returns nil when no dump object is there' do

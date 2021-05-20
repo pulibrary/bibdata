@@ -54,7 +54,6 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
     - 'spec/controllers/availability_controller_spec.rb'
-    - 'app/models/concerns/scsb_partner_updates.rb'
 
 Lint/Void:
   Exclude:
@@ -107,7 +106,6 @@ Metrics/PerceivedComplexity:
 
 Naming/AccessorMethodName:
   Exclude:
-    - 'app/models/concerns/scsb_partner_updates.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'app/models/hathi/compact_full.rb'
 
@@ -159,7 +157,6 @@ Performance/StringReplacement:
 RSpec/AnyInstance:
   Exclude:
     - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 4
 RSpec/DescribeClass:
@@ -187,7 +184,6 @@ RSpec/ExampleLength:
     - 'spec/requests/bib_gets_spec.rb'
     - 'spec/requests/course_reserves_spec.rb'
     - 'spec/services/electronic_locations_factory_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 3
 # Configuration parameters: EnforcedStyle.
@@ -233,7 +229,6 @@ RSpec/NotToNot:
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/controllers/patron_controller_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle.
@@ -242,7 +237,6 @@ Rails/Date:
   Exclude:
     - 'lib/tasks/orangeindex.rake'
     - 'app/models/concerns/scsb_partner_updates.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 3
 Rails/FilePath:

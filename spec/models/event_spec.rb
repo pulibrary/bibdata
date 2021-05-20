@@ -3,7 +3,6 @@ require 'fileutils'
 
 RSpec.describe Event, type: :model do
   before(:all) do
-    system 'rake db:seed'
     bibs = './spec/fixtures/sample_bib_ids.txt'
     10.times { dump_test_bib_ids(bibs) }
     10.times { test_events('CHANGED_RECORDS') }
@@ -12,7 +11,6 @@ RSpec.describe Event, type: :model do
 
   after(:all) do
     Event.destroy_all
-    DumpFileType.destroy_all
   end
 
   describe 'ALL_RECORDS dump' do

@@ -20,12 +20,26 @@ namespace :scsb do
     end
   end
 
-  desc "Index SCSB records with most recent update, against SET_URL"
+  desc "Index SCSB incremental record set with most recent update, against SET_URL"
   task latest: :environment do
     if ENV['SET_URL']
       LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
       dumps = Dump.where(dump_type: DumpType.find_by(constant: 'PARTNER_RECAP'))
       IndexFunctions.process_scsb_dumps([dumps.last], ENV['SET_URL'])
+    end
+  end
+
+  desc "Index most recent SCSB full record set, against SET_URL"
+  task full: :environment do
+    abort "usage: SET_URL=[solr_url]" unless ENV['SET_URL']
+    dump = Dump.partner_recap_full.latest
+    IndexFunctions.process_scsb_dumps([dump], ENV['SET_URL'])
+  end
+
+  namespace :import do
+    desc "Creates an Event and downloads files for a full partner record set"
+    task full: :environment do
+      ScsbImportFullJob.perform_later
     end
   end
 end
