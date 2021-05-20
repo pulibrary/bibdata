@@ -66,8 +66,16 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
         content = StringIO.new
         writer = MARC::XMLWriter.new(content)
         Rails.logger.info("DEBUG: Writing records. Writer and content initialized")
+        first_record = file_records.first.transformed_record
+        writer.write(first_record)
+        Rails.logger.info("DEBUG: Writing records. Wrote first record")
         file_records.each do |record|
-          writer.write(record.transformed_record)
+          begin
+            writer.write(record.transformed_record)
+          rescue
+            Rails.logger.info("DEBUG: Writing records. Error in writing record: #{record.inspect}")
+            next
+          end
         end
         Rails.logger.info("DEBUG: Writing records. Writer closing.")
         writer.close
@@ -76,8 +84,6 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
       end
       Rails.logger.info("DEBUG: Writing records. Starting archive.")
       archive_path(records_with_content)
-    rescue
-      raise StandardError, "DEBUG: Error in write records"
     end
 
     def tempfile
