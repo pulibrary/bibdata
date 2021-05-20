@@ -9,6 +9,8 @@ class RecapTransferService
   end
 
   def transfer
+    Rails.logger.info("DEBUG: Temp file exist?: #{File.exist?(file_path)}")
+    Rails.logger.info("DEBUG: Temp file size: #{File.size?(file_path)}")
     key = File.basename(file_path)
     s3_bucket.upload_file(key: key, file_path: file_path)
   end

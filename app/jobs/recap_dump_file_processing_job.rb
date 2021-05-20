@@ -5,6 +5,9 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
   def perform(dump_file)
     @dump_file = dump_file
 
+
+    Rails.logger.info("DEBUG: Processing: #{dump_file.path}")
+
     # Unzip/Parse dump file
     records = extract_records(dump_file.path) do |scsb_record|
       # Skip record if it's a boundwith
@@ -13,6 +16,9 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     end
     # Save the file.
     write_records(records)
+
+    Rails.logger.info("DEBUG: Number of records: #{records.first[1].count}")
+    Rails.logger.info("DEBUG: Temp file path: #{tempfile.path}")
     # Transfer it to S3.
     return tempfile.path if RecapTransferService.transfer(file_path: tempfile.path)
     raise(StandardError, "Error uploading file to S3: #{tempfile.path}")
