@@ -30,15 +30,18 @@ module Scsb
       false
     end
 
+    # @return [Array<String>] paths to the downloaded files
     def download_files(files:, timestamp_filter:, output_directory:, file_filter: /CUL-NYPL.*\.zip/)
       files_by_extension = files.select { |obj| obj.key.match?(file_filter) }
       files_to_download = files_by_extension.select { |obj| obj.last_modified > timestamp_filter }
-      files_to_download.each do |obj|
+      files_to_download.map do |obj|
         filename = File.basename(obj[:key])
         data = download_file(key: obj.key)
-        File.open(File.join(output_directory, filename), 'wb') do |output|
+        dest = File.join(output_directory, filename)
+        File.open(dest, 'wb') do |output|
           output.write(data.read)
         end
+        dest
       end
     end
   end
