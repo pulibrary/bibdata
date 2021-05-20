@@ -18,6 +18,8 @@ class Dump < ActiveRecord::Base
     end
   end
 
+  scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
+
   class << self
     def partner_update
       dump = nil
@@ -30,6 +32,10 @@ class Dump < ActiveRecord::Base
         dump.save
       end
       dump
+    end
+
+    def latest
+      order('created_at desc').first
     end
 
     private
@@ -47,6 +53,10 @@ class Dump < ActiveRecord::Base
         last_dump = Dump.where(dump_type: DumpType.find_by(constant: dump_type)).last
         last_dump = last_recap_dump if dump_type == "PRINCETON_RECAP"
         last_dump&.created_at
+      end
+
+      def partner_recap_full_dump_type
+        dump_type = DumpType.where(constant: 'PARTNER_RECAP_FULL')
       end
   end # class << self
 end
