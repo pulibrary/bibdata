@@ -14,7 +14,35 @@ Parameters:
     Type: String
     Description: Name of the API stage to be deployed
     Default: latest
+  QueueName:
+    Type: String
+    Description: Name of the SQS Queue
+    Default: AlmaBibExportStaging.fifo
+  SecretID:
+    Type: String
+    Description: Key name of the Alma Secret.
+    Default: "alma/sandbox/webhookSecret"
 Resources:
+  DeadLetterSqsQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      FifoQueue: true
+      QueueName: !Sub "DeadLetter${QueueName}"
+      ContentBasedDeduplication: true
+      MessageRetentionPeriod: 1_209_600
+  SqsQueue:
+    Type: "AWS::SQS::Queue"
+    Properties:
+      FifoQueue: true
+      QueueName: !Sub "${QueueName}"
+      RedrivePolicy:
+        deadLetterTargetArn:
+          Fn::GetAtt:
+            - DeadLetterSqsQueue
+            - Arn
+        maxReceiveCount: 1000
+      ContentBasedDeduplication: true
+      MessageRetentionPeriod: 1_209_600
   APIGateway:
     Type: "AWS::Serverless::Api"
     Properties:
@@ -115,6 +143,8 @@ Resources:
       Environment:
         Variables:
           DD_FLUSH_TO_LOG: True
+          QUEUE_NAME: !Sub "${QueueName}"
+          SECRET_ID: !Sub "${SecretID}"
       Events:
         PostWebhook:
           Type: Api

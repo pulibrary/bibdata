@@ -33,7 +33,7 @@ using AWS deployment tools.
 
 The deploy must be run from within the `webhook_monitor` directory.
 
-* `sam deploy`
+* `./deploy.sh [staging/production]`
 
 ## Monitoring
 
