@@ -58,4 +58,29 @@ RSpec.describe Scsb::S3Bucket, type: :model do
       expect(locations).to contain_exactly(File.join(path, "NYPL_1.zip"), File.join(path, "NYPL_2.zip"))
     end
   end
+
+  describe "download_recent" do
+    it "downloads the most recent file matching the filter and returns the location of the downloaded file" do
+      files = [
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_1.zip", last_modified: Time.new(1.day.ago.to_i)),
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_1.csv", last_modified: Time.new(1.day.ago.to_i)),
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/NYPL_1.zip", last_modified: Time.new(1.day.ago.to_i)),
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_2.zip", last_modified: Time.new(2.days.ago.to_i)),
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_3.zip", last_modified: Time.new(1.week.ago.to_i))
+      ]
+      aws_list = Aws::S3::Types::ListObjectsOutput.new(contents: Aws::Xml::DefaultList.new(files))
+
+      allow(s3_client).to receive(:list_objects).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
+
+      output1 = Aws::S3::Types::GetObjectOutput.new(body: StringIO.new("abc123"))
+      allow(s3_client).to receive(:get_object).with(bucket: 'test', key: 'exports/ABC/MARCXml/Full/CUL_1.zip').and_return(output1)
+      path = Rails.root.join('tmp', 's3_bucket_test')
+      FileUtils.rm_rf(path)
+      Dir.mkdir(path)
+
+      location = s3.download_recent(prefix: 'prefix', output_directory: path, file_filter: /CUL.*\.zip/)
+      expect(Dir.entries(path)).to contain_exactly(".", "..", "CUL_1.zip")
+      expect(location).to eq File.join(path, "CUL_1.zip")
+    end
+  end
 end
