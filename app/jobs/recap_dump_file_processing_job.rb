@@ -1,3 +1,5 @@
+require 'rubygems/package'
+
 # Processes an incremental dump file for SCSB coming from Alma and updates the
 # DumpFile for submission to the S3 Bucket.
 class RecapDumpFileProcessingJob < ActiveJob::Base
@@ -14,11 +16,15 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
       next if scsb_record.boundwith?
       scsb_record
     end
-    # Save the file.
-    write_records(records)
 
     Rails.logger.info("DEBUG: Number of records: #{records.first[1].count}")
     Rails.logger.info("DEBUG: Temp file path: #{tempfile.path}")
+
+    # Save the file.
+    write_records(records)
+
+    Rails.logger.info("DEBUG: After writing records")
+
     # Transfer it to S3.
     return tempfile.path if RecapTransferService.transfer(file_path: tempfile.path)
     raise(StandardError, "Error uploading file to S3: #{tempfile.path}")
@@ -54,6 +60,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     # @param records [Hash<String, Array<AlmaAdapter::ScsbDumpRecord>>] Hash of filenames to the
     #   MARC::Records that they represent.
     def write_records(records)
+      Rails.logger.info("DEBUG: Writing records")
       records_with_content = records.map do |filename, file_records|
         content = StringIO.new
         writer = MARC::XMLWriter.new(content)
@@ -75,6 +82,7 @@ class RecapDumpFileProcessingJob < ActiveJob::Base
     end
 
     def archive_path(records_with_content)
+      Rails.logger.info("DEBUG: Archiving records")
       File.open(tempfile, "wb") do |file|
         Zlib::GzipWriter.wrap(file) do |gzip|
           Gem::Package::TarWriter.new(gzip) do |tar|
