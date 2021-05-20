@@ -28,4 +28,11 @@ namespace :scsb do
       IndexFunctions.process_scsb_dumps([dumps.last], ENV['SET_URL'])
     end
   end
+
+  namespace :import do
+    desc "Creates an Event and downloads files for a full partner record set"
+    task full: :environment do
+      ScsbImportFullJob.perform_later
+    end
+  end
 end
