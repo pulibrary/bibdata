@@ -2,11 +2,11 @@ require 'json'
 
 module Scsb
   class PartnerUpdates
-    def initialize(dump:, timestamp:)
+    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.new)
       @dump = dump
-      @s3_bucket = Scsb::S3Bucket.new
+      @s3_bucket = s3_bucket
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-      @scsb_file_dir = ENV['SCSB_FILE_DIR'] || 'data'
+      @scsb_file_dir = ENV['SCSB_FILE_DIR']
       @last_dump = timestamp.to_time
       @inv_xml = []
       @tab_newline = []
@@ -16,44 +16,73 @@ module Scsb
     end
 
     def process_partner_files
-      download_partner_updates
-      process_partner_updates
+      prepare_directory
+      update_files = download_partner_updates
+      process_partner_updates(files: update_files)
       log_record_fixes
-      download_partner_deletes
-      process_partner_deletes
+      delete_files = download_partner_deletes
+      process_partner_deletes(files: delete_files)
     end
 
     private
 
       def download_partner_updates
-        prepare_directory
         file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/Incremental')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
       def download_partner_deletes
-        prepare_directory
         file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_DELETES'] || 'data-exports/PUL/Json/Incremental')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
-      def process_partner_deletes
-        files = Dir.glob("#{@update_directory}/*.zip")
+      def process_partner_updates(files:)
+        xml_files = []
         files.each do |file|
           filename = File.basename(file, '.zip')
+          filename.gsub!(/^[^_]+_([0-9]+)_([0-9]+).*$/, '\1_\2')
           file_increment = 1
           Zip::File.open(file) do |zip_file|
             zip_file.each do |entry|
-              target = "#{@update_directory}/scsbdelete#{filename}_#{file_increment}.json"
+              target = "#{@update_directory}/#{filename}_#{file_increment}.xml"
+              xml_files << target
               entry.extract(target)
               file_increment += 1
             end
           end
           File.unlink(file)
         end
-        files = Dir.glob("#{@update_directory}/*.json")
-        ids = []
+        filepaths = []
+        xml_files.each do |file|
+          filename = File.basename(file)
+          reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
+          filepath = "#{@scsb_file_dir}/scsbupdate#{filename}"
+          writer = MARC::XMLWriter.new(filepath)
+          reader.each { |record| writer.write(process_record(record)) }
+          writer.close
+          filepaths << filepath
+          File.unlink(file)
+        end
+        filepaths.sort.each { |f| attach_dump_file(f) }
+      end
+
+      def process_partner_deletes(files:)
+        json_files = []
         files.each do |file|
+          filename = File.basename(file, '.zip')
+          file_increment = 1
+          Zip::File.open(file) do |zip_file|
+            zip_file.each do |entry|
+              target = "#{@update_directory}/scsbdelete#{filename}_#{file_increment}.json"
+              json_files << target
+              entry.extract(target)
+              file_increment += 1
+            end
+          end
+          File.unlink(file)
+        end
+        ids = []
+        json_files.each do |file|
           scsb_ids(file, ids)
           File.unlink(file)
         end
@@ -68,35 +97,6 @@ module Scsb
           ids << "SCSB-#{record['bib']['bibId']}"
         end
         ids
-      end
-
-      def process_partner_updates
-        files = Dir.glob("#{@update_directory}/*.zip")
-        files.each do |file|
-          filename = File.basename(file, '.zip')
-          filename.gsub!(/^[^_]+_([0-9]+)_([0-9]+).*$/, '\1_\2')
-          file_increment = 1
-          Zip::File.open(file) do |zip_file|
-            zip_file.each do |entry|
-              target = "#{@update_directory}/#{filename}_#{file_increment}.xml"
-              entry.extract(target)
-              file_increment += 1
-            end
-          end
-          File.unlink(file)
-        end
-        filepaths = []
-        Dir.glob("#{@update_directory}/*.xml").each do |file|
-          filename = File.basename(file)
-          reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          filepath = "#{@scsb_file_dir}/scsbupdate#{filename}"
-          writer = MARC::XMLWriter.new(filepath)
-          reader.each { |record| writer.write(process_record(record)) }
-          writer.close
-          filepaths << filepath
-          File.unlink(file)
-        end
-        filepaths.sort.each { |f| attach_dump_file(f) }
       end
 
       def process_record(record)
@@ -152,11 +152,7 @@ module Scsb
       end
 
       def prepare_directory
-        if File.exist?(@update_directory)
-          Dir.glob("#{@update_directory}/*").each { |file| File.delete(file) }
-        else
-          Dir.mkdir(@update_directory)
-        end
+        FileUtils.mkdir_p(@update_directory)
       end
   end
 end
