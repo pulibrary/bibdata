@@ -8,7 +8,6 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
   let(:scsb_file_dir) { Rails.root.join("tmp", "specs", "data") }
   let(:bucket) { instance_double("Scsb::S3Bucket") }
-  let(:scsb_update) { Scsb::PartnerUpdates.new(dump: dump, timestamp: timestamp, s3_bucket: bucket) }
 
   before do
     FileUtils.rm_rf(scsb_file_dir)
@@ -22,9 +21,10 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
 
     allow(bucket).to receive(:list_files)
+    allow(Scsb::S3Bucket).to receive(:new).and_return(bucket)
   end
 
-  describe '#process_full_files' do
+  describe '.full' do
     let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL') }
     before do
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
@@ -34,7 +34,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     end
 
     it 'downloads, processes, and attaches the files' do
-      scsb_update.process_full_files
+      Scsb::PartnerUpdates.full(dump: dump)
 
       # attaches marcxml and log files
       expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(4)
@@ -52,7 +52,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     end
   end
 
-  describe '#process_incremental_files' do
+  describe '.incremental' do
     let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
     before do
       FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path)
@@ -64,7 +64,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     end
 
     it 'downloads, processes, and attaches the files' do
-      scsb_update.process_incremental_files
+      Scsb::PartnerUpdates.incremental(dump: dump, timestamp: timestamp)
 
       # attaches marcxml and log files
       expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)

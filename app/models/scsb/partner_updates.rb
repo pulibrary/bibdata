@@ -2,21 +2,32 @@ require 'json'
 
 module Scsb
   class PartnerUpdates
-    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.new)
+    def self.full(dump:)
+      timestamp = DateTime.now.to_time
+      constant = 'RECAP_RECORDS_FULL'
+      new(dump: dump, timestamp: timestamp, constant: constant).process_full_files
+    end
+
+    def self.incremental(dump:, timestamp:)
+      constant = 'RECAP_RECORDS'
+      new(dump: dump, timestamp: timestamp.to_time, constant: constant).process_incremental_files
+    end
+
+    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.new, constant:)
       @dump = dump
       @s3_bucket = s3_bucket
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
       @scsb_file_dir = ENV['SCSB_FILE_DIR']
-      @last_dump = timestamp.to_time
+      @last_dump = timestamp
       @inv_xml = []
       @tab_newline = []
       @leader = []
       @composed_chars = []
       @bad_utf8 = []
+      @dump_file_constant = constant
     end
 
     def process_full_files
-      @dump_file_constant = 'RECAP_RECORDS_FULL'
       prepare_directory
       nypl_file = download_full_file(/NYPL.*\.zip/)
       cul_file = download_full_file(/CUL.*\.zip/)
@@ -26,7 +37,6 @@ module Scsb
     end
 
     def process_incremental_files
-      @dump_file_constant = 'RECAP_RECORDS'
       prepare_directory
       update_files = download_partner_updates
       process_partner_updates(files: update_files)
