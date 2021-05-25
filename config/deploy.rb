@@ -55,9 +55,6 @@ namespace :sidekiq do
   end
 end
 
-after 'deploy:reverted', 'sidekiq:restart'
-after 'deploy:published', 'sidekiq:restart'
-
 namespace :sqs_poller do
   task :restart do
     on roles(:poller) do
@@ -66,10 +63,22 @@ namespace :sqs_poller do
   end
 end
 
+namespace :seeder do
+  task :load_dump_types do
+    on roles(:worker) do
+      within release_path do
+        execute :rake, 'marc_liberation:load_dump_types'
+      end
+    end
+  end
+end
+
+after 'deploy:reverted', 'sidekiq:restart'
+after 'deploy:published', 'sidekiq:restart'
 after 'deploy:restart', 'sqs_poller:restart'
+after 'sidekiq:restart', 'seeder:load_dump_types'
 
 namespace :deploy do
-
   desc "Check that we can access everything"
   task :check_write_permissions do
     on roles(:all) do |host|
