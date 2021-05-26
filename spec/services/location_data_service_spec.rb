@@ -17,6 +17,19 @@ RSpec.describe LocationDataService, type: :service do
         body: file_fixture("alma/libraries.json")
       )
 
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: file_fixture("alma/locations1.json")
+      )
+
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations")
       .with(
         headers: {
@@ -81,6 +94,18 @@ RSpec.describe LocationDataService, type: :service do
         test_delivery_location.save
       end
     end
+    let(:firestone_library) { Locations::Library.find_by(code: 'firestone') }
+    let(:scsb_delivery_location) do
+      Locations::DeliveryLocation.create("label": "Firestone Circulation Desk",
+                                         "address": "One Washington Rd. Princeton, NJ 08544",
+                                         "phone_number": "609 258-2345",
+                                         "contact_email": "fstcirc@princton.edu",
+                                         "gfa_pickup": "QX",
+                                         "staff_only": false,
+                                         "pickup_location": false,
+                                         "digital_location": false,
+                                         "library": firestone_library)
+    end
 
     it "deletes existing data and populates library and location data from Alma excluding elfs" do
       LocationDataService.delete_existing_and_repopulate
@@ -95,8 +120,8 @@ RSpec.describe LocationDataService, type: :service do
       location_record8 = Locations::HoldingLocation.find_by(code: 'recap$gp')
       location_record9 = Locations::HoldingLocation.find_by(code: 'recap$pb')
 
-      expect(Locations::Library.count).to eq 4
-      expect(Locations::HoldingLocation.count).to eq 38
+      expect(Locations::Library.count).to eq 5
+      expect(Locations::HoldingLocation.count).to eq 47
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true
@@ -110,9 +135,29 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record9.remote_storage).to eq ''
     end
 
+    it "creates scsb locations" do
+      LocationDataService.delete_existing_and_repopulate
+      scsbnypl_record = Locations::HoldingLocation.find_by(code: 'scsbnypl')
+      scsbhl_record = Locations::HoldingLocation.find_by(code: 'scsbhl')
+      scsbcul_record = Locations::HoldingLocation.find_by(code: 'scsbcul')
+      delivery_location_scsbcul = Locations::DeliveryLocation.all.find(scsbcul_record.delivery_location_ids.first)
+      delivery_location_scsbhl = Locations::DeliveryLocation.all.find(scsbhl_record.delivery_location_ids.first)
+      delivery_location_scsbnypl = Locations::DeliveryLocation.all.find(scsbnypl_record.delivery_location_ids.first)
+
+      expect(delivery_location_record(scsbnypl_record).label).to eq 'Firestone Circulation Desk'
+      expect(delivery_location_record(scsbnypl_record).gfa_pickup).to eq 'QX'
+      expect(delivery_location_record(scsbhl_record).label).to eq 'Firestone Circulation Desk'
+      expect(delivery_location_record(scsbcul_record).label).to eq 'Firestone Circulation Desk'
+      expect(scsbcul_record.recap_electronic_delivery_location).to be true
+    end
+
     it "deletes existing delivery locations table and populates new from json file" do
       LocationDataService.delete_existing_and_repopulate
       library_record = Locations::Library.find_by(code: 'annex')
     end
+  end
+
+  def delivery_location_record(value)
+    Locations::DeliveryLocation.all.find(value.delivery_location_ids.first)
   end
 end
