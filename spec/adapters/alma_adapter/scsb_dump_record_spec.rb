@@ -140,7 +140,7 @@ RSpec.describe AlmaAdapter::ScsbDumpRecord do
 
     context "with records missing from the cache" do
       it "raises an exception" do
-        expect { described_class.new(marc_record: host_record_uncached).constituent_records }.to raise_error(StandardError, /mmsids not found in the cache: 9998765433506421, 9912345673506421/)
+        expect { described_class.new(marc_record: host_record_uncached).constituent_records }.to raise_error(AlmaAdapter::ScsbDumpRecord::CacheMiss, "9929455783506421,9998765433506421,9912345673506421")
       end
     end
   end
