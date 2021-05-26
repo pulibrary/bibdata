@@ -38,6 +38,7 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
     # to set of boundwith records.
     # @return [Array<AlmaAdapter::ScsbDumpRecord>]
     def find_related
+      cache_miss_ids = []
       # Group marc records by host record id
       grouped_records = boundwith_records.group_by do |r|
         r.constituent? ? r.host_id : r.id
@@ -49,23 +50,41 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
         constituent_records = records.find_all(&:constituent?)
 
         unless host_record
-          # Get host record id from a constituent[773w] and
-          # retrieve from Alma or cache
-          host_record = constituent_records.first.host_record
-          # Add missing host record to group
-          grouped_records[host_id] << host_record
+          begin
+            # Get host record id from a constituent[773w] and
+            # retrieve from Alma or cache
+            host_record = constituent_records.first.host_record
+            # Add missing host record to group
+            grouped_records[host_id] << host_record
+          rescue AlmaAdapter::ScsbDumpRecord::CacheMiss => e
+            # Store mmsids of records missing from the cache
+            cache_miss_ids << e.message
+            next
+          end
         end
 
         # Fetch constituent record ids from host[774w] and retrieve from Alma or
         # cache; skipping any constituents already in the dump file
-        skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
-        missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
-
-        # Add missing constituent records to group
-        grouped_records[host_id] << missing_constituents
+        begin
+          skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
+          missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
+          # Add missing constituent records to group
+          grouped_records[host_id] << missing_constituents
+        rescue AlmaAdapter::ScsbDumpRecord::CacheMiss => e
+          cache_miss_ids << e.message
+        end
       end
+      # If the cache is missing records, raise an exception that lists all the ids
+      raise(AlmaAdapter::ScsbDumpRecord::CacheMiss, cache_error_message(cache_miss_ids)) unless cache_miss_ids.empty?
 
       grouped_records.values.flatten.compact
+    end
+
+    def cache_error_message(ids)
+      "Records not found in the cache. Create a set of the missing " \
+        "records in Alma, publish using the DRDS ReCAP Records publishing " \
+        "profile, and load into the cache using the `cache_file` rake task." \
+        "Missing mmsids: #{ids.join(',')}"
     end
 
     # Generate boundwith dump file name using

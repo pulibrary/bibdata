@@ -4,6 +4,7 @@ class AlmaAdapter
   # expected by SCSB's submitCollection.
   # (https://htcrecap.atlassian.net/wiki/spaces/RTG/pages/27692276/Ongoing+Accession+Submit+Collection+through+API)
   class ScsbDumpRecord
+    class CacheMiss < StandardError; end
     attr_reader :marc_record
 
     # @param marc_record [MARC::Record] Parsed version of the job MARC record.
@@ -130,18 +131,11 @@ class AlmaAdapter
 
         # rubocop:disable Style/GuardClause
         if non_cached_ids.present?
-          raise StandardError, cache_error_message(non_cached_ids)
+          raise CacheMiss, ids.join(',').to_s
         else
           cached_records
         end
         # rubocop:enable Style/GuardClause
-      end
-
-      def cache_error_message(ids)
-        "Records with mmsids not found in the cache: #{ids.join(', ')}. " \
-          "Create a set of the missing records in Alma, publish using the " \
-          "DRDS ReCAP Records publishing profile, and load into the cache " \
-          "using the `cache_file` rake task"
       end
 
       def alma_marc_record
