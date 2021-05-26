@@ -76,16 +76,24 @@ class LocationDataService
 
   def populate_partners_holding_locations
     partners_locations = [
-      { code: "scsbcul", label: "" },
-      { code: "scsbnypl", label: "" },
-      { code: "scsbhl", label: "" }
+      { label: "", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true },
+      { label: "", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true },
+      { label: "", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true }
     ]
     partners_locations.each do |p|
       Locations::HoldingLocation.new do |location_record|
         location_record.label = p[:label]
         location_record.code = p[:code]
+        location_record.aeon_location = p[:aeon_location]
+        location_record.recap_electronic_delivery_location = p[:recap_electronic_delivery_location]
+        location_record.open = p[:open]
+        location_record.requestable = p[:requestable]
+        location_record.always_requestable = p[:always_requestable]
+        location_record.circulates = p[:circulates]
         location_record.library = Locations::Library.find_by(code: "recap")
         location_record.save
+        # QX is the delivery location for scsb
+        location_record.delivery_location_ids = delivery_library_ids(["QX"])
       end
     end
   end
