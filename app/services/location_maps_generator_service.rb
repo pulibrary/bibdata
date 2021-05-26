@@ -25,9 +25,6 @@ class LocationMapsGeneratorService
       lib_display[holding_code] = lib_label
       locations_display[holding_code] = holding_label
     end
-    # write holding_library.rb. The content should be the same as in the tmpl file.
-    # Will need to map this first with the recap locations.
-    # https://github.com/pulibrary/bibdata/issues/1168#issuecomment-810369528
     write_file('location_display.rb', lib_display)
     write_file('locations.rb', locations_display)
   end
