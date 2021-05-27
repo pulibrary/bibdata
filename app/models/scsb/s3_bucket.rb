@@ -33,10 +33,11 @@ module Scsb
     # @param prefix [String] the bucket path to download from
     # @param output_directory [String] the destination directory
     # @param file_filter [Regexp] a matcher to filter files, e.g. /CUL.*\.zip/
-    # @return [String] path to the downloaded files
+    # @return [String] path to the downloaded files, or nil if none were found
     def download_recent(prefix:, output_directory:, file_filter:)
       matching_files = list_files(prefix: prefix).select { |obj| obj.key.match?(file_filter) }
       recent_file = matching_files.sort_by(&:last_modified).last
+      return nil unless recent_file
       fetch_files([recent_file], output_directory).first
     end
 

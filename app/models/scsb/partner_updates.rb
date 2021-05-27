@@ -29,11 +29,22 @@ module Scsb
 
     def process_full_files
       prepare_directory
-      nypl_file = download_full_file(/NYPL.*\.zip/)
-      cul_file = download_full_file(/CUL.*\.zip/)
-      process_partner_updates(files: [cul_file], file_prefix: 'scsbfull_cul_')
-      process_partner_updates(files: [nypl_file], file_prefix: 'scsbfull_nypl_')
+      download_and_process_full(inst: "NYPL", prefix: 'scsbfull_nypl_')
+      download_and_process_full(inst: "CUL", prefix: 'scsbfull_cul_')
       log_record_fixes
+    end
+
+    def download_and_process_full(inst:, prefix:)
+      matcher = /#{inst}.*\.zip/
+      file = download_full_file(matcher)
+      if file
+        process_partner_updates(files: [file], file_prefix: prefix)
+      else
+        error = Array.wrap(@dump.event.error)
+        error << "No full dump files found matching #{inst}"
+        @dump.event.error = error.join("; ")
+        @dump.event.save
+      end
     end
 
     def process_incremental_files

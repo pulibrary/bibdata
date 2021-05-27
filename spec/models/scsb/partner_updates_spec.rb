@@ -25,30 +25,73 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   end
 
   describe '.full' do
+    let(:dump) { FactoryBot.create(:empty_partner_full_dump) }
     let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL') }
-    before do
-      FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
-      allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(Rails.root.join(update_directory_path, 'CUL_20210429_192300.zip').to_s)
-      allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/)).and_return(Rails.root.join(update_directory_path, 'NYPL_20210430_015000.zip').to_s)
+
+    context "when there are files" do
+      before do
+        FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
+        FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(Rails.root.join(update_directory_path, 'CUL_20210429_192300.zip').to_s)
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/)).and_return(Rails.root.join(update_directory_path, 'NYPL_20210430_015000.zip').to_s)
+      end
+
+      it 'downloads, processes, and attaches the files' do
+        Scsb::PartnerUpdates.full(dump: dump)
+
+        # attaches marcxml and log files
+        expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(4)
+        expect(dump.dump_files.where(dump_file_type: log_file_type).length).to eq(1)
+        expect(dump.dump_files.map(&:path)).to contain_exactly(
+          File.join(scsb_file_dir, "scsbfull_cul_20210429_192300_1.xml.gz"),
+          File.join(scsb_file_dir, "scsbfull_cul_20210429_192300_2.xml.gz"),
+          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
+          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
+          a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
+        )
+
+        # cleans up
+        expect(Dir.empty?(update_directory_path)).to be true
+      end
     end
 
-    it 'downloads, processes, and attaches the files' do
-      Scsb::PartnerUpdates.full(dump: dump)
+    context "when there are no cul files" do
+      before do
+        FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(nil)
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/)).and_return(Rails.root.join(update_directory_path, 'NYPL_20210430_015000.zip').to_s)
+      end
 
-      # attaches marcxml and log files
-      expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(4)
-      expect(dump.dump_files.where(dump_file_type: log_file_type).length).to eq(1)
-      expect(dump.dump_files.map(&:path)).to contain_exactly(
-        File.join(scsb_file_dir, "scsbfull_cul_20210429_192300_1.xml.gz"),
-        File.join(scsb_file_dir, "scsbfull_cul_20210429_192300_2.xml.gz"),
-        File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
-        File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
-        a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
-      )
+      it 'downloads, processes, and attaches the nypl files and adds an error message' do
+        Scsb::PartnerUpdates.full(dump: dump)
 
-      # cleans up
-      expect(Dir.empty?(update_directory_path)).to be true
+        # attaches marcxml and log files
+        expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)
+        expect(dump.dump_files.where(dump_file_type: log_file_type).length).to eq(1)
+        expect(dump.dump_files.map(&:path)).to contain_exactly(
+          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
+          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
+          a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
+        )
+        expect(dump.event.error).to eq "No full dump files found matching CUL"
+
+        # cleans up
+        expect(Dir.empty?(update_directory_path)).to be true
+      end
+    end
+
+    context "when there are no matching files at all" do
+      before do
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(nil)
+        allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/)).and_return(nil)
+      end
+
+      it 'does not download anything, adds an error message' do
+        Scsb::PartnerUpdates.full(dump: dump)
+
+        expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(0)
+        expect(dump.event.error).to eq "No full dump files found matching NYPL; No full dump files found matching CUL"
+      end
     end
   end
 

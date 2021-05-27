@@ -82,5 +82,22 @@ RSpec.describe Scsb::S3Bucket, type: :model do
       expect(Dir.entries(path)).to contain_exactly(".", "..", "CUL_1.zip")
       expect(location).to eq File.join(path, "CUL_1.zip")
     end
+
+    it "returns nil if no file matching filter is found" do
+      files = [
+        Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/NYPL_1.zip", last_modified: Time.new(1.day.ago.to_i))
+      ]
+      aws_list = Aws::S3::Types::ListObjectsOutput.new(contents: Aws::Xml::DefaultList.new(files))
+
+      allow(s3_client).to receive(:list_objects).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
+
+      path = Rails.root.join('tmp', 's3_bucket_test')
+      FileUtils.rm_rf(path)
+      Dir.mkdir(path)
+
+      location = s3.download_recent(prefix: 'prefix', output_directory: path, file_filter: /CUL.*\.zip/)
+      expect(Dir.entries(path)).to contain_exactly(".", "..")
+      expect(location).to eq nil
+    end
   end
 end
