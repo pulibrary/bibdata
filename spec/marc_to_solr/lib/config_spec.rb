@@ -170,9 +170,9 @@ describe 'From traject_config.rb' do
     end
   end
   describe "call_number_display field" do
-    it "returns the call_number_display field with k subfield at the end" do
+    it "returns the call_number_display field with k subfield in the beginning" do
       record = @indexer.map_record(fixture_record('9957270023506421'))
-      expect(record['call_number_display']).to eq(["6819 Eng 20Q"])
+      expect(record['call_number_display']).to eq(["Eng 20Q 6819 "])
     end
   end
 
