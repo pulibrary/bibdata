@@ -23,6 +23,10 @@ FactoryBot.define do
     label "Princeton Recap"
   end
 
+  factory :partner_full_dump_type, class: "DumpType" do
+    constant "PARTNER_RECAP_FULL"
+  end
+
   factory :full_dump_file_type, class: "DumpFileType" do
     constant "BIB_RECORDS"
     label "All Bib Records"
@@ -62,6 +66,11 @@ FactoryBot.define do
 
   factory :empty_recap_incremental_dump, class: "Dump" do
     association :dump_type, factory: :recap_incremental_dump_type
+    association :event
+  end
+
+  factory :empty_partner_full_dump, class: "Dump" do
+    association :dump_type, factory: :partner_full_dump_type
     association :event
   end
 
