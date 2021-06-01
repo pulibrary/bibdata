@@ -49,19 +49,22 @@ class AlmaAdapter
         status_label: status_label,
         copy_number: nil,
         cdl: false,
-        temp_location: holding["holding_id"].nil?,
+        temp_location: false,
         id: holding["holding_id"]
       }
 
-      # Some physical resources can have a nil ID when they are in a temporary location
-      # because Alma does not tells us the holding_id that they belong to. For those
-      # records we create a fake ID so that we can handle multiple holdings with this
-      # condition.
-      status[:id] = "fake_id_#{sequence}" if holding["holding_id"].nil?
-
-      # Notice that we only check if a holding is available via CDL when necessary
-      # because it requires an extra (slow-ish) API call.
-      status[:cdl] = cdl_holding?(holding["holding_id"]) if status[:status_label] == "Unavailable"
+      if holding["holding_id"].nil?
+        # Some physical resources can have a nil ID when they are in a temporary location
+        # because Alma does not tells us the holding_id that they belong to. For those
+        # records we create a fake ID so that we can handle multiple holdings with this
+        # condition.
+        status[:id] = "fake_id_#{sequence}"
+        status[:temp_location] = true
+      elsif status[:status_label] == "Unavailable"
+        # Notice that we only check if a holding is available via CDL when necessary
+        # because it requires an extra (slow-ish) API call.
+        status[:cdl] = cdl_holding?(holding["holding_id"])
+      end
 
       status
     end
