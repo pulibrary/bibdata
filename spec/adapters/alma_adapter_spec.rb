@@ -360,6 +360,8 @@ RSpec.describe AlmaAdapter do
       stub_alma_holding_items(mms_id: "9922486553506421", holding_id: "22117511410006421", filename: "9922486553506421_holding_items.json")
       stub_alma_ids(ids: "9919392043506421", status: 200)
       stub_alma_holding_items(mms_id: "9919392043506421", holding_id: "22105104420006421", filename: "9919392043506421_holding_items.json")
+      stub_alma_ids(ids: "99122455086806421", status: 200)
+      stub_alma_holding_items(mms_id: "99122455086806421", holding_id: "22477860740006421", filename: "99122455086806421_holding_items.json")
     end
 
     it "reports holdings availability" do
@@ -379,19 +381,25 @@ RSpec.describe AlmaAdapter do
       item = availability.first
       expect(item[:in_temp_library]).to eq true
       expect(item[:temp_library_code]).to eq "online"
-      expect(item[:pickup_location_id]).to eq "pa"
-      expect(item[:pickup_location_code]).to eq "pa"
 
       # Test an actual response. These values are not particularly meaningful, but to make sure we don't
       # inadvertently change them when refactoring.
       item_test = { barcode: "32101080920208", id: "23105104390006421", holding_id: "22105104420006421", copy_number: "1",
                     status: "Available", status_label: "Item in place", status_source: "base_status", process_type: nil,
-                    on_reserve: "N", item_type: "Gen", pickup_location_id: "pa", pickup_location_code: "pa",
+                    on_reserve: "N", item_type: "Gen", pickup_location_id: "online", pickup_location_code: "online",
                     location: "online$etasrcp", label: "ReCAP", in_temp_library: true,
                     description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
                     temp_library_code: "online", temp_library_label: "Electronic Access",
                     temp_location_code: "online$etasrcp", temp_location_label: "Electronic Access" }
       expect(item).to eq item_test
+    end
+
+    it "defaults the pickup location to the library" do
+      availability = adapter.get_availability_holding(id: "99122455086806421", holding_id: "22477860740006421")
+      item = availability.first
+      expect(item[:location]).to eq "firestone$dixn"
+      expect(item[:pickup_location_id]).to eq "firestone"
+      expect(item[:pickup_location_code]).to eq "firestone"
     end
   end
 
