@@ -212,8 +212,8 @@ class AlmaAdapter
         process_type: status[:process_type],
         on_reserve: "N",
         item_type: item_type, # e.g., Gen
-        pickup_location_id: holding_location, # stacks
-        pickup_location_code: holding_location, # stacks
+        pickup_location_id: library, # firestone
+        pickup_location_code: library, # firestone
         location: composite_location, # firestone$stacks
         label: holding_library_name, # Firestore Library
         description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
