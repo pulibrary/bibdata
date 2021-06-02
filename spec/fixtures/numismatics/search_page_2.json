@@ -1,0 +1,418 @@
+{
+  "response": {
+    "docs": [
+      {
+        "id": "8be8980d-20b8-454e-9431-1aa5bcb89fde",
+        "join_id_ssi": "id-8be8980d-20b8-454e-9431-1aa5bcb89fde",
+        "created_at_dtsi": "2020-01-10T23:16:24Z",
+        "updated_at_dtsi": "2020-09-21T22:13:01.607Z",
+        "internal_resource_tsim": [
+          "Numismatics::Coin"
+        ],
+        "internal_resource_ssim": [
+          "Numismatics::Coin"
+        ],
+        "internal_resource_tesim": [
+          "Numismatics::Coin"
+        ],
+        "read_groups_tsim": [
+          "public"
+        ],
+        "read_groups_ssim": [
+          "public"
+        ],
+        "read_groups_tesim": [
+          "public"
+        ],
+        "read_groups_tsi": "public",
+        "read_groups_ssi": "public",
+        "read_groups_tesi": "public",
+        "member_ids_tsim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+          "id-2f77cfcc-db8e-4ea0-9b27-1a28dfcc8656"
+        ],
+        "member_ids_ssim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+          "id-2f77cfcc-db8e-4ea0-9b27-1a28dfcc8656"
+        ],
+        "member_ids_tesim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+          "id-2f77cfcc-db8e-4ea0-9b27-1a28dfcc8656"
+        ],
+        "numismatic_accession_id_tsim": [
+          "id-22667dbc-5f86-4e81-9623-a7711f178c61"
+        ],
+        "numismatic_accession_id_ssim": [
+          "id-22667dbc-5f86-4e81-9623-a7711f178c61"
+        ],
+        "numismatic_accession_id_tesim": [
+          "id-22667dbc-5f86-4e81-9623-a7711f178c61"
+        ],
+        "numismatic_accession_id_tsi": "id-22667dbc-5f86-4e81-9623-a7711f178c61",
+        "numismatic_accession_id_ssi": "id-22667dbc-5f86-4e81-9623-a7711f178c61",
+        "numismatic_accession_id_tesi": "id-22667dbc-5f86-4e81-9623-a7711f178c61",
+        "find_place_id_tsim": [
+          "id-e016195c-e3ab-4661-832b-efb2955e0cce"
+        ],
+        "find_place_id_ssim": [
+          "id-e016195c-e3ab-4661-832b-efb2955e0cce"
+        ],
+        "find_place_id_tesim": [
+          "id-e016195c-e3ab-4661-832b-efb2955e0cce"
+        ],
+        "find_place_id_tsi": "id-e016195c-e3ab-4661-832b-efb2955e0cce",
+        "find_place_id_ssi": "id-e016195c-e3ab-4661-832b-efb2955e0cce",
+        "find_place_id_tesi": "id-e016195c-e3ab-4661-832b-efb2955e0cce",
+        "coin_number_tsim": [
+          "integer-8338"
+        ],
+        "coin_number_ssim": [
+          "integer-8338"
+        ],
+        "coin_number_tesim": [
+          "integer-8338"
+        ],
+        "coin_number_tsi": "integer-8338",
+        "coin_number_ssi": "integer-8338",
+        "coin_number_tesi": "integer-8338",
+        "number_in_accession_tsim": [
+          ""
+        ],
+        "number_in_accession_ssim": [
+          ""
+        ],
+        "number_in_accession_tesim": [
+          ""
+        ],
+        "number_in_accession_tsi": "",
+        "number_in_accession_ssi": "",
+        "number_in_accession_tesi": "",
+        "public_note_tsim": [
+          "Obverse : palm branch and border obliterated"
+        ],
+        "public_note_ssim": [
+          "Obverse : palm branch and border obliterated"
+        ],
+        "public_note_tesim": [
+          "Obverse : palm branch and border obliterated"
+        ],
+        "public_note_tsi": "Obverse : palm branch and border obliterated",
+        "public_note_ssi": "Obverse : palm branch and border obliterated",
+        "public_note_tesi": "Obverse : palm branch and border obliterated",
+        "find_date_tsim": [
+          "06/29/1934"
+        ],
+        "find_date_ssim": [
+          "06/29/1934"
+        ],
+        "find_date_tesim": [
+          "06/29/1934"
+        ],
+        "find_date_tsi": "06/29/1934",
+        "find_date_ssi": "06/29/1934",
+        "find_date_tesi": "06/29/1934",
+        "find_locus_tsim": [
+          "DH 200"
+        ],
+        "find_locus_ssim": [
+          "DH 200"
+        ],
+        "find_locus_tesim": [
+          "DH 200"
+        ],
+        "find_locus_tsi": "DH 200",
+        "find_locus_ssi": "DH 200",
+        "find_locus_tesi": "DH 200",
+        "find_description_tsim": [
+          "Sub room 10-7"
+        ],
+        "find_description_ssim": [
+          "Sub room 10-7"
+        ],
+        "find_description_tesim": [
+          "Sub room 10-7"
+        ],
+        "find_description_tsi": "Sub room 10-7",
+        "find_description_ssi": "Sub room 10-7",
+        "find_description_tesi": "Sub room 10-7",
+        "die_axis_tsim": [
+          "12"
+        ],
+        "die_axis_ssim": [
+          "12"
+        ],
+        "die_axis_tesim": [
+          "12"
+        ],
+        "die_axis_tsi": "12",
+        "die_axis_ssi": "12",
+        "die_axis_tesi": "12",
+        "size_tsim": [
+          "24"
+        ],
+        "size_ssim": [
+          "24"
+        ],
+        "size_tesim": [
+          "24"
+        ],
+        "size_tsi": "24",
+        "size_ssi": "24",
+        "size_tesi": "24",
+        "weight_tsim": [
+          "11.62"
+        ],
+        "weight_ssim": [
+          "11.62"
+        ],
+        "weight_tesim": [
+          "11.62"
+        ],
+        "weight_tsi": "11.62",
+        "weight_ssi": "11.62",
+        "weight_tesi": "11.62",
+        "numismatic_collection_tsim": [
+          "Antioch"
+        ],
+        "numismatic_collection_ssim": [
+          "Antioch"
+        ],
+        "numismatic_collection_tesim": [
+          "Antioch"
+        ],
+        "numismatic_collection_tsi": "Antioch",
+        "numismatic_collection_ssi": "Antioch",
+        "numismatic_collection_tesi": "Antioch",
+        "rights_statement_tsim": [
+          "uri-http://rightsstatements.org/vocab/NKC/1.0/"
+        ],
+        "rights_statement_ssim": [
+          "uri-http://rightsstatements.org/vocab/NKC/1.0/"
+        ],
+        "rights_statement_tesim": [
+          "uri-http://rightsstatements.org/vocab/NKC/1.0/"
+        ],
+        "rights_statement_tsi": "uri-http://rightsstatements.org/vocab/NKC/1.0/",
+        "rights_statement_ssi": "uri-http://rightsstatements.org/vocab/NKC/1.0/",
+        "rights_statement_tesi": "uri-http://rightsstatements.org/vocab/NKC/1.0/",
+        "depositor_tsim": [
+          "tpend"
+        ],
+        "depositor_ssim": [
+          "tpend"
+        ],
+        "depositor_tesim": [
+          "tpend"
+        ],
+        "depositor_tsi": "tpend",
+        "depositor_ssi": "tpend",
+        "depositor_tesi": "tpend",
+        "state_tsim": [
+          "complete"
+        ],
+        "state_ssim": [
+          "complete"
+        ],
+        "state_tesim": [
+          "complete"
+        ],
+        "state_tsi": "complete",
+        "state_ssi": "complete",
+        "state_tesi": "complete",
+        "thumbnail_id_tsim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e"
+        ],
+        "thumbnail_id_ssim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e"
+        ],
+        "thumbnail_id_tesim": [
+          "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e"
+        ],
+        "thumbnail_id_tsi": "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+        "thumbnail_id_ssi": "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+        "thumbnail_id_tesi": "id-d760e201-f7ea-4229-a8c2-f5d8b522ee7e",
+        "visibility_tsim": [
+          "open"
+        ],
+        "visibility_ssim": [
+          "open"
+        ],
+        "visibility_tesim": [
+          "open"
+        ],
+        "visibility_tsi": "open",
+        "visibility_ssi": "open",
+        "visibility_tesi": "open",
+        "pdf_type_tsim": [
+          "color"
+        ],
+        "pdf_type_ssim": [
+          "color"
+        ],
+        "pdf_type_tesim": [
+          "color"
+        ],
+        "pdf_type_tsi": "color",
+        "pdf_type_ssi": "color",
+        "pdf_type_tesi": "color",
+        "identifier_tsim": [
+          "ark:/88435/6969z6447"
+        ],
+        "identifier_ssim": [
+          "ark:/88435/6969z6447"
+        ],
+        "identifier_tesim": [
+          "ark:/88435/6969z6447"
+        ],
+        "identifier_tsi": "ark:/88435/6969z6447",
+        "identifier_ssi": "ark:/88435/6969z6447",
+        "identifier_tesi": "ark:/88435/6969z6447",
+        "cached_parent_id_tsim": [
+          "id-"
+        ],
+        "cached_parent_id_ssim": [
+          "id-"
+        ],
+        "cached_parent_id_tesim": [
+          "id-"
+        ],
+        "cached_parent_id_tsi": "id-",
+        "cached_parent_id_ssi": "id-",
+        "cached_parent_id_tesi": "id-",
+        "viewing_hint_tsim": [
+          "individuals"
+        ],
+        "viewing_hint_ssim": [
+          "individuals"
+        ],
+        "viewing_hint_tesim": [
+          "individuals"
+        ],
+        "viewing_hint_tsi": "individuals",
+        "viewing_hint_ssi": "individuals",
+        "viewing_hint_tesi": "individuals",
+        "downloadable_tsim": [
+          "public"
+        ],
+        "downloadable_ssim": [
+          "public"
+        ],
+        "downloadable_tesim": [
+          "public"
+        ],
+        "downloadable_tsi": "public",
+        "downloadable_ssi": "public",
+        "downloadable_tesi": "public",
+        "read_access_group_ssim": [
+          "public"
+        ],
+        "has_structure_bsi": false,
+        "human_readable_type_ssim": [
+          "Coin"
+        ],
+        "rights_ssim": [
+          "No Known Copyright"
+        ],
+        "issue_numismatic_place_id_tesim": [
+          "746979ea-2a4a-4f09-b960-11a4de99608c"
+        ],
+        "issue_numismatic_citation_tesim": [
+          "Numismatics::Citation: 8cfb967c-4030-49d3-9aa1-567fe30188dc",
+          "Numismatics::Citation: 9b908802-87e0-43f0-b2f4-f6fdaf3794fa"
+        ],
+        "issue_reverse_attribute_tesim": [
+          "Numismatics::Attribute: b6cab068-6f45-4698-9052-81c67160bb34",
+          "Numismatics::Attribute: ebcdecfc-ba1f-4f7c-97a2-dfec667876e1"
+        ],
+        "issue_earliest_date_tesim": [
+          "-40"
+        ],
+        "issue_latest_date_tesim": [
+          "-39"
+        ],
+        "issue_denomination_tesim": [
+          "large"
+        ],
+        "issue_era_tesim": [
+          "Seleucid"
+        ],
+        "issue_issue_number_tesim": [
+          "5327"
+        ],
+        "issue_metal_tesim": [
+          "bronze"
+        ],
+        "issue_object_date_tesim": [
+          "\u0392\u039f\u03a3 = 272"
+        ],
+        "issue_object_type_tesim": [
+          "coin"
+        ],
+        "issue_obverse_figure_tesim": [
+          "Zeus"
+        ],
+        "issue_obverse_orientation_tesim": [
+          "right"
+        ],
+        "issue_obverse_part_tesim": [
+          "head"
+        ],
+        "issue_obverse_symbol_tesim": [
+          "palm branch"
+        ],
+        "issue_reverse_figure_tesim": [
+          "Zeus"
+        ],
+        "issue_reverse_figure_description_tesim": [
+          "Within laurel wreath with thunderbolt above."
+        ],
+        "issue_reverse_legend_tesim": [
+          "\u0391\u039d\u03a4\u0399\u039f\u03a7\u0395\u03a9\u039d \u03a4\u0397\u03a3\u039c\u0397\u03a4\u03a1\u039f\u03a0\u039f \u0391\u0395\u03a9\u03a3\u03a4\u0397\u03a3\u0399\u0395\u03a1\u0391\u03a3 \u039a\u0391\u0399\u0391\u03a3\u03a5\u039b\u039f\u03a5 \u0392\u039f\u03a3 or \u0392\u039f["
+          ],
+          "issue_reverse_orientation_tesim": [
+            "left"
+          ],
+          "issue_reverse_part_tesim": [
+            "seated"
+          ],
+          "issue_reverse_symbol_tesim": [
+            "caps of Dioscuri"
+          ],
+          "issue_series_tesim": [
+            "municipal"
+          ],
+          "issue_depositor_tesim": [
+            "tpend"
+          ],
+          "issue_rights_statement_tesim": [
+            "http://rightsstatements.org/vocab/NKC/1.0/"
+          ],
+          "issue_downloadable_tesim": [
+            "public"
+          ],
+          "figgy_title_tesim": [
+            "Coin: 8338"
+          ],
+          "figgy_title_tesi": "Coin: 8338",
+          "figgy_title_ssim": [
+            "Coin: 8338"
+          ],
+          "figgy_title_ssi": "Coin: 8338",
+          "_version_": 1678483271261880320,
+          "timestamp": "2020-09-21T22:13:05.304Z",
+          "score": 1.0
+      }
+    ],
+    "pages": {
+      "current_page": 2,
+      "next_page": null,
+      "prev_page": 1,
+      "total_pages": 2,
+      "limit_value": 5,
+      "offset_value": 5,
+      "total_count": 6,
+      "first_page?": false,
+      "last_page?": true
+    }
+  }
+}
