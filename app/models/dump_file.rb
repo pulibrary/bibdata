@@ -28,7 +28,10 @@ class DumpFile < ActiveRecord::Base
   end
 
   def recap_record_type?
-    self.dump_file_type == DumpFileType.find_by(constant: 'RECAP_RECORDS')
+    [
+      DumpFileType.find_by(constant: 'RECAP_RECORDS'),
+      DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL')
+    ].include? self.dump_file_type
   end
 
   def zipped?
