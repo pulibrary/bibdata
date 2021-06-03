@@ -149,6 +149,9 @@ RSpec.describe LocationDataService, type: :service do
       expect(delivery_location_record(scsbhl_record).label).to eq 'Firestone Circulation Desk'
       expect(delivery_location_record(scsbcul_record).label).to eq 'Firestone Circulation Desk'
       expect(scsbcul_record.recap_electronic_delivery_location).to be true
+      expect(scsbcul_record.remote_storage).to eq 'recap_rmt'
+      expect(scsbhl_record.remote_storage).to eq 'recap_rmt'
+      expect(scsbnypl_record.remote_storage).to eq 'recap_rmt'
     end
 
     it "deletes existing delivery locations table and populates new from json file" do
