@@ -51,6 +51,12 @@ module AlmaStubbing
                  body: alma_path.join("barcode_#{barcode}.json"))
   end
 
+  def stub_alma_library(library_code:, location_code:, body: "{}")
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/#{library_code}/locations/#{location_code}")
+      .with(headers: stub_alma_request_headers)
+      .to_return(status: 200, body: body, headers: { "content-Type" => "application/json" })
+  end
+
   def stub_alma_per_second_threshold
     # Sources: https://developers.exlibrisgroup.com/alma/apis/#error
     #          and https://developers.exlibrisgroup.com/alma/apis/#threshold
@@ -69,6 +75,16 @@ module AlmaStubbing
         "result": null
       }
     HTTP_RESPONSE
+  end
+
+  def stub_alma_request_headers
+    {
+      'Accept' => 'application/json',
+      'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'Authorization' => 'apikey TESTME',
+      'Content-Type' => 'application/json',
+      'User-Agent' => 'Ruby'
+    }
   end
 end
 
