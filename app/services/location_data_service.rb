@@ -76,9 +76,9 @@ class LocationDataService
 
   def populate_partners_holding_locations
     partners_locations = [
-      { label: "", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true },
-      { label: "", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true },
-      { label: "", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true }
+      { label: "", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
+      { label: "", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
+      { label: "", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' }
     ]
     partners_locations.each do |p|
       Locations::HoldingLocation.new do |location_record|
@@ -91,6 +91,7 @@ class LocationDataService
         location_record.always_requestable = p[:always_requestable]
         location_record.circulates = p[:circulates]
         location_record.library = Locations::Library.find_by(code: "recap")
+        location_record.remote_storage = p[:remote_storage]
         location_record.save
         # QX is the delivery location for scsb
         location_record.delivery_location_ids = delivery_library_ids(["QX"])
