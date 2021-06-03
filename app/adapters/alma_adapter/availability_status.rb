@@ -72,7 +72,7 @@ class AlmaAdapter
     # @param alma_item [AlmaAdapter::AlmaItem]
     def holding_status_from_item(alma_item)
       status = {
-        on_reserve: alma_item.in_reserve? ? "Y" : "N",
+        on_reserve: alma_item.on_reserve? ? "Y" : "N",
         location: alma_item.composite_location_display,
         label: alma_item.composite_location_label_display,
         status_label: alma_item.calculate_status[:code],
