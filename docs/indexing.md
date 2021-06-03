@@ -57,3 +57,18 @@ as deploy user, in `/opt/marc_liberaton/current`
 $ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1
 
 This step takes about 21 hours
+
+### Index Partner SCSB records
+
+If needed, pull the most recent SCSB full dump records into a dump file:
+
+- as deploy user, in `/opt/marc_liberaton/current`
+- `$ RAILS_ENV=production bundle exec rake scsb:import:full`
+- It kicks off an import job
+
+Takes 14-15 hours to complete. As they download and unpack they will be placed
+in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_liberation_files/scsb_update_files/`; you can follow the progress by listing the files in these directories.
+
+Once the files are all downloaded and processed, index them with
+
+`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
