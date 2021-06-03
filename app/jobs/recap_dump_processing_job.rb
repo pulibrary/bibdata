@@ -1,4 +1,4 @@
-# Process recap dump files and create recap boundwiths dumpfile
+# Process recap files from alma into files for SCSB
 class RecapDumpProcessingJob < ActiveJob::Base
   def perform(dump)
     RecapBoundwithsProcessingJob.perform_later(dump)
