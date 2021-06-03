@@ -9,7 +9,7 @@ class AlmaAdapter
 
     def self.reserve_location?(library_code, location_code)
       return false if library_code.nil? || location_code.nil?
-      Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minute) do
+      Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minutes) do
         record = Alma::Location.find(library_code: library_code, location_code: location_code)
         record.response.dig("fulfillment_unit", "value") == "Reserves"
       end
