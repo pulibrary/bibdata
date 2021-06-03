@@ -10,6 +10,7 @@ class AlmaAdapter
     def self.reserve_location?(library_code, location_code)
       return false if library_code.nil? || location_code.nil?
       Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minutes) do
+        # We could get this information from our location table if we want to avoid the Alma API call.
         record = Alma::Location.find(library_code: library_code, location_code: location_code)
         record.response.dig("fulfillment_unit", "value") == "Reserves"
       end
@@ -44,7 +45,7 @@ class AlmaAdapter
       end
     end
 
-    def in_reserve?
+    def on_reserve?
       AlmaItem.reserve_location?(library, location)
     end
 
@@ -222,7 +223,7 @@ class AlmaAdapter
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
         process_type: status[:process_type],
-        on_reserve: in_reserve? ? "Y" : "N",
+        on_reserve: on_reserve? ? "Y" : "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: library, # firestone
         pickup_location_code: library, # firestone
