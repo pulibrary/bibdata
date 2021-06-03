@@ -43,7 +43,7 @@ class AlmaAdapter
 
       status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
       status = {
-        on_reserve: "N",
+        on_reserve: AlmaItem.reserve_location?(holding["library_code"], holding["location_code"]) ? "Y" : "N",
         location: holding["library_code"] + "$" + holding["location_code"],
         label: holding_location_label(holding),
         status_label: status_label,
@@ -72,7 +72,7 @@ class AlmaAdapter
     # @param alma_item [AlmaAdapter::AlmaItem]
     def holding_status_from_item(alma_item)
       status = {
-        on_reserve: "N",
+        on_reserve: alma_item.on_reserve? ? "Y" : "N",
         location: alma_item.composite_location_display,
         label: alma_item.composite_location_label_display,
         status_label: alma_item.calculate_status[:code],
