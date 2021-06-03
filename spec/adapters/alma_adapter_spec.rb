@@ -200,6 +200,7 @@ RSpec.describe AlmaAdapter do
     let(:bib_record_with_av_other) { file_fixture("alma/9952822483506421.json") }
     let(:two_bib_records) { file_fixture("alma/two_bibs.json") }
     let(:bib_record_with_some_available) { file_fixture("alma/9921799253506421.json") }
+    let(:library_lewis_reserves) { file_fixture("alma/library_lewis_reserves.json") }
 
     before do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
@@ -298,6 +299,54 @@ RSpec.describe AlmaAdapter do
         )
         .to_return(status: 200, body: bib_record_with_some_available, headers: { "content-Type" => "application/json" })
 
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/resterm")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: library_lewis_reserves, headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online/locations/etasrcp")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/pa")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/stacks")
+        .with(
+          headers: {
+            'Accept' => 'application/json',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'Authorization' => 'apikey TESTME',
+            'Content-Type' => 'application/json',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
       stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
       stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
     end
@@ -336,6 +385,7 @@ RSpec.describe AlmaAdapter do
       expect(fake_holding[:id]).to eq "fake_id_1"
       expect(fake_holding[:status_label]).to eq "Available"
       expect(fake_holding[:temp_location]).to eq true
+      expect(fake_holding[:on_reserve]).to eq "N"
     end
 
     it "reports availability (with holding_id) for items in temporary locations when requested" do
@@ -344,8 +394,15 @@ RSpec.describe AlmaAdapter do
       holding2 = availability["9959958323506421"]["22272063520006421"]
       expect(holding1[:status_label]).to eq "Available"
       expect(holding1[:temp_location]).to eq true
+      expect(holding1[:on_reserve]).to eq "Y"
       expect(holding1[:copy_number]).to eq "1"
       expect(holding2[:copy_number]).to eq "2"
+    end
+
+    it "reports course reserves when record is in library marked as such" do
+      availability = adapter.get_availability_one(id: "9959958323506421")
+      holding = availability["9959958323506421"]["fake_id_1"]
+      expect(holding[:on_reserve]).to eq "Y"
     end
 
     it "reports availability for many bib ids" do
@@ -362,6 +419,42 @@ RSpec.describe AlmaAdapter do
       stub_alma_holding_items(mms_id: "9919392043506421", holding_id: "22105104420006421", filename: "9919392043506421_holding_items.json")
       stub_alma_ids(ids: "99122455086806421", status: 200)
       stub_alma_holding_items(mms_id: "99122455086806421", holding_id: "22477860740006421", filename: "99122455086806421_holding_items.json")
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/dixn")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/stacks")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online/locations/etasrcp")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
     end
 
     it "reports holdings availability" do
@@ -409,6 +502,42 @@ RSpec.describe AlmaAdapter do
       stub_alma_holding_items(mms_id: "9965126093506421", holding_id: "22202918790006421", filename: "9965126093506421_holding_items.json")
       stub_alma_ids(ids: "9943506421", status: 200)
       stub_alma_holding_items(mms_id: "9943506421", holding_id: "22261963850006421", filename: "9943506421_holding_items.json")
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/stack")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/xr")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
+
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/stacks")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'apikey TESTME',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        }
+      )
+      .to_return(status: 200, body: "{}", headers: { "content-Type" => "application/json" })
     end
 
     it "uses the work_order to calculate status" do
