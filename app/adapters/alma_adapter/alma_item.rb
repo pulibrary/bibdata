@@ -7,6 +7,14 @@ class AlmaAdapter
       super(item)
     end
 
+    def self.reserve_location?(library_code, location_code)
+      return false if library_code.nil? || location_code.nil?
+      Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minute) do
+        record = Alma::Location.find(library_code: library_code, location_code: location_code)
+        record.response.dig("fulfillment_unit", "value") == "Reserves"
+      end
+    end
+
     def composite_location
       "#{library}$#{location}"
     end
@@ -34,6 +42,10 @@ class AlmaAdapter
       else
         item_data.dig("location", "desc")
       end
+    end
+
+    def in_reserve?
+      AlmaItem.reserve_location?(library, location)
     end
 
     # @note This is called type because item_type is the value used in the
@@ -210,7 +222,7 @@ class AlmaAdapter
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
         process_type: status[:process_type],
-        on_reserve: "N",
+        on_reserve: in_reserve? ? "Y" : "N",
         item_type: item_type, # e.g., Gen
         pickup_location_id: library, # firestone
         pickup_location_code: library, # firestone
