@@ -1,5 +1,7 @@
 require 'net/sftp'
 
+# Downloads the files from the sftp server and attaches them to Event, Dump,
+# DumpFile objects. Kicks off further processing if neccessary
 class AlmaDumpTransferJob < ActiveJob::Base
   queue_as :default
 
