@@ -27,10 +27,10 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: ab605df8dc3a810571e85e4b0baddd42157dd5ef
-  tag: v1.1
+  revision: 544821a050a6e2cf36265019f4ec6b1ec5bcd37d
+  tag: v1.3
   specs:
-    orangetheses (0.3.0)
+    orangetheses (1.3)
       chronic
       faraday
       iso-639
@@ -227,7 +227,7 @@ GEM
     httpclient (2.8.3)
     i18n (1.8.7)
       concurrent-ruby (~> 1.0)
-    iso-639 (0.2.8)
+    iso-639 (0.3.5)
     jaro_winkler (1.5.4)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -291,7 +291,7 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    oai (1.0.1)
+    oai (1.1.0)
       builder (>= 3.1.0)
       faraday
       faraday_middleware
