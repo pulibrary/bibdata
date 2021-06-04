@@ -363,7 +363,7 @@ GEM
     responders (2.4.1)
       actionpack (>= 4.2.0, < 6.0)
       railties (>= 4.2.0, < 6.0)
-    rsolr (2.1.0)
+    rsolr (2.3.0)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
     rspec-core (3.8.0)
@@ -572,4 +572,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.1.4
+   2.2.6
