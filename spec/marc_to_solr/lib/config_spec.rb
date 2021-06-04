@@ -74,7 +74,7 @@ describe 'From traject_config.rb' do
       holdings = JSON.parse(record["holdings_1display"][0])
       holding_1 = holdings["22188107110006421"]
       holding_2 = holdings["22188107090006421"]
-      expect(holding_1["location"]).to eq "Lewis Library (SCI)"
+      expect(holding_1["location"]).to eq "Stacks"
       expect(holding_1["library"]).to eq "Lewis Library"
       expect(holding_1["location_code"]).to eq "lewis$stacks"
       expect(holding_2["location"]).to eq "Stacks"
