@@ -35,7 +35,7 @@ gem 'net-ldap'
 gem 'net-sftp', '~> 2.1', '>= 2.1.2'
 gem 'oj'
 gem 'omniauth-cas'
-gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.1'
+gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.3'
 gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
