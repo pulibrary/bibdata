@@ -265,7 +265,7 @@ class AlmaAdapter
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
-      code = if value == "Bind" || value == "Pres" || value == "CDL"
+      code = if value == "Bind" || value == "Pres" || value == "CDL" || value == "AcqWorkOrder"
                "Not Available"
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
@@ -275,19 +275,13 @@ class AlmaAdapter
     end
 
     def status_from_process_type
+      # For now we return "Not Available" for any item that has a process_type.
+      # You can see a list of all the possible values here:
+      #   https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       value = item_data.dig("process_type", "value")
       desc = item_data.dig("process_type", "desc")
 
-      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      code = if value == "ACQ"
-               "Available"
-             else
-               # "CLAIM_RETURNED_LOAN", "HOLDSHELF", "ILL", "MISSING", "REQUESTED", "TECHNICAL",
-               # "LOAN", "LOST_ILL", "LOST_LOAN", "LOST_LOAN_AND_PAID",
-               # "TRANSIT", "TRANSIT_TO_REMOTE_STORAGE"
-               "Not Available"
-             end
-      { code: code, label: desc, source: "process_type", process_type: value }
+      { code: "Not Available", label: desc, source: "process_type", process_type: value }
     end
 
     def status_from_base_status
