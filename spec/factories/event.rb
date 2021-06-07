@@ -74,6 +74,11 @@ FactoryBot.define do
     association :event
   end
 
+  factory :empty_partner_recap_dump, class: "Dump" do
+    dump_type DumpType.find_by(constant: "PARTNER_RECAP")
+    association :event
+  end
+
   factory :recap_incremental_dump, class: "Dump" do
     association :dump_type, factory: :recap_incremental_dump_type
     dump_files do
