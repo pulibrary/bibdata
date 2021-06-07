@@ -27,10 +27,9 @@ class Dump < ActiveRecord::Base
   class << self
     def partner_update
       dump = nil
-      dump_type = 'PARTNER_RECAP'
-      timestamp = incremental_update_timestamp(dump_type)
+      timestamp = incremental_update_timestamp
       Event.record do |event|
-        dump = Dump.create(dump_type: DumpType.find_by(constant: dump_type))
+        dump = Dump.create(dump_type: DumpType.find_by(constant: "PARTNER_RECAP"))
         ScsbImportJob.perform_later(dump.id, timestamp)
         dump.event = event
         dump.save
@@ -44,18 +43,12 @@ class Dump < ActiveRecord::Base
 
     private
 
-      def last_recap_dump
-        dump_type = DumpType.where(constant: 'PRINCETON_RECAP')
-        Dump.where(dump_type: dump_type).joins(:event).where('events.success' => true).order('id desc').first
+      def incremental_update_timestamp
+        (ENV['TIMESTAMP'] || last_incremental_update || DateTime.now - 1).to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
       end
 
-      def incremental_update_timestamp(dump_type)
-        (ENV['TIMESTAMP'] || last_incremental_update(dump_type) || DateTime.now - 1).to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
-      end
-
-      def last_incremental_update(dump_type)
-        last_dump = Dump.where(dump_type: DumpType.find_by(constant: dump_type)).last
-        last_dump = last_recap_dump if dump_type == "PRINCETON_RECAP"
+      def last_incremental_update
+        last_dump = Dump.where(dump_type: DumpType.find_by(constant: "PARTNER_RECAP")).last
         last_dump&.created_at
       end
 

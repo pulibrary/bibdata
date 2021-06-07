@@ -11,6 +11,35 @@ RSpec.describe Dump, type: :model do
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
   let(:dump_princeton_recap_success) { Dump.create(event_id: event_success.id, dump_type_id: princeton_recap_dump_type.id, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
 
+  describe ".partner_update" do
+    context "when there's no previous partner recap dump" do
+      it "creates a dump using the current time and imports SCSB partner records into it" do
+        frozen_time = Time.local(2021, 6, 7, 12, 0, 0)
+        Timecop.freeze(frozen_time) do
+          allow(ScsbImportJob).to receive(:perform_later)
+
+          described_class.partner_update
+
+          created_dump = Dump.last
+          expect(created_dump.dump_type.constant).to eq "PARTNER_RECAP"
+          expect(ScsbImportJob).to have_received(:perform_later).with(anything, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+        end
+      end
+    end
+    context "when there's a previous partner recap dump" do
+      it "uses the timestamp from that dump" do
+        dump = FactoryBot.create(:empty_partner_recap_dump)
+        allow(ScsbImportJob).to receive(:perform_later)
+
+        described_class.partner_update
+
+        created_dump = Dump.last
+        expect(created_dump.dump_type.constant).to eq "PARTNER_RECAP"
+        expect(ScsbImportJob).to have_received(:perform_later).with(anything, dump.created_at.to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+      end
+    end
+  end
+
   describe '.partner_recap_full' do
     it 'returns dumps with the desired dump_type' do
       dump1 = Dump.create(dump_type: partner_recap_dump_type)
