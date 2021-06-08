@@ -19,18 +19,20 @@ Frequency of updates: once per day
 SCSB ids start with ‘SCSB’
 
 ## Source: Theses
-About 65,000 senior theses pulled from the OIT Dataspace repository http://dataspace.princeton.edu/jspui/handle/88435/dsp019c67wm88m
+About 68,800 senior theses pulled from the OIT Dataspace repository http://dataspace.princeton.edu/jspui/handle/88435/dsp019c67wm88m
 
-Frequency of updates: once per year
+Frequency of updates: Once per year. The Mudd Manuscript Library - Collections Cordinator will contact the Orangelight tech liaison and request the senior theses to be loaded into the catalog.
 
-Thesis record ids start with ‘dsp’
+The https://github.com/pulibrary/orangetheses repository is used to pull the theses from dspace. 
+
+A thesis record id starts with ‘dsp’. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
-Numismatics data comes from Figgy via the rabbitmq. It is pulled in through orangelight code and so doesn't come through bibdata, but is part of the index and therefore the full indexing process
+Numismatics data comes from Figgy via the rabbitmq. It is pulled in through orangelight code and so doesn't come through bibdata, but is part of the index and therefore the full indexing process.
 
 ## Solr Machines and Collections
 
-The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983
+The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983 .
 
 The collections `catalog-producion1` and `catalog-production2` are swapped as needed and should be accessed via the aliases `catalog-production` and `catalog-reindex`
 
@@ -54,7 +56,7 @@ SSH to a bibdata machine and start a tmux session
 
 as deploy user, in `/opt/marc_liberaton/current`
 
-$ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1
+`$ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1`
 
 This step takes about 21 hours
 
@@ -72,3 +74,15 @@ in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_l
 Once the files are all downloaded and processed, index them with
 
 `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
+
+### Index Theses
+
+SSH to the bibdata machine that is used for indexing (bibdata-alma-staging) and start a tmux session
+
+as deploy user, in `/opt/marc_liberaton/current`
+
+`$ FILEPATH=/home/deploy/theses.json bin/rake orangetheses:cache_theses`
+
+This step takes around 10 minutes. It will create a `theses.json` file in `home/deploy`. Post the file with:
+
+`curl 'http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'`
