@@ -33,7 +33,7 @@ class LocationDataService
         next if ["elf1", "elf2", "elf3", "elf4"].include? holding_location.code
         holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == "#{library.code}$#{holding_location.code}" }
         Locations::HoldingLocation.new do |location_record|
-          location_record.label = (holding_location.external_name.empty? ? library_record.label : holding_location.external_name)
+          location_record.label = holding_location.external_name
           location_record.code = "#{library.code}$#{holding_location.code}"
           location_record.remote_storage = holding_location.remote_storage
           if holding_location_record.present?
