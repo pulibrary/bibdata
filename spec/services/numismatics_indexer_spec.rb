@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe NumismaticsIndexer do
   describe "#full_index" do
+    subject(:indexer) { described_class.new(solr_url: solr_url) }
+    let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+
     before do
       stub_search_page(page: 1)
       stub_search_page(page: 2)
@@ -14,21 +17,35 @@ RSpec.describe NumismaticsIndexer do
     end
 
     it "indexes all the items from the figgy numismatics collection" do
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
       solr.commit
 
-      indexer = described_class.new(solr_url: solr_url)
       indexer.full_index
       solr.commit
       response = solr.get("select", params: { q: "*:*" })
       expect(response['response']['numFound']).to eq 6
     end
 
+    context "when there's an error retrieving a figgy record" do
+      it "logs the record number and continues indexing" do
+        stub_figgy_record_error(id: "92fa663d-5758-4b20-8945-cf5a34458e6e")
+        allow(Rails.logger).to receive(:warn)
+
+        expect { indexer.full_index }.not_to raise_error
+
+        expect(Rails.logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, http status 502")
+      end
+    end
+
     def stub_figgy_record(id:)
       url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
       stub_request(:get, url).to_return(body: file_fixture("numismatics/#{id}.json"))
+    end
+
+    def stub_figgy_record_error(id:)
+      url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
+      stub_request(:get, url).to_return(status: 502)
     end
 
     def stub_search_page(page:)
