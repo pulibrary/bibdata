@@ -79,6 +79,18 @@ RSpec.describe LocationDataService, type: :service do
         headers: { "content-Type" => "application/json" },
         body: file_fixture("alma/locations4.json")
       )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: file_fixture("alma/locations5.json")
+      )
   end
 
   describe "#delete_existing_and_repopulate" do
@@ -119,9 +131,10 @@ RSpec.describe LocationDataService, type: :service do
       location_record7 = Locations::HoldingLocation.find_by(code: 'online$cdl')
       location_record8 = Locations::HoldingLocation.find_by(code: 'recap$gp')
       location_record9 = Locations::HoldingLocation.find_by(code: 'recap$pb')
+      location_record10 = Locations::HoldingLocation.find_by(code: 'eastasian$hy')
 
-      expect(Locations::Library.count).to eq 5
-      expect(Locations::HoldingLocation.count).to eq 47
+      expect(Locations::Library.count).to eq 6
+      expect(Locations::HoldingLocation.count).to eq 65
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true
@@ -133,6 +146,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record7.code).to eq 'online$cdl'
       expect(location_record8.remote_storage).to eq 'recap_rmt'
       expect(location_record9.remote_storage).to eq ''
+      expect(location_record10.label).to eq ''
     end
 
     it "creates scsb locations" do
