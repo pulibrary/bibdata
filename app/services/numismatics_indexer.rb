@@ -50,14 +50,19 @@ class NumismaticsIndexer
       response = Response.new(url: url, page: 1)
       loop do
         response.docs.each do |doc|
-          yield json_for(doc)
+          json = json_for(doc)
+          yield json_for(doc) if json
         end
         break unless (response = response.next_page)
       end
     end
 
     def json_for(doc)
-      JSON.parse(open(NumismaticRecordPathBuilder.new(doc).path).read)
+      path = NumismaticRecordPathBuilder.new(doc).path
+      JSON.parse(open(path).read)
+    rescue OpenURI::HTTPError => e
+      Rails.logger.warn("Failed to retrieve numismatics document from #{path}, http status #{e.message.strip}")
+      nil
     end
 
     def total
