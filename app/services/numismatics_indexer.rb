@@ -1,7 +1,10 @@
+require 'open-uri'
+
 class NumismaticsIndexer
-  attr_reader :solr_url
-  def initialize(solr_url:)
+  attr_reader :solr_url, :progressbar
+  def initialize(solr_url:, progressbar: false)
     @solr_url = solr_url
+    @progressbar = progressbar
   end
 
   def full_index
@@ -14,7 +17,9 @@ class NumismaticsIndexer
 
   def solr_documents
     json_response = PaginatingJsonResponse.new(url: search_url)
+    pb = progressbar ? ProgressBar.create(total: json_response.total, format: "%a %e %P% Processed: %c from %C") : nil
     json_response.lazy.map do |json_record|
+      pb&.increment
       json_record
     end
   end
@@ -60,7 +65,6 @@ class NumismaticsIndexer
     end
 
     class Response
-      require 'open-uri'
       attr_reader :url, :page
       def initialize(url:, page:)
         @url = url

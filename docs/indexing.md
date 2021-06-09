@@ -28,7 +28,7 @@ The https://github.com/pulibrary/orangetheses repository is used to pull the the
 A thesis record id starts with ‘dsp’. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
-Numismatics data comes from Figgy via the rabbitmq. It is pulled in through orangelight code and so doesn't come through bibdata, but is part of the index and therefore the full indexing process.
+Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pulled in through orangelight code and so doesn't come through bibdata, but bibdata has a rake task to bulk index all the coins for initial full index creating.
 
 ## Solr Machines and Collections
 
@@ -86,3 +86,9 @@ as deploy user, in `/opt/marc_liberaton/current`
 This step takes around 10 minutes. It will create a `theses.json` file in `home/deploy`. Post the file with:
 
 `curl 'http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'`
+
+### Index Numismatic Coins
+
+- as deploy user, in `/opt/marc_liberaton/current`
+- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake numismatics:index:full`
+- It will show a progress bar as it runs. Takes an hour or less.
