@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_06_143119) do
+ActiveRecord::Schema.define(version: 2021_06_08_192520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_143119) do
     t.datetime "updated_at", null: false
     t.text "update_ids"
     t.text "create_ids"
+    t.string "index_status"
     t.index ["dump_type_id"], name: "index_dumps_on_dump_type_id"
     t.index ["event_id"], name: "index_dumps_on_event_id"
   end
