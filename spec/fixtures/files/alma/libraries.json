@@ -89,6 +89,24 @@
             "desc": "stacks: Firestone Library"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone"
+        },
+        {
+            "code": "eastasian",
+            "id": "124287750006421",
+            "name": "East Asian Library",
+            "path": "01PRI.01PRI_INST.eastasian",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "cjk",
+            "desc": "cjk: East Asian Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian"
         }
     ]
 }
