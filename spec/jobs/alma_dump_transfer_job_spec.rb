@@ -48,27 +48,40 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
           d.event.save
         end
       end
-
-      before do
+      let(:session_stub) do
+        instance_double(Net::SFTP::Session)
+      end
+      let(:dir_stub) do
+        instance_double(Net::SFTP::Operations::Dir)
+      end
+      let(:download_stub) do
+        instance_double(Net::SFTP::Operations::Download)
+      end
+      let(:event) do
         FactoryBot.create(:full_dump_file_type)
       end
 
-      it 'downloads the files' do
-        session_stub = instance_double(Net::SFTP::Session)
-        dir_stub = instance_double(Net::SFTP::Operations::Dir)
-        download_stub = instance_double(Net::SFTP::Operations::Download)
+      before do
+        event
+
         allow(Net::SFTP).to receive(:start).and_yield(session_stub)
         allow(session_stub).to receive(:dir).and_return(dir_stub)
         allow(dir_stub).to receive(:entries).and_return([name1, name2, name3])
         allow(session_stub).to receive(:download).and_return(download_stub)
         allow(download_stub).to receive(:wait)
+      end
+
+      it 'downloads the files' do
         described_class.perform_now(dump: dump, job_id: job_id)
+
         expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
         expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
         expect(Dump.all.count).to eq 1
-        expect(Dump.first.dump_files.count).to eq 2
-        expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
-        expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1)
+
+        expect(dump.dump_files.count).to eq 2
+        expect(dump.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
+        expect(dump.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1)
+
         expect(IncrementalIndexJob).not_to have_been_enqueued
       end
     end
