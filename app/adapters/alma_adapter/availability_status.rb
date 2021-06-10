@@ -44,7 +44,7 @@ class AlmaAdapter
       status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
       status = {
         on_reserve: AlmaItem.reserve_location?(holding["library_code"], holding["location_code"]) ? "Y" : "N",
-        location: holding["library_code"] + "$" + holding["location_code"],
+        location: holding_location_code(holding),
         label: holding_location_label(holding),
         status_label: status_label,
         copy_number: nil,
@@ -163,9 +163,14 @@ class AlmaAdapter
         cdl
       end
 
-      # status label including library name and location in library
+      # The status label retrieves value from holding_location.label
+      # which is equivalent to the alma external_name value
       def holding_location_label(holding)
-        holding["library"].present? ? "#{holding['library']} - #{holding['location']}" : holding["location"]
+        Locations::HoldingLocation.find_by(code: holding_location_code(holding))&.label
+      end
+
+      def holding_location_code(holding)
+        holding["library_code"] + "$" + holding["location_code"]
       end
   end
 end
