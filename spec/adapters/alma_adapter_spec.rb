@@ -221,10 +221,11 @@ RSpec.describe AlmaAdapter do
     end
 
     it "reports availability of physical holdings" do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
       availability = adapter.get_availability_one(id: "9922486553506421")
       holding = availability["9922486553506421"]["22117511410006421"]
       expect(holding[:status_label]).to eq "Unavailable"
-      expect(holding[:label]).to eq "Firestone Library - Firestone Library (F)"
+      expect(holding[:label]).to eq "Stacks"
       expect(holding[:location]).to eq "firestone$stacks"
       expect(holding[:cdl]).to eq false
     end
