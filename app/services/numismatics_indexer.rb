@@ -43,7 +43,7 @@ class NumismaticsIndexer
     end
 
     def path
-      "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
+      "#{MARC_LIBERATION_CONFIG['figgy_base_url']}/concern/numismatics/coins/#{id}/orangelight"
     end
 
     def id
@@ -108,6 +108,6 @@ class NumismaticsIndexer
   end
 
   def search_url
-    "https://figgy.princeton.edu/catalog.json?f%5Bhuman_readable_type_ssim%5D%5B%5D=Coin&f%5Bstate_ssim%5D%5B%5D=complete&f%5Bvisibility_ssim%5D%5B%5D=open&per_page=100&q="
+    "#{MARC_LIBERATION_CONFIG['figgy_base_url']}/catalog.json?f%5Bhuman_readable_type_ssim%5D%5B%5D=Coin&f%5Bstate_ssim%5D%5B%5D=complete&f%5Bvisibility_ssim%5D%5B%5D=open&per_page=100&q="
   end
 end

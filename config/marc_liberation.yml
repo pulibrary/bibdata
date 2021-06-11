@@ -5,6 +5,7 @@ data_dir: <%= ENV['BIBDATA_DATA_DIR'] || 'data' %>
 records_per_file: 500_000
 recap_dump_records_per_file: 5000
 test_records_per_file: 25
+figgy_base_url: "https://figgy.princeton.edu"
 
 dump_types:
 - label: 'All Records' # used for full dumps
