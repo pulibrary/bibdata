@@ -28,13 +28,12 @@ RSpec.describe NumismaticsIndexer do
     end
 
     it "indexes all the items from the figgy numismatics collection" do
-      solr = RSolr.connect(url: solr_url)
-      solr.delete_by_query("*:*")
-      solr.commit
+      solr_connection.delete_by_query("*:*")
+      solr_connection.commit
 
       described_class.full_index(solr_url: solr_url)
-      solr.commit
-      response = solr.get("select", params: { q: "*:*" })
+      solr_connection.commit
+      response = solr_connection.get("select", params: { q: "*:*" })
       expect(response['response']['numFound']).to eq 6
     end
 
@@ -52,9 +51,8 @@ RSpec.describe NumismaticsIndexer do
     # rubocop:disable Style/GuardClause
     context "when there's an error posting a batch to solr" do
       it "retries each individually" do
-        solr = RSolr.connect(url: solr_url)
-        solr.delete_by_query("*:*")
-        solr.commit
+        solr_connection.delete_by_query("*:*")
+        solr_connection.commit
 
         # raise for the first set, allow the first individual retry, raise for
         # the second in dividual retry, allow all the rest
@@ -70,10 +68,10 @@ RSpec.describe NumismaticsIndexer do
         allow(Rails.logger).to receive(:warn)
 
         indexer.full_index
-        solr.commit
+        solr_connection.commit
         expect(Rails.logger).to have_received(:warn).once.with(/Failed to index batch, retrying individually, error was: RSolr::Error::Http/)
         expect(Rails.logger).to have_received(:warn).once.with(/Failed to index individual record coin-1148, error was: RSolr::Error::Http/)
-        response = solr.get("select", params: { q: "*:*" })
+        response = solr_connection.get("select", params: { q: "*:*" })
         expect(response['response']['numFound']).to eq 5
       end
     end
