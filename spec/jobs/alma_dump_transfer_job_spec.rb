@@ -48,18 +48,10 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
           d.event.save
         end
       end
-      let(:session_stub) do
-        instance_double(Net::SFTP::Session)
-      end
-      let(:dir_stub) do
-        instance_double(Net::SFTP::Operations::Dir)
-      end
-      let(:download_stub) do
-        instance_double(Net::SFTP::Operations::Download)
-      end
-      let(:event) do
-        FactoryBot.create(:full_dump_file_type)
-      end
+      let(:session_stub) { instance_double(Net::SFTP::Session) }
+      let(:dir_stub) { instance_double(Net::SFTP::Operations::Dir) }
+      let(:download_stub) { instance_double(Net::SFTP::Operations::Download) }
+      let(:event) { FactoryBot.create(:full_dump_file_type) }
 
       before do
         event
