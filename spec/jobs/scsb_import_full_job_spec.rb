@@ -1,16 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe ScsbImportFullJob do
-  let(:event) do
-    Event.last
-  end
-
-  before do
-    allow(Scsb::PartnerUpdates).to receive(:full)
-  end
-
   it 'creates an event' do
+    allow(Scsb::PartnerUpdates).to receive(:full)
+
     expect { described_class.perform_now }.to change { Event.count }.by(1)
+    event = Event.last
 
     expect(event.start).not_to be nil
     expect(event.finish).not_to be nil
