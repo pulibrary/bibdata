@@ -38,6 +38,34 @@ RSpec.describe NumismaticsIndexer do
       end
     end
 
+    context "when there's an error posting a batch to solr" do
+      it "retries each individually" do
+        solr = RSolr.connect(url: solr_url)
+        solr.delete_by_query("*:*")
+        solr.commit
+
+        # raise for the first set, allow the first individual retry, raise for
+        # the second in dividual retry, allow all the rest
+        responses = [:raise, :call, :raise]
+        allow_any_instance_of(RSolr::Client).to receive(:add).and_wrap_original do |original, *args|
+          v = responses.shift
+          if v == :raise
+            raise RSolr::Error::Http.new({ uri: "http://example.com" }, nil)
+          else
+            original.call(*args)
+          end
+        end
+        allow(Rails.logger).to receive(:warn)
+
+        indexer.full_index
+        solr.commit
+        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index batch, retrying individually, error was: RSolr::Error::Http/)
+        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index individual record coin-1148, error was: RSolr::Error::Http/)
+        response = solr.get("select", params: { q: "*:*" })
+        expect(response['response']['numFound']).to eq 5
+      end
+    end
+
     def stub_figgy_record(id:)
       url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
       stub_request(:get, url).to_return(body: file_fixture("numismatics/#{id}.json"))
