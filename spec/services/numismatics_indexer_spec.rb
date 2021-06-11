@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe NumismaticsIndexer do
+  let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+  describe ".full_index" do
+    it "calls the instance method" do
+      mock = instance_double(described_class)
+      allow(described_class).to receive(:new).and_return(mock)
+      allow(mock).to receive(:full_index)
+      described_class.full_index(solr_url: solr_url)
+      expect(mock).to have_received(:full_index)
+    end
+  end
+
   describe "#full_index" do
-    subject(:indexer) { described_class.new(solr_url: solr_url) }
-    let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+    subject(:indexer) { described_class.new(solr_connection: solr_connection) }
+    let(:solr_connection) { RSolr.connect(url: solr_url) }
 
     before do
       stub_search_page(page: 1)
@@ -21,7 +32,7 @@ RSpec.describe NumismaticsIndexer do
       solr.delete_by_query("*:*")
       solr.commit
 
-      indexer.full_index
+      described_class.full_index(solr_url: solr_url)
       solr.commit
       response = solr.get("select", params: { q: "*:*" })
       expect(response['response']['numFound']).to eq 6
