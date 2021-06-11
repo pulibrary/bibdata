@@ -49,6 +49,7 @@ RSpec.describe NumismaticsIndexer do
       end
     end
 
+    # rubocop:disable Style/GuardClause
     context "when there's an error posting a batch to solr" do
       it "retries each individually" do
         solr = RSolr.connect(url: solr_url)
@@ -58,7 +59,7 @@ RSpec.describe NumismaticsIndexer do
         # raise for the first set, allow the first individual retry, raise for
         # the second in dividual retry, allow all the rest
         responses = [:raise, :call, :raise]
-        allow_any_instance_of(RSolr::Client).to receive(:add).and_wrap_original do |original, *args|
+        allow(solr_connection).to receive(:add).and_wrap_original do |original, *args|
           v = responses.shift
           if v == :raise
             raise RSolr::Error::Http.new({ uri: "http://example.com" }, nil)
@@ -76,6 +77,7 @@ RSpec.describe NumismaticsIndexer do
         expect(response['response']['numFound']).to eq 5
       end
     end
+    # rubocop:enable Style/GuardClause
 
     def stub_figgy_record(id:)
       url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
