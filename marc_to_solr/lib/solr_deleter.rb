@@ -27,6 +27,8 @@ class SolrDeleter
       @logger&.info "Deleting #{body}"
 
       Faraday.post(uri, body, "Content-Type" => content_type)
+    rescue Net::ReadTimeout => net_read_timeout
+      Rails.logger.warn("Failed to transmit the POST request to #{uri}: #{body}")
     end
 
     def build_request_body(ids:)
@@ -39,15 +41,23 @@ class SolrDeleter
       output.join
     end
 
+    def valid_response?(response)
+      return false if response.nil?
+
+      response.status == 200
+    end
+
     def delete_batch(batch)
       uri = "#{@solr_url}/update?commit=true&wt=json"
       body = build_request_body(ids: batch)
 
       response = request_deletion(uri: uri, body: body)
-      return if response.status == 200
+      return if valid_response?(response)
 
       # Only retry once
       retry_response = request_deletion(uri: uri, body: body)
-      Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}") if retry_response.status != 200
+      return if valid_response?(retry_response)
+
+      Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}") unless retry_response.nil?
     end
 end
