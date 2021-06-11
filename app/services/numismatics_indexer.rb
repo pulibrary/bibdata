@@ -11,8 +11,20 @@ class NumismaticsIndexer
     solr = RSolr.connect(url: solr_url)
     solr_documents.each_slice(500) do |docs|
       solr.add(docs)
+    rescue RSolr::Error::Http => e
+      Rails.logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
+      index_individually(solr, docs)
     end
     solr.commit
+  end
+
+  # index a batch of records one at a time, logging and continuing on error
+  def index_individually(solr, docs)
+    docs.each do |doc|
+      solr.add(doc)
+    rescue RSolr::Error::Http => e
+      Rails.logger.warn("Failed to index individual record #{doc['id']}, error was: #{e.class}: #{e.message.strip}")
+    end
   end
 
   def solr_documents
