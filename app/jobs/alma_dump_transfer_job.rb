@@ -31,8 +31,8 @@ class AlmaDumpTransferJob < ActiveJob::Base
   end
 
   def dump_file_type(dump)
-    job_name = JSON.parse(dump.event.message_body)["job_instance"]["name"]
-    Rails.configuration.alma[:jobs][job_name]["dump_file_type"]
+    job_config = find_job_configuration(dump: dump)
+    job_config["dump_file_type"]
   end
 
   class AlmaDownloader
@@ -119,4 +119,23 @@ class AlmaDumpTransferJob < ActiveJob::Base
       Rails.configuration.alma["sftp_host"]
     end
   end
+
+  private
+
+    def event_message(dump:)
+      event = dump.event
+      return {} if event.nil?
+
+      JSON.parse(event.message_body)
+    end
+
+    def jobs_configuration
+      Rails.configuration.alma[:jobs] || {}
+    end
+
+    def find_job_configuration(dump:)
+      job_name = event_message(dump: dump).dig("job_instance", "name")
+
+      jobs_configuration[job_name] || {}
+    end
 end

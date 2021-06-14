@@ -4,6 +4,10 @@ require 'net/sftp'
 require 'date'
 
 class Dump < ActiveRecord::Base
+  ENQUEUED = 'enqueued'.freeze
+  STARTED = 'started'.freeze
+  DONE = 'done'.freeze
+
   belongs_to :event
   belongs_to :dump_type
   has_many :dump_files
@@ -59,4 +63,16 @@ class Dump < ActiveRecord::Base
         dump_type = DumpType.where(constant: 'PARTNER_RECAP_FULL')
       end
   end # class << self
+
+  def enqueued?
+    index_status == ENQUEUED
+  end
+
+  def started?
+    index_status == STARTED
+  end
+
+  def done?
+    index_status == DONE
+  end
 end
