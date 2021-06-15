@@ -1,9 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe NumismaticsIndexer do
+  let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+  describe ".full_index" do
+    it "calls the instance method" do
+      mock = instance_double(described_class)
+      allow(described_class).to receive(:new).and_return(mock)
+      allow(mock).to receive(:full_index)
+      described_class.full_index(solr_url: solr_url)
+      expect(mock).to have_received(:full_index)
+    end
+  end
+
   describe "#full_index" do
-    subject(:indexer) { described_class.new(solr_url: solr_url) }
-    let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+    subject(:indexer) { described_class.new(solr_connection: solr_connection) }
+    let(:solr_connection) { RSolr.connect(url: solr_url) }
 
     before do
       stub_search_page(page: 1)
@@ -17,13 +28,12 @@ RSpec.describe NumismaticsIndexer do
     end
 
     it "indexes all the items from the figgy numismatics collection" do
-      solr = RSolr.connect(url: solr_url)
-      solr.delete_by_query("*:*")
-      solr.commit
+      solr_connection.delete_by_query("*:*")
+      solr_connection.commit
 
-      indexer.full_index
-      solr.commit
-      response = solr.get("select", params: { q: "*:*" })
+      described_class.full_index(solr_url: solr_url)
+      solr_connection.commit
+      response = solr_connection.get("select", params: { q: "*:*" })
       expect(response['response']['numFound']).to eq 6
     end
 
@@ -37,6 +47,35 @@ RSpec.describe NumismaticsIndexer do
         expect(Rails.logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, http status 502")
       end
     end
+
+    # rubocop:disable Style/GuardClause
+    context "when there's an error posting a batch to solr" do
+      it "retries each individually" do
+        solr_connection.delete_by_query("*:*")
+        solr_connection.commit
+
+        # raise for the first set, allow the first individual retry, raise for
+        # the second in dividual retry, allow all the rest
+        responses = [:raise, :call, :raise]
+        allow(solr_connection).to receive(:add).and_wrap_original do |original, *args|
+          v = responses.shift
+          if v == :raise
+            raise RSolr::Error::Http.new({ uri: "http://example.com" }, nil)
+          else
+            original.call(*args)
+          end
+        end
+        allow(Rails.logger).to receive(:warn)
+
+        indexer.full_index
+        solr_connection.commit
+        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index batch, retrying individually, error was: RSolr::Error::Http/)
+        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index individual record coin-1148, error was: RSolr::Error::Http/)
+        response = solr_connection.get("select", params: { q: "*:*" })
+        expect(response['response']['numFound']).to eq 5
+      end
+    end
+    # rubocop:enable Style/GuardClause
 
     def stub_figgy_record(id:)
       url = "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"

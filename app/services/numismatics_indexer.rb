@@ -1,18 +1,33 @@
 require 'open-uri'
 
 class NumismaticsIndexer
-  attr_reader :solr_url, :progressbar
-  def initialize(solr_url:, progressbar: false)
-    @solr_url = solr_url
+  def self.full_index(solr_url:, progressbar: false)
+    new(solr_connection: RSolr.connect(url: solr_url), progressbar: progressbar).full_index
+  end
+
+  attr_reader :solr_connection, :progressbar
+  def initialize(solr_connection:, progressbar: false)
+    @solr_connection = solr_connection
     @progressbar = progressbar
   end
 
   def full_index
-    solr = RSolr.connect(url: solr_url)
     solr_documents.each_slice(500) do |docs|
-      solr.add(docs)
+      solr_connection.add(docs)
+    rescue RSolr::Error::Http => e
+      Rails.logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
+      index_individually(docs)
     end
-    solr.commit
+    solr_connection.commit
+  end
+
+  # index a batch of records one at a time, logging and continuing on error
+  def index_individually(docs)
+    docs.each do |doc|
+      solr_connection.add(doc)
+    rescue RSolr::Error::Http => e
+      Rails.logger.warn("Failed to index individual record #{doc['id']}, error was: #{e.class}: #{e.message.strip}")
+    end
   end
 
   def solr_documents
@@ -31,7 +46,7 @@ class NumismaticsIndexer
     end
 
     def path
-      "https://figgy.princeton.edu/concern/numismatics/coins/#{id}/orangelight"
+      "#{MARC_LIBERATION_CONFIG['figgy_base_url']}/concern/numismatics/coins/#{id}/orangelight"
     end
 
     def id
@@ -96,6 +111,6 @@ class NumismaticsIndexer
   end
 
   def search_url
-    "https://figgy.princeton.edu/catalog.json?f%5Bhuman_readable_type_ssim%5D%5B%5D=Coin&f%5Bstate_ssim%5D%5B%5D=complete&f%5Bvisibility_ssim%5D%5B%5D=open&per_page=100&q="
+    "#{MARC_LIBERATION_CONFIG['figgy_base_url']}/catalog.json?f%5Bhuman_readable_type_ssim%5D%5B%5D=Coin&f%5Bstate_ssim%5D%5B%5D=complete&f%5Bvisibility_ssim%5D%5B%5D=open&per_page=100&q="
   end
 end
