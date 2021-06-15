@@ -1180,6 +1180,7 @@ each_record do |record, context|
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
+
     # The holding_library is used with some locations to add an additional owning library,
     # which is included in advanced search but not facets.
     holding_library = Traject::TranslationMap.new("holding_library")
@@ -1187,6 +1188,7 @@ each_record do |record, context|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
+
         context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
