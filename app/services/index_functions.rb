@@ -68,7 +68,7 @@ module IndexFunctions
         system "traject -c marc_to_solr/lib/traject_config.rb #{df.path} -u #{solr_url}; true"
         df.zip
       end
-      solr.delete_by_id(dump.delete_ids) if dump.delete_ids
+      solr.delete_by_id(dump.delete_ids) unless dump.delete_ids.blank?
     end
     solr.commit
   end
