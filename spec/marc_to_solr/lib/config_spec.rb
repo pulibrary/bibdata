@@ -5,9 +5,6 @@ describe 'From traject_config.rb' do
   let(:online) do
     @indexer.map_record(fixture_record('9990889283506421'))
   end
-  let(:elf2) do
-    @indexer.map_record(fixture_record('9934788983506421'))
-  end
 
   def fixture_record(fixture_name)
     f = File.expand_path("../../../fixtures/marc_to_solr/#{fixture_name}.mrx", __FILE__)
@@ -446,9 +443,6 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'excluding locations from library facet' do
-    let(:id) do
-      '9992320213506421_elf1'
-    end
     let(:location_code_s) do
       current_record['location_code_s']
     end
@@ -457,25 +451,6 @@ describe 'From traject_config.rb' do
     end
     let(:location) do
       current_record['location']
-    end
-
-    it 'when location is online' do
-      allow(Traject::TranslationMap).to receive(:new).with("format").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("marc_geographic").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("marc_countries").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("callnumber_map").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("locations", default: "__passthrough__").and_return("online$elf1" => "Electronic Access - elf1 Internet Resources")
-      allow(Traject::TranslationMap).to receive(:new).with("location_display", default: "__passthrough__").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("locations").and_return("online$elf1" => "Electronic Access - elf1 Internet Resources")
-      allow(Traject::TranslationMap).to receive(:new).with("location_display").and_call_original
-      allow(Traject::TranslationMap).to receive(:new).with("holding_library").and_call_original
-
-      expect(current_record).to include('location_code_s')
-      expect(location_code_s).to be_an(Array)
-      expect(location_code_s.first).to include('online$elf1')
-
-      expect(current_record).to include('location_display')
-      expect(location_display).to include('Electronic Access - elf1 Internet Resources')
     end
 
     context 'when there are location codes which do not map to the labels' do
@@ -524,19 +499,6 @@ describe 'From traject_config.rb' do
       expect(current_record).to include('advanced_location_s')
       expect(advanced_location_s).to include('lewis$stacks')
       expect(advanced_location_s).to include('Lewis Library')
-    end
-
-    context 'with a elf2 entry in the 852' do
-      let(:id) do
-        '9992320213506421_elf2'
-      end
-
-      it 'online is included' do
-        expect(current_record).to include('advanced_location_s')
-        expect(advanced_location_s).to be_an(Array)
-        expect(advanced_location_s.first).to include('elf2')
-        expect(advanced_location_s.first).to include('online')
-      end
     end
 
     it 'library is excluded from location_code_s' do
