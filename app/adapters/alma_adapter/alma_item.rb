@@ -39,9 +39,9 @@ class AlmaAdapter
 
     def composite_location_label_display
       if in_temp_location?
-        holding_data.dig("temp_location", "desc")
+        holding_location_label(composite_temp_location)
       else
-        item_data.dig("location", "desc")
+        holding_location_label(composite_location)
       end
     end
 
@@ -228,7 +228,7 @@ class AlmaAdapter
         pickup_location_id: library, # firestone
         pickup_location_code: library, # firestone
         location: composite_location, # firestone$stacks
-        label: holding_library_name, # Firestore Library
+        label: holding_location_label(composite_location), # Firestore Library
         description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
         enum_display: enumeration, # in Alma there are many enumerations
         chron_display: chronology # in Alma there are many chronologies
@@ -240,9 +240,9 @@ class AlmaAdapter
         {
           in_temp_library: true,
           temp_library_code: temp_library,
-          temp_library_label: temp_library_name,
+          temp_library_label: holding_location_label(composite_temp_location),
           temp_location_code: composite_temp_location,
-          temp_location_label: temp_library_name
+          temp_location_label: holding_location_label(composite_temp_location)
         }
       else
         { in_temp_library: false }
@@ -291,6 +291,10 @@ class AlmaAdapter
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       code = value == "1" ? "Available" : "Not Available"
       { code: code, label: desc, source: "base_status" }
+    end
+
+    def holding_location_label(code)
+      Locations::HoldingLocation.find_by(code: code)&.label
     end
   end
 end

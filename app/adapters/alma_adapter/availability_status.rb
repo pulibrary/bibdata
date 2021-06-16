@@ -97,7 +97,7 @@ class AlmaAdapter
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
         copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', ""),
-        label: holding['library'],
+        label: holding_location_label(holding),
         status: status.to_s
       }
     end
@@ -163,7 +163,7 @@ class AlmaAdapter
         cdl
       end
 
-      # The status label retrieves value from holding_location.label
+      # The status label retrieves the value from holding_location.label
       # which is equivalent to the alma external_name value
       def holding_location_label(holding)
         Locations::HoldingLocation.find_by(code: holding_location_code(holding))&.label
