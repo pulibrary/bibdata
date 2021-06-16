@@ -26,7 +26,7 @@ class SolrDeleter
     def request_deletion(uri:, body:, content_type: 'text/xml')
       @logger&.info "Deleting #{body}"
       Faraday.post(uri) do |req|
-        req.headers = {"Content-Type" => content_type}
+        req.headers = { "Content-Type" => content_type }
         req.body = body
         req.options.open_timeout = 10
         req.options.read_timeout = 10
