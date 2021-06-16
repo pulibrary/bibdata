@@ -36,17 +36,19 @@ namespace :scsb do
     IndexFunctions.process_scsb_dumps([dump], ENV['SET_URL'])
   end
 
-  desc "Adds a local PARTNER_RECAP file to the database"
-  task add_local_partner_recap_dump: :environment do
-    abort "usage: FILE=full-file-path.xml.gz rake add_local_partner_recap_dump" unless ENV['FILE']
+  desc "Adds a local dump file to the database"
+  task add_local_dump_file: :environment do
+    abort "usage: FILE=full-file-path.xml.gz rake add_local_dump_file" unless ENV['FILE']
     ev = Event.new(success: true)
     ev.save
 
-    dump_type_id = DumpType.where(constant: "PARTNER_RECAP").first.id
+    dump_type = ENV['DUMP_TYPE'] || "PARTNER_RECAP"
+    dump_type_id = DumpType.where(constant: dump_type).first.id
     dump = Dump.new(event_id: ev.id, dump_type_id: dump_type_id)
     dump.save
 
-    dump_file_type_id = DumpFileType.where(constant: "RECAP_RECORDS").first.id
+    dump_file_type = ENV['DUMP_FILE_TYPE'] || "RECAP_RECORDS"
+    dump_file_type_id = DumpFileType.where(constant: dump_file_type).first.id
     dump_file = DumpFile.new(dump_id: dump.id, dump_file_type_id: dump_file_type_id, path: ENV['FILE'])
     dump_file.save
   end
