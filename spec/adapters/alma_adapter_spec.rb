@@ -231,10 +231,12 @@ RSpec.describe AlmaAdapter do
     end
 
     it "reports CDL when available" do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
       availability = adapter.get_availability_one(id: "9965126093506421")
       holding = availability["9965126093506421"]["22202918790006421"]
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:cdl]).to eq true
+      expect(holding[:label]).to eq 'Stacks'
     end
 
     it "reports some items available" do
@@ -259,6 +261,7 @@ RSpec.describe AlmaAdapter do
     end
 
     it "reports availability (with holding_id) for items in temporary locations when requested" do
+      FactoryBot.create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
       availability = adapter.get_availability_one(id: "9959958323506421", deep_check: true)
       holding1 = availability["9959958323506421"]["22272063570006421"]
       holding2 = availability["9959958323506421"]["22272063520006421"]
@@ -267,6 +270,7 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:on_reserve]).to eq "Y"
       expect(holding1[:copy_number]).to eq "1"
       expect(holding2[:copy_number]).to eq "2"
+      expect(holding1[:label]).to eq 'Term Loan Reserves'
     end
 
     it "reports course reserves when record is in library marked as such" do
@@ -295,12 +299,15 @@ RSpec.describe AlmaAdapter do
     end
 
     it "reports holdings availability" do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
+      FactoryBot.create(:holding_location, code: 'online$etasrcp', label: 'ReCAP')
       availability = adapter.get_availability_holding(id: "9922486553506421", holding_id: "22117511410006421")
       item = availability.first
       expect(availability.count).to eq 1
       expect(item[:barcode]).to eq "32101036144101"
       expect(item[:in_temp_library]).to eq false
       expect(item[:temp_library_code]).to eq nil
+      expect(item[:label]).to eq 'Stacks'
 
       # We are hard-coding this value to "N" to preserve the property in the response
       # but we are not really using this value anymore.
@@ -319,8 +326,8 @@ RSpec.describe AlmaAdapter do
                     on_reserve: "N", item_type: "Gen", pickup_location_id: "online", pickup_location_code: "online",
                     location: "online$etasrcp", label: "ReCAP", in_temp_library: true,
                     description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
-                    temp_library_code: "online", temp_library_label: "Electronic Access",
-                    temp_location_code: "online$etasrcp", temp_location_label: "Electronic Access" }
+                    temp_library_code: "online", temp_library_label: "ReCAP",
+                    temp_location_code: "online$etasrcp", temp_location_label: "ReCAP" }
       expect(item).to eq item_test
     end
 

@@ -84,6 +84,8 @@ Metrics/ParameterLists:
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
   Max: 242
+  Exclude:
+    - 'app/adapters/alma_adapter/alma_item.rb'
 
 # Offense count: 22
 Metrics/CyclomaticComplexity:
