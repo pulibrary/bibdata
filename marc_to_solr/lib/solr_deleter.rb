@@ -25,8 +25,13 @@ class SolrDeleter
     # request payload is XML (even if the response is in JSON via the wt=json param)
     def request_deletion(uri:, body:, content_type: 'text/xml')
       @logger&.info "Deleting #{body}"
-
-      Faraday.post(uri, body, "Content-Type" => content_type)
+      Faraday.post(uri) do |req|
+        req.headers = { "Content-Type" => content_type }
+        req.body = body
+        req.options.open_timeout = 10
+        req.options.read_timeout = 10
+        req.options.write_timeout = 10
+      end
     rescue Net::ReadTimeout => net_read_timeout
       Rails.logger.warn("Failed to transmit the POST request to #{uri}: #{body}")
     end
