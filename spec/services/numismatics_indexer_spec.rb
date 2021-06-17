@@ -37,14 +37,20 @@ RSpec.describe NumismaticsIndexer do
       expect(response['response']['numFound']).to eq 6
     end
 
-    context "when there's an error retrieving a figgy record" do
+    context "when there's any error retrieving a figgy record" do
       it "logs the record number and continues indexing" do
         stub_figgy_record_error(id: "92fa663d-5758-4b20-8945-cf5a34458e6e")
         allow(Rails.logger).to receive(:warn)
+        solr_connection.delete_by_query("*:*")
+        solr_connection.commit
 
         expect { indexer.full_index }.not_to raise_error
 
-        expect(Rails.logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, http status 502")
+        expect(Rails.logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, error was: OpenURI::HTTPError: 502 ")
+
+        solr_connection.commit
+        response = solr_connection.get("select", params: { q: "*:*" })
+        expect(response['response']['numFound']).to eq 5
       end
     end
 

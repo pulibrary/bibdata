@@ -75,8 +75,8 @@ class NumismaticsIndexer
     def json_for(doc)
       path = NumismaticRecordPathBuilder.new(doc).path
       JSON.parse(open(path).read)
-    rescue OpenURI::HTTPError => e
-      Rails.logger.warn("Failed to retrieve numismatics document from #{path}, http status #{e.message.strip}")
+    rescue => e
+      Rails.logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
       nil
     end
 

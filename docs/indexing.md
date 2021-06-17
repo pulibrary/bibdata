@@ -91,4 +91,4 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 
 - as deploy user, in `/opt/marc_liberaton/current`
 - `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake numismatics:index:full`
-- It will show a progress bar as it runs. Takes an hour or less.
+- It will show a progress bar as it runs. Takes an hour or two.
