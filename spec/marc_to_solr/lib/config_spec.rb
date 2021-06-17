@@ -8,9 +8,9 @@ describe 'From traject_config.rb' do
     IndexerService.build
   end
   let(:fixture_dir_path) do
-    Rails.root.join('spec', 'fixtures', 'marc_to_solr')
+    Rails.root.join('spec', 'fixtures', 'marc_to_solr', 'alma')
   end
-  let(:fixture_name) { '99276293506421' }
+  let(:fixture_name) { 'sample1' }
   let(:fixture_file_path) do
     Rails.root.join(fixture_dir_path, "#{fixture_name}.mrx")
   end
@@ -32,14 +32,12 @@ describe 'From traject_config.rb' do
   end
 
   describe "alma loading" do
-    let(:fixture_name) { '99211662100521' }
-
     it "can map an alma record" do
       record
     end
 
     context 'when the record has electronic locations' do
-      let(:fixture_name) { '9918573506421' }
+      let(:fixture_name) { 'access_links' }
 
       it "can index electronic locations for alma" do
         access_links = record["electronic_access_1display"]
@@ -48,7 +46,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when there are elf location codes in the record' do
-      let(:fixture_name) { '99121576653506421' }
+      let(:fixture_name) { 'elf_codes' }
 
       it "does not index elf locations for alma" do
         # No ELF code.
@@ -60,7 +58,7 @@ describe 'From traject_config.rb' do
   end
 
   describe "locations" do
-    let(:fixture_name) { '9992320213506421' }
+    let(:fixture_name) { 'locations' }
 
     it "will index the location_code_s" do
       expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
@@ -68,7 +66,7 @@ describe 'From traject_config.rb' do
   end
 
   describe 'scsb locations' do
-    let(:fixture_name) { 'SCSB-8157262' }
+    let(:fixture_name) { 'scsb_locations' }
 
     it "will index a scsbnypl location" do
       expect(record["location_code_s"]).to eq ["scsbnypl"]
@@ -78,7 +76,7 @@ describe 'From traject_config.rb' do
     end
   end
   describe "holdings" do
-    let(:fixture_name) { '9992320213506421' }
+    let(:fixture_name) { 'locations' }
 
     it "can index holdings" do
       holdings = JSON.parse(record["holdings_1display"][0])
@@ -95,8 +93,6 @@ describe 'From traject_config.rb' do
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
-        let(:fixture_name) { '99211662100521' }
-
         it "will index the 876d field" do
           expect(reader['951']['w']).to be_truthy
           expect(reader['876']['d']).to be_truthy
@@ -107,7 +103,8 @@ describe 'From traject_config.rb' do
       context "When the record has only a 950b field" do
         let(:fixture_name) { '991330600000541' }
 
-        it "will index the 950b field" do
+        # This needs to be located
+        xit "will index the 950b field" do
           expect(reader['950']['b']).to be_truthy
           expect(reader['876']).to be_falsey
           expect(reader['951']).to be_falsey
@@ -118,7 +115,7 @@ describe 'From traject_config.rb' do
       context "When the record fails to parse the time" do
         let(:fixture_name) { '991330600000541' }
 
-        it "logs the error and moves on" do
+        xit "logs the error and moves on" do
           allow(Time).to receive(:parse).and_raise(ArgumentError)
           expect { record }.not_to raise_error
         end
@@ -132,7 +129,7 @@ describe 'From traject_config.rb' do
       end
     end
     context "When it is an eletronic record" do
-      let(:fixture_name) { '99122424622606421' }
+      let(:fixture_name) { 'electronic_record' }
 
       it "will index the 951w field" do
         expect(reader['951']['w']).to be_truthy
@@ -144,7 +141,7 @@ describe 'From traject_config.rb' do
   end
 
   describe "electronic_portfolio_s" do
-    let(:fixture_name) { '99122306151806421' }
+    let(:fixture_name) { 'electronic_portfolio' }
 
     it "returns the electronic_portfolio_s field" do
       portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
@@ -184,7 +181,7 @@ describe 'From traject_config.rb' do
     end
   end
   describe "call_number_display field" do
-    let(:fixture_name) { '9957270023506421' }
+    let(:fixture_name) { 'call_number_display' }
 
     it "returns the call_number_display field with k subfield in the beginning" do
       expect(record['call_number_display']).to eq(["Eng 20Q 6819 "])
@@ -192,7 +189,7 @@ describe 'From traject_config.rb' do
   end
 
   describe "call_number_browse field" do
-    let(:fixture_name) { '9957270023506421' }
+    let(:fixture_name) { 'call_number_display' }
 
     it "returns the call_number_browse field with k subfield at the end" do
       expect(record['call_number_browse_s']).to eq(["6819 Eng 20Q"])
@@ -200,7 +197,7 @@ describe 'From traject_config.rb' do
   end
 
   describe "call_number_locator_display field" do
-    let(:fixture_name) { '9941598513506421' }
+    let(:fixture_name) { 'call_number_locator' }
 
     it "returns the call_number_locator_display field with no subfield k" do
       expect(record['call_number_locator_display']).to eq([" .B7544 2003q"])
@@ -208,7 +205,7 @@ describe 'From traject_config.rb' do
   end
 
   describe "contained_in_s field" do
-    let(:fixture_name) { '9939073273506421' }
+    let(:fixture_name) { 'contained_in' }
 
     it "indexes the 773w of the constituent record" do
       expect(record['contained_in_s']).to eq(["992953283506421"])
@@ -216,7 +213,7 @@ describe 'From traject_config.rb' do
   end
 
   describe 'the language_iana_s field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
       expect(record['language_code_s']).to eq(['eng', '|||'])
@@ -224,7 +221,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when there is an added title in the 246 field' do
-      let(:fixture_name) { '9930602883506421' }
+      let(:fixture_name) { 'added_title_246' }
 
       it 'returns 2 language values based on the IANA Language Subtag Registry' do
         expect(record['language_iana_s']).to eq(['ja', 'en'])
@@ -234,7 +231,7 @@ describe 'From traject_config.rb' do
 
   describe 'the isbn_display field' do
     context 'when there is an added title in the 246 field' do
-      let(:fixture_name) { '9990567203506421' }
+      let(:fixture_name) { 'sample35' }
 
       it 'has more than one q subfields' do
         expect(record['isbn_display']).to eq(["9780816695706 (hardcover : alkaline paper)", "0816695709 (hardcover : alkaline paper)", "9780816695713 (paperback : alkaline paper)", "0816695717 (paperback : alkaline paper)"])
@@ -242,7 +239,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when there is an added title in the 246 field' do
-      let(:fixture_name) { '993456823506421' }
+      let(:fixture_name) { 'sample2' }
 
       it 'has one a subfield' do
         expect(record['isbn_display']).to eq(["0947752196"])
@@ -251,14 +248,14 @@ describe 'From traject_config.rb' do
   end
 
   describe 'the id field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'has exactly 1 value' do
       expect(record['id'].length).to eq 1
     end
   end
   describe 'numeric_id_b' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
     it 'returns desired bool' do
       expect(record['numeric_id_b'].first).to eq true
     end
@@ -271,21 +268,21 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'the title_sort field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'does not have initial articles' do
       expect(record['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
     end
   end
   describe 'the author_display field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'takes from the 100 field' do
       expect(record['author_display'][0]).to eq 'Singh, Digvijai, 1934-'
     end
 
     context 'when there is only a 100 field' do
-      let(:fixture_name) { '993456823506421' }
+      let(:fixture_name) { 'sample2' }
 
       it 'shows only 100 field' do
         expect(record['author_display'][0]).to eq 'White, Michael M.'
@@ -293,7 +290,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when there is a 110 field' do
-      let(:fixture_name) { '993213506421' }
+      let(:fixture_name) { 'sample3' }
 
       it 'shows 110 field' do
         expect(record['author_display'][0]).to eq 'World Data Center A for Glaciology'
@@ -302,14 +299,14 @@ describe 'From traject_config.rb' do
   end
 
   describe 'the author_citation_display field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'shows only the 100 a subfield' do
       expect(record['author_citation_display'][0]).to eq 'Singh, Digvijai'
     end
 
     context 'when there is a 700 subfield' do
-      let(:fixture_name) { '9981818493506421' }
+      let(:fixture_name) { 'sample36' }
 
       it 'shows only the 700 a subfield' do
         expect(record['author_citation_display']).to include 'Ishizuka, Harumichi'
@@ -324,7 +321,7 @@ describe 'From traject_config.rb' do
     end
 
     context '' do
-      let(:fixture_name) { '9948545023506421' }
+      let(:fixture_name) { 'title_vern_display' }
 
       it 'is a single value for pul records' do
         expect(record['title_vern_display'].length).to eq(1)
@@ -332,14 +329,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'publication_place_facet field' do
-    let(:fixture_name) { '99276293506421' }
+    let(:fixture_name) { 'sample1' }
 
     it 'maps the 3-digit code in the 008[15-17] to a name' do
       expect(record['publication_place_facet']).to eq ['Michigan']
     end
 
     context 'when the publication place is a 2-digit code' do
-      let(:fixture_name) { '9930602883506421' }
+      let(:fixture_name) { 'added_title_246' }
 
       it 'maps the 2-digit code in the 008[15-17] to a name' do
         expect(record['publication_place_facet']).to eq ['Japan']
@@ -347,14 +344,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'the pub_citation_display field' do
-    let(:fixture_name) { '993456823506421' }
+    let(:fixture_name) { 'sample2' }
 
     it 'shows the the 260 a and b subfields' do
       expect(record['pub_citation_display']).to include 'London: Firethorn Press'
     end
   end
   describe 'notes from record show up in the notes_index' do
-    let(:fixture_name) { '99105855523506421' }
+    let(:fixture_name) { 'sample34' }
 
     it 'shows tag 500 and 538' do
       expect(record['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
@@ -416,10 +413,10 @@ describe 'From traject_config.rb' do
     let(:no_trailing_date_marc) { indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
 
     context 'when the record has an indicator2 tag' do
-      let(:fixture_name) { '99105855523506421' }
+      let(:fixture_name) { 'sample34' }
 
       it 'displays 264 tag sorted by indicator2' do
-        expect(record['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "Â©1956-1971"]
+        expect(record['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "©1956-1971"]
       end
     end
     it 'displays when 008-6 is d and an end date is present in the 008' do
@@ -442,14 +439,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'cjk-only fields' do
-    let(:fixture_name) { '9939238033506421' }
+    let(:fixture_name) { 'cjk_only' }
 
     it 'displays 880 in pub_created_vern_display and subject field' do
       expect(record['pub_created_vern_display']).to eq ['[China : s.n.], 清乾隆癸亥 [8年, 1743]']
       expect(record['cjk_subject']).to eq ['子部 醫家類 兒科.']
     end
     it 'cjk_all contains 880 fields in a single string' do
-      expect(record['cjk_all'][0]).to include('葉其蓁. 抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述. 幼科指掌.  [China : s.n.], 清乾隆癸亥 [8年, 1743] 子部 醫家類 兒科. ')
+      expect(record['cjk_all'][0]).to include('葉其蓁. 抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述. 幼科指掌. [China : s.n.], 清乾隆癸亥 [8年, 1743] 子部 醫家類 兒科.')
     end
     it 'cjk_notes contains 880 fields associated with 5xx fields' do
       expect(record['cjk_notes'][0]).to include('乾隆癸亥李大倫"序"言刻書事.')
@@ -457,31 +454,31 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'related_name_json_1display' do
-    let(:fixture_name) { '9919643053506421' }
+    let(:fixture_name) { 'related_names' }
     it 'trims punctuation the same way as author_s facet' do
       rel_names = JSON.parse(record['related_name_json_1display'][0])
       rel_names['Related name'].each { |n| expect(record['author_s']).to include(n) }
     end
 
     context 'when the 246 field has multiple roles' do
-      let(:fixture_name) { '9990315453506421' }
+      let(:fixture_name) { 'label_i_246' }
       it 'allows multiple roles from single field' do
         rel_names = JSON.parse(record['related_name_json_1display'][0])
-        expect(rel_names['Film director']).to include('Kim, ToÌ†k-su')
-        expect(rel_names['Screenwriter']).to include('Kim, ToÌ†k-su')
+        expect(rel_names['Film director']).to include('Kim, Tŏk-su')
+        expect(rel_names['Screenwriter']).to include('Kim, Tŏk-su')
       end
     end
   end
 
   describe 'access_facet' do
-    let(:fixture_name) { '993213506421' }
+    let(:fixture_name) { 'sample3' }
     it 'value is in the library for non-electronic records' do
       expect(record['access_facet']).to include 'In the Library'
       expect(record['access_facet']).not_to include 'Online'
     end
 
     context 'when the record is an online resource' do
-      let(:fixture_name) { '9990889283506421' }
+      let(:fixture_name) { 'online' }
 
       it 'value is online for records where 856 field second indicator is 0' do
         expect(record['access_facet']).to include 'Online'
@@ -490,7 +487,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when the record is both a physical and online resource' do
-      let(:fixture_name) { '9979160443506421' }
+      let(:fixture_name) { 'online_at_library' }
 
       it 'value can be both in the library and online when there are multiple holdings' do
         expect(record['access_facet']).to include 'Online'
@@ -506,7 +503,7 @@ describe 'From traject_config.rb' do
       after do
         ENV['RUN_HATHI_COMPARE'] = ''
       end
-      let(:fixture_name) { '9914591663506421' }
+      let(:fixture_name) { 'hathi_permanent' }
 
       it 'value include online when record is present in hathi report with permanent access' do
         expect(record['access_facet']).to contain_exactly('Online', 'In the Library')
@@ -573,7 +570,7 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'excluding locations from library facet' do
-    let(:fixture_name) { '9990889283506421' }
+    let(:fixture_name) { 'online' }
 
     # TODO: Replace with Alma
     # Question: Is this still valid?
@@ -584,7 +581,7 @@ describe 'From traject_config.rb' do
       expect(record['location']).to eq ['Electronic Access']
     end
     context 'when location codes that do not map to labels' do
-      let(:fixture_name) { '99276293506421_invalid_location' }
+      let(:fixture_name) { 'invalid_location_code' }
 
       it 'generates the "invalidcode" value without a display label' do
         expect(record['location_code_s']).to include 'invalidcode'
@@ -594,14 +591,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'location facet values for Recap items' do
-    let(:fixture_name) { '9930602883506421' }
+    let(:fixture_name) { 'added_title_246' }
 
     it 'marquand recap items have a location value of marquand and recap' do
       expect(record['location_display']).to eq ['Remote Storage: Marquand Library use only']
       expect(record['location']).to eq ['ReCAP']
     end
     context 'when the record is for a non-rare recap item' do
-      let(:fixture_name) { '9979160443506421' }
+      let(:fixture_name) { 'online_at_library' }
 
       it 'non-rare recap items only have a location value of recap' do
         expect(record['location_display']).to include 'Mudd Off-Site Storage: Contact mudd@princeton.edu'
@@ -615,7 +612,7 @@ describe 'From traject_config.rb' do
   let(:current_record) { @indexer.map_record(record_fixture_path) }
 
   describe 'including libraries and codes in advanced_location_s facet' do
-    let(:fixture_name) { '9992320213506421' }
+    let(:fixture_name) { 'locations' }
     it 'lewis library included with lewis code' do
       expect(record['advanced_location_s']).to include 'lewis$stacks'
       expect(record['advanced_location_s']).to include 'Lewis Library'
@@ -623,7 +620,7 @@ describe 'From traject_config.rb' do
     # TODO: Replace with Alma.
     # Question: Is this still valid?
     context 'when the record is for an online record with an elf2 location code' do
-      let(:fixture_name) { '9934788983506421' }
+      let(:fixture_name) { 'elf2' }
       xit 'online is included' do
         expect(record['advanced_location_s']).to include 'elf2'
         expect(record['advanced_location_s']).to include 'Online'
@@ -631,7 +628,7 @@ describe 'From traject_config.rb' do
     end
 
     context '' do
-      let(:fixture_name) { '9992320213506421' }
+      let(:fixture_name) { 'locations' }
 
       it 'library is excluded from location_code_s' do
         expect(record['location_code_s']).to include 'lewis$stacks'
@@ -640,7 +637,7 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'other_title_display array 246s included' do
-    let(:fixture_name) { '9930602883506421' }
+    let(:fixture_name) { 'added_title_246' }
 
     it 'regardless of 2nd indicator value' do
       expect(record['other_title_display']).to include 'Bi ni itaru yamai'
@@ -649,7 +646,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'regardless of 2nd indicator value' do
-      let(:fixture_name) { '9979105993506421' }
+      let(:fixture_name) { 'other_title_246' }
 
       it 'when no 2nd indicator' do
         expect(record['other_title_display']).to include 'Episcopus, civitas, territorium'
@@ -657,7 +654,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'regardless of 2nd indicator value' do
-      let(:fixture_name) { '9990315453506421' }
+      let(:fixture_name) { 'label_i_246' }
 
       it 'excludes other title when subfield $i is present' do
         expect(record['other_title_display']).to be_nil
@@ -665,14 +662,14 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'other_title_1display 246s hash' do
-    let(:fixture_name) { '9930602883506421' }
+    let(:fixture_name) { 'added_title_246' }
 
     it 'excludes titles with 2nd indicator labels' do
       expect(record['other_title_1display']).to be_nil
     end
 
     context 'when there is a 246$i label' do
-      let(:fixture_name) { '9990315453506421' }
+      let(:fixture_name) { 'label_i_246' }
 
       it 'uses label from $i when available' do
         other_title_hash = JSON.parse(record['other_title_1display'].first)
@@ -681,21 +678,21 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'multiple 245s' do
-    let(:fixture_name) { '993213506421' }
+    let(:fixture_name) { 'sample3' }
 
     it 'only uses first 245 in single-valued title_display field' do
       expect(record['title_display'].length).to eq 1
     end
   end
   describe 'multiformat record' do
-    let(:fixture_name) { '9959060243506421' }
+    let(:fixture_name) { 'manuscript_book' }
 
     it 'manuscript book includes both formats, manuscript first' do
       expect(record['format']).to eq ['Manuscript', 'Book']
     end
   end
   describe '852 $b $c location code processing' do
-    let(:fixture_name) { '9992320213506421' }
+    let(:fixture_name) { 'locations' }
     it 'supports multiple location codes in separate 852s' do
       expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
     end
@@ -718,7 +715,7 @@ describe 'From traject_config.rb' do
     end
 
     context 'when there are no matching values' do
-      let(:fixture_name) { '99276293506421' }
+      let(:fixture_name) { 'sample1' }
 
       it 'excludes series_title_index field when no matching values' do
         expect(record['series_title_index']).to be_nil
