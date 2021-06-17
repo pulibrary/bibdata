@@ -21,7 +21,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
 
     allow(bucket).to receive(:list_files)
-    allow(Scsb::S3Bucket).to receive(:new).and_return(bucket)
+    allow(Scsb::S3Bucket).to receive(:partner_transfer_client).and_return(bucket)
   end
 
   describe '.full' do

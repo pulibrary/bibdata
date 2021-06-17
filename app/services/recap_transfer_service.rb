@@ -16,6 +16,6 @@ class RecapTransferService
   private
 
     def s3_bucket
-      @s3_bucket ||= Scsb::S3Bucket.new
+      @s3_bucket ||= Scsb::S3Bucket.recap_transfer_client
     end
 end
