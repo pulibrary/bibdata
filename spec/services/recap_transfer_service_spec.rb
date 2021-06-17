@@ -11,7 +11,7 @@ RSpec.describe RecapTransferService do
     it "transfers the given dump file" do
       dump_file = FactoryBot.create(:recap_incremental_dump_file)
       bucket_mock = instance_double(Scsb::S3Bucket)
-      allow(Scsb::S3Bucket).to receive(:new).and_return(bucket_mock)
+      allow(Scsb::S3Bucket).to receive(:recap_transfer_client).and_return(bucket_mock)
       allow(bucket_mock).to receive(:upload_file)
 
       described_class.transfer(file_path: dump_file.path)
