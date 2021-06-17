@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim"> 
+  <marcxml:record>
+    <marcxml:leader>01756cam a2200433 a 4500</marcxml:leader>
+    <marcxml:controlfield tag="001">SCSB-2662543</marcxml:controlfield>
+    <marcxml:controlfield tag="003">NNC</marcxml:controlfield>
+    <marcxml:controlfield tag="005">20100313224826.0</marcxml:controlfield>
+    <marcxml:controlfield tag="008">900807s1990    ua a          00010 ara d</marcxml:controlfield>
+    <marcxml:controlfield tag="009">843991</marcxml:controlfield>
+    <marcxml:datafield tag="010" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">   90960232 </marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)22726786</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)ocm22726786</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(CStRLIN)NYCG90-B40689</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="9">AEN2725CU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(NNC)843991</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="040" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">NN</marcxml:subfield>
+      <marcxml:subfield code="c">NN</marcxml:subfield>
+      <marcxml:subfield code="d">NjP</marcxml:subfield>
+      <marcxml:subfield code="d">NNU</marcxml:subfield>
+      <marcxml:subfield code="d">PU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="043" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">f-ua---</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="050" ind1=" " ind2="4">
+      <marcxml:subfield code="a">PN6222.E4</marcxml:subfield>
+      <marcxml:subfield code="b">F37 1990</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="066" ind1=" " ind2=" ">
+      <marcxml:subfield code="c">(3</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="090" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">PN6222.E4</marcxml:subfield>
+      <marcxml:subfield code="b">F37 1990</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="100" ind1="1" ind2=" ">
+      <marcxml:subfield code="6">880-01</marcxml:subfield>
+      <marcxml:subfield code="a">Faraḥāt, Jumʻah Aḥmad ʻAlī,</marcxml:subfield>
+      <marcxml:subfield code="d">1941-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="245" ind1="1" ind2="0">
+      <marcxml:subfield code="6">880-02</marcxml:subfield>
+      <marcxml:subfield code="a">4 Ḥukūmāt wa-muʻāraḍah :</marcxml:subfield>
+      <marcxml:subfield code="b">kārīkātīr Jumʻah /</marcxml:subfield>
+      <marcxml:subfield code="c">Jumʻah.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="246" ind1="1" ind2="4">
+      <marcxml:subfield code="6">880-03</marcxml:subfield>
+      <marcxml:subfield code="a">4 Ḥukūmāt..wa-muʻāraḍah!!</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="250" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">880-04</marcxml:subfield>
+      <marcxml:subfield code="a">al-Ṭabʻah 1.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="260" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">880-05</marcxml:subfield>
+      <marcxml:subfield code="a">Madīnat al-ʻĀshir min Ramaḍān [Cairo] :</marcxml:subfield>
+      <marcxml:subfield code="b">Dar al-ʻĀrif,</marcxml:subfield>
+      <marcxml:subfield code="c">1990.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="300" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">128 p. :</marcxml:subfield>
+      <marcxml:subfield code="b">ill. ;</marcxml:subfield>
+      <marcxml:subfield code="c">17x24 cm.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Arabic wit and humor, pictorial.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="651" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Egypt</marcxml:subfield>
+      <marcxml:subfield code="x">Politics and government</marcxml:subfield>
+      <marcxml:subfield code="x">Caricatures and cartoons.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Caricatures and cartoons</marcxml:subfield>
+      <marcxml:subfield code="z">Egypt.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Political satire, Arabic.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="740" ind1="0" ind2=" ">
+      <marcxml:subfield code="6">880-06</marcxml:subfield>
+      <marcxml:subfield code="a">Arbaʻ ḥukūmāt wa-muʻāraḍah.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="740" ind1="0" ind2=" ">
+      <marcxml:subfield code="6">880-07</marcxml:subfield>
+      <marcxml:subfield code="a">Kārīkātīr Jumʻah.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="1" ind2=" ">
+      <marcxml:subfield code="6">100-01/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">فرحات، جمعة أحمد علي،</marcxml:subfield>
+      <marcxml:subfield code="d">-1941</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="1" ind2="0">
+      <marcxml:subfield code="6">245-02/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">٤ حكومات ومعارضة :</marcxml:subfield>
+      <marcxml:subfield code="b">كاريكاتير جمعه /</marcxml:subfield>
+      <marcxml:subfield code="c">جمعه.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="1" ind2="4">
+      <marcxml:subfield code="6">245-03/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">٤ حكومات ..ومعارضة!!</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">250-04/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">الطبعة 1.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">260-05/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">مدينة العاشر من رمضان [Cairo] :</marcxml:subfield>
+      <marcxml:subfield code="b">دار العارف،</marcxml:subfield>
+      <marcxml:subfield code="c">1990.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="0" ind2=" ">
+      <marcxml:subfield code="6">740-06/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">أربع حكومات ومعارضة.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="0" ind2=" ">
+      <marcxml:subfield code="6">740-07/(3/r</marcxml:subfield>
+      <marcxml:subfield code="a">كاريكاتير جمعه.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="8" ind2="0">
+      <marcxml:subfield code="h">ME22798</marcxml:subfield>
+      <marcxml:subfield code="0">2637819</marcxml:subfield>
+      <marcxml:subfield code="b">scsbcul</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2637819</marcxml:subfield>
+      <marcxml:subfield code="3"/>
+      <marcxml:subfield code="a">4183782</marcxml:subfield>
+      <marcxml:subfield code="h"/>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="p">CU59651199</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+    </marcxml:datafield>
+  </marcxml:record>
+</marcxml:collection>

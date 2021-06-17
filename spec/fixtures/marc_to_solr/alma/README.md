@@ -1,0 +1,36 @@
+# BibData
+
+## MARC Record Fixtures from the Alma ILS and the [Shared Collection Service Bus (SCSB)](https://recap.princeton.edu/collections-services/shared-collections/SCSB)
+
+### Princeton University Library Records
+* sample1 (https://bibdata.princeton.edu/bibliographic/99276293506421)
+* sample2 (https://bibdata.princeton.edu/bibliographic/993456823506421)
+* sample3 (https://bibdata.princeton.edu/bibliographic/993213506421)
+* sample34 (https://bibdata.princeton.edu/bibliographic/99105855523506421)
+* sample35 (https://bibdata.princeton.edu/bibliographic/9990567203506421)
+* sample36 (https://bibdata.princeton.edu/bibliographic/9981818493506421)
+* manuscript_book (https://bibdata.princeton.edu/bibliographic/9959060243506421)
+* added_title_246 (https://bibdata.princeton.edu/bibliographic/9930602883506421)
+* related_names (https://bibdata.princeton.edu/bibliographic/9919643053506421)
+* label_i_246 (https://bibdata.princeton.edu/bibliographic/9990315453506421)
+* online_at_library (https://bibdata.princeton.edu/bibliographic/9979160443506421)
+* online (https://bibdata.princeton.edu/bibliographic/9990889283506421)
+* elf2 (https://bibdata.princeton.edu/bibliographic/9934788983506421)
+* other_title_246 (https://bibdata.princeton.edu/bibliographic/9979105993506421)
+* title_vern_display (https://bibdata.princeton.edu/bibliographic/9948545023506421)
+* hathi_permanent (https://bibdata.princeton.edu/bibliographic/9914591663506421)
+* cjk_only (https://bibdata.princeton.edu/bibliographic/9939238033506421)
+* locations (https://bibdata.princeton.edu/bibliographic/9992320213506421)
+* call_number_locator (https://bibdata.princeton.edu/bibliographic/9941598513506421)
+* access_links (https://bibdata.princeton.edu/bibliographic/9918573506421)
+* electronic_record (https://bibdata.princeton.edu/bibliographic/99122424622606421)
+* call_number_display (https://bibdata.princeton.edu/bibliographic/9957270023506421)
+* electronic_portfolio (https://bibdata.princeton.edu/bibliographic/99122306151806421)
+* contained_in (https://bibdata.princeton.edu/bibliographic/9939073273506421)
+* elf_codes (https://bibdata.princeton.edu/bibliographic/99121576653506421)
+* invalid_location_code (https://bibdata.princeton.edu/bibliographic/9914141453506421)
+
+### SCSB Records
+* scsb_journal (https://catalog.princeton.edu/catalog/SCSB-5360820)
+* scsb_alt_title (https://catalog.princeton.edu/catalog/SCSB-2777373)
+* scsb_locations (https://catalog.princeton.edu/catalog/SCSB-8157262)
