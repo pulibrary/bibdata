@@ -2,9 +2,7 @@ require 'rails_helper'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
-  let(:online) do
-    @indexer.map_record(fixture_record('9990889283506421'))
-  end
+  let(:online) { @indexer.map_record(fixture_record('9990889283506421')) }
 
   def fixture_record(fixture_name)
     f = File.expand_path("../../../fixtures/marc_to_solr/#{fixture_name}.mrx", __FILE__)
@@ -443,20 +441,12 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'excluding locations from library facet' do
-    let(:location_code_s) do
-      current_record['location_code_s']
-    end
-    let(:location_display) do
-      current_record['location_display']
-    end
-    let(:location) do
-      current_record['location']
-    end
+    let(:location_code_s) { current_record['location_code_s'] }
+    let(:location_display) { current_record['location_display'] }
+    let(:location) { current_record['location'] }
 
     context 'when there are location codes which do not map to the labels' do
-      let(:id) do
-        '99276293506421_invalid_location'
-      end
+      let(:id) { '99276293506421_invalid_location' }
 
       it 'when location codes that do not map to labels' do
         expect(current_record['location_code_s']).to include 'invalidcode'
@@ -477,23 +467,13 @@ describe 'From traject_config.rb' do
     end
   end
 
-  let(:record_fixture_path) do
-    fixture_record(id)
-  end
-  let(:current_record) do
-    @indexer.map_record(record_fixture_path)
-  end
+  let(:record_fixture_path) { fixture_record(id) }
+  let(:current_record) { @indexer.map_record(record_fixture_path) }
 
   describe 'including libraries and codes in advanced_location_s facet' do
-    let(:id) do
-      '9992320213506421'
-    end
-    let(:location_code_s) do
-      current_record['location_code_s']
-    end
-    let(:advanced_location_s) do
-      current_record['advanced_location_s']
-    end
+    let(:id) { '9992320213506421' }
+    let(:location_code_s) { current_record['location_code_s'] }
+    let(:advanced_location_s) { current_record['advanced_location_s'] }
 
     it 'lewis library included with lewis code' do
       expect(current_record).to include('advanced_location_s')
