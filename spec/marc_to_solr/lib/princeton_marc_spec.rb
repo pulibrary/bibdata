@@ -637,6 +637,10 @@ describe 'From princeton_marc.rb' do
     # voyager record: https://catalog.princeton.edu/catalog/1414145/
     # alma record: https://bibdata-alma-staging.princeton.edu/bibliographic/9914141453506421
     before(:all) do
+      @record_no_location_name = @indexer.map_record(fixture_record('99116547863506421'))
+      @holdings_no_location_name = JSON.parse(@record_no_location_name["holdings_1display"][0])
+      @holdings_no_location_name_holding_block = @holdings_no_location_name["22211952510006421"]
+
       @record = @indexer.map_record(fixture_record('9914141453506421'))
       @holdings = JSON.parse(@record["holdings_1display"][0])
       @oversize_holding_id = "22242008800006421"
@@ -662,6 +666,14 @@ describe 'From princeton_marc.rb' do
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
       @holding_id_scsb = "9856684"
       @holdings_scsb_block = @holdings_scsb[@holding_id_scsb]
+    end
+
+    it 'indexes location if it exists' do
+      expect(@oversize_holding_block['location']).to eq 'Stacks'
+    end
+
+    it 'if location is blank it will index blank' do
+      expect(@holdings_no_location_name_holding_block["location"]).to eq ''
     end
 
     it 'includes only first location code' do
