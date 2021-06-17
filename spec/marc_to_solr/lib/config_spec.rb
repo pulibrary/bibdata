@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe 'From traject_config.rb' do
   let(:leader) { '1234567890' }
+  let(:online) { @indexer.map_record(fixture_record('9990889283506421')) }
 
   def fixture_record(fixture_name)
     f = File.expand_path("../../../fixtures/marc_to_solr/#{fixture_name}.mrx", __FILE__)
@@ -23,8 +24,6 @@ describe 'From traject_config.rb' do
     @related_names = @indexer.map_record(fixture_record('9919643053506421'))
     @label_i_246 = @indexer.map_record(fixture_record('9990315453506421'))
     @online_at_library = @indexer.map_record(fixture_record('9979160443506421'))
-    @online = @indexer.map_record(fixture_record('9990889283506421'))
-    @elf2 = @indexer.map_record(fixture_record('9934788983506421'))
     @other_title_246 = @indexer.map_record(fixture_record('9979105993506421'))
     @title_vern_display = @indexer.map_record(fixture_record('9948545023506421'))
     @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
@@ -390,8 +389,8 @@ describe 'From traject_config.rb' do
     end
 
     it 'value is online for records where 856 field second indicator is 0' do
-      expect(@online['access_facet']).to include 'Online'
-      expect(@online['access_facet']).not_to include 'In the Library'
+      expect(online['access_facet']).to include 'Online'
+      expect(online['access_facet']).not_to include 'In the Library'
     end
 
     it 'value can be both in the library and online when there are multiple holdings' do
@@ -442,19 +441,18 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'excluding locations from library facet' do
-    # TODO: Replace with Alma
-    # Question: Is this still valid?
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'when location is online' do
-      expect(@online['location_code_s']).to include 'online$elf1'
-      expect(@online['location_display']).to include 'Electronic Access - elf1 Internet Resources'
-      expect(@online['location']).to eq ['Electronic Access']
-    end
-    it 'when location codes that do not map to labels' do
-      record = @indexer.map_record(fixture_record('99276293506421_invalid_location'))
-      expect(record['location_code_s']).to include 'invalidcode'
-      expect(record['location_display']).to be_nil
-      expect(record['location']).to be_nil
+    let(:location_code_s) { current_record['location_code_s'] }
+    let(:location_display) { current_record['location_display'] }
+    let(:location) { current_record['location'] }
+
+    context 'when there are location codes which do not map to the labels' do
+      let(:id) { '99276293506421_invalid_location' }
+
+      it 'when location codes that do not map to labels' do
+        expect(current_record['location_code_s']).to include 'invalidcode'
+        expect(current_record['location_display']).to be_nil
+        expect(current_record['location']).to be_nil
+      end
     end
   end
   describe 'location facet values for Recap items' do
@@ -468,22 +466,25 @@ describe 'From traject_config.rb' do
       expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
     end
   end
+
+  let(:record_fixture_path) { fixture_record(id) }
+  let(:current_record) { @indexer.map_record(record_fixture_path) }
+
   describe 'including libraries and codes in advanced_location_s facet' do
+    let(:id) { '9992320213506421' }
+    let(:location_code_s) { current_record['location_code_s'] }
+    let(:advanced_location_s) { current_record['advanced_location_s'] }
+
     it 'lewis library included with lewis code' do
-      record = @indexer.map_record(fixture_record('9992320213506421'))
-      expect(record['advanced_location_s']).to include 'lewis$stacks'
-      expect(record['advanced_location_s']).to include 'Lewis Library'
+      expect(current_record).to include('advanced_location_s')
+      expect(advanced_location_s).to include('lewis$stacks')
+      expect(advanced_location_s).to include('Lewis Library')
     end
-    # TODO: Replace with Alma.
-    # Question: Is this still valid?
-    xit 'online is included' do
-      expect(@elf2['advanced_location_s']).to include 'elf2'
-      expect(@elf2['advanced_location_s']).to include 'Online'
-    end
+
     it 'library is excluded from location_code_s' do
-      record = @indexer.map_record(fixture_record('9992320213506421'))
-      expect(record['location_code_s']).to include 'lewis$stacks'
-      expect(record['location_code_s']).not_to include 'Lewis Library'
+      expect(current_record).to include('advanced_location_s')
+      expect(location_code_s).to include('lewis$stacks')
+      expect(location_code_s).not_to include('Lewis Library')
     end
   end
   describe 'other_title_display array 246s included' do
