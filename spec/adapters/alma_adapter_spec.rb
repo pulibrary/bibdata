@@ -225,7 +225,7 @@ RSpec.describe AlmaAdapter do
       availability = adapter.get_availability_one(id: "9922486553506421")
       holding = availability["9922486553506421"]["22117511410006421"]
       expect(holding[:status_label]).to eq "Unavailable"
-      expect(holding[:label]).to eq "Stacks"
+      expect(holding[:label]).to eq "Firestone Library - Stacks"
       expect(holding[:location]).to eq "firestone$stacks"
       expect(holding[:cdl]).to eq false
     end
@@ -236,7 +236,7 @@ RSpec.describe AlmaAdapter do
       holding = availability["9965126093506421"]["22202918790006421"]
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:cdl]).to eq true
-      expect(holding[:label]).to eq 'Stacks'
+      expect(holding[:label]).to eq 'Firestone Library - Stacks'
     end
 
     it "reports some items available" do
@@ -270,7 +270,7 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:on_reserve]).to eq "Y"
       expect(holding1[:copy_number]).to eq "1"
       expect(holding2[:copy_number]).to eq "2"
-      expect(holding1[:label]).to eq 'Term Loan Reserves'
+      expect(holding1[:label]).to eq 'Lewis Library - Term Loan Reserves'
     end
 
     it "reports course reserves when record is in library marked as such" do
@@ -307,7 +307,7 @@ RSpec.describe AlmaAdapter do
       expect(item[:barcode]).to eq "32101036144101"
       expect(item[:in_temp_library]).to eq false
       expect(item[:temp_library_code]).to eq nil
-      expect(item[:label]).to eq 'Stacks'
+      expect(item[:label]).to eq 'Firestone Library - Stacks'
 
       # We are hard-coding this value to "N" to preserve the property in the response
       # but we are not really using this value anymore.
@@ -324,10 +324,10 @@ RSpec.describe AlmaAdapter do
       item_test = { barcode: "32101080920208", id: "23105104390006421", holding_id: "22105104420006421", copy_number: "1",
                     status: "Available", status_label: "Item in place", status_source: "base_status", process_type: nil,
                     on_reserve: "N", item_type: "Gen", pickup_location_id: "online", pickup_location_code: "online",
-                    location: "online$etasrcp", label: "ReCAP", in_temp_library: true,
+                    location: "online$etasrcp", label: "Electronic Access - ReCAP", in_temp_library: true,
                     description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
-                    temp_library_code: "online", temp_library_label: "ReCAP",
-                    temp_location_code: "online$etasrcp", temp_location_label: "ReCAP" }
+                    temp_library_code: "online", temp_library_label: "Electronic Access - ReCAP",
+                    temp_location_code: "online$etasrcp", temp_location_label: "Electronic Access - ReCAP" }
       expect(item).to eq item_test
     end
 
