@@ -167,7 +167,7 @@ class AlmaAdapter
       # which is equivalent to the alma external_name value
       def holding_location_label(holding)
         label = Locations::HoldingLocation.find_by(code: holding_location_code(holding))&.label
-        holding["library"].present? ? "#{holding['library']} - #{label}" : label
+        holding["library"].present? ? "#{holding['library']} - #{label}".rstrip.chomp(' -') : label
       end
 
       def holding_location_code(holding)

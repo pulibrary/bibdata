@@ -273,6 +273,13 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:label]).to eq 'Lewis Library - Term Loan Reserves'
     end
 
+    it "does not have a dash (-) before the label when the label is missing" do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: '')
+      availability = adapter.get_availability_one(id: "9922486553506421")
+      holding = availability["9922486553506421"]["22117511410006421"]
+      expect(holding[:label]).to eq "Firestone Library"
+    end
+
     it "reports course reserves when record is in library marked as such" do
       availability = adapter.get_availability_one(id: "9959958323506421")
       holding = availability["9959958323506421"]["fake_id_1"]
