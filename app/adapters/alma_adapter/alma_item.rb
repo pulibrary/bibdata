@@ -45,6 +45,14 @@ class AlmaAdapter
       end
     end
 
+    def composite_library_label_display
+      if in_temp_location?
+        holding_data.dig("temp_library", "desc")
+      else
+        item_data.dig("library", "desc")
+      end
+    end
+
     def on_reserve?
       AlmaItem.reserve_location?(library, location)
     end
@@ -293,8 +301,11 @@ class AlmaAdapter
       { code: code, label: desc, source: "base_status" }
     end
 
+    # Create the label by retrieving the value from the holding library label (external_name in Alma)
+    # Add the library label in front if it exists
     def holding_location_label(code)
-      Locations::HoldingLocation.find_by(code: code)&.label
+      label = Locations::HoldingLocation.find_by(code: code)&.label
+      composite_library_label_display.present? ? "#{composite_library_label_display} - #{label}" : label
     end
   end
 end
