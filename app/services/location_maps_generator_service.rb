@@ -21,6 +21,11 @@ class LocationMapsGeneratorService
     locations.each do |holding|
       holding_code = holding['code']
       lib_label = holding.library['label']
+      # The locations.rb file needs to have the scsb locations as e.g "scsbnypl"=>"ReCAP".
+      # This is why we are pulling the library label only for the scsb locations.
+      # The rest of the holding_location_library records will take the holding['label'] value, even if it is blank.
+      # This change will reflect on the holdings1_display["location"] value since it is using the locations.rb file for the location field.
+      # see https://github.com/pulibrary/bibdata/blob/fe0a9b9495b7a8275f5a64463257c06537dd9c1e/marc_to_solr/lib/princeton_marc.rb#L653 for more info.
       holding_label = ['scsbcul', 'scsbnypl', 'scsbhl'].include?(holding['code']) ? lib_label : holding['label']
       lib_display[holding_code] = lib_label
       locations_display[holding_code] = holding_label
