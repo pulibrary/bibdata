@@ -21,7 +21,6 @@ class Dump < ActiveRecord::Base
   scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
 
   class << self
-    
     ##
     # Create a dump of partner recap incremental records.
     def partner_update
