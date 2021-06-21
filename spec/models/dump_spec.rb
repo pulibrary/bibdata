@@ -60,7 +60,7 @@ RSpec.describe Dump, type: :model do
   describe '#last_incremental_update' do
     it 'returns nil when no dump object is there' do
       Dump.destroy_all
-      timestamp = Dump.send(:last_incremental_update, partner_recap)
+      timestamp = Dump.send(:last_incremental_update)
       expect(timestamp).to be_nil
     end
 
@@ -89,13 +89,6 @@ RSpec.describe Dump, type: :model do
       ENV['TIMESTAMP'] = '2017-07-01'
       timestamp = Dump.send(:incremental_update_timestamp, partner_recap).to_time.strftime("%Y%m%d")
       expect(timestamp).to eq(ENV['TIMESTAMP'].to_time.strftime("%Y%m%d"))
-    end
-
-    it 'sets to create time of the last created successful Princeton Recap dump if it exists' do
-      ENV['TIMESTAMP'] = nil
-      allow(described_class).to receive(:last_recap_dump).and_return(dump_princeton_recap_success)
-      timestamp = Dump.send(:incremental_update_timestamp, princeton_recap)
-      expect(timestamp).to eq dump_princeton_recap_success.created_at.to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
     end
   end
 
