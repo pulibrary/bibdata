@@ -25,6 +25,9 @@ class Dump < ActiveRecord::Base
   scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
 
   class << self
+    
+    ##
+    # Create a dump of partner recap incremental records.
     def partner_update
       dump = nil
       timestamp = incremental_update_timestamp
@@ -43,11 +46,18 @@ class Dump < ActiveRecord::Base
 
     private
 
-      def incremental_update_timestamp
+      ##
+      # Figure out when was the last time we got partner update records, and find
+      # anything that has appeared since then. The ways we can know the last time
+      # we got partner update records are:
+      # * via an environment variable
+      # * look for the last partner recap dump and get its creation date
+      # * or, if neither of those, use yesterday
+      def incremental_update_timestamp(_unused = nil)
         (ENV['TIMESTAMP'] || last_incremental_update || DateTime.now - 1).to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
       end
 
-      def last_incremental_update
+      def last_incremental_update(_unused = nil)
         last_dump = Dump.where(dump_type: DumpType.find_by(constant: "PARTNER_RECAP")).last
         last_dump&.created_at
       end
