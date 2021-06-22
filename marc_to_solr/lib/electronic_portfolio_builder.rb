@@ -5,63 +5,65 @@ class ElectronicPortfolioBuilder
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
   # @return [String] JSON string
-  def self.build(field:, date:, embargo:)
-    new(field: field, date: date, embargo: embargo).build
+  def self.build(field:)
+    new(field: field).build
   end
 
-  attr_reader :embargo, :field, :date
+  attr_reader :field
 
   # Constructor
   # @param field [MARC::DataField] data from 951 field
   # @param date [MARC::DataField] date range data from 953 field
   # @param embargo [MARC::DataField] embargo data from 954 field
-  def initialize(field:, date:, embargo:)
+  def initialize(field:)
     @field = field
-    @date = date
-    @embargo = embargo
+  end
+
+  def title
+    field['m']
+  end
+
+  def desc
+    field['s']
+  end
+
+  def url
+    field['u']
   end
 
   def build
     {
-      'desc': field['k'],
-      'title': field['n'],
-      'url': field['x'],
+      'title': title,
+      'desc': desc,
+      'url': url,
       'start': start_date,
       'end': end_date
-    }.to_json
+    }
   end
 
   private
 
+    def date_segments
+      return [] unless desc
+
+      desc.split(/until/)
+    end
+
     # Formulas for start and end dates come from Alma
     # documentation on the embargo operator:
-    # <=  Most recent X year(s) available
-    # >=  Most recent X year(s) not available
-    # <   Most recent X year(s)-1 available
-    # >   Most recent X year(s)+1 not available
     def start_date
-      if embargo && (embargo['b'] == '<=')
-        (DateTime.now.year - embargo['c'].to_i).to_s
-      elsif embargo && embargo['b'] == '<'
-        (DateTime.now.year - (embargo['c'].to_i - 1)).to_s
-      elsif date
-        date['b']
-      end
+      date_match = /from\s(.+\s?)?(\d{4})/.match(date_segments.first)
+      return unless date_match
+
+      date_match.captures.last
     end
 
     def end_date
-      if embargo && (embargo['b'] == '>=')
-        (DateTime.now.year - embargo['c'].to_i).to_s
-      elsif embargo && (embargo['b'] == '<=')
-        'latest'
-      elsif embargo && embargo['b'] == '<'
-        'latest'
-      elsif embargo && embargo['b'] == '>'
-        (DateTime.now.year - (embargo['c'].to_i + 1)).to_s
-      elsif date && date['c']
-        date['c']
-      else
-        'latest'
-      end
+      return 'latest' if date_segments.length < 2
+
+      date_match = /until\s(.+\s?)?(\d{4})/.match(desc)
+      return 'latest' unless date_match
+
+      date_match.captures.last
     end
 end

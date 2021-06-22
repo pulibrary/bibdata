@@ -148,42 +148,39 @@ describe 'From traject_config.rb' do
   describe "electronic_portfolio_s" do
     let(:fixture_name) { 'electronic_portfolio' }
 
-    # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "returns the electronic_portfolio_s field" do
+    it "returns the electronic_portfolio_s field" do
       portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
       nature = portfolios.find { |p| p['title'] == 'Nature' }
       ebsco = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
-      resource1 = portfolios.find { |p| p['title'] == 'Resource1' }
-      resource2 = portfolios.find { |p| p['title'] == 'Resource2' }
-      resource3 = portfolios.find { |p| p['title'] == 'Resource3' }
-      resource4 = portfolios.find { |p| p['title'] == 'Resource4' }
+      resource1 = portfolios.find { |p| p['title'] == 'ProQuest Central' }
+      resource2 = portfolios.find { |p| p['title'] == 'free eJournals' }
+      resource3 = portfolios.find { |p| p['title'] == 'SciTech Premium Collection' }
+      resource4 = portfolios.find { |p| p['title'] == 'PressReader' }
+      resource5 = portfolios.find { |p| p['title'] == 'Biodiversity Heritage Library Free' }
 
-      expect(nature['url']).to include '&portfolio_pid=53443322610006421'
-      expect(nature['desc']).to eq 'Available from 1869 volume: 1 issue: 1.'
+      expect(nature['url']).to include('rft.mms_id=99122306151806421')
+      expect(nature['desc']).to include('Available from 1869 volume: 1 issue: 1.')
 
-      # Date range with explicit start and no end date
-      expect(nature['start']).to eq '1869'
-      expect(nature['end']).to eq 'latest'
+      expect(nature['start']).to eq('1869')
+      expect(nature['end']).to eq('latest')
 
-      # Date range with explicit start and end
-      expect(ebsco['start']).to eq '1997'
-      expect(ebsco['end']).to eq '2015'
+      expect(ebsco['start']).to eq('1997')
+      expect(ebsco['end']).to eq('2015')
 
-      # Date range with less than or equal to embargo
-      expect(resource1['start']).to eq '2019'
-      expect(resource1['end']).to eq 'latest'
+      expect(resource1['start']).to eq('1990')
+      expect(resource1['end']).to eq('latest')
 
-      # Date range with less than embargo
-      expect(resource2['start']).to eq '2020'
-      expect(resource2['end']).to eq 'latest'
+      expect(resource2['start']).to eq('1869')
+      expect(resource2['end']).to eq('1875')
 
-      # Date range with greater than embargo
-      expect(resource3['start']).to eq '1990'
-      expect(resource3['end']).to eq '2018'
+      expect(resource3['start']).to eq('1990')
+      expect(resource3['end']).to eq('latest')
 
-      # Date range with greater than or equal to embargo
-      expect(resource4['start']).to eq '1990'
-      expect(resource4['end']).to eq '2019'
+      expect(resource4['start']).to be nil
+      expect(resource4['end']).to eq('latest')
+
+      expect(resource5['start']).to eq('1869')
+      expect(resource5['end']).to eq('1923')
     end
   end
   describe "call_number_display field" do

@@ -1322,24 +1322,13 @@ to_field 'call_number_locator_display', extract_marc('852hi')
 
 to_field 'electronic_portfolio_s' do |record, accumulator|
   fields = []
-  dates = []
-  embargoes = []
-  MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
+  MarcExtractor.cached('AVEmsu').collect_matching_lines(record) do |field, _spec, _extractor|
     fields << field
   end
 
-  MarcExtractor.cached('953abc').collect_matching_lines(record) do |field, _spec, _extractor|
-    dates << field
-  end
-
-  MarcExtractor.cached('954ac').collect_matching_lines(record) do |field, _spec, _extractor|
-    embargoes << field
-  end
-
   fields.map do |field|
-    date = dates.find { |d| d['a'] == field['8'] }
-    embargo = embargoes.find { |e| e['a'] == field['8'] }
-    accumulator << ElectronicPortfolioBuilder.build(field: field, date: date, embargo: embargo)
+    value = ElectronicPortfolioBuilder.build(field: field)
+    accumulator << value.to_json
   end
 end
 
