@@ -13,7 +13,7 @@ module Scsb
       new(dump: dump, timestamp: timestamp.to_time, constant: constant).process_incremental_files
     end
 
-    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.new, constant:)
+    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.partner_transfer_client, constant:)
       @dump = dump
       @s3_bucket = s3_bucket
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
