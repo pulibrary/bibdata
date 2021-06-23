@@ -1153,57 +1153,79 @@ each_record do |_record, context|
 end
 
 # Process location code once
-# 852|b and 852|c
+# AVA|b and AVA|c
 each_record do |record, context|
   location_codes = []
-  MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
+  aggregated = []
+  compacted = []
+
+  MarcExtractor.cached("AVA").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code?(field['8'])
     is_scsb = scsb_doc?(record['001'].value)
+
     field.subfields.each do |s_field|
       # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
       if s_field.code == 'b'
-        # update the logged error. It doesn't look right as it is and we need to see in alma if we
-        # still need to log multiple $b in 852.
-        # logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
+        # @todo It doesn't look right as it is and we need to see in alma if we still need to log multiple $b values in AVA.
+        # For example:
+        #   logger.error("Multiple unsupported $b values in AVA: #{s_field.value}") unless holding_b.nil?
+
         holding_b ||= s_field.value if is_alma || is_scsb
-        holding_b += "$#{field['c']}" if field['c'] && is_alma
+
+        field_c = field['c']
+        if is_alma && field_c
+          tokens = field_c.split(' ')
+          qualifier = tokens.first
+
+          holding_b += "$#{qualifier.downcase}"
+        end
       end
     end
-    location_codes << holding_b
-    location_codes.compact!
+
+    aggregated << holding_b
+    compacted = aggregated.compact
   end
-  if location_codes.any?
-    location_codes.uniq!
-    ## need to go through any location code that isn't from voyager, thesis, or graphic arts
-    ## issue with the ReCAP project records
+  location_codes = compacted.uniq
+
+  if !location_codes.empty?
+    output = []
+
+    # @todo need to go through any location code that isn't from voyager, thesis, or graphic arts issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
-    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
+
+    translation_map = Traject::TranslationMap.new("location_display")
+    translated = translation_map.translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
 
-    # The holding_library is used with some locations to add an additional owning library,
-    # which is included in advanced search but not facets.
+    # The holding_library is used with some locations to add an additional owning library, which is included in advanced search but not facets.
     holding_library = Traject::TranslationMap.new("holding_library")
-    location_codes.each do |l|
-      if mapped_codes[l]
-        context.output_hash['location_display'] ||= []
-        context.output_hash['location_display'] << mapped_codes[l]
+    location_codes.each do |code|
+      mapped_code = mapped_codes[code]
 
-        context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
+      if mapped_code
+        location_display_output ||= []
+        location_display_output << mapped_code
+
+        mapped_holding_library = holding_library[code]
+        location_display_output << mapped_holding_library if /^ReCAP/ =~ mapped_code && ['Special Collections', 'Marquand Library'].include?(mapped_holding_library)
+
+        context.output_hash['location'] = location_display_output
       else
-        logger.error "#{record['001']} - Invalid Location Code: #{l}"
+        logger.error "#{record['001']} - Invalid Location Code: #{code}"
       end
     end
-    context.output_hash['location'].uniq!
+    location_output = translated.uniq
 
     # Add library and location for advanced multi-select facet
-    context.output_hash['advanced_location_s'] = Array.new(location_codes)
-    context.output_hash['advanced_location_s'] << context.output_hash['location']
-    context.output_hash['advanced_location_s'].flatten!
+    advanced_location_output = Array.new(location_codes)
+    advanced_location_output << output
+    context.output_hash['advanced_location_s'] = advanced_location_output.flatten
 
     # do not index location field if empty (when location code invalid or online)
-    context.output_hash['location'].delete('Online')
-    context.output_hash.delete('location') if context.output_hash['location'].empty?
+    location_output.delete('Online')
+
+    context.output_hash['location'] = location_output unless location_output.empty?
   end
 end
 

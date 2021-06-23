@@ -61,8 +61,8 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'locations' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "will index the location_code_s" do
-      expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
+    it "will index the location_code_s" do
+      expect(record["location_code_s"]).to include("engineer$serials", "annex$stacks", "recap$remote", "lewis$serials")
     end
   end
 
