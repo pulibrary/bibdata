@@ -25,38 +25,6 @@ module IndexFunctions
     nil
   end
 
-  def self.full_dump(event)
-    file_paths = []
-    dump = JSON.parse(Faraday.get(event['dump_url']).body)
-    dump['files']['bib_records'].each_with_index do |bib, i|
-      File.binwrite("/tmp/bib_#{i}.gz", Faraday.get(bib['dump_file']).body)
-      file_paths << "/tmp/bib_#{i}"
-    end
-    file_paths
-  end
-
-  def self.unzip_mrc(marc_dump)
-    Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
-      File.open("#{marc_dump}.mrc", 'wb') do |fp|
-        while chunk = gz.read(16 * 1024)
-          fp.write chunk
-        end
-      end
-      gz.close
-    end
-  end
-
-  def self.unzip_xml(marc_dump)
-    Zlib::GzipReader.open("#{marc_dump}.gz") do |gz|
-      File.open("#{marc_dump}.xml", 'wb') do |fp|
-        while chunk = gz.read(16 * 1024)
-          fp.write chunk
-        end
-      end
-      gz.close
-    end
-  end
-
   def self.process_scsb_dumps(dumps, solr_url)
     solr = rsolr_connection(solr_url)
     return if solr.nil?
