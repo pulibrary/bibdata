@@ -58,7 +58,7 @@ describe SolrDeleter do
       end
 
       it 'logs a warning' do
-        expect(logger).to have_received(:warn).exactly(2).times
+        expect(logger).to have_received(:warn).exactly(2).times.with(/^Delete timed out /)
       end
     end
 
