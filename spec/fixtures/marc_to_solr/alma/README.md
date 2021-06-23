@@ -20,7 +20,7 @@
 * title_vern_display (https://bibdata.princeton.edu/bibliographic/9948545023506421)
 * hathi_permanent (https://bibdata.princeton.edu/bibliographic/9914591663506421)
 * cjk_only (https://bibdata.princeton.edu/bibliographic/9939238033506421)
-* locations (https://bibdata.princeton.edu/bibliographic/9992320213506421)
+* locations (https://bibdata.princeton.edu/bibliographic/994264203506421)
 * call_number_locator (https://bibdata.princeton.edu/bibliographic/9941598513506421)
 * access_links (https://bibdata.princeton.edu/bibliographic/9918573506421)
 * electronic_record (https://bibdata.princeton.edu/bibliographic/99122424622606421)
@@ -29,6 +29,7 @@
 * contained_in (https://bibdata.princeton.edu/bibliographic/9939073273506421)
 * elf_codes (https://bibdata.princeton.edu/bibliographic/99121576653506421)
 * invalid_location_code (https://bibdata.princeton.edu/bibliographic/9914141453506421)
+* holdings (https://bibdata.princeton.edu/bibliographic/9946093213506421)
 
 ### SCSB Records
 * scsb_journal (https://catalog.princeton.edu/catalog/SCSB-5360820)

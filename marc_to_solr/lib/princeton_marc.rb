@@ -632,45 +632,87 @@ end
 # assumes exactly 1 852 is present per mfhd (it saves the last 852 it finds)
 def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   all_holdings = {}
-  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
+  extracted = Traject::MarcExtractor.cached('AVA')
+
+  extracted.collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
     holding_id = nil
     is_alma = alma_code?(field['8'])
-    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    record_001 = record['001'].value
+    is_scsb = scsb_doc?(record_001) && field['0']
     next unless is_alma || is_scsb
+
+    holding_location_code = nil
+    call_numbers = []
+    call_number_browse_values = []
+    shelving_title ||= []
+    location_note ||= []
+
     field.subfields.each do |s_field|
-      # Index holdings from Princeton records
-      if s_field.code == '8' && is_alma
+      copy_number = holding['copy_number']
+
+      if s_field.code == '8' && is_alma # Index holdings from Princeton records
         holding_id = s_field.value
-      # Index holdings from SCSB.
-      elsif s_field.code == '0' && is_scsb
+      elsif s_field.code == '0' && is_scsb # Index holdings from SCSB.
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location_code'] ||= s_field.value
+        holding_location_code ||= s_field.value
+        # #holding['location_code'] ||= s_field.value
+
         # Append 852c to location code 852b if it's an Alma item
         # Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
-        holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
-        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
-        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
+        # holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
+
+        field_j = field['j']
+        holding_location_code += "$#{field_j}" if field_j && is_alma
+        holding['location_code'] ||= holding_location_code
+
+        # holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
+        location_map = Traject::TranslationMap.new("locations", default: "__passthrough__")
+        holding['location'] ||= location_map[holding_location_code]
+
+        # holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
+        location_display_map = Traject::TranslationMap.new("location_display", default: "__passthrough__")
+        location_display = location_display_map[holding_location_code]
+        holding['library'] ||= location_display
       elsif /[khij]/.match?(s_field.code)
-        holding['call_number'] ||= []
-        holding['call_number'] << s_field.value
-        holding['call_number_browse'] ||= []
-        holding['call_number_browse'] << s_field.value
+        # call_numbers ||= []
+        call_numbers << s_field.value
+        # holding['call_number'] = call_numbers
+
+        # call_number_browse_values ||= []
+        call_number_browse_values << s_field.value
+        # holding['call_number_browse'] = call_number_browse
       elsif s_field.code == 'l'
-        holding['shelving_title'] ||= []
-        holding['shelving_title'] << s_field.value
-      elsif s_field.code == 't' && holding['copy_number'].nil?
+        # shelving_title ||= []
+        shelving_title << s_field.value
+
+        holding['shelving_title'] = shelving_title
+      elsif s_field.code == 't' && copy_number.nil?
         holding['copy_number'] = s_field.value
       elsif s_field.code == 'z'
-        holding['location_note'] ||= []
-        holding['location_note'] << s_field.value
+        # location_note ||= []
+        location_note << s_field.value
+
+        holding['location_note'] = location_note
       end
     end
-    holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
-    holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
+
+    # holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
+    if !call_numbers.empty?
+      call_number = call_numbers.join(' ') unless call_numbers.empty?
+      holding['call_number'] = call_number
+    end
+
+    # holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
+    if !call_number_browse_values.empty?
+      call_number_browse_value = call_number_browse_values.join(' ')
+      holding['call_number_browse'] = call_number_browse_value
+    end
+
     all_holdings[holding_id] = holding unless holding_id.nil? || invalid_location?(holding['location_code'])
   end
+
   Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil

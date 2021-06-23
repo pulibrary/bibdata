@@ -1131,7 +1131,12 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator|
   all_holdings = process_holdings(record)
-  accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
+
+  if !all_holdings.empty?
+    holdings_1display_value = all_holdings.to_json
+
+    accumulator[0] = holdings_1display_value.to_s
+  end
 end
 
 ## for recap notes
@@ -1162,7 +1167,8 @@ each_record do |record, context|
   MarcExtractor.cached("AVA").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code?(field['8'])
-    is_scsb = scsb_doc?(record['001'].value)
+    record_001 = record['001'].value
+    is_scsb = scsb_doc?(record_001)
 
     field.subfields.each do |s_field|
       # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
@@ -1173,13 +1179,8 @@ each_record do |record, context|
 
         holding_b ||= s_field.value if is_alma || is_scsb
 
-        field_c = field['c']
-        if is_alma && field_c
-          tokens = field_c.split(' ')
-          qualifier = tokens.first
-
-          holding_b += "$#{qualifier.downcase}"
-        end
+        field_j = field['j']
+        holding_b += "$#{field_j}"
       end
     end
 
@@ -1212,7 +1213,7 @@ each_record do |record, context|
 
         context.output_hash['location'] = location_display_output
       else
-        logger.error "#{record['001']} - Invalid Location Code: #{code}"
+        logger.error "#{record_001} - Invalid Location Code: #{code}"
       end
     end
     location_output = translated.uniq

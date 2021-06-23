@@ -77,19 +77,32 @@ describe 'From traject_config.rb' do
     end
   end
   describe "holdings" do
-    let(:fixture_name) { 'locations' }
+    let(:fixture_name) { 'holdings' }
+    let(:holdings_values) { record["holdings_1display"] }
+    let(:holdings_json) { holdings_values.first }
+    let(:holdings) { JSON.parse(holdings_json) }
+    let(:holding_1) { holdings.values.first }
+    let(:holding_2) { holdings.values.first }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "can index holdings" do
-      holdings = JSON.parse(record["holdings_1display"][0])
-      holding_1 = holdings["22188107110006421"]
-      holding_2 = holdings["22188107090006421"]
-      expect(holding_1["location"]).to eq "Stacks"
-      expect(holding_1["library"]).to eq "Lewis Library"
-      expect(holding_1["location_code"]).to eq "lewis$stacks"
-      expect(holding_2["location"]).to eq "Stacks"
-      expect(holding_2["library"]).to eq "Firestone Library"
-      expect(holding_2["location_code"]).to eq "firestone$stacks"
+    it "can index holdings" do
+      expect(holding_1).to include(
+        "location_code" => "rare$whs",
+        "location" => "William H. Scheide Library",
+        "library" => "Special Collections",
+        "copy_number" => "vol.1-2",
+        "call_number" => "whs 8",
+        "call_number_browse" => "whs 8"
+      )
+
+      expect(holding_2).to include(
+        "location_code" => "rare$whs",
+        "location" => "William H. Scheide Library",
+        "library" => "Special Collections",
+        "copy_number" => "vol.1-2",
+        "call_number" => "whs 8",
+        "call_number_browse" => "whs 8"
+      )
     end
   end
   describe 'the cataloged_date from publishing job' do
