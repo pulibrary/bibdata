@@ -1163,11 +1163,11 @@ each_record do |record, context|
   location_codes = []
   aggregated = []
   compacted = []
+  record_001 = record['001'].value unless record['001'].nil?
 
   MarcExtractor.cached("AVA").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code?(field['8'])
-    record_001 = record['001'].value
     is_scsb = scsb_doc?(record_001)
 
     field.subfields.each do |s_field|

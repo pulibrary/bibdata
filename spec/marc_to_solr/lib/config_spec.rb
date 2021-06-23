@@ -62,7 +62,7 @@ describe 'From traject_config.rb' do
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
     it "will index the location_code_s" do
-      expect(record["location_code_s"]).to include("engineer$serials", "annex$stacks", "recap$remote", "lewis$serials")
+      expect(record["location_code_s"]).to include("engineer$serial", "annex$stacks", "recap$pn", "lewis$serial")
     end
   end
 
@@ -109,7 +109,7 @@ describe 'From traject_config.rb' do
     describe "the date cataloged facets" do
       context "When the record has 876d and 951w fields" do
         # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-        xit "will index the 876d field" do
+        it "will index the 876d field" do
           expect(reader['951']['w']).to be_truthy
           expect(reader['876']['d']).to be_truthy
           expect(reader['950']['b']).to be_truthy
@@ -149,7 +149,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'electronic_record' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit "will index the 951w field" do
+      it "will index the 951w field" do
         expect(reader['951']['w']).to be_truthy
         expect(reader['876']).to be_falsey
         expect(reader['950']).to be_truthy
@@ -200,7 +200,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'call_number_display' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "returns the call_number_display field with k subfield in the beginning" do
+    it "returns the call_number_display field with k subfield in the beginning" do
       expect(record['call_number_display']).to eq(["Eng 20Q 6819 "])
     end
   end
@@ -209,7 +209,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'call_number_display' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "returns the call_number_browse field with k subfield at the end" do
+    it "returns the call_number_browse field with k subfield at the end" do
       expect(record['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
   end
@@ -218,7 +218,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'call_number_locator' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit "returns the call_number_locator_display field with no subfield k" do
+    it "returns the call_number_locator_display field with no subfield k" do
       expect(record['call_number_locator_display']).to eq([" .B7544 2003q"])
     end
   end
@@ -235,7 +235,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'sample1' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
+    it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
       expect(record['language_code_s']).to eq(['eng', '|||'])
       expect(record['language_iana_s']).to eq(['en'])
     end
@@ -494,7 +494,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'sample3' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit 'value is in the library for non-electronic records' do
+    it 'value is in the library for non-electronic records' do
       expect(record['access_facet']).to include 'In the Library'
       expect(record['access_facet']).not_to include 'Online'
     end
@@ -512,7 +512,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'online_at_library' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'value can be both in the library and online when there are multiple holdings' do
+      it 'value can be both in the library and online when there are multiple holdings' do
         expect(record['access_facet']).to include 'Online'
         expect(record['access_facet']).to include 'In the Library'
       end
@@ -529,7 +529,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'hathi_permanent' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'value include online when record is present in hathi report with permanent access' do
+      it 'value include online when record is present in hathi report with permanent access' do
         expect(record['access_facet']).to contain_exactly('Online', 'In the Library')
         expect(record['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
       end
@@ -608,7 +608,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'invalid_location_code' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'generates the "invalidcode" value without a display label' do
+      it 'generates the "invalidcode" value without a display label' do
         expect(record['location_code_s']).to include 'invalidcode'
         expect(record['location_display']).to be_nil
         expect(record['location']).to be_nil
@@ -619,7 +619,7 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'added_title_246' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit 'marquand recap items have a location value of marquand and recap' do
+    it 'marquand recap items have a location value of marquand and recap' do
       expect(record['location_display']).to eq ['Remote Storage: Marquand Library use only']
       expect(record['location']).to eq ['ReCAP']
     end
@@ -627,7 +627,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'online_at_library' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'non-rare recap items only have a location value of recap' do
+      it 'non-rare recap items only have a location value of recap' do
         expect(record['location_display']).to include 'Mudd Off-Site Storage: Contact mudd@princeton.edu'
         expect(record['location']).to include 'ReCAP'
         expect(record['location']).not_to include 'Mudd Manuscript Library'
@@ -642,8 +642,8 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'locations' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit 'lewis library included with lewis code' do
-      expect(record['advanced_location_s']).to include 'lewis$stacks'
+    it 'lewis library included with lewis code' do
+      expect(record['advanced_location_s']).to include 'lewis$serial'
       expect(record['advanced_location_s']).to include 'Lewis Library'
     end
     # TODO: Replace with Alma.
@@ -660,7 +660,7 @@ describe 'From traject_config.rb' do
       let(:fixture_name) { 'locations' }
 
       # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'library is excluded from location_code_s' do
+      it 'library is excluded from location_code_s' do
         expect(record['location_code_s']).to include 'lewis$stacks'
         expect(record['location_code_s']).not_to include 'Lewis Library'
       end
@@ -725,8 +725,8 @@ describe 'From traject_config.rb' do
     let(:fixture_name) { 'locations' }
 
     # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-    xit 'supports multiple location codes in separate 852s' do
-      expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
+    it 'supports multiple location codes in separate 852s' do
+      expect(record['location_code_s']).to include("engineer$serial", "annex$stacks", "recap$pn", "lewis$serial")
     end
     # TODO: ALMA
     # it 'only includes the first $b within a single tag' do
