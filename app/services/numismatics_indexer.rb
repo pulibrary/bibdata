@@ -1,21 +1,22 @@
 require 'open-uri'
 
 class NumismaticsIndexer
-  def self.full_index(solr_url:, progressbar: false)
-    new(solr_connection: RSolr.connect(url: solr_url), progressbar: progressbar).full_index
+  def self.full_index(solr_url:, progressbar: false, logger: Logger.new(STDERR))
+    new(solr_connection: RSolr.connect(url: solr_url), progressbar: progressbar, logger: logger).full_index
   end
 
-  attr_reader :solr_connection, :progressbar
-  def initialize(solr_connection:, progressbar: false)
+  attr_reader :solr_connection, :progressbar, :logger
+  def initialize(solr_connection:, progressbar:, logger:)
     @solr_connection = solr_connection
     @progressbar = progressbar
+    @logger = logger
   end
 
   def full_index
     solr_documents.each_slice(500) do |docs|
       solr_connection.add(docs)
     rescue RSolr::Error::Http => e
-      Rails.logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
+      logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
       index_individually(docs)
     end
     solr_connection.commit
@@ -26,12 +27,12 @@ class NumismaticsIndexer
     docs.each do |doc|
       solr_connection.add(doc)
     rescue RSolr::Error::Http => e
-      Rails.logger.warn("Failed to index individual record #{doc['id']}, error was: #{e.class}: #{e.message.strip}")
+      logger.warn("Failed to index individual record #{doc['id']}, error was: #{e.class}: #{e.message.strip}")
     end
   end
 
   def solr_documents
-    json_response = PaginatingJsonResponse.new(url: search_url)
+    json_response = PaginatingJsonResponse.new(url: search_url, logger: logger)
     pb = progressbar ? ProgressBar.create(total: json_response.total, format: "%a %e %P% Processed: %c from %C") : nil
     json_response.lazy.map do |json_record|
       pb&.increment
@@ -56,9 +57,10 @@ class NumismaticsIndexer
 
   class PaginatingJsonResponse
     include Enumerable
-    attr_reader :url
-    def initialize(url:)
+    attr_reader :url, :logger
+    def initialize(url:, logger:)
       @url = url
+      @logger = logger
     end
 
     def each
@@ -66,7 +68,7 @@ class NumismaticsIndexer
       loop do
         response.docs.each do |doc|
           json = json_for(doc)
-          yield json_for(doc) if json
+          yield json if json
         end
         break unless (response = response.next_page)
       end
@@ -76,7 +78,7 @@ class NumismaticsIndexer
       path = NumismaticRecordPathBuilder.new(doc).path
       JSON.parse(open(path).read)
     rescue => e
-      Rails.logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
+      logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
       nil
     end
 
