@@ -64,6 +64,12 @@ class AlmaAdapter
         # Notice that we only check if a holding is available via CDL when necessary
         # because it requires an extra (slow-ish) API call.
         status[:cdl] = cdl_holding?(holding["holding_id"])
+      elsif status[:status_label] == "Some items not available"
+        # Alma gives an incorrect status when records have no items. Here we check
+        # if that is the case and return a more accurate status. This logic would be
+        # better inside the Status class but we keep it here since it requires an
+        # extra API call to get the item data.
+        status[:status_label] = "On-site access" if item_data.empty?
       end
 
       status

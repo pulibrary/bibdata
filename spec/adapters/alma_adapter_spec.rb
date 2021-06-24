@@ -210,14 +210,19 @@ RSpec.describe AlmaAdapter do
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9921799253506421")
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_some_available, headers: { "content-Type" => "application/json" })
+      stub_alma_holding_items(mms_id: "9921799253506421", holding_id: "ALL", filename: "9921799253506421_holding_items.json", query: "")
 
       stub_alma_library(library_code: "lewis", location_code: "resterm", body: library_lewis_reserves)
       stub_alma_library(library_code: "online", location_code: "etasrcp")
       stub_alma_library(library_code: "recap", location_code: "pa")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
+      stub_alma_library(library_code: "rare", location_code: "ex")
 
       stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
       stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
+
+      stub_alma_ids(ids: "9917917633506421", status: 200, fixture: "9917917633506421")
+      stub_alma_holding_items(mms_id: "9917917633506421", holding_id: "ALL", filename: "9917917633506421_holding_items.json", query: "")
     end
 
     it "reports availability of physical holdings" do
@@ -243,6 +248,12 @@ RSpec.describe AlmaAdapter do
       availability = adapter.get_availability_one(id: "9921799253506421")
       holding = availability["9921799253506421"]["22201236200006421"]
       expect(holding[:status_label]).to eq "Some items not available"
+    end
+
+    it "reports on-site access" do
+      availability = adapter.get_availability_one(id: "9917917633506421")
+      holding = availability["9917917633506421"]["22178797250006421"]
+      expect(holding[:status_label]).to eq "On-site access"
     end
 
     it "ignores electronic resources" do
