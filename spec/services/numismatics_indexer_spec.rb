@@ -13,8 +13,9 @@ RSpec.describe NumismaticsIndexer do
   end
 
   describe "#full_index" do
-    subject(:indexer) { described_class.new(solr_connection: solr_connection) }
+    subject(:indexer) { described_class.new(solr_connection: solr_connection, progressbar: false, logger: logger) }
     let(:solr_connection) { RSolr.connect(url: solr_url) }
+    let(:logger) { instance_double(Logger) }
 
     before do
       stub_search_page(page: 1)
@@ -31,7 +32,7 @@ RSpec.describe NumismaticsIndexer do
       solr_connection.delete_by_query("*:*")
       solr_connection.commit
 
-      described_class.full_index(solr_url: solr_url)
+      indexer.full_index
       solr_connection.commit
       response = solr_connection.get("select", params: { q: "*:*" })
       expect(response['response']['numFound']).to eq 6
@@ -40,13 +41,13 @@ RSpec.describe NumismaticsIndexer do
     context "when there's any error retrieving a figgy record" do
       it "logs the record number and continues indexing" do
         stub_figgy_record_error(id: "92fa663d-5758-4b20-8945-cf5a34458e6e")
-        allow(Rails.logger).to receive(:warn)
+        allow(logger).to receive(:warn)
         solr_connection.delete_by_query("*:*")
         solr_connection.commit
 
         expect { indexer.full_index }.not_to raise_error
 
-        expect(Rails.logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, error was: OpenURI::HTTPError: 502 ")
+        expect(logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, error was: OpenURI::HTTPError: 502 ")
 
         solr_connection.commit
         response = solr_connection.get("select", params: { q: "*:*" })
@@ -71,12 +72,12 @@ RSpec.describe NumismaticsIndexer do
             original.call(*args)
           end
         end
-        allow(Rails.logger).to receive(:warn)
+        allow(logger).to receive(:warn)
 
         indexer.full_index
         solr_connection.commit
-        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index batch, retrying individually, error was: RSolr::Error::Http/)
-        expect(Rails.logger).to have_received(:warn).once.with(/Failed to index individual record coin-1148, error was: RSolr::Error::Http/)
+        expect(logger).to have_received(:warn).once.with(/Failed to index batch, retrying individually, error was: RSolr::Error::Http/)
+        expect(logger).to have_received(:warn).once.with(/Failed to index individual record coin-1148, error was: RSolr::Error::Http/)
         response = solr_connection.get("select", params: { q: "*:*" })
         expect(response['response']['numFound']).to eq 5
       end

@@ -90,5 +90,6 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 ### Index Numismatic Coins
 
 - as deploy user, in `/opt/marc_liberaton/current`
-- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake numismatics:index:full`
+- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes an hour or two.
+- Note that the default log writes to STDERR to distinguish its output from the progress bar

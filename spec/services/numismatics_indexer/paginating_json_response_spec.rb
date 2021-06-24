@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe NumismaticsIndexer::PaginatingJsonResponse do
-  subject(:paginating_response) { described_class.new(url: url) }
+  subject(:paginating_response) { described_class.new(url: url, logger: logger) }
 
   let(:url) { 'http://localhost.localdomain/solr' }
+  let(:logger) { instance_double(Logger) }
 
   describe "#total" do
     let(:total_count) { 1 }
