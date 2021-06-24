@@ -44,22 +44,21 @@ describe SolrDeleter do
       end
     end
 
-    context 'when the HTTP request to the Solr endpoint' do
+    context 'when the HTTP request to Solr times out' do
       let(:logger) do
         instance_double(ActiveSupport::Logger)
       end
 
       before do
-        allow(Faraday).to receive(:post).and_raise(Net::ReadTimeout)
+        allow(Faraday).to receive(:post).and_raise(Faraday::TimeoutError)
         allow(logger).to receive(:info)
         allow(logger).to receive(:warn)
-        allow(Rails).to receive(:logger).and_return(logger)
 
         solr_deleter.delete(ids, batch_size)
       end
 
       it 'logs a warning' do
-        expect(logger).to have_received(:warn).exactly(2).times.with("Failed to transmit the POST request to #{url}: <delete><id>#{ids.first}</id><id>#{ids.last}</id></delete>")
+        expect(logger).to have_received(:warn).exactly(2).times.with(/^Delete timed out /)
       end
     end
 
