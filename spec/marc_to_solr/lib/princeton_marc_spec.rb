@@ -12,7 +12,6 @@ describe 'From princeton_marc.rb' do
   end
 
   let(:indexer) { IndexerService.build }
-
   let(:ark) { "ark:/88435/xp68kg247" }
   let(:bib_id) { "9947151893506421" }
   let(:docs) do
@@ -46,7 +45,6 @@ describe 'From princeton_marc.rb' do
         source_metadata_identifier_tesim: [
           bib_id
         ]
-
       }
     ]
   end
@@ -72,6 +70,19 @@ describe 'From princeton_marc.rb' do
       }
     }
   end
+  let(:reader) { fixture_record(record_id) }
+  let(:document) { indexer.map_record(reader) }
+  let(:holding_values) { document["holdings_1display"] }
+  let(:holding_value) { holding_values.first }
+  let(:holding) { JSON.parse(holding_value) }
+  let(:holding_block) { holding[holding_id] }
+  let(:holding_block_items) { holding_block["items"] }
+  let(:sample1) { '9914141453506421' }
+  let(:sample2) { '991583506421' }
+  let(:sample3) { '991213506421' }
+  let(:sample4) { '9914141453506421_invalid_loc' }
+  let(:sample5) { 'SCSB-8157262' }
+  let(:sample6) { 'missing_location_name' }
 
   before do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000").to_return(status: 200, body: JSON.generate(results))
@@ -636,35 +647,32 @@ describe 'From princeton_marc.rb' do
   describe '#process_holdings' do
     # voyager record: https://catalog.princeton.edu/catalog/1414145/
     # alma record: https://bibdata-alma-staging.princeton.edu/bibliographic/9914141453506421
-    before(:all) do
-      @record_no_location_name = @indexer.map_record(fixture_record('99116547863506421'))
-      @holdings_no_location_name = JSON.parse(@record_no_location_name["holdings_1display"][0])
-      @holdings_no_location_name_holding_block = @holdings_no_location_name["22211952510006421"]
-
-      @record = @indexer.map_record(fixture_record('9914141453506421'))
+    before do
+      @record = indexer.map_record(fixture_record(sample1))
       @holdings = JSON.parse(@record["holdings_1display"][0])
       @oversize_holding_id = "22242008800006421"
       @oversize_holding_block = @holdings[@oversize_holding_id]
 
-      @record_866_867 = @indexer.map_record(fixture_record('991583506421'))
+      @record_866_867 = indexer.map_record(fixture_record(sample2))
       @holdings_866_867 = JSON.parse(@record_866_867["holdings_1display"][0])
       @holding_id_866_867 = "22262098640006421"
       @holdings_866_867_block = @holdings_866_867[@holding_id_866_867]
 
-      @record_868 = @indexer.map_record(fixture_record('991213506421'))
+      @record_868 = indexer.map_record(fixture_record(sample3))
       @holdings_868 = JSON.parse(@record_868["holdings_1display"][0])
       @holding_id_868 = "22261907460006421"
       @holdings_868_block = @holdings_868[@holding_id_868]
 
-      @record_invalid_location = @indexer.map_record(fixture_record('9914141453506421_invalid_loc'))
+      @record_invalid_location = indexer.map_record(fixture_record(sample4))
       @not_valid_holding_id = "999999"
       @holdings_id_852 = "22242008800006421"
+
       @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
 
-      # scsb
-      @record_scsb = @indexer.map_record(fixture_record('SCSB-8157262'))
+      # SCSB
+      @record_scsb = indexer.map_record(fixture_record(sample5))
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
-      @holding_id_scsb = "9856684"
+      @holding_id_scsb = "22261907460006421"
       @holdings_scsb_block = @holdings_scsb[@holding_id_scsb]
     end
 
@@ -672,8 +680,13 @@ describe 'From princeton_marc.rb' do
       expect(@oversize_holding_block['location']).to eq 'Stacks'
     end
 
-    it 'if location is blank it will index blank' do
-      expect(@holdings_no_location_name_holding_block["location"]).to eq ''
+    context 'if the location is blank' do
+      let(:record_id) { sample6 }
+      let(:holding_id) { "22211952510006421" }
+
+      it 'will index blank' do
+        expect(holding_block).to include('location' => '')
+      end
     end
 
     it 'includes only first location code' do
@@ -687,54 +700,97 @@ describe 'From princeton_marc.rb' do
 
     it 'positions $k at the end for call_number_browse field' do
       expect(@oversize_holding_block['call_number_browse']).to include('Oversize')
-      expect(@oversize_holding_block['call_number_browse']).to eq("M23.L5S6 1973q Oversize")
+      expect(@oversize_holding_block['call_number_browse']).to eq("Oversize M23.L5S6 1973q")
     end
 
     describe 'copy_number is included in the items' do
-      it "includes copy_number from first instance of 852 $t" do
-        expect(@oversize_holding_block["items"].first["copy_number"]).to eq('10')
+      context "when the AVA field has sample" do
+        let(:record_id) { sample1 }
+        let(:holding_id) { "22242009000006421" }
+
+        it "includes copy_number from first instance of AVA $t" do
+          expect(holding_block).to include("items")
+          expect(holding_block_items).not_to be_empty
+          expect(holding_block_items.first).to include('copy_number')
+          expect(holding_block_items.first["copy_number"]).to eq('10')
+        end
       end
-      # TODO: :ALMA https://github.com/pulibrary/marc_liberation/issues/1071
+
+      # TODO: :ALMA https://github.com/pulibrary/bibdata/issues/1071
       xit 'only includes copy_number if there is an 852 $t' do
         expect(@oversize_holding_block['copy_number']).to be_nil
       end
     end
 
     it 'separates call_number subfields with whitespace' do
-      expect(@oversize_holding_block['call_number']).to eq("M23.L5S6 1973q Oversize")
+      expect(@oversize_holding_block['call_number']).to eq("Oversize M23.L5S6 1973q")
     end
 
-    it 'location_has takes from 866 $a and $z regardless of indicators' do
-      expect(@holdings_866_867_block['location_has']).to include("No. 1 (Feb. 1975)-no. 68", "LACKS: no. 25-26,29,49-50, 56")
-    end
-    it 'supplements takes from 867 $a and $z' do
-      expect(@holdings_866_867_block['supplements']).to include("no. 20")
-    end
-    it 'indexes takes from 868 $a and $z' do
-      expect(@holdings_868_block['indexes']).to include("Index, v. 1/17")
+    context "when there is a 866 field with $a and $z subfields" do
+      let(:record_id) { sample1 }
+      let(:holding_id) { "22242009000006421" }
+
+      it 'location_has takes from 866 $a and $z regardless of indicators' do
+        expect(holding_block).to include("location_has")
+        expect(holding_block['location_has']).to include("No. 1 (Feb. 1975)-no. 68", "LACKS: no. 25-26,29,49-50, 56")
+      end
     end
 
-    describe "scsb process holdings" do
+    context "when there is a 867 field with $a and $z subfields" do
+      let(:record_id) { sample1 }
+      let(:holding_id) { "22242009000006421" }
+
+      it 'supplements takes from 867 $a and $z' do
+        expect(holding_block).to include('supplements')
+        expect(holding_block['supplements']).to include('no. 20')
+      end
+    end
+
+    context "when there is a 868 field with $a and $z subfields" do
+      let(:record_id) { sample3 }
+      let(:holding_id) { "22261907460006421" }
+
+      it 'indexes takes from 868 $a and $z' do
+        expect(holding_block).to include('indexes')
+        expect(holding_block['indexes']).to include('Index, v. 1/17')
+      end
+    end
+
+    describe "SCSB process holdings" do
       it "indexes from 852" do
         expect(@holdings_scsb).to have_key(@holding_id_scsb)
         expect(@holdings_scsb_block['location_code']).to eq('scsbnypl')
         expect(@holdings_scsb_block['location']).to eq('ReCAP')
         expect(@holdings_scsb_block['library']).to eq('ReCAP')
-        expect(@holdings_scsb_block['call_number_browse']).to eq('JSM 95-216')
-        expect(@holdings_scsb_block['call_number']).to eq('JSM 95-216')
+        expect(@holdings_scsb_block['call_number_browse']).to eq('Oversize NK2808 .H17q')
+        expect(@holdings_scsb_block['call_number']).to eq('Oversize NK2808 .H17q')
       end
-      it "indexes location_has from 866" do
-        expect(@holdings_scsb_block['location_has']).to eq(["no. 107-112"])
+
+      context "when there is a 866 field with $a and $z subfields" do
+        let(:record_id) { sample5 }
+        let(:holding_id) { "9856684" }
+
+        it "indexes location_has from 866" do
+          expect(holding_block['location_has']).to eq(["no. 107-112"])
+        end
       end
-      it "indexes 876 for scsb" do
-        expect(@holdings_scsb_block['items'][0]['enumeration']).to eq("no. 107-112")
-        expect(@holdings_scsb_block['items'][0]['id']).to eq("15555520")
-        expect(@holdings_scsb_block['items'][0]['use_statement']).to eq("In Library Use")
-        expect(@holdings_scsb_block['items'][0]['status_at_load']).to eq("Available")
-        expect(@holdings_scsb_block['items'][0]['barcode']).to eq("33433022784528")
-        expect(@holdings_scsb_block['items'][0]['copy_number']).to eq("1")
-        expect(@holdings_scsb_block['items'][0]['cgc']).to eq("Open")
-        expect(@holdings_scsb_block['items'][0]['collection_code']).to eq("JS")
+
+      context "when there is a 876 field with $a and $z subfields" do
+        let(:record_id) { sample5 }
+        let(:holding_id) { "9856684" }
+
+        it "indexes 876 for scsb" do
+          expect(holding_block).to include('items')
+          expect(holding_block_items).not_to be_empty
+          expect(holding_block_items.first).to include('enumeration' => 'no. 107-112')
+          expect(holding_block_items.first).to include('id' => '15555520')
+          expect(holding_block_items.first).to include('use_statement' => 'In Library Use')
+          expect(holding_block_items.first).to include('status_at_load' => 'Available')
+          expect(holding_block_items.first).to include('barcode' => '32101100039328')
+          expect(holding_block_items.first).to include('copy_number' => '1')
+          expect(holding_block_items.first).to include('cgc' => 'Open')
+          expect(holding_block_items.first).to include('collection_code' => 'JS')
+        end
       end
     end
   end
