@@ -19,7 +19,8 @@ class NumismaticsIndexer
       logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
       index_individually(docs)
     end
-    solr_connection.commit
+    # soft commit to avoid timeouts
+    solr_connection.commit(commit_attributes: { waitSearcher: false })
   end
 
   # index a batch of records one at a time, logging and continuing on error
