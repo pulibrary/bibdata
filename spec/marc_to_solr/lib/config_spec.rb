@@ -33,7 +33,7 @@ describe 'From traject_config.rb' do
 
   describe "alma loading" do
     it "can map an alma record" do
-      record
+      indexer.map_record(reader)
     end
 
     context 'when the record has electronic locations' do
@@ -324,16 +324,18 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'the title vernacular display' do
-    let(:fixture_name) { 'scsb_cul_alt_title' }
+    context 'when the record is a SCSB record' do
+      let(:fixture_name) { 'scsb_cul_alt_title' }
 
-    it 'is a single value for scsb records' do
-      expect(record['title_vern_display'].length).to eq(1)
+      it 'is a single value' do
+        expect(record['title_vern_display'].length).to eq(1)
+      end
     end
 
-    context '' do
+    context 'when the record is a PUL record' do
       let(:fixture_name) { 'title_vern_display' }
 
-      it 'is a single value for pul records' do
+      it 'is a single value' do
         expect(record['title_vern_display'].length).to eq(1)
       end
     end
@@ -505,23 +507,6 @@ describe 'From traject_config.rb' do
       xit 'value can be both in the library and online when there are multiple holdings' do
         expect(record['access_facet']).to include 'Online'
         expect(record['access_facet']).to include 'In the Library'
-      end
-    end
-
-    context 'when the record is a HathiTrust resource' do
-      before do
-        ENV['RUN_HATHI_COMPARE'] = 'true'
-      end
-
-      after do
-        ENV['RUN_HATHI_COMPARE'] = ''
-      end
-      let(:fixture_name) { 'hathi_permanent' }
-
-      # This test needs to be restored (please see https://github.com/pulibrary/bibdata/issues/1204)
-      xit 'value include online when record is present in hathi report with permanent access' do
-        expect(record['access_facet']).to contain_exactly('Online', 'In the Library')
-        expect(record['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
       end
     end
   end
