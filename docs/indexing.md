@@ -34,7 +34,7 @@ Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pull
 
 The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983 .
 
-The collections `catalog-producion1` and `catalog-production2` are swapped as needed and should be accessed via the aliases `catalog-production` and `catalog-reindex`
+The collections `catalog-producion1` and `catalog-production2` are swapped as needed and should be accessed via the aliases `catalog-production` and `catalog-rebuild`
 
 The staging catalog uses http://lib-solr8-staging.princeton.edu:8983/solr/catalog-staging
 
@@ -48,7 +48,7 @@ $ bundle exec cap solr8-staging solr:console
 
 Click the 'collections' menu item and consult the `catalog-alma-staging` alias to see which collection is currently in use. Delete the other one and recreate it with the same settings.
 
-Create an alias called `catalog-alma-staging-reindex` and point it to the new collection.
+Create an alias called `catalog-alma-staging-rebuild` and point it to the new collection.
 
 ### Index Princeton's MARC records (Alma)
 
@@ -56,7 +56,7 @@ SSH to a bibdata machine and start a tmux session
 
 as deploy user, in `/opt/marc_liberaton/current`
 
-`$ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1`
+`$ RAILS_ENV=production UPDATE_LOCATIONS=false SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1`
 
 This step takes about 21 hours
 
@@ -73,7 +73,7 @@ in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_l
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
+`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
 
 ### Index Theses
 
@@ -90,6 +90,6 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 ### Index Numismatic Coins
 
 - as deploy user, in `/opt/marc_liberaton/current`
-- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-reindex RAILS_ENV=production bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
+- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild RAILS_ENV=production bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes 30 min to an hour.
 - Note that the default log writes to STDERR to distinguish its output from the progress bar
