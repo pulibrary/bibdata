@@ -11,6 +11,14 @@ RSpec.describe Dump, type: :model do
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
   let(:dump_princeton_recap_success) { Dump.create(event_id: event_success.id, dump_type_id: princeton_recap_dump_type.id, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
 
+  describe ".partner_recap" do
+    it "is a scope that can chain" do
+      FactoryBot.create(:empty_partner_recap_dump)
+      dumps = Dump.partner_recap.where(created_at: 4.hours.ago..Time.now)
+      expect(dumps.count).to eq 1
+    end
+  end
+
   describe ".partner_update" do
     context "when there's no previous partner recap dump" do
       it "creates a dump using the current time and imports SCSB partner records into it" do
