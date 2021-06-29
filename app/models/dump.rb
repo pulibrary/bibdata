@@ -23,6 +23,7 @@ class Dump < ActiveRecord::Base
   end
 
   scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
+  scope :partner_recap, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP')) }
 
   class << self
     ##
@@ -57,8 +58,7 @@ class Dump < ActiveRecord::Base
       end
 
       def last_incremental_update
-        last_dump = Dump.where(dump_type: DumpType.find_by(constant: "PARTNER_RECAP")).last
-        last_dump&.created_at
+        Dump.partner_recap.last&.created_at
       end
 
       def partner_recap_full_dump_type
