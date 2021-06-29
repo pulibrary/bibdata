@@ -295,17 +295,37 @@ class BibliographicController < ApplicationController
       sanitize(params[:bib_id])
     end
 
-    def add_locator_call_no(records)
-      return records unless records["f"]
-      records["f"] = records["f"].map do |record|
-        record[:sortable_call_number] = sortable_call_number(record[:call_number])
-        record
+    def needs_locator_call_no(location)
+      # For now only Firestore items need this.
+      return true if (location || "").start_with?("firestone$")
+      false
+    end
+
+    def make_sortable_call_number(call_no)
+      if call_no.start_with?("Oversize ")
+        call_no.sub("Oversize", "") + " Oversize"
+      else
+        call_no
       end
-      records
+    end
+
+    def add_locator_call_no(records)
+      records.each do |location, holdings|
+        if needs_locator_call_no(location)
+          holdings_enhanced = holdings.map do |holding|
+            holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
+            holding
+          end
+          {location: holdings_enhanced}
+        else
+          {location: holdings}
+        end
+      end
     end
 
     def sortable_call_number(call_no)
       return call_no unless call_no =~ /^[A-Za-z]/
+      call_no = make_sortable_call_number(call_no)
       lsort_result = Lcsort.normalize(call_no)
       return lsort_result.gsub('..', '.') unless lsort_result.nil?
       force_number_part_to_have_4_digits(call_no)
