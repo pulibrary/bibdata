@@ -57,9 +57,13 @@ class LocationDataService
   # Populate delivery locations based on the delivery_locations.json
   # These values will not change when we move to alma.
   def populate_delivery_locations
+    highest_id = delivery_locations_array.sort_by { |x| x["id"] }.last["id"]
+    # Reset the auto-increment column so it starts above the highest count.
+    Locations::DeliveryLocation.connection.execute("ALTER SEQUENCE locations_delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
     delivery_locations_array.each do |delivery_location|
       library_record = find_library_by_code(delivery_location["alma_library_code"])
       Locations::DeliveryLocation.new do |delivery_record|
+        delivery_record.id = delivery_location['id']
         delivery_record.label = delivery_location['label']
         delivery_record.address = delivery_location['address']
         delivery_record.phone_number = delivery_location['phone_number']
