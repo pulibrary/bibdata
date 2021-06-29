@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>03613cam a2200481Ia 4500</leader>
+    <controlfield tag="005">20201001101738.0</controlfield>
+    <controlfield tag="006">m        d        </controlfield>
+    <controlfield tag="007">cr |n|---|||||</controlfield>
+    <controlfield tag="008">130618s2011    nyu     q     000 1 eng d</controlfield>
+    <controlfield tag="001">9976174773506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">7617477</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)7617477-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="z">(OCoLC)763332926</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/763332926</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">NjP</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">NjP</subfield>
+    </datafield>
+    <datafield tag="019" ind1=" " ind2=" ">
+      <subfield code="a">763332926</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">0307593312 (hardcover)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">9780307593313 (hardcover)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">9781846556692 (pbk.)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">1846556694 (pbk.)</subfield>
+    </datafield>
+    <datafield tag="037" ind1=" " ind2=" ">
+      <subfield code="a">B004LROUW2</subfield>
+      <subfield code="b">Amazon standard identification number</subfield>
+    </datafield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">jpn</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">a-ja---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">PL856.U673</subfield>
+      <subfield code="b">A61213 2011</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="0">
+      <subfield code="a">895.6/35</subfield>
+      <subfield code="2">22</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Murakami, Haruki,</subfield>
+      <subfield code="d">1949-</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n81152393</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n81152393</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n81152393</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">1Q84.</subfield>
+      <subfield code="l">English</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">1Q84</subfield>
+      <subfield code="h">[electronic resource] /</subfield>
+      <subfield code="c">Haruki Murakami ; translated from the Japanese by Jay Rubin and Philip Gabriel.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">Kindle ed.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Alfred A. Knopf,</subfield>
+      <subfield code="c">2011.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 electronic book (946 p.)</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Sold by: Random House Digital, Inc.</subfield>
+    </datafield>
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="a">Book 1. April-June -- Book 2. July-September -- Book 3. October-December.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">"The year is 1984 and the city is Tokyo. A young woman named Aomame follows a taxi driver's enigmatic suggestion and begins to notice puzzling discrepancies in the world around her. She has entered, she realizes, a parallel existence, which she calls 1Q84 --“Q is for 'question mark.' A world that bears a question." Meanwhile, an aspiring writer named Tengo takes on a suspect ghostwriting project. He becomes so wrapped up with the work and its unusual author that, soon, his previously placid life begins to come unraveled. As Aomame's and Tengo's narratives converge over the course of this single year, we learn of the profound and tangled connections that bind them ever closer: a beautiful, dyslexic teenage girl with a unique vision; a mysterious religious cult that instigated a shoot-out with the metropolitan police; a reclusive, wealthy dowager who runs a shelter for abused women; a hideously ugly private investigator; a mild-mannered yet ruthlessly efficient bodyguard; and a peculiarly insistent television-fee collector. A love story, a mystery, a fantasy, a novel of self-discovery, a dystopia to rival George Orwell's--1Q84 is Haruki Murakami's most ambitious undertaking yet: an instant best seller in his native Japan, and a tremendous feat of imagination from one of our most revered contemporary writers. This eBook edition includes a Reading Group Guide."</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">In English; translated from the Japanese.</subfield>
+    </datafield>
+    <datafield tag="588" ind1=" " ind2=" ">
+      <subfield code="a">Description based on print version record.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Man-woman relationships</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008107175</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008107175</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Japan</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008105984</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008105984</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026339</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026339</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Rubin, Jay,</subfield>
+      <subfield code="d">1941-</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n81124500</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n81124500</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n81124500</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Gabriel, Philip,</subfield>
+      <subfield code="d">1953-</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n88170491</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n88170491</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n88170491</subfield>
+    </datafield>
+    <datafield tag="776" ind1="0" ind2="8">
+      <subfield code="i">Print version:</subfield>
+      <subfield code="a">Murakami, Haruki, 1949-</subfield>
+      <subfield code="t">1Q84.</subfield>
+      <subfield code="d">New York : Alfred A. Knopf, 2011</subfield>
+      <subfield code="z">9780307593313</subfield>
+      <subfield code="z">9781846556692</subfield>
+      <subfield code="w">(OCoLC)701017688</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9780307593313</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781846556692</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="z">Available only on a library iPad. Click here for information about iPad lending at Princeton University Library</subfield>
+      <subfield code="u">http://libguides.princeton.edu/content.php?pid=295717&amp;sid=2427989</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="2">
+      <subfield code="3">Amazon.com description of book</subfield>
+      <subfield code="u">http://amzn.to/tyIMJF</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">jbl</subfield>
+      <subfield code="b">x</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">w</subfield>
+      <subfield code="f">0</subfield>
+      <subfield code="e">20130618</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 14:06:06 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2020-12-08 11:47:51 US/Eastern</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2020-12-08 11:47:46 US/Eastern</subfield>
+      <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53371554600006421&amp;Force_direct=true</subfield>
+      <subfield code="s">P2E_JOB</subfield>
+      <subfield code="0">53371554600006421</subfield>
+      <subfield code="w">2020-12-08 16:47:46</subfield>
+      <subfield code="f">false</subfield>
+      <subfield code="b">static</subfield>
+      <subfield code="1">52371554610006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9976174773506421</subfield>
+      <subfield code="i">Available only on a library iPad. Click here for information about iPad lending at Princeton University Library</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53371554600006421</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">engineer</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">Engineering Library iPads</subfield>
+      <subfield code="z">To borrow this ebook, please request an iPad from the circulation desk at the Engineering Library</subfield>
+      <subfield code="8">22170509880006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 19:06:06</subfield>
+      <subfield code="8">22170509880006421</subfield>
+      <subfield code="b">Engineering Library</subfield>
+      <subfield code="c">stacks: Engineering</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">lewis</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">Lewis Library iPads</subfield>
+      <subfield code="z">To borrow this ebook, please request an iPad from the circulation desk at Lewis Library</subfield>
+      <subfield code="8">22170509890006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 19:06:06</subfield>
+      <subfield code="8">22170509890006421</subfield>
+      <subfield code="b">Lewis Library</subfield>
+      <subfield code="c">Stacks: Lewis Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">Firestone Library iPads</subfield>
+      <subfield code="z">To borrow this ebook, please request an iPad from the circulation desk at Firestone Library</subfield>
+      <subfield code="8">22170509900006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 19:06:06</subfield>
+      <subfield code="8">22170509900006421</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+  </record>
+</collection>

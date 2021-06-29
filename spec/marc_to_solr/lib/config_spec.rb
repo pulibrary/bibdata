@@ -19,6 +19,7 @@ describe 'From traject_config.rb' do
     @sample34 = @indexer.map_record(fixture_record('99105855523506421'))
     @sample35 = @indexer.map_record(fixture_record('9990567203506421'))
     @sample36 = @indexer.map_record(fixture_record('9981818493506421'))
+    @sample37 = @indexer.map_record(fixture_record('9976174773506421'))
     @manuscript_book = @indexer.map_record(fixture_record('9959060243506421'))
     @added_title_246 = @indexer.map_record(fixture_record('9930602883506421'))
     @related_names = @indexer.map_record(fixture_record('9919643053506421'))
@@ -403,43 +404,25 @@ describe 'From traject_config.rb' do
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
   end
-  # TODO: Replace with Alma
-  describe 'holdings_1display' do
-    # before(:all) do
-    #   marcxml = fixture_record('7617477')
-    #   @solr_hash = @indexer.map_record(marcxml)
-    #   @holding_block = JSON.parse(@solr_hash['holdings_1display'].first)
-    #   holdings_file = File.expand_path("../../../fixtures/marc_to_solr/7617477-holdings.json", __FILE__)
-    #   holdings = JSON.parse(File.read(holdings_file))
-    #   @holding_records = []
-    #   holdings.each { |h| @holding_records << MARC::Record.new_from_hash(h) }
-    # end
 
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'groups holding info into a hash keyed on the mfhd id' do
-      @holding_records.each do |holding|
-        holding_id = holding['001'].value
-        expect(@holding_block[holding_id]['location_code']).to include(holding['852']['b'])
-        expect(@holding_block[holding_id]['location_note']).to include(holding['852']['z'])
-      end
-    end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'includes holding 856s keyed on mfhd id' do
-      @holding_records.each do |holding|
-        holding_id = holding['001'].value
-        electronic_access = @holding_block[holding_id]['electronic_access']
-        expect(electronic_access[holding['856']['u']]).to include(holding['856']['z'])
-      end
-    end
-    # TODO: Replace with Alma
-    # Revisit while working on https://github.com/pulibrary/marc_liberation/issues/921
-    xit 'holding 856s are excluded from electronic_access_1display' do
-      electronic_access = JSON.parse(@solr_hash['electronic_access_1display'].first)
-      expect(electronic_access).not_to include('holding_record_856s')
+  describe 'holdings_1display' do
+    it 'groups holding info into a hash keyed on the mfhd id' do
+      @holdings = JSON.parse(@sample37["holdings_1display"][0])
+      expect(@holdings.keys).to eq ["22170509880006421", "22170509890006421", "22170509900006421"]
+      expect(@holdings['22170509880006421']['location_code']).to eq 'engineer$stacks'
+      expect(@holdings['22170509890006421']['location_code']).to eq 'lewis$stacks'
+      expect(@holdings['22170509900006421']['location_code']).to eq 'firestone$stacks'
+      expect(@holdings['22170509890006421']['location_note']).to eq ['To borrow this ebook, please request an iPad from the circulation desk at Lewis Library']
     end
   end
+
+  describe 'electronic_access_1display' do
+    it 'holding 856s are excluded from electronic_access_1display' do
+      @electronic_access_1display = JSON.parse(@sample37["electronic_access_1display"].to_s)
+      expect(@electronic_access_1display).not_to include('holding_record_856s')
+    end
+  end
+
   describe 'excluding locations from library facet' do
     let(:location_code_s) { current_record['location_code_s'] }
     let(:location_display) { current_record['location_display'] }
