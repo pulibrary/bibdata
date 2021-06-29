@@ -172,6 +172,19 @@ RSpec.describe LocationDataService, type: :service do
       LocationDataService.delete_existing_and_repopulate
       library_record = Locations::Library.find_by(code: 'annex')
     end
+
+    it "sets a static ID" do
+      LocationDataService.delete_existing_and_repopulate
+      # Run a second time to ensure idempotency.
+      LocationDataService.delete_existing_and_repopulate
+
+      location = Locations::DeliveryLocation.find_by(gfa_pickup: "PW")
+
+      expect(location.id).to eq 3
+      expect(location.label).to eq "Architecture Library"
+      new_location = FactoryBot.create(:delivery_location)
+      expect(new_location.id).to eq 41
+    end
   end
 
   def delivery_location_record(value)
