@@ -18,6 +18,24 @@
         "alma_library_code": "plasma"
     },
     {
+        "id": 2,
+        "label": "Technical Services 693",
+        "address": "693 Alexander Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "catalogn@princeton.edu",
+        "gfa_pickup": "QT",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false,
+        "url": "https://bibdata.princeton.edu/locations/delivery_locations/2.json",
+        "library": {
+            "label": "Firestone Library",
+            "code": "firestone",
+            "order": 1
+        },
+        "alma_library_code": "firestone"
+    },
+    {
         "id": 3,
         "label": "Architecture Library",
         "address": "School of Architecture Building, Second Floor Princeton, NJ 08544",
@@ -162,6 +180,24 @@
         "alma_library_code": "stokes"
     },
     {
+        "id": 12,
+        "label": "Firestone Library, Resource Sharing",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "fstcirc@princeton.edu",
+        "gfa_pickup": "QA",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false,
+        "url": "https://bibdata.princeton.edu/locations/delivery_locations/12.json",
+        "library": {
+            "label": "Firestone Library",
+            "code": "firestone",
+            "order": 1
+        },
+        "alma_library_code": "firestone"
+    },
+    {
         "id": 13,
         "label": "Special Collections",
         "address": "One Washington Rd. Princeton, NJ 08544",
@@ -226,6 +262,24 @@
         "pickup_location": false,
         "digital_location": false,
         "url": "https://bibdata.princeton.edu/locations/delivery_locations/16.json",
+        "library": {
+            "label": "Firestone Library",
+            "code": "firestone",
+            "order": 1
+        },
+        "alma_library_code": "firestone"
+    },
+    {
+        "id": 23,
+        "label": "Technical Services HMT",
+        "address": "One Washington Rd. Princeton, NJ 08544",
+        "phone_number": "609-258-1470",
+        "contact_email": "catalogn@princeton.edu",
+        "gfa_pickup": "QC",
+        "staff_only": true,
+        "pickup_location": true,
+        "digital_location": false,
+        "url": "https://bibdata.princeton.edu/locations/delivery_locations/23.json",
         "library": {
             "label": "Firestone Library",
             "code": "firestone",
@@ -376,59 +430,5 @@
             "order": 2
         },
         "alma_library_code": "engineer"
-    },
-    {
-        "id": 2,
-        "label": "Technical Services 693",
-        "address": "693 Alexander Rd. Princeton, NJ 08544",
-        "phone_number": "609-258-1470",
-        "contact_email": "catalogn@princeton.edu",
-        "gfa_pickup": "QT",
-        "staff_only": true,
-        "pickup_location": true,
-        "digital_location": false,
-        "url": "https://bibdata.princeton.edu/locations/delivery_locations/2.json",
-        "library": {
-            "label": "Firestone Library",
-            "code": "firestone",
-            "order": 1
-        },
-        "alma_library_code": "firestone"
-    },
-    {
-        "id": 12,
-        "label": "Firestone Library, Resource Sharing",
-        "address": "One Washington Rd. Princeton, NJ 08544",
-        "phone_number": "609-258-1470",
-        "contact_email": "fstcirc@princeton.edu",
-        "gfa_pickup": "QA",
-        "staff_only": true,
-        "pickup_location": true,
-        "digital_location": false,
-        "url": "https://bibdata.princeton.edu/locations/delivery_locations/12.json",
-        "library": {
-            "label": "Firestone Library",
-            "code": "firestone",
-            "order": 1
-        },
-        "alma_library_code": "firestone"
-    },
-    {
-        "id": 23,
-        "label": "Technical Services HMT",
-        "address": "One Washington Rd. Princeton, NJ 08544",
-        "phone_number": "609-258-1470",
-        "contact_email": "catalogn@princeton.edu",
-        "gfa_pickup": "QC",
-        "staff_only": true,
-        "pickup_location": true,
-        "digital_location": false,
-        "url": "https://bibdata.princeton.edu/locations/delivery_locations/23.json",
-        "library": {
-            "label": "Firestone Library",
-            "code": "firestone",
-            "order": 1
-        },
-        "alma_library_code": "firestone"
     }
 ]
