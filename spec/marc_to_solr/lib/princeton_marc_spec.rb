@@ -154,8 +154,8 @@ describe 'From princeton_marc.rb' do
     context 'with link text in the 856$x subfield' do
       let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }, { "x" => "test text3" }] } } }
 
-      it 'retrieves the URLs and the link labels' do
-        expect(links).to include('https://domain.edu/test-resource' => ['test text3'])
+      it 'skips subfield $x' do
+        expect(links).not_to include('https://domain.edu/test-resource' => ['test text3'])
       end
     end
 
