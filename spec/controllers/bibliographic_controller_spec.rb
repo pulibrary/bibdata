@@ -308,6 +308,24 @@ RSpec.describe BibliographicController, type: :controller do
       end
     end
 
+    context "sortable call number " do
+      it "handles normal call numbers" do
+        stub_alma_bib_items(mms_id: "9965126093506421", filename: "cdl_9965126093506421_bib_items.json")
+        get :bib_items, params: { bib_id: "9965126093506421" }, format: 'json'
+        expect(response.status).to be 200
+        body = JSON.parse(response.body)
+        expect(body["firestone$stacks"].first["sortable_call_number"]).to eq "PS.3558.A62424.B43--2010"
+      end
+
+      it "handles oversize call numbers" do
+        stub_alma_bib_items(mms_id: "9941598513506421", filename: "9941598513506421_holding_items.json")
+        get :bib_items, params: { bib_id: "9941598513506421" }, format: 'json'
+        expect(response.status).to be 200
+        body = JSON.parse(response.body)
+        expect(body["firestone$stacks"].first["sortable_call_number"]).to eq "RA.056627.B7544.2003--OVERSIZE"
+      end
+    end
+
     context 'when call number is not handeled by lcsort' do
       before do
         # allow(VoyagerHelpers::Liberator).to receive(:get_items_for_bib).and_return(
@@ -444,6 +462,7 @@ RSpec.describe BibliographicController, type: :controller do
       stub_alma_ids(ids: "9922868943506421", status: 200)
       stub_alma_holding_items(mms_id: "9922868943506421", holding_id: "22109192600006421", filename: "not_found_items.json")
       stub_alma_holding_items(mms_id: "9922486553506421", holding_id: "22105104420006421", filename: "record_count_3.json")
+      stub_alma_library(library_code: "firestone", location_code: "stacks", body: file_fixture("alma/library_firestone_stacks.json"))
     end
 
     it "reports record not found for a non-existing bib_id" do
