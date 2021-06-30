@@ -79,7 +79,7 @@ module Scsb
         @s3_bucket.download_recent(prefix: prefix, output_directory: @update_directory, file_filter: file_filter)
       end
 
-      def process_partner_updates(files:, file_prefix: 'scsbupdate')
+      def process_partner_updates(files:, file_prefix: 'scsbupdate_')
         xml_files = []
         files.each do |file|
           filename = File.basename(file, '.zip')
