@@ -55,6 +55,8 @@ class LocationDataService
   end
 
   # Populate delivery locations based on the delivery_locations.json
+  # @note Do NOT remove values from here without updating Figgy appropriately.
+  #   The URIs are referenced in Figgy and removing them will break manifests.
   # These values will not change when we move to alma.
   def populate_delivery_locations
     highest_id = delivery_locations_array.sort_by { |x| x["id"] }.last["id"]
