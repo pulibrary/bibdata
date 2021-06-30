@@ -32,6 +32,7 @@ namespace :scsb do
   task full: :environment do
     abort "usage: SET_URL=[solr_url]" unless ENV['SET_URL']
     dump = Dump.partner_recap_full.latest
+    # also get the incrementals since then
     IndexFunctions.process_scsb_dumps([dump], ENV['SET_URL'])
   end
 

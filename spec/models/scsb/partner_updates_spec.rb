@@ -49,6 +49,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
           a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
         )
+        expect(dump.generated_date).to eq DateTime.parse("2021-04-29")
 
         # cleans up
         expect(Dir.empty?(update_directory_path)).to be true
