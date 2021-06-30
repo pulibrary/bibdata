@@ -1,4 +1,4 @@
-class BibliographicController < ApplicationController
+class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
   include FormattingConcern
   before_action :protect, only: [:update]
   skip_before_action :verify_authenticity_token, only: [:item_discharge]
@@ -295,30 +295,16 @@ class BibliographicController < ApplicationController
       sanitize(params[:bib_id])
     end
 
-    def needs_locator_call_no(location)
-      # For now only Firestore items need this.
-      return true if (location || "").start_with?("firestone$")
-      false
-    end
-
-    def make_sortable_call_number(call_no)
-      if call_no.start_with?("Oversize ")
-        call_no.sub("Oversize", "") + " Oversize"
-      else
-        call_no
-      end
-    end
-
     def add_locator_call_no(records)
-      records.each do |location, holdings|
-        if needs_locator_call_no(location)
+      records.map do |location, holdings|
+        if location == "firestone$stacks"
           holdings_enhanced = holdings.map do |holding|
             holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
             holding
           end
-          {location: holdings_enhanced}
+          { location => holdings_enhanced }
         else
-          {location: holdings}
+          { location => holdings }
         end
       end
     end
@@ -331,6 +317,14 @@ class BibliographicController < ApplicationController
       force_number_part_to_have_4_digits(call_no)
     rescue
       call_no
+    end
+
+    def make_sortable_call_number(call_no)
+      tokens = call_no.split(" ")
+      needs_adjustment = ["oversize", "folio"].include? tokens.first.downcase
+      return call_no unless needs_adjustment
+      # Move the first token (e.g. Oversize or Folio) to the end
+      (tokens[1..] << tokens[0]).join(" ")
     end
 
     # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes
