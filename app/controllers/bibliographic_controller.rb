@@ -296,15 +296,10 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
 
     def add_locator_call_no(records)
-      records.map do |location, holdings|
-        if location == "firestone$stacks"
-          holdings_enhanced = holdings.map do |holding|
-            holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
-            holding
-          end
-          { location => holdings_enhanced }
-        else
-          { location => holdings }
+      records.each do |location, holdings|
+        next unless location == "firestone$stacks"
+        holdings.each do |holding|
+          holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
         end
       end
     end
