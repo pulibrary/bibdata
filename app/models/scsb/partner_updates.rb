@@ -31,7 +31,13 @@ module Scsb
       prepare_directory
       download_and_process_full(inst: "NYPL", prefix: 'scsbfull_nypl_')
       download_and_process_full(inst: "CUL", prefix: 'scsbfull_cul_')
+      set_generated_date
       log_record_fixes
+    end
+
+    def set_generated_date
+      date_strs = @dump.dump_files.map { |df| File.basename(df.path).split("_")[2] }
+      @dump.generated_date = date_strs.map { |d| DateTime.parse(d) }.sort.first
     end
 
     def download_and_process_full(inst:, prefix:)
