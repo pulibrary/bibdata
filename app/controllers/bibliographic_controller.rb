@@ -1,4 +1,4 @@
-class BibliographicController < ApplicationController
+class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
   include FormattingConcern
   before_action :protect, only: [:update]
   skip_before_action :verify_authenticity_token, only: [:item_discharge]
@@ -296,21 +296,30 @@ class BibliographicController < ApplicationController
     end
 
     def add_locator_call_no(records)
-      return records unless records["f"]
-      records["f"] = records["f"].map do |record|
-        record[:sortable_call_number] = sortable_call_number(record[:call_number])
-        record
+      records.each do |location, holdings|
+        next unless location == "firestone$stacks"
+        holdings.each do |holding|
+          holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
+        end
       end
-      records
     end
 
     def sortable_call_number(call_no)
       return call_no unless call_no =~ /^[A-Za-z]/
+      call_no = make_sortable_call_number(call_no)
       lsort_result = Lcsort.normalize(call_no)
       return lsort_result.gsub('..', '.') unless lsort_result.nil?
       force_number_part_to_have_4_digits(call_no)
     rescue
       call_no
+    end
+
+    def make_sortable_call_number(call_no)
+      tokens = call_no.split(" ")
+      needs_adjustment = ["oversize", "folio"].include? tokens.first.downcase
+      return call_no unless needs_adjustment
+      # Move the first token (e.g. Oversize or Folio) to the end
+      (tokens[1..] << tokens[0]).join(" ")
     end
 
     # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes
