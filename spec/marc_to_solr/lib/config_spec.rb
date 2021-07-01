@@ -20,6 +20,8 @@ describe 'From traject_config.rb' do
     @sample35 = @indexer.map_record(fixture_record('9990567203506421'))
     @sample36 = @indexer.map_record(fixture_record('9981818493506421'))
     @sample37 = @indexer.map_record(fixture_record('9976174773506421'))
+    @sample38 = @indexer.map_record(fixture_record('99121576653506421'))
+    @sample39 = @indexer.map_record(fixture_record('99110599413506421'))
     @manuscript_book = @indexer.map_record(fixture_record('9959060243506421'))
     @added_title_246 = @indexer.map_record(fixture_record('9930602883506421'))
     @related_names = @indexer.map_record(fixture_record('9919643053506421'))
@@ -44,12 +46,9 @@ describe 'From traject_config.rb' do
       expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
     end
     it "does not index elf locations for alma" do
-      record = @indexer.map_record(fixture_record('99121576653506421'))
-
-      # No ELF code.
-      expect(record["location_display"]).to be_nil
-      expect(record["location"]).to be_nil
-      expect(record["holdings_1display"]).to be_nil
+      expect(@sample38["location_display"]).to be_nil
+      expect(@sample38["location"]).to be_nil
+      expect(@sample38["holdings_1display"]).to be_nil
     end
   end
   describe "locations" do
@@ -215,6 +214,12 @@ describe 'From traject_config.rb' do
 
     it 'has one a subfield' do
       expect(@sample2['isbn_display']).to eq(["0947752196"])
+    end
+
+    it 'skips indexing if subfield $a is missing' do
+      expect(@sample38['isbn_display']).to eq ["9780429424304 (electronic book)", "0429424302 (electronic book)"]
+      expect(@sample38['isbn_display']).not_to include ' (hardcover)'
+      expect(@sample39['isbn_display']).to be nil
     end
   end
 
