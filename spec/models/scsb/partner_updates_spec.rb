@@ -114,10 +114,12 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)
       expect(dump.dump_files.where(dump_file_type: log_file_type).length).to eq(1)
       expect(dump.dump_files.map(&:path)).to contain_exactly(
-        File.join(scsb_file_dir, "scsbupdate_20210622_183200_1.xml.gz"),
-        File.join(scsb_file_dir, "scsbupdate_20210622_183200_2.xml.gz"),
+        File.join(scsb_file_dir, "scsb_update_20210622_183200_1.xml.gz"),
+        File.join(scsb_file_dir, "scsb_update_20210622_183200_2.xml.gz"),
         a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
       )
+
+      expect(dump.generated_date).to eq DateTime.parse("2021-06-22")
 
       # Adds delete IDs
       expect(dump.delete_ids).to eq(['SCSB-4884608', 'SCSB-9062868', 'SCSB-9068022',
