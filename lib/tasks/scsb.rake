@@ -14,7 +14,7 @@ namespace :scsb do
     if ENV['SET_URL'] && ENV['SET_DATE']
       LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
       comp_time = Time.parse(ENV['SET_DATE'])
-      dumps = Dump.partner_recap.where(created_at: comp_time..Time.now)
+      dumps = Dump.partner_recap.where(generated_date: comp_time..Time.now)
       IndexFunctions.process_scsb_dumps(dumps, ENV['SET_URL'])
     end
   end
