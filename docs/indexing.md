@@ -75,7 +75,7 @@ Once the files are all downloaded and processed, index them with
 
 `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
 
-This will also index any incremental files we have that were generated the full dump files.
+This will also index any incremental files we have that were generated after the full dump files.
 
 ### Index Theses
 

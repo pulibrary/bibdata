@@ -66,6 +66,10 @@ class Dump < ActiveRecord::Base
       end
   end # class << self
 
+  def subsequent_partner_incrementals
+    Dump.partner_recap.where(generated_date: generated_date..Float::INFINITY)
+  end
+
   def enqueued?
     index_status == ENQUEUED
   end

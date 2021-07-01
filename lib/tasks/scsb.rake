@@ -28,12 +28,12 @@ namespace :scsb do
     end
   end
 
-  desc "Index most recent SCSB full record set, against SET_URL"
+  desc "Index most recent SCSB full record set and any subsequent incrementals against SET_URL"
   task full: :environment do
     abort "usage: SET_URL=[solr_url]" unless ENV['SET_URL']
     dump = Dump.partner_recap_full.latest_generated
-    # also get the incrementals since then
-    IndexFunctions.process_scsb_dumps([dump], ENV['SET_URL'])
+    subsequent = dump.subsequent_partner_incrementals
+    IndexFunctions.process_scsb_dumps([dump] + subsequent, ENV['SET_URL'])
   end
 
   desc "Adds a local dump file to the database"
