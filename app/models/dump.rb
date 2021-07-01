@@ -40,8 +40,8 @@ class Dump < ActiveRecord::Base
       dump
     end
 
-    def latest
-      order('created_at desc').first
+    def latest_generated
+      order('generated_date desc').first
     end
 
     private

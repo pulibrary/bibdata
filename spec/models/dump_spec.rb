@@ -57,11 +57,11 @@ RSpec.describe Dump, type: :model do
     end
   end
 
-  describe '.latest' do
+  describe '.latest_generated' do
     it 'returns the last-created dump' do
-      dump1 = Dump.create(dump_type: partner_recap_dump_type)
-      dump2 = Dump.create(dump_type: partner_recap_dump_type)
-      expect(Dump.latest.id).to eq dump2.id
+      dump1 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago)
+      dump2 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago)
+      expect(Dump.latest_generated.id).to eq dump1.id
     end
   end
 
