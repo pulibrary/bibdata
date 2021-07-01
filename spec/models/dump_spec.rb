@@ -57,6 +57,16 @@ RSpec.describe Dump, type: :model do
     end
   end
 
+  describe '#subsequent_partner_incrementals' do
+    it "gets all partner_recap dumps with generated_date after mine" do
+      dump0 = Dump.create(dump_type: partner_recap_full_dump_type, generated_date: 2.days.ago)
+      dump1 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago)
+      dump2 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 3.days.ago)
+      dump3 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago)
+      expect(dump1.subsequent_partner_incrementals).to contain_exactly(dump1, dump3)
+    end
+  end
+
   describe '.latest_generated' do
     it 'returns the last-created dump' do
       dump1 = Dump.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago)
