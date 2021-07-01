@@ -57,6 +57,7 @@ module Scsb
       prepare_directory
       update_files = download_partner_updates
       process_partner_updates(files: update_files)
+      set_generated_date
       log_record_fixes
       delete_files = download_partner_deletes
       process_partner_deletes(files: delete_files)
@@ -79,7 +80,7 @@ module Scsb
         @s3_bucket.download_recent(prefix: prefix, output_directory: @update_directory, file_filter: file_filter)
       end
 
-      def process_partner_updates(files:, file_prefix: 'scsbupdate_')
+      def process_partner_updates(files:, file_prefix: 'scsb_update_')
         xml_files = []
         files.each do |file|
           filename = File.basename(file, '.zip')
