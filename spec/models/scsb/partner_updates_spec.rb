@@ -49,6 +49,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
           a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
         )
+        expect(dump.generated_date).to eq DateTime.parse("2021-04-29")
 
         # cleans up
         expect(Dir.empty?(update_directory_path)).to be true
@@ -98,11 +99,11 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   describe '.incremental' do
     let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
     before do
-      FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path)
+      FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path.join("CUL-NYPL_20210622_183200.zip"))
+      FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path.join("CUL-NYPL_20210622_183300.zip"))
       allow(bucket).to receive(:download_files).and_return(
-        [Rails.root.join(update_directory_path, 'updates.zip').to_s],
-        [Rails.root.join(update_directory_path, 'deletes.zip').to_s]
+        [Rails.root.join(update_directory_path, 'CUL-NYPL_20210622_183200.zip').to_s],
+        [Rails.root.join(update_directory_path, 'CUL-NYPL_20210622_183300.zip').to_s]
       )
     end
 
@@ -113,10 +114,12 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)
       expect(dump.dump_files.where(dump_file_type: log_file_type).length).to eq(1)
       expect(dump.dump_files.map(&:path)).to contain_exactly(
-        File.join(scsb_file_dir, "scsbupdateupdates_1.xml.gz"),
-        File.join(scsb_file_dir, "scsbupdateupdates_2.xml.gz"),
+        File.join(scsb_file_dir, "scsb_update_20210622_183200_1.xml.gz"),
+        File.join(scsb_file_dir, "scsb_update_20210622_183200_2.xml.gz"),
         a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
       )
+
+      expect(dump.generated_date).to eq DateTime.parse("2021-06-22")
 
       # Adds delete IDs
       expect(dump.delete_ids).to eq(['SCSB-4884608', 'SCSB-9062868', 'SCSB-9068022',

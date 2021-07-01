@@ -40,8 +40,8 @@ class Dump < ActiveRecord::Base
       dump
     end
 
-    def latest
-      order('created_at desc').first
+    def latest_generated
+      order('generated_date desc').first
     end
 
     private
@@ -65,6 +65,10 @@ class Dump < ActiveRecord::Base
         dump_type = DumpType.where(constant: 'PARTNER_RECAP_FULL')
       end
   end # class << self
+
+  def subsequent_partner_incrementals
+    Dump.partner_recap.where(generated_date: generated_date..Float::INFINITY)
+  end
 
   def enqueued?
     index_status == ENQUEUED

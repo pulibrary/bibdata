@@ -31,7 +31,13 @@ module Scsb
       prepare_directory
       download_and_process_full(inst: "NYPL", prefix: 'scsbfull_nypl_')
       download_and_process_full(inst: "CUL", prefix: 'scsbfull_cul_')
+      set_generated_date
       log_record_fixes
+    end
+
+    def set_generated_date
+      date_strs = @dump.dump_files.map { |df| File.basename(df.path).split("_")[2] }
+      @dump.generated_date = date_strs.map { |d| DateTime.parse(d) }.sort.first
     end
 
     def download_and_process_full(inst:, prefix:)
@@ -51,6 +57,7 @@ module Scsb
       prepare_directory
       update_files = download_partner_updates
       process_partner_updates(files: update_files)
+      set_generated_date
       log_record_fixes
       delete_files = download_partner_deletes
       process_partner_deletes(files: delete_files)
@@ -73,7 +80,7 @@ module Scsb
         @s3_bucket.download_recent(prefix: prefix, output_directory: @update_directory, file_filter: file_filter)
       end
 
-      def process_partner_updates(files:, file_prefix: 'scsbupdate')
+      def process_partner_updates(files:, file_prefix: 'scsb_update_')
         xml_files = []
         files.each do |file|
           filename = File.basename(file, '.zip')
