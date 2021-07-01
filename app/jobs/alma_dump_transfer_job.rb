@@ -18,7 +18,9 @@ class AlmaDumpTransferJob < ActiveJob::Base
     if incremental_dump?(type_constant)
       IncrementalIndexJob.perform_later(dump)
     elsif recap_incremental_dump?(type_constant)
-      RecapDumpProcessingJob.perform_later(dump)
+      # RecapBoundwithsProcessingJob will not include all records. Re-enable
+      # when this issue is resolved: https://github.com/pulibrary/bibdata/issues/1463
+      # RecapDumpProcessingJob.perform_later(dump)
     end
   end
 
