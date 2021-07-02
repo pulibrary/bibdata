@@ -127,6 +127,14 @@ namespace :liberate do
     solr.commit
   end
 
+  desc "Logs to a Dump the IDs deleted and updated in a MARC file"
+  task log_ids: :environment do
+    file_name = ENV['FILE']
+    abort "MARC file name must be indicated via FILE environment variable" unless file_name
+    service = LogIdsService.new
+    service.process_file(file_name)
+  end
+
   namespace :arks do
     desc "Seed the ARK cache"
     task :seed_cache, [:figgy_dir_path] do |_t, args|
