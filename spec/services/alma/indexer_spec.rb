@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Alma::Indexer do
+  include ActiveJob::TestHelper
   describe "#full_reindex!" do
     it "gets the latest full dump tar files, unzips it, and indexes all the contained files" do
       event = FactoryBot.create(:full_dump_event)
@@ -13,7 +14,9 @@ RSpec.describe Alma::Indexer do
       solr.delete_by_query("*:*")
 
       indexer = described_class.new(solr_url: solr_url)
-      indexer.full_reindex!
+      perform_enqueued_jobs do
+        indexer.full_reindex!
+      end
 
       solr.commit
       response = solr.get("select", params: { q: "*:*" })
@@ -31,7 +34,9 @@ RSpec.describe Alma::Indexer do
       solr.delete_by_query("*:*")
 
       indexer = described_class.new(solr_url: solr_url)
-      indexer.full_reindex!
+      perform_enqueued_jobs do
+        indexer.full_reindex!
+      end
 
       solr.commit
       response = solr.get("select", params: { q: "*:*" })
@@ -48,7 +53,9 @@ RSpec.describe Alma::Indexer do
 
       indexer = described_class.new(solr_url: solr_url)
       file_name = file_fixture("alma/full_dump/2.xml")
-      indexer.index_file(file_name)
+      perform_enqueued_jobs do
+        indexer.index_file(file_name)
+      end
 
       solr.commit
       response = solr.get("select", params: { q: "*:*" })
@@ -96,7 +103,9 @@ RSpec.describe Alma::Indexer do
 
       dump = FactoryBot.create(:incremental_dump)
       indexer = described_class.new(solr_url: solr_url)
-      indexer.incremental_index!(dump)
+      perform_enqueued_jobs do
+        indexer.incremental_index!(dump)
+      end
       solr.commit
 
       # expect solr to have stuff
