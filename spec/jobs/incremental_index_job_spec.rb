@@ -14,7 +14,7 @@ RSpec.describe IncrementalIndexJob, type: :job do
 
   describe '.perform' do
     context 'with existing Dump objects' do
-      let(:dump1) { Dump.create(index_status: Dump::STARTED) }
+      let(:dump1) { Dump.create(dump_files: [DumpFile.create(index_status: :started)]) }
       let(:dump2) { Dump.create }
 
       it 'enqueues the new Dump object for a retry if an existing Dump objects is already being indexed' do
