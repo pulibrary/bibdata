@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_201908) do
+ActiveRecord::Schema.define(version: 2021_07_06_182740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_201908) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "dump_file_type_id"
+    t.integer "index_status", default: 0
     t.index ["dump_file_type_id"], name: "index_dump_files_on_dump_file_type_id"
     t.index ["dump_id"], name: "index_dump_files_on_dump_id"
   end
