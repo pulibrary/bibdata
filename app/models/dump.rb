@@ -24,6 +24,7 @@ class Dump < ActiveRecord::Base
 
   scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
   scope :partner_recap, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP')) }
+  scope :changed_records, -> { where(dump_type: DumpType.where(constant: 'CHANGED_RECORDS')) }
 
   class << self
     ##
