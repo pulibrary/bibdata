@@ -108,6 +108,15 @@ namespace :liberate do
     solr.commit
   end
 
+  desc "Index latest incremental record dump against SET_URL"
+  task incremental: :environment do
+    solr_url = ENV['SET_URL'] || default_solr_url
+    solr = IndexFunctions.rsolr_connection(solr_url)
+    dump = Dump.changed_records.last
+    Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
+    solr.commit
+  end
+
   desc "Index a single MARC XML file against SET_URL"
   task index_file: :environment do
     LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
