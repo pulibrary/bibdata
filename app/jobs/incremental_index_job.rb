@@ -37,6 +37,6 @@ class IncrementalIndexJob < ActiveJob::Base
     end
 
     def running_jobs
-      @running_jobs ||= Dump.all.select { |d| d.started? && d.updated_at <= current_time }
+      @running_jobs ||= Dump.all.select { |d| d.started? && d.updated_at <= current_time } + DumpFile.started
     end
 end
