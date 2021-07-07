@@ -22,31 +22,10 @@ RSpec.describe BibliographicController, type: :controller do
   end
 
   describe '#update' do
-    before { skip("Replace with Alma") }
-    it 'does not enqueue a job unless the client is authenticated' do
+    it "returns 410 gone" do
       post :update, params: { bib_id: bib_id }
-      expect(response).to redirect_to user_cas_omniauth_authorize_path
-    end
-
-    context 'when authenticated as an administrator' do
-      login_admin
-
-      it 'enqueues an Index Job for a bib. record using a bib. ID' do
-        post :update, params: { bib_id: bib_id }
-        expect(response).to redirect_to(index_path)
-        expect(flash[:notice]).to be_present
-        expect(flash[:notice]).to eq "Reindexing job scheduled for #{bib_id}"
-      end
-      context 'renders a flash message' do
-        let(:bib_record) { nil }
-        it 'when record is not found or is suppressed' do
-          post :update, params: { bib_id: bib_id }
-
-          expect(response).not_to redirect_to(index_path)
-          expect(flash[:notice]).not_to be_present
-          expect(response.body).to eq("Record #{bib_id} not found or suppressed")
-        end
-      end
+      expect(response.status).to be 410
+      expect(response.body).to have_content("Deprecated endpoint")
     end
   end
 

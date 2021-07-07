@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get '/bibliographic/:bib_id/jsonld', to: 'bibliographic#bib_jsonld'
   get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
   get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
-  post '/bibliographic', to: 'bibliographic#update'
   get '/availability', to: 'availability#index', defaults: { format: :json }
 
   get '/barcode', to: 'barcode#index', defaults: { format: :txt }
@@ -40,6 +39,7 @@ Rails.application.routes.draw do
   get '/courses', to: 'deprecated_endpoints#gone'
   get '/bib_ids', to: 'deprecated_endpoints#gone'
   post '/bibliographic/:mms_id/holdings/:holding_id/items/:item_pid/discharge', to: 'bibliographic#item_discharge', defaults: { format: :json }
+  post '/bibliographic', to: 'bibliographic#update'
 
   require 'sidekiq/web'
   authenticate :user do
