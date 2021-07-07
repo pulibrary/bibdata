@@ -32,9 +32,7 @@ module IndexFunctions
     dumps.each do |dump|
       dump.dump_files.each do |df|
         next unless df.recap_record_type?
-        df.unzip
-        system "traject -c marc_to_solr/lib/traject_config.rb #{df.path} -u #{solr_url}; true"
-        df.zip
+        DumpFileIndexJob.perform_later(df, solr_url: solr_url)
       end
       solr.delete_by_id(dump.delete_ids) unless dump.delete_ids.blank?
     end
