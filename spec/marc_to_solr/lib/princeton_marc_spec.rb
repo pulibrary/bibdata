@@ -82,7 +82,7 @@ describe 'From princeton_marc.rb' do
     let(:figgy_dir_path) { ENV['FIGGY_ARK_CACHE_PATH'] || 'spec/fixtures/marc_to_solr/figgy_ark_cache' }
 
     let(:url) { 'https://domain.edu/test-resource' }
-    let(:l001) { { '001' => '4609321' } }
+    let(:l001) { { '001' => '9947652213506421' } }
     let(:l856) { { "856" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "u" => url }] } } }
     let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856]) }
     let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
@@ -167,8 +167,8 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
-        expect(logger).to have_received(:error).with("4609321 - invalid URL for 856$u value: #{url}")
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with("9947652213506421 - invalid URL for 856$u value: #{url}")
       end
     end
 
@@ -176,8 +176,8 @@ describe 'From princeton_marc.rb' do
       let(:url) { 'http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf' }
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
-        expect(logger).to have_received(:error).with("4609321 - invalid URL for 856$u value: #{url}")
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with("9947652213506421 - invalid URL for 856$u value: #{url}")
       end
     end
 
@@ -192,8 +192,8 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 4609321, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
-        expect(logger).to have_received(:error).with("4609321 - invalid character encoding for 856$u value: #{url}")
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(logger).to have_received(:error).with("9947652213506421 - invalid character encoding for 856$u value: #{url}")
       end
     end
 
@@ -283,7 +283,7 @@ describe 'From princeton_marc.rb' do
 
   describe 'other_versions function' do
     before(:all) do
-      @bib = '12345678'
+      @bib = '9947652213506421'
       @bib_776w = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @bib }] } }
       @non_oclc_non_bib = '(DLC)12345678'
       @non_oclc_non_bib_776w = { "776" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "w" => @non_oclc_non_bib }] } }
@@ -646,6 +646,11 @@ describe 'From princeton_marc.rb' do
       @oversize_holding_id = "22242008800006421"
       @oversize_holding_block = @holdings[@oversize_holding_id]
 
+      @record_no_876t = @indexer.map_record(fixture_record('9914141453506421_custom_no_876t'))
+      @holdings_no_876 = JSON.parse(@record["holdings_1display"][0])
+      @holding_id_no_876t = "22242008800006421"
+      @holding_block_no_876t = @holdings_no_876[@holding_id_no_876t]
+
       @record_866_867 = @indexer.map_record(fixture_record('991583506421'))
       @holdings_866_867 = JSON.parse(@record_866_867["holdings_1display"][0])
       @holding_id_866_867 = "22262098640006421"
@@ -691,12 +696,12 @@ describe 'From princeton_marc.rb' do
     end
 
     describe 'copy_number is included in the items' do
-      it "includes copy_number from first instance of 852 $t" do
+      it "includes copy_number from first instance of 876 $t" do
         expect(@oversize_holding_block["items"].first["copy_number"]).to eq('10')
       end
-      # TODO: :ALMA https://github.com/pulibrary/marc_liberation/issues/1071
-      xit 'only includes copy_number if there is an 852 $t' do
-        expect(@oversize_holding_block['copy_number']).to be_nil
+
+      it 'only includes copy_number if there is an 876 $t' do
+        expect(@holding_block_no_876t['copy_number']).to be_nil
       end
     end
 
