@@ -29,7 +29,7 @@ describe 'From traject_config.rb' do
     @online_at_library = @indexer.map_record(fixture_record('9979160443506421'))
     @other_title_246 = @indexer.map_record(fixture_record('9979105993506421'))
     @title_vern_display = @indexer.map_record(fixture_record('9948545023506421'))
-    @scsb_journal = @indexer.map_record(fixture_record('scsb_nypl_journal'))
+    @scsb_nypl = @indexer.map_record(fixture_record('SCSB-8157262'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
@@ -60,11 +60,10 @@ describe 'From traject_config.rb' do
 
   describe 'scsb locations' do
     it "will index a scsbnypl location" do
-      record = @indexer.map_record(fixture_record('SCSB-8157262'))
-      expect(record["location_code_s"]).to eq ["scsbnypl"]
-      expect(record["location"]).to eq ["ReCAP"]
-      expect(record["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
-      expect(record["location_display"]).to eq ["ReCAP"]
+      expect(@scsb_nypl["location_code_s"]).to eq ["scsbnypl"]
+      expect(@scsb_nypl["location"]).to eq ["ReCAP"]
+      expect(@scsb_nypl["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
+      expect(@scsb_nypl["location_display"]).to eq ["ReCAP"]
     end
   end
   describe "holdings" do
@@ -114,7 +113,7 @@ describe 'From traject_config.rb' do
 
     context "When it is a SCSB partner record" do
       it "does not have a date cataloged facet" do
-        expect(@scsb_journal['cataloged_tdt']).to be_nil
+        expect(@scsb_nypl['cataloged_tdt']).to be_nil
       end
     end
     context "When it is an eletronic record" do
@@ -229,9 +228,9 @@ describe 'From traject_config.rb' do
     end
   end
   describe 'numeric_id_b' do
-    it 'returns desired bool' do
+    it 'returns desired boolean' do
       expect(@sample1['numeric_id_b'].first).to eq true
-      expect(@scsb_journal['numeric_id_b'].first).to eq false
+      expect(@scsb_nypl['numeric_id_b'].first).to eq false
     end
   end
   describe 'the title_sort field' do
