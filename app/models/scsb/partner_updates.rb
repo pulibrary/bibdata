@@ -71,7 +71,7 @@ module Scsb
       end
 
       def download_partner_deletes
-        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_DELETES'] || 'data-exports/PUL/Json/Incremental')
+        file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_DELETES'] || 'data-exports/PUL/Json')
         @s3_bucket.download_files(files: file_list, timestamp_filter: @last_dump, output_directory: @update_directory)
       end
 
