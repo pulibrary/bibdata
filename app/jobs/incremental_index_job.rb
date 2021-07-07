@@ -12,6 +12,7 @@ class IncrementalIndexJob < ActiveJob::Base
 
     dump.index_status = Dump::STARTED
     dump.save!
+    dump.dump_files.update(index_status: :started)
 
     indexer.incremental_index!(dump)
 
