@@ -24,7 +24,7 @@ describe SolrDeleter do
     end
     let(:batch_size) { ids.length }
     let(:url) do
-      "http://localhost:8983/solr/bibdata/update?commit=true&wt=json"
+      "http://localhost:8983/solr/bibdata/update?waitSearcher=false&wt=json"
     end
 
     context 'when solr returns 200' do
