@@ -173,43 +173,15 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
   end
 
-  # Client: This endpoint is used by the ReCAP inventory management system, LAS,
-  #   to register items at their location after transit
+  # Deprecated
   def item_discharge
-    return render plain: "no auth_token provided", status: :unauthorized unless params[:auth_token]
-    return render plain: "incorrect auth_token provided", status: :forbidden unless params[:auth_token] == Rails.configuration.alma[:htc_auth_token]
-    mms_id = params[:mms_id]
-    holding_id = params[:holding_id]
-    item_pid = params[:item_pid]
-    options = { op: "scan", library: "recap", circ_desk: "DEFAULT_CIRC_DESK", done: "true" }
-
-    use_discharge_key do
-      item = Alma::BibItem.scan(mms_id: mms_id, holding_id: holding_id, item_pid: item_pid, options: options)
-      respond_to do |wants|
-        wants.json do
-          json = item
-          return render json: json, status: :bad_request if item["errorsExist"] && item["errorList"]["error"].first["errorMessage"].start_with?("The parameter item_pid is invalid")
-          return render json: json, status: :internal_server_error if item["errorsExist"]
-          render json: json
-        end
-      end
-    end
+    render plain: "Deprecated endpoint", status: :gone
   end
 
   private
 
     def render_not_found(id)
       render plain: "Record #{id} not found or suppressed", status: 404
-    end
-
-    def use_discharge_key
-      cached_key = Alma.configuration.apikey
-      begin
-        Alma.configure { |config| config.apikey = Rails.configuration.alma[:item_discharge_apikey] }
-        yield
-      ensure
-        Alma.configure { |config| config.apikey = cached_key }
-      end
     end
 
     # Construct or access the indexing service
