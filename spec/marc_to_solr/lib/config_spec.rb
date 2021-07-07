@@ -31,6 +31,7 @@ describe 'From traject_config.rb' do
     @title_vern_display = @indexer.map_record(fixture_record('9948545023506421'))
     @scsb_nypl = @indexer.map_record(fixture_record('SCSB-8157262'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
+    @recap_record = @indexer.map_record(fixture_record('994081873506421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -685,6 +686,15 @@ describe 'From traject_config.rb' do
     it "indexes the subfields as semicolon-delimited values" do
       expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
       expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
+    end
+  end
+
+  describe 'recap_notes_display' do
+    it "skips indexing for Princeton Recap records" do
+      expect(@recap_record["recap_notes_display"]).to be nil
+    end
+    it "Indexes N - O, if not a private/shared SCSB record" do
+      expect(@scsb_nypl["recap_notes_display"]).to eq ["N - O"]
     end
   end
 end
