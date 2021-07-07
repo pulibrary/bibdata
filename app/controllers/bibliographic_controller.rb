@@ -1,7 +1,5 @@
 class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
   include FormattingConcern
-  before_action :protect, only: [:update]
-  skip_before_action :verify_authenticity_token, only: [:item_discharge]
 
   def adapter
     @adapter ||= AlmaAdapter.new
@@ -160,17 +158,9 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
-  # Client: only used manually via the form on the home page
+  # Deprecated
   def update
-    records = find_by_id(voyager_opts)
-    return render plain: "Record #{sanitized_id} not found or suppressed", status: 404 if records.nil?
-    file = Tempfile.new("#{sanitized_id}.mrx")
-    file.write(records_to_xml_string(records))
-    file.close
-    index_job_queue.add(file: file.path)
-    redirect_to index_path, flash: { notice: "Reindexing job scheduled for #{sanitized_id}" }
-  rescue StandardError => error
-    redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
+    render plain: "Deprecated endpoint", status: :gone
   end
 
   # Deprecated
@@ -215,13 +205,6 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         holdings: params.fetch('holdings', 'true') == 'true',
         holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
       }
-    end
-
-    # Find all bib. records from Voyager using a bib. ID and optional arguments
-    # @param opts [Hash] optional arguments
-    # @return [Array<Object>] the set of bib. records
-    def find_by_id(opts)
-      adapter.get_bib_record(sanitized_id, nil, opts)
     end
 
     # Access the URL helpers for the application
