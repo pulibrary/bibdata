@@ -57,7 +57,7 @@ class SolrDeleter
     end
 
     def delete_batch(batch)
-      uri = "#{@solr_url}/update?commit=true&wt=json"
+      uri = "#{@solr_url}/update?waitSearcher=false&wt=json"
       body = build_request_body(ids: batch)
 
       response = request_deletion(uri: uri, body: body)
