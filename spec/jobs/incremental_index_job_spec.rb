@@ -24,6 +24,17 @@ RSpec.describe IncrementalIndexJob, type: :job do
         expect(dump2).to be_enqueued
       end
     end
+    context 'with enqueued Dump objects' do
+      let(:dump1) { Dump.create(dump_files: [DumpFile.create]) }
+      let(:dump2) { Dump.create }
+
+      it 'enqueues the new Dump object for a retry if an existing Dump objects is already being indexed' do
+        described_class.perform_now(dump1)
+        described_class.perform_now(dump2)
+
+        expect(dump2).to be_enqueued
+      end
+    end
 
     context 'when an error occurs trying to index a Dump objects' do
       let(:dump1) { Dump.create }
