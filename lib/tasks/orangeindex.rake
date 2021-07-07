@@ -101,7 +101,6 @@ end
 namespace :liberate do
   desc "Index latest full record dump against SET_URL"
   task full: :environment do
-    LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
     Alma::Indexer.new(solr_url: solr_url).full_reindex!
@@ -119,7 +118,6 @@ namespace :liberate do
 
   desc "Index a single MARC XML file against SET_URL"
   task index_file: :environment do
-    LocationMapsGeneratorService.generate if ENV['UPDATE_LOCATIONS']
     solr_url = ENV['SET_URL'] || default_solr_url
     file_name = ENV['FILE']
     debug = ENV["DEBUG"] == "true"
