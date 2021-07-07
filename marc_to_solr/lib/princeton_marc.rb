@@ -816,7 +816,7 @@ def process_recap_notes record
     elsif partner_lib == "scsbhl"
       partner_display_string = "H"
     end
-    item_notes << "#{partner_display_string} - #{col_group}"
+    item_notes << "#{partner_display_string} - #{col_group}" if partner_display_string.present? && col_group.present?
   end
   item_notes
 end
