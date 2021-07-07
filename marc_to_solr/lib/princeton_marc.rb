@@ -660,8 +660,6 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       elsif s_field.code == 'l'
         holding['shelving_title'] ||= []
         holding['shelving_title'] << s_field.value
-      elsif s_field.code == 't' && holding['copy_number'].nil?
-        holding['copy_number'] = s_field.value
       elsif s_field.code == 'z'
         holding['location_note'] ||= []
         holding['location_note'] << s_field.value
