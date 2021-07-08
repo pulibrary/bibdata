@@ -50,13 +50,14 @@ class LocationDataService
         end
       end
     end
+    update_holding_library
     populate_partners_holding_locations
     set_holding_delivery_locations
   end
 
   # Populate delivery locations based on the delivery_locations.json
   # @note Do NOT remove values from here without updating Figgy appropriately.
-  #   The URIs are referenced in Figgy and removing them will break manifests.
+  # The URIs are referenced in Figgy and removing them will break manifests.
   # These values will not change when we move to alma.
   def populate_delivery_locations
     highest_id = delivery_locations_array.sort_by { |x| x["id"] }.last["id"]
@@ -115,6 +116,18 @@ class LocationDataService
   end
 
   private
+
+    # Updates holding library for two old recap locations rccpt, rccpw
+    # These locations did not have a holding library.
+    # It is set here so that there is no need for customization in the generated holding_locations.json file, every time it needs to be generated.
+    def update_holding_library
+      new_recap_holding_location_codes = ["arch$pw", "engineer$pt"]
+      new_recap_holding_location_codes.each do |location_record_code|
+        holding_location_record = Locations::HoldingLocation.find_by(code: location_record_code)
+        holding_location_record.holding_library_id = holding_library_id(location_record_code[0...-3])
+        holding_location_record.save
+      end
+    end
 
     def holding_library_id(holding_library_code)
       library = find_library_by_code(holding_library_code)

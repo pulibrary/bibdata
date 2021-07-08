@@ -107,6 +107,96 @@
             "desc": "cjk: East Asian Library"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian"
+        },
+        {
+            "code": "engineer",
+            "id": "124285850006421",
+            "name": "Engineering Library",
+            "path": "01PRI.01PRI_INST.engineer",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Engineering"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/engineer"
+        },
+        {
+            "code": "lewis",
+            "id": "124288130006421",
+            "name": "Lewis Library",
+            "path": "01PRI.01PRI_INST.lewis",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "Stacks: Lewis Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis"
+        },
+        {
+            "code": "marquand",
+            "id": "124285470006421",
+            "name": "Marquand Library",
+            "path": "01PRI.01PRI_INST.marquand",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Marquand Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand"
+        },
+        {
+            "code": "mendel",
+            "id": "124283570006421",
+            "name": "Mendel Music Library",
+            "path": "01PRI.01PRI_INST.mendel",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Mendel Music Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mendel"
+        },
+        {
+            "code": "rare",
+            "id": "124288890006421",
+            "name": "Special Collections",
+            "path": "01PRI.01PRI_INST.rare",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "ex",
+            "desc": "ex: Rare Books"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare"
         }
     ]
 }
