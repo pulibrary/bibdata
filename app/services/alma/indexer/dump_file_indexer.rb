@@ -20,7 +20,16 @@ class Alma::Indexer
       @indexer ||= Alma::Indexer.new(solr_url: solr_url)
     end
 
-    def decompress_file
+    def decompress_file(&block)
+      return tar_decompress_file(&block) if dump_file.path.include?(".tar")
+      # SCSB files are only g-zipped.
+      dump_file.unzip
+      yield File.open(dump_file.path)
+      dump_file.zip
+    end
+
+    # Alma files are tarred and g-zipped, so you have to do both.
+    def tar_decompress_file
       tar_reader.each.map do |entry|
         Tempfile.create(decompressed_filename(entry), binmode: true) do |decompressed_tmp|
           decompressed_file = write_chunks(entry, decompressed_tmp)

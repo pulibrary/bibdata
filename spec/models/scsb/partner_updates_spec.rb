@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates, type: :model do
+  include ActiveJob::TestHelper
   let(:partner_recap_dump_type) { DumpType.find_by(constant: 'PARTNER_RECAP') }
   let(:log_file_type) { DumpFileType.find_by(constant: 'LOG_FILE') }
   let(:dump) { Dump.create(dump_type: partner_recap_dump_type) }
@@ -126,6 +127,12 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
                                      'SCSB-9068024', 'SCSB-9068025', 'SCSB-9068026'])
       # cleans up
       expect(Dir.empty?(update_directory_path)).to be true
+    end
+    it "creates a dump which can be processed by IndexFunctions" do
+      Scsb::PartnerUpdates.incremental(dump: dump, timestamp: timestamp)
+      perform_enqueued_jobs do
+        expect { IndexFunctions.process_scsb_dumps([dump], Rails.application.config.solr["url"]) }.not_to raise_error
+      end
     end
   end
 end
