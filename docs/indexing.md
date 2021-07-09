@@ -28,7 +28,7 @@ The https://github.com/pulibrary/orangetheses repository is used to pull the the
 A thesis record id starts with ‘dsp’. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
-Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pulled in through orangelight code and so doesn't come through bibdata, but bibdata has a rake task to bulk index all the coins for initial full index creating.
+Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pulled in through orangelight code and so doesn't come through bibdata, but bibdata has a rake task to bulk index all the coins for initial full index creation.
 
 ## Solr Machines and Collections
 
@@ -56,16 +56,18 @@ SSH to a bibdata machine and start a tmux session
 
 as deploy user, in `/opt/marc_liberaton/current`
 
-`$ RAILS_ENV=production SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild bin/rake liberate:full --silent >> /tmp/full_reindex_[YYYY-MM-DD].log 2>&1`
+`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild bin/rake liberate:full`
 
-This step takes about 21 hours
+Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
+
+This step should take 4-5 hours
 
 ### Index Partner SCSB records
 
 If needed, pull the most recent SCSB full dump records into a dump file:
 
 - as deploy user, in `/opt/marc_liberaton/current`
-- `$ RAILS_ENV=production bundle exec rake scsb:import:full`
+- `$ bundle exec rake scsb:import:full`
 - It kicks off an import job
 
 Takes 14-15 hours to complete. As they download and unpack they will be placed
@@ -73,7 +75,9 @@ in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_l
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild RAILS_ENV=production bundle exec rake scsb:full > /tmp/scsb_full_index_2021-06-3.log 2>&1`
+`$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild bundle exec rake scsb:full`
+
+Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
 This will also index any incremental files we have that were generated after the full dump files.
 
@@ -92,6 +96,6 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 ### Index Numismatic Coins
 
 - as deploy user, in `/opt/marc_liberaton/current`
-- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild RAILS_ENV=production bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
+- `$ SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes 30 min to an hour.
 - Note that the default log writes to STDERR to distinguish its output from the progress bar
