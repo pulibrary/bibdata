@@ -249,39 +249,32 @@ RSpec.describe LocationDataService, type: :service do
     describe "new recap locations" do
       before do
         LocationDataService.delete_existing_and_repopulate
-        @location_engineer_pt = Locations::HoldingLocation.find_by(code: 'engineer$pt')
-        @location_arch_pw = Locations::HoldingLocation.find_by(code: 'arch$pw')
-        @location_firestone_pb = Locations::HoldingLocation.find_by(code: 'firestone$pb')
-        @location_lewis_pn = Locations::HoldingLocation.find_by(code: 'lewis$pn')
-        @location_marquand_pj = Locations::HoldingLocation.find_by(code: 'marquand$pj')
-        @location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
-        @location_mendel_pk = Locations::HoldingLocation.find_by(code: 'mendel$pk')
       end
       it "they have recap_edd true and holding_library same as library" do
-        # LocationDataService.delete_existing_and_repopulate
-        # location_engineer_pt = Locations::HoldingLocation.find_by(code: 'engineer$pt')
-        # location_arch_pw = Locations::HoldingLocation.find_by(code: 'arch$pw')
-        # location_firestone_pb = Locations::HoldingLocation.find_by(code: 'firestone$pb')
-        # location_lewis_pn = Locations::HoldingLocation.find_by(code: 'lewis$pn')
-        # location_marquand_pj = Locations::HoldingLocation.find_by(code: 'marquand$pj')
-        # location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
-        # location_mendel_pk = Locations::HoldingLocation.find_by(code: 'mendel$pk')
-        expect(@location_engineer_pt.recap_electronic_delivery_location).to be true
-        expect(@location_arch_pw.recap_electronic_delivery_location).to be true
-        expect(@location_firestone_pb.recap_electronic_delivery_location).to be true
-        expect(@location_lewis_pn.recap_electronic_delivery_location).to be true
-        expect(@location_marquand_pj.recap_electronic_delivery_location).to be true
-        expect(@location_mendel_pk.recap_electronic_delivery_location).to be true
-        expect(@location_engineer_pt.holding_library.label).to eq @location_engineer_pt.library.label
-        expect(@location_arch_pw.holding_library.label).to eq @location_arch_pw.library.label
-        expect(@location_firestone_pb.holding_library.label).to eq @location_firestone_pb.library.label
-        expect(@location_lewis_pn.holding_library.label).to eq @location_lewis_pn.library.label
-        expect(@location_marquand_pj.holding_library.label).to eq @location_marquand_pj.library.label
-        expect(@location_rare_xw.holding_library.label).to eq @location_rare_xw.library.label
-        expect(@location_mendel_pk.holding_library.label).to eq @location_mendel_pk.library.label
+        location_engineer_pt = Locations::HoldingLocation.find_by(code: 'engineer$pt')
+        location_arch_pw = Locations::HoldingLocation.find_by(code: 'arch$pw')
+        location_firestone_pb = Locations::HoldingLocation.find_by(code: 'firestone$pb')
+        location_lewis_pn = Locations::HoldingLocation.find_by(code: 'lewis$pn')
+        location_marquand_pj = Locations::HoldingLocation.find_by(code: 'marquand$pj')
+        location_mendel_pk = Locations::HoldingLocation.find_by(code: 'mendel$pk')
+        location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
+        expect(location_engineer_pt.recap_electronic_delivery_location).to be true
+        expect(location_arch_pw.recap_electronic_delivery_location).to be true
+        expect(location_firestone_pb.recap_electronic_delivery_location).to be true
+        expect(location_lewis_pn.recap_electronic_delivery_location).to be true
+        expect(location_marquand_pj.recap_electronic_delivery_location).to be true
+        expect(location_mendel_pk.recap_electronic_delivery_location).to be true
+        expect(location_engineer_pt.holding_library.label).to eq location_engineer_pt.library.label
+        expect(location_arch_pw.holding_library.label).to eq location_arch_pw.library.label
+        expect(location_firestone_pb.holding_library.label).to eq location_firestone_pb.library.label
+        expect(location_lewis_pn.holding_library.label).to eq location_lewis_pn.library.label
+        expect(location_marquand_pj.holding_library.label).to eq location_marquand_pj.library.label
+        expect(location_rare_xw.holding_library.label).to eq location_rare_xw.library.label
+        expect(location_mendel_pk.holding_library.label).to eq location_mendel_pk.library.label
       end
       it "new recap location rare$xw has recap_edd false" do
-        expect(@location_rare_xw.recap_electronic_delivery_location).to be false
+        location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
+        expect(location_rare_xw.recap_electronic_delivery_location).to be false
       end
     end
   end
