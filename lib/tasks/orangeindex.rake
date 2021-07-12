@@ -127,12 +127,12 @@ namespace :liberate do
     solr.commit
   end
 
-  desc "Logs to a Dump the IDs deleted and updated in a MARC file"
-  task log_ids: :environment do
-    file_name = ENV['FILE']
-    abort "MARC file name must be indicated via FILE environment variable" unless file_name
-    service = LogIdsService.new
-    service.process_file(file_name)
+  desc "Logs the deleted and updated IDs in the MARC files associated with a Dump"
+  task dump_log_ids: :environment do
+    dump_id = ENV['DUMP_ID'].to_i
+    abort "DUMP_ID file name must be indicated via environment variable" unless dump_id > 0
+    service = DumpLogIdsService.new
+    service.process_dump(dump_id)
   end
 
   namespace :arks do
