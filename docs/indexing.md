@@ -161,3 +161,27 @@ PRODUCTION=catalog-production2 REBUILD=catalog-production1 bundle exec cap solr8
 
 To turn sneakers workers back on:
 - cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_alma_prod -u pulsys -m shell -a "sudo service orangelight-sneakers start"
+
+## Other tasks
+
+### Delete records from voyager, but leave scsb / thesis records
+Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
+- Ssh to marc_liberation box as deploy user
+- `$ bin/rails c`
+- `> solr_url = "http://lib-solr.princeton.edu:8983/solr/catalog-rebuild"`
+- `> solr = RSolr.connect(url: solr_url)`
+- `> solr.delete_by_query("id:[1 TO 999999999]")`
+- `> solr.commit`
+
+You can see the number of records now in the solr admin panel.
+
+Query to get the SCSB:
+- These are only the records that someone can get in the advanced search -> holding location -> scsbcul or scsbnypl.
+- `> response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
+
+Query to delete SCSB:
+- `> solr.delete_by_query("id:SCSB*")`
+
+### Adding a replica
+
+You have to specify the nodename in an unintuitive way, like `lib-solr-staging4.princeton.edu:8983_solr`. The full command to add a replica is, e.g. `pulsys@lib-solr-staging4:~$ curl "http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection=catalog-staging&shard=shard2&node=lib-solr-staging4.princeton.edu:8983_solr"
