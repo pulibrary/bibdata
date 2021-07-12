@@ -27,7 +27,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations1.json")
+        body: file_fixture("alma/locations_firestone.json")
       )
 
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations")
@@ -40,7 +40,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations1.json")
+        body: file_fixture("alma/locations_arch.json")
       )
 
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations")
@@ -53,7 +53,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations2.json")
+        body: file_fixture("alma/locations_annex.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online/locations")
       .with(
@@ -65,7 +65,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations3.json")
+        body: file_fixture("alma/locations_online.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations")
       .with(
@@ -77,7 +77,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations4.json")
+        body: file_fixture("alma/locations_recap.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations")
       .with(
@@ -89,7 +89,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations5.json")
+        body: file_fixture("alma/locations_eastasian.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/engineer/locations")
       .with(
@@ -101,7 +101,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations6.json")
+        body: file_fixture("alma/locations_engineer.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations")
       .with(
@@ -113,7 +113,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations7.json")
+        body: file_fixture("alma/locations_lewis.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations")
       .with(
@@ -125,7 +125,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations8.json")
+        body: file_fixture("alma/locations_marquand.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations")
       .with(
@@ -137,7 +137,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations9.json")
+        body: file_fixture("alma/locations_rare.json")
       )
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mendel/locations")
       .with(
@@ -149,7 +149,7 @@ RSpec.describe LocationDataService, type: :service do
       .to_return(
         status: 200,
         headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations10.json")
+        body: file_fixture("alma/locations_mendel.json")
       )
   end
 
@@ -194,7 +194,7 @@ RSpec.describe LocationDataService, type: :service do
       location_record10 = Locations::HoldingLocation.find_by(code: 'eastasian$hy')
 
       expect(Locations::Library.count).to eq 11
-      expect(Locations::HoldingLocation.count).to eq 113
+      expect(Locations::HoldingLocation.count).to eq 102
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true
