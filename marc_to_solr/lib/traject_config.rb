@@ -21,6 +21,7 @@ extend Traject::Macros::MarcFormats
 settings do
   provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
   provide "solr.version", "8.4.1"
+  provide "solr.http_timeout", 900
   provide "reader_class_name", "AlmaReader"
   provide "marc_source.type", "xml"
   provide "solr_writer.max_skipped", "50"
