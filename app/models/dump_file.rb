@@ -12,7 +12,7 @@ class DumpFile < ActiveRecord::Base
   end
 
   before_save do
-    unless path.nil? || !File.exist?(path)
+    unless path.nil? || !File.exist?(path) || md5.present?
       self.md5 = File.open(path, 'rb') do |io|
         digest = Digest::MD5.new
         buf = ''
