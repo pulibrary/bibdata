@@ -18,6 +18,17 @@ RSpec.describe DumpFile, type: :model do
     end
   end
 
+  context "when MD5 is populated" do
+    it "doesn't re-call it on save" do
+      subject.save
+      allow(Digest::MD5).to receive(:new)
+
+      subject.save
+
+      expect(Digest::MD5).not_to have_received(:new)
+    end
+  end
+
   describe 'when an instance is destroyed' do
     it 'the file at :path is deleted' do
       path = subject.path
