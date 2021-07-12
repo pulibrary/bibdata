@@ -2,9 +2,7 @@ class DumpLogIdsService
   # Process a dump of MARC files and updates the Dump's delete_id and update_id properties
   def process_dump(id)
     dump = Dump.find(id)
-    if dump.dump_type.constant != "CHANGED_RECORDS"
-      raise StandardError.new, "Dump is of type #{dump.dump_type.constant}, must be CHANGED_RECORDS"
-    end
+    raise StandardError.new, "Dump is of type #{dump.dump_type.constant}, must be CHANGED_RECORDS" if dump.dump_type.constant != "CHANGED_RECORDS"
 
     delete_ids = []
     update_ids = []
@@ -29,15 +27,14 @@ class DumpLogIdsService
       update_ids = []
       reader = Nokogiri::XML::Reader(marc_file)
       reader.each do |node|
-        if node.name == "record" && node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
-          xml = Nokogiri::XML(node.outer_xml)
-          id = xml.xpath("//controlfield[@tag='001']/text()").text
-          leader = xml.xpath("//leader/text()").text
-          if leader[5] == 'd'
-            delete_ids << id
-          else
-            update_ids << id
-          end
+        next unless node.name == "record" && node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+        xml = Nokogiri::XML(node.outer_xml)
+        id = xml.xpath("//controlfield[@tag='001']/text()").text
+        leader = xml.xpath("//leader/text()").text
+        if leader[5] == 'd'
+          delete_ids << id
+        else
+          update_ids << id
         end
       end
       [delete_ids, update_ids]
