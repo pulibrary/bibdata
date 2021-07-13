@@ -1,0 +1,13 @@
+<p>
+  <strong>Label:</strong>
+  <%= @hours_location.label %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @hours_location.code %>
+</p>
+
+<%= link_to 'Edit', edit_hours_location_path(@hours_location) %> |
+<%= link_to 'View as JSON', format: :json %> |
+<%= link_to 'All Hours Locations', hours_locations_path %>

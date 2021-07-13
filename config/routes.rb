@@ -6,6 +6,12 @@ Rails.application.routes.draw do
   resources :dumps, only: [:show]
   resources :campus_access_exceptions, only: [:new, :create]
 
+  resources :hours_locations
+  resources :holding_locations
+  resources :libraries
+  resources :delivery_locations
+  get 'digital_locations', to: 'delivery_locations#digital_locations'
+
   get '/bibliographic', to: 'bibliographic#index', defaults: { format: :txt }
   get '/bibliographic/:bib_id/availability', to: 'bibliographic#availability'
   get '/bibliographic/availability', to: 'bibliographic#availability_many'

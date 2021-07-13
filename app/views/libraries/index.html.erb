@@ -1,0 +1,30 @@
+<h1>Libraries</h1>
+
+<table class="table tablesorter tablesorter-blue reorder">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Label</th>
+      <th>Code</th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libraries.each do |library| %>
+      <tr id="<%= library.id %>">
+        <td><%= library.order %></td>
+        <td><%= link_to library.label, library %></td>
+        <td><%= library.code %></td>
+        <td><%= link_to 'Edit', edit_library_path(library) %></td>
+        <td><%= link_to 'Destroy', library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Library', new_library_path %> |
+<%= link_to 'View as JSON', format: :json %>

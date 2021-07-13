@@ -304,7 +304,7 @@ class AlmaAdapter
     # Create the label by retrieving the value from the holding library label (external_name in Alma)
     # Add the library label in front if it exists
     def holding_location_label(code)
-      label = Locations::HoldingLocation.find_by(code: code)&.label
+      label = HoldingLocation.find_by(code: code)&.label
       [composite_library_label_display, label].select(&:present?).join(" - ")
     end
   end

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :delivery_location, class: Locations::DeliveryLocation do
+  factory :delivery_location, class: DeliveryLocation do
     label 'delivery-location-label'
     address 'delivery-address'
     phone_number '888-888-8888'

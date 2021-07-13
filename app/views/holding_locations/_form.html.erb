@@ -1,0 +1,67 @@
+<%= form_for(@holding_location, layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+
+  <fieldset>
+  <div class="form-group form-text-box">
+    <%= f.label 'Location name:', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :label, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group form-text-box">
+    <%= f.label 'Location code:', class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :code, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Library', class: 'col-sm-2 control-label'%>
+    <div class="col-sm-10">
+      <%= f.collection_select :locations_library_id, Library.all, :id, :label, {prompt: "Select a Library"}, {class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Holding Library', class: 'col-sm-2 control-label'%>
+    <div class="col-sm-10">
+      <%= f.collection_select :holding_library_id, Library.all, :id, :label, {prompt: "Select a Holding Library"}, {class: "form-control"} %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'Hours Location', class: 'col-sm-2 control-label'%>
+    <div class="col-sm-10">
+      <%= f.collection_select :locations_hours_location_id, HoursLocation.all, :id, :label, {prompt: "Select an Hours Location"}, {class: "form-control"} %>
+    </div>
+  </div>
+
+  <% boolean_properties_labels.each do |k,v| %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <%= f.check_box(k) %> <%= v %>
+        </label>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <h2>Delivery Locations</h2>
+  <% DeliveryLocation.all.each do |dl| %>
+  <div class="checkbox">
+    <label>
+    <%= f.check_box(:delivery_location_ids, { multiple: true }, dl.id, nil) %> <%= "#{dl.library.label}: #{dl.label}" %>
+    </label>
+  </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-default' %>
+  </div>
+
+
+
+</fieldset>
+<% end %>

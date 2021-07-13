@@ -66,7 +66,7 @@ class LocationMapsGeneratorService
     end
 
     def locations
-      Locations::HoldingLocation.all
+      HoldingLocation.all
     end
 
     def write_file(file_name, values)
