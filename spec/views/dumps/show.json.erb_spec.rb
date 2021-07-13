@@ -8,7 +8,7 @@ RSpec.describe "dumps/show", type: :view do
       render
       response = JSON.parse(rendered)
       expect(response["type"]).to eq "all_records"
-      expect(response["generated_date"]).to eq "2021-07-13T15:00:00.000Z"
+      expect(response["generated_date"]).to eq "2021-07-13T11:00:00.000Z"
     end
   end
 end

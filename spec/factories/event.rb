@@ -100,7 +100,7 @@ FactoryBot.define do
 
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
-    generated_date Time.new(2021, 7, 13, 11, 0, 0)
+    generated_date Time.new(2021, 7, 13, 11, 0, 0, "+00:00")
     delete_ids []
     update_ids []
     dump_files do
