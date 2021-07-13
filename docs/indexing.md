@@ -7,7 +7,7 @@ This documentation was migrated from https://docs.google.com/document/d/1bHvgfgy
 ## Source: Alma
 The Alma ILS is the source of princeton's MARC data, both physical and electronic resources. More than 11 million MARC records index from Alma.
 
-Alma MMS ids start with 99 and end with 6421
+Alma MMS ids start with 99 and end with 3506421
 
 Frequency of updates: 4x per day
 
@@ -21,7 +21,7 @@ Frequency of updates: once per day
 SCSB ids start with ‘SCSB’
 
 ## Source: DSpace
-About 68,800 senior theses pulled from the OIT Dataspace repository http://dataspace.princeton.edu/jspui/handle/88435/dsp019c67wm88m
+About 68,800 senior theses pulled from the Dataspace repository http://dataspace.princeton.edu/jspui/handle/88435/dsp019c67wm88m
 
 Frequency of updates: Once per year. The Mudd Manuscript Library - Collections Cordinator will contact the Orangelight tech liaison and request the senior theses to be loaded into the catalog.
 
@@ -52,7 +52,9 @@ You can select a collection and use the "query" menu option to check how many do
 
 ### Clear the rebuild collection
 
-Go to the solr admin UI.
+ssh to an orangelight webserver and verify that the index in use is `catalog-alma-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
+
+Go to the solr admin UI (see above).
 
 - Select the `catalog-alma-rebuild` collection from the dropdown
 - Select the `documents` menu item
@@ -83,7 +85,7 @@ Any incremental files created after the full dump also need to be indexed.
 
 - Once the job has been created, instructions will be something like:
   - Determine the date of the last full bib dump. The date is stored in the `start` field of the Event. Use this date in SET_DATE below.
-  - Full dumps are run once a week; you see can this by looking at the `General Publishing` job in Alma.
+  - Full dumps are run once a week; you can see this by looking at the `General Publishing` job in Alma.
   - As deploy user in /opt/marc_liberation/current, run:
   - SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-rebuild SET_DATE=[yyyy-mm-dd or yyyy-mm-dd] bin/rake liberate:updates
 
@@ -138,23 +140,24 @@ To index the coins:
 
 Many of these tasks output log messages.
 
-Because traject does not log to datadog we lose log output for indexing that runs in the background. See https://github.com/pulibrary/bibdata#1507
-
+Because traject does not log to datadog we lose log output for indexing that runs in the background. See https://github.com/pulibrary/bibdata/issues/1507
 
 ### Hook up your dev instance to the new index to see how it looks
 
-- Set up an ssh tunnel to the sor index (you can use the pul_solr cap task given
+- Set up an ssh tunnel to the solr index (you can use the pul_solr cap task given
 above to do this)
 - From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-rebuild rails s`
 - Go to localhost:3000 > advanced search > holding location: pul > search
 - This limits results to items from alma
 - Total number of results tells you how many records are in the index
-- Other advanced search options will show how many records came from ReCAP partner institutions, for example. Let's add more things here that we like to check!
+- In advanced search > holding location, search for scsbcul and scsbnypl (and soon scsbhl) to see results only from SCSB indexed records.
+- Do the same search in production and compare the numbers.
+- Any other spot checks you like to do? Add them here.
 
 ### Swap in the new index
 
 - Run the cap task on pul_solr to swap the aliases
-- Make sure you use the right values for PRODUCTION and REBUILD. For example if you just built ont catalog-production2 and are swapping it into production do:
+- Make sure you use the right values for PRODUCTION and REBUILD. For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
 PRODUCTION=catalog-production2 REBUILD=catalog-production1 bundle exec cap solr8-production alias:swap
 ```
@@ -164,11 +167,11 @@ To turn sneakers workers back on:
 
 ## Other tasks
 
-### Delete records from voyager, but leave scsb / thesis records
+### Delete records from Solr, excluding SCSB and Thesis records
 Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
 - Ssh to marc_liberation box as deploy user
 - `$ bin/rails c`
-- `> solr_url = "http://lib-solr.princeton.edu:8983/solr/catalog-rebuild"`
+- `> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-rebuild"`
 - `> solr = RSolr.connect(url: solr_url)`
 - `> solr.delete_by_query("id:[1 TO 999999999]")`
 - `> solr.commit`
