@@ -18,7 +18,7 @@
   <div class="form-group">
     <%= f.label 'Library', class: 'col-sm-2 control-label'%>
     <div class="col-sm-10">
-      <%= f.collection_select :locations_library_id, Library.all, :id, :label, {prompt: "Select a Library"}, {class: "form-control"} %>
+      <%= f.collection_select :library_id, Library.all, :id, :label, {prompt: "Select a Library"}, {class: "form-control"} %>
     </div>
   </div>
 
@@ -32,7 +32,7 @@
   <div class="form-group">
     <%= f.label 'Hours Location', class: 'col-sm-2 control-label'%>
     <div class="col-sm-10">
-      <%= f.collection_select :locations_hours_location_id, HoursLocation.all, :id, :label, {prompt: "Select an Hours Location"}, {class: "form-control"} %>
+      <%= f.collection_select :hours_location_id, HoursLocation.all, :id, :label, {prompt: "Select an Hours Location"}, {class: "form-control"} %>
     </div>
   </div>
 

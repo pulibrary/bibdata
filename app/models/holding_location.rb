@@ -4,14 +4,14 @@ class HoldingLocation < ActiveRecord::Base
   include Coded
   include WithLibrary
 
-  belongs_to :hours_location, class_name: 'Location', foreign_key: :locations_hours_location_id, optional: true
+  belongs_to :hours_location, class_name: 'Location', foreign_key: :hours_location_id, optional: true
   belongs_to :holding_library, class_name: 'Library', foreign_key: :holding_library_id, optional: true
 
   has_and_belongs_to_many :delivery_locations, -> { distinct },
                           class_name: 'DeliveryLocation',
-                          join_table: 'locations_holdings_delivery',
-                          foreign_key: 'locations_delivery_location_id',
-                          association_foreign_key: 'locations_holding_location_id'
+                          join_table: 'holdings_delivery',
+                          foreign_key: 'delivery_location_id',
+                          association_foreign_key: 'holding_location_id'
 
   validates :aeon_location, :recap_electronic_delivery_location, :open,
             :requestable, :always_requestable, :circulates, inclusion: { in: [true, false] }

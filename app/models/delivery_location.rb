@@ -6,9 +6,9 @@ class DeliveryLocation < ActiveRecord::Base
 
   has_and_belongs_to_many :holding_locations, -> { distinct },
                           class_name: 'HoldingLocation',
-                          join_table: 'locations_holdings_delivery',
-                          foreign_key: 'locations_holding_location_id',
-                          association_foreign_key: 'locations_delivery_location_id'
+                          join_table: 'holdings_delivery',
+                          foreign_key: 'holding_location_id',
+                          association_foreign_key: 'delivery_location_id'
 
   validates :address, :phone_number, :contact_email, :gfa_pickup, presence: true
   validates :staff_only, :pickup_location, :digital_location, inclusion: { in: [true, false] }

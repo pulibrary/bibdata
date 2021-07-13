@@ -58,8 +58,8 @@ class HoldingLocationsController < ApplicationController
   def holding_location_params
     params.require(:holding_location).permit(:label, :code,
                                               :aeon_location, :recap_electronic_delivery_location, :open,
-                                              :requestable, :always_requestable, :circulates, :locations_library_id,
-                                              :holding_library_id, :locations_hours_location_id,
+                                              :requestable, :always_requestable, :circulates, :library_id,
+                                              :holding_library_id, :hours_location_id,
                                               delivery_location_ids: [])
   end
 end
