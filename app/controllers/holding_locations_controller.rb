@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HoldingLocationsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_holding_location, only: %i[show edit update destroy]
 
   # GET /holding_locations

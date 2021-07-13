@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class HoursLocationsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_hours_location, only: %i[show edit update destroy]
 
   # GET /hours_locations
