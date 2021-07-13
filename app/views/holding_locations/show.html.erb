@@ -1,0 +1,76 @@
+<p>
+  <strong>Label:</strong>
+  <%= @holding_location.label %>
+</p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @holding_location.code %>
+</p>
+
+<p>
+  <strong>Library:</strong>
+  <%= link_to @holding_location.library.code, @holding_location.library %>
+</p>
+
+<p>
+  <strong>Holding Library:</strong>
+  <%= holding_library_render @holding_location %>
+</p>
+
+<p>
+  <strong>Remote Storage:</strong>
+  <%= @holding_location.remote_storage %>
+</p>
+
+<p>
+  <strong>Hours Location:</strong>
+  <%= hours_render @holding_location %>
+</p>
+
+<p>
+  <strong>Aeon Location:</strong>
+  <%= @holding_location.aeon_location %>
+</p>
+
+<p>
+  <strong>ReCAP Electronic Delivery Location:</strong>
+  <%= @holding_location.recap_electronic_delivery_location %>
+</p>
+
+<p>
+  <strong>Open:</strong>
+  <%= @holding_location.open %>
+</p>
+
+<p>
+  <strong>Requestable:</strong>
+  <%= @holding_location.requestable %>
+</p>
+
+<p>
+  <strong>Always Requestable:</strong>
+  <%= @holding_location.always_requestable %>
+</p>
+
+<p>
+  <strong>Circulates:</strong>
+  <%= @holding_location.circulates %>
+</p>
+
+<p>
+	<dl>
+	  <dt><strong>Delivery Locations:</strong></dt>
+	  <dd>
+      <ul>
+        <% @holding_location.delivery_locations.each do |dl| %>
+        <li><%= link_to dl.label, dl %></li>
+        <% end %>
+      </ul>
+		</dd>
+	</dl>
+</p>
+
+<%= link_to 'Edit', edit_holding_location_path(@holding_location) %> |
+<%= link_to 'View as JSON', format: :json %> |
+<%= link_to 'All Holding Locations', holding_locations_path %>

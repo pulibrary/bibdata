@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :holding_location, class: Locations::HoldingLocation do
+  factory :holding_location, class: HoldingLocation do
     label 'location-label'
     aeon_location false
     recap_electronic_delivery_location false

@@ -1,0 +1,15 @@
+<h1>Princeton University Library Location Service</h1>
+<br>
+<p>This is the PU Library portal for viewing and updating the master list 
+	of libraries, holding, and delivery locations. Full lists and
+	individual locations are also available as JSON streams. </p>
+<br>
+<h3>Location Lists in JSON</h3>
+<p> <%= link_to 'Delivery locations JSON', "#{delivery_locations_path}.json" %> </p>
+<p> <%= link_to 'Digital locations JSON', "#{digital_locations_path}.json" %> </p>
+<p> <%= link_to 'Holding locations JSON', "#{holding_locations_path}.json" %> </p>
+<p> <%= link_to 'Libraries JSON', "#{libraries_path}.json" %> </p>
+<h3>Create More Locations</h3>
+<p> <%= link_to 'New Delivery location', new_delivery_location_path %> </p>
+<p> <%= link_to 'New Holding location', new_holding_location_path %> </p>
+<p> <%= link_to 'New Library', new_library_path %> </p>

@@ -8,10 +8,10 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
 
   after(:all) do
     Event.destroy_all
-    Locations::Library.destroy_all
-    Locations::HoldingLocation.destroy_all
-    Locations::DeliveryLocation.destroy_all
-    Locations::HoursLocation.destroy_all
+    Library.destroy_all
+    HoldingLocation.destroy_all
+    DeliveryLocation.destroy_all
+    HoursLocation.destroy_all
   end
 
   unless ENV['CI']

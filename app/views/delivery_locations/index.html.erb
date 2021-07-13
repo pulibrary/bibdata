@@ -1,0 +1,42 @@
+<h1>Delivery Locations</h1>
+
+<table class="table tablesorter tablesorter-blue sortonly">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Library</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Contact E-mail</th>
+      <th>GFA Pickup</th>
+      <th>Staff only</th>
+      <th>Pickup Location</th>
+      <th>Digital Location</th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+      <th colspan="1" class="sorter-false filter-false"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @delivery_locations.each do |delivery_location| %>
+      <tr>
+        <td><%= link_to delivery_location.label, delivery_location %></td>
+        <td><%= link_to delivery_location.library.code, delivery_location.library %></td>
+        <td><%= delivery_location.address %></td>
+        <td><%= delivery_location.phone_number %></td>
+        <td><%= delivery_location.contact_email %></td>
+        <td><%= delivery_location.gfa_pickup %></td>
+        <td><%= delivery_location.staff_only %></td>
+        <td><%= delivery_location.pickup_location %></td>
+        <td><%= delivery_location.digital_location %></td>
+        <td><%= link_to 'Edit', edit_delivery_location_path(delivery_location) %></td>
+        <td><%= link_to 'Destroy', delivery_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Delivery location', new_delivery_location_path %> |
+<%= link_to 'View as JSON', format: :json %>
