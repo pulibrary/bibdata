@@ -1,8 +1,6 @@
 require 'sidekiq/pro/web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  mount Locations::Engine, at: '/locations'
-
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]
   resources :dumps, only: [:show]
