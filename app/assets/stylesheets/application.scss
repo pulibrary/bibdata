@@ -5,6 +5,7 @@
 @import 'variables/typography';
 
 @import 'base/typography';
+@import "jquery-tablesorter/theme.blue";
 
 body {
   color: $primary-color;
@@ -13,4 +14,17 @@ body {
 
 td.nowrap {
   white-space: nowrap;
+}
+
+.form-text-box {
+  padding-top: 1em;
+}
+
+.tablesorter tbody > tr > td[contenteditable=true]:focus {
+  outline: #08f 1px solid;
+  background: #eee;
+  resize: none;
+}
+td.no-edit, span.no-edit {
+  background-color: rgba(230,191,153,0.5);
 }
