@@ -127,6 +127,14 @@ namespace :liberate do
     solr.commit
   end
 
+  desc "Logs the deleted and updated IDs in the MARC files associated with a Dump"
+  task dump_log_ids: :environment do
+    dump_id = ENV['DUMP_ID'].to_i
+    abort "DUMP_ID file name must be indicated via environment variable" unless dump_id > 0
+    service = DumpLogIdsService.new
+    service.process_dump(dump_id)
+  end
+
   namespace :arks do
     desc "Seed the ARK cache"
     task :seed_cache, [:figgy_dir_path] do |_t, args|
