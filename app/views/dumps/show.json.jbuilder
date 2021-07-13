@@ -1,4 +1,5 @@
 json.type @dump.dump_type.constant.downcase
+json.generated_date @dump.generated_date
 json.files do
   DumpFileType.all.each do |dft|
     json.set! dft.constant.downcase, @dump.dump_files.where(dump_file_type: dft).each do |df|
