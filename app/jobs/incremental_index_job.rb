@@ -4,20 +4,21 @@ class IncrementalIndexJob < ActiveJob::Base
   queue_as :default
   retry_on IndexQueueLocked
 
+  # Callback for when the batch of DumpFiles is done indexing.
+  def self.on_success(_status, options)
+    dump_id = options['dump_id']
+    dump = Dump.find(dump_id)
+    dump.update(index_status: Dump::DONE)
+    dump.dump_files.update(index_status: :done)
+  end
+
   def perform(dump)
     dump.index_status = Dump::ENQUEUED
     dump.save!
 
     raise IndexQueueLocked unless running_jobs.empty?
 
-    dump.index_status = Dump::STARTED
-    dump.save!
-    dump.dump_files.update(index_status: :started)
-
     indexer.incremental_index!(dump)
-
-    dump.index_status = Dump::DONE
-    dump.save!
   rescue StandardError => indexer_error
     Rails.logger.error("Failed to incrementally index Dump #{dump.id}: indexer_error")
     raise(indexer_error)
