@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
+source "https://gems.contribsys.com/" do
+  gem 'sidekiq-pro'
+end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
 gem 'aws-sdk-s3'
@@ -51,7 +54,6 @@ gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'selenium-webdriver'
-gem 'sidekiq'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'traject', '2.3.1'

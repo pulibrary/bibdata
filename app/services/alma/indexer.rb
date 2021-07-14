@@ -7,13 +7,13 @@ class Alma::Indexer
 
   def full_reindex!
     full_reindex_files.each do |dump_file|
-      DumpFileIndexJob.perform_later(dump_file, solr_url: solr_url)
+      DumpFileIndexJob.perform_async(dump_file.id, solr_url)
     end
   end
 
   def incremental_index!(dump)
     dump.dump_files.each do |dump_file|
-      DumpFileIndexJob.perform_later(dump_file, solr_url: solr_url)
+      DumpFileIndexJob.perform_async(dump_file.id, solr_url)
     end
   end
 
