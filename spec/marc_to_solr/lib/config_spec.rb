@@ -22,6 +22,7 @@ describe 'From traject_config.rb' do
     @sample37 = @indexer.map_record(fixture_record('9976174773506421'))
     @sample38 = @indexer.map_record(fixture_record('99121576653506421'))
     @sample39 = @indexer.map_record(fixture_record('99110599413506421'))
+    @sample40 = @indexer.map_record(fixture_record('9941598513506421'))
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
     @record_call_number_nil = @indexer.map_record(fixture_record('99102664603506421'))
@@ -175,7 +176,7 @@ describe 'From traject_config.rb' do
     it "returns the call_number_display field with k subfield in the beginning" do
       expect(@record_call_number1['call_number_display']).to eq(["Eng 20Q 6819"])
     end
-    it "skips indexing if subfields $h $i $k are missing" do
+    it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_display']).to be nil
     end
     it "doesnt have trailing spaces" do
@@ -184,11 +185,14 @@ describe 'From traject_config.rb' do
   end
 
   describe "call_number_browse field" do
+    it "indexes the call_number_browse field" do
+      expect(@sample40['call_number_browse_s']).to eq([" .B7544 2003q Oversize RA566.27"])
+    end
     it "returns the call_number_browse field with k subfield at the end and no trailing spaces" do
       record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
       expect(@record_call_number1['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
-    it "skips indexing if subfields $h $i $k are missing" do
+    it "skips indexing the fields if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_browse_s']).to be nil
     end
     it "doesnt have trailing spaces" do
@@ -198,8 +202,7 @@ describe 'From traject_config.rb' do
 
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
-      record = @indexer.map_record(fixture_record('9941598513506421'))
-      expect(record['call_number_locator_display']).to eq([" .B7544 2003q"])
+      expect(@sample40['call_number_locator_display']).to eq([" .B7544 2003q"])
     end
   end
 
@@ -432,6 +435,16 @@ describe 'From traject_config.rb' do
       expect(@holdings['22170509890006421']['location_code']).to eq 'lewis$stacks'
       expect(@holdings['22170509900006421']['location_code']).to eq 'firestone$stacks'
       expect(@holdings['22170509890006421']['location_note']).to eq ['To borrow this ebook, please request an iPad from the circulation desk at Lewis Library']
+    end
+    it "does not include an empty call number field" do
+      @holdings = JSON.parse(@record_call_number_nil["holdings_1display"][0])
+      expect(@holdings['22100565840006421']['call_number']).to be nil
+      expect(@holdings['22100565840006421']['call_number_browse']).to be nil
+    end
+    it "includes a call number field when there is a subfield with a value" do
+      @holdings = JSON.parse(@sample40["holdings_1display"][0])
+      expect(@holdings['22172120500006421']['call_number']).to eq " .B7544 2003q Oversize RA566.27"
+      expect(@holdings['22172120500006421']['call_number_browse']).to eq " .B7544 2003q Oversize RA566.27"
     end
   end
 
