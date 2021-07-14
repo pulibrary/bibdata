@@ -14,7 +14,7 @@ RSpec.describe Alma::Indexer do
       solr.delete_by_query("*:*")
 
       indexer = described_class.new(solr_url: solr_url)
-      perform_enqueued_jobs do
+      Sidekiq::Testing.inline! do
         indexer.full_reindex!
       end
 
@@ -34,7 +34,7 @@ RSpec.describe Alma::Indexer do
       solr.delete_by_query("*:*")
 
       indexer = described_class.new(solr_url: solr_url)
-      perform_enqueued_jobs do
+      Sidekiq::Testing.inline! do
         indexer.full_reindex!
       end
 
@@ -53,7 +53,7 @@ RSpec.describe Alma::Indexer do
 
       indexer = described_class.new(solr_url: solr_url)
       file_name = file_fixture("alma/full_dump/2.xml")
-      perform_enqueued_jobs do
+      Sidekiq::Testing.inline! do
         indexer.index_file(file_name)
       end
 
@@ -103,7 +103,7 @@ RSpec.describe Alma::Indexer do
 
       dump = FactoryBot.create(:incremental_dump)
       indexer = described_class.new(solr_url: solr_url)
-      perform_enqueued_jobs do
+      Sidekiq::Testing.inline! do
         indexer.incremental_index!(dump)
       end
       solr.commit

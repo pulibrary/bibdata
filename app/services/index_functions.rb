@@ -32,7 +32,7 @@ module IndexFunctions
     dumps.each do |dump|
       dump.dump_files.each do |df|
         next unless df.recap_record_type?
-        DumpFileIndexJob.perform_later(df, solr_url: solr_url)
+        DumpFileIndexJob.perform_async(df.id, solr_url)
       end
       solr.delete_by_id(dump.delete_ids) unless dump.delete_ids.blank?
     end
