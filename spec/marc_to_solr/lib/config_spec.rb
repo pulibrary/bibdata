@@ -22,6 +22,9 @@ describe 'From traject_config.rb' do
     @sample37 = @indexer.map_record(fixture_record('9976174773506421'))
     @sample38 = @indexer.map_record(fixture_record('99121576653506421'))
     @sample39 = @indexer.map_record(fixture_record('99110599413506421'))
+    @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
+    @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
+    @record_call_number_nil = @indexer.map_record(fixture_record('99102664603506421'))
     @manuscript_book = @indexer.map_record(fixture_record('9959060243506421'))
     @added_title_246 = @indexer.map_record(fixture_record('9930602883506421'))
     @related_names = @indexer.map_record(fixture_record('9919643053506421'))
@@ -39,7 +42,7 @@ describe 'From traject_config.rb' do
 
   describe "alma loading" do
     it "can map an alma record" do
-      record = @indexer.map_record(fixture_record('99211662100521'))
+      record = @indexer.map_record(fixture_record('9918573506421'))
     end
     it "can index electronic locations for alma" do
       record = @indexer.map_record(fixture_record('9918573506421'))
@@ -107,7 +110,7 @@ describe 'From traject_config.rb' do
       context "When the record fails to parse the time" do
         it "logs the error and moves on" do
           allow(Time).to receive(:parse).and_raise(ArgumentError)
-          expect { @indexer.map_record(fixture_record('991330600000541')) }.not_to raise_error
+          expect { @indexer.map_record(fixture_record('9992320213506421')) }.not_to raise_error
         end
       end
     end
@@ -170,15 +173,26 @@ describe 'From traject_config.rb' do
   end
   describe "call_number_display field" do
     it "returns the call_number_display field with k subfield in the beginning" do
-      record = @indexer.map_record(fixture_record('9957270023506421'))
-      expect(record['call_number_display']).to eq(["Eng 20Q 6819 "])
+      expect(@record_call_number1['call_number_display']).to eq(["Eng 20Q 6819"])
+    end
+    it "skips indexing if subfields $h $i $k are missing" do
+      expect(@record_call_number_nil['call_number_display']).to be nil
+    end
+    it "doesnt have trailing spaces" do
+      expect(@record_call_number2['call_number_display']).to eq(["CD- 50000"])
     end
   end
 
   describe "call_number_browse field" do
-    it "returns the call_number_browse field with k subfield at the end" do
-      record = @indexer.map_record(fixture_record('9957270023506421'))
-      expect(record['call_number_browse_s']).to eq(["6819 Eng 20Q"])
+    it "returns the call_number_browse field with k subfield at the end and no trailing spaces" do
+      record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
+      expect(@record_call_number1['call_number_browse_s']).to eq(["6819 Eng 20Q"])
+    end
+    it "skips indexing if subfields $h $i $k are missing" do
+      expect(@record_call_number_nil['call_number_browse_s']).to be nil
+    end
+    it "doesnt have trailing spaces" do
+      expect(@record_call_number2['call_number_browse_s']).to eq(["CD- 50000"])
     end
   end
 
