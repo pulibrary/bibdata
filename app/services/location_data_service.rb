@@ -123,7 +123,7 @@ class LocationDataService
     def update_holding_library
       new_recap_holding_location_codes = ["arch$pw", "engineer$pt"]
       new_recap_holding_location_codes.each do |location_record_code|
-        holding_location_record = Locations::HoldingLocation.find_by(code: location_record_code)
+        holding_location_record = HoldingLocation.find_by(code: location_record_code)
         holding_location_record.holding_library_id = holding_library_id(location_record_code[0...-3])
         holding_location_record.save
       end
