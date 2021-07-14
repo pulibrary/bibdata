@@ -12,8 +12,14 @@ class Alma::Indexer
   end
 
   def incremental_index!(dump)
-    dump.dump_files.each do |dump_file|
-      DumpFileIndexJob.perform_async(dump_file.id, solr_url)
+    dump.update!(index_status: Dump::STARTED)
+    dump.dump_files.update(index_status: :started)
+    batch = Sidekiq::Batch.new
+    batch.on(:success, IncrementalIndexJob, 'dump_id' => dump.id)
+    batch.jobs do
+      dump.dump_files.each do |dump_file|
+        DumpFileIndexJob.perform_async(dump_file.id, solr_url)
+      end
     end
   end
 
