@@ -130,7 +130,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     end
     it "creates a dump which can be processed by IndexFunctions" do
       Scsb::PartnerUpdates.incremental(dump: dump, timestamp: timestamp)
-      perform_enqueued_jobs do
+      Sidekiq::Testing.inline! do
         expect { IndexFunctions.process_scsb_dumps([dump], Rails.application.config.solr["url"]) }.not_to raise_error
       end
     end

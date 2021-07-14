@@ -23,6 +23,7 @@ Note: You need to have PostgreSQL installed in your machine and available in you
 
 ### Setup server
 1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+1. Install Sidekiq Pro credentials: `bin/setup_keys`
 1. To start: `bundle exec rake servers:start`
 1. For testing:
    - `bundle exec rspec`
