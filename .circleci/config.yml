@@ -109,6 +109,7 @@ jobs:
           POSTGRES_USER: bibdata
           POSTGRES_DB: marc_liberation_test
           POSTGRES_HOST_AUTH_METHOD: trust
+      - image: redis:4.0.9-alpine
 
     steps:
       - checkout
