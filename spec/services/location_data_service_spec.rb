@@ -251,13 +251,13 @@ RSpec.describe LocationDataService, type: :service do
         LocationDataService.delete_existing_and_repopulate
       end
       it "they have recap_edd true and holding_library same as library" do
-        location_engineer_pt = Locations::HoldingLocation.find_by(code: 'engineer$pt')
-        location_arch_pw = Locations::HoldingLocation.find_by(code: 'arch$pw')
-        location_firestone_pb = Locations::HoldingLocation.find_by(code: 'firestone$pb')
-        location_lewis_pn = Locations::HoldingLocation.find_by(code: 'lewis$pn')
-        location_marquand_pj = Locations::HoldingLocation.find_by(code: 'marquand$pj')
-        location_mendel_pk = Locations::HoldingLocation.find_by(code: 'mendel$pk')
-        location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
+        location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')
+        location_arch_pw = HoldingLocation.find_by(code: 'arch$pw')
+        location_firestone_pb = HoldingLocation.find_by(code: 'firestone$pb')
+        location_lewis_pn = HoldingLocation.find_by(code: 'lewis$pn')
+        location_marquand_pj = HoldingLocation.find_by(code: 'marquand$pj')
+        location_mendel_pk = HoldingLocation.find_by(code: 'mendel$pk')
+        location_rare_xw = HoldingLocation.find_by(code: 'rare$xw')
         expect(location_engineer_pt.recap_electronic_delivery_location).to be true
         expect(location_arch_pw.recap_electronic_delivery_location).to be true
         expect(location_firestone_pb.recap_electronic_delivery_location).to be true
@@ -273,7 +273,7 @@ RSpec.describe LocationDataService, type: :service do
         expect(location_mendel_pk.holding_library.label).to eq location_mendel_pk.library.label
       end
       it "new recap location rare$xw has recap_edd false" do
-        location_rare_xw = Locations::HoldingLocation.find_by(code: 'rare$xw')
+        location_rare_xw = HoldingLocation.find_by(code: 'rare$xw')
         expect(location_rare_xw.recap_electronic_delivery_location).to be false
       end
     end
