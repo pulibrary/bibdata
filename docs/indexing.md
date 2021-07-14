@@ -58,7 +58,8 @@ Go to the solr admin UI (see above).
 
 - Select the `catalog-alma-rebuild` collection from the dropdown
 - Select the `documents` menu item
-- Enter `{'delete': {'query': '*:*'}}` in the 'Document(s)' form box
+- Select 'xml' from the 'Document Type' dropdown
+- Enter `<delete><query>*:*</query></delete>` in the 'Document(s)' form box
 - Click "Submit Document"
 
 ### Index Princeton's MARC records (Alma)
