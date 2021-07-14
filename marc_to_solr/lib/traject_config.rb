@@ -1306,8 +1306,7 @@ end
 # The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |record, accumulator|
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless field["k"].present? || field["h"].present? || field["i"].present?
-    accumulator << [field['k'], field['h'], [field['i']]].compact.join(" ").rstrip
+    accumulator << [field['k'], field['h'], field['i']].compact.join(" ") if field["k"].present? || field["h"].present? || field["i"].present?
   end
 end
 
@@ -1315,8 +1314,7 @@ end
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |record, accumulator|
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless field["k"].present? || field["h"].present? || field["i"].present?
-    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ").rstrip
+    accumulator << [field['h'], field['i'], field['k']].compact.join(" ") if field["k"].present? || field["h"].present? || field["i"].present?
   end
 end
 
@@ -1324,8 +1322,7 @@ end
 # when the location is firestone$stacks.
 to_field 'call_number_locator_display' do |record, accumulator|
   MarcExtractor.cached('852hi').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless field["h"].present? || field["i"].present?
-    accumulator << [field['h'], field['i']].compact.join(" ").rstrip
+    accumulator << [field['h'], field['i']].compact.join(" ") if field["h"].present? || field["i"].present?
   end
 end
 
