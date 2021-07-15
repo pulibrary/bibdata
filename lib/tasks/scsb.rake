@@ -54,7 +54,7 @@ namespace :scsb do
   namespace :import do
     desc "Creates an Event and downloads files for a full partner record set"
     task full: :environment do
-      ScsbImportFullJob.perform_later
+      ScsbImportFullJob.perform_now
     end
   end
 end
