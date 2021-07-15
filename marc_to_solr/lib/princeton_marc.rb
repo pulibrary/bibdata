@@ -619,6 +619,16 @@ def alma_code?(code)
   code.to_s.start_with?("22") && code.to_s.end_with?("06421")
 end
 
+# Removes empty call_number fields from holdings_1display
+def remove_empty_call_number_fields(holding)
+  holding.tap { |h| ["call_number", "call_number_browse"].map { |k| h.delete(k) if h[k].empty? } }
+end
+
+# Collects only non empty khi
+def call_number_khi(field)
+  field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["k", "h", "i"].include?(s.code) }.compact
+end
+
 # SCSB item
 # Keep this check with the alma_code? check
 # until we make sure that the records in alma are updated
@@ -665,9 +675,10 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         holding['location_note'] << s_field.value
       end
     end
-    holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
-    holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
-    all_holdings[holding_id] = holding unless holding_id.nil? || invalid_location?(holding['location_code'])
+
+    holding['call_number'] = holding['call_number'].join(' ').strip if holding['call_number'].present?
+    holding['call_number_browse'] = holding['call_number_browse'].join(' ').strip if holding['call_number_browse'].present?
+    all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
   end
   Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []

@@ -1305,22 +1305,39 @@ end
 # Position 852|k in the beginning of the call_number_display
 # The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |record, accumulator|
+  values = []
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    accumulator << [field['k'], field['h'], [field['i']]].compact.join(" ")
+    subfields = call_number_khi(field)
+    next unless subfields.present?
+    values << [field['k'], field['h'], field['i']].compact.reject(&:empty?)
+    values.flatten!
   end
+  accumulator << values.join(" ") if values.present?
 end
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |record, accumulator|
+  values = []
   MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
-    accumulator << [field['h'], field['i'], [field['k']]].compact.join(" ")
+    subfields = call_number_khi(field)
+    next unless subfields.present?
+    values << [field['h'], field['i'], field['k']].compact.reject(&:empty?)
+    values.flatten!
   end
+  accumulator << values.join(" ") if values.present?
 end
 
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
 # when the location is firestone$stacks.
-to_field 'call_number_locator_display', extract_marc('852hi')
+to_field 'call_number_locator_display' do |record, accumulator|
+  values = []
+  MarcExtractor.cached('852hi').collect_matching_lines(record) do |field, _spec, _extractor|
+    subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
+    values << [field['h'], field['i']].compact.reject(&:empty?)
+  end
+  accumulator << values.join(" ") if values.present?
+end
 
 to_field 'electronic_portfolio_s' do |record, accumulator|
   fields = []
