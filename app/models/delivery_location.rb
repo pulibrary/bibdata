@@ -16,9 +16,9 @@ class DeliveryLocation < ActiveRecord::Base
 
   private
 
-  def set_defaults
-    self.staff_only = false if staff_only.blank?
-    self.pickup_location = false if pickup_location.blank?
-    self.digital_location = false if digital_location.blank?
-  end
+    def set_defaults
+      self.staff_only = false if staff_only.blank?
+      self.pickup_location = false if pickup_location.blank?
+      self.digital_location = false if digital_location.blank?
+    end
 end

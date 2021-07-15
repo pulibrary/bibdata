@@ -169,14 +169,14 @@ RSpec.describe LocationDataService, type: :service do
     let(:firestone_library) { Library.find_by(code: 'firestone') }
     let(:scsb_delivery_location) do
       DeliveryLocation.create("label": "Firestone Circulation Desk",
-                                         "address": "One Washington Rd. Princeton, NJ 08544",
-                                         "phone_number": "609 258-2345",
-                                         "contact_email": "fstcirc@princton.edu",
-                                         "gfa_pickup": "QX",
-                                         "staff_only": false,
-                                         "pickup_location": false,
-                                         "digital_location": false,
-                                         "library": firestone_library)
+                              "address": "One Washington Rd. Princeton, NJ 08544",
+                              "phone_number": "609 258-2345",
+                              "contact_email": "fstcirc@princton.edu",
+                              "gfa_pickup": "QX",
+                              "staff_only": false,
+                              "pickup_location": false,
+                              "digital_location": false,
+                              "library": firestone_library)
     end
 
     it "deletes existing data and populates library and location data from Alma excluding elfs" do

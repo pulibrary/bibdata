@@ -72,6 +72,7 @@ group :development, :test do
   gem 'coveralls', '0.8.21'
   gem "dotenv-rails"
   gem "factory_bot_rails", "~> 4.0"
+  gem 'faker'
   gem 'pry-byebug', '~> 3.0'
   gem 'pry-rails'
   gem 'puma'

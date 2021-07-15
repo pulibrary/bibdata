@@ -21,18 +21,18 @@ class HoldingLocation < ActiveRecord::Base
 
   private
 
-  def set_defaults
-    self.aeon_location = false if aeon_location.blank?
-    self.recap_electronic_delivery_location = false if recap_electronic_delivery_location.blank?
-    self.open = true if self.open.blank?
-    self.requestable = true if requestable.blank?
-    self.always_requestable = false if always_requestable.blank?
-    self.circulates = true if circulates.blank?
-  end
-
-  def associate_non_staff_only_delivery_locations
-    DeliveryLocation.all.reject(&:staff_only?).each do |public_dl|
-      delivery_locations << public_dl
+    def set_defaults
+      self.aeon_location = false if aeon_location.blank?
+      self.recap_electronic_delivery_location = false if recap_electronic_delivery_location.blank?
+      self.open = true if open.blank?
+      self.requestable = true if requestable.blank?
+      self.always_requestable = false if always_requestable.blank?
+      self.circulates = true if circulates.blank?
     end
-  end
+
+    def associate_non_staff_only_delivery_locations
+      DeliveryLocation.all.reject(&:staff_only?).each do |public_dl|
+        delivery_locations << public_dl
+      end
+    end
 end
