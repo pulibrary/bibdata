@@ -25,7 +25,7 @@ class Alma::Indexer
 
   def index_file(file_name, debug_mode = false)
     debug_flag = debug_mode ? "--debug-mode" : ""
-    `traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url}; true`
+    `traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url} 2>&1`
   end
 
   private
