@@ -173,6 +173,9 @@ describe 'From traject_config.rb' do
     end
   end
   describe "call_number_display field" do
+    it "indexes the call_number_display field" do
+      expect(@sample40['call_number_display']).to eq(["Oversize RA566.27 .B7544 2003q"])
+    end
     it "returns the call_number_display field with k subfield in the beginning" do
       expect(@record_call_number1['call_number_display']).to eq(["Eng 20Q 6819"])
     end
@@ -186,7 +189,7 @@ describe 'From traject_config.rb' do
 
   describe "call_number_browse field" do
     it "indexes the call_number_browse field" do
-      expect(@sample40['call_number_browse_s']).to eq([" .B7544 2003q Oversize RA566.27"])
+      expect(@sample40['call_number_browse_s']).to eq([".B7544 2003q Oversize RA566.27"])
     end
     it "returns the call_number_browse field with k subfield at the end and no trailing spaces" do
       record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
@@ -202,7 +205,7 @@ describe 'From traject_config.rb' do
 
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
-      expect(@sample40['call_number_locator_display']).to eq([" .B7544 2003q"])
+      expect(@sample40['call_number_locator_display']).to eq([".B7544 2003q"])
     end
   end
 
@@ -443,8 +446,8 @@ describe 'From traject_config.rb' do
     end
     it "includes a call number field when there is a subfield with a value" do
       @holdings = JSON.parse(@sample40["holdings_1display"][0])
-      expect(@holdings['22172120500006421']['call_number']).to eq " .B7544 2003q Oversize RA566.27"
-      expect(@holdings['22172120500006421']['call_number_browse']).to eq " .B7544 2003q Oversize RA566.27"
+      expect(@holdings['22172120500006421']['call_number']).to eq ".B7544 2003q Oversize RA566.27"
+      expect(@holdings['22172120500006421']['call_number_browse']).to eq ".B7544 2003q Oversize RA566.27"
     end
   end
 
