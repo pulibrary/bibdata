@@ -77,6 +77,7 @@ RSpec.describe AwsSqsPoller do
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2020-12-15T19:56:37.694Z"
       expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
+      expect(Dump.first.generated_date).to eq event.start
     end
   end
 
@@ -98,6 +99,7 @@ RSpec.describe AwsSqsPoller do
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2021-02-08T17:03:52.894Z"
       expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
+      expect(Dump.first.generated_date).to eq event.start
     end
   end
 
@@ -119,6 +121,7 @@ RSpec.describe AwsSqsPoller do
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2021-02-08T17:03:52.894Z"
       expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
+      expect(Dump.first.generated_date).to eq event.start
     end
   end
 
