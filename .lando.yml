@@ -16,6 +16,9 @@ services:
   marc_liberation_database:
     type: postgres:10
     portforward: true
+  marc_liberation_redis:
+    type: redis:4.0.9
+    portforward: true
 proxy:
   marc_liberation_test_solr:
     - marc-liberation.test.solr.lndo.site:8983

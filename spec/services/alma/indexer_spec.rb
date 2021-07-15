@@ -105,6 +105,8 @@ RSpec.describe Alma::Indexer do
       indexer = described_class.new(solr_url: solr_url)
       Sidekiq::Testing.inline! do
         indexer.incremental_index!(dump)
+        # Have to manually call batch callbacks
+        IncrementalIndexJob.new.on_success(Sidekiq::BatchSet.new.to_a.last, "dump_id" => dump.id)
       end
       solr.commit
 
@@ -113,6 +115,7 @@ RSpec.describe Alma::Indexer do
       expect(response['response']['numFound']).to eq 7
 
       expect(DumpFile.done.size).to eq 2
+      expect(Dump.last).to be_done
     end
   end
 end

@@ -9,11 +9,9 @@ class Alma::Indexer
     end
 
     def index!
-      dump_file.update(index_status: :started)
       decompress_file do |file|
         index_file(file.path)
       end
-      dump_file.update(index_status: :done)
     end
 
     def indexer
