@@ -11,9 +11,9 @@ FactoryBot.define do
     requestable [true, false].sample
     always_requestable [true, false].sample
     circulates [true, false].sample
-    code 'location-code'
+    code { 'location-code-' + Faker::Alphanumeric.alphanumeric(number: 3, min_alpha: 3) }
     remote_storage 'recap_rmt'
-    library { build(:library, code: 'firestone$stacks', label: 'Firestone Library') }
+    library { build(:library, label: 'Firestone Library') }
   end
 
   factory :holding_location_locator, class: 'HoldingLocation' do
