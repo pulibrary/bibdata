@@ -132,7 +132,7 @@ jobs:
             # use a partial cache restore
             - v2-marc_liberation-
       - run: sudo apt-get -y update
-      - run: sudo apt-get install -y postgresql-client || true
+      - run: sudo apt-get install -y postgresql-client siege || true
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
