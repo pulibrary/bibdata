@@ -5,7 +5,7 @@ class IncrementalIndexJob < ActiveJob::Base
   retry_on IndexQueueLocked
 
   # Callback for when the batch of DumpFiles is done indexing.
-  def self.on_success(_status, options)
+  def on_success(_status, options)
     dump_id = options['dump_id']
     dump = Dump.find(dump_id)
     dump.update(index_status: Dump::DONE)
