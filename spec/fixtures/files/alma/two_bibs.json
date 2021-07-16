@@ -1,0 +1,78 @@
+{
+    "bib": [
+      {
+        "mms_id": "9957049613506421",
+        "record_format": "marc21",
+        "linked_record_id": {
+          "value": null,
+          "type": null
+        },
+        "title": "Lu Xun yi wen quan ji /",
+        "author": "Lu, Xun,",
+        "issn": null,
+        "isbn": "7533449665 (set)",
+        "network_number": [
+          "(NjP)5704961-princetondb",
+          "(OCoLC)ocn244716965",
+          "5704961"
+        ],
+        "place_of_publication": "Fuzhou :",
+        "date_of_publication": "2008.",
+        "publisher_const": "Fujian jiao yu chu ban she,",
+        "holdings": {
+          "value": null,
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9957049613506421/holdings"
+        },
+        "created_by": "import",
+        "created_date": "2020-12-02Z",
+        "suppress_from_publishing": "false",
+        "suppress_from_external_search": "false",
+        "sync_with_oclc": "BIBS",
+        "sync_with_libraries_australia": "NONE",
+        "originating_system": "ILS",
+        "originating_system_id": "5704961-princetondb",
+        "anies": [
+          "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>01104cam a2200301Ia 4500</leader>\n    <controlfield tag=\"001\">9957049613506421</controlfield>\n    <controlfield tag=\"005\">20200925195658.0</controlfield>\n    <controlfield tag=\"008\">090305s2008    cc            000 0 chi d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">5704961</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocn244716965</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)5704961-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">SINLB</subfield>\n      <subfield code=\"c\">PULEA</subfield>\n      <subfield code=\"d\">PULEA</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n      <subfield code=\"a\">9787533449667 (set)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n      <subfield code=\"a\">7533449665 (set)</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"4\" tag=\"082\">\n      <subfield code=\"a\">808.8</subfield>\n      <subfield code=\"2\">22</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"090\">\n      <subfield code=\"a\">PN6065.C6</subfield>\n      <subfield code=\"b\">L82 2008q</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"049\">\n      <subfield code=\"a\">MAIN</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"6\">880-01</subfield>\n      <subfield code=\"a\">Lu Xun yi wen quan ji /</subfield>\n      <subfield code=\"c\">[Beijing Lu Xun bo wu guan bian].</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"6\">880-02</subfield>\n      <subfield code=\"a\">Fuzhou :</subfield>\n      <subfield code=\"b\">Fujian jiao yu chu ban she,</subfield>\n      <subfield code=\"c\">2008.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">8 v. ;</subfield>\n      <subfield code=\"c\">25 cm.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Literature, Modern</subfield>\n      <subfield code=\"v\">Translations into Chinese.</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n      <subfield code=\"6\">880-03</subfield>\n      <subfield code=\"a\">Lu, Xun,</subfield>\n      <subfield code=\"d\">1881-1936.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/n50047988</subfield>\n    </datafield>\n    <datafield ind1=\"2\" ind2=\" \" tag=\"710\">\n      <subfield code=\"6\">880-04</subfield>\n      <subfield code=\"a\">Beijing Lu Xun bo wu guan.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/n81118495</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"880\">\n      <subfield code=\"6\">245-01</subfield>\n      <subfield code=\"a\">鲁迅译文全集 /</subfield>\n      <subfield code=\"c\">[北京鲁迅博物馆编].</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"880\">\n      <subfield code=\"6\">260-02</subfield>\n      <subfield code=\"a\">福州 :</subfield>\n      <subfield code=\"b\">福建教育出版社,</subfield>\n      <subfield code=\"c\">2008.</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"880\">\n      <subfield code=\"6\">700-03</subfield>\n      <subfield code=\"a\">鲁迅,</subfield>\n      <subfield code=\"d\">1881-1936.</subfield>\n    </datafield>\n    <datafield ind1=\"2\" ind2=\" \" tag=\"880\">\n      <subfield code=\"6\">710-04</subfield>\n      <subfield code=\"a\">北京鲁迅博物馆.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"994\">\n      <subfield code=\"a\">C0</subfield>\n      <subfield code=\"b\">PULEA</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"979\">\n      <subfield code=\"a\">(OCoLC)ocn312501997</subfield>\n    </datafield>\n  </record>"
+        ],
+        "requests": null,
+        "link": null
+      },
+      {
+        "mms_id": "99122426947506421",
+        "record_format": "marc21",
+        "linked_record_id": {
+          "value": "993840000000008583",
+          "type": "CZ"
+        },
+        "title": "Nature",
+        "author": null,
+        "issn": null,
+        "isbn": "2-8124-8960-X",
+        "network_number": [
+          "(CKB)3840000000008583",
+          "(EXLCZ)993840000000008583"
+        ],
+        "publisher_const": "Classiques Garnier",
+        "holdings": {
+          "value": null,
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99122426947506421/holdings"
+        },
+        "created_by": "SFX",
+        "created_date": "2016-01-23Z",
+        "last_modified_by": "SFX",
+        "last_modified_date": "2017-09-18Z",
+        "suppress_from_publishing": "false",
+        "suppress_from_external_search": "false",
+        "sync_with_oclc": "BIBS",
+        "sync_with_libraries_australia": "NONE",
+        "originating_system": "SFX",
+        "originating_system_id": "993840000000008583",
+        "anies": [
+          "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00286cam-a2200121z--4500</leader><controlfield tag=\"001\">99122426947506421</controlfield><controlfield tag=\"005\">20170919002741.0</controlfield><controlfield tag=\"008\">160905uuuuuuuuuuuuuu-|-o----u|----|fre-d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">2-8124-8960-X</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(CKB)3840000000008583</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(EXLCZ)993840000000008583</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Nature</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"b\">Classiques Garnier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"906\"><subfield code=\"a\">BOOK</subfield></datafield></record>"
+        ],
+        "requests": null,
+        "link": null
+      }
+    ],
+    "total_record_count": 2
+  }

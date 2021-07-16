@@ -1,0 +1,105 @@
+{
+  "id": "6587815790006421",
+  "action": "JOB_END",
+  "institution": {
+    "value": "01PRI_INST",
+    "desc": "Princeton University"
+  },
+  "time": "2021-02-08T20:40:41.941Z",
+  "event": null,
+  "job_instance": {
+    "id": "6587815790006421",
+    "external_id": "6587815800006421",
+    "name": "Publishing Platform Job Incremental ReCAP Records",
+    "submitted_by": {
+      "value": "940000258",
+      "desc": "Zelesky, Mark"
+    },
+    "submit_time": "2021-02-08T17:03:52.224Z",
+    "start_time": "2021-02-08T17:03:52.894Z",
+    "end_time": "2021-02-08T20:40:41.941Z",
+    "progress": 100,
+    "status": {
+      "value": "COMPLETED_SUCCESS",
+      "desc": "Completed Successfully"
+    },
+    "status_date": "2021-02-08Z",
+    "alert": [
+      {
+        "value": "alert_general_success",
+        "desc": "The job completed successfully. For more information view the report details."
+      }
+    ],
+    "counter": [
+      {
+        "type": {
+          "value": "label.new.records",
+          "desc": "New Records"
+        },
+        "value": "11"
+      },
+      {
+        "type": {
+          "value": "label.updated.records",
+          "desc": "Updated Records"
+        },
+        "value": "14"
+      },
+      {
+        "type": {
+          "value": "label.deleted.records",
+          "desc": "Deleted Records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.failed.publishing",
+          "desc": "Unpublished failed records"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.skipped",
+          "desc": "Skipped records (update date changed but no data change)"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.filtered_out",
+          "desc": "Filtered records (not published due to filter)"
+        },
+        "value": "0"
+      },
+      {
+        "type": {
+          "value": "c.jobs.publishing.totalRecordsWrittenToFile",
+          "desc": "Total records written to file"
+        },
+        "value": "0"
+      }
+    ],
+    "job_info": {
+      "id": "S6423194610006421",
+      "name": "Publishing Platform Job Incremental ReCAP Records",
+      "description": "Publishing Platform Job",
+      "type": {
+        "value": "SCHEDULED",
+        "desc": "Scheduled"
+      },
+      "category": {
+        "value": "PUBLISHING",
+        "desc": "Publishing"
+      },
+      "link": "/almaws/v1/conf/jobs/S6423194610006421"
+    },
+    "link": "/almaws/v1/conf/jobs/M0/instances/6587815790006421"
+  },
+  "bib": null,
+  "holding": null,
+  "item": null,
+  "portfolio": null,
+  "representation": null
+}

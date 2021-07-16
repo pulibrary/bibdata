@@ -1,0 +1,105 @@
+{
+    "location": [
+      {
+        "code": "ltop",
+        "name": "ltopsa: Computer Med - SA",
+        "external_name": "Computer Media",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Media",
+          "desc": "Media"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations/ltop"
+      },
+      {
+        "code": "cat",
+        "name": "Marquand Cataloging",
+        "external_name": "Cataloging",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations/cat"
+      },
+      {
+        "code": "circ",
+        "name": "Marquand Circ",
+        "external_name": "Circulation",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations/circ"
+      },
+      {
+        "code": "pj",
+        "name": "rcppj: Marquand Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Marquand Library Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations/pj"
+      }
+    ],
+    "total_record_count": 4
+  }

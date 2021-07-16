@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<collection>
+  <record>
+    <leader>01257cam a2200337ui 4500</leader>
+    <controlfield tag="005">20201013164828.0</controlfield>
+    <controlfield tag="006">m     o  d        </controlfield>
+    <controlfield tag="007">cr mn ---uuuuu</controlfield>
+    <controlfield tag="008">181025s2016    cc      r         0 chi d</controlfield>
+    <controlfield tag="001">99110599413506421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">9787545714203</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">11059941</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)11059941-princetondb</subfield>
+    </datafield>
+    <datafield tag="099" ind1=" " ind2=" ">
+      <subfield code="a">Electronic Resource</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Zhang, Shenyan zhu</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Po shui zhai shi ji</subfield>
+      <subfield code="c">Zhang shen yan zhu, zhang chun guo, wang xiao feng dian jiao</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Di 1 ban</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Taiyuan :</subfield>
+      <subfield code="b">San jin chu ban she,</subfield>
+      <subfield code="c">2016.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Zhang shen yan ji</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Facsimiles.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026099</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026099</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">Zhang shen yan ji</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">elf1</subfield>
+      <subfield code="h">Electronic Resource</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">http://publish.ancientbooks.cn/docShuju/platformBookDetails.jspx?docbookid=ZHB010001838&amp;libId=6</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">&#x5F35;&#x614E;&#x8A00;&#x8457;</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">&#x6CCA;&#x6C34;&#x9F4B;&#x8A69;&#x96C6;</subfield>
+      <subfield code="c">&#x5F35;&#x614E;&#x8A00;&#x8457;, &#x5F35;&#x6625;&#x570B;, &#x738B;&#x66C9;&#x6953;&#x9EDE;&#x6821;</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">250-03</subfield>
+      <subfield code="a">&#x7B2C;1&#x7248;</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="1">
+      <subfield code="6">264-04</subfield>
+      <subfield code="a">&#x592A;&#x539F;:</subfield>
+      <subfield code="b">&#x4E09;&#x6649;&#x51FA;&#x7248;&#x793E;,</subfield>
+      <subfield code="c">2016.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">490-05</subfield>
+      <subfield code="a">&#x5F35;&#x614E;&#x8A00;&#x96C6;</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">830-06</subfield>
+      <subfield code="a">&#x5F35;&#x614E;&#x8A00;&#x96C6;</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 03:27:23 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2020-12-08 09:26:10 US/Eastern</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2020-12-08 09:26:05 US/Eastern</subfield>
+      <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53340088990006421&amp;Force_direct=true</subfield>
+      <subfield code="s">P2E_JOB</subfield>
+      <subfield code="0">53340088990006421</subfield>
+      <subfield code="w">2020-12-08 14:26:05</subfield>
+      <subfield code="f">false</subfield>
+      <subfield code="b">static</subfield>
+      <subfield code="1">52340089000006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99110599413506421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53340088990006421</subfield>
+    </datafield>
+  </record>
+</collection>

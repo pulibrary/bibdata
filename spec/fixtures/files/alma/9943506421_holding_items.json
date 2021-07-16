@@ -1,0 +1,1479 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963740006421",
+        "barcode": "32101037077862",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.11",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.11",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963740006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963750006421",
+        "barcode": "32101037077870",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.10",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.10",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963750006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963760006421",
+        "barcode": "32101037077888",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.9",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.9",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963760006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963770006421",
+        "barcode": "32101037077896",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.8",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.8",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963770006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963780006421",
+        "barcode": "32101037077904",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.7",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.7",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963780006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963790006421",
+        "barcode": "32101037077912",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.6",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.6",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963790006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": "RES_SHARE",
+          "desc": "Resource Sharing Library"
+        },
+        "temp_location": {
+          "value": "IN_RS_REQ",
+          "desc": "Lending Resource Sharing Requests"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "rcpshare",
+          "desc": "ReCAP Shared Collection"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963800006421",
+        "barcode": "32101037077615",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2021-02-10Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.4",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.4",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "TRANSIT",
+          "desc": "Transit"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": true,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963800006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": "RES_SHARE",
+          "desc": "Resource Sharing Library"
+        },
+        "temp_location": {
+          "value": "IN_RS_REQ",
+          "desc": "Lending Resource Sharing Requests"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "rcpshare",
+          "desc": "ReCAP Shared Collection"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963810006421",
+        "barcode": "32101037077623",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2021-02-09Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.3",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.3",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "TRANSIT",
+          "desc": "Transit"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": true,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963810006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963820006421",
+        "barcode": "32101037077631",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.2",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.2",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963820006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963830006421",
+        "barcode": "32101037077607",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.5",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.5",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963830006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9943506421",
+        "title": "The works of Henry Fielding : with the life of the author.",
+        "author": "Fielding, Henry,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "4th ed.",
+        "network_number": [
+          "(NjP)4-princetondb",
+          "4",
+          "(CStRLIN)NJPGSTK-B"
+        ],
+        "place_of_publication": "Edinburgh :",
+        "date_of_publication": "1767.",
+        "publisher_const": "Printed by Martin & Wotherspoon",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421"
+      },
+      "holding_data": {
+        "holding_id": "22261963850006421",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "3738.1767",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "3738.1767",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421"
+      },
+      "item_data": {
+        "pid": "23261963840006421",
+        "barcode": "32101037077649",
+        "creation_date": "2020-12-03Z",
+        "modification_date": "2020-12-03Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2004-10-18Z",
+        "year_of_issue": "",
+        "enumeration_a": "v.1",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "description": "v.1",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "recap",
+          "desc": "ReCAP"
+        },
+        "location": {
+          "value": "xr",
+          "desc": "rcpxr: RECAP Rare Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9943506421/holdings/22261963850006421/items/23261963840006421"
+    }
+  ],
+  "total_record_count": 11
+}

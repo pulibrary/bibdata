@@ -1,0 +1,270 @@
+<record>
+  <leader>03521cjm a2200589 i 4500</leader>
+  <controlfield tag="005">20201008195923.0</controlfield>
+  <controlfield tag="007">sd fsngnnmmned</controlfield>
+  <controlfield tag="008">170803p20172016nyusgnn  dfi      n ger d</controlfield>
+  <controlfield tag="001">99103141233506421</controlfield>
+  <datafield tag="024" ind1="1" ind2=" ">
+    <subfield code="a">764593029724</subfield>
+  </datafield>
+  <datafield tag="028" ind1="0" ind2="2">
+    <subfield code="a">297</subfield>
+    <subfield code="b">Mode</subfield>
+  </datafield>
+  <datafield tag="033" ind1="1" ind2="0">
+    <subfield code="a">20160206</subfield>
+    <subfield code="a">20160208</subfield>
+    <subfield code="a">20160209</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)991619207</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/991619207</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn991619207</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/991619207</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">10314123</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)10314123-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">IQU</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">IQU</subfield>
+    <subfield code="d">IQU</subfield>
+    <subfield code="d">CIA</subfield>
+    <subfield code="d">TEF</subfield>
+    <subfield code="d">TDF</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">NjP</subfield>
+  </datafield>
+  <datafield tag="041" ind1="1" ind2=" ">
+    <subfield code="d">ger</subfield>
+    <subfield code="d">ita</subfield>
+    <subfield code="d">rus</subfield>
+    <subfield code="d">eng</subfield>
+    <subfield code="e">ger</subfield>
+    <subfield code="e">eng</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">M1619.S86</subfield>
+    <subfield code="b">M63 2017</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">783/.0942</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Modern lied /</subfield>
+    <subfield code="c">Sarah Maria Sun, soprano; Jan Philip Schulze, piano.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">New York, NY :</subfield>
+    <subfield code="b">Mode,</subfield>
+    <subfield code="c">[2017]</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">©℗2013</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 audio disc (65 min.) :</subfield>
+    <subfield code="b">digital ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="306" ind1=" " ind2=" ">
+    <subfield code="a">006500</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">performed music</subfield>
+    <subfield code="b">prm</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">audio</subfield>
+    <subfield code="b">s</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">audio disc</subfield>
+    <subfield code="b">sd</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="344" ind1=" " ind2=" ">
+    <subfield code="a">digital</subfield>
+    <subfield code="g">stereo</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="347" ind1=" " ind2=" ">
+    <subfield code="a">audio file</subfield>
+    <subfield code="b">CD audio</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from disc label.</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">Program notes in German and English. Lyrics printed and sung in German, Italian, Russian, and English.</subfield>
+  </datafield>
+  <datafield tag="511" ind1="0" ind2=" ">
+    <subfield code="a">Sarah Maria Sun, soprano ; Jan Philip Schulze, piano.</subfield>
+  </datafield>
+  <datafield tag="518" ind1=" " ind2=" ">
+    <subfield code="o">Recorded</subfield>
+    <subfield code="d">2016 February 6, 8, and 9</subfield>
+    <subfield code="p">Studio 2, Bayerische Rundfunk, Munich, Germany.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Compact disc.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Program notes, lyrics, and other text contained in booklet (28 pages) inserted into CD case.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06) -- Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17) -- Got lost (2007-2008) / Helmut Lachenmann (24:56) -- Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27) -- Ophelia sings (2012) / Wolfgang Rihm (9:45) -- Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30).</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Songs (High voice) with piano.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85125149</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01126153</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85125149</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Song cycles</subfield>
+    <subfield code="v">Excerpts.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2010114136</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2010114136</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Songs (High voice) with piano.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01126153</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01126153</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85125149</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Excerpts.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026097</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026097</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Songs.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014027103</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014027103</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Sun, Sarah Maria,</subfield>
+    <subfield code="e">singer.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2013020002</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2013020002</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2013020002</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Schulze, Jan Philip,</subfield>
+    <subfield code="e">instrumentalist.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no00097400</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no00097400</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no00097400</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Holliger, Heinz.</subfield>
+    <subfield code="t">Lieder nach Gedichten von Christian Morgenstern.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2005079493</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2005079493</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2005079493</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Sciarrino, Salvatore.</subfield>
+    <subfield code="t">Nuove melodie.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n2010082061</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2010082061</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2010082061</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Lachenmann, Helmut.</subfield>
+    <subfield code="t">Got lost.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2017145769</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2017145769</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2017145769</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Kurtág, György.</subfield>
+    <subfield code="t">Rekviem po drugu.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2001066962</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2001066962</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2001066962</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Rihm, Wolfgang.</subfield>
+    <subfield code="t">Ophelia sings.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2017145579</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2017145579</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2017145579</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2="2">
+    <subfield code="i">Container of (work):</subfield>
+    <subfield code="a">Lang, Bernhard,</subfield>
+    <subfield code="d">1957-.</subfield>
+    <subfield code="t">Songbook,</subfield>
+    <subfield code="n">no. 2.</subfield>
+    <subfield code="p">Wenn die Landschaft aufhört</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2017145912</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2017145912</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2017145912</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+    <subfield code="a">ram</subfield>
+    <subfield code="b">a</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">r</subfield>
+    <subfield code="e">20170815</subfield>
+  </datafield>
+  <datafield tag="999" ind1=" " ind2=" ">
+    <subfield code="a">10314123</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="a">bgn</subfield>
+    <subfield code="b">m</subfield>
+    <subfield code="6">j</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">d</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20170823</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-06-30 16:56:18 US/Eastern</subfield>
+    <subfield code="b">2020-12-02 10:13:26 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2=" ">
+    <subfield code="b">mendel</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">CD- 50000</subfield>
+    <subfield code="8">22118403110006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2020-12-02 15:13:26</subfield>
+    <subfield code="8">22118403110006421</subfield>
+    <subfield code="b">Mendel Music Library</subfield>
+    <subfield code="c">stacks: Mendel Music Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22118403110006421</subfield>
+    <subfield code="a">23118403100006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="d">2020-12-02 15:13:26</subfield>
+    <subfield code="p">32101101107322</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+</record>

@@ -1,0 +1,106 @@
+{
+    "location": [
+      {
+        "code": "gp",
+        "name": "rcpgp: RECAP Gov Docs",
+        "external_name": "Remote Storage: Government Documents",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/gp"
+      },
+      {
+        "code": "jq",
+        "name": "rcpjq: RECAP JSTOR Rest",
+        "external_name": "Remote Storage: JSTOR Restricted",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/jq"
+      },
+      {
+        "code": "pa",
+        "name": "rcppa: RECAP",
+        "external_name": "Remote Storage",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/pa"
+      },
+      {
+        "code": "pb",
+        "name": "rcppb: RECAP Firestone Use",
+        "external_name": "Remote Storage: Supervised use in Firestone A-16-H-3",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations/pb"
+      }
+    ],
+    "total_record_count": 4
+  }
+  

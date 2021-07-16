@@ -1,0 +1,455 @@
+{
+    "location": [
+      {
+        "code": "acq",
+        "name": "acq: East Asian Acquisitions",
+        "external_name": "Acquisitions",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/acq"
+      },
+      {
+        "code": "cjk",
+        "name": "cjk: East Asian Library",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/cjk"
+      },
+      {
+        "code": "cjkref",
+        "name": "cjkref: East Asian Library Reference",
+        "external_name": "Reference",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/cjkref"
+      },
+      {
+        "code": "cat",
+        "name": "East Asian Cataloging",
+        "external_name": "Cataloging",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/cat"
+      },
+      {
+        "code": "circ",
+        "name": "East Asian Circ",
+        "external_name": "Circulation",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/circ"
+      },
+      {
+        "code": "gest",
+        "name": "gest: East Asian Library Western Lang",
+        "external_name": "Western Languages",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/gest"
+      },
+      {
+        "code": "gestpe",
+        "name": "gestpe: Gest Periodicals",
+        "external_name": "Western Periodicals",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/gestpe"
+      },
+      {
+        "code": "gestpr",
+        "name": "gestpr: East Asian Permanent Reserve",
+        "external_name": "Permanent Reserve",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/gestpr"
+      },
+      {
+        "code": "wilhelm",
+        "name": "gstwc: East Asian: Wilhelm",
+        "external_name": "Wilhelm Collection",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/wilhelm"
+      },
+      {
+        "code": "hy",
+        "name": "hy: East Asian Library",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/hy"
+      },
+      {
+        "code": "hygf",
+        "name": "hygf: East Asian Library Microfilms",
+        "external_name": "Microfilms: Forrestal Annex",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/hygf"
+      },
+      {
+        "code": "hype",
+        "name": "hype: East Asian Periodicals",
+        "external_name": "Periodicals",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/hype"
+      },
+      {
+        "code": "hyref",
+        "name": "hyref: East Asian Library Ref ",
+        "external_name": "Reference ",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/hyref"
+      },
+      {
+        "code": "pl",
+        "name": "rcppl: East Asian Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): East Asian Library Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/pl"
+      },
+      {
+        "code": "ql",
+        "name": "rcpql: East Asian Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): East Asian Microforms",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/ql"
+      },
+      {
+        "code": "ref",
+        "name": "ref: East Asian Reference",
+        "external_name": "Reference",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/ref"
+      },
+      {
+        "code": "reserve",
+        "name": "reserve: East Asian Reserve",
+        "external_name": "Reserve",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/reserve"
+      },
+      {
+        "code": "UNASSIGNED",
+        "name": "UNASSIGNED location",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "",
+          "desc": null
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations/UNASSIGNED"
+      }
+    ],
+    "total_record_count": 18
+  }

@@ -1,0 +1,45 @@
+{
+    "bib": [
+        {
+            "mms_id": "9958708973506421",
+            "record_format": "marc21",
+            "linked_record_id": {
+                "value": null,
+                "type": null
+            },
+            "title": "Azul Maya un viaje por el Caribe Mexicano /",
+            "author": "Infante, Gonzalo.",
+            "issn": null,
+            "isbn": null,
+            "network_number": [
+                "(NjP)5870897-princetondb",
+                "(OCoLC)56747018",
+                "(OCoLC)ocm56747018"
+            ],
+            "place_of_publication": "México, D.F. :",
+            "date_of_publication": "2002.",
+            "publisher_const": "C/Producciónes",
+            "holdings": {
+                "value": null,
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9958708973506421/holdings"
+            },
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "suppress_from_publishing": "true",
+            "suppress_from_external_search": "false",
+            "sync_with_oclc": "BIBS",
+            "sync_with_libraries_australia": "NONE",
+            "originating_system": "ILS",
+            "originating_system_id": "5870897-princetondb",
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>02122cgm a2200469Ka 4500</leader>\n    <controlfield tag=\"001\">9958708973506421</controlfield>\n    <controlfield tag=\"005\">20090911130018.0</controlfield>\n    <controlfield tag=\"007\">vd cvaizu</controlfield>\n    <controlfield tag=\"008\">041015s2002    mx 180            vlspa d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocm56747018</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)56747018</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)5870897-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">HCO</subfield>\n      <subfield code=\"c\">HCO</subfield>\n      <subfield code=\"d\">OCLCQ</subfield>\n      <subfield code=\"d\">OCL</subfield>\n      <subfield code=\"d\">OCLCA</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"041\">\n      <subfield code=\"a\">spa</subfield>\n      <subfield code=\"a\">eng</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"043\">\n      <subfield code=\"a\">n-mx---</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"092\">\n      <subfield code=\"a\">972.01</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Azul Maya</subfield>\n      <subfield code=\"h\">[videorecording] :</subfield>\n      <subfield code=\"b\">un viaje por el Caribe Mexicano /</subfield>\n      <subfield code=\"c\">un programa de Gonzalo Infante y Miguel Quintana Pali ; C/Producciónes.</subfield>\n    </datafield>\n    <datafield ind1=\"3\" ind2=\"0\" tag=\"246\">\n      <subfield code=\"a\">Viaje por el Caribe Mexicano</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">México, D.F. :</subfield>\n      <subfield code=\"b\">C/Producciónes :</subfield>\n      <subfield code=\"b\">México Antiguo,</subfield>\n      <subfield code=\"c\">2002.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">1 videodisc (90 min.) :</subfield>\n      <subfield code=\"b\">sd., col. ;</subfield>\n      <subfield code=\"c\">4 3/4 in.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"440\">\n      <subfield code=\"a\">Ciudades del Mexico antiguo</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">Latin American and Iberian videos in Princeton University Library</subfield>\n      <subfield code=\"5\">NjP</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"538\">\n      <subfield code=\"a\">DVD.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"546\">\n      <subfield code=\"a\">Spanish and English soundtracks.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"508\">\n      <subfield code=\"a\">Dirrecion, Gonzalo Infante ; realizacion, Juan José González ; textos, Gonzalo Infante ; voz, Hector Miranda, Eugenio Castillo.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"500\">\n      <subfield code=\"a\">\"This documentary guide and map will transport us to the Mexican Caribbean, visiting all the places of interest in this paradise\"--Container.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"520\">\n      <subfield code=\"a\">Covers tourist destinations such as Cancún, Cozumel and Xcaret, and sites of ancient ruins such as Chichén Itzá and Tulum.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"586\">\n      <subfield code=\"a\">Cinevue International Film Festival Award Winner: Best Travelogue Film.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Mayas</subfield>\n      <subfield code=\"x\">Antiquities.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Travelogues (Television programs)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Mexico</subfield>\n      <subfield code=\"x\">Antiquities.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Gulf Coast (Mexico)</subfield>\n      <subfield code=\"x\">Description and travel.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Yucatán Peninsula</subfield>\n      <subfield code=\"x\">Description and travel.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Cancún (Mexico)</subfield>\n      <subfield code=\"x\">Description and travel.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Cozumel (Mexico)</subfield>\n      <subfield code=\"x\">Description and travel.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Parque Xcaret (Mexico)</subfield>\n      <subfield code=\"x\">Description and travel.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Chichén Itzá Site (Mexico)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"651\">\n      <subfield code=\"a\">Tulum Site (Mexico)</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"700\">\n      <subfield code=\"a\">Infante, Gonzalo.</subfield>\n    </datafield>\n    <datafield ind1=\"2\" ind2=\" \" tag=\"710\">\n      <subfield code=\"a\">C/Producciones (Firm)</subfield>\n    </datafield>\n    <datafield ind1=\"2\" ind2=\" \" tag=\"710\">\n      <subfield code=\"a\">México Antiguo (Firm)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"904\">\n      <subfield code=\"a\">ldm</subfield>\n      <subfield code=\"b\">o</subfield>\n      <subfield code=\"h\">m</subfield>\n      <subfield code=\"c\">v</subfield>\n      <subfield code=\"e\">20090814</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"902\">\n      <subfield code=\"a\">ldm</subfield>\n      <subfield code=\"b\">m</subfield>\n      <subfield code=\"6\">g</subfield>\n      <subfield code=\"7\">m</subfield>\n      <subfield code=\"d\">e</subfield>\n      <subfield code=\"f\">1</subfield>\n      <subfield code=\"e\">20090911</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9958708973506421</subfield><subfield code=\"8\">22178060190006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">recap</subfield><subfield code=\"c\">RECAP: Video Collection</subfield><subfield code=\"d\">DVD 4755</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">qv</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">ReCAP</subfield></datafield></record>"
+            ],
+            "requests": {
+                "value": 0,
+                "link": null
+            },
+            "link": null
+        }
+    ],
+    "total_record_count": 1
+}

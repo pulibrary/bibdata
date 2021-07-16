@@ -1,0 +1,171 @@
+<record>
+    <leader>01184cam a2200325 a 4500</leader>
+    <controlfield tag="005">20200729201709.0</controlfield>
+    <controlfield tag="008">871102s1987    mauaf    b    001 0 eng  </controlfield>
+    <controlfield tag="001">994081873506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   86027703 </subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">0262200619</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0262200619</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)15053751</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/15053751</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)NJPG87-B54669</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">ABY3700TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">408187</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)408187-princetondb</subfield>
+    </datafield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">engita</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2=" ">
+      <subfield code="a">NA500</subfield>
+      <subfield code="b">.T3313 1987</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2=" ">
+      <subfield code="a">724</subfield>
+      <subfield code="2">19</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Tafuri, Manfredo.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n80013526</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n80013526</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n80013526</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Sfera e il labirinto.</subfield>
+      <subfield code="l">English</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="4">
+      <subfield code="a">The sphere and the labyrinth :</subfield>
+      <subfield code="b">avant-gardes and architecture from Piranesi to the 1970s /</subfield>
+      <subfield code="c">Manfredo Tafuri ; translated by Pellegrino d'Acierno and Robert Connolly.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Cambridge, Mass. :</subfield>
+      <subfield code="b">MIT Press,</subfield>
+      <subfield code="c">c1987.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">382 p., [198] p. of plates :</subfield>
+      <subfield code="b">ill. ;</subfield>
+      <subfield code="c">26 cm.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Translation of: La sfera e il labirinto.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Bibliography: p. [305]-366.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Includes index.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Architecture, Modern</subfield>
+      <subfield code="x">History.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85006828</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Avant-garde (Aesthetics)</subfield>
+      <subfield code="x">History.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85010494</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="a">11/20/87</subfield>
+      <subfield code="s">9110</subfield>
+      <subfield code="n">NjP</subfield>
+      <subfield code="w">NYSG87B14629</subfield>
+      <subfield code="d">11/02/87</subfield>
+      <subfield code="c">GKD</subfield>
+      <subfield code="b">KJH</subfield>
+      <subfield code="i">871120</subfield>
+      <subfield code="l">NJPG</subfield>
+    </datafield>
+    <datafield tag="911" ind1=" " ind2=" ">
+      <subfield code="a">19921028</subfield>
+    </datafield>
+    <datafield tag="912" ind1=" " ind2=" ">
+      <subfield code="a">19900828000000.0</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 16:23:00 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">NA500</subfield>
+      <subfield code="i">.T3313 1987</subfield>
+      <subfield code="8">22201049400006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 21:23:00</subfield>
+      <subfield code="8">22201049400006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">arch</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">NA500</subfield>
+      <subfield code="i">.T3313 1987</subfield>
+      <subfield code="8">22201049420006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 21:23:00</subfield>
+      <subfield code="8">22201049420006421</subfield>
+      <subfield code="b">Architecture Library</subfield>
+      <subfield code="c">stacks: Architecture Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">marquand</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">NA500</subfield>
+      <subfield code="i">.T3313 1987</subfield>
+      <subfield code="8">22201049440006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 21:23:00</subfield>
+      <subfield code="8">22201049440006421</subfield>
+      <subfield code="b">Marquand Library</subfield>
+      <subfield code="c">stacks: Marquand Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22201049400006421</subfield>
+      <subfield code="a">23201049390006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="d">2020-12-02 21:23:00</subfield>
+      <subfield code="p">32101072047762</subfield>
+      <subfield code="t">2</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22201049440006421</subfield>
+      <subfield code="a">23201049430006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="d">2020-12-02 21:23:00</subfield>
+      <subfield code="p">32101012132864</subfield>
+      <subfield code="t">1</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22201049420006421</subfield>
+      <subfield code="a">23201049410006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="d">2020-12-02 21:23:00</subfield>
+      <subfield code="p">32101075844496</subfield>
+      <subfield code="t">1</subfield>
+    </datafield>
+  </record>

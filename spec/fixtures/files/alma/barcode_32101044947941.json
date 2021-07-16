@@ -1,0 +1,140 @@
+{
+    "bib_data": {
+        "author": "American Association for the Advancement of Science.",
+        "complete_edition": "",
+        "date_of_publication": "1883-",
+        "isbn": null,
+        "issn": "0036-8075",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/998574693506421",
+        "mms_id": "998574693506421",
+        "network_number": [
+            "(NjP)857469-princetondb",
+            "(OCoLC)ocm05933538",
+            "857469",
+            "(CStRLIN)NJPG94-S192",
+            "(OCoLC)818817037",
+            "(OCoLC)516785848",
+            "(OCoLC)53849218",
+            "(OCoLC)12333704",
+            "(OCoLC)3638006",
+            "(OCoLC)ocn818817037",
+            "(OCoLC)ocn516785848",
+            "(OCoLC)ocm53849218",
+            "(OCoLC)ocm12333704",
+            "(OCoLC)ocm03638006"
+        ],
+        "place_of_publication": "Cambridge, Mass. :",
+        "publisher_const": "M King",
+        "title": "Science."
+    },
+    "holding_data": {
+        "accession_number": "",
+        "call_number": "8001.846",
+        "call_number_type": {
+            "desc": "Other scheme",
+            "value": "8"
+        },
+        "copy_id": "1",
+        "holding_id": "22153448500006421",
+        "in_temp_location": false,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/998574693506421/holdings/22153448500006421",
+        "temp_call_number": "",
+        "temp_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "temp_library": {
+            "desc": null,
+            "value": null
+        },
+        "temp_location": {
+            "desc": null,
+            "value": null
+        },
+        "temp_policy": {
+            "desc": null,
+            "value": ""
+        }
+    },
+    "item_data": {
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "arrival_date": "2002-06-11Z",
+        "awaiting_reshelving": false,
+        "barcode": "32101044947941",
+        "base_status": {
+            "desc": "Item in place",
+            "value": "1"
+        },
+        "chronology_i": "1941",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "creation_date": "2020-12-02Z",
+        "description": "v. 93 1941",
+        "edition": null,
+        "enumeration_a": "v. 93",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "fulfillment_note": "",
+        "imprint": null,
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "inventory_number": "",
+        "inventory_price": "",
+        "is_magnetic": false,
+        "language": null,
+        "library": {
+            "desc": "ReCAP",
+            "value": "recap"
+        },
+        "location": {
+            "desc": "rcppn RECAP Lewis Library",
+            "value": "pn"
+        },
+        "modification_date": "2020-12-02Z",
+        "pages": "",
+        "physical_condition": {
+            "desc": null,
+            "value": null
+        },
+        "physical_material_type": {
+            "desc": "Issue",
+            "value": "ISSUE"
+        },
+        "pid": "23153444680006421",
+        "pieces": "1",
+        "po_line": "17437-princetondb",
+        "policy": {
+            "desc": "Closed",
+            "value": "Closed"
+        },
+        "process_type": {
+            "desc": null,
+            "value": ""
+        },
+        "provenance": {
+            "desc": null,
+            "value": ""
+        },
+        "public_note": "",
+        "receiving_operator": "import",
+        "requested": false,
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "storage_location_id": "",
+        "year_of_issue": ""
+    },
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/998574693506421/holdings/22153448500006421/items/23153444680006421"
+}

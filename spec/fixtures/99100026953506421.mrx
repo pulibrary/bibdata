@@ -1,0 +1,258 @@
+<record>
+  <leader>02083cam a2200505Ii 4500</leader>
+  <controlfield tag="005">20201008103001.0</controlfield>
+  <controlfield tag="008">161107r20161890ja      r     001 0 jpn d</controlfield>
+  <controlfield tag="001">99100026953506421</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1000527899</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1000527899</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">10002695</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)1000527899</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1000527899</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)10002695-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">PUL</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">PUL</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">a-ja---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">BQ8712.9.J3</subfield>
+    <subfield code="b">Z35 2016</subfield>
+  </datafield>
+  <datafield tag="049" ind1=" " ind2=" ">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Zasshi "Kokkyō" to Kyūshū shinshū /</subfield>
+    <subfield code="c">Nakanishi Naoki hen, kaidai.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="1" ind2=" ">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Kokkyō</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">Tōkyō :</subfield>
+    <subfield code="b">Fuji Shuppan,</subfield>
+    <subfield code="c">2016.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">3 volumes ;</subfield>
+    <subfield code="c">27 cm +</subfield>
+    <subfield code="e">1 supplement</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Reprint of Kokkyō, Dai-2 Kokkyō, Kyūshū Bukkyōgun,with Kaidai, sōmokuji, sakuin.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Shin (Sect)</subfield>
+    <subfield code="z">Japan</subfield>
+    <subfield code="z">Kyūshū Region</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="x">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Kyūshū Region (Japan)</subfield>
+    <subfield code="x">Religion</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026139</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Facsimiles.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026099</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Nakanishi, Naoki,</subfield>
+    <subfield code="d">1961-</subfield>
+    <subfield code="e">editor.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2001027050</subfield>
+  </datafield>
+  <datafield tag="730" ind1="0" ind2="2">
+    <subfield code="6">880-05</subfield>
+    <subfield code="a">Kokkyō</subfield>
+  </datafield>
+  <datafield tag="730" ind1="0" ind2="2">
+    <subfield code="6">880-06</subfield>
+    <subfield code="a">Dai-2 Kokkyō</subfield>
+  </datafield>
+  <datafield tag="730" ind1="0" ind2="2">
+    <subfield code="6">880-07</subfield>
+    <subfield code="a">Kyūshū Bukkyōgun</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="0">
+    <subfield code="6">245-01</subfield>
+    <subfield code="a">雑誌「国教」と九州真宗 /</subfield>
+    <subfield code="c">中西直樹編・解題.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">246-02</subfield>
+    <subfield code="a">国教</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="1">
+    <subfield code="6">264-03</subfield>
+    <subfield code="a">東京 :</subfield>
+    <subfield code="b">不二出版,</subfield>
+    <subfield code="c">2016.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+    <subfield code="6">500-00</subfield>
+    <subfield code="a">Reprint periodicals of 国教, 第二国教,九州仏教軍,with 解題、総目次、索引.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+    <subfield code="6">700-04</subfield>
+    <subfield code="a">中西直樹,</subfield>
+    <subfield code="d">1961-</subfield>
+    <subfield code="e">editor.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="2">
+    <subfield code="6">730-05</subfield>
+    <subfield code="a">国教</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="2">
+    <subfield code="6">730-06</subfield>
+    <subfield code="a">第二国教</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2="2">
+    <subfield code="6">730-07</subfield>
+    <subfield code="a">九州仏教軍</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="3">Table of contents</subfield>
+    <subfield code="u">http://arks.princeton.edu/ark:/88435/d504rp938</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+    <subfield code="a">tm</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">t</subfield>
+    <subfield code="e">20161108</subfield>
+  </datafield>
+  <datafield tag="994" ind1=" " ind2=" ">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">PUL</subfield>
+  </datafield>
+  <datafield tag="999" ind1=" " ind2=" ">
+    <subfield code="a">10002695</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="a">csw</subfield>
+    <subfield code="s">sm</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">3</subfield>
+    <subfield code="e">20170814</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="b">2020-12-02 20:08:56 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2020-12-08 09:37:05 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2020-12-08 09:36:59 US/Eastern</subfield>
+    <subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53342356450006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53342356450006421</subfield>
+    <subfield code="w">2020-12-08 14:36:59</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="q">1823334-princetondb</subfield>
+    <subfield code="1">52342356460006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99100026953506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53342356450006421</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">recap</subfield>
+    <subfield code="c">pa</subfield>
+    <subfield code="h">BQ8712.9.J3</subfield>
+    <subfield code="i">Z35 2016</subfield>
+    <subfield code="8">22251011560006421</subfield>
+  </datafield>
+  <datafield tag="866" ind1=" " ind2="0">
+    <subfield code="a">Vol. 1- v. 3, Suppl.</subfield>
+    <subfield code="8">22251011560006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2020-12-03 01:08:56</subfield>
+    <subfield code="8">22251011560006421</subfield>
+    <subfield code="b">ReCAP</subfield>
+    <subfield code="c">rcppa: RECAP</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22251011560006421</subfield>
+    <subfield code="a">23251011540006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol.2</subfield>
+    <subfield code="d">2020-12-03 01:08:56</subfield>
+    <subfield code="p">32101095319420</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22251011560006421</subfield>
+    <subfield code="a">23251011520006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">Suppl.</subfield>
+    <subfield code="d">2020-12-03 01:08:56</subfield>
+    <subfield code="p">32101095319362</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22251011560006421</subfield>
+    <subfield code="a">23251011530006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol.3</subfield>
+    <subfield code="d">2020-12-03 01:08:56</subfield>
+    <subfield code="p">32101095319354</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22251011560006421</subfield>
+    <subfield code="a">23251011550006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="3">vol.1</subfield>
+    <subfield code="d">2020-12-03 01:08:56</subfield>
+    <subfield code="p">32101095319875</subfield>
+    <subfield code="t">0</subfield>
+  </datafield>
+</record>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01334cam a2200361 a 4500</leader>
+    <controlfield tag="005">20200824142410.0</controlfield>
+    <controlfield tag="008">991123s1999    bl       b    000 0 por  </controlfield>
+    <controlfield tag="001">9929574203506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   00288090</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">8586469173</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/8586469173</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)43769421</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/43769421</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)DCLC00288090-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)CTYAFMS6309-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CtY)notisFMS6309</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">CPJ9813TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">2957420</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)2957420-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">DLC</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">lcode</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">s-bl---</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">HD1333.B6</subfield>
+      <subfield code="b">S84 1999</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="0">
+      <subfield code="a">333.7/1811</subfield>
+      <subfield code="2">21</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Stédile, João Pedro.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n92033542</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Brava gente :</subfield>
+      <subfield code="b">a trajetória do MST e a luta pela terra no Brasil /</subfield>
+      <subfield code="c">João Pedro Stedile, Bernardo Mançano Fernandes.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="a">Trajetória do MST e a luta pela terra no Brasil</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">1a. ed.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">São Paulo, SP, Brasil :</subfield>
+      <subfield code="b">Editora Fundação Perseu Abramo,</subfield>
+      <subfield code="c">1999.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">166, [1] p. ;</subfield>
+      <subfield code="c">23 cm.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (p. [165]-[167]).</subfield>
+    </datafield>
+    <datafield tag="610" ind1="2" ind2="0">
+      <subfield code="a">Movimento dos Trabalhadores Rurais sem Terra (Brazil)</subfield>
+      <subfield code="x">History.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Land reform</subfield>
+      <subfield code="z">Brazil</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Fernandes, Bernardo Mançano.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n95920560</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">2957420</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">dws</subfield>
+      <subfield code="b">l</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20030318</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 09:24:18 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">HD1333.B6</subfield>
+      <subfield code="i">S84 1999</subfield>
+      <subfield code="8">22107520220006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 14:24:18</subfield>
+      <subfield code="8">22107520220006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22107520220006421</subfield>
+      <subfield code="a">23107520210006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2020-12-02 14:24:18</subfield>
+      <subfield code="p">32101082696012</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+  <record>
+    <leader>01087cam a2200337 a 4500</leader>
+    <controlfield tag="005">20200824142410.0</controlfield>
+    <controlfield tag="008">000121s1999    bl       b    000 0 por d</controlfield>
+    <controlfield tag="001">9929574213506421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">8526804707</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/8526804707</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)43826321</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/43826321</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CU)GLAD51074437</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)CUBGGLAD51074437-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)MNUGASQ9791-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(MNU)notisASQ9791</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(MnU)notisASQ9791</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">CPJ9814TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">2957421</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)2957421-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">CU</subfield>
+      <subfield code="c">CU</subfield>
+      <subfield code="d">CStRLIN</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">s-bl---</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Ricci, Rudá.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/nr93007867</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Terra de ninguém :</subfield>
+      <subfield code="b">representaç~ao sindical rural no Brasil /</subfield>
+      <subfield code="c">Rudá Ricci.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Campinas, SP, Brasil :</subfield>
+      <subfield code="b">Editora da Unicamp,</subfield>
+      <subfield code="c">1999.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">229 p. ;</subfield>
+      <subfield code="c">21 cm.</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Coleç~ao Teses</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (p. 215-225).</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Agricultural laborers</subfield>
+      <subfield code="x">Labor unions</subfield>
+      <subfield code="z">Brazil.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Sociology, Rural</subfield>
+      <subfield code="z">Brazil.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Teses (Editora da UNICAMP)</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="s">9115</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">2957421</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">ss</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20030728</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 09:24:25 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">HD6614.A29</subfield>
+      <subfield code="i">R53 1999</subfield>
+      <subfield code="8">22107564040006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 14:24:25</subfield>
+      <subfield code="8">22107564040006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22107564040006421</subfield>
+      <subfield code="a">23107564030006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2020-12-02 14:24:25</subfield>
+      <subfield code="p">32101074808344</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+  <record>
+    <leader>00967cam a2200301 a 4500</leader>
+    <controlfield tag="005">20200824142411.0</controlfield>
+    <controlfield tag="008">990920s1999    enk      b    001 0 eng c</controlfield>
+    <controlfield tag="001">9929574233506421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1853835390 (paperback)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1853835390</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1853835382 (hardback)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1853835382</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)ILCGHZ4068695-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(ICU)hz4068695</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">CPJ9816TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">2957423</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)2957423-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">NhCcYBP</subfield>
+      <subfield code="c">NhCcYBP</subfield>
+      <subfield code="d">CStRLIN</subfield>
+      <subfield code="d">NjP</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-uk---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">JN900</subfield>
+      <subfield code="b">.R53 1999</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">320.9</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Richer futures :</subfield>
+      <subfield code="b">fashioning a new politics /</subfield>
+      <subfield code="c">edited by Ken Worpole.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">London :</subfield>
+      <subfield code="b">Earthscan,</subfield>
+      <subfield code="c">1999.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">xiv, 194 p. ;</subfield>
+      <subfield code="c">23 cm.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Political participation</subfield>
+      <subfield code="z">Great Britain.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008109625</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Worpole, Ken.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n83149102</subfield>
+    </datafield>
+    <datafield tag="948" ind1=" " ind2=" ">
+      <subfield code="a">RK</subfield>
+    </datafield>
+    <datafield tag="911" ind1=" " ind2=" ">
+      <subfield code="a">20000407</subfield>
+    </datafield>
+    <datafield tag="912" ind1=" " ind2=" ">
+      <subfield code="a">20000414060904.0</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 09:24:20 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">JN900</subfield>
+      <subfield code="i">.R53 1999</subfield>
+      <subfield code="8">22107530680006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 14:24:20</subfield>
+      <subfield code="8">22107530680006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22107530680006421</subfield>
+      <subfield code="a">23107530670006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2020-12-02 14:24:20</subfield>
+      <subfield code="p">32101082772045</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>

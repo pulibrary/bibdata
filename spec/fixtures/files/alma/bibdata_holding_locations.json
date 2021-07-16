@@ -1,0 +1,41 @@
+[
+    {
+    "label": "African American Studies Reading Room (AAS). B-7-B",
+    "code": "aas",
+    "aeon_location": false,
+    "recap_electronic_delivery_location": false,
+    "open": true,
+    "requestable": true,
+    "always_requestable": false,
+    "circulates": false,
+    "url": "https://bibdata.princeton.edu/locations/holding_locations/aas.json",
+    "library": {
+    "label": "Firestone Library",
+    "code": "firestone",
+    "order": 1
+    },
+    "holding_library": null,
+    "hours_location": {
+    "label": "Firestone Library - Building and Circulation/Reserves Hours",
+    "code": "firestone"
+    }
+    },
+    {
+    "label": "",
+    "code": "anxa",
+    "aeon_location": false,
+    "recap_electronic_delivery_location": false,
+    "open": false,
+    "requestable": true,
+    "always_requestable": false,
+    "circulates": true,
+    "url": "https://bibdata.princeton.edu/locations/holding_locations/anxa.json",
+    "library": {
+    "label": "Forrestal Annex",
+    "code": "annexa",
+    "order": 3
+    },
+    "holding_library": null,
+    "hours_location": null
+    }
+]

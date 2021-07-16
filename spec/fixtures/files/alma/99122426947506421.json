@@ -1,0 +1,44 @@
+{
+  "bib": [
+    {
+      "mms_id": "99122426947506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": "993840000000008583",
+        "type": "CZ"
+      },
+      "title": "Nature",
+      "author": null,
+      "issn": null,
+      "isbn": "2-8124-8960-X",
+      "network_number": [
+        "(CKB)3840000000008583",
+        "(EXLCZ)993840000000008583"
+      ],
+      "publisher_const": "Classiques Garnier",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99122426947506421/holdings"
+      },
+      "created_by": "SFX",
+      "created_date": "2016-01-23Z",
+      "last_modified_by": "SFX",
+      "last_modified_date": "2017-09-18Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "BIBS",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "SFX",
+      "originating_system_id": "993840000000008583",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>00286cam-a2200121z--4500</leader><controlfield tag=\"001\">99122426947506421</controlfield><controlfield tag=\"005\">20170919002741.0</controlfield><controlfield tag=\"008\">160905uuuuuuuuuuuuuu-|-o----u|----|fre-d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">2-8124-8960-X</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(CKB)3840000000008583</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(EXLCZ)993840000000008583</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Nature</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"b\">Classiques Garnier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"906\"><subfield code=\"a\">BOOK</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVE\"><subfield code=\"8\">53469873890006421</subfield><subfield code=\"c\">61428534880006421</subfield><subfield code=\"e\">Available</subfield><subfield code=\"m\">Grand Corpus des littératures française et francophone, du Moyen Âge au 20e siècle</subfield><subfield code=\"t\">Classiques Garnier Numerique</subfield><subfield code=\"u\">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=99122426947506421</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVE\"><subfield code=\"8\">53469873880006421</subfield><subfield code=\"c\">61428535940006421</subfield><subfield code=\"e\">Available</subfield><subfield code=\"m\">Corpus de la première littérature francophone de l'Océan Indien</subfield><subfield code=\"t\">Classiques Garnier Numérique</subfield><subfield code=\"u\">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=99122426947506421</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 0,
+        "link": null
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}

@@ -1,0 +1,30 @@
+{
+    "location": [
+      {
+        "code": "pb",
+        "name": "rcppb: Firestone Remote Storage (ReCAP)",
+        "external_name": "Remote Storage: Supervised use in Firestone A-16-H-3",
+        "type": {
+        "value": "REMOTE",
+        "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Closed",
+        "desc": "Closed"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pb"
+        }
+    ],
+    "total_record_count": 1
+  }

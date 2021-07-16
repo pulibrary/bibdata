@@ -1,0 +1,45 @@
+{
+  "bib": [
+    {
+      "mms_id": "9919392043506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "Prilozi za istraživanje hrvatske filozofske baštine.",
+      "author": "Sveučilište u Zagrebu. Institut za filozofiju.",
+      "issn": null,
+      "isbn": null,
+      "network_number": [
+        "(NjP)1939204-princetondb",
+        "1939204",
+        "(OCoLC)ocm04077615"
+      ],
+      "place_of_publication": "Zagreb",
+      "date_of_publication": "1975-",
+      "publisher_const": "Institut za filozofiju Sveučilišta u Zagrebu",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2020-12-02Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "BIBS",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "1939204-princetondb",
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>00926cas a2200301   4500</leader>\n    <controlfield tag=\"001\">9919392043506421</controlfield>\n    <controlfield tag=\"005\">20200805131344.0</controlfield>\n    <controlfield tag=\"008\">780724u1975uuuuyu fx     f   0   b0scr d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"010\">\n      <subfield code=\"a\">   79646345 //r91 </subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"012\">\n      <subfield code=\"a\">4</subfield>\n      <subfield code=\"c\">y</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocm04077615</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"9\">CGZ5595TS</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">1939204</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)1939204-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">UIU</subfield>\n      <subfield code=\"c\">UIU</subfield>\n      <subfield code=\"d\">DLC</subfield>\n      <subfield code=\"d\">PUL</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"042\">\n      <subfield code=\"a\">lc</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"043\">\n      <subfield code=\"a\">e-yu--</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"050\">\n      <subfield code=\"a\">B4842</subfield>\n      <subfield code=\"b\">.P74</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"092\">\n      <subfield code=\"a\">199.4394</subfield>\n      <subfield code=\"b\">P934</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Prilozi za istraživanje hrvatske filozofske baštine.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">Zagreb</subfield>\n      <subfield code=\"b\">[Institut za filozofiju Sveučilišta u Zagrebu]</subfield>\n      <subfield code=\"c\">1975-</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">v.</subfield>\n      <subfield code=\"c\">23 cm.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"310\">\n      <subfield code=\"a\">Semiannual</subfield>\n    </datafield>\n    <datafield ind1=\"0\" ind2=\" \" tag=\"362\">\n      <subfield code=\"a\">g. 1-</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"546\">\n      <subfield code=\"a\">Summaries in English or German.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Philosophy, Croatian</subfield>\n      <subfield code=\"x\">Periodicals.</subfield>\n    </datafield>\n    <datafield ind1=\"2\" ind2=\" \" tag=\"710\">\n      <subfield code=\"a\">Sveučilište u Zagrebu.</subfield>\n      <subfield code=\"b\">Institut za filozofiju.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/no91017742</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"945\">\n      <subfield code=\"a\">F</subfield>\n      <subfield code=\"b\">1</subfield>\n      <subfield code=\"c\">B6</subfield>\n      <subfield code=\"d\">.xP7</subfield>\n      <subfield code=\"e\">g.1-g.4, broj 7/8</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"911\">\n      <subfield code=\"a\">19981027</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9919392043506421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">online</subfield><subfield code=\"c\">ETAS Non Circ ReCAP</subfield><subfield code=\"d\">B6 .xP7</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">3</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">etasrcp</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Electronic Access</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 0,
+        "link": null
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}

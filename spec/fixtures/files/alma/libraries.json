@@ -1,0 +1,202 @@
+{
+    "library": [
+        {
+            "code": "arch",
+            "id": "124284330006421",
+            "name": "Architecture Library",
+            "path": "01PRI.01PRI_INST.arch",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Architecture Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch"
+        },
+        {
+            "code": "annex",
+            "id": "124289270006421",
+            "name": "Forrestal Annex",
+            "path": "01PRI.01PRI_INST.annex",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Annex Stacks"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex"
+        },
+        {
+            "code": "online",
+            "id": "124286990006421",
+            "name": "Electronic Access",
+            "path": "01PRI.01PRI_INST.online",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "elf1",
+            "desc": "elf1 Internet Resources"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online"
+        },
+        {
+            "code": "recap",
+            "id": "124287370006421",
+            "name": "ReCAP",
+            "path": "01PRI.01PRI_INST.recap",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "pa",
+            "desc": "rcppa: RECAP"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap"
+        },
+        {
+            "code": "firestone",
+            "id": "124288510006421",
+            "name": "Firestone Library",
+            "path": "01PRI.01PRI_INST.firestone",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Firestone Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone"
+        },
+        {
+            "code": "eastasian",
+            "id": "124287750006421",
+            "name": "East Asian Library",
+            "path": "01PRI.01PRI_INST.eastasian",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "cjk",
+            "desc": "cjk: East Asian Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian"
+        },
+        {
+            "code": "engineer",
+            "id": "124285850006421",
+            "name": "Engineering Library",
+            "path": "01PRI.01PRI_INST.engineer",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Engineering"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/engineer"
+        },
+        {
+            "code": "lewis",
+            "id": "124288130006421",
+            "name": "Lewis Library",
+            "path": "01PRI.01PRI_INST.lewis",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "Stacks: Lewis Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis"
+        },
+        {
+            "code": "marquand",
+            "id": "124285470006421",
+            "name": "Marquand Library",
+            "path": "01PRI.01PRI_INST.marquand",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Marquand Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand"
+        },
+        {
+            "code": "mendel",
+            "id": "124283570006421",
+            "name": "Mendel Music Library",
+            "path": "01PRI.01PRI_INST.mendel",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "stacks",
+            "desc": "stacks: Mendel Music Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mendel"
+        },
+        {
+            "code": "rare",
+            "id": "124288890006421",
+            "name": "Special Collections",
+            "path": "01PRI.01PRI_INST.rare",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "ex",
+            "desc": "ex: Rare Books"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare"
+        }
+    ]
+}

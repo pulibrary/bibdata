@@ -1,0 +1,130 @@
+{
+    "location": [
+      {
+        "code": "cat",
+        "name": "Lewis Cataloging",
+        "external_name": "Lewis Cataloging",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/cat"
+      },
+      {
+        "code": "circ",
+        "name": "Lewis Circ",
+        "external_name": "Lewis Circ",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/circ"
+      },
+      {
+        "code": "ref",
+        "name": "Lewis Reference",
+        "external_name": "Lewis Library (SCI): Reference (Fine Hall Wing)",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/ref"
+      },
+      {
+        "code": "ltop",
+        "name": "ltop: Lewis Laptop",
+        "external_name": "Lewis Library: Computer Media",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Media",
+          "desc": "Media"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/ltop"
+      },
+      {
+        "code": "pn",
+        "name": "rcppn: Lewis Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Lewis Library Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/pn"
+      }
+    ],
+    "total_record_count": 5
+  }

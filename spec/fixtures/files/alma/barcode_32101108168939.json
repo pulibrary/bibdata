@@ -1,0 +1,127 @@
+{
+    "bib_data": {
+        "author": "Pressfield, Steven,",
+        "complete_edition": "First edition.",
+        "date_of_publication": "[2020]",
+        "isbn": "1324002891",
+        "issn": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99223010406421",
+        "mms_id": "99223010406421",
+        "network_number": [
+            "11711076",
+            "(OCoLC)on1084333011",
+            "(OCoLC)1084333011"
+        ],
+        "place_of_publication": "New York :",
+        "publisher_const": "WW Norton & Company Inc",
+        "title": "36 righteous men : a novel /"
+    },
+    "holding_data": {
+        "accession_number": "",
+        "call_number": "PS3566.R3944 A614 2020",
+        "call_number_type": {
+            "desc": "Library of Congress classification",
+            "value": "0"
+        },
+        "copy_id": "",
+        "holding_id": "2281872070006421",
+        "in_temp_location": false,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99223010406421/holdings/2281872070006421",
+        "temp_call_number": "",
+        "temp_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "temp_library": {
+            "desc": null,
+            "value": null
+        },
+        "temp_location": {
+            "desc": null,
+            "value": null
+        },
+        "temp_policy": {
+            "desc": null,
+            "value": ""
+        }
+    },
+    "item_data": {
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "awaiting_reshelving": false,
+        "barcode": "32101108168939",
+        "base_status": {
+            "desc": "Item in place",
+            "value": "1"
+        },
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "creation_date": "2020-06-01Z",
+        "description": "",
+        "edition": null,
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "fulfillment_note": "",
+        "imprint": null,
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "inventory_number": "",
+        "inventory_price": "",
+        "language": null,
+        "library": {
+            "desc": "Main Library",
+            "value": "MAIN"
+        },
+        "location": {
+            "desc": "New Books Display",
+            "value": "new"
+        },
+        "modification_date": "2020-06-01Z",
+        "pages": "",
+        "physical_condition": {
+            "desc": null,
+            "value": null
+        },
+        "physical_material_type": {
+            "desc": "Book",
+            "value": "BOOK"
+        },
+        "pid": "2381872030006421",
+        "pieces": "",
+        "po_line": "",
+        "policy": {
+            "desc": "Academic Year Loan",
+            "value": "AcademicYearLoan"
+        },
+        "process_type": {
+            "desc": null,
+            "value": ""
+        },
+        "provenance": {
+            "desc": null,
+            "value": ""
+        },
+        "public_note": "",
+        "receiving_operator": "",
+        "requested": false,
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "storage_location_id": "",
+        "year_of_issue": ""
+    },
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99223010406421/holdings/2281872070006421/items/2381872030006421"
+}

@@ -1,6 +1,12 @@
+---
 default: &default
   adapter: postgresql
   encoding: unicode
+  host: <%= ENV["lando_marc_liberation_database_conn_host"] || ENV["BIBDATA_DB_HOST"] || "localhost" %>
+  port: <%= ENV["lando_marc_liberation_database_conn_port"] || 5432 %>
+  username: <%= ENV["lando_marc_liberation_database_creds_user"] || ENV["BIBDATA_DB_USERNAME"] %>
+  password: <%= ENV["lando_marc_liberation_database_creds_password"] || ENV["BIBDATA_DB_PASSWORD"] %>
+  database: <%= ENV['BIBDATA_DB'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS", 5) %>
   timeout: 5000
 
@@ -16,8 +22,8 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['BIBDATA_DB'] %>
   pool: 20
-  username: <%= ENV['BIBDATA_DB_USERNAME'] %>
-  password: <%= ENV['BIBDATA_DB_PASSWORD'] %>
-  host: <%= ENV['BIBDATA_DB_HOST'] %>
+
+staging:
+  <<: *default
+  pool: 20

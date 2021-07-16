@@ -6,11 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-Lint/AmbiguousOperator:
-  Exclude:
-    - 'app/models/dump.rb'
-
 # Offense count: 6
 Lint/AmbiguousRegexpLiteral:
   Exclude:
@@ -24,13 +19,7 @@ Lint/AssignmentInCondition:
     - 'app/services/language_service.rb'
     - 'bin/spring'
     - 'lib/tasks/orangeindex.rake'
-    - 'marc_to_solr/lib/index_functions.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-Lint/DeprecatedClassMethods:
-  Exclude:
-    - 'spec/models/dump_file_spec.rb'
+    - 'app/services/index_functions.rb'
 
 # Offense count: 1
 Lint/EnsureReturn:
@@ -65,7 +54,6 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
     - 'spec/controllers/availability_controller_spec.rb'
-    - 'app/models/concerns/scsb_partner_updates.rb'
 
 Lint/Void:
   Exclude:
@@ -80,7 +68,8 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 533
   Exclude:
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
 
 # Offense count: 3
 # Configuration parameters: CountBlocks.
@@ -95,6 +84,8 @@ Metrics/ParameterLists:
 # Configuration parameters: CountComments.
 Metrics/ClassLength:
   Max: 242
+  Exclude:
+    - 'app/adapters/alma_adapter/alma_item.rb'
 
 # Offense count: 22
 Metrics/CyclomaticComplexity:
@@ -117,7 +108,6 @@ Metrics/PerceivedComplexity:
 
 Naming/AccessorMethodName:
   Exclude:
-    - 'app/models/concerns/scsb_partner_updates.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'app/models/hathi/compact_full.rb'
 
@@ -141,9 +131,9 @@ Naming/VariableNumber:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/princeton_marc.rb'
     - 'marc_to_solr/lib/traject_config.rb'
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
     - 'spec/requests/bib_gets_spec.rb'
 
 # Offense count: 3
@@ -169,15 +159,14 @@ Performance/StringReplacement:
 RSpec/AnyInstance:
   Exclude:
     - 'spec/controllers/availability_controller_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 4
 RSpec/DescribeClass:
   Exclude:
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/format_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/format_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: CustomIncludeMethods.
@@ -197,7 +186,6 @@ RSpec/ExampleLength:
     - 'spec/requests/bib_gets_spec.rb'
     - 'spec/requests/course_reserves_spec.rb'
     - 'spec/services/electronic_locations_factory_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 3
 # Configuration parameters: EnforcedStyle.
@@ -211,9 +199,9 @@ RSpec/HookArgument:
 # Configuration parameters: AssignmentOnly.
 RSpec/InstanceVariable:
   Exclude:
-    - 'marc_to_solr/spec/lib/config_spec.rb'
-    - 'marc_to_solr/spec/lib/geo_spec.rb'
-    - 'marc_to_solr/spec/lib/princeton_marc_spec.rb'
+    - 'spec/marc_to_solr/lib/config_spec.rb'
+    - 'spec/marc_to_solr/lib/geo_spec.rb'
+    - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
 
 # Offense count: 7
 RSpec/LeadingSubject:
@@ -243,7 +231,6 @@ RSpec/NotToNot:
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/controllers/patron_controller_spec.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: EnforcedStyle.
@@ -252,7 +239,6 @@ Rails/Date:
   Exclude:
     - 'lib/tasks/orangeindex.rake'
     - 'app/models/concerns/scsb_partner_updates.rb'
-    - 'spec/models/concerns/scsb_partner_updates_spec.rb'
 
 # Offense count: 3
 Rails/FilePath:

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>00378dac  2200121 u 4500</leader>
+        <controlfield tag="001">99122238836006421</controlfield>
+        <controlfield tag="005">20201029191500.0</controlfield>
+        <controlfield tag="008">170709s        xx            000 0 mul |</controlfield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(EXLCZ)998145929400041</subfield>
+        </datafield>
+        <datafield tag="245" ind1="0" ind2="0">
+            <subfield code="a">Daily Mail Historical Archive</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">Collection</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">Selective package</subfield>
+        </datafield>
+        <datafield tag="520" ind1="2" ind2=" ">
+            <subfield code="a">For more information:http://infotrac.galegroup.com/itweb/(Location ID)?db=DMHA</subfield>
+        </datafield>
+        <datafield tag="904" ind1="0" ind2="0">
+            <subfield code="a">(CKB)613800000000000406</subfield>
+        </datafield>
+    </record>
+</collection>

@@ -13,7 +13,7 @@ module FormattingConcern
         end
         writer.close()
       end
-      VoyagerHelpers::Liberator.valid_xml(xml_str)
+      valid_xml(xml_str)
     elsif records.kind_of? String
       # example response from /almaws/v1/bibs/{mms_id}/holdings
       valid_xml(records)

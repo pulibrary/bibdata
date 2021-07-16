@@ -1,0 +1,130 @@
+{
+    "bib_data": {
+        "author": "Bataille, Georges.",
+        "complete_edition": "",
+        "date_of_publication": "[2012].",
+        "isbn": "2851948504",
+        "issn": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9972625743506421",
+        "mms_id": "9972625743506421",
+        "network_number": [
+            "(NjP)7262574-princetondb",
+            "7262574",
+            "(OCoLC)ocn818134486",
+            "(OCoLC)818134486"
+        ],
+        "place_of_publication": "[Saint-Cle\u0301ment de Rivie\u0300re] :",
+        "publisher_const": "Fata Morgana",
+        "title": "La scissiparite\u0301 /"
+    },
+    "holding_data": {
+        "accession_number": "",
+        "call_number": "PQ2603.A695 S35 2012",
+        "call_number_type": {
+            "desc": "Library of Congress classification",
+            "value": "0"
+        },
+        "copy_id": "1",
+        "holding_id": "2240957220006421",
+        "in_temp_location": false,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9972625743506421/holdings/2240957220006421",
+        "temp_call_number": "",
+        "temp_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "temp_library": {
+            "desc": null,
+            "value": null
+        },
+        "temp_location": {
+            "desc": null,
+            "value": null
+        },
+        "temp_policy": {
+            "desc": null,
+            "value": ""
+        }
+    },
+    "item_data": {
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+            "desc": null,
+            "value": ""
+        },
+        "arrival_date": "2013-03-01Z",
+        "awaiting_reshelving": false,
+        "barcode": "32101069559514",
+        "base_status": {
+            "desc": "Item in place",
+            "value": "1"
+        },
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "creation_date": "2020-12-02Z",
+        "description": "",
+        "edition": null,
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "fulfillment_note": "",
+        "imprint": null,
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "inventory_number": "",
+        "inventory_price": "",
+        "is_magnetic": false,
+        "language": null,
+        "library": {
+            "desc": "ReCAP",
+            "value": "recap"
+        },
+        "location": {
+            "desc": "rcppa RECAP",
+            "value": "pa"
+        },
+        "modification_date": "2020-12-02Z",
+        "pages": "",
+        "physical_condition": {
+            "desc": null,
+            "value": null
+        },
+        "physical_material_type": {
+            "desc": "Book",
+            "value": "BOOK"
+        },
+        "pid": "2340957190006421",
+        "pieces": "1",
+        "po_line": "",
+        "policy": {
+            "desc": "Gen",
+            "value": "Gen"
+        },
+        "process_type": {
+            "desc": null,
+            "value": ""
+        },
+        "provenance": {
+            "desc": null,
+            "value": ""
+        },
+        "public_note": "",
+        "receiving_operator": "import",
+        "requested": false,
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "storage_location_id": "",
+        "year_of_issue": ""
+    },
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9972625743506421/holdings/2240957220006421/items/2340957190006421"
+}
