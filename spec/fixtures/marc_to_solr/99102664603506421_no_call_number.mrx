@@ -1,5 +1,4 @@
 <record>
-
     <leader>00750cam a2200169 i 4500</leader>
     <controlfield tag="005">20170619084855.0</controlfield>
     <controlfield tag="008">170619s2017    njua     b    000 0 eng d</controlfield>
@@ -55,7 +54,6 @@
     <datafield tag="852" ind1="0" ind2=" ">
       <subfield code="b">lewis</subfield>
       <subfield code="c">stacks</subfield>
-      <subfield code="h"/>
       <subfield code="8">22100565840006421</subfield>
     </datafield>
     <datafield tag="952" ind1=" " ind2=" ">

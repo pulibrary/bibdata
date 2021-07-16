@@ -26,6 +26,7 @@ describe 'From traject_config.rb' do
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
     @record_call_number_nil = @indexer.map_record(fixture_record('99102664603506421'))
+    @record_no_call_number = @indexer.map_record(fixture_record('99102664603506421_no_call_number'))
     @manuscript_book = @indexer.map_record(fixture_record('9959060243506421'))
     @added_title_246 = @indexer.map_record(fixture_record('9930602883506421'))
     @related_names = @indexer.map_record(fixture_record('9919643053506421'))
@@ -441,6 +442,11 @@ describe 'From traject_config.rb' do
     end
     it "does not include an empty call number field" do
       @holdings = JSON.parse(@record_call_number_nil["holdings_1display"][0])
+      expect(@holdings['22100565840006421']['call_number']).to be nil
+      expect(@holdings['22100565840006421']['call_number_browse']).to be nil
+    end
+    it "can index when there's no 852 call number fields (khij)" do
+      @holdings = JSON.parse(@record_no_call_number["holdings_1display"][0])
       expect(@holdings['22100565840006421']['call_number']).to be nil
       expect(@holdings['22100565840006421']['call_number_browse']).to be nil
     end
