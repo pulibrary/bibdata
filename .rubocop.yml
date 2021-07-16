@@ -64,3 +64,8 @@ Lint/UselessAssignment:
 Metrics/MethodLength:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
+
+Rails/HasAndBelongsToMany:
+  Exclude:
+    - 'app/models/delivery_location.rb'
+    - 'app/models/holding_location.rb'
