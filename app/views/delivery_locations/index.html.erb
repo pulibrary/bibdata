@@ -12,8 +12,6 @@
       <th>Staff only</th>
       <th>Pickup Location</th>
       <th>Digital Location</th>
-      <th colspan="1" class="sorter-false filter-false"></th>
-      <th colspan="1" class="sorter-false filter-false"></th>
     </tr>
   </thead>
 
@@ -29,8 +27,6 @@
         <td><%= delivery_location.staff_only %></td>
         <td><%= delivery_location.pickup_location %></td>
         <td><%= delivery_location.digital_location %></td>
-        <td><%= link_to 'Edit', edit_delivery_location_path(delivery_location) %></td>
-        <td><%= link_to 'Destroy', delivery_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -38,5 +34,4 @@
 
 <br>
 
-<%= link_to 'New Delivery location', new_delivery_location_path %> |
 <%= link_to 'View as JSON', format: :json %>

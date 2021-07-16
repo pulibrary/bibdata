@@ -5,8 +5,6 @@
     <tr>
       <th>Label</th>
       <th>Code</th>
-      <th colspan="1" class="sorter-false filter-false"></th>
-      <th colspan="1" class="sorter-false filter-false"></th>
     </tr>
   </thead>
 
@@ -15,8 +13,6 @@
       <tr>
         <td><%= link_to hours_location.label, hours_location %></td>
         <td><%= hours_location.code %></td>
-        <td><%= link_to 'Edit', edit_hours_location_path(hours_location) %></td>
-        <td><%= link_to 'Destroy', hours_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -24,5 +20,4 @@
 
 <br>
 
-<%= link_to 'New Hours location', new_hours_location_path %> |
 <%= link_to 'View as JSON', format: :json %>
