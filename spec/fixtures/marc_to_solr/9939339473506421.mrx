@@ -1,0 +1,111 @@
+  <record>
+    <leader>01492cam a2200325ua 4500</leader>
+    <controlfield tag="005">20200827125642.0</controlfield>
+    <controlfield tag="008">930511s1983    ch            000 0 chi d</controlfield>
+    <controlfield tag="001">9939339473506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3933947</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)NJPXV3933947-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">3933947</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3933947-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">CLU</subfield>
+      <subfield code="c">CLU</subfield>
+      <subfield code="d">CUY</subfield>
+      <subfield code="d">PUL</subfield>
+      <subfield code="d">NjP-G</subfield>
+    </datafield>
+    <datafield tag="066" ind1=" " ind2=" ">
+      <subfield code="c">$1</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Gu, Ying,</subfield>
+      <subfield code="d">1310-1369.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n88144506</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Cao tang ya ji :</subfield>
+      <subfield code="b">[14 juan] /</subfield>
+      <subfield code="c">(Yuan) Gu Ying bian.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">[Taipei] :</subfield>
+      <subfield code="b">Taiwan shang wu yin shu guan,</subfield>
+      <subfield code="c">[1983]</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">p. 175-480 ;</subfield>
+      <subfield code="c">28 cm.</subfield>
+    </datafield>
+    <datafield tag="440" ind1=" " ind2="0">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Ying yin Wen yuan ge Si ku quan shu ;</subfield>
+      <subfield code="v">di 1369 ce</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Reproduced from the collection in possession of Guo li gu gong bo wu yuan.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Each page represents 2 leaves of the original.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">Series title on cover and spine: Ying yin Wen yuan ge Si ku quan shu. Ji bu 308, Zong ji lei.</subfield>
+    </datafield>
+    <datafield tag="501" ind1=" " ind2=" ">
+      <subfield code="a">With: other 4 titles.</subfield>
+    </datafield>
+    <datafield tag="787" ind1=" " ind2=" ">
+      <subfield code="w">9934788983506421</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="a">NjP</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="i">AC149 .S699 1983 v.1369</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01/$1</subfield>
+      <subfield code="a">顧瑛,</subfield>
+      <subfield code="d">1310-1369.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02/$1</subfield>
+      <subfield code="a">草堂雅集 :</subfield>
+      <subfield code="b">[14卷] /</subfield>
+      <subfield code="c">(元) 顧瑛編.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">260-03/$1</subfield>
+      <subfield code="a">[Taipei] :</subfield>
+      <subfield code="b">臺灣商務印書館,</subfield>
+      <subfield code="c">[1983]</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">440-04/$1</subfield>
+      <subfield code="a">景印文淵閣四庫全書 ;</subfield>
+      <subfield code="v">第1369册</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-05/$1</subfield>
+      <subfield code="a">Reproduced from the collection in possession of 國立故宮博物院.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-06/$1</subfield>
+      <subfield code="a">Series title on cover and spine: 景印文淵閣四庫全書. 集部308, 總集類.</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 17:46:57 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+  </record>

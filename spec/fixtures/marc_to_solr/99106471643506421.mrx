@@ -1,0 +1,182 @@
+<record>
+  <leader>02057ckm a2200469u  4500</leader>
+  <controlfield tag="005">20201012161925.0</controlfield>
+  <controlfield tag="007">kj</controlfield>
+  <controlfield tag="008">170504s1984       nnn             nzxx d</controlfield>
+  <controlfield tag="001">99106471643506421</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(Visuals)46563</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">10647164</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)10647164-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">NjP</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">NjP</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Avery, Eric,</subfield>
+    <subfield code="d">born 1948,</subfield>
+    <subfield code="e">engraver.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">History.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="c">1984.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 item ;</subfield>
+    <subfield code="c">sheet 57 x 78.5 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">still image</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">sheet</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Medium: Linocuts (prints) on chiri handmade paper</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Numbered in pencil, lower left "4/10".</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Item description: Printed by Nobue Urushihara Urvil.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Signed in pencil, lower right: "E Avery".</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Unsigned by Urvil.</subfield>
+  </datafield>
+  <datafield tag="583" ind1="0" ind2=" ">
+    <subfield code="a">Location history: 1st Floor/Graphic Arts/Drawer F-10 // GC024</subfield>
+  </datafield>
+  <datafield tag="583" ind1="0" ind2=" ">
+    <subfield code="a">Housing: Housed in Mylar sleeve.</subfield>
+  </datafield>
+  <datafield tag="583" ind1="0" ind2=" ">
+    <subfield code="a">Name authorization: Avery verified in Smith College Museum of Art website. Not in ULAN.</subfield>
+  </datafield>
+  <datafield tag="583" ind1="0" ind2=" ">
+    <subfield code="a">Purchased 2014 from Eric Avery.</subfield>
+  </datafield>
+  <datafield tag="583" ind1="0" ind2=" ">
+    <subfield code="a">Name authorization: Urvil not verified. Not in ULAN. Not in LC.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Caricature.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh85020311</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85020311</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Political cartoons</subfield>
+    <subfield code="z">United States</subfield>
+    <subfield code="y">20th century.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85104348</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">United States</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78095330</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78095330</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Nicaragua</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n80009698</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n80009698</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Honduras</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79096785</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79096785</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">El Salvador</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79066409</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79066409</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Guatemala</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79054016</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79054016</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Mexico</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n81013960</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n81013960</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Devil</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85037376</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Human skeleton</subfield>
+    <subfield code="v">Caricatures and cartoons.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85062895</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Print</subfield>
+    <subfield code="x">American</subfield>
+    <subfield code="y">20th century</subfield>
+    <subfield code="2">local</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Urvil, Nobue Urushihara,</subfield>
+    <subfield code="e">attributed to,</subfield>
+    <subfield code="e">printmaker.</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2=" ">
+    <subfield code="b">ga</subfield>
+    <subfield code="c">A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A</subfield>
+    <subfield code="h">GA 2015.00160</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="b">2020-12-02 19:37:06 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="8" ind2=" ">
+    <subfield code="b">rare</subfield>
+    <subfield code="c">ga</subfield>
+    <subfield code="h">GA 2015.00160</subfield>
+    <subfield code="k">A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A</subfield>
+    <subfield code="8">22243882020006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2020-12-03 00:37:06</subfield>
+    <subfield code="8">22243882020006421</subfield>
+    <subfield code="b">Special Collections</subfield>
+    <subfield code="c">ga: Graphic Arts Collection</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+</record>
+
