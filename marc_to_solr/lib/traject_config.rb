@@ -319,12 +319,12 @@ to_field 'cataloged_tdt' do |record, accumulator|
   extractor_doc_id = MarcExtractor.cached("001")
   doc_id = extractor_doc_id.extract(record).first
   unless /^SCSB-\d+/.match?(doc_id)
-    cataloged_date = if record['876']
-                       MarcExtractor.cached("876d").extract(record).first
-                     elsif record['951']
-                       MarcExtractor.cached("951w").extract(record).first
+    cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
+                       alma_876(record).map { |f| f['d'] }.sort.first
+                     elsif alma_951(record) && alma_951(record).map { |f| f['w'] }.compact.present?
+                       alma_951(record).map { |f| f['w'] }.compact.sort.first
                      else
-                       MarcExtractor.cached("950b").extract(record).first
+                       alma_950(record)
                      end
     begin
       accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
@@ -1160,7 +1160,7 @@ each_record do |record, context|
   location_codes = []
   MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
-    is_alma = alma_code?(field['8'])
+    is_alma = alma_code_start_22?(field['8'])
     is_scsb = scsb_doc?(record['001'].value)
     field.subfields.each do |s_field|
       # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
@@ -1306,7 +1306,7 @@ end
 # The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |record, accumulator|
   values = []
-  MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
+  alma_852(record).each do |field|
     subfields = call_number_khi(field)
     next unless subfields.present?
     values << [field['k'], field['h'], field['i']].compact.reject(&:empty?)
@@ -1319,7 +1319,7 @@ end
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |record, accumulator|
   values = []
-  MarcExtractor.cached('852hik').collect_matching_lines(record) do |field, _spec, _extractor|
+  alma_852(record).each do |field|
     subfields = call_number_khi(field)
     next unless subfields.present?
     values << [field['h'], field['i'], field['k']].compact.reject(&:empty?)
@@ -1330,9 +1330,10 @@ end
 
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
 # when the location is firestone$stacks.
+# I dont think we ended up using this field
 to_field 'call_number_locator_display' do |record, accumulator|
   values = []
-  MarcExtractor.cached('852hi').collect_matching_lines(record) do |field, _spec, _extractor|
+  alma_852(record).each do |field|
     subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
     values << [field['h'], field['i']].compact.reject(&:empty?)
   end
@@ -1343,15 +1344,19 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
   fields = []
   dates = []
   embargoes = []
+  # dont check for scsb
   MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_951(record)
     fields << field
   end
 
   MarcExtractor.cached('953abc').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_953(record)
     dates << field
   end
 
   MarcExtractor.cached('954ac').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_954(record)
     embargoes << field
   end
 

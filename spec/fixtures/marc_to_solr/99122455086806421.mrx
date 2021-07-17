@@ -1,0 +1,268 @@
+<record>
+  <leader>03117cam a2200565Ii 4500</leader>
+  <controlfield tag="005">20210311145221.0</controlfield>
+  <controlfield tag="008">200421t20212021nyu    e      000 0aeng d</controlfield>
+  <controlfield tag="001">99122455086806421</controlfield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">1196043166</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781542018784</subfield>
+    <subfield code="q">(hardcover)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781542018784</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1542018781</subfield>
+    <subfield code="q">(hardcover)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1542018781</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781542018760</subfield>
+    <subfield code="q">(paperback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781542018760</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1542018765</subfield>
+    <subfield code="q">(paperback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1542018765</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)1151188153</subfield>
+    <subfield code="z">(OCoLC)1196043166</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1151188153</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1196043166</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="n">(MLS)2958287</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1151188153</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1151188153</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">YDX</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">YDX</subfield>
+    <subfield code="d">BDX</subfield>
+    <subfield code="d">PX0</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">CLE</subfield>
+    <subfield code="d">GL4</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">DPL</subfield>
+    <subfield code="d">OCO</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">PN1992.4.G685</subfield>
+    <subfield code="b">A3 2021</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">791.437/092</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Gould, Melissa,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2005015236</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2005015236</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01606685</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Widowish :</subfield>
+    <subfield code="b">a memoir /</subfield>
+    <subfield code="c">Melissa Gould.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">First edition.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">New York, NY :</subfield>
+    <subfield code="b">Little A,</subfield>
+    <subfield code="c">[2021]</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">&#xA9;2021</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">202 pages ;</subfield>
+    <subfield code="c">22 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">"When Melissa Gould's husband, Joel, was unexpectedly hospitalized, she could not imagine how her life was about to change. Overwhelmed with uncertainty as Joel's condition tragically worsened, she offered him the only thing she could: her love and devotion. Her dedication didn't end with his death. Left to resume life without her beloved husband and raise their young daughter on her own, Melissa soon realized that her and Joel's love lived on. Melissa found she didn't fit the typical mold of widowhood or meet the expectations of mourning. She didn't look like a widow or act like a widow, but she felt like one. Melissa was widowish. Melissa's personal journey through grief and beyond includes unlikely inspiration from an evangelical preacher, the calming presence of some Real Housewives, and the unexpected attention of a charming musician. A modern take on loss, Widowish illuminates the twists of fate that break our world, the determination that keeps us moving forward, and the surprises in life we never see coming."--Dust jacket flap.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Gould, Melissa.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2005015236</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2005015236</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01606685</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Gould, Melissa</subfield>
+    <subfield code="x">Marriage.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2005015236</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2005015236</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+    <subfield code="a">Gould, Joel</subfield>
+    <subfield code="x">Death and burial.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="7">
+    <subfield code="a">Gould, Melissa.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01606685</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2005015236</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2005015236</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01606685</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Screenwriters</subfield>
+    <subfield code="z">California</subfield>
+    <subfield code="z">Los Angeles</subfield>
+    <subfield code="v">Biography.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85118942</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Television producers and directors</subfield>
+    <subfield code="z">California</subfield>
+    <subfield code="z">Los Angeles</subfield>
+    <subfield code="v">Biography.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85133601</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Widows</subfield>
+    <subfield code="z">California</subfield>
+    <subfield code="z">Los Angeles</subfield>
+    <subfield code="v">Biography.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85146612</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Mothers</subfield>
+    <subfield code="z">California</subfield>
+    <subfield code="z">Los Angeles</subfield>
+    <subfield code="v">Biography.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85087526</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Marriage.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01010443</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01010443</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Mothers.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01026940</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01026940</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Screenwriters.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01109351</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01109351</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Television producers and directors.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01147019</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01147019</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Widows.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01174951</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01174951</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="7">
+    <subfield code="a">California</subfield>
+    <subfield code="z">Los Angeles.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01204540</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01204540</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Autobiographies.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01919894</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026047</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01919894</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Biographies.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01919896</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026049</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01919896</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Biographies.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026049</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01919896</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Autobiographies.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026047</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01919894</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+    <subfield code="i">24.95</subfield>
+    <subfield code="j">23.20</subfield>
+    <subfield code="n">2958287</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+    <subfield code="b">FY21</subfield>
+    <subfield code="n">2021</subfield>
+    <subfield code="q">32101112775414</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+    <subfield code="h">PN1992.4.G685</subfield>
+    <subfield code="i">A3 2021</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-05-06 14:45:51 US/Eastern</subfield>
+    <subfield code="b">2021-05-06 14:45:53 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">dixn</subfield>
+    <subfield code="h">PN1992.4.G685</subfield>
+    <subfield code="i">A3 2021</subfield>
+    <subfield code="8">22477860740006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="d">2021-05-06 18:46:55</subfield>
+    <subfield code="8">22477860740006421</subfield>
+    <subfield code="a">2021-05-06 18:46:53</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">dixn: Dixon Books</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22477860740006421</subfield>
+    <subfield code="a">23477860730006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="k">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">dixn</subfield>
+    <subfield code="d">2021-05-06 18:46:53</subfield>
+    <subfield code="p">32101112775414</subfield>
+    <subfield code="y">firestone</subfield>
+  </datafield>
+</record>
