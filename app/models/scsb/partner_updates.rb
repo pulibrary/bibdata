@@ -96,7 +96,6 @@ module Scsb
           end
           File.unlink(file)
         end
-        filepaths = []
         xml_files.each do |file|
           filename = File.basename(file)
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
@@ -104,10 +103,9 @@ module Scsb
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(process_record(record)) }
           writer.close
-          filepaths << filepath
           File.unlink(file)
+          attach_dump_file(filepath)
         end
-        filepaths.sort.each { |f| attach_dump_file(f) }
       end
 
       def process_partner_deletes(files:)
