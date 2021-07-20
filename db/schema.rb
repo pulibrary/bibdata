@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_182740) do
+ActiveRecord::Schema.define(version: 2021_07_13_195256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(version: 2021_07_06_182740) do
     t.string "category", default: "full"
     t.string "employee_id"
     t.index ["uid"], name: "index_campus_accesses_on_uid"
+  end
+
+  create_table "delivery_locations", force: :cascade do |t|
+    t.string "label"
+    t.text "address"
+    t.string "phone_number"
+    t.string "contact_email"
+    t.boolean "staff_only", default: false
+    t.string "gfa_pickup"
+    t.boolean "pickup_location", default: false
+    t.boolean "digital_location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "library_id"
+    t.index ["library_id"], name: "index_delivery_locations_on_library_id"
   end
 
   create_table "dump_file_types", id: :serial, force: :cascade do |t|
@@ -107,59 +122,46 @@ ActiveRecord::Schema.define(version: 2021_07_06_182740) do
     t.index ["status"], name: "index_hathi_accesses_on_status"
   end
 
-  create_table "locations_delivery_locations", id: :serial, force: :cascade do |t|
-    t.string "label"
-    t.text "address"
-    t.string "phone_number"
-    t.string "contact_email"
-    t.boolean "staff_only", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "locations_library_id"
-    t.string "gfa_pickup"
-    t.boolean "pickup_location", default: false
-    t.boolean "digital_location"
-    t.index ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id"
-  end
-
-  create_table "locations_holding_locations", id: :serial, force: :cascade do |t|
+  create_table "holding_locations", force: :cascade do |t|
     t.string "label"
     t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "locations_library_id"
+    t.boolean "circulates", default: true
+    t.integer "hours_location"
+    t.string "remote_storage"
     t.boolean "aeon_location", default: false
     t.boolean "recap_electronic_delivery_location", default: false
     t.boolean "open", default: true
     t.boolean "requestable", default: true
     t.boolean "always_requestable", default: false
-    t.integer "locations_hours_location_id"
-    t.boolean "circulates", default: true
     t.integer "holding_library_id"
-    t.string "remote_storage"
-    t.index ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "library_id"
+    t.bigint "hours_location_id"
+    t.index ["hours_location_id"], name: "index_holding_locations_on_hours_location_id"
+    t.index ["library_id"], name: "index_holding_locations_on_library_id"
   end
 
-  create_table "locations_holdings_delivery", id: false, force: :cascade do |t|
-    t.integer "locations_delivery_location_id"
-    t.integer "locations_holding_location_id"
-    t.index ["locations_delivery_location_id"], name: "index_lhd_on_ldl_id"
-    t.index ["locations_holding_location_id"], name: "index_ldl_on_lhd_id"
+  create_table "holdings_delivery", force: :cascade do |t|
+    t.integer "delivery_location_id"
+    t.integer "holding_location_id"
+    t.index ["delivery_location_id"], name: "index_lhd_on_ldl_id"
+    t.index ["holding_location_id"], name: "index_ldl_on_lhd_id"
   end
 
-  create_table "locations_hours_locations", id: :serial, force: :cascade do |t|
+  create_table "hours_locations", force: :cascade do |t|
     t.string "code"
     t.string "label"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "locations_libraries", id: :serial, force: :cascade do |t|
+  create_table "libraries", force: :cascade do |t|
     t.string "label"
     t.string "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.integer "order", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
@@ -183,8 +185,8 @@ ActiveRecord::Schema.define(version: 2021_07_06_182740) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  add_foreign_key "locations_delivery_locations", "locations_libraries"
-  add_foreign_key "locations_holding_locations", "locations_hours_locations"
-  add_foreign_key "locations_holding_locations", "locations_libraries"
-  add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"
+  add_foreign_key "delivery_locations", "libraries"
+  add_foreign_key "holding_locations", "hours_locations"
+  add_foreign_key "holding_locations", "libraries"
+  add_foreign_key "holding_locations", "libraries", column: "holding_library_id"
 end

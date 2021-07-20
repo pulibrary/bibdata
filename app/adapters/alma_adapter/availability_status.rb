@@ -166,7 +166,7 @@ class AlmaAdapter
       # The status label retrieves the value from holding_location.label
       # which is equivalent to the alma external_name value
       def holding_location_label(holding)
-        label = Locations::HoldingLocation.find_by(code: holding_location_code(holding))&.label
+        label = HoldingLocation.find_by(code: holding_location_code(holding))&.label
         [holding["library"], label].select(&:present?).join(" - ")
       end
 

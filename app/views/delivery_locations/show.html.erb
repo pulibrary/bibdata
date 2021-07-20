@@ -1,0 +1,47 @@
+<p>
+  <strong>Label:</strong>
+  <%= @delivery_location.label %>
+</p>
+
+<p>
+  <strong>Library:</strong>
+  <%= link_to @delivery_location.library.code, @delivery_location.library %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @delivery_location.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @delivery_location.phone_number %>
+</p>
+
+<p>
+  <strong>Contact mail:</strong>
+  <%= @delivery_location.contact_email %>
+</p>
+
+<p>
+  <strong>GFA Pickup:</strong>
+  <%= @delivery_location.gfa_pickup %>
+</p>
+
+<p>
+  <strong>Staff only:</strong>
+  <%= @delivery_location.staff_only %>
+</p>
+
+<p>
+  <strong>Pickup Location:</strong>
+  <%= @delivery_location.pickup_location %>
+</p>
+
+<p>
+  <strong>Digital Location:</strong>
+  <%= @delivery_location.digital_location %>
+</p>
+
+<%= link_to 'View as JSON', format: :json %> |
+<%= link_to 'All Delivery Locations', delivery_locations_path %>

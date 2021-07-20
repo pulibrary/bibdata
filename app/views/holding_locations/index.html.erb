@@ -1,0 +1,43 @@
+<h1>Holding Locations</h1>
+
+<table class="tablesorter tablesorter-blue sortonly">
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Label</th>
+      <th>Library</th>
+      <th>Holding Library</th>
+      <th>Remote Storage</th>
+      <th>Hours Location</th>
+      <th>Aeon Location</th>
+      <th>ReCAP EDD</th>
+      <th>Open</th>
+      <th>Requestable</th>
+      <th>Always Requestable</th>
+      <th>Circulates</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @holding_locations.each do |holding_location| %>
+      <tr>
+        <td><%= link_to holding_location.code, holding_location %></td>
+        <td><%= holding_location.label %></td>
+        <td><%= link_to holding_location.library.code, holding_location.library %></td>
+        <td><%= holding_library_render holding_location %></td>
+        <td><%= holding_location.remote_storage %></td>
+        <td><%= hours_render holding_location %></td>
+        <td><%= holding_location.aeon_location %></td>
+        <td><%= holding_location.recap_electronic_delivery_location %></td>
+        <td><%= holding_location.open %></td>
+        <td><%= holding_location.requestable %></td>
+        <td><%= holding_location.always_requestable %></td>
+        <td><%= holding_location.circulates %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'View as JSON', format: :json%>

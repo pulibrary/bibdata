@@ -1,0 +1,21 @@
+<h1>Libraries</h1>
+
+<table class="table tablesorter tablesorter-blue reorder">
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Label</th>
+      <th>Code</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @libraries.each do |library| %>
+      <tr id="<%= library.id %>">
+        <td><%= library.order %></td>
+        <td><%= link_to library.label, library %></td>
+        <td><%= library.code %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

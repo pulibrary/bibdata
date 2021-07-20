@@ -54,7 +54,7 @@ class LocationMapsGeneratorService
     end
 
     def holding_locations_table_exists?
-      if !ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
+      if !ActiveRecord::Base.connection.table_exists?('holding_locations')
         logger.warn("Failed to seed the holding locations for Traject as the database table has not been created. Please invoke bundle exec rake db:create")
         false
       else
@@ -66,7 +66,7 @@ class LocationMapsGeneratorService
     end
 
     def locations
-      Locations::HoldingLocation.all
+      HoldingLocation.all
     end
 
     def write_file(file_name, values)
