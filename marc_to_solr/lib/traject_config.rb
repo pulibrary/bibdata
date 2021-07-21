@@ -1308,7 +1308,7 @@ to_field 'call_number_display' do |record, accumulator|
   values = []
   alma_852(record).each do |field|
     subfields = call_number_khi(field)
-    next unless subfields.present?
+    next if subfields.empty?
     values << [field['k'], field['h'], field['i']].compact.reject(&:empty?)
     values.flatten!
   end
@@ -1321,7 +1321,7 @@ to_field 'call_number_browse_s' do |record, accumulator|
   values = []
   alma_852(record).each do |field|
     subfields = call_number_khi(field)
-    next unless subfields.present?
+    next if subfields.empty?
     values << [field['h'], field['i'], field['k']].compact.reject(&:empty?)
     values.flatten!
   end
@@ -1335,7 +1335,7 @@ to_field 'call_number_locator_display' do |record, accumulator|
   values = []
   alma_852(record).each do |field|
     subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
-    next unless subfields.present?
+    next if subfields.empty?
     values << [field['h'], field['i']].compact.reject(&:empty?)
     values.flatten!
   end
