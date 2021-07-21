@@ -201,7 +201,7 @@ describe 'From traject_config.rb' do
       record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
       expect(@record_call_number1['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
-    it "skips indexing the fields if subfields $h and $i and $k are missing" do
+    it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_browse_s']).to be nil
     end
     it "doesnt have trailing spaces" do
@@ -212,6 +212,9 @@ describe 'From traject_config.rb' do
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
       expect(@sample40['call_number_locator_display']).to eq([".B7544 2003q"])
+    end
+    it "skips indexing the field if subfields $h and $i are missing" do
+      expect(@record_call_number_nil['call_number_locator_display']).to be nil
     end
   end
 
