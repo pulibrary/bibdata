@@ -1335,7 +1335,9 @@ to_field 'call_number_locator_display' do |record, accumulator|
   values = []
   alma_852(record).each do |field|
     subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
+    next unless subfields.present?
     values << [field['h'], field['i']].compact.reject(&:empty?)
+    values.flatten!
   end
   accumulator << values.join(" ") if values.present?
 end
