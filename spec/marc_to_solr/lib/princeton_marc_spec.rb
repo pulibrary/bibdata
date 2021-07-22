@@ -666,6 +666,11 @@ describe 'From princeton_marc.rb' do
       @holdings_id_852 = "22242008800006421"
       @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
 
+      @record_876z = @indexer.map_record(fixture_record('99122455086806421'))
+      @holdings_876z = JSON.parse(@record_876z["holdings_1display"][0])
+      @holdings_id_876z = "22477860740006421"
+      @holdings_876z_block = @holdings_876z[@holdings_id_876z]
+
       # scsb
       @record_scsb = @indexer.map_record(fixture_record('SCSB-8157262'))
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
@@ -717,6 +722,10 @@ describe 'From princeton_marc.rb' do
     end
     it 'indexes takes from 868 $a and $z' do
       expect(@holdings_868_block['indexes']).to include("Index, v. 1/17")
+    end
+
+    it "doesn't index 876z collection_code if it is not a scsb record" do
+      expect(@holdings_876z_block["items"][0]['collection_code']).to be nil
     end
 
     describe "scsb process holdings" do
