@@ -194,7 +194,7 @@ describe 'From traject_config.rb' do
     it "doesnt have trailing spaces" do
       expect(@record_call_number2['call_number_display']).to eq(["CD- 50000"])
     end
-    it 'returns the enrichment call_number' do
+    it 'returns the enrichment call_number_display with k in front' do
       expect(@sample41['call_number_display']).to eq(["A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A GA 2015.00160"])
     end
   end
@@ -216,6 +216,9 @@ describe 'From traject_config.rb' do
     end
     it "doesnt have trailing spaces" do
       expect(@record_call_number2['call_number_browse_s']).to eq(["CD- 50000"])
+    end
+    it 'returns the enrichment call_number_browse with k at the end' do
+      expect(@sample41['call_number_browse_s']).to eq(["GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A"])
     end
   end
 
