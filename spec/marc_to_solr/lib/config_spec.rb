@@ -25,6 +25,8 @@ describe 'From traject_config.rb' do
     @sample40 = @indexer.map_record(fixture_record('9941598513506421'))
     @sample41 = @indexer.map_record(fixture_record('99106471643506421'))
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
+    @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
+    @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -182,6 +184,10 @@ describe 'From traject_config.rb' do
     it "returns the call_number_display field with k subfield in the beginning" do
       expect(@record_call_number1['call_number_display']).to eq(["Eng 20Q 6819"])
     end
+    it "returns an array of call_number_display values" do
+      expect(@sample43['call_number_display']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
+      expect(@sample44['call_number_display']).to eq(["0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N"])
+    end
     it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_display']).to be nil
     end
@@ -201,6 +207,10 @@ describe 'From traject_config.rb' do
       record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
       expect(@record_call_number1['call_number_browse_s']).to eq(["6819 Eng 20Q"])
     end
+    it "returns an array of call_number_browse_s values" do
+      expect(@sample43['call_number_browse_s']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
+      expect(@sample44['call_number_browse_s']).to eq(["0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N"])
+    end
     it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_browse_s']).to be nil
     end
@@ -212,6 +222,9 @@ describe 'From traject_config.rb' do
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
       expect(@sample40['call_number_locator_display']).to eq([".B7544 2003q"])
+    end
+    it "returns an array of call_number_locator_display values with no subfield k" do
+      expect(@sample43['call_number_locator_display']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
     end
     it "skips indexing the field if subfields $h and $i are missing" do
       expect(@record_call_number_nil['call_number_locator_display']).to be nil

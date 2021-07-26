@@ -1,0 +1,175 @@
+<record>
+	<leader>01586cam a2200313 a 4500</leader>
+	<controlfield tag="005">20200826123326.0</controlfield>
+	<controlfield tag="008">020125s2001    nyua     b   i000 0 eng d</controlfield>
+	<controlfield tag="001">9935444363506421</controlfield>
+	<datafield tag="020" ind1=" " ind2=" ">
+		<subfield code="a">9211513626</subfield>
+		<subfield code="0">(uri) http://www.isbnsearch.org/isbn/9211513626</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">(OCoLC)ocm48862983</subfield>
+		<subfield code="0">(uri) http://www.worldcat.org/oclc/48862983</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">3544436</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">(NjP)3544436-princetondb</subfield>
+	</datafield>
+	<datafield tag="040" ind1=" " ind2=" ">
+		<subfield code="a">HWE</subfield>
+		<subfield code="c">HWE</subfield>
+		<subfield code="d">NTD</subfield>
+		<subfield code="d">ORE</subfield>
+	</datafield>
+	<datafield tag="090" ind1=" " ind2=" ">
+		<subfield code="a">JV6035</subfield>
+		<subfield code="b">.R47 2001</subfield>
+	</datafield>
+	<datafield tag="050" ind1=" " ind2="4">
+		<subfield code="a">JV6225</subfield>
+	</datafield>
+	<datafield tag="245" ind1="0" ind2="0">
+		<subfield code="a">Replacement migration :</subfield>
+		<subfield code="b">is it a solution to declining and ageing populations? /</subfield>
+		<subfield code="c">Department of Economic and Social Affairs, Population Division.</subfield>
+	</datafield>
+	<datafield tag="260" ind1=" " ind2=" ">
+		<subfield code="a">New York :</subfield>
+		<subfield code="b">United Nations,</subfield>
+		<subfield code="c">2001.</subfield>
+	</datafield>
+	<datafield tag="300" ind1=" " ind2=" ">
+		<subfield code="a">viii, 151 p. :</subfield>
+		<subfield code="b">ill. ;</subfield>
+		<subfield code="c">28 cm.</subfield>
+	</datafield>
+	<datafield tag="500" ind1=" " ind2=" ">
+		<subfield code="a">"ST/ESA/SER.A/206"</subfield>
+	</datafield>
+	<datafield tag="500" ind1=" " ind2=" ">
+		<subfield code="a">"United Nations publication sales no. E.01.XIII.19"--T.p. verso.</subfield>
+	</datafield>
+	<datafield tag="504" ind1=" " ind2=" ">
+		<subfield code="a">Includes bibliographical references (p. 101-110).</subfield>
+	</datafield>
+	<datafield tag="530" ind1=" " ind2=" ">
+		<subfield code="a">This publication also available online at the Population Division web site.</subfield>
+	</datafield>
+	<datafield tag="650" ind1=" " ind2="0">
+		<subfield code="a">Emigration and immigration</subfield>
+		<subfield code="x">Social aspects.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/subjects/sh85042789</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85042789</subfield>
+	</datafield>
+	<datafield tag="650" ind1=" " ind2="0">
+		<subfield code="a">Age distribution (Demography)</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/subjects/sh85002081</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85002081</subfield>
+	</datafield>
+	<datafield tag="650" ind1=" " ind2="0">
+		<subfield code="a">Population</subfield>
+		<subfield code="v">Statistics.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/subjects/sh85104913</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85104913</subfield>
+	</datafield>
+	<datafield tag="650" ind1=" " ind2="0">
+		<subfield code="a">Older people.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/subjects/sh85002087</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85002087</subfield>
+	</datafield>
+	<datafield tag="655" ind1=" " ind2="7">
+		<subfield code="a">Statistics.</subfield>
+		<subfield code="2">lcgft</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026181</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026181</subfield>
+	</datafield>
+	<datafield tag="710" ind1="2" ind2=" ">
+		<subfield code="a">United Nations.</subfield>
+		<subfield code="b">Department of Economic and Social Affairs.</subfield>
+		<subfield code="b">Population Division.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/names/n80139861</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/names/n80139861</subfield>
+		<subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n80139861</subfield>
+	</datafield>
+	<datafield tag="856" ind1="4" ind2=" ">
+		<subfield code="u">http://www.un.org/esa/population/publications/migration/migration.htm</subfield>
+	</datafield>
+	<datafield tag="902" ind1=" " ind2=" ">
+		<subfield code="a">bgn</subfield>
+		<subfield code="b">m</subfield>
+		<subfield code="6">a</subfield>
+		<subfield code="7">m</subfield>
+		<subfield code="d">v</subfield>
+		<subfield code="f">1</subfield>
+		<subfield code="e">20020221</subfield>
+	</datafield>
+	<datafield tag="950" ind1=" " ind2=" ">
+		<subfield code="b">2020-12-02 04:27:36 US/Eastern</subfield>
+		<subfield code="a">false</subfield>
+	</datafield>
+	<datafield tag="951" ind1=" " ind2=" ">
+		<subfield code="v">2020-12-08 08:57:31 US/Eastern</subfield>
+		<subfield code="u">System</subfield>
+		<subfield code="t">2020-12-08 08:57:27 US/Eastern</subfield>
+		<subfield code="x">https://na07.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53333842480006421&amp;Force_direct=true</subfield>
+		<subfield code="s">P2E_JOB</subfield>
+		<subfield code="0">53333842480006421</subfield>
+		<subfield code="w">2020-12-08 13:57:27</subfield>
+		<subfield code="f">false</subfield>
+		<subfield code="b">static</subfield>
+		<subfield code="1">52333842490006421</subfield>
+		<subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9935444363506421</subfield>
+		<subfield code="a">Available</subfield>
+		<subfield code="e">BOOK</subfield>
+		<subfield code="8">53333842480006421</subfield>
+	</datafield>
+	<datafield tag="852" ind1="8" ind2=" ">
+		<subfield code="b">firestone</subfield>
+		<subfield code="c">un</subfield>
+		<subfield code="h">01.XIII.19</subfield>
+		<subfield code="8">2241148900006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 09:27:36</subfield>
+		<subfield code="8">2241148900006421</subfield>
+		<subfield code="b">Firestone Library</subfield>
+		<subfield code="c">un: United Nations Coll.</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="852" ind1="0" ind2=" ">
+		<subfield code="b">stokes</subfield>
+		<subfield code="c">spr</subfield>
+		<subfield code="h">JV6225</subfield>
+		<subfield code="i">.R464 2001</subfield>
+		<subfield code="8">2241148920006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 09:27:36</subfield>
+		<subfield code="8">2241148920006421</subfield>
+		<subfield code="b">Stokes Library</subfield>
+		<subfield code="c">spr: Donald E. Stokes Lib.</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="876" ind1=" " ind2=" ">
+		<subfield code="0">2241148900006421</subfield>
+		<subfield code="a">2341148890006421</subfield>
+		<subfield code="j">1</subfield>
+		<subfield code="z">un</subfield>
+		<subfield code="d">2020-12-02 09:27:36</subfield>
+		<subfield code="p">32101057173385</subfield>
+		<subfield code="t">1</subfield>
+		<subfield code="y">firestone</subfield>
+	</datafield>
+	<datafield tag="876" ind1=" " ind2=" ">
+		<subfield code="0">2241148920006421</subfield>
+		<subfield code="a">2341148910006421</subfield>
+		<subfield code="j">1</subfield>
+		<subfield code="z">spr</subfield>
+		<subfield code="d">2020-12-02 09:27:36</subfield>
+		<subfield code="p">32101044303251</subfield>
+		<subfield code="t">1</subfield>
+		<subfield code="y">stokes</subfield>
+	</datafield>
+</record>
