@@ -6,7 +6,10 @@ require 'bundler/setup'
 require_relative './format'
 require_relative './princeton_marc'
 require_relative './geo'
-require_relative './location_extract'
+require_relative './electronic_portfolio_builder'
+require_relative './alma_reader'
+require_relative './solr_deleter'
+require_relative './access_facet_builder'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -17,7 +20,8 @@ extend Traject::Macros::MarcFormats
 
 settings do
   provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
-  provide "solr.version", "4.10.0"
+  provide "solr.version", "8.4.1"
+  provide "reader_class_name", "AlmaReader"
   provide "marc_source.type", "xml"
   provide "solr_writer.max_skipped", "50"
   provide "marc4j_reader.source_encoding", "UTF-8"
@@ -26,9 +30,32 @@ settings do
   provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
 end
 
-update_locations if ENV['UPDATE_LOCATIONS']
-
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+
+id_extractor = Traject::MarcExtractor.new('001', first: true)
+deleted_ids = Concurrent::Set.new
+each_record do |record, context|
+  # Collect records that need to be deleted
+  # and skip processing logic for them.
+  if record.leader[5] == 'd'
+    id = id_extractor.extract(record).first
+    context.skip!("#{id} marked as deleted")
+    deleted_ids << id if id
+  end
+end
+
+after_processing do
+  if @settings["writer_class_name"] == "Traject::SolrJsonWriter"
+    # Delete records from Solr
+    deleter = SolrDeleter.new(@settings["solr.url"], logger)
+    deleter.delete(deleted_ids)
+  else
+    # In debug mode just log what would be deleted
+    deleted_ids.each do |id|
+      logger.info "Record #{id} would be deleted"
+    end
+  end
+end
 
 to_field 'id', extract_marc('001', first: true)
 
@@ -39,6 +66,8 @@ end
 
 # for scsb local system id
 to_field 'other_id_s', extract_marc('009', first: true)
+
+# cjk
 to_field 'cjk_all' do |record, accumulator|
   keep_fields = %w[880]
   result = []
@@ -55,23 +84,24 @@ to_field 'cjk_all' do |record, accumulator|
   accumulator << result.join(' ')
 end
 
-# only include the 5xx alt script values for cjk field
+# 880 field is "vernacular" and may link to a translation in a 5xx
+# Only add 880 alt script values associated with a 5xx field
 to_field 'cjk_notes' do |record, accumulator|
-  keep_fields = %w[880]
-  result = []
-  record.each do |field|
-    next unless  keep_fields.include?(field.tag)
-    linked_tag = field.subfields.select { |sf| sf.code == '6' }.collect(&:value)
-    next unless linked_tag.first&.start_with?('5')
+  fields = record.fields.select { |f| f.tag == "880" }
+  linked_fields = fields.select do |f|
+    f.subfields.find { |sf| sf.code == '6' && sf.value.start_with?('5') }.present?
+  end
+  values = linked_fields.map do |field|
     subfield_values = field.subfields
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
 
-    next unless !subfield_values.empty?
+    next if subfield_values.empty?
 
-    result << subfield_values.join(' ')
+    subfield_values.join(' ')
   end
-  accumulator << result.join(' ')
+
+  accumulator << values.compact.join(' ')
 end
 
 # Author/Artist:
@@ -281,10 +311,30 @@ to_field 'pub_date_end_sort' do |record, accumulator|
   accumulator << record.end_date_from_008
 end
 
-to_field 'cataloged_tdt', extract_marc('959a') do |_record, accumulator|
-  accumulator[0] = Time.parse(accumulator[0]).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless accumulator[0].nil?
+# catalog_date https://github.com/pulibrary/marc_liberation/issues/926
+# Bibliographic Enrichment -> Create date subfield 950b
+# Physical Items Enrichment -> Create date subfield 876d
+# Electronic Inventory Enrichment -> Activation date subfield 951w
+to_field 'cataloged_tdt' do |record, accumulator|
+  extractor_doc_id = MarcExtractor.cached("001")
+  doc_id = extractor_doc_id.extract(record).first
+  unless /^SCSB-\d+/.match?(doc_id)
+    cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
+                       alma_876(record).map { |f| f['d'] }.sort.first
+                     elsif alma_951(record) && alma_951(record).map { |f| f['w'] }.compact.present?
+                       alma_951(record).map { |f| f['w'] }.compact.sort.first
+                     else
+                       alma_950(record)
+                     end
+    begin
+      accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
+    rescue
+      logger.error "#{record['001']} - error parsing cataloged date #{cataloged_date}"
+    end
+  end
 end
 
+# TODO: Remove after completing https://github.com/pulibrary/marc_liberation/issues/822
 # to_field 'cataloged_tdt' do |record, accumulator|
 #   extractor_doc_id =  MarcExtractor.cached("001")
 #   doc_id = extractor_doc_id.extract(record).first
@@ -307,8 +357,8 @@ end
 to_field 'medium_support_display', extract_marc('340')
 
 # Electronic access:
-#    3000 - really 856
-#    most have first sub as 4, a few 0,1,7
+#    856
+#    most have first indicator as 4, a few 0,1,7
 #    treat the same
 #    $u is for the link
 #    $y and $3 for display text for link
@@ -528,6 +578,11 @@ to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:77
 
 # Contained in:
 #    3500 BBID773W
+# # Alma:it will not change but we need to do more work to retrieve info from the link record.
+# if there is a 773 we need to retrieve the holding and item information from that linked record.
+# example: there are 3 bibs attached to one item. Bib1 has the holding and item attached.
+# Bib1 has 774 fields for Bib2 and Bib3.
+# Bib2 and Bib3 have a 773 field linking to Bib1.
 to_field 'contained_in_s', extract_marc('773w')
 
 # Related record(s):
@@ -883,7 +938,10 @@ to_field 'related_name_json_1display' do |record, accumulator|
     end
     relators << 'Related name' if relators.empty?
     relators.each do |relator|
-      rel_name_hash[relator] ? rel_name_hash[relator] << rel_name : rel_name_hash[relator] = [rel_name] if (non_t && !rel_name.nil?)
+      if (non_t && rel_name.present?)
+        rel_name_hash[relator] ||= []
+        rel_name_hash[relator] << rel_name
+      end
     end
   end
   accumulator[0] = rel_name_hash.to_json.to_s unless rel_name_hash == {}
@@ -967,10 +1025,12 @@ to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
 
 # ISBN:
 #    020 XX a
+# Dont index if subfield $a is not present
 to_field 'isbn_display' do |record, accumulator|
   MarcExtractor.cached("020aq").collect_matching_lines(record) do |field, _spec, _extractor|
     a_array = []
     q_array = []
+    next unless field['a'].present?
     field.subfields.each do |m|
       if m.code == 'a'
         a_array << m.value
@@ -1073,11 +1133,7 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator|
   all_holdings = process_holdings(record)
-  if all_holdings == {}
-    logger.error "#{record['001']} - Missing holdings"
-  else
-    accumulator[0] = all_holdings.to_json.to_s
-  end
+  accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
 end
 
 ## for recap notes
@@ -1099,47 +1155,47 @@ each_record do |_record, context|
 end
 
 # Process location code once
+# 852|b and 852|c
 each_record do |record, context|
   location_codes = []
-  MarcExtractor.cached("852b").collect_matching_lines(record) do |field, _spec, _extractor|
+  MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
+    is_alma = alma_code_start_22?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value)
     field.subfields.each do |s_field|
+      # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
       if s_field.code == 'b'
-        logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value
+        # update the logged error. It doesn't look right as it is and we need to see in alma if we
+        # still need to log multiple $b in 852.
+        # logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
+        holding_b ||= s_field.value if is_alma || is_scsb
+        holding_b += "$#{field['c']}" if field['c'] && is_alma
       end
     end
     location_codes << holding_b
+    location_codes.compact!
   end
-  # Don't check for hathi if the oclc is missing.
-  hathi_locations = []
-  if context.output_hash['oclc_s'].present?
-    hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
-    hathi_locations = parse_locations_from_hathi_line(hathi_line)
-    hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
-    context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
-  end
-  if location_codes.present? || hathi_locations.present?
+  if location_codes.any?
     location_codes.uniq!
-    ## need to through any location code that isn't from voyager, thesis, or graphic arts
+    ## need to go through any location code that isn't from voyager, thesis, or graphic arts
     ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
     context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
     mapped_codes = Traject::TranslationMap.new("locations")
+
+    # The holding_library is used with some locations to add an additional owning library,
+    # which is included in advanced search but not facets.
     holding_library = Traject::TranslationMap.new("holding_library")
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
+
         context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
     end
-
-    context.output_hash['access_facet'] = Traject::TranslationMap.new("access", default: "In the Library").translate_array(location_codes | hathi_locations)
-    context.output_hash['access_facet'].uniq!
-
     context.output_hash['location'].uniq!
 
     # Add library and location for advanced multi-select facet
@@ -1245,10 +1301,87 @@ each_record do |_record, context|
 end
 
 # Call number: +No call number available
-#    852 XX ckhij
-to_field 'call_number_display', extract_marc('852ckhij')
+#    852 XX hik
+# Position 852|k in the beginning of the call_number_display
+# The call_number_display is used in the catalog record page.
+to_field 'call_number_display' do |record, accumulator|
+  values = []
+  alma_852(record).each do |field|
+    subfields = call_number_khi(field)
+    next if subfields.empty?
+    values << [field['k'], field['h'], field['i']].compact.reject(&:empty?)
+    values.flatten!
+  end
+  accumulator << values.join(" ") if values.present?
+end
 
-to_field 'call_number_browse_s', extract_marc('852khij')
+# Position 852|k at the end of the call_number_browse_s
+# The call_number_browse_s is used in the call number browse page in the catalog
+to_field 'call_number_browse_s' do |record, accumulator|
+  values = []
+  alma_852(record).each do |field|
+    subfields = call_number_khi(field)
+    next if subfields.empty?
+    values << [field['h'], field['i'], field['k']].compact.reject(&:empty?)
+    values.flatten!
+  end
+  accumulator << values.join(" ") if values.present?
+end
+
+# The call_number_locator_display is used in the 'Where to find it' feature in the record page,
+# when the location is firestone$stacks.
+# I dont think we ended up using this field
+to_field 'call_number_locator_display' do |record, accumulator|
+  values = []
+  alma_852(record).each do |field|
+    subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
+    next if subfields.empty?
+    values << [field['h'], field['i']].compact.reject(&:empty?)
+    values.flatten!
+  end
+  accumulator << values.join(" ") if values.present?
+end
+
+to_field 'electronic_portfolio_s' do |record, accumulator|
+  fields = []
+  dates = []
+  embargoes = []
+  # dont check for scsb
+  MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_951(record)
+    fields << field
+  end
+
+  MarcExtractor.cached('953abc').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_953(record)
+    dates << field
+  end
+
+  MarcExtractor.cached('954ac').collect_matching_lines(record) do |field, _spec, _extractor|
+    next unless alma_954(record)
+    embargoes << field
+  end
+
+  fields.map do |field|
+    date = dates.find { |d| d['a'] == field['8'] }
+    embargo = embargoes.find { |e| e['a'] == field['8'] }
+    accumulator << ElectronicPortfolioBuilder.build(field: field, date: date, embargo: embargo)
+  end
+end
+
+# Extract hathi_identifier
+each_record do |_record, context|
+  if context.output_hash['oclc_s'].present?
+    hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
+    hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
+    context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
+  end
+end
+
+# Generate access_facet
+each_record do |record, context|
+  context.output_hash['access_facet'] = AccessFacetBuilder.build(record: record, context: context)
+end
 
 # Location has:
 #    1040

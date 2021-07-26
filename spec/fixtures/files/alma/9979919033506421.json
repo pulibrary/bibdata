@@ -1,0 +1,49 @@
+{
+    "bib": [
+        {
+            "anies": [
+                "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record>\n    <leader>01032cam a2200289 a 4500</leader>\n    <controlfield tag=\"001\">9979919033506421</controlfield>\n    <controlfield tag=\"005\">20201001201754.0</controlfield>\n    <controlfield tag=\"008\">131112s2013    mau      b    000 0 eng d</controlfield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n      <subfield code=\"a\">1584351268 (pbk.)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"020\">\n      <subfield code=\"a\">9781584351269 (pbk.)</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">7991903</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(OCoLC)ocn851826743</subfield>\n      <subfield code=\"z\">(OCoLC)ocn842500102</subfield>\n      <subfield code=\"z\">(OCoLC)ocn862844408</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"a\">(NjP)7991903-princetondb</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"035\">\n      <subfield code=\"z\">(OCoLC)842500102</subfield>\n      <subfield code=\"z\">(OCoLC)862844408</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"040\">\n      <subfield code=\"a\">CDX</subfield>\n      <subfield code=\"c\">CDX</subfield>\n      <subfield code=\"d\">NjP</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"4\" tag=\"050\">\n      <subfield code=\"a\">PS3561.R2873</subfield>\n      <subfield code=\"b\">A68 2013</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"4\" tag=\"082\">\n      <subfield code=\"a\">813.5</subfield>\n      <subfield code=\"b\">23</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"019\">\n      <subfield code=\"a\">842500102</subfield>\n      <subfield code=\"a\">862844408</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"100\">\n      <subfield code=\"a\">Kraus, Chris,</subfield>\n      <subfield code=\"e\">author.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/names/nr98030545</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\"0\" tag=\"245\">\n      <subfield code=\"a\">Aliens &amp; anorexia /</subfield>\n      <subfield code=\"c\">Chris Kraus.</subfield>\n    </datafield>\n    <datafield ind1=\"3\" ind2=\" \" tag=\"246\">\n      <subfield code=\"a\">Aliens and anorexia</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"260\">\n      <subfield code=\"a\">Los Angeles, CA :</subfield>\n      <subfield code=\"b\">Semiotext(e),</subfield>\n      <subfield code=\"c\">c2013.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"300\">\n      <subfield code=\"a\">261 pages :</subfield>\n      <subfield code=\"b\">ill. ;</subfield>\n      <subfield code=\"c\">23 cm</subfield>\n    </datafield>\n    <datafield ind1=\"1\" ind2=\" \" tag=\"490\">\n      <subfield code=\"a\">Semiotext(e) native agents series</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"504\">\n      <subfield code=\"a\">Includes bibliographical references.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"650\">\n      <subfield code=\"a\">Experimental fiction.</subfield>\n      <subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh86005295</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\"0\" tag=\"830\">\n      <subfield code=\"a\">Semiotext(e) native agents series.</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"904\">\n      <subfield code=\"a\">wcs</subfield>\n      <subfield code=\"b\">o</subfield>\n      <subfield code=\"h\">m</subfield>\n      <subfield code=\"c\">b</subfield>\n      <subfield code=\"e\">20131216</subfield>\n    </datafield>\n    <datafield ind1=\" \" ind2=\" \" tag=\"902\">\n      <subfield code=\"a\">lm</subfield>\n      <subfield code=\"b\">m</subfield>\n      <subfield code=\"6\">a</subfield>\n      <subfield code=\"7\">m</subfield>\n      <subfield code=\"d\">v</subfield>\n      <subfield code=\"f\">1</subfield>\n      <subfield code=\"e\">20140320</subfield>\n    </datafield>\n  <datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9979919033506421</subfield><subfield code=\"8\">22137536570006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">firestone</subfield><subfield code=\"c\">Firestone Library (F)</subfield><subfield code=\"d\">PS3561.R2873 A68 2013</subfield><subfield code=\"e\">unavailable</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">1</subfield><subfield code=\"j\">stacks</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Firestone Library</subfield></datafield></record>"
+            ],
+            "author": "Kraus, Chris,",
+            "created_by": "import",
+            "created_date": "2020-12-02Z",
+            "date_of_publication": "c2013.",
+            "holdings": {
+                "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9979919033506421/holdings",
+                "value": null
+            },
+            "isbn": "9781584351269 (pbk.)",
+            "issn": null,
+            "link": null,
+            "linked_record_id": {
+                "type": null,
+                "value": null
+            },
+            "mms_id": "9979919033506421",
+            "network_number": [
+                "(NjP)7991903-princetondb",
+                "(OCoLC)ocn851826743",
+                "7991903",
+                "(OCoLC)862844408",
+                "(OCoLC)842500102",
+                "(OCoLC)ocn862844408",
+                "(OCoLC)ocn842500102"
+            ],
+            "originating_system": "ILS",
+            "originating_system_id": "7991903-princetondb",
+            "place_of_publication": "Los Angeles, CA :",
+            "publisher_const": "Semiotext(e),",
+            "record_format": "marc21",
+            "requests": {
+                "link": null,
+                "value": 0
+            },
+            "suppress_from_external_search": "false",
+            "suppress_from_publishing": "false",
+            "sync_with_libraries_australia": "NONE",
+            "sync_with_oclc": "BIBS",
+            "title": "Aliens & anorexia /"
+        }
+    ],
+    "total_record_count": 1
+}

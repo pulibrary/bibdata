@@ -1,0 +1,131 @@
+{
+  "bib_data": {
+    "mms_id": "9968643943506421",
+    "title": "100 an\u0303os de seguridad social en Espan\u0303a (1900-2000) /",
+    "author": "Bretin Herrero, Constantino.",
+    "issn": null,
+    "isbn": "8498494389",
+    "complete_edition": "",
+    "network_number": [
+      "(NjP)6864394-princetondb",
+      "(OCoLC)326577503",
+      "6864394",
+      "(OCoLC)ocn326577503"
+    ],
+    "place_of_publication": "Madrid :",
+    "date_of_publication": "[2009]",
+    "publisher_const": "Dykinson",
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9968643943506421"
+  },
+  "holding_data": {
+    "holding_id": "22258767470006421",
+    "call_number_type": {
+      "value": "0",
+      "desc": "Library of Congress classification"
+    },
+    "call_number": "KKT1504 .B748 2009",
+    "accession_number": "",
+    "copy_id": "1",
+    "in_temp_location": false,
+    "temp_library": {
+      "value": null,
+      "desc": null
+    },
+    "temp_location": {
+      "value": null,
+      "desc": null
+    },
+    "temp_call_number_type": {
+      "value": "",
+      "desc": null
+    },
+    "temp_call_number": "",
+    "temp_policy": {
+      "value": "",
+      "desc": null
+    },
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9968643943506421/holdings/22258767470006421"
+  },
+  "item_data": {
+    "pid": "23258767460006421",
+    "barcode": "32101081340380",
+    "creation_date": "2020-12-03Z",
+    "modification_date": "2021-02-17Z",
+    "base_status": {
+      "value": "1",
+      "desc": "Item in place"
+    },
+    "awaiting_reshelving": false,
+    "physical_material_type": {
+      "value": "BOOK",
+      "desc": "Book"
+    },
+    "policy": {
+      "value": "Gen",
+      "desc": "Gen"
+    },
+    "provenance": {
+      "value": "",
+      "desc": null
+    },
+    "po_line": "",
+    "is_magnetic": false,
+    "arrival_date": "2011-12-01Z",
+    "year_of_issue": "",
+    "enumeration_a": "",
+    "enumeration_b": "",
+    "enumeration_c": "",
+    "enumeration_d": "",
+    "enumeration_e": "",
+    "enumeration_f": "",
+    "enumeration_g": "",
+    "enumeration_h": "",
+    "chronology_i": "",
+    "chronology_j": "",
+    "chronology_k": "",
+    "chronology_l": "",
+    "chronology_m": "",
+    "description": "",
+    "receiving_operator": "import",
+    "process_type": {
+      "value": "",
+      "desc": null
+    },
+    "inventory_number": "",
+    "inventory_price": "",
+    "library": {
+      "value": "recap",
+      "desc": "ReCAP"
+    },
+    "location": {
+      "value": "pa",
+      "desc": "rcppa RECAP"
+    },
+    "alternative_call_number": "",
+    "alternative_call_number_type": {
+      "value": "",
+      "desc": null
+    },
+    "storage_location_id": "",
+    "pages": "",
+    "pieces": "1",
+    "public_note": "",
+    "fulfillment_note": "",
+    "internal_note_1": "",
+    "internal_note_2": "",
+    "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+    "statistics_note_1": "",
+    "statistics_note_2": "",
+    "statistics_note_3": "",
+    "requested": null,
+    "edition": null,
+    "imprint": null,
+    "language": null,
+    "physical_condition": {
+      "value": null,
+      "desc": null
+    }
+  },
+  "additional_info": "Item's destination is: Reshelve to rcppa RECAP. Request/Process Type: . Requester: . Requester ID: . Place in Queue: 0",
+  "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9968643943506421/holdings/22258767470006421/items/23258767460006421"
+}

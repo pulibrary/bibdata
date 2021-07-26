@@ -1,10 +1,8 @@
-class BibliographicController < ApplicationController
+class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
   include FormattingConcern
-  before_action :protect, only: [:update]
 
-  def bib_adapter
-    return AlmaAdapter::Bib if params[:adapter].present? && params[:adapter].casecmp("alma").zero?
-    VoyagerHelpers::Liberator
+  def adapter
+    @adapter ||= AlmaAdapter.new
   end
 
   def index
@@ -21,6 +19,50 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # Returns availability for a single ID
+  # Client: This endpoint is used by orangelight to render status on the catalog
+  #   show page
+  def availability
+    id = params[:bib_id]
+    availability = adapter.get_availability_one(id: id, deep_check: (params[:deep] == "true"))
+    respond_to do |wants|
+      wants.json { render json: availability }
+    end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
+  end
+
+  # Returns availability for multiple IDs
+  # Client: This endpoint is used by orangelight to render status on the catalog
+  #   search results page
+  def availability_many
+    ids = (params[:bib_ids] || "").split(",")
+    availability = adapter.get_availability_many(ids: ids)
+    respond_to do |wants|
+      wants.json { render json: availability }
+    end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve availability for IDs: #{ids}")
+  end
+
+  # Returns availability for a single holding in a bib record
+  # Client: This endpoint is used by Requests to populate a request form and
+  #   submit requests to the ILS
+  def availability_holding
+    if params[:bib_id] && params[:holding_id]
+      availability = adapter.get_availability_holding(id: params[:bib_id], holding_id: params[:holding_id])
+      respond_to do |wants|
+        wants.json { render json: availability, status: availability.nil? ? 404 : 200 }
+      end
+    else
+      render plain: "Please supply a bib id and a holding id", status: 404
+    end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
+  end
+
+  # Client: This endpoint is used by orangelight to present the staff view
+  #   and sometimes by individuals to pull records from the ILS
   def bib
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
@@ -28,14 +70,15 @@ class BibliographicController < ApplicationController
     }
 
     begin
-      records = bib_adapter.get_bib_record(bib_id_param, nil, opts)
-    rescue OCIError => oci_error
-      Rails.logger.error "Failed to retrieve the Voyager record using the bib. ID: #{bib_id_param}: #{oci_error}"
-      return head :bad_request
+      records = adapter.get_bib_record(bib_id_param)
+      records.strip_non_numeric! unless opts[:holdings]
+    rescue => e
+      return handle_alma_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{bib_id_param}")
     end
 
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+      Rails.logger.error "Record #{params[:bib_id]} not found or suppressed"
     else
       respond_to do |wants|
         wants.json  do
@@ -50,12 +93,14 @@ class BibliographicController < ApplicationController
     end
   end
 
+  # Client: Used by firestone_locator to pull bibliographic data
+  #   Also used to pull orangelight and pul_solr test fixtures
   def bib_solr(format: nil)
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-    records = bib_adapter.get_bib_record(sanitize(params[:bib_id]), nil, opts)
+    records = adapter.get_bib_record(bib_id_param)
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -66,14 +111,18 @@ class BibliographicController < ApplicationController
         render json: solr_doc
       end
     end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
+  # Client: Used by figgy to pull bibliographic data
   def bib_jsonld
     bib_solr format: :jsonld
   end
 
+  # Client: No known use cases
   def bib_holdings
-    records = bib_adapter.get_holding_records(sanitize(params[:bib_id]))
+    records = adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
     else
@@ -88,33 +137,42 @@ class BibliographicController < ApplicationController
         end
       end
     end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
   end
 
+  # bibliographic/:bib_id/items
+  # Client: Used by figgy to check CDL status. Used by firestone_locator for
+  #   call number and location data
   def bib_items
-    records = bib_adapter.get_items_for_bib(bib_id_param)
-    if records.nil? || records.empty?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
-    else
-      respond_to do |wants|
-        wants.json  { render json: MultiJson.dump(add_locator_call_no(records)) }
-        wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
-      end
+    item_keys = ["id", "pid", "perm_location", "temp_location", "cdl"]
+    holding_summary = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
+
+    respond_to do |wants|
+      wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
+      wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
     end
+  rescue Alma::BibItemSet::ResponseError
+    render_not_found(params[:bib_id])
+  rescue => e
+    handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
+  # Deprecated
   def update
-    records = find_by_id(voyager_opts)
-    return render plain: "Record #{sanitized_id} not found or suppressed", status: 404 if records.nil?
-    file = Tempfile.new("#{sanitized_id}.mrx")
-    file.write(records_to_xml_string(records))
-    file.close
-    index_job_queue.add(file: file.path)
-    redirect_to index_path, flash: { notice: "Reindexing job scheduled for #{sanitized_id}" }
-  rescue StandardError => error
-    redirect_to index_path, flash: { alert: "Failed to schedule the reindexing job for #{sanitized_id}: #{error}" }
+    render plain: "Deprecated endpoint", status: :gone
+  end
+
+  # Deprecated
+  def item_discharge
+    render plain: "Deprecated endpoint", status: :gone
   end
 
   private
+
+    def render_not_found(id)
+      render plain: "Record #{id} not found or suppressed", status: 404
+    end
 
     # Construct or access the indexing service
     # @return [IndexingService]
@@ -147,13 +205,6 @@ class BibliographicController < ApplicationController
         holdings: params.fetch('holdings', 'true') == 'true',
         holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
       }
-    end
-
-    # Find all bib. records from Voyager using a bib. ID and optional arguments
-    # @param opts [Hash] optional arguments
-    # @return [Array<Object>] the set of bib. records
-    def find_by_id(opts)
-      bib_adapter.get_bib_record(sanitized_id, nil, opts)
     end
 
     # Access the URL helpers for the application
@@ -200,20 +251,30 @@ class BibliographicController < ApplicationController
     end
 
     def add_locator_call_no(records)
-      records["f"] = records["f"].map do |record|
-        record[:sortable_call_number] = sortable_call_number(record[:call_number])
-        record
+      records.each do |location, holdings|
+        next unless location == "firestone$stacks"
+        holdings.each do |holding|
+          holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
+        end
       end
-      records
     end
 
     def sortable_call_number(call_no)
       return call_no unless call_no =~ /^[A-Za-z]/
+      call_no = make_sortable_call_number(call_no)
       lsort_result = Lcsort.normalize(call_no)
       return lsort_result.gsub('..', '.') unless lsort_result.nil?
       force_number_part_to_have_4_digits(call_no)
     rescue
       call_no
+    end
+
+    def make_sortable_call_number(call_no)
+      tokens = call_no.split(" ")
+      needs_adjustment = ["oversize", "folio"].include? tokens.first.downcase
+      return call_no unless needs_adjustment
+      # Move the first token (e.g. Oversize or Folio) to the end
+      (tokens[1..] << tokens[0]).join(" ")
     end
 
     # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes

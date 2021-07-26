@@ -1,14 +1,29 @@
 default: &default
-  bibs_read_only: <%= ENV['ALMA_BIBS_READ_ONLY'] %>
+  read_only_apikey: <%= ENV['ALMA_READ_ONLY_APIKEY'] %>
   region: <%= ENV['ALMA_REGION'] %>
+  sftp_username: <%= ENV['SFTP_USERNAME'] %>
+  sftp_password: <%= ENV['SFTP_PASSWORD'] %>
+  sftp_host: <%= ENV['SFTP_HOST'] %>
+  sqs_queue_url: <%= ENV['SQS_QUEUE_URL'] %>
+  jobs:
+    "Publishing Platform Job General Publishing":
+      dump_type: "ALL_RECORDS"
+      dump_file_type: "BIB_RECORDS"
+    "Publishing Platform Job Incremental Publishing":
+      dump_type: "CHANGED_RECORDS"
+      dump_file_type: "UPDATED_RECORDS"
+    "Publishing Platform Job Incremental ReCAP Records":
+      dump_type: "PRINCETON_RECAP"
+      dump_file_type: "RECAP_RECORDS"
 
 development:
   <<: *default
 
 test:
   <<: *default
-  bibs_read_only: 'TESTME'
+  read_only_apikey: 'TESTME'
   region: 'ALMA'
+  sqs_queue_url: "https://example.com"
 
 production:
   <<: *default

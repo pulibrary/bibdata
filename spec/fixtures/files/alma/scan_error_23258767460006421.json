@@ -1,0 +1,13 @@
+{
+  "errorsExist": true,
+  "errorList": {
+    "error": [
+      {
+        "errorCode": "4016641x",
+        "errorMessage": "Some other error we don't know about yet",
+        "trackingId": "E02-2302152311-BKB4G-AWAE823520061"
+      }
+    ]
+  },
+  "result": null
+}

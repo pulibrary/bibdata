@@ -9,35 +9,37 @@ class BarcodeController < ApplicationController
     end
   end
 
+  # Client: This endpoint is used by the ReCAP inventory management system, LAS,
+  #   to pull data from our ILS when items are accessioned
   def scsb
-    if !valid_barcode?(params[:barcode])
-      render plain: "Barcode #{params[:barcode]} not valid.", status: 404
+    barcode = params[:barcode]
+    if !valid_barcode?(barcode)
+      render plain: "Barcode #{barcode} not valid.", status: 404
     else
-      records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]), true)
-      if records == []
-        render plain: "Barcode #{params[:barcode]} not found.", status: 404
-      else
-        respond_to do |wants|
-          wants.json  do
-            json = MultiJson.dump(pass_records_through_xml_parser(records))
-            render json: json
-          end
-          wants.xml do
-            xml = records_to_xml_string(records)
-            render xml: xml
-          end
-        end
-      end
-    end
-  end
+      adapter = AlmaAdapter.new
+      item = adapter.item_by_barcode(barcode)
+      mms_id = item["bib_data"]["mms_id"]
+      record = adapter.get_bib_record(mms_id)
 
-  def barcode
-    unless valid_barcode?(params[:barcode])
-      render plain: "Barcode #{params[:barcode]} not valid.", status: 404
-    else
-      records = VoyagerHelpers::Liberator.get_records_from_barcode(sanitize(params[:barcode]))
+      # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
+      if record.nil?
+        render plain: "Record #{mms_id} not found or suppressed", status: 404
+        return
+      end
+      holding = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
+      records = if record.linked_record_ids.present?
+                  adapter.get_bib_records(record.linked_record_ids)
+                else
+                  [record]
+                end
+      records.each do |bib_record|
+        bib_record.enrich_with_item(item)
+        bib_record.delete_conflicting_holding_data!
+        bib_record.enrich_with_holding(holding, recap: true)
+        bib_record.strip_non_numeric!
+      end
       if records == []
-        render plain: "Barcode #{params[:barcode]} not found.", status: 404
+        render plain: "Barcode #{barcode} not found.", status: 404
       else
         respond_to do |wants|
           wants.json  do
@@ -51,5 +53,7 @@ class BarcodeController < ApplicationController
         end
       end
     end
+  rescue => e
+    handle_alma_exception(exception: e, message: "Error for barcode: #{barcode}")
   end
 end

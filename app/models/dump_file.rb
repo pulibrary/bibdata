@@ -2,48 +2,48 @@ require 'zlib'
 require 'digest'
 
 class DumpFile < ActiveRecord::Base
-  include FilePathGenerator
-
   belongs_to :dump
   belongs_to :dump_file_type
+  enum index_status: [:enqueued, :started, :done]
 
   after_create do
-    self.path = generate_fp if self.path.nil?
-    self.save
+    self.path = generate_fp if path.nil?
+    save
   end
 
   before_save do
-    unless self.path.nil? || !File.exist?(self.path)
-      self.md5 = File.open(self.path, 'rb') do |io|
+    unless path.nil? || !File.exist?(path) || md5.present?
+      self.md5 = File.open(path, 'rb') do |io|
         digest = Digest::MD5.new
         buf = ''
-        while io.read(4096, buf)
-          digest.update(buf)
-        end
+        digest.update(buf) while io.read(4096, buf)
         digest
       end
     end
   end
 
   before_destroy do
-    File.delete(self.path) if File.exist?(self.path)
+    File.delete(path) if File.exist?(path)
   end
 
   def recap_record_type?
-    self.dump_file_type == DumpFileType.find_by(constant: 'RECAP_RECORDS')
+    [
+      DumpFileType.find_by(constant: 'RECAP_RECORDS'),
+      DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL')
+    ].include? dump_file_type
   end
 
   def zipped?
-    self.path.ends_with?('.gz')
+    path.ends_with?('.gz')
   end
 
   def zip
-    unless self.zipped?
-      gz_path = "#{self.path}.gz"
-      uncompressed_path = self.path
+    unless zipped?
+      gz_path = "#{path}.gz"
+      uncompressed_path = path
       Zlib::GzipWriter.open(gz_path) do |gz|
         File.open(uncompressed_path) do |fp|
-          while chunk = fp.read(16 * 1024) do
+          while chunk = fp.read(16 * 1024)
             gz.write chunk
           end
         end
@@ -51,19 +51,19 @@ class DumpFile < ActiveRecord::Base
       end
       self.path = gz_path
       File.delete(uncompressed_path)
-      self.save
+      save
     end
     self
   end
 
   def unzip
-    if self.zipped?
-      uncompressed_path = self.path.sub(/\.gz$/, '')
-      gz_path = self.path
+    if zipped?
+      uncompressed_path = path.sub(/\.gz$/, '')
+      gz_path = path
 
       Zlib::GzipReader.open(gz_path) do |gz|
         File.open(uncompressed_path, 'wb') do |fp|
-          while chunk = gz.read(16 * 1024) do
+          while chunk = gz.read(16 * 1024)
             fp.write chunk
           end
         end
@@ -72,8 +72,12 @@ class DumpFile < ActiveRecord::Base
 
       self.path = uncompressed_path
       File.delete(gz_path)
-      self.save
+      save
     end
     self
+  end
+
+  def generate_fp
+    File.join(MARC_LIBERATION_CONFIG['data_dir'], Time.now.to_i.to_s)
   end
 end

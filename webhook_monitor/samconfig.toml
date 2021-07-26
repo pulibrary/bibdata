@@ -1,0 +1,12 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "alma-webhook-monitor"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1j1ve93v4jqs9"
+s3_prefix = "alma-webhook-monitor"
+region = "us-east-1"
+profile = "alma-events"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
+parameter_overrides = "StageName=\"production\""

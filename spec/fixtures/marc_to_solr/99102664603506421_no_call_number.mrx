@@ -1,0 +1,75 @@
+<record>
+    <leader>00750cam a2200169 i 4500</leader>
+    <controlfield tag="005">20170619084855.0</controlfield>
+    <controlfield tag="008">170619s2017    njua     b    000 0 eng d</controlfield>
+    <controlfield tag="001">99102664603506421</controlfield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Addiction reviews /</subfield>
+      <subfield code="c">editor, George R. Uhl, Intramural Research Program, National Institutes of Health, and New Mexico VA health care system, Alburquerque, New Mexico.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Hoboken, NJ :</subfield>
+      <subfield code="b">published on behalf of the New York Academy of Sciences by Wiley Subscription Services,</subfield>
+      <subfield code="c">2017</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">127 p.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Annals of the New York Academy of Sciences ;</subfield>
+      <subfield code="v">volume 1394</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Annals of the New York Academy of Sciences ;</subfield>
+      <subfield code="v">v. 1394.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n42032359</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n42032359</subfield>
+    </datafield>
+    <datafield tag="904" ind1=" " ind2=" ">
+      <subfield code="a">jc0</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="h">n</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20170619</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)10266460-princetondb</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 08:53:15 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">lewis</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="8">22100565840006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 13:53:15</subfield>
+      <subfield code="8">22100565840006421</subfield>
+      <subfield code="b">Lewis Library</subfield>
+      <subfield code="c">Stacks: Lewis Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22100565840006421</subfield>
+      <subfield code="a">23100565830006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="d">2020-12-02 13:53:15</subfield>
+      <subfield code="p">32101101355020</subfield>
+      <subfield code="t">0</subfield>
+    </datafield>
+  </record>
+  <record>

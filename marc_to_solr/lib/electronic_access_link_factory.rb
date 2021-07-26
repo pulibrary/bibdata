@@ -14,7 +14,7 @@ class ElectronicAccessLinkFactory
     # e. g. "Curatorial documentation"
     z_label = s_field.value if s_field.code == 'z'
 
-    anchor_text = s_field.value if s_field.code == 'y' || s_field.code == '3' || s_field.code == 'x'
+    anchor_text = s_field.value if s_field.code == 'y' || s_field.code == '3'
 
     values = { holding_id: holding_id, url_key: url_key, z_label: z_label, anchor_text: anchor_text }
     values.delete_if { |_key, value| value.nil? }

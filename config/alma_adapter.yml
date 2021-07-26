@@ -1,2 +1,2 @@
-bibs_read_only: <%= ENV['ALMA_BIBS_READ_ONLY'] %> 
+read_only_apikey: <%= ENV['ALMA_READ_ONLY_APIKEY'] %> 
 region: <%= ENV['ALMA_REGION'] %>

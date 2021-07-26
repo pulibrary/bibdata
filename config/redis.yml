@@ -1,0 +1,13 @@
+development:
+  host: <%= ENV["lando_marc_liberation_redis_conn_host"] || "localhost" %>
+  port: <%= ENV["lando_marc_liberation_redis_conn_port"] || 6379 %>
+test:
+  host: <%= ENV["lando_marc_liberation_redis_conn_host"] || "localhost" %>
+  port: <%= ENV["lando_marc_liberation_redis_conn_port"] || 6379 %>
+  db: 2
+production: &production
+  host: <%= ENV['BIBDATA_REDIS_URL'] || 'localhost' %>
+  port: <%= ENV['BIBDATA_REDIS_PORT'] || '6379' %>
+  db: <%= ENV['BIBDATA_REDIS_DB'] || 5 %>
+staging:
+  <<: *production

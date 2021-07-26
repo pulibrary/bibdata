@@ -6,34 +6,50 @@ Formerly known as MARC Liberation (since it liberates MARC data from Voyager).
 [![CoverageStatus](https://coveralls.io/repos/github/pulibrary/bibdata/badge.svg?branch=main)](https://coveralls.io/github/pulibrary/bibdata?branch=main)
 [![BSD 2-Clause License](https://img.shields.io/badge/license-BSD-blue.svg?style=plastic)](./LICENSE)
 
-## Services
+Find Internal Documentation on our [confluence
+wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&title=Alma)
 
-For now look at `config/routes.rb` for what's available.
+## API Endpoints
+
+[API Endpoint documentation](docs/api_endpoints.md)
 
 ## Development and testing
 
-## Installation
-
 ### Dependencies
-  * Mysql
+  * Postgresql (provided in development by lando)
+  * `brew install shared-mime-info` (for `mimemagic` gem)
 
-### Oci8
+Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
-See `https://github.com/pulibrary/voyager_helpers/blob/master/README.md` for details.
+### Setup server
+1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+1. Install Sidekiq Pro credentials: `bin/setup_keys`
+1. To start: `bundle exec rake servers:start`
+1. For testing:
+   - `bundle exec rspec`
+1. For development:
+   - `bundle exec rails server`
+   - Access marc_liberation at http://localhost:3000/
+1. To stop: `bundle exec rake servers:stop` or `lando stop`
 
-#### Using macOS/OS X releases and Homebrew
+## Alma
 
-As referenced in the above readme, use [the RubyDoc for the ruby-oci8 Gem](http://www.rubydoc.info/github/kubo/ruby-oci8/file/docs/install-on-osx.md#Install_Oracle_Instant_Client_Packages) for how best to track versions of the Oracle Client packages in Apple OS environments.
+### Configure Alma keys for Development
 
-## Configuration
+1. `brew install lastpass-cli`
+2. `lpass login emailhere`
+3. `bundle exec rake alma:setup_keys`
 
-Set env vars in `config/initializers/voyager_helpers.rb` and `config/initializers/devise.rb`, as appropriate (see [bibdata](https://github.com/pulibrary/princeton_ansible/blob/main/group_vars/bibdata/vault.yml)).
+This will add a .env with credentials to Rails.root
 
-You can run tests without setting up a voyager connection, but it is required for a development environment.
+### Accessing the Alma instance
 
-## Creating Alma Fixtures
+https://sandbox02-na.alma.exlibrisgroup.com/mng/login?institute=01PRI_INST&auth=local
 
-Go to the sandbox and login:
+Credentials are in LastPass; use the AlmaAdmin account
+
+## Accessing the API sandbox
+
 https://developers.exlibrisgroup.com/console/
 
 If you don't have an account ask our local administrator to create one for you.
@@ -43,7 +59,9 @@ If you don't have an account ask our local administrator to create one for you.
 1. Once you've activated the account, go back to the first email and use the
    bottom link to accept the invitation. You should now have access to our keys.
 
-To generate the fixture:
+### Creating Alma Fixtures
+
+In the API sandbox (see above)
 
 1. Select the 'api-na' north america server
 1. Select the read-only API key
@@ -54,6 +72,28 @@ To generate the fixture:
    button)
 1. Click 'Execute'
 1. You can download the file with the little "Download" button
+
+### Export a set of test records from production
+1. Login to alma https://princeton.alma.exlibrisgroup.com/SAML
+1. In the left side bar click 'Admin' -> Select 'Manage sets'
+1. Find or create the set you want to use.
+1. Click on the elipsis button of the set. -> Select 'Members'
+1. If there are records in the set that it is not desired to export, select the records using the checkbox to the left and click 'Remove Selected'
+1. Click 'Add Memebers'. Add in the search bar the desired mms_id. -> 'Search' -> Select the listed record using the checkbox -> Click Add Selected.
+1. In the left bar, click 'Resources' -> 'Publishing Profiles' -> Find the 'DRDS Test Record export' publishing profile.
+1. -> Click the elipsis button and select 'Edit'. Configure it to use your set under "Content". Click "Save".
+1. -> Click the elipsis button and select 'Republish'. -> Select 'Rebuild Entire Index' -> Click 'Run Now'.
+1. The new tar.gz file with the selected records will be on the lib-sftp server as '/alma/drds_test_records_new[_i].tar.gz'
+
+### Finding a Voyager item in Alma
+
+Voyager items, once the migration is finished, will have an ID in Alma equal to
+`99<voyager_id>3405314`
+
+### Hitting the Alma API
+
+The Alma web API has a maximum concurrent hit limit of 25 / second. The API limits are documented at https://developers.exlibrisgroup.com/alma/apis/#threshold and Daily use stats can be viewed at https://developers.exlibrisgroup.com/manage/reports/.
+
 
 ## Database Configuration
 
@@ -119,6 +159,9 @@ To index a single record from Voyager into Orangelight:
 SET_URL=http://localhost:8983/solr/orangelight-core-development BIB=123456 rake liberate:bib
 ```
 
+## Alma Webhooks
+see [[webhook_monitor/README.md]]
+
 ## Tests
 
 A couple of the tests require some fixtures to be in place; for now they must be copied as in this CI configuration: https://github.com/pulibrary/marc_liberation/blob/6b7b9e60d65f313fede5a70e5a2cd6e56d634003/.circleci/config.yml#L36-L46
@@ -134,6 +177,17 @@ To run all the tests use the rake task, which sets some environment variables fo
 ## Deploy
 Deployment is through capistrano. To deploy a branch other than "main", prepend an environment variable to your deploy command, e.g.:
 `BRANCH=my_feature bundle exec cap staging deploy`
+
+## Production Locations Configuration
+
+To import locations from Alma for the first time in a production environment do
+the following:
+
+1. `cap [environment] rails:console`
+1. `LocationDataService.delete_existing_and_repopulate`
+
+This is a destructive action, only do this for initial setup or for a clean
+slate!
 
 ## License
 

@@ -614,6 +614,57 @@ def join_hierarchy fields
   join_hierarchy_without_author(fields).map { |a| a[1..-1] }
 end
 
+# Removes empty call_number fields from holdings_1display
+def remove_empty_call_number_fields(holding)
+  holding.tap { |h| ["call_number", "call_number_browse"].map { |k| h.delete(k) if h.fetch(k, []).empty? } }
+end
+
+# Collects only non empty khi
+def call_number_khi(field)
+  field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["k", "h", "i"].include?(s.code) }.compact
+end
+
+# Alma Princeton item
+def alma_code_start_22?(code)
+  code.to_s.start_with?("22") && code.to_s.end_with?("06421")
+end
+
+def alma_code_start_53?(code)
+  code.to_s.start_with?("53") && code.to_s.end_with?("06421")
+end
+
+def alma_852(record)
+  record.fields('852').select { |f| alma_code_start_22?(f['8']) }
+end
+
+def alma_876(record)
+  record.fields('876').select { |f| alma_code_start_22?(f['0']) }
+end
+
+def alma_951(record)
+  record.fields('951').select { |f| alma_code_start_53?(f['8']) }
+end
+
+def alma_953(record)
+  record.fields('953').select { |f| alma_code_start_53?(f['a']) }
+end
+
+def alma_954(record)
+  record.fields('954').select { |f| alma_code_start_53?(f['a']) }
+end
+
+def alma_950(record)
+  field_950_a = record.fields('950').select { |f| ["true", "false"].include?(f['a']) }
+  field_950_a.map { |f| f['b'] }.first if field_950_a.present?
+end
+
+# SCSB item
+# Keep this check with the alma_code? check
+# until we make sure that the records in alma are updated
+def scsb_doc?(record_id)
+  /^SCSB-\d+/.match?(record_id)
+end
+
 # holding block json hash keyed on mfhd id including location, library, call number, shelving title,
 # location note, location has, location has (current), indexes, and supplements
 # pulls from mfhd 852, 866, 867, and 868
@@ -623,42 +674,58 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding = {}
     holding_id = nil
+    is_alma = alma_code_start_22?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_alma || is_scsb
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      # Index holdings from Princeton records
+      if s_field.code == '8' && is_alma
+        holding_id = s_field.value
+      # Index holdings from SCSB.
+      elsif s_field.code == '0' && is_scsb
         holding_id = s_field.value
       elsif s_field.code == 'b'
-        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[s_field.value]
-        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[s_field.value]
         holding['location_code'] ||= s_field.value
-      elsif /[ckhij]/.match?(s_field.code)
+        # Append 852c to location code 852b if it's an Alma item
+        # Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
+        holding['location_code'] += "$#{field['c']}" if field['c'] && is_alma
+        holding['location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
+        holding['library'] ||= Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
+      elsif /[khij]/.match?(s_field.code)
         holding['call_number'] ||= []
         holding['call_number'] << s_field.value
-        unless s_field.code == 'c'
-          holding['call_number_browse'] ||= []
-          holding['call_number_browse'] << s_field.value
-        end
+        holding['call_number_browse'] ||= []
+        holding['call_number_browse'] << s_field.value
       elsif s_field.code == 'l'
         holding['shelving_title'] ||= []
         holding['shelving_title'] << s_field.value
-      elsif s_field.code == 't' && holding['copy_number'].nil?
-        holding['copy_number'] = s_field.value
       elsif s_field.code == 'z'
         holding['location_note'] ||= []
         holding['location_note'] << s_field.value
       end
     end
-    holding['call_number'] = holding['call_number'].join(' ') if holding['call_number']
-    holding['call_number_browse'] = holding['call_number_browse'].join(' ') if holding['call_number_browse']
-    all_holdings[holding_id] = holding unless holding_id.nil? || invalid_location?(holding['location_code'])
+
+    holding['call_number'] = holding['call_number'].join(' ').strip if holding['call_number'].present?
+    holding['call_number_browse'] = holding['call_number_browse'].join(' ').strip if holding['call_number_browse'].present?
+    all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
   end
   Traject::MarcExtractor.cached('866az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
+    is_alma = alma_code_start_22?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_alma || is_scsb
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      # Index holding from Princeton records
+      if s_field.code == '8' && is_alma
         holding_id = s_field.value
+      # Index holding from SCSB
+      elsif s_field.code == '0' && is_scsb
+        holding_id = s_field.value
+      # location_has for SCSB or Princeton
       elsif s_field.code == 'a'
         value << s_field.value
+      # location_has for SCSB or Princeton
       elsif s_field.code == 'z'
         value << s_field.value
       end
@@ -668,14 +735,23 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       all_holdings[holding_id]['location_has'] << value.join(' ')
     end
   end
-  Traject::MarcExtractor.cached('8670az').collect_matching_lines(record) do |field, _spec, _extractor|
+  Traject::MarcExtractor.cached('867az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
+    is_alma = alma_code_start_22?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_alma || is_scsb
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      # Index holding from Princeton records
+      if s_field.code == '8' && is_alma
         holding_id = s_field.value
+      # Index holding from SCSB
+      elsif s_field.code == '0' && is_scsb
+        holding_id = s_field.value
+      # supplements for SCSB or Princeton
       elsif s_field.code == 'a'
         value << s_field.value
+      # supplements for SCSB or Princeton
       elsif s_field.code == 'z'
         value << s_field.value
       end
@@ -685,14 +761,23 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       all_holdings[holding_id]['supplements'] << value.join(' ')
     end
   end
-  Traject::MarcExtractor.cached('8680az').collect_matching_lines(record) do |field, _spec, _extractor|
+  Traject::MarcExtractor.cached('868az').collect_matching_lines(record) do |field, _spec, _extractor|
     value = []
     holding_id = nil
+    is_alma = alma_code_start_22?(field['8'])
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_alma || is_scsb
     field.subfields.each do |s_field|
-      if s_field.code == '0'
+      # Index holding from Princeton records
+      if s_field.code == '8' && is_alma
         holding_id = s_field.value
+      # Index holding from SCSB
+      elsif s_field.code == '0' && is_scsb
+        holding_id = s_field.value
+      # indexes for SCSB or Princeton
       elsif s_field.code == 'a'
         value << s_field.value
+      # indexes for SCSB or Princeton
       elsif s_field.code == 'z'
         value << s_field.value
       end
@@ -702,8 +787,11 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       all_holdings[holding_id]['indexes'] << value.join(' ')
     end
   end
-  ### Added for ReCAP records
+  ### Added for SCSB - scsbnypl, scsbcul
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
+    is_alma = alma_code_start_22?(field['0'])
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_scsb || is_alma
     item = {}
     field.subfields.each do |s_field|
       if s_field.code == '0'
@@ -712,7 +800,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         item[:enumeration] = s_field.value
       elsif s_field.code == 'a'
         item[:id] = s_field.value
-      elsif s_field.code == 'h'
+      elsif s_field.code == 'h' && is_scsb
         item[:use_statement] = s_field.value
       elsif s_field.code == 'j'
         item[:status_at_load] = s_field.value
@@ -720,16 +808,18 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         item[:barcode] = s_field.value
       elsif s_field.code == 't'
         item[:copy_number] = s_field.value
-      elsif s_field.code == 'x'
+      elsif s_field.code == 'x' && is_scsb
         item[:cgc] = s_field.value
-      elsif s_field.code == 'z'
+      elsif s_field.code == 'z' && is_scsb
         item[:collection_code] = s_field.value
       end
     end
-    if all_holdings[item[:holding_id]]["items"].nil?
-      all_holdings[item[:holding_id]]["items"] = [item]
-    else
-      all_holdings[item[:holding_id]]["items"] << item
+    if all_holdings[item[:holding_id]].present?
+      if all_holdings[item[:holding_id]]["items"].nil?
+        all_holdings[item[:holding_id]]["items"] = [item]
+      else
+        all_holdings[item[:holding_id]]["items"] << item
+      end
     end
   end
   all_holdings
@@ -743,6 +833,8 @@ def process_recap_notes record
   item_notes = []
   partner_lib = nil
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_scsb
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         partner_lib = s_field.value # ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
@@ -750,6 +842,8 @@ def process_recap_notes record
     end
   end
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
+    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    next unless is_scsb
     col_group = ''
     field.subfields.each do |s_field|
       if s_field.code == 'x'
@@ -766,6 +860,8 @@ def process_recap_notes record
       partner_display_string = 'N'
     elsif partner_lib == 'scsbcul'
       partner_display_string = 'C'
+    elsif partner_lib == "scsbhl"
+      partner_display_string = "H"
     end
     item_notes << "#{partner_display_string} - #{col_group}"
   end

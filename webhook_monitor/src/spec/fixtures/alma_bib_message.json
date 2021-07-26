@@ -1,0 +1,58 @@
+{
+    "action": "BIB",
+    "bib": {
+        "anies": [
+            "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>01154cam a22002774a 4500</leader><controlfield tag=\"001\">991281420000541</controlfield><controlfield tag=\"005\">20201211111915.0</controlfield><controlfield tag=\"008\">070508s2008    nyu           000 0 eng</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"010\"><subfield code=\"a\">2007019456</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">9780385517508</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">14842876</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">DLC</subfield><subfield code=\"c\">DLC</subfield><subfield code=\"d\">DLC</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"042\"><subfield code=\"a\">pcc</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"043\"><subfield code=\"a\">n-us-dc</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"050\"><subfield code=\"a\">JK1726</subfield><subfield code=\"b\">.M575 2008</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"082\"><subfield code=\"a\">306.209753</subfield><subfield code=\"2\">22</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Milbank, Dana.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Homo politicus :</subfield><subfield code=\"b\">the strange and barbaric tribes of the beltway /</subfield><subfield code=\"c\">Dana Milbank.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"250\"><subfield code=\"a\">1st ed.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">New York :</subfield><subfield code=\"b\">Doubleday,</subfield><subfield code=\"c\">c2008.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">276 p. ;</subfield><subfield code=\"c\">25 cm.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"505\"><subfield code=\"a\">Status : brahmins and untouchables -- Kinship -- Hunting and gathering -- Mythology and folklore -- Norms and deviancy -- Shamanism -- Aggression -- Taboo -- Festivals &amp; social rituals -- Human sacrifice -- Fertility rites &amp; mating behaviors -- Cult of the choreutai.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Political culture</subfield><subfield code=\"z\">Washington (D.C.)</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Politicians</subfield><subfield code=\"z\">Washington (D.C.)</subfield><subfield code=\"x\">Social life and customs.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">Washington (D.C.)</subfield><subfield code=\"x\">Social life and customs.</subfield></datafield><datafield ind1=\"4\" ind2=\"1\" tag=\"856\"><subfield code=\"3\">Table of contents only</subfield><subfield code=\"u\">http://www.loc.gov/catdir/toc/ecip0717/2007019456.html</subfield></datafield></record>"
+        ],
+        "author": "Milbank, Dana.",
+        "cataloging_level": {
+            "desc": "Default Level",
+            "value": "00"
+        },
+        "complete_edition": "1st ed.",
+        "created_by": "import",
+        "created_date": "2011-12-17Z",
+        "date_of_publication": "c2008.",
+        "holdings": {
+            "link": "/almaws/v1/bibs/991281420000541/holdings",
+            "value": ""
+        },
+        "isbn": "9780385517508",
+        "issn": null,
+        "last_modified_by": "AlmaAdmin",
+        "last_modified_date": "2020-12-11Z",
+        "link": null,
+        "linked_record_id": {
+            "type": null,
+            "value": ""
+        },
+        "mms_id": "991281420000541",
+        "network_number": [
+            "14842876"
+        ],
+        "originating_system": "ILS",
+        "originating_system_id": "63704-train20072_c2db",
+        "place_of_publication": "New York :",
+        "publisher_const": "Doubleday,",
+        "record_format": "marc21",
+        "requests": null,
+        "suppress_from_external_search": "false",
+        "suppress_from_publishing": "false",
+        "sync_with_oclc": "NONE",
+        "title": "Homo politicus : the strange and barbaric tribes of the beltway /"
+    },
+    "event": {
+        "desc": "BIB record updated",
+        "value": "BIB_UPDATED"
+    },
+    "holding": null,
+    "id": "878675682111310790",
+    "institution": {
+        "desc": "Princeton University",
+        "value": "01PRI_INST"
+    },
+    "item": null,
+    "portfolio": null,
+    "representation": null,
+    "time": "2020-12-11T16:19:20.552Z"
+}

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>02762cam a2200661 i 4500</leader>
+    <controlfield tag="005">20201015132442.0</controlfield>
+    <controlfield tag="008">180927m20189999ja a     b    001 0ajpn c</controlfield>
+    <controlfield tag="001">99116547863506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">  2018430599</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1062349585</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1062349585</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">11654786</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1062349585</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1062349585</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)11654786-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">STF</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">STF</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">ZCU</subfield>
+      <subfield code="d">LOA</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">PUL</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9784000099851</subfield>
+      <subfield code="q">(v. 1)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9784000099851</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">400009985X</subfield>
+      <subfield code="q">(v. 1)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/400009985X</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">a-ja---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">DS865.N335</subfield>
+      <subfield code="b">A3 2018</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2=" ">
+      <subfield code="a">DB210.088</subfield>
+    </datafield>
+    <datafield tag="084" ind1=" " ind2=" ">
+      <subfield code="a">J3306/5047.4 pt.31</subfield>
+      <subfield code="2">cscjb</subfield>
+    </datafield>
+    <datafield tag="099" ind1=" " ind2=" ">
+      <subfield code="a">J3306/5047.4 pt.31</subfield>
+    </datafield>
+    <datafield tag="049" ind1=" " ind2=" ">
+      <subfield code="a">PULL</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Nakanoin, Michifuyu,</subfield>
+      <subfield code="d">1315-1363,</subfield>
+      <subfield code="e">author.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/no2019008144</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Nakanoin ipponki /</subfield>
+      <subfield code="c">Tōkyō Daigaku Shiryō Sensanjo hensan.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Nakanoin 1-honki</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Tōkyō :</subfield>
+      <subfield code="b">Iwanami Shōten,</subfield>
+      <subfield code="c">2018-</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">volumes :</subfield>
+      <subfield code="b">illustrations ;</subfield>
+      <subfield code="c">22 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="380" ind1=" " ind2=" ">
+      <subfield code="a">Diaries</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Dai Nihon kokiroku</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="505" ind1="1" ind2=" ">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">[1]. Kenmu sannen nigatsu yori Kōei gannen rokugatsu ni itaru</subfield>
+    </datafield>
+    <datafield tag="505" ind1="1" ind2="0">
+      <subfield code="6">880-07</subfield>
+      <subfield code="g">jō.</subfield>
+      <subfield code="t">Kenmu 3-nen 2-gatsu yori Kōei gannen 6-gatsu ni itaru</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="6">880-08</subfield>
+      <subfield code="a">Nakanoin, Michifuyu,</subfield>
+      <subfield code="d">1315-1363</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Japan</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">Kamakura period, 1185-1333</subfield>
+      <subfield code="v">Sources.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Japan</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">Period of northern and southern courts, 1336-1392</subfield>
+      <subfield code="v">Sources.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">Japan.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01204082</subfield>
+    </datafield>
+    <datafield tag="648" ind1=" " ind2="7">
+      <subfield code="a">1185-1392</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Diaries.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423794</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">History.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411628</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Sources.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423900</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Diaries.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026085</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="6">880-09</subfield>
+      <subfield code="a">Tōkyō Daigaku.</subfield>
+      <subfield code="b">Shiryō Hensanjo,</subfield>
+      <subfield code="e">editor.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n82166016</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="6">880-10</subfield>
+      <subfield code="a">Dai Nihon kokiroku.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">中院通冬,</subfield>
+      <subfield code="d">1315-1363,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">中院一品記 /</subfield>
+      <subfield code="c">東京大學史料編纂所編纂.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="3" ind2=" ">
+      <subfield code="6">246-03</subfield>
+      <subfield code="a">中院 1品記</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="1">
+      <subfield code="6">264-04</subfield>
+      <subfield code="a">東京 :</subfield>
+      <subfield code="b">岩波書店,</subfield>
+      <subfield code="c">2018-</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">490-05</subfield>
+      <subfield code="a">大日本古記錄</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">505-06</subfield>
+      <subfield code="a">[1]. 自建武三年二月至康永元年六月</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">505-07</subfield>
+      <subfield code="g">上.</subfield>
+      <subfield code="t">自建武三年二月至康永元年六月</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="4">
+      <subfield code="6">600-08</subfield>
+      <subfield code="a">中院通冬,</subfield>
+      <subfield code="d">1315-1363</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="2" ind2=" ">
+      <subfield code="6">710-09</subfield>
+      <subfield code="a">東京大學.</subfield>
+      <subfield code="b">史料編纂所,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="0">
+      <subfield code="6">830-10</subfield>
+      <subfield code="a">大日本古記錄.</subfield>
+    </datafield>
+    <datafield tag="994" ind1=" " ind2=" ">
+      <subfield code="a">C0</subfield>
+      <subfield code="b">PUL</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">kh</subfield>
+      <subfield code="s">kh</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20191016</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="b">2020-12-02 17:12:18 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">eastasian</subfield>
+      <subfield code="c">hy</subfield>
+      <subfield code="h">J3306/5047.4 pt.31</subfield>
+      <subfield code="8">22211952510006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2020-12-02 22:12:18</subfield>
+      <subfield code="8">22211952510006421</subfield>
+      <subfield code="b">East Asian Library</subfield>
+      <subfield code="c">hy: East Asian Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22211952510006421</subfield>
+      <subfield code="a">23211952500006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="3">vol.1</subfield>
+      <subfield code="d">2020-12-02 22:12:18</subfield>
+      <subfield code="p">32101113265852</subfield>
+      <subfield code="t">0</subfield>
+    </datafield>
+  </record>
+</collection>

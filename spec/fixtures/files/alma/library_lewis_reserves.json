@@ -1,0 +1,25 @@
+{
+    "code": "resterm",
+    "name": "sciresp: Lewis: Term Loan",
+    "external_name": "Lewis Library: Term Loan Reserves",
+    "type": {
+        "value": "OPEN",
+        "desc": "Open"
+    },
+    "remote_storage": "",
+    "map": "",
+    "suppress_from_publishing": "false",
+    "fulfillment_unit": {
+        "value": "Reserves",
+        "desc": "Reserves"
+    },
+    "accession_placement": {
+        "value": "none",
+        "desc": "None"
+    },
+    "call_number_type": {
+        "value": "",
+        "desc": null
+    },
+    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/resterm"
+}

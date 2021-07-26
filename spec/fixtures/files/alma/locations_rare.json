@@ -1,0 +1,55 @@
+{
+    "location": [
+      {
+        "code": "xw",
+        "name": "rcpxw: Western Americana Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Western Americana. Special Collections Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/xw"
+      },
+      {
+        "code": "xx",
+        "name": "rcpxx: Special Collections Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP):  Special Collections Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/xx"
+      }
+    ],
+    "total_record_count": 2
+  }

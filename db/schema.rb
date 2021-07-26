@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_17_202853) do
+ActiveRecord::Schema.define(version: 2021_07_06_182740) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cached_marc_records", force: :cascade do |t|
+    t.string "bib_id"
+    t.text "marc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "campus_accesses", force: :cascade do |t|
     t.string "uid"
@@ -39,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "dump_file_type_id"
+    t.integer "index_status", default: 0
     t.index ["dump_file_type_id"], name: "index_dump_files_on_dump_file_type_id"
     t.index ["dump_id"], name: "index_dump_files_on_dump_id"
   end
@@ -59,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
     t.datetime "updated_at", null: false
     t.text "update_ids"
     t.text "create_ids"
+    t.string "index_status"
+    t.datetime "generated_date"
     t.index ["dump_type_id"], name: "index_dumps_on_dump_type_id"
     t.index ["event_id"], name: "index_dumps_on_event_id"
   end
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
     t.boolean "success"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "message_body"
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
@@ -111,17 +122,6 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
     t.index ["locations_library_id"], name: "index_locations_delivery_locations_on_locations_library_id"
   end
 
-  create_table "locations_floors", id: :serial, force: :cascade do |t|
-    t.string "label"
-    t.string "floor_plan_image"
-    t.string "starting_point"
-    t.string "walkable_areas"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "locations_library_id"
-    t.index ["locations_library_id"], name: "index_locations_floors_on_locations_library_id"
-  end
-
   create_table "locations_holding_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
     t.integer "locations_hours_location_id"
     t.boolean "circulates", default: true
     t.integer "holding_library_id"
+    t.string "remote_storage"
     t.index ["locations_library_id"], name: "index_locations_holding_locations_on_locations_library_id"
   end
 
@@ -183,7 +184,6 @@ ActiveRecord::Schema.define(version: 2020_12_17_202853) do
   end
 
   add_foreign_key "locations_delivery_locations", "locations_libraries"
-  add_foreign_key "locations_floors", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_hours_locations"
   add_foreign_key "locations_holding_locations", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"

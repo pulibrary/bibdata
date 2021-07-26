@@ -1,4 +1,4 @@
-module AlmaAdapter
+class AlmaAdapter
   class Connector
     class << self
       def base_path
