@@ -1,0 +1,186 @@
+<record>
+	<leader>01244cam a2200301   4500</leader>
+	<controlfield tag="005">20200803193502.0</controlfield>
+	<controlfield tag="008">820208s1928    nyua          000 0 eng  </controlfield>
+	<controlfield tag="001">9913811723506421</controlfield>
+	<datafield tag="010" ind1=" " ind2=" ">
+		<subfield code="a">   28008915  </subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">(OCoLC)ocm08136757</subfield>
+		<subfield code="0">(uri) http://www.worldcat.org/oclc/08136757</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="9">CEC5064TS</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">1381172</subfield>
+	</datafield>
+	<datafield tag="035" ind1=" " ind2=" ">
+		<subfield code="a">(NjP)1381172-princetondb</subfield>
+	</datafield>
+	<datafield tag="040" ind1=" " ind2=" ">
+		<subfield code="a">DLC</subfield>
+		<subfield code="c">KSU</subfield>
+		<subfield code="d">OCL</subfield>
+		<subfield code="d">PUL</subfield>
+	</datafield>
+	<datafield tag="050" ind1=" " ind2=" ">
+		<subfield code="a">Z209.N56</subfield>
+		<subfield code="b">E2</subfield>
+	</datafield>
+	<datafield tag="100" ind1="1" ind2=" ">
+		<subfield code="a">Eames, Wilberforce,</subfield>
+		<subfield code="d">1855-1937.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/names/n50030206</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/names/n50030206</subfield>
+		<subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n50030206</subfield>
+	</datafield>
+	<datafield tag="245" ind1="1" ind2="4">
+		<subfield code="a">The first year of printing in New-York, May, 1693 to April, 1694</subfield>
+		<subfield code="c">by Wilberforce Eames.</subfield>
+	</datafield>
+	<datafield tag="260" ind1=" " ind2=" ">
+		<subfield code="a">New-York,</subfield>
+		<subfield code="b">Printed by the New-York Public Library,</subfield>
+		<subfield code="c">1928.</subfield>
+	</datafield>
+	<datafield tag="300" ind1=" " ind2=" ">
+		<subfield code="a">25 p.</subfield>
+		<subfield code="b">illus.</subfield>
+		<subfield code="c">26 cm.</subfield>
+	</datafield>
+	<datafield tag="500" ind1=" " ind2=" ">
+		<subfield code="a">Plates are printed on both sides.</subfield>
+	</datafield>
+	<datafield tag="500" ind1=" " ind2=" ">
+		<subfield code="a">"Reprinted February 1928 from the Bulletin of the New York Public Library of January 1928."</subfield>
+	</datafield>
+	<datafield tag="561" ind1=" " ind2=" ">
+		<subfield code="a">WHS shelf-list has no date of acquisition or name of vendor.</subfield>
+		<subfield code="5">NjP</subfield>
+	</datafield>
+	<datafield tag="583" ind1=" " ind2=" ">
+		<subfield code="x">mlc</subfield>
+	</datafield>
+	<datafield tag="650" ind1=" " ind2="0">
+		<subfield code="a">Printing</subfield>
+		<subfield code="z">New York (State)</subfield>
+		<subfield code="z">New York</subfield>
+		<subfield code="x">History.</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85106751</subfield>
+	</datafield>
+	<datafield tag="600" ind1="1" ind2="0">
+		<subfield code="a">Bradford, William,</subfield>
+		<subfield code="d">1663-1752.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/names/n85029591</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/names/n85029591</subfield>
+		<subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n85029591</subfield>
+	</datafield>
+	<datafield tag="710" ind1="2" ind2=" ">
+		<subfield code="a">New York Public Library.</subfield>
+		<subfield code="0">http://id.loc.gov/authorities/names/n79033065</subfield>
+		<subfield code="0">(uri) http://id.loc.gov/authorities/names/n79033065</subfield>
+		<subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79033065</subfield>
+	</datafield>
+	<datafield tag="852" ind1="0" ind2=" ">
+		<subfield code="b">f</subfield>
+		<subfield code="h">Z209.N56</subfield>
+		<subfield code="i">E2 1928</subfield>
+		<subfield code="p">1585661</subfield>
+		<subfield code="x">reclassed from: 0230.317</subfield>
+	</datafield>
+	<datafield tag="947" ind1=" " ind2=" ">
+		<subfield code="a">CEC5064</subfield>
+	</datafield>
+	<datafield tag="911" ind1=" " ind2=" ">
+		<subfield code="a">19990626</subfield>
+	</datafield>
+	<datafield tag="950" ind1=" " ind2=" ">
+		<subfield code="b">2020-12-02 16:47:35 US/Eastern</subfield>
+		<subfield code="a">false</subfield>
+	</datafield>
+	<datafield tag="852" ind1="8" ind2="0">
+		<subfield code="b">rare</subfield>
+		<subfield code="c">ex</subfield>
+		<subfield code="h">0230.317</subfield>
+		<subfield code="8">22206472030006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 21:47:35</subfield>
+		<subfield code="8">22206472030006421</subfield>
+		<subfield code="b">Special Collections</subfield>
+		<subfield code="c">ex: Rare Books</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="852" ind1="0" ind2="0">
+		<subfield code="b">recap</subfield>
+		<subfield code="c">pa</subfield>
+		<subfield code="h">Z209.N56</subfield>
+		<subfield code="i">E2 1928</subfield>
+		<subfield code="8">22206472070006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 21:47:35</subfield>
+		<subfield code="8">22206472070006421</subfield>
+		<subfield code="b">ReCAP</subfield>
+		<subfield code="c">rcppa: RECAP</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="852" ind1="8" ind2=" ">
+		<subfield code="b">rare</subfield>
+		<subfield code="c">whs</subfield>
+		<subfield code="h">Pamphlets</subfield>
+		<subfield code="8">22206472000006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 21:47:35</subfield>
+		<subfield code="8">22206472000006421</subfield>
+		<subfield code="b">Special Collections</subfield>
+		<subfield code="c">wh: Scheide</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="852" ind1="8" ind2=" ">
+		<subfield code="b">rare</subfield>
+		<subfield code="c">ga</subfield>
+		<subfield code="h">2006-1620N</subfield>
+		<subfield code="8">22206472020006421</subfield>
+	</datafield>
+	<datafield tag="952" ind1=" " ind2=" ">
+		<subfield code="a">2020-12-02 21:47:35</subfield>
+		<subfield code="8">22206472020006421</subfield>
+		<subfield code="b">Special Collections</subfield>
+		<subfield code="c">ga: Graphic Arts Collection</subfield>
+		<subfield code="e">false</subfield>
+	</datafield>
+	<datafield tag="876" ind1=" " ind2=" ">
+		<subfield code="0">22206472070006421</subfield>
+		<subfield code="a">23206472040006421</subfield>
+		<subfield code="j">1</subfield>
+		<subfield code="z">pa</subfield>
+		<subfield code="d">2020-12-02 21:47:35</subfield>
+		<subfield code="p">32101081745802</subfield>
+		<subfield code="t">1</subfield>
+		<subfield code="y">recap</subfield>
+	</datafield>
+	<datafield tag="876" ind1=" " ind2=" ">
+		<subfield code="0">22206472020006421</subfield>
+		<subfield code="a">23206472010006421</subfield>
+		<subfield code="j">1</subfield>
+		<subfield code="z">ga</subfield>
+		<subfield code="d">2020-12-02 21:47:35</subfield>
+		<subfield code="p">32101051939385</subfield>
+		<subfield code="t">1</subfield>
+		<subfield code="y">rare</subfield>
+	</datafield>
+	<datafield tag="876" ind1=" " ind2=" ">
+		<subfield code="0">22206472000006421</subfield>
+		<subfield code="a">23206471990006421</subfield>
+		<subfield code="j">0</subfield>
+		<subfield code="x">TECHNICAL</subfield>
+		<subfield code="z">whs</subfield>
+		<subfield code="d">2020-12-02 21:47:35</subfield>
+		<subfield code="t">0</subfield>
+		<subfield code="y">rare</subfield>
+	</datafield>
+</record>

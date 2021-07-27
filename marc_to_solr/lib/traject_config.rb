@@ -1306,26 +1306,30 @@ end
 # The call_number_display is used in the catalog record page.
 to_field 'call_number_display' do |record, accumulator|
   values = []
+  result = []
   alma_852(record).each do |field|
     subfields = call_number_khi(field)
     next if subfields.empty?
-    values << [field['k'], field['h'], field['i']].compact.reject(&:empty?)
-    values.flatten!
+    values = [field['k'], field['h'], field['i']].compact.reject(&:empty?)
+    result << values.join(" ") if values.present?
   end
-  accumulator << values.join(" ") if values.present?
+  accumulator << result
+  accumulator.flatten!
 end
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |record, accumulator|
   values = []
+  result = []
   alma_852(record).each do |field|
     subfields = call_number_khi(field)
     next if subfields.empty?
-    values << [field['h'], field['i'], field['k']].compact.reject(&:empty?)
-    values.flatten!
+    values = [field['h'], field['i'], field['k']].compact.reject(&:empty?)
+    result << values.join(" ") if values.present?
   end
-  accumulator << values.join(" ") if values.present?
+  accumulator << result
+  accumulator.flatten!
 end
 
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
@@ -1333,13 +1337,15 @@ end
 # I dont think we ended up using this field
 to_field 'call_number_locator_display' do |record, accumulator|
   values = []
+  result = []
   alma_852(record).each do |field|
     subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
     next if subfields.empty?
-    values << [field['h'], field['i']].compact.reject(&:empty?)
-    values.flatten!
+    values = [field['h'], field['i']].compact.reject(&:empty?)
+    result << values.join(" ") if values.present?
   end
-  accumulator << values.join(" ") if values.present?
+  accumulator << result
+  accumulator.flatten!
 end
 
 to_field 'electronic_portfolio_s' do |record, accumulator|
