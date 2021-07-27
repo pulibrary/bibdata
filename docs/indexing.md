@@ -147,7 +147,7 @@ Because traject does not log to datadog we lose log output for indexing that run
 
 - Set up an ssh tunnel to the solr index (you can use the pul_solr cap task given
 above to do this)
-- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-rebuild rails s`
+- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-rebuild bin/rails s`
 - Go to localhost:3000 > advanced search > holding location: pul > search
 - This limits results to items from alma
 - Total number of results tells you how many records are in the index
