@@ -12,6 +12,7 @@ class Alma::Indexer
   end
 
   def incremental_index!(dump)
+    raise "received a dump with type other than CHANGED_RECORDS" unless dump.dump_type.constant == "CHANGED_RECORDS"
     dump.update!(index_status: Dump::STARTED)
     dump.dump_files.update(index_status: :started)
     batch = Sidekiq::Batch.new

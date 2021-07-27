@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Alma::Indexer do
   include ActiveJob::TestHelper
+
+  let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+
   describe "#full_reindex!" do
     it "gets the latest full dump tar files, unzips it, and indexes all the contained files" do
       event = FactoryBot.create(:full_dump_event)
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       stub_request(:get, "http://www.example.com/dump_files/#{event.dump.dump_files[0].id}")
         .to_return(status: 200, body: file_fixture("alma/full_dump/1.xml.tar.gz").read, headers: {})
       stub_request(:get, "http://www.example.com/dump_files/#{event.dump.dump_files[1].id}")
@@ -25,7 +27,6 @@ RSpec.describe Alma::Indexer do
     end
     it "works even if there's no XML extension" do
       event = FactoryBot.create(:full_dump_event)
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       stub_request(:get, "http://www.example.com/dump_files/#{event.dump.dump_files[0].id}")
         .to_return(status: 200, body: file_fixture("alma/full_dump/1.tar.gz").read, headers: {})
       stub_request(:get, "http://www.example.com/dump_files/#{event.dump.dump_files[1].id}")
@@ -47,7 +48,6 @@ RSpec.describe Alma::Indexer do
 
   describe "#index_file" do
     it "indexes a single uncompressed MARC XML file" do
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
@@ -64,7 +64,6 @@ RSpec.describe Alma::Indexer do
     end
 
     it "handles deleted records" do
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
@@ -95,8 +94,6 @@ RSpec.describe Alma::Indexer do
 
   describe "incremental_index!" do
     it "indexes a dump's files" do
-      # url = Rails.application.config.solr['url']
-      solr_url = ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test"
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
       solr.commit
@@ -116,6 +113,14 @@ RSpec.describe Alma::Indexer do
 
       expect(DumpFile.done.size).to eq 2
       expect(Dump.last).to be_done
+    end
+
+    context "when given a dump that's not an incremental alma dump" do
+      it "errors" do
+        dump = FactoryBot.create(:recap_incremental_dump)
+        indexer = described_class.new(solr_url: solr_url)
+        expect { indexer.incremental_index!(dump) }.to raise_error
+      end
     end
   end
 end
