@@ -16,9 +16,8 @@ RSpec.describe URI::ARK do
     it 'arks that include http twice the url return false ' do
       expect(described_class.princeton_ark?(url: invalid_princeton_ark)).to eq false
     end
-    it 'handles single forward slash gracefully' do
-      ark = described_class.parse(url: single_slash_ark)
-      expect(ark.to_s).to eq "http::80/arks.princeton.edu/ark:/88435/ff365d62r/pdf"
+    it 'Invalid Princeton arks return false' do
+      expect(described_class.princeton_ark?(url: single_slash_ark)).to eq false
     end
     it 'handles no http' do
       ark = described_class.parse(url: no_http)
