@@ -185,6 +185,19 @@ describe 'From princeton_marc.rb' do
       end
     end
 
+    context 'no HTTP url' do
+      let(:url) { 'arks.princeton.edu/ark:/88435/ff365d62r/pdf' }
+
+      it 'retrieves URLs' do
+        expect(links).not_to be_empty
+      end
+
+      it 'produces a URL' do
+        link = ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        expect(links.key?(url)).to eq true
+      end
+    end
+
     context 'with an invalid URL which still manages to be match the valid uri regexp' do
       let(:url) { 'http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf' }
 
