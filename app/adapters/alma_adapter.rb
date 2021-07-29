@@ -40,7 +40,7 @@ class AlmaAdapter
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
 
-    av_info = AvailabilityStatus.new(bib: bibs.first).bib_availability
+    av_info = AvailabilityStatus.new(bib: bibs.first, deep_check: deep_check).bib_availability
 
     temp_locations = av_info.any? { |_key, value| value[:temp_location] }
     if temp_locations && deep_check

@@ -6,8 +6,9 @@ class AlmaAdapter
     end
 
     attr_reader :bib
-    def initialize(bib:)
+    def initialize(bib:, deep_check: false)
       @bib = bib
+      @deep_check = deep_check
     end
 
     # Returns availability information for each of the holdings in the Bib record.
@@ -60,7 +61,7 @@ class AlmaAdapter
         # condition.
         status[:id] = "fake_id_#{sequence}"
         status[:temp_location] = true
-      elsif status[:status_label] == "Unavailable"
+      elsif status[:status_label] == "Unavailable" && @deep_check
         # Notice that we only check if a holding is available via CDL when necessary
         # because it requires an extra (slow-ish) API call.
         status[:cdl] = cdl_holding?(holding["holding_id"])
