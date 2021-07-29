@@ -45,7 +45,13 @@ class ElectronicAccessLink
         @logger.error "#{@bib_id} - invalid URL for 856$u value: #{@url_key}"
         @url_key = nil
       else
-        @url = URI.parse(@url_key)
+        if @url_key.start_with?(/http:\/[A-Za-z]/)
+          # Misleading URL "http:/" instead of "http://"
+          @logger.error "#{@bib_id} - invalid URL for 856$u value (http:/): #{@url_key}"
+          @url_key = nil
+        else
+          @url = URI.parse(@url_key)
+        end
       end
     end
   rescue URI::InvalidURIError
