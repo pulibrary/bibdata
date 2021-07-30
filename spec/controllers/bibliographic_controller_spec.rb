@@ -384,7 +384,7 @@ RSpec.describe BibliographicController, type: :controller do
     it "can get CDL status if requested" do
       get :availability_many, params: { bib_ids: "9922486553506421,99122426947506421", deep: true }, format: :json
       expect(response.body).not_to be_empty
-      expect(adapter).to have_received(:get_availability_many).with(ids: anything, deep: true)
+      expect(adapter).to have_received(:get_availability_many).with(ids: anything, deep_check: true)
     end
   end
 

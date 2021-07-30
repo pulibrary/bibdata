@@ -37,7 +37,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   #   search results page
   def availability_many
     ids = (params[:bib_ids] || "").split(",")
-    availability = adapter.get_availability_many(ids: ids, deep: ActiveModel::Type::Boolean.new.cast(params[:deep]))
+    availability = adapter.get_availability_many(ids: ids, deep_check: ActiveModel::Type::Boolean.new.cast(params[:deep]))
     respond_to do |wants|
       wants.json { render json: availability }
     end
