@@ -230,9 +230,18 @@ RSpec.describe AlmaAdapter do
       expect(holding[:cdl]).to eq false
     end
 
-    it "reports CDL when available" do
+    it "by default does not report CDL availability for unavailable records" do
       FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
       availability = adapter.get_availability_one(id: "9965126093506421")
+      holding = availability["9965126093506421"]["22202918790006421"]
+      expect(holding[:status_label]).to eq "Unavailable"
+      expect(holding[:cdl]).to eq false
+      expect(holding[:label]).to eq 'Firestone Library - Stacks'
+    end
+
+    it "reports CDL availability for unavailable records when requesting deep check" do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
+      availability = adapter.get_availability_one(id: "9965126093506421", deep_check: true)
       holding = availability["9965126093506421"]["22202918790006421"]
       expect(holding[:status_label]).to eq "Unavailable"
       expect(holding[:cdl]).to eq true
