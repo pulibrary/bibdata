@@ -155,7 +155,7 @@ class AlmaAdapter
 
       def cdl_holding?(holding_id)
         cdl = false
-        item_data[holding_id].each do |bib_item|
+        (item_data[holding_id] || []).each do |bib_item|
           if AlmaItem.new(bib_item).cdl?
             cdl = true
             break
