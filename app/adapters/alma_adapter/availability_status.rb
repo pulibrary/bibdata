@@ -42,11 +42,12 @@ class AlmaAdapter
       # Ignore electronic and digital records
       return nil if holding["inventory_type"] != "physical"
 
-      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil).to_s
+      location_info = location_record(holding)
+      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil, aeon: aeon?(location_info)).to_s
       status = {
         on_reserve: AlmaItem.reserve_location?(holding["library_code"], holding["location_code"]) ? "Y" : "N",
         location: holding_location_code(holding),
-        label: holding_location_label(holding),
+        label: holding_location_label(holding, location_info),
         status_label: status_label,
         copy_number: nil,
         cdl: false,
@@ -93,12 +94,13 @@ class AlmaAdapter
 
     def holding_summary(holding)
       holding_item_data = item_data[holding["holding_id"]]
-      status = Status.new(bib: bib, holding_item_data: holding_item_data, holding: holding)
+      location_info = location_record(holding)
+      status = Status.new(bib: bib, holding_item_data: holding_item_data, holding: holding, aeon: aeon?(location_info))
       {
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
         copy_number: holding_item_data&.first&.holding_data&.fetch('copy_id', ""),
-        label: holding_location_label(holding),
+        label: holding_location_label(holding, location_info),
         status: status.to_s
       }
     end
@@ -164,15 +166,24 @@ class AlmaAdapter
         cdl
       end
 
+      # Returns the extra location information that we store in the local database
+      def location_record(holding)
+        Locations::HoldingLocation.find_by(code: holding_location_code(holding))
+      end
+
       # The status label retrieves the value from holding_location.label
       # which is equivalent to the alma external_name value
-      def holding_location_label(holding)
-        label = Locations::HoldingLocation.find_by(code: holding_location_code(holding))&.label
+      def holding_location_label(holding, location_record)
+        label = location_record&.label
         [holding["library"], label].select(&:present?).join(" - ")
       end
 
       def holding_location_code(holding)
         [holding['library_code'], holding['location_code']].join("$")
+      end
+
+      def aeon?(location_record)
+        location_record&.aeon_location
       end
   end
 end

@@ -215,9 +215,12 @@ RSpec.describe AlmaAdapter do
       stub_alma_library(library_code: "online", location_code: "etasrcp")
       stub_alma_library(library_code: "recap", location_code: "pa")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
+      stub_alma_library(library_code: "rare", location_code: "jrare")
 
       stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
       stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
+
+      stub_alma_ids(ids: "99111299423506421", status: 200, fixture: "99111299423506421")
     end
 
     it "reports availability of physical holdings" do
@@ -280,6 +283,13 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:copy_number]).to eq "1"
       expect(holding2[:copy_number]).to eq "2"
       expect(holding1[:label]).to eq 'Lewis Library - Term Loan Reserves'
+    end
+
+    it "reports on-site access for aeon locations" do
+      FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
+      availability = adapter.get_availability_one(id: "99111299423506421")
+      item = availability["99111299423506421"]["22741556190006421"]
+      expect(item[:status_label]).to eq "On-site Access"
     end
 
     it "does not have a dash (-) before the label when the label is missing" do
