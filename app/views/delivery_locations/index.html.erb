@@ -1,0 +1,37 @@
+<h1>Delivery Locations</h1>
+
+<table class="table tablesorter tablesorter-blue sortonly">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Library</th>
+      <th>Address</th>
+      <th>Phone Number</th>
+      <th>Contact E-mail</th>
+      <th>GFA Pickup</th>
+      <th>Staff only</th>
+      <th>Pickup Location</th>
+      <th>Digital Location</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @delivery_locations.each do |delivery_location| %>
+      <tr>
+        <td><%= link_to delivery_location.label, delivery_location %></td>
+        <td><%= link_to delivery_location.library.code, delivery_location.library %></td>
+        <td><%= delivery_location.address %></td>
+        <td><%= delivery_location.phone_number %></td>
+        <td><%= delivery_location.contact_email %></td>
+        <td><%= delivery_location.gfa_pickup %></td>
+        <td><%= delivery_location.staff_only %></td>
+        <td><%= delivery_location.pickup_location %></td>
+        <td><%= delivery_location.digital_location %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'View as JSON', format: :json %>

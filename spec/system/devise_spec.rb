@@ -8,10 +8,10 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
 
   after(:all) do
     Event.destroy_all
-    Locations::Library.destroy_all
-    Locations::HoldingLocation.destroy_all
-    Locations::DeliveryLocation.destroy_all
-    Locations::HoursLocation.destroy_all
+    Library.destroy_all
+    HoldingLocation.destroy_all
+    DeliveryLocation.destroy_all
+    HoursLocation.destroy_all
   end
 
   unless ENV['CI']
@@ -37,13 +37,7 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
   ["libraries", "holding_locations", "delivery_locations",
    "hours_locations"].each_with_index do |data_type, _i|
     scenario "anyone can retrieve JSON feeds for #{data_type}" do
-      visit "/locations/#{data_type}.json"
-    end
-
-    scenario "only authenticated users can create new #{data_type}" do
-      visit "/locations/#{data_type}"
-      find("a[href='/locations/#{data_type}/create']").click
-      find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
+      visit "/#{data_type}.json"
     end
   end
 

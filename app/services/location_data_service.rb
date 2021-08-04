@@ -5,9 +5,9 @@ class LocationDataService
   end
 
   def delete_existing_and_repopulate
-    Locations::DeliveryLocation.delete_all
-    Locations::HoldingLocation.delete_all
-    Locations::Library.delete_all
+    DeliveryLocation.delete_all
+    HoldingLocation.delete_all
+    Library.delete_all
     populate_libraries
     populate_delivery_locations
     populate_holding_locations
@@ -15,7 +15,7 @@ class LocationDataService
 
   def populate_libraries
     libraries.each do |library|
-      Locations::Library.create(
+      Library.create(
         label: library.name,
         code: library.code
       )
@@ -27,12 +27,12 @@ class LocationDataService
   # Iterates through Alma holding_locations based on the Alma library code and
   def populate_holding_locations
     libraries.each do |library|
-      library_record = Locations::Library.find_by(code: library.code)
+      library_record = Library.find_by(code: library.code)
       # Use the holding_locations file to update the flags based on the holding_location_code
       holding_locations(library.code).each do |holding_location|
         next if ["elf1", "elf2", "elf3", "elf4"].include? holding_location.code
         holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == "#{library.code}$#{holding_location.code}" }
-        Locations::HoldingLocation.new do |location_record|
+        HoldingLocation.new do |location_record|
           location_record.label = holding_location.external_name
           location_record.code = "#{library.code}$#{holding_location.code}"
           location_record.remote_storage = holding_location.remote_storage
@@ -62,10 +62,10 @@ class LocationDataService
   def populate_delivery_locations
     highest_id = delivery_locations_array.sort_by { |x| x["id"] }.last["id"]
     # Reset the auto-increment column so it starts above the highest count.
-    Locations::DeliveryLocation.connection.execute("ALTER SEQUENCE locations_delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
+    DeliveryLocation.connection.execute("ALTER SEQUENCE locations_delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
     delivery_locations_array.each do |delivery_location|
       library_record = find_library_by_code(delivery_location["alma_library_code"])
-      Locations::DeliveryLocation.new do |delivery_record|
+      DeliveryLocation.new do |delivery_record|
         delivery_record.id = delivery_location['id']
         delivery_record.label = delivery_location['label']
         delivery_record.address = delivery_location['address']
@@ -88,7 +88,7 @@ class LocationDataService
       { label: "", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' }
     ]
     partners_locations.each do |p|
-      Locations::HoldingLocation.new do |location_record|
+      HoldingLocation.new do |location_record|
         location_record.label = p[:label]
         location_record.code = p[:code]
         location_record.aeon_location = p[:aeon_location]
@@ -97,7 +97,7 @@ class LocationDataService
         location_record.requestable = p[:requestable]
         location_record.always_requestable = p[:always_requestable]
         location_record.circulates = p[:circulates]
-        location_record.library = Locations::Library.find_by(code: "recap")
+        location_record.library = Library.find_by(code: "recap")
         location_record.remote_storage = p[:remote_storage]
         location_record.save
         # QX is the delivery location for scsb
@@ -109,7 +109,7 @@ class LocationDataService
   # Update joined table for holding and delivery locations
   # based on the holding_locations file and the mapped holding_location_code value
   def set_holding_delivery_locations
-    Locations::HoldingLocation.all.each do |location_record|
+    HoldingLocation.all.each do |location_record|
       holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == location_record.code }
       location_record.delivery_location_ids = delivery_library_ids(holding_location_record["delivery_locations"]) if holding_location_record.present? && holding_location_record["delivery_locations"].present?
     end
@@ -123,7 +123,7 @@ class LocationDataService
     def update_holding_library
       new_recap_holding_location_codes = ["arch$pw", "engineer$pt"]
       new_recap_holding_location_codes.each do |location_record_code|
-        holding_location_record = Locations::HoldingLocation.find_by(code: location_record_code)
+        holding_location_record = HoldingLocation.find_by(code: location_record_code)
         holding_location_record.holding_library_id = holding_library_id(location_record_code[0...-3])
         holding_location_record.save
       end
@@ -139,7 +139,7 @@ class LocationDataService
     def delivery_library_ids(gfa_pickup)
       ids = []
       gfa_pickup.each do |d|
-        delivery_location = Locations::DeliveryLocation.all.find { |m| m["gfa_pickup"] == d }
+        delivery_location = DeliveryLocation.all.find { |m| m["gfa_pickup"] == d }
         ids << delivery_location.id if delivery_location.present?
       end
       ids
@@ -147,7 +147,7 @@ class LocationDataService
 
     # Find the library using the library code
     def find_library_by_code(code)
-      Locations::Library.find_by(code: code)
+      Library.find_by(code: code)
     end
 
     # Parses voyager_locations.json file

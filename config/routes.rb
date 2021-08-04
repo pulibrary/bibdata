@@ -1,12 +1,16 @@
 require 'sidekiq/pro/web'
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
-  mount Locations::Engine, at: '/locations'
-
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]
   resources :dumps, only: [:show]
   resources :campus_access_exceptions, only: [:new, :create]
+
+  resources :hours_locations
+  resources :holding_locations
+  resources :libraries
+  resources :delivery_locations
+  get 'digital_locations', to: 'delivery_locations#digital_locations'
 
   get '/bibliographic', to: 'bibliographic#index', defaults: { format: :txt }
   get '/bibliographic/:bib_id/availability', to: 'bibliographic#availability'
