@@ -169,7 +169,7 @@ class AlmaAdapter
 
       # Returns the extra location information that we store in the local database
       def location_record(holding)
-        Locations::HoldingLocation.find_by(code: holding_location_code(holding))
+        HoldingLocation.find_by(code: holding_location_code(holding))
       end
 
       # The status label retrieves the value from holding_location.label

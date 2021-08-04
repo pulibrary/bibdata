@@ -5,12 +5,12 @@ require 'faker'
 FactoryBot.define do
   factory :holding_location, class: 'HoldingLocation' do
     label { Faker::Company.name + ' Library' }
-    aeon_location [true, false].sample
-    recap_electronic_delivery_location [true, false].sample
-    open [true, false].sample
-    requestable [true, false].sample
-    always_requestable [true, false].sample
-    circulates [true, false].sample
+    aeon_location false
+    recap_electronic_delivery_location false
+    open true
+    requestable true
+    always_requestable true
+    circulates true
     code { 'location-code-' + Faker::Alphanumeric.alphanumeric(number: 3, min_alpha: 3) }
     remote_storage 'recap_rmt'
     library { build(:library, label: 'Firestone Library') }
@@ -50,7 +50,7 @@ FactoryBot.define do
     remote_storage
   end
 
-  factory :aeon_location, class: Locations::HoldingLocation do
+  factory :aeon_location, class: HoldingLocation do
     label 'location-label'
     aeon_location true
     recap_electronic_delivery_location false
