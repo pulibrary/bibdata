@@ -114,7 +114,8 @@ class AlmaAdapter
         # This method DOES issue a separate call to the Alma API to get item information.
         # Internally this call passes "ALL" to ExLibris to get data for all the holdings
         # in the current bib record.
-        Alma::BibItem.find(bib.id).items
+        opts = { order_by: "enum_a" }
+        Alma::BibItem.find(bib.id, opts).items
       end
 
       @item_data = items.group_by do |item|
@@ -146,7 +147,7 @@ class AlmaAdapter
       options = { enable_loggable: true, timeout: 10 }
       message = "Items for bib: #{bib.id}, holding_id: #{holding_id}"
       AlmaAdapter::Execute.call(options: options, message: message) do
-        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id }
+        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id, order_by: "enum_a" }
         items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
         data = { items: items, total_count: items.count }
       end

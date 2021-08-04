@@ -191,7 +191,7 @@ RSpec.describe AlmaAdapter do
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_cdl, headers: { "content-Type" => "application/json" })
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/ALL/items")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/ALL/items?order_by=enum_a")
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_cdl_holding_items, headers: { "content-Type" => "application/json" })
 
@@ -413,7 +413,7 @@ RSpec.describe AlmaAdapter do
         .to_return(status: 429, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json" })
 
       stub_alma_ids(ids: "9919392043506421", status: 200)
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100&order_by=enum_a")
         .to_return(status: 429, body: stub_alma_per_second_threshold, headers: { "Content-Type" => "application/json" })
     end
 
