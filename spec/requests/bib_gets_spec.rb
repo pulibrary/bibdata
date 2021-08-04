@@ -53,7 +53,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
         .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
 
       stub_alma_ids(ids: "9919392043506421", status: 200)
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9919392043506421/holdings/22105104420006421/items?limit=100&order_by=enum_a")
         .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
     end
 
