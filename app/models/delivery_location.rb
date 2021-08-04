@@ -4,6 +4,9 @@ class DeliveryLocation < ActiveRecord::Base
   include Labeled
   include WithLibrary
 
+  # TODO: Remove after migrating to non-prefixed tables
+  self.table_name_prefix = 'locations_'
+
   has_and_belongs_to_many :holding_locations, -> { distinct },
                           class_name: 'HoldingLocation',
                           join_table: 'locations_holdings_delivery',

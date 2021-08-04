@@ -4,6 +4,9 @@ class HoldingLocation < ActiveRecord::Base
   include Coded
   include WithLibrary
 
+  # TODO: Remove after migrating to non-prefixed tables
+  self.table_name_prefix = 'locations_'
+
   belongs_to :hours_location, class_name: 'HoursLocation', foreign_key: :locations_hours_location_id, optional: true
   belongs_to :holding_library, class_name: 'Library', foreign_key: :holding_library_id, optional: true
 

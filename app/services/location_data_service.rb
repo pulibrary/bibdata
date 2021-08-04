@@ -62,7 +62,7 @@ class LocationDataService
   def populate_delivery_locations
     highest_id = delivery_locations_array.sort_by { |x| x["id"] }.last["id"]
     # Reset the auto-increment column so it starts above the highest count.
-    DeliveryLocation.connection.execute("ALTER SEQUENCE delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
+    DeliveryLocation.connection.execute("ALTER SEQUENCE locations_delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
     delivery_locations_array.each do |delivery_location|
       library_record = find_library_by_code(delivery_location["alma_library_code"])
       DeliveryLocation.new do |delivery_record|
