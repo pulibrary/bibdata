@@ -42,6 +42,7 @@ describe 'From traject_config.rb' do
     @scsb_nypl = @indexer.map_record(fixture_record('SCSB-8157262'))
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     @recap_record = @indexer.map_record(fixture_record('994081873506421'))
+    @inactive_electronic_portfolio = @indexer.map_record(fixture_record('99123430173506421_electronic_inactive'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -175,6 +176,9 @@ describe 'From traject_config.rb' do
       # Date range with greater than or equal to embargo
       expect(resource4['start']).to eq '1990'
       expect(resource4['end']).to eq '2019'
+    end
+    it "will not index an inactive electronic_portfolio" do
+      expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be nil
     end
   end
   describe "call_number_display field" do

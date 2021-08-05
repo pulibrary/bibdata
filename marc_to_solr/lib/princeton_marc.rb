@@ -658,6 +658,10 @@ def alma_950(record)
   field_950_a.map { |f| f['b'] }.first if field_950_a.present?
 end
 
+def inactive_electronic_portfolio(record)
+  record.fields('951').select { |f| ["Not Available"].include?(f['a']) }.present?
+end
+
 # SCSB item
 # Keep this check with the alma_code? check
 # until we make sure that the records in alma are updated

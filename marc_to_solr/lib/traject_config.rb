@@ -1352,7 +1352,9 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
   fields = []
   dates = []
   embargoes = []
-  # dont check for scsb
+  # Don't index if 951$a is 'Not Available' - inactive portfolio
+  # Don't check for scsb
+  next if inactive_electronic_portfolio(record)
   MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
     next unless alma_951(record)
     fields << field
