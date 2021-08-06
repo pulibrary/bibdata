@@ -412,23 +412,5 @@
             "order": 1
         },
         "alma_library_code": "firestone"
-    },
-    {
-        "id": 40,
-        "label": "Engineering Library Off-Site Storage",
-        "address": "Friend Center for Engineering Education, Princeton, NJ 08544",
-        "phone_number": " 609-258-3200",
-        "contact_email": " englib@princeton.edu",
-        "gfa_pickup": "PT",
-        "staff_only": false,
-        "pickup_location": false,
-        "digital_location": true,
-        "url": "https://bibdata.princeton.edu/locations/delivery_locations/33.json",
-        "library": {
-            "label": "Engineering Library",
-            "code": "engineering",
-            "order": 2
-        },
-        "alma_library_code": "engineer"
     }
 ]
