@@ -17,7 +17,7 @@ describe DeliveryLocationsController, type: :controller do
 
     it 'delivery_locations is active in navbar' do
       get :index
-      expect(response.body.include?('<li class="active"><a href="/delivery_locations')).to eq true
+      expect(response.body.include?('<li class="active"><a href="/locations/delivery_locations')).to eq true
     end
   end
 
