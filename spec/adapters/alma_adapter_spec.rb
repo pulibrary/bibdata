@@ -135,38 +135,6 @@ RSpec.describe AlmaAdapter do
     end
   end
 
-  describe "catalog date" do
-    let(:bib_record) { file_fixture("alma/99122426947506421.json") }
-    let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
-    let(:bib_record_with_ava_holdings) { file_fixture("alma/9922486553506421_holdings.json") }
-
-    before do
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=99122426947506421")
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record, headers: { "content-Type" => "application/json" })
-
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
-
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library")
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record_with_ava_holdings, headers: { "content-Type" => "application/json" })
-    end
-
-    it "uses date from AVA fields" do
-      record = adapter.get_bib_record("9922486553506421")
-      date = adapter.get_catalog_date_from_record(record)
-      expect(date).to eq "2020-12-03Z"
-    end
-
-    it "defaults to date in bib record (when neither AVA nor AVE exist)" do
-      record = adapter.get_bib_record("99122426947506421")
-      date = adapter.get_catalog_date_from_record(record)
-      expect(date).to eq "2016-01-23Z"
-    end
-  end
-
   describe "record availability" do
     let(:bib_record_with_ava) { file_fixture("alma/9922486553506421.json") }
     let(:bib_record_with_ava_holding_items) { file_fixture("alma/9922486553506421_holding_items.json") }

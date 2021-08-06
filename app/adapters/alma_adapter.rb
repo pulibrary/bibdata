@@ -107,32 +107,6 @@ class AlmaAdapter
     end
   end
 
-  # @param record [AlmaAdapter::MarcRecord]
-  # @return [String] date record was created e.g. "2019-10-18Z"
-  def get_catalog_date_from_record(record)
-    return nil if record.nil?
-
-    ava = record.select { |f| f.tag == "AVA" }
-    if ava.count > 0
-      # Get the creation date from the physical items
-      item_set = get_items_for_bib(record.bib.id)
-      dates = item_set.items.map { |i| i["item_data"]["creation_date"] }.compact
-      return dates.sort.first if dates.count > 0
-    end
-
-    # Note: For now we are not searching for the activation date in portfolios
-    # indicated in the AVE fields.
-    #
-    # If needed we could use the alma/:mms_id/portfolios/:portfolio_id endpoint
-    # to get this information one by one. ExLibris has indicated that this information
-    # will also be available on the alma/:mms_id/portfolios endpoint around May/2021
-    # (see https://3.basecamp.com/3765443/buckets/20717908/messages/3475344037)
-    # which will result in one call per bib rather than one call per portfolio.
-
-    # Default to the Bib record created date
-    record.bib["created_date"]
-  end
-
   def item_by_barcode(barcode)
     item = Alma::BibItem.find_by_barcode(barcode)
     if item["errorsExist"]
