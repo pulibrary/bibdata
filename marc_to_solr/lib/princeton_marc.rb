@@ -851,6 +851,10 @@ def process_recap_notes record
           col_group = 'S'
         elsif s_field.value == 'Private'
           col_group = 'P'
+        elsif s_field.value == 'Committed'
+          col_group = 'C'
+        elsif s_field.value == 'Uncommittable'
+          col_group = 'U'
         else
           col_group = 'O'
         end
