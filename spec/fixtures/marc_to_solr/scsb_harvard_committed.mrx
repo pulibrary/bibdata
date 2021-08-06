@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim">
+  <marcxml:record>
+    <marcxml:leader>02308cam a2200337I  4500</marcxml:leader>
+    <marcxml:controlfield tag="001">SCSB-9896495</marcxml:controlfield>
+    <marcxml:controlfield tag="005">20210205133638.0</marcxml:controlfield>
+    <marcxml:controlfield tag="008">820524m19659999ua       b    000 0 arar </marcxml:controlfield>
+    <marcxml:controlfield tag="009">990016168610203941</marcxml:controlfield>
+    <marcxml:datafield tag="010" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">ne 65001987 </marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)8454962</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="040" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">DLC</marcxml:subfield>
+      <marcxml:subfield code="b">eng</marcxml:subfield>
+      <marcxml:subfield code="c">TKN</marcxml:subfield>
+      <marcxml:subfield code="d">TKN</marcxml:subfield>
+      <marcxml:subfield code="d">OCL</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+      <marcxml:subfield code="d">CUY</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCF</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCO</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCA</marcxml:subfield>
+      <marcxml:subfield code="d">HVL</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="043" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">f-ua---</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="050" ind1=" " ind2="4">
+      <marcxml:subfield code="a">PJ7827.H22</marcxml:subfield>
+      <marcxml:subfield code="b">U6</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="100" ind1="1" ind2=" ">
+      <marcxml:subfield code="6">880-01</marcxml:subfield>
+      <marcxml:subfield code="a">Ḥakīm, Jamāl.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="1" ind2=" ">
+      <marcxml:subfield code="6">100-01//r</marcxml:subfield>
+      <marcxml:subfield code="a">حكيم، جمال.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="245" ind1="1" ind2="0">
+      <marcxml:subfield code="6">880-02</marcxml:subfield>
+      <marcxml:subfield code="a">ʻUqūd al-taʼmīn min al-nāḥiyatayn al-taʼmīnīyah wa-al-qānūnīyah /</marcxml:subfield>
+      <marcxml:subfield code="c">taʼlīf Jamāl al-Ḥakīm.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1="1" ind2="0">
+      <marcxml:subfield code="6">245-02//r</marcxml:subfield>
+      <marcxml:subfield code="a">عقود التأمين من الناحيتين التأمينية و القانونية /</marcxml:subfield>
+      <marcxml:subfield code="c">تأليف جمال الحكيم.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="260" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">880-03</marcxml:subfield>
+      <marcxml:subfield code="a">[al-Qāhirah] :</marcxml:subfield>
+      <marcxml:subfield code="b">Dār al-Maʻārif,</marcxml:subfield>
+      <marcxml:subfield code="c">1965-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="880" ind1=" " ind2=" ">
+      <marcxml:subfield code="6">260-03//r</marcxml:subfield>
+      <marcxml:subfield code="a">[ألقاهرة] :</marcxml:subfield>
+      <marcxml:subfield code="b">دار المعارف،</marcxml:subfield>
+      <marcxml:subfield code="c">1965-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="300" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">volumes</marcxml:subfield>
+      <marcxml:subfield code="c">24 cm</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="336" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">text</marcxml:subfield>
+      <marcxml:subfield code="b">txt</marcxml:subfield>
+      <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="337" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">unmediated</marcxml:subfield>
+      <marcxml:subfield code="b">n</marcxml:subfield>
+      <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="338" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">volume</marcxml:subfield>
+      <marcxml:subfield code="b">nc</marcxml:subfield>
+      <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="504" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Includes bibliographical references (v. 1 pages 455-457).</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Insurance policies</marcxml:subfield>
+      <marcxml:subfield code="z">Egypt.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="7">
+      <marcxml:subfield code="a">Insurance policies</marcxml:subfield>
+      <marcxml:subfield code="2">fast</marcxml:subfield>
+      <marcxml:subfield code="0">(OCoLC)fst00974780</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="651" ind1=" " ind2="7">
+      <marcxml:subfield code="a">Egypt</marcxml:subfield>
+      <marcxml:subfield code="2">fast</marcxml:subfield>
+      <marcxml:subfield code="0">(OCoLC)fst01208755</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="776" ind1="0" ind2="8">
+      <marcxml:subfield code="i">Online version:</marcxml:subfield>
+      <marcxml:subfield code="a">al-Ḥakīm, Jamāl.</marcxml:subfield>
+      <marcxml:subfield code="t">ʻUqūd al-taʼmīn min al-nāḥiyatayn al-taʼmīnīyah wa-al-qānūnīyah.</marcxml:subfield>
+      <marcxml:subfield code="d">[al-Qāhirah] Dār al-Maʻārif, 1965-</marcxml:subfield>
+      <marcxml:subfield code="w">(OCoLC)761386138</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="583" ind1="1" ind2=" ">
+      <marcxml:subfield code="a">committed to retain</marcxml:subfield>
+      <marcxml:subfield code="c">20181001</marcxml:subfield>
+      <marcxml:subfield code="d">in perpetuity</marcxml:subfield>
+      <marcxml:subfield code="f">ReCAP Shared Collection</marcxml:subfield>
+      <marcxml:subfield code="5">HUL</marcxml:subfield>
+      <marcxml:subfield code="8">221793584480003941</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="966" ind1=" " ind2="0">
+      <marcxml:subfield code="8">0</marcxml:subfield>
+      <marcxml:subfield code="a">v. 1</marcxml:subfield>
+      <marcxml:subfield code="8">221793584480003941</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="8" ind2=" ">
+      <marcxml:subfield code="c">HD</marcxml:subfield>
+      <marcxml:subfield code="h">UAR 935E HAK</marcxml:subfield>
+      <marcxml:subfield code="8">221793584480003941</marcxml:subfield>
+      <marcxml:subfield code="0">10633543</marcxml:subfield>
+      <marcxml:subfield code="b">scsbhl</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">10633543</marcxml:subfield>
+      <marcxml:subfield code="3">v.1</marcxml:subfield>
+      <marcxml:subfield code="a">16321345</marcxml:subfield>
+      <marcxml:subfield code="h"/>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k">LAW</marcxml:subfield>
+      <marcxml:subfield code="p">32044053466603</marcxml:subfield>
+      <marcxml:subfield code="t"/>
+      <marcxml:subfield code="x">Committed</marcxml:subfield>
+      <marcxml:subfield code="z">HL</marcxml:subfield>
+      <marcxml:subfield code="l">HD</marcxml:subfield>
+    </marcxml:datafield>
+  </marcxml:record>
+</marcxml:collection>
