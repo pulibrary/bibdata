@@ -19,7 +19,7 @@ describe HoursLocationsController, type: :controller do
 
     it 'hours_locations is active in navbar' do
       get :index
-      expect(response.body.include?('<li class="active"><a href="/hours_locations')).to eq true
+      expect(response.body.include?('<li class="active"><a href="/locations/hours_locations')).to eq true
     end
   end
 

@@ -16,7 +16,7 @@ describe LibrariesController, type: :controller do
 
     it 'libraries is active in navbar' do
       get :index
-      expect(response.body.include?('<li class="active"><a href="/libraries')).to eq true
+      expect(response.body.include?('<li class="active"><a href="/locations/libraries')).to eq true
     end
   end
 
