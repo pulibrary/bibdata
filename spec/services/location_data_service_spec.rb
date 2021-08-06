@@ -243,7 +243,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(location.id).to eq 3
       expect(location.label).to eq "Architecture Library"
       new_location = FactoryBot.create(:delivery_location)
-      expect(new_location.id).to eq 41
+      expect(new_location.id).to eq 31
     end
 
     describe "new recap locations" do
