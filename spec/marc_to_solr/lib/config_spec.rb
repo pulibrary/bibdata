@@ -43,6 +43,8 @@ describe 'From traject_config.rb' do
     @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
     @recap_record = @indexer.map_record(fixture_record('994081873506421'))
     @inactive_electronic_portfolio = @indexer.map_record(fixture_record('99123430173506421_electronic_inactive'))
+    @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
+    @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -161,24 +163,38 @@ describe 'From traject_config.rb' do
       expect(ebsco['start']).to eq '1997'
       expect(ebsco['end']).to eq '2015'
 
-      # Date range with less than or equal to embargo
-      expect(resource1['start']).to eq '2019'
-      expect(resource1['end']).to eq 'latest'
-
-      # Date range with less than embargo
-      expect(resource2['start']).to eq '2020'
-      expect(resource2['end']).to eq 'latest'
-
-      # Date range with greater than embargo
-      expect(resource3['start']).to eq '1990'
-      expect(resource3['end']).to eq '2018'
+      # electronic_portfolio_s should not include non alma 951(s).
+      expect(resource1).to be nil
+      expect(resource2).to be nil
+      expect(resource3).to be nil
+      expect(resource4).to be nil
+    end
+    it "takes into account the 954 embargo field" do
+      portfolios = @electronic_portfolio_embargo['electronic_portfolio_s'].map { |p| JSON.parse(p) }
+      portfolio1 = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
+      portfolio2 = portfolios.find { |p| p['title'] == 'Taylor & Francis Medical Library' }
 
       # Date range with greater than or equal to embargo
-      expect(resource4['start']).to eq '1990'
-      expect(resource4['end']).to eq '2019'
+      expect(portfolio1['start']).to eq '2001'
+      expect(portfolio1['end']).to eq '2020'
+
+      expect(portfolio2['start']).to eq '1997'
+      expect(portfolio2['end']).to eq 'latest'
     end
     it "will not index an inactive electronic_portfolio" do
       expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be nil
+    end
+    describe 'with active and inactive portfolio' do
+      before do
+        @active_portfolios1 = @custom_inactive_electronic_portfolio['electronic_portfolio_s'].map { |p| JSON.parse(p) }
+      end
+      it 'will index the active portfolio' do
+        expect(@active_portfolios1.any? { |hash| hash['title'] == "SciTech Premium Collection" }).to be true
+        expect(@active_portfolios1.any? { |hash| hash["url"] == "https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&portfolio_pid=53788872140006421&Force_direct=true" }).to be true
+      end
+      it "will not index the inactive portfolio" do
+        expect(@active_portfolios1).not_to include '53821583960006421'
+      end
     end
   end
   describe "call_number_display field" do

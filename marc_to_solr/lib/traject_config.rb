@@ -321,8 +321,8 @@ to_field 'cataloged_tdt' do |record, accumulator|
   unless /^SCSB-\d+/.match?(doc_id)
     cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
                        alma_876(record).map { |f| f['d'] }.sort.first
-                     elsif alma_951(record) && alma_951(record).map { |f| f['w'] }.compact.present?
-                       alma_951(record).map { |f| f['w'] }.compact.sort.first
+                     elsif alma_951_active(record) && alma_951_active(record).map { |f| f['w'] }.compact.present?
+                       alma_951_active(record).map { |f| f['w'] }.compact.sort.first
                      else
                        alma_950(record)
                      end
@@ -1352,23 +1352,10 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
   fields = []
   dates = []
   embargoes = []
-  # Don't index if 951$a is 'Not Available' - inactive portfolio
   # Don't check for scsb
-  next if inactive_electronic_portfolio(record)
-  MarcExtractor.cached('951knx').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless alma_951(record)
-    fields << field
-  end
-
-  MarcExtractor.cached('953abc').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless alma_953(record)
-    dates << field
-  end
-
-  MarcExtractor.cached('954ac').collect_matching_lines(record) do |field, _spec, _extractor|
-    next unless alma_954(record)
-    embargoes << field
-  end
+  fields = alma_951_active(record)
+  dates = alma_953(record)
+  embargoes = alma_954(record)
 
   fields.map do |field|
     date = dates.find { |d| d['a'] == field['8'] }

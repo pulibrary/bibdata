@@ -641,8 +641,9 @@ def alma_876(record)
   record.fields('876').select { |f| alma_code_start_22?(f['0']) }
 end
 
-def alma_951(record)
-  record.fields('951').select { |f| alma_code_start_53?(f['8']) }
+def alma_951_active(record)
+  alma_951 = record.fields('951').select { |f| alma_code_start_53?(f['8']) }
+  alma_951&.select { |f| f['a'] == "Available" }
 end
 
 def alma_953(record)
@@ -656,10 +657,6 @@ end
 def alma_950(record)
   field_950_a = record.fields('950').select { |f| ["true", "false"].include?(f['a']) }
   field_950_a.map { |f| f['b'] }.first if field_950_a.present?
-end
-
-def inactive_electronic_portfolio(record)
-  record.fields('951').select { |f| ["Not Available"].include?(f['a']) }.present?
 end
 
 # SCSB item
