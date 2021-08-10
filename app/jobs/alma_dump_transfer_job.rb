@@ -16,7 +16,8 @@ class AlmaDumpTransferJob < ActiveJob::Base
     dump.save
 
     if incremental_dump?(type_constant)
-      IndexManager.for(Rails.application.config.solr["url"]).index_remaining!
+      # IndexManager.for(Rails.application.config.solr["url"]).index_remaining!
+      IncrementalIndexJob.perform_later(dump)
     elsif recap_incremental_dump?(type_constant)
       # RecapBoundwithsProcessingJob will not include all records. Re-enable
       # when this issue is resolved: https://github.com/pulibrary/bibdata/issues/1463

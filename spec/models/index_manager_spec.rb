@@ -19,7 +19,6 @@ RSpec.describe IndexManager, type: :model do
       end
       # Have to manually call batch callbacks
       run_callback(Sidekiq::BatchSet.new.to_a.last)
-      # IncrementalIndexJob.new.on_success(Sidekiq::BatchSet.new.to_a.last, "dump_id" => dump.id)
       solr.commit
 
       response = solr.get("select", params: { q: "*:*" })
