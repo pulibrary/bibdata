@@ -28,7 +28,7 @@ class IndexManager < ActiveRecord::Base
     # Create an overall catchup batch.
     batch = Sidekiq::Batch.new
     batch.on(:success, "IndexManager::Workflow#indexed_remaining", 'index_manager_id' => id)
-    batch.description = "Index remaining dumps to catch up."
+    batch.description = "Performing catch-up index into #{solr_collection}"
     batch.jobs do
       IndexRemainingDumpsJob.perform_async(id)
     end
@@ -37,6 +37,7 @@ class IndexManager < ActiveRecord::Base
   def generate_batch
     batch = Sidekiq::Batch.new
     batch.on(:success, IndexManager::Workflow, 'dump_id' => next_dump.id, 'index_manager_id' => id)
+    batch.description = "Indexing Dump #{next_dump.id} into #{solr_collection}"
     batch.jobs do
       yield
     end
