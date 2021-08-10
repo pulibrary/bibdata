@@ -1,0 +1,180 @@
+{
+    "record_type": {
+        "value": "PUBLIC",
+        "desc": "Public"
+    },
+    "primary_id": "ID12345",
+    "first_name": "JANE",
+    "middle_name": "G",
+    "last_name": "SMITH",
+    "full_name": "JANE G SMITH",
+    "user_title": {
+        "value": "",
+        "desc": ""
+    },
+    "job_category": {
+        "value": "",
+        "desc": ""
+    },
+    "job_description": "",
+    "gender": {
+        "value": "",
+        "desc": ""
+    },
+    "user_group": {
+        "value": "GST",
+        "desc": "GST Guest Patron"
+    },
+    "campus_code": {
+        "value": null,
+        "desc": ""
+    },
+    "web_site_url": "",
+    "cataloger_level": {
+        "value": "00",
+        "desc": "[00] Default Level"
+    },
+    "preferred_language": {
+        "value": "en",
+        "desc": "English"
+    },
+    "expiry_date": "2021-09-30Z",
+    "purge_date": "2021-09-30Z",
+    "account_type": {
+        "value": "INTERNAL",
+        "desc": "Internal"
+    },
+    "external_id": "",
+    "password": "",
+    "force_password_change": "",
+    "status": {
+        "value": "ACTIVE",
+        "desc": "Active"
+    },
+    "status_date": "2021-07-25Z",
+    "last_patron_activity_date": "2021-07-28Z",
+    "requests": {
+        "value": 0,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/ID12345/requests"
+    },
+    "loans": {
+        "value": 12,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/ID12345/loans"
+    },
+    "fees": {
+        "value": 0.0,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/ID12345/fees"
+    },
+    "contact_info": {
+        "address": [
+            {
+                "line1": "ONE WASHINGTON ROAD",
+                "line2": null,
+                "line3": null,
+                "line4": null,
+                "line5": null,
+                "city": "PRINCETON",
+                "state_province": "NJ",
+                "postal_code": "08544",
+                "country": {
+                    "value": "",
+                    "desc": ""
+                },
+                "address_note": "",
+                "start_date": "2021-07-23Z",
+                "end_date": "2022-07-23Z",
+                "preferred": true,
+                "segment_type": "Internal",
+                "address_type": [
+                    {
+                        "value": "home",
+                        "desc": "Home"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "alternative",
+                        "desc": "Alternative"
+                    }
+                ]
+            }
+        ],
+        "email": [
+            {
+                "email_address": "pul@princeton.edu",
+                "description": null,
+                "preferred": true,
+                "segment_type": "Internal",
+                "email_type": [
+                    {
+                        "value": "personal",
+                        "desc": "Personal"
+                    },
+                    {
+                        "value": "school",
+                        "desc": "School"
+                    },
+                    {
+                        "value": "work",
+                        "desc": "Work"
+                    }
+                ]
+            }
+        ],
+        "phone": []
+    },
+    "pref_first_name": "",
+    "pref_middle_name": "",
+    "pref_last_name": "",
+    "pref_name_suffix": "",
+    "is_researcher": false,
+    "researcher": null,
+    "link": null,
+    "user_identifier": [
+        {
+            "value": "22999000883100",
+            "id_type": {
+                "value": "BARCODE",
+                "desc": "Barcode"
+            },
+            "note": "13 Apr 2015",
+            "status": "ACTIVE",
+            "segment_type": "Internal"
+        }
+    ],
+    "user_role": [
+        {
+            "status": {
+                "value": "ACTIVE",
+                "desc": "Active"
+            },
+            "scope": {
+                "value": "01PRI_INST",
+                "desc": "Princeton University"
+            },
+            "role_type": {
+                "value": "200",
+                "desc": "Patron"
+            },
+            "parameter": []
+        }
+    ],
+    "user_block": [],
+    "user_note": [],
+    "user_statistic": [
+        {
+            "statistic_category": {
+                "value": "ALM",
+                "desc": "ALM"
+            },
+            "segment_type": "Internal"
+        }
+    ],
+    "proxy_for_user": []
+}
