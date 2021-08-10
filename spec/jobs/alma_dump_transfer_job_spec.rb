@@ -4,6 +4,9 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
 
   describe 'perform' do
+    before do
+      allow(IndexRemainingDumpsJob).to receive(:perform_async)
+    end
     after do
       ActiveJob::Base.queue_adapter.enqueued_jobs = []
     end
@@ -74,7 +77,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(dump.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
         expect(dump.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1)
 
-        expect(IncrementalIndexJob).not_to have_been_enqueued
+        expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
       end
     end
 
@@ -118,7 +121,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["UPDATED_RECORDS"]
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
-        expect(IncrementalIndexJob).to have_been_enqueued.once
+        expect(IndexRemainingDumpsJob).to have_received(:perform_async).once
       end
     end
     context "with a recap incremental dump" do

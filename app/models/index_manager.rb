@@ -19,6 +19,20 @@ class IndexManager < ActiveRecord::Base
     end
   end
 
+  def index_remaining!
+    # Don't do anything unless there's a job to index and we're not already
+    # indexing.
+    return unless next_dump && !last_dump_completed
+    save!
+    # Create an overall catchup batch.
+    batch = Sidekiq::Batch.new
+    batch.on(:success, "IndexManager::Workflow#indexed_remaining", 'index_manager_id' => id)
+    batch.description = "Index remaining dumps to catch up."
+    batch.jobs do
+      IndexRemainingDumpsJob.perform_async(id)
+    end
+  end
+
   def generate_batch
     batch = Sidekiq::Batch.new
     batch.on(:success, IndexManager::Workflow, 'dump_id' => next_dump.id, 'index_manager_id' => id)
@@ -33,7 +47,7 @@ class IndexManager < ActiveRecord::Base
         if last_dump_completed
           next_incremental
         else
-          recent_full_dump
+          recent_full_dump || first_incremental
         end
       end
   end
@@ -42,16 +56,37 @@ class IndexManager < ActiveRecord::Base
     Dump.full_dumps.joins(:event).order("events.start" => "DESC").first
   end
 
+  def first_incremental
+    Dump.changed_records.joins(:event).order("events.start" => "ASC").first
+  end
+
   def next_incremental
-    Dump.changed_records.joins(:event).where("events.start > ?", last_dump_completed.event.start.iso8601).order("events.start" => "ASC").first
+    Dump.changed_records.joins(:event).where("events.start": last_dump_completed.event.start..Float::INFINITY).where.not(id: last_dump_completed.id).order("events.start" => "ASC").first
   end
 
   class Workflow
     # Callback for when the batch of DumpFiles is done indexing.
-    def on_success(_status, options)
+    def on_success(status, options)
       index_manager = IndexManager.find(options['index_manager_id'])
       dump = Dump.find(options['dump_id'])
       index_manager.last_dump_completed = dump
+      # If there's a parent batch it's meant to keep going until it runs out of
+      # dumps.
+      if status.parent_bid
+        index_manager.save
+        return unless index_manager.next_dump
+        overall = Sidekiq::Batch.new(status.parent_bid)
+        overall.jobs do
+          index_manager.index_next_dump!
+        end
+      else
+        index_manager.dump_in_progress = nil
+        index_manager.save
+      end
+    end
+
+    def indexed_remaining(_status, options)
+      index_manager = IndexManager.find(options['index_manager_id'])
       index_manager.dump_in_progress = nil
       index_manager.save
     end

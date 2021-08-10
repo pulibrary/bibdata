@@ -11,11 +11,6 @@ class Alma::Indexer
     end
   end
 
-  def update_index!
-    manager = IndexManager.for(solr_url)
-    manager.index_next_dump!
-  end
-
   def incremental_index!(dump)
     raise "received a dump with type other than CHANGED_RECORDS" unless dump.dump_type.constant == "CHANGED_RECORDS"
     dump.update!(index_status: Dump::STARTED)
