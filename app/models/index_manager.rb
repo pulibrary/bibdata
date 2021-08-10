@@ -11,6 +11,7 @@ class IndexManager < ActiveRecord::Base
   def index_next_dump!
     return unless next_dump
     self.dump_in_progress = next_dump
+    self.in_progress = true
     save
     generate_batch do
       next_dump.dump_files.each do |dump_file|
@@ -22,7 +23,7 @@ class IndexManager < ActiveRecord::Base
   def index_remaining!
     # Don't do anything unless there's a job to index and we're not already
     # indexing.
-    return unless next_dump && !last_dump_completed
+    return unless next_dump && !in_progress?
     save!
     # Create an overall catchup batch.
     batch = Sidekiq::Batch.new
@@ -70,17 +71,18 @@ class IndexManager < ActiveRecord::Base
       index_manager = IndexManager.find(options['index_manager_id'])
       dump = Dump.find(options['dump_id'])
       index_manager.last_dump_completed = dump
+      index_manager.dump_in_progress = nil
+      index_manager.save
       # If there's a parent batch it's meant to keep going until it runs out of
       # dumps.
       if status.parent_bid
-        index_manager.save
         return unless index_manager.next_dump
         overall = Sidekiq::Batch.new(status.parent_bid)
         overall.jobs do
           index_manager.index_next_dump!
         end
       else
-        index_manager.dump_in_progress = nil
+        index_manager.in_progress = false
         index_manager.save
       end
     end
@@ -88,6 +90,7 @@ class IndexManager < ActiveRecord::Base
     def indexed_remaining(_status, options)
       index_manager = IndexManager.find(options['index_manager_id'])
       index_manager.dump_in_progress = nil
+      index_manager.in_progress = false
       index_manager.save
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_161840) do
+ActiveRecord::Schema.define(version: 2021_08_10_204449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_161840) do
     t.bigint "last_dump_completed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "in_progress"
     t.index ["dump_in_progress_id"], name: "index_index_managers_on_dump_in_progress_id"
     t.index ["last_dump_completed_id"], name: "index_index_managers_on_last_dump_completed_id"
     t.index ["solr_collection"], name: "index_index_managers_on_solr_collection", unique: true

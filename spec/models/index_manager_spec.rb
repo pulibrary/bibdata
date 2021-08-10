@@ -27,6 +27,7 @@ RSpec.describe IndexManager, type: :model do
       index_manager.reload
       expect(index_manager.last_dump_completed).to eq full_event.dump
       expect(index_manager.dump_in_progress).to be_nil
+      expect(index_manager).not_to be_in_progress
     end
     it "doesn't index anything if it's caught up" do
       allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
@@ -45,6 +46,7 @@ RSpec.describe IndexManager, type: :model do
       expect(index_manager.index_next_dump!).to be_nil
       expect(index_manager.reload.dump_in_progress).to be_nil
       expect(DumpFileIndexJob).to have_received(:perform_async).exactly(2).times
+      expect(index_manager).not_to be_in_progress
     end
     it "indexes the next incremental if the most recent full dump has been done" do
       allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
@@ -76,6 +78,7 @@ RSpec.describe IndexManager, type: :model do
       index_manager.reload
       expect(index_manager.last_dump_completed).to eq incremental_event.dump
       expect(index_manager.dump_in_progress).to be_nil
+      expect(index_manager).not_to be_in_progress
     end
   end
 
@@ -89,6 +92,7 @@ RSpec.describe IndexManager, type: :model do
       final_incremental_event = FactoryBot.create(:incremental_dump_event, start: Time.current - 2.hours, finish: Time.current - 1.hour)
 
       index_manager = described_class.for(solr_url)
+      expect(index_manager).not_to be_in_progress
       Sidekiq::Testing.inline! do
         # Index full dump
         index_manager.index_remaining!
@@ -110,6 +114,7 @@ RSpec.describe IndexManager, type: :model do
       index_manager.reload
       expect(index_manager.last_dump_completed).to eq final_incremental_event.dump
       expect(index_manager.dump_in_progress).to be_nil
+      expect(index_manager).not_to be_in_progress
     end
   end
 
