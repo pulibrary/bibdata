@@ -45,6 +45,7 @@ describe 'From traject_config.rb' do
     @inactive_electronic_portfolio = @indexer.map_record(fixture_record('99123430173506421_electronic_inactive'))
     @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
     @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
+    @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -194,6 +195,14 @@ describe 'From traject_config.rb' do
       end
       it "will not index the inactive portfolio" do
         expect(@active_portfolios1).not_to include '53821583960006421'
+      end
+    end
+    describe 'active portfolio not part of a collection' do
+      before do
+        @active_portfolios2 = @electronic_portfolio_active_no_collection_name['electronic_portfolio_s'].map { |p| JSON.parse(p) }
+      end
+      it "has title: Full Text" do
+        expect(@active_portfolios2[0]['title']).to eq 'Full Text'
       end
     end
   end

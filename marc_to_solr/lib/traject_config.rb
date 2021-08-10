@@ -1349,9 +1349,6 @@ to_field 'call_number_locator_display' do |record, accumulator|
 end
 
 to_field 'electronic_portfolio_s' do |record, accumulator|
-  fields = []
-  dates = []
-  embargoes = []
   # Don't check for scsb
   fields = alma_951_active(record)
   dates = alma_953(record)
