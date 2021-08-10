@@ -56,7 +56,7 @@ class PatronController < ApplicationController
     end
 
     def netid
-      identifier = identifiers.find { |id| id["id_type"]["value"] == "NET_ID" }
+      identifier = identifiers.find { |id| id["id_type"]["value"] == "NET_ID" } || {}
       identifier["value"]
     end
 

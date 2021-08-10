@@ -157,6 +157,17 @@ RSpec.describe PatronController, type: :controller do
       get :patron_info, params: { patron_id: netid, format: :json }
       expect(response).to have_http_status(404)
     end
+
+    it "allows patrons with valid barcode and without a netid" do
+      barcode = "22999000883100"
+      stub_patron(barcode)
+      user = double('user')
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: barcode, format: :json }
+      expect(response).to have_http_status(200)
+      expect(JSON.parse(response.body)["barcode"]).to eq barcode
+    end
   end
 
   context "When Alma returns PER_THRESHOLD errors" do
