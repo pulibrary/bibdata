@@ -110,7 +110,11 @@ namespace :liberate do
   desc "Index remaining incrementals against SET_URL"
   task incremental: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
-    IndexManager.for(solr_url).index_remaining!
+    solr = IndexFunctions.rsolr_connection(solr_url)
+    dump = Dump.changed_records.last
+    Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
+    solr.commit
+    # IndexManager.for(solr_url).index_remaining!
   end
 
   desc "Index a single MARC XML file against SET_URL"
