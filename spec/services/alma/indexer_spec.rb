@@ -93,11 +93,13 @@ RSpec.describe Alma::Indexer do
   end
 
   describe "incremental_index!" do
-    it "indexes a dump's files" do
-      solr = RSolr.connect(url: solr_url)
+    let(:solr) { RSolr.connect(url: solr_url) }
+    before do
+      Sidekiq::BatchSet.new.to_a.each(&:delete)
       solr.delete_by_query("*:*")
       solr.commit
-
+    end
+    it "indexes a dump's files" do
       dump = FactoryBot.create(:incremental_dump)
       indexer = described_class.new(solr_url: solr_url)
       Sidekiq::Testing.inline! do
