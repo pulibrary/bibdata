@@ -36,6 +36,7 @@ class IndexManager < ActiveRecord::Base
 
   def generate_batch
     batch = Sidekiq::Batch.new
+    batch.description = "Indexing dump #{dump_id} into #{solr_collection}"
     batch.on(:success, IndexManager::Workflow, 'dump_id' => next_dump.id, 'index_manager_id' => id)
     batch.description = "Indexing Dump #{next_dump.id} into #{solr_collection}"
     batch.jobs do
