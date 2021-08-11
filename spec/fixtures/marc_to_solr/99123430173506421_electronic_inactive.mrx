@@ -1,0 +1,73 @@
+<record>
+  <leader>00390cam a22001455i 4500</leader>
+  <controlfield tag="005">20210311131146.0</controlfield>
+  <controlfield tag="008">210311c20219999xxu           000 0 eng d</controlfield>
+  <controlfield tag="001">99123430173506421</controlfield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Lux magazine.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">US :</subfield>
+    <subfield code="b">Sarah Leonard,</subfield>
+    <subfield code="c">2021-</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Sarah Leonard.</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+    <subfield code="a">chh</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">n</subfield>
+    <subfield code="c">s</subfield>
+    <subfield code="e">20210311</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)12343017-princetondb</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="b">2021-07-12 14:30:32 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-08-03 16:24:47 US/Eastern</subfield>
+    <subfield code="u">exl_api</subfield>
+    <subfield code="t">2021-07-20 13:17:49 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53821583960006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53821583960006421</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="q">2400261-princetondb</subfield>
+    <subfield code="1">52821583970006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99123430173506421</subfield>
+    <subfield code="a">Not Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53821583960006421</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="8">22546973680006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:30:32</subfield>
+    <subfield code="8">22546973680006421</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">stacks: Firestone Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+</record>

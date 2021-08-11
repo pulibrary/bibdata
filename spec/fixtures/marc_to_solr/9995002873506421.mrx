@@ -1,0 +1,186 @@
+<record>
+  <leader>03251cam a2200481Ii 4500</leader>
+  <controlfield tag="005">20201008062230.0</controlfield>
+  <controlfield tag="006">m     o  d        </controlfield>
+  <controlfield tag="007">cr mn |||||a|a</controlfield>
+  <controlfield tag="008">151209s2016    nyua    o     001 0 eng d</controlfield>
+  <controlfield tag="001">9995002873506421</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">9500287</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(SAFARI)931874183</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn931874183</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/931874183</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)9500287-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">UMI</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="e">pn</subfield>
+    <subfield code="c">UMI</subfield>
+    <subfield code="d">DEBBG</subfield>
+    <subfield code="d">DEBSZ</subfield>
+    <subfield code="d">COO</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">CEF</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">C6I</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780134190570</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0134190572</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0134190440</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0134190440</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780134190440</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="z">9780134190440</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">QA76.73.G63</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">005.13/3</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="090" ind1=" " ind2=" ">
+    <subfield code="a">Electronic Resource</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Donovan, Alan A. A.,</subfield>
+    <subfield code="d">1976-</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no2015151095</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2015151095</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2015151095</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">The Go programming language /</subfield>
+    <subfield code="c">Alan A.A. Donovan, Brian W. Kernighan.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">New York :</subfield>
+    <subfield code="b">Addison-Wesley,</subfield>
+    <subfield code="c">[2016]</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">&#xA9;2016</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="a">Addison-Wesley professional computing series</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n91097794</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n91097794</subfield>
+  </datafield>
+  <datafield tag="588" ind1="0" ind2=" ">
+    <subfield code="a">Print version record.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Includes index.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Tutorial -- Program Structure -- Basic Data Types -- Composite Types -- Functions -- Methods -- Interfaces -- Goroutines And Channels -- Concurrency With Shared Variables -- Packages And The Go Tool -- Testing -- Reflection -- Low-Level Programming.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">Go may be our generation's most important new programming language. It is exceptionally expressive, highly efficient in both compilation and execution, and enables the development of extremely reliable and robust programs. It shares the same spirit programmers once found in C: it helps serious professional programmers achieve maximum effect with minimum means. Now, Go shares something else with C, too. Brian Kernighan, who wrote the world's most respected and useful C primer for working programmers, has just done the same for Go. Together with Google Go insider Alan Donovan, Kernighan explains what Go does and doesn't borrow from C ... the great ideas it borrows from other modern languages ... and how it avoids features that lead to unnecessary complexity and unreliable code. Throughout, their short, carefully-crafted code examples demonstrate today's most effective Go idioms, so you can start using Go effectively right from the beginning, and quickly take advantage of its full power. All code has been extensively reviewed by Go's creators at Google for both completeness and accuracy.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Go (Computer program language)</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2012000746</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01893916</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2012000746</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Open source software</subfield>
+    <subfield code="x">Programming.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh99003437</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Go (Computer program language)</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01893916</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01893916</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2012000746</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Kernighan, Brian W.,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n50044563</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n50044563</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n50044563</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+    <subfield code="i">Print version:</subfield>
+    <subfield code="a">Donovan, Alan A.A., 1976-</subfield>
+    <subfield code="t">Go programming language.</subfield>
+    <subfield code="b">First printing, October 2015.</subfield>
+    <subfield code="d">New York : Addison-Wesley, 2015</subfield>
+    <subfield code="z">0134190440</subfield>
+    <subfield code="w">(DLC)  2015950709</subfield>
+    <subfield code="w">(OCoLC)903635603</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0134190440</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="a">Safari Books Online (Series)</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2009197234</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2009197234</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="a">Addison-Wesley professional computing series</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n91097794</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n91097794</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">https://go.oreilly.com/princeton-university/library/view/-/9780134190570/?ar</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-07-30 21:57:12 US/Eastern</subfield>
+    <subfield code="b">2021-07-12 17:03:03 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-07-20 13:12:43 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2021-07-20 13:12:36 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53820750850006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53820750850006421</subfield>
+    <subfield code="w">2021-07-20 17:12:36</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52820750860006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9995002873506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53820750850006421</subfield>
+  </datafield>
+</record>

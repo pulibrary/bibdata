@@ -1,0 +1,255 @@
+<record>
+  <leader>-----nas--2200649-a-4500</leader>
+  <controlfield tag="001">99125105174406421</controlfield>
+  <controlfield tag="005">20200717090231.1</controlfield>
+  <controlfield tag="006">m-----o--d--------</controlfield>
+  <controlfield tag="007">cr-mnu||||||||</controlfield>
+  <controlfield tag="008">020128c19879999nyuqr-pso-----0---a0eng-c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2006233340</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2=" ">
+    <subfield code="a">013357477</subfield>
+    <subfield code="2">Uk</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2=" ">
+    <subfield code="a">2085320-8</subfield>
+    <subfield code="2">DE-600</subfield>
+  </datafield>
+  <datafield tag="022" ind1=" " ind2=" ">
+    <subfield code="a">1532-2513</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)48882224</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/48882224</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(CKB)954925557474</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(CONSER)--2006233340</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(DE-599)ZDB2085320-8</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(EXLCZ)99954925557474</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">pcc</subfield>
+    <subfield code="a">nsdp</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">RM370</subfield>
+  </datafield>
+  <datafield tag="060" ind1="0" ind2="0">
+    <subfield code="a">W1</subfield>
+    <subfield code="b">IM566</subfield>
+  </datafield>
+  <datafield tag="082" ind1="1" ind2="0">
+    <subfield code="a">616.079</subfield>
+    <subfield code="2">14</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">616.079</subfield>
+  </datafield>
+  <datafield tag="130" ind1="0" ind2=" ">
+    <subfield code="a">Immunopharmacology and immunotoxicology (Online)</subfield>
+  </datafield>
+  <datafield tag="222" ind1=" " ind2="0">
+    <subfield code="a">Immunopharmacology and immunotoxicology</subfield>
+    <subfield code="b">(Online)</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Immunopharmacology and immunotoxicology.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[New York, NY] :</subfield>
+    <subfield code="b">Marcel Dekker :</subfield>
+    <subfield code="b">1987-</subfield>
+  </datafield>
+  <datafield tag="260" ind1="3" ind2=" ">
+    <subfield code="3">&lt;2012-&gt; :</subfield>
+    <subfield code="a">[New York, NY] :</subfield>
+    <subfield code="b">Informa Healthcare</subfield>
+  </datafield>
+  <datafield tag="310" ind1=" " ind2=" ">
+    <subfield code="a">Bimonthly,</subfield>
+    <subfield code="b">2012-</subfield>
+  </datafield>
+  <datafield tag="321" ind1=" " ind2=" ">
+    <subfield code="a">Frequency varies,</subfield>
+    <subfield code="b">1987-2011</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="362" ind1="1" ind2=" ">
+    <subfield code="a">Began with vol. 9, issue 1 (1987).</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">Mode of access: World Wide Web.</subfield>
+  </datafield>
+  <datafield tag="588" ind1="0" ind2=" ">
+    <subfield code="a">Vol. 9, issue 1 (1987); title from journal information screen (MetaPress, viewed Aug. 23, 2006).</subfield>
+  </datafield>
+  <datafield tag="588" ind1="1" ind2=" ">
+    <subfield code="a">Vol. 40, issue 3 (2018) (Taylor &amp; Francis Online, viewed June 29, 2018).</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Refereed/Peer-reviewed</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Immunopharmacology</subfield>
+    <subfield code="v">Periodicals.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85064586</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Immunotoxicology</subfield>
+    <subfield code="v">Periodicals.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85064594</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="2">
+    <subfield code="a">Immunotoxins.</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D000922</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="2">
+    <subfield code="a">Allergy and Immunology.</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D000486</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="2">
+    <subfield code="a">Pharmacology.</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D010600</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="2">
+    <subfield code="a">Communicable Diseases.</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D003141</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Immunology.</subfield>
+    <subfield code="2">ebps</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Pharmacology.</subfield>
+    <subfield code="2">ebps</subfield>
+    <subfield code="0">(uri) http://www.ncbi.nlm.nih.gov/mesh/?term=D010600</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D010600</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Toxicology.</subfield>
+    <subfield code="2">ebps</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Immunopharmacology.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00968030</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst00968030</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Immunotoxicology.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00968050</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst00968050</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="0">
+    <subfield code="a">Electronic journals.</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="2">
+    <subfield code="a">Periodical.</subfield>
+    <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D020492</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01411641</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst01411641</subfield>
+  </datafield>
+  <datafield tag="780" ind1="0" ind2="0">
+    <subfield code="t">Journal of immunopharmacology</subfield>
+    <subfield code="w">(CKB)954927618046</subfield>
+  </datafield>
+  <datafield tag="776" ind1=" " ind2=" ">
+    <subfield code="x">0892-3973</subfield>
+    <subfield code="0">(uri) http://worldcat.org/issn/0892-3973</subfield>
+  </datafield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">JOURNAL</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-06-25 12:52:22 US/Eastern</subfield>
+    <subfield code="b">2012-02-25 20:54:54 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-07-15 05:43:27 US/Eastern</subfield>
+    <subfield code="g">EBSCOhost</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2021-07-15 05:41:47 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53753621900006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53753621900006421</subfield>
+    <subfield code="k"> Available from 02/01/2001. Most recent 1 year(s) 6 month(s) not available.</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61753488630006421</subfield>
+    <subfield code="n">EBSCOhost Academic Search Ultimate</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62753512700006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125105174406421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">614340000000000211</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53753621900006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1=" " ind2=" ">
+    <subfield code="a">53753621900006421</subfield>
+    <subfield code="b">2001</subfield>
+    <subfield code="d">2</subfield>
+    <subfield code="f">1</subfield>
+  </datafield>
+  <datafield tag="954" ind1=" " ind2=" ">
+    <subfield code="a">53753621900006421</subfield>
+    <subfield code="b">&gt;=</subfield>
+    <subfield code="c">1</subfield>
+    <subfield code="d">6</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-07-15 05:43:27 US/Eastern</subfield>
+    <subfield code="g">Taylor and Francis Online</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2021-07-15 05:41:47 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53753621910006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53753621910006421</subfield>
+    <subfield code="k"> Available from 01/01/1997 volume: 19 issue: 1.</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61753486910006421</subfield>
+    <subfield code="n">Taylor &amp; Francis Medical Library</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62753512730006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125105174406421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">613850000000000310</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53753621910006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1=" " ind2=" ">
+    <subfield code="a">53753621910006421</subfield>
+    <subfield code="b">1997</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="h">19</subfield>
+    <subfield code="j">1</subfield>
+  </datafield>
+</record>

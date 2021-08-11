@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>-----nas--2200637-a-4500</leader>
+    <controlfield tag="001">99125267333206421</controlfield>
+    <controlfield tag="005">20200606063831.1</controlfield>
+    <controlfield tag="006">m-----o--d--------</controlfield>
+    <controlfield tag="007">cr-cnu||||||||</controlfield>
+    <controlfield tag="008">990414c19929999nyumr-pso-----0---a0eng-c</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">  2003215585</subfield>
+    </datafield>
+    <datafield tag="016" ind1="7" ind2=" ">
+      <subfield code="a">012434486</subfield>
+      <subfield code="2">Uk</subfield>
+    </datafield>
+    <datafield tag="022" ind1=" " ind2=" ">
+      <subfield code="a">1546-1718</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(DE-599)ZDB1494946 5</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)44288258</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/44288258</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CKB)954925598609</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CONSER)--2003215585</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(EXLCZ)99954925598609</subfield>
+    </datafield>
+    <datafield tag="037" ind1=" " ind2=" ">
+      <subfield code="b">Nature Genetics Subscription Dept., P.O. Box 5054, Brentwood, TN 37024-5054</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">nsdp</subfield>
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">QH431</subfield>
+    </datafield>
+    <datafield tag="082" ind1="1" ind2="0">
+      <subfield code="a">573</subfield>
+      <subfield code="2">13</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+      <subfield code="a">Nature genetics (Online)</subfield>
+    </datafield>
+    <datafield tag="222" ind1=" " ind2="0">
+      <subfield code="a">Nature genetics</subfield>
+      <subfield code="b">(Online)</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Nature genetics.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">New York, NY :</subfield>
+      <subfield code="b">Nature America, Inc.</subfield>
+    </datafield>
+    <datafield tag="310" ind1=" " ind2=" ">
+      <subfield code="a">Monthly</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="362" ind1="1" ind2=" ">
+      <subfield code="a">Print began with vol. 1, no. 1 (Apr. 1992).</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">Abstracts and full-text (PDF only), June 1998- ; abstracts only, Mar. 1996-May 1998.</subfield>
+    </datafield>
+    <datafield tag="538" ind1=" " ind2=" ">
+      <subfield code="a">Mode of access: World Wide Web.</subfield>
+    </datafield>
+    <datafield tag="588" ind1="0" ind2=" ">
+      <subfield code="a">Vol. 12, no. 3 (Mar. 1996); title from homepage (Nature website, viewed Apr. 14, 1999).</subfield>
+    </datafield>
+    <datafield tag="588" ind1="1" ind2=" ">
+      <subfield code="a">Vol. 51, no. 2 (Feb. 2019) (Nature website, viewed Feb. 22, 2019).</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Human genetics</subfield>
+      <subfield code="v">Periodicals.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2009126610</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="2">
+      <subfield code="a">Genetics, Medical.</subfield>
+      <subfield code="0">(uri) http://id.nlm.nih.gov/mesh/D005826</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Genetics &amp; Genomics.</subfield>
+      <subfield code="2">ebps</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Human genetics.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00963075</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00963075</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Genetik</subfield>
+      <subfield code="2">gnd</subfield>
+      <subfield code="0">(uri) https://portal.dnb.de/opac.htm?method=simpleSearch&amp;cqlMode=true&amp;query=idn=040717119</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/DNB|040717119</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Zeitschrift</subfield>
+      <subfield code="2">gnd</subfield>
+      <subfield code="0">(uri) https://portal.dnb.de/opac.htm?method=simpleSearch&amp;cqlMode=true&amp;query=idn=040674886</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/DNB|040674886</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Online-Ressource</subfield>
+      <subfield code="2">gnd</subfield>
+      <subfield code="0">(uri) https://portal.dnb.de/opac.htm?method=simpleSearch&amp;cqlMode=true&amp;query=idn=954353331</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/DNB|954353331</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Génétique.</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Génétique médicale.</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Génétique humaine.</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Maladie.</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="0">
+      <subfield code="a">Electronic journals.</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Periodicals.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411641</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01411641</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Ressource Internet (Descripteur de forme)</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Périodique électronique (Descripteur de forme)</subfield>
+      <subfield code="2">rasuqam</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">Nature Publishing Group.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2002037272</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2002037272</subfield>
+    </datafield>
+    <datafield tag="776" ind1=" " ind2=" ">
+      <subfield code="x">1061-4036</subfield>
+      <subfield code="0">(uri) http://worldcat.org/issn/1061-4036</subfield>
+    </datafield>
+    <datafield tag="906" ind1=" " ind2=" ">
+      <subfield code="a">JOURNAL</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-05-01 16:15:47 US/Eastern</subfield>
+      <subfield code="b">2012-02-25 17:29:53 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-07-15 11:56:04 US/Eastern</subfield>
+      <subfield code="g">ProQuest</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-07-15 11:56:00 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53788872160006421&amp;Force_direct=true</subfield>
+      <subfield code="s">SFX</subfield>
+      <subfield code="0">53788872160006421</subfield>
+      <subfield code="k"> Available from 01/01/2000. Most recent 1 year(s) not available.</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61753490010006421</subfield>
+      <subfield code="n">SciTech Premium Collection</subfield>
+      <subfield code="b">param</subfield>
+      <subfield code="1">62753504260006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125267333206421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="l">613790000000000496</subfield>
+      <subfield code="e">JOURNAL</subfield>
+      <subfield code="8">53788872160006421</subfield>
+    </datafield>
+    <datafield tag="953" ind1=" " ind2=" ">
+      <subfield code="a">53788872160006421</subfield>
+      <subfield code="b">2000</subfield>
+      <subfield code="d">1</subfield>
+      <subfield code="f">1</subfield>
+    </datafield>
+    <datafield tag="954" ind1=" " ind2=" ">
+      <subfield code="a">53788872160006421</subfield>
+      <subfield code="b">&gt;=</subfield>
+      <subfield code="c">1</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-07-15 11:56:04 US/Eastern</subfield>
+      <subfield code="g">ProQuest</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-07-15 11:56:00 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53788872150006421&amp;Force_direct=true</subfield>
+      <subfield code="s">SFX</subfield>
+      <subfield code="0">53788872150006421</subfield>
+      <subfield code="k"> Available from 01/01/2000. Most recent 1 year(s) not available.</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61753489860006421</subfield>
+      <subfield code="n">ProQuest Central</subfield>
+      <subfield code="b">param</subfield>
+      <subfield code="1">62753504640006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125267333206421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="l">613790000000000466</subfield>
+      <subfield code="e">JOURNAL</subfield>
+      <subfield code="8">53788872150006421</subfield>
+    </datafield>
+    <datafield tag="953" ind1=" " ind2=" ">
+      <subfield code="a">53788872150006421</subfield>
+      <subfield code="b">2000</subfield>
+      <subfield code="d">1</subfield>
+      <subfield code="f">1</subfield>
+    </datafield>
+    <datafield tag="954" ind1=" " ind2=" ">
+      <subfield code="a">53788872150006421</subfield>
+      <subfield code="b">&gt;=</subfield>
+      <subfield code="c">1</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-07-15 11:56:04 US/Eastern</subfield>
+      <subfield code="g">EBSCOhost</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-07-15 11:56:00 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53788872130006421&amp;Force_direct=true</subfield>
+      <subfield code="s">SFX</subfield>
+      <subfield code="0">53788872130006421</subfield>
+      <subfield code="k"> Available from 06/01/1998 until 11/30/2015.</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61753488630006421</subfield>
+      <subfield code="n">EBSCOhost Academic Search Ultimate</subfield>
+      <subfield code="b">param</subfield>
+      <subfield code="1">62753512700006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125267333206421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="l">614340000000000211</subfield>
+      <subfield code="e">JOURNAL</subfield>
+      <subfield code="8">53788872130006421</subfield>
+    </datafield>
+    <datafield tag="953" ind1=" " ind2=" ">
+      <subfield code="a">53788872130006421</subfield>
+      <subfield code="b">1998</subfield>
+      <subfield code="c">2015</subfield>
+      <subfield code="d">6</subfield>
+      <subfield code="e">11</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="g">30</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-07-15 11:56:04 US/Eastern</subfield>
+      <subfield code="g">Nature</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-07-15 11:56:00 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53788872140006421&amp;Force_direct=true</subfield>
+      <subfield code="s">SFX</subfield>
+      <subfield code="0">53788872140006421</subfield>
+      <subfield code="k"> Available from 1992 volume: 1 issue: 1.</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61753486980006421</subfield>
+      <subfield code="n">Nature</subfield>
+      <subfield code="b">param</subfield>
+      <subfield code="1">62753503560006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125267333206421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="l">61110974981369253</subfield>
+      <subfield code="e">JOURNAL</subfield>
+      <subfield code="8">53788872140006421</subfield>
+    </datafield>
+    <datafield tag="953" ind1=" " ind2=" ">
+      <subfield code="a">53788872140006421</subfield>
+      <subfield code="b">1992</subfield>
+      <subfield code="d">1</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="h">1</subfield>
+      <subfield code="j">1</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-08-03 16:24:47 US/Eastern</subfield>
+    <subfield code="u">exl_api</subfield>
+    <subfield code="t">2021-07-20 13:17:49 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53821583960006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53821583960006421</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="q">2400261-princetondb</subfield>
+    <subfield code="1">52821583970006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99123430173506421</subfield>
+    <subfield code="a">Not Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53821583960006421</subfield>
+  </datafield>
+  </record>
+</collection>

@@ -24,7 +24,7 @@ class ElectronicPortfolioBuilder
   def build
     {
       'desc': field['k'],
-      'title': field['n'],
+      'title': portfolio_title,
       'url': field['x'],
       'start': start_date,
       'end': end_date
@@ -63,5 +63,9 @@ class ElectronicPortfolioBuilder
       else
         'latest'
       end
+    end
+
+    def portfolio_title
+      field['n'].nil? ? 'Full Text' : field['n']
     end
 end
