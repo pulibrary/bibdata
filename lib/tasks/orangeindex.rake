@@ -135,7 +135,8 @@ namespace :liberate do
     solr = IndexFunctions.rsolr_connection(solr_url)
     dump = Dump.find(dump_id)
     Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
-    solr.commit
+    # soft commit to avoid timeouts
+    solr.commit(commit_attributes: { waitSearcher: false })
   end
 
   desc "Logs the deleted and updated IDs in the MARC files associated with a Dump"
