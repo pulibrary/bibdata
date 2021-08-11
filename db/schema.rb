@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_182740) do
+ActiveRecord::Schema.define(version: 2021_08_10_204449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,18 @@ ActiveRecord::Schema.define(version: 2021_07_06_182740) do
     t.index ["status"], name: "index_hathi_accesses_on_status"
   end
 
+  create_table "index_managers", force: :cascade do |t|
+    t.string "solr_collection"
+    t.bigint "dump_in_progress_id"
+    t.bigint "last_dump_completed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "in_progress"
+    t.index ["dump_in_progress_id"], name: "index_index_managers_on_dump_in_progress_id"
+    t.index ["last_dump_completed_id"], name: "index_index_managers_on_last_dump_completed_id"
+    t.index ["solr_collection"], name: "index_index_managers_on_solr_collection", unique: true
+  end
+
   create_table "locations_delivery_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.text "address"
@@ -183,6 +195,8 @@ ActiveRecord::Schema.define(version: 2021_07_06_182740) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  add_foreign_key "index_managers", "dumps", column: "dump_in_progress_id"
+  add_foreign_key "index_managers", "dumps", column: "last_dump_completed_id"
   add_foreign_key "locations_delivery_locations", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_hours_locations"
   add_foreign_key "locations_holding_locations", "locations_libraries"
