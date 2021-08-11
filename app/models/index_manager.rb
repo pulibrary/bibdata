@@ -5,8 +5,27 @@ class IndexManager < ActiveRecord::Base
   def self.for(solr_url)
     IndexManager.find_or_initialize_by(solr_collection: solr_url)
   end
+
+  def self.reindex!(solr_url: nil)
+    solr_url ||= rebuild_solr_url
+    manager = self.for(solr_url)
+    return if manager.in_progress?
+    manager.last_dump_completed = nil
+    manager.save
+    manager.wipe!
+    manager.index_remaining!
+  end
+
+  def self.rebuild_solr_url
+    "#{Rails.application.config.solr['url']}-rebuild"
+  end
+
   belongs_to :dump_in_progress, class_name: "Dump"
   belongs_to :last_dump_completed, class_name: "Dump"
+
+  def wipe!
+    RSolr.connect(url: solr_collection).delete_by_query("*:*")
+  end
 
   def index_next_dump!
     return unless next_dump

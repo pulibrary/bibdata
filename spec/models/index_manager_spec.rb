@@ -8,6 +8,51 @@ RSpec.describe IndexManager, type: :model do
     solr.delete_by_query("*:*")
     solr.commit
   end
+
+  def run_all_callbacks
+    old_batch = nil
+    while (batch = Sidekiq::BatchSet.new.to_a.last).bid != old_batch&.bid
+      old_batch = batch
+      run_callback(batch)
+    end
+    # Run callback for the parent batch.
+    run_callback(Sidekiq::BatchSet.new.to_a.first)
+  end
+
+  describe ".rebuild_solr_url" do
+    it "appends -rebuild to the URL" do
+      expect(described_class.rebuild_solr_url).to eq "#{solr_url}-rebuild"
+    end
+  end
+
+  describe ".reindex!" do
+    it "wipes solr and queues up a full reindex into it" do
+      full_event = FactoryBot.create(:full_dump_event)
+      incremental_event = FactoryBot.create(:incremental_dump_event)
+      existing_index_manager = IndexManager.for(solr_url)
+      existing_index_manager.last_dump_completed = incremental_event.dump
+      existing_index_manager.save
+      solr.add(id: "should_be_deleted")
+      allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
+      solr.commit
+
+      Sidekiq::Testing.inline! do
+        described_class.reindex!(solr_url: solr_url)
+        run_all_callbacks
+      end
+      solr.commit
+
+      expect(DumpFileIndexJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
+      expect(DumpFileIndexJob).to have_received(:perform_async).with(full_event.dump.dump_files.first.id, anything)
+      response = solr.get("select", params: { q: "*:*" })
+      expect(response['response']['numFound']).to eq 9
+      existing_index_manager.reload
+      expect(existing_index_manager.last_dump_completed).to eq incremental_event.dump
+      expect(existing_index_manager.dump_in_progress).to be_nil
+      expect(existing_index_manager).not_to be_in_progress
+    end
+  end
+
   describe "index_next_dump!" do
     it "indexes a full dump if there's been nothing indexed yet" do
       full_event = FactoryBot.create(:full_dump_event)
@@ -96,13 +141,7 @@ RSpec.describe IndexManager, type: :model do
       Sidekiq::Testing.inline! do
         # Index full dump
         index_manager.index_remaining!
-        old_batch = nil
-        while (batch = Sidekiq::BatchSet.new.to_a.last).bid != old_batch&.bid
-          old_batch = batch
-          run_callback(batch)
-        end
-        # Run callback for the parent batch.
-        run_callback(Sidekiq::BatchSet.new.to_a.first)
+        run_all_callbacks
       end
       solr.commit
 
