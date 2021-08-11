@@ -65,7 +65,9 @@ class IndexManager < ActiveRecord::Base
   def next_dump
     @next_dump ||=
       begin
-        if last_dump_completed
+        if last_dump_completed&.full_dump?
+          previous_to_full_incremental || next_incremental
+        elsif last_dump_completed
           next_incremental
         else
           recent_full_dump || first_incremental
@@ -79,6 +81,10 @@ class IndexManager < ActiveRecord::Base
 
   def first_incremental
     Dump.changed_records.joins(:event).order("events.start" => "ASC").first
+  end
+
+  def previous_to_full_incremental
+    Dump.changed_records.joins(:event).where("events.start < ?", last_dump_completed.event.start.to_s).where.not(id: last_dump_completed.id).order("events.start" => "DESC").first
   end
 
   def next_incremental
