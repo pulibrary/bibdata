@@ -124,18 +124,6 @@ namespace :liberate do
     solr.commit
   end
 
-  desc "Index an incremental alma dump by ID"
-  task index_dump: :environment do
-    solr_url = ENV['SET_URL'] || default_solr_url
-    dump_id = ENV['DUMP_ID']
-    abort "usage: SOLR_URL=[solr_url] DUMP_ID=[dump_id] liberate:index_dump" unless solr_url && dump_id
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    dump = Dump.find(dump_id)
-    Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
-    # soft commit to avoid timeouts
-    solr.commit(commit_attributes: { waitSearcher: false })
-  end
-
   desc "Logs the deleted and updated IDs in the MARC files associated with a Dump"
   task dump_log_ids: :environment do
     dump_id = ENV['DUMP_ID'].to_i

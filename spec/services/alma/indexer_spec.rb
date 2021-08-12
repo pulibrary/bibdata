@@ -91,38 +91,4 @@ RSpec.describe Alma::Indexer do
       expect(response['response']['numFound']).to eq 0
     end
   end
-
-  describe "incremental_index!" do
-    let(:solr) { RSolr.connect(url: solr_url) }
-    before do
-      Sidekiq::BatchSet.new.to_a.each(&:delete)
-      solr.delete_by_query("*:*")
-      solr.commit
-    end
-    it "indexes a dump's files" do
-      dump = FactoryBot.create(:incremental_dump)
-      indexer = described_class.new(solr_url: solr_url)
-      Sidekiq::Testing.inline! do
-        indexer.incremental_index!(dump)
-        # Have to manually call batch callbacks
-        IncrementalIndexJob.new.on_success(Sidekiq::BatchSet.new.to_a.last, "dump_id" => dump.id)
-      end
-      solr.commit
-
-      # expect solr to have stuff
-      response = solr.get("select", params: { q: "*:*" })
-      expect(response['response']['numFound']).to eq 7
-
-      expect(DumpFile.done.size).to eq 2
-      expect(Dump.last).to be_done
-    end
-
-    context "when given a dump that's not an incremental alma dump" do
-      it "errors" do
-        dump = FactoryBot.create(:recap_incremental_dump)
-        indexer = described_class.new(solr_url: solr_url)
-        expect { indexer.incremental_index!(dump) }.to raise_error
-      end
-    end
-  end
 end

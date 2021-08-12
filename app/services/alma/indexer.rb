@@ -11,19 +11,6 @@ class Alma::Indexer
     end
   end
 
-  def incremental_index!(dump)
-    raise "received a dump with type other than CHANGED_RECORDS" unless dump.dump_type.constant == "CHANGED_RECORDS"
-    dump.update!(index_status: Dump::STARTED)
-    dump.dump_files.update(index_status: :started)
-    batch = Sidekiq::Batch.new
-    batch.on(:success, IncrementalIndexJob, 'dump_id' => dump.id)
-    batch.jobs do
-      dump.dump_files.each do |dump_file|
-        DumpFileIndexJob.perform_async(dump_file.id, solr_url)
-      end
-    end
-  end
-
   def index_file(file_name, debug_mode = false)
     debug_flag = debug_mode ? "--debug-mode" : ""
     `traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url} 2>&1`
