@@ -110,11 +110,7 @@ namespace :liberate do
   desc "Index remaining incrementals against SET_URL"
   task incremental: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    dump = Dump.changed_records.last
-    Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
-    solr.commit
-    # IndexManager.for(solr_url).index_remaining!
+    IndexManager.for(solr_url).index_remaining!
   end
 
   desc "Index a single MARC XML file against SET_URL"
@@ -126,18 +122,6 @@ namespace :liberate do
     solr = IndexFunctions.rsolr_connection(solr_url)
     Alma::Indexer.new(solr_url: solr_url).index_file(file_name, debug)
     solr.commit
-  end
-
-  desc "Index an incremental alma dump by ID"
-  task index_dump: :environment do
-    solr_url = ENV['SET_URL'] || default_solr_url
-    dump_id = ENV['DUMP_ID']
-    abort "usage: SOLR_URL=[solr_url] DUMP_ID=[dump_id] liberate:index_dump" unless solr_url && dump_id
-    solr = IndexFunctions.rsolr_connection(solr_url)
-    dump = Dump.find(dump_id)
-    Alma::Indexer.new(solr_url: solr_url).incremental_index!(dump)
-    # soft commit to avoid timeouts
-    solr.commit(commit_attributes: { waitSearcher: false })
   end
 
   desc "Logs the deleted and updated IDs in the MARC files associated with a Dump"
