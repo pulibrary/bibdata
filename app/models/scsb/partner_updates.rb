@@ -31,6 +31,7 @@ module Scsb
       prepare_directory
       download_and_process_full(inst: "NYPL", prefix: 'scsbfull_nypl_')
       download_and_process_full(inst: "CUL", prefix: 'scsbfull_cul_')
+      download_and_process_full(inst: "HL", prefix: 'scsbfull_hl_')
       set_generated_date
       log_record_fixes
     end

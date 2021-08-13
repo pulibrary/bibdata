@@ -12,7 +12,7 @@ Alma MMS ids start with 99 and end with 3506421
 Frequency of updates: 4x per day
 
 ## Source: SCSB
-About 6 million items shared by our ReCAP Partners, Columbia and NYPL, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
+About 6 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
 
 These files are on an aws s3 bucket; the password is in lastpass under SCS Prod S3 Keys in the shared `bibdata` directory. The file path is SCSB > data-exports > PUL > MARCXml > Full. There are .zip files there and .csv files. The zip files contain the MARC dumps.
 
