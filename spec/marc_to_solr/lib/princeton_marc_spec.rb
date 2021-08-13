@@ -702,6 +702,11 @@ describe 'From princeton_marc.rb' do
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
       @holding_id_scsb = "9856684"
       @holdings_scsb_block = @holdings_scsb[@holding_id_scsb]
+
+      @record_scsb_hl = @indexer.map_record(fixture_record('SCSB-9879349'))
+      @holdings_scsb_hl = JSON.parse(@record_scsb_hl["holdings_1display"][0])
+      @holding_id_scsb_hl = "10615189"
+      @holdings_scsb_hl_block = @holdings_scsb_hl[@holding_id_scsb_hl]
     end
 
     it 'indexes location if it exists' do
@@ -775,6 +780,9 @@ describe 'From princeton_marc.rb' do
         expect(@holdings_scsb_block['items'][0]['copy_number']).to eq("1")
         expect(@holdings_scsb_block['items'][0]['cgc']).to eq("Open")
         expect(@holdings_scsb_block['items'][0]['collection_code']).to eq("JS")
+      end
+      it "indexes 876$l for scsb" do
+        expect(@holdings_scsb_hl_block['items'][0]['storage_location']).to eq("HD")
       end
     end
   end
