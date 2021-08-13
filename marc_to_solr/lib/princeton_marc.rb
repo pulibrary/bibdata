@@ -789,7 +789,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
     end
   end
   ### Added for SCSB - scsbnypl, scsbcul
-  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
+  Traject::MarcExtractor.cached('87603ahljptxz').collect_matching_lines(record) do |field, _spec, _extractor|
     is_alma = alma_code_start_22?(field['0'])
     is_scsb = scsb_doc?(record['001'].value) && field['0']
     next unless is_scsb || is_alma
@@ -805,6 +805,8 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
         item[:use_statement] = s_field.value
       elsif s_field.code == 'j'
         item[:status_at_load] = s_field.value
+      elsif s_field.code == 'l' && is_scsb
+        item[:storage_location] = s_field.value
       elsif s_field.code == 'p'
         item[:barcode] = s_field.value
       elsif s_field.code == 't'
