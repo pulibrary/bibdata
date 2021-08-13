@@ -106,11 +106,11 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   describe '.incremental' do
     let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
     before do
-      FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path.join("CUL-NYPL_20210622_183200.zip"))
-      FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path.join("CUL-NYPL_20210622_183300.zip"))
+      FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path.join("CUL-NYPL-HL_20210622_183200.zip"))
+      FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path.join("CUL-NYPL-HL_20210622_183300.zip"))
       allow(bucket).to receive(:download_files).and_return(
-        [Rails.root.join(update_directory_path, 'CUL-NYPL_20210622_183200.zip').to_s],
-        [Rails.root.join(update_directory_path, 'CUL-NYPL_20210622_183300.zip').to_s]
+        [Rails.root.join(update_directory_path, 'CUL-NYPL-HL_20210622_183200.zip').to_s],
+        [Rails.root.join(update_directory_path, 'CUL-NYPL-HL_20210622_183300.zip').to_s]
       )
     end
 
