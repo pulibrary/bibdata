@@ -68,7 +68,7 @@ module Scsb
     end
 
     # @return [Array<String>] paths to the downloaded files
-    def download_files(files:, timestamp_filter:, output_directory:, file_filter: /CUL-NYPL.*\.zip/)
+    def download_files(files:, timestamp_filter:, output_directory:, file_filter: /CUL-NYPL-HL.*\.zip/)
       files_by_extension = files.select { |obj| obj.key.match?(file_filter) }
       files_to_download = files_by_extension.select { |obj| obj.last_modified > timestamp_filter }
       fetch_files(files_to_download, output_directory)
