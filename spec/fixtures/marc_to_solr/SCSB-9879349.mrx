@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?><marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim">
+  <marcxml:record>
+    <marcxml:leader>00549nam a2200205 a 4500</marcxml:leader>
+    <marcxml:controlfield tag="001">SCSB-9879349</marcxml:controlfield>
+    <marcxml:controlfield tag="005">20020606090541.3</marcxml:controlfield>
+    <marcxml:controlfield tag="008">921130s1987    nr            000 0 eng d</marcxml:controlfield>
+    <marcxml:controlfield tag="009">990016673810203941</marcxml:controlfield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)20136668</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="040" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">MH-L</marcxml:subfield>
+      <marcxml:subfield code="c">MH-L</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="043" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">f-nr---</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="100" ind1="1" ind2=" ">
+      <marcxml:subfield code="a">Mbadinuju, Clement Chinwoke,</marcxml:subfield>
+      <marcxml:subfield code="d">1945-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="245" ind1="1" ind2="0">
+      <marcxml:subfield code="a">Law and religion in Nigeria /</marcxml:subfield>
+      <marcxml:subfield code="c">C. Chinwoke Mbadinuju.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="250" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">1st ed.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="260" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Onitsha :</marcxml:subfield>
+      <marcxml:subfield code="b">Topprint,</marcxml:subfield>
+      <marcxml:subfield code="c">1987.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="300" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">46 p. ;</marcxml:subfield>
+      <marcxml:subfield code="c">19 cm.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Religion and law</marcxml:subfield>
+      <marcxml:subfield code="z">Nigeria.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="583" ind1="1" ind2=" ">
+      <marcxml:subfield code="a">committed to retain</marcxml:subfield>
+      <marcxml:subfield code="c">20181001</marcxml:subfield>
+      <marcxml:subfield code="d">in perpetuity</marcxml:subfield>
+      <marcxml:subfield code="f">ReCAP Shared Collection</marcxml:subfield>
+      <marcxml:subfield code="5">HUL</marcxml:subfield>
+      <marcxml:subfield code="8">221812237900003941</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="8" ind2=" ">
+      <marcxml:subfield code="c">HD</marcxml:subfield>
+      <marcxml:subfield code="h">NIGE 978 MBA</marcxml:subfield>
+      <marcxml:subfield code="8">221812237900003941</marcxml:subfield>
+      <marcxml:subfield code="0">10615189</marcxml:subfield>
+      <marcxml:subfield code="b">scsbhl</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">10615189</marcxml:subfield>
+      <marcxml:subfield code="3"/>
+      <marcxml:subfield code="a">16301828</marcxml:subfield>
+      <marcxml:subfield code="h"/>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k">LAW</marcxml:subfield>
+      <marcxml:subfield code="p">32044057607491</marcxml:subfield>
+      <marcxml:subfield code="t"/>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">HL</marcxml:subfield>
+      <marcxml:subfield code="l">HD</marcxml:subfield>
+    </marcxml:datafield>
+  </marcxml:record>
