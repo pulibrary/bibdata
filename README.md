@@ -167,7 +167,7 @@ If you have MARC file you can import it to Solr via Traject with the following c
 
 ```
 FILE=/path/to/marc/file/filename.xml
-SOLR_URL=http://localhost:8983/solr/puldata
+SOLR_URL=http://localhost:8983/local-solr-url
 bundle exec traject -c marc_to_solr/lib/traject_config.rb $FILE -u $SOLR_URL
 ```
 
