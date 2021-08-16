@@ -162,6 +162,22 @@ SET_URL=http://localhost:8983/solr/orangelight-core-development BIB=123456 rake 
 ## Alma Webhooks
 see [[webhook_monitor/README.md]]
 
+## MARC Files
+If you have MARC file you can import it to Solr via Traject with the following commands:
+
+```
+FILE=/path/to/marc/file/filename.xml
+SOLR_URL=http://localhost:8983/local-solr-url
+bundle exec traject -c marc_to_solr/lib/traject_config.rb $FILE -u $SOLR_URL
+```
+
+If you just want to see what would be sent to Solr (but don't push the document to Solr) you can use instead:
+
+```
+FILE=/path/to/marc/file/filename.xml
+bundle exec traject -c marc_to_solr/lib/traject_config.rb $FILE -w Traject::JsonWriter
+```
+
 ## Tests
 
 A couple of the tests require some fixtures to be in place; for now they must be copied as in this CI configuration: https://github.com/pulibrary/marc_liberation/blob/6b7b9e60d65f313fede5a70e5a2cd6e56d634003/.circleci/config.yml#L36-L46
