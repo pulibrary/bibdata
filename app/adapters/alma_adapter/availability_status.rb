@@ -43,7 +43,7 @@ class AlmaAdapter
       return nil if holding["inventory_type"] != "physical"
 
       location_info = location_record(holding)
-      status_label = Status.new(bib: bib, holding: holding, holding_item_data: nil, aeon: aeon?(location_info)).to_s
+      status_label = Status.new(bib: bib, holding: holding, aeon: aeon?(location_info)).to_s
       status = {
         on_reserve: AlmaItem.reserve_location?(holding["library_code"], holding["location_code"]) ? "Y" : "N",
         location: holding_location_code(holding),
@@ -95,7 +95,7 @@ class AlmaAdapter
     def holding_summary(holding)
       holding_item_data = item_data[holding["holding_id"]]
       location_info = location_record(holding)
-      status = Status.new(bib: bib, holding_item_data: holding_item_data, holding: holding, aeon: aeon?(location_info))
+      status = Status.new(bib: bib, holding: holding, aeon: aeon?(location_info))
       {
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
