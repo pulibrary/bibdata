@@ -10,11 +10,14 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
+          SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/marc-liberation-core-test
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: marc_liberation_test
           POSTGRES_HOST_AUTH_METHOD: trust
+      - image: pulibrary/ci-solr:8.4-v1.0.0
+        command: server/scripts/ci-start.sh
 
     steps:
       - checkout
@@ -52,9 +55,12 @@ jobs:
           command: mkdir tmp
 
       - run:
-          command: bundle exec rake server:solr:start_solr_wrapper
-          background: true
-      - run: bin/jetty_wait
+          name: Load config into solr
+          command: |
+            cd solr/conf
+            zip -1 -r solr_config.zip ./*
+            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://solr:SolrRocks@127.0.0.1:8983/solr/admin/configs?action=UPLOAD&name=bibdata"
+            curl -H 'Content-type: application/json' http://solr:SolrRocks@127.0.0.1:8983/api/collections/  -d '{create: {name: marc-liberation-core-test, config: bibdata, numShards: 1}}'
 
       - run:
           name: Wait for Postgres
@@ -103,13 +109,15 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
-          SOLR_URL: http://127.0.0.1:8983/solr/marc-liberation-core-test
+          SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/marc-liberation-core-test
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: marc_liberation_test
           POSTGRES_HOST_AUTH_METHOD: trust
       - image: redis:4.0.9-alpine
+      - image: pulibrary/ci-solr:8.4-v1.0.0
+        command: server/scripts/ci-start.sh
 
     steps:
       - checkout
@@ -144,9 +152,12 @@ jobs:
             - vendor/bundle
 
       - run:
-          command: bundle exec rake server:solr:start_solr_wrapper
-          background: true
-      - run: bin/jetty_wait
+          name: Load config into solr
+          command: |
+            cd solr/conf
+            zip -1 -r solr_config.zip ./*
+            curl -H "Content-type:application/octet-stream" --data-binary @solr_config.zip "http://solr:SolrRocks@127.0.0.1:8983/solr/admin/configs?action=UPLOAD&name=bibdata"
+            curl -H 'Content-type: application/json' http://solr:SolrRocks@127.0.0.1:8983/api/collections/  -d '{create: {name: marc-liberation-core-test, config: bibdata, numShards: 1}}'
 
       - run:
           name: Wait for Postgres

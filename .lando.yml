@@ -2,13 +2,19 @@
 name: marc_liberation
 services:
   marc_liberation_test_solr:
-    type: solr:8.4
+    type: solr:custom
+    overrides:
+      image: pulibrary/ci-solr:8.4-v1.0.0
+      command: server/scripts/lando-start.sh
     portforward: true
     core: marc-liberation-core-test
     config:
       dir: "solr/conf"
   marc_liberation_development_solr:
-    type: solr:8.4
+    type: solr:custom
+    overrides:
+      image: pulibrary/ci-solr:8.4-v1.0.0
+      command: server/scripts/lando-start.sh
     portforward: true
     core: marc-liberation-core-development
     config:
