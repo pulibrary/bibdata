@@ -42,9 +42,9 @@ job_type :liberate_latest_production, "cd :path && :environment_variable=:enviro
 #     output: "/tmp/daily_updates.log"
 #   )
 # end
-# every 1.day, at: "6:00am", roles: [:cron_production] do
-#   rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"
-# end
+every 1.day, at: "6:00am", roles: [:cron_production] do
+  rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"
+end
 
 # process the access file daily at 10:30am Eastern (the machine is in Z time, which is why this is 2pm)
 every 1.day, at: "2:30pm", roles: [:hr_cron] do
