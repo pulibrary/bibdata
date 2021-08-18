@@ -778,7 +778,7 @@ describe 'From princeton_marc.rb' do
         expect(@holdings_scsb_block['items'][0]['status_at_load']).to eq("Available")
         expect(@holdings_scsb_block['items'][0]['barcode']).to eq("33433022784528")
         expect(@holdings_scsb_block['items'][0]['copy_number']).to eq("1")
-        expect(@holdings_scsb_block['items'][0]['cgc']).to eq("Open")
+        expect(@holdings_scsb_block['items'][0]['cgd']).to eq("Open")
         expect(@holdings_scsb_block['items'][0]['collection_code']).to eq("JS")
       end
       it "indexes 876$l for scsb" do

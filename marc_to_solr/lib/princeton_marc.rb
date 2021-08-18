@@ -812,7 +812,7 @@ def process_holdings record # rubocop:disable Metrics/AbcSize, Metrics/Cyclomati
       elsif s_field.code == 't'
         item[:copy_number] = s_field.value
       elsif s_field.code == 'x' && is_scsb
-        item[:cgc] = s_field.value
+        item[:cgd] = s_field.value
       elsif s_field.code == 'z' && is_scsb
         item[:collection_code] = s_field.value
       end
