@@ -107,6 +107,7 @@ RSpec.describe Dump, type: :model do
       ENV['TIMESTAMP'] = '2017-07-01'
       timestamp = Dump.send(:incremental_update_timestamp).to_time.strftime("%Y%m%d")
       expect(timestamp).to eq(ENV['TIMESTAMP'].to_time.strftime("%Y%m%d"))
+      ENV['TIMESTAMP'] = nil
     end
   end
 
