@@ -763,7 +763,7 @@ describe 'From princeton_marc.rb' do
       it "indexes from 852" do
         expect(@holdings_scsb).to have_key(@holding_id_scsb)
         expect(@holdings_scsb_block['location_code']).to eq('scsbnypl')
-        expect(@holdings_scsb_block['location']).to eq('ReCAP')
+        expect(@holdings_scsb_block['location']).to eq('Remote Storage')
         expect(@holdings_scsb_block['library']).to eq('ReCAP')
         expect(@holdings_scsb_block['call_number_browse']).to eq('JSM 95-216')
         expect(@holdings_scsb_block['call_number']).to eq('JSM 95-216')

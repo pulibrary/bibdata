@@ -81,7 +81,7 @@ describe 'From traject_config.rb' do
       expect(@scsb_nypl["location_code_s"]).to eq ["scsbnypl"]
       expect(@scsb_nypl["location"]).to eq ["ReCAP"]
       expect(@scsb_nypl["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
-      expect(@scsb_nypl["location_display"]).to eq ["ReCAP"]
+      expect(@scsb_nypl["location_display"]).to eq ["Remote Storage"]
     end
   end
   describe "holdings" do

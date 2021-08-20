@@ -83,9 +83,9 @@ class LocationDataService
 
   def populate_partners_holding_locations
     partners_locations = [
-      { label: "", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
-      { label: "", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
-      { label: "", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' }
+      { label: "Remote Storage", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
+      { label: "Remote Storage", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
+      { label: "Remote Storage", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' }
     ]
     partners_locations.each do |p|
       HoldingLocation.new do |location_record|
