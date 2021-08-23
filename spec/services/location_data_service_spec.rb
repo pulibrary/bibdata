@@ -192,9 +192,10 @@ RSpec.describe LocationDataService, type: :service do
       location_record8 = HoldingLocation.find_by(code: 'recap$gp')
       location_record9 = HoldingLocation.find_by(code: 'recap$pb')
       location_record10 = HoldingLocation.find_by(code: 'eastasian$hy')
+      location_record11 = HoldingLocation.find_by(code: 'firestone$secw')
 
       expect(Library.count).to eq 11
-      expect(HoldingLocation.count).to eq 102
+      expect(HoldingLocation.count).to eq 103
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Annex Stacks'
       expect(location_record1.open).to be true
@@ -207,6 +208,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record8.remote_storage).to eq 'recap_rmt'
       expect(location_record9.remote_storage).to eq ''
       expect(location_record10.label).to eq ''
+      expect(location_record11.label).to eq 'Scribner Library: Common Works Collection'
     end
 
     it "creates scsb locations" do
