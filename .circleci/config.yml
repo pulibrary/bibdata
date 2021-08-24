@@ -34,9 +34,9 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v2-marc_liberation-
+            - v3-marc_liberation-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -44,7 +44,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -79,15 +79,15 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v2-marc_liberation-
+            - v3-marc_liberation-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -129,9 +129,9 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v2-marc_liberation-
+            - v3-marc_liberation-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -139,7 +139,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -183,15 +183,15 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v2-marc_liberation-
+            - v3-marc_liberation-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v2-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
