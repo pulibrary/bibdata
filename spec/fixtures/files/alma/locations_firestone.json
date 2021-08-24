@@ -24,7 +24,32 @@
         "desc": null
         },
         "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pb"
-        }
+        },
+        {
+          "code": "secw",
+          "name": "secw: Scribner Library: Common Works Collection",
+          "external_name": "Scribner Library: Common Works Collection",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/secw"
+          }
     ],
-    "total_record_count": 1
+    "total_record_count": 2
   }
