@@ -77,19 +77,13 @@ $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bin
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
 
+Once the full dump is finished indexing, the IndexManager will queue up dump
+files for each relevant incremental dumps until all the Alma records are
+indexed.
+
+To keep tabs on how long the individual dump files take to index you can look at sidekiq DumpFileIndexJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3ADumpFileIndexJob%20-host%3Abibdata-alma-staging1%20-host%3Abibdata-alma-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
+
 Timing for this step is still being determined.
-
-#### Incremental files created since the full dump
-
-TODO: We don't currently have this job. See https://github.com/pulibrary/bibdata/issues/1518
-
-Any incremental files created after the full dump also need to be indexed.
-
-- Once the job has been created, instructions will be something like:
-  - Determine the date of the last full bib dump. The date is stored in the `start` field of the Event. Use this date in SET_DATE below.
-  - Full dumps are run once a week; you can see this by looking at the `General Publishing` job in Alma.
-  - As deploy user in /opt/marc_liberation/current, run:
-  - SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-rebuild SET_DATE=[yyyy-mm-dd or yyyy-mm-dd] bin/rake liberate:updates
 
 ### Index Partner SCSB records
 
