@@ -68,11 +68,12 @@ Go to the solr admin UI (see above).
 
 You can go to the bibdata UI Events page to see the most recent full record dump.
 
-SSH to a bibdata machine and start a tmux session.
+SSH to a bibdata machine as deploy user
 
-as deploy user, in `/opt/marc_liberaton/current`
-
-`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bin/rake liberate:full`
+```
+$ cd /opt/marc_liberaton/current
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bin/rake liberate:full
+```
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
 

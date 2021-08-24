@@ -103,8 +103,7 @@ namespace :liberate do
   task full: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
-    Alma::Indexer.new(solr_url: solr_url).full_reindex!
-    solr.commit
+    IndexManager.reindex!(solr_url: solr_url)
   end
 
   desc "Index remaining incrementals against SET_URL"
