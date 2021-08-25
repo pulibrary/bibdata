@@ -152,14 +152,34 @@ above to do this)
 
 ### Swap in the new index
 
+First, update the index managers to have the new solr_collection values.
+Currently we have to do this in the console because we don't have a task yet
+
+```
+> old_prod_manager = IndexManager.for("http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production")
+> prod_alias = old_prod_manager.solr_collection
+> new_prod_manager = IndexManager.for("http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild")
+> rebuild_alias = new_prod_manager.solr_collection
+> old_prod_manager.solr_collection = "temp"
+> old_prod_manager.save
+> new_prod_manager.solr_collection = prod_alias
+> new_prod_manager.save
+> old_prod_manager.solr_collection = rebuild_alias
+> old_prod_manager.save
+```
+
+Then swap the rebuild collection to the production alias.
+
 - Run the cap task on pul_solr to swap the aliases
 - Make sure you use the right values for PRODUCTION and REBUILD. For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
-PRODUCTION=catalog-production2 REBUILD=catalog-production1 bundle exec cap solr8-production alias:swap
+[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap solr8-production alias:swap
 ```
 
-To turn sneakers workers back on:
+Then turn sneakers workers back on:
 - cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_alma_prod -u pulsys -m shell -a "sudo service orangelight-sneakers start"
+
+Then expire the rails cache to get the updated values on the front page of the catalog. You can do this by deploying the app.
 
 ## Other tasks
 
