@@ -153,19 +153,9 @@ above to do this)
 ### Swap in the new index
 
 First, update the index managers to have the new solr_collection values.
-Currently we have to do this in the console because we don't have a task yet
 
 ```
-> old_prod_manager = IndexManager.for("http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production")
-> prod_alias = old_prod_manager.solr_collection
-> new_prod_manager = IndexManager.for("http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild")
-> rebuild_alias = new_prod_manager.solr_collection
-> old_prod_manager.solr_collection = "temp"
-> old_prod_manager.save
-> new_prod_manager.solr_collection = prod_alias
-> new_prod_manager.save
-> old_prod_manager.solr_collection = rebuild_alias
-> old_prod_manager.save
+bundle exec rake index_manager:promote_rebuild_manager
 ```
 
 Then swap the rebuild collection to the production alias.
