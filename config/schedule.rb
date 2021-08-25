@@ -25,23 +25,15 @@ end
 
 job_type :liberate_latest_production, "cd :path && :environment_variable=:environment SET_URL=:set_url :bundle_command rake :task --silent :output"
 
-# # Daily recap shared collection update to Solr
-# every 1.day, at: "6:30am", roles: [:cron_production] do
-#   liberate_latest_production(
-#     "scsb:latest",
-#     set_url: ENV["SOLR_URL"],
-#     output: "/tmp/daily_updates.log"
-#   )
-# end
-#
-# # Daily recap shared collection update to Solr staging cluster
-# every 1.day, at: "7:00am", roles: [:cron_production] do
-#   liberate_latest_production(
-#     "scsb:latest",
-#     set_url: ENV["SOLR_REINDEX_URL"],
-#     output: "/tmp/daily_updates.log"
-#   )
-# end
+# Daily recap shared collection update to Solr
+every 1.day, at: "6:30am", roles: [:cron_production] do
+  liberate_latest_production(
+    "scsb:latest",
+    set_url: ENV["SOLR_URL"],
+    output: "/tmp/daily_updates.log"
+  )
+end
+
 every 1.day, at: "6:00am", roles: [:cron_production] do
   rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"
 end
