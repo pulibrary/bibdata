@@ -36,7 +36,7 @@ Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pull
 
 The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983 .
 
-The collections `catalog-alma-production1` and `catalog-alma-production2` are swapped as needed and should be accessed via the aliases `catalog-alma-production` and `catalog-alma-rebuild`
+The collections `catalog-alma-production1` and `catalog-alma-production2` are swapped as needed and should be accessed via the aliases `catalog-alma-production` and `catalog-alma-production-rebuild`
 
 The staging catalog uses http://lib-solr8-staging.princeton.edu:8983/solr/catalog-alma-staging and also has a rebuild index, `catalog-alma-staging-rebuild`.
 
@@ -56,7 +56,7 @@ ssh to an orangelight webserver and verify that the index in use is `catalog-alm
 
 Go to the solr admin UI (see above).
 
-- Select the `catalog-alma-rebuild` collection from the dropdown
+- Select the `catalog-alma-production-rebuild` collection from the dropdown
 - Select the `documents` menu item
 - Select 'xml' from the 'Document Type' dropdown
 - Enter `<delete><query>*:*</query></delete>` in the 'Document(s)' form box
@@ -72,7 +72,7 @@ SSH to a bibdata machine as deploy user
 
 ```
 $ cd /opt/marc_liberaton/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bin/rake liberate:full
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake liberate:full
 ```
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
@@ -100,7 +100,7 @@ in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_l
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bundle exec rake scsb:full`
+`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:full`
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
@@ -116,7 +116,7 @@ as deploy user, in `/opt/marc_liberaton/current`
 
 This step takes around 10 minutes. It will create a `theses.json` file in `home/deploy`. Post the file with:
 
-`curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'`
+`curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'`
 
 ### Index Numismatic Coins
 
@@ -128,7 +128,7 @@ To turn off sneakers workers:
 To index the coins:
 
 - as deploy user, in `/opt/marc_liberaton/current`
-- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
+- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes 30 min to an hour.
 - Note that the default log writes to STDERR to distinguish its output from the progress bar
 
@@ -142,7 +142,7 @@ Because traject does not log to datadog we lose log output for indexing that run
 
 - Set up an ssh tunnel to the solr index (you can use the pul_solr cap task given
 above to do this)
-- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-rebuild bin/rails s`
+- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-alma-production-rebuild bin/rails s`
 - Go to localhost:3000 > advanced search > holding location: pul > search
 - This limits results to items from alma
 - Total number of results tells you how many records are in the index
@@ -163,7 +163,7 @@ Then swap the rebuild collection to the production alias.
 - Run the cap task on pul_solr to swap the aliases
 - Make sure you use the right values for PRODUCTION and REBUILD. For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
-[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap solr8-production alias:swap
+[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-production-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap solr8-production alias:swap
 ```
 
 Then turn sneakers workers back on:
@@ -177,7 +177,7 @@ Then expire the rails cache to get the updated values on the front page of the c
 Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
 - Ssh to marc_liberation box as deploy user
 - `$ bin/rails c`
-- `> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-rebuild"`
+- `> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`
 - `> solr = RSolr.connect(url: solr_url)`
 - `> solr.delete_by_query("id:[1 TO 999999999]")`
 - `> solr.commit`
