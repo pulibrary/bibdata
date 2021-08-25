@@ -108,7 +108,7 @@ This will also index any incremental files we have that were generated after the
 
 ### Index Theses
 
-SSH to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L11-L12 and start a tmux session.
+SSH to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
 as deploy user, in `/opt/marc_liberaton/current`
 
