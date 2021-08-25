@@ -100,7 +100,7 @@ in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_l
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-staging-rebuild bundle exec rake scsb:full`
+`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-rebuild bundle exec rake scsb:full`
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
@@ -108,7 +108,7 @@ This will also index any incremental files we have that were generated after the
 
 ### Index Theses
 
-SSH to the bibdata worker machine that is used for indexing and start a tmux session
+SSH to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
 as deploy user, in `/opt/marc_liberaton/current`
 
