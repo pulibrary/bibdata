@@ -7,43 +7,14 @@ to create our own events and dumps.
 
 An architecture diagram can be found at https://lib-confluence.princeton.edu/display/ALMA/Systems+Documentation
 
-## Tests
-
-To run the tests for the alma webhook monitor:
-* `$ cd webhook_monitor/src`
-* `$ bundle exec rspec`
-
-## Webhook Deploy Instructions
-
-When the webhook monitor code is updated, a deploy will be needed. We do this
-using AWS deployment tools.
-
-### Deploy setup
-* Install the AWS CLI:
-[Directions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-confirm)
-* Install the AWS SAM CLI:
-[Directions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html)
-* Set up a `alma-events` AWS profile. You can get the AccessID/AccessKey from
-`lpass show --all Shared-ITIMS-Passwords/alma/MarcLiberationAWS`
-* Configure the profile via `aws configure --profile alma-events`
-  - Set default region to us-east-1
-  - Set default output format to json
-
-### Deploy the webhook monitor code
-
-The deploy must be run from within the `webhook_monitor` directory.
-
-* `./deploy.sh [staging/production]`
-
-## Monitoring
-
-Webhooks can be monitored on this [DataDog
-dashboard](https://app.datadoghq.com/dashboard/h8i-8uj-25j/alma-webhook-status?from_ts=1588799410114&live=true&to_ts=1588803010114).
-
 ## Initial setup
 
 These steps don't need to be performed more than once and have already been done
 for this webhook.
+
+### Getting to AWS
+
+Use https://princeton.edu/aws to get to the AWS Management Console. You'll be required to log in via CAS.
 
 ### Alma Webhook Setup
 
@@ -76,6 +47,39 @@ Configure the URL and secret in Alma:
 
 Here is some alma documentation about webhooks:
 https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
+
+## Tests
+
+To run the tests for the alma webhook monitor:
+* `$ cd webhook_monitor/src`
+* `$ bundle exec rspec`
+
+## Webhook Deploy Instructions
+
+When the webhook monitor code is updated, a deploy will be needed. We do this
+using AWS deployment tools.
+
+### Deploy setup
+* Install the AWS CLI:
+[Directions](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-install-confirm)
+* Install the AWS SAM CLI:
+[Directions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install-mac.html)
+* Set up a `alma-events` AWS profile. You can get the AccessID/AccessKey from
+`lpass show --all Shared-ITIMS-Passwords/alma/MarcLiberationAWS`
+* Configure the profile via `aws configure --profile alma-events`
+  - Set default region to us-east-1
+  - Set default output format to json
+
+### Deploy the webhook monitor code
+
+The deploy must be run from within the `webhook_monitor` directory.
+
+* `./deploy.sh [staging/production]`
+
+## Monitoring
+
+Webhooks can be monitored on this [DataDog
+dashboard](https://app.datadoghq.com/dashboard/h8i-8uj-25j/alma-webhook-status?from_ts=1588799410114&live=true&to_ts=1588803010114).
 
 ### Datadog integration configuration
 
