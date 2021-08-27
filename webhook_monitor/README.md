@@ -5,7 +5,7 @@ ILS. This is an AWS lambda function that listens for the webhooks and posts
 their contents to a queue. In marc_liberation proper we poll that queue in order
 to create our own events and dumps.
 
-TODO: Add an architecture diagram
+An architecture diagram can be found at https://lib-confluence.princeton.edu/display/ALMA/Systems+Documentation
 
 ## Tests
 
