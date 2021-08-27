@@ -5,7 +5,48 @@ ILS. This is an AWS lambda function that listens for the webhooks and posts
 their contents to a queue. In marc_liberation proper we poll that queue in order
 to create our own events and dumps.
 
-TODO: Add an architecture diagram
+An architecture diagram can be found at https://lib-confluence.princeton.edu/display/ALMA/Systems+Documentation
+
+## Initial setup
+
+These steps don't need to be performed more than once and have already been done
+for this webhook.
+
+### Getting to AWS
+
+Use https://princeton.edu/aws to get to the AWS Management Console. You'll be required to log in via CAS.
+
+### Alma Webhook Setup
+
+Construct the URL:
+
+- In AWS Lambda
+  - In the left sidebar click on `applications`
+  - Select "alma-webhook-monitor"
+  - The API Endpoint is the base URL
+  - Under 'Resources' click WebhookReceiver
+  - click "API Gateway" in configuration tab and scroll down to expand "details"
+  - Get the resource path
+  - The base URL and resource path together form the URL alma needs
+
+Get the secret:
+
+- In AWS Secrets Manager
+  - Find (or generate) the secret in AWS Secrets Manager
+    - It's called alma/sandbox/webhookSecret
+    - Use the "Retrieve secret value" button
+
+Configure the URL and secret in Alma:
+
+- In Alma
+  - Go to the admin area (click the gear)
+  - Search for Integration Profiles
+  - Select Webhook Monitoring
+  - In the actions tab there's a place for the secret and the URL
+  - Make sure to click "activate"
+
+Here is some alma documentation about webhooks:
+https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
 
 ## Tests
 
@@ -39,43 +80,6 @@ The deploy must be run from within the `webhook_monitor` directory.
 
 Webhooks can be monitored on this [DataDog
 dashboard](https://app.datadoghq.com/dashboard/h8i-8uj-25j/alma-webhook-status?from_ts=1588799410114&live=true&to_ts=1588803010114).
-
-## Initial setup
-
-These steps don't need to be performed more than once and have already been done
-for this webhook.
-
-### Alma Webhook Setup
-
-Construct the URL:
-
-- In AWS Lambda
-  - In the left sidebar click on `applications`
-  - Select "alma-webhook-monitor"
-  - The API Endpoint is the base URL
-  - Under 'Resources' click WebhookReceiver
-  - click "API Gateway" in configuration tab and scroll down to expand "details"
-  - Get the resource path
-  - The base URL and resource path together form the URL alma needs
-
-Get the secret:
-
-- In AWS Secrets Manager
-  - Find (or generate) the secret in AWS Secrets Manager
-    - It's called alma/sandbox/webhookSecret
-    - Use the "Retrieve secret value" button
-
-Configure the URL and secret in Alma:
-
-- In Alma
-  - Go to the admin area (click the gear)
-  - Search for Integration Profiles
-  - Select Webhook Monitoring
-  - In the actions tab there's a place for the secret and the URL
-  - Make sure to click "activate"
-
-Here is some alma documentation about webhooks:
-https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
 
 ### Datadog integration configuration
 
