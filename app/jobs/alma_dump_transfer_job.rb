@@ -5,8 +5,6 @@ require 'net/sftp'
 class AlmaDumpTransferJob < ActiveJob::Base
   queue_as :default
 
-  REMOTE_BASE_PATH = "/alma/publishing".freeze
-
   def perform(dump:, job_id:)
     type_constant = dump_file_type(dump)
     AlmaDownloader.files_for(job_id: job_id, type_constant: type_constant).each do |file|
@@ -73,7 +71,11 @@ class AlmaDumpTransferJob < ActiveJob::Base
 
     # look to sftp server and identify the desired files using job_id
     def remote_paths(sftp_session:)
-      sftp_session.dir.entries(REMOTE_BASE_PATH).select { |entry| parse_job_id(entry.name) == job_id }.map { |entry| File.join(REMOTE_BASE_PATH, entry.name) }
+      sftp_session.dir.entries(remote_base_path).select { |entry| parse_job_id(entry.name) == job_id }.map { |entry| File.join(remote_base_path, entry.name) }
+    end
+
+    def remote_base_path
+      Rails.configuration.alma["sftp_alma_base_path"]
     end
 
     def dump_file_path(remote_path)
