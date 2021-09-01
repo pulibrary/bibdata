@@ -1,0 +1,591 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "99125379706706421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Pandemic bioethics /",
+        "author": "Pence, Gregory E.,",
+        "issn": null,
+        "isbn": "9781554815210",
+        "complete_edition": "",
+        "network_number": [
+          "(OCoLC)on1228319646",
+          "(OCoLC)1228319646"
+        ],
+        "place_of_publication": "Peterborough :",
+        "date_of_publication": "2021.",
+        "publisher_const": "Broadview Press",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421"
+      },
+      "holding_data": {
+        "holding_id": "22897390520006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "RA652 .P46 2021",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "RA652 .P46 2021",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897390520006421"
+      },
+      "item_data": {
+        "pid": "23897558420006421",
+        "barcode": "",
+        "creation_date": "2021-08-30Z",
+        "modification_date": "2021-08-30Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "",
+          "desc": null
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "POL-8178",
+        "expected_arrival_date": "2021-08-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "",
+        "process_type": {
+          "value": "ACQ",
+          "desc": "Acquisition"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "location": {
+          "value": "stacks",
+          "desc": "stacks: Firestone Library"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897390520006421/items/23897558420006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "99125379706706421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Pandemic bioethics /",
+        "author": "Pence, Gregory E.,",
+        "issn": null,
+        "isbn": "9781554815210",
+        "complete_edition": "",
+        "network_number": [
+          "(OCoLC)on1228319646",
+          "(OCoLC)1228319646"
+        ],
+        "place_of_publication": "Peterborough :",
+        "date_of_publication": "2021.",
+        "publisher_const": "Broadview Press",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421"
+      },
+      "holding_data": {
+        "holding_id": "22897520080006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "RA652 .P46 2021",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "RA652 .P46 2021",
+        "accession_number": "",
+        "copy_id": "51",
+        "in_temp_location": true,
+        "temp_library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "temp_location": {
+          "value": "res3hr",
+          "desc": "resc: Firestone 3 Hr Res"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "Res-3hr",
+          "desc": "Res-3hr"
+        },
+        "due_back_date": "2022-01-14Z",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897520080006421"
+      },
+      "item_data": {
+        "pid": "23897390510006421",
+        "barcode": "32101105594830",
+        "creation_date": "2021-08-19Z",
+        "modification_date": "2021-08-30Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "",
+          "desc": null
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "POL-7139",
+        "arrival_date": "2021-08-24Z",
+        "expected_arrival_date": "2021-08-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "410077598",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "annex",
+          "desc": "Forrestal Annex"
+        },
+        "location": {
+          "value": "reserve",
+          "desc": "reserve: Annex Reserve"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897520080006421/items/23897390510006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "99125379706706421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Pandemic bioethics /",
+        "author": "Pence, Gregory E.,",
+        "issn": null,
+        "isbn": "9781554815210",
+        "complete_edition": "",
+        "network_number": [
+          "(OCoLC)on1228319646",
+          "(OCoLC)1228319646"
+        ],
+        "place_of_publication": "Peterborough :",
+        "date_of_publication": "2021.",
+        "publisher_const": "Broadview Press",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421"
+      },
+      "holding_data": {
+        "holding_id": "22897390520006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "RA652 .P46 2021",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "RA652 .P46 2021",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": true,
+        "temp_library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "temp_location": {
+          "value": "res3hr",
+          "desc": "resc: Firestone 3 Hr Res"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "Res-3hr",
+          "desc": "Res-3hr"
+        },
+        "due_back_date": "2022-01-14Z",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897390520006421"
+      },
+      "item_data": {
+        "pid": "23897390500006421",
+        "barcode": "32101104038805",
+        "creation_date": "2021-08-19Z",
+        "modification_date": "2021-08-30Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "",
+          "desc": null
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "POL-7139",
+        "arrival_date": "2021-08-24Z",
+        "expected_arrival_date": "2021-08-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "410077598",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "location": {
+          "value": "stacks",
+          "desc": "stacks: Firestone Library"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897390520006421/items/23897390500006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "99125379706706421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Pandemic bioethics /",
+        "author": "Pence, Gregory E.,",
+        "issn": null,
+        "isbn": "9781554815210",
+        "complete_edition": "",
+        "network_number": [
+          "(OCoLC)on1228319646",
+          "(OCoLC)1228319646"
+        ],
+        "place_of_publication": "Peterborough :",
+        "date_of_publication": "2021.",
+        "publisher_const": "Broadview Press",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421"
+      },
+      "holding_data": {
+        "holding_id": "22897520080006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "RA652 .P46 2021",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "RA652 .P46 2021",
+        "accession_number": "",
+        "copy_id": "50",
+        "in_temp_location": true,
+        "temp_library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "temp_location": {
+          "value": "res3hr",
+          "desc": "resc: Firestone 3 Hr Res"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "Res-3hr",
+          "desc": "Res-3hr"
+        },
+        "due_back_date": "2022-01-14Z",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897520080006421"
+      },
+      "item_data": {
+        "pid": "23897390490006421",
+        "barcode": "32101105594822",
+        "creation_date": "2021-08-19Z",
+        "modification_date": "2021-08-30Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "",
+          "desc": null
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "POL-7139",
+        "arrival_date": "2021-08-24Z",
+        "expected_arrival_date": "2021-08-30Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "410077598",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "annex",
+          "desc": "Forrestal Annex"
+        },
+        "location": {
+          "value": "reserve",
+          "desc": "reserve: Annex Reserve"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings/22897520080006421/items/23897390490006421"
+    }
+  ],
+  "total_record_count": 4
+}
