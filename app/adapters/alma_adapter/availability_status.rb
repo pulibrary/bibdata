@@ -30,8 +30,8 @@ class AlmaAdapter
       item_data.each do |holding_id, items|
         next if items.count == 0
         # Process all the items for the holding and keep the "status" information from the last one.
-        # Notice that we gather enough information to determine whether the holding as a whole is
-        # available, not available, or some items available...
+        # Notice that we also gather enough information to determine whether the holding as a whole
+        # is available, not available, or some items available.
         all_available = true
         none_available = true
         items.each do |item|
@@ -42,15 +42,15 @@ class AlmaAdapter
           none_available &&= status[:status_label] == "Not Available"
         end
 
-        # ...update the availability (status_label) of the holding as a whole.
-        if all_available
-          availability[holding_id][:status_label] = "Available"
-        elsif none_available
-          availability[holding_id][:status_label] = "Not Available"
-        else
-          availability[holding_id][:status_label] = "Some items not available"
-        end
-
+        # Update the availability's status_label of the holding as a whole.
+        holding_availability = if all_available
+                                 "Available"
+                               elsif none_available
+                                 "Not Available"
+                               else
+                                 "Some items not available"
+                               end
+        availability[holding_id][:status_label] = holding_availability
       end
       availability
     end
