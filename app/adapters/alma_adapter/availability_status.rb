@@ -27,13 +27,30 @@ class AlmaAdapter
     # information to get details.
     def bib_availability_from_items
       availability = {}
-      item_data.each do |_key, value|
-        next if value.count == 0
-        raise StandardError.new, "Multiple items found under the same key" if value.count > 1
-        alma_item = AlmaAdapter::AlmaItem.new(Alma::BibItem.new(value.first.item))
-        status = holding_status_from_item(alma_item)
-        raise StandardError.new, "Holding found more than once" if availability[alma_item.holding_id]
-        availability[alma_item.holding_id] = status
+      item_data.each do |holding_id, items|
+        next if items.count == 0
+        # Process all the items for the holding and keep the "status" information from the last one.
+        # Notice that we gather enough information to determine whether the holding as a whole is
+        # available, not available, or some items available...
+        all_available = true
+        none_available = true
+        items.each do |item|
+          alma_item = AlmaAdapter::AlmaItem.new(Alma::BibItem.new(item.item))
+          status = holding_status_from_item(alma_item)
+          availability[holding_id] = status
+          all_available &&= status[:status_label] == "Available"
+          none_available &&= status[:status_label] == "Not Available"
+        end
+
+        # ...update the availability (status_label) of the holding as a whole.
+        if all_available
+          availability[holding_id][:status_label] = "Available"
+        elsif none_available
+          availability[holding_id][:status_label] = "Not Available"
+        else
+          availability[holding_id][:status_label] = "Some items not available"
+        end
+
       end
       availability
     end

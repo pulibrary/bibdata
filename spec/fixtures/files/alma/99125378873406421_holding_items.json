@@ -1,0 +1,156 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "99125378873406421",
+        "bib_suppress_from_publishing": "false",
+        "title": "The personal librarian /",
+        "author": "Benedict, Marie,",
+        "issn": null,
+        "isbn": "0593101537",
+        "complete_edition": "",
+        "network_number": [
+          "(OCoLC)on1194871842",
+          "(OCoLC)1194871842",
+          "(OCoLC)1259448592",
+          "(OCoLC)1259448579",
+          "(OCoLC)1256670187",
+          "(OCoLC)1256669955",
+          "(OCoLC)1240176979"
+        ],
+        "place_of_publication": "New York :",
+        "date_of_publication": "[2021]",
+        "publisher_const": "Berkley",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125378873406421"
+      },
+      "holding_data": {
+        "holding_id": "22897164770006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "PS3620.E75 P47 2021",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "PS3620.E75 P47 2021",
+        "accession_number": "",
+        "copy_id": "",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125378873406421/holdings/22897164770006421"
+      },
+      "item_data": {
+        "pid": "23897164760006421",
+        "barcode": "32101104283153",
+        "creation_date": "2021-08-11Z",
+        "modification_date": "2021-08-11Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "4-Week",
+          "desc": "4-Week"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "POL-6683",
+        "is_magnetic": false,
+        "expected_arrival_date": "2021-08-11Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "",
+        "process_type": {
+          "value": "ACQ",
+          "desc": "Acquisition"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "firestone",
+          "desc": "Firestone Library"
+        },
+        "location": {
+          "value": "dixn",
+          "desc": "dixn: Dixon Books"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125378873406421/holdings/22897164770006421/items/23897164760006421"
+    }
+  ],
+  "total_record_count": 1
+}

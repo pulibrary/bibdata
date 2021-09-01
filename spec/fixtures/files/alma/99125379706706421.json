@@ -1,0 +1,50 @@
+{
+  "bib": [
+    {
+      "mms_id": "99125379706706421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "Pandemic bioethics /",
+      "author": "Pence, Gregory E.,",
+      "issn": null,
+      "isbn": "9781554815210",
+      "network_number": [
+        "(OCoLC)on1228319646",
+        "(OCoLC)1228319646"
+      ],
+      "place_of_publication": "Peterborough :",
+      "date_of_publication": "2021.",
+      "publisher_const": "Broadview Press,",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/99125379706706421/holdings"
+      },
+      "created_by": "410077598",
+      "created_date": "2021-08-19Z",
+      "last_modified_by": "410077598",
+      "last_modified_date": "2021-08-30Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "sync_with_oclc": "BIBS",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "WorldCat",
+      "originating_system_id": "on1228319646",
+      "cataloging_level": {
+        "value": "00",
+        "desc": "Default Level"
+      },
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>02237cam a22003978i 4500</leader><controlfield tag=\"001\">99125379706706421</controlfield><controlfield tag=\"005\">20210824122826.0</controlfield><controlfield tag=\"008\">201230s2021    onc      b    001 0 eng  </controlfield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">1554815215</subfield><subfield code=\"q\">(paperback)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"020\"><subfield code=\"a\">9781554815210</subfield><subfield code=\"q\">(paperback)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)1228319646</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(OCoLC)on1228319646</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">NLC</subfield><subfield code=\"b\">eng</subfield><subfield code=\"e\">rda</subfield><subfield code=\"c\">YDX</subfield><subfield code=\"d\">BDX</subfield><subfield code=\"d\">NLC</subfield><subfield code=\"d\">OCLCF</subfield><subfield code=\"d\">MUO</subfield><subfield code=\"d\">PUL</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"042\"><subfield code=\"a\">lac</subfield></datafield><datafield ind1=\" \" ind2=\"4\" tag=\"050\"><subfield code=\"a\">RA652</subfield><subfield code=\"b\">.P46 2021</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"055\"><subfield code=\"a\">RA652</subfield><subfield code=\"b\">.P46 2021</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"082\"><subfield code=\"a\">174.2/944</subfield><subfield code=\"2\">23</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"084\"><subfield code=\"a\">cci1icc</subfield><subfield code=\"2\">lacc</subfield></datafield><datafield ind1=\"1\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Pence, Gregory E.,</subfield><subfield code=\"e\">author.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Pandemic bioethics /</subfield><subfield code=\"c\">Gregory E. Pence.</subfield></datafield><datafield ind1=\" \" ind2=\"1\" tag=\"264\"><subfield code=\"a\">Peterborough :</subfield><subfield code=\"b\">Broadview Press,</subfield><subfield code=\"c\">2021.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"300\"><subfield code=\"a\">250 pages ; 23 cm</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"336\"><subfield code=\"a\">text</subfield><subfield code=\"b\">txt</subfield><subfield code=\"2\">rdacontent</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"337\"><subfield code=\"a\">unmediated</subfield><subfield code=\"b\">n</subfield><subfield code=\"2\">rdamedia</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"338\"><subfield code=\"a\">volume</subfield><subfield code=\"b\">nc</subfield><subfield code=\"2\">rdacarrier</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"504\"><subfield code=\"a\">Includes bibliographical references and index.</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"505\"><subfield code=\"a\">Historical epidemics -- Modern viral pandemics -- The medical nature of SARS2 -- Policies for containment -- Who should live when not all can? -- Developing vaccines -- Allocating vaccines -- Acts and omissions, the Trolley Problem, and prisoner's dilemmas -- Liberty and privacy -- Status certificates -- Structural inequalities and vulnerable groups -- Leadership during pandemics -- The future.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"520\"><subfield code=\"a\">\"The COVID-19 pandemic has affected every human being on the planet and forced us all to reflect on the bioethical issues it raises. In this timely book, Gregory Pence examines a number of relevant issues, including the fair allocation of scarce medical resources, immunity passports, tradeoffs between protecting senior citizens and allowing children to flourish, discrimination against minorities and the disabled, and the myriad issues raised by vaccines.\"--</subfield><subfield code=\"c\">Provided by publisher.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Epidemiology</subfield><subfield code=\"x\">Moral and ethical aspects.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Medical ethics.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Public health</subfield><subfield code=\"x\">Moral and ethical aspects.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Bioethics.</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Bioethics.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst00832038</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Epidemiology</subfield><subfield code=\"x\">Moral and ethical aspects.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst00914099</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Medical ethics.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01014081</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"650\"><subfield code=\"a\">Public health</subfield><subfield code=\"x\">Moral and ethical aspects.</subfield><subfield code=\"2\">fast</subfield><subfield code=\"0\">(OCoLC)fst01082281</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">99125379706706421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">firestone</subfield><subfield code=\"c\">Circulation Desk (3 Hour Reserve)</subfield><subfield code=\"d\">RA652 .P46 2021</subfield><subfield code=\"e\">available</subfield><subfield code=\"f\">3</subfield><subfield code=\"g\">0</subfield><subfield code=\"j\">res3hr</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Firestone Library</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">99125379706706421</subfield><subfield code=\"8\">22897390520006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">firestone</subfield><subfield code=\"c\">Stacks</subfield><subfield code=\"d\">RA652 .P46 2021</subfield><subfield code=\"e\">unavailable</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">1</subfield><subfield code=\"j\">stacks</subfield><subfield code=\"k\">0</subfield><subfield code=\"p\">2</subfield><subfield code=\"q\">Firestone Library</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 0,
+        "link": null
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}
