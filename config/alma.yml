@@ -4,6 +4,7 @@ default: &default
   sftp_username: <%= ENV['SFTP_USERNAME'] %>
   sftp_password: <%= ENV['SFTP_PASSWORD'] %>
   sftp_host: <%= ENV['SFTP_HOST'] %>
+  sftp_alma_base_path: <%= ENV['SFTP_ALMA_BASE_PATH'] %>
   sqs_queue_url: <%= ENV['SQS_QUEUE_URL'] %>
   jobs:
     "Publishing Platform Job General Publishing":
@@ -24,6 +25,7 @@ test:
   read_only_apikey: 'TESTME'
   region: 'ALMA'
   sqs_queue_url: "https://example.com"
+  sftp_alma_base_path: "/alma/publishing"
 
 production:
   <<: *default
