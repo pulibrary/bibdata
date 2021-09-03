@@ -61,4 +61,16 @@ FactoryBot.define do
     code 'location-code'
     library { build(:library, code: 'rare$jrare', label: 'Special Collections Aeon') }
   end
+
+  factory :map_location, class: HoldingLocation do
+    label 'location-label'
+    aeon_location false
+    recap_electronic_delivery_location false
+    open true
+    requestable true
+    always_requestable true
+    circulates false
+    code 'location-code'
+    library { build(:library, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case') }
+  end
 end

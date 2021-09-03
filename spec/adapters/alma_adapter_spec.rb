@@ -184,6 +184,7 @@ RSpec.describe AlmaAdapter do
       stub_alma_library(library_code: "recap", location_code: "pa")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
       stub_alma_library(library_code: "rare", location_code: "jrare")
+      stub_alma_library(library_code: "lewis", location_code: "mapmc")
 
       stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
       stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
@@ -262,6 +263,7 @@ RSpec.describe AlmaAdapter do
     end
 
     it "reports on-site access for some specific (map) locations" do
+      FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
       availability = adapter.get_availability_one(id: "9968442613506421")
       item = availability["9968442613506421"]["22692920560006421"]
       expect(item[:status_label]).to eq "On-site Access"
