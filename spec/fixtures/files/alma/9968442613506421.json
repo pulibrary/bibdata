@@ -1,0 +1,45 @@
+{
+    "bib": [
+      {
+        "mms_id": "9968442613506421",
+        "record_format": "marc21",
+        "linked_record_id": {
+          "value": null,
+          "type": null
+        },
+        "title": "Barnegat Light Quadrangle, New Jersey - Ocean County. 7.5 minute series (topographic)",
+        "author": null,
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "Reprinted 1964",
+        "network_number": [
+          "(NjP)6844261-princetondb",
+          "6844261",
+          "(NjP Geomap) 77694"
+        ],
+        "place_of_publication": "[Reston, Va.] :",
+        "date_of_publication": "1953.",
+        "publisher_const": "US Geological Survey,",
+        "holdings": {
+          "value": null,
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9968442613506421/holdings"
+        },
+        "created_by": "import",
+        "created_date": "2021-07-13Z",
+        "last_modified_by": "System",
+        "last_modified_date": "2021-07-30Z",
+        "suppress_from_publishing": "false",
+        "suppress_from_external_search": "false",
+        "sync_with_oclc": "NONE",
+        "sync_with_libraries_australia": "NONE",
+        "originating_system": "ILS",
+        "originating_system_id": "6844261-princetondb",
+        "anies": [
+          "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>02265cem a22003613a 4500</leader><controlfield tag=\"001\">9968442613506421</controlfield><controlfield tag=\"005\">20200928153711.0</controlfield><controlfield tag=\"008\">110422s1953    xx g   cu a  o  0   eng d</controlfield><datafield ind1=\"1\" ind2=\" \" tag=\"034\"><subfield code=\"a\">a</subfield><subfield code=\"b\">24000</subfield><subfield code=\"d\">-74.125</subfield><subfield code=\"e\">-74</subfield><subfield code=\"f\">39.875</subfield><subfield code=\"g\">39.75</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP Geomap) 77694</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">6844261</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP)6844261-princetondb</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"c\">NjP</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"041\"><subfield code=\"a\">eng</subfield></datafield><datafield ind1=\"0\" ind2=\"0\" tag=\"245\"><subfield code=\"a\">Barnegat Light Quadrangle, New Jersey - Ocean County. 7.5 minute series (topographic)</subfield><subfield code=\"h\">[cartographic material].</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"250\"><subfield code=\"a\">Reprinted 1964</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"255\"><subfield code=\"a\">Scale 1:24,000</subfield><subfield code=\"b\">Polyconic proj.</subfield><subfield code=\"c\">(W 74°7ʹ--W 74°0ʹ/N 39°52ʹ--N 39°45ʹ)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"260\"><subfield code=\"a\">[Reston, Va.] :</subfield><subfield code=\"b\">U.S. Geological Survey,</subfield><subfield code=\"c\">1953.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">U.S.G.S. 7.5 minute series (topographic)</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">North Decimal Degree 39.750000.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">South Decimal Degree 39.875000.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">East Decimal Degree -74.000000.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">West Decimal Degree -74.125000.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Alternate title: Barnegat Light, NJ. Polyconic projection. Universal transverse Mercator grid is shown. Relief shown by 10 feet contour interval and spot heights. Depth is shown by contour interval and sounding in feet - datum is mean low water. Shoreline shown represents the approximate line of mean high water. The mean range of tide is 1 foot in inland water and 3 feet along the ocean. \"Mapped by the U.S. Coast Guard and Geodetic Survey; edited and published by the United States Geological Survey. Control by USC&amp;GS. Culture and drainage in part compiled from aerial photographs taken 1951. Topography by plane-table surveys 1951. Field check 1953. Hydrography from USC&amp;GS charts 825 (1953) and 1216 (1940) and surveys dated 1935, 1936, and 1937.\" \"AMS 6163 I SE - Series V822.\" Map is temporarily filed in the Reserve Course Materials Collection.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"546\"><subfield code=\"a\">In English.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Topographic maps.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh85136074</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"651\"><subfield code=\"a\">Barnegat Light Quadrangle (N.J.)</subfield><subfield code=\"v\">Maps.</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"651\"><subfield code=\"a\">U.S.--Barnegat Light Quad.</subfield><subfield code=\"2\">local</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"651\"><subfield code=\"a\">Barnegat Light.</subfield><subfield code=\"2\">local</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"651\"><subfield code=\"a\">U.S.--NJ--Ocean Co.</subfield><subfield code=\"2\">local</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Maps.</subfield><subfield code=\"2\">lcgft</subfield><subfield code=\"0\">http://id.loc.gov/authorities/genreForms/gf2011026387</subfield></datafield><datafield ind1=\"4\" ind2=\" \" tag=\"856\"><subfield code=\"u\">http://arks.princeton.edu/ark:/88435/cn69m567b</subfield></datafield><datafield ind1=\"8\" ind2=\" \" tag=\"852\"><subfield code=\"b\">scimc</subfield><subfield code=\"h\">G3811.C2.s24.U5G4 Barnegat Light</subfield></datafield><datafield ind1=\"8\" ind2=\" \" tag=\"852\"><subfield code=\"b\">elf1</subfield><subfield code=\"h\">Electronic Resource</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INT\"><subfield code=\"a\">P</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"INST\"><subfield code=\"a\">01PRI_INST</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9968442613506421</subfield><subfield code=\"8\">22692920560006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">lewis</subfield><subfield code=\"c\">Map Collection. Map Case</subfield><subfield code=\"d\">G3811.C2.s24.U5G4 Barnegat Light</subfield><subfield code=\"e\">check_holdings</subfield><subfield code=\"j\">mapmc</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Lewis Library</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVE\"><subfield code=\"8\">53854142250006421</subfield><subfield code=\"e\">Available</subfield><subfield code=\"l\">online</subfield><subfield code=\"u\">publishing_base_url undefined?u.ignore_date_coverage=true&amp;rft.mms_id=9968442613506421</subfield></datafield></record>"
+        ],
+        "requests": null,
+        "link": null
+      }
+    ],
+    "total_record_count": 1
+  }

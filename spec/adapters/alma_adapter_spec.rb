@@ -184,11 +184,13 @@ RSpec.describe AlmaAdapter do
       stub_alma_library(library_code: "recap", location_code: "pa")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
       stub_alma_library(library_code: "rare", location_code: "jrare")
+      stub_alma_library(library_code: "lewis", location_code: "mapmc")
 
       stub_alma_ids(ids: "9959958323506421", status: 200, fixture: "9959958323506421")
       stub_alma_holding_items(mms_id: "9959958323506421", holding_id: "ALL", filename: "9959958323506421_items.json", query: "")
 
       stub_alma_ids(ids: "99111299423506421", status: 200, fixture: "99111299423506421")
+      stub_alma_ids(ids: "9968442613506421", status: 200, fixture: "9968442613506421")
     end
 
     it "reports availability of physical holdings" do
@@ -257,6 +259,13 @@ RSpec.describe AlmaAdapter do
       FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
       availability = adapter.get_availability_one(id: "99111299423506421")
       item = availability["99111299423506421"]["22741556190006421"]
+      expect(item[:status_label]).to eq "On-site Access"
+    end
+
+    it "reports on-site access for some specific (map) locations" do
+      FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
+      availability = adapter.get_availability_one(id: "9968442613506421")
+      item = availability["9968442613506421"]["22692920560006421"]
       expect(item[:status_label]).to eq "On-site Access"
     end
 
