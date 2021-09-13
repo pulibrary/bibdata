@@ -36,6 +36,7 @@ class LocationDataService
           location_record.label = holding_location.external_name
           location_record.code = "#{library.code}$#{holding_location.code}"
           location_record.remote_storage = holding_location.remote_storage
+          location_record.fulfillment_unit = holding_location.fulfillment_unit['value']
           if holding_location_record.present?
             location_record.aeon_location = holding_location_record['aeon_location']
             location_record.recap_electronic_delivery_location = holding_location_record['recap_electronic_delivery_location']

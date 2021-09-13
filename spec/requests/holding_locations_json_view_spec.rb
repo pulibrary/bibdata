@@ -24,6 +24,7 @@ describe 'HoldingLocation', type: :request do
             always_requestable: holding_location.always_requestable,
             circulates: holding_location.circulates,
             remote_storage: holding_location.remote_storage,
+            fulfillment_unit: holding_location.fulfillment_unit,
             path: holding_location_path(holding_location, format: :json),
             library: {
               label: holding_location.library.label,
@@ -50,6 +51,7 @@ describe 'HoldingLocation', type: :request do
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
           remote_storage: holding_location.remote_storage,
+          fulfillment_unit: holding_location.fulfillment_unit,
           path: holding_location_path(holding_location, format: :json),
           library: {
             label: holding_location.library.label,
@@ -91,6 +93,7 @@ describe 'HoldingLocation', type: :request do
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
           remote_storage: holding_location.remote_storage,
+          fulfillment_unit: holding_location.fulfillment_unit,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -141,6 +144,7 @@ describe 'HoldingLocation', type: :request do
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
           remote_storage: holding_location.remote_storage,
+          fulfillment_unit: holding_location.fulfillment_unit,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -193,6 +197,7 @@ describe 'HoldingLocation', type: :request do
           always_requestable: holding_location.always_requestable,
           circulates: holding_location.circulates,
           remote_storage: holding_location.remote_storage,
+          fulfillment_unit: holding_location.fulfillment_unit,
           library: {
             label: holding_location.library.label,
             code: holding_location.library.code,
@@ -250,6 +255,7 @@ describe 'HoldingLocation', type: :request do
             holding_location.always_requestable,
             holding_location.circulates,
             holding_location.remote_storage,
+            holding_location.fulfillment_unit,
             holding_location.library.code
           ]
           expected << attrs
@@ -268,6 +274,7 @@ describe 'HoldingLocation', type: :request do
           holding_location.always_requestable,
           holding_location.circulates,
           holding_location.remote_storage,
+          holding_location.fulfillment_unit,
           holding_location.library.code,
           holding_location.hours_location.code
         ]
