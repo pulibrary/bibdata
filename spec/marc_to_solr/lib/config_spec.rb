@@ -535,15 +535,14 @@ describe 'From traject_config.rb' do
       end
     end
   end
-  describe 'location facet values for Recap items' do
-    it 'marquand recap items have a location value of marquand and recap' do
-      expect(@added_title_246['location_display']).to eq ['Remote Storage: Marquand Library use only']
-      expect(@added_title_246['location']).to eq ['ReCAP']
+  describe 'location facet values for Recap remote storage items' do
+    it 'marquand recap items have a location value of marquand' do
+      expect(@added_title_246['location_display']).to eq ['Remote Storage (ReCAP): Marquand Library Use Only']
+      expect(@added_title_246['location']).to eq ['Marquand Library']
     end
-    it 'non-rare recap items only have a location value of recap' do
-      expect(@online_at_library['location_display']).to include 'Mudd Off-Site Storage: Contact mudd@princeton.edu'
-      expect(@online_at_library['location']).to include 'ReCAP'
-      expect(@online_at_library['location']).not_to include 'Mudd Manuscript Library'
+    it 'mudd recap items have a location value of mudd' do
+      expect(@online_at_library['location_display']).to include 'Remote Storage (ReCAP): Mudd Library Use Only'
+      expect(@online_at_library['location']).to eq ['Mudd Manuscript Library']
     end
   end
 
