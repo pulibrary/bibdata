@@ -193,8 +193,6 @@ RSpec.describe LocationDataService, type: :service do
       location_record9 = HoldingLocation.find_by(code: 'recap$pb')
       location_record10 = HoldingLocation.find_by(code: 'eastasian$hy')
       location_record11 = HoldingLocation.find_by(code: 'firestone$secw')
-      location_record12 = HoldingLocation.find_by(code: 'arch$res3hr')
-      location_record13 = HoldingLocation.find_by(code: 'eastasian$reserve')
 
       expect(Library.count).to eq 11
       expect(HoldingLocation.count).to eq 103
@@ -211,6 +209,13 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record9.remote_storage).to eq ''
       expect(location_record10.label).to eq ''
       expect(location_record11.label).to eq 'Scribner Library: Common Works Collection'
+    end
+
+    it "Locations with fulfillment_unit: Reserves are not requestable" do
+      LocationDataService.delete_existing_and_repopulate
+      location_record12 = HoldingLocation.find_by(code: 'arch$res3hr')
+      location_record13 = HoldingLocation.find_by(code: 'eastasian$reserve')
+
       expect(location_record12.fulfillment_unit).to eq 'Reserves'
       expect(location_record12.requestable).to eq false
       expect(location_record13.fulfillment_unit).to eq 'Reserves'

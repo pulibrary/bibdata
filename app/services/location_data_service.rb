@@ -40,7 +40,7 @@ class LocationDataService
           if holding_location_record.present?
             location_record.aeon_location = holding_location_record['aeon_location']
             location_record.recap_electronic_delivery_location = holding_location_record['recap_electronic_delivery_location']
-            location_record.requestable = fulfillment_reserves?(holding_location.fulfillment_unit['value']) ? location_record.requestable = false : holding_location_record['requestable']
+            location_record.requestable = fulfillment_reserves?(holding_location.fulfillment_unit['value']) ? false : holding_location_record['requestable']
             location_record.always_requestable = holding_location_record['always_requestable']
             location_record.circulates = holding_location_record['circulates']
             location_record.open = holding_location_record['open']
