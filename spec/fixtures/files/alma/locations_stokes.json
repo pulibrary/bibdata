@@ -1,0 +1,405 @@
+{
+    "location": [
+      {
+        "code": "ltop",
+        "name": "ltoppiapr: Comp.Med Stokes",
+        "external_name": "Computer Media",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Media",
+          "desc": "Media"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/ltop"
+      },
+      {
+        "code": "piapr",
+        "name": "piapr: D.E.Stokes Library",
+        "external_name": "Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/piapr"
+      },
+      {
+        "code": "respiapr",
+        "name": "piaprr: DEStokes SPR : Res",
+        "external_name": "Reserve. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/respiapr"
+      },
+      {
+        "code": "pm",
+        "name": "rcppm: Stokes Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Stokes Library Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/pm"
+      },
+      {
+        "code": "spiaa",
+        "name": "spiaa: PIAPR: Atlases",
+        "external_name": "Atlases. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spiaa"
+      },
+      {
+        "code": "spia",
+        "name": "spia: Donald E. Stokes Lib",
+        "external_name": "Wallace Hall (SPIA)",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spia"
+      },
+      {
+        "code": "index",
+        "name": "spiai: PIAPR: Indexes",
+        "external_name": "Indexes. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/index"
+      },
+      {
+        "code": "spiaps",
+        "name": "spiaps: PIAPR: Periodicals",
+        "external_name": "Periodicals. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spiaps"
+      },
+      {
+        "code": "ref",
+        "name": "spiarf: PIAPR: Reference",
+        "external_name": "Reference. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/ref"
+      },
+      {
+        "code": "spiaws",
+        "name": "spiaws: PIAPR: Writing Sh",
+        "external_name": "Writing Shelf. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spiaws"
+      },
+      {
+        "code": "spir",
+        "name": "spir: PIAPR: Reserve",
+        "external_name": "Reserve. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Reserves",
+          "desc": "Reserves"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spir"
+      },
+      {
+        "code": "spr",
+        "name": "spr: Donald E. Stokes Lib.",
+        "external_name": "Wallace Hall (SPR)",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/spr"
+      },
+      {
+        "code": "mic",
+        "name": "sprf: PIAPR: Microforms",
+        "external_name": "Microforms. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/mic"
+      },
+      {
+        "code": "sprps",
+        "name": "sprps: SPR: Periodicals",
+        "external_name": "Periodicals. Wallace Hall",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "General",
+          "desc": "General"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/sprps"
+      },
+      {
+        "code": "circ",
+        "name": "Stokes Circ",
+        "external_name": "Circulation",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/circ"
+      },
+      {
+        "code": "UNASSIGNED",
+        "name": "UNASSIGNED location",
+        "external_name": "",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "",
+          "desc": null
+        },
+        "accession_placement": {
+          "value": "",
+          "desc": null
+        },
+        "call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations/UNASSIGNED"
+      }
+    ],
+    "total_record_count": 16
+  }
