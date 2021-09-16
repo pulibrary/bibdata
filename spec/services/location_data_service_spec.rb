@@ -151,6 +151,18 @@ RSpec.describe LocationDataService, type: :service do
         headers: { "content-Type" => "application/json" },
         body: file_fixture("alma/locations_mendel.json")
       )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: file_fixture("alma/locations_stokes.json")
+      )
   end
 
   describe "#delete_existing_and_repopulate" do
@@ -193,9 +205,11 @@ RSpec.describe LocationDataService, type: :service do
       location_record9 = HoldingLocation.find_by(code: 'recap$pb')
       location_record10 = HoldingLocation.find_by(code: 'eastasian$hy')
       location_record11 = HoldingLocation.find_by(code: 'firestone$secw')
+      location_record14 = HoldingLocation.find_by(code: 'stokes$spia')
+      location_record15 = HoldingLocation.find_by(code: 'stokes$spr')
 
-      expect(Library.count).to eq 11
-      expect(HoldingLocation.count).to eq 103
+      expect(Library.count).to eq 12
+      expect(HoldingLocation.count).to eq 119
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
@@ -209,6 +223,8 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record9.remote_storage).to eq ''
       expect(location_record10.label).to eq ''
       expect(location_record11.label).to eq 'Scribner Library: Common Works Collection'
+      expect(location_record14.label).to eq 'Wallace Hall (SPIA)'
+      expect(location_record15.label).to eq 'Wallace Hall (SPR)'
     end
 
     it "Locations with fulfillment_unit: Reserves are not requestable" do

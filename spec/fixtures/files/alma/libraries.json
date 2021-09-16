@@ -197,6 +197,24 @@
             "desc": "ex: Rare Books"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare"
+        },
+        {
+            "code": "stokes",
+            "id": "124289650006421",
+            "name": "Stokes Library",
+            "path": "01PRI.01PRI_INST.stokes",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+            "value": "",
+            "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+            "value": "piapr",
+            "desc": "piapr: D.E.Stokes Library"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes"
         }
     ]
 }
