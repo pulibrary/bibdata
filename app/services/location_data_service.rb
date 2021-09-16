@@ -36,10 +36,11 @@ class LocationDataService
           location_record.label = holding_location.external_name
           location_record.code = "#{library.code}$#{holding_location.code}"
           location_record.remote_storage = holding_location.remote_storage
+          location_record.fulfillment_unit = holding_location.fulfillment_unit['value']
           if holding_location_record.present?
             location_record.aeon_location = holding_location_record['aeon_location']
             location_record.recap_electronic_delivery_location = holding_location_record['recap_electronic_delivery_location']
-            location_record.requestable = holding_location_record['requestable']
+            location_record.requestable = fulfillment_reserves?(holding_location.fulfillment_unit['value']) ? false : holding_location_record['requestable']
             location_record.always_requestable = holding_location_record['always_requestable']
             location_record.circulates = holding_location_record['circulates']
             location_record.open = holding_location_record['open']
@@ -116,6 +117,12 @@ class LocationDataService
   end
 
   private
+
+    # fulfilment_unit: 'Reserves'
+    # returns boolean
+    def fulfillment_reserves?(fulfillment_unit_value)
+      fulfillment_unit_value == 'Reserves'
+    end
 
     # Updates holding library for two old recap locations rccpt, rccpw
     # These locations did not have a holding library.

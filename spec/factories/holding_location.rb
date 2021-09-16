@@ -13,6 +13,7 @@ FactoryBot.define do
     circulates true
     code { 'location-code-' + Faker::Alphanumeric.alphanumeric(number: 3, min_alpha: 3) }
     remote_storage 'recap_rmt'
+    fulfillment_unit 'example_unit'
     library { build(:library, label: 'Firestone Library') }
   end
 
