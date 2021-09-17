@@ -188,6 +188,7 @@ Delete and repopulate the locations in the bibdata staging database:
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
 
 #### 2. Update Bibdata production:
+Option 1:
 Connect in one of the bibdata production boxes:
 1.`ssh deploy@bibdata-alma1`
 2.`cd /opt/marc_liberation/current`
@@ -195,6 +196,13 @@ Connect in one of the bibdata production boxes:
 
 Delete and repopulate the locations in the production database:
 4.`LocationDataService.delete_existing_and_repopulate`
+
+Option 2:
+Capistrano task to connect to the production rails console:
+1. `cap production rails:console`
+
+Delete and repopulate the locations in the production database:
+1. `LocationDataService.delete_existing_and_repopulate`
 
 ## Production Locations Configuration
 
