@@ -1,0 +1,9 @@
+{
+  "plugins": [
+    "git-tag"
+  ],
+  "owner": "pulibrary",
+  "repo": "bibdata",
+  "name": "Bess Sadler",
+  "email": "bess.sadler@princeton.edu"
+}
