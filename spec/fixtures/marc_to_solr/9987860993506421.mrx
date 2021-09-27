@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:marc="http://www.loc.gov/MARC21/slim">
+ <record>
+  <leader>03273cam a2200445 i 4500</leader>
+  <controlfield tag="005">20201023170333.0</controlfield>
+  <controlfield tag="008">140813t20142014mx b     b    000 0 spa c</controlfield>
+  <controlfield tag="001">9987860993506421</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">(OCoLC)ocn886668136</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/886668136</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">8786099</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">(OCoLC)886668136</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/886668136</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">(NjP)8786099-princetondb</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+   <subfield code="a">IQU</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="e">rda</subfield>
+   <subfield code="c">IQU</subfield>
+   <subfield code="d">MNU</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9786074018189</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9786074018189</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">6074018189</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/6074018189</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+   <subfield code="a">n-us---</subfield>
+   <subfield code="a">n-mx---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="0">
+   <subfield code="a">E184.M5</subfield>
+   <subfield code="b">M547 2014</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+   <subfield code="a">Migrantes allá y acá :</subfield>
+   <subfield code="b">mujeres y hombres en Estados Unidos y el noreste de México /</subfield>
+   <subfield code="c">Oscar Misael Hernández-Hernández, María Elena Ramos Tovar coordinadores.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+   <subfield code="a">Primera edición.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+   <subfield code="a">Mexico :</subfield>
+   <subfield code="b">M.A. Porrua ;</subfield>
+   <subfield code="a">[Ciudad Victoria, Tamaulipas, Mexico] :</subfield>
+   <subfield code="b">Gobierno del Estado de Tamaulipas, Instituto Tamaulipeco para los Migrantes ;</subfield>
+   <subfield code="a">[Monterrey] :</subfield>
+   <subfield code="b">Universidad Autónoma de Nuevo León,</subfield>
+   <subfield code="c">2014.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+   <subfield code="c">©2014</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+   <subfield code="a">170 pages :</subfield>
+   <subfield code="b">maps ;</subfield>
+   <subfield code="c">23 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">text</subfield>
+   <subfield code="b">txt</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+   <subfield code="a">unmediated</subfield>
+   <subfield code="b">n</subfield>
+   <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+   <subfield code="a">volume</subfield>
+   <subfield code="b">nc</subfield>
+   <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+   <subfield code="a">Colección Desarrollo &amp; migración</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+   <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+   <subfield code="a">Introducción : Experiencias de migrantes allá y acá / Oscar Misael Hernández-Hernández -- Migraciones, género y violencia : experiencias de mujeres de migrantes y migrantes de retorno / Gustavo López Castro -- Mexicanos en San Antonio, Texas : análisis de la participación en programas sociales financiados con recursos públicos / José Luis Manzanares Rivera -- Deseo sexual, migración y pertenencia, apropiación y mexicanización de espacios LGBT en Houston, Texas / Guillermo de los Reyes Heredia -- Menores mexicanos repatriados de Estados Unidos y configuración de la masculinidad / Oscar Misael Hernández-Hernández -- Resiliencia de mujeres migrantes en tránsito por la frontera noreste mexicana / Teresa Elizabeth Cueva Luna, Blanca Vázquez Delgado y Ma. Teresa Terrón -- Migración interna y tráfico de mujeres hacia la Zona Metropolitana de Monterrey / Arun Kumar Acharya -- La culpa de madre y la ira de abuela : efectos emocionales de la migración femenina / María Elena Ramos Tovar -- Maniobras emocionales : implicaciones de la maternidad a distancia en las mujeres centroamericanas y sus hijos(as) / Hiroko Asakura.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Mexicans</subfield>
+   <subfield code="z">United States</subfield>
+   <subfield code="x">Social conditions.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh2010101644</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Mexican American families.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh85084488</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Mexicans</subfield>
+   <subfield code="x">Family relationships</subfield>
+   <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Illegal aliens</subfield>
+   <subfield code="x">Family relationships</subfield>
+   <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Deportees</subfield>
+   <subfield code="x">Family relationships</subfield>
+   <subfield code="z">Mexico.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Deportees</subfield>
+   <subfield code="z">Mexico</subfield>
+   <subfield code="x">Social conditions.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Children of immigrants</subfield>
+   <subfield code="x">Family relationships</subfield>
+   <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Children of illegal aliens</subfield>
+   <subfield code="x">Family relationships</subfield>
+   <subfield code="z">United States.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+   <subfield code="a">Hernández Hernández, Óscar Misael,</subfield>
+   <subfield code="e">editor.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/names/n2009030517</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+   <subfield code="a">Ramos Tovar, María Elena,</subfield>
+   <subfield code="e">editor.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/names/n2003113700</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+   <subfield code="a">Colección Desarrollo &amp; migración.</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+   <subfield code="a">pd</subfield>
+   <subfield code="b">a</subfield>
+   <subfield code="h">m</subfield>
+   <subfield code="c">b</subfield>
+   <subfield code="e">20140923</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+   <subfield code="a">pd</subfield>
+   <subfield code="b">m</subfield>
+   <subfield code="6">a</subfield>
+   <subfield code="7">m</subfield>
+   <subfield code="d">v</subfield>
+   <subfield code="f">1</subfield>
+   <subfield code="e">20140923</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+   <subfield code="b">2021-07-13 08:29:09 US/Eastern</subfield>
+   <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+   <subfield code="b">firestone</subfield>
+   <subfield code="c">stacks</subfield>
+   <subfield code="h">E184.M5</subfield>
+   <subfield code="i">M547 2014</subfield>
+   <subfield code="8">22741069980006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+   <subfield code="a">2021-07-13 12:29:09</subfield>
+   <subfield code="8">22741069980006421</subfield>
+   <subfield code="b">Firestone Library</subfield>
+   <subfield code="c">stacks: Firestone Library</subfield>
+   <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+   <subfield code="0">22741069980006421</subfield>
+   <subfield code="a">23741069940006421</subfield>
+   <subfield code="j">1</subfield>
+   <subfield code="z">stacks</subfield>
+   <subfield code="d">2021-07-13 12:29:09</subfield>
+   <subfield code="p">32101087875132</subfield>
+   <subfield code="t">1</subfield>
+   <subfield code="y">firestone</subfield>
+  </datafield>
+ </record>
+</collection>

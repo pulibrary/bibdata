@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01126cam a2200325ua 4500</leader>
+    <controlfield tag="005">20200728165053.0</controlfield>
+    <controlfield tag="008">810923s1981    nyu      b    001 0 eng  </controlfield>
+    <controlfield tag="001">99650713506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   81002729  </subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">003052461X :</subfield>
+      <subfield code="c">$24.95</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/003052461X</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)7328128</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/7328128</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)NJPG81-B779</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">AAM9636TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">65071</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)65071-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="b">eng</subfield>
+      <subfield code="d">NjP</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">n------</subfield>
+      <subfield code="a">nc-----</subfield>
+      <subfield code="a">s------</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2=" ">
+      <subfield code="a">JV6271</subfield>
+      <subfield code="b">.J64</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2=" ">
+      <subfield code="a">325.6/31/091812</subfield>
+      <subfield code="2">19</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Johnson, Kenneth F.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Illegal aliens in the Western Hemisphere :</subfield>
+      <subfield code="b">political and economic factors /</subfield>
+      <subfield code="c">Kenneth F. Johnson, Miles W. Williams ; epilogue by Stephen P. Mumme.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">New York, N.Y. :</subfield>
+      <subfield code="b">Praeger,</subfield>
+      <subfield code="c">1981.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">207 p. ;</subfield>
+      <subfield code="c">25 cm.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Includes index.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Bibliography: p. 195-204.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85003553</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85003553</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Williams, Miles.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/no2001071845</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/no2001071845</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no2001071845</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="a">10/01/93</subfield>
+      <subfield code="s">9110</subfield>
+      <subfield code="n">NjP</subfield>
+      <subfield code="w">DCLC812729B</subfield>
+      <subfield code="d">09/23/81</subfield>
+      <subfield code="c">RM</subfield>
+      <subfield code="b">DRT</subfield>
+      <subfield code="i">931001</subfield>
+      <subfield code="l">NJPG</subfield>
+    </datafield>
+    <datafield tag="948" ind1=" " ind2=" ">
+      <subfield code="a">AACR2</subfield>
+    </datafield>
+    <datafield tag="911" ind1=" " ind2=" ">
+      <subfield code="a">19931007</subfield>
+    </datafield>
+    <datafield tag="912" ind1=" " ind2=" ">
+      <subfield code="a">19931001000000.0</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-08-03 06:05:00 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 14:21:09 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">JV6271</subfield>
+      <subfield code="i">.J64</subfield>
+      <subfield code="8">22544959640006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-12 18:21:09</subfield>
+      <subfield code="8">22544959640006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22544959640006421</subfield>
+      <subfield code="a">23544959630006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="d">2021-07-12 18:21:09</subfield>
+      <subfield code="p">32101058053321</subfield>
+      <subfield code="t">1</subfield>
+    </datafield>
+  </record>
+</collection>

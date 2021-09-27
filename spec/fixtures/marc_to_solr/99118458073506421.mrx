@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:marc="http://www.loc.gov/MARC21/slim">
+ <record>
+  <leader>02839cam a2200493 i 4500</leader>
+  <controlfield tag="005">20201015174929.0</controlfield>
+  <controlfield tag="008">200124t20202020enka     b    000 0 eng  </controlfield>
+  <controlfield tag="001">99118458073506421</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+   <subfield code="a">  2019051733</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="9">(YDXIT)16413396</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">11845807</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">(OCoLC)1114297215</subfield>
+   <subfield code="z">(OCoLC)1113886313</subfield>
+   <subfield code="z">(OCoLC)1113925581</subfield>
+   <subfield code="z">(OCoLC)1114556922</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1114297215</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1113886313</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1113925581</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1114556922</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="a">(NjP)11845807-princetondb</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="z">(OCoLC)1113886313</subfield>
+   <subfield code="z">(OCoLC)1113925581</subfield>
+   <subfield code="z">(OCoLC)1114556922</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1113886313</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1113925581</subfield>
+   <subfield code="0">(uri) http://www.worldcat.org/oclc/1114556922</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+   <subfield code="a">DLC</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="e">rda</subfield>
+   <subfield code="c">DLC</subfield>
+   <subfield code="d">OCLCO</subfield>
+   <subfield code="d">YDX</subfield>
+  </datafield>
+  <datafield tag="019" ind1=" " ind2=" ">
+   <subfield code="a">1113886313</subfield>
+   <subfield code="a">1113925581</subfield>
+   <subfield code="a">1114556922</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9781138545960</subfield>
+   <subfield code="q">hardcover</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138545960</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">1138545961</subfield>
+   <subfield code="q">hardcover</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1138545961</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9781138545977</subfield>
+   <subfield code="q">paperback</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781138545977</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">113854597X</subfield>
+   <subfield code="q">paperback</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/113854597X</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="z">9781351001441</subfield>
+   <subfield code="q">electronic book</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+   <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+   <subfield code="a">HV6181</subfield>
+   <subfield code="b">.F73 2020</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="0">
+   <subfield code="a">364.3086/912</subfield>
+   <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+   <subfield code="a">Franko, Katja,</subfield>
+   <subfield code="e">author.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/names/n2020004194</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+   <subfield code="a">The crimmigrant other :</subfield>
+   <subfield code="b">migration and penal power /</subfield>
+   <subfield code="c">Katja Franko.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+   <subfield code="a">Abingdon, Oxon ;</subfield>
+   <subfield code="a">New York, NY :</subfield>
+   <subfield code="b">Routledge,</subfield>
+   <subfield code="c">2020.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+   <subfield code="c">©2020</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+   <subfield code="a">xi, 237 pages ;</subfield>
+   <subfield code="c">21 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">text</subfield>
+   <subfield code="b">txt</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+   <subfield code="a">unmediated</subfield>
+   <subfield code="b">n</subfield>
+   <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+   <subfield code="a">volume</subfield>
+   <subfield code="b">nc</subfield>
+   <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+   <subfield code="a">Key ideas in criminology</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+   <subfield code="a">Includes bibliographical references.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+   <subfield code="a">&#34;Contemporary Western societies are increasingly geared towards the production of immigrant illegality. This book examines these processes and outlines how the figure of the &#34;crimmigrant other&#34; has emerged not only as a central object of media and political discourse, but also as a distinct penal subject connecting migration and the logic of criminalization and insecurity. Illegality defines not only a quality of certain acts, but becomes an existential condition, which shapes the daily lives of large groups within the society. Drawing on rich empirical material from national and international contexts, Katja Franko outlines the social production of the crimmigrant other as a multi-layered phenomenon that is deeply rooted in the intricate connections between law, scientific knowledge, bureaucratic practices, politics and popular discourse&#34;--</subfield>
+   <subfield code="c">Provided by publisher.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Alien criminals.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh85003532</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Illegal aliens.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh85003553</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Crime.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh85033993</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Emigration and immigration</subfield>
+   <subfield code="x">Social aspects.</subfield>
+   <subfield code="0">http://id.loc.gov/authorities/subjects/sh85042789</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+   <subfield code="i">Online version:</subfield>
+   <subfield code="a">Franko, Katja.</subfield>
+   <subfield code="t">The crimmigrant other</subfield>
+   <subfield code="d">Abingdon, Oxon ; New York, NY : Routledge, 2020.</subfield>
+   <subfield code="z">9781351001441</subfield>
+   <subfield code="w">(DLC)  2019051734</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+   <subfield code="a">Key ideas in criminology.</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+   <subfield code="c">G0601mon</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+   <subfield code="i">155.00</subfield>
+   <subfield code="j">127.10</subfield>
+   <subfield code="n">40029778320</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+   <subfield code="b">FY20</subfield>
+   <subfield code="n">2020</subfield>
+   <subfield code="q">32101108218460</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+   <subfield code="h">HV6181</subfield>
+   <subfield code="i">.F73 2020</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+   <subfield code="a">pad</subfield>
+   <subfield code="b">o</subfield>
+   <subfield code="h">m</subfield>
+   <subfield code="c">b</subfield>
+   <subfield code="e">20200306</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+   <subfield code="b">2021-07-13 03:29:41 US/Eastern</subfield>
+   <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+   <subfield code="b">firestone</subfield>
+   <subfield code="c">stacks</subfield>
+   <subfield code="h">HV6181</subfield>
+   <subfield code="i">.F73 2020</subfield>
+   <subfield code="8">22687410190006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+   <subfield code="a">2021-07-13 07:29:41</subfield>
+   <subfield code="8">22687410190006421</subfield>
+   <subfield code="b">Firestone Library</subfield>
+   <subfield code="c">stacks: Firestone Library</subfield>
+   <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+   <subfield code="0">22687410190006421</subfield>
+   <subfield code="a">23687410180006421</subfield>
+   <subfield code="j">1</subfield>
+   <subfield code="z">stacks</subfield>
+   <subfield code="d">2021-07-13 07:29:41</subfield>
+   <subfield code="p">32101108218460</subfield>
+   <subfield code="t">0</subfield>
+   <subfield code="y">firestone</subfield>
+  </datafield>
+ </record>
+</collection>
