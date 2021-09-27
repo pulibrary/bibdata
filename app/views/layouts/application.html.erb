@@ -12,5 +12,8 @@
     <%= render partial: "shared/flash_messages", flash: flash %>
     <%= yield %>
   </div>
+  <div class="deployment-version">
+    Version <span title="<%= GIT_SHA %>"><%= BRANCH %> last updated <%= LAST_DEPLOYED %>.</span>
+  </div>
 </body>
 </html>
