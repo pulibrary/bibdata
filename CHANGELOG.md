@@ -1,3 +1,19 @@
+# v1.0.2 (Mon Sep 27 2021)
+
+#### 🐛 Bug Fix
+
+- Display the deployed version in the application footer [#1670](https://github.com/pulibrary/bibdata/pull/1670) ([@bess](https://github.com/bess))
+- Refactor ChangeTheSubject so it is available at index time [#1661](https://github.com/pulibrary/bibdata/pull/1661) ([@bess](https://github.com/bess))
+- First pass at Change The Subject [#1660](https://github.com/pulibrary/bibdata/pull/1660) ([@bess](https://github.com/bess))
+- Readme updates: [#1657](https://github.com/pulibrary/bibdata/pull/1657) ([@christinach](https://github.com/christinach))
+
+#### Authors: 2
+
+- Bess Sadler ([@bess](https://github.com/bess))
+- Christina Chortaria ([@christinach](https://github.com/christinach))
+
+---
+
 # v1.0.1 (Fri Sep 17 2021)
 
 #### 🐛 Bug Fix
