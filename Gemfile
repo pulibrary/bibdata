@@ -52,7 +52,6 @@ gem 'rubocop-rspec'
 gem 'rubyXL'
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails', '~> 5.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'selenium-webdriver'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'

@@ -357,7 +357,6 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rdoc (4.3.0)
     redis (4.3.1)
     regexp_parser (1.7.1)
     request_store (1.4.1)
@@ -426,9 +425,6 @@ GEM
       ffi (~> 1.9)
       rake
     scrub_rb (1.0.1)
-    sdoc (0.4.2)
-      json (~> 1.7, >= 1.7.7)
-      rdoc (~> 4.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -589,7 +585,6 @@ DEPENDENCIES
   rubyXL
   rubyzip (>= 1.2.2)
   sass-rails (~> 5.0)
-  sdoc (~> 0.4.0)
   selenium-webdriver
   sidekiq-pro!
   simplecov (= 0.14.1)
