@@ -11,7 +11,8 @@ require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './change_the_subject'
-require_relative "./pul_solr_json_writer"
+require_relative './pul_solr_json_writer'
+require_relative './augment_the_subject'
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -32,6 +33,8 @@ settings do
 end
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+
+augment_the_subject = AugmentTheSubject.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -794,6 +797,7 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
   accumulator.replace(subjects)
 end
 
@@ -811,6 +815,7 @@ end
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
   sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
   genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft', 'aat', 'rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
   accumulator.replace([subjects, sk_subjects, genres].flatten)
@@ -836,6 +841,7 @@ to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnop
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
   subjects = process_subject_topic_facet(record)
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
   accumulator.replace(subjects)
 end
 
