@@ -14,10 +14,9 @@ require 'concurrent' # for atomic_fixnum
 # ==========================
 # This class is a copy of Traject's SolrJsonWriter
 # (https://github.com/traject/traject/blob/master/lib/traject/solr_json_writer.rb)
-# but it has been updated to skip records with Unicode values that Ruby cannot
+# but it has been updated to skip records with UTF-8 values that Ruby cannot
 # handle in JSON.parse() - see https://github.com/pulibrary/bibdata/issues/1677
 # ==========================
-
 
 # Write to Solr using the JSON interface; only works for Solr >= 3.2
 #
@@ -51,9 +50,11 @@ require 'concurrent' # for atomic_fixnum
 # * solr_json_writer.http_client Mainly intended for testing, set your own HTTPClient
 #   or mock object to be used for HTTP.
 
-
 class Traject::PulSolrJsonWriter
   include Traject::QualifiedConstGet
+
+  # Disable RuboCop so that we can mimic the original in Traject as much as possible.
+  # rubocop:disable all
 
   DEFAULT_MAX_SKIPPED = 0
   DEFAULT_BATCH_SIZE  = 100
@@ -136,7 +137,7 @@ class Traject::PulSolrJsonWriter
       end
     end
   # This rescue clause is not in the original Traject::SolrJsonWriter
-  # Special handling for batch of records with Unicode characters that JSON.parse() cannot handle.
+  # Special handling for batch of records with UTF-8 characters that JSON.parse() cannot handle.
   rescue JSON::GeneratorError => ex
     logger.error "JSON error in Solr batch add. Will retry documents individually at performance penalty: #{ex}"
     batch.each do |c|
@@ -172,7 +173,7 @@ class Traject::PulSolrJsonWriter
 
     end
   # This rescue clause is not in the original Traject::SolrJsonWriter
-  # Special handling for single record with Unicode characters that JSON.parse() cannot handle.
+  # Special handling for single record with UTF-8 characters that JSON.parse() cannot handle.
   rescue JSON::GeneratorError => ex
     logger.error "Could not add record #{c.source_record_id}: #{ex}"
   end
@@ -280,5 +281,5 @@ class Traject::PulSolrJsonWriter
     candidate
   end
 
-
+  # rubocop:enable all
 end
