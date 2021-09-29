@@ -46,7 +46,8 @@ each_record do |record, context|
 end
 
 after_processing do
-  if @settings["writer_class_name"] == "Traject::SolrJsonWriter"
+  using_solr = ["Traject::SolrJsonWriter", "Traject::PulSolrJsonWriter"].include?(@settings["writer_class_name"])
+  if using_solr
     # Delete records from Solr
     deleter = SolrDeleter.new(@settings["solr.url"], logger)
     deleter.delete(deleted_ids)
