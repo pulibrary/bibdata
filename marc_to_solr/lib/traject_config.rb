@@ -11,11 +11,11 @@ require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './change_the_subject'
+require_relative "./pul_solr_json_writer"
 require 'stringex'
 require 'library_stdnums'
 require 'time'
 require 'iso-639'
-
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
