@@ -49,5 +49,22 @@ RSpec.describe Alma::Indexer do
       response = solr.get("select", params: { q: "id:99122238836006421" })
       expect(response['response']['numFound']).to eq 0
     end
+
+    it "skips bad utf-8 record but import other records" do
+      solr = RSolr.connect(url: solr_url)
+      solr.delete_by_query("*:*")
+
+      indexer = described_class.new(solr_url: solr_url)
+      file_name = file_fixture("alma/full_dump/three_records_one_bad_utf8.xml")
+      Sidekiq::Testing.inline! do
+        indexer.index_file(file_name)
+      end
+
+      solr.commit
+      response = solr.get("select", params: { q: "*:*" })
+
+      # It should have skipped the bad UTF-8 record but kept the other two.
+      expect(response['response']['numFound']).to eq 2
+    end
   end
 end
