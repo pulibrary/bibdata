@@ -27,6 +27,7 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -728,6 +729,12 @@ describe 'From traject_config.rb' do
         expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
         expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
         expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+      end
+      it 'works against a fixture' do
+        expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
       end
     end
   end
