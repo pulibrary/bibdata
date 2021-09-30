@@ -11,11 +11,11 @@ require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './change_the_subject'
+require_relative "./pul_solr_json_writer"
 require 'stringex'
 require 'library_stdnums'
 require 'time'
 require 'iso-639'
-
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -46,7 +46,8 @@ each_record do |record, context|
 end
 
 after_processing do
-  if @settings["writer_class_name"] == "Traject::SolrJsonWriter"
+  using_solr = ["Traject::SolrJsonWriter", "Traject::PulSolrJsonWriter"].include?(@settings["writer_class_name"])
+  if using_solr
     # Delete records from Solr
     deleter = SolrDeleter.new(@settings["solr.url"], logger)
     deleter.delete(deleted_ids)

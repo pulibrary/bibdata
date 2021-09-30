@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection xmlns="http://www.loc.gov/MARC21/slim" xmlns:marc="http://www.loc.gov/MARC21/slim">
+ <record>
+  <leader>01645nam a2200397 i 4500</leader>
+  <controlfield tag="005">20210511120000.0</controlfield>
+  <controlfield tag="008">210511s2021    ru a          000 0brus d</controlfield>
+  <controlfield tag="001">99125394249206421</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9785910224722</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9785910224722</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="9">(RuMoNKB)1195770</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+   <subfield code="a">RuMoNKB</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="e">rda</subfield>
+   <subfield code="c">RuMoNKB</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2=" ">
+   <subfield code="a">rus</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="b">dan</subfield>
+   <subfield code="b">ger</subfield>
+   <subfield code="b">ita</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+   <subfield code="a">e-ur---</subfield>
+   <subfield code="a">e-ru---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+   <subfield code="a">ML422.V43</subfield>
+   <subfield code="b">C44 2021</subfield>
+  </datafield>
+  <datafield tag="066" ind1=" " ind2=" ">
+   <subfield code="c">(N</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+   <subfield code="6">880-01</subfield>
+   <subfield code="a">Cherëmushkin, Pëtr</subfield>
+   <subfield code="q">(Pëtr Germanovich),</subfield>
+   <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+   <subfield code="6">100-01</subfield>
+   <subfield code="a">Черёмушкин, Пётр</subfield>
+   <subfield code="q">(Пётр Германович),</subfield>
+   <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+   <subfield code="6">880-02</subfield>
+   <subfield code="a">Aleksandr Vedernikov, glavnyĭ dirizher /</subfield>
+   <subfield code="c">Pëtr Cherëmushkin.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+   <subfield code="6">245-02</subfield>
+   <subfield code="a">Александр Ведерников, главный дирижер /</subfield>
+   <subfield code="c">Пётр Черёмушкин.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+   <subfield code="6">880-03</subfield>
+   <subfield code="a">Moskva :</subfield>
+   <subfield code="b">AIRO-XXI, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="1">
+   <subfield code="6">264-03</subfield>
+   <subfield code="a">Москва :</subfield>
+   <subfield code="b">АИРО-XXI, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+   <subfield code="a">183 pages :</subfield>
+   <subfield code="b">illustrations (chiefly color) ;</subfield>
+   <subfield code="c">30 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">text</subfield>
+   <subfield code="b">txt</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">still image</subfield>
+   <subfield code="b">sti</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+   <subfield code="a">unmediated</subfield>
+   <subfield code="b">n</subfield>
+   <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+   <subfield code="a">volume</subfield>
+   <subfield code="b">nc</subfield>
+   <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+   <subfield code="a">Summary in English, Danish, German and Italian.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+   <subfield code="a">Vedernikov, A. (Aleksandr)</subfield>
+  </datafield>
+  <datafield tag="610" ind1="2" ind2="0">
+   <subfield code="a">Bolʹshoĭ teatr Rossii.</subfield>
+   <subfield code="b">Orkestr.</subfield>
+  </datafield>
+  <datafield tag="610" ind1="2" ind2="0">
+   <subfield code="a">Bolshoĭ teatr Rossii</subfield>
+   <subfield code="x">History.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Conductors (Music)</subfield>
+   <subfield code="z">Russia (Federation)</subfield>
+   <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Conductors (Music)</subfield>
+   <subfield code="z">Soviet Union</subfield>
+   <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Musicians, Russian</subfield>
+   <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+   <subfield code="c">F1301mon</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+   <subfield code="a">20210811</subfield>
+   <subfield code="b">RuMoNKB</subfield>
+   <subfield code="f">NPRA1447</subfield>
+   <subfield code="i">39.00</subfield>
+   <subfield code="j">31.20</subfield>
+   <subfield code="n">11957701447</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+   <subfield code="b">FY22</subfield>
+   <subfield code="c">rcppa</subfield>
+   <subfield code="n">2022</subfield>
+   <subfield code="q">32101108804400</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+   <subfield code="h">ML422.V43</subfield>
+   <subfield code="i">C44 2021</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+   <subfield code="c">2021-09-22 20:51:54 US/Eastern</subfield>
+   <subfield code="b">2021-09-22 20:51:56 US/Eastern</subfield>
+   <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+   <subfield code="b">recap</subfield>
+   <subfield code="c">pa</subfield>
+   <subfield code="h">ML422.V43</subfield>
+   <subfield code="i">C44 2021</subfield>
+   <subfield code="8">22901505800006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+   <subfield code="d">2021-09-23 00:52:12</subfield>
+   <subfield code="8">22901505800006421</subfield>
+   <subfield code="a">2021-09-23 00:52:11</subfield>
+   <subfield code="b">ReCAP</subfield>
+   <subfield code="c">rcppa: RECAP</subfield>
+   <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+   <subfield code="0">22901505800006421</subfield>
+   <subfield code="a">23901505790006421</subfield>
+   <subfield code="j">0</subfield>
+   <subfield code="x">ACQ</subfield>
+   <subfield code="z">pa</subfield>
+   <subfield code="d">2021-09-23 00:52:11</subfield>
+   <subfield code="p">32101108804400</subfield>
+   <subfield code="y">recap</subfield>
+  </datafield>
+ </record>
+ <record>
+  <leader>01735nam a2200361 i 4500</leader>
+  <controlfield tag="005">20210421120000.0</controlfield>
+  <controlfield tag="008">210421s2021    ru ac    b    001 0сrus d</controlfield>
+  <controlfield tag="001">99125394551506421</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9785001254249</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9785001254249</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="9">(RuMoNKB)1192400</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+   <subfield code="a">RuMoNKB</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="e">rda</subfield>
+   <subfield code="c">RuMoNKB</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+   <subfield code="a">e-ur---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+   <subfield code="a">CT1217.B46</subfield>
+   <subfield code="b">I88 2021</subfield>
+  </datafield>
+  <datafield tag="066" ind1=" " ind2=" ">
+   <subfield code="c">(N</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+   <subfield code="6">880-01</subfield>
+   <subfield code="a">Istorii︠a︡ semʹi Benua v pisʹmakh :</subfield>
+   <subfield code="b">pisʹma iz domashnego arkhiva F.F. Benua /</subfield>
+   <subfield code="c">sostavitelʹ, predislovie, primechanie G.F. Benua.</subfield>
+  </datafield>
+   <datafield tag="880" ind1="0" ind2="0">
+   <subfield code="6">245-01</subfield>
+   <subfield code="a">История семьи Бенуа в письмах :</subfield>
+   <subfield code="b">письма из домашнего архива Ф.Ф. Бенуа /</subfield>
+   <subfield code="c">составитель, предисловие, примечание Г.Ф. Бенуа.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+   <subfield code="6">880-02</subfield>
+   <subfield code="a">Sankt-Peterburg :</subfield>
+   <subfield code="b">Renome, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="1">
+   <subfield code="6">264-02</subfield>
+   <subfield code="a">Санкт-Петербург :</subfield>
+   <subfield code="b">Реноме, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+   <subfield code="a">151 pages :</subfield>
+   <subfield code="b">illustrations, portraits ;</subfield>
+   <subfield code="c">23 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">text</subfield>
+   <subfield code="b">txt</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+   <subfield code="a">unmediated</subfield>
+   <subfield code="b">n</subfield>
+   <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+   <subfield code="a">volume</subfield>
+   <subfield code="b">nc</subfield>
+   <subfield code="2">rdacarrier</subfield>
+  </datafield>
+<datafield tag="500" ind1=" " ind2=" ">
+   <subfield code="6">880-03</subfield>
+   <subfield code="a">&#34;Nauchno-populi︠a︡rnoe izdanie&#34;--Colophon.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+   <subfield code="6">500-03</subfield>
+   <subfield code="a">&#34;Научно-популярное издание&#34;--Colophon.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+   <subfield code="a">Includes bibliographical references and index.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="3" ind2="0">
+   <subfield code="a">Benua family.</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+   <subfield code="a">Benua di Stetto, Aleksandr,</subfield>
+   <subfield code="d">1896-1979.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+   <subfield code="a">Intellectuals</subfield>
+   <subfield code="z">Russia</subfield>
+   <subfield code="v">Correspondence.</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+   <subfield code="6">880-04</subfield>
+   <subfield code="a">Benua, G. F.,</subfield>
+   <subfield code="e">compiler,</subfield>
+   <subfield code="e">editor,</subfield>
+   <subfield code="e">writer of introduction.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+   <subfield code="6">700-04</subfield>
+   <subfield code="a">Бенуа, Г. Ф.,</subfield>
+   <subfield code="e">compiler,</subfield>
+   <subfield code="e">editor,</subfield>
+   <subfield code="e">writer of introduction.</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+   <subfield code="c">F1301mon</subfield>
+  </datafield>
+<datafield tag="980" ind1=" " ind2=" ">
+   <subfield code="a">20210714</subfield>
+   <subfield code="b">RuMoNKB</subfield>
+   <subfield code="f">NPRA1441</subfield>
+   <subfield code="i">32.00</subfield>
+   <subfield code="j">25.60</subfield>
+   <subfield code="n">11924001441</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+   <subfield code="b">FY22</subfield>
+   <subfield code="c">rcppa</subfield>
+   <subfield code="n">2022</subfield>
+   <subfield code="q">32101108835859</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+   <subfield code="h">CT1217.B46</subfield>
+   <subfield code="i">I88 2021</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+   <subfield code="c">2021-09-22 20:51:25 US/Eastern</subfield>
+   <subfield code="b">2021-09-22 20:51:28 US/Eastern</subfield>
+   <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+   <subfield code="b">recap</subfield>
+   <subfield code="c">pa</subfield>
+   <subfield code="h">CT1217.B46</subfield>
+   <subfield code="i">I88 2021</subfield>
+   <subfield code="8">22901493720006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+   <subfield code="d">2021-09-23 00:51:58</subfield>
+   <subfield code="8">22901493720006421</subfield>
+   <subfield code="a">2021-09-23 00:51:56</subfield>
+   <subfield code="b">ReCAP</subfield>
+   <subfield code="c">rcppa: RECAP</subfield>
+   <subfield code="e">false</subfield>
+  </datafield>
+<datafield tag="876" ind1=" " ind2=" ">
+   <subfield code="0">22901493720006421</subfield>
+   <subfield code="a">23901493700006421</subfield>
+   <subfield code="j">0</subfield>
+   <subfield code="x">ACQ</subfield>
+   <subfield code="z">pa</subfield>
+   <subfield code="d">2021-09-23 00:51:57</subfield>
+   <subfield code="p">32101108835859</subfield>
+   <subfield code="y">recap</subfield>
+  </datafield>
+ </record>
+ <record>
+  <leader>02642nam a2200445 i 4500</leader>
+  <controlfield tag="005">20210603120000.0</controlfield>
+  <controlfield tag="008">210603s2021    ru ach   b    000 0brus d</controlfield>
+  <controlfield tag="001">99125394249406421</controlfield>
+  <datafield tag="020" ind1=" " ind2=" ">
+   <subfield code="a">9785824324396</subfield>
+   <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9785824324396</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+   <subfield code="9">(RuMoNKB)1200500</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+   <subfield code="a">RuMoNKB</subfield>
+   <subfield code="b">eng</subfield>
+   <subfield code="e">rda</subfield>
+   <subfield code="c">RuMoNKB</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+   <subfield code="a">e-ur---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+   <subfield code="a">DK275.P67</subfield>
+   <subfield code="b">B37 2021</subfield>
+  </datafield>
+  <datafield tag="066" ind1=" " ind2=" ">
+   <subfield code="c">(N</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+   <subfield code="6">880-01</subfield>
+   <subfield code="a">Barkhatov, Alekseĭ,</subfield>
+   <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2=" ">
+   <subfield code="6">100-01</subfield>
+   <subfield code="a">Бархатов, Алексей,</subfield>
+   <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+   <subfield code="6">880-02</subfield>
+   <subfield code="a">Kto? :</subfield>
+   <subfield code="b">&#34;gensek vozhdi︠a︡&#34; Aleksandr Poskrebyshev : istoricheskiĭ roman /</subfield>
+   <subfield code="c">Alekseĭ Barkhatov.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="1" ind2="0">
+   <subfield code="6">245-02</subfield>
+   <subfield code="a">Кто? :</subfield>
+   <subfield code="b">&#34;генсек вождя&#34; Александр Поскребышев : исторический роман /</subfield>
+   <subfield code="c">Алексей Бархатов.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2="0">
+   <subfield code="6">880-03</subfield>
+   <subfield code="a">&#34;Gensek vozhdi︠a︡&#34; Aleksandr Poskrebyshev :</subfield>
+   <subfield code="b">istoricheskiĭ roman</subfield>
+  </datafield>
+  <datafield tag="880" ind1="3" ind2="0">
+   <subfield code="6">246-03</subfield>
+   <subfield code="a">&#34;Генсек вождя&#34; Александр Поскребышев :</subfield>
+   <subfield code="b">исторический роман</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+   <subfield code="6">880-04</subfield>
+   <subfield code="a">Moskva :</subfield>
+   <subfield code="b">ROSSPĖN, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2="1">
+   <subfield code="6">264-04</subfield>
+   <subfield code="a">Москва :</subfield>
+   <subfield code="b">РОССПЭН, </subfield>
+   <subfield code="c">2021.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+   <subfield code="a">310 pages :</subfield>
+   <subfield code="b">illustrations, portraits, facsimiles ;</subfield>
+   <subfield code="c">25 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+   <subfield code="a">text</subfield>
+   <subfield code="b">txt</subfield>
+   <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+   <subfield code="a">unmediated</subfield>
+   <subfield code="b">n</subfield>
+   <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+   <subfield code="a">volume</subfield>
+   <subfield code="b">nc</subfield>
+   <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="0" ind2=" ">
+   <subfield code="6">880-05</subfield>
+   <subfield code="a">Stranit︠s︡y sovetskoĭ istorii. Belletristika</subfield>
+  </datafield>
+  <datafield tag="880" ind1="0" ind2=" ">
+   <subfield code="6">490-05</subfield>
+   <subfield code="a">Страницы советской истории. Беллетристика</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+   <subfield code="6">880-06</subfield>
+   <subfield code="a">&#34;AFK &#34;Sistema&#34; sovmestno s Rossiĭskim gosudarstvennym arkhivom sot︠s︡ialʹno-politicheskoĭ istorii predstavli︠a︡i︠u︡t&#34;--Preliminary page.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+   <subfield code="6">500-06</subfield>
+   <subfield code="a">&#34;АФК &#34;Система&#34; совместно с Российским государственным архивом социально-политической истории представляют&#34;--Preliminary page.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+   <subfield code="6">880-07</subfield>
+   <subfield code="a">&#34;Khudozhestvennoe izdanie&#34;--Colophon.</subfield>
+  </datafield>
+  <datafield tag="880" ind1=" " ind2=" ">
+   <subfield code="6">500-07</subfield>
+   <subfield code="a">&#34;Художественное издание&#34;--Colophon.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+   <subfield code="a">Includes bibliographical references (pages 308-310).</subfield>
+  </datafield>
+  <datafield tag="600" ind1="1" ind2="0">
+   <subfield code="a">Poskrebyshev, A. N.</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+   <subfield code="a">Soviet Union</subfield>
+   <subfield code="x">Politics and government</subfield>
+   <subfield code="y">1936-1953</subfield>
+   <subfield code="v">Biography.</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+   <subfield code="6">880-08</subfield>
+   <subfield code="a">Rossiĭskiĭ gosudarstvennyĭ arkhiv sot︠s︡ialʹno-politicheskoĭ istorii,</subfield>
+   <subfield code="e">host institution.</subfield>
+  </datafield>
+  <datafield tag="880" ind1="2" ind2=" ">
+   <subfield code="6">710-08</subfield>
+   <subfield code="a">Российский государственный архив социально-политической истории,</subfield>
+   <subfield code="e">host institution.</subfield>
+  </datafield>
+  <datafield tag="910" ind1=" " ind2=" ">
+   <subfield code="c">F1301mon</subfield>
+  </datafield>
+  <datafield tag="980" ind1=" " ind2=" ">
+   <subfield code="a">20210811</subfield>
+   <subfield code="b">RuMoNKB</subfield>
+   <subfield code="f">NPRA1447</subfield>
+   <subfield code="i">34.00</subfield>
+   <subfield code="j">27.20</subfield>
+   <subfield code="n">12005001447</subfield>
+  </datafield>
+  <datafield tag="982" ind1=" " ind2=" ">
+   <subfield code="b">FY22</subfield>
+   <subfield code="c">rcppa</subfield>
+   <subfield code="n">2022</subfield>
+   <subfield code="q">32101108823012</subfield>
+  </datafield>
+  <datafield tag="986" ind1=" " ind2=" ">
+   <subfield code="h">DK275.P67</subfield>
+   <subfield code="i">B37 2021</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+   <subfield code="c">2021-09-22 20:51:54 US/Eastern</subfield>
+   <subfield code="b">2021-09-22 20:51:56 US/Eastern</subfield>
+   <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+   <subfield code="b">recap</subfield>
+   <subfield code="c">pa</subfield>
+   <subfield code="h">DK275.P67</subfield>
+   <subfield code="i">B37 2021</subfield>
+   <subfield code="8">22901505940006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+   <subfield code="d">2021-09-23 00:52:11</subfield>
+   <subfield code="8">22901505940006421</subfield>
+   <subfield code="a">2021-09-23 00:52:10</subfield>
+   <subfield code="b">ReCAP</subfield>
+   <subfield code="c">rcppa: RECAP</subfield>
+   <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+   <subfield code="0">22901505940006421</subfield>
+   <subfield code="a">23901505910006421</subfield>
+   <subfield code="j">0</subfield>
+   <subfield code="x">ACQ</subfield>
+   <subfield code="z">pa</subfield>
+   <subfield code="d">2021-09-23 00:52:10</subfield>
+   <subfield code="p">32101108823012</subfield>
+   <subfield code="y">recap</subfield>
+  </datafield>
+ </record>
+</collection>
