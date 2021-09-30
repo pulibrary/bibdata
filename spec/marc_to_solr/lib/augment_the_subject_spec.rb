@@ -50,4 +50,20 @@ RSpec.describe AugmentTheSubject do
       expect(ats.normalize(lcsh_term)).to eq "indian architecture#{SEPARATOR}north america"
     end
   end
+
+  context "subfield ǂa matches with trailing subfields" do
+    let(:subject_terms) { ["Quinnipiac Indians#{SEPARATOR}History"] }
+
+    it "matches anyway" do
+      expect(ats.indigenous_studies?(subject_terms)).to eq true
+    end
+  end
+
+  context "initial setup" do
+    it "parses the raw list of subjects into subfields" do
+      subfields = described_class.parse_subjects
+      expect(subfields.keys).to match_array [:a, :x, :y, :z]
+      expect(subfields[:a].count).to eq 1341
+    end
+  end
 end
