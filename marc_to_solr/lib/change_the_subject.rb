@@ -21,13 +21,21 @@ class ChangeTheSubject
   end
 
   ##
-  # Given a term, check whether there is a suggested replacement. If there is, return
-  # it. If there is not, return the term unaltered.
+  # Given a term, check whether there is a suggested replacement.
+  # Remove punctuation and downcase the term
+  # Compare with the downcase key from @terms_mapping
+  # If the strings match replace the suggested term, otherwise return the term unaltered.
   # @param [String] term
   # @return [String]
   def check_for_replacement(term)
-    term_downcase = term.downcase
+    term_downcase = remove_punctuation(term).downcase
     terms_mapping_key = @terms_mapping.map { |k, _v| k.downcase }.first
     replacement = terms_mapping_key && terms_mapping_key == term_downcase.to_sym ? @terms_mapping.values.first[:replacement] : term
+  end
+
+  # Remove punctuation from subfields in order to compare with the terms_mapping key.
+  # example 650$a: "illegal aliens."
+  def remove_punctuation(value)
+    value.gsub(/[^A-Za-z0-9\s]/i, '')
   end
 end
