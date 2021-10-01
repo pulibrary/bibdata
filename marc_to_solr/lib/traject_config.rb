@@ -4,13 +4,13 @@ require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
 require_relative './format'
+require_relative './change_the_subject'
 require_relative './princeton_marc'
 require_relative './geo'
 require_relative './electronic_portfolio_builder'
 require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
-require_relative './change_the_subject'
 require_relative "./pul_solr_json_writer"
 require 'stringex'
 require 'library_stdnums'
@@ -32,6 +32,8 @@ settings do
 end
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+
+change_the_subject = ChangeTheSubject.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -794,6 +796,7 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = change_the_subject.fix(subjects)
   accumulator.replace(subjects)
 end
 

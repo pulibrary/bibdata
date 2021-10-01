@@ -10,6 +10,9 @@ require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'iiif_manifest_url_builder'
 require_relative 'orangelight_url_builder'
+# require_relative './change_the_subject'
+
+change_the_subject = ChangeTheSubject.new
 
 module MARC
   class Record
@@ -270,6 +273,7 @@ SEPARATOR = '—'
 # split with em dash along t,v,x,y,z
 # optional vocabulary argument for allowing certain subfield $2 vocabularies
 def process_hierarchy(record, fields, vocabulary = [])
+  change_the_subject = ChangeTheSubject.new
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
@@ -282,6 +286,7 @@ def process_hierarchy(record, fields, vocabulary = [])
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
+      heading = change_the_subject.fix(heading)
       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
       headings << heading if include_heading
     end

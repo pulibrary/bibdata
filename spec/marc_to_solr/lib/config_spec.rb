@@ -27,6 +27,9 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    @subject_headings_a = @indexer.map_record(fixture_record('99112049503506421'))
+    @subject_headings_b = @indexer.map_record(fixture_record('99118458073506421'))
+    @subject_headings_c = @indexer.map_record(fixture_record('99650713506421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -798,6 +801,14 @@ describe 'From traject_config.rb' do
     end
     it "Indexes H - U, if uncommittable SCSB record" do
       expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
+    end
+  end
+
+  describe 'subject headings changes' do
+    it "indexes lc_subject_display with replacement term" do
+      expect(@subject_headings_a['lc_subject_display']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Undocumented Immigrants—Europe—Drama", "Africa—Emigration and immigration—Drama"]
+      expect(@subject_headings_b['lc_subject_display']).to eq ["Alien criminals", "Undocumented Immigrants", "Crime", "Emigration and immigration—Social aspects"]
+      expect(@subject_headings_c['lc_subject_display']).to eq ["Undocumented Immigrants"]
     end
   end
 end

@@ -10,7 +10,8 @@ RSpec.describe ChangeTheSubject do
     let(:subject_term) { "Illegal Aliens" }
 
     it "suggests a replacement" do
-      expect(described_class.check_for_replacement(subject_term)).to eq "Undocumented Immigrants"
+      change_the_subject = described_class.new
+      expect(change_the_subject.check_for_replacement(subject_term)).to eq "Undocumented Immigrants"
     end
   end
 
@@ -18,7 +19,8 @@ RSpec.describe ChangeTheSubject do
     let(:subject_term) { "Daffodils" }
 
     it "returns the term unchanged" do
-      expect(described_class.check_for_replacement(subject_term)).to eq subject_term
+      change_the_subject = described_class.new
+      expect(change_the_subject.check_for_replacement(subject_term)).to eq subject_term
     end
   end
 
@@ -27,7 +29,8 @@ RSpec.describe ChangeTheSubject do
     let(:fixed_subject_terms) { ["Undocumented Immigrants", "Workplace Safety"] }
 
     it "changes only the subject terms that have been configured" do
-      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      change_the_subject = described_class.new
+      expect(change_the_subject.fix(subject_terms)).to eq fixed_subject_terms
     end
   end
 end
