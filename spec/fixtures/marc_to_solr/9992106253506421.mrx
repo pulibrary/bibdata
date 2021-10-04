@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01658cam a2200457Ma 4500</leader>
+    <controlfield tag="005">20201006143211.0</controlfield>
+    <controlfield tag="008">151008s2015    ja            000 0 jpn d</controlfield>
+    <controlfield tag="001">9992106253506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocn919073564</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/919073564</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">9210625</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)919073564</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/919073564</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)9210625-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">TRCLS</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">TRCLS</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">EQO</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">STF</subfield>
+      <subfield code="d">PULEA</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9784921145538</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9784921145538</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">4921145539</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/4921145539</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">a-ja---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">JQ1647</subfield>
+      <subfield code="b">.O96 2015</subfield>
+    </datafield>
+    <datafield tag="084" ind1=" " ind2=" ">
+      <subfield code="a">407</subfield>
+      <subfield code="2">njb/9</subfield>
+    </datafield>
+    <datafield tag="049" ind1=" " ind2=" ">
+      <subfield code="a">MAIN</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Ozawa, Takeshi,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Oyatoi doitsujin kagaku kyōshi /</subfield>
+      <subfield code="c">Ozawa Takeshi.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Tōkyō :</subfield>
+      <subfield code="b">Seishishuppan,</subfield>
+      <subfield code="c">2015.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">213 pages ;</subfield>
+      <subfield code="c">22 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="650" ind1="0" ind2="7">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Kagaku kyōiku-Rekishi.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="650" ind1="0" ind2="7">
+      <subfield code="6">880-05</subfield>
+      <subfield code="a">Oyatoi gaikokujin.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="650" ind1="0" ind2="7">
+      <subfield code="6">880-06</subfield>
+      <subfield code="a">Doitsujin(Nihon zairyū)-Rekishi.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Japan</subfield>
+      <subfield code="x">Officials and employees, Alien</subfield>
+      <subfield code="x">History.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78089021</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78089021</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Japan</subfield>
+      <subfield code="x">Officials and employees, Alien</subfield>
+      <subfield code="v">Biography.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78089021</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78089021</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">小沢健志,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">お雇い独逸人科学教師 /</subfield>
+      <subfield code="c">小沢健志著.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">260-03</subfield>
+      <subfield code="a">東京 :</subfield>
+      <subfield code="b">青史出版,</subfield>
+      <subfield code="c">2015.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2="7">
+      <subfield code="6">650-04</subfield>
+      <subfield code="a">科学教育-歴史.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2="7">
+      <subfield code="6">650-05</subfield>
+      <subfield code="a">お雇い外国人.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2="7">
+      <subfield code="6">650-06</subfield>
+      <subfield code="a">ドイツ人(日本在留)-歴史.</subfield>
+      <subfield code="2">jlabsh/4</subfield>
+    </datafield>
+    <datafield tag="904" ind1=" " ind2=" ">
+      <subfield code="a">tm</subfield>
+      <subfield code="b">o</subfield>
+      <subfield code="h">m</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20151008</subfield>
+    </datafield>
+    <datafield tag="938" ind1=" " ind2=" ">
+      <subfield code="a">TRC Library Service, Inc.</subfield>
+      <subfield code="b">TRCL</subfield>
+      <subfield code="n">15042919</subfield>
+    </datafield>
+    <datafield tag="994" ind1=" " ind2=" ">
+      <subfield code="a">C0</subfield>
+      <subfield code="b">PULEA</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">9210625</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">sm</subfield>
+      <subfield code="s">sm</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20160801</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-07-31 10:51:34 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 19:20:36 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">JQ1647</subfield>
+      <subfield code="i">.O96 2015</subfield>
+      <subfield code="8">22599192970006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-12 23:20:36</subfield>
+      <subfield code="8">22599192970006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22599192970006421</subfield>
+      <subfield code="a">23599192960006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="d">2021-07-12 23:20:36</subfield>
+      <subfield code="p">32101093652012</subfield>
+      <subfield code="t">0</subfield>
+    </datafield>
+  </record>
+</collection>
