@@ -49,7 +49,57 @@
           "desc": "Library of Congress classification"
           },
           "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/secw"
+        },
+        {
+          "code": "se",
+          "name": "se: Scribner Room",
+          "external_name": "Scribner Library",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "",
+          "desc": null
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/se"
+        },
+        {
+          "code": "seref",
+          "name": "seref: Scribner Room: Ref.",
+          "external_name": "Scribner Library: Reference",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "",
+          "desc": null
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/seref"
           }
     ],
-    "total_record_count": 2
+    "total_record_count": 4
   }
