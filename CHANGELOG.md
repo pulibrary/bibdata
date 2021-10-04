@@ -1,3 +1,17 @@
+# v1.0.4 (Mon Oct 04 2021)
+
+#### 🐛 Bug Fix
+
+- Update firestone labels for firestone$seref and firestone$se, Firestone Library, Microforms to be a pick up location [#1683](https://github.com/pulibrary/bibdata/pull/1683) ([@christinach](https://github.com/christinach))
+- Handles invalid UTF-8 characters in MARC records [#1678](https://github.com/pulibrary/bibdata/pull/1678) ([@hectorcorrea](https://github.com/hectorcorrea))
+
+#### Authors: 2
+
+- Christina Chortaria ([@christinach](https://github.com/christinach))
+- Hector Correa ([@hectorcorrea](https://github.com/hectorcorrea))
+
+---
+
 # v1.0.2 (Mon Sep 27 2021)
 
 #### 🐛 Bug Fix
