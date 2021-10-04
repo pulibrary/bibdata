@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01278cam a2200325   4500</leader>
+    <controlfield tag="005">20200810122145.0</controlfield>
+    <controlfield tag="008">700707s1969    iluab    b    001 0 eng  </controlfield>
+    <controlfield tag="001">9922655623506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   79076207  </subfield>
+    </datafield>
+    <datafield tag="015" ind1=" " ind2=" ">
+      <subfield code="a">GB70-3459</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">0226164667</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/0226164667</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm00084249</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/00084249</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">CKH6810TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">2265562</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)2265562-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">UKM</subfield>
+      <subfield code="d">PUL</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2=" ">
+      <subfield code="a">E58</subfield>
+      <subfield code="b">.D68 1969</subfield>
+    </datafield>
+    <datafield tag="082" ind1=" " ind2=" ">
+      <subfield code="a">970.1</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Driver, Harold E.</subfield>
+      <subfield code="q">(Harold Edson),</subfield>
+      <subfield code="d">1907-1992.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n79065051</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79065051</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79065051</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Indians of North America</subfield>
+      <subfield code="c">[by] Harold E. Driver.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">2d ed., rev.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Chicago,</subfield>
+      <subfield code="b">University of Chicago Press</subfield>
+      <subfield code="c">[1969]</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">xvii, 632 p.</subfield>
+      <subfield code="b">illus., maps (1 fold. in pocket)</subfield>
+      <subfield code="c">24 cm.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Bibliography: p. 567-593.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Indians of North America.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85065184</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85065184</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Indians of Mexico.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85065134</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85065134</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Indians of Central America.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85065085</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85065085</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Indians of the West Indies.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85065619</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85065619</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">f</subfield>
+      <subfield code="h">E58</subfield>
+      <subfield code="i">.D68 1969</subfield>
+      <subfield code="p">2553600</subfield>
+      <subfield code="x">reclassed from: 1070.3093.2.1969</subfield>
+    </datafield>
+    <datafield tag="945" ind1=" " ind2=" ">
+      <subfield code="a">F</subfield>
+      <subfield code="b">1</subfield>
+      <subfield code="c">1070.3093.2.1969</subfield>
+    </datafield>
+    <datafield tag="911" ind1=" " ind2=" ">
+      <subfield code="a">19990626</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-08-04 04:57:39 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 10:06:35 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2="0">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">1070.3093.2.1969</subfield>
+      <subfield code="8">22499209380006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-12 14:06:35</subfield>
+      <subfield code="8">22499209380006421</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22499209380006421</subfield>
+      <subfield code="a">23499209370006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="d">2021-07-12 14:06:35</subfield>
+      <subfield code="t">1</subfield>
+    </datafield>
+  </record>
+</collection>
