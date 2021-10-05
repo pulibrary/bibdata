@@ -296,6 +296,7 @@ end
 # for the split subject facet
 # split with em dash along x,z
 def process_subject_topic_facet record
+  change_the_subject = ChangeTheSubject.new
   subjects = []
   Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:650|*0|abcxz:651|*0|axz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
@@ -304,6 +305,7 @@ def process_subject_topic_facet record
         subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
+      subject = change_the_subject.fix(subject) if ENV['CHANGE_THE_SUBJECT'] == 'true' && record['650'].indicator2 == '0'
       subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
     end
   end

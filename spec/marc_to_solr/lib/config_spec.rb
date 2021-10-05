@@ -816,5 +816,10 @@ describe 'From traject_config.rb' do
       expect(@subject_headings_b['subject_facet']).to eq ["Alien criminals", "Undocumented immigrants", "Crime", "Emigration and immigration—Social aspects"]
       expect(@subject_headings_c['subject_facet']).to eq ["Undocumented immigrants"]
     end
+    it "indexes subject_topic_facet with the replacement term" do
+      expect(@subject_headings_a['subject_topic_facet']).to eq ["Refugees", "Africans", "Europe", "Undocumented immigrants", "Africa", "Emigration and immigration"]
+      expect(@subject_headings_b['subject_topic_facet']).to eq ["Alien criminals", "Undocumented immigrants", "Crime", "Emigration and immigration", "Social aspects"]
+      expect(@subject_headings_c['subject_topic_facet']).to eq ["Undocumented immigrants"]
+    end
   end
 end
