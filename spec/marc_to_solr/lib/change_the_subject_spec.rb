@@ -11,7 +11,7 @@ RSpec.describe ChangeTheSubject do
 
     it "suggests a replacement" do
       change_the_subject = described_class.new
-      expect(change_the_subject.check_for_replacement(subject_term)).to eq "Undocumented Immigrants"
+      expect(change_the_subject.check_for_replacement(subject_term)).to eq "Undocumented immigrants"
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe ChangeTheSubject do
 
   context "an array of subject terms" do
     let(:subject_terms) { ["Illegal Aliens", "Workplace Safety"] }
-    let(:fixed_subject_terms) { ["Undocumented Immigrants", "Workplace Safety"] }
+    let(:fixed_subject_terms) { ["Undocumented immigrants", "Workplace Safety"] }
 
     it "changes only the subject terms that have been configured" do
       change_the_subject = described_class.new

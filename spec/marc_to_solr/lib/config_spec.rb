@@ -806,14 +806,14 @@ describe 'From traject_config.rb' do
 
   describe 'subject headings changes' do
     it "indexes lc_subject_display with replacement term" do
-      expect(@subject_headings_a['lc_subject_display']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Undocumented Immigrants—Europe—Drama", "Africa—Emigration and immigration—Drama"]
-      expect(@subject_headings_b['lc_subject_display']).to eq ["Alien criminals", "Undocumented Immigrants", "Crime", "Emigration and immigration—Social aspects"]
-      expect(@subject_headings_c['lc_subject_display']).to eq ["Undocumented Immigrants"]
+      expect(@subject_headings_a['lc_subject_display']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Undocumented immigrants—Europe—Drama", "Africa—Emigration and immigration—Drama"]
+      expect(@subject_headings_b['lc_subject_display']).to eq ["Alien criminals", "Undocumented immigrants", "Crime", "Emigration and immigration—Social aspects"]
+      expect(@subject_headings_c['lc_subject_display']).to eq ["Undocumented immigrants"]
     end
     it "indexes subject_facet with replacement term" do
-      expect(@subject_headings_a['subject_facet']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Undocumented Immigrants—Europe—Drama", "Africa—Emigration and immigration—Drama", "Drama"]
-      expect(@subject_headings_b['subject_facet']).to eq ["Alien criminals", "Undocumented Immigrants", "Crime", "Emigration and immigration—Social aspects"]
-      expect(@subject_headings_c['subject_facet']).to eq ["Undocumented Immigrants"]
+      expect(@subject_headings_a['subject_facet']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Undocumented immigrants—Europe—Drama", "Africa—Emigration and immigration—Drama", "Drama"]
+      expect(@subject_headings_b['subject_facet']).to eq ["Alien criminals", "Undocumented immigrants", "Crime", "Emigration and immigration—Social aspects"]
+      expect(@subject_headings_c['subject_facet']).to eq ["Undocumented immigrants"]
     end
   end
 end

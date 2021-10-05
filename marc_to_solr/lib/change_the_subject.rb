@@ -5,8 +5,8 @@
 class ChangeTheSubject
   def initialize
     @terms_mapping = {
-      "Illegal Aliens": {
-        replacement: "Undocumented Immigrants",
+      "Illegal aliens": {
+        replacement: "Undocumented immigrants",
         rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
       }
     }
