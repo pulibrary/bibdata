@@ -796,7 +796,6 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  subjects = change_the_subject.fix(subjects)
   accumulator.replace(subjects)
 end
 

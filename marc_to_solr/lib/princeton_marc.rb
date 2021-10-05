@@ -10,7 +10,6 @@ require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'iiif_manifest_url_builder'
 require_relative 'orangelight_url_builder'
-# require_relative './change_the_subject'
 
 change_the_subject = ChangeTheSubject.new
 
@@ -286,7 +285,7 @@ def process_hierarchy(record, fields, vocabulary = [])
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
-      heading = change_the_subject.fix(heading)
+      heading = change_the_subject.fix(heading) if ENV['CHANGE_THE_SUBJECT'] == 'true' && record['650'].indicator2 == '0'
       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
       headings << heading if include_heading
     end

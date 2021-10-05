@@ -11,7 +11,6 @@ describe 'From traject_config.rb' do
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
-
     @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_record('99276293506421'))
     @sample2 = @indexer.map_record(fixture_record('993456823506421'))
@@ -27,9 +26,11 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    ENV['CHANGE_THE_SUBJECT'] = 'true'
     @subject_headings_a = @indexer.map_record(fixture_record('99112049503506421'))
     @subject_headings_b = @indexer.map_record(fixture_record('99118458073506421'))
     @subject_headings_c = @indexer.map_record(fixture_record('99650713506421'))
+    ENV['CHANGE_THE_SUBJECT'] = ''
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
