@@ -11,7 +11,7 @@ describe 'From traject_config.rb' do
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
-
+    ENV['CHANGE_THE_SUBJECT'] = 'true'
     @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_record('99276293506421'))
     @sample2 = @indexer.map_record(fixture_record('993456823506421'))
@@ -27,6 +27,7 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -705,17 +706,36 @@ describe 'From traject_config.rb' do
     end
   end
 
-  describe 'subject display and unstem fields' do
-    let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
-    let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
-    let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
-    let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
+  context "subject display and unstem fields" do
+    describe 'subject display and unstem fields' do
+      let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
+      let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
+      let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
+      let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
 
-    it 'include the sk and lc subjects in separate fields, exlcude other subject types' do
-      expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
-      expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
-      expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
-      expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
+      it 'include the sk and lc subjects in separate fields, exlcude other subject types' do
+        expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
+        expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
+        expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
+        expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
+      end
+    end
+    describe 'subject terms augmented for Indigenous Studies' do
+      let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
+      let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
+
+      it 'augments the subject terms to add Indigenous Studies' do
+        expect(subject_marc["subject_facet"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+        expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
+        expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+        expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+      end
+      it 'works against a fixture' do
+        expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+        expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+      end
     end
   end
   describe 'form_genre_display' do

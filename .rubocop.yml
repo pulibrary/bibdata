@@ -28,6 +28,9 @@ AllCops:
     - 'marc_to_solr/translation_maps/locations.rb'
     - 'marc_to_solr/translation_maps/holding_library.rb'
 
+Style/AsciiComments:
+  Enabled: false
+
 Style/BlockDelimiters:
   Exclude:
     - 'spec/models/jsonld_record_spec.rb'
