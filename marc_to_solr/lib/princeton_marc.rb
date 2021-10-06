@@ -268,6 +268,10 @@ end
 
 SEPARATOR = '—'
 
+def change_the_subject_eligible?(field)
+  ENV['CHANGE_THE_SUBJECT'] == 'true' && (field.tag == '650' || field['x']) && field.indicator2 == '0'
+end
+
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
 # optional vocabulary argument for allowing certain subfield $2 vocabularies
@@ -285,7 +289,7 @@ def process_hierarchy(record, fields, vocabulary = [])
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
-      heading = change_the_subject.fix(heading) if ENV['CHANGE_THE_SUBJECT'] == 'true' && record['650'].indicator2 == '0'
+      heading = change_the_subject.fix(heading) if change_the_subject_eligible?(field)
       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
       headings << heading if include_heading
     end
@@ -305,7 +309,7 @@ def process_subject_topic_facet record
         subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
-      subject = change_the_subject.fix(subject) if ENV['CHANGE_THE_SUBJECT'] == 'true' && record['650'].indicator2 == '0'
+      subject = change_the_subject.fix(subject) if change_the_subject_eligible?(field)
       subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
     end
   end

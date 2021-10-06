@@ -821,5 +821,6 @@ describe 'From traject_config.rb' do
       expect(@subject_headings_b['subject_topic_facet']).to eq ["Alien criminals", "Undocumented immigrants", "Crime", "Emigration and immigration", "Social aspects"]
       expect(@subject_headings_c['subject_topic_facet']).to eq ["Undocumented immigrants"]
     end
+    # test for subdivision x
   end
 end
