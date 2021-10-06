@@ -1,3 +1,15 @@
+# v1.0.5 (Wed Oct 06 2021)
+
+#### 🐛 Bug Fix
+
+- Augment subjects with Indigenous Studies where appropriate [#1684](https://github.com/pulibrary/bibdata/pull/1684) ([@bess](https://github.com/bess))
+
+#### Authors: 1
+
+- Bess Sadler ([@bess](https://github.com/bess))
+
+---
+
 # v1.0.4 (Mon Oct 04 2021)
 
 #### 🐛 Bug Fix
