@@ -5,8 +5,8 @@
 class ChangeTheSubject
   def self.terms_mapping
     {
-      "Illegal Aliens": {
-        replacement: "Undocumented Immigrants",
+      "Illegal aliens": {
+        replacement: "Undocumented immigrants",
         rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
       }
     }
@@ -17,6 +17,8 @@ class ChangeTheSubject
   # @param [<String>] subject_terms
   # @return [<String>]
   def self.fix(subject_terms)
+    return [] if subject_terms.nil? || subject_terms.blank?
+    # byebug if subject_terms.first.match(/Illegal alien/)
     subject_terms.map { |term| check_for_replacement(term) }
   end
 
@@ -26,8 +28,13 @@ class ChangeTheSubject
   # @param [String] term
   # @return [String]
   def self.check_for_replacement(term)
-    replacement = terms_mapping[term.to_sym]
-    return replacement[:replacement] if replacement
-    term
+    subterms = term.split(SEPARATOR)
+    # byebug if term.match(/Illegal alien/)
+    subfield_a = subterms.first
+    subterms.delete(subfield_a)
+    replacement = terms_mapping[subfield_a.to_sym]
+    return term unless replacement
+    subterms.prepend(replacement[:replacement])
+    subterms.join(SEPARATOR)
   end
 end

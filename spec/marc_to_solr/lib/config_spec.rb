@@ -737,6 +737,18 @@ describe 'From traject_config.rb' do
         expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
       end
     end
+    describe 'subject terms changed for Change the Subject' do
+      context 'when the subject term is an exact match in $a' do
+        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Illegal aliens", "z" => "United States." }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
+        it 'changes the subject term in display fields, but includes both old and new in search fields' do
+          expect(subject_marc["subject_facet"]).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+          expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
+          expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+          expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
+        end
+      end
+    end
   end
   describe 'form_genre_display' do
     subject(:form_genre_display) { @indexer.map_record(marc_record) }
