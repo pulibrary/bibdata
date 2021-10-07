@@ -787,6 +787,12 @@ to_field 'finding_aid_display', extract_marc('555|0*|3abcd')
 # Indicator 1 = 8 - not specified
 to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 
+# ["Refugees—Drama", "Africans—Europe—Drama", "Illegal aliens—Europe—Drama", "Africa—Emigration and immigration—Drama"]
+to_field 'lc_subjects' do |record, accumulator|
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  accumulator.replace(subjects)
+end
+
 # Subject(s):
 #    600 XX acdfklmnopqrst{v--%}{x--%}{y--%}{z--%} S abcdfklmnopqrtvxyz
 #    610 XX abfklmnoprst{v--%}{x--%}{y--%}{z--%} S abfklmnoprstvxyz
@@ -794,9 +800,32 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    630 XX adfgklmnoprst{v--%}{x--%}{y--%}{z--%} S adfgklmnoprstvxyz
 #    650 XX abc{v--%}{x--%}{z--%}{y--%} S abcvxyz
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
+# ["Refugees—Drama", "Africans—Europe—Drama", "Africa—Emigration and immigration—Drama"]
 to_field 'lc_subject_display' do |record, accumulator|
+  # remove_offensive_term (method)
+  # from it from the lc_subjects field
+  # check the mthod against the document
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   accumulator.replace(subjects)
+end
+
+# Retrieve all LC subject headings (lc_subjects is possible field name).
+# Display only LC subject headings that are approved (lc_subject_display is possible field name).
+# Add local variants for display in the subject block of the record show page (local_subjects is possible field name).
+# Combine lc_subject_display and local_subjects for record show page and browse, etc.
+# Combine LC subjects and local subjects for the subject_unstem_search
+
+# ["Undocumented immigrants—Europe—Drama"]
+# look lc_subjects field again
+# add replacement term to this field. checking the document
+to_field 'local_subjects' do |record, accumulator|
+  subjects = process_augmented_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  accumulator.replace(subjects)
+end
+
+# ["Refugees—Drama", "Africans—Europe—Drama", "Africa—Emigration and immigration—Drama", "Undocumented immigrants—Europe—Drama"]
+to_field 'subject_display' do |kkk|
+  # Array with lc_subject_display and local_subjects fields
 end
 
 to_field 'siku_subject_display' do |record, accumulator|
@@ -806,12 +835,14 @@ end
 
 # Adds lc and siku subject unstem_search fields
 each_record do |_record, context|
-  context.output_hash['subject_unstem_search'] = context.output_hash['lc_subject_display']
+  # context.output_hash['subject_unstem_search'] = context.output_hash['lc_subject_display'] if ENV['...'] context.output_hash['subject_display']
+  context.output_hash['subject_unstem_search'] = context.output_hash['subject_display'] # if ENV['...'] context.output_hash['subject_display']
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
 end
 
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
+  # subject_display
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
   genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft', 'aat', 'rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])

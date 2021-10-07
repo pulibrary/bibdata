@@ -33,6 +33,9 @@ class ChangeTheSubject
     replacement = terms_mapping_key && terms_mapping_key == term_downcase.to_sym ? @terms_mapping.values.first[:replacement] : term
   end
 
+  #
+  def check_for_append(term); end
+
   # Remove punctuation from subfields in order to compare with the terms_mapping key.
   # example 650$a: "illegal aliens."
   def remove_punctuation(value)

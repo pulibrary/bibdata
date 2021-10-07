@@ -69,3 +69,8 @@ Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/delivery_location.rb'
     - 'app/models/holding_location.rb'
+
+Style/AsciiComments:
+  Exclude: 
+    - 'marc_to_solr/lib/traject_config.rb'
+    

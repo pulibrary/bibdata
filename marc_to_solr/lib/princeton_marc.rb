@@ -275,6 +275,28 @@ end
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
 # optional vocabulary argument for allowing certain subfield $2 vocabularies
+# def process_hierarchy(record, fields, vocabulary = [])
+#   change_the_subject = ChangeTheSubject.new
+#   headings = []
+#   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
+#   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+#     heading = extractor.collect_subfields(field, spec).first
+#     include_heading = vocabulary.empty? # always include the heading if a vocabulary is not specified
+#     unless heading.nil?
+#       field.subfields.each do |s_field|
+#         # when specified, only include heading if it is part of the vocabulary
+#         include_heading = vocabulary.include?(s_field.value) if s_field.code == '2' && !vocabulary.empty?
+#         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
+#       end
+#       heading = heading.split(SEPARATOR)
+#       heading = change_the_subject.fix(heading) if change_the_subject_eligible?(field)
+#       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
+#       headings << heading if include_heading
+#     end
+#   end
+#   headings
+# end
+
 def process_hierarchy(record, fields, vocabulary = [])
   change_the_subject = ChangeTheSubject.new
   headings = []
@@ -289,7 +311,30 @@ def process_hierarchy(record, fields, vocabulary = [])
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
-      heading = change_the_subject.fix(heading) if change_the_subject_eligible?(field)
+      heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
+      headings << heading if include_heading
+    end
+  end
+  headings
+end
+
+# proccess the LC subject headings
+# to add local variants when needed
+def process_hierarchy_local_headings
+  change_the_subject = ChangeTheSubject.new
+  headings = []
+  split_on_subfield = ['t', 'v', 'x', 'y', 'z']
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+    heading = extractor.collect_subfields(field, spec).first
+    include_heading = vocabulary.empty? # always include the heading if a vocabulary is not specified
+    unless heading.nil?
+      field.subfields.each do |s_field|
+        # when specified, only include heading if it is part of the vocabulary
+        include_heading = vocabulary.include?(s_field.value) if s_field.code == '2' && !vocabulary.empty?
+        heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
+      end
+      heading = heading.split(SEPARATOR)
+      heading = augment_the_subject.fix(heading) if change_the_subject_eligible?(field)
       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
       headings << heading if include_heading
     end
@@ -299,6 +344,10 @@ end
 
 # for the split subject facet
 # split with em dash along x,z
+# breaks apart the subject
+# x -> general subdivision
+# z -> geographical subdivision
+# This is ok
 def process_subject_topic_facet record
   change_the_subject = ChangeTheSubject.new
   subjects = []
