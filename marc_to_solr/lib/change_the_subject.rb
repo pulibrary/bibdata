@@ -18,7 +18,6 @@ class ChangeTheSubject
   # @return [<String>]
   def self.fix(subject_terms)
     return [] if subject_terms.nil? || subject_terms.blank?
-    # byebug if subject_terms.first.match(/Illegal alien/)
     subject_terms.map { |term| check_for_replacement(term) }
   end
 
@@ -29,11 +28,10 @@ class ChangeTheSubject
   # @return [String]
   def self.check_for_replacement(term)
     subterms = term.split(SEPARATOR)
-    # byebug if term.match(/Illegal alien/)
     subfield_a = subterms.first
-    subterms.delete(subfield_a)
     replacement = terms_mapping[subfield_a.to_sym]
     return term unless replacement
+    subterms.delete(subfield_a)
     subterms.prepend(replacement[:replacement])
     subterms.join(SEPARATOR)
   end
