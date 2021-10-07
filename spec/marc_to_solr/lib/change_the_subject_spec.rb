@@ -7,10 +7,10 @@ require 'rails_helper'
 # to update them at index time to preferred terms.
 RSpec.describe ChangeTheSubject do
   context "a replaced term" do
-    let(:subject_term) { "Illegal Aliens" }
+    let(:subject_term) { "Illegal aliens" }
 
     it "suggests a replacement" do
-      expect(described_class.check_for_replacement(subject_term)).to eq "Undocumented Immigrants"
+      expect(described_class.check_for_replacement(subject_term)).to eq "Undocumented immigrants"
     end
   end
 
@@ -23,10 +23,19 @@ RSpec.describe ChangeTheSubject do
   end
 
   context "an array of subject terms" do
-    let(:subject_terms) { ["Illegal Aliens", "Workplace Safety"] }
-    let(:fixed_subject_terms) { ["Undocumented Immigrants", "Workplace Safety"] }
+    let(:subject_terms) { ["Illegal aliens", "Workplace safety"] }
+    let(:fixed_subject_terms) { ["Undocumented immigrants", "Workplace safety"] }
 
     it "changes only the subject terms that have been configured" do
+      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+    end
+  end
+
+  context "subject terms with subheadings" do
+    let(:subject_terms) { ["Illegal aliens#{SEPARATOR}United States.", "Workplace safety"] }
+    let(:fixed_subject_terms) { ["Undocumented immigrants#{SEPARATOR}United States.", "Workplace safety"] }
+
+    it "changes subfield a and re-assembles the full subject heading" do
       expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
     end
   end

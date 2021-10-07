@@ -28,6 +28,7 @@ describe 'From traject_config.rb' do
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
     @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
+    @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -735,6 +736,48 @@ describe 'From traject_config.rb' do
         expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
         expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
         expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+      end
+    end
+    describe 'subject terms changed for Change the Subject' do
+      context 'when the subject term is an exact match in $a' do
+        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Illegal aliens", "z" => "United States." }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
+        it 'changes the subject term in display fields, but includes both old and new in search fields' do
+          expect(subject_marc["subject_facet"]).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+          expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
+          expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+          expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
+        end
+        it 'works against a fixture' do
+          corrected_subjects_compound = [
+            "Undocumented immigrants—United States",
+            "Emigration and immigration law—United States",
+            "Emigration and immigration—Religious aspects—Christianity",
+            "Political theology—United States",
+            "Religion and state—United States",
+            "Christianity and law",
+            "Undocumented immigrants—Government policy—United States"
+          ]
+          corrected_subjects_atomic = [
+            "Christianity",
+            "Christianity and law",
+            "Emigration and immigration",
+            "Emigration and immigration law",
+            "Government policy",
+            "Political theology",
+            "Religion and state",
+            "Religious aspects",
+            "Undocumented immigrants",
+            "United States"
+          ]
+          replaced_terms = ["Illegal aliens—Government policy—United States", "Illegal aliens—United States"]
+          subjects_for_searching = corrected_subjects_compound + replaced_terms
+
+          expect(@change_the_subject1["subject_facet"]).to match_array(corrected_subjects_compound)
+          expect(@change_the_subject1["subject_topic_facet"]).to match_array(corrected_subjects_atomic)
+          expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
+          expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
+        end
       end
     end
   end
