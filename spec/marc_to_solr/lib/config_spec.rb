@@ -28,6 +28,7 @@ describe 'From traject_config.rb' do
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
     @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
+    @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
     @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
     @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -746,6 +747,36 @@ describe 'From traject_config.rb' do
           expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
           expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
           expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
+        end
+        it 'works against a fixture' do
+          corrected_subjects_compound = [
+            "Undocumented immigrants—United States",
+            "Emigration and immigration law—United States",
+            "Emigration and immigration—Religious aspects—Christianity",
+            "Political theology—United States",
+            "Religion and state—United States",
+            "Christianity and law",
+            "Undocumented immigrants—Government policy—United States"
+          ]
+          corrected_subjects_atomic = [
+            "Christianity",
+            "Christianity and law",
+            "Emigration and immigration",
+            "Emigration and immigration law",
+            "Government policy",
+            "Political theology",
+            "Religion and state",
+            "Religious aspects",
+            "Undocumented immigrants",
+            "United States"
+          ]
+          replaced_terms = ["Illegal aliens—Government policy—United States", "Illegal aliens—United States"]
+          subjects_for_searching = corrected_subjects_compound + replaced_terms
+
+          expect(@change_the_subject1["subject_facet"]).to match_array(corrected_subjects_compound)
+          expect(@change_the_subject1["subject_topic_facet"]).to match_array(corrected_subjects_atomic)
+          expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
+          expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
         end
       end
     end
