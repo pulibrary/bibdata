@@ -1,3 +1,15 @@
+# v1.2.0 (Thu Oct 07 2021)
+
+#### 🚀 Enhancement
+
+- Change the Subject applied to one term only [#1687](https://github.com/pulibrary/bibdata/pull/1687) ([@bess](https://github.com/bess))
+
+#### Authors: 1
+
+- Bess Sadler ([@bess](https://github.com/bess))
+
+---
+
 # v1.1.0 (Wed Oct 06 2021)
 
 #### 🚀 Enhancement
