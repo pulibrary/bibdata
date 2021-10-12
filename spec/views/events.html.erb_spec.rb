@@ -14,5 +14,18 @@ RSpec.describe "events/index", type: :view do
       expect(rendered).to have_css('tr.table-striped:nth-child(2) > td:nth-child(1)', text: event2.start.localtime.to_s(:db_twelve_hour))
       expect(rendered).to have_css('tr.table-striped:nth-child(3) > td:nth-child(1)', text: event3.start.localtime.to_s(:db_twelve_hour))
     end
+
+    it "does not include Delete column for unathenticated users" do
+      assign(:events, [FactoryBot.create(:event)])
+      render
+      expect(rendered).not_to include "<th>Delete?</th>"
+    end
+
+    it "includes Delete column for athenticated users" do
+      allow(view).to receive(:user_signed_in?) { true }
+      assign(:events, [FactoryBot.create(:event)])
+      render
+      expect(rendered).to include "<th>Delete?</th>"
+    end
   end
 end
