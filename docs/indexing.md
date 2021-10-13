@@ -71,7 +71,7 @@ You can go to the bibdata UI Events page to see the most recent full record dump
 SSH to a bibdata machine as deploy user
 
 ```
-$ cd /opt/marc_liberaton/current
+$ cd /opt/marc_liberation/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake liberate:full
 ```
 
@@ -91,7 +91,7 @@ If needed, use the SCSB API to request new full dump records from the system to 
 
 If needed, pull the most recent SCSB full dump records into a dump file:
 
-- as deploy user, in `/opt/marc_liberaton/current`
+- as deploy user, in `/opt/marc_liberation/current`
 - `$ bundle exec rake scsb:import:full`
 - It kicks off an import job
 
@@ -110,7 +110,7 @@ This will also index any incremental files we have that were generated after the
 
 SSH to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
-as deploy user, in `/opt/marc_liberaton/current`
+as deploy user, in `/opt/marc_liberation/current`
 
 `$ FILEPATH=/home/deploy/theses.json bin/rake orangetheses:cache_theses`
 
@@ -127,7 +127,7 @@ To turn off sneakers workers:
 
 To index the coins:
 
-- as deploy user, in `/opt/marc_liberaton/current`
+- as deploy user, in `/opt/marc_liberation/current`
 - `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes 30 min to an hour.
 - Note that the default log writes to STDERR to distinguish its output from the progress bar
@@ -137,6 +137,17 @@ To index the coins:
 Many of these tasks output log messages.
 
 Because traject does not log to datadog we lose log output for indexing that runs in the background. See https://github.com/pulibrary/bibdata/issues/1507
+
+### Index the latest Alma changes
+
+There might be new incremental updates from Alma between the time the full reindex finishes and the index swap. Index these latest changes:
+
+SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
+
+```
+$ cd /opt/marc_liberation/current
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake liberate:incremental
+```
 
 ### Hook up your dev instance to the new index to see how it looks
 
