@@ -797,16 +797,16 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 #    651 XX a{v--%}{x--%}{y--%}{z--%} S avxyz
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  subjects = augment_the_subject.add_indigenous_studies(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
-  subjects = ChangeTheSubject.fix(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  subjects = ChangeTheSubject.fix(subjects)
   accumulator.replace(subjects)
 end
 
 # A field to include both archaic and replaced terms, for search purposes
 to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  new_subjects = augment_the_subject.add_indigenous_studies(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
-  new_subjects = ChangeTheSubject.fix(new_subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
+  new_subjects = augment_the_subject.add_indigenous_studies(subjects)
+  new_subjects = ChangeTheSubject.fix(new_subjects)
   combined_subjects = Array(subjects).concat(Array(new_subjects))&.uniq
   accumulator.replace(combined_subjects)
 end
@@ -826,8 +826,8 @@ end
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
-  subjects = augment_the_subject.add_indigenous_studies(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
-  subjects = ChangeTheSubject.fix(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  subjects = ChangeTheSubject.fix(subjects)
   sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
   genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft', 'aat', 'rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
   accumulator.replace([subjects, sk_subjects, genres].flatten)
@@ -853,8 +853,8 @@ to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnop
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
   subjects = process_subject_topic_facet(record)
-  subjects = augment_the_subject.add_indigenous_studies(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
-  subjects = ChangeTheSubject.fix(subjects) if ENV['CHANGE_THE_SUBJECT'] == 'true'
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  subjects = ChangeTheSubject.fix(subjects)
   accumulator.replace(subjects)
 end
 

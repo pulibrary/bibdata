@@ -11,7 +11,6 @@ describe 'From traject_config.rb' do
 
   before(:all) do
     stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
-    ENV['CHANGE_THE_SUBJECT'] = 'true'
     @indexer = IndexerService.build
     @sample1 = @indexer.map_record(fixture_record('99276293506421'))
     @sample2 = @indexer.map_record(fixture_record('993456823506421'))
