@@ -83,7 +83,7 @@ indexed.
 
 To keep tabs on how long the individual dump files take to index you can look at sidekiq DumpFileIndexJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3ADumpFileIndexJob%20-host%3Abibdata-alma-staging1%20-host%3Abibdata-alma-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
 
-Timing for this step is still being determined.
+Takes 6-7 hours to complete.
 
 ### Index Partner SCSB records
 
