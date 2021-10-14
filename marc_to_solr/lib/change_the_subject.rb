@@ -17,7 +17,9 @@ class ChangeTheSubject
   # @param [<String>] subject_terms
   # @return [<String>]
   def self.fix(subject_terms)
-    return [] if subject_terms.nil? || subject_terms.blank?
+    return [] if subject_terms.nil?
+    subject_terms = subject_terms.compact.reject(&:empty?)
+    return [] if subject_terms.blank?
     subject_terms.map { |term| check_for_replacement(term) }
   end
 

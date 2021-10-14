@@ -31,6 +31,15 @@ RSpec.describe ChangeTheSubject do
     end
   end
 
+  context "handles empty and nil terms" do
+    let(:subject_terms) { ["", nil, "", "Workplace safety"] }
+    let(:fixed_subject_terms) { ["Workplace safety"] }
+
+    it "return only non-empty terms" do
+      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+    end
+  end
+
   context "subject terms with subheadings" do
     let(:subject_terms) { ["Illegal aliens#{SEPARATOR}United States.", "Workplace safety"] }
     let(:fixed_subject_terms) { ["Undocumented immigrants#{SEPARATOR}United States.", "Workplace safety"] }
