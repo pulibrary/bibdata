@@ -12,7 +12,9 @@
       <th>Dump Type</th>
       <th>Bibs Updated</th>
       <th>Bibs Deleted</th>
-      <th>Delete?</th>
+      <% if user_signed_in? %>
+        <th>Delete?</th>
+      <% end %>
     </tr>
   </thead>
 
@@ -30,7 +32,11 @@
           <td ><%= event.dump.update_ids&.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' || event.dump.dump_type.constant == 'PRINCETON_RECAP'%></td>
           <td ><%= event.dump.delete_ids&.length if event.dump.dump_type.constant == 'CHANGED_RECORDS' %></td>
         <% end %>
-        <td class="nowrap"><%= link_to 'Delete', event, method: :delete, class: "label label-danger", data: { confirm: 'Are you sure? This will Delete all associated files!' } %></td>
+        <% if user_signed_in? %>
+          <td class="nowrap">
+            <%= link_to 'Delete', event, method: :delete, class: "label label-danger", data: { confirm: 'Are you sure? This will Delete all associated files!' } %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
