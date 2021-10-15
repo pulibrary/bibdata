@@ -103,7 +103,12 @@ namespace :liberate do
   task full: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
-    IndexManager.reindex!(solr_url: solr_url)
+    reindex = IndexManager.reindex!(solr_url: solr_url)
+    if reindex
+      puts "INFO: Reindex started"
+    else
+      puts "WARN: The reindex was not started (perhaps there is another reindex in progress.)"
+    end
   end
 
   desc "Index remaining incrementals against SET_URL"

@@ -37,7 +37,13 @@ RSpec.describe IndexManager, type: :model do
       solr.commit
 
       Sidekiq::Testing.inline! do
-        described_class.reindex!(solr_url: solr_url)
+        reindex = described_class.reindex!(solr_url: solr_url)
+        expect(reindex).to eq true
+
+        # Checks that a second reindex cannot started while the first one is in progress
+        reindex = described_class.reindex!(solr_url: solr_url)
+        expect(reindex).to eq false
+
         run_all_callbacks
       end
       solr.commit
