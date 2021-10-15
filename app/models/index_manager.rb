@@ -9,11 +9,12 @@ class IndexManager < ActiveRecord::Base
   def self.reindex!(solr_url: nil)
     solr_url ||= rebuild_solr_url
     manager = self.for(solr_url)
-    return if manager.in_progress?
+    return false if manager.in_progress?
     manager.last_dump_completed = nil
     manager.save
     manager.wipe!
     manager.index_remaining!
+    true
   end
 
   def self.rebuild_solr_url
