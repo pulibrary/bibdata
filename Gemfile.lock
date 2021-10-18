@@ -15,18 +15,15 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: 2a39ca65ea90605f4ef5ca03c23a0b61205a6ab4
-  tag: v1.4.1
+  revision: 544821a050a6e2cf36265019f4ec6b1ec5bcd37d
+  tag: v1.3
   specs:
-    orangetheses (1.4.1)
+    orangetheses (1.3)
       chronic
-      erb
       faraday
       iso-639
-      nokogiri
       oai
       rsolr
-      yaml
 
 GIT
   remote: https://github.com/pulibrary/stringex.git
@@ -158,7 +155,6 @@ GEM
       xpath (~> 3.2)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    cgi (0.3.0)
     childprocess (3.0.0)
     chronic (0.10.2)
     coderay (1.1.2)
@@ -191,8 +187,6 @@ GEM
     dotenv-rails (2.7.5)
       dotenv (= 2.7.5)
       railties (>= 3.2, < 6.1)
-    erb (2.2.3)
-      cgi
     erubi (1.10.0)
     execjs (2.7.0)
     ezwadl (0.1.0)
@@ -519,7 +513,6 @@ GEM
     xml-simple (1.1.8)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yaml (0.2.0)
     yaml_db (0.7.0)
       rails (>= 3.0)
       rake (>= 0.8.7)
