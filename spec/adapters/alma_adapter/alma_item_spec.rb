@@ -138,6 +138,20 @@ RSpec.describe AlmaAdapter::AlmaItem do
       )
     end
 
+    let(:item_work_order_coll_dev) do
+      Alma::BibItem.new(
+        "bib_data" => { "mms_id" => "99122455086806421" },
+        "holding_data" => { "holding_id" => "22477860740006421" },
+        "item_data" => {
+          "pid" => "23477860730006421",
+          "base_status" => { "value" => "0", "desc" => "Item not in place" },
+          "process_type" => { "value" => "WORK_ORDER_DEPARTMENT", "desc" => "In Process" },
+          "work_order_type" => { "value" => "CollDev", "desc" => "Collection Development Office" },
+          "work_order_at" => { "value" => "CollDev", "desc" => "Collection Development Office" }
+        }
+      )
+    end
+
     let(:item_process_type_acq) do
       Alma::BibItem.new(
         "bib_data" => { "mms_id" => "9939075533506421" },
@@ -168,6 +182,12 @@ RSpec.describe AlmaAdapter::AlmaItem do
 
     it "handles items with work order in acquisitions" do
       item = described_class.new(item_work_order_acq)
+      status = item.calculate_status
+      expect(status[:code]).to eq "Not Available"
+    end
+
+    it "handles items with work order in collection development" do
+      item = described_class.new(item_work_order_coll_dev)
       status = item.calculate_status
       expect(status[:code]).to eq "Not Available"
     end

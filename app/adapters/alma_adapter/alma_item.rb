@@ -273,7 +273,7 @@ class AlmaAdapter
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
-      code = if value == "Bind" || value == "Pres" || value == "CDL" || value == "AcqWorkOrder"
+      code = if value.in?(["Bind", "Pres", "CDL", "AcqWorkOrder", "CollDev"])
                "Not Available"
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
