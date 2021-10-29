@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>02237cam a22003978i 4500</leader>
+    <controlfield tag="005">20210824122826.0</controlfield>
+    <controlfield tag="008">201230s2021    onc      b    001 0 eng  </controlfield>
+    <controlfield tag="001">99125379706706421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1554815215</subfield>
+      <subfield code="q">(paperback)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1554815215</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9781554815210</subfield>
+      <subfield code="q">(paperback)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781554815210</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1228319646</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1228319646</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1228319646</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1228319646</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">NLC</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">YDX</subfield>
+      <subfield code="d">BDX</subfield>
+      <subfield code="d">NLC</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">MUO</subfield>
+      <subfield code="d">PUL</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">lac</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">RA652</subfield>
+      <subfield code="b">.P46 2021</subfield>
+    </datafield>
+    <datafield tag="055" ind1=" " ind2="0">
+      <subfield code="a">RA652</subfield>
+      <subfield code="b">.P46 2021</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2=" ">
+      <subfield code="a">174.2/944</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield tag="084" ind1=" " ind2=" ">
+      <subfield code="a">cci1icc</subfield>
+      <subfield code="2">lacc</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Pence, Gregory E.,</subfield>
+      <subfield code="e">author.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n80059785</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n80059785</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Pandemic bioethics /</subfield>
+      <subfield code="c">Gregory E. Pence.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Peterborough :</subfield>
+      <subfield code="b">Broadview Press,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">250 pages ; 23 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="a">Historical epidemics -- Modern viral pandemics -- The medical nature of SARS2 -- Policies for containment -- Who should live when not all can? -- Developing vaccines -- Allocating vaccines -- Acts and omissions, the Trolley Problem, and prisoner's dilemmas -- Liberty and privacy -- Status certificates -- Structural inequalities and vulnerable groups -- Leadership during pandemics -- The future.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">"The COVID-19 pandemic has affected every human being on the planet and forced us all to reflect on the bioethical issues it raises. In this timely book, Gregory Pence examines a number of relevant issues, including the fair allocation of scarce medical resources, immunity passports, tradeoffs between protecting senior citizens and allowing children to flourish, discrimination against minorities and the disabled, and the myriad issues raised by vaccines."--</subfield>
+      <subfield code="c">Provided by publisher.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Epidemiology</subfield>
+      <subfield code="x">Moral and ethical aspects.</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00914099</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85044373</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Medical ethics.</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01014081</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85082929</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Public health</subfield>
+      <subfield code="x">Moral and ethical aspects.</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01082281</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2010108899</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Bioethics.</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00832038</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85014136</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Bioethics.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00832038</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00832038</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85014136</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Epidemiology</subfield>
+      <subfield code="x">Moral and ethical aspects.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00914099</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00914099</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85044373</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Medical ethics.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01014081</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01014081</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85082929</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Public health</subfield>
+      <subfield code="x">Moral and ethical aspects.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01082281</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01082281</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2010108899</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-08-30 08:55:10 US/Eastern</subfield>
+      <subfield code="b">2021-08-19 08:04:26 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">RA652</subfield>
+      <subfield code="i">.P46 2021</subfield>
+      <subfield code="8">22897390520006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-08-24 16:29:26</subfield>
+      <subfield code="8">22897390520006421</subfield>
+      <subfield code="a">2021-08-19 12:05:10</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">annex</subfield>
+      <subfield code="c">reserve</subfield>
+      <subfield code="h">RA652</subfield>
+      <subfield code="i">.P46 2021</subfield>
+      <subfield code="8">22897520080006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-08-26 15:32:19</subfield>
+      <subfield code="8">22897520080006421</subfield>
+      <subfield code="a">2021-08-26 15:25:31</subfield>
+      <subfield code="b">Forrestal Annex</subfield>
+      <subfield code="c">reserve: Annex Reserve</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22897390520006421</subfield>
+      <subfield code="a">23897390500006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">res3hr</subfield>
+      <subfield code="d">2021-08-19 12:05:12</subfield>
+      <subfield code="p">32101104038805</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22897520080006421</subfield>
+      <subfield code="a">23897390510006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">res3hr</subfield>
+      <subfield code="d">2021-08-19 12:05:11</subfield>
+      <subfield code="p">32101105594830</subfield>
+      <subfield code="t">51</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22897520080006421</subfield>
+      <subfield code="a">23897390490006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">res3hr</subfield>
+      <subfield code="d">2021-08-19 12:05:12</subfield>
+      <subfield code="p">32101105594822</subfield>
+      <subfield code="t">50</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22897390520006421</subfield>
+      <subfield code="a">23897558420006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">res3hr</subfield>
+      <subfield code="d">2021-08-30 12:55:53</subfield>
+      <subfield code="p">32101104039159</subfield>
+      <subfield code="t">2</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+  </record>
+</collection>

@@ -26,6 +26,9 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
+    @record_temporary_location_v2 = @indexer.map_record(fixture_record('99124695833506421_custom_holdings'))
+    @record_res3hr = @indexer.map_record(fixture_record('99125379706706421'))
     @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
     @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
@@ -54,7 +57,7 @@ describe 'From traject_config.rb' do
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
   end
-
+  # PASSES REFACTORING
   describe "alma loading" do
     it "can map an alma record" do
       record = @indexer.map_record(fixture_record('9918573506421'))
@@ -70,13 +73,14 @@ describe 'From traject_config.rb' do
       expect(@sample38["holdings_1display"]).to be_nil
     end
   end
+  ## PASSES REFACTORING
   describe "locations" do
     it "will index the location_code_s" do
       record = @indexer.map_record(fixture_record('9992320213506421'))
       expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
     end
   end
-
+  ## PASSES REFACTORING
   describe 'scsb locations' do
     it "will index a scsbnypl location" do
       expect(@scsb_nypl["location_code_s"]).to eq ["scsbnypl"]
@@ -85,12 +89,13 @@ describe 'From traject_config.rb' do
       expect(@scsb_nypl["location_display"]).to eq ["Remote Storage"]
     end
   end
+  ## PASSES REFACTORING
   describe "holdings" do
     it "can index holdings" do
       record = @indexer.map_record(fixture_record('9992320213506421'))
       holdings = JSON.parse(record["holdings_1display"][0])
-      holding_1 = holdings["22188107110006421"]
-      holding_2 = holdings["22188107090006421"]
+      holding_1 = holdings["22685775490006421"]
+      holding_2 = holdings["22685775470006421"]
       expect(holding_1["location"]).to eq "Stacks"
       expect(holding_1["library"]).to eq "Lewis Library"
       expect(holding_1["location_code"]).to eq "lewis$stacks"
@@ -99,6 +104,7 @@ describe 'From traject_config.rb' do
       expect(holding_2["location_code"]).to eq "firestone$stacks"
     end
   end
+  ## PASSES REFACTORING
   describe 'the cataloged_date from publishing job' do
     describe "the date cataloged facets" do
       context "When the record has 950, 876 and 951 fields" do
@@ -120,7 +126,6 @@ describe 'From traject_config.rb' do
           expect(Time.parse(@sample42['cataloged_tdt'].first)).to eq Time.parse(record['950']['b']).utc
         end
       end
-
       context "When the record fails to parse the time" do
         it "logs the error and moves on" do
           allow(Time).to receive(:parse).and_raise(ArgumentError)
@@ -128,7 +133,6 @@ describe 'From traject_config.rb' do
         end
       end
     end
-
     context "When it is a SCSB partner record" do
       it "does not have a date cataloged facet" do
         expect(@scsb_nypl['cataloged_tdt']).to be_nil
@@ -145,7 +149,7 @@ describe 'From traject_config.rb' do
       end
     end
   end
-
+  ## PASSES REFACTORING
   describe "electronic_portfolio_s" do
     it "returns the electronic_portfolio_s field" do
       record = @indexer.map_record(fixture_record('99122306151806421'))
@@ -181,7 +185,7 @@ describe 'From traject_config.rb' do
 
       # Date range with greater than or equal to embargo
       expect(portfolio1['start']).to eq '2001'
-      expect(portfolio1['end']).to eq '2020'
+      expect(portfolio1['end']).to eq '2021'
 
       expect(portfolio2['start']).to eq '1997'
       expect(portfolio2['end']).to eq 'latest'
@@ -210,6 +214,7 @@ describe 'From traject_config.rb' do
       end
     end
   end
+  ## PASSES REFACTORING
   describe "call_number_display field" do
     it "indexes the call_number_display field" do
       expect(@sample40['call_number_display']).to eq(["Oversize RA566.27 .B7544 2003q"])
@@ -224,14 +229,14 @@ describe 'From traject_config.rb' do
     it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_display']).to be nil
     end
-    it "doesnt have trailing spaces" do
+    it "does not have trailing spaces" do
       expect(@record_call_number2['call_number_display']).to eq(["CD- 50000"])
     end
     it 'returns the enrichment call_number_display with k in front' do
       expect(@sample41['call_number_display']).to eq(["A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A GA 2015.00160"])
     end
   end
-
+  ## PASSES REFACTORING
   describe "call_number_browse field" do
     it "indexes the call_number_browse field" do
       expect(@sample40['call_number_browse_s']).to eq([".B7544 2003q Oversize RA566.27"])
@@ -254,7 +259,7 @@ describe 'From traject_config.rb' do
       expect(@sample41['call_number_browse_s']).to eq(["GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A"])
     end
   end
-
+  ## PASSES REFACTORING
   describe "call_number_locator_display field" do
     it "returns the call_number_locator_display field with no subfield k" do
       expect(@sample40['call_number_locator_display']).to eq([".B7544 2003q"])
@@ -266,17 +271,17 @@ describe 'From traject_config.rb' do
       expect(@record_call_number_nil['call_number_locator_display']).to be nil
     end
   end
-
+  ## PASSES REFACTORING
   describe "contained_in_s field" do
     it "indexes the 773w of the constituent record" do
       record = @indexer.map_record(fixture_record('9939073273506421'))
       expect(record['contained_in_s']).to eq(["992953283506421"])
     end
   end
-
+  ## PASSES REFACTORING
   describe 'the language_iana_s field' do
     it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
-      expect(@sample1['language_code_s']).to eq(['eng', '|||'])
+      expect(@sample1['language_code_s']).to eq(['eng'])
       expect(@sample1['language_iana_s']).to eq(['en'])
     end
 
@@ -284,7 +289,7 @@ describe 'From traject_config.rb' do
       expect(@added_title_246['language_iana_s']).to eq(['ja', 'en'])
     end
   end
-
+  ## PASSES REFACTORING
   describe 'the isbn_display field' do
     it 'has more than one q subfields' do
       expect(@sample35['isbn_display']).to eq(["9780816695706 (hardcover : alkaline paper)", "0816695709 (hardcover : alkaline paper)", "9780816695713 (paperback : alkaline paper)", "0816695717 (paperback : alkaline paper)"])
@@ -300,23 +305,26 @@ describe 'From traject_config.rb' do
       expect(@sample39['isbn_display']).to be nil
     end
   end
-
+  ## PASSES REFACTORING
   describe 'the id field' do
     it 'has exactly 1 value' do
       expect(@sample1['id'].length).to eq 1
     end
   end
+  ## PASSES REFACTORING
   describe 'numeric_id_b' do
     it 'returns desired boolean' do
       expect(@sample1['numeric_id_b'].first).to eq true
       expect(@scsb_nypl['numeric_id_b'].first).to eq false
     end
   end
+  ## PASSES REFACTORING
   describe 'the title_sort field' do
     it 'does not have initial articles' do
       expect(@sample1['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
     end
   end
+  ## PASSES REFACTORING
   describe 'the author_display field' do
     it 'takes from the 100 field' do
       expect(@sample1['author_display'][0]).to eq 'Singh, Digvijai, 1934-'
@@ -328,6 +336,7 @@ describe 'From traject_config.rb' do
       expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
     end
   end
+  ## PASSES REFACTORING
   describe 'the author_citation_display field' do
     it 'shows only the 100 a subfield' do
       expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
@@ -336,6 +345,7 @@ describe 'From traject_config.rb' do
       expect(@sample36['author_citation_display']).to include 'Ishizuka, Harumichi'
     end
   end
+  ## PASSES REFACTORING
   describe 'the title vernacular display' do
     it 'is a single value for scsb records' do
       expect(@scsb_alt_title['title_vern_display'].length).to eq(1)
@@ -345,6 +355,7 @@ describe 'From traject_config.rb' do
       expect(@title_vern_display['title_vern_display'].length).to eq(1)
     end
   end
+  ## PASSES REFACTORING
   describe 'publication_place_facet field' do
     it 'maps the 3-digit code in the 008[15-17] to a name' do
       expect(@sample1['publication_place_facet']).to eq ['Michigan']
@@ -363,6 +374,7 @@ describe 'From traject_config.rb' do
       expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
     end
   end
+  ## PASSES REFACTORING
   describe 'publication end date' do
     let(:place) { 'Cincinnati, Ohio :' }
     let(:name) { 'American Drama Institute,' }
@@ -439,6 +451,7 @@ describe 'From traject_config.rb' do
       expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
     end
   end
+  ## PASSES REFACTORING
   describe 'cjk-only fields' do
     before do
       @record_cjk = @indexer.map_record(fixture_record('9939238033506421'))
@@ -455,6 +468,7 @@ describe 'From traject_config.rb' do
       expect(@record_cjk['cjk_notes'][0]).not_to include('子部')
     end
   end
+  ## PASSES REFACTORING
   describe 'related_name_json_1display' do
     it 'trims punctuation the same way as author_s facet' do
       rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
@@ -466,6 +480,7 @@ describe 'From traject_config.rb' do
       expect(rel_names['Screenwriter']).to include('Kim, ToÌ†k-su')
     end
   end
+  ## PASSES REFACTORING
   describe 'access_facet' do
     it 'value is in the library for non-electronic records' do
       expect(@sample3['access_facet']).to include 'In the Library'
@@ -487,11 +502,12 @@ describe 'From traject_config.rb' do
       expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
     end
   end
-
+  ## PASSES REFACTORING
   describe 'holdings_1display' do
     it 'groups holding info into a hash keyed on the mfhd id' do
       @holdings = JSON.parse(@sample37["holdings_1display"][0])
       expect(@holdings.keys).to eq ["22170509880006421", "22170509890006421", "22170509900006421"]
+
       expect(@holdings['22170509880006421']['location_code']).to eq 'engineer$stacks'
       expect(@holdings['22170509890006421']['location_code']).to eq 'lewis$stacks'
       expect(@holdings['22170509900006421']['location_code']).to eq 'firestone$stacks'
@@ -499,8 +515,8 @@ describe 'From traject_config.rb' do
     end
     it "does not include an empty call number field" do
       @holdings = JSON.parse(@record_call_number_nil["holdings_1display"][0])
-      expect(@holdings['22100565840006421']['call_number']).to be nil
-      expect(@holdings['22100565840006421']['call_number_browse']).to be nil
+      expect(@holdings['22690128630006421']['call_number']).to be nil
+      expect(@holdings['22690128630006421']['call_number_browse']).to be nil
     end
     it "can index when there's no 852 call number fields (khij)" do
       @holdings = JSON.parse(@record_no_call_number["holdings_1display"][0])
@@ -509,18 +525,39 @@ describe 'From traject_config.rb' do
     end
     it "includes a call number field when there is a subfield with a value" do
       @holdings = JSON.parse(@sample40["holdings_1display"][0])
-      expect(@holdings['22172120500006421']['call_number']).to eq ".B7544 2003q Oversize RA566.27"
-      expect(@holdings['22172120500006421']['call_number_browse']).to eq ".B7544 2003q Oversize RA566.27"
+      expect(@holdings['22666524470006421']['call_number']).to eq ".B7544 2003q Oversize RA566.27"
+      expect(@holdings['22666524470006421']['call_number_browse']).to eq ".B7544 2003q Oversize RA566.27"
+    end
+    it "indexes permanent and temporary locations" do
+      @holdings = JSON.parse(@record_temporary_location["holdings_1display"][0])
+      expect(@holdings['22745884920006421']['location_code']).to eq "lewis$stacks"
+      expect(@holdings['22745884920006421']["items"][0]['id']).to eq "23745884910006421"
+      expect(@holdings["22745884920006421"]["items"].count).to eq 1
+      expect(@holdings["lewis$res"]["location_code"]).to eq "lewis$res"
+      expect(@holdings["lewis$res"]["current_location"]).to eq "Course Reserve"
+      expect(@holdings["lewis$res"]["current_library"]).to eq "Lewis Library"
+      expect(@holdings["lewis$res"]["items"].count).to eq 1
+      expect(@holdings["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
+      expect(@holdings["lewis$res"]["items"][0]["holding_id"]).to eq '22745884920006421'
+      ## custom fixture @record_temporary_location_v2 with permannent and temporary locations
+      @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
+      expect(@holdings_v2["22745884920006421"]["items"].count).to eq 2
+      expect(@holdings_v2["22745884920006421"]["items"][0]["id"]).to eq '23745884910006421'
+      expect(@holdings_v2["22745884920006421"]["items"][1]["id"]).to eq '23799884910006421'
+      expect(@holdings_v2["lewis$res"]["items"].count).to eq 3
+      expect(@holdings_v2["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
+      expect(@holdings_v2["lewis$res"]["items"][1]["id"]).to eq '23888873500006421'
+      expect(@holdings_v2["lewis$res"]["items"][2]["id"]).to eq '23998873500006421'
     end
   end
-
+  # PASSES REFACTORING
   describe 'electronic_access_1display' do
     it 'holding 856s are excluded from electronic_access_1display' do
       @electronic_access_1display = JSON.parse(@sample37["electronic_access_1display"].to_s)
       expect(@electronic_access_1display).not_to include('holding_record_856s')
     end
   end
-
+  ## PASSES REFACTORING
   describe 'excluding locations from library facet' do
     let(:location_code_s) { current_record['location_code_s'] }
     let(:location_display) { current_record['location_display'] }
@@ -549,7 +586,7 @@ describe 'From traject_config.rb' do
 
   let(:record_fixture_path) { fixture_record(id) }
   let(:current_record) { @indexer.map_record(record_fixture_path) }
-
+  ## PASSES REFACTORING
   describe 'including libraries and codes in advanced_location_s facet' do
     let(:id) { '9992320213506421' }
     let(:location_code_s) { current_record['location_code_s'] }
@@ -567,6 +604,7 @@ describe 'From traject_config.rb' do
       expect(location_code_s).not_to include('Lewis Library')
     end
   end
+  ## PASSES REFACTORING
   describe 'other_title_display array 246s included' do
     it 'regardless of 2nd indicator value' do
       expect(@added_title_246['other_title_display']).to include 'Bi ni itaru yamai'
@@ -580,6 +618,7 @@ describe 'From traject_config.rb' do
       expect(@label_i_246['other_title_display']).to be_nil
     end
   end
+  ## PASSES REFACTORING
   describe 'other_title_1display 246s hash' do
     it 'excludes titles with 2nd indicator labels' do
       expect(@added_title_246['other_title_1display']).to be_nil
@@ -589,16 +628,19 @@ describe 'From traject_config.rb' do
       expect(other_title_hash['English title also known as']).to include 'Dad for rent'
     end
   end
+  ## PASSES REFACTORING
   describe 'multiple 245s' do
     it 'only uses first 245 in single-valued title_display field' do
       expect(@sample3['title_display'].length).to eq 1
     end
   end
+  ## PASSES REFACTORING
   describe 'multiformat record' do
     it 'manuscript book includes both formats, manuscript first' do
       expect(@manuscript_book['format']).to eq ['Manuscript', 'Book']
     end
   end
+  ## PASSES REFACTORING
   describe '852 $b $c location code processing' do
     it 'supports multiple location codes in separate 852s' do
       record = @indexer.map_record(fixture_record('9992320213506421'))
@@ -608,7 +650,7 @@ describe 'From traject_config.rb' do
     # it 'only includes the first $b within a single tag' do
     # end
   end
-
+  ## PASSES REFACTORING
   describe 'mixing extract_marc and everything_after_t' do
     let(:t400) { { "400" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
     let(:t440) { { "440" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "AWESOME" }, { "a" => "John" }, { "n" => "1492" }, { "k" => "dont ignore" }] } } }
@@ -625,7 +667,7 @@ describe 'From traject_config.rb' do
       expect(@sample1['series_title_index']).to be_nil
     end
   end
-
+  ## PASSES REFACTORING
   describe 'both a and t must be present in linked title field' do
     let(:t760) { { "760" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
     let(:a762) { { "762" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "NAME" }] } } }
@@ -640,7 +682,7 @@ describe 'From traject_config.rb' do
       expect(linked_record['name_title_browse_s']).to include('Both name and title')
     end
   end
-
+  ## PASSES REFACTORING
   describe '#related_record_info_display' do
     let(:i776) { { "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } } }
     let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [i776], 'leader' => leader)) }
@@ -649,7 +691,7 @@ describe 'From traject_config.rb' do
       expect(linked_record['related_record_info_display']).to include('Test description')
     end
   end
-
+  ## PASSES REFACTORING
   describe 'name_uniform_title_display field' do
     let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Name," }] } } }
     let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "AltName ;" }] } } }
@@ -672,7 +714,7 @@ describe 'From traject_config.rb' do
                                                                       "AltName. VernTitle 245a"])
     end
   end
-
+  ## PASSES REFACTORING
   describe 'series 490 dedup, non-filing' do
     let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
     let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
@@ -687,6 +729,7 @@ describe 'From traject_config.rb' do
       expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
     end
   end
+  ## PASSES REFACTORING
   describe 'senior thesis 502 note' do
     let(:senior_thesis_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)-Princeton University" }] } } }
     let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
@@ -705,7 +748,7 @@ describe 'From traject_config.rb' do
       expect(thesis_bc_marc['format']).to include 'Senior thesis'
     end
   end
-
+  ## PASSES REFACTORING
   context "subject display and unstem fields" do
     describe 'subject display and unstem fields' do
       let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
@@ -841,7 +884,7 @@ describe 'From traject_config.rb' do
       expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
     end
   end
-
+  ## PASSES REFACTORING
   describe 'recap_notes_display' do
     it "skips indexing for Princeton Recap records" do
       expect(@recap_record["recap_notes_display"]).to be nil
