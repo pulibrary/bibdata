@@ -141,9 +141,9 @@ def other_versions record
     field.subfields.each do |s_field|
       linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") || ((field.tag == "776") && (s_field.code == 'z'))
       linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") || ((field.tag == "776") && (s_field.code == 'x'))
-      linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.start_with?('(OCoLC)') && (field.tag == "035")
+      linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == "035") && oclc_number?(s_field.value)
       if ((field.tag == "776") && (s_field.code == 'w')) || ((field.tag == "787") && (s_field.code == 'w'))
-        linked_nums << oclc_normalize(s_field.value, prefix: true) if s_field.value.include?('(OCoLC)')
+        linked_nums << oclc_normalize(s_field.value, prefix: true) if oclc_number?(s_field.value)
         linked_nums << "BIB" + strip_non_numeric(s_field.value) unless s_field.value.include?('(')
         logger.error "#{record['001']} - linked field formatting: #{s_field.value}" if s_field.value.include?('(') && !s_field.value.start_with?('(')
       end
@@ -320,6 +320,14 @@ end
 
 def strip_non_numeric num_str
   num_str.gsub(/\D/, '').to_i.to_s
+end
+
+def oclc_number? oclc
+  # Strip spaces and dashes
+  clean_oclc = oclc.gsub(/[\-\s]/, '')
+  # Ensure it follows the OCLC standard
+  # (see https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager/Data_sync_collections/Prepare_your_data/30035_field_and_OCLC_control_numbers)
+  clean_oclc.match(/\(OCoLC\)(ocn|ocm|on)*\d+/) != nil
 end
 
 def oclc_normalize oclc, opts = { prefix: false }

@@ -1121,7 +1121,7 @@ end
 to_field 'oclc_s', extract_marc('035a') do |_record, accumulator|
   oclcs = []
   accumulator.each_with_index do |value, _i|
-    oclcs << oclc_normalize(value) if value.start_with?('(OCoLC)')
+    oclcs << oclc_normalize(value) if oclc_number?(value)
   end
   accumulator.replace(oclcs)
 end
