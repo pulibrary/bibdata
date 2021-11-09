@@ -66,6 +66,6 @@ class ElectronicPortfolioBuilder
     end
 
     def portfolio_title
-      field['n'].nil? ? 'Full Text' : field['n']
+      field['n'].nil? ? 'Online Content' : field['n']
     end
 end

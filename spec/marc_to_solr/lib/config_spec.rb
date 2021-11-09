@@ -205,8 +205,8 @@ describe 'From traject_config.rb' do
       before do
         @active_portfolios2 = @electronic_portfolio_active_no_collection_name['electronic_portfolio_s'].map { |p| JSON.parse(p) }
       end
-      it "has title: Full Text" do
-        expect(@active_portfolios2[0]['title']).to eq 'Full Text'
+      it "has title: Online content" do
+        expect(@active_portfolios2[0]['title']).to eq 'Online Content'
       end
     end
   end
