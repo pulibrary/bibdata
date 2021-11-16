@@ -6,7 +6,7 @@ Notice that the rake tasks indicated in this document are in **Orangelight**, no
 
 ## Generating browse lists
 
-To fully regenerate all browse lists:
+To fully regenerate **all browse lists**:
 
 For catalog-staging, ssh to a staging box (there are no workers for catalog-staging and the rake task needs to run on the catalog box).
 
@@ -17,6 +17,18 @@ For catalog production, ssh to catalog-indexer1. Confirm through the crontab tha
 - `OL_DB_PORT=5432 bundle exec rake browse:all && OL_DB_PORT=5432 bundle exec rake browse:load_all`
 
 Expected time: 5.5 - 6 hours.
+
+To regenerate the **subject lists** used in `Subject (browse)` in Orangelight, SSH as `deploy` to the machine used to produce the browse lists (`catalog-indexer1|2|3`) and run:
+
+```
+cd /opt/orangelight/current
+OL_DB_PORT=5432 bundle exec rake browse:subjects
+OL_DB_PORT=5432 bundle exec rake browse:load_subjects
+```
+
+Expected time: ~3 hours.
+
+See note about `schedule.rb` in the Troubleshooting section below to find out the exact machine.
 
 ## Troubleshooting
 
