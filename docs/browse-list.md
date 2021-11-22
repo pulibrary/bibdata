@@ -10,7 +10,7 @@ To fully regenerate **all browse lists**:
 
 For catalog-staging, ssh to a staging box (there are no workers for catalog-staging and the rake task needs to run on the catalog box).
 
-For catalog production, ssh to catalog-indexer1. Confirm through the crontab that it's running the call numbers and not other rake tasks
+For catalog production, ssh to catalog-indexer1.
 
 - Ensure you're the deploy user
 - `$ cd /opt/orangelight/current and run the command below.`
@@ -18,21 +18,25 @@ For catalog production, ssh to catalog-indexer1. Confirm through the crontab tha
 
 Expected time: 5.5 - 6 hours.
 
-To regenerate the **subject lists** used in `Subject (browse)` in Orangelight, SSH as `deploy` to the machine used to produce the browse lists (`catalog-indexer1|2|3`) and run:
+To regenerate the **subject lists** used in `Subject (browse)` in Orangelight, SSH as `deploy` user to the machine used to produce the browse lists (`catalog-indexer1|2|3`):
 
-```
-cd /opt/orangelight/current
-OL_DB_PORT=5432 bundle exec rake browse:subjects
-OL_DB_PORT=5432 bundle exec rake browse:load_subjects
-```
+- Run the first rake task to generate the CSV file from solr data.
+- `cd /opt/orangelight/current`
+- `OL_DB_PORT=5432 bundle exec rake browse:subjects`
 
-Expected time: ~3 hours.
+Expected time 1.5-2 hours.
+
+- Run the second rake task to upload the CSV file in the postgres table.
+
+- `OL_DB_PORT=5432 bundle exec rake browse:load_subjects`
+
+Expected time: Less than 30 minutes.
 
 See note about `schedule.rb` in the Troubleshooting section below to find out the exact machine.
 
 ## Troubleshooting
 
-When browse lists fail to generate and would like to run the rake task before it is scheduled:
+When `call_numbers` fail to generate and would like to run the rake task before it is scheduled:
 
 ssh to `catalog-indexer1`.
 
