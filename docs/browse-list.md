@@ -18,7 +18,9 @@ For catalog production, ssh to catalog-indexer1.
 
 Expected time: 5.5 - 6 hours.
 
-To regenerate the **subject lists** used in `Subject (browse)` in Orangelight, SSH as `deploy` user to the machine used to produce the browse lists (`catalog-indexer1|2|3`):
+## Troubleshooting
+
+When **subject lists**, which is used in `Subject (browse)` in Orangelight, fail to generate and would like to run the rake task before it is scheduled: SSH as `deploy` user to the machine used to produce the browse lists (`catalog-indexer1|2|3`):
 
 - Run the first rake task to generate the CSV file from solr data.
 - `cd /opt/orangelight/current`
@@ -34,9 +36,7 @@ Expected time: Less than 30 minutes.
 
 See note about `schedule.rb` in the Troubleshooting section below to find out the exact machine.
 
-## Troubleshooting
-
-When `call_numbers` fail to generate and would like to run the rake task before it is scheduled:
+When **call_numbers** fail to generate and would like to run the rake task before it is scheduled:
 
 ssh to `catalog-indexer1`.
 
