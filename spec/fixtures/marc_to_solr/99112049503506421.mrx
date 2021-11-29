@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01542cam a2200409 i 4500</leader>
+    <controlfield tag="005">20201014005617.0</controlfield>
+    <controlfield tag="008">181212s2018    fr            000 0 fre d</controlfield>
+    <controlfield tag="001">99112049503506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">  2019388620</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(Fr-PaAMA)AAL0799460-0001</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">11204950</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1083691807</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1083691807</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)11204950-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">ZYU</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">NYP</subfield>
+      <subfield code="d">STF</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9782847051735</subfield>
+      <subfield code="q">(paperback)</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9782847051735</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">2847051732</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/2847051732</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">f------</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">PQ3989.3.S84</subfield>
+      <subfield code="b">D43 2018</subfield>
+    </datafield>
+    <datafield tag="100" ind1="0" ind2=" ">
+      <subfield code="a">Sufo Sufo,</subfield>
+      <subfield code="e">author.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n2019027872</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2019027872</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2019027872</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Debout un pied :</subfield>
+      <subfield code="b">théâtre /</subfield>
+      <subfield code="c">Sufo Sufo.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Les Matelles, France :</subfield>
+      <subfield code="b">Éditions Espaces 34,</subfield>
+      <subfield code="c">[2018]</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">69 pages ;</subfield>
+      <subfield code="c">21 cm.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Collection Espace théâtre,</subfield>
+      <subfield code="x">1158-9892</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">"La pièce est lauréate du Prix des écrivains associés du théâtre (E.A.T.) 2018 ainsi que du Prix SACD de la dramaturgie de langue française 2017."</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Refugees</subfield>
+      <subfield code="v">Drama.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85112299</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Africans</subfield>
+      <subfield code="z">Europe</subfield>
+      <subfield code="v">Drama.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85001757</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens</subfield>
+      <subfield code="z">Europe</subfield>
+      <subfield code="v">Drama.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85003553</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Africa</subfield>
+      <subfield code="x">Emigration and immigration</subfield>
+      <subfield code="v">Drama.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85001531</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="0">
+      <subfield code="a">Cameroonian drama (French)</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Drama.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026297</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026297</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Collection Espace.</subfield>
+      <subfield code="p">Théâtre</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n95067059</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n95067059</subfield>
+    </datafield>
+    <datafield tag="904" ind1=" " ind2=" ">
+      <subfield code="a">vendor</subfield>
+      <subfield code="b">o</subfield>
+      <subfield code="h">m</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20190314</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">11204950</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">of</subfield>
+      <subfield code="b">l</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20190724</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-09-17 04:29:19 US/Eastern</subfield>
+      <subfield code="b">2021-07-13 01:17:36 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">PQ3989.3.S84</subfield>
+      <subfield code="i">D43 2018</subfield>
+      <subfield code="8">22663994070006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 05:17:36</subfield>
+      <subfield code="8">22663994070006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22663994070006421</subfield>
+      <subfield code="a">23663994060006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2021-07-13 05:17:36</subfield>
+      <subfield code="p">32101107822171</subfield>
+      <subfield code="t">0</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>

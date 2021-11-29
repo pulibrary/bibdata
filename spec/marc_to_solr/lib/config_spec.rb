@@ -26,6 +26,7 @@ describe 'From traject_config.rb' do
     @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
     @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
     @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+    @sample45 = @indexer.map_record(fixture_record('99112049503506421'))
     @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
     @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
     @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
@@ -778,6 +779,11 @@ describe 'From traject_config.rb' do
           expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
         end
       end
+    end
+  end
+  describe 'lc_subjects' do
+    it 'indexes only lc subjects' do
+      expect(@sample45['lc_subjects']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Illegal aliens—Europe—Drama", "Africa—Emigration and immigration—Drama"]
     end
   end
   describe 'form_genre_display' do
