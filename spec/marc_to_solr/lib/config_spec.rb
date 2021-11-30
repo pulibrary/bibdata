@@ -781,9 +781,12 @@ describe 'From traject_config.rb' do
       end
     end
   end
-  describe 'lc_subjects' do
-    it 'indexes only lc subjects' do
+  describe 'discrete subject fields' do
+    it 'indexes lc_subjects' do
       expect(@sample45['lc_subjects']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Illegal aliens—Europe—Drama", "Africa—Emigration and immigration—Drama"]
+    end
+    it 'indexes lc_subject_display_new' do
+      expect(@sample45['lc_subject_display_new']).to eq ["Refugees—Drama", "Africans—Europe—Drama", "Africa—Emigration and immigration—Drama"]
     end
   end
   describe 'form_genre_display' do

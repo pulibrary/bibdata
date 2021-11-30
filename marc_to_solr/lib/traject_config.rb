@@ -800,10 +800,24 @@ to_field 'lc_subjects' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
+to_field 'local_subjects' do |record, _accumulator|
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  # add only the new term for change the subgect
+  # indigenous studies?
+end
+
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   subjects = augment_the_subject.add_indigenous_studies(subjects)
   subjects = ChangeTheSubject.fix(subjects)
+  accumulator.replace(subjects)
+end
+
+to_field "lc_subject_display_new" do |record, accumulator|
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  # do we add indigenous studies in this field?
+  subjects = augment_the_subject.add_indigenous_studies(subjects)
+  subjects = ChangeTheSubject.remove(subjects)
   accumulator.replace(subjects)
 end
 
