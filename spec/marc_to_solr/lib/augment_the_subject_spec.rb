@@ -4,7 +4,7 @@ require 'rails_helper'
 
 ##
 # When our catalog records contain subject headings, that should be classified as
-# Indigenous Studies, it adds that term.
+# Indigenous studies, it adds that term.
 RSpec.describe AugmentTheSubject do
   let(:ats) { described_class.new }
 
@@ -15,15 +15,15 @@ RSpec.describe AugmentTheSubject do
       expect(ats.indigenous_studies?(subject_terms)).to eq true
     end
 
-    it "adds Indigenous Studies as a subject" do
-      expect(ats.add_indigenous_studies(subject_terms)).to eq subject_terms << "Indigenous Studies"
+    it "adds Indigenous studies as a subject" do
+      expect(ats.add_indigenous_studies(subject_terms)).to eq subject_terms << "Indigenous studies"
     end
   end
 
   context "subject term that are not relevant" do
     let(:subject_terms) { ["Daffodils", "Tulips"] }
 
-    it "does not add Indigenous Studies as a subject" do
+    it "does not add Indigenous studies as a subject" do
       expect(ats.indigenous_studies?(subject_terms)).to eq false
     end
   end

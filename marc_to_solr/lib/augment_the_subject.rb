@@ -45,17 +45,17 @@ class AugmentTheSubject
   end
 
   ##
-  # Given an array of terms, add "Indigenous Studies" if any of the terms match
+  # Given an array of terms, add "Indigenous studies" if any of the terms match
   # @param [<String>] terms
   # @return [<String>]
   def add_indigenous_studies(terms)
-    terms << "Indigenous Studies" if indigenous_studies?(terms)
+    terms << "Indigenous studies" if indigenous_studies?(terms)
     terms
   end
 
   ##
   # Given an array of terms, check whether this set of terms should have an
-  # additional subject heading of "Indigenous Studies" added
+  # additional subject heading of "Indigenous studies" added
   # @param [<String>] terms
   # @return [Boolean]
   def indigenous_studies?(terms)
@@ -69,7 +69,7 @@ class AugmentTheSubject
   ##
   # For some subject terms, only the first part needs to match.
   # E.g., "Quinnipiac Indians-History", "Quinnipiac Indians-Culture" should both
-  # be assigned an Indigenous Studies term even though that entire term doesn't
+  # be assigned an Indigenous studies term even though that entire term doesn't
   # appear in our terms list.
   def subfield_a_match?(term)
     subfield_a = term.split(SEPARATOR).first

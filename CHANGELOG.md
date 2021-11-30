@@ -14,7 +14,7 @@
 
 #### 🚀 Enhancement
 
-- Augment subjects with Indigenous Studies where appropriate [#1684](https://github.com/pulibrary/bibdata/pull/1684) ([@bess](https://github.com/bess))
+- Augment subjects with Indigenous studies where appropriate [#1684](https://github.com/pulibrary/bibdata/pull/1684) ([@bess](https://github.com/bess))
 
 #### Authors: 1
 
@@ -26,7 +26,7 @@
 
 #### 🐛 Bug Fix
 
-- Augment subjects with Indigenous Studies where appropriate [#1684](https://github.com/pulibrary/bibdata/pull/1684) ([@bess](https://github.com/bess))
+- Augment subjects with Indigenous studies where appropriate [#1684](https://github.com/pulibrary/bibdata/pull/1684) ([@bess](https://github.com/bess))
 
 #### Authors: 1
 
