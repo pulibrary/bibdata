@@ -54,6 +54,7 @@ class LocationDataService
     update_holding_library
     populate_partners_holding_locations
     set_holding_delivery_locations
+    update_holding_location_record
   end
 
   # Populate delivery locations based on the delivery_locations.json
@@ -139,6 +140,17 @@ class LocationDataService
     def holding_library_id(holding_library_code)
       library = find_library_by_code(holding_library_code)
       library.id if library.present?
+    end
+
+    def update_holding_location_record
+      location_code = ["firestone$ssrcfo", "firestone$ssrcdc"]
+      location_code.each do |lc|
+        holding_location_record = HoldingLocation.find_by(code: lc)
+        holding_location_record.open = "true"
+        holding_location_record.requestable = "false"
+        holding_location_record.always_requestable = "false"
+        holding_location_record.save
+      end
     end
 
     # Find the delivery library using the gfa_pickup value
