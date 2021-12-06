@@ -99,7 +99,57 @@
           "desc": null
           },
           "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/seref"
-          }
+        },
+        {
+          "code": "ssrcdc",
+          "name": "ssrcdc DOCS: Census",
+          "external_name": "Government Documents Collection (DOCS): Census",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "",
+          "desc": null
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcdc"
+        },
+        {
+          "code": "ssrcfo",
+          "name": "ssrcfo DSS: Statistical Abstracts",
+          "external_name": "Data and Statistical Services (DSS): Statistical Abstracts",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcfo"
+        }
     ],
-    "total_record_count": 4
+    "total_record_count": 6
   }
