@@ -1,9 +1,9 @@
 # Browse Lists
-## URLs
-https://catalog.princeton.edu/browse/subjects?search_field=browse_subject&q=. 
-https://catalog.princeton.edu/browse/names?search_field=browse_name&q=
-https://catalog.princeton.edu/browse/name_titles?search_field=name_title&q=
-https://catalog.princeton.edu/browse/call_numbers?search_field=browse_cn&q=
+## URLs for the different Browse lists
+* [Subject Browse](https://catalog.princeton.edu/browse/subjects?search_field=browse_subject&q=.)
+* [Name Browse](https://catalog.princeton.edu/browse/names?search_field=browse_name&q=)
+* [Title Browse](https://catalog.princeton.edu/browse/name_titles?search_field=name_title&q=)
+* [Call Number Browse](https://catalog.princeton.edu/browse/call_numbers?search_field=browse_cn&q=)
 
 Note: This documentation was migrated from https://docs.google.com/document/d/1bHvgfgyUmDXV7ROqEZFaRxJFEYhSSUbeQoQT883GMWg/edit#heading=h.oz6ax25g11u and needs to be updated
 
@@ -11,25 +11,33 @@ Notice that the rake tasks indicated in this document are in **Orangelight**, no
 
 ## How to know which machine to use
 
-- Check [schedule.rb in Orangelight](https://github.com/pulibrary/orangelight/blob/main/config/schedule.rb#L27) to find which machine a rake task is running on.
+- Check [schedule.rb in Orangelight](https://github.com/pulibrary/orangelight/blob/main/config/schedule.rb#L27) to find which logical machine a rake task is running on.  Then see which host that is in [production.rb](https://github.com/pulibrary/orangelight/blob/main/config/deploy/production.rb#L19-L21)
 
 ## Generating browse lists
 
-To fully regenerate **all browse lists**:
+To fully regenerate **all browse lists**: (Note: Expected time: 5.5 - 6 hours)
 
 For catalog-staging, ssh to a staging box (there are no workers for catalog-staging and the rake task needs to run on the catalog box).
+  ```
+  ssh deploy@catalog-staging1
+  cd /opt/orangelight/current
+  OL_DB_PORT=5432 bundle exec rake browse:all && OL_DB_PORT=5432 bundle exec rake browse:load_all >> log/browselist.log 2>&1 &
+  ```
 
-For catalog production, ssh to catalog-indexer1.
 
-- Ensure you're the deploy user
-- `$ cd /opt/orangelight/current and run the command below.`
-- `OL_DB_PORT=5432 bundle exec rake browse:all && OL_DB_PORT=5432 bundle exec rake browse:load_all`
+For catalog production
+  ```
+  ssh deploy@catalog-indexer1
+  cd /opt/orangelight/current
+  OL_DB_PORT=5432 bundle exec rake browse:all && OL_DB_PORT=5432 bundle exec rake browse:load_all >> log/browselist.log 2>&1 &
+  ```
 
-Expected time: 5.5 - 6 hours.
 
 ## Troubleshooting
 
-**subject lists**: Is used in `Subject (browse)` in Orangelight. 
+### Subject List
+
+ Is used in `Subject (browse)` in Orangelight. 
 
 Potential failure to populate successfully the subjects table will result to an empty https://catalog.princeton.edu/browse/subjects?search_field=browse_subject&q= view or a list with a small count (current count = 8,902,603).
 
@@ -49,7 +57,8 @@ Expected time 1.5-2 hours.
 
 Expected time: Less than 30 minutes.
 
-**call_numbers**: Is used in `Call numbers (browse)` in Orangelight.
+### Call Number List
+Is used in `Call numbers (browse)` in Orangelight.
 Potential failure to populate successfully the call_numbers table will result to an empty https://catalog.princeton.edu/browse/call_numbers?search_field=browse_cn&q= view or a list with a small count (current count = 5,819,908).
 
 Fix:
