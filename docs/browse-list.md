@@ -11,7 +11,7 @@ Notice that the rake tasks indicated in this document are in **Orangelight**, no
 
 ## How to know which machine to use
 
-- Check [schedule.rb in Orangelight](https://github.com/pulibrary/orangelight/blob/main/config/schedule.rb#L27) to find which logical machine a rake task is running on.  Then see which host that is in [production.rb](https://github.com/pulibrary/orangelight/blob/main/config/deploy/production.rb#L19)
+- Check [schedule.rb in Orangelight](https://github.com/pulibrary/orangelight/blob/main/config/schedule.rb#L27) to find which logical machine a rake task is running on.  Then see which host that is in [production.rb](https://github.com/pulibrary/orangelight/blob/main/config/deploy/production.rb#L19-L21)
 
 ## Generating browse lists
 
