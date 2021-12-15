@@ -1,4 +1,9 @@
 # Browse Lists
+## URLs
+https://catalog.princeton.edu/browse/subjects?search_field=browse_subject&q=. 
+https://catalog.princeton.edu/browse/names?search_field=browse_name&q=
+https://catalog.princeton.edu/browse/name_titles?search_field=name_title&q=
+https://catalog.princeton.edu/browse/call_numbers?search_field=browse_cn&q=
 
 Note: This documentation was migrated from https://docs.google.com/document/d/1bHvgfgyUmDXV7ROqEZFaRxJFEYhSSUbeQoQT883GMWg/edit#heading=h.oz6ax25g11u and needs to be updated
 
