@@ -13,6 +13,8 @@ require_relative './access_facet_builder'
 require_relative './augment_the_subject'
 require_relative './change_the_subject'
 require_relative './pul_solr_json_writer'
+require_relative './primary_language'
+# extend PrimaryLanguage
 require 'stringex'
 require 'library_stdnums'
 require 'time'
@@ -35,6 +37,7 @@ end
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 augment_the_subject = AugmentTheSubject.new
+primary_language = PrimaryLanguage.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -733,6 +736,33 @@ to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, ac
     end
   end
   accumulator.replace(codes)
+end
+
+# import PrimaryLanguage methods from ./primary_laguage.rb
+# language_iana_primary_s is used in the record page h1 'lang' html attribute.
+to_field 'language_iana_primary_s' do |record, accumulator|
+  language_008 = primary_language.language_008_valid(record)
+  language_041a = primary_language.language_041a_valid(record)
+  language_041d = primary_language.language_041d_valid(record)
+
+  primary_language_result = if language_008.present?
+                              primary_language.iso_639_language(language_value: language_008)
+                            elsif language_041a.present?
+                              primary_language.iso_639_language(language_value: language_041a)
+                            elsif language_041d.present?
+                              primary_language.iso_639_language(language_value: language_041d)
+                            else
+                              "en"
+                            end
+  accumulator << primary_language_result
+  # 008 35-37 should be used unless ###,zxx, mul, sgn, und, |||
+  # \s{3,} three spaces
+  # if 008 is one of those (###,zxx, mul, sgn, und, |||) values then look first 041 field and first $a,
+  # if there is no subfield $a then use $d
+  # Apply the same logic for 041 and exclude values (###,zxx, mul, sgn, und, |||)
+  # The default is english.
+  # There can also be multiple 041a subfields
+  # Mark thinks the old cataloging style allowed for multiple language codes to be all put into one $a. sth like :freengita update the 041 method with scan(/.{1,3}/)
 end
 
 # Contents:

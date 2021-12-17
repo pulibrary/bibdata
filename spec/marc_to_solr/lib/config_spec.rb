@@ -50,6 +50,11 @@ describe 'From traject_config.rb' do
     @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
     @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
     @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
+    @multilanguage_iana = @indexer.map_record(fixture_record('99125428133406421_multiple_languages'))
+    @sign_language_iana = @indexer.map_record(fixture_record('99106137213506421_sign_language'))
+    @italian_language_iana = @indexer.map_record(fixture_record('99125428126306421_italian'))
+    @undetermined_language_iana = @indexer.map_record(fixture_record('99125420871206421_undetermined'))
+    @no_linguistic_language_iana = @indexer.map_record(fixture_record('99125428446106421_no_linguistic_content'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -282,6 +287,35 @@ describe 'From traject_config.rb' do
 
     it 'returns 2 language values based on the IANA Language Subtag Registry' do
       expect(@added_title_246['language_iana_s']).to eq(['ja', 'en'])
+    end
+  end
+
+  describe 'the language_iana_primary_s field' do
+    # a multilanguage has value 008 mul. We skip this value and look 041
+    context 'for a record in multiple languages' do
+      it 'returns the primary language value from 041$a' do
+        expect(@multilanguage_iana['language_iana_primary_s']).to eq ["en"] # ISO_639 for 041$a
+      end
+    end
+    context 'for a record in sign language' do
+      it 'returns the primary language' do
+        expect(@sign_language_iana['language_iana_primary_s']).to eq ["zh"] # ISO_639 for 041$a chi
+      end
+    end
+    context 'for a record with undetermined language' do
+      it 'defaults to en' do
+        expect(@undetermined_language_iana['language_iana_primary_s']).to eq ["en"]
+      end
+    end
+    context 'for a record with no linguistic content' do
+      it 'defaults to en' do
+        expect(@no_linguistic_language_iana['language_iana_primary_s']).to eq ["en"]
+      end
+    end
+    context 'a record in italian' do
+      it 'has primary language it' do
+        expect(@italian_language_iana['language_iana_primary_s']).to eq ["it"]
+      end
     end
   end
 
