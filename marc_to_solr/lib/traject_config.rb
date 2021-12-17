@@ -736,16 +736,21 @@ to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, ac
   accumulator.replace(codes.flatten)
 end
 
+# The language_iana_s field is used in the record page to calculate the html lang attribute
+# Based on https://www.loc.gov/marc/bibliographic/bd008a.html section 35-37 - Language,
+# we additionally exclude:  ### - No information provided, zxx - No linguistic content,
+# mul - Multiple languages, sgn - Sign languages, und - Undetermined, ||| - No attempt to code
 to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
-  codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }.flatten.uniq
-  codes = codes.reject { |c| ISO_639.find(c).nil? }.map do |c|
-    if ISO_639.find(c).alpha2.empty?
-      c
+  codes = accumulator.compact.map { |m| m.length == 3 ? m : m.scan(/.{1,3}/) }.flatten.uniq
+  codes_iso_639 = codes.reject { |m| ISO_639.find(m).nil? }.map do |m|
+    if ISO_639.find(m).alpha2.empty? || ["zxx", "mul", "sgn", "und", "|||"].include?(m)
+      "en"
     else
-      ISO_639.find(c).alpha2
+      ISO_639.find(m).alpha2
     end
   end
-  accumulator.replace(codes)
+  accumulator.replace(codes_iso_639)
+  accumulator.slice!(1..-1)
 end
 
 # Contents:

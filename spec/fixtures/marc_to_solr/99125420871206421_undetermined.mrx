@@ -1,0 +1,96 @@
+<record>
+    <leader>00588nam a2200193z  4500</leader>
+    <controlfield tag="008">211213n        xx |         u||| ||und u</controlfield>
+    <controlfield tag="001">99125420871206421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9780520381575</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9780520381575</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">(YDXIT)302132156</subfield>
+    </datafield>
+    <datafield tag="100" ind1=" " ind2=" ">
+      <subfield code="a">Romero, Adam.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2016012598</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2016012598</subfield>
+    </datafield>
+    <datafield tag="245" ind1=" " ind2=" ">
+      <subfield code="a">ECONOMIC POISONING : INDUSTRIAL WASTE AND THE CHEMICALIZATION OF AMERICAN AGRICULTURE.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">BERKELEY</subfield>
+      <subfield code="b">UNIV OF CALIFORNIA PRESS</subfield>
+      <subfield code="c">2022</subfield>
+    </datafield>
+    <datafield tag="490" ind1=" " ind2=" ">
+      <subfield code="a">CRITICAL ENVIRONMENTS.</subfield>
+      <subfield code="v">8</subfield>
+    </datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <subfield code="c">E0501ebk</subfield>
+      <subfield code="d">3110-17</subfield>
+      <subfield code="g">YBP</subfield>
+    </datafield>
+    <datafield tag="960" ind1=" " ind2=" ">
+      <subfield code="o">1</subfield>
+      <subfield code="z">USD</subfield>
+    </datafield>
+    <datafield tag="961" ind1=" " ind2=" ">
+      <subfield code="f">WD</subfield>
+      <subfield code="h">DEGUU</subfield>
+      <subfield code="i">DEG</subfield>
+      <subfield code="j">UU</subfield>
+      <subfield code="m">311017</subfield>
+      <subfield code="n">eBook</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="i">365.00</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="c">elf3</subfield>
+    </datafield>
+    <datafield tag="984" ind1=" " ind2=" ">
+      <subfield code="a">20211213</subfield>
+      <subfield code="b">095454</subfield>
+      <subfield code="c">YBP-US</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-12-14 04:08:03 US/Eastern</subfield>
+      <subfield code="b">2021-11-22 17:20:08 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-12-13 17:02:31 US/Eastern</subfield>
+      <subfield code="g">DEG</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-12-13 11:07:28 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53909973950006421&amp;Force_direct=true</subfield>
+      <subfield code="s">Acquisition (PO line POL-53910)</subfield>
+      <subfield code="0">53909973950006421</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="q">POL-53910</subfield>
+      <subfield code="1">52909973960006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125420871206421</subfield>
+      <subfield code="a">Not Available</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53909973950006421</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-11-22 17:20:52 US/Eastern</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-11-22 17:20:38 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53907810190006421&amp;Force_direct=true</subfield>
+      <subfield code="s">System</subfield>
+      <subfield code="0">53907810190006421</subfield>
+      <subfield code="w">2021-11-22 22:20:38</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61902590430006421</subfield>
+      <subfield code="n">JSTOR DDA Princeton</subfield>
+      <subfield code="b">static</subfield>
+      <subfield code="1">62902590420006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125420871206421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53907810190006421</subfield>
+    </datafield>
+  </record>

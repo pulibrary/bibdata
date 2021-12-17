@@ -1,0 +1,210 @@
+<record>
+    <leader>02007cam a2200469Mi 4500</leader>
+    <controlfield tag="005">20211215094437.0</controlfield>
+    <controlfield tag="008">210703s2021    gw a     b    101 0 mul d</controlfield>
+    <controlfield tag="001">99125428133406421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9783804741133</subfield>
+      <subfield code="q">paperback</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9783804741133</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">3804741134</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/3804741134</subfield>
+    </datafield>
+    <datafield tag="024" ind1="3" ind2=" ">
+      <subfield code="a">9783804741133</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9783804741133</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1258954113</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1258954113</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1258954113</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1258954113</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">OHX</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">OHX</subfield>
+      <subfield code="d">UMC</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">CGU</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="a">fre</subfield>
+      <subfield code="a">ger</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">AS2.5</subfield>
+      <subfield code="b">.B56 2021</subfield>
+    </datafield>
+    <datafield tag="072" ind1=" " ind2="7">
+      <subfield code="a">AS</subfield>
+      <subfield code="2">lcco</subfield>
+    </datafield>
+    <datafield tag="072" ind1=" " ind2="7">
+      <subfield code="a">Q</subfield>
+      <subfield code="2">lcco</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Blockades of the mind :</subfield>
+      <subfield code="b">science, academies, and the aftermath of the Great War /</subfield>
+      <subfield code="c">editors Wolfgang U. Eckart, Robert Fox.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Halle (Saale) :</subfield>
+      <subfield code="b">Deutsche Akadmie der Naturforscher Leopoldina - Nationale Akademie der Wissenscahften ;</subfield>
+      <subfield code="a">Stuttgart :</subfield>
+      <subfield code="b">Wissenschaftliche Verlagsgesellschaft,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">169 pages :</subfield>
+      <subfield code="b">illustrations (partly color) ;</subfield>
+      <subfield code="c">24 cm.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Acta historica Leopoldina,</subfield>
+      <subfield code="x">0001-5857 ;</subfield>
+      <subfield code="v">Nummer 78</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">3 English, 1 French, 3 German contributions.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Learned institutions and societies</subfield>
+      <subfield code="z">Europe</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85075516</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Reconstruction (1914-1939)</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01091540</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85111865</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Science</subfield>
+      <subfield code="z">Europe</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85118553</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Intellectual cooperation</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85067163</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Intellectual cooperation.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00975764</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00975764</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Learned institutions and societies.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00994807</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst00994807</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Reconstruction (1914-1939)</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01091540</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01091540</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85111865</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Science.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01108176</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01108176</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">Europe.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01245064</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01245064</subfield>
+    </datafield>
+    <datafield tag="648" ind1=" " ind2="7">
+      <subfield code="a">1900-1999</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">History.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411628</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01411628</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Acta historica Leopoldina ;</subfield>
+      <subfield code="v">Nummer 78.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n42001070</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n42001070</subfield>
+    </datafield>
+    <datafield tag="938" ind1=" " ind2=" ">
+      <subfield code="a">Otto Harrassowitz</subfield>
+      <subfield code="b">HARR</subfield>
+      <subfield code="n">har215011766</subfield>
+    </datafield>
+    <datafield tag="948" ind1=" " ind2=" ">
+      <subfield code="h">NO HOLDINGS IN PUL - 4 OTHER HOLDINGS</subfield>
+    </datafield>
+    <datafield tag="994" ind1=" " ind2=" ">
+      <subfield code="a">Z0</subfield>
+      <subfield code="b">PUL</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-12-16 04:05:56 US/Eastern</subfield>
+      <subfield code="b">2021-12-15 09:44:37 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">AS2.5</subfield>
+      <subfield code="i">.B56 2021</subfield>
+      <subfield code="8">22910013930006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-12-15 14:44:54</subfield>
+      <subfield code="8">22910013930006421</subfield>
+      <subfield code="a">2021-12-15 14:44:50</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22910013930006421</subfield>
+      <subfield code="a">23910013910006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">stacks</subfield>
+      <subfield code="d">2021-12-15 14:45:05</subfield>
+      <subfield code="p">32101109061596</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+  </record>
