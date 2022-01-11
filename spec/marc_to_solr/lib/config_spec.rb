@@ -181,7 +181,7 @@ describe 'From traject_config.rb' do
 
       # Date range with greater than or equal to embargo
       expect(portfolio1['start']).to eq '2001'
-      expect(portfolio1['end']).to eq '2020'
+      expect(portfolio1['end']).to eq '2021'
 
       expect(portfolio2['start']).to eq '1997'
       expect(portfolio2['end']).to eq 'latest'
