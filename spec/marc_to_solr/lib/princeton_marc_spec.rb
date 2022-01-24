@@ -681,43 +681,40 @@ describe 'From princeton_marc.rb' do
   end
 
   describe '#process_holdings' do
-    # voyager record: https://catalog.princeton.edu/catalog/1414145/
-    # alma record: https://bibdata-alma-staging.princeton.edu/bibliographic/9914141453506421
+    # alma record: https://catalog.princeton.edu/catalog/9914141453506421
     before(:all) do
       @record_no_location_name = @indexer.map_record(fixture_record('99116547863506421'))
       @holdings_no_location_name = JSON.parse(@record_no_location_name["holdings_1display"][0])
-      @holdings_no_location_name_holding_block = @holdings_no_location_name["22211952510006421"]
+      @holdings_no_location_name_holding_block = @holdings_no_location_name["22552476080006421"]
 
       @record = @indexer.map_record(fixture_record('9914141453506421'))
       @holdings = JSON.parse(@record["holdings_1display"][0])
-      @oversize_holding_id = "22242008800006421"
+      @oversize_holding_id = "22679783950006421"
       @oversize_holding_block = @holdings[@oversize_holding_id]
 
       @record_no_876t = @indexer.map_record(fixture_record('9914141453506421_custom_no_876t'))
       @holdings_no_876 = JSON.parse(@record["holdings_1display"][0])
-      @holding_id_no_876t = "22242008800006421"
+      @holding_id_no_876t = "22679783950006421"
       @holding_block_no_876t = @holdings_no_876[@holding_id_no_876t]
 
       @record_866_867 = @indexer.map_record(fixture_record('991583506421'))
       @holdings_866_867 = JSON.parse(@record_866_867["holdings_1display"][0])
-      @holding_id_866_867 = "22262098640006421"
+      @holding_id_866_867 = "22740217130006421"
       @holdings_866_867_block = @holdings_866_867[@holding_id_866_867]
 
       @record_868 = @indexer.map_record(fixture_record('991213506421'))
       @holdings_868 = JSON.parse(@record_868["holdings_1display"][0])
-      @holding_id_868 = "22261907460006421"
+      @holding_id_868 = "22740353440006421"
       @holdings_868_block = @holdings_868[@holding_id_868]
 
       @record_invalid_location = @indexer.map_record(fixture_record('9914141453506421_invalid_loc'))
       @not_valid_holding_id = "999999"
-      @holdings_id_852 = "22242008800006421"
       @holdings_with_invalid_location = JSON.parse(@record_invalid_location["holdings_1display"][0])
 
       @record_876z = @indexer.map_record(fixture_record('99122455086806421'))
       @holdings_876z = JSON.parse(@record_876z["holdings_1display"][0])
       @holdings_id_876z = "22477860740006421"
       @holdings_876z_block = @holdings_876z[@holdings_id_876z]
-
       # scsb
       @record_scsb = @indexer.map_record(fixture_record('SCSB-8157262'))
       @holdings_scsb = JSON.parse(@record_scsb["holdings_1display"][0])
@@ -733,7 +730,7 @@ describe 'From princeton_marc.rb' do
     it 'indexes location if it exists' do
       expect(@oversize_holding_block['location']).to eq 'Stacks'
     end
-
+    # check bibdata locations for this test
     it 'if location is blank it will index blank' do
       expect(@holdings_no_location_name_holding_block["location"]).to eq ''
     end
@@ -744,7 +741,6 @@ describe 'From princeton_marc.rb' do
 
     it 'excludes holdings with an invalid location code' do
       expect(@holdings_with_invalid_location).not_to have_key(@not_valid_holding_id)
-      expect(@holdings_with_invalid_location).to have_key(@holdings_id_852)
     end
 
     it 'positions $k at the end for call_number_browse field' do
@@ -754,7 +750,7 @@ describe 'From princeton_marc.rb' do
 
     describe 'copy_number is included in the items' do
       it "includes copy_number from first instance of 876 $t" do
-        expect(@oversize_holding_block["items"].first["copy_number"]).to eq('10')
+        expect(@oversize_holding_block["items"].first["copy_number"]).to eq('6')
       end
 
       it 'only includes copy_number if there is an 876 $t' do
@@ -765,7 +761,6 @@ describe 'From princeton_marc.rb' do
     it 'separates call_number subfields with whitespace' do
       expect(@oversize_holding_block['call_number']).to eq("M23.L5S6 1973q Oversize")
     end
-
     it 'location_has takes from 866 $a and $z regardless of indicators' do
       expect(@holdings_866_867_block['location_has']).to include("No. 1 (Feb. 1975)-no. 68", "LACKS: no. 25-26,29,49-50, 56")
     end
@@ -775,11 +770,9 @@ describe 'From princeton_marc.rb' do
     it 'indexes takes from 868 $a and $z' do
       expect(@holdings_868_block['indexes']).to include("Index, v. 1/17")
     end
-
     it "doesn't index 876z collection_code if it is not a scsb record" do
       expect(@holdings_876z_block["items"][0]['collection_code']).to be nil
     end
-
     describe "scsb process holdings" do
       it "indexes from 852" do
         expect(@holdings_scsb).to have_key(@holding_id_scsb)
@@ -789,6 +782,7 @@ describe 'From princeton_marc.rb' do
         expect(@holdings_scsb_block['call_number_browse']).to eq('JSM 95-216')
         expect(@holdings_scsb_block['call_number']).to eq('JSM 95-216')
       end
+
       it "indexes location_has from 866" do
         expect(@holdings_scsb_block['location_has']).to eq(["no. 107-112"])
       end

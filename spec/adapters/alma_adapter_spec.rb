@@ -233,13 +233,13 @@ RSpec.describe AlmaAdapter do
       expect(availability).to eq empty_availability
     end
 
-    it "reports availability (without holding_id) for items in temporary locations" do
+    it "reports availability for items in temporary locations" do
       availability = adapter.get_availability_one(id: "9952822483506421")
-      fake_holding = availability["9952822483506421"]["fake_id_1"]
-      expect(fake_holding[:id]).to eq "fake_id_1"
-      expect(fake_holding[:status_label]).to eq "Available"
-      expect(fake_holding[:temp_location]).to eq true
-      expect(fake_holding[:on_reserve]).to eq "N"
+      temporary_holding = availability["9952822483506421"]["online$etasrcp"]
+      expect(temporary_holding[:id]).to eq "online$etasrcp"
+      expect(temporary_holding[:status_label]).to eq "Available"
+      expect(temporary_holding[:temp_location]).to eq true
+      expect(temporary_holding[:on_reserve]).to eq "N"
     end
 
     it "reports availability (with holding_id) for items in temporary locations when requested" do
@@ -278,7 +278,7 @@ RSpec.describe AlmaAdapter do
 
     it "reports course reserves when record is in library marked as such" do
       availability = adapter.get_availability_one(id: "9959958323506421")
-      holding = availability["9959958323506421"]["fake_id_1"]
+      holding = availability["9959958323506421"]["lewis$resterm"]
       expect(holding[:on_reserve]).to eq "Y"
     end
 
