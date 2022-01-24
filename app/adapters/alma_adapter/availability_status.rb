@@ -16,7 +16,7 @@ class AlmaAdapter
       sequence = 0
       availability = holdings.each_with_object({}) do |holding, acc|
         sequence += 1
-        status = holding_status(holding: holding, sequence: sequence)
+        status = holding_status(holding: holding)
         acc[status[:id]] = status unless status.nil?
       end
       availability
@@ -55,7 +55,7 @@ class AlmaAdapter
       availability
     end
 
-    def holding_status(holding:, sequence:)
+    def holding_status(holding:)
       # Ignore electronic and digital records
       return nil if holding["inventory_type"] != "physical"
 
@@ -73,11 +73,11 @@ class AlmaAdapter
       }
 
       if holding["holding_id"].nil?
-        # Some physical resources can have a nil ID when they are in a temporary location
-        # because Alma does not tells us the holding_id that they belong to. For those
-        # records we create a fake ID so that we can handle multiple holdings with this
-        # condition.
-        status[:id] = "fake_id_#{sequence}"
+        holding["holding_id"] = "#{holding['library_code']}$#{holding['location_code']}"
+        # The ALma call from the Alma::AvailabilityResponse returns holding in temp_location with holding_id nil
+        # see https://github.com/tulibraries/alma_rb/blob/affabad4094bc2abf0e8546b336d2a667d5ffab5/lib/alma/bib_item.rb#L53
+        # In this case we create a holding_id using the name of the 'temporary_library$temporary_location'
+        status[:id] = holding["holding_id"]
         status[:temp_location] = true
       elsif status[:status_label] == "Unavailable" && @deep_check
         # Notice that we only check if a holding is available via CDL when necessary
@@ -147,6 +147,7 @@ class AlmaAdapter
     def holdings
       # This method does NOT issue a separate call to the Alma API to get the information, instead it
       # extracts the availability information (i.e. the AVA and AVE fields) from the bib record.
+      # If temp_location is true cannot get holding_id from this call because of https://github.com/tulibraries/alma_rb/blob/affabad4094bc2abf0e8546b336d2a667d5ffab5/lib/alma/bib_item.rb#L53
       @availability_response ||= Alma::AvailabilityResponse.new(Array.wrap(bib)).availability[bib.id][:holdings]
     end
 
