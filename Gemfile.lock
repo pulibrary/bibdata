@@ -48,14 +48,8 @@ GIT
       xml-simple
 
 GEM
-  remote: https://gems.contribsys.com/
-  specs:
-    sidekiq-pro (5.2.2)
-      connection_pool (>= 2.2.3)
-      sidekiq (>= 6.2.0)
-
-GEM
   remote: https://rubygems.org/
+  remote: https://gems.contribsys.com/
   specs:
     actioncable (5.2.6)
       actionpack (= 5.2.6)
@@ -435,6 +429,9 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq-pro (5.2.2)
+      connection_pool (>= 2.2.3)
+      sidekiq (>= 6.2.0)
     simplecov (0.14.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)

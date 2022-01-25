@@ -295,6 +295,7 @@ describe 'From traject_config.rb' do
     context 'for a record in multiple languages' do
       it 'returns the primary language value from 041$a' do
         expect(@multilanguage_iana['language_iana_primary_s']).to eq ["en"] # ISO_639 for 041$a
+        expect(@multilanguage_iana['language_iana_s']).to eq ["en", "fr", "de"] # fix this to return ['en']
       end
     end
     context 'for a record in sign language' do
