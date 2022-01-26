@@ -686,43 +686,48 @@ def group_866_867_868_on_holding_perm_id(record, holding_perm_id, is_scsb)
   end
 end
 
-def group_867_on_holding_perm_id(record, holding_perm_id)
-  record.fields("867").select { |f| f["8"] == holding_perm_id }
-end
+# def group_867_on_holding_perm_id(record, holding_perm_id)
+#   record.fields("867").select { |f| f["8"] == holding_perm_id }
+# end
 
-def group_868_on_holding_perm_id(record, holding_perm_id)
-  record.fields("868").select { |f| f["8"] == holding_perm_id }
-end
+# def group_868_on_holding_perm_id(record, holding_perm_id)
+#   record.fields("868").select { |f| f["8"] == holding_perm_id }
+# end
 
 def group_876_on_holding_perm_id(record, holding_id)
   record.fields("876").select { |f| f["0"] == holding_id }
 end
 
-# get 852 fields from an ALma or SCSB record
+# Select 852 fields from an Alma or SCSB record
 def fields_852_alma_or_scsb(record)
   record.fields('852').select do |f|
     alma_code_start_22?(f['8']) || scsb_doc?(record['001'].value) && f['0']
   end
 end
 
+# Build the current location code from 876$y and 876$z
 def current_location_code(field_876)
   "#{field_876['y']}$#{field_876['z']}" if field_876['y'] && field_876['z']
 end
 
+# Build the permanent location code from 852$b and 852$c
 def permanent_location_code(field_852)
   "#{field_852['b']}$#{field_852['c']}"
 end
 
+# Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
 def select_permanent_location_876(group_876_fields, field_852)
   return group_876_fields if /^scsb/.match?(field_852['b'])
   group_876_fields.select { |field_876| current_location_code(field_876) == permanent_location_code(field_852) }
 end
 
+# Select 876 fields (items) with current location. 876 location is NOT equal to the 852 permanent location.
 def select_current_location_876(group_876_fields, field_852)
   return [] if /^scsb/.match?(field_852['b'])
   group_876_fields.select { |field_876| current_location_code(field_876) != permanent_location_code(field_852) }
 end
 
+# Build the current (temporary) holding.
 def current_holding(holding_current, field_852, field_876)
   holding_current["location_code"] ||= current_location_code(field_876)
   holding_current['current_location'] ||= Traject::TranslationMap.new("locations", default: "__passthrough__")[holding_current['location_code']]
@@ -747,6 +752,7 @@ def current_holding(holding_current, field_852, field_876)
   holding_current
 end
 
+# Build the permanent holding from 852$b$c
 def permanent_holding(holding, field_852)
   is_alma = alma_code_start_22?(field_852['8'])
   holding['location_code'] ||= field_852['b']
@@ -775,7 +781,7 @@ def permanent_holding(holding, field_852)
   holding
 end
 
-# build the items array in all_holdings hash
+# Build the items array in all_holdings hash
 def holding_items(value:, all_holdings:, item:)
   if all_holdings[value].present?
     if all_holdings[value]["items"].nil?
@@ -836,11 +842,13 @@ def process_holdings(record)
     elsif field_852['0'] && is_scsb
       holding_id = field_852['0']
     end
+    # Calculate the permanent holding
     permanent_holding(holding, field_852)
     group_876_fields = group_876_on_holding_perm_id(record, holding_id)
     group_866_867_868_fields = group_866_867_868_on_holding_perm_id(record, holding_id, is_scsb)
     permanent_location_876 = select_permanent_location_876(group_876_fields, field_852)
     current_location_876 = select_current_location_876(group_876_fields, field_852)
+
     if group_876_fields.present?
       permanent_location_876.each do |field_876|
         item = {}
@@ -855,7 +863,9 @@ def process_holdings(record)
         holding_current_id = current_location_code(field_876)
         current_holding(holding_current, field_852, field_876)
         build_item(record: record, item: item_current, field_852: field_852, field_876: field_876)
-        all_holdings[holding_current_id] = remove_empty_call_number_fields(holding_current) if all_holdings[holding_current_id].nil? && !(holding_current_id.nil? || invalid_location?(holding_current['location_code']))
+        if all_holdings[holding_current_id].nil? && !(holding_current_id.nil? || invalid_location?(holding_current['location_code']))
+          all_holdings[holding_current_id] = remove_empty_call_number_fields(holding_current)
+        end
 
         # Adds items in temporary location where the key is the current (temporary) location code.
         holding_items(value: holding_current_id, all_holdings: all_holdings, item: item_current)
@@ -864,6 +874,7 @@ def process_holdings(record)
       # if there are no 876s (items) create the holding by using the 852 field
       all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
     end
+
     process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
   end
   all_holdings
