@@ -23,6 +23,6 @@ class HathiController < ApplicationController
   end
 
   def status_404
-    render json: @record, status: 404
+    render json: @record, status: :not_found
   end
 end

@@ -61,7 +61,7 @@ class AlmaAdapter
     #   /items endpoint. In migrating to Alma this is largely the policy value
     #   with a fallback.
     def type
-      return "Gen" unless item_data["policy"]["value"].present?
+      return "Gen" if item_data["policy"]["value"].blank?
       item_data["policy"]["value"]
     end
 

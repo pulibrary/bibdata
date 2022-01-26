@@ -27,7 +27,7 @@ class CampusAccessExceptionsController < ApplicationController
     # Ensure that the client is authenticated and the user is a catalog administrator
     def protect
       if user_signed_in?
-        render plain: "You are unauthorized", status: 403 unless current_user.catalog_admin?
+        render plain: "You are unauthorized", status: :forbidden unless current_user.catalog_admin?
       else
         store_location_for(:user, new_campus_access_exception_path)
         redirect_to user_cas_omniauth_authorize_path

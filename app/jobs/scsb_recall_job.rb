@@ -1,4 +1,4 @@
-class ScsbRecallJob < ActiveJob::Base
+class ScsbRecallJob < ApplicationJob
   include Scsb
   queue_as :scsb_recall
 

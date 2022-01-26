@@ -1,6 +1,6 @@
 # Processes an incremental dump file for SCSB coming from Alma and updates the
 # DumpFile for submission to the S3 Bucket.
-class RecapDumpFileProcessingJob < ActiveJob::Base
+class RecapDumpFileProcessingJob < ApplicationJob
   attr_reader :dump_file
   def perform(dump_file)
     @dump_file = dump_file

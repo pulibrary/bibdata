@@ -10,7 +10,7 @@ RSpec.describe Event, type: :model do
   end
 
   after(:all) do
-    Event.destroy_all
+    described_class.destroy_all
   end
 
   describe 'Failed dump' do

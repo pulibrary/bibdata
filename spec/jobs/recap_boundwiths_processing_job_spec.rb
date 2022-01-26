@@ -20,7 +20,7 @@ RSpec.describe RecapBoundwithsProcessingJob do
       it "creates a new boundwith dump file and caches marc records" do
         dump = FactoryBot.create(:recap_incremental_dump)
         boundwiths_file_path = described_class.perform_now(dump)
-        expect(File.basename(boundwiths_file_path)).to include("recap_6836725000006421_20210401_010420[012]_boundwiths", ".xml.tar.gz")
+        expect(File.basename(boundwiths_file_path)).to include("recap_6836725000006421_20210401_010420", ".xml.tar.gz")
         expect(File.exist?(boundwiths_file_path)).to eq true
 
         # Unzip it, get the MARC-XML

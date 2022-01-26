@@ -11,12 +11,23 @@ Rails:
 Rails/Date:
   Enabled: false
 
+Rails/RakeEnvironment:
+  Exclude:
+    - lib/tasks/*
+
 Rails/TimeZone:
   Enabled: false
 
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - staging
+    - development
+    - test
+
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 2.7
   Exclude:
     - 'db/**/*'
     - 'bin/*'
@@ -35,9 +46,8 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/models/jsonld_record_spec.rb'
 
-Style/BracesAroundHashParameters:
-  Exclude:
-    - 'spec/marc_to_solr/lib/solr_deleter_spec.rb'
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
 
 Style/FrozenStringLiteralComment:
   Enabled: false
@@ -48,7 +58,13 @@ Style/MethodDefParentheses:
 Style/NumericPredicate:
   Enabled: false
 
-Lint/HandleExceptions:
+Layout/LineLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'marc_to_solr/**/*'
+    - 'app/**/*'
+
+Lint/SuppressedException:
   Exclude:
     - 'lib/tasks/spec.rake'
     - 'marc_to_solr/lib/location_extract.rb'
@@ -72,3 +88,11 @@ Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/delivery_location.rb'
     - 'app/models/holding_location.rb'
+
+Rails/HasManyOrHasOneDependent:
+  Exclude:
+    - 'app/models/*'
+
+Rails/ApplicationRecord:
+  Exclude:
+    - 'app/models/*'

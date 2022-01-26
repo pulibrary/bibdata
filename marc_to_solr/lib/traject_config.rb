@@ -543,7 +543,7 @@ to_field 'more_in_this_series_t' do |record, accumulator|
     str = extractor.collect_subfields(field, spec).first
     if str
       str = str.slice(field.indicator2.to_i, str.length)
-      if str.nil? || str.empty?
+      if str.blank?
         logger.error "#{record['001']} - Non-filing characters >= title length"
       else
         accumulator << str
@@ -879,7 +879,7 @@ end
 
 to_field 'sudoc_facet' do |record, accumulator|
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
     accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
@@ -893,7 +893,7 @@ to_field 'call_number_scheme_facet' do |record, accumulator|
     end
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
     accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
@@ -909,7 +909,7 @@ to_field 'call_number_group_facet' do |record, accumulator|
     end
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
     accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?
   end
 end
@@ -924,7 +924,7 @@ to_field 'call_number_full_facet' do |record, accumulator|
     end
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)
+    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
     accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
   end
 end
@@ -1005,7 +1005,7 @@ to_field 'other_title_display' do |record, accumulator|
   MarcExtractor.cached(%w(246abfnp:210ab:211a:212a:214a:222ab:
                           242abchnp:243adfklmnoprs:247abfhnp:730aplskfmnor:740ahnp)).collect_matching_lines(record) do |field, spec, extractor|
     if field.tag == '246'
-      label = field.subfields.select { |s_field| s_field.code == 'i' }.first
+      label = field.subfields.find { |s_field| s_field.code == 'i' }
       accumulator << extractor.collect_subfields(field, spec).first if label.nil?
     else
       accumulator << extractor.collect_subfields(field, spec).first
@@ -1020,7 +1020,7 @@ to_field 'alt_title_246_display', extract_marc('246abfnp')
 to_field 'other_title_1display' do |record, accumulator|
   other_title_hash = {}
   MarcExtractor.cached('246abfnp').collect_matching_lines(record) do |field, spec, extractor|
-    label = field.subfields.select { |s_field| s_field.code == 'i' }.first
+    label = field.subfields.find { |s_field| s_field.code == 'i' }
     unless label.nil?
       label = label.value
       label = Traject::Macros::Marc21.trim_punctuation(label)
@@ -1051,7 +1051,7 @@ to_field 'isbn_display' do |record, accumulator|
   MarcExtractor.cached("020aq").collect_matching_lines(record) do |field, _spec, _extractor|
     a_array = []
     q_array = []
-    next unless field['a'].present?
+    next if field['a'].blank?
     field.subfields.each do |m|
       if m.code == 'a'
         a_array << m.value

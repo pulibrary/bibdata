@@ -11,7 +11,7 @@ require 'json'
 
 # Get env var with the secret from AWS Secrets Manager
 SECRET = ENV["SECRET"]
-URL = 'https://4ypja0mlne.execute-api.us-east-1.amazonaws.com/production/webhooks'.freeze
+URL = 'https://4ypja0mlne.execute-api.us-east-1.amazonaws.com/production/webhooks'
 
 to = ARGV[0]
 msg = ARGV[1]

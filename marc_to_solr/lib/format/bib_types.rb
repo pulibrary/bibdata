@@ -13,10 +13,10 @@ class BibTypes
     @bib_format = bib_format
     @record = record
     # Memoize values, since many of them are used several times
-    @spec_vals  = Hash.new { |h, spec_string| h[spec_string] = Traject::MarcExtractor.new(spec_string).extract(@record) }
+    @spec_vals = Hash.new { |h, spec_string| h[spec_string] = Traject::MarcExtractor.new(spec_string).extract(@record) }
 
     # Need these a lot -- the sub x and v from any 6XX field
-    @xv6XX      = XV6XX.new(@record)
+    @xv6XX = XV6XX.new(@record)
   end
 
   def codes
@@ -336,8 +336,8 @@ class BibTypes
   def software_types
     types = []
     self['852j'].each do |j|
-      types << 'CR' if j =~ /\Acd-?rom/i
-      types << 'CS' if j =~ /\Asoftware/i
+      types << 'CR' if /\Acd-?rom/i.match?(j)
+      types << 'CS' if /\Asoftware/i.match?(j)
     end
     types.uniq!
     return types

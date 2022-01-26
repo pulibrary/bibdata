@@ -5,7 +5,7 @@ class BarcodeController < ApplicationController
     if params[:barcode]
       redirect_to action: :barcode, barcode: params[:barcode], status: :moved_permanently
     else
-      render plain: "Please supply a barcode.", status: 404
+      render plain: "Please supply a barcode.", status: :not_found
     end
   end
 
@@ -14,7 +14,7 @@ class BarcodeController < ApplicationController
   def scsb
     barcode = params[:barcode]
     if !valid_barcode?(barcode)
-      render plain: "Barcode #{barcode} not valid.", status: 404
+      render plain: "Barcode #{barcode} not valid.", status: :not_found
     else
       adapter = AlmaAdapter.new
       item = adapter.item_by_barcode(barcode)
@@ -23,7 +23,7 @@ class BarcodeController < ApplicationController
 
       # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
       if record.nil?
-        render plain: "Record #{mms_id} not found or suppressed", status: 404
+        render plain: "Record #{mms_id} not found or suppressed", status: :not_found
         return
       end
       holding = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
@@ -39,7 +39,7 @@ class BarcodeController < ApplicationController
         bib_record.strip_non_numeric!
       end
       if records == []
-        render plain: "Barcode #{barcode} not found.", status: 404
+        render plain: "Barcode #{barcode} not found.", status: :not_found
       else
         respond_to do |wants|
           wants.json  do

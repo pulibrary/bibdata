@@ -60,7 +60,7 @@ module MARC
         d = self['008'].value[7, 4]
         d = d.gsub 'u', '0' unless d == 'uuuu'
         d = d.gsub ' ', '0' unless d == '    '
-        d if d =~ /^[0-9]{4}$/
+        d if /^[0-9]{4}$/.match?(d)
       end
     end
 
@@ -69,7 +69,7 @@ module MARC
         d = self['008'].value[11, 4]
         d = d.gsub 'u', '9' unless d == 'uuuu'
         d = d.gsub ' ', '9' unless d == '    '
-        d if d =~ /^[0-9]{4}$/
+        d if /^[0-9]{4}$/.match?(d)
       end
     end
 

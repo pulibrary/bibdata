@@ -8,7 +8,7 @@ class HoldingLocation < ActiveRecord::Base
   self.table_name_prefix = 'locations_'
 
   belongs_to :hours_location, class_name: 'HoursLocation', foreign_key: :locations_hours_location_id, optional: true
-  belongs_to :holding_library, class_name: 'Library', foreign_key: :holding_library_id, optional: true
+  belongs_to :holding_library, class_name: 'Library', optional: true
 
   has_and_belongs_to_many :delivery_locations, -> { distinct },
                           class_name: 'DeliveryLocation',

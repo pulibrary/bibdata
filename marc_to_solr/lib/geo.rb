@@ -24,6 +24,6 @@ def decimal_coordinate record
 end
 
 def valid_coordinate_format? c, _record
-  return false unless c =~ /^[-+]?[0-9]*\.?[0-9]+$/
+  return false unless /^[-+]?[0-9]*\.?[0-9]+$/.match?(c)
   true
 end

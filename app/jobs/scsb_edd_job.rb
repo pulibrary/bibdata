@@ -1,4 +1,4 @@
-class ScsbEddJob < ActiveJob::Base
+class ScsbEddJob < ApplicationJob
   include Scsb
   queue_as :scsb_edd
 

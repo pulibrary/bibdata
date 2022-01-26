@@ -5,7 +5,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: cimg/ruby:2.7-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -31,12 +31,17 @@ jobs:
       - run:
           name: Check current version of node
           command: node -v
+      - run:
+          name: Setup Chrome
+          command: |
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install ./google-chrome-stable_current_amd64.deb
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v3-marc_liberation-
+            - v4-marc_liberation-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -44,7 +49,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -68,7 +73,7 @@ jobs:
     working_directory: ~/marc_liberation
 
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: cimg/ruby:2.7-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -79,15 +84,15 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v3-marc_liberation-
+            - v4-marc_liberation-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -98,7 +103,7 @@ jobs:
     working_directory: ~/marc_liberation
 
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: cimg/ruby:2.7-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -111,7 +116,7 @@ jobs:
           POSTGRES_HOST_AUTH_METHOD: trust
       - image: redis:4.0.9-alpine
 
-    steps:
+    steps: &test_steps
       - checkout
       - run:
           name: Install node@lts/erbium (need right version for `yarn`)
@@ -126,12 +131,17 @@ jobs:
       - run:
           name: Check current version of node
           command: node -v
+      - run:
+          name: Setup Chrome
+          command: |
+            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo apt install ./google-chrome-stable_current_amd64.deb
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v3-marc_liberation-
+            - v4-marc_liberation-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -139,7 +149,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -173,7 +183,7 @@ jobs:
     working_directory: ~/marc_liberation
 
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: cimg/ruby:2.7-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -183,15 +193,15 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v3-marc_liberation-
+            - v4-marc_liberation-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v3-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -206,7 +216,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: circleci/ruby:2.6-node-browsers
+      - image: cimg/ruby:2.7-browsers
     steps:
       - checkout
       - run: gem install bundler -v '~> 2.0'
@@ -218,6 +228,25 @@ jobs:
           name: Rspec
           working_directory: ~/marc_liberation/webhook_monitor/src/
           command: bundle exec rspec spec
+  
+  # test that ruby 2.6 is still passing the tests.
+  test_2_6:
+    working_directory: ~/marc_liberation
+
+    docker:
+      - image: circleci/ruby:2.6-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bibdata
+          SOLR_URL: http://127.0.0.1:8983/solr/marc-liberation-core-test
+      - image: postgres:10.6-alpine
+        environment:
+          POSTGRES_USER: bibdata
+          POSTGRES_DB: marc_liberation_test
+          POSTGRES_HOST_AUTH_METHOD: trust
+      - image: redis:4.0.9-alpine
+    steps: *test_steps
 
 workflows:
   version: 2
@@ -230,7 +259,9 @@ workflows:
       - test:
           requires:
             - build
+      - test_2_6
       - doc:
           requires:
             - build
       - build_and_test_webhook
+

@@ -48,7 +48,7 @@ RSpec.describe ScsbMailer, type: :mailer do
       }.with_indifferent_access
     end
     let(:mail) do
-      ScsbMailer.send("request_email", args).deliver_now
+      described_class.send("request_email", args).deliver_now
     end
 
     it "renders the headers" do
@@ -115,7 +115,7 @@ RSpec.describe ScsbMailer, type: :mailer do
     end
 
     let(:mail) do
-      ScsbMailer.send("error_email", args).deliver_now
+      described_class.send("error_email", args).deliver_now
     end
 
     it "renders the headers" do
@@ -176,7 +176,7 @@ RSpec.describe ScsbMailer, type: :mailer do
       }.with_indifferent_access
     end
     let(:mail) do
-      ScsbMailer.send("edd_email", args).deliver_now
+      described_class.send("edd_email", args).deliver_now
     end
 
     it "renders the headers" do
@@ -239,7 +239,7 @@ RSpec.describe ScsbMailer, type: :mailer do
       }.with_indifferent_access
     end
     let(:mail) do
-      ScsbMailer.send("recall_email", args).deliver_now
+      described_class.send("recall_email", args).deliver_now
     end
 
     it "renders the headers" do

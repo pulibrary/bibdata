@@ -34,7 +34,7 @@ module IndexFunctions
         next unless df.recap_record_type?
         DumpFileIndexJob.perform_async(df.id, solr_url)
       end
-      solr.delete_by_id(dump.delete_ids) unless dump.delete_ids.blank?
+      solr.delete_by_id(dump.delete_ids) if dump.delete_ids.present?
     end
     solr.commit
   end

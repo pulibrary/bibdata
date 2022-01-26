@@ -6,7 +6,7 @@ end
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
-gem 'bixby', '~> 2.0'
+gem 'bixby', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rails-console', require: false
@@ -26,7 +26,7 @@ gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
 gem 'lcsort'
 gem 'library_stdnums'
-gem 'lightly'
+gem 'lightly', '~> 0.2.1'
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.2.3'
@@ -63,7 +63,7 @@ gem 'yaml_db', '~> 0.7.0'
 gem 'yard'
 
 group :development do
-  gem 'spring'
+  # gem 'spring'
 end
 
 group :development, :test do
