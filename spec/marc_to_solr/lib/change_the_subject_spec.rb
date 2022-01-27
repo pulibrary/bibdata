@@ -7,10 +7,22 @@ require 'rails_helper'
 # to update them at index time to preferred terms.
 RSpec.describe ChangeTheSubject do
   context "a replaced term" do
-    let(:subject_term) { "Illegal aliens" }
-
     it "suggests a replacement" do
-      expect(described_class.check_for_replacement(subject_term)).to eq "Undocumented immigrants"
+      expect(described_class.check_for_replacement("Illegal aliens")).to eq "Undocumented immigrants"
+      expect(described_class.check_for_replacement("Alien criminals")).to eq "Noncitizen criminals"
+      expect(described_class.check_for_replacement("Aliens")).to eq "Noncitizens"
+      expect(described_class.check_for_replacement("Aliens in art")).to eq "Noncitizens in art"
+      expect(described_class.check_for_replacement("Aliens in literature")).to eq "Noncitizens in literature"
+      expect(described_class.check_for_replacement("Aliens in mass media")).to eq "Noncitizens in mass media"
+      expect(described_class.check_for_replacement("Church work with aliens")).to eq "Church work with noncitizens"
+      expect(described_class.check_for_replacement("Officials and employees, Alien")).to eq "Officials and employees, Noncitizen"
+      expect(described_class.check_for_replacement("Aliens (Greek law)")).to eq "Noncitizens (Greek law)"
+      expect(described_class.check_for_replacement("Aliens (Roman law)")).to eq "Noncitizens (Roman law)"
+      expect(described_class.check_for_replacement("Child slaves")).to eq "Enslaved children"
+      expect(described_class.check_for_replacement("Indian slaves")).to eq "Enslaved indigenous peoples"
+      expect(described_class.check_for_replacement("Older slaves")).to eq "Enslaved older people"
+      expect(described_class.check_for_replacement("Slaves")).to eq "Enslaved persons"
+      expect(described_class.check_for_replacement("Women slaves")).to eq "Enslaved women"
     end
   end
 

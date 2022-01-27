@@ -12,7 +12,8 @@ default: &default
 
 development:
   <<: *default
-  database: marc_liberation_dev
+  # database: marc_liberation_dev
+  database: marc_liberation_alma_dev
   pool: 5
 
 test:
