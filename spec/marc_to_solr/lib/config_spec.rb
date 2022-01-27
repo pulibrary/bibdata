@@ -53,6 +53,7 @@ describe 'From traject_config.rb' do
     @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
     @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
     @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
+    @holding_no_items = @indexer.map_record(fixture_record('99125441441106421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -548,6 +549,12 @@ describe 'From traject_config.rb' do
       expect(@holdings_v2["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
       expect(@holdings_v2["lewis$res"]["items"][1]["id"]).to eq '23888873500006421'
       expect(@holdings_v2["lewis$res"]["items"][2]["id"]).to eq '23998873500006421'
+    end
+    it "indexes the permanent holding when there are no items (876)" do
+      @holdings = JSON.parse(@holding_no_items["holdings_1display"][0])
+      expect(@holdings['22537847690006421']['location_code']).to eq 'rare$ex'
+      expect(@holdings['22537847690006421']['call_number_browse']).to eq '3400.899'
+      expect(@holdings['22537847690006421']['items']).to be_falsey
     end
   end
   # PASSES REFACTORING
