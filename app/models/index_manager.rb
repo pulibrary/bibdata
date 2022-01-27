@@ -89,7 +89,12 @@ class IndexManager < ActiveRecord::Base
   end
 
   def next_incremental
-    Dump.changed_records.joins(:event).where("events.start": last_dump_completed.event.start..Float::INFINITY).where.not(id: last_dump_completed.id).order("events.start" => "ASC").first
+    incremental_dump = Dump.changed_records.joins(:event).where("events.start": last_dump_completed.event.start..Float::INFINITY).where.not(id: last_dump_completed.id).order("events.start" => "ASC").first
+    if incremental_dump&.dump_files&.empty?
+      self.last_dump_completed = incremental_dump
+      incremental_dump = next_incremental
+    end
+    incremental_dump
   end
 
   class Workflow

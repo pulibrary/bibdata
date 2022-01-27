@@ -104,6 +104,9 @@ RSpec.describe IndexManager, type: :model do
       pre_pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: Time.current - 2.days, finish: Time.current - 2.days + 100)
       pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: Time.current - 2.days, finish: Time.current - 2.days + 100)
       full_event = FactoryBot.create(:full_dump_event, start: Time.current - 1.day, finish: Time.current - 1.day + 100)
+      # This should get skipped on the third call because events with no files just get skipped
+      skipped_incremental_event = FactoryBot.create(:incremental_dump_event, start: Time.current - 5.hours, finish: Time.current - 4.hours,
+                                                                             dump: FactoryBot.create(:incremental_dump, dump_files: []))
       # This should get run on the third call
       incremental_event = FactoryBot.create(:incremental_dump_event, start: Time.current - 4.hours, finish: Time.current - 3.hours)
       # Incremental that isn't run yet, but would eventually.
