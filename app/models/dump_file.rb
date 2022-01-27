@@ -4,7 +4,7 @@ require 'digest'
 class DumpFile < ActiveRecord::Base
   belongs_to :dump
   belongs_to :dump_file_type
-  enum index_status: [:enqueued, :started, :done]
+  enum index_status: { enqueued: 0, started: 1, done: 2 }
 
   after_create do
     self.path = generate_fp if path.nil?

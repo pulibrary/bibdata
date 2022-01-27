@@ -1,4 +1,4 @@
-class ScsbImportJob < ActiveJob::Base
+class ScsbImportJob < ApplicationJob
   include Scsb
   queue_as :default
 

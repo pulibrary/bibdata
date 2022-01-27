@@ -29,7 +29,7 @@ RSpec.describe IndexManager, type: :model do
     it "wipes solr and queues up a full reindex into it" do
       full_event = FactoryBot.create(:full_dump_event)
       incremental_event = FactoryBot.create(:incremental_dump_event)
-      existing_index_manager = IndexManager.for(solr_url)
+      existing_index_manager = described_class.for(solr_url)
       existing_index_manager.last_dump_completed = incremental_event.dump
       existing_index_manager.save
       solr.add(id: "should_be_deleted")

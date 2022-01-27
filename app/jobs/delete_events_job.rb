@@ -1,4 +1,4 @@
-class DeleteEventsJob < ActiveJob::Base
+class DeleteEventsJob < ApplicationJob
   # @param dump_type [String] the dump type of the dumps you want to clean up
   # @param older_than [int] the Time before which dumps should be deleted, serialized as an integer
   def perform(dump_type:, older_than:)

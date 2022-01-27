@@ -29,7 +29,7 @@ class ElectronicAccessLinkFactory
     subfield_values = subfield_values.empty? ? [{}] : subfield_values
     output = subfield_values.reduce(:merge)
 
-    anchor_texts = subfield_values.map { |subfield_value| subfield_value[:anchor_text] }.reject { |subfield_value| subfield_value.nil? || subfield_value.empty? }
+    anchor_texts = subfield_values.map { |subfield_value| subfield_value[:anchor_text] }.reject(&:blank?)
     output[:anchor_text] = anchor_texts.reduce { |u, v| u + "#{u}: #{v}" } unless anchor_texts.empty?
 
     output

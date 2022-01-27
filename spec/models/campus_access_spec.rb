@@ -44,36 +44,36 @@ RSpec.describe CampusAccess, type: :model do
 
   describe "#load_access" do
     it "loads the database with the xslx, trained file and additional ids override while removing existing rows" do
-      CampusAccess.create(uid: 'abc123')
+      described_class.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       trained_file = File.expand_path("../../fixtures/access_learn.xlsx", __FILE__)
       described_class.load_access(f, trained_file: trained_file, additional_ids: ['learn4'])
-      expect(CampusAccess.count).to eq(8)
-      expect(CampusAccess.all.map { |access| [access.uid, access.category, access.employee_id] }).to contain_exactly(["test1", "full", '010001112'], ["test2", "full", '010001111'], ["test3", "full", '010001113'], ["test6", "full", '010001116'], ["test5", "full", '010001115'], ["learn1", "trained", '999999999'], ["learn2", "trained", '999999998'], ["learn4", "full", '999999996'])
+      expect(described_class.count).to eq(8)
+      expect(described_class.all.map { |access| [access.uid, access.category, access.employee_id] }).to contain_exactly(["test1", "full", '010001112'], ["test2", "full", '010001111'], ["test3", "full", '010001113'], ["test6", "full", '010001116'], ["test5", "full", '010001115'], ["learn1", "trained", '999999999'], ["learn2", "trained", '999999998'], ["learn4", "full", '999999996'])
     end
 
     it "loads the database with the xslx file and additional ids removing existing rows" do
-      CampusAccess.create(uid: 'abc123')
+      described_class.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       described_class.load_access(f, additional_ids: ['elephant1', 'dog2'])
-      expect(CampusAccess.count).to eq(7)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test5", "test6", 'elephant1', 'dog2')
+      expect(described_class.count).to eq(7)
+      expect(described_class.all.map(&:uid)).to contain_exactly("test1", "test2", "test3", "test5", "test6", 'elephant1', 'dog2')
     end
 
     it "leaves the database alone if the file does not exist and no ids are given" do
-      CampusAccess.create(uid: 'abc123')
+      described_class.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access2.xlsx", __FILE__)
       described_class.load_access(f)
-      expect(CampusAccess.count).to eq(1)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("abc123")
+      expect(described_class.count).to eq(1)
+      expect(described_class.all.map(&:uid)).to contain_exactly("abc123")
     end
 
     it "loads additional is only if the file does not exist" do
-      CampusAccess.create(uid: 'abc123')
+      described_class.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access2.xlsx", __FILE__)
       described_class.load_access(f, additional_ids: ['elephant1', 'dog2'])
-      expect(CampusAccess.count).to eq(3)
-      expect(CampusAccess.all.map(&:uid)).to contain_exactly("abc123", 'elephant1', 'dog2')
+      expect(described_class.count).to eq(3)
+      expect(described_class.all.map(&:uid)).to contain_exactly("abc123", 'elephant1', 'dog2')
     end
   end
 end

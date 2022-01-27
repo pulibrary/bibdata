@@ -95,9 +95,9 @@ class AugmentTheSubject
     subfield_z = Set.new
     File.foreach(LCSH_TERMS_FILE) do |lcsh_term|
       subfield_a << lcsh_term.chomp.split('ǂ').first.strip
-      subfield_x << lcsh_term.chomp.split("ǂx").last.strip.split("ǂ").first.strip if lcsh_term =~ /ǂx/
-      subfield_y << lcsh_term.chomp.split("ǂy").last.strip.split("ǂ").first.strip if lcsh_term =~ /ǂy/
-      subfield_z << lcsh_term.chomp.split("ǂz").last.strip.split("ǂ").first.strip if lcsh_term =~ /ǂz/
+      subfield_x << lcsh_term.chomp.split("ǂx").last.strip.split("ǂ").first.strip if /ǂx/.match?(lcsh_term)
+      subfield_y << lcsh_term.chomp.split("ǂy").last.strip.split("ǂ").first.strip if /ǂy/.match?(lcsh_term)
+      subfield_z << lcsh_term.chomp.split("ǂz").last.strip.split("ǂ").first.strip if /ǂz/.match?(lcsh_term)
     end
     output = {}
     output[:a] = subfield_a.sort

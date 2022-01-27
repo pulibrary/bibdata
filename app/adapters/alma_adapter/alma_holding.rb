@@ -25,7 +25,7 @@ class AlmaAdapter
     end
 
     def prepend_holding_id(fields)
-      return unless fields.present?
+      return if fields.blank?
       fields.map do |field|
         field.tap do |f|
           f.subfields.unshift(MARC::Subfield.new('0', holding_id))

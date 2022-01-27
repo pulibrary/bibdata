@@ -15,7 +15,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         redirect_to action: :bib, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
       end
     else
-      render plain: "Record please supply a bib id", status: 404
+      render plain: "Record please supply a bib id", status: :not_found
     end
   end
 
@@ -55,7 +55,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         wants.json { render json: availability, status: availability.nil? ? 404 : 200 }
       end
     else
-      render plain: "Please supply a bib id and a holding id", status: 404
+      render plain: "Please supply a bib id and a holding id", status: :not_found
     end
   rescue => e
     handle_alma_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
@@ -77,7 +77,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
 
     if records.nil?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+      render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
       Rails.logger.error "Record #{params[:bib_id]} not found or suppressed"
     else
       respond_to do |wants|
@@ -102,7 +102,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     }
     records = adapter.get_bib_record(bib_id_param)
     if records.nil?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+      render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
       solr_doc = indexer.map_record(records)
       if format == :jsonld
@@ -124,7 +124,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   def bib_holdings
     records = adapter.get_holding_records(sanitize(params[:bib_id]))
     if records.empty?
-      render plain: "Record #{params[:bib_id]} not found or suppressed", status: 404
+      render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
       respond_to do |wants|
         wants.json  do
@@ -171,7 +171,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   private
 
     def render_not_found(id)
-      render plain: "Record #{id} not found or suppressed", status: 404
+      render plain: "Record #{id} not found or suppressed", status: :not_found
     end
 
     # Construct or access the indexing service
@@ -185,7 +185,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     # Ensure that the client is authenticated and the user is a catalog administrator
     def protect
       if user_signed_in?
-        render plain: "You are unauthorized", status: 403 if !current_user.catalog_admin?
+        render plain: "You are unauthorized", status: :forbidden if !current_user.catalog_admin?
       else
         redirect_to user_cas_omniauth_authorize_path
       end
@@ -260,7 +260,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
 
     def sortable_call_number(call_no)
-      return call_no unless call_no =~ /^[A-Za-z]/
+      return call_no unless /^[A-Za-z]/.match?(call_no)
       call_no = make_sortable_call_number(call_no)
       lsort_result = Lcsort.normalize(call_no)
       return lsort_result.gsub('..', '.') unless lsort_result.nil?

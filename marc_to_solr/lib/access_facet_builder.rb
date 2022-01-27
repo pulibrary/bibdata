@@ -43,7 +43,7 @@ class AccessFacetBuilder
     end
 
     def hathi_locations
-      return [] unless context.output_hash['hathi_identifier_s'].present?
+      return [] if context.output_hash['hathi_identifier_s'].blank?
       hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
       parse_locations_from_hathi_line(hathi_line)
     end

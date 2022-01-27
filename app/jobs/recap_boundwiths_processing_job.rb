@@ -7,7 +7,7 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
 
     # Extract boundwith from all dump files, process, and save in temp file
     process_boundwiths
-    return unless boundwith_records.present?
+    return if boundwith_records.blank?
     # Transfer it to S3.
     return tempfile.path if RecapTransferService.transfer(file_path: tempfile.path)
     raise(StandardError, "Error uploading file to S3: #{tempfile.path}")

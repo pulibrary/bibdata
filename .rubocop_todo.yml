@@ -38,7 +38,7 @@ Lint/RescueException:
 
 # Offense count: 2
 # Cop supports --auto-correct.
-Lint/StringConversionInInterpolation:
+Lint/RedundantStringCoercion:
   Exclude:
     - 'app/models/concerns/file_path_generator.rb'
     - 'marc_to_solr/lib/uri_ark.rb'
@@ -94,7 +94,7 @@ Metrics/CyclomaticComplexity:
 # Offense count: 17
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
 # URISchemes: http, https
-Metrics/LineLength:
+Layout:
   Max: 1027
 
 # Offense count: 35
@@ -509,7 +509,7 @@ Style/UnlessElse:
 
 # Offense count: 5
 # Cop supports --auto-correct.
-Style/UnneededInterpolation:
+Style/RedundantInterpolation:
   Exclude:
     - 'app/models/concerns/file_path_generator.rb'
     - 'lib/tasks/orangeindex.rake'

@@ -1,4 +1,4 @@
-class ScsbRequestJob < ActiveJob::Base
+class ScsbRequestJob < ApplicationJob
   include Scsb
   queue_as :scsb_request
 

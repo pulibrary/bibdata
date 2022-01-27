@@ -44,7 +44,9 @@ class LocationDataService
             location_record.always_requestable = holding_location_record['always_requestable']
             location_record.circulates = holding_location_record['circulates']
             location_record.open = holding_location_record['open']
-            location_record.holding_library_id = holding_library_id(holding_location_record["holding_library"]["code"]) if holding_location_record.present? && holding_location_record["holding_library"].present?
+            if holding_location_record.present? && holding_location_record["holding_library"].present?
+              location_record.holding_library_id = holding_library_id(holding_location_record["holding_library"]["code"])
+            end
           end
           location_record.library = library_record
           location_record.save
@@ -113,7 +115,9 @@ class LocationDataService
   def set_holding_delivery_locations
     HoldingLocation.all.each do |location_record|
       holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == location_record.code }
-      location_record.delivery_location_ids = delivery_library_ids(holding_location_record["delivery_locations"]) if holding_location_record.present? && holding_location_record["delivery_locations"].present?
+      if holding_location_record.present? && holding_location_record["delivery_locations"].present?
+        location_record.delivery_location_ids = delivery_library_ids(holding_location_record["delivery_locations"])
+      end
     end
   end
 

@@ -1,4 +1,4 @@
-class ScsbImportFullJob < ActiveJob::Base
+class ScsbImportFullJob < ApplicationJob
   def perform
     Event.record do |event|
       event.dump = created_dump

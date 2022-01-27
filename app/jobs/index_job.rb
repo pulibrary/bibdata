@@ -1,5 +1,5 @@
 # Class for Traject indexing job
-class IndexJob < ActiveJob::Base
+class IndexJob < ApplicationJob
   queue_as :default
   after_perform :after_cleanup
   attr_reader :pid, :output, :errors, :status

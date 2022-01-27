@@ -1,4 +1,4 @@
-class ScsbExportJob < ActiveJob::Base
+class ScsbExportJob < ApplicationJob
   include Scsb
   queue_as :scsb_export
 

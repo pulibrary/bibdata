@@ -2,7 +2,7 @@ require 'net/sftp'
 
 # Downloads the files from the sftp server and attaches them to Event, Dump,
 # DumpFile objects. Kicks off further processing if neccessary
-class AlmaDumpTransferJob < ActiveJob::Base
+class AlmaDumpTransferJob < ApplicationJob
   queue_as :default
 
   def perform(dump:, job_id:)

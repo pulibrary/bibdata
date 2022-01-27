@@ -192,7 +192,7 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "deletes existing data and populates library and location data from Alma excluding elfs" do
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
       library_record = Library.find_by(code: 'arch')
       location_record1 = HoldingLocation.find_by(code: 'arch$stacks')
       location_record2 = HoldingLocation.find_by(code: 'annex$stacks')
@@ -242,7 +242,7 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "Locations with fulfillment_unit: Reserves are not requestable" do
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
       location_record12 = HoldingLocation.find_by(code: 'arch$res3hr')
       location_record13 = HoldingLocation.find_by(code: 'eastasian$reserve')
 
@@ -253,7 +253,7 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "creates scsb locations" do
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
       scsbnypl_record = HoldingLocation.find_by(code: 'scsbnypl')
       scsbhl_record = HoldingLocation.find_by(code: 'scsbhl')
       scsbcul_record = HoldingLocation.find_by(code: 'scsbcul')
@@ -275,14 +275,14 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "deletes existing delivery locations table and populates new from json file" do
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
       library_record = Library.find_by(code: 'annex')
     end
 
     it "sets a static ID" do
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
       # Run a second time to ensure idempotency.
-      LocationDataService.delete_existing_and_repopulate
+      described_class.delete_existing_and_repopulate
 
       location = DeliveryLocation.find_by(gfa_pickup: "PW")
 
@@ -294,7 +294,7 @@ RSpec.describe LocationDataService, type: :service do
 
     describe "new recap locations" do
       before do
-        LocationDataService.delete_existing_and_repopulate
+        described_class.delete_existing_and_repopulate
       end
       it "they have recap_edd true and holding_library same as library" do
         location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')

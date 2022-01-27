@@ -15,7 +15,7 @@ class ArkResolver
   private
 
     def initial_result
-      return unless ark.present?
+      return if ark.blank?
       @initial_result ||= Faraday.head(ark)
     end
 
