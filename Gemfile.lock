@@ -145,6 +145,8 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (1.6.0)
       capistrano (~> 3.1)
+    capistrano-passenger (0.2.1)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.8)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -564,6 +566,7 @@ DEPENDENCIES
   aws-sdk-sqs
   bixby (~> 3.0)
   bootstrap-sass (~> 3.4.1)
+  capistrano-passenger
   capistrano-rails (~> 1.1.1)
   capistrano-rails-console
   capybara
@@ -635,4 +638,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.2.16
+   2.2.27

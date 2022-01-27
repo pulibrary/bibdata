@@ -8,6 +8,7 @@ gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
 gem 'bixby', '~> 3.0'
 gem 'bootstrap-sass', '~> 3.4.1'
+gem 'capistrano-passenger'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'

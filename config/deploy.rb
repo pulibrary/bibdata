@@ -21,6 +21,8 @@ set :log_level, :debug
 
 set :ssh_options, { forward_agent: true }
 
+set :passenger_restart_with_touch, true
+
 # Default value for :pty is false
 # set :pty, true
 
