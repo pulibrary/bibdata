@@ -57,7 +57,7 @@ class ProcessHoldingsHelpers
   end
 
   # Select 876 fields (items) with current location. 876 location is NOT equal to the 852 permanent location.
-  def select_current_location_876(group_876_fields, field_852)
+  def select_temporary_location_876(group_876_fields, field_852)
     return [] if /^scsb/.match?(field_852['b'])
     group_876_fields.select { |field_876| current_location_code(field_876) != permanent_location_code(field_852) }
   end

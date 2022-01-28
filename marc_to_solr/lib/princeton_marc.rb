@@ -691,7 +691,7 @@ def process_holdings(record)
     group_876_fields = process_holdings_helpers.group_876_on_holding_perm_id(holding_id)
     group_866_867_868_fields = process_holdings_helpers.group_866_867_868_on_holding_perm_id(holding_id, field_852)
     permanent_location_876 = process_holdings_helpers.select_permanent_location_876(group_876_fields, field_852)
-    current_location_876 = process_holdings_helpers.select_current_location_876(group_876_fields, field_852)
+    temporary_location_876 = process_holdings_helpers.select_temporary_location_876(group_876_fields, field_852)
 
     # if there are items (876 fields)
     if group_876_fields.present?
@@ -702,7 +702,7 @@ def process_holdings(record)
         # Adds items in permanent location where the key is the holding_id from 852.
         process_holdings_helpers.holding_items(value: item[:holding_id], all_holdings: all_holdings, item: item)
       end
-      current_location_876.each do |field_876|
+      temporary_location_876.each do |field_876|
         item_current = {}
         holding_current = {}
         holding_current_id = process_holdings_helpers.current_location_code(field_876)

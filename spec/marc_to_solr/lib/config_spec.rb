@@ -53,7 +53,8 @@ describe 'From traject_config.rb' do
     @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
     @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
     @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
-    @holding_no_items = @indexer.map_record(fixture_record('99125441441106421'))
+    @holding_no_items = @indexer.map_record(fixture_record('99125441441106421')) # also if you want use 99106480053506421
+    @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -555,6 +556,9 @@ describe 'From traject_config.rb' do
       expect(@holdings['22537847690006421']['location_code']).to eq 'rare$ex'
       expect(@holdings['22537847690006421']['call_number_browse']).to eq '3400.899'
       expect(@holdings['22537847690006421']['items']).to be_falsey
+    end
+    it 'if there is no 852 it will have no holdings' do
+      expect(@electronic_no_852["holdings_1display"]).to be_falsey
     end
   end
   # PASSES REFACTORING

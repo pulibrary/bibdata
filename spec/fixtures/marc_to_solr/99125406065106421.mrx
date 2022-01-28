@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>02919nam a2200493Ii 4500</leader>
+    <controlfield tag="005">20211022111003.0</controlfield>
+    <controlfield tag="006">m     o  d        </controlfield>
+    <controlfield tag="007">cr |n|||||||||</controlfield>
+    <controlfield tag="008">211014s2020    ru acfh ob    001 0 rus d</controlfield>
+    <controlfield tag="001">99125406065106421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="z">9785446916375</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9785446916375</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1275786173</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1275786173</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1275786173</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1275786173</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">YUS</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="e">pn</subfield>
+      <subfield code="c">YUS</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-ur---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">BX491</subfield>
+      <subfield code="b">.V672 2020</subfield>
+    </datafield>
+    <datafield tag="066" ind1=" " ind2=" ">
+      <subfield code="c">(N</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Voront︠s︡ova, I. V.</subfield>
+      <subfield code="q">(Irina Vladimirovna),</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">Воронцова, И. В.</subfield>
+      <subfield code="q">(Ирина Владимировна),</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">"Zakoldovannyĭ krug russkogo soznanii︠a︡..." :</subfield>
+      <subfield code="b">problemy sot︠s︡ialʹno-religioznogo poiska v pravoslavnoĭ Rossii vtoroĭ poloviny XIX - nachala XX veka /</subfield>
+      <subfield code="c">I.V. Voront︠s︡ova.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">"Заколдованный круг русского сознания..." :</subfield>
+      <subfield code="b">проблемы социально-религиозного поиска в православной России второй половины XIX - начала XX века /</subfield>
+      <subfield code="c">И.В. Воронцова.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Problemy sot︠s︡ialʹno-religioznogo poiska v pravoslavnoĭ Rossii vtoroĭ poloviny XIX - nachala XX veka</subfield>
+    </datafield>
+    <datafield tag="880" ind1="3" ind2="0">
+      <subfield code="6">246-03</subfield>
+      <subfield code="a">Проблемы социально-религиозного поиска в православной России второй половины XIX - начала XX века</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Moskva ;</subfield>
+      <subfield code="a">Sankt-Peterburg :</subfield>
+      <subfield code="b">Nestor-Istorii︠a︡,</subfield>
+      <subfield code="c">2020.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="1">
+      <subfield code="6">264-04</subfield>
+      <subfield code="a">Москва ;</subfield>
+      <subfield code="a">Санкт-Петербург :</subfield>
+      <subfield code="b">Нестор-История,</subfield>
+      <subfield code="c">2020.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 online resource (933 pages, 16 unnumbered pages of plates ) :</subfield>
+      <subfield code="b">illustrations, portraits, facsimiles</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (pages 781-831) and index.</subfield>
+    </datafield>
+    <datafield tag="533" ind1=" " ind2=" ">
+      <subfield code="a">Digitized version.</subfield>
+      <subfield code="b">Saint Petersburg :</subfield>
+      <subfield code="c">Nestor-Istorii︠a︡,</subfield>
+      <subfield code="d">2020.</subfield>
+    </datafield>
+    <datafield tag="588" ind1="0" ind2=" ">
+      <subfield code="a">Online resource; title from digital title page (East View, viewed October 10, 2021).</subfield>
+    </datafield>
+    <datafield tag="610" ind1="2" ind2="0">
+      <subfield code="a">Russkai︠a︡ pravoslavnai︠a︡ t︠s︡erkovʹ</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield tag="610" ind1="2" ind2="0">
+      <subfield code="a">Russkai︠a︡ pravoslavnai︠a︡ t︠s︡erkovʹ</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">19th century.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Philosophy and religion</subfield>
+      <subfield code="z">Russia</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Christian philosophy</subfield>
+      <subfield code="z">Russia</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Christianity</subfield>
+      <subfield code="z">Russia</subfield>
+      <subfield code="x">Western influences.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Christian philosophy</subfield>
+      <subfield code="z">Russia</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">19th century.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Philosophy and religion</subfield>
+      <subfield code="z">Russia</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">19th century.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Philosophy, Russian</subfield>
+      <subfield code="y">20th century.</subfield>
+    </datafield>
+    <datafield tag="776" ind1="0" ind2="8">
+      <subfield code="i">Print version:</subfield>
+      <subfield code="z">9785446916375</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9785446916375</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="0">
+      <subfield code="u">https://dlib.eastview.com/browse/book/221186</subfield>
+    </datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <subfield code="d">606491</subfield>
+      <subfield code="e">6669</subfield>
+      <subfield code="f">F1301mon</subfield>
+      <subfield code="g">MNUEAST</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">1342565BO</subfield>
+      <subfield code="b">34.00</subfield>
+      <subfield code="e">28.90</subfield>
+      <subfield code="f">20041996</subfield>
+      <subfield code="g">1</subfield>
+      <subfield code="z">20211006</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2022-01-07 17:01:49 US/Eastern</subfield>
+      <subfield code="b">2022-01-07 17:01:57 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2022-01-07 17:04:45 US/Eastern</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2022-01-07 17:04:45 US/Eastern</subfield>
+      <subfield code="x">https://na05-psb.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53911892230006421&amp;Force_direct=true</subfield>
+      <subfield code="s">Acquisition (PO line POL-12713)</subfield>
+      <subfield code="0">53911892230006421</subfield>
+      <subfield code="w">2022-01-07 22:04:45</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61911877730006421</subfield>
+      <subfield code="n">Eastview Slavic </subfield>
+      <subfield code="b">static</subfield>
+      <subfield code="q">POL-12713</subfield>
+      <subfield code="1">62911877720006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125406065106421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53911892230006421</subfield>
+    </datafield>
+  </record>
+</collection>
