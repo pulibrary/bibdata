@@ -55,6 +55,7 @@ describe 'From traject_config.rb' do
     @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
     @holding_no_items = @indexer.map_record(fixture_record('99125441441106421')) # also if you want use 99106480053506421
     @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
+    @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
     ENV['RUN_HATHI_COMPARE'] = 'true'
     @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
     ENV['RUN_HATHI_COMPARE'] = ''
@@ -541,7 +542,7 @@ describe 'From traject_config.rb' do
       expect(@holdings["lewis$res"]["items"].count).to eq 1
       expect(@holdings["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
       expect(@holdings["lewis$res"]["items"][0]["holding_id"]).to eq '22745884920006421'
-      ## custom fixture @record_temporary_location_v2 with permannent and temporary locations
+      ## custom fixture @record_temporary_location_v2 with permanent and temporary locations
       @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
       expect(@holdings_v2["22745884920006421"]["items"].count).to eq 2
       expect(@holdings_v2["22745884920006421"]["items"][0]["id"]).to eq '23745884910006421'
@@ -559,6 +560,14 @@ describe 'From traject_config.rb' do
     end
     it 'if there is no 852 it will have no holdings' do
       expect(@electronic_no_852["holdings_1display"]).to be_falsey
+    end
+    it 'indexes holdings with items' do
+      @holdings = JSON.parse(@holdings_with_and_no_items['holdings_1display'][0])
+      expect(@holdings['22543249620006421']['items'].count).to eq 1
+      expect(@holdings['22543249680006421']['items'].count).to eq 1
+      expect(@holdings['lewis$res']['items'].count).to eq 4
+      expect(@holdings['22543249700006421']).to be_falsey # items from this holding are in the temporary location lews$res
+      expect(@holdings['22543249720006421']).to be_falsey # items from this holding are in the temporary location lews$res
     end
   end
   # PASSES REFACTORING

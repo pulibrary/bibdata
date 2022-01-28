@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<record>
+  <leader>03109cam a2200469 i 4500</leader>
+  <controlfield tag="005">20210222083940.0</controlfield>
+  <controlfield tag="008">200122t20202020nyua     b    001 0 eng d</controlfield>
+  <controlfield tag="001">99122643653506421</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2019948195</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1137233012</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1137233012</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)1137233012</subfield>
+    <subfield code="z">(OCoLC)1201220117</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1137233012</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1201220117</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)12264365-princetondb</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="z">(OCoLC)1201220117</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/1201220117</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">QGY</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">QGY</subfield>
+    <subfield code="d">NJM</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">NZTOI</subfield>
+    <subfield code="d">NGU</subfield>
+    <subfield code="d">HUA</subfield>
+    <subfield code="d">CUV</subfield>
+    <subfield code="d">OCLCO</subfield>
+  </datafield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">1201220117</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781319184568</subfield>
+    <subfield code="q">(hardback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781319184568</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1319184561</subfield>
+    <subfield code="q">(hardback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1319184561</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781319324483</subfield>
+    <subfield code="q">(hardback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781319324483</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1319324487</subfield>
+    <subfield code="q">(hardback)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/1319324487</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781319269005</subfield>
+    <subfield code="q">(loose leaf)</subfield>
+    <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9781319269005</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">HQ767.9</subfield>
+    <subfield code="b">.S534 2020</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">305.231</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Siegler, Robert S.</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78049824</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78049824</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">How children develop /</subfield>
+    <subfield code="c">Robert Siegler, Elizabeth T. Gershoff, Jenny R. Saffran, Nancy Eisenberg and Campbell Leaper.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">Sixth edition</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">New York, New York :</subfield>
+    <subfield code="b">Worth Publishers, Macmillan Learning,</subfield>
+    <subfield code="c">[2020]</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="4">
+    <subfield code="c">&#xA9;2020</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xxx, 601, G-10, R-68, NI-26, SI-28 :</subfield>
+    <subfield code="b">illustrations (chiefly color) ;</subfield>
+    <subfield code="c">29 cm</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Glossary = page G-1 through page G-10. References = page R-1 through page R-68. Name Index = page NI-1 through page NI-26. Subject Index = page SI-1 through page SI-28.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references and indexes.</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Preface -- Chapter 1. An introduction to child development -- Chapter 2. Prenatal development and the newborn period -- Chapter 3. Biology and behavior -- Chapter 4. Theories of cognitive development -- Chapter 5. Perception, action, and learning in infancy -- Chapter 6. Development of language and symbol use -- Chapter 7. Conceptual development -- Chapter 8. Intelligence and academic achievement -- Chapter 9. Theories of social development -- Chapter 10. Emotional development -- Chapter 11. Attachment to others and development of the self -- Chapter 12. The family -- Chapter 13. Peer relationships -- Chapter 14. Moral development -- Chapter 15. Gender development -- 16. Conclusions -- Glossary -- References -- Name index -- Subject index.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">"This hugely popular textbook has established itself as the topically organized textbook teachers and researchers trust for the most up-to-date perspectives on child and adolescent development. The authors, each a well-known scientist and educator, have earned that trust by introducing core concepts and impactful discoveries with an unparalleled integration of theory, cultural research, and applications. All this is delivered in a style that is authoritative yet immediately understandable and relevant." -- provided by publisher.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Child development.</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst00854393</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85023357</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Child development.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00854393</subfield>
+    <subfield code="0">(uri) http://id.worldcat.org/fast/fst00854393</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85023357</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Textbooks.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026191</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Gershoff, Elizabeth T.,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2013033943</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2013033943</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Saffran, Jenny,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n2014055756</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n2014055756</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Eisenberg, Nancy,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n82014559</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n82014559</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Leaper, Campbell,</subfield>
+    <subfield code="d">1955-</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n89654421</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n89654421</subfield>
+  </datafield>
+  <datafield tag="904" ind1=" " ind2=" ">
+    <subfield code="a">nk</subfield>
+    <subfield code="b">o</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20210202</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="a">dls</subfield>
+    <subfield code="b">l</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20210205</subfield>
+  </datafield>
+  <datafield tag="969" ind1=" " ind2=" ">
+    <subfield code="a">ON RESERVE</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-08-03 15:06:02 US/Eastern</subfield>
+    <subfield code="b">2021-07-12 14:11:28 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249720006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249720006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249640006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249640006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249620006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249620006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249660006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249660006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249680006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249680006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">lewis</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">HQ767.9</subfield>
+    <subfield code="i">.S534 2020</subfield>
+    <subfield code="8">22543249700006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 18:11:28</subfield>
+    <subfield code="8">22543249700006421</subfield>
+    <subfield code="b">Lewis Library</subfield>
+    <subfield code="c">Stacks: Lewis Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249620006421</subfield>
+    <subfield code="a">23543249610006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">stacks</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101092796752</subfield>
+    <subfield code="t">6</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249640006421</subfield>
+    <subfield code="a">23543249630006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">res</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101092796398</subfield>
+    <subfield code="t">4</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249700006421</subfield>
+    <subfield code="a">23543249690006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">res</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101102527726</subfield>
+    <subfield code="t">2</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249660006421</subfield>
+    <subfield code="a">23543249650006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">res</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101092796380</subfield>
+    <subfield code="t">3</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249680006421</subfield>
+    <subfield code="a">23543249670006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">stacks</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101112863095</subfield>
+    <subfield code="t">5</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22543249720006421</subfield>
+    <subfield code="a">23543249710006421</subfield>
+    <subfield code="j">0</subfield>
+    <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+    <subfield code="z">res</subfield>
+    <subfield code="d">2021-07-12 18:11:28</subfield>
+    <subfield code="p">32101112870454</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="y">lewis</subfield>
+  </datafield>
+</record>
