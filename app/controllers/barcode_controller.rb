@@ -19,7 +19,7 @@ class BarcodeController < ApplicationController
       adapter = AlmaAdapter.new
       item = adapter.item_by_barcode(barcode)
       mms_id = item["bib_data"]["mms_id"]
-      record = adapter.get_bib_record(mms_id)
+      record = adapter.get_bib_record(mms_id, suppressed: false)
 
       # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
       if record.nil?

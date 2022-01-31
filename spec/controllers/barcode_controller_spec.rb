@@ -99,13 +99,17 @@ RSpec.describe BarcodeController, type: :controller do
         expect(response).to be_not_found
       end
     end
-    context "when the bib record linked to a barcode is supressed" do
-      it "returns a 404" do
+    context "when the bib record linked to a barcode is suppressed" do
+      it "returns a 200" do
         stub_alma_item_barcode(mms_id: "9958708973506421", item_id: "23178060180006421", holding_id: "22178060190006421", barcode: "32101076720315")
         stub_alma_ids(ids: "9958708973506421", status: 200, fixture: "9958708973506421")
+        stub_alma_holding(mms_id: "9958708973506421", holding_id: "22178060190006421")
         get :scsb, params: { barcode: "32101076720315" }, format: :xml
 
-        expect(response.status).to eq(404)
+        expect(response).to be_success
+        record = MARC::XMLReader.new(StringIO.new(response.body)).first
+        expect(record["001"].value).to eq "9958708973506421"
+        expect(record["876"]["0"]).to eq "22178060190006421" # Holding ID
       end
     end
 
