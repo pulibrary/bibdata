@@ -34,7 +34,7 @@ Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pull
 
 ## Solr Machines and Collections
 
-The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983 .
+The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3 and maxShardsPerNode of 2. The solr machines (lib-solr-prod4, lib-solr-prod5, and lib-solr-prod6) are behind the load balancer and applications should access them via http://lib-solr8-prod.princeton.edu:8983 .
 
 The collections `catalog-alma-production1` and `catalog-alma-production2` are swapped as needed and should be accessed via the aliases `catalog-alma-production` and `catalog-alma-production-rebuild`
 
