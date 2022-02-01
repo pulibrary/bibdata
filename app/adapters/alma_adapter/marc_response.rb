@@ -12,6 +12,10 @@ class AlmaAdapter
       marc_records.reject(&:suppressed?)
     end
 
+    def all_marc
+      marc_records
+    end
+
     private
 
       def marc_records

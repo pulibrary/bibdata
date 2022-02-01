@@ -12,17 +12,22 @@ class AlmaAdapter
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
   # get one bib record is supported in the bibdata UI and in the bibliographic_controller
   # @return [MARC::Record]
-  def get_bib_record(id)
-    get_bib_records([id])&.first
+  def get_bib_record(id, suppressed: true)
+    get_bib_records([id], suppressed: suppressed)&.first
   end
 
   # Get /almaws/v1/bibs Retrieve bibs
   # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
   # @return [Array<MARC::Record>]
-  def get_bib_records(ids)
+  def get_bib_records(ids, suppressed: true)
     bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    AlmaAdapter::MarcResponse.new(bibs: bibs).unsuppressed_marc
+    response = AlmaAdapter::MarcResponse.new(bibs: bibs)
+    if suppressed
+      response.unsuppressed_marc
+    else
+      response.all_marc
+    end
   rescue Alma::StandardError => client_error
     errors = build_alma_errors(from: client_error)
     raise errors.first if !errors.empty? && errors.first.is_a?(Alma::PerSecondThresholdError)
