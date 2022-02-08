@@ -174,7 +174,7 @@ class AlmaAdapter
     def group_designation
       return unless recap_item?
       case item.location
-      when 'pa', 'gp', 'qk', 'pf'
+      when 'pv', 'pa', 'gp', 'qk', 'pf'
         "Shared"
       when *(in_library_recap_groups + supervised_recap_groups + no_access_recap_groups)
         "Private"
@@ -193,7 +193,7 @@ class AlmaAdapter
     end
 
     def default_recap_groups
-      ["pa", "gp", "qk", "pf"]
+      ["pv", "pa", "gp", "qk", "pf"]
     end
 
     def in_library_recap_groups

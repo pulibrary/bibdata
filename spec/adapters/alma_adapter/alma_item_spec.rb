@@ -37,7 +37,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "#group_designation" do
-    ['pa', 'gp', 'qk', 'pf'].each do |code|
+    ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
       context "when location is #{code}" do
         it "returns Shared" do
           item = described_class.new(
