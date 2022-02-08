@@ -68,7 +68,7 @@ Go to the solr admin UI (see above).
 
 You can go to the bibdata UI Events page to see the most recent full record dump.
 
-SSH to a bibdata machine as deploy user
+SSH to a bibdata machine as deploy user (Find a worker machine in your environment https://github.com/pulibrary/bibdata/tree/main/config/deploy)
 
 ```
 $ cd /opt/marc_liberation/current
