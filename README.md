@@ -17,13 +17,18 @@ wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&t
 
 ### Dependencies
   * Postgresql (provided in development by lando)
+  * `brew install lastpass-cli`
   * `brew install shared-mime-info` (for `mimemagic` gem)
 
 Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
 ### Setup server
 1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
-1. Install Sidekiq Pro credentials: `bin/setup_keys`
+1. Install Sidekiq Pro credentials:
+```
+lpass login emailhere
+bin/setup_keys
+```
 1. To start: `bundle exec rake servers:start`
 1. For testing:
    - `bundle exec rspec`
@@ -36,9 +41,8 @@ Note: You need to have PostgreSQL installed in your machine and available in you
 
 ### Configure Alma keys for Development
 
-1. `brew install lastpass-cli`
-2. `lpass login emailhere`
-3. `bundle exec rake alma:setup_keys`
+1. `lpass login emailhere`
+1. `bundle exec rake alma:setup_keys`
 
 This will add a .env with credentials to Rails.root
 
