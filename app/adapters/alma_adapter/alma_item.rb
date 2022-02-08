@@ -176,7 +176,7 @@ class AlmaAdapter
       case item.location
       when 'pv', 'pa', 'gp', 'qk', 'pf'
         "Shared"
-      when *(in_library_recap_groups + supervised_recap_groups + no_access_recap_groups)
+      when *(in_library_recap_groups_and_private + supervised_recap_groups + no_access_recap_groups)
         "Private"
       end
     end
@@ -193,10 +193,18 @@ class AlmaAdapter
     end
 
     def default_recap_groups
-      ["pv", "pa", "gp", "qk", "pf"]
+      ["pa", "gp", "qk", "pf"]
     end
 
     def in_library_recap_groups
+      in_library_recap_groups_and_shared + in_library_recap_groups_and_private
+    end
+
+    def in_library_recap_groups_and_shared
+      ['pv']
+    end
+
+    def in_library_recap_groups_and_private
       ['pj', 'pk', 'pl', 'pm', 'pn', 'pt']
     end
 

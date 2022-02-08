@@ -73,6 +73,18 @@ RSpec.describe AlmaAdapter::AlmaItem do
         end
       end
     end
+    ["pv"].each do |code|
+      context "when location is #{code}" do
+        it "returns In Library Use" do
+          item = described_class.new(
+            build_item(code: code)
+          )
+
+          expect(item.recap_use_restriction).to eq "In Library Use"
+          expect(item.group_designation).to eq "Shared"
+        end
+      end
+    end
     ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx"].each do |code|
       context "when location is #{code}" do
         it "returns Supervised Use" do
