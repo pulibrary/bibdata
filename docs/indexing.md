@@ -53,6 +53,7 @@ You can select a collection and use the "query" menu option to check how many do
 ### Clear the rebuild collection
 
 ssh to an orangelight webserver and verify that the index in use is `catalog-alma-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
+webserver. You can find the webserver machine names in the capistrano environments in https://github.com/pulibrary/orangelight/tree/main/config/deploy
 
 Go to the solr admin UI (see above).
 
