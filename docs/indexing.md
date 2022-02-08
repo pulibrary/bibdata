@@ -72,7 +72,7 @@ SSH to a bibdata machine as deploy user
 
 ```
 $ cd /opt/marc_liberation/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake liberate:full
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
 ```
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
