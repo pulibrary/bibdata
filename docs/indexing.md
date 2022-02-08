@@ -66,7 +66,7 @@ Go to the solr admin UI (see above).
 
 #### Full dump
 
-You can go to the bibdata UI Events page to see the most recent full record dump.
+You can go to the bibdata UI Events page to see the most recent full record dump. (https://bibdata.princeton.edu/events) (Look for the most recent All Records to see what will be processed when you run the rake task)
 
 SSH to a bibdata machine as deploy user
 
