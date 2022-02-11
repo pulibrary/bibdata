@@ -146,14 +146,15 @@ class LocationDataService
       library.id if library.present?
     end
 
+    # adds firestone$ssrcfo and firestone$ssrcdc with requestable: false
     def update_holding_location_record
       location_code = ["firestone$ssrcfo", "firestone$ssrcdc"]
       location_code.each do |lc|
         holding_location_record = HoldingLocation.find_by(code: lc)
-        holding_location_record.open = "true"
-        holding_location_record.requestable = "false"
-        holding_location_record.always_requestable = "false"
-        holding_location_record.save
+        if holding_location_record.present?
+          holding_location_record.requestable = false
+          holding_location_record.save
+        end
       end
     end
 

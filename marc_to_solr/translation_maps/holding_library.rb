@@ -13,6 +13,7 @@
   "engineer$pt" => "ReCAP",
   "arch$pw" => "ReCAP",
   "marquand$pz" => "ReCAP",
+  "marquand$pv" => "ReCAP",
   "mendel$qk" => "ReCAP",
   "eastasian$ql" => "ReCAP",
   "rare$xc" => "ReCAP",

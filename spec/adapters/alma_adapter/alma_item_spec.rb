@@ -37,7 +37,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "#group_designation" do
-    ['pa', 'gp', 'qk', 'pf'].each do |code|
+    ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
       context "when location is #{code}" do
         it "returns Shared" do
           item = described_class.new(
@@ -70,6 +70,18 @@ RSpec.describe AlmaAdapter::AlmaItem do
 
           expect(item.recap_use_restriction).to eq "In Library Use"
           expect(item.group_designation).to eq "Private"
+        end
+      end
+    end
+    ["pv"].each do |code|
+      context "when location is #{code}" do
+        it "returns In Library Use" do
+          item = described_class.new(
+            build_item(code: code)
+          )
+
+          expect(item.recap_use_restriction).to eq "In Library Use"
+          expect(item.group_designation).to eq "Shared"
         end
       end
     end
