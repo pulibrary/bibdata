@@ -158,7 +158,7 @@ example: If the SCSB reindex started on '2021-10-15'. Set the TIMESTAMP= '2021-1
 SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
 ```
-TIMESTAMP="2021-10-15" SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake marc_liberation:partner_update
+TIMESTAMP="2021-10-15" SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake scsb:latest
 ```
 
 ### Hook up your dev instance to the new index to see how it looks
