@@ -36,6 +36,5 @@ module IndexFunctions
       end
       solr.delete_by_id(dump.delete_ids) if dump.delete_ids.present?
     end
-    solr.commit
   end
 end

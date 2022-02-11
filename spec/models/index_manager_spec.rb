@@ -46,7 +46,6 @@ RSpec.describe IndexManager, type: :model do
 
         run_all_callbacks
       end
-      solr.commit
 
       expect(DumpFileIndexJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
       expect(DumpFileIndexJob).to have_received(:perform_async).with(full_event.dump.dump_files.first.id, anything)
@@ -161,7 +160,6 @@ RSpec.describe IndexManager, type: :model do
         index_manager.index_remaining!
         run_all_callbacks
       end
-      solr.commit
 
       expect(DumpFileIndexJob).not_to have_received(:perform_async).with(pre_pre_incremental_event.dump.dump_files.first.id, anything)
       expect(DumpFileIndexJob).to have_received(:perform_async).with(pre_incremental_event.dump.dump_files.first.id, anything)
