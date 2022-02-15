@@ -38,11 +38,6 @@ every 1.day, at: "6:00am", roles: [:cron_production] do
   rake "marc_liberation:partner_update", output: "/tmp/cron_log.log"
 end
 
-# process the access file daily at 10:30am Eastern (the machine is in Z time, which is why this is 2pm)
-every 1.day, at: "2:30pm", roles: [:hr_cron] do
-  rake "campus_access:load", output: "/tmp/campus_access_log.log"
-end
-
 # delete old events, dumps, and files on disk
 every 1.week, roles: [:cron_staging, :cron_production] do
   rake "marc_liberation:delete:events"
