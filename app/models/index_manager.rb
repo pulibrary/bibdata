@@ -121,7 +121,7 @@ class IndexManager < ActiveRecord::Base
 
     def indexed_remaining(_status, options)
       index_manager = IndexManager.find(options['index_manager_id'])
-      RSolr.connect(url: index_manager.solr_collection).commit
+      # RSolr.connect(url: index_manager.solr_collection).commit
       index_manager.dump_in_progress = nil
       index_manager.in_progress = false
       index_manager.save
