@@ -230,6 +230,9 @@ describe 'From traject_config.rb' do
     it 'returns the enrichment call_number_display with k in front' do
       expect(@sample41['call_number_display']).to eq(["A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A GA 2015.00160"])
     end
+    it 'returns the call_number_browse_s for a SCSB record' do
+      expect(@scsb_nypl['call_number_display']).to contain_exactly("JSM 95-217", "JSM 95-216")
+    end
   end
 
   describe "call_number_browse field" do
@@ -242,16 +245,20 @@ describe 'From traject_config.rb' do
     end
     it "returns an array of call_number_browse_s values" do
       expect(@sample43['call_number_browse_s']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
-      expect(@sample44['call_number_browse_s']).to eq(["0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N"])
+      expect(@sample44['call_number_browse_s']).to contain_exactly("0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N")
     end
     it "skips indexing the field if subfields $h and $i and $k are missing" do
       expect(@record_call_number_nil['call_number_browse_s']).to be nil
     end
     it "doesnt have trailing spaces" do
-      expect(@record_call_number2['call_number_browse_s']).to eq(["CD- 50000"])
+      expect(@record_call_number2['call_number_browse_s']).to contain_exactly("CD- 50000")
     end
     it 'returns the enrichment call_number_browse with k at the end' do
-      expect(@sample41['call_number_browse_s']).to eq(["GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A"])
+      expect(@sample41['call_number_browse_s']).to contain_exactly("GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A")
+    end
+    it 'returns the call_number_browse_s for a SCSB record' do
+      expect(@scsb_nypl['call_number_browse_s']).to contain_exactly("JSM 95-217", "JSM 95-216")
+      expect(@scsb_nypl['call_number_display']).to contain_exactly("JSM 95-217", "JSM 95-216")
     end
   end
 
