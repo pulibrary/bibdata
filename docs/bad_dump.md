@@ -3,7 +3,7 @@
 1. `RAILS_ENV=production bundle exec rails c`
 1. Find the IndexManager instance that uses the solr production collection. Currenlty is:`catalog-alma-production`
 `index_manager_current = IndexManager.all.first`
-1. `index_manager_current.solr_collection` => `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production`
+`index_manager_current.solr_collection` => `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production`
 1. Set index_manager_current.last_dump_completed_id to bad dump `index_manager_current.last_dump_completed = <bad_id>`
    <bad_id> is usually `index_manager_current.dump_in_progress_id`
 1. set dump inprogress to nil `index_manager_current.dump_in_progress_id = nil`
