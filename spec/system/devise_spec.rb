@@ -25,12 +25,15 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
       visit "/events.json"
     end
 
-    scenario "only authenticated users can delete events" do
+    scenario "unauthenticated users can not delete events" do
       visit "/events"
-      accept_alert do
-        click_link "Delete"
-      end
-      find("div.alert", text: I18n.t("devise.failure.unauthenticated"))
+      expect(page).not_to have_link "Delete"
+    end
+
+    scenario "only authenticated users can delete events" do
+      sign_in FactoryBot.create(:admin), scope: :user
+      visit "/events"
+      expect(page).to have_link "Delete"
     end
   end
 

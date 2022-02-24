@@ -204,7 +204,7 @@ RSpec.describe JSONLDRecord, type: :model do
     it 'includes both the vernacular and english titles' do
       json_ld = {
         title: [{ '@value': 'كتاب المناهل الصافية / لطف الله بن محمد] [ظفيري', '@language': 'ara' },
-                { '@value': 'Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī.', '@language': 'ara-Latn' }],
+                { '@value': 'Kitāb al-Manāhil al-ṣāfīyah / Luṭf Allāh ibn Muḥammad Ẓufayrī', '@language': 'ara-Latn' }],
         language: 'ara',
         creator: ['Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626', 'ظفيري، لطف الله بن محمد'],
         author: 'Ẓufayrī, Luṭf Allāh ibn Muḥammad, 1570-1626'

@@ -17,7 +17,7 @@ class IndexerService
   end
 
   def indexer
-    @indexer ||= Traject::Indexer.new
+    @indexer ||= Traject::Indexer::MarcIndexer.new
   end
 
   def traject_config_file_path

@@ -75,7 +75,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
 
         expect(dump.dump_files.count).to eq 2
         expect(dump.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
-        expect(dump.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1)
+        expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
 
         expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
       end

@@ -214,7 +214,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
 
     # Access the global Traject Object
-    # @return [Traject::Indexer] the Traject indexer
+    # @return [Traject::Indexer::MarcIndexer] the Traject indexer
     def indexer
       TRAJECT_INDEXER
     end

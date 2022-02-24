@@ -157,7 +157,7 @@ RSpec.describe BibliographicController, type: :controller do
           "electronic_access_1display" => ["{\"http://arks.princeton.edu/ark:/88435/h702qb15q\":[\"Table of contents\"]}"]
         }
       end
-      let(:indexer) { instance_double(Traject::Indexer) }
+      let(:indexer) { instance_double(Traject::Indexer::MarcIndexer) }
 
       it 'generates JSON-LD' do
         get :bib_jsonld, params: { bib_id: ark_record }, format: :jsonld
