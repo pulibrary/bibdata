@@ -641,8 +641,32 @@ def alma_code_start_53?(code)
   code.to_s.start_with?("53") && code.to_s.end_with?("06421")
 end
 
+def scsb_code_start?(code)
+  code.to_s.start_with?("scsb")
+end
+
 def alma_852(record)
   record.fields('852').select { |f| alma_code_start_22?(f['8']) }
+end
+
+def scsb_852(record)
+  record.fields('852').select { |f| scsb_code_start?(f['b']) }
+end
+
+def browse_fields(record, khi_key_order: ['k', 'h', 'i'])
+  result = []
+  fields = if scsb_doc?(record['001']&.value)
+             scsb_852(record)
+           else
+             alma_852(record)
+           end
+  fields.each do |field|
+    subfields = call_number_khi(field)
+    next if subfields.empty?
+    values = [field[khi_key_order[0]], field[khi_key_order[1]], field[khi_key_order[2]]].compact.reject(&:empty?)
+    result << values.join(" ") if values.present?
+  end
+  result
 end
 
 def alma_876(record)
