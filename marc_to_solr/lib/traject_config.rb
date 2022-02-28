@@ -709,9 +709,16 @@ to_field 'language_display', extract_marc('5463a')
 
 to_field 'language_facet', marc_languages
 
-to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator|
+to_field 'publication_place_facet', extract_marc('008[15-17]') do |record, accumulator, context|
   places = accumulator.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
   accumulator.replace(places.compact)
+rescue ArgumentError => exception
+  logger.error "#{record['001']} Encountered an Arugument Error exception: #{exception}"
+  raise exception if exception.message != "invalid byte sequence in UTF-8"
+
+  context.skip!(exception.message)
+  context.output_hash = {}
+  accumulator.replace([])
 end
 
 # Script:
