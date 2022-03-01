@@ -75,7 +75,7 @@ SSH to a bibdata machine as deploy user (Find a worker machine in your environme
 tmux new -s full-index
 $ cd /opt/marc_liberation/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
-CTRL-b d (to detach from tmux)
+CTRL+b d (to detach from tmux)
 ```
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
@@ -99,9 +99,9 @@ SSH to a bibdata machine as deploy user (Find a worker machine in your environme
 $ tmux attach-session -t full-index
 $ cd /opt/marc_liberation/current
 $ bundle exec rake scsb:import:full
-CTRL-b d (to detach from tmux)
+CTRL+b d (to detach from tmux)
 ```
-This kicks off an import job whihc will return immediately.  This can be monitored in [sidekiq busy queue](https://bibdata.princeton.edu/sidekiq/busy) or [sidekiq waiting queue](https://bibdata.princeton.edu/sidekiq/queues/default)
+This kicks off an import job which will return immediately.  This can be monitored in [sidekiq busy queue](https://bibdata.princeton.edu/sidekiq/busy) or [sidekiq waiting queue](https://bibdata.princeton.edu/sidekiq/queues/default)
 
 Takes 24-25 hours to complete. As they download and unpack they will be placed
 in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_liberation_files/scsb_update_files/`; you can follow the progress by listing the files in these directories.
