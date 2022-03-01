@@ -149,7 +149,32 @@
           "desc": "Library of Congress classification"
           },
           "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcfo"
+        },
+        {
+          "code": "pres",
+          "name": "pres: Preservation Office",
+          "external_name": "Preservation Office: Contact preservation@princeton.edu",
+          "type": {
+          "value": "OPEN",
+          "desc": "Open"
+          },
+          "remote_storage": "",
+          "map": "",
+          "suppress_from_publishing": "false",
+          "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+          },
+          "accession_placement": {
+          "value": "none",
+          "desc": "None"
+          },
+          "call_number_type": {
+          "value": "",
+          "desc": null
+          },
+          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pres"
         }
     ],
-    "total_record_count": 6
+    "total_record_count": 7
   }
