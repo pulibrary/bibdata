@@ -213,9 +213,11 @@ RSpec.describe LocationDataService, type: :service do
       delivery_location_pf = DeliveryLocation.find_by(gfa_pickup: 'PF')
       firestone_ssrcfo = HoldingLocation.find_by(code: 'firestone$ssrcfo')
       firestone_ssrcdc = HoldingLocation.find_by(code: 'firestone$ssrcdc')
+      firestone_pres = HoldingLocation.find_by(code: 'firestone$pres')
+      lewis_serial = HoldingLocation.find_by(code: 'lewis$serial')
 
       expect(Library.count).to eq 12
-      expect(HoldingLocation.count).to eq 124
+      expect(HoldingLocation.count).to eq 126
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
@@ -242,6 +244,8 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_ssrcdc.open).to be true
       expect(firestone_ssrcdc.requestable).to be false
       expect(firestone_ssrcdc.always_requestable).to be false
+      expect(firestone_pres.label).to eq 'Preservation Office: Contact preservation@princeton.edu'
+      expect(lewis_serial.label).to eq 'Lewis Library - Serials (Off-Site)'
     end
 
     it "Locations with fulfillment_unit: Reserves are not requestable" do

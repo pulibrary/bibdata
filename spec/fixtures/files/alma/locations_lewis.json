@@ -124,7 +124,32 @@
           "desc": null
         },
         "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/pn"
+      },
+      {
+        "code": "serial",
+        "name": "sciss: Lewis: Serials",
+        "external_name": "Lewis Library - Serials (Off-Site)",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Closed",
+        "desc": "Closed"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations/serial"
       }
     ],
-    "total_record_count": 5
+    "total_record_count": 6
   }
