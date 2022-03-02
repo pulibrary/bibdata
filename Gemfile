@@ -69,7 +69,7 @@ end
 
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
-  gem 'coveralls', '0.8.21'
+  gem 'coveralls_reborn'
   gem "dotenv-rails"
   gem "factory_bot_rails", "~> 4.0"
   gem 'faker'
@@ -78,7 +78,7 @@ group :development, :test do
   gem 'puma'
   gem 'rails-controller-testing'
   gem 'rerun', '~> 0.10.0'
-  gem 'simplecov', '0.14.1'
+  gem 'simplecov'
   gem 'solargraph'
   gem 'solr_wrapper'
   gem 'timecop'
