@@ -154,7 +154,7 @@ SSH to the bibdata alma worker machine that is used for indexing https://github.
 
 ```
 $ cd /opt/marc_liberation/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake liberate:incremental
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
 ```
 
 ### Index the latest SCSB changes
