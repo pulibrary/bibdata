@@ -116,15 +116,27 @@ This will also index any incremental files we have that were generated after the
 
 ### Index Theses
 
-SSH to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
+SSH as the deploy user to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session. `ssh deploy@bibdata-alma-worker1`
 
 as deploy user, in `/opt/marc_liberation/current`
 
-`$ FILEPATH=/home/deploy/theses.json bin/rake orangetheses:cache_theses`
+```
+$ tmux attach-session -t full-index
+$ cd /opt/marc_liberation/current
+$ mv /home/deploy/thesis.json /home/deploy/thesis-<date>.json 
+$ FILEPATH=/home/deploy/theses.json bundle exec rake orangetheses:cache_theses
+CTRL+b d (to detach from tmux)
+```
 
 This step takes around 10 minutes. It will create a `theses.json` file in `home/deploy`. Post the file with:
 
-`curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'`
+```
+$ tmux attach-session -t full-index
+$ cd /opt/marc_liberation/current
+$ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
+CTRL+b d (to detach from tmux)
+```
+
 
 ### Index Numismatic Coins
 
