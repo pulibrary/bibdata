@@ -143,7 +143,7 @@ CTRL+b d (to detach from tmux)
 Before running this task, turn off the sneakers workers on production so that any updates that come through after the full index has been generated will be included in the new index and not lost when you swap out the old index.
 
 To turn off sneakers workers:
-- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_alma_prod -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
+- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_prodcution -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
 
 To index the coins:
 
