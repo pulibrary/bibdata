@@ -159,13 +159,16 @@ $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-
 
 ### Index the latest SCSB changes
 
-There might be new SCSB updates from Alma between the time the SCSB reindex finishes and the index swap. Set the TIMESTAMP to be the previous day of when the SCSB reindex started. Index these latest SCSB changes:
+There might be new SCSB updates from Alma between the time the SCSB export started and the index swap. Set the TIMESTAMP to be the next day of when the SCSB export started (as long as the expert started after 6am EST). Index these latest SCSB changes:
 example: If the SCSB reindex started on '2021-10-15'. Set the TIMESTAMP= '2021-10-15'.
 
 SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
 ```
-TIMESTAMP="2021-10-15" SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bin/rake scsb:latest
+$ tmux attach-session -t full-index
+$ cd /opt/marc_liberation/current
+$ TIMESTAMP="2021-10-15" SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
+CTRL+b d (to detach from tmux)
 ```
 
 ### Hook up your dev instance to the new index to see how it looks
