@@ -4,6 +4,7 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
+set :application, 'marc_liberation'
 set :stage, :production
 set :rails_env, 'production'
 server 'bibdata-alma1.princeton.edu', user: 'deploy', roles: [:web, :app, :db]

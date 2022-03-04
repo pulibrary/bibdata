@@ -1,15 +1,14 @@
 # config valid only for current version of Capistrano
 # lock '3.7.2'
 
-set :application, 'marc_liberation'
-set :repo_url, "https://github.com/pulibrary/marc_liberation.git"
+set :repo_url, "https://github.com/pulibrary/bibdata.git"
 
 # Default branch is :main
 set :branch, ENV['BRANCH'] || 'main'
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/opt/#{fetch(:application)}"
-set :repo_path, "/opt/#{fetch(:application)}/repo"
+set :deploy_to, -> { "/opt/#{fetch(:application)}" }
+set :repo_path, ->{ "/opt/#{fetch(:application)}/repo" }
 # Default value for :scm is :git
 set :scm, :git
 

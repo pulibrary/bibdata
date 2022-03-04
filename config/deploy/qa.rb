@@ -4,11 +4,12 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-set :application, 'marc_liberation'
+set :application, 'bibdata'
+
 set :stage, :production
 set :rails_env, 'production'
-server 'bibdata-alma-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker, :hr_cron, :poller]
-server 'bibdata-alma-worker-staging1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
+server 'bibdata-qa1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker, :hr_cron, :poller]
+server 'bibdata-worker-qa1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
 
 # Extended Server Syntax
 # ======================
