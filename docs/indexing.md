@@ -50,6 +50,16 @@ You can select a collection and use the "query" menu option to check how many do
 
 ## Creating a Full Index
 
+### Check solr cloud health
+
+Before you begin indexing, make sure that the solr cloud is all working as expected:
+
+1. Open the solr console
+2. Open the Cloud sub-menu
+3. Open the graph view
+4. On the graph, make sure that every replica is green (active).
+5. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
+
 ### Clear the rebuild collection
 
 ssh to an orangelight webserver and verify that the index in use is `catalog-alma-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
