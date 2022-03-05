@@ -56,7 +56,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'selenium-webdriver'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
-gem 'traject', '2.3.1'
+gem 'traject'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', "~> 0.10"

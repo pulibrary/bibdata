@@ -928,7 +928,7 @@ describe 'From traject_config.rb' do
     it "ignores errors and allows the indexer to continue" do
       indexer = IndexerService.build
       sample = indexer.map_record(fixture_record('99125119454006421', indexer: indexer))
-      expect(sample).to eq({})
+      expect(sample).to be_nil
     end
   end
 end

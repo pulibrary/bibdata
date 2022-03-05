@@ -20,6 +20,8 @@ require 'iso-639'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
+# rubocop:disable Style/GuardClause
+error_count = Concurrent::AtomicFixnum.new(0)
 settings do
   provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
   provide "solr.version", "8.4.1"
@@ -30,7 +32,18 @@ settings do
   provide "log.error_file", "./log/traject-error.log"
   provide "allow_duplicate_values", false
   provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
+  provide "mapping_rescue", lambda { |context, exception|
+    error_count.increment
+    context.logger.error "Encountered exception: #{exception}, total errors #{error_count}"
+
+    if exception.message == "invalid byte sequence in UTF-8"
+      context.skip!
+    else
+      raise exception
+    end
+  }
 end
+# rubocop:enable Style/GuardClause
 
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
@@ -709,16 +722,9 @@ to_field 'language_display', extract_marc('5463a')
 
 to_field 'language_facet', marc_languages
 
-to_field 'publication_place_facet', extract_marc('008[15-17]') do |record, accumulator, context|
+to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
   places = accumulator.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
   accumulator.replace(places.compact)
-rescue ArgumentError => exception
-  logger.error "#{record['001']} Encountered an Arugument Error exception: #{exception}"
-  raise exception if exception.message != "invalid byte sequence in UTF-8"
-
-  context.skip!(exception.message)
-  context.output_hash = {}
-  accumulator.replace([])
 end
 
 # Script:
