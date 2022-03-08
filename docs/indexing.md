@@ -50,15 +50,7 @@ You can select a collection and use the "query" menu option to check how many do
 
 ## Creating a Full Index
 
-### Check solr cloud health
-
-Before you begin indexing, make sure that the solr cloud is all working as expected:
-
-1. Open the solr console
-2. Open the Cloud sub-menu
-3. Open the graph view
-4. On the graph, make sure that every replica is green (active).
-5. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
+Before you begin indexing, [check the solr cloud health](#check-solr-cloud-health) and make sure all replicas are behaving as expected.
 
 ### Clear the rebuild collection
 
@@ -205,7 +197,7 @@ above to do this)
 - Do the same search in production and compare the numbers.
 - Any other spot checks you like to do? Add them here.
 
-### Swap in the new index
+### Check solr cloud health
 
 Before you swap in the new index, make sure that the solr cloud is all working as expected:
 
@@ -213,9 +205,11 @@ Before you swap in the new index, make sure that the solr cloud is all working a
 2. Open the Cloud sub-menu
 3. Open the graph view
 4. On the graph, make sure that every replica is green (active).
-5. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before proceding with the swap.
+5. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
 
-Then, update the index managers to have the new solr_collection values.
+### Swap in the new index
+
+Update the index managers to have the new solr_collection values.
 
 ```
 bundle exec rake index_manager:promote_rebuild_manager
