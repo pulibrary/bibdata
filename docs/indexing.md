@@ -201,11 +201,11 @@ above to do this)
 
 Before you swap in the new index, make sure that the solr cloud is all working as expected:
 
-1. Open the solr console
-2. Open the Cloud sub-menu
-3. Open the graph view
-4. On the graph, make sure that every replica is green (active).
-5. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
+1. [Open the solr console](#accessing-the-solr-admin-ui)
+1. Open the Cloud sub-menu
+1. Open the graph view
+1. On the graph, make sure that every replica is green (active).
+1. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
 
 ### Swap in the new index
 
