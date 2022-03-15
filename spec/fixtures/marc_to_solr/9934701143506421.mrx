@@ -1,0 +1,237 @@
+<record>
+  <leader>02570cas a2200505 a 4500</leader>
+  <controlfield tag="005">20200825154645.0</controlfield>
+  <controlfield tag="006">m      d f    </controlfield>
+  <controlfield tag="007">co agu</controlfield>
+  <controlfield tag="008">970523c19979999dcu x   s  f0  0eng d</controlfield>
+  <controlfield tag="001">9934701143506421</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">sn 97028355</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)gp 99071557</subfield>
+    <subfield code="0">(uri) http://www.worldcat.org/oclc/gp99071557</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">X0259112 Ar</subfield>
+    <subfield code="b">CLU</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2="0">
+    <subfield code="a">36957127</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">3470114</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)3470114-princetondb</subfield>
+  </datafield>
+  <datafield tag="037" ind1=" " ind2=" ">
+    <subfield code="b">Secretariat of the CCSDS, National Aeronautics and Space Administration Hdqtrs., Code MT, 3000 E Street, S.W., Washington, DC 20546-0001</subfield>
+  </datafield>
+  <datafield tag="037" ind1="4" ind2="1">
+    <subfield code="a">http://purl.access.gpo.gov/GPO/LPS860</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">EYM</subfield>
+    <subfield code="c">EYM</subfield>
+    <subfield code="d">GAO</subfield>
+    <subfield code="d">GPO</subfield>
+    <subfield code="d">CLU</subfield>
+    <subfield code="d">IUL</subfield>
+    <subfield code="d">GPO</subfield>
+    <subfield code="d">IUL</subfield>
+    <subfield code="d">OCL</subfield>
+    <subfield code="d">GPO</subfield>
+    <subfield code="d">DLC</subfield>
+    <subfield code="d">MvI</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">lcd</subfield>
+  </datafield>
+  <datafield tag="050" ind1="1" ind2="4">
+    <subfield code="a">TL694.T35</subfield>
+    <subfield code="b">C36</subfield>
+  </datafield>
+  <datafield tag="074" ind1=" " ind2=" ">
+    <subfield code="a">0830-Z-01</subfield>
+  </datafield>
+  <datafield tag="074" ind1=" " ind2=" ">
+    <subfield code="a">0830-Z-01 (online)</subfield>
+  </datafield>
+  <datafield tag="086" ind1="0" ind2=" ">
+    <subfield code="a">NAS 1.86:C 76/</subfield>
+  </datafield>
+  <datafield tag="110" ind1="2" ind2=" ">
+    <subfield code="a">Consultative Committee for Space Data Systems.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/no90018244</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/no90018244</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no90018244</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">CCSDS recommendations and reports</subfield>
+    <subfield code="h">[electronic resource] /</subfield>
+    <subfield code="c">Consultative Committee for Space Data Systems.</subfield>
+  </datafield>
+  <datafield tag="246" ind1="2" ind2=" ">
+    <subfield code="a">Consultative Committee for Space Data Systems recommendations and reports</subfield>
+  </datafield>
+  <datafield tag="246" ind1="3" ind2="0">
+    <subfield code="a">CCSDS</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">[Washington, D.C.] :</subfield>
+    <subfield code="b">The Committee,</subfield>
+    <subfield code="c">1997-</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">computer optical discs ;</subfield>
+    <subfield code="c">4 3/4 in.</subfield>
+  </datafield>
+  <datafield tag="310" ind1=" " ind2=" ">
+    <subfield code="a">Irregular</subfield>
+  </datafield>
+  <datafield tag="362" ind1="0" ind2=" ">
+    <subfield code="a">Issue 1 (Jan. 1997)-</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Title from disc label.</subfield>
+  </datafield>
+  <datafield tag="516" ind1="8" ind2=" ">
+    <subfield code="a">Text files in PDF format and also in .HQX format which requires Stuffit decoder/expander software (included on CD-ROM for MAC users)</subfield>
+  </datafield>
+  <datafield tag="530" ind1=" " ind2=" ">
+    <subfield code="a">Some issue's contents also available via Internet from the CCSDS web site. Address as of 12/19/97: http://www.ccsds.org/ccsds/ccsds%5Fdocument%5Faccess.html; current access is available via PURL.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">System requirements: PC or Macintosh; Adobe Acrobat reader version 2.1 (included on CD-ROM), or version 3.0 for index search capability (also included); CD-ROM drive; hard drive required for MAC users.</subfield>
+  </datafield>
+  <datafield tag="550" ind1=" " ind2=" ">
+    <subfield code="a">Issued by: National Aeronautics and Space Administration.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Astronautics</subfield>
+    <subfield code="x">Data processing.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2009116098</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2009116098</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">CD-ROMs</subfield>
+    <subfield code="2">lcsh</subfield>
+  </datafield>
+  <datafield tag="710" ind1="1" ind2=" ">
+    <subfield code="a">United States.</subfield>
+    <subfield code="b">National Aeronautics and Space Administration.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n78087581</subfield>
+    <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78087581</subfield>
+    <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78087581</subfield>
+  </datafield>
+  <datafield tag="850" ind1=" " ind2=" ">
+    <subfield code="a">CLU</subfield>
+    <subfield code="a">InU</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="1">
+    <subfield code="u">http://purl.access.gpo.gov/GPO/LPS860</subfield>
+    <subfield code="z">scroll down and click either on "CCSDS Recommendations (Blue Books)" or on "CCSDS Reports (Green Books)" to display its clickable contents</subfield>
+  </datafield>
+  <datafield tag="901" ind1=" " ind2=" ">
+    <subfield code="a">99071557</subfield>
+  </datafield>
+  <datafield tag="913" ind1=" " ind2=" ">
+    <subfield code="c">NAS 1.86: C 76/</subfield>
+  </datafield>
+  <datafield tag="990" ind1=" " ind2=" ">
+    <subfield code="t">(tmp)97001642</subfield>
+    <subfield code="u">97-0027-E</subfield>
+    <subfield code="v">02/03/97</subfield>
+  </datafield>
+  <datafield tag="998" ind1=" " ind2=" ">
+    <subfield code="a">0830-Z-01</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2021-08-03 11:15:23 US/Eastern</subfield>
+    <subfield code="b">2021-07-12 08:23:19 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-07-20 12:06:56 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2021-07-20 12:06:51 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53810635870006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53810635870006421</subfield>
+    <subfield code="w">2021-07-20 16:06:51</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="1">52810635880006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=9934701143506421</subfield>
+    <subfield code="i">scroll down and click either on "CCSDS Recommendations (Blue Books)" or on "CCSDS Reports (Green Books)" to display its clickable contents</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53810635870006421</subfield>
+  </datafield>
+  <datafield tag="852" ind1="3" ind2=" ">
+    <subfield code="b">engineer</subfield>
+    <subfield code="c">media</subfield>
+    <subfield code="h">NAS 1.86:C 76/</subfield>
+    <subfield code="8">22480079560006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="a">2021-07-12 12:23:19</subfield>
+    <subfield code="8">22480079560006421</subfield>
+    <subfield code="b">Engineering Library</subfield>
+    <subfield code="c">media: Engineering Media Collection</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22480079560006421</subfield>
+    <subfield code="a">23480079520006421</subfield>
+    <subfield code="5">issue: 3 Aug. 2000</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">media</subfield>
+    <subfield code="3">issue: 3</subfield>
+    <subfield code="d">2021-07-12 12:23:19</subfield>
+    <subfield code="4">Aug. 2000</subfield>
+    <subfield code="p">32101061109961</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="y">engineer</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22480079560006421</subfield>
+    <subfield code="a">23480079530006421</subfield>
+    <subfield code="5">issue 2.1 Mar. 1998</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">media</subfield>
+    <subfield code="3">issue 2.1</subfield>
+    <subfield code="d">2021-07-12 12:23:19</subfield>
+    <subfield code="4">Mar. 1998</subfield>
+    <subfield code="p">32101061109920</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="y">engineer</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22480079560006421</subfield>
+    <subfield code="a">23480079540006421</subfield>
+    <subfield code="5">issue 1 Jan. 1997</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">media</subfield>
+    <subfield code="3">issue 1</subfield>
+    <subfield code="d">2021-07-12 12:23:19</subfield>
+    <subfield code="4">Jan. 1997</subfield>
+    <subfield code="p">32101061109912</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="y">engineer</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22480079560006421</subfield>
+    <subfield code="a">23480079550006421</subfield>
+    <subfield code="5">issue 2 Aug. 1997</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">media</subfield>
+    <subfield code="3">issue 2</subfield>
+    <subfield code="d">2021-07-12 12:23:19</subfield>
+    <subfield code="4">Aug. 1997</subfield>
+    <subfield code="p">32101061101927</subfield>
+    <subfield code="t">1</subfield>
+    <subfield code="y">engineer</subfield>
+    </datafield>
+</record>

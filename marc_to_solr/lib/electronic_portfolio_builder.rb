@@ -27,7 +27,8 @@ class ElectronicPortfolioBuilder
       'title': portfolio_title,
       'url': field['x'],
       'start': start_date,
-      'end': end_date
+      'end': end_date,
+      'notes': public_notes
     }.to_json
   end
 
@@ -67,5 +68,9 @@ class ElectronicPortfolioBuilder
 
     def portfolio_title
       field['n'].nil? ? 'Online Content' : field['n']
+    end
+
+    def public_notes
+      field.select { |s| s.code == 'i' }.map(&:value)
     end
 end

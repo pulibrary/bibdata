@@ -54,6 +54,7 @@ describe 'From traject_config.rb' do
       @custom_inactive_electronic_portfolio = @indexer.map_record(fixture_record('99125267333206421_custom_inactive951'))
       @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
       @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
+      @electronic_portfolio_with_notes = @indexer.map_record(fixture_record('9934701143506421'))
       @holding_no_items = @indexer.map_record(fixture_record('99125441441106421')) # also if you want use 99106480053506421
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
@@ -166,6 +167,7 @@ describe 'From traject_config.rb' do
 
         expect(nature['url']).to include '&portfolio_pid=53443322610006421'
         expect(nature['desc']).to eq 'Available from 1869 volume: 1 issue: 1.'
+        expect(nature['notes']).to be_empty
 
         # Date range with explicit start and no end date
         expect(nature['start']).to eq '1869'
@@ -195,6 +197,10 @@ describe 'From traject_config.rb' do
       end
       it "will not index an inactive electronic_portfolio" do
         expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be nil
+      end
+      it "finds collection notes" do
+        portfolio = @electronic_portfolio_with_notes['electronic_portfolio_s'].map { |p| JSON.parse(p) }
+        expect(portfolio.any? { |hash| hash['notes'].include? 'scroll down and click either on "CCSDS Recommendations (Blue Books)" or on "CCSDS Reports (Green Books)" to display its clickable contents' }).to be true
       end
       describe 'with active and inactive portfolio' do
         before do
