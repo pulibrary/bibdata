@@ -3,6 +3,24 @@ defaults: &defaults
        "Illegal aliens":
           replacement: "Undocumented immigrants"
           rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Women illegal aliens":
+          replacement: "Women undocumented immigrants"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Illegal aliens in literature":
+          replacement: "Undocumented immigrants in literature"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Children of illegal aliens":
+          replacement: "Children of undocumented immigrants"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Illegal alien children":
+          replacement: "Undocumented immigrant children"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Illegal immigration":
+          replacement: "Undocumented immigrants"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
+       "Illegal immigration in literature":
+          replacement: "Undocumented immigrants in literature"
+          rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
        "Alien criminals":
           replacement: "Noncitizen criminals"
           rationale: "The term Noncitizen is the term LoC proposed as replacements for aliens and other uses of the word alien in LCSH."          
