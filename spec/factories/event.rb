@@ -1,45 +1,45 @@
 FactoryBot.define do
   factory :event do
-    start Time.now
-    finish Time.now + 3600
-    error nil
-    success true
+    start { Time.now }
+    finish { Time.now + 3600 }
+    error { nil }
+    success { true }
     created_at { finish }
     updated_at { finish }
   end
 
   factory :full_dump_type, class: "DumpType" do
-    constant "ALL_RECORDS"
-    label "All Records"
+    constant { "ALL_RECORDS" }
+    label { "All Records" }
   end
 
   factory :incremental_dump_type, class: "DumpType" do
-    constant "CHANGED_RECORDS"
-    label "Changed Records"
+    constant { "CHANGED_RECORDS" }
+    label { "Changed Records" }
   end
 
   factory :recap_incremental_dump_type, class: "DumpType" do
-    constant "PRINCETON_RECAP"
-    label "Princeton Recap"
+    constant { "PRINCETON_RECAP" }
+    label { "Princeton Recap" }
   end
 
   factory :partner_full_dump_type, class: "DumpType" do
-    constant "PARTNER_RECAP_FULL"
+    constant { "PARTNER_RECAP_FULL" }
   end
 
   factory :full_dump_file_type, class: "DumpFileType" do
-    constant "BIB_RECORDS"
-    label "All Bib Records"
+    constant { "BIB_RECORDS" }
+    label { "All Bib Records" }
   end
 
   factory :incremental_dump_file_type, class: "DumpFileType" do
-    constant 'UPDATED_RECORDS'
-    label 'Updated Records'
+    constant { 'UPDATED_RECORDS' }
+    label { 'Updated Records' }
   end
 
   factory :recap_incremental_dump_file_type, class: "DumpFileType" do
-    constant 'RECAP_RECORDS'
-    label 'Recap Records'
+    constant { 'RECAP_RECORDS' }
+    label { 'Recap Records' }
   end
 
   factory :dump_file do
@@ -100,9 +100,9 @@ FactoryBot.define do
 
   factory :full_dump, class: "Dump" do
     association :dump_type, factory: :full_dump_type
-    generated_date Time.new(2021, 7, 13, 11, 0, 0, "+00:00")
-    delete_ids []
-    update_ids []
+    generated_date { Time.new(2021, 7, 13, 11, 0, 0, "+00:00") }
+    delete_ids { [] }
+    update_ids { [] }
     dump_files do
       [
         association(:dump_file, path: 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz'),
@@ -113,8 +113,8 @@ FactoryBot.define do
 
   factory :incremental_dump, class: "Dump" do
     association :dump_type, factory: :incremental_dump_type
-    delete_ids []
-    update_ids []
+    delete_ids { [] }
+    update_ids { [] }
     dump_files do
       [
         association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/1.tar.gz'),
@@ -124,20 +124,20 @@ FactoryBot.define do
   end
 
   factory :full_dump_event, class: "Event" do
-    start Time.now - 3600
-    finish Time.now - 100
-    error nil
-    success true
+    start { Time.now - 3600 }
+    finish { Time.now - 100 }
+    error { nil }
+    success { true }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :full_dump
   end
 
   factory :incremental_dump_event, class: "Event" do
-    start Time.now - 3600
-    finish Time.now - 100
-    error nil
-    success true
+    start { Time.now - 3600 }
+    finish { Time.now - 100 }
+    error { nil }
+    success { true }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :incremental_dump

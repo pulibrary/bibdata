@@ -11,7 +11,7 @@ RSpec.describe BarcodeController, type: :controller do
         voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join("alma", "comparison", "voyager_scsb_32101044947941.xml"))).first
         get :scsb, params: { barcode: "32101044947941" }, format: :xml
 
-        expect(response).to be_success
+        expect(response).to be_successful
         record = MARC::XMLReader.new(StringIO.new(response.body)).first
         holding_id = "22153448500006421"
         expect(record["001"].value).to eq "998574693506421"
@@ -49,7 +49,7 @@ RSpec.describe BarcodeController, type: :controller do
 
         get :scsb, params: { barcode: "32101066958685" }, format: :xml
 
-        expect(response).to be_success
+        expect(response).to be_successful
         records = MARC::XMLReader.new(StringIO.new(response.body)).to_a
         expect(records.length).to eq 3
         expect(records.map { |x| x["001"].value }).to eq ["9929455773506421", "9929455783506421", "9929455793506421"]
@@ -67,7 +67,7 @@ RSpec.describe BarcodeController, type: :controller do
         voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join("alma", "comparison", "voyager_scsb_32101069559514.xml"))).first
         get :scsb, params: { barcode: "32101069559514" }, format: :xml
 
-        expect(response).to be_success
+        expect(response).to be_successful
         record = MARC::XMLReader.new(StringIO.new(response.body)).first
         expect(record["001"].value).to eq "9972625743506421"
         expect(record["876"]["0"]).to eq "2240957220006421" # Holding ID
@@ -106,7 +106,7 @@ RSpec.describe BarcodeController, type: :controller do
         stub_alma_holding(mms_id: "9958708973506421", holding_id: "22178060190006421")
         get :scsb, params: { barcode: "32101076720315" }, format: :xml
 
-        expect(response).to be_success
+        expect(response).to be_successful
         record = MARC::XMLReader.new(StringIO.new(response.body)).first
         expect(record["001"].value).to eq "9958708973506421"
         expect(record["876"]["0"]).to eq "22178060190006421" # Holding ID

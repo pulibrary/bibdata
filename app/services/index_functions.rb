@@ -19,7 +19,7 @@ module IndexFunctions
   end
 
   def self.rsolr_connection(solr_url)
-    RSolr.connect(url: solr_url, read_timeout: 300, open_timeout: 300)
+    RSolr.connect(url: solr_url, timeout: 300, open_timeout: 300)
   rescue StandardError => error
     logger.error "Failed to connect to Solr: #{error.message}"
     nil
