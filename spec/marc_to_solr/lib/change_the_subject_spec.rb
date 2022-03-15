@@ -9,6 +9,12 @@ RSpec.describe ChangeTheSubject do
   context "a replaced term" do
     it "suggests a replacement" do
       expect(described_class.check_for_replacement("Illegal aliens")).to eq "Undocumented immigrants"
+      expect(described_class.check_for_replacement("Illegal immigration")).to eq "Undocumented immigrants"
+      expect(described_class.check_for_replacement("Women illegal aliens")).to eq "Women undocumented immigrants"
+      expect(described_class.check_for_replacement("Illegal aliens in literature")).to eq "Undocumented immigrants in literature"
+      expect(described_class.check_for_replacement("Children of illegal aliens")).to eq "Children of undocumented immigrants"
+      expect(described_class.check_for_replacement("Illegal alien children")).to eq "Undocumented immigrant children"
+      expect(described_class.check_for_replacement("Illegal immigration in literature")).to eq "Undocumented immigrants in literature"
       expect(described_class.check_for_replacement("Alien criminals")).to eq "Noncitizen criminals"
       expect(described_class.check_for_replacement("Aliens")).to eq "Noncitizens"
       expect(described_class.check_for_replacement("Aliens in art")).to eq "Noncitizens in art"
