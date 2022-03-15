@@ -50,6 +50,8 @@ You can select a collection and use the "query" menu option to check how many do
 
 ## Creating a Full Index
 
+Before you begin indexing, [check the solr cloud health](#check-solr-cloud-health) and make sure all replicas are behaving as expected.
+
 ### Clear the rebuild collection
 
 ssh to an orangelight webserver and verify that the index in use is `catalog-alma-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
@@ -195,9 +197,19 @@ above to do this)
 - Do the same search in production and compare the numbers.
 - Any other spot checks you like to do? Add them here.
 
+### Check solr cloud health
+
+Before you swap in the new index, make sure that the solr cloud is all working as expected:
+
+1. [Open the solr console](#accessing-the-solr-admin-ui)
+1. Open the Cloud sub-menu
+1. Open the graph view
+1. On the graph, make sure that every replica is green (active).
+1. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
+
 ### Swap in the new index
 
-First, update the index managers to have the new solr_collection values.
+Update the index managers to have the new solr_collection values.
 
 ```
 bundle exec rake index_manager:promote_rebuild_manager
