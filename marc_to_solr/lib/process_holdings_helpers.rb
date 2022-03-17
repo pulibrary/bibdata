@@ -53,13 +53,24 @@ class ProcessHoldingsHelpers
   # Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
   def select_permanent_location_876(group_876_fields, field_852)
     return group_876_fields if /^scsb/.match?(field_852['b'])
-    group_876_fields.select { |field_876| current_location_code(field_876) == permanent_location_code(field_852) }
+    group_876_fields.select do |field_876|
+      !in_temporary_location(field_876, field_852)
+    end
   end
 
   # Select 876 fields (items) with current location. 876 location is NOT equal to the 852 permanent location.
   def select_temporary_location_876(group_876_fields, field_852)
     return [] if /^scsb/.match?(field_852['b'])
-    group_876_fields.select { |field_876| current_location_code(field_876) != permanent_location_code(field_852) }
+    group_876_fields.select do |field_876|
+      in_temporary_location(field_876, field_852)
+    end
+  end
+
+  def in_temporary_location(field_876, field_852)
+    # temporary location is any item whose 876 and 852 do not match
+    # for our purposes if the item is in Resource Sharing it is NOT in a temporary location so we will ignore the 876
+    current_location = current_location_code(field_876)
+    current_location != 'RES_SHARE$IN_RS_REQ' && current_location != permanent_location_code(field_852)
   end
 
   # Build the current (temporary) holding.
