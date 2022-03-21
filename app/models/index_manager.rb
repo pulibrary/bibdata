@@ -41,6 +41,8 @@ class IndexManager < ActiveRecord::Base
   end
 
   def index_remaining!
+    logger.warn "IndexManager is in progress" if in_progress?
+
     # Don't do anything unless there's a job to index and we're not already
     # indexing.
     return unless next_dump && !in_progress?
