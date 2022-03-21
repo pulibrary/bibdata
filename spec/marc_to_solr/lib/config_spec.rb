@@ -937,4 +937,15 @@ describe 'From traject_config.rb' do
       expect(sample).to be_nil
     end
   end
+
+  context "Temporary in resource sharing location" do
+    it "does not show as a temporary location" do
+      indexer = IndexerService.build
+      sample = indexer.map_record(fixture_record('998370993506421', indexer: indexer))
+      holdings = JSON.parse(sample['holdings_1display'][0])
+      expect(holdings['22561746630006421']['items'].count).to eq 1
+      expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP): Mendel Music Library Use Only"
+      expect(sample["location"]).to eq(["Mendel Music Library"])
+    end
+  end
 end
