@@ -1,0 +1,165 @@
+<record>
+    <leader>01458cam a2200373Ii 4500</leader>
+    <controlfield tag="005">20201012165146.0</controlfield>
+    <controlfield tag="008">091123s1981    cc a     d    000 0 chi d</controlfield>
+    <controlfield tag="001">99106137213506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1019732457</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1019732457</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">10613721</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1019732457</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/1019732457</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)10613721-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">PUL</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">PUL</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2=" ">
+      <subfield code="a">chi</subfield>
+      <subfield code="a">sgn</subfield>
+    </datafield>
+    <datafield tag="090" ind1=" " ind2=" ">
+      <subfield code="a">HV2474</subfield>
+      <subfield code="b">.C483 1981</subfield>
+    </datafield>
+    <datafield tag="049" ind1=" " ind2=" ">
+      <subfield code="a">PULL</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Long ya ren tong yong shou yu tu /</subfield>
+      <subfield code="c">Zhong guo mang ren long ya ren xie hui bian.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Di 1 ban. Di 1, 2 ji he ding ben. Zai ban.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Beijing :</subfield>
+      <subfield code="b">Zhongguo mang ren long ya ren xie hui,</subfield>
+      <subfield code="c">1981.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">8, xviii, 388 pages :</subfield>
+      <subfield code="b">illustrations ;</subfield>
+      <subfield code="c">19 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">In sign language and in Chinese.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Sign language</subfield>
+      <subfield code="v">Dictionaries</subfield>
+      <subfield code="x">Chinese.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85122390</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Dictionaries.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026086</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/genreForms/gf2014026086</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="6">880-04</subfield>
+      <subfield code="a">Zhongguo mang ren long ya ren xie hui,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2="0">
+      <subfield code="6">245-01</subfield>
+      <subfield code="a">聋哑人通用手语图 /</subfield>
+      <subfield code="c">中国盲人聋哑人协会编.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">250-02</subfield>
+      <subfield code="a">第一版. 第一, 二辑合订本. 再版.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="1">
+      <subfield code="6">264-03</subfield>
+      <subfield code="a">北京 :</subfield>
+      <subfield code="b">中国盲人聋哑人协会,</subfield>
+      <subfield code="c">1981.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="2" ind2=" ">
+      <subfield code="6">710-04</subfield>
+      <subfield code="a">中国盲人聋哑人协会,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="904" ind1=" " ind2=" ">
+      <subfield code="a">ww</subfield>
+      <subfield code="b">g</subfield>
+      <subfield code="h">m</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20180112</subfield>
+    </datafield>
+    <datafield tag="994" ind1=" " ind2=" ">
+      <subfield code="a">C0</subfield>
+      <subfield code="b">PUL</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">10613721</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">ww</subfield>
+      <subfield code="s">ww</subfield>
+      <subfield code="b">o</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20180116</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-08-03 16:16:58 US/Eastern</subfield>
+      <subfield code="b">2021-07-13 08:36:20 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">HV2474</subfield>
+      <subfield code="i">.C483 1981</subfield>
+      <subfield code="8">22742365280006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 12:36:20</subfield>
+      <subfield code="8">22742365280006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22742365280006421</subfield>
+      <subfield code="a">23742365270006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2021-07-13 12:36:20</subfield>
+      <subfield code="p">32101097858045</subfield>
+      <subfield code="t">0</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>

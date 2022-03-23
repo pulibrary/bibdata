@@ -55,6 +55,11 @@ describe 'From traject_config.rb' do
       @electronic_portfolio_embargo = @indexer.map_record(fixture_record('99125105174406421'))
       @electronic_portfolio_active_no_collection_name = @indexer.map_record(fixture_record('9995002873506421'))
       @electronic_portfolio_with_notes = @indexer.map_record(fixture_record('9934701143506421'))
+      @multilanguage_iana = @indexer.map_record(fixture_record('99125428133406421_multiple_languages'))
+      @sign_language_iana = @indexer.map_record(fixture_record('99106137213506421_sign_language'))
+      @italian_language_iana = @indexer.map_record(fixture_record('99125428126306421_italian'))
+      @undetermined_language_iana = @indexer.map_record(fixture_record('99125420871206421_undetermined'))
+      @no_linguistic_language_iana = @indexer.map_record(fixture_record('99125428446106421_no_linguistic_content'))
       @holding_no_items = @indexer.map_record(fixture_record('99125441441106421')) # also if you want use 99106480053506421
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
@@ -299,8 +304,30 @@ describe 'From traject_config.rb' do
         expect(@sample1['language_iana_s']).to eq(['en'])
       end
 
-      it 'returns 2 language values based on the IANA Language Subtag Registry' do
-        expect(@added_title_246['language_iana_s']).to eq(['ja', 'en'])
+      it 'returns the first value from the IANA Language Subtag Registry' do
+        # record has ["jpn", "jpneng"]
+        expect(@added_title_246['language_iana_s']).to eq(['ja'])
+      end
+
+      it 'returns the language value of a multilanguage document' do
+        # a multilanguage has value 008 mul. Skip this value and look 041
+        expect(@multilanguage_iana['language_iana_s']).to eq ["en"] # ISO_639 for 041$a
+      end
+
+      it 'returns the language value of a sign language document' do
+        expect(@sign_language_iana['language_iana_s']).to eq ["zh"] # ISO_639 for 041$a chi
+      end
+
+      it 'defaults to "en" when the language value is undetermined' do
+        expect(@undetermined_language_iana['language_iana_s']).to eq ["en"]
+      end
+
+      it 'defaults to "en" for a record with no linguistic content' do
+        expect(@no_linguistic_language_iana['language_iana_s']).to eq ["en"]
+      end
+
+      it 'returns language value "it" for an italian record' do
+        expect(@italian_language_iana['language_iana_s']).to eq ["it"]
       end
     end
 
@@ -731,6 +758,20 @@ describe 'From traject_config.rb' do
       end
     end
 
+    describe 'series 490 dedup, non-filing' do
+      let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
+      let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
+      let(:s440) { { "440" => { "ind1" => "", "ind2" => "4", "subfields" => [{ "a" => "The Series" }] } } }
+      let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
+
+      it '490s are not included when they are covered by another series field' do
+        expect(record['series_display']).to match_array(['Series title.', 'The Series'])
+      end
+
+      it 'matches for other works within series ignore non-filing characters, trim punctuation' do
+        expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
+      end
+    end
     describe 'senior thesis 502 note' do
       let(:senior_thesis_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)-Princeton University" }] } } }
       let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
@@ -739,194 +780,171 @@ describe 'From traject_config.rb' do
       let(:subfield_bc_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => "Senior" }, { "c" => "Princeton University" }] } } }
       let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [subfield_bc_502], 'leader' => leader)) }
 
-      describe 'series 490 dedup, non-filing' do
-        let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
-        let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
-        let(:s440) { { "440" => { "ind1" => "", "ind2" => "4", "subfields" => [{ "a" => "The Series" }] } } }
-        let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
+      it 'Princeton senior theses are properly classified' do
+        expect(senior_thesis_marc['format']).to include 'Senior thesis'
+      end
+      it 'whitespace is ignored in classifying senior thesis' do
+        expect(senior_thesis_whitespace['format']).to include 'Senior thesis'
+      end
+      it 'senior thesis note can be split across subfields $b and $c' do
+        expect(thesis_bc_marc['format']).to include 'Senior thesis'
+      end
+    end
 
-        it '490s are not included when they are covered by another series field' do
-          expect(record['series_display']).to match_array(['Series title.', 'The Series'])
-        end
+    context "subject display and unstem fields" do
+      describe 'subject display and unstem fields' do
+        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
+        let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
+        let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
 
-        it 'matches for other works within series ignore non-filing characters, trim punctuation' do
-          expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
+        it 'include the sk and lc subjects in separate fields, exlcude other subject types' do
+          expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
+          expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
+          expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
+          expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
         end
       end
-      describe 'senior thesis 502 note' do
-        let(:senior_thesis_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)-Princeton University" }] } } }
-        let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
-        let(:whitespace_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)  -- Princeton University" }] } } }
-        let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [whitespace_502], 'leader' => leader)) }
-        let(:subfield_bc_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => "Senior" }, { "c" => "Princeton University" }] } } }
-        let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [subfield_bc_502], 'leader' => leader)) }
+      describe 'subject terms augmented for Indigenous Studies' do
+        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
 
-        it 'Princeton senior theses are properly classified' do
-          expect(senior_thesis_marc['format']).to include 'Senior thesis'
+        it 'augments the subject terms to add Indigenous Studies' do
+          expect(subject_marc["subject_facet"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
+          expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
         end
-        it 'whitespace is ignored in classifying senior thesis' do
-          expect(senior_thesis_whitespace['format']).to include 'Senior thesis'
-        end
-        it 'senior thesis note can be split across subfields $b and $c' do
-          expect(thesis_bc_marc['format']).to include 'Senior thesis'
+        it 'works against a fixture' do
+          expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
         end
       end
-
-      context "subject display and unstem fields" do
-        describe 'subject display and unstem fields' do
-          let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
-          let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
-          let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
-          let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
-
-          it 'include the sk and lc subjects in separate fields, exlcude other subject types' do
-            expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
-            expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
-            expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
-            expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
-          end
-        end
-        describe 'subject terms augmented for Indigenous Studies' do
-          let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
+      describe 'subject terms changed for Change the Subject' do
+        context 'when the subject term is an exact match in $a' do
+          let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Illegal aliens", "z" => "United States." }] } } }
           let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
-
-          it 'augments the subject terms to add Indigenous Studies' do
-            expect(subject_marc["subject_facet"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-            expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
-            expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-            expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          it 'changes the subject term in display fields, but includes both old and new in search fields' do
+            expect(subject_marc["subject_facet"]).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+            expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
+            expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+            expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
           end
           it 'works against a fixture' do
-            expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-          end
-        end
-        describe 'subject terms changed for Change the Subject' do
-          context 'when the subject term is an exact match in $a' do
-            let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Illegal aliens", "z" => "United States." }] } } }
-            let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
-            it 'changes the subject term in display fields, but includes both old and new in search fields' do
-              expect(subject_marc["subject_facet"]).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-              expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
-              expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-              expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
-            end
-            it 'works against a fixture' do
-              corrected_subjects_compound = [
-                "Undocumented immigrants—United States",
-                "Emigration and immigration law—United States",
-                "Emigration and immigration—Religious aspects—Christianity",
-                "Political theology—United States",
-                "Religion and state—United States",
-                "Christianity and law",
-                "Undocumented immigrants—Government policy—United States"
-              ]
-              corrected_subjects_atomic = [
-                "Christianity",
-                "Christianity and law",
-                "Emigration and immigration",
-                "Emigration and immigration law",
-                "Government policy",
-                "Political theology",
-                "Religion and state",
-                "Religious aspects",
-                "Undocumented immigrants",
-                "United States"
-              ]
-              replaced_terms = ["Illegal aliens—Government policy—United States", "Illegal aliens—United States"]
-              subjects_for_searching = corrected_subjects_compound + replaced_terms
+            corrected_subjects_compound = [
+              "Undocumented immigrants—United States",
+              "Emigration and immigration law—United States",
+              "Emigration and immigration—Religious aspects—Christianity",
+              "Political theology—United States",
+              "Religion and state—United States",
+              "Christianity and law",
+              "Undocumented immigrants—Government policy—United States"
+            ]
+            corrected_subjects_atomic = [
+              "Christianity",
+              "Christianity and law",
+              "Emigration and immigration",
+              "Emigration and immigration law",
+              "Government policy",
+              "Political theology",
+              "Religion and state",
+              "Religious aspects",
+              "Undocumented immigrants",
+              "United States"
+            ]
+            replaced_terms = ["Illegal aliens—Government policy—United States", "Illegal aliens—United States"]
+            subjects_for_searching = corrected_subjects_compound + replaced_terms
 
-              expect(@change_the_subject1["subject_facet"]).to match_array(corrected_subjects_compound)
-              expect(@change_the_subject1["subject_topic_facet"]).to match_array(corrected_subjects_atomic)
-              expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
-              expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
-            end
+            expect(@change_the_subject1["subject_facet"]).to match_array(corrected_subjects_compound)
+            expect(@change_the_subject1["subject_topic_facet"]).to match_array(corrected_subjects_atomic)
+            expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
+            expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
           end
         end
       end
-      describe 'form_genre_display' do
-        subject(:form_genre_display) { @indexer.map_record(marc_record) }
-        let(:leader) { '1234567890' }
-        let(:field_655) do
-          {
-            "655" => {
-              "ind1" => "",
-              "ind2" => "7",
-              "subfields" => [
-                {
-                  "a" => "Culture."
-                },
-                {
-                  "v" => "Awesome"
-                },
-                {
-                  "x" => "Dramatic rendition"
-                },
-                {
-                  "y" => "19th century."
-                },
-                {
-                  "2" => "lcgft"
-                }
-              ]
-            }
+    end
+    describe 'form_genre_display' do
+      subject(:form_genre_display) { @indexer.map_record(marc_record) }
+      let(:leader) { '1234567890' }
+      let(:field_655) do
+        {
+          "655" => {
+            "ind1" => "",
+            "ind2" => "7",
+            "subfields" => [
+              {
+                "a" => "Culture."
+              },
+              {
+                "v" => "Awesome"
+              },
+              {
+                "x" => "Dramatic rendition"
+              },
+              {
+                "y" => "19th century."
+              },
+              {
+                "2" => "lcgft"
+              }
+            ]
           }
-        end
-        let(:field_655_2) do
-          {
-            "655" => {
-              "ind1" => "",
-              "ind2" => "7",
-              "subfields" => [
-                {
-                  "a" => "Poetry"
-                },
-                {
-                  "x" => "Translations into French"
-                },
-                {
-                  "v" => "Maps"
-                },
-                {
-                  "y" => "19th century."
-                },
-                {
-                  "2" => "aat"
-                }
-              ]
-            }
-          }
-        end
-        let(:marc_record) do
-          MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
-        end
-        it "indexes the subfields as semicolon-delimited values" do
-          expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
-          expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
-        end
+        }
       end
+      let(:field_655_2) do
+        {
+          "655" => {
+            "ind1" => "",
+            "ind2" => "7",
+            "subfields" => [
+              {
+                "a" => "Poetry"
+              },
+              {
+                "x" => "Translations into French"
+              },
+              {
+                "v" => "Maps"
+              },
+              {
+                "y" => "19th century."
+              },
+              {
+                "2" => "aat"
+              }
+            ]
+          }
+        }
+      end
+      let(:marc_record) do
+        MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
+      end
+      it "indexes the subfields as semicolon-delimited values" do
+        expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
+        expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
+      end
+    end
 
-      describe 'recap_notes_display' do
-        it "skips indexing for Princeton Recap records" do
-          expect(@recap_record["recap_notes_display"]).to be nil
-        end
-        it "Indexes H - P, if a private SCSB record" do
-          expect(@scsb_private["recap_notes_display"]).to eq ["H - P"]
-        end
-        it "Indexes C - S, if a shared SCSB record" do
-          expect(@scsb_alt_title["recap_notes_display"]).to eq ["C - S"]
-        end
-        it "Indexes N - O, if not a private/shared SCSB record" do
-          expect(@scsb_nypl["recap_notes_display"]).to eq ["N - O"]
-        end
-        it "Indexes H - C, if committed SCSB record" do
-          expect(@scsb_committed["recap_notes_display"]).to eq ["H - C"]
-        end
-        it "Indexes H - U, if uncommittable SCSB record" do
-          expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
-        end
+    describe 'recap_notes_display' do
+      it "skips indexing for Princeton Recap records" do
+        expect(@recap_record["recap_notes_display"]).to be nil
+      end
+      it "Indexes H - P, if a private SCSB record" do
+        expect(@scsb_private["recap_notes_display"]).to eq ["H - P"]
+      end
+      it "Indexes C - S, if a shared SCSB record" do
+        expect(@scsb_alt_title["recap_notes_display"]).to eq ["C - S"]
+      end
+      it "Indexes N - O, if not a private/shared SCSB record" do
+        expect(@scsb_nypl["recap_notes_display"]).to eq ["N - O"]
+      end
+      it "Indexes H - C, if committed SCSB record" do
+        expect(@scsb_committed["recap_notes_display"]).to eq ["H - C"]
+      end
+      it "Indexes H - U, if uncommittable SCSB record" do
+        expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
       end
     end
   end

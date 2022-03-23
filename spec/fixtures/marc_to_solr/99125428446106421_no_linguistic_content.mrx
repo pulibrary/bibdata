@@ -1,0 +1,198 @@
+<record>
+    <leader>02137ccm a2200469I  4500</leader>
+    <controlfield tag="005">20211213115715.0</controlfield>
+    <controlfield tag="007">qu</controlfield>
+    <controlfield tag="008">790918s1902    au mua   hi    n    zxx d</controlfield>
+    <controlfield tag="001">99125428446106421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">ac 40002028 </subfield>
+    </datafield>
+    <datafield tag="019" ind1=" " ind2=" ">
+      <subfield code="a">68147322</subfield>
+    </datafield>
+    <datafield tag="028" ind1="2" ind2="0">
+      <subfield code="a">Dm. d. Tk. in Oest. IX. 2.</subfield>
+      <subfield code="b">Artaria</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)5386701</subfield>
+      <subfield code="z">(OCoLC)68147322</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/5386701</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/68147322</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm05386701 </subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">CLU</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">CLU</subfield>
+      <subfield code="d">IUG</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">OCLCG</subfield>
+      <subfield code="d">CUY</subfield>
+      <subfield code="d">CUD</subfield>
+      <subfield code="d">EYM</subfield>
+      <subfield code="d">CRU</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">GBVCP</subfield>
+      <subfield code="d">RES</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCA</subfield>
+      <subfield code="d">OCLCQ</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2=" ">
+      <subfield code="g">ger</subfield>
+    </datafield>
+    <datafield tag="045" ind1=" " ind2=" ">
+      <subfield code="a">u8v4</subfield>
+    </datafield>
+    <datafield tag="047" ind1=" " ind2=" ">
+      <subfield code="a">sn</subfield>
+      <subfield code="a">su</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">M2</subfield>
+      <subfield code="b">.D36 Bd.19</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="0">
+      <subfield code="a">780.821</subfield>
+    </datafield>
+    <datafield tag="090" ind1="0" ind2=" ">
+      <subfield code="a">M2</subfield>
+      <subfield code="b">.D36 Bd.19q</subfield>
+      <subfield code="k">Oversize</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Fux, Johann Joseph,</subfield>
+      <subfield code="d">1660-1741.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79132134</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79132134</subfield>
+    </datafield>
+    <datafield tag="240" ind1="1" ind2="0">
+      <subfield code="a">Instrumental music.</subfield>
+      <subfield code="k">Selections</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Mehrfach besetzte Instrumentalwerke;</subfield>
+      <subfield code="b">zwei Kirchensonaten und zwei Ouverturen (Suiten).</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Wien,</subfield>
+      <subfield code="b">Artaria,</subfield>
+      <subfield code="c">1902.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">xi pages, score (55 pages)</subfield>
+      <subfield code="c">35 cm.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">notated music</subfield>
+      <subfield code="b">ntm</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Denkmäler der Tonkunst in Österreich,</subfield>
+      <subfield code="v">Bd. 19</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">For 4-8 string and wind instruments; no. 1 with organ, the others with realized unfigured bass.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Revisionsbericht von Guido Adler.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">From a ms. in the Royal Library in Dresden. Sammelband, Sign Da2a.</subfield>
+    </datafield>
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="a">Sonata a quattro (G minor)--Sonata a tre (D minor)--Ouverture (D minor)--Ouverture (B♭ major).</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Pl. no.: Dm. d. Tk. in Oest. IX. 2.</subfield>
+    </datafield>
+    <datafield tag="530" ind1=" " ind2=" ">
+      <subfield code="a">Digitized version available online via the Sibley Music Library, Eastman School of Music.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Chamber music</subfield>
+      <subfield code="v">Scores.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008100292</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01905412</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Chamber music</subfield>
+      <subfield code="x">Scores.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01905412</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008100292</subfield>
+      <subfield code="0">(uri) http://id.worldcat.org/fast/fst01905412</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Adler, Guido,</subfield>
+      <subfield code="d">1855-1941.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n81071186</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n81071186</subfield>
+    </datafield>
+    <datafield tag="776" ind1="0" ind2="8">
+      <subfield code="i">Online version:</subfield>
+      <subfield code="a">Fux, Johann Joseph, 1660-1741.</subfield>
+      <subfield code="s">Instrumental music. Selections.</subfield>
+      <subfield code="t">Mehrfach besetzte Instrumentalwerke.</subfield>
+      <subfield code="d">Wien, Artaria, 1902</subfield>
+      <subfield code="w">(OCoLC)785065945</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Denkmäler der Tonkunst in Österreich ;</subfield>
+      <subfield code="v">Bd. 19.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n42008921</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n42008921</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="u">http://hdl.handle.net/1802/26144</subfield>
+      <subfield code="x">Sibley Music Library, Eastman School of Music.</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2021-12-14 04:06:31 US/Eastern</subfield>
+      <subfield code="b">2021-12-13 11:57:15 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">mendel</subfield>
+      <subfield code="c">ref</subfield>
+      <subfield code="h">M2</subfield>
+      <subfield code="i">.D36q Bd.19</subfield>
+      <subfield code="k">Oversize</subfield>
+      <subfield code="8">22910040290006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-12-13 16:58:25</subfield>
+      <subfield code="8">22910040290006421</subfield>
+      <subfield code="a">2021-12-13 16:58:25</subfield>
+      <subfield code="b">Mendel Music Library</subfield>
+      <subfield code="c">ref: Mendel Ref</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22910040290006421</subfield>
+      <subfield code="a">23672956560006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">ref</subfield>
+      <subfield code="3">vol. 19</subfield>
+      <subfield code="d">2021-07-13 06:08:32</subfield>
+      <subfield code="p">32101021701055</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">mendel</subfield>
+    </datafield>
+  </record>
