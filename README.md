@@ -89,7 +89,7 @@ In the API sandbox (see above)
 1. Find or create the set you want to use.
 1. Click on the elipsis button of the set. -> Select 'Members'
 1. If there are records in the set that it is not desired to export, select the records using the checkbox to the left and click 'Remove Selected'
-1. Click 'Add Memebers'. Add in the search bar the desired mms_id. -> 'Search' -> Select the listed record using the checkbox -> Click Add Selected.
+1. Click 'Add Members'. Add in the search bar the desired mms_id. -> 'Search' -> Select the listed record using the checkbox -> Click Add Selected.
 1. In the left bar, click 'Resources' -> 'Publishing Profiles' -> Find the 'DRDS Test Record export' publishing profile.
 1. -> Click the elipsis button and select 'Edit'. Configure it to use your set under "Content". Click "Save".
 1. -> Click the elipsis button and select 'Republish'. -> Select 'Rebuild Entire Index' -> Click 'Run Now'.
