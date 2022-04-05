@@ -212,7 +212,10 @@ Before you swap in the new index, make sure that the solr cloud is all working a
 Update the index managers to have the new solr_collection values.
 
 ```
-bundle exec rake index_manager:promote_rebuild_manager
+$ tmux attach-session -t full-index
+$ cd /opt/marc_liberation/current
+$bundle exec rake index_manager:promote_rebuild_manager
+CTRL+b d (to detach from tmux)
 ```
 
 Then swap the rebuild collection to the production alias.
