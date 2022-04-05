@@ -224,7 +224,7 @@ Then swap the rebuild collection to the production alias.
 ```
 
 Then turn sneakers workers back on:
-- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_alma_prod -u pulsys -m shell -a "sudo service orangelight-sneakers start"
+- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers start"
 
 Then expire the rails cache to get the updated values on the front page of the catalog. You can do this by deploying the app.
 
