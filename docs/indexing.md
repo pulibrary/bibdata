@@ -221,7 +221,7 @@ CTRL+b d (to detach from tmux)
 Then swap the rebuild collection to the production alias.
 
 - Run the cap task on pul_solr to swap the aliases
-- Make sure you use the right values for PRODUCTION and REBUILD. For example if you just built the full index on catalog-production2 and are swapping it into production do:
+- Make sure you use the right values for PRODUCTION and REBUILD. Instructions for determining the correct values are [in the cap task](https://github.com/pulibrary/pul_solr/blob/main/config/deploy.rb#L99-L101).  For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
 [PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-production-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap solr8-production alias:swap
 ```
