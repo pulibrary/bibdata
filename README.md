@@ -48,9 +48,9 @@ This will add a .env with credentials to Rails.root
 
 ### Accessing the Alma Development instance
 
-https://princeton-psb.alma.exlibrisgroup.com
+https://princeton-psb.alma.exlibrisgroup.com/SAML
 
-Credentials are in LastPass; use the `disc0001` account
+Use your netid and password to login.
 
 ### Accessing the Alma Production instance
 
