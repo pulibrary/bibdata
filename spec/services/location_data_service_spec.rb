@@ -325,6 +325,11 @@ RSpec.describe LocationDataService, type: :service do
         expect(location_rare_xw.holding_library.label).to eq location_rare_xw.library.label
         expect(location_mendel_pk.holding_library.label).to eq location_mendel_pk.library.label
       end
+      it "Engineer$pt has delivery location only PT" do
+        location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')
+        expect(location_engineer_pt.delivery_locations.count).to eq(1)
+        expect(location_engineer_pt.delivery_locations.first.gfa_pickup).to eq('PT')
+      end
       it "new recap location rare$xw has recap_edd false" do
         location_rare_xw = HoldingLocation.find_by(code: 'rare$xw')
         expect(location_rare_xw.recap_electronic_delivery_location).to be false

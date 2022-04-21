@@ -4621,19 +4621,7 @@
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$pt",
       "delivery_locations": [
-        "PQ",
-        "QT",
-        "PW",
-        "PL",
-        "PT",
-        "PK",
-        "PM",
-        "QA",
-        "PN",
-        "PA",
-        "IL",
-        "QC",
-        "QP"
+        "PT"
       ]
     },
     {
