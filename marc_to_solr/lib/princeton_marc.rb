@@ -306,10 +306,9 @@ def process_subject_topic_facet record
   end
   Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
-    should_include = false
+    should_include = siku_heading?(field) || local_heading?(field)
     unless subject.nil?
       field.subfields.each do |s_field|
-        should_include = s_field.value == 'sk' if s_field.code == '2'
         subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
@@ -816,4 +815,13 @@ end
 def parse_hathi_identifer_from_hathi_line(line)
   return "" if line.blank?
   [line.split("\n").first.split("\t")[5]]
+end
+
+def local_heading?(field)
+  field.any? { |subfield| subfield.code == '2' && subfield.value == 'local' } &&
+  field.any? { |subfield| subfield.code == '5' && subfield.value == 'NjP' }
+end
+
+def siku_heading?(field)
+  field.any? { |subfield| subfield.code == '2' && subfield.value == 'sk' }
 end

@@ -792,17 +792,35 @@ describe 'From traject_config.rb' do
     end
 
     context "subject display and unstem fields" do
+      let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
+      let(:s650_local) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Local Subject" }, { "2" => "local" }, { "5" => "NjP" }] } } }
+      let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
       describe 'subject display and unstem fields' do
         let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
-        let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
-        let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
-        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude], 'leader' => leader)) }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
 
         it 'include the sk and lc subjects in separate fields, exlcude other subject types' do
           expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
           expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
           expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
+        end
+      end
+      describe 'subject facet fields' do
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
+        it 'includes siku subjects in subject_facet and subject_topic_facet' do
+          expect(subject_marc['subject_facet']).to include('Siku Subject')
+          expect(subject_marc['subject_topic_facet']).to include('Siku Subject')
+        end
+
+        it 'includes local subjects in subject_facet and subject_topic_facet' do
+          expect(subject_marc['subject_facet']).to include('Local Subject')
+          expect(subject_marc['subject_topic_facet']).to include('Local Subject')
+        end
+
+        it 'does not include other types of subjects in subject_facet or subject_topic_facet' do
+          expect(subject_marc['subject_facet']).not_to include('Exclude from subject browse')
+          expect(subject_marc['subject_topic_facet']).not_to include('Exclude from subject browse')
         end
       end
       describe 'subject terms augmented for Indigenous Studies' do
