@@ -63,6 +63,7 @@ describe 'From traject_config.rb' do
       @holding_no_items = @indexer.map_record(fixture_record('99125441441106421')) # also if you want use 99106480053506421
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
+      @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
       ENV['RUN_HATHI_COMPARE'] = 'true'
       @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
       ENV['RUN_HATHI_COMPARE'] = ''
@@ -806,6 +807,10 @@ describe 'From traject_config.rb' do
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
           expect(subject_marc['local_subject_display']).to match_array(['Local Subject'])
           expect(subject_marc['local_subject_unstem_search']).to match_array(['Local Subject'])
+        end
+
+        it 'works using a fixture file' do
+          expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
         end
       end
       describe 'subject facet fields' do
