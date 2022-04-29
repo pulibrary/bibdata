@@ -818,7 +818,7 @@ end
 
 def local_heading?(field)
   field.any? { |subfield| subfield.code == '2' && subfield.value == 'local' } &&
-  field.any? { |subfield| subfield.code == '5' && subfield.value == 'NjP' }
+    field.any? { |subfield| subfield.code == '5' && subfield.value == 'NjP' }
 end
 
 def siku_heading?(field)
