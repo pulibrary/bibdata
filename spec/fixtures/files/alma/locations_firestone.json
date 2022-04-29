@@ -25,156 +25,181 @@
         },
         "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pb"
         },
-        {
-          "code": "secw",
-          "name": "secw: Scribner Library: Common Works Collection",
-          "external_name": "Scribner Library: Common Works Collection",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Limited",
-          "desc": "Limited"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "0",
-          "desc": "Library of Congress classification"
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/secw"
+      {
+        "code": "secw",
+        "name": "secw: Scribner Library: Common Works Collection",
+        "external_name": "Scribner Library: Common Works Collection",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
         },
-        {
-          "code": "se",
-          "name": "se: Scribner Room",
-          "external_name": "Scribner Library",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Limited",
-          "desc": "Limited"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "",
-          "desc": null
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/se"
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
         },
-        {
-          "code": "seref",
-          "name": "seref: Scribner Room: Ref.",
-          "external_name": "Scribner Library: Reference",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Limited",
-          "desc": "Limited"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "",
-          "desc": null
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/seref"
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
         },
-        {
-          "code": "ssrcdc",
-          "name": "ssrcdc DOCS: Census",
-          "external_name": "Government Documents Collection (DOCS): Census",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Limited",
-          "desc": "Limited"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "",
-          "desc": null
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcdc"
+        "call_number_type": {
+        "value": "0",
+        "desc": "Library of Congress classification"
         },
-        {
-          "code": "ssrcfo",
-          "name": "ssrcfo DSS: Statistical Abstracts",
-          "external_name": "Data and Statistical Services (DSS): Statistical Abstracts",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Limited",
-          "desc": "Limited"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "0",
-          "desc": "Library of Congress classification"
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcfo"
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/secw"
+      },
+      {
+        "code": "se",
+        "name": "se: Scribner Room",
+        "external_name": "Scribner Library",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
         },
-        {
-          "code": "pres",
-          "name": "pres: Preservation Office",
-          "external_name": "Preservation Office: Contact preservation@princeton.edu",
-          "type": {
-          "value": "OPEN",
-          "desc": "Open"
-          },
-          "remote_storage": "",
-          "map": "",
-          "suppress_from_publishing": "false",
-          "fulfillment_unit": {
-          "value": "Closed",
-          "desc": "Closed"
-          },
-          "accession_placement": {
-          "value": "none",
-          "desc": "None"
-          },
-          "call_number_type": {
-          "value": "",
-          "desc": null
-          },
-          "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pres"
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/se"
+      },
+      {
+        "code": "seref",
+        "name": "seref: Scribner Room: Ref.",
+        "external_name": "Scribner Library: Reference",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/seref"
+      },
+      {
+        "code": "ssrcdc",
+        "name": "ssrcdc DOCS: Census",
+        "external_name": "Government Documents Collection (DOCS): Census",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcdc"
+      },
+      {
+        "code": "ssrcfo",
+        "name": "ssrcfo DSS: Statistical Abstracts",
+        "external_name": "Data and Statistical Services (DSS): Statistical Abstracts",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "0",
+        "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/ssrcfo"
+      },
+      {
+        "code": "pres",
+        "name": "pres: Preservation Office",
+        "external_name": "Preservation Office: Contact preservation@princeton.edu",
+        "type": {
+        "value": "OPEN",
+        "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Closed",
+        "desc": "Closed"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pres"
+      },
+      {
+        "code": "pf",
+        "name": "rcppf: Firestone Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Firestone Library Use Only",
+        "type": {
+        "value": "REMOTE",
+        "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+        "value": "Closed",
+        "desc": "Closed"
+        },
+        "accession_placement": {
+        "value": "none",
+        "desc": "None"
+        },
+        "call_number_type": {
+        "value": "",
+        "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations/pf"
         }
     ],
-    "total_record_count": 7
+    "total_record_count": 8
   }
