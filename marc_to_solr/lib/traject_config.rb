@@ -834,10 +834,16 @@ to_field 'siku_subject_display' do |record, accumulator|
   accumulator.replace(genres)
 end
 
+to_field 'local_subject_display' do |record, accumulator|
+  subjects = process_hierarchy(record, '650|*7|abcvxyz') {|field| local_heading? field }
+  accumulator.replace(subjects)
+end
+
 # Adds lc and siku subject unstem_search fields
 # Note that lc unstem search should include both archaic and replaced terms
 each_record do |_record, context|
   context.output_hash['subject_unstem_search'] = context.output_hash['lc_subject_include_archaic_search_terms_index']
+  context.output_hash['local_subject_unstem_search'] = context.output_hash['local_subject_display']
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
 end
 
