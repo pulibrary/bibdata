@@ -269,17 +269,16 @@ SEPARATOR = '—'
 
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
-# optional vocabulary argument for allowing certain subfield $2 vocabularies
-def process_hierarchy(record, fields, vocabulary = [])
+# optionally pass a block to only allow fields that match certain criteria
+def process_hierarchy(record, fields)
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     heading = extractor.collect_subfields(field, spec).first
-    include_heading = vocabulary.empty? # always include the heading if a vocabulary is not specified
+    include_heading = block_given? ? yield(field) : true
     unless heading.nil?
       field.subfields.each do |s_field|
         # when specified, only include heading if it is part of the vocabulary
-        include_heading = vocabulary.include?(s_field.value) if s_field.code == '2' && !vocabulary.empty?
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
@@ -823,5 +822,9 @@ def local_heading?(field)
 end
 
 def siku_heading?(field)
-  field.any? { |subfield| subfield.code == '2' && subfield.value == 'sk' }
+  any_thesaurus_match? field, %w[sk]
+end
+
+def any_thesaurus_match?(field, thesauri)
+  field.any? { |subfield| subfield.code == '2' && thesauri.include?(subfield.value) }
 end
