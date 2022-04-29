@@ -167,32 +167,10 @@ RSpec.describe LocationDataService, type: :service do
 
   describe "#delete_existing_and_repopulate" do
     before do
-      # Setup fake records to test if existing records are deleted
-      test_library = Library.create(code: 'test', label: 'test')
-      HoldingLocation.new(code: 'test', label: 'test') do |test_location|
-        test_location.library = test_library
-        test_location.save
-      end
-      DeliveryLocation.new(label: 'test', address: 'test') do |test_delivery_location|
-        test_delivery_location.library = test_library
-        test_delivery_location.save
-      end
-    end
-    let(:firestone_library) { Library.find_by(code: 'firestone') }
-    let(:scsb_delivery_location) do
-      DeliveryLocation.create("label": "Firestone Circulation Desk",
-                              "address": "One Washington Rd. Princeton, NJ 08544",
-                              "phone_number": "609 258-2345",
-                              "contact_email": "fstcirc@princton.edu",
-                              "gfa_pickup": "QX",
-                              "staff_only": false,
-                              "pickup_location": false,
-                              "digital_location": false,
-                              "library": firestone_library)
+      described_class.delete_existing_and_repopulate
     end
 
     it "deletes existing data and populates library and location data from Alma excluding elfs" do
-      described_class.delete_existing_and_repopulate
       library_record = Library.find_by(code: 'arch')
       location_record1 = HoldingLocation.find_by(code: 'arch$stacks')
       location_record2 = HoldingLocation.find_by(code: 'annex$stacks')
@@ -217,7 +195,7 @@ RSpec.describe LocationDataService, type: :service do
       lewis_serial = HoldingLocation.find_by(code: 'lewis$serial')
 
       expect(Library.count).to eq 12
-      expect(HoldingLocation.count).to eq 126
+      expect(HoldingLocation.count).to eq 127
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
@@ -247,9 +225,14 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_pres.label).to eq 'Preservation Office: Contact preservation@princeton.edu'
       expect(lewis_serial.label).to eq 'Lewis Library - Serials (Off-Site)'
     end
-
+    it "firestone$pf does not circulate and delivers only to Firestone Library Microforms" do
+      location_firestone_pf = HoldingLocation.find_by(code: 'firestone$pf')
+      delivery_microforms = DeliveryLocation.find_by(gfa_pickup: 'PF')
+      expect(location_firestone_pf.circulates).to be false
+      expect(location_firestone_pf.delivery_locations.count).to eq 1
+      expect(location_firestone_pf.delivery_locations.first).to eq(delivery_microforms)
+    end
     it "Locations with fulfillment_unit: Reserves are not requestable" do
-      described_class.delete_existing_and_repopulate
       location_record12 = HoldingLocation.find_by(code: 'arch$res3hr')
       location_record13 = HoldingLocation.find_by(code: 'eastasian$reserve')
 
@@ -260,7 +243,6 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "creates scsb locations" do
-      described_class.delete_existing_and_repopulate
       scsbnypl_record = HoldingLocation.find_by(code: 'scsbnypl')
       scsbhl_record = HoldingLocation.find_by(code: 'scsbhl')
       scsbcul_record = HoldingLocation.find_by(code: 'scsbcul')
@@ -282,14 +264,11 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     it "deletes existing delivery locations table and populates new from json file" do
-      described_class.delete_existing_and_repopulate
       library_record = Library.find_by(code: 'annex')
     end
 
     it "sets a static ID" do
-      described_class.delete_existing_and_repopulate
       # Run a second time to ensure idempotency.
-      described_class.delete_existing_and_repopulate
 
       location = DeliveryLocation.find_by(gfa_pickup: "PW")
 
@@ -300,9 +279,6 @@ RSpec.describe LocationDataService, type: :service do
     end
 
     describe "new recap locations" do
-      before do
-        described_class.delete_existing_and_repopulate
-      end
       it "they have recap_edd true and holding_library same as library" do
         location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')
         location_arch_pw = HoldingLocation.find_by(code: 'arch$pw')

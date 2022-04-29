@@ -4301,7 +4301,7 @@
       "open": false,
       "requestable": true,
       "always_requestable": false,
-      "circulates": true,
+      "circulates": false,
       "url": "https://bibdata.princeton.edu/locations/holding_locations/rcppf.json",
       "library": {
         "label": "ReCAP",
@@ -4317,12 +4317,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pf",
       "delivery_locations": [
-        "QT",
-        "PF",
-        "QA",
-        "IL",
-        "QC",
-        "QP"
+        "PF"
       ]
     },
     {
