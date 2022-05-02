@@ -3,7 +3,7 @@
       {
         "code": "pb",
         "name": "rcppb: Firestone Remote Storage (ReCAP)",
-        "external_name": "Remote Storage: Supervised use in Firestone A-16-H-3",
+        "external_name": "Firestone Library - Remote Storage (ReCAP): Supervised use in Firestone",
         "type": {
         "value": "REMOTE",
         "desc": "Remote Storage"
