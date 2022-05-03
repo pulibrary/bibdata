@@ -830,14 +830,20 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
 end
 
 to_field 'siku_subject_display' do |record, accumulator|
-  genres = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
-  accumulator.replace(genres)
+  subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading? field }
+  accumulator.replace(subjects)
+end
+
+to_field 'local_subject_display' do |record, accumulator|
+  subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
+  accumulator.replace(subjects)
 end
 
 # Adds lc and siku subject unstem_search fields
 # Note that lc unstem search should include both archaic and replaced terms
 each_record do |_record, context|
   context.output_hash['subject_unstem_search'] = context.output_hash['lc_subject_include_archaic_search_terms_index']
+  context.output_hash['local_subject_unstem_search'] = context.output_hash['local_subject_display']
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
 end
 
@@ -846,23 +852,23 @@ to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   subjects = augment_the_subject.add_indigenous_studies(subjects)
   subjects = ChangeTheSubject.fix(subjects)
-  sk_subjects = process_hierarchy(record, '650|*7|abcvxyz', ['sk'])
-  genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft', 'aat', 'rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
-  accumulator.replace([subjects, sk_subjects, genres].flatten)
+  additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) }
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
+  accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
 end
 
 to_field 'lcgft_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz', ['lcgft'])
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft] }
   accumulator.replace(genres)
 end
 
 to_field 'aat_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz', ['aat'])
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[aat] }
   accumulator.replace(genres)
 end
 
 to_field 'rbgenr_s' do |record, accumulator|
-  genres = process_hierarchy(record, '655|*7|avxyz', ['rbbin', 'rbgenr', 'rbmscv', 'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp'])
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
   accumulator.replace(genres)
 end
 

@@ -1,0 +1,191 @@
+<record>
+    <leader>02036cam a2200445 a 4500</leader>
+    <controlfield tag="005">20220427161853.0</controlfield>
+    <controlfield tag="008">010117s2000 sz ab b i000 0 eng d</controlfield>
+    <controlfield tag="001">9934792603506421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9290680970</subfield>
+      <subfield code="0">(uri) http://www.isbnsearch.org/isbn/9290680970</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)45738746</subfield>
+      <subfield code="0">(uri) http://www.worldcat.org/oclc/45738746</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CSt)(Sirsi)a4510135</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)CSUGA4510135-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">3479260</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3479260-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">UIU</subfield>
+      <subfield code="c">UIU</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Migrant trafficking and human smuggling in Europe :</subfield>
+      <subfield code="b">a review of the evidence with case studies from Hungary, Poland and Ukraine /</subfield>
+      <subfield code="c">[Editors: Frank Laczko, David Thompson].</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">[Geneva] :</subfield>
+      <subfield code="b">International Organization for Migration,</subfield>
+      <subfield code="c">[2000]</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">416 p. :</subfield>
+      <subfield code="b">ill., maps ;</subfield>
+      <subfield code="c">24 cm.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">"Produced with the collaboration of the Technical Cooperation Centre for Europe and Central Asia"--T.p. verso.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens</subfield>
+      <subfield code="z">Europe.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Smuggling</subfield>
+      <subfield code="z">Europe.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85123713</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens</subfield>
+      <subfield code="z">Poland.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Smuggling</subfield>
+      <subfield code="z">Poland.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85123713</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens</subfield>
+      <subfield code="z">Ukraine.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Smuggling</subfield>
+      <subfield code="z">Ukraine.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85123713</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Illegal aliens</subfield>
+      <subfield code="z">Hungary.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Smuggling</subfield>
+      <subfield code="z">Hungary.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh85123713</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Undocumented immigrants</subfield>
+      <subfield code="z">Europe.</subfield>
+      <subfield code="2">local</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Europe</subfield>
+      <subfield code="x">Emigration and immigration.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008114977</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008114977</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Poland</subfield>
+      <subfield code="x">Emigration and immigration.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008116597</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/subjects/sh2008116597</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Ukraine</subfield>
+      <subfield code="x">Emigration and immigration.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n81017756</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n81017756</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Hungary</subfield>
+      <subfield code="x">Emigration and immigration.</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n79053090</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n79053090</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Laczko, Frank,</subfield>
+      <subfield code="d">1957-</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n91015350</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n91015350</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n91015350</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Thompson, David.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n78001220</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/n78001220</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|n78001220</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">International Organization for Migration.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/no90018047</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/no90018047</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no90018047</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">Technical Cooperation Centre for Europe and Central Asia.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/no97077118</subfield>
+      <subfield code="0">(uri) http://id.loc.gov/authorities/names/no97077118</subfield>
+      <subfield code="0">(uri) http://viaf.org/viaf/sourceID/LC|no97077118</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">sbw</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20020125</subfield>
+    </datafield>
+    <datafield tag="904" ind1=" " ind2=" ">
+      <subfield code="a">cdh</subfield>
+      <subfield code="b">d</subfield>
+      <subfield code="h">m</subfield>
+      <subfield code="c">b</subfield>
+      <subfield code="e">20011116</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+      <subfield code="s">9115</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2022-04-27 16:19:06 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 19:18:45 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">HQ281</subfield>
+      <subfield code="i">.M54 2000</subfield>
+      <subfield code="8">22598840960006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-12 23:18:45</subfield>
+      <subfield code="8">22598840960006421</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22598840960006421</subfield>
+      <subfield code="a">23598840950006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">stacks</subfield>
+      <subfield code="d">2021-07-12 23:18:45</subfield>
+      <subfield code="p">32101066645373</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+  </record>
+  

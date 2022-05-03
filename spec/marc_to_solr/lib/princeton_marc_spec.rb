@@ -536,8 +536,8 @@ describe 'From princeton_marc.rb' do
       @s630 = { "630" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "x" => "Fiction" }, { "y" => "1492" }, { "z" => "don't ignore" }, { "t" => "TITLE." }] } }
       @sample_marc = MARC::Record.new_from_hash('fields' => [@s610_ind2_5, @s600, @s630])
       @subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz')
-      @vocab_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz', ['vocab'])
-      @special_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz', ['special'])
+      @vocab_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz') { |field| any_thesaurus_match? field, %w[vocab] }
+      @special_subjects = process_hierarchy(@sample_marc, '600|*0|abcdfklmnopqrtvxyz:630|*0|adfgklmnoprstvxyz') { |field| any_thesaurus_match? field, %w[special] }
     end
 
     describe 'when an optional vocabulary limit is not provided' do

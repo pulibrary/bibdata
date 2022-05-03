@@ -269,17 +269,18 @@ SEPARATOR = '—'
 
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
-# optional vocabulary argument for allowing certain subfield $2 vocabularies
-def process_hierarchy(record, fields, vocabulary = [])
+# optionally pass a block to only allow fields that match certain criteria
+# For example, if you only want subject headings from the Bilindex vocabulary,
+# you could use `process_hierarchy(record, '650|*7|abcvxyz') { |field| field['2'] == 'bidex' }`
+def process_hierarchy(record, fields)
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     heading = extractor.collect_subfields(field, spec).first
-    include_heading = vocabulary.empty? # always include the heading if a vocabulary is not specified
+    include_heading = block_given? ? yield(field) : true
     unless heading.nil?
       field.subfields.each do |s_field|
         # when specified, only include heading if it is part of the vocabulary
-        include_heading = vocabulary.include?(s_field.value) if s_field.code == '2' && !vocabulary.empty?
         heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
       end
       heading = heading.split(SEPARATOR)
@@ -306,10 +307,9 @@ def process_subject_topic_facet record
   end
   Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
-    should_include = false
+    should_include = siku_heading?(field) || local_heading?(field)
     unless subject.nil?
       field.subfields.each do |s_field|
-        should_include = s_field.value == 'sk' if s_field.code == '2'
         subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
       end
       subject = subject.split(SEPARATOR)
@@ -816,4 +816,17 @@ end
 def parse_hathi_identifer_from_hathi_line(line)
   return "" if line.blank?
   [line.split("\n").first.split("\t")[5]]
+end
+
+def local_heading?(field)
+  field.any? { |subfield| subfield.code == '2' && subfield.value == 'local' } &&
+    field.any? { |subfield| subfield.code == '5' && subfield.value == 'NjP' }
+end
+
+def siku_heading?(field)
+  any_thesaurus_match? field, %w[sk]
+end
+
+def any_thesaurus_match?(field, thesauri)
+  field.any? { |subfield| subfield.code == '2' && thesauri.include?(subfield.value) }
 end
