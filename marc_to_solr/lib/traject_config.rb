@@ -830,8 +830,8 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
 end
 
 to_field 'siku_subject_display' do |record, accumulator|
-  genres = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading? field }
-  accumulator.replace(genres)
+  subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading? field }
+  accumulator.replace(subjects)
 end
 
 to_field 'local_subject_display' do |record, accumulator|

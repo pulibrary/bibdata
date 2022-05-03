@@ -270,6 +270,8 @@ SEPARATOR = '—'
 # for the hierarchical subject/genre display
 # split with em dash along t,v,x,y,z
 # optionally pass a block to only allow fields that match certain criteria
+# For example, if you only want subject headings from the Bilindex vocabulary,
+# you could use `process_hierarchy(record, '650|*7|abcvxyz') { |field| field['2'] == 'bidex' }`
 def process_hierarchy(record, fields)
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
