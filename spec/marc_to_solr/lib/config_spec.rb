@@ -801,7 +801,7 @@ describe 'From traject_config.rb' do
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
 
         it 'include the sk, local, and lc subjects in separate fields, exlcude other subject types' do
-          expect(subject_marc['lc_subject_display']).to match_array(['LC Subject'])
+          expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
           expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
           expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
@@ -810,6 +810,7 @@ describe 'From traject_config.rb' do
         end
 
         it 'works using a fixture file' do
+          expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
         end
       end
