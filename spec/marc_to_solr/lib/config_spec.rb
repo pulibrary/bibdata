@@ -800,11 +800,15 @@ describe 'From traject_config.rb' do
         let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
 
-        it 'include the sk, local, and lc subjects in separate fields, exlcude other subject types' do
+        it 'include lc subjects and local subjects in the same display field' do
           expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
-          expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
+        end
+        it 'includes siku subjects in separate fields' do
           expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
+        end
+        it 'include lc, siku, and local subjects in separate unstem fields' do
+          expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
           expect(subject_marc['local_subject_display']).to match_array(['Local Subject'])
           expect(subject_marc['local_subject_unstem_search']).to match_array(['Local Subject'])
         end
