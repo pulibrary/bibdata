@@ -6,7 +6,7 @@ describe 'DeliveryLocation', type: :request do
     it 'Renders the json template' do
       get delivery_locations_path, params: { format: :json }
       expect(response).to render_template(:index)
-      expect(response.content_type).to eq 'application/json'
+      expect(response.content_type).to eq "application/json; charset=utf-8"
     end
 
     describe 'the response body' do
@@ -63,7 +63,7 @@ describe 'DeliveryLocation', type: :request do
     it 'Renders the html template by default' do
       get delivery_locations_path
       expect(response).to render_template(:index)
-      expect(response.content_type).to eq 'text/html'
+      expect(response.content_type).to eq "text/html; charset=utf-8"
     end
 
     describe 'the response body' do

@@ -817,7 +817,8 @@ to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   subjects = augment_the_subject.add_indigenous_studies(subjects)
   subjects = ChangeTheSubject.fix(subjects)
-  accumulator.replace(subjects)
+  local_subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
+  accumulator.replace(subjects | local_subjects)
 end
 
 # A field to include both archaic and replaced terms, for search purposes
