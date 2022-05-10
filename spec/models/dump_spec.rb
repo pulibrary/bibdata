@@ -53,6 +53,7 @@ RSpec.describe Dump, type: :model do
       dump1 = described_class.create(dump_type: partner_recap_dump_type)
       dump2 = described_class.create(dump_type: partner_recap_full_dump_type)
       dump3 = described_class.create(dump_type: partner_recap_full_dump_type)
+      allow(described_class).to receive(:partner_recap_full).and_return([dump2, dump3])
       expect(described_class.partner_recap_full.map(&:id)).to contain_exactly(dump2.id, dump3.id)
     end
   end
