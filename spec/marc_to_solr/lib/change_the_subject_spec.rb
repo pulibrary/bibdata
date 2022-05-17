@@ -66,4 +66,13 @@ RSpec.describe ChangeTheSubject do
       expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
     end
   end
+
+  context 'subject terms with both the original and mapped term' do
+    let(:subject_terms) { ["Illegal aliens", "Undocumented immigrants"] }
+    let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+
+    it "suggests a replacement" do
+      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+    end
+  end
 end

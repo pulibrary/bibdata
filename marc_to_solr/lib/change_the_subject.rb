@@ -16,7 +16,7 @@ class ChangeTheSubject
       return [] if subject_terms.nil?
       subject_terms = subject_terms.compact.reject(&:empty?)
       return [] if subject_terms.blank?
-      subject_terms.map { |term| check_for_replacement(term) }
+      subject_terms.map { |term| check_for_replacement(term) }.uniq
     end
 
     ##
