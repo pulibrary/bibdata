@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro'
+  gem 'sidekiq-pro', '5.2.2'
 end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
@@ -12,8 +12,8 @@ gem 'capistrano-passenger'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'
-gem 'ddtrace'
-gem 'devise', '~> 4.7.1'
+gem 'ddtrace', '~> 0.54.2'
+gem 'devise'
 gem 'faraday', '~> 1.0.1'
 gem 'faraday_middleware', '~> 1.0.0'
 gem 'ffi', '>= 1.9.25'
@@ -22,7 +22,7 @@ gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
 gem 'honeybadger', '~> 3.1'
 gem 'iso-639'
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
 gem 'lcsort'
@@ -43,16 +43,16 @@ gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.4.2'
 gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
-gem 'rails', '~> 5.2.4'
-gem 'responders', '~> 2.3'
+gem 'rails', '~> 6.1'
+gem 'responders', '~> 3.0'
 gem 'rest-client'
 gem 'rsolr'
-gem 'rspec-rails', '~> 3.8'
+gem 'rspec-rails'
 gem 'rubocop'
 gem 'rubocop-rspec'
 gem 'rubyXL'
 gem 'rubyzip', '>= 1.2.2'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 gem 'selenium-webdriver'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
@@ -71,7 +71,7 @@ group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'coveralls_reborn'
   gem "dotenv-rails"
-  gem "factory_bot_rails", "~> 4.0"
+  gem "factory_bot_rails"
   gem 'faker'
   gem 'pry-byebug', '~> 3.0'
   gem 'pry-rails'
