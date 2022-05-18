@@ -21,4 +21,12 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe ".from_cas" do
+    let(:access_token) { OmniAuth::AuthHash.new(provider: provider, uid: uid) }
+
+    it "finds or creates user in the database" do
+      expect { described_class.from_cas(access_token) }.to change(described_class, :count).by(1)
+    end
+  end
 end
