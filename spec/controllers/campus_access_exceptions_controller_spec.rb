@@ -28,7 +28,7 @@ RSpec.describe CampusAccessExceptionsController, type: :controller do
       it "requires the file" do
         post :create, params: { exception_file: nil }
         expect(response).to redirect_to("http://test.host/campus_access_exceptions/new")
-        expect(flash[:alert]).to include('param is missing or the value is empty: exception_file')
+        expect(flash[:alert]).to eq('param is missing or the value is empty: exception_file')
       end
     end
   end

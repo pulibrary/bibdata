@@ -5,7 +5,7 @@ describe 'Library json view', type: :request do
   it 'Renders the json template' do
     get libraries_path, params: { format: :json }
     expect(response).to render_template(:index)
-    expect(response.content_type).to eq 'application/json; charset=utf-8'
+    expect(response.content_type).to eq 'application/json'
   end
 
   describe 'the response body' do
