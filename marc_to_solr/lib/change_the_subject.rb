@@ -16,7 +16,10 @@ class ChangeTheSubject
       return [] if subject_terms.nil?
       subject_terms = subject_terms.compact.reject(&:empty?)
       return [] if subject_terms.blank?
-      subject_terms.map { |term| check_for_replacement(term) }.uniq
+      subject_terms.map do |term|
+        replacement = check_for_replacement(term)
+        replacement unless replacement.empty?
+      end.compact.uniq
     end
 
     ##
@@ -48,7 +51,7 @@ class ChangeTheSubject
         end
 
         begin
-          YAML.safe_load(change_the_subject_erb, aliases: true)["production"]
+          YAML.safe_load(change_the_subject_erb, aliases: true)[Rails.env.to_s]
         rescue => e
           raise("#{change_the_subject_config_file} was found, but could not be parsed.\n#{e.inspect}")
         end

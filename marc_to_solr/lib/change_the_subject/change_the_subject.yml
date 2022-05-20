@@ -1,5 +1,5 @@
 defaults: &defaults
-    subject_mapping:
+    subject_mapping: &subject_mapping_list
        "Illegal aliens":
           replacement: "Undocumented immigrants"
           rationale: "The term immigrant or undocumented/unauthorized immigrants are the terms LoC proposed as replacements for illegal aliens and other uses of the world alien in LCSH."
@@ -68,6 +68,11 @@ development:
   <<: *defaults
 test:
   <<: *defaults
+  subject_mapping:
+    <<: *subject_mapping_list
+    "Test term":
+      replacement: ""
+      rationale: "Test use only."
 staging:
   <<: *defaults
 production:

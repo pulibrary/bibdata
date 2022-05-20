@@ -75,4 +75,13 @@ RSpec.describe ChangeTheSubject do
       expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
     end
   end
+
+  context 'subject terms that have empty replacements' do
+    let(:subject_terms) { ['Test term', "Illegal aliens"] }
+    let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+
+    it "suggests a replacement" do
+      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+    end
+  end
 end
