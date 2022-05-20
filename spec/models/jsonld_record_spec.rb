@@ -92,7 +92,7 @@ RSpec.describe JSONLDRecord, type: :model do
       {
         # Provide two arks - one in the iiif manifest paths (a known figgy ark),
         # and one without, to make sure it picks the Figgy one.
-        'electronic_access_1display' => ["{\"https://catalog.princeton.edu/catalog/7849027#view\":[\"Digital content\"],\"http://arks.princeton.edu/ark:/88435/cj82k733w\":[\"arks.princeton.edu\",\"Yemeni Manuscript Digitization Initiative\"],\"iiif_manifest_paths\":{\"http://arks.princeton.edu/ark:/88435/qv33rx40r\":\"https://figgy.princeton.edu/concern/scanned_resources/28cfa04a-b699-427c-84e6-998b74f9669e/manifest\"}}"],
+        'electronic_access_1display' => ["{\"https://catalog.princeton.edu/catalog/7849027#viewer-container\":[\"Digital content\"],\"http://arks.princeton.edu/ark:/88435/cj82k733w\":[\"arks.princeton.edu\",\"Yemeni Manuscript Digitization Initiative\"],\"iiif_manifest_paths\":{\"http://arks.princeton.edu/ark:/88435/qv33rx40r\":\"https://figgy.princeton.edu/concern/scanned_resources/28cfa04a-b699-427c-84e6-998b74f9669e/manifest\"}}"],
         'indexed_in_display' => ['Example']
       }
     }

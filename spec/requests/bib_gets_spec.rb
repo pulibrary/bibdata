@@ -319,7 +319,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
       let(:orangelight_url_builder) { instance_double(OrangelightUrlBuilder) }
 
       before do
-        allow(orangelight_url_builder).to receive(:build).and_return("https://catalog.princeton.edu/catalog/4765221#view")
+        allow(orangelight_url_builder).to receive(:build).and_return("https://catalog.princeton.edu/catalog/4765221#viewer-container")
         allow(OrangelightUrlBuilder).to receive(:new).and_return(orangelight_url_builder)
 
         allow(iiif_manifest_url_builder).to receive(:build).and_return("https://figgy.princeton.edu/concern/scanned_resources/181f7a9d-7e3c-4519-a79f-90113f65a14d/manifest")
@@ -340,7 +340,7 @@ RSpec.describe "Bibliographic Gets", type: :request do
         expect(solr_doc).to have_key('electronic_access_1display')
         electronic_access_links = solr_doc['electronic_access_1display']
         electronic_access = JSON.parse(electronic_access_links.first)
-        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content'])
+        expect(electronic_access).to include('https://catalog.princeton.edu/catalog/4765221#viewer-container' => ['Digital content'])
 
         expect(electronic_access).to have_key('iiif_manifest_paths')
         manifest_paths = electronic_access['iiif_manifest_paths']
