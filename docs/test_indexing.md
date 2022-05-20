@@ -13,4 +13,4 @@
    ssh deploy@bibdata-alma-worker-staging1
    cd /opt/marc_liberation/current
    ``` 
-1. run `SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-qa FILE=/home/deploy/<file name>.xml RAILS_ENV=production bundle exec rake liberate:index_file` 
+1. run `SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-staging FILE=/home/deploy/<file name>.xml RAILS_ENV=production bundle exec rake liberate:index_file` 
