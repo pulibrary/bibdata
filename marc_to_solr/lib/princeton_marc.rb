@@ -433,9 +433,9 @@ end
 
 def fragment_value(fragment_index)
   if fragment_index == 0
-    'view'
+    'viewer-container'
   else
-    "view_#{fragment_index}"
+    "viewer-container_#{fragment_index}"
   end
 end
 

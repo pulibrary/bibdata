@@ -106,9 +106,9 @@ describe 'From princeton_marc.rb' do
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3]) }
 
       it 'retrieves the URL for the current resource' do
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view' => ['Digital content'])
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view_1' => ['Digital content', 'label'])
-        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#view_2' => ['Selected images'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#viewer-container' => ['Digital content'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#viewer-container_1' => ['Digital content', 'label'])
+        expect(links).to include('https://catalog.princeton.edu/catalog/4765221#viewer-container_2' => ['Selected images'])
         expect(links).not_to include('http://arks.princeton.edu/ark:/88435/00000140q' => ['arks.princeton.edu'])
       end
 
