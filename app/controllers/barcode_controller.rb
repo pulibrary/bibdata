@@ -21,9 +21,9 @@ class BarcodeController < ApplicationController
       mms_id = item["bib_data"]["mms_id"]
       record = adapter.get_bib_record(mms_id, suppressed: false)
 
-      # If the bib record is supressed, the returned record will be nil and the controller should return with a 404 status
+      # If the bib record is not found, the returned record will be nil and the controller should return with a 404 status
       if record.nil?
-        render plain: "Record #{mms_id} not found or suppressed", status: :not_found
+        render plain: "Record #{mms_id} not found", status: :not_found
         return
       end
       holding = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
