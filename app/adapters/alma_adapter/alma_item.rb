@@ -69,7 +69,7 @@ class AlmaAdapter
     # AlmaAdapter::MarcRecord#enrich_with_item
     def enrichment_876
       MARC::DataField.new(
-        '876', '0', '0',
+        '876', ' ', ' ',
         *subfields_for_876
       )
     end
