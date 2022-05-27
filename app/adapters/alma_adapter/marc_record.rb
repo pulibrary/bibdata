@@ -19,8 +19,8 @@ class AlmaAdapter
     end
 
     def linked_record_ids
-      linked_record_fields = marc_record.fields.select do |field|
-        field.tag == "774"
+      linked_record_fields = marc_record.fields('774').select do |field|
+        alma_bib_id?(field['w']) && field['t']
       end
       linked_record_fields.map do |field|
         field["w"]
@@ -64,6 +64,11 @@ class AlmaAdapter
       rescue
         true
       end
+    end
+
+    # Pass a specific field code to check if it is an alma id.
+    def alma_bib_id?(code)
+      code.to_s.start_with?("99") && code.to_s.end_with?("06421")
     end
   end
 end
