@@ -5,7 +5,7 @@
 class ChangeTheSubject
   class << self
     def terms_mapping
-      @terms_mapping ||= config["subject_mapping"]
+      @terms_mapping ||= config
     end
 
     ##
@@ -51,7 +51,7 @@ class ChangeTheSubject
         end
 
         begin
-          YAML.safe_load(change_the_subject_erb, aliases: true)[Rails.env.to_s]
+          YAML.safe_load(change_the_subject_erb, aliases: true)
         rescue => e
           raise("#{change_the_subject_config_file} was found, but could not be parsed.\n#{e.inspect}")
         end

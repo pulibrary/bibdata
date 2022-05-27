@@ -6,29 +6,21 @@ require 'rails_helper'
 # When our catalog records contain outdated subject headings, we need the ability
 # to update them at index time to preferred terms.
 RSpec.describe ChangeTheSubject do
+  let(:fixture_config) { File.join(fixture_path, 'marc_to_solr', 'change_the_subject.yml') }
+
+  before do
+    allow(described_class).to receive(:change_the_subject_config_file).and_return(fixture_config)
+  end
+
   context "a replaced term" do
     it "suggests a replacement" do
       expect(described_class.check_for_replacement("Illegal aliens")).to eq "Undocumented immigrants"
       expect(described_class.check_for_replacement("Illegal immigration")).to eq "Undocumented immigrants"
       expect(described_class.check_for_replacement("Women illegal aliens")).to eq "Women undocumented immigrants"
-      expect(described_class.check_for_replacement("Illegal aliens in literature")).to eq "Undocumented immigrants in literature"
-      expect(described_class.check_for_replacement("Children of illegal aliens")).to eq "Children of undocumented immigrants"
-      expect(described_class.check_for_replacement("Illegal alien children")).to eq "Undocumented immigrant children"
-      expect(described_class.check_for_replacement("Illegal immigration in literature")).to eq "Undocumented immigrants in literature"
-      expect(described_class.check_for_replacement("Alien criminals")).to eq "Noncitizen criminals"
-      expect(described_class.check_for_replacement("Aliens")).to eq "Noncitizens"
-      expect(described_class.check_for_replacement("Aliens in art")).to eq "Noncitizens in art"
       expect(described_class.check_for_replacement("Aliens in literature")).to eq "Noncitizens in literature"
-      expect(described_class.check_for_replacement("Aliens in mass media")).to eq "Noncitizens in mass media"
-      expect(described_class.check_for_replacement("Church work with aliens")).to eq "Church work with noncitizens"
       expect(described_class.check_for_replacement("Officials and employees, Alien")).to eq "Officials and employees, Noncitizen"
       expect(described_class.check_for_replacement("Aliens (Greek law)")).to eq "Noncitizens (Greek law)"
-      expect(described_class.check_for_replacement("Aliens (Roman law)")).to eq "Noncitizens (Roman law)"
-      expect(described_class.check_for_replacement("Child slaves")).to eq "Enslaved children"
       expect(described_class.check_for_replacement("Indian slaves")).to eq "Enslaved indigenous peoples"
-      expect(described_class.check_for_replacement("Older slaves")).to eq "Enslaved older people"
-      expect(described_class.check_for_replacement("Slaves")).to eq "Enslaved persons"
-      expect(described_class.check_for_replacement("Women slaves")).to eq "Enslaved women"
     end
   end
 
