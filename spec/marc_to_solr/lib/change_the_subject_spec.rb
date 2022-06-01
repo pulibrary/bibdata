@@ -6,7 +6,7 @@ require 'rails_helper'
 # When our catalog records contain outdated subject headings, we need the ability
 # to update them at index time to preferred terms.
 RSpec.describe ChangeTheSubject do
-  context "a replaced term" do
+  context 'with the real configuration' do
     it "suggests a replacement" do
       expect(described_class.check_for_replacement("Illegal aliens")).to eq "Undocumented immigrants"
       expect(described_class.check_for_replacement("Illegal immigration")).to eq "Undocumented immigrants"
@@ -32,47 +32,66 @@ RSpec.describe ChangeTheSubject do
     end
   end
 
-  context "a term that has not been replaced" do
-    let(:subject_term) { "Daffodils" }
+  context 'with a mocked configuration' do
+    let(:fixture_config) { File.join(fixture_path, 'marc_to_solr', 'change_the_subject.yml') }
 
-    it "returns the term unchanged" do
-      expect(described_class.check_for_replacement(subject_term)).to eq subject_term
+    before do
+      allow(described_class).to receive(:change_the_subject_config_file).and_return(fixture_config)
+      described_class.remove_instance_variable(:@terms_mapping)
+      described_class.remove_instance_variable(:@config)
     end
-  end
 
-  context "an array of subject terms" do
-    let(:subject_terms) { ["Illegal aliens", "Workplace safety"] }
-    let(:fixed_subject_terms) { ["Undocumented immigrants", "Workplace safety"] }
+    context "a term that has not been replaced" do
+      let(:subject_term) { "Daffodils" }
 
-    it "changes only the subject terms that have been configured" do
-      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      it "returns the term unchanged" do
+        expect(described_class.check_for_replacement(subject_term)).to eq subject_term
+      end
     end
-  end
 
-  context "handles empty and nil terms" do
-    let(:subject_terms) { ["", nil, "", "Workplace safety"] }
-    let(:fixed_subject_terms) { ["Workplace safety"] }
+    context "an array of subject terms" do
+      let(:subject_terms) { ["Illegal aliens", "Workplace safety"] }
+      let(:fixed_subject_terms) { ["Undocumented immigrants", "Workplace safety"] }
 
-    it "return only non-empty terms" do
-      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      it "changes only the subject terms that have been configured" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
     end
-  end
 
-  context "subject terms with subheadings" do
-    let(:subject_terms) { ["Illegal aliens#{SEPARATOR}United States.", "Workplace safety"] }
-    let(:fixed_subject_terms) { ["Undocumented immigrants#{SEPARATOR}United States.", "Workplace safety"] }
+    context "handles empty and nil terms" do
+      let(:subject_terms) { ["", nil, "", "Workplace safety"] }
+      let(:fixed_subject_terms) { ["Workplace safety"] }
 
-    it "changes subfield a and re-assembles the full subject heading" do
-      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      it "return only non-empty terms" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
     end
-  end
 
-  context 'subject terms with both the original and mapped term' do
-    let(:subject_terms) { ["Illegal aliens", "Undocumented immigrants"] }
-    let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+    context "subject terms with subheadings" do
+      let(:subject_terms) { ["Illegal aliens#{SEPARATOR}United States.", "Workplace safety"] }
+      let(:fixed_subject_terms) { ["Undocumented immigrants#{SEPARATOR}United States.", "Workplace safety"] }
 
-    it "suggests a replacement" do
-      expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      it "changes subfield a and re-assembles the full subject heading" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
+    end
+
+    context 'subject terms with both the original and mapped term' do
+      let(:subject_terms) { ["Illegal aliens", "Undocumented immigrants"] }
+      let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+
+      it "suggests a replacement" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
+    end
+
+    context 'subject terms that have empty replacements' do
+      let(:subject_terms) { ['Test term', "Illegal aliens"] }
+      let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+
+      it "suggests a replacement" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
     end
   end
 end
