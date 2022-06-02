@@ -35,7 +35,7 @@ gem install bundler -v '2.2.27'
 ```
 1. Install bundle
 ```
-bundle install 
+bundle install
 ```
 1. To start: `bundle exec rake servers:start`
 1. For testing:
@@ -134,6 +134,11 @@ rake liberate:arks:clear_cache
 see [[webhook_monitor/README.md]]
 
 ## MARC Files
+
+If you are running in development, first export the path to the ark cache:
+```bash
+export FIGGY_ARK_CACHE_PATH=spec/fixtures/marc_to_solr/figgy_ark_cache
+```
 If you have MARC file you can import it to Solr via Traject with the following commands:
 
 ```
@@ -150,7 +155,8 @@ bundle exec traject -c marc_to_solr/lib/traject_config.rb $FILE -w Traject::Json
 ```
 OR with solr in any port:
 ```
-traject -c marc_to_solr/lib/traject_config.rb path-to-xml/example.xml -u http://localhost:<solr-port-number>/solr/local-solr-index -w Traject::JsonWriter
+bundle exec traject -c marc_to_solr/lib/traject_config.rb path-to-xml/example.xml -u http://localhost:<solr-port-number>/solr/local-solr-index
+curl 'http://localhost:<solr-port-number>/solr/local-solr-index/update?commit=true'
 ```
 
 ## Tests
@@ -186,7 +192,7 @@ Copy the content from the generated .rb files into the .tmpl.rb files
 
 Load locally the rails server; Go to `localhost:<portnumber>/locations/holding_locations` and make sure that the locations have been updated.
 
-Test the updated locations in Bibdata-staging https://bibdata-staging.princeton.edu/ which is connected to the alma-sandbox; 
+Test the updated locations in Bibdata-staging https://bibdata-staging.princeton.edu/ which is connected to the alma-sandbox;
 The locations will not be the same as in production because they are not up to date. Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
 Connect in one of the bibdata staging boxes:
