@@ -11,6 +11,7 @@ class AugmentTheSubject
   # Ensure the needed config files exist
   def initialize
     raise "Cannot find lcsh terms file at #{LCSH_TERMS_FILE}" unless File.exist?(LCSH_TERMS_FILE)
+    load_indigenous_studies_terms
   end
 
   def indigenous_studies_terms
