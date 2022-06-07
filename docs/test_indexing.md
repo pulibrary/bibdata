@@ -3,7 +3,7 @@
     1. Change the "DACS Test Record Export" publishing job (under Resources) to point at your saved query
        Resources -> Publishing Profiles, Edit the DRDS test records publishing job to point to the new data set.
     1. Run the "DACS Test Record Export" publishing job by clicking run under the "..." menu after the save
-    1. Wait for the 
+    1. Wait for the job to complete successfully.
 1. Download the file from the Alma SFTP.  If you ran the job from the Alma sandbox look in the /alma/sandbox directory otherwise the file should be created at the /alma directory.
 1. Unzip and rename the file to something that makes sense to you locally `<file name>.xml`
 1. sftp the file up to the staging worker machine
