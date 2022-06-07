@@ -6,13 +6,11 @@ require 'set'
 # The creation and management of metadata are not neutral activities.
 class AugmentTheSubject
   LCSH_TERMS_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.txt')
-  LCSH_SUBFIELDS_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies_subfields.json')
 
   ##
   # Ensure the needed config files exist
   def initialize
     raise "Cannot find lcsh terms file at #{LCSH_TERMS_FILE}" unless File.exist?(LCSH_TERMS_FILE)
-    raise "Cannot find lcsh subfields file at #{LCSH_SUBFIELDS_FILE}" unless File.exist?(LCSH_SUBFIELDS_FILE)
   end
 
   def indigenous_studies_terms
@@ -25,15 +23,6 @@ class AugmentTheSubject
       @indigenous_studies_terms << normalize(lcsh_term)
     end
     @indigenous_studies_terms
-  end
-
-  def indigenous_studies_subfields
-    @indigenous_studies_subfields || load_indigenous_studies_subfields
-  end
-
-  def load_indigenous_studies_subfields
-    @indigenous_studies_subfields = JSON.parse(File.read(LCSH_SUBFIELDS_FILE))
-    @indigenous_studies_subfields
   end
 
   ##
@@ -58,54 +47,24 @@ class AugmentTheSubject
   # additional subject heading of "Indigenous Studies" added
   # @param [<String>] terms
   # @return [Boolean]
-  def indigenous_studies?(terms)
-    terms.each do |term|
-      return true if subfield_a_match?(term)
-      return true if full_subject_term_match?(term)
+  def indigenous_studies?(target_terms)
+    target_terms.each do |term|
+      term = normalize(term)
+      matches = full_subject_term_match?(term)
+      return true if matches
     end
     false
   end
 
   ##
-  # For some subject terms, only the first part needs to match.
-  # E.g., "Quinnipiac Indians-History", "Quinnipiac Indians-Culture" should both
-  # be assigned an Indigenous Studies term even though that entire term doesn't
-  # appear in our terms list.
-  def subfield_a_match?(term)
-    subfield_a = term.split(SEPARATOR).first
-    indigenous_studies_subfields["a"].include?(subfield_a)
-  end
-
-  ##
   # For some subject terms, we need to match on all subfields
   # E.g., Russia (Federation)-Civilization-Indian influences
+  # However, we should not match on only partial matches
+  # E.g., Alaska should not match, but Alaska-Antiquities should match
   def full_subject_term_match?(term)
-    indigenous_studies_terms.include? term.downcase.gsub(/[^\w\s#{SEPARATOR}]/, '')
-  end
-
-  ##
-  # DANGER ZONE
-  # This will re-parse the indigenous_studies.txt file into a json file that
-  # has split apart the marc subfields. A person will then need to go in and
-  # manually edit the json config file to remove irrelevant subjects.
-  def self.parse_subjects
-    subfield_a = Set.new
-    subfield_x = Set.new
-    subfield_y = Set.new
-    subfield_z = Set.new
-    File.foreach(LCSH_TERMS_FILE) do |lcsh_term|
-      subfield_a << lcsh_term.chomp.split('ǂ').first.strip
-      subfield_x << lcsh_term.chomp.split("ǂx").last.strip.split("ǂ").first.strip if /ǂx/.match?(lcsh_term)
-      subfield_y << lcsh_term.chomp.split("ǂy").last.strip.split("ǂ").first.strip if /ǂy/.match?(lcsh_term)
-      subfield_z << lcsh_term.chomp.split("ǂz").last.strip.split("ǂ").first.strip if /ǂz/.match?(lcsh_term)
+    matches = indigenous_studies_terms.map do |lc_term|
+      %r{^#{lc_term}}.match?(term)
     end
-    output = {}
-    output[:a] = subfield_a.sort
-    output[:x] = subfield_x.sort
-    output[:y] = subfield_y.sort
-    output[:z] = subfield_z.sort
-    ## Uncomment this line to re-write the subfields file. Remember that you will then need to edit it by hand.
-    # File.open(lcsh_subfields_file, "w") { |f| f.write output.to_json }
-    output
+    return true if matches.include?(true)
   end
 end
