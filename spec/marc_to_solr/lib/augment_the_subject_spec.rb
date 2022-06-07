@@ -59,11 +59,27 @@ RSpec.describe AugmentTheSubject do
     end
   end
 
-  context "initial setup" do
-    it "parses the raw list of subjects into subfields" do
-      subfields = described_class.parse_subjects
-      expect(subfields.keys).to match_array [:a, :x, :y, :z]
-      expect(subfields[:a].count).to eq 1341
+  context "subfield ǂa with required trailing subfields" do
+    context "subfield not present" do
+      let(:subject_terms) { ["Alaska"] }
+
+      it "does not match" do
+        expect(ats.indigenous_studies?(subject_terms)).to eq false
+      end
+    end
+    context "subfield is present" do
+      let(:subject_terms) { ["Alaska#{SEPARATOR}Antiquities"] }
+
+      it "matches" do
+        expect(ats.indigenous_studies?(subject_terms)).to eq true
+      end
+    end
+
+    context "both relevant and irrelevant subfields are present" do
+      let(:subject_terms) { ["Alaska#{SEPARATOR}Antiquities#{SEPARATOR}Whatever"] }
+      it "matches" do
+        expect(ats.indigenous_studies?(subject_terms)).to eq true
+      end
     end
   end
 end
