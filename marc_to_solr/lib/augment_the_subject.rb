@@ -67,5 +67,7 @@ class AugmentTheSubject
       %r{^#{Regexp.escape(lc_term)}}.match?(term)
     end
     return true if matches.include?(true)
+  rescue => e
+    logger.error("Error in matching indigenous studies terms. Term: #{term} Error message: #{e}")
   end
 end

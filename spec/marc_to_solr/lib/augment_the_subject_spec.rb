@@ -90,4 +90,13 @@ RSpec.describe AugmentTheSubject do
       expect(ats.indigenous_studies?(subject_terms)).to eq true
     end
   end
+
+  context "with subject headings that cause regex problems" do
+    let(:subject_terms) { ["Ani'-Yun’wiya' Indians"] }
+
+    xit 'does not raise an error' do
+      # Have not been able to find an example that raises this issue yet
+      expect { ats.indigenous_studies?(subject_terms) }.not_to raise_error
+    end
+  end
 end
