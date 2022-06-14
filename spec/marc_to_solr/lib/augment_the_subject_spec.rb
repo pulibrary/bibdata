@@ -82,12 +82,4 @@ RSpec.describe AugmentTheSubject do
       end
     end
   end
-
-  context "with parentheses in the subject heading" do
-    let(:subject_terms) { ["Québec (Province)#{SEPARATOR}History#{SEPARATOR}Native Crisis, 1990"] }
-
-    it "matches" do
-      expect(ats.indigenous_studies?(subject_terms)).to eq true
-    end
-  end
 end

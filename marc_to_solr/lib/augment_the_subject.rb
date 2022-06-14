@@ -64,7 +64,7 @@ class AugmentTheSubject
   # E.g., Alaska should not match, but Alaska-Antiquities should match
   def full_subject_term_match?(term)
     matches = indigenous_studies_terms.map do |lc_term|
-      %r{^#{Regexp.escape(lc_term)}}.match?(term)
+      %r{^#{lc_term}}.match?(term)
     end
     return true if matches.include?(true)
   end
