@@ -836,31 +836,20 @@ describe 'From traject_config.rb' do
         end
       end
       describe 'subject terms augmented for Indigenous Studies' do
-        context 'in the topic subject field' do
-          let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
-          let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
+        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
 
-          it 'augments the subject terms to add Indigenous Studies' do
-            expect(subject_marc["subject_facet"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-            expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
-            expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-            expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-          end
-          it 'works against a fixture' do
-            expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-            expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
-          end
+        it 'augments the subject terms to add Indigenous Studies' do
+          expect(subject_marc["subject_facet"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          expect(subject_marc['subject_topic_facet']).to match_array(["Indians of North America", "Connecticut", "Indigenous Studies"])
+          expect(subject_marc['lc_subject_display']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
         end
-
-        context 'in the geographic subject field' do
-          let(:s651_lcsh) { { "651" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "?Akisq'nuk First Nation" }] } } }
-          let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s651_lcsh], 'leader' => leader)) }
-
-          it 'augments the subject terms to add Indigenous Studies' do
-            expect(subject_marc["subject_facet"]).to match_array(["?Akisq'nuk First Nation", "Indigenous Studies"])
-          end
+        it 'works against a fixture' do
+          expect(@indigenous_studies["subject_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
+          expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America", "Indians of the West Indies", "Indigenous Studies"])
         end
       end
       describe 'subject terms changed for Change the Subject' do
