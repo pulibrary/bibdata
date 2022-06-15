@@ -17,6 +17,7 @@ RSpec.describe Alma::Indexer do
 
       solr.commit
     end
+
     context "a single uncompressed MARC XML file" do
       let(:file_name) { file_fixture("alma/full_dump/2.xml") }
 

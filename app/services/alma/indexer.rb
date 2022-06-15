@@ -5,8 +5,14 @@ class Alma::Indexer
     @solr_url = solr_url
   end
 
+  # Index the file to solr using traject and return
+  # @param file_name [String]
+  # @param debug_mode [Boolean]
+  # @return [Array]
   def index_file(file_name, debug_mode = false)
     debug_flag = debug_mode ? "--debug-mode" : ""
-    `traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url} -w Traject::PulSolrJsonWriter 2>&1`
+    cmd = "traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_name} -u #{solr_url} -w Traject::PulSolrJsonWriter 2>&1"
+    stdin, stdout, stderr = Open3.capture3(cmd)
+    [stdin, stdout, stderr]
   end
 end

@@ -343,6 +343,7 @@ GEM
       addressable (~> 2.3)
       nokogiri (~> 1.5)
       omniauth (~> 1.2)
+    open3 (0.1.1)
     orm_adapter (0.5.0)
     parallel (1.22.1)
     parser (3.1.2.0)
@@ -626,6 +627,7 @@ DEPENDENCIES
   net-sftp (~> 2.1, >= 2.1.2)
   oj
   omniauth-cas
+  open3
   orangetheses!
   pg
   pry-byebug (~> 3.0)
