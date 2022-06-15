@@ -43,6 +43,9 @@ bundle install
 1. For development:
    - `bundle exec rails server`
    - Access marc_liberation at http://localhost:3000/
+1. If you are working with background jobs in development, start sidekiq in a new tab or window
+   - `bundle exec sidekiq`
+   - To access the sidekiq dashboard, first sign into the application, then go to http://localhost:3000/sidekiq
 1. To stop: `bundle exec rake servers:stop` or `lando stop`
 
 ## Alma
