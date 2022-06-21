@@ -73,7 +73,7 @@ SSH to a bibdata machine as deploy user (Find a worker machine in your environme
 
 ```
 tmux new -s full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
 CTRL+b d (to detach from tmux)
 ```
@@ -97,14 +97,14 @@ If needed, pull the most recent SCSB full dump records into a dump file:
 SSH to a bibdata machine as deploy user (Find a worker machine in your environment https://github.com/pulibrary/bibdata/tree/main/config/deploy)
 ```
 $ tmux attach-session -t full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ bundle exec rake scsb:import:full
 CTRL+b d (to detach from tmux)
 ```
 This kicks off an import job which will return immediately.  This can be monitored in [sidekiq busy queue](https://bibdata.princeton.edu/sidekiq/busy) or [sidekiq waiting queue](https://bibdata.princeton.edu/sidekiq/queues/default)
 
 Takes 24-25 hours to complete. As they download and unpack they will be placed
-in `/tmp/updates/` and as they are processed they will be moved to `/data/marc_liberation_files/scsb_update_files/`; you can follow the progress by listing the files in these directories.
+in `/tmp/updates/` and as they are processed they will be moved to `/data/bibdata_files/scsb_update_files/`; you can follow the progress by listing the files in these directories.
 
 Once the files are all downloaded and processed, index them with
 
@@ -118,11 +118,11 @@ This will also index any incremental files we have that were generated after the
 
 SSH as the deploy user to the bibdata worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session. `ssh deploy@bibdata-alma-worker1`
 
-as deploy user, in `/opt/marc_liberation/current`
+as deploy user, in `/opt/bibdata/current`
 
 ```
 $ tmux attach-session -t full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ mv /home/deploy/thesis.json /home/deploy/thesis-<date>.json 
 $ FILEPATH=/home/deploy/theses.json bundle exec rake orangetheses:cache_theses
 CTRL+b d (to detach from tmux)
@@ -132,7 +132,7 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 
 ```
 $ tmux attach-session -t full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
 CTRL+b d (to detach from tmux)
 ```
@@ -147,7 +147,7 @@ To turn off sneakers workers:
 
 To index the coins:
 
-- as deploy user, in `/opt/marc_liberation/current`
+- as deploy user, in `/opt/bibdata/current`
 - `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
 - It will show a progress bar as it runs. Takes 30 min to an hour.
 - Note that the default log writes to STDERR to distinguish its output from the progress bar
@@ -165,7 +165,7 @@ There might be new incremental updates from Alma between the time the full reind
 SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
 
 ```
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
 ```
 
@@ -178,7 +178,7 @@ SSH to the bibdata alma worker machine that is used for indexing https://github.
 
 ```
 $ tmux attach-session -t full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $ TIMESTAMP="2021-10-15" SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
 CTRL+b d (to detach from tmux)
 ```
@@ -211,7 +211,7 @@ Update the index managers to have the new solr_collection values.
 
 ```
 $ tmux attach-session -t full-index
-$ cd /opt/marc_liberation/current
+$ cd /opt/bibdata/current
 $bundle exec rake index_manager:promote_rebuild_manager
 CTRL+b d (to detach from tmux)
 ```
@@ -233,7 +233,7 @@ Then expire the rails cache to get the updated values on the front page of the c
 
 ### Delete records from Solr, excluding SCSB and Thesis records
 Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
-- Ssh to marc_liberation box as deploy user
+- Ssh to bibdata box as deploy user
 - `$ bin/rails c`
 - `> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`
 - `> solr = RSolr.connect(url: solr_url)`

@@ -15,7 +15,7 @@
 1. ssh onto the place that you ftped the file to and go to the current deployment directory
    ```
    ssh deploy@bibdata-alma-worker-staging1
-   cd /opt/marc_liberation/current
+   cd /opt/bibdata/current
    ``` 
 1. run `SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-staging FILE=/home/deploy/<file name>.xml RAILS_ENV=production bundle exec rake liberate:index_file`
 

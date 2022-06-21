@@ -1,5 +1,5 @@
 1. `ssh deploy@bibdata-alma-worker1`
-1. `cd /opt/marc_liberation/current`
+1. `cd /opt/bibdata/current`
 1. `RAILS_ENV=production bundle exec rails c`
 1. Find the IndexManager instance that uses the solr production collection. Currently the name of the solr catalog production collection is:`catalog-alma-production`.  
 `index_manager_current = IndexManager.where(solr_collection: "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production").first`
