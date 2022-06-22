@@ -11,8 +11,8 @@ class Alma::Indexer
     def index!
       decompress_file do |file|
         stdin, stdout, stderr = index_file(file.path)
-        unless stderr.success? && !stdin.include?("FATAL")
-          logger.error(stdin)
+        unless stderr.success? && !stdout.include?("FATAL")
+          logger.error(stdout)
           raise "Traject indexing failed for #{file.path}"
         end
       end

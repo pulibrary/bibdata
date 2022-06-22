@@ -8,57 +8,70 @@ RSpec.describe Alma::Indexer do
   describe "#index_file" do
     let(:solr) { RSolr.connect(url: solr_url) }
     let(:indexer) { described_class.new(solr_url: solr_url) }
+    let(:file_name) { file_fixture("alma/full_dump/2.xml") }
 
-    before do
-      solr.delete_by_query("*:*")
-      Sidekiq::Testing.inline! do
-        indexer.index_file(file_name)
-      end
-
-      solr.commit
+    it 'returns an array from traject' do
+      indexer_result = indexer.index_file(file_name)
+      expect(indexer_result).to be_instance_of(Array)
+      expect(indexer_result[0]).to be_instance_of(String)
+      expect(indexer_result[0]).to be_empty
+      expect(indexer_result[1]).to be_instance_of(String)
+      expect(indexer_result[1]).not_to be_empty
+      expect(indexer_result[2]).to be_instance_of(Process::Status)
     end
 
-    context "a single uncompressed MARC XML file" do
-      let(:file_name) { file_fixture("alma/full_dump/2.xml") }
+    context 'running the index' do
+      before do
+        solr.delete_by_query("*:*")
+        Sidekiq::Testing.inline! do
+          indexer.index_file(file_name)
+        end
 
-      it "indexes the file" do
-        response = solr.get("select", params: { q: "*:*" })
-        # There's only one record in 2.xml
-        expect(response['response']['numFound']).to eq 1
-      end
-    end
-
-    context "with deleted records" do
-      let(:file_name) { file_fixture("alma/incremental_11_records.xml") }
-
-      it "handles the records" do
-        # Indexes a file with 5 non-deleted records
-        response = solr.get("select", params: { q: "*:*" })
-        expect(response['response']['numFound']).to eq 5
-
-        # Forcefully add a record (id=99122238836006421)...
-        file_name = file_fixture("alma/incremental_01_record_add.xml")
-        indexer.index_file(file_name)
         solr.commit
-        response = solr.get("select", params: { q: "id:99122238836006421" })
-        expect(response['response']['numFound']).to eq 1
-
-        # ...and make sure it is deleted
-        file_name = file_fixture("alma/incremental_01_record_delete.xml")
-        indexer.index_file(file_name)
-        solr.commit
-        response = solr.get("select", params: { q: "id:99122238836006421" })
-        expect(response['response']['numFound']).to eq 0
       end
-    end
 
-    context "with a bad utf-8 record" do
-      let(:file_name) { file_fixture("alma/full_dump/three_records_one_bad_utf8.xml") }
-      it "skips bad utf-8 record but import other records" do
-        response = solr.get("select", params: { q: "*:*" })
+      context "a single uncompressed MARC XML file" do
+        let(:file_name) { file_fixture("alma/full_dump/2.xml") }
 
-        # It should have skipped the bad UTF-8 record but kept the other two.
-        expect(response['response']['numFound']).to eq 2
+        it "indexes the file" do
+          response = solr.get("select", params: { q: "*:*" })
+          # There's only one record in 2.xml
+          expect(response['response']['numFound']).to eq 1
+        end
+      end
+
+      context "with deleted records" do
+        let(:file_name) { file_fixture("alma/incremental_11_records.xml") }
+
+        it "handles the records" do
+          # Indexes a file with 5 non-deleted records
+          response = solr.get("select", params: { q: "*:*" })
+          expect(response['response']['numFound']).to eq 5
+
+          # Forcefully add a record (id=99122238836006421)...
+          file_name = file_fixture("alma/incremental_01_record_add.xml")
+          indexer.index_file(file_name)
+          solr.commit
+          response = solr.get("select", params: { q: "id:99122238836006421" })
+          expect(response['response']['numFound']).to eq 1
+
+          # ...and make sure it is deleted
+          file_name = file_fixture("alma/incremental_01_record_delete.xml")
+          indexer.index_file(file_name)
+          solr.commit
+          response = solr.get("select", params: { q: "id:99122238836006421" })
+          expect(response['response']['numFound']).to eq 0
+        end
+      end
+
+      context "with a bad utf-8 record" do
+        let(:file_name) { file_fixture("alma/full_dump/three_records_one_bad_utf8.xml") }
+        it "skips bad utf-8 record but import other records" do
+          response = solr.get("select", params: { q: "*:*" })
+
+          # It should have skipped the bad UTF-8 record but kept the other two.
+          expect(response['response']['numFound']).to eq 2
+        end
       end
     end
   end
