@@ -22,7 +22,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$aas",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -272,7 +272,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$beac",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -298,7 +298,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -324,7 +324,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$clas",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -350,7 +350,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$clasnc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -376,7 +376,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$cook",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -480,7 +480,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$ctsnrf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -506,7 +506,7 @@
       "alma_library_code": "techserv",
       "holding_location_code": "techserv$dc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -532,7 +532,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dixn",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -558,7 +558,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$docs",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -584,7 +584,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$docsm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -610,7 +610,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -636,7 +636,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dra",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -662,7 +662,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$drrr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -688,7 +688,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dss",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -714,7 +714,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$ed",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -740,7 +740,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$egsr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -763,7 +763,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zelf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -786,7 +786,7 @@
       "alma_library_code": "online",
       "holding_location_code": "online$elf1",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -809,7 +809,7 @@
       "alma_library_code": "online",
       "holding_location_code": "online$elf2",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -832,7 +832,7 @@
       "alma_library_code": "online",
       "holding_location_code": "online$elf3",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -855,101 +855,7 @@
       "alma_library_code": "online",
       "holding_location_code": "online$elf4",
       "delivery_locations": [
-  
-      ]
-    },
-    {
-      "label": "HathiTrust Emergency Temporary Access",
-      "code": "etas",
-      "aeon_location": false,
-      "recap_electronic_delivery_location": false,
-      "open": false,
-      "requestable": true,
-      "always_requestable": false,
-      "circulates": false,
-      "url": "https://bibdata.princeton.edu/locations/holding_locations/etas.json",
-      "library": {
-        "label": "Online",
-        "code": "online",
-        "order": 4
-      },
-      "holding_library": {
-        "label": "Firestone Library",
-        "code": "firestone",
-        "order": 1
-      },
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
-      "alma_library_code": "online",
-      "holding_location_code": "online$etas",
-      "delivery_locations": [
-        "PQ",
-        "PW",
-        "PL",
-        "PT",
-        "PF",
-        "PJ",
-        "PK",
-        "PH",
-        "PM",
-        "PG",
-        "PN",
-        "PA",
-        "QL",
-        "PS",
-        "PZ",
-        "QK",
-        "PB",
-        "QX"
-      ]
-    },
-    {
-      "label": "HathiTrust Emergency Temporary Access ReCAP",
-      "code": "etasrcp",
-      "aeon_location": false,
-      "recap_electronic_delivery_location": true,
-      "open": false,
-      "requestable": true,
-      "always_requestable": false,
-      "circulates": false,
-      "url": "https://bibdata.princeton.edu/locations/holding_locations/etasrcp.json",
-      "library": {
-        "label": "ReCAP",
-        "code": "recap",
-        "order": 3
-      },
-      "holding_library": {
-        "label": "ReCAP",
-        "code": "recap",
-        "order": 3
-      },
-      "hours_location": {
-        "label": "Firestone Library - Reference Desk",
-        "code": "information"
-      },
-      "alma_library_code": "online",
-      "holding_location_code": "online$etasrcp",
-      "delivery_locations": [
-        "PQ",
-        "PW",
-        "PL",
-        "PT",
-        "PF",
-        "PJ",
-        "PK",
-        "PH",
-        "PM",
-        "PG",
-        "PN",
-        "PA",
-        "QL",
-        "PS",
-        "PZ",
-        "QK",
-        "PB",
-        "QX"
+
       ]
     },
     {
@@ -1001,7 +907,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exb",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1027,7 +933,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1053,7 +959,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exca",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1079,7 +985,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1105,7 +1011,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exho",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1131,7 +1037,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exi",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1157,7 +1063,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exka",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1183,7 +1089,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exki",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1209,7 +1115,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exl",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1235,7 +1141,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exme",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1261,7 +1167,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exov",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1287,7 +1193,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$expa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1313,7 +1219,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exrc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1339,7 +1245,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exrl",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1365,7 +1271,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$extr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1391,7 +1297,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$extsf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1417,7 +1323,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exv",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1443,7 +1349,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$exw",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1542,7 +1448,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$fis",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1568,7 +1474,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1594,7 +1500,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmb",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1620,7 +1526,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1646,7 +1552,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1672,7 +1578,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$noncirc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1724,7 +1630,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$garf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1750,7 +1656,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$gax",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1776,7 +1682,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gest",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1802,7 +1708,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$gestf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1828,7 +1734,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gestpe",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -1854,7 +1760,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gestpr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2005,7 +1911,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$ref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2031,7 +1937,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$hldn",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2057,7 +1963,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2083,7 +1989,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsve",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2109,7 +2015,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvg",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2135,7 +2041,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2161,7 +2067,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvn",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2187,7 +2093,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2213,7 +2119,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2279,7 +2185,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$htn",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2305,7 +2211,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2331,7 +2237,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hype",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2357,7 +2263,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hycrare",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2383,7 +2289,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2409,7 +2315,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2462,7 +2368,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2488,7 +2394,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hype",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2514,7 +2420,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hyjrare",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2540,7 +2446,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2566,7 +2472,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2592,7 +2498,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$hykrare",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2618,7 +2524,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2644,7 +2550,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2722,7 +2628,7 @@
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2797,7 +2703,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$locked",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2823,7 +2729,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$law",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2846,7 +2752,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2869,7 +2775,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrcpt",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2892,7 +2798,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrcr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2918,7 +2824,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$ltop",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2944,7 +2850,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$ltop",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2970,7 +2876,7 @@
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$ltop",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -2996,7 +2902,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ltop",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3048,7 +2954,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$map",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3100,7 +3006,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$mss",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3178,7 +3084,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$stacks",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3204,7 +3110,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$g",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3273,7 +3179,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$pe",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3299,7 +3205,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$res",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3403,7 +3309,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zned",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3429,7 +3335,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$znew",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3455,7 +3361,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$njpg",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3481,7 +3387,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$nr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3507,7 +3413,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$num",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3533,7 +3439,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$numrf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3554,7 +3460,7 @@
       "holding_library": null,
       "hours_location": null,
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3577,7 +3483,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$princeton",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3603,7 +3509,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$pb",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3629,7 +3535,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$piapr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3655,7 +3561,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$respiapr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3707,7 +3613,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$index",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3733,7 +3639,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$la",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3759,7 +3665,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$li",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3828,7 +3734,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$ps",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3854,7 +3760,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$res",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3880,7 +3786,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$rdr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3906,7 +3812,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$ref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3932,7 +3838,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$rr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3958,7 +3864,7 @@
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$theses",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -3984,7 +3890,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -4062,7 +3968,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$prne",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -4088,7 +3994,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$ptt",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -4828,7 +4734,7 @@
       "alma_library_code": "recap",
       "holding_location_code": "recap$qx",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5122,7 +5028,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$res3hr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5148,7 +5054,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$res24hr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5174,7 +5080,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$rht",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5200,7 +5106,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rrel",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5226,7 +5132,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5252,7 +5158,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsd",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5278,7 +5184,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rse",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5304,7 +5210,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsh",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5330,7 +5236,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrshp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5356,7 +5262,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rslv",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5382,7 +5288,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsne",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5408,7 +5314,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsnst",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5434,7 +5340,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5460,7 +5366,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rspc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5486,7 +5392,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rssa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5512,7 +5418,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsx",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5824,7 +5730,7 @@
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$t",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5876,7 +5782,7 @@
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$x",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -5902,7 +5808,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6036,7 +5942,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$gis",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6062,7 +5968,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$gr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6114,7 +6020,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$lal",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6140,7 +6046,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$map",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6166,7 +6072,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mapmc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6192,7 +6098,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mapmcm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6218,7 +6124,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mic",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6244,7 +6150,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$maplf",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6270,7 +6176,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$maplref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6296,7 +6202,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$media",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6365,7 +6271,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$pam",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6391,7 +6297,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ph",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6443,7 +6349,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$refid",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6469,7 +6375,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$res",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6495,7 +6401,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$resterm",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6521,7 +6427,7 @@
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$sudoc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6638,7 +6544,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$sct",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6664,7 +6570,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sd",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6687,7 +6593,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$sdt",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6713,7 +6619,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$se",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6739,7 +6645,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$seref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6765,7 +6671,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$secw",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6788,7 +6694,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$set",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6814,7 +6720,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sh",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6840,7 +6746,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zshp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6866,7 +6772,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$shs",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6889,7 +6795,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$sht",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6915,7 +6821,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$slav",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6941,7 +6847,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sne",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6967,7 +6873,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsp",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -6993,7 +6899,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$spc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7019,7 +6925,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spia",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7045,7 +6951,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7071,7 +6977,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$index",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7097,7 +7003,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaps",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7123,7 +7029,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$ref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7149,7 +7055,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaws",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7175,7 +7081,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spir",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7201,7 +7107,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zspl",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7227,7 +7133,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7253,7 +7159,7 @@
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$mic",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7322,7 +7228,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sps",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7345,7 +7251,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$spt",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7371,7 +7277,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$srel",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7394,7 +7300,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$srt",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7420,7 +7326,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$ssa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7446,7 +7352,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7472,7 +7378,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcdc",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7498,7 +7404,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcfo",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7524,7 +7430,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcrr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7550,7 +7456,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sss",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7648,7 +7554,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zstlo",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7856,7 +7762,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$ref",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7882,7 +7788,7 @@
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$facs",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7934,7 +7840,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsx",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7960,7 +7866,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -7986,7 +7892,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxffi",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8012,7 +7918,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxffr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8038,7 +7944,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfit",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8064,7 +7970,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfrr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8087,7 +7993,7 @@
       "alma_library_code": "annex",
       "holding_location_code": "annex$t",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8113,7 +8019,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$thx",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8139,7 +8045,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$thxr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8165,7 +8071,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$trv",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8217,7 +8123,7 @@
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zuesia",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8390,7 +8296,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$un",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8413,7 +8319,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$vidl",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8436,7 +8342,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$vidlr",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8462,7 +8368,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$vrg",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8488,7 +8394,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$w",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8514,7 +8420,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$wa",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8587,7 +8493,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$whs",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8613,7 +8519,7 @@
       "alma_library_code": "rare",
       "holding_location_code": "rare$wit",
       "delivery_locations": [
-  
+
       ]
     },
     {
@@ -8691,7 +8597,7 @@
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$zeiss",
       "delivery_locations": [
-  
+
       ]
     }
   ]

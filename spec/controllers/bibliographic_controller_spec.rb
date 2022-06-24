@@ -262,7 +262,7 @@ RSpec.describe BibliographicController, type: :controller do
     end
 
     context "when a record has holdings with a temporary location" do
-      let(:bib_items) { "9930766283506421" }
+      let(:bib_items) { "9999362473506421" }
       let(:fixture) { "#{bib_items}_items.json" }
 
       it "returns holdings item with a temp location value" do
@@ -270,7 +270,7 @@ RSpec.describe BibliographicController, type: :controller do
         get :bib_items, params: { bib_id: bib_items }, format: 'json'
         expect(response.status).to be 200
         locations = JSON.parse(response.body)
-        expect(locations["online$etasrcp"][0]["items"][0]["temp_location"]).to eq "online$etasrcp"
+        expect(locations["lewis$resterm"][0]["items"][0]["temp_location"]).to eq "lewis$resterm"
       end
     end
 

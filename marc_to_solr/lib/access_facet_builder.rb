@@ -23,7 +23,6 @@ class AccessFacetBuilder
     [
       electronic_portfolio,
       in_library,
-      hathi,
       marc_indicator
     ].uniq.compact
   end
@@ -36,16 +35,6 @@ class AccessFacetBuilder
 
     def in_library
       return 'In the Library' if context.output_hash['location_code_s'].present?
-    end
-
-    def hathi
-      return 'Online' if hathi_locations.include?('hathi')
-    end
-
-    def hathi_locations
-      return [] if context.output_hash['hathi_identifier_s'].blank?
-      hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
-      parse_locations_from_hathi_line(hathi_line)
     end
 
     # Return 'online' if record has an 856 field and
