@@ -11,7 +11,6 @@
   "DI" => "Dictionaries",
   "DR" => "Directories",
   "EN" => "Encyclopedias",
-  "HT" => "HathiTrust",
   "MN" => "Maps-Atlas",
   "MP" => "Map",
   "MS" => "Musical score",

@@ -109,7 +109,6 @@ Metrics/PerceivedComplexity:
 Naming/AccessorMethodName:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'app/models/hathi/compact_full.rb'
 
 Naming/PredicateName:
   Exclude:

@@ -30,8 +30,6 @@ Rails.application.routes.draw do
 
   get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
 
-  get '/hathi/access', to: 'hathi#hathi_access', defaults: { format: :json }
-
   get "/campus_access", to: 'campus_access#index', defaults: { format: :csv }
 
   # deprecated endpoints

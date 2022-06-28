@@ -64,9 +64,6 @@ describe 'From traject_config.rb' do
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
-      ENV['RUN_HATHI_COMPARE'] = 'true'
-      @hathi_permanent = @indexer.map_record(fixture_record('9914591663506421'))
-      ENV['RUN_HATHI_COMPARE'] = ''
     end
 
     describe "alma loading" do
@@ -527,11 +524,6 @@ describe 'From traject_config.rb' do
       it 'value can be both in the library and online when there are multiple holdings' do
         expect(@online_at_library['access_facet']).to include 'Online'
         expect(@online_at_library['access_facet']).to include 'In the Library'
-      end
-
-      it 'value include online when record is present in hathi report with permanent access' do
-        expect(@hathi_permanent['access_facet']).to contain_exactly('Online', 'In the Library')
-        expect(@hathi_permanent['hathi_identifier_s']).to contain_exactly("mdp.39015036879529")
       end
     end
 

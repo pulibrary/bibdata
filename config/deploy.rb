@@ -34,8 +34,6 @@ set :linked_dirs, %w{
   vendor/bundle
   public/system
   log
-  hathi/input
-  hathi/output
   campus_access
 }
 

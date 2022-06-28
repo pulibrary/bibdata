@@ -1391,15 +1391,6 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
   end
 end
 
-# Extract hathi_identifier
-each_record do |_record, context|
-  if context.output_hash['oclc_s'].present?
-    hathi_line = find_hathi_by_oclc(context.output_hash['oclc_s'].first)
-    hathi_id = parse_hathi_identifer_from_hathi_line(hathi_line)
-    context.output_hash['hathi_identifier_s'] = hathi_id if hathi_id.present?
-  end
-end
-
 # Generate access_facet
 each_record do |record, context|
   context.output_hash['access_facet'] = AccessFacetBuilder.build(record: record, context: context)

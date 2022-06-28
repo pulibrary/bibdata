@@ -1,0 +1,307 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "9999362473506421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Astrobiology : an evolutionary approach /",
+        "author": "Kolb, Vera M.,",
+        "issn": null,
+        "isbn": "1466584610",
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)9936247-princetondb",
+          "9936247",
+          "(OCoLC)894524457",
+          "(OCoLC)ocn894524457",
+          "(OCoLC)879602544",
+          "(OCoLC)879583844"
+        ],
+        "place_of_publication": "Boca Raton, FL :",
+        "date_of_publication": "[2015]",
+        "publisher_const": "CRC Press Taylor & Francis Group",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421"
+      },
+      "holding_data": {
+        "holding_id": "22752541670006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "QH326 .A873 2015",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "QH326 .A873 2015",
+        "accession_number": "",
+        "copy_id": "0",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541670006421"
+      },
+      "item_data": {
+        "pid": "23752541660006421",
+        "barcode": "32101098995671",
+        "creation_date": "2021-07-13Z",
+        "modification_date": "2021-07-13Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2016-09-09Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "stacks",
+          "desc": "Stacks: Lewis Library"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "due_date_policy": "Loanable",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541670006421/items/23752541660006421"
+    },
+    {
+      "bib_data": {
+        "mms_id": "9999362473506421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Astrobiology : an evolutionary approach /",
+        "author": "Kolb, Vera M.,",
+        "issn": null,
+        "isbn": "1466584610",
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)9936247-princetondb",
+          "9936247",
+          "(OCoLC)894524457",
+          "(OCoLC)ocn894524457",
+          "(OCoLC)879602544",
+          "(OCoLC)879583844"
+        ],
+        "place_of_publication": "Boca Raton, FL :",
+        "date_of_publication": "[2015]",
+        "publisher_const": "CRC Press Taylor & Francis Group",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421"
+      },
+      "holding_data": {
+        "holding_id": "22752541690006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "permanent_call_number": "QH326 .A873 2015",
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "call_number": "QH326 .A873 2015",
+        "accession_number": "",
+        "copy_id": "0",
+        "in_temp_location": true,
+        "temp_library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "temp_location": {
+          "value": "resterm",
+          "desc": "sciresp: Lewis: Term Loan"
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541690006421"
+      },
+      "item_data": {
+        "pid": "23752541680006421",
+        "barcode": "32101099065268",
+        "creation_date": "2021-07-13Z",
+        "modification_date": "2021-07-13Z",
+        "base_status": {
+          "value": "1",
+          "desc": "Item in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "BOOK",
+          "desc": "Book"
+        },
+        "policy": {
+          "value": "Gen",
+          "desc": "Gen"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2016-09-08Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "",
+          "desc": null
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "lewis",
+          "desc": "Lewis Library"
+        },
+        "location": {
+          "value": "stacks",
+          "desc": "Stacks: Lewis Library"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "due_date_policy": "Loanable",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: Y | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        }
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541690006421/items/23752541680006421"
+    }
+  ],
+  "total_record_count": 2
+}

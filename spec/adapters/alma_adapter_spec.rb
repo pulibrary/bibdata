@@ -151,10 +151,6 @@ RSpec.describe AlmaAdapter do
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_ava, headers: { "content-Type" => "application/json" })
 
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9922486553506421/holdings/ALL/items")
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record_with_ava_holding_items, headers: { "content-Type" => "application/json" })
-
       stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9965126093506421")
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_cdl, headers: { "content-Type" => "application/json" })
@@ -180,7 +176,6 @@ RSpec.describe AlmaAdapter do
         .to_return(status: 200, body: bib_record_with_some_available, headers: { "content-Type" => "application/json" })
 
       stub_alma_library(library_code: "lewis", location_code: "resterm", body: library_lewis_reserves)
-      stub_alma_library(library_code: "online", location_code: "etasrcp")
       stub_alma_library(library_code: "recap", location_code: "pa")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
       stub_alma_library(library_code: "rare", location_code: "jrare")
@@ -233,15 +228,6 @@ RSpec.describe AlmaAdapter do
       expect(availability).to eq empty_availability
     end
 
-    it "reports availability for items in temporary locations" do
-      availability = adapter.get_availability_one(id: "9952822483506421")
-      temporary_holding = availability["9952822483506421"]["online$etasrcp"]
-      expect(temporary_holding[:id]).to eq "online$etasrcp"
-      expect(temporary_holding[:status_label]).to eq "Available"
-      expect(temporary_holding[:temp_location]).to eq true
-      expect(temporary_holding[:on_reserve]).to eq "N"
-    end
-
     it "reports availability (with holding_id) for items in temporary locations when requested" do
       FactoryBot.create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
       availability = adapter.get_availability_one(id: "9959958323506421", deep_check: true)
@@ -289,48 +275,57 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "holding availability" do
+    let(:library_lewis_reserves) { file_fixture("alma/library_lewis_reserves.json") }
+    let(:library_lewis_stacks) { file_fixture("alma/library_lewis_stacks.json") }
     before do
-      stub_alma_ids(ids: "9922486553506421", status: 200)
-      stub_alma_holding_items(mms_id: "9922486553506421", holding_id: "22117511410006421", filename: "9922486553506421_holding_items.json")
       stub_alma_ids(ids: "9919392043506421", status: 200)
       stub_alma_holding_items(mms_id: "9919392043506421", holding_id: "22105104420006421", filename: "9919392043506421_holding_items.json")
       stub_alma_ids(ids: "99122455086806421", status: 200)
       stub_alma_holding_items(mms_id: "99122455086806421", holding_id: "22477860740006421", filename: "99122455086806421_holding_items.json")
       stub_alma_library(library_code: "firestone", location_code: "dixn")
       stub_alma_library(library_code: "firestone", location_code: "stacks")
-      stub_alma_library(library_code: "online", location_code: "etasrcp")
+
+      stub_alma_ids(ids: "9999362473506421", status: 200)
+      # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541670006421/items?limit=100&order_by=enum_a
+      stub_alma_holding_items(mms_id: "9999362473506421", holding_id: "22752541670006421", filename: "9999362473506421_holding_items.json")
+      stub_alma_holding_items(mms_id: "9999362473506421", holding_id: "22752541690006421", filename: "9999362473506421_holding_items_two.json")
+
+      stub_alma_library(library_code: "lewis", location_code: "resterm", body: library_lewis_reserves)
+      stub_alma_library(library_code: "lewis", location_code: "stacks", body: library_lewis_stacks)
     end
 
     it "reports holdings availability" do
-      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
-      FactoryBot.create(:holding_location, code: 'online$etasrcp', label: 'ReCAP')
-      availability = adapter.get_availability_holding(id: "9922486553506421", holding_id: "22117511410006421")
+      FactoryBot.create(:holding_location, code: 'lewis$stacks', label: 'Stacks')
+      FactoryBot.create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
+      availability = adapter.get_availability_holding(id: "9999362473506421", holding_id: "22752541670006421")
+
       item = availability.first
       expect(availability.count).to eq 1
-      expect(item[:barcode]).to eq "32101036144101"
+
+      expect(item[:barcode]).to eq "32101098995671"
       expect(item[:in_temp_library]).to eq false
       expect(item[:temp_library_code]).to eq nil
-      expect(item[:label]).to eq 'Firestone Library - Stacks'
+      expect(item[:label]).to eq 'Lewis Library - Stacks'
 
       # We are hard-coding this value to "N" to preserve the property in the response
       # but we are not really using this value anymore.
       expect(item[:on_reserve]).to eq "N"
 
       # Make sure temp locations are handled and the permanent location is preserved.
-      availability = adapter.get_availability_holding(id: "9919392043506421", holding_id: "22105104420006421")
+      availability = adapter.get_availability_holding(id: "9999362473506421", holding_id: "22752541690006421")
       item = availability.first
       expect(item[:in_temp_library]).to eq true
-      expect(item[:temp_library_code]).to eq "online"
+      expect(item[:temp_library_code]).to eq "lewis"
 
       # Test an actual response. These values are not particularly meaningful, but to make sure we don't
       # inadvertently change them when refactoring.
-      item_test = { barcode: "32101080920208", id: "23105104390006421", holding_id: "22105104420006421", copy_number: "1",
+      item_test = { barcode: "32101099065268", id: "23752541680006421", holding_id: "22752541690006421", copy_number: "0",
                     status: "Available", status_label: "Item in place", status_source: "base_status", process_type: nil,
-                    on_reserve: "N", item_type: "Gen", pickup_location_id: "online", pickup_location_code: "online",
-                    location: "online$etasrcp", label: "Electronic Access - ReCAP", in_temp_library: true,
-                    description: "g. 4, br. 7/8", enum_display: "g. 4, br. 7/8", chron_display: "",
-                    temp_library_code: "online", temp_library_label: "Electronic Access - ReCAP",
-                    temp_location_code: "online$etasrcp", temp_location_label: "Electronic Access - ReCAP" }
+                    on_reserve: "Y", item_type: "Gen", pickup_location_id: "lewis", pickup_location_code: "lewis",
+                    location: "lewis$resterm", label: "Lewis Library - Term Loan Reserves", description: "", enum_display: "",
+                    chron_display: "", in_temp_library: true, temp_library_code: "lewis",
+                    temp_library_label: "Lewis Library - Term Loan Reserves", temp_location_code: "lewis$resterm",
+                    temp_location_label: "Lewis Library - Term Loan Reserves" }
       expect(item).to eq item_test
     end
 
