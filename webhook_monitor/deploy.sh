@@ -17,6 +17,15 @@ then
   --region='us-east-1' \
   --capabilities='CAPABILITY_IAM' \
   --profile='alma-events'
+elif [ $1 == "qa" ]
+then
+  sam deploy --stack-name=alma-webhook-monitor-qa \
+  --s3-prefix=alma-webhook-monitor \
+  --parameter-overrides='StageName="qa", QueueName="AlmaBibExportQA.fifo", SecretID="alma/sandbox/webhookSecret"' \
+  --s3-bucket=aws-sam-cli-managed-default-samclisourcebucket-1j1ve93v4jqs9 \
+  --region='us-east-1' \
+  --capabilities='CAPABILITY_IAM' \
+  --profile='alma-events'
 else
-  echo 'Please enter either production or staging as the environment'
+  echo 'Please enter either production or staging or qa as the environment'
 fi
