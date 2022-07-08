@@ -126,11 +126,9 @@ One may seed the cache using the following Rake Task:
 rake liberate:arks:seed_cache
 ```
 
-In development, when running traject command, set the `FIGGY_ARK_CACHE_PATH` to point to `spec/fixtures/marc_to_solr/figgy_ark_cache` in the local environment. e.g. 
+In development, when running commands that utilize the cache, such as commands indexing via traject, set the `FIGGY_ARK_CACHE_PATH` to point to `spec/fixtures/marc_to_solr/figgy_ark_cache` in the local environment.
 ```bash
 export FIGGY_ARK_CACHE_PATH=spec/fixtures/marc_to_solr/figgy_ark_cache
-bundle exec traject -c marc_to_solr/lib/traject_config.rb pathToFile -u http://localhost:solr-port/solr/marc-liberation-core-development
-curl 'http://localhost:solr-port/solr/marc-liberation-core-development/update?commit=true'
 ```
 
 ### Clearing the Cache
