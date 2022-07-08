@@ -82,7 +82,7 @@ class DumpFile < ActiveRecord::Base
   end
 
   # Alma files are tarred and g-zipped, so you have to do both.
-  def tar_decompress_file
+  def tar_decompress_file(&block)
     tar_reader.each.map do |entry|
       Tempfile.create(decompressed_filename(entry), binmode: true) do |decompressed_tmp|
         decompressed_file = write_chunks(entry, decompressed_tmp)
