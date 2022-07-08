@@ -15,6 +15,10 @@ for this webhook.
 ### Getting to AWS
 
 Use https://princeton.edu/aws to get to the AWS Management Console. You'll be required to log in via CAS.
+### If you need to create a new AWS lambda function for a new environment
+- Update `./deploy.sh` with the new environment.
+- Run: `./deploy.sh <new-env-name>`. This will use `webhook_monitor/template.yml` and create the necessary queues, Getway API and functions in AWS.
+- In ansible update the playbook with the new `SQS_QUEUE_URL`. You can get the new value from https://us-east-1.console.aws.amazon.com/sqs/v2/home?region=us-east-1#/queues or from the updated `./deploy.sh` where you set the new `QueueName=`
 
 ### Alma Webhook Setup
 
@@ -74,7 +78,7 @@ using AWS deployment tools.
 
 The deploy must be run from within the `webhook_monitor` directory.
 
-* `./deploy.sh [staging/production]`
+* `./deploy.sh [staging/qa/production]`
 
 ## Monitoring
 
