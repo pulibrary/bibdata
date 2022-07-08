@@ -7,7 +7,7 @@ class DumpLogIdsService
     delete_ids = []
     update_ids = []
     dump.dump_files.each do |dump_file|
-      tar_decompress_file(dump_file.path) do |marc_file|
+      dump_file.tar_decompress_file do |marc_file|
         file_delete_ids, file_update_ids = process_marc_file(marc_file)
         delete_ids += file_delete_ids
         update_ids += file_update_ids
@@ -38,27 +38,5 @@ class DumpLogIdsService
         end
       end
       [delete_ids, update_ids]
-    end
-
-    def tar_decompress_file(tar_file)
-      tar_reader(tar_file).each.map do |entry|
-        Tempfile.create(entry.full_name, binmode: true) do |decompressed_tmp|
-          decompressed_file = write_chunks(entry, decompressed_tmp)
-          entry.close
-          yield(decompressed_file)
-        end
-      end
-    end
-
-    def tar_reader(tar_file)
-      tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(tar_file))
-      tar_extract.tap(&:rewind)
-    end
-
-    def write_chunks(entry, temp_file)
-      while (chunk = entry.read(16 * 1024))
-        temp_file.write chunk
-      end
-      temp_file.tap(&:rewind)
     end
 end

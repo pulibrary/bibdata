@@ -5,6 +5,46 @@ RSpec.describe Alma::Indexer do
 
   let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
 
+  describe "#decompress_file" do
+    let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
+    let(:dump_file_indexer) { Alma::Indexer::DumpFileIndexer.new(dump_file, solr_url: solr_url) }
+
+    context "with a file that doesn't exist" do
+      let(:file_path) { 'spec/fixtures/files/alma/do_not_create_me.tar.gz' }
+
+      it 'raises an error' do
+        expect { |b| dump_file_indexer.decompress_file(&b) }.to raise_error(Errno::ENOENT)
+      end
+    end
+    context "with a .tar.gz file" do
+      let(:file_path) { 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz' }
+
+      it 'yields a block' do
+        expect { |b| dump_file_indexer.decompress_file(&b) }.to yield_with_args
+      end
+
+      it 'returns an xml file' do
+        method_return = dump_file_indexer.decompress_file { |anything| anything }
+        expect(method_return).to be_kind_of(Array)
+        expect(method_return.first).to be_kind_of(File)
+        expect(method_return.first.path).to include('.xml')
+        expect(method_return.first.closed?).to be true
+      end
+    end
+    context "with a .gz file" do
+      let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
+
+      it 'yields a block' do
+        expect { |b| dump_file_indexer.decompress_file(&b) }.to yield_with_args
+      end
+
+      it 'returns a DumpFile' do
+        method_return = dump_file_indexer.decompress_file { |anything| anything }
+        expect(method_return).to be_kind_of(DumpFile)
+      end
+    end
+  end
+
   describe "#index_file" do
     it "indexes a single uncompressed MARC XML file" do
       solr = RSolr.connect(url: solr_url)
