@@ -15,22 +15,18 @@ for this webhook.
 ### Getting to AWS
 
 Use https://princeton.edu/aws to get to the AWS Management Console. You'll be required to log in via CAS.
-### If you need to create a new AWS lambda function for a new environment
-- Update `./deploy.sh` with the new environment.
-- Run: `./deploy.sh <new-env-name>`. This will use `webhook_monitor/template.yml` and create the necessary queues, Getway API and functions in AWS.
-- In ansible update the playbook with the new `SQS_QUEUE_URL`. You can get the new value from https://us-east-1.console.aws.amazon.com/sqs/v2/home?region=us-east-1#/queues or from the updated `./deploy.sh` where you set the new `QueueName=`
 
 ### Alma Webhook Setup
 
 Construct the URL:
 
-- In AWS Lambda
-  - In the left sidebar click on `applications`
-  - Select "alma-webhook-monitor"
-  - The API Endpoint is the base URL
-  - Under 'Resources' click WebhookReceiver
-  - click "API Gateway" in configuration tab and scroll down to expand "details"
-  - Get the resource path
+- In [AWS Lambda](https://us-east-1.console.aws.amazon.com/lambda/home?region=us-east-1#/discover)
+  - In the left sidebar click on `Applications`
+  - Select "alma-webhook-monitor-production" or 'alma-webhook-monitor-staging' or "alma-webhook-monitor-qa"
+  - The `API Endpoint` is the base URL
+  - In section 'Resources' click `WebhookReceiver`
+  - In section `Function overview` click `API Gateway`. In section `Triggers`, expand `details` in `API Gateway`.
+  - Get the `Resource path`
   - The base URL and resource path together form the URL alma needs
 
 Get the secret:
@@ -79,6 +75,12 @@ using AWS deployment tools.
 The deploy must be run from within the `webhook_monitor` directory.
 
 * `./deploy.sh [staging/qa/production]`
+
+
+## If you need to create a new AWS lambda function for a new environment
+- Update `./deploy.sh` with the new environment.
+- Run: `./deploy.sh <new-env-name>`. This will use `webhook_monitor/template.yml` and create the necessary queues, Getway API and functions in AWS.
+- In ansible update the playbook with the new `SQS_QUEUE_URL`. You can get the new value from https://us-east-1.console.aws.amazon.com/sqs/v2/home?region=us-east-1#/queues or from the updated `./deploy.sh` where you set the new `QueueName=`
 
 ## Monitoring
 
