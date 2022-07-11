@@ -1,5 +1,6 @@
 require 'zlib'
 require 'digest'
+require 'rubygems/package'
 
 class DumpFile < ActiveRecord::Base
   belongs_to :dump

@@ -1,4 +1,3 @@
-require 'rubygems/package'
 class Alma::Indexer
   attr_reader :solr_url
   def initialize(solr_url:)
