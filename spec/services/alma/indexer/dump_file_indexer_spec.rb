@@ -55,11 +55,14 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
         solr.delete_by_query("*:*")
 
         allow(dump_file_indexer).to receive(:decompress_file).and_call_original
+        allow(dump_file).to receive(:tar_decompress_file).and_call_original
+        allow(dump_file).to receive(:zip).and_call_original
         Sidekiq::Testing.inline! do
           dump_file_indexer.index!
         end
         expect(dump_file_indexer).to have_received(:decompress_file)
-
+        expect(dump_file).to have_received(:tar_decompress_file)
+        expect(dump_file).not_to have_received(:zip)
         solr.commit
         response = solr.get("select", params: { q: "*:*" })
         # There's only one record in 2.xml
@@ -75,10 +78,14 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
         solr.delete_by_query("*:*")
 
         allow(dump_file_indexer).to receive(:decompress_file).and_call_original
+        allow(dump_file).to receive(:tar_decompress_file).and_call_original
+        allow(dump_file).to receive(:zip).and_call_original
         Sidekiq::Testing.inline! do
           dump_file_indexer.index!
         end
         expect(dump_file_indexer).to have_received(:decompress_file)
+        expect(dump_file).not_to have_received(:tar_decompress_file)
+        expect(dump_file).to have_received(:zip)
 
         solr.commit
         response = solr.get("select", params: { q: "*:*" })
