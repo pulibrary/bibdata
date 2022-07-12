@@ -1,3 +1,6 @@
+### Scenario 1
+## Test indexing a specific .xml file
+
 1. Create a publishing file in Alma (Either in the sandbox or production)
     1. Create a Query that contains the data you would like to query.  Save the query after you have it correct
     1. Change the "DACS Test Record Export" publishing job (under Resources) to point at your saved query
