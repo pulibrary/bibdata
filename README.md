@@ -63,6 +63,18 @@ https://princeton-psb.alma.exlibrisgroup.com/SAML
 
 Use your netid and password to login.
 
+#### Trigger an incremental job in the alma sandbox
+
+1. Login in https://princeton-psb.alma.exlibrisgroup.com/SAML. Use your netid and password.
+2. In the left nav bar click on 'Resources' -> 'Publishing Profiles'. This will return a list of the 'Publishing Profiles'.
+3. Find the one that is called 'Incremental Publishing'. 
+4. Click the ellipsis button.
+5. Click Run. 
+This will trigger an incremental job in the alma sandbox. It takes around 45-60 minutes to complete. 
+If there are updated records then in https://bibdata-staging.princeton.edu/events a new event will be created with the 'dump type': 'Changed Records'. This event holds a dump file from the incremental dump that was triggered in the alma sandbox. Example link https://bibdata-staging.princeton.edu/dumps/1124.json with two dump_files.
+In https://bibdata-staging.princeton.edu/sidekiq you can see the indexing progress. Keep in mind that it is fast and you might not notice the indexing job in the dashboard.
+The indexing process uses the value of the env SOLR_URL that you can see if you ssh in bibdata-alma-staging1.
+
 ### Accessing the Alma Production instance
 
 https://princeton.alma.exlibrisgroup.com/SAML
