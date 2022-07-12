@@ -10,7 +10,7 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
-      - image: postgres:10.6-alpine
+      - image: cimg/postgres:13.6
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: marc_liberation_test
