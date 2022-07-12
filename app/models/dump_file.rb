@@ -1,5 +1,6 @@
 require 'zlib'
 require 'digest'
+require 'rubygems/package'
 
 class DumpFile < ActiveRecord::Base
   belongs_to :dump
@@ -79,5 +80,34 @@ class DumpFile < ActiveRecord::Base
 
   def generate_fp
     File.join(MARC_LIBERATION_CONFIG['data_dir'], Time.now.to_i.to_s)
+  end
+
+  # Alma files are tarred and g-zipped, so you have to do both.
+  def tar_decompress_file
+    tar_reader.each.map do |entry|
+      Tempfile.create(decompressed_filename(entry), binmode: true) do |decompressed_tmp|
+        decompressed_file = write_chunks(entry, decompressed_tmp)
+        entry.close
+        yield(decompressed_file)
+      end
+    end
+  end
+
+  def tar_reader
+    tar_extract = Gem::Package::TarReader.new(Zlib::GzipReader.open(path))
+    tar_extract.tap(&:rewind)
+  end
+
+  def write_chunks(entry, temp_file)
+    while (chunk = entry.read(16 * 1024))
+      temp_file.write chunk
+    end
+    temp_file.tap(&:rewind)
+  end
+
+  def decompressed_filename(entry)
+    file_name, decompress_extension = entry.full_name.split(".")
+    decompress_extension ||= "xml"
+    ["full_reindex_file_unzip_#{file_name}", "." + decompress_extension]
   end
 end

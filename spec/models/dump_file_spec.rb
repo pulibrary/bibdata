@@ -71,4 +71,24 @@ RSpec.describe DumpFile, type: :model do
       expect(subject.path.end_with?('.gz')).to be_falsey
     end
   end
+
+  describe '#tar_decompress_file' do
+    let(:dump_file) { described_class.create(path: file_path) }
+
+    context "with a file that doesn't exist" do
+      let(:file_path) { 'spec/fixtures/files/alma/do_not_create_me.gz' }
+
+      it 'raises an error' do
+        expect { |b| dump_file.tar_decompress_file(&b) }.to raise_error(Errno::ENOENT)
+      end
+    end
+
+    context "with a .tar.gz file" do
+      let(:file_path) { 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz' }
+
+      it 'yields a block' do
+        expect { |b| dump_file.tar_decompress_file(&b) }.to yield_with_args
+      end
+    end
+  end
 end
