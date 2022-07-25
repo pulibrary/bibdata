@@ -795,7 +795,7 @@ def local_heading?(field)
 end
 
 def siku_heading?(field)
-  any_thesaurus_match? field, %w[sk]
+  any_thesaurus_match? field, %w[sk skbb]
 end
 
 def any_thesaurus_match?(field, thesauri)
