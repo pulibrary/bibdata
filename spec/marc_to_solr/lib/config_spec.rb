@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'From traject_config.rb' do
+describe 'From traject_config.rb', indexing: true do
   let(:leader) { '1234567890' }
   let(:online) { @indexer.map_record(fixture_record('9990889283506421')) }
 

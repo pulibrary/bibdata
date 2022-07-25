@@ -172,3 +172,14 @@ namespace :numismatics do
     end
   end
 end
+
+namespace :augment do
+  desc "Recreates two out of three fixture files from CSV for AugmentTheSubject - LCSH_STANDALONE_X_FILE file must be hand created"
+  task recreate_fixtures: :environment do
+    subfield_a_output = AugmentTheSubject.parse_standalone_a
+    required_subfields_output = AugmentTheSubject.parse_required_subfields
+
+    File.open(AugmentTheSubject::LCSH_STANDALONE_A_FILE, "w") { |f| f.write subfield_a_output.to_json }
+    File.open(AugmentTheSubject::LCSH_REQUIRED_SUBFIELDS, "w") { |f| f.write required_subfields_output.to_json }
+  end
+end
