@@ -13,7 +13,7 @@
         </li>
         <% else %>
         <li>
-          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path %>
+          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post %>
         </li>
         <% end %>
       </ul>

@@ -85,3 +85,5 @@ group :development, :test do
   gem "webdrivers"
   gem 'webmock'
 end
+
+gem "omniauth-rails_csrf_protection"
