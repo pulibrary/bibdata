@@ -64,6 +64,7 @@ describe 'From traject_config.rb' do
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
+      @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
     end
 
     describe "alma loading" do
@@ -786,18 +787,19 @@ describe 'From traject_config.rb' do
 
     context "subject display and unstem fields" do
       let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
+      let(:s650_skbb) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject with skbb code" }, { "2" => "skbb" }] } } }
       let(:s650_local) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Local Subject" }, { "2" => "local" }, { "5" => "NjP" }] } } }
       let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
       describe 'subject display and unstem fields' do
         let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
-        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_skbb, s650_exclude, s650_local], 'leader' => leader)) }
 
         it 'include lc subjects and local subjects in the same display field' do
           expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
         end
         it 'includes siku subjects in separate fields' do
-          expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject'])
-          expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject'])
+          expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
+          expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
         end
         it 'include lc, siku, and local subjects in separate unstem fields' do
           expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
@@ -808,13 +810,14 @@ describe 'From traject_config.rb' do
         it 'works using a fixture file' do
           expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
+          expect(@siku_subject_headings['siku_subject_display']).to match_array(["Zi bu—Zhu jia lei—Jidu jiao zhi shu", "子部—諸家類—基督教之屬", "Zi bu—Tian wen suan fa lei—Li fa.", "子部—天文算法類—曆法."])
         end
       end
       describe 'subject facet fields' do
-        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_exclude, s650_local], 'leader' => leader)) }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_skbb, s650_exclude, s650_local], 'leader' => leader)) }
         it 'includes siku subjects in subject_facet and subject_topic_facet' do
-          expect(subject_marc['subject_facet']).to include('Siku Subject')
-          expect(subject_marc['subject_topic_facet']).to include('Siku Subject')
+          expect(subject_marc['subject_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
+          expect(subject_marc['subject_topic_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
         end
 
         it 'includes local subjects in subject_facet and subject_topic_facet' do
