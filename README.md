@@ -206,6 +206,7 @@ Copy the content from the generated .rb files into the .tmpl.rb files
 
 Load locally the rails server; Go to `localhost:<portnumber>/locations/holding_locations` and make sure that the locations have been updated.
 
+#### 2. Update Bibdata staging
 Test the updated locations in Bibdata-staging https://bibdata-staging.princeton.edu/ which is connected to the alma-sandbox;
 The locations will not be the same as in production because they are not up to date. Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
@@ -219,7 +220,7 @@ Delete and repopulate the locations in the bibdata staging database:
 
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
 
-#### 2. Update Bibdata production:
+#### 3. Update Bibdata production:
 Option 1:
 Connect in one of the bibdata production boxes:
 1.`ssh deploy@bibdata-alma1`
