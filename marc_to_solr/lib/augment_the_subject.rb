@@ -5,35 +5,55 @@ require 'set'
 ##
 # The creation and management of metadata are not neutral activities.
 class AugmentTheSubject
-  LCSH_TERMS_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.txt')
-  LCSH_SUBFIELDS_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies_subfields.json')
+  LCSH_TERMS_CSV_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies.csv')
+  # Can be re-created using `bundle exec rake augment:recreate_fixtures`
+  LCSH_STANDALONE_A_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'standalone_subfield_a.json')
+  # Must be created by hand from file provided by metadata librarians
+  LCSH_STANDALONE_X_FILE = File.join(File.dirname(__FILE__), 'augment_the_subject', 'standalone_subfield_x.json')
+  # Can be re-created using `bundle exec rake augment:recreate_fixtures`
+  LCSH_REQUIRED_SUBFIELDS = File.join(File.dirname(__FILE__), 'augment_the_subject', 'indigenous_studies_required.json')
 
   ##
   # Ensure the needed config files exist
   def initialize
-    raise "Cannot find lcsh terms file at #{LCSH_TERMS_FILE}" unless File.exist?(LCSH_TERMS_FILE)
-    raise "Cannot find lcsh subfields file at #{LCSH_SUBFIELDS_FILE}" unless File.exist?(LCSH_SUBFIELDS_FILE)
+    raise "Cannot find lcsh csv file at #{LCSH_TERMS_CSV_FILE}" unless File.exist?(LCSH_TERMS_CSV_FILE)
+    raise "Cannot find lcsh standalone subfield a file at #{LCSH_STANDALONE_A_FILE}" unless File.exist?(LCSH_STANDALONE_A_FILE)
+    raise "Cannot find lcsh standalone subfield x file at #{LCSH_STANDALONE_X_FILE}" unless File.exist?(LCSH_STANDALONE_X_FILE)
+    raise "Cannot find lcsh required subfields file at #{LCSH_REQUIRED_SUBFIELDS}" unless File.exist?(LCSH_REQUIRED_SUBFIELDS)
   end
 
-  def indigenous_studies_terms
-    @indigenous_studies_terms || load_indigenous_studies_terms
-  end
-
-  def load_indigenous_studies_terms
-    @indigenous_studies_terms = Set.new
-    File.foreach(LCSH_TERMS_FILE) do |lcsh_term|
-      @indigenous_studies_terms << normalize(lcsh_term)
+  def standalone_subfield_a_terms
+    @standalone_subfield_a_terms ||= begin
+      parsed_json = JSON.parse(File.read(LCSH_STANDALONE_A_FILE), { symbolize_names: true })
+      parsed_json[:standalone_subfield_a].map do |term|
+        normalize(term)
+      end
     end
-    @indigenous_studies_terms
   end
 
-  def indigenous_studies_subfields
-    @indigenous_studies_subfields || load_indigenous_studies_subfields
+  def standalone_subfield_x_terms
+    @standalone_subfield_x_terms ||= begin
+      parsed_json = JSON.parse(File.read(LCSH_STANDALONE_X_FILE), { symbolize_names: true })
+      parsed_json[:standalone_subfield_x].map do |term|
+        normalize(term)
+      end
+    end
   end
 
-  def load_indigenous_studies_subfields
-    @indigenous_studies_subfields = JSON.parse(File.read(LCSH_SUBFIELDS_FILE))
-    @indigenous_studies_subfields
+  def indigenous_studies_required
+    @indigenous_studies_required ||= begin
+      parsed_json = JSON.parse(File.read(LCSH_REQUIRED_SUBFIELDS), { symbolize_names: false })
+      # Turns all the sub-arrays into sets for set comparison later
+      parsed_json.transform_values! do |value|
+        value.map do |val|
+          val.map { |term| normalize(term) }.to_set
+        end
+      end
+      # Normalizes and symbolizes key for fast and consistent retrieval
+      parsed_json.transform_keys! do |key|
+        normalize(key).to_sym
+      end
+    end
   end
 
   ##
@@ -60,8 +80,11 @@ class AugmentTheSubject
   # @return [Boolean]
   def indigenous_studies?(terms)
     terms.each do |term|
+      next if term.blank?
+
       return true if subfield_a_match?(term)
-      return true if full_subject_term_match?(term)
+      return true if subfield_x_match?(term)
+      return true if subfield_a_with_required_subfields_match?(term)
     end
     false
   end
@@ -72,40 +95,70 @@ class AugmentTheSubject
   # be assigned an Indigenous Studies term even though that entire term doesn't
   # appear in our terms list.
   def subfield_a_match?(term)
-    subfield_a = term.split(SEPARATOR).first
-    indigenous_studies_subfields["a"].include?(subfield_a)
+    subfield_a = normalize(term.split(SEPARATOR).first).gsub(/\.$/, '')
+    standalone_subfield_a_terms.include?(subfield_a)
   end
 
   ##
-  # For some subject terms, we need to match on all subfields
-  # E.g., Russia (Federation)-Civilization-Indian influences
-  def full_subject_term_match?(term)
-    indigenous_studies_terms.include? term.downcase.gsub(/[^\w\s#{SEPARATOR}]/, '')
+  # For some subfield terms, only a single subfield needs to match.
+  # E.g., any subject term that includes "Indian authors" should be assigned Indigenous Studies
+  def subfield_x_match?(term)
+    subfields = term.split(SEPARATOR)
+    subfields = subfields.map { |subfield| normalize(subfield) }
+    !(standalone_subfield_x_terms & subfields).empty?
   end
 
   ##
-  # DANGER ZONE
-  # This will re-parse the indigenous_studies.txt file into a json file that
-  # has split apart the marc subfields. A person will then need to go in and
-  # manually edit the json config file to remove irrelevant subjects.
-  def self.parse_subjects
-    subfield_a = Set.new
-    subfield_x = Set.new
-    subfield_y = Set.new
-    subfield_z = Set.new
-    File.foreach(LCSH_TERMS_FILE) do |lcsh_term|
-      subfield_a << lcsh_term.chomp.split('ǂ').first.strip
-      subfield_x << lcsh_term.chomp.split("ǂx").last.strip.split("ǂ").first.strip if /ǂx/.match?(lcsh_term)
-      subfield_y << lcsh_term.chomp.split("ǂy").last.strip.split("ǂ").first.strip if /ǂy/.match?(lcsh_term)
-      subfield_z << lcsh_term.chomp.split("ǂz").last.strip.split("ǂ").first.strip if /ǂz/.match?(lcsh_term)
+  # Some subject terms require a combination of terms in order to be assigned Indigenous Studies.
+  # For example, "Alaska-Antiquities" should be a match, but "Alaska" by itself should not,
+  # nor should "Antiquities" by itself.
+  def subfield_a_with_required_subfields_match?(term)
+    subfields = term.split(SEPARATOR)
+    subfields = subfields.map { |subfield| normalize(subfield) }
+    subfield_a = subfields.shift.to_sym
+
+    required_subfields = indigenous_studies_required[subfield_a]
+    return false unless required_subfields
+
+    required_subfields.map do |req_terms|
+      return true if req_terms.subset?(subfields.to_set)
+    end
+    false
+  end
+
+  # In order to re-write the fixture file based on a new CSV, run the rake task
+  # `bundle exec rake augment:recreate_fixtures`
+  def self.parse_standalone_a
+    subfield_a_aggregator = Set.new
+    CSV.foreach(LCSH_TERMS_CSV_FILE, headers: true) do |row|
+      requires_subfield = row["With subdivisions ǂx etc."] == 'y'
+      unless requires_subfield
+        lcsh_term = row["Term in MARC"]
+        subfield_a = lcsh_term.chomp.split('ǂ').first.strip
+        subfield_a_aggregator << subfield_a
+      end
     end
     output = {}
-    output[:a] = subfield_a.sort
-    output[:x] = subfield_x.sort
-    output[:y] = subfield_y.sort
-    output[:z] = subfield_z.sort
-    ## Uncomment this line to re-write the subfields file. Remember that you will then need to edit it by hand.
-    # File.open(lcsh_subfields_file, "w") { |f| f.write output.to_json }
+    output[:standalone_subfield_a] = subfield_a_aggregator.sort
     output
+  end
+
+  # In order to re-write the fixture file based on a new CSV, run the rake task
+  # `bundle exec rake augment:recreate_fixtures`
+  def self.parse_required_subfields
+    output = {}
+    CSV.foreach(LCSH_TERMS_CSV_FILE, headers: true) do |row|
+      if row["With subdivisions ǂx etc."] == 'y'
+        term = row["Term in MARC"]
+        term_list = term.chomp.split(/ ǂ. /)
+        subfield_a = term_list.shift
+        if output[subfield_a]
+          output[subfield_a] << term_list
+        else
+          output[subfield_a] = [term_list]
+        end
+      end
+    end
+    output.to_json
   end
 end

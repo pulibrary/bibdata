@@ -5,7 +5,7 @@ require 'rails_helper'
 ##
 # When our catalog records contain outdated subject headings, we need the ability
 # to update them at index time to preferred terms.
-RSpec.describe ChangeTheSubject do
+RSpec.describe ChangeTheSubject, indexing: true do
   context 'with the real configuration' do
     it "suggests a replacement" do
       expect(described_class.check_for_replacement("Illegal aliens")).to eq "Undocumented immigrants"
