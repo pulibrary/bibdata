@@ -567,8 +567,9 @@ describe 'From princeton_marc.rb' do
       @s600 = { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "John." }, { "x" => "Join" }, { "t" => "Title" }, { "d" => "2015" }] } }
       @s630 = { "630" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "x" => "Fiction" }, { "y" => "1492" }, { "z" => "don't ignore" }, { "v" => "split genre" }, { "t" => "TITLE" }] } }
       @s650_sk = { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku subject" }, { "x" => "Siku hierarchy" }, { "2" => "sk" }] } }
+      @s650_homoit = { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Homosaurus subject" }, { "2" => "homoit" }] } }
       @s650_exclude = { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Bad subject" }, { "2" => "bad" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk])
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk, @s650_homoit])
       @subjects = process_subject_topic_facet(@sample_marc)
     end
 
@@ -583,6 +584,11 @@ describe 'From princeton_marc.rb' do
 
     it 'excludes non-approved subfield $2 vocab types' do
       expect(@subjects).not_to include("Bad subject")
+    end
+
+    it 'includes approved subfield $2 vocab types' do
+      expect(@subjects).to include('Siku subject')
+      expect(@subjects).to include('Homosaurus subject')
     end
 
     it 'includes subjects split along x or z' do

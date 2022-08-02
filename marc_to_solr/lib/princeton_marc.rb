@@ -307,7 +307,7 @@ def process_subject_topic_facet record
   end
   Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
-    should_include = siku_heading?(field) || local_heading?(field)
+    should_include = siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit])
     unless subject.nil?
       field.subfields.each do |s_field|
         subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
