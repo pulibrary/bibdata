@@ -2,14 +2,12 @@
 
 This document describes the source data indexed to the catalog index and the process for building a full catalog index.
 
-This documentation was migrated from https://docs.google.com/document/d/1bHvgfgyUmDXV7ROqEZFaRxJFEYhSSUbeQoQT883GMWg/edit#, which is now deprecated.
-
 ## Source: Alma
 The Alma ILS is the source of princeton's MARC data, both physical and electronic resources. More than 11 million MARC records index from Alma.
 
 Alma MMS ids start with 99 and end with 3506421
 
-Frequency of updates: 4x per day
+Frequency of updates: 4x per day: 4am, 10am, 4pm, 10pm see: https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md
 
 ## Source: SCSB
 About 6 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
