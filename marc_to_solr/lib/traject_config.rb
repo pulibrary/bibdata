@@ -840,7 +840,7 @@ to_field 'local_subject_display' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
-# Homosaurus controlled vocabulary
+# Homosaurus controlled vocabulary https://homosaurus.org/
 to_field 'homoit_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '650|*7|avxyz') { |field| any_thesaurus_match?(field, %w[homoit]) }
   accumulator.replace(subjects)
