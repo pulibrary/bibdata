@@ -3,6 +3,7 @@ class NormalUriFactory
   # Constructor
   # @param value [String] String value for the URL
   def initialize(value:)
+    @parser = URI::Parser.new
     @value = clean(value)
   end
 
@@ -18,6 +19,7 @@ class NormalUriFactory
     # @param value [String] String value for the URL
     def clean(value)
       return value if /#.+/.match?(value)
-      URI.escape(URI.unescape(value).scrub)
+
+      @parser.escape(@parser.unescape(value).scrub)
     end
 end
