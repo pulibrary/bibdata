@@ -61,3 +61,18 @@
 "Women slaves":
   replacement: "Enslaved women"
   rationale: "In addition to its usage by TRLN, this term falls in line with recommendations included in the community-sourced document P. Gabrielle Foreman, et al. \"Writing about Slavery/Teaching About Slavery: This Might Help\" and Archives for Black Lives in Philadelphia Anti-Racist Description Resources."
+"Indians of Central America":
+  replacement: "Indigenous peoples of Central America"
+  rationale: "This term is used by TRLN; according to our research, this terminology is preferred and widely regarded as a more inclusive term. It is important to include the geographic region in the subject term when possible, as there are Indigenous peoples throughout the world.  When possible, it is respectful to also include the name of the community(ies) or nation(s) of the people in the record, for example \"Chumash,\" \"Tonkawa,\" \"Rapa Nui,\" \"Huetar.\""
+"Indians of Mexico":
+  replacement: "Indigenous peoples of Mexico"
+  rationale: "This term is used by TRLN; according to our research, this terminology is preferred and widely regarded as a more inclusive term. It is important to include the geographic region in the subject term when possible, as there are Indigenous peoples throughout the world.  When possible, it is respectful to also include the name of the community(ies) or nation(s) of the people in the record, for example \"Chumash,\" \"Tonkawa,\" \"Rapa Nui,\" \"Huetar.\""
+"Indians of North America":
+  replacement: "Indigenous peoples of North America"
+  rationale: "This term is used by TRLN; according to our research, this terminology is preferred and widely regarded as a more inclusive term. It is important to include the geographic region in the subject term when possible, as there are Indigenous peoples throughout the world.  When possible, it is respectful to also include the name of the community(ies) or nation(s) of the people in the record, for example \"Chumash,\" \"Tonkawa,\" \"Rapa Nui,\" \"Huetar.\""
+"Indians of South America":
+  replacement: "Indigenous peoples of South America"
+  rationale: "This term is used by TRLN; according to our research, this terminology is preferred and widely regarded as a more inclusive term. It is important to include the geographic region in the subject term when possible, as there are Indigenous peoples throughout the world.  When possible, it is respectful to also include the name of the community(ies) or nation(s) of the people in the record, for example \"Chumash,\" \"Tonkawa,\" \"Rapa Nui,\" \"Huetar.\""
+"Indians of the West Indies":
+  replacement: "Indigenous peoples of the West Indies"
+  rationale: "This term is used by TRLN; according to our research, this terminology is preferred and widely regarded as a more inclusive term. It is important to include the geographic region in the subject term when possible, as there are Indigenous peoples throughout the world.  When possible, it is respectful to also include the name of the community(ies) or nation(s) of the people in the record, for example \"Chumash,\" \"Tonkawa,\" \"Rapa Nui,\" \"Huetar.\""

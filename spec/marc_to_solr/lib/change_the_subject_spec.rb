@@ -29,6 +29,8 @@ RSpec.describe ChangeTheSubject, indexing: true do
       expect(described_class.check_for_replacement("Older slaves")).to eq "Enslaved older people"
       expect(described_class.check_for_replacement("Slaves")).to eq "Enslaved persons"
       expect(described_class.check_for_replacement("Women slaves")).to eq "Enslaved women"
+      expect(described_class.check_for_replacement("Indians of Central America")).to eq("Indigenous peoples of Central America")
+      expect(described_class.check_for_replacement("Indians of North America")).to eq("Indigenous peoples of North America")
     end
   end
 
@@ -37,8 +39,14 @@ RSpec.describe ChangeTheSubject, indexing: true do
 
     before do
       allow(described_class).to receive(:change_the_subject_config_file).and_return(fixture_config)
-      described_class.remove_instance_variable(:@terms_mapping)
-      described_class.remove_instance_variable(:@config)
+    end
+
+    around do |example|
+      described_class.remove_instance_variable(:@terms_mapping) if described_class.instance_variables.include?(:@terms_mapping)
+      described_class.remove_instance_variable(:@config) if described_class.instance_variables.include?(:@config)
+      example.run
+      described_class.remove_instance_variable(:@terms_mapping) if described_class.instance_variables.include?(:@terms_mapping)
+      described_class.remove_instance_variable(:@config) if described_class.instance_variables.include?(:@config)
     end
 
     context "a term that has not been replaced" do
@@ -88,6 +96,15 @@ RSpec.describe ChangeTheSubject, indexing: true do
     context 'subject terms that have empty replacements' do
       let(:subject_terms) { ['Test term', "Illegal aliens"] }
       let(:fixed_subject_terms) { ["Undocumented immigrants"] }
+
+      it "suggests a replacement" do
+        expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
+      end
+    end
+
+    context 'Indigenous studies terms' do
+      let(:subject_terms) { ["Indians of North America#{SEPARATOR}Connecticut"] }
+      let(:fixed_subject_terms) { ["Indigenous peoples of North America#{SEPARATOR}Connecticut"] }
 
       it "suggests a replacement" do
         expect(described_class.fix(subject_terms)).to eq fixed_subject_terms
