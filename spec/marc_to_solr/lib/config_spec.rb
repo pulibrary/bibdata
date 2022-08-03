@@ -32,6 +32,7 @@ describe 'From traject_config.rb', indexing: true do
       @record_res3hr = @indexer.map_record(fixture_record('99125379706706421'))
       @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
       @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
+      @homosaurus = @indexer.map_record(fixture_record('99125407041106421'))
       @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
       @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
       @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -789,10 +790,12 @@ describe 'From traject_config.rb', indexing: true do
       let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
       let(:s650_skbb) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject with skbb code" }, { "2" => "skbb" }] } } }
       let(:s650_local) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Local Subject" }, { "2" => "local" }, { "5" => "NjP" }] } } }
+      let(:s650_homoit) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Homosaurus Subject" }, { "2" => "homoit" }] } } }
+
       let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
       describe 'subject display and unstem fields' do
         let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
-        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_skbb, s650_exclude, s650_local], 'leader' => leader)) }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_skbb, s650_exclude, s650_local, s650_homoit], 'leader' => leader)) }
 
         it 'include lc subjects and local subjects in the same display field' do
           expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
@@ -800,6 +803,10 @@ describe 'From traject_config.rb', indexing: true do
         it 'includes siku subjects in separate fields' do
           expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
+        end
+        it 'includes homoit subjects in separate fields' do
+          expect(subject_marc['homoit_subject_display']).to match_array(['Homosaurus Subject'])
+          expect(subject_marc['homoit_subject_unstem_search']).to match_array(['Homosaurus Subject'])
         end
         it 'include lc, siku, and local subjects in separate unstem fields' do
           expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
@@ -814,7 +821,7 @@ describe 'From traject_config.rb', indexing: true do
         end
       end
       describe 'subject facet fields' do
-        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_skbb, s650_exclude, s650_local], 'leader' => leader)) }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_skbb, s650_exclude, s650_local, s650_homoit], 'leader' => leader)) }
         it 'includes siku subjects in subject_facet and subject_topic_facet' do
           expect(subject_marc['subject_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
           expect(subject_marc['subject_topic_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
@@ -823,6 +830,11 @@ describe 'From traject_config.rb', indexing: true do
         it 'includes local subjects in subject_facet and subject_topic_facet' do
           expect(subject_marc['subject_facet']).to include('Local Subject')
           expect(subject_marc['subject_topic_facet']).to include('Local Subject')
+        end
+
+        it 'includes homosaurus subjects in subject_facet and subject_topic_facet' do
+          expect(subject_marc['subject_facet']).to include('Homosaurus Subject')
+          expect(subject_marc['subject_topic_facet']).to include('Homosaurus Subject')
         end
 
         it 'does not include other types of subjects in subject_facet or subject_topic_facet' do
@@ -894,6 +906,21 @@ describe 'From traject_config.rb', indexing: true do
             expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
           end
         end
+      end
+    end
+    describe 'homoit_s' do
+      let(:lc_only_terms) { ["Transgender people#{SEPARATOR}Ephemera", "Transgender people#{SEPARATOR}Periodicals"] }
+      let(:homosaurus_terms) { ["Trans", "Transgender community", "Transgender culture"] }
+      let(:lc_and_homosaurus_terms) { lc_only_terms + homosaurus_terms }
+
+      it 'works against a fixture' do
+        expect(@homosaurus["homoit_subject_display"]).to match_array(homosaurus_terms)
+        expect(@homosaurus["homoit_subject_unstem_search"]).to match_array(homosaurus_terms)
+        expect(@homosaurus["lc_subject_display"]).to match_array(lc_only_terms)
+        expect(@homosaurus["subject_unstem_search"]).to match_array(lc_only_terms)
+        expect(@homosaurus["subject_facet"]).to match_array(lc_and_homosaurus_terms)
+        # # this should combine both, without lc subfields
+        expect(@homosaurus["subject_topic_facet"]).to match_array(["Transgender people", "Trans", "Transgender community", "Transgender culture"])
       end
     end
     describe 'form_genre_display' do
