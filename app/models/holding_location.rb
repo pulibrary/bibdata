@@ -7,7 +7,6 @@ class HoldingLocation < ActiveRecord::Base
   # TODO: Remove after migrating to non-prefixed tables
   self.table_name_prefix = 'locations_'
 
-  belongs_to :hours_location, class_name: 'HoursLocation', foreign_key: :locations_hours_location_id, optional: true
   belongs_to :holding_library, class_name: 'Library', optional: true
 
   has_and_belongs_to_many :delivery_locations, -> { distinct },

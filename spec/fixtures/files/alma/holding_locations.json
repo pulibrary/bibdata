@@ -15,10 +15,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$aas",
       "delivery_locations": [
@@ -41,7 +37,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$stacks",
       "delivery_locations": [

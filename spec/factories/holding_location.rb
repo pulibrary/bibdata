@@ -20,7 +20,6 @@ FactoryBot.define do
   factory :holding_location_locator, class: 'HoldingLocation' do
     transient do
       library_args { nil }
-      hours_locations_args { nil }
     end
     label { 'Firestone Library' }
     aeon_location { [true, false].sample }
@@ -32,7 +31,6 @@ FactoryBot.define do
     code { 'f' }
     library { build(:library, library_args) }
     remote_storage
-    hours_location { build(:hours_location, hours_locations_args) }
   end
 
   factory :holding_location_title_locations, class: 'HoldingLocation' do
