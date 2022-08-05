@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_08_210732) do
+ActiveRecord::Schema.define(version: 2022_08_05_174853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,7 +145,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_210732) do
     t.boolean "open", default: true
     t.boolean "requestable", default: true
     t.boolean "always_requestable", default: false
-    t.integer "locations_hours_location_id"
     t.boolean "circulates", default: true
     t.integer "holding_library_id"
     t.string "remote_storage"
@@ -158,13 +157,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_210732) do
     t.integer "locations_holding_location_id"
     t.index ["locations_delivery_location_id"], name: "index_lhd_on_ldl_id"
     t.index ["locations_holding_location_id"], name: "index_ldl_on_lhd_id"
-  end
-
-  create_table "locations_hours_locations", id: :serial, force: :cascade do |t|
-    t.string "code"
-    t.string "label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "locations_libraries", id: :serial, force: :cascade do |t|
@@ -199,7 +191,6 @@ ActiveRecord::Schema.define(version: 2021_09_08_210732) do
   add_foreign_key "index_managers", "dumps", column: "dump_in_progress_id"
   add_foreign_key "index_managers", "dumps", column: "last_dump_completed_id"
   add_foreign_key "locations_delivery_locations", "locations_libraries"
-  add_foreign_key "locations_holding_locations", "locations_hours_locations"
   add_foreign_key "locations_holding_locations", "locations_libraries"
   add_foreign_key "locations_holding_locations", "locations_libraries", column: "holding_library_id"
 end
