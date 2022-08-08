@@ -749,6 +749,10 @@ describe 'From princeton_marc.rb' do
       expect(@holdings_with_invalid_location).not_to have_key(@not_valid_holding_id)
     end
 
+    it 'includes holdings with a valid location code' do
+      expect(@holdings_876z).to have_key(@holdings_id_876z)
+    end
+
     it 'positions $k at the end for call_number_browse field' do
       expect(@oversize_holding_block['call_number_browse']).to include('Oversize')
       expect(@oversize_holding_block['call_number_browse']).to eq("M23.L5S6 1973q Oversize")
