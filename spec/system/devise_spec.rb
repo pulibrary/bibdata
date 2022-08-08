@@ -11,7 +11,6 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
     Library.destroy_all
     HoldingLocation.destroy_all
     DeliveryLocation.destroy_all
-    HoursLocation.destroy_all
   end
 
   unless ENV['CI']
@@ -37,8 +36,7 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
     end
   end
 
-  ["libraries", "holding_locations", "delivery_locations",
-   "hours_locations"].each_with_index do |data_type, _i|
+  ["libraries", "holding_locations", "delivery_locations"].each_with_index do |data_type, _i|
     scenario "anyone can retrieve JSON feeds for #{data_type}" do
       visit "/locations/#{data_type}.json"
     end

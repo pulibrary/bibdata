@@ -43,16 +43,6 @@ describe HoldingLocation, type: :model do
     end
   end
 
-  describe 'hours locations association' do
-    it 'can have an hours location' do
-      holding_location = FactoryBot.create(:holding_location)
-      hours_location = FactoryBot.create(:hours_location)
-      expect do
-        holding_location.update(hours_location: hours_location)
-      end.not_to raise_error
-    end
-  end
-
   describe 'holding library association' do
     it 'can have a holding library' do
       holding_location = FactoryBot.create(:holding_location)

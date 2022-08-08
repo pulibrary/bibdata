@@ -15,7 +15,4 @@ json.array!(@holding_locations) do |holding_location|
 
   json.partial! 'holding_locations/json_partials/holding_library',
                 holding_library: holding_location.holding_library
-
-  json.partial! 'holding_locations/json_partials/hours_location',
-                hours_location: holding_location.hours_location
 end

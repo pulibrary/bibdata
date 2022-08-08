@@ -15,10 +15,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$aas",
       "delivery_locations": [
@@ -41,7 +37,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$stacks",
       "delivery_locations": [
@@ -76,7 +71,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$doc",
       "delivery_locations": [
@@ -102,7 +96,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$fst",
       "delivery_locations": [
@@ -135,7 +128,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$stacks",
       "delivery_locations": [
@@ -161,7 +153,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$locked",
       "delivery_locations": [
@@ -187,7 +178,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$noncirc",
       "delivery_locations": [
@@ -213,10 +203,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$ast",
       "delivery_locations": [
@@ -239,10 +225,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$media",
       "delivery_locations": [
@@ -265,10 +247,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$beac",
       "delivery_locations": [
@@ -291,10 +269,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
@@ -317,10 +291,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$clas",
       "delivery_locations": [
@@ -343,10 +313,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$clasnc",
       "delivery_locations": [
@@ -369,10 +335,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$cook",
       "delivery_locations": [
@@ -395,10 +357,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$crare",
       "delivery_locations": [
@@ -421,10 +379,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjkref",
       "delivery_locations": [
@@ -447,10 +401,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Cotsen Children's Library - Research Collection",
-        "code": "cotsenresearch"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ctsn",
       "delivery_locations": [
@@ -473,10 +423,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Cotsen Children's Library - Research Collection",
-        "code": "cotsenresearch"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ctsnrf",
       "delivery_locations": [
@@ -499,10 +445,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "techserv",
       "holding_location_code": "techserv$dc",
       "delivery_locations": [
@@ -525,10 +467,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dixn",
       "delivery_locations": [
@@ -551,10 +489,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$docs",
       "delivery_locations": [
@@ -577,10 +511,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$docsm",
       "delivery_locations": [
@@ -603,10 +533,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dr",
       "delivery_locations": [
@@ -629,10 +555,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dra",
       "delivery_locations": [
@@ -655,10 +577,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$drrr",
       "delivery_locations": [
@@ -681,10 +599,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$dss",
       "delivery_locations": [
@@ -707,10 +621,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ed",
       "delivery_locations": [
@@ -733,10 +643,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$egsr",
       "delivery_locations": [
@@ -759,7 +665,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zelf",
       "delivery_locations": [
@@ -782,7 +687,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "online",
       "holding_location_code": "online$elf1",
       "delivery_locations": [
@@ -805,7 +709,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "online",
       "holding_location_code": "online$elf2",
       "delivery_locations": [
@@ -828,7 +731,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "online",
       "holding_location_code": "online$elf3",
       "delivery_locations": [
@@ -851,7 +753,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "online",
       "holding_location_code": "online$elf4",
       "delivery_locations": [
@@ -874,10 +775,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ex",
       "delivery_locations": [
@@ -900,10 +797,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exb",
       "delivery_locations": [
@@ -926,10 +819,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exc",
       "delivery_locations": [
@@ -952,10 +841,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exca",
       "delivery_locations": [
@@ -978,10 +863,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exf",
       "delivery_locations": [
@@ -1004,10 +885,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exho",
       "delivery_locations": [
@@ -1030,10 +907,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exi",
       "delivery_locations": [
@@ -1056,10 +929,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exka",
       "delivery_locations": [
@@ -1082,10 +951,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exki",
       "delivery_locations": [
@@ -1108,10 +973,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exl",
       "delivery_locations": [
@@ -1134,10 +995,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exme",
       "delivery_locations": [
@@ -1160,10 +1017,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exov",
       "delivery_locations": [
@@ -1186,10 +1039,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$expa",
       "delivery_locations": [
@@ -1212,10 +1061,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exrc",
       "delivery_locations": [
@@ -1238,10 +1083,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exrl",
       "delivery_locations": [
@@ -1264,10 +1105,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$extr",
       "delivery_locations": [
@@ -1290,10 +1127,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$extsf",
       "delivery_locations": [
@@ -1316,10 +1149,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exv",
       "delivery_locations": [
@@ -1342,10 +1171,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$exw",
       "delivery_locations": [
@@ -1368,10 +1193,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$stacks",
       "delivery_locations": [
@@ -1397,10 +1218,6 @@
         "label": "Firestone Library",
         "code": "firestone",
         "order": 1
-      },
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
       },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$fac",
@@ -1441,10 +1258,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$fis",
       "delivery_locations": [
@@ -1467,10 +1280,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Microforms Service",
-        "code": "microforms"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flm",
       "delivery_locations": [
@@ -1493,10 +1302,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Microforms Service",
-        "code": "microforms"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmb",
       "delivery_locations": [
@@ -1519,10 +1324,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Microforms Service",
-        "code": "microforms"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmm",
       "delivery_locations": [
@@ -1545,10 +1346,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Microforms Service",
-        "code": "microforms"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$flmp",
       "delivery_locations": [
@@ -1571,10 +1368,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$noncirc",
       "delivery_locations": [
@@ -1597,10 +1390,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ga",
       "delivery_locations": [
@@ -1623,10 +1412,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$garf",
       "delivery_locations": [
@@ -1649,10 +1434,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$gax",
       "delivery_locations": [
@@ -1675,10 +1456,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gest",
       "delivery_locations": [
@@ -1701,10 +1478,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$gestf",
       "delivery_locations": [
@@ -1727,10 +1500,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gestpe",
       "delivery_locations": [
@@ -1753,10 +1522,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$gestpr",
       "delivery_locations": [
@@ -1779,10 +1544,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$gestrare",
       "delivery_locations": [
@@ -1805,10 +1566,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$ref",
       "delivery_locations": [
@@ -1834,10 +1591,6 @@
         "label": "Firestone Library",
         "code": "firestone",
         "order": 1
-      },
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
       },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$gss",
@@ -1878,10 +1631,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$reserve",
       "delivery_locations": [
@@ -1904,10 +1653,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$ref",
       "delivery_locations": [
@@ -1930,10 +1675,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$hldn",
       "delivery_locations": [
@@ -1956,10 +1697,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvc",
       "delivery_locations": [
@@ -1982,10 +1719,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsve",
       "delivery_locations": [
@@ -2008,10 +1741,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvg",
       "delivery_locations": [
@@ -2034,10 +1763,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvm",
       "delivery_locations": [
@@ -2060,10 +1785,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvn",
       "delivery_locations": [
@@ -2086,10 +1807,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvp",
       "delivery_locations": [
@@ -2112,10 +1829,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvr",
       "delivery_locations": [
@@ -2138,7 +1851,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$hsvw",
       "delivery_locations": [
@@ -2178,10 +1890,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$htn",
       "delivery_locations": [
@@ -2204,10 +1912,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
@@ -2230,10 +1934,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hype",
       "delivery_locations": [
@@ -2256,10 +1956,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hycrare",
       "delivery_locations": [
@@ -2282,10 +1978,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
@@ -2308,10 +2000,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
@@ -2334,7 +2022,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hygf",
       "delivery_locations": [
@@ -2361,10 +2048,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
@@ -2387,10 +2070,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hype",
       "delivery_locations": [
@@ -2413,10 +2092,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hyjrare",
       "delivery_locations": [
@@ -2439,10 +2114,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
@@ -2465,10 +2136,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hy",
       "delivery_locations": [
@@ -2491,10 +2158,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$hykrare",
       "delivery_locations": [
@@ -2517,10 +2180,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$hyref",
       "delivery_locations": [
@@ -2543,10 +2202,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
@@ -2569,10 +2224,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$jrare",
       "delivery_locations": [
@@ -2595,10 +2246,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjkref",
       "delivery_locations": [
@@ -2621,10 +2268,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjk",
       "delivery_locations": [
@@ -2647,10 +2290,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$krare",
       "delivery_locations": [
@@ -2673,10 +2312,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$cjkref",
       "delivery_locations": [
@@ -2699,7 +2334,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$locked",
       "delivery_locations": [
@@ -2722,10 +2356,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$law",
       "delivery_locations": [
@@ -2748,7 +2378,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrc",
       "delivery_locations": [
@@ -2771,7 +2400,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrcpt",
       "delivery_locations": [
@@ -2794,7 +2422,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$lrcr",
       "delivery_locations": [
@@ -2817,10 +2444,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$ltop",
       "delivery_locations": [
@@ -2843,10 +2466,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$ltop",
       "delivery_locations": [
@@ -2869,10 +2488,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$ltop",
       "delivery_locations": [
@@ -2895,10 +2510,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ltop",
       "delivery_locations": [
@@ -2921,10 +2532,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$ltop",
       "delivery_locations": [
@@ -2947,10 +2554,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$map",
       "delivery_locations": [
@@ -2973,10 +2576,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$av",
       "delivery_locations": [
@@ -2999,10 +2598,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$mss",
       "delivery_locations": [
@@ -3025,10 +2620,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mudd Manuscript Library and University Archives",
-        "code": "mudd"
-      },
       "alma_library_code": "mudd",
       "holding_location_code": "mudd$stacks",
       "delivery_locations": [
@@ -3051,10 +2642,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mudd Manuscript Library and University Archives",
-        "code": "mudd"
-      },
       "alma_library_code": "mudd",
       "holding_location_code": "mudd$mic",
       "delivery_locations": [
@@ -3077,10 +2664,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$stacks",
       "delivery_locations": [
@@ -3103,10 +2686,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$g",
       "delivery_locations": [
@@ -3129,10 +2708,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$nb",
       "delivery_locations": [
@@ -3172,10 +2747,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$pe",
       "delivery_locations": [
@@ -3198,10 +2769,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$res",
       "delivery_locations": [
@@ -3224,10 +2791,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$rg",
       "delivery_locations": [
@@ -3250,10 +2813,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$nec",
       "delivery_locations": [
@@ -3276,10 +2835,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$necnc",
       "delivery_locations": [
@@ -3302,10 +2857,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "East Asian Library",
-        "code": "eastasian"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zned",
       "delivery_locations": [
@@ -3328,10 +2879,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$znew",
       "delivery_locations": [
@@ -3354,10 +2901,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$njpg",
       "delivery_locations": [
@@ -3380,10 +2923,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$nr",
       "delivery_locations": [
@@ -3406,10 +2945,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$num",
       "delivery_locations": [
@@ -3432,10 +2967,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$numrf",
       "delivery_locations": [
@@ -3458,7 +2989,6 @@
         "order": 4
       },
       "holding_library": null,
-      "hours_location": null,
       "delivery_locations": [
 
       ]
@@ -3479,7 +3009,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$princeton",
       "delivery_locations": [
@@ -3502,10 +3031,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$pb",
       "delivery_locations": [
@@ -3528,10 +3053,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$piapr",
       "delivery_locations": [
@@ -3554,10 +3075,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$respiapr",
       "delivery_locations": [
@@ -3580,10 +3097,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$stacks",
       "delivery_locations": [
@@ -3606,10 +3119,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$index",
       "delivery_locations": [
@@ -3632,10 +3141,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$la",
       "delivery_locations": [
@@ -3658,10 +3163,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$li",
       "delivery_locations": [
@@ -3684,10 +3185,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$nb",
       "delivery_locations": [
@@ -3727,10 +3224,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$ps",
       "delivery_locations": [
@@ -3753,10 +3246,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$res",
       "delivery_locations": [
@@ -3779,10 +3268,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$rdr",
       "delivery_locations": [
@@ -3805,10 +3290,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$ref",
       "delivery_locations": [
@@ -3831,10 +3312,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$rr",
       "delivery_locations": [
@@ -3857,10 +3334,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Plasma Physics Library",
-        "code": "plasma"
-      },
       "alma_library_code": "plasma",
       "holding_location_code": "plasma$theses",
       "delivery_locations": [
@@ -3883,10 +3356,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pr",
       "delivery_locations": [
@@ -3909,10 +3378,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pres",
       "delivery_locations": [
@@ -3935,10 +3400,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mudd Manuscript Library and University Archives",
-        "code": "mudd"
-      },
       "alma_library_code": "mudd",
       "holding_location_code": "mudd$prnc",
       "delivery_locations": [
@@ -3961,10 +3422,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$prne",
       "delivery_locations": [
@@ -3987,10 +3444,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$ptt",
       "delivery_locations": [
@@ -4013,10 +3466,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$raas",
       "delivery_locations": [
@@ -4060,7 +3509,6 @@
         "code": "firestone",
         "order": 1
       },
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$gp",
       "delivery_locations": [
@@ -4097,7 +3545,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$jq",
       "delivery_locations": [
@@ -4123,7 +3570,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$pa",
       "delivery_locations": [
@@ -4162,7 +3608,6 @@
         "code": "firestone",
         "order": 1
       },
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pb",
       "delivery_locations": [
@@ -4189,7 +3634,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$pe",
       "delivery_locations": [
@@ -4219,7 +3663,6 @@
         "code": "firestone",
         "order": 1
       },
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$pf",
       "delivery_locations": [
@@ -4246,7 +3689,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$pg",
       "delivery_locations": [
@@ -4273,7 +3715,6 @@
         "code": "mudd",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "mudd",
       "holding_location_code": "mudd$ph",
       "delivery_locations": [
@@ -4300,7 +3741,6 @@
         "code": "marquand",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$pj",
       "delivery_locations": [
@@ -4331,7 +3771,6 @@
         "code": "mendel",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$pk",
       "delivery_locations": [
@@ -4362,7 +3801,6 @@
         "code": "eastasian",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$pl",
       "delivery_locations": [
@@ -4393,7 +3831,6 @@
         "code": "stokes",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$pm",
       "delivery_locations": [
@@ -4424,7 +3861,6 @@
         "code": "lewis",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$pn",
       "delivery_locations": [
@@ -4455,7 +3891,6 @@
         "code": "plasma",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$pq",
       "delivery_locations": [
@@ -4487,7 +3922,6 @@
         "code": "lewis",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ps",
       "delivery_locations": [
@@ -4518,7 +3952,6 @@
         "code": "engineering",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$pt",
       "delivery_locations": [
@@ -4545,7 +3978,6 @@
         "code": "architecture",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "arch",
       "holding_location_code": "arch$pw",
       "delivery_locations": [
@@ -4576,7 +4008,6 @@
         "code": "marquand",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$pz",
       "delivery_locations": [
@@ -4599,7 +4030,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$qb",
       "delivery_locations": [
@@ -4630,7 +4060,6 @@
         "code": "mendel",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$qk",
       "delivery_locations": [
@@ -4662,7 +4091,6 @@
         "code": "eastasian",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "eastasian",
       "holding_location_code": "eastasian$ql",
       "delivery_locations": [
@@ -4695,7 +4123,6 @@
         "code": "firestone",
         "order": 1
       },
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$qv",
       "delivery_locations": [
@@ -4730,7 +4157,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "recap",
       "holding_location_code": "recap$qx",
       "delivery_locations": [
@@ -4757,7 +4183,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xc",
       "delivery_locations": [
@@ -4784,7 +4209,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xg",
       "delivery_locations": [
@@ -4811,7 +4235,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xm",
       "delivery_locations": [
@@ -4838,7 +4261,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xn",
       "delivery_locations": [
@@ -4865,7 +4287,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xp",
       "delivery_locations": [
@@ -4892,7 +4313,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xr",
       "delivery_locations": [
@@ -4919,7 +4339,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xw",
       "delivery_locations": [
@@ -4966,7 +4385,6 @@
         "code": "rare",
         "order": 2
       },
-      "hours_location": null,
       "alma_library_code": "rare",
       "holding_location_code": "rare$xx",
       "delivery_locations": [
@@ -4989,7 +4407,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$reserve",
       "delivery_locations": [
@@ -5021,10 +4438,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$res3hr",
       "delivery_locations": [
@@ -5047,10 +4460,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$res24hr",
       "delivery_locations": [
@@ -5073,10 +4482,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$rht",
       "delivery_locations": [
@@ -5099,10 +4504,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rrel",
       "delivery_locations": [
@@ -5125,10 +4526,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsc",
       "delivery_locations": [
@@ -5151,10 +4548,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsd",
       "delivery_locations": [
@@ -5177,10 +4570,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rse",
       "delivery_locations": [
@@ -5203,10 +4592,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsh",
       "delivery_locations": [
@@ -5229,10 +4614,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrshp",
       "delivery_locations": [
@@ -5255,10 +4636,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rslv",
       "delivery_locations": [
@@ -5281,10 +4658,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rsne",
       "delivery_locations": [
@@ -5307,10 +4680,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsnst",
       "delivery_locations": [
@@ -5333,10 +4702,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsp",
       "delivery_locations": [
@@ -5359,10 +4724,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rspc",
       "delivery_locations": [
@@ -5385,10 +4746,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$rssa",
       "delivery_locations": [
@@ -5411,10 +4768,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zrsx",
       "delivery_locations": [
@@ -5437,10 +4790,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$stacks",
       "delivery_locations": [
@@ -5463,10 +4812,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$saf",
       "delivery_locations": [
@@ -5489,10 +4834,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$fesrf",
       "delivery_locations": [
@@ -5515,10 +4856,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$mic",
       "delivery_locations": [
@@ -5541,10 +4878,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$ms",
       "delivery_locations": [
@@ -5567,10 +4900,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$msref",
       "delivery_locations": [
@@ -5593,10 +4922,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$ph",
       "delivery_locations": [
@@ -5619,10 +4944,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$phref",
       "delivery_locations": [
@@ -5645,10 +4966,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$res",
       "delivery_locations": [
@@ -5671,10 +4988,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$ref",
       "delivery_locations": [
@@ -5697,10 +5010,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$rp",
       "delivery_locations": [
@@ -5723,10 +5032,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$t",
       "delivery_locations": [
@@ -5749,10 +5054,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$wr",
       "delivery_locations": [
@@ -5775,10 +5076,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Marquand Library of Art and Archaeology",
-        "code": "marquand"
-      },
       "alma_library_code": "marquand",
       "holding_location_code": "marquand$x",
       "delivery_locations": [
@@ -5801,10 +5098,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sc",
       "delivery_locations": [
@@ -5827,10 +5120,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$scc",
       "delivery_locations": [
@@ -5853,10 +5142,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$stacks",
       "delivery_locations": [
@@ -5883,10 +5168,6 @@
         "code": "lewis",
         "order": 2
       },
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$doc",
       "delivery_locations": [
@@ -5909,10 +5190,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$efa",
       "delivery_locations": [
@@ -5935,10 +5212,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$gis",
       "delivery_locations": [
@@ -5961,10 +5234,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$gr",
       "delivery_locations": [
@@ -5987,10 +5256,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$laf",
       "delivery_locations": [
@@ -6013,10 +5278,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$lal",
       "delivery_locations": [
@@ -6039,10 +5300,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Map and Geospatial Information Center",
-        "code": "geoscimap"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$map",
       "delivery_locations": [
@@ -6065,10 +5322,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Map and Geospatial Information Center",
-        "code": "geoscimap"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mapmc",
       "delivery_locations": [
@@ -6091,10 +5344,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Map and Geospatial Information Center",
-        "code": "geoscimap"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mapmcm",
       "delivery_locations": [
@@ -6117,10 +5366,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$mic",
       "delivery_locations": [
@@ -6143,10 +5388,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Map and Geospatial Information Center",
-        "code": "geoscimap"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$maplf",
       "delivery_locations": [
@@ -6169,10 +5410,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Map and Geospatial Information Center",
-        "code": "geoscimap"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$maplref",
       "delivery_locations": [
@@ -6195,10 +5432,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$media",
       "delivery_locations": [
@@ -6221,10 +5454,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$nb",
       "delivery_locations": [
@@ -6264,10 +5493,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$pam",
       "delivery_locations": [
@@ -6290,10 +5515,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ph",
       "delivery_locations": [
@@ -6316,10 +5537,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$ref",
       "delivery_locations": [
@@ -6342,10 +5559,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$refid",
       "delivery_locations": [
@@ -6368,10 +5581,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$res",
       "delivery_locations": [
@@ -6394,10 +5603,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$resterm",
       "delivery_locations": [
@@ -6420,10 +5625,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$sudoc",
       "delivery_locations": [
@@ -6446,10 +5647,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$serial",
       "delivery_locations": [
@@ -6472,10 +5669,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Lewis Library",
-        "code": "lewis"
-      },
       "alma_library_code": "lewis",
       "holding_location_code": "lewis$theses",
       "delivery_locations": [
@@ -6498,7 +5691,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "delivery_locations": [
         "QX"
       ]
@@ -6519,7 +5711,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "delivery_locations": [
         "QX"
       ]
@@ -6540,7 +5731,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$sct",
       "delivery_locations": [
@@ -6563,10 +5753,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sd",
       "delivery_locations": [
@@ -6589,7 +5775,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$sdt",
       "delivery_locations": [
@@ -6612,10 +5797,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$se",
       "delivery_locations": [
@@ -6638,10 +5819,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$seref",
       "delivery_locations": [
@@ -6664,10 +5841,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$secw",
       "delivery_locations": [
@@ -6690,7 +5863,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$set",
       "delivery_locations": [
@@ -6713,10 +5885,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sh",
       "delivery_locations": [
@@ -6739,10 +5907,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zshp",
       "delivery_locations": [
@@ -6765,10 +5929,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$shs",
       "delivery_locations": [
@@ -6791,7 +5951,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$sht",
       "delivery_locations": [
@@ -6814,10 +5973,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$slav",
       "delivery_locations": [
@@ -6840,10 +5995,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sne",
       "delivery_locations": [
@@ -6866,10 +6017,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsp",
       "delivery_locations": [
@@ -6892,10 +6039,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$spc",
       "delivery_locations": [
@@ -6918,10 +6061,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spia",
       "delivery_locations": [
@@ -6944,10 +6083,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaa",
       "delivery_locations": [
@@ -6970,10 +6105,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$index",
       "delivery_locations": [
@@ -6996,10 +6127,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaps",
       "delivery_locations": [
@@ -7022,10 +6149,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$ref",
       "delivery_locations": [
@@ -7048,10 +6171,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spiaws",
       "delivery_locations": [
@@ -7074,10 +6193,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spir",
       "delivery_locations": [
@@ -7100,10 +6215,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zspl",
       "delivery_locations": [
@@ -7126,10 +6237,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$spr",
       "delivery_locations": [
@@ -7152,10 +6259,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$mic",
       "delivery_locations": [
@@ -7178,10 +6281,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Stokes Library",
-        "code": "stokes"
-      },
       "alma_library_code": "stokes",
       "holding_location_code": "stokes$sprps",
       "delivery_locations": [
@@ -7221,10 +6320,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sps",
       "delivery_locations": [
@@ -7247,7 +6342,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$spt",
       "delivery_locations": [
@@ -7270,10 +6364,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$srel",
       "delivery_locations": [
@@ -7296,7 +6386,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$srt",
       "delivery_locations": [
@@ -7319,10 +6408,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$ssa",
       "delivery_locations": [
@@ -7345,10 +6430,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrc",
       "delivery_locations": [
@@ -7371,10 +6452,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcdc",
       "delivery_locations": [
@@ -7397,10 +6474,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcfo",
       "delivery_locations": [
@@ -7423,10 +6496,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zssrcrr",
       "delivery_locations": [
@@ -7449,10 +6518,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$sss",
       "delivery_locations": [
@@ -7475,10 +6540,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$stacks",
       "delivery_locations": [
@@ -7501,7 +6562,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$mic",
       "delivery_locations": [
@@ -7524,10 +6584,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$index",
       "delivery_locations": [
@@ -7550,7 +6606,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zstlo",
       "delivery_locations": [
@@ -7573,10 +6628,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$nb",
       "delivery_locations": [
@@ -7599,10 +6650,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$str",
       "delivery_locations": [
@@ -7625,10 +6672,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$ref",
       "delivery_locations": [
@@ -7651,10 +6694,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$resterm",
       "delivery_locations": [
@@ -7677,10 +6716,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$res",
       "delivery_locations": [
@@ -7703,10 +6738,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$serial",
       "delivery_locations": [
@@ -7729,10 +6760,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Engineering Library",
-        "code": "engineering"
-      },
       "alma_library_code": "engineer",
       "holding_location_code": "engineer$theses",
       "delivery_locations": [
@@ -7755,10 +6782,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$ref",
       "delivery_locations": [
@@ -7781,10 +6804,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$facs",
       "delivery_locations": [
@@ -7807,10 +6826,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Mendel Music Library",
-        "code": "music"
-      },
       "alma_library_code": "mendel",
       "holding_location_code": "mendel$locked",
       "delivery_locations": [
@@ -7833,10 +6848,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsx",
       "delivery_locations": [
@@ -7859,10 +6870,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfa",
       "delivery_locations": [
@@ -7885,10 +6892,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxffi",
       "delivery_locations": [
@@ -7911,10 +6914,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxffr",
       "delivery_locations": [
@@ -7937,10 +6936,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfit",
       "delivery_locations": [
@@ -7963,10 +6958,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zsxfrr",
       "delivery_locations": [
@@ -7989,7 +6980,6 @@
         "order": 3
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "annex",
       "holding_location_code": "annex$t",
       "delivery_locations": [
@@ -8012,10 +7002,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$thx",
       "delivery_locations": [
@@ -8038,10 +7024,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$thxr",
       "delivery_locations": [
@@ -8064,10 +7046,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$trv",
       "delivery_locations": [
@@ -8090,10 +7068,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$stacks",
       "delivery_locations": [
@@ -8116,10 +7090,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "zobsolete",
       "holding_location_code": "zobsolete$zuesia",
       "delivery_locations": [
@@ -8142,10 +7112,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$la",
       "delivery_locations": [
@@ -8168,10 +7134,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$newbook",
       "delivery_locations": [
@@ -8211,10 +7173,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$res3hr",
       "delivery_locations": [
@@ -8237,10 +7195,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$resclosed",
       "delivery_locations": [
@@ -8263,10 +7217,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Architecture Library",
-        "code": "architecture"
-      },
       "alma_library_code": "arch",
       "holding_location_code": "arch$ref",
       "delivery_locations": [
@@ -8289,10 +7239,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$un",
       "delivery_locations": [
@@ -8315,7 +7261,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$vidl",
       "delivery_locations": [
@@ -8338,7 +7283,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": null,
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$vidlr",
       "delivery_locations": [
@@ -8361,10 +7305,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$vrg",
       "delivery_locations": [
@@ -8387,10 +7327,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$w",
       "delivery_locations": [
@@ -8413,10 +7349,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$wa",
       "delivery_locations": [
@@ -8442,10 +7374,6 @@
         "label": "Special Collections",
         "code": "rare",
         "order": 2
-      },
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
       },
       "alma_library_code": "rare",
       "holding_location_code": "rare$warf",
@@ -8486,10 +7414,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$whs",
       "delivery_locations": [
@@ -8512,10 +7436,6 @@
         "order": 2
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Special Collections",
-        "code": "rbsc"
-      },
       "alma_library_code": "rare",
       "holding_location_code": "rare$wit",
       "delivery_locations": [
@@ -8538,10 +7458,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$xl",
       "delivery_locations": [
@@ -8564,10 +7480,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$xlnc",
       "delivery_locations": [
@@ -8590,10 +7502,6 @@
         "order": 1
       },
       "holding_library": null,
-      "hours_location": {
-        "label": "Firestone Library - Building and Circulation/Reserves Hours",
-        "code": "firestone"
-      },
       "alma_library_code": "firestone",
       "holding_location_code": "firestone$zeiss",
       "delivery_locations": [

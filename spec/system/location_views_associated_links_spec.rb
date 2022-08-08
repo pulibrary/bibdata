@@ -6,18 +6,11 @@ feature 'Holding Location views link to other associated locations' do
   let(:library) { FactoryBot.create(:library) }
   let(:delivery_location) { FactoryBot.create(:delivery_location) }
   let(:holding_location) { FactoryBot.create(:holding_location) }
-  let(:hours_location) { FactoryBot.create(:hours_location) }
 
   scenario 'Link to library from library label rather than extra show link' do
     library
     visit libraries_path
     click_link library.label
-  end
-
-  scenario 'Link to hours location from hours location label rather than extra show link' do
-    hours_location
-    visit hours_locations_path
-    click_link hours_location.label
   end
 
   scenario 'Link to holding location from holding location label rather than extra show link' do

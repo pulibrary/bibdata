@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :campus_access_exceptions, only: [:new, :create]
 
   scope :locations do
-    resources :hours_locations
     resources :holding_locations
     resources :libraries
     resources :delivery_locations

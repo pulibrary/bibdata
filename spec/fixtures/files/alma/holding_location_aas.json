@@ -13,10 +13,6 @@
       "order": 1
     },
     "holding_library": null,
-    "hours_location": {
-      "label": "Firestone Library - Building and Circulation/Reserves Hours",
-      "code": "firestone"
-    },
     "delivery_locations": [
       {
         "label": "Lewis Library, Geosciences and Map Library",

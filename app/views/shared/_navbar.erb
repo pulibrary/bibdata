@@ -6,7 +6,6 @@
         <li class="<%= 'active' if params[:controller] == 'delivery_locations' %>"><%= link_to 'Delivery Locations', main_app.delivery_locations_path %></li>
         <li class="<%= 'active' if params[:controller] == 'holding_locations' %>"><%= link_to 'Holding Locations', main_app.holding_locations_path %></li>
         <li class="<%= 'active' if params[:controller] == 'libraries' %>"><%= link_to 'Libraries', main_app.libraries_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'hours_locations' %>"><%= link_to 'Hours Locations', main_app.hours_locations_path %></li>
         <% if current_user %>
         <li>
           <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete %>

@@ -14,11 +14,7 @@
     "code": "firestone",
     "order": 1
     },
-    "holding_library": null,
-    "hours_location": {
-    "label": "Firestone Library - Building and Circulation/Reserves Hours",
-    "code": "firestone"
-    }
+    "holding_library": null
     },
     {
     "label": "",
@@ -35,7 +31,6 @@
     "code": "annexa",
     "order": 3
     },
-    "holding_library": null,
-    "hours_location": null
+    "holding_library": null
     }
 ]

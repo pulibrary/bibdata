@@ -12,10 +12,6 @@ module HoldingLocationsHelper
     }
   end
 
-  def hours_render(hl)
-    hl.hours_location.nil? ? '' : link_to(hl.hours_location.code, hl.hours_location)
-  end
-
   def holding_library_render(hl)
     hl.holding_library.nil? ? '' : link_to(hl.holding_library.code, hl.holding_library)
   end
