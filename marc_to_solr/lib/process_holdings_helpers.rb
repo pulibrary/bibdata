@@ -117,11 +117,6 @@ class ProcessHoldingsHelpers
     if all_holdings[value].present?
       all_holdings[value]["items"] ||= []
       all_holdings[value]["items"] << item
-      #   if all_holdings[value]["items"].nil?
-      #     all_holdings[value]["items"] = [item]
-      #   else
-      #     all_holdings[value]["items"] << item
-      #   end
     end
     all_holdings
   end
