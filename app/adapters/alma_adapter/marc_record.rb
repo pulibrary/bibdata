@@ -55,11 +55,10 @@ class AlmaAdapter
     end
 
     # Strips non-numeric tags for ReCAP, whose parser can't handle them.
-    # Integer() is faster than to_i, per
-    # https://stackoverflow.com/questions/5661466/test-if-string-is-a-number-in-ruby-on-rails
     def strip_non_numeric!
       marc_record.fields.delete_if do |field|
-        Integer(field.tag)
+        # tag with non numeric character
+        field.tag =~ /[^0-9]/
         false
       rescue
         true
