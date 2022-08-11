@@ -93,7 +93,7 @@ class ProcessHoldingsHelpers
       holding['location'] = Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
       holding['library'] = Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
     else
-      holding["location_code"] = current_location_code(field_876)
+      holding['location_code'] = current_location_code(field_876)
       holding['current_location'] = Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
       holding['current_library'] = Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
     end
