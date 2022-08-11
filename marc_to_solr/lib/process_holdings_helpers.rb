@@ -29,11 +29,12 @@ class ProcessHoldingsHelpers
     end
   end
 
-  def group_876_on_holding_perm_id(holding_id)
+  def items_by_holding_id(holding_id)
     record.fields("876").select { |f| f["0"] == holding_id }
   end
 
   # Select 852 fields from an Alma or SCSB record
+  # returns an array of MARC 852 (full holdings) fields
   def fields_852_alma_or_scsb
     record.fields('852').select do |f|
       alma_code_start_22?(f['8']) || scsb_doc?(record['001'].value) && f['0']
@@ -85,6 +86,8 @@ class ProcessHoldingsHelpers
     call_number.present? ? call_number.join(' ').strip : []
   end
 
+  # Builds the holding, without any item-specific information
+  # @returns [Hash]
   def build_holding(field_852, field_876 = nil, permanent:)
     holding = {}
     if permanent
