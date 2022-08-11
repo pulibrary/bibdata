@@ -82,8 +82,7 @@ class ProcessHoldingsHelpers
     call_number = []
     call_number << [field_852['h'], field_852['i'], field_852['k'], field_852['j']].compact.reject(&:empty?)
     call_number.flatten!
-    return call_number.join(' ').strip if call_number.present?
-    []
+    call_number.present? ? call_number.join(' ').strip : []
   end
 
   def build_holding(field_852, field_876 = nil, permanent:)
