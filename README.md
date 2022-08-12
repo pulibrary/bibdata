@@ -44,6 +44,37 @@ bundle install
    - To access the sidekiq dashboard, first sign into the application, then go to http://localhost:3000/sidekiq
 1. To stop: `bundle exec rake servers:stop` or `lando stop`
 
+## Configure Alma keys for Development
+
+1. `lpass login emailhere`
+1. `bundle exec rake alma:setup_keys`
+
+This will add a .env with credentials to Rails.root
+
+## ARK Caching
+
+In order to resolve bibliographic identifiers (bib. IDs) to resources with ARKs and IIIF manifests for resources managed within digital repositories, caches are seeded and used in order to resolve the relationships between these resources.
+
+### Seeding the Cache
+
+One may seed the cache using the following Rake Task:
+```bash
+rake liberate:arks:seed_cache
+```
+
+In development, when running commands that utilize the cache, such as commands indexing via traject, set the `FIGGY_ARK_CACHE_PATH` to point to `spec/fixtures/marc_to_solr/figgy_ark_cache` in the local environment.
+```bash
+export FIGGY_ARK_CACHE_PATH=spec/fixtures/marc_to_solr/figgy_ark_cache
+```
+
+### Clearing the Cache
+
+One may clear the cache using the following Rake Task:
+```bash
+rake liberate:arks:clear_cache
+```
+
+
 ## Tests
 
 Ensure redis is running
