@@ -713,10 +713,12 @@ def process_holdings(record)
       add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings, holding)
       add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings)
     else
-      # if there are no 876s (items) create the holding by using the 852 field
+      # if there are no items (876 fields), create the holding by using the 852 field
       all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
     end
-    all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
+    if all_holdings.present? && all_holdings[holding_id]
+      all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
+    end
   end
   all_holdings
 end

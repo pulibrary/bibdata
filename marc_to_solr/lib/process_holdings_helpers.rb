@@ -80,9 +80,7 @@ class ProcessHoldingsHelpers
   end
 
   def build_call_number(field_852)
-    call_number = []
-    call_number << [field_852['h'], field_852['i'], field_852['k'], field_852['j']].compact.reject(&:empty?)
-    call_number.flatten!
+    call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
     call_number.present? ? call_number.join(' ').strip : []
   end
 
@@ -140,8 +138,6 @@ class ProcessHoldingsHelpers
   end
 
   def process_866_867_868_fields(fields:, all_holdings:, holding_id:)
-    return all_holdings if all_holdings[holding_id].nil?
-
     fields.each do |field|
       all_holdings[holding_id]['location_has'] ||= []
       all_holdings[holding_id]['supplements'] ||= []
