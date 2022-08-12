@@ -701,42 +701,54 @@ end
 
 def process_holdings(record)
   all_holdings = {}
-  process_holdings_helpers = ProcessHoldingsHelpers.new(record: record)
-  process_holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
-    holding_id = process_holdings_helpers.holding_id(field_852)
+  holdings_helpers = ProcessHoldingsHelpers.new(record: record)
+  holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
+    holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
-    holding = process_holdings_helpers.build_holding(field_852, permanent: true)
-    group_876_fields = process_holdings_helpers.group_876_on_holding_perm_id(holding_id)
-    group_866_867_868_fields = process_holdings_helpers.group_866_867_868_on_holding_perm_id(holding_id, field_852)
-    permanent_location_876 = process_holdings_helpers.select_permanent_location_876(group_876_fields, field_852)
-    temporary_location_876 = process_holdings_helpers.select_temporary_location_876(group_876_fields, field_852)
-
+    holding = holdings_helpers.build_holding(field_852, permanent: true)
+    items_by_holding_id = holdings_helpers.items_by_holding_id(holding_id)
+    group_866_867_868_fields = holdings_helpers.group_866_867_868_on_holding_perm_id(holding_id, field_852)
     # if there are items (876 fields)
-    if group_876_fields.present?
-      permanent_location_876.each do |field_876|
-        item = process_holdings_helpers.build_item(field_852: field_852, field_876: field_876)
-        all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
-        # Adds items in permanent location where the key is the holding_id from 852.
-        all_holdings = process_holdings_helpers.holding_items(value: item[:holding_id], all_holdings: all_holdings, item: item)
-      end
-      temporary_location_876.each do |field_876|
-        holding_current_id = process_holdings_helpers.current_location_code(field_876)
-        holding_current = process_holdings_helpers.build_holding(field_852, field_876, permanent: false)
-        item_current = process_holdings_helpers.build_item(field_852: field_852, field_876: field_876)
-        if holding_current_id.present? || !invalid_location?(holding_current['location_code'])
-          all_holdings[holding_current_id] = remove_empty_call_number_fields(holding_current) if all_holdings[holding_current_id].nil?
-        end
-        # Adds items in temporary location where the key is the current (temporary) location code.
-        all_holdings = process_holdings_helpers.holding_items(value: holding_current_id, all_holdings: all_holdings, item: item_current)
-      end
+    if items_by_holding_id.present?
+      add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings, holding)
+      add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings)
     else
       # if there are no 876s (items) create the holding by using the 852 field
       all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
     end
-    all_holdings = process_holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
+    all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
   end
   all_holdings
 end
+
+def add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings, holding)
+  locations = holdings_helpers.select_permanent_location_876(items_by_holding_id, field_852)
+
+  locations.each do |field_876|
+    holding_key = holdings_helpers.holding_id(field_852)
+    add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
+  end
+end
+
+def add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings)
+  locations = holdings_helpers.select_temporary_location_876(items_by_holding_id, field_852)
+
+  locations.each do |field_876|
+    holding = holdings_helpers.build_holding(field_852, field_876, permanent: false)
+    holding_key = holdings_helpers.current_location_code(field_876)
+    add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
+  end
+end
+
+# rubocop:disable Metrics/ParameterLists
+def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
+  item = holdings_helpers.build_item(field_852: field_852, field_876: field_876)
+  if holding_key.present? || !invalid_location?(holding['location_code'])
+    all_holdings[holding_key] = remove_empty_call_number_fields(holding) if all_holdings[holding_key].nil?
+  end
+  all_holdings = holdings_helpers.holding_items(value: holding_key, all_holdings: all_holdings, item: item)
+end
+# rubocop:enable Metrics/ParameterLists
 
 def invalid_location?(code)
   Traject::TranslationMap.new("locations")[code].nil?
