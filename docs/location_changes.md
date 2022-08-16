@@ -23,7 +23,7 @@ The locations will not be the same as in production because they are not up to d
 
 Connect in one of the bibdata staging boxes:
 1.`ssh deploy@bibdata-alma-staging1`
-2.`cd /opt/marc_liberation/current`
+2.`cd /opt/bibdata/current`
 3.`RAILS_ENV=production bundle exec rails c`
 
 Delete and repopulate the locations in the bibdata staging database:
@@ -35,7 +35,7 @@ Delete and repopulate the locations in the bibdata staging database:
 Option 1:
 Connect in one of the bibdata production boxes:
 1.`ssh deploy@bibdata-alma1`
-2.`cd /opt/marc_liberation/current`
+2.`cd /opt/bibdata/current`
 3.`RAILS_ENV=production bundle exec rails c`
 
 Delete and repopulate the locations in the production database:
