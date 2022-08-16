@@ -22,7 +22,7 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  scope :partner_recap_full, -> { where(dump_type: partner_recap_full_dump_type) }
+  scope :partner_recap_full, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP_FULL')) }
   scope :partner_recap, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP')) }
   scope :changed_records, -> { where(dump_type: DumpType.where(constant: 'CHANGED_RECORDS')) }
   scope :full_dumps, -> { where(dump_type: DumpType.where(constant: 'ALL_RECORDS')) }
@@ -61,10 +61,6 @@ class Dump < ActiveRecord::Base
 
       def last_incremental_update
         Dump.partner_recap.last&.created_at
-      end
-
-      def partner_recap_full_dump_type
-        dump_type = DumpType.where(constant: 'PARTNER_RECAP_FULL')
       end
   end # class << self
 
