@@ -51,6 +51,30 @@ namespace :scsb do
     dump_file.save
   end
 
+  desc "Request full partner records from SCSB API"
+  task request_records: :environment do
+    abort "usage: bundle exec rake scsb:request_records EMAIL=YOUR_EMAIL_HERE SCSB_ENV=[uat|production] SCSB_AUTH_KEY=auth-key" unless ENV['SCSB_ENV'] && ENV['EMAIL'] && ENV['SCSB_AUTH_KEY']
+    scsb_env = ENV['SCSB_ENV'].downcase
+    abort "SCSB_ENV must be set to either uat or production" unless scsb_env == "uat" || scsb_env == "production"
+    email = ENV['EMAIL']
+    scsb_records_request = ScsbFullRecordsRequest.new(scsb_env, email)
+    # Request records from each institution - each call must be made separately
+    puts("Requesting records for Columbia")
+    cul_response = scsb_records_request.scsb_request('CUL')
+    puts("Columbia response: #{cul_response.body}")
+
+    puts("Requesting records for New York Public Library")
+    nypl_response = scsb_records_request.scsb_request('NYPL')
+    puts("NYPL response: #{nypl_response.body}")
+
+    puts("Requesting records for Harvard")
+    hl_response = scsb_records_request.scsb_request('HL')
+    puts("Harvard response: #{hl_response.body}")
+
+    puts("Requests complete, you should receive emails from recaplib.org when each one is started" \
+         "(there may be a significant lag between each institution).")
+  end
+
   namespace :import do
     desc "Creates an Event and downloads files for a full partner record set"
     task full: :environment do
