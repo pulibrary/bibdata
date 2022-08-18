@@ -36,7 +36,7 @@ class ScsbFullRecordsRequest
       req.headers['api_key'] = scsb_auth_key
     end
     expected_response_body = "Export process has started and we will send an email notification upon completion"
-    Rails.logger.error("Receved unexpected response: #{response.body}") unless response.body == expected_response_body
+    Rails.logger.error("Received unexpected response: #{response.body}") unless response.body == expected_response_body
     response
   rescue Faraday::ConnectionFailed, Faraday::TimeoutError => connection_failed
     Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
