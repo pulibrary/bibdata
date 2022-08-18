@@ -27,7 +27,7 @@ class ScsbFullRecordsRequest
       req.params['collectionGroupIds'] = '1,2'
       req.params['emailToAddress'] = email
       req.params['fetchType'] = 10
-      req.params['imsDepositoryCodes'] = 'RECAP,HD'
+      req.params['imsDepositoryCodes'] = repository_codes(institution_code)
       req.params['institutionCodes'] = institution_code
       req.params['outputFormat'] = 0
       req.params['requestingInstitutionCode'] = 'PUL'
@@ -41,6 +41,15 @@ class ScsbFullRecordsRequest
   rescue Faraday::ConnectionFailed, Faraday::TimeoutError => connection_failed
     Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
     raise connection_failed
+  end
+
+  def repository_codes(institution_code)
+    case institution_code
+    when 'PUL', 'CUL'
+      'RECAP'
+    when 'HL'
+      'RECAP,HD'
+    end
   end
 
   private

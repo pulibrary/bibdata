@@ -42,3 +42,15 @@ end
 every 1.week, roles: [:cron_staging, :cron_production] do
   rake "marc_liberation:delete:events"
 end
+
+every 2.weeks, at: '7:00am', roles: [:cron_production] do
+  rake "scsb:request_records[production,mk8066@princeton.edu,CUL]", output: "/tmp/cron_log.log"
+end
+
+every 2.weeks, at: '3:00pm', roles: [:cron_production] do
+  rake "scsb:request_records[production,mk8066@princeton.edu,NYPL]", output: "/tmp/cron_log.log"
+end
+
+every 2.weeks, at: '11:00pm', roles: [:cron_production] do
+  rake "scsb:request_records[production,mk8066@princeton.edu,HL]", output: "/tmp/cron_log.log"
+end
