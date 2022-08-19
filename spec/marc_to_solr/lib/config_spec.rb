@@ -29,6 +29,7 @@ describe 'From traject_config.rb', indexing: true do
       @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
       @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
       @record_temporary_location_v2 = @indexer.map_record(fixture_record('99124695833506421_custom_holdings'))
+      @record_at_resource_sharing = @indexer.map_record(fixture_record('19299349640006421'))
       @record_res3hr = @indexer.map_record(fixture_record('99125379706706421'))
       @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
       @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
@@ -574,6 +575,14 @@ describe 'From traject_config.rb', indexing: true do
         expect(@holdings_v2["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
         expect(@holdings_v2["lewis$res"]["items"][1]["id"]).to eq '23888873500006421'
         expect(@holdings_v2["lewis$res"]["items"][2]["id"]).to eq '23998873500006421'
+        expect(@holdings_v2["lewis$res"]["temp_location_code"]).to eq 'lewis$res'
+      end
+      it "indexes temp location code when different than permanant location code" do
+        @holdings = JSON.parse(@record_at_resource_sharing["holdings_1display"][0])
+        expect(@holdings["22673914610006421"]['location_code']).to eq 'firestone$stacks'
+        expect(@holdings["22673914610006421"]["items"][0]['id']).to eq '23673914600006421'
+        expect(@holdings["22673914610006421"]["items"].count).to eq 1
+        expect(@holdings["22673914610006421"]["temp_location_code"]).to eq 'RES_SHARE$IN_RS_REQ'
       end
       it "indexes the permanent holding when there are no items (876)" do
         @holdings = JSON.parse(@holding_no_items["holdings_1display"][0])
