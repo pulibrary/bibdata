@@ -736,8 +736,14 @@ def add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_hel
   locations = holdings_helpers.select_temporary_location_876(items_by_holding_id, field_852)
 
   locations.each do |field_876|
-    holding = holdings_helpers.build_holding(field_852, field_876, permanent: false)
-    holding_key = holdings_helpers.current_location_code(field_876)
+    if holdings_helpers.current_location_code(field_876) == 'RES_SHARE$IN_RS_REQ'
+      holding = holdings_helpers.build_holding(field_852, permanent: true)
+      holding_key = holdings_helpers.holding_id(field_852)
+    else
+      holding = holdings_helpers.build_holding(field_852, field_876, permanent: false)
+      holding_key = holdings_helpers.current_location_code(field_876)
+    end
+    holding['temp_location_code'] = holdings_helpers.current_location_code(field_876)
     add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
   end
 end

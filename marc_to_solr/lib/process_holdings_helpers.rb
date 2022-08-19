@@ -74,9 +74,7 @@ class ProcessHoldingsHelpers
 
   def in_temporary_location(field_876, field_852)
     # temporary location is any item whose 876 and 852 do not match
-    # for our purposes if the item is in Resource Sharing it is NOT in a temporary location so we will ignore the 876
-    current_location = current_location_code(field_876)
-    current_location != 'RES_SHARE$IN_RS_REQ' && current_location != permanent_location_code(field_852)
+    current_location_code(field_876) != permanent_location_code(field_852)
   end
 
   def build_call_number(field_852)
