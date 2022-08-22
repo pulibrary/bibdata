@@ -22,7 +22,7 @@
 ### Scenario 2
 ## Test indexing by triggering an incremental dump.
 
-Follow: https://github.com/pulibrary/bibdata/#trigger-an-incremental-job-in-the-alma-sandbox
+Follow: https://github.com/pulibrary/bibdata/blob/main/docs/alma.md#trigger-an-incremental-job-in-the-alma-sandbox
 
 ### Scenario 3
 ## Test indexing an existing dump file with dump type 'Changed Records'. 
