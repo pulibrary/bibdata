@@ -486,7 +486,7 @@ GENRE_STARTS_WITH = [
 ]
 
 SUBJECT_GENRE_VOCABULARIES = ['sk', 'aat', 'lcgft', 'rbbin', 'rbgenr', 'rbmscv',
-                              'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp']
+                              'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp', 'homoit']
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered

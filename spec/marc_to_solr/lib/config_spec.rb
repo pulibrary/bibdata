@@ -34,6 +34,7 @@ describe 'From traject_config.rb', indexing: true do
       @indigenous_studies = @indexer.map_record(fixture_record('9922655623506421'))
       @change_the_subject1 = @indexer.map_record(fixture_record('15274230460006421'))
       @homosaurus = @indexer.map_record(fixture_record('99125407041106421'))
+      @homosaurus_655 = @indexer.map_record(fixture_record('99125527882306421'))
       @added_custom_951 = @indexer.map_record(fixture_record('99299653506421_custom_951')) # custom marc record with an extra 951 field
       @record_call_number1 = @indexer.map_record(fixture_record('9957270023506421'))
       @record_call_number2 = @indexer.map_record(fixture_record('99103141233506421'))
@@ -931,7 +932,7 @@ describe 'From traject_config.rb', indexing: true do
         end
       end
     end
-    describe 'homoit_s' do
+    describe 'homosaurus fields' do
       let(:lc_only_terms) { ["Transgender people#{SEPARATOR}Ephemera", "Transgender people#{SEPARATOR}Periodicals"] }
       let(:homosaurus_terms) { ["Trans", "Transgender community", "Transgender culture"] }
       let(:lc_and_homosaurus_terms) { lc_only_terms + homosaurus_terms }
@@ -944,6 +945,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(@homosaurus["subject_facet"]).to match_array(lc_and_homosaurus_terms)
         # # this should combine both, without lc subfields
         expect(@homosaurus["subject_topic_facet"]).to match_array(["Transgender people", "Trans", "Transgender community", "Transgender culture"])
+        expect(@homosaurus_655["homoit_genre_s"]).to match(["LGBTQ+ periodicals"])
       end
     end
     describe 'form_genre_display' do
