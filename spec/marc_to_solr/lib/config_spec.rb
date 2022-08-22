@@ -556,6 +556,8 @@ describe 'From traject_config.rb', indexing: true do
         expect(@holdings['22666524470006421']['call_number_browse']).to eq ".B7544 2003q Oversize RA566.27"
       end
       it "indexes permanent and temporary locations" do
+        # permanent location code: lewis$stacks
+        # temporary location code: lewis$res
         @holdings = JSON.parse(@record_temporary_location["holdings_1display"][0])
         expect(@holdings['22745884920006421']['location_code']).to eq "lewis$stacks"
         expect(@holdings['22745884920006421']["items"][0]['id']).to eq "23745884910006421"
@@ -566,7 +568,8 @@ describe 'From traject_config.rb', indexing: true do
         expect(@holdings["lewis$res"]["items"].count).to eq 1
         expect(@holdings["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
         expect(@holdings["lewis$res"]["items"][0]["holding_id"]).to eq '22745884920006421'
-        ## custom fixture @record_temporary_location_v2 with permanent and temporary locations
+
+        # custom fixture @record_temporary_location_v2 with permanent and temporary locations
         @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
         expect(@holdings_v2["22745884920006421"]["items"].count).to eq 2
         expect(@holdings_v2["22745884920006421"]["items"][0]["id"]).to eq '23745884910006421'
@@ -575,9 +578,20 @@ describe 'From traject_config.rb', indexing: true do
         expect(@holdings_v2["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
         expect(@holdings_v2["lewis$res"]["items"][1]["id"]).to eq '23888873500006421'
         expect(@holdings_v2["lewis$res"]["items"][2]["id"]).to eq '23998873500006421'
+      end
+      it "indexes the temp_location_code when holding in a temporary location" do
+        @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
         expect(@holdings_v2["lewis$res"]["temp_location_code"]).to eq 'lewis$res'
       end
-      it "indexes temp location code when different than permanant location code" do
+      it "does not index the temp_location_code when holding in a permanent location" do
+        @holdings = JSON.parse(@record_temporary_location["holdings_1display"][0])
+        expect(@holdings['22745884920006421']['temp_location_code']).to be_falsey
+      end
+      # temporary location RES_SHARE$IN_RS_REQ is the only temporary location
+      # that is always indexed as permanent using the permanent location code and has temp_location_code
+      it "indexes temp_location_code when temporary location is RES_SHARE$IN_RS_REQ" do
+        # permanent location code: firestone$stacks
+        # temporary location code: RES_SHARE$IN_RS_REQ
         @holdings = JSON.parse(@record_at_resource_sharing["holdings_1display"][0])
         expect(@holdings["22673914610006421"]['location_code']).to eq 'firestone$stacks'
         expect(@holdings["22673914610006421"]["items"][0]['id']).to eq '23673914600006421'
