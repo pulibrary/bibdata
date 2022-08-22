@@ -861,8 +861,13 @@ to_field 'subject_facet' do |record, accumulator|
   subjects = augment_the_subject.add_indigenous_studies(subjects)
   subjects = ChangeTheSubject.fix(subjects)
   additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
-  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp homoit] }
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
+end
+
+to_field 'homoit_genre_s' do |record, accumulator|
+  genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
+  accumulator.replace(genres)
 end
 
 to_field 'lcgft_s' do |record, accumulator|
