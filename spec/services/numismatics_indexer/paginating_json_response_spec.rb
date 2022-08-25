@@ -10,16 +10,15 @@ RSpec.describe NumismaticsIndexer::PaginatingJsonResponse do
     let(:total_count) { 1 }
     let(:solr_response) do
       {
-        pages: {
-          total_count: total_count
+        meta: {
+          pages: {
+            total_count: total_count
+          }
         }
+
       }
     end
-    let(:response_body) do
-      {
-        response: solr_response
-      }
-    end
+    let(:response_body) { solr_response }
 
     before do
       stub_request(
