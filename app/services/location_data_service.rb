@@ -148,7 +148,7 @@ class LocationDataService
 
     # adds firestone$ssrcfo and firestone$ssrcdc with requestable: false
     def update_holding_location_record
-      location_code = ["firestone$ssrcfo", "firestone$ssrcdc"]
+      location_code = ["firestone$ssrcfo", "firestone$ssrcdc", "rare$xmr", "rare$scactsn", "rare$scagax", "rare$scamss", "rare$scawa", "rare$scaex", "rare$scahsvm", "mudd$scamudd", "rare$scathx"]
       location_code.each do |lc|
         holding_location_record = HoldingLocation.find_by(code: lc)
         if holding_location_record.present?

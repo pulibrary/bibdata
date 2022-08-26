@@ -163,6 +163,18 @@ RSpec.describe LocationDataService, type: :service do
         headers: { "content-Type" => "application/json" },
         body: file_fixture("alma/locations_stokes.json")
       )
+    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mudd/locations")
+      .with(
+        headers: {
+          'Accept' => 'application/json',
+          'Authorization' => 'apikey TESTME'
+        }
+      )
+      .to_return(
+        status: 200,
+        headers: { "content-Type" => "application/json" },
+        body: file_fixture("alma/locations_mudd.json")
+      )
   end
 
   describe "#delete_existing_and_repopulate" do
@@ -193,9 +205,18 @@ RSpec.describe LocationDataService, type: :service do
       firestone_ssrcdc = HoldingLocation.find_by(code: 'firestone$ssrcdc')
       firestone_pres = HoldingLocation.find_by(code: 'firestone$pres')
       lewis_serial = HoldingLocation.find_by(code: 'lewis$serial')
+      rare_xmr = HoldingLocation.find_by(code: 'rare$xmr')
+      rare_scactsn = HoldingLocation.find_by(code: 'rare$scactsn')
+      rare_scagax = HoldingLocation.find_by(code: 'rare$scagax')
+      rare_scamss = HoldingLocation.find_by(code: 'rare$scamss')
+      rare_scawa = HoldingLocation.find_by(code: 'rare$scawa')
+      rare_scaex = HoldingLocation.find_by(code: 'rare$scaex')
+      rare_scahsvm = HoldingLocation.find_by(code: 'rare$scahsvm')
+      rare_scathx = HoldingLocation.find_by(code: 'rare$scathx')
+      mudd_scamudd = HoldingLocation.find_by(code: 'mudd$scamudd')
 
-      expect(Library.count).to eq 12
-      expect(HoldingLocation.count).to eq 127
+      expect(Library.count).to eq 13
+      expect(HoldingLocation.count).to eq 136
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
@@ -224,6 +245,15 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_ssrcdc.always_requestable).to be false
       expect(firestone_pres.label).to eq 'Preservation Office: Contact preservation@princeton.edu'
       expect(lewis_serial.label).to eq 'Lewis Library - Serials (Off-Site)'
+      expect(rare_xmr.requestable).to be false
+      expect(rare_scactsn.requestable).to be false
+      expect(rare_scagax.requestable).to be false
+      expect(rare_scamss.requestable).to be false
+      expect(rare_scawa.requestable).to be false
+      expect(rare_scaex.requestable).to be false
+      expect(rare_scahsvm.requestable).to be false
+      expect(rare_scathx.requestable).to be false
+      expect(mudd_scamudd.requestable).to be false
     end
     it "firestone$pf does not circulate and delivers only to Firestone Library Microforms" do
       location_firestone_pf = HoldingLocation.find_by(code: 'firestone$pf')

@@ -23,4 +23,5 @@
   "rare$xp" => "ReCAP",
   "rare$xr" => "ReCAP",
   "rare$xx" => "ReCAP",
-  "rare$xw" => "ReCAP" }
+  "rare$xw" => "ReCAP",
+  "rare$xmr" => "RECAP" }
