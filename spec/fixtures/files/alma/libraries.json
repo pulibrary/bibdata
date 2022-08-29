@@ -215,6 +215,32 @@
             "desc": "piapr: D.E.Stokes Library"
             },
             "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes"
-        }
+        },
+        {
+            "code": "mudd",
+            "id": "124286230006421",
+            "name": "Mudd Manuscript Library",
+            "path": "01PRI.01PRI_INST.mudd",
+            "description": null,
+            "resource_sharing": false,
+            "campus": {
+              "value": "",
+              "desc": null
+            },
+            "proxy": "",
+            "default_location": {
+              "value": "stacks",
+              "desc": "stacks: Mudd Library"
+            },
+            "number_of_locations": {
+              "value": 6,
+              "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mudd/locations"
+            },
+            "number_of_circ_desks": {
+              "value": 2,
+              "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mudd/circ-desks"
+            },
+            "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mudd"
+          }
     ]
 }

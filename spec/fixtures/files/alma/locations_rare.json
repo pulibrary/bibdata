@@ -49,7 +49,232 @@
           "desc": null
         },
         "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/xx"
-      }
+      },
+      {
+        "code": "xmr",
+        "name": "scarcpxm: Manuscripts Remote Storage (ReCAP)",
+        "external_name": "Remote Storage (ReCAP): Manuscripts. Special Collections Use Only",
+        "type": {
+          "value": "REMOTE",
+          "desc": "Remote Storage"
+        },
+        "remote_storage": "recap_rmt",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/xmr"
+      },
+      {
+        "code": "scactsn",
+        "name": "scactsn: Cotsen Children’s Library Archival",
+        "external_name": "Cotsen Children’s Library Archival. Special Collections Use Only",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scactsn"
+      },
+      {
+        "code": "scagax",
+        "name": "scagax: Graphic Arts Archival",
+        "external_name": "Graphic Arts Archival. Special Collections Use Only",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scagax"
+      },
+      {
+        "code": "scamss",
+        "name": "scamss: Manuscripts Archival",
+        "external_name": "Manuscripts Archival. Special Collections Use Only",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scamss"
+      },
+      {
+        "code": "scawa",
+        "name": "scawa: Western Americana Archival",
+        "external_name": "Western Americana Archival. Special Collections Use Only",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scawa"
+      },
+      {
+        "code": "scaex",
+        "name": "scaex: Rare Books Archival",
+        "external_name": "Rare Books Archival. Special Collections Use Only",
+        "type": {
+          "value": "OPEN",
+          "desc": "Open"
+        },
+        "remote_storage": "",
+        "map": "",
+        "suppress_from_publishing": "false",
+        "fulfillment_unit": {
+          "value": "Limited",
+          "desc": "Limited"
+        },
+        "accession_placement": {
+          "value": "none",
+          "desc": "None"
+        },
+        "call_number_type": {
+          "value": "0",
+          "desc": "Library of Congress classification"
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scaex"
+    },
+    {
+      "code": "scahsvm",
+      "name": "scahsvm: Manuscripts High Security Archival",
+      "external_name": "Manuscripts Archival. Special Collections Use Only",
+      "type": {
+        "value": "OPEN",
+        "desc": "Open"
+      },
+      "remote_storage": "",
+      "map": "",
+      "suppress_from_publishing": "false",
+      "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+      },
+      "accession_placement": {
+        "value": "none",
+        "desc": "None"
+      },
+      "call_number_type": {
+        "value": "0",
+        "desc": "Library of Congress classification"
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scahsvm"
+    },
+    {
+      "code": "scathx",
+      "name": "scathx: Theater Archival",
+      "external_name": "Theater Archival. Special Collections Use Only",
+      "type": {
+        "value": "OPEN",
+        "desc": "Open"
+      },
+      "remote_storage": "",
+      "map": "",
+      "suppress_from_publishing": "false",
+      "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+      },
+      "accession_placement": {
+        "value": "none",
+        "desc": "None"
+      },
+      "call_number_type": {
+        "value": "0",
+        "desc": "Library of Congress classification"
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scathx"
+    },
+    {
+      "code": "scathx",
+      "name": "scathx: Theater Archival",
+      "external_name": "Theater Archival. Special Collections Use Only",
+      "type": {
+        "value": "OPEN",
+        "desc": "Open"
+      },
+      "remote_storage": "",
+      "map": "",
+      "suppress_from_publishing": "false",
+      "fulfillment_unit": {
+        "value": "Limited",
+        "desc": "Limited"
+      },
+      "accession_placement": {
+        "value": "none",
+        "desc": "None"
+      },
+      "call_number_type": {
+        "value": "0",
+        "desc": "Library of Congress classification"
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations/scathx"
+    }
     ],
-    "total_record_count": 2
+    "total_record_count": 11
   }
