@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/marc_liberation
+    working_directory: ~/bibdata
 
     # Primary command image where all commands run
     docker:
@@ -13,7 +13,7 @@ jobs:
       - image: cimg/postgres:13.6
         environment:
           POSTGRES_USER: bibdata
-          POSTGRES_DB: marc_liberation_test
+          POSTGRES_DB: bibdata_test
           POSTGRES_HOST_AUTH_METHOD: trust
 
     steps:
@@ -39,9 +39,9 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-bibdata-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v4-marc_liberation-
+            - v4-bibdata-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -49,7 +49,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -70,7 +70,7 @@ jobs:
           command: bundle exec rake db:setup
 
   lint:
-    working_directory: ~/marc_liberation
+    working_directory: ~/bibdata
 
     docker:
       - image: cimg/ruby:2.7-browsers
@@ -84,15 +84,15 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-bibdata-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v4-marc_liberation-
+            - v4-bibdata-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
@@ -100,7 +100,7 @@ jobs:
           command: bundle exec rubocop
 
   test:
-    working_directory: ~/marc_liberation
+    working_directory: ~/bibdata
 
     docker:
       - image: cimg/ruby:2.7-browsers
@@ -108,11 +108,11 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
-          SOLR_URL: http://127.0.0.1:8983/solr/marc-liberation-core-test
+          SOLR_URL: http://127.0.0.1:8983/solr/bibdata-core-test
       - image: postgres:10.6-alpine
         environment:
           POSTGRES_USER: bibdata
-          POSTGRES_DB: marc_liberation_test
+          POSTGRES_DB: bibdata_test
           POSTGRES_HOST_AUTH_METHOD: trust
       - image: redis:4.0.9-alpine
 
@@ -139,9 +139,9 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-bibdata-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v4-marc_liberation-
+            - v4-bibdata-
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
@@ -149,7 +149,7 @@ jobs:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
 
@@ -175,11 +175,11 @@ jobs:
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
       - store_artifacts:
-          path: ~/marc_liberation/coverage
+          path: ~/bibdata/coverage
           destination: coverage
 
   doc:
-    working_directory: ~/marc_liberation
+    working_directory: ~/bibdata
 
     docker:
       - image: cimg/ruby:2.7-browsers
@@ -192,26 +192,26 @@ jobs:
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+            - v4-bibdata-{{ checksum "Gemfile.lock" }}
             # use a partial cache restore
-            - v4-marc_liberation-
+            - v4-bibdata-
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - save_cache:
-          key: v4-marc_liberation-{{ checksum "Gemfile.lock" }}
+          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - run:
           name: Build the YARD documentation
           command: bundle exec yardoc
       - store_artifacts:
-          path: ~/marc_liberation/doc
+          path: ~/bibdata/doc
           destination: doc
 
   build_and_test_webhook:
-    working_directory: ~/marc_liberation
+    working_directory: ~/bibdata
 
     # Primary command image where all commands run
     docker:
@@ -221,11 +221,11 @@ jobs:
       - run: gem install bundler -v '~> 2.0'
       - run:
           name: Install dependencies
-          working_directory: ~/marc_liberation/webhook_monitor/src/
+          working_directory: ~/bibdata/webhook_monitor/src/
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - run:
           name: Rspec
-          working_directory: ~/marc_liberation/webhook_monitor/src/
+          working_directory: ~/bibdata/webhook_monitor/src/
           command: bundle exec rspec spec
 
 workflows:

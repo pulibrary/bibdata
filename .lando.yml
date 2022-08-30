@@ -1,26 +1,26 @@
 ---
-name: marc_liberation
+name: bibdata
 services:
-  marc_liberation_test_solr:
+  bibdata_test_solr:
     type: solr:8.4
     portforward: true
-    core: marc-liberation-core-test
+    core: bibdata-core-test
     config:
       dir: "solr/conf"
-  marc_liberation_development_solr:
+  bibdata_development_solr:
     type: solr:8.4
     portforward: true
-    core: marc-liberation-core-development
+    core: bibdata-core-development
     config:
       dir: "solr/conf"
-  marc_liberation_database:
+  bibdata_database:
     type: postgres:13
     portforward: true
-  marc_liberation_redis:
+  bibdata_redis:
     type: redis:4.0.9
     portforward: true
 proxy:
-  marc_liberation_test_solr:
-    - marc-liberation.test.solr.lndo.site:8983
-  marc_liberation_development_solr:
-    - marc-liberation.dev.solr.lndo.site:8983
+  bibdata_test_solr:
+    - bibdata.test.solr.lndo.site:8983
+  bibdata_development_solr:
+    - bibdata.dev.solr.lndo.site:8983
