@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe NumismaticsIndexer do
-  let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_marc_liberation_test_solr_conn_host']}:#{ENV['lando_marc_liberation_test_solr_conn_port']}/solr/marc-liberation-core-test" }
+  let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_bibdata_test_solr_conn_host']}:#{ENV['lando_bibdata_test_solr_conn_port']}/solr/bibdata-core-test" }
   describe ".full_index" do
     it "calls the instance method" do
       mock = instance_double(described_class)
