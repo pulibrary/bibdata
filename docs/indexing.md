@@ -162,9 +162,10 @@ Because traject does not log to datadog we lose log output for indexing that run
 
 There might be new incremental updates from Alma between the time the full reindex finishes and the index swap. Index these latest changes:
 
-SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12 and start a tmux session.
+SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13      
 
 ```
+$ ssh deploy@bibdata-alma-worker1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
 ```
@@ -175,10 +176,17 @@ There will be new SCSB updates that need to be indexed. We import these updates 
 SSH to the bibdata alma worker machine that is used for indexing https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13 
 1. The following rake task will index the latest 'Updated Partner ReCAP Records' dump file.
 ```
+$ ssh deploy@bibdata-alma-worker1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
 ```
-2. The following rake task does not work at the moment but it was used to index the partner updates since the set_date until now. See issue https://github.com/pulibrary/bibdata/issues/1966
+2. The following rake task will index the 'Updated Partner ReCAP Records' since the SET_DATE until now. The SET_DATE below is an example date. 
+```
+$ ssh deploy@bibdata-alma-worker1   
+$ cd /opt/bibdata/current   
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake liberate:updates
+```
+You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
 ### Hook up your dev instance to the new index to see how it looks
 
