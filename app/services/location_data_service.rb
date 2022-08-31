@@ -14,49 +14,34 @@ class LocationDataService
   end
 
   def populate_libraries
-    libraries.each do |library|
+    # Populate Library model using the libraries.json file
+    libraries_array.each do |library|
       Library.create(
-        label: library.name,
-        code: library.code
+        label: library["label"],
+        code: library["code"],
+        order: library["order"]
       )
     end
   end
 
-  # Iterates through Alma Libraries
-  # Finds voyager holding location with flag values from holding_locations_array based on the mapped holding_location_code
-  # Iterates through Alma holding_locations based on the Alma library code and
   def populate_holding_locations
-    libraries.each do |library|
-      library_record = Library.find_by(code: library.code)
-      # Use the holding_locations file to update the flags based on the holding_location_code
-      holding_locations(library.code).each do |holding_location|
-        next if ["elf1", "elf2", "elf3", "elf4"].include? holding_location.code
-        holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == "#{library.code}$#{holding_location.code}" }
-        HoldingLocation.new do |location_record|
-          location_record.label = holding_location.external_name
-          location_record.code = "#{library.code}$#{holding_location.code}"
-          location_record.remote_storage = holding_location.remote_storage
-          location_record.fulfillment_unit = holding_location.fulfillment_unit['value']
-          if holding_location_record.present?
-            location_record.aeon_location = holding_location_record['aeon_location']
-            location_record.recap_electronic_delivery_location = holding_location_record['recap_electronic_delivery_location']
-            location_record.requestable = fulfillment_reserves?(holding_location.fulfillment_unit['value']) ? false : holding_location_record['requestable']
-            location_record.always_requestable = holding_location_record['always_requestable']
-            location_record.circulates = holding_location_record['circulates']
-            location_record.open = holding_location_record['open']
-            if holding_location_record.present? && holding_location_record["holding_library"].present?
-              location_record.holding_library_id = holding_library_id(holding_location_record["holding_library"]["code"])
-            end
-          end
-          location_record.library = library_record
-          location_record.save
-        end
-      end
+    holding_locations_array.each do |holding_location|
+      holding_location_record = HoldingLocation.create(
+        label: holding_location["label"],
+        code: holding_location["code"],
+        aeon_location: holding_location["aeon_location"],
+        recap_electronic_delivery_location: holding_location["recap_electronic_delivery_location"],
+        open: holding_location["open"],
+        requestable: holding_location['requestable'],
+        always_requestable: holding_location['always_requestable'],
+        circulates: holding_location['circulates'],
+        remote_storage: holding_location["remote_storage"],
+        fulfillment_unit: holding_location["fulfillment_unit"],
+        locations_library_id: holding_location["library"] ? library_id(holding_location["library"]["code"]) : {},
+        holding_library_id: holding_location["holding_library"] ? library_id(holding_location["holding_library"]["code"]) : {} # Library.where(label: holding_location["holding_library"]).first.id
+      )
+      holding_location_record.delivery_location_ids = delivery_library_ids(holding_location["delivery_locations"])
     end
-    update_holding_library
-    populate_partners_holding_locations
-    set_holding_delivery_locations
-    update_holding_location_record
   end
 
   # Populate delivery locations based on the delivery_locations.json
@@ -68,94 +53,28 @@ class LocationDataService
     # Reset the auto-increment column so it starts above the highest count.
     DeliveryLocation.connection.execute("ALTER SEQUENCE locations_delivery_locations_id_seq RESTART WITH #{highest_id + 1}")
     delivery_locations_array.each do |delivery_location|
-      library_record = find_library_by_code(delivery_location["alma_library_code"])
-      DeliveryLocation.new do |delivery_record|
-        delivery_record.id = delivery_location['id']
-        delivery_record.label = delivery_location['label']
-        delivery_record.address = delivery_location['address']
-        delivery_record.phone_number = delivery_location['phone_number']
-        delivery_record.contact_email = delivery_location['contact_email']
-        delivery_record.staff_only =  delivery_location['staff_only']
-        delivery_record.library = library_record
-        delivery_record.gfa_pickup = delivery_location['gfa_pickup']
-        delivery_record.pickup_location = delivery_location['pickup_location']
-        delivery_record.digital_location = delivery_location['digital_location']
-        delivery_record.save
-      end
-    end
-  end
-
-  def populate_partners_holding_locations
-    partners_locations = [
-      { label: "Remote Storage", code: "scsbcul", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
-      { label: "Remote Storage", code: "scsbnypl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' },
-      { label: "Remote Storage", code: "scsbhl", aeon_location: false, recap_electronic_delivery_location: true, open: false, requestable: true, always_requestable: false, circulates: true, remote_storage: 'recap_rmt' }
-    ]
-    partners_locations.each do |p|
-      HoldingLocation.new do |location_record|
-        location_record.label = p[:label]
-        location_record.code = p[:code]
-        location_record.aeon_location = p[:aeon_location]
-        location_record.recap_electronic_delivery_location = p[:recap_electronic_delivery_location]
-        location_record.open = p[:open]
-        location_record.requestable = p[:requestable]
-        location_record.always_requestable = p[:always_requestable]
-        location_record.circulates = p[:circulates]
-        location_record.library = Library.find_by(code: "recap")
-        location_record.remote_storage = p[:remote_storage]
-        location_record.save
-        # QX is the delivery location for scsb
-        location_record.delivery_location_ids = delivery_library_ids(["QX"])
-      end
-    end
-  end
-
-  # Update joined table for holding and delivery locations
-  # based on the holding_locations file and the mapped holding_location_code value
-  def set_holding_delivery_locations
-    HoldingLocation.all.each do |location_record|
-      holding_location_record = holding_locations_array.find { |v| v["holding_location_code"] == location_record.code }
-      if holding_location_record.present? && holding_location_record["delivery_locations"].present?
-        location_record.delivery_location_ids = delivery_library_ids(holding_location_record["delivery_locations"])
-      end
+      library_record_id = find_library_by_code(delivery_location["library"]["code"]).id
+      DeliveryLocation.create(
+        id: delivery_location['id'],
+        label: delivery_location['label'],
+        address: delivery_location['address'],
+        phone_number: delivery_location['phone_number'],
+        contact_email: delivery_location['contact_email'],
+        staff_only: delivery_location['staff_only'],
+        locations_library_id: library_record_id,
+        gfa_pickup: delivery_location['gfa_pickup'],
+        pickup_location: delivery_location['pickup_location'],
+        digital_location: delivery_location['digital_location']
+      )
     end
   end
 
   private
 
-    # fulfilment_unit: 'Reserves'
-    # returns boolean
-    def fulfillment_reserves?(fulfillment_unit_value)
-      fulfillment_unit_value == 'Reserves'
-    end
-
-    # Updates holding library for two old recap locations rccpt, rccpw
-    # These locations did not have a holding library.
-    # It is set here so that there is no need for customization in the generated holding_locations.json file, every time it needs to be generated.
-    def update_holding_library
-      new_recap_holding_location_codes = ["arch$pw", "engineer$pt"]
-      new_recap_holding_location_codes.each do |location_record_code|
-        holding_location_record = HoldingLocation.find_by(code: location_record_code)
-        holding_location_record.holding_library_id = holding_library_id(location_record_code[0...-3])
-        holding_location_record.save
-      end
-    end
-
-    def holding_library_id(holding_library_code)
+    def library_id(holding_library_code)
+      return {} unless holding_library_code
       library = find_library_by_code(holding_library_code)
       library.id if library.present?
-    end
-
-    # adds firestone$ssrcfo and firestone$ssrcdc with requestable: false
-    def update_holding_location_record
-      location_code = ["firestone$ssrcfo", "firestone$ssrcdc", "rare$xmr", "rare$scactsn", "rare$scagax", "rare$scamss", "rare$scawa", "rare$scaex", "rare$scahsvm", "mudd$scamudd", "rare$scathx"]
-      location_code.each do |lc|
-        holding_location_record = HoldingLocation.find_by(code: lc)
-        if holding_location_record.present?
-          holding_location_record.requestable = false
-          holding_location_record.save
-        end
-      end
     end
 
     # Find the delivery library using the gfa_pickup value
@@ -174,30 +93,24 @@ class LocationDataService
       Library.find_by(code: code)
     end
 
-    # Parses voyager_locations.json file
+    # Parses holding_locations.json file
     # Creates an array of holding_location hashes
     def holding_locations_array
-      file_to_service = LocationsToFileService.new
-      file_to_service.holding_locations_array
+      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "holding_locations.json"))
+      JSON.parse(file)
     end
 
     # Parses delivery_locations.json file
-    # Creates an array of delivery_location hashes
+    # Creates an array of delivery_locations hashes
     def delivery_locations_array
-      file_to_service = LocationsToFileService.new
-      file_to_service.delivery_locations_array
+      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "delivery_locations.json"))
+      JSON.parse(file)
     end
 
-    # Retrieves holding locations from Alma.
-    # @param library_code [String] e.g. "main"
-    # @return Alma::LocationSet
-    def holding_locations(library_code)
-      Alma::Location.all(library_code: library_code)
-    end
-
-    # Retrieves libraries from Alma.
-    # @return Alma::LibrarySet
-    def libraries
-      @libraries ||= Alma::Library.all
+    # Parses libraries.json file
+    # Creates an array of libraries hashes
+    def libraries_array
+      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "libraries.json"))
+      JSON.parse(file)
     end
 end

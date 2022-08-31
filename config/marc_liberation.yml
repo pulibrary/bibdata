@@ -6,6 +6,7 @@ records_per_file: 500_000
 recap_dump_records_per_file: 5000
 test_records_per_file: 25
 figgy_base_url: "https://figgy.princeton.edu"
+location_files_dir: <%= ENV['LOCATION_FILES_DIR'] || 'config/locations' %> 
 
 dump_types:
 - label: 'All Records' # used for full dumps
