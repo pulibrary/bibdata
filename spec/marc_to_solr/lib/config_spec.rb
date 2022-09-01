@@ -810,6 +810,45 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'marc_relator_display' do
+      let(:relator_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [example_100], 'leader' => leader)) }
+
+      context 'with a subfield code e' do
+        it 'capitalizes and removes punctuation' do
+          expect(@sample35['marc_relator_display']).to eq(['Author'])
+          expect(@sample41['marc_relator_display']). to eq(['Engraver'])
+        end
+      end
+      context 'with no subfields' do
+        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [] } } }
+
+        it 'defaults to Author' do
+          expect(relator_record['marc_relator_display']).to eq(['Author'])
+        end
+      end
+      context 'with a subfield code 4' do
+        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "4" => "cre" }] } } }
+
+        it 'maps to the relator' do
+          expect(relator_record['marc_relator_display']).to eq(['Creator'])
+        end
+      end
+      context 'with both subfield e and 4' do
+        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "e" => "Something Else" }, { "4" => "cre" }] } } }
+
+        it "saves subfield 4 to solr" do
+          expect(relator_record['marc_relator_display']).to eq(["Something else"])
+        end
+      end
+      context 'with subfield 4 before subfield e' do
+        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "4" => "cre" }, { "e" => "Something Else" }] } } }
+
+        it "saves subfield 4 to solr" do
+          expect(relator_record['marc_relator_display']).to eq(["Something else"])
+        end
+      end
+    end
+
     context "subject display and unstem fields" do
       let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
       let(:s650_skbb) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject with skbb code" }, { "2" => "skbb" }] } } }

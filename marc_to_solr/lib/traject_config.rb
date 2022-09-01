@@ -158,8 +158,9 @@ to_field 'marc_relator_display' do |record, accumulator|
       if s_field.code == 'e'
         relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/, '')
         break
+      elsif s_field.code == '4'
+        relator = Traject::TranslationMap.new("relators")[s_field.value]
       end
-      relator = Traject::TranslationMap.new("relators")[s_field.value] if s_field.code == '4'
     end
     accumulator << relator
     break
