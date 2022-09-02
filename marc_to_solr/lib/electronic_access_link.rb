@@ -37,7 +37,7 @@ class ElectronicAccessLink
     return @url if @url
 
     if !@url_key.valid_encoding?
-      @logger.error "#{@bib_id} - invalid character encoding for 856$u value: #{@url_key}"
+      @logger.error "#{@bib_id} - invalid character encoding for 856$u value (invalid bytes replaced by *): #{@url_key.scrub('*')}"
       @url_key = nil
     else
       @url_key = normal_url.to_s

@@ -209,7 +209,7 @@ describe 'From princeton_marc.rb' do
 
     context 'with an unparsable URL' do
       let(:url) do
-        a = "\xFF"
+        a = "abc\xFFef"
         a.force_encoding "utf-8"
       end
 
@@ -219,7 +219,7 @@ describe 'From princeton_marc.rb' do
 
       it 'logs an error' do
         ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
-        expect(logger).to have_received(:error).with("9947652213506421 - invalid character encoding for 856$u value: #{url}")
+        expect(logger).to have_received(:error).with("9947652213506421 - invalid character encoding for 856$u value (invalid bytes replaced by *): abc*ef")
       end
     end
 
