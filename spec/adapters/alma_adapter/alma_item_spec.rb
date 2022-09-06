@@ -164,6 +164,20 @@ RSpec.describe AlmaAdapter::AlmaItem do
       )
     end
 
+    let(:item_work_order_holdings_mgmt) do
+      Alma::BibItem.new(
+        "bib_data" => { "mms_id" => "99122455086806421" },
+        "holding_data" => { "holding_id" => "22477860740006421" },
+        "item_data" => {
+          "pid" => "23477860730006421",
+          "base_status" => { "value" => "1", "desc" => "Item in place" },
+          "process_type" => { "value" => "TRANSIT", "desc" => "Transit" },
+          "work_order_type" => { "value" => "HMT", "desc" => "Holdings Management" },
+          "work_order_at" => { "value" => "HMT", "desc" => "Holdings Management" }
+        }
+      )
+    end
+
     let(:item_process_type_acq) do
       Alma::BibItem.new(
         "bib_data" => { "mms_id" => "9939075533506421" },
@@ -204,6 +218,11 @@ RSpec.describe AlmaAdapter::AlmaItem do
       expect(status[:code]).to eq "Not Available"
     end
 
+    it "handles items with work order in holdings management" do
+      item = described_class.new(item_work_order_holdings_mgmt)
+      status = item.calculate_status
+      expect(status[:code]).to eq "Not Available"
+    end
     it "handles items with process type in acquisitions" do
       item = described_class.new(item_process_type_acq)
       status = item.calculate_status
