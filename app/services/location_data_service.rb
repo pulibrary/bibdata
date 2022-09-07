@@ -96,21 +96,21 @@ class LocationDataService
     # Parses holding_locations.json file
     # Creates an array of holding_location hashes
     def holding_locations_array
-      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "holding_locations.json"))
+      file = File.read(File.join(MARC_LIBERATION_CONFIG['location_files_dir'], "holding_locations.json"))
       JSON.parse(file)
     end
 
     # Parses delivery_locations.json file
     # Creates an array of delivery_locations hashes
     def delivery_locations_array
-      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "delivery_locations.json"))
+      file = File.read(File.join(MARC_LIBERATION_CONFIG['location_files_dir'], "delivery_locations.json"))
       JSON.parse(file)
     end
 
     # Parses libraries.json file
     # Creates an array of libraries hashes
     def libraries_array
-      file = File.read(File.join(ENV['LOCATION_FILES_DIR'], "libraries.json"))
+      file = File.read(File.join(MARC_LIBERATION_CONFIG['location_files_dir'], "libraries.json"))
       JSON.parse(file)
     end
 end

@@ -6,17 +6,14 @@ RSpec.describe LocationDataService, type: :service do
   let(:holding_locations) { File.join(locations_path, 'holding_locations.json') }
   let(:delivery_locations) { File.join(locations_path, 'delivery_locations.json') }
   let(:libraries) { File.join(locations_path, 'libraries.json') }
-  #let(:local_path) { File.join(MARC_LIBERATION_CONFIG['LOCATION_FILES_DIR'], locations_path) }
 
   before do
-    allow(ENV).to receive(:[]).with("LOCATION_FILES_DIR").and_return(locations_path)
+    allow(MARC_LIBERATION_CONFIG).to receive(:[]).with("location_files_dir").and_return(locations_path)
     described_class.delete_existing_and_repopulate
   end
-  
+
   describe "#delete_existing_and_repopulate" do
     it "deletes existing data and populates library and location data from json" do
-      # allow(ENV).to receive(:[]).with("LOCATION_FILES_DIR").and_return(locations_path)
-      # described_class.delete_existing_and_repopulate
       library_record = Library.find_by(code: 'arch')
       location_record1 = HoldingLocation.find_by(code: 'arch$stacks')
       location_record2 = HoldingLocation.find_by(code: 'annex$stacks')
