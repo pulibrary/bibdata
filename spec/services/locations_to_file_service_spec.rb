@@ -35,7 +35,6 @@ RSpec.describe LocationsToFileService do
   end
 
   let(:service) { described_class.new(base_path: base_path) }
-  let(:voyager_alma_mapping) { file_fixture('voyager_alma_mapping.csv') }
   let(:holding_locations) { File.join(base_path, 'holding_locations.json') }
   let(:delivery_locations) { File.join(base_path, 'delivery_locations.json') }
   let(:base_path) { Rails.root.join('tmp', 'locations') }

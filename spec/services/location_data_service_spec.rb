@@ -1,198 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe LocationDataService, type: :service do
-  subject(:service) { described_class.new }
+  let(:service) { described_class.new }
+  let(:locations_path) { Rails.root.join('spec', 'fixtures', 'files', 'alma', 'locations') }
+  let(:holding_locations) { File.join(locations_path, 'holding_locations.json') }
+  let(:delivery_locations) { File.join(locations_path, 'delivery_locations.json') }
+  let(:libraries) { File.join(locations_path, 'libraries.json') }
 
   before do
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/libraries.json")
-      )
-
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/firestone/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_firestone.json")
-      )
-
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/arch/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_arch.json")
-      )
-
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/annex/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_annex.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/online/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_online.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/recap/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_recap.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/eastasian/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_eastasian.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/engineer/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_engineer.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/lewis/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_lewis.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/marquand/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_marquand.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/rare/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_rare.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mendel/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_mendel.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/stokes/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_stokes.json")
-      )
-    stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/mudd/locations")
-      .with(
-        headers: {
-          'Accept' => 'application/json',
-          'Authorization' => 'apikey TESTME'
-        }
-      )
-      .to_return(
-        status: 200,
-        headers: { "content-Type" => "application/json" },
-        body: file_fixture("alma/locations_mudd.json")
-      )
+    allow(MARC_LIBERATION_CONFIG).to receive(:[]).with("location_files_dir").and_return(locations_path)
+    described_class.delete_existing_and_repopulate
   end
 
   describe "#delete_existing_and_repopulate" do
-    before do
-      described_class.delete_existing_and_repopulate
-    end
-
-    it "deletes existing data and populates library and location data from Alma excluding elfs" do
+    it "deletes existing data and populates library and location data from json" do
       library_record = Library.find_by(code: 'arch')
       location_record1 = HoldingLocation.find_by(code: 'arch$stacks')
       location_record2 = HoldingLocation.find_by(code: 'annex$stacks')
-      location_record3 = HoldingLocation.find_by(code: 'online$elf1')
-      location_record4 = HoldingLocation.find_by(code: 'online$elf2')
-      location_record5 = HoldingLocation.find_by(code: 'online$elf3')
-      location_record6 = HoldingLocation.find_by(code: 'online$elf4')
       location_record7 = HoldingLocation.find_by(code: 'online$cdl')
       location_record8 = HoldingLocation.find_by(code: 'recap$gp')
-      location_record9 = HoldingLocation.find_by(code: 'recap$pb')
       location_record10 = HoldingLocation.find_by(code: 'eastasian$hy')
       location_record11 = HoldingLocation.find_by(code: 'firestone$secw')
       location_record14 = HoldingLocation.find_by(code: 'stokes$spia')
@@ -215,19 +41,13 @@ RSpec.describe LocationDataService, type: :service do
       rare_scathx = HoldingLocation.find_by(code: 'rare$scathx')
       mudd_scamudd = HoldingLocation.find_by(code: 'mudd$scamudd')
 
-      expect(Library.count).to eq 13
-      expect(HoldingLocation.count).to eq 136
+      expect(Library.count).to eq 18
+      expect(HoldingLocation.count).to eq 309
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
       expect(location_record2.open).to be false
-      expect(location_record3).to be nil
-      expect(location_record4).to be nil
-      expect(location_record5).to be nil
-      expect(location_record6).to be nil
-      expect(location_record7.code).to eq 'online$cdl'
       expect(location_record8.remote_storage).to eq 'recap_rmt'
-      expect(location_record9.remote_storage).to eq ''
       expect(location_record18.remote_storage).to eq 'recap_rmt'
       expect(location_record10.label).to eq ''
       expect(location_record11.label).to eq 'Scribner Library: Common Works Collection'

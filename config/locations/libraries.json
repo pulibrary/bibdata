@@ -1,0 +1,110 @@
+[
+    {
+        "label": "Architecture Library",
+        "code": "arch",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/arch.json"
+    },
+    {
+        "label": "East Asian Library",
+        "code": "eastasian",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/eastasian.json"
+    },
+    {
+        "label": "Electronic Access",
+        "code": "online",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/online.json"
+    },
+    {
+        "label": "Engineering Library",
+        "code": "engineer",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/engineer.json"
+    },
+    {
+        "label": "Firestone Library",
+        "code": "firestone",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/firestone.json"
+    },
+    {
+        "label": "Forrestal Annex",
+        "code": "annex",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/annex.json"
+    },
+    {
+        "label": "Harold P. Furth Plasma Physics Library",
+        "code": "plasma",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/plasma.json"
+    },
+    {
+        "label": "Lewis Library",
+        "code": "lewis",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/lewis.json"
+    },
+    {
+        "label": "Marquand Library",
+        "code": "marquand",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/marquand.json"
+    },
+    {
+        "label": "Mendel Music Library",
+        "code": "mendel",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/mendel.json"
+    },
+    {
+        "label": "Mudd Manuscript Library",
+        "code": "mudd",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/mudd.json"
+    },
+    {
+        "label": "Obsolete Locations",
+        "code": "zobsolete",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/zobsolete.json"
+    },
+    {
+        "label": "ReCAP",
+        "code": "recap",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/recap.json"
+    },
+    {
+        "label": "Resource Sharing",
+        "code": "resshare",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/resshare.json"
+    },
+    {
+        "label": "Resource Sharing Library",
+        "code": "RES_SHARE",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/RES_SHARE.json"
+    },
+    {
+        "label": "Special Collections",
+        "code": "rare",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/rare.json"
+    },
+    {
+        "label": "Stokes Library",
+        "code": "stokes",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/stokes.json"
+    },
+    {
+        "label": "Technical Services",
+        "code": "techserv",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/techserv.json"
+    }
+]
