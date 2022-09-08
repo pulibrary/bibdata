@@ -21,10 +21,11 @@ class ScsbFullRecordsRequest
     end
   end
 
+  # See https://scsb.recaplib.org:9093/swagger-ui.html#/data-dump-rest-controller/exportDataDump for documentation
   def scsb_request(institution_code)
     response = scsb_conn.get do |req|
       req.path = '/dataDump/exportDataDump'
-      req.params['collectionGroupIds'] = '1,2'
+      req.params['collectionGroupIds'] = '1,2,5,6'
       req.params['emailToAddress'] = email
       req.params['fetchType'] = 10
       req.params['imsDepositoryCodes'] = repository_codes(institution_code)
