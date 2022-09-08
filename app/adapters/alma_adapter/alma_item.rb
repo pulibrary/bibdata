@@ -280,7 +280,7 @@ class AlmaAdapter
       desc = item_data["work_order_type"]["desc"]
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      # and https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/departments?apikey=YOUR-KEY&format=json
+      # Work Order documentation: https://lib-confluence.princeton.edu/display/ALMA/Work+Orders
       code = if value.in?(["Bind", "Pres", "CDL", "AcqWorkOrder", "CollDev", "HMT"])
                "Not Available"
              else
