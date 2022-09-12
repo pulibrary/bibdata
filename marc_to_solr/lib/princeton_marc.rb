@@ -5,6 +5,7 @@ require 'uri'
 require_relative 'cache_adapter'
 require_relative 'cache_manager'
 require_relative 'cache_map'
+require_relative 'cjk_factory'
 require_relative 'composite_cache_map'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
@@ -167,6 +168,8 @@ def process_names record
       end
       name = name.chomp(remove)
       names << Traject::Macros::Marc21.trim_punctuation(name)
+      names << CJKFactory.traditional_to_simplified(name) if CJKFactory.contains_chinese?(name)
+      names << CJKFactory.katakana_to_hiragana(name) if CJKFactory.contains_katakana?(name)
     end
   end
   names.uniq
@@ -272,7 +275,7 @@ SEPARATOR = '—'
 # optionally pass a block to only allow fields that match certain criteria
 # For example, if you only want subject headings from the Bilindex vocabulary,
 # you could use `process_hierarchy(record, '650|*7|abcvxyz') { |field| field['2'] == 'bidex' }`
-def process_hierarchy(record, fields)
+def process_hierarchy(record, fields, transliterate = false)
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
@@ -285,7 +288,11 @@ def process_hierarchy(record, fields)
       end
       heading = heading.split(SEPARATOR)
       heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
-      headings << heading if include_heading
+      if include_heading
+        headings << heading
+        headings << CJKFactory.traditional_to_simplified(heading) if transliterate && CJKFactory.contains_chinese?(heading)
+        headings << CJKFactory.katakana_to_hiragana(heading) if transliterate && CJKFactory.contains_katakana?(heading)
+      end
     end
   end
   headings

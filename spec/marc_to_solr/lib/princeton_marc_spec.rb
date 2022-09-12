@@ -382,24 +382,38 @@ describe 'From princeton_marc.rb' do
   end
 
   describe 'process_names, process_alt_script_names function' do
-    before(:all) do
-      @t100 = { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
-      @t700 = { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "k" => "don't ignore" }, { "t" => "TITLE" }] } }
-      @t880 = { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-1" }, { "a" => "Κινέζικα" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@t100, @t700, @t880])
+    let(:t100) do
+      { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
     end
+    let(:t700) do
+      { "700" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "John" }, { "d" => "1492" }, { "k" => "don't ignore" }, { "t" => "TITLE" }] } }
+    end
+    let(:t880) do
+      { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-1" }, { "a" => "Κινέζικα" }, { "t" => "TITLE" }, { "k" => "ignore" }] } }
+    end
+    let(:sample_marc) { MARC::Record.new_from_hash('fields' => [t100, t700, t880]) }
 
     it 'strips subfields that appear after subfield $t, includes 880' do
-      names = process_names(@sample_marc)
+      names = process_names(sample_marc)
       expect(names).to include("John 1492")
       expect(names).to include("John 1492 don't ignore")
       expect(names).not_to include("John 1492 ignore")
       expect(names).to include("Κινέζικα")
     end
     it 'alt_script version only includes the 880' do
-      names = process_alt_script_names(@sample_marc)
+      names = process_alt_script_names(sample_marc)
       expect(names).to include("Κινέζικα")
       expect(names).not_to include("John 1492")
+    end
+    context 'when names are in Traditional Chinese Characters' do
+      let(:t880) do
+        { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-1" }, { "a" => "沈從文" }] } }
+      end
+      it 'includes the name in both traditional and simplified characters' do
+        names = process_names(sample_marc)
+        expect(names).to include('沈從文')
+        expect(names).to include('沈从文')
+      end
     end
   end
 

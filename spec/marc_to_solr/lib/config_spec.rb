@@ -774,6 +774,18 @@ describe 'From traject_config.rb', indexing: true do
           expect(no_uniform_title['name_title_browse_s']).to match_array(["Name. Title 245a",
                                                                           "AltName. VernTitle 245a"])
         end
+        context 'CJK records' do
+          let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Shen, Jieren," }] } } }
+          let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "沈介人," }] } } }
+          let(:t245) { { "245" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-03" }, { "a" => "Ge guo qing nian xun lian yu xin sheng huo yun dong" }] } } }
+          let(:t245_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "245-03" }, { "a" => "各國靑年訓練與新生活運動" }] } } }
+          it 'includes transliterated simplified Chinese characters in name_title_browse_s' do
+            expect(no_uniform_title['name_title_browse_s']).to include("沈介人. 各国靑年训练与新生活运动")
+          end
+          it 'includes original traditional Chinese characters in name_title_browse_s' do
+            expect(no_uniform_title['name_title_browse_s']).to include("沈介人. 各國靑年訓練與新生活運動")
+          end
+        end
       end
     end
 
@@ -968,6 +980,19 @@ describe 'From traject_config.rb', indexing: true do
             expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
             expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
           end
+        end
+      end
+
+      describe 'CJK subjects' do
+        let(:s650_local) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "アメリカ" }, { "2" => "local" }, { "5" => "NjP" }] } } }
+        let(:s600_name) { { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "沈從文" }] } } }
+        let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_local, s600_name], 'leader' => leader)) }
+        it 'includes transliterated hiragana in subject_facet' do
+          expect(subject_marc["subject_facet"]).to include('あめりか')
+        end
+
+        it 'includes transliterated simplified Chinese characters in subject_facet' do
+          expect(subject_marc["subject_facet"]).to include('沈从文')
         end
       end
     end

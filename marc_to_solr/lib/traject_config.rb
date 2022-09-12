@@ -11,6 +11,7 @@ require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './augment_the_subject'
+require_relative './cjk_factory'
 require_relative './change_the_subject'
 require_relative './pul_solr_json_writer'
 require 'stringex'
@@ -858,10 +859,10 @@ end
 
 # used for the browse lists and hierarchical subject/genre facet
 to_field 'subject_facet' do |record, accumulator|
-  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz', true)
   subjects = augment_the_subject.add_indigenous_studies(subjects)
   subjects = ChangeTheSubject.fix(subjects)
-  additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
+  additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz', true) { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp homoit] }
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
 end
@@ -1347,7 +1348,12 @@ each_record do |_record, context|
 
   # combine name-title browse values into a single array
   browse_field = browse_field.compact.flatten.uniq
-  context.output_hash['name_title_browse_s'] = browse_field unless browse_field.empty?
+  browse_field_cjk = []
+  browse_field.each do |heading|
+    browse_field_cjk << CJKFactory.traditional_to_simplified(heading) if CJKFactory.contains_chinese?(heading)
+    browse_field_cjk << CJKFactory.katakana_to_hiragana(heading) if CJKFactory.contains_katakana?(heading)
+  end
+  context.output_hash['name_title_browse_s'] = browse_field.concat(browse_field_cjk).uniq unless browse_field.empty?
 
   # these fields are no longer necessary
   context.output_hash.delete('name_title_100')

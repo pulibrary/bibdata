@@ -87,3 +87,5 @@ group :development, :test do
 end
 
 gem "omniauth-rails_csrf_protection"
+
+gem "ffi-icu", "~> 0.4.3"

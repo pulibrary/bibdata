@@ -238,6 +238,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    ffi-icu (0.4.3)
+      ffi (~> 1.0, >= 1.0.9)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     globalid (1.0.0)
@@ -607,6 +609,7 @@ DEPENDENCIES
   faraday (~> 1.0.1)
   faraday_middleware (~> 1.0.0)
   ffi (>= 1.9.25)
+  ffi-icu (~> 0.4.3)
   friendly_id (~> 5.1.0)
   gyoku (~> 1.0)
   high_voltage (~> 3.0)
