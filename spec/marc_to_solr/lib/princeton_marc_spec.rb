@@ -484,6 +484,26 @@ describe 'From princeton_marc.rb' do
     end
   end
 
+  describe '#join_hierarchy' do
+    context 'with a name-title field' do
+      let(:fields) { [["John 1492", "TITLE"], ["Sean 2011", "work", "53", "Allegro"]] }
+      let(:expected_array) { [['John 1492 TITLE'], ['Sean 2011 work', 'Sean 2011 work 53', 'Sean 2011 work 53 Allegro']] }
+
+      it 'expands the arrays to a list of the sublists, skipping the first sublist' do
+        expect(join_hierarchy(fields)).to match_array(expected_array)
+      end
+    end
+
+    context 'with a title-only field' do
+      let(:fields) { [["Bible.", "Latin.", "Vulgate.", "1461."]] }
+      let(:expected_array) { [['Bible', 'Bible. Latin', 'Bible. Latin. Vulgate', 'Bible. Latin. Vulgate. 1461']] }
+
+      it 'expands the arrays to a list of the sublists, keeping the first sublist' do
+        expect(join_hierarchy(fields, include_first_element: true).first).to match_array(expected_array.first)
+      end
+    end
+  end
+
   describe 'process_genre_facet function' do
     before(:all) do
       @g600 = { "600" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Exclude" }, { "v" => "John" }, { "x" => "Join" }] } }

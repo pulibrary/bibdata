@@ -1292,10 +1292,30 @@ to_field 'uniform_240_vern' do |record, accumulator|
   end
 end
 
+to_field 'uniform_130' do |record, accumulator|
+  MarcExtractor.cached('130apldfhkmnorst', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
+
+to_field 'uniform_130_vern' do |record, accumulator|
+  MarcExtractor.cached('130apldfhkmnorst', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
+    field.subfields.each do |s_field|
+      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      accumulator << s_field.value
+    end
+    break
+  end
+end
+
 to_field 'name_title_ae_s' do |record, accumulator|
   fields = '800aqbcdfghklmnoprstx:810abcdfghklnoprstx:811abcdefgklnpqt'
   ae = prep_name_title(record, fields)
-  accumulator.replace(join_hierarchy_without_author(ae))
+  accumulator.replace(join_hierarchy(ae, include_first_element: true))
 end
 
 to_field 'linked_title_s' do |record, accumulator|
@@ -1317,6 +1337,9 @@ end
 # Author-Title Browse field includes                   #
 # combo 100+240/245a, 700/10/11, 76/77/78x, 800/10/11  #
 ########################################################
+
+# Creates both name_title_browse_s for browse list and name_uniform_title_1display for Uniform title display
+# This only creates these fields for works that have an author
 each_record do |_record, context|
   doc = context.output_hash
   related_works = join_hierarchy(JSON.parse(doc['related_works_1display'][0])) if doc['related_works_1display']
@@ -1352,11 +1375,37 @@ each_record do |_record, context|
   # these fields are no longer necessary
   context.output_hash.delete('name_title_100')
   context.output_hash.delete('name_title_100_vern')
-  context.output_hash.delete('uniform_240')
-  context.output_hash.delete('uniform_240_vern')
   context.output_hash.delete('name_title_245a')
   context.output_hash.delete('name_title_245a_vern')
   context.output_hash.delete('name_title_ae_s')
+  context.output_hash.delete('uniform_240')
+  context.output_hash.delete('uniform_240_vern')
+end
+
+# Creates uniform_title_1display and uniform_title_search_s for Uniform title display for works that do not have an author
+each_record do |_record, context|
+  doc = context.output_hash
+  uniform_t = []
+  search_field = []
+
+  if doc['uniform_130']
+    uniform_t << doc['uniform_130']
+    search_field << join_hierarchy([doc['uniform_130']], include_first_element: true)
+  end
+  if doc['uniform_130_vern']
+    uniform_t << doc['uniform_130_vern']
+    search_field << join_hierarchy([doc['uniform_130_vern']], include_first_element: true)
+  end
+
+  context.output_hash['uniform_title_1display'] = [uniform_t.to_json.to_s] unless uniform_t.empty?
+
+  # combine title search values into a single array
+  search_field = search_field.compact.flatten.uniq
+  context.output_hash['uniform_title_search_s'] = search_field unless search_field.empty?
+
+  # these fields are no longer necessary
+  context.output_hash.delete('uniform_130')
+  context.output_hash.delete('uniform_130_vern')
 end
 
 # Call number: +No call number available

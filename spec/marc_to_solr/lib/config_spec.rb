@@ -775,6 +775,44 @@ describe 'From traject_config.rb', indexing: true do
                                                                           "AltName. VernTitle 245a"])
         end
       end
+
+      describe 'uniform_title_1display field' do
+        context 'with no author' do
+          context 'in English' do
+            let(:t130) { { "130" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "a" => "Bible.", "l" => "Latin.", "s" => "Vulgate.", "f" => "1461." }] } } }
+            let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130], 'leader' => leader)) }
+
+            it 'has the English language field' do
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Bible.", "Latin.", "Vulgate.", "1461."]])
+              expect(uniform_title['uniform_title_search_s']).to match_array(['Bible', 'Bible. Latin', 'Bible. Latin. Vulgate', 'Bible. Latin. Vulgate. 1461'])
+            end
+          end
+          context 'with Arabic and English' do
+            let(:t130) { { "130" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "6" => "880-01", "a" => "Awrāq (Madrid, Spain)" }] } } }
+            let(:t880) { { "880" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "6" => "130-01", "a" => "اوراق (Madrid, Spain)" }] } } }
+            let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130, t880], 'leader' => leader)) }
+
+            it 'has the English and vernacular field' do
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Awrāq (Madrid, Spain)"], ["اوراق (Madrid, Spain)"]])
+              expect(uniform_title['uniform_title_search_s']).to match_array(["Awrāq (Madrid, Spain)", "اوراق (Madrid, Spain)"])
+            end
+          end
+        end
+        context 'with an author' do
+          let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Name," }] } } }
+          let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "AltName ;" }] } } }
+          let(:t240) { { "240" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-02" }, { "a" => "Uniform Title," }, { "p" => "5" }] } } }
+          let(:t240_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "240-02" }, { "a" => "AltUniform Title," }, { "p" => "5" }] } } }
+          let(:t245) { { "245" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-03" }, { "a" => "Title 245a" }] } } }
+          let(:t245_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "245-03" }, { "a" => "VernTitle 245a" }] } } }
+          let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
+
+          it 'does not create a uniform_title_1display' do
+            expect(uniform_title['uniform_title_1display']).to be nil
+            expect(uniform_title['uniform_title_search_s']).to be nil
+          end
+        end
+      end
     end
 
     describe 'series 490 dedup, non-filing' do
