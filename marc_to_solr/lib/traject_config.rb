@@ -1382,26 +1382,16 @@ each_record do |_record, context|
   context.output_hash.delete('uniform_240_vern')
 end
 
-# Creates uniform_title_1display and uniform_title_search_s for Uniform title display for works that do not have an author
+# Creates uniform_title_1display for Uniform title display for works that do not have an author
 each_record do |_record, context|
   doc = context.output_hash
   uniform_t = []
   search_field = []
 
-  if doc['uniform_130']
-    uniform_t << doc['uniform_130']
-    search_field << join_hierarchy([doc['uniform_130']], include_first_element: true)
-  end
-  if doc['uniform_130_vern']
-    uniform_t << doc['uniform_130_vern']
-    search_field << join_hierarchy([doc['uniform_130_vern']], include_first_element: true)
-  end
+  uniform_t << doc['uniform_130'] if doc['uniform_130']
+  uniform_t << doc['uniform_130_vern'] if doc['uniform_130_vern']
 
   context.output_hash['uniform_title_1display'] = [uniform_t.to_json.to_s] unless uniform_t.empty?
-
-  # combine title search values into a single array
-  search_field = search_field.compact.flatten.uniq
-  context.output_hash['uniform_title_search_s'] = search_field unless search_field.empty?
 
   # these fields are no longer necessary
   context.output_hash.delete('uniform_130')

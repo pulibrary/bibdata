@@ -784,7 +784,6 @@ describe 'From traject_config.rb', indexing: true do
 
             it 'has the English language field' do
               expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Bible.", "Latin.", "Vulgate.", "1461."]])
-              expect(uniform_title['uniform_title_search_s']).to match_array(['Bible', 'Bible. Latin', 'Bible. Latin. Vulgate', 'Bible. Latin. Vulgate. 1461'])
             end
           end
           context 'with Arabic and English' do
@@ -794,7 +793,6 @@ describe 'From traject_config.rb', indexing: true do
 
             it 'has the English and vernacular field' do
               expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Awrāq (Madrid, Spain)"], ["اوراق (Madrid, Spain)"]])
-              expect(uniform_title['uniform_title_search_s']).to match_array(["Awrāq (Madrid, Spain)", "اوراق (Madrid, Spain)"])
             end
           end
         end
