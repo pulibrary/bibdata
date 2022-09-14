@@ -1088,4 +1088,12 @@ describe 'From traject_config.rb', indexing: true do
       expect(sample["location"]).to eq(["Mendel Music Library"])
     end
   end
+  context "Action Note" do
+    it "Has an Action Note when there is a 583a" do
+      indexer = IndexerService.build
+      sample = indexer.map_record(fixture_record('99125628841606421', indexer: indexer))
+      note = sample['action_notes_display'][0]
+      expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
+    end
+  end
 end

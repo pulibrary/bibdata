@@ -691,6 +691,7 @@ to_field 'copy_version_notes_display', extract_marc('5623abcde')
 to_field 'case_file_notes_display', extract_marc('5653abcde')
 to_field 'methodology_notes_display', extract_marc('567a')
 to_field 'editor_notes_display', extract_marc('570a') # added
+to_field 'action_notes_display', extract_marc('583a') #added
 to_field 'accumulation_notes_display', extract_marc('584ab3') # added
 to_field 'awards_notes_display', extract_marc('586a3') # added
 to_field 'source_desc_notes_display', extract_marc('588a') # added
