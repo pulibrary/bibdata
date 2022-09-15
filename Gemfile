@@ -12,6 +12,7 @@ gem 'capistrano-passenger'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'
+gem 'change_the_subject', '~> 0.1.0'
 gem 'ddtrace', '~> 0.54.2'
 gem 'devise'
 gem 'faraday', '~> 1.0.1'
