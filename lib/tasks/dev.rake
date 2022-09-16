@@ -18,9 +18,16 @@ namespace :servers do
   end
 end
 
-namespace :marc_liberation do
-  desc "Populate holding location values from database."
-  task process_locations: :environment do
+namespace :bibdata do
+  desc "Populate location tables from the config files."
+  task delete_and_repopulate_locations: :environment do
+    LocationDataService.delete_existing_and_repopulate
+  end
+end
+
+namespace :bibdata do
+  desc "Generate location display and location rb files from database."
+  task generate_location_rbfiles: :environment do
     LocationMapsGeneratorService.generate
   end
 end

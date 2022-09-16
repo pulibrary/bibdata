@@ -1,49 +1,46 @@
 # When a location changes in Alma:
 
-### 1. Update the local dev environment:
+## 1. Update the local dev environment:
 
-Load the rails console
-1.`bundle exec rails c`
+1. Update the necessary files in https://github.com/pulibrary/bibdata/tree/main/config/locations. 
+   * If there is a new holding location then update the holding_locations.json file https://github.com/pulibrary/bibdata/blob/main/config/locations/holding_locations.json with the appropriate information. 
+   * If there is a new library then update the libraries.json file https://github.com/pulibrary/bibdata/blob/main/config/locations/libraries.json with the new library following the pattern in the file. 
+   * If there is a new delivery location then update the delivery_locations.json file https://github.com/pulibrary/bibdata/blob/main/config/locations/delivery_locations.json with the appropriate information.
 
-Delete the existing data from the location tables and repopulate them by pulling data from Alma.
-2.`LocationDataService.delete_existing_and_repopulate`
+2. Run the following rake task to delete the existing data from the location tables and repopulate them using the config files:  
+   `bundle exec rake bibdata:delete_and_repopulate_locations`
 
-Generate the following files: marc_to_solr/translation_maps/location_display.rb and marc_to_solr/translation_maps/locations.rb
-3.`LocationMapsGeneratorService.generate`
+4. Run the following rake task to generate the following rb files: marc_to_solr/translation_maps/location_display.rb and marc_to_solr/translation_maps/locations.rb
+  `bundle exec rake bibdata:generate_location_rbfiles`
 
-Copy the content from the generated .rb files into the .tmpl.rb files
-4.`cp marc_to_solr/translation_maps/location_display.rb marc_to_solr/translation_maps/location_display.rb.tmpl`
-`cp marc_to_solr/translation_maps/locations.rb marc_to_solr/translation_maps/locations.rb.tmpl`
+5. Copy the content from the generated .rb files into the .tmpl.rb files  
+  `cp marc_to_solr/translation_maps/location_display.rb marc_to_solr/translation_maps/location_display.rb.tmpl`  
+  `cp marc_to_solr/translation_maps/locations.rb marc_to_solr/translation_maps/locations.rb.tmpl`
 
-Load locally the rails server; Go to `localhost:<portnumber>/locations/holding_locations` and make sure that the locations have been updated.
+6. Load locally the rails server; Go to: `localhost:<portnumber>/locations/holding_locations` in your browser and make sure that the locations have been updated.
 
-### 2. Update Bibdata staging
-Test the updated locations in Bibdata-staging https://bibdata-staging.princeton.edu/ which is connected to the alma-sandbox;
-The locations will not be the same as in production because they are not up to date. Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
+## 2. Update Bibdata staging
+Test the updated locations in Bibdata-staging https://bibdata-staging.princeton.edu/
+Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
-Connect in one of the bibdata staging boxes:
-1.`ssh deploy@bibdata-alma-staging1`
-2.`cd /opt/bibdata/current`
-3.`RAILS_ENV=production bundle exec rails c`
+1. Connect in one of the bibdata staging boxes:   
+  `ssh deploy@bibdata-alma-worker-staging1`  
+  `cd /opt/bibdata/current`  
 
-Delete and repopulate the locations in the bibdata staging database:
-4.`LocationDataService.delete_existing_and_repopulate`
+2. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
+  `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
+
+3. Review the changes in https://bibdata-staging.princeton.edu/
 
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
 
-### 3. Update Bibdata production:
-Option 1:
-Connect in one of the bibdata production boxes:
-1.`ssh deploy@bibdata-alma1`
-2.`cd /opt/bibdata/current`
-3.`RAILS_ENV=production bundle exec rails c`
+## 3. Update Bibdata production
 
-Delete and repopulate the locations in the production database:
-4.`LocationDataService.delete_existing_and_repopulate`
+1. Connect in one of the bibdata production boxes:  
+  `ssh deploy@bibdata-alma-worker1`  
+  `cd /opt/bibdata/current`  
 
-Option 2:
-Capistrano task to connect to the production rails console:
-1. `cap production rails:console`
+2. Run the following rake task to delete and repopulate the locations in the production database:  
+  `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-Delete and repopulate the locations in the production database:
-1. `LocationDataService.delete_existing_and_repopulate`
+3. Review the changes in https://bibdata.princeton.edu/
