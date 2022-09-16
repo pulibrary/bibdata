@@ -757,7 +757,16 @@ end
 # Contents:
 #    505 0X agrt
 #    505 8X agrt
-to_field 'contents_display', extract_marc('505agrt')
+to_field 'contents_display', extract_marc('505agrt') do |_record, accumulator|
+  if accumulator.present?
+    contents = []
+    accumulator.map do |contents_list|
+      contents << contents_list.split(' -- ')
+    end
+    contents.flatten!
+  end
+  accumulator.replace(contents) if contents
+end
 
 # Provenance:
 #    561 XX 3ab
