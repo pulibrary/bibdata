@@ -691,7 +691,6 @@ to_field 'copy_version_notes_display', extract_marc('5623abcde')
 to_field 'case_file_notes_display', extract_marc('5653abcde')
 to_field 'methodology_notes_display', extract_marc('567a')
 to_field 'editor_notes_display', extract_marc('570a') # added
-to_field 'action_notes_display', extract_marc('583a') # added
 to_field 'accumulation_notes_display', extract_marc('584ab3') # added
 to_field 'awards_notes_display', extract_marc('586a3') # added
 to_field 'source_desc_notes_display', extract_marc('588a') # added
@@ -773,6 +772,14 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 # Publications about:
 #    581 XX az36
 to_field 'publications_about_display', extract_marc('581az36')
+
+# Action note:
+#    583 XX a
+to_field 'action_notes_display', extract_marc('583a') do |record, accumulator|
+  extractor_doc_id = MarcExtractor.cached("001")
+  doc_id = extractor_doc_id.extract(record).first
+  accumulator if /^[0-9]+$/.match?(doc_id)
+end
 
 # Indexed in:
 #    510 0X 3abc
