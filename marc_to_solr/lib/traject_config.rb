@@ -776,7 +776,7 @@ to_field 'publications_about_display', extract_marc('581az36')
 # Action note:
 #    583 XX a
 to_field 'action_notes_display', extract_marc('583a') do |record, accumulator|
-  MarcExtractor.cached('035').collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('035').collect_matching_lines(record) do |field, _spec, _extractor|
     accumulator if field.to_s.include?('PULFA')
   end
 end
