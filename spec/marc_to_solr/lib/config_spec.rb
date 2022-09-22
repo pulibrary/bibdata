@@ -68,6 +68,7 @@ describe 'From traject_config.rb', indexing: true do
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
+      @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
     end
 
     describe "alma loading" do
@@ -112,6 +113,17 @@ describe 'From traject_config.rb', indexing: true do
         expect(holding_2["location"]).to eq "Stacks"
         expect(holding_2["library"]).to eq "Firestone Library"
         expect(holding_2["location_code"]).to eq "firestone$stacks"
+      end
+    end
+
+    describe 'contents_display' do
+      context 'with a contents note' do
+        it 'naively splits on double dashes' do
+          expect(@sample34['contents_display']).to match_array(["Disc 1. Mammy water", "(1956, 19 min.) ; The mad masters", "(1956, 29 min.)", "Moi, un noir", "(1959, 74 min.)", "Disc 2. The human pyramid", "(1961, 93 min.)", "The lion hunters", "(1967, 81 min.)", "Disc 3. Jaguar", "(1967, 93 min.)", "Little by little (1971, 96 min.)", "Disc 4. The punishment", "(1964, 64 min.)", "Jean Rouch, the adventerous filmmaker / Laurent VeÌdrine (2017, 55 min.)."])
+          expect(@sample37['contents_display']).to match_array(["Book 1. April-June", "Book 2. July-September", "Book 3. October-December."])
+          expect(@record_call_number2['contents_display']).to match_array(["Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06)", "Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17)", "Got lost (2007-2008) / Helmut Lachenmann (24:56)", "Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27)", "Ophelia sings (2012) / Wolfgang Rihm (9:45)", "Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30)."])
+          expect(@translated_contents['contents_display']).to match_array(["Pod svodami mraka i sveta / Anatoliĭ Korolev", "Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.", "Под сводами мрака и света / Анатолий Королев", "Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина."])
+        end
       end
     end
     describe 'the cataloged_date from publishing job' do

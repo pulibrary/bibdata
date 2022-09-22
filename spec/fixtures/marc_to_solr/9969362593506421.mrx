@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<record>
+  <leader>02173cam a2200481 a 4500</leader>
+  <controlfield tag="001">9969362593506421</controlfield>
+  <controlfield tag="005">20200928163727.0</controlfield>
+  <controlfield tag="008">111111s2011    ru a          000 f rus  </controlfield>
+  <datafield ind1=" " ind2=" " tag="010">
+    <subfield code="a">  2011490573</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)ocn772475593</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">6936259</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(OCoLC)772475593</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="035">
+    <subfield code="a">(NjP)6936259-princetondb</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="037">
+    <subfield code="a">ATA 2011/12 195</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="037">
+    <subfield code="a">22</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="040">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">ORU</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="066">
+    <subfield code="c">(N</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="020">
+    <subfield code="a">9785358092044</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="020">
+    <subfield code="a">5358092048</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="042">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="043">
+    <subfield code="a">e-ur---</subfield>
+    <subfield code="a">e-ru---</subfield>
+  </datafield>
+  <datafield ind1="0" ind2="0" tag="050">
+    <subfield code="a">PG3479.7.S48</subfield>
+    <subfield code="b">M37 2011</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="049">
+    <subfield code="a">PULL</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="100">
+    <subfield code="6">880-01</subfield>
+    <subfield code="a">Esin, Sergeĭ.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n84209597</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="245">
+    <subfield code="6">880-02</subfield>
+    <subfield code="a">Markiz :</subfield>
+    <subfield code="b">roman /</subfield>
+    <subfield code="c">Sergeĭ Esin.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="260">
+    <subfield code="6">880-03</subfield>
+    <subfield code="a">Moskva :</subfield>
+    <subfield code="b">Drofa,</subfield>
+    <subfield code="c">2011.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="300">
+    <subfield code="a">334 p. :</subfield>
+    <subfield code="b">ill. ;</subfield>
+    <subfield code="c">22 cm.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="505">
+    <subfield code="6">880-04</subfield>
+    <subfield code="a">Pod svodami mraka i sveta / Anatoliĭ Korolev -- Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Russia (Federation)</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="y">1991-</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Russia</subfield>
+    <subfield code="x">History</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="0" tag="651">
+    <subfield code="a">Soviet Union</subfield>
+    <subfield code="v">Fiction.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008111701</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="600">
+    <subfield code="a">Custine, Astolphe,</subfield>
+    <subfield code="c">marquis de,</subfield>
+    <subfield code="d">1790-1857</subfield>
+    <subfield code="v">Fiction.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Fiction.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026339</subfield>
+  </datafield>
+  <datafield ind1=" " ind2="7" tag="655">
+    <subfield code="a">Novels.</subfield>
+    <subfield code="2">lcgft</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2015026020</subfield>
+  </datafield>
+  <datafield ind1="1" ind2=" " tag="880">
+    <subfield code="6">100-01/(N</subfield>
+    <subfield code="a">Есин, Сергей.</subfield>
+  </datafield>
+  <datafield ind1="1" ind2="0" tag="880">
+    <subfield code="6">245-02/(N</subfield>
+    <subfield code="a">Маркиз :</subfield>
+    <subfield code="b">роман /</subfield>
+    <subfield code="c">Сергей Есин.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="880">
+    <subfield code="6">260-03/(N</subfield>
+    <subfield code="a">Москва :</subfield>
+    <subfield code="b">Дрофа,</subfield>
+    <subfield code="c">2011.</subfield>
+  </datafield>
+  <datafield ind1="2" ind2=" " tag="880">
+    <subfield code="6">505-04/(N</subfield>
+    <subfield code="a">Под сводами мрака и света / Анатолий Королев -- Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="880">
+    <subfield code="6">500-00/(N</subfield>
+    <subfield code="a">"Литературно-художественное издание"--Colophon.</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="936">
+    <subfield code="a">PR 753315038</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="994">
+    <subfield code="a">C0</subfield>
+    <subfield code="b">PUL</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="999">
+    <subfield code="a">6936259</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="904">
+    <subfield code="a">ark</subfield>
+    <subfield code="b">a</subfield>
+    <subfield code="h">m</subfield>
+    <subfield code="c">b</subfield>
+    <subfield code="e">20120209</subfield>
+  </datafield>
+  <datafield ind1=" " ind2=" " tag="902">
+    <subfield code="a">ark</subfield>
+    <subfield code="b">l</subfield>
+    <subfield code="6">a</subfield>
+    <subfield code="7">m</subfield>
+    <subfield code="d">v</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="e">20120209</subfield>
+  </datafield>
+</record>
