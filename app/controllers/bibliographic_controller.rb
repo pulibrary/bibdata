@@ -24,7 +24,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   #   show page
   def availability
     id = params[:bib_id]
-    availability = adapter.get_availability_one(id: id, deep_check: (params[:deep] == "true"))
+    availability = adapter.get_availability_one(id:, deep_check: (params[:deep] == "true"))
     respond_to do |wants|
       wants.json { render json: availability }
     end
@@ -37,7 +37,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   #   search results page
   def availability_many
     ids = (params[:bib_ids] || "").split(",")
-    availability = adapter.get_availability_many(ids: ids, deep_check: ActiveModel::Type::Boolean.new.cast(params[:deep]))
+    availability = adapter.get_availability_many(ids:, deep_check: ActiveModel::Type::Boolean.new.cast(params[:deep]))
     respond_to do |wants|
       wants.json { render json: availability }
     end
@@ -83,11 +83,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       respond_to do |wants|
         wants.json  do
           json = MultiJson.dump(pass_records_through_xml_parser(records))
-          render json: json
+          render json:
         end
         wants.xml do
           xml = records_to_xml_string(records)
-          render xml: xml
+          render xml:
         end
       end
     end
@@ -129,11 +129,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       respond_to do |wants|
         wants.json  do
           json = MultiJson.dump(pass_records_through_xml_parser(records))
-          render json: json
+          render json:
         end
         wants.xml do
           xml = records_to_xml_string(records)
-          render xml: xml
+          render xml:
         end
       end
     end

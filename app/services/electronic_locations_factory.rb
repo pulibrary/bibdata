@@ -67,8 +67,8 @@ class ElectronicLocationsFactory
 
       ElectronicLocation.new(access_method: ElectronicLocations::Indicators::HTTP,
                              relationship: ElectronicLocations::Relationships::VERSION,
-                             subfields: subfields,
-                             holdings: holdings, iiif_manifest_uris: iiif_manifest_uris)
+                             subfields:,
+                             holdings:, iiif_manifest_uris:)
     end
   end
 end

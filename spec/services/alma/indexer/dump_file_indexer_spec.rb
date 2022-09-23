@@ -5,7 +5,7 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
 
   describe "#decompress_file" do
     let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
-    let(:dump_file_indexer) { described_class.new(dump_file, solr_url: solr_url) }
+    let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
 
     context "with a file that doesn't exist" do
       let(:file_path) { 'spec/fixtures/files/alma/do_not_create_me.tar.gz' }
@@ -45,7 +45,7 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
 
   describe "#index!" do
     let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
-    let(:dump_file_indexer) { described_class.new(dump_file, solr_url: solr_url) }
+    let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
 
     context "with a .tar.gz file" do
       let(:file_path) { 'spec/fixtures/files/alma/full_dump/2.xml.tar.gz' }

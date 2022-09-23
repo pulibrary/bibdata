@@ -15,6 +15,6 @@ class ScsbImportFullJob < ApplicationJob
     end
 
     def created_dump
-      Dump.create!(dump_type: dump_type)
+      Dump.create!(dump_type:)
     end
 end

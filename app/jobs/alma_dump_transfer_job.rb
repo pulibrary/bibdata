@@ -7,7 +7,7 @@ class AlmaDumpTransferJob < ApplicationJob
 
   def perform(dump:, job_id:)
     type_constant = dump_file_type(dump)
-    AlmaDownloader.files_for(job_id: job_id, type_constant: type_constant).each do |file|
+    AlmaDownloader.files_for(job_id:, type_constant:).each do |file|
       dump.dump_files << file
     end
 
@@ -31,13 +31,13 @@ class AlmaDumpTransferJob < ApplicationJob
   end
 
   def dump_file_type(dump)
-    job_config = find_job_configuration(dump: dump)
+    job_config = find_job_configuration(dump:)
     job_config["dump_file_type"]
   end
 
   class AlmaDownloader
     def self.files_for(job_id:, type_constant:)
-      new(job_id: job_id, type_constant: type_constant).files_for
+      new(job_id:, type_constant:).files_for
     end
 
     attr_reader :job_id, :type_constant
@@ -51,9 +51,9 @@ class AlmaDumpTransferJob < ApplicationJob
       Net::SFTP.start(sftp_host, sftp_username, password: sftp_password) do |sftp|
         downloads = []
         remote_paths(sftp_session: sftp).each do |remote_path|
-          df = DumpFile.create(dump_file_type: dump_file_type, path: dump_file_path(remote_path))
+          df = DumpFile.create(dump_file_type:, path: dump_file_path(remote_path))
           dump_files << df
-          download = transfer_file(sftp_session: sftp, remote_path: remote_path, local_path: df.path)
+          download = transfer_file(sftp_session: sftp, remote_path:, local_path: df.path)
           downloads << download
         end
 
@@ -138,7 +138,7 @@ class AlmaDumpTransferJob < ApplicationJob
     end
 
     def find_job_configuration(dump:)
-      job_name = event_message(dump: dump).dig("job_instance", "name")
+      job_name = event_message(dump:).dig("job_instance", "name")
 
       jobs_configuration[job_name] || {}
     end

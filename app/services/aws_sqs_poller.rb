@@ -23,7 +23,7 @@ class AwsSqsPoller
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
       AlmaDumpTransferJob.perform_later(
-        dump: dump,
+        dump:,
         job_id: message_body["job_instance"]["id"]
       )
     end

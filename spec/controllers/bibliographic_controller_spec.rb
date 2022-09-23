@@ -23,7 +23,7 @@ RSpec.describe BibliographicController, type: :controller do
 
   describe '#update' do
     it "returns 410 gone" do
-      post :update, params: { bib_id: bib_id }
+      post :update, params: { bib_id: }
       expect(response.status).to be 410
       expect(response.body).to have_content("Deprecated endpoint")
     end
@@ -56,7 +56,7 @@ RSpec.describe BibliographicController, type: :controller do
         allow(adapter).to receive(:get_bib_record).and_raise("it's broken")
       end
       it 'returns HTTP 500 (internal error) response and logs an error' do
-        get :bib, params: { bib_id: bib_id }
+        get :bib, params: { bib_id: }
         expect(response.status).to eq 500
         expect(Rails.logger).to have_received(:error).with("HTTP 500. Failed to retrieve the record using the bib. ID: 1234567 it's broken")
       end
@@ -68,7 +68,7 @@ RSpec.describe BibliographicController, type: :controller do
         allow(adapter).to receive(:get_bib_record).and_raise(Alma::StandardError, "it's broken")
       end
       it 'returns HTTP 400 (bad request) response and logs an error' do
-        get :bib, params: { bib_id: bib_id }
+        get :bib, params: { bib_id: }
         expect(response.status).to eq 400
         expect(Rails.logger).to have_received(:error).with("HTTP 400. Failed to retrieve the record using the bib. ID: 1234567 it's broken")
       end

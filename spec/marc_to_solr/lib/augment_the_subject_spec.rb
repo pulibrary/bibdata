@@ -151,7 +151,7 @@ RSpec.describe AugmentTheSubject, indexing: true do
       parsed_subfields = JSON.parse(subfields)
       expect(parsed_subfields).to be
       expect(parsed_subfields.keys.empty?).to be false
-      expect(parsed_subfields.keys.first).to be('Acadians')
+      expect(parsed_subfields.keys.first).to eq('Acadians')
       expect(parsed_subfields.values.first[0]).to match_array(["History", "Expulsion, 1755", "Nova Scotia"])
       expect(parsed_subfields["United States"].size).to eq(9)
       expect(parsed_subfields["United States"][3]).to match_array(["History", "Civil War, 1861-1865", "Participation, Indian"])

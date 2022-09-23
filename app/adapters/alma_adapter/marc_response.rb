@@ -20,10 +20,8 @@ class AlmaAdapter
 
       def marc_records
         @marc_records ||=
-          begin
-            MARC::XMLReader.new(bib_marc_xml).to_a.each_with_index.map do |record, idx|
-              AlmaAdapter::MarcRecord.new(bibs[idx], record)
-            end
+          MARC::XMLReader.new(bib_marc_xml).to_a.each_with_index.map do |record, idx|
+            AlmaAdapter::MarcRecord.new(bibs[idx], record)
           end
       end
 

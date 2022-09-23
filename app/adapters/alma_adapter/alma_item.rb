@@ -11,7 +11,7 @@ class AlmaAdapter
       return false if library_code.nil? || location_code.nil?
       Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minutes) do
         # We could get this information from our location table if we want to avoid the Alma API call.
-        record = Alma::Location.find(library_code: library_code, location_code: location_code)
+        record = Alma::Location.find(library_code:, location_code:)
         record.response.dig("fulfillment_unit", "value") == "Reserves"
       end
     end
@@ -233,14 +233,14 @@ class AlmaAdapter
       {
         barcode: item_data["barcode"],
         id: item_data["pid"],
-        holding_id: holding_id,
+        holding_id:,
         copy_number: holding_data["copy_id"],
         status: status[:code],        # Available
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
         process_type: status[:process_type],
         on_reserve: on_reserve? ? "Y" : "N",
-        item_type: item_type, # e.g., Gen
+        item_type:, # e.g., Gen
         pickup_location_id: library, # firestone
         pickup_location_code: library, # firestone
         location: composite_location, # firestone$stacks
@@ -287,7 +287,7 @@ class AlmaAdapter
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
                "Available"
              end
-      { code: code, label: desc, source: "work_order" }
+      { code:, label: desc, source: "work_order" }
     end
 
     def status_from_process_type
@@ -306,13 +306,13 @@ class AlmaAdapter
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       code = value == "1" ? "Available" : "Not Available"
-      { code: code, label: desc, source: "base_status" }
+      { code:, label: desc, source: "base_status" }
     end
 
     # Create the label by retrieving the value from the holding library label (external_name in Alma)
     # Add the library label in front if it exists
     def holding_location_label(code)
-      label = HoldingLocation.find_by(code: code)&.label
+      label = HoldingLocation.find_by(code:)&.label
       [composite_library_label_display, label].select(&:present?).join(" - ")
     end
   end

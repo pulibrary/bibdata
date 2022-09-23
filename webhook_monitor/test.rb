@@ -27,8 +27,8 @@ abort "Server didn't respond to challenge" unless
 req = {
   action: 'sms',
   sms: {
-    msg: msg,
-    to: to
+    msg:,
+    to:
   }
 }.to_json
 

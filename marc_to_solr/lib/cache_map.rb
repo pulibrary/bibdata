@@ -30,7 +30,7 @@ class CacheMap
     @cached_values = @cache.fetch(cache_key)
     return if page == 1 && !@cached_values.nil?
 
-    response = query(page: page)
+    response = query(page:)
     if response.empty?
       @logger.warn "No response could be retrieved from Solr for #{@host}"
       return
@@ -54,7 +54,7 @@ class CacheMap
   # @return [String, nil] the BibID (or nil if it has not been mapped)
   def fetch(ark)
     # Attempt to retrieve this from the cache
-    value = @cache.fetch(self.class.cache_key_for(ark: ark))
+    value = @cache.fetch(self.class.cache_key_for(ark:))
 
     if value.nil?
       @logger.warn "Failed to resolve #{ark}" if URI::ARK.princeton_ark?(url: ark)
@@ -82,10 +82,10 @@ class CacheMap
         bib_id = bib_ids.first
 
         # Write this to the file cache
-        key_for_ark = self.class.cache_key_for(ark: ark)
+        key_for_ark = self.class.cache_key_for(ark:)
         # Handle collisions by refusing to overwrite the first value
         unless @cache.exist?(key_for_ark)
-          @cache.write(key_for_ark, id: id, source_metadata_identifier: bib_id, internal_resource: resource_type)
+          @cache.write(key_for_ark, id:, source_metadata_identifier: bib_id, internal_resource: resource_type)
           @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
         end
       end

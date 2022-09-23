@@ -67,7 +67,7 @@ class RecapBoundwithsProcessingJob < RecapDumpFileProcessingJob
         # cache; skipping any constituents already in the dump file
         begin
           skip_ids = constituent_records.map { |r| r.marc_record["001"].value }
-          missing_constituents = host_record.constituent_records(skip_ids: skip_ids)
+          missing_constituents = host_record.constituent_records(skip_ids:)
           # Add missing constituent records to group
           grouped_records[host_id] << missing_constituents
         rescue AlmaAdapter::ScsbDumpRecord::CacheMiss => e

@@ -7,13 +7,13 @@ RSpec.describe NumismaticsIndexer do
       mock = instance_double(described_class)
       allow(described_class).to receive(:new).and_return(mock)
       allow(mock).to receive(:full_index)
-      described_class.full_index(solr_url: solr_url)
+      described_class.full_index(solr_url:)
       expect(mock).to have_received(:full_index)
     end
   end
 
   describe "#full_index" do
-    subject(:indexer) { described_class.new(solr_connection: solr_connection, progressbar: false, logger: logger) }
+    subject(:indexer) { described_class.new(solr_connection:, progressbar: false, logger:) }
     let(:solr_connection) { RSolr.connect(url: solr_url) }
     let(:logger) { instance_double(Logger) }
 
@@ -46,7 +46,6 @@ RSpec.describe NumismaticsIndexer do
         solr_connection.commit
 
         expect { indexer.full_index }.not_to raise_error
-
         expect(logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, error was: OpenURI::HTTPError: 502 ")
 
         solr_connection.commit

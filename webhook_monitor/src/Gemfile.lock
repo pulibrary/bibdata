@@ -36,14 +36,19 @@ GEM
     diff-lcs (1.5.0)
     jmespath (1.6.1)
     method_source (1.0.0)
+    mini_portile2 (2.8.0)
     msgpack (1.4.3)
     multi_json (1.15.0)
+    nokogiri (1.13.8)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
+    racc (1.6.0)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
       rspec-expectations (~> 3.10.0)
@@ -67,8 +72,9 @@ DEPENDENCIES
   aws-sdk-sqs
   datadog-lambda
   ddtrace
+  nokogiri
   pry-byebug (~> 3.0)
   rspec
 
 BUNDLED WITH
-   2.1.4
+   2.3.3

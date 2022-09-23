@@ -6,7 +6,7 @@ module EzidStubbing
     stub_request(:head, "http://arks.princeton.edu/ark:/#{shoulder}/#{blade}")
       .to_return(status: 301, headers: { location: "http://n2t.net/ark:/#{shoulder}/#{blade}" })
     stub_request(:head, "http://n2t.net/ark:/#{shoulder}/#{blade}")
-      .to_return(status: 302, headers: { location: location })
+      .to_return(status: 302, headers: { location: })
   end
 end
 

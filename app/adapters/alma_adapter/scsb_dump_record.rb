@@ -81,9 +81,7 @@ class AlmaAdapter
     # @return [AlmaAdapter::ScsbDumpRecord]
     def host_record
       @host_record ||=
-        begin
-          records_from_cache([host_id]).first if host_id
-        end
+        (records_from_cache([host_id]).first if host_id)
     end
 
     # Tests is a record is part of a boundwith
@@ -106,7 +104,7 @@ class AlmaAdapter
       holding_fields_by_id.map do |holding_id, fields|
         holding_record = MARC::Record.new
         holding_record.fields.concat(fields)
-        AlmaAdapter::AlmaHolding.for({ "holding_id" => holding_id }, holding_record: holding_record, recap: true)
+        AlmaAdapter::AlmaHolding.for({ "holding_id" => holding_id }, holding_record:, recap: true)
       end
     end
 

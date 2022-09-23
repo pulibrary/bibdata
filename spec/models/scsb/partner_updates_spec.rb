@@ -40,7 +40,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       end
 
       it 'downloads, processes, and attaches the files' do
-        described_class.full(dump: dump)
+        described_class.full(dump:)
 
         # attaches marcxml and log files
         expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(6)
@@ -70,7 +70,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       end
 
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
-        described_class.full(dump: dump)
+        described_class.full(dump:)
 
         # attaches marcxml and log files
         expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)
@@ -95,7 +95,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       end
 
       it 'does not download anything, adds an error message' do
-        described_class.full(dump: dump)
+        described_class.full(dump:)
 
         expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(0)
         expect(dump.event.error).to eq "No full dump files found matching NYPL; No full dump files found matching CUL; No full dump files found matching HL"
@@ -115,7 +115,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     end
 
     it 'downloads, processes, and attaches the files' do
-      described_class.incremental(dump: dump, timestamp: timestamp)
+      described_class.incremental(dump:, timestamp:)
 
       # attaches marcxml and log files
       expect(dump.dump_files.where(dump_file_type: file_type).length).to eq(2)
@@ -135,7 +135,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       expect(Dir.empty?(update_directory_path)).to be true
     end
     it "creates a dump which can be processed by IndexFunctions" do
-      described_class.incremental(dump: dump, timestamp: timestamp)
+      described_class.incremental(dump:, timestamp:)
       Sidekiq::Testing.inline! do
         expect { IndexFunctions.process_scsb_dumps([dump], Rails.application.config.solr["url"]) }.not_to raise_error
       end

@@ -90,7 +90,7 @@ class LocationDataService
 
     # Find the library using the library code
     def find_library_by_code(code)
-      Library.find_by(code: code)
+      Library.find_by(code:)
     end
 
     # Parses holding_locations.json file

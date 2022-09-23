@@ -18,7 +18,7 @@ RSpec.describe IndexJob, type: :job do
       allow(open3).to receive(:popen3).and_return([in_stream, out_stream, error_stream, wait_thr])
       allow(wait_thr).to receive(:pid).and_return(1234)
 
-      index_job.perform(traject: traject, config: config, file: file, url: url, commit: commit)
+      index_job.perform(traject:, config:, file:, url:, commit:)
     end
 
     it 'invokes Traject within the shell and POSTs to Solr' do

@@ -2,7 +2,7 @@ require 'open-uri'
 
 class NumismaticsIndexer
   def self.full_index(solr_url:, progressbar: false, logger: Logger.new(STDERR))
-    new(solr_connection: RSolr.connect(url: solr_url), progressbar: progressbar, logger: logger).full_index
+    new(solr_connection: RSolr.connect(url: solr_url), progressbar:, logger:).full_index
   end
 
   attr_reader :solr_connection, :progressbar, :logger
@@ -33,7 +33,7 @@ class NumismaticsIndexer
   end
 
   def solr_documents
-    json_response = PaginatingJsonResponse.new(url: search_url, logger: logger)
+    json_response = PaginatingJsonResponse.new(url: search_url, logger:)
     pb = progressbar ? ProgressBar.create(total: json_response.total, format: "%a %e %P% Processed: %c from %C") : nil
     json_response.lazy.map do |json_record|
       pb&.increment
@@ -65,7 +65,7 @@ class NumismaticsIndexer
     end
 
     def each
-      response = Response.new(url: url, page: 1)
+      response = Response.new(url:, page: 1)
       loop do
         response.docs.each do |doc|
           json = json_for(doc)
@@ -77,14 +77,14 @@ class NumismaticsIndexer
 
     def json_for(doc)
       path = NumismaticRecordPathBuilder.new(doc).path
-      JSON.parse(open(path).read)
+      JSON.parse(URI.open(path).read)
     rescue => e
       logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
       nil
     end
 
     def total
-      @total ||= Response.new(url: url, page: 1).total_count
+      @total ||= Response.new(url:, page: 1).total_count
     end
 
     class Response
@@ -99,12 +99,12 @@ class NumismaticsIndexer
       end
 
       def response
-        @response ||= JSON.parse(open("#{url}&page=#{page}").read.force_encoding('UTF-8'))
+        @response ||= JSON.parse(URI.open("#{url}&page=#{page}").read.force_encoding('UTF-8'))
       end
 
       def next_page
         return nil unless response["meta"]["pages"]["next_page"]
-        Response.new(url: url, page: response["meta"]["pages"]["next_page"])
+        Response.new(url:, page: response["meta"]["pages"]["next_page"])
       end
 
       def total_count

@@ -67,7 +67,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       end
 
       it 'downloads the files' do
-        described_class.perform_now(dump: dump, job_id: job_id)
+        described_class.perform_now(dump:, job_id:)
 
         expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
         expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
@@ -114,7 +114,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(session_stub).to receive(:download).and_return(download_stub)
         allow(download_stub).to receive(:wait)
 
-        described_class.perform_now(dump: dump, job_id: job_id)
+        described_class.perform_now(dump:, job_id:)
 
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1
@@ -157,7 +157,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(session_stub).to receive(:download).and_return(download_stub)
         allow(download_stub).to receive(:wait)
 
-        described_class.perform_now(dump: dump, job_id: job_id)
+        described_class.perform_now(dump:, job_id:)
 
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1

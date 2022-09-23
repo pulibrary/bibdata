@@ -167,7 +167,7 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger:)
         expect(logger).to have_received(:error).with("9947652213506421 - invalid URL for 856$u value: #{url}")
       end
     end
@@ -180,7 +180,7 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger:)
         expect(logger).to have_received(:error).with("9947652213506421 - invalid URL for 856$u value (http:/): #{url}")
       end
     end
@@ -193,7 +193,7 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'produces a URL' do
-        link = ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        link = ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger:)
         expect(links.key?(url)).to eq true
       end
     end
@@ -202,7 +202,7 @@ describe 'From princeton_marc.rb' do
       let(:url) { 'http://www.strategicstudiesinstitute.army.mil/pdffiles/PUB949[1].pdf' }
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger:)
         expect(logger).to have_received(:error).with("9947652213506421 - invalid URL for 856$u value: #{url}")
       end
     end
@@ -218,7 +218,7 @@ describe 'From princeton_marc.rb' do
       end
 
       it 'logs an error' do
-        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger: logger)
+        ElectronicAccessLink.new(bib_id: 9_947_652_213_506_421, holding_id: nil, z_label: nil, anchor_text: nil, url_key: url, logger:)
         expect(logger).to have_received(:error).with("9947652213506421 - invalid character encoding for 856$u value (invalid bytes replaced by *): abc*ef")
       end
     end

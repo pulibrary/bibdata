@@ -5,12 +5,12 @@ module Scsb
     def self.full(dump:)
       timestamp = DateTime.now.to_time
       constant = 'RECAP_RECORDS_FULL'
-      new(dump: dump, timestamp: timestamp, constant: constant).process_full_files
+      new(dump:, timestamp:, constant:).process_full_files
     end
 
     def self.incremental(dump:, timestamp:)
       constant = 'RECAP_RECORDS'
-      new(dump: dump, timestamp: timestamp.to_time, constant: constant).process_incremental_files
+      new(dump:, timestamp: timestamp.to_time, constant:).process_incremental_files
     end
 
     def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.partner_transfer_client, constant:)
@@ -78,7 +78,7 @@ module Scsb
 
       def download_full_file(file_filter)
         prefix = ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full'
-        @s3_bucket.download_recent(prefix: prefix, output_directory: @update_directory, file_filter: file_filter)
+        @s3_bucket.download_recent(prefix:, output_directory: @update_directory, file_filter:)
       end
 
       def process_partner_updates(files:, file_prefix: 'scsb_update_')
@@ -170,8 +170,8 @@ module Scsb
 
       def attach_dump_file(filepath, constant = nil)
         constant ||= @dump_file_constant
-        dump_file_type = DumpFileType.find_by(constant: constant)
-        df = DumpFile.create(dump_file_type: dump_file_type, path: filepath)
+        dump_file_type = DumpFileType.find_by(constant:)
+        df = DumpFile.create(dump_file_type:, path: filepath)
         df.zip
         df.save
         @dump.dump_files << df

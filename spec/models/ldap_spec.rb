@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Ldap, type: :model do
-  subject(:data) { described_class.find_by_netid('abc123', ldap_connection: ldap_connection) }
+  subject(:data) { described_class.find_by_netid('abc123', ldap_connection:) }
   let(:ldap_connection) { Net::LDAP.new }
   let(:valid_ldap_response) do
     [{ dn: ["uid=abc123,o=princeton university,c=us"], telephonenumber: ["111-222-3333"], edupersonaffiliation: ["member", "staff", "employee"], puhomedepartmentnumber: ["99999"], sn: ["Smith"],

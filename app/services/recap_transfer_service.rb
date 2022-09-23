@@ -1,6 +1,6 @@
 class RecapTransferService
   def self.transfer(file_path:)
-    new(file_path: file_path).transfer
+    new(file_path:).transfer
   end
 
   attr_reader :file_path
@@ -10,7 +10,7 @@ class RecapTransferService
 
   def transfer
     key = File.basename(file_path)
-    s3_bucket.upload_file(key: key, file_path: file_path)
+    s3_bucket.upload_file(key:, file_path:)
   end
 
   private

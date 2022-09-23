@@ -7,6 +7,6 @@ gem "aws-sdk-secretsmanager"
 gem "aws-sdk-sqs"
 gem "datadog-lambda"
 gem "ddtrace"
-
+gem "nokogiri"
 gem 'pry-byebug', '~> 3.0'
 gem 'rspec'

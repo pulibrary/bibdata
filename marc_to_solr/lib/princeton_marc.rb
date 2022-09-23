@@ -355,7 +355,7 @@ def build_cache_manager(figgy_dir_path:)
   figgy_lightly = Lightly.new(dir: figgy_dir_path, life: 0, hash: false)
   figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
 
-  CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger: logger)
+  CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger:)
 
   @cache_manager = CacheManager.current
 end
@@ -385,7 +385,7 @@ def electronic_access_links(record, figgy_dir_path)
     # If the electronic access link is an ARK...
     if electronic_access_link.ark
       # ...and attempt to build an Orangelight URL from the (cached) mappings exposed by the repositories
-      cache_manager = build_cache_manager(figgy_dir_path: figgy_dir_path)
+      cache_manager = build_cache_manager(figgy_dir_path:)
 
       # Orangelight links
       catalog_url_builder = OrangelightUrlBuilder.new(ark_cache: cache_manager.ark_cache, fragment: fragment_value(fragment_index))
@@ -701,7 +701,7 @@ end
 
 def process_holdings(record)
   all_holdings = {}
-  holdings_helpers = ProcessHoldingsHelpers.new(record: record)
+  holdings_helpers = ProcessHoldingsHelpers.new(record:)
   holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
     holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
@@ -716,9 +716,7 @@ def process_holdings(record)
       # if there are no items (876 fields), create the holding by using the 852 field
       all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
     end
-    if all_holdings.present? && all_holdings[holding_id]
-      all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings: all_holdings, holding_id: holding_id)
-    end
+    all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings:, holding_id:) if all_holdings.present? && all_holdings[holding_id]
   end
   all_holdings
 end
@@ -750,11 +748,11 @@ end
 
 # rubocop:disable Metrics/ParameterLists
 def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
-  item = holdings_helpers.build_item(field_852: field_852, field_876: field_876)
+  item = holdings_helpers.build_item(field_852:, field_876:)
   if holding_key.present? || !invalid_location?(holding['location_code'])
     all_holdings[holding_key] = remove_empty_call_number_fields(holding) if all_holdings[holding_key].nil?
   end
-  all_holdings = holdings_helpers.holding_items(value: holding_key, all_holdings: all_holdings, item: item)
+  all_holdings = holdings_helpers.holding_items(value: holding_key, all_holdings:, item:)
 end
 # rubocop:enable Metrics/ParameterLists
 

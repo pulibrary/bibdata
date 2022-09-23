@@ -2,7 +2,7 @@ class AlmaAdapter
   class AvailabilityStatus
     # @param bib [Alma::Bib]
     def self.from_bib(bib:)
-      new(bib: bib)
+      new(bib:)
     end
 
     attr_reader :bib
@@ -16,7 +16,7 @@ class AlmaAdapter
       sequence = 0
       availability = holdings.each_with_object({}) do |holding, acc|
         sequence += 1
-        status = holding_status(holding: holding)
+        status = holding_status(holding:)
         acc[status[:id]] = status unless status.nil?
       end
       availability
@@ -60,12 +60,12 @@ class AlmaAdapter
       return nil if holding["inventory_type"] != "physical"
 
       location_info = location_record(holding)
-      status_label = Status.new(bib: bib, holding: holding, aeon: aeon?(location_info)).to_s
+      status_label = Status.new(bib:, holding:, aeon: aeon?(location_info)).to_s
       status = {
         on_reserve: AlmaItem.reserve_location?(holding["library_code"], holding["location_code"]) ? "Y" : "N",
         location: holding_location_code(holding),
         label: holding_location_label(holding, location_info),
-        status_label: status_label,
+        status_label:,
         copy_number: nil,
         cdl: false,
         temp_location: false,
@@ -112,7 +112,7 @@ class AlmaAdapter
     def holding_summary(holding)
       holding_item_data = item_data[holding["holding_id"]]
       location_info = location_record(holding)
-      status = Status.new(bib: bib, holding: holding, aeon: aeon?(location_info))
+      status = Status.new(bib:, holding:, aeon: aeon?(location_info))
       {
         item_id: holding_item_data&.first&.item_data&.fetch("pid", nil),
         location: "#{holding['library_code']}-#{holding['location_code']}",
@@ -127,7 +127,7 @@ class AlmaAdapter
 
       options = { timeout: 10 }
       message = "All items for #{bib.id}"
-      items = AlmaAdapter::Execute.call(options: options, message: message) do
+      items = AlmaAdapter::Execute.call(options:, message:) do
         # This method DOES issue a separate call to the Alma API to get item information.
         # Internally this call passes "ALL" to ExLibris to get data for all the holdings
         # in the current bib record.
@@ -164,10 +164,10 @@ class AlmaAdapter
       data = nil
       options = { enable_loggable: true, timeout: 10 }
       message = "Items for bib: #{bib.id}, holding_id: #{holding_id}"
-      AlmaAdapter::Execute.call(options: options, message: message) do
-        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id: holding_id, order_by: "enum_a" }
+      AlmaAdapter::Execute.call(options:, message:) do
+        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id:, order_by: "enum_a" }
         items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
-        data = { items: items, total_count: items.count }
+        data = { items:, total_count: items.count }
       end
       data
     end

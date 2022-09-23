@@ -42,12 +42,12 @@ namespace :scsb do
 
     dump_type = ENV['DUMP_TYPE'] || "PARTNER_RECAP"
     dump_type_id = DumpType.where(constant: dump_type).first.id
-    dump = Dump.new(event_id: ev.id, dump_type_id: dump_type_id)
+    dump = Dump.new(event_id: ev.id, dump_type_id:)
     dump.save
 
     dump_file_type = ENV['DUMP_FILE_TYPE'] || "RECAP_RECORDS"
     dump_file_type_id = DumpFileType.where(constant: dump_file_type).first.id
-    dump_file = DumpFile.new(dump_id: dump.id, dump_file_type_id: dump_file_type_id, path: ENV['FILE'])
+    dump_file = DumpFile.new(dump_id: dump.id, dump_file_type_id:, path: ENV['FILE'])
     dump_file.save
   end
 

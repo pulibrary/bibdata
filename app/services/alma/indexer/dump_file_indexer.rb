@@ -15,7 +15,7 @@ class Alma::Indexer
     end
 
     def indexer
-      @indexer ||= Alma::Indexer.new(solr_url: solr_url)
+      @indexer ||= Alma::Indexer.new(solr_url:)
     end
 
     def decompress_file(&block)

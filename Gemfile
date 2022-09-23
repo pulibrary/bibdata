@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro', '5.2.2'
+  gem 'sidekiq-pro'
 end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
-gem 'bixby', '~> 3.0'
+gem 'bixby', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-passenger'
 gem 'capistrano-rails', '~> 1.1.1'
@@ -38,10 +38,12 @@ gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.7.0'
 gem 'multi_json', '~> 1.10.1'
 gem 'net-ldap'
 gem 'net-sftp', '~> 2.1', '>= 2.1.2'
+gem 'net-smtp', require: false
 gem 'oj'
 gem 'omniauth-cas'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.4.2'
 gem 'pg'
+gem 'psych', '~> 4.0.0'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
 gem 'rails', '~> 6.1'
@@ -61,7 +63,6 @@ gem 'traject'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', "~> 0.10"
-gem 'yaml_db', '~> 0.7.0'
 gem 'yard'
 
 group :development do

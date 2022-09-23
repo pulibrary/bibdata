@@ -67,7 +67,7 @@ RSpec.describe AwsSqsPoller do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
-        job_id: job_id,
+        job_id:,
         dump: instance_of(Dump)
       )
 
@@ -89,7 +89,7 @@ RSpec.describe AwsSqsPoller do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
-        job_id: job_id,
+        job_id:,
         dump: instance_of(Dump)
       )
 
@@ -111,7 +111,7 @@ RSpec.describe AwsSqsPoller do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
-        job_id: job_id,
+        job_id:,
         dump: instance_of(Dump)
       )
 
