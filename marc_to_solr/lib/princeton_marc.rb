@@ -611,16 +611,26 @@ def prep_name_title record, fields
   values
 end
 
-# @param fields [Array] with portions of hierarchy from name-titles
-# @return [Array] name-title portions of hierarchy including previous elements, author
-def join_hierarchy_without_author fields
-  fields.collect { |h| h.collect.with_index { |_v, i| Traject::Macros::Marc21.trim_punctuation(h[0..i].join(' ')) } }
+# @param fields [Array] with portions of hierarchy
+# @return [Array] portions of hierarchy including previous elements
+def expand_sublists_for_hierarchy(fields)
+  fields.collect do |field|
+    field.collect.with_index do |_v, index|
+      Traject::Macros::Marc21.trim_punctuation(field[0..index].join(' '))
+    end
+  end
 end
 
-# @param fields [Array] with portions of hierarchy from name-titles
-# @return [Array] name-title portions of hierarchy including previous elements
-def join_hierarchy fields
-  join_hierarchy_without_author(fields).map { |a| a[1..-1] }
+# @param fields [Array] with portions of hierarchy from name-titles or title-only fields
+# @return [Array] portions of hierarchy including previous elements
+def join_hierarchy(fields, include_first_element: false)
+  if include_first_element == false
+    # Exclude the name-only portion of hierarchy
+    expand_sublists_for_hierarchy(fields).map { |a| a[1..-1] }
+  else
+    # Include full hierarchy
+    expand_sublists_for_hierarchy(fields)
+  end
 end
 
 # Removes empty call_number fields from holdings_1display
