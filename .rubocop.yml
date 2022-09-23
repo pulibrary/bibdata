@@ -27,7 +27,7 @@ Rails/UnknownEnv:
 
 AllCops:
   DisplayCopNames: true
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3
   Exclude:
     - 'db/**/*'
     - 'bin/*'

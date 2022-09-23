@@ -46,7 +46,6 @@ RSpec.describe NumismaticsIndexer do
         solr_connection.commit
 
         expect { indexer.full_index }.not_to raise_error
-
         expect(logger).to have_received(:warn).with("Failed to retrieve numismatics document from https://figgy.princeton.edu/concern/numismatics/coins/92fa663d-5758-4b20-8945-cf5a34458e6e/orangelight, error was: OpenURI::HTTPError: 502 ")
 
         solr_connection.commit

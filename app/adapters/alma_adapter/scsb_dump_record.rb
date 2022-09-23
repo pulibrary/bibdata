@@ -81,9 +81,7 @@ class AlmaAdapter
     # @return [AlmaAdapter::ScsbDumpRecord]
     def host_record
       @host_record ||=
-        begin
-          records_from_cache([host_id]).first if host_id
-        end
+        (records_from_cache([host_id]).first if host_id)
     end
 
     # Tests is a record is part of a boundwith

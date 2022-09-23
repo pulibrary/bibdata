@@ -50,9 +50,8 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (5.2.2)
-      connection_pool (>= 2.2.3)
-      sidekiq (>= 6.2.0)
+    sidekiq-pro (5.5.4)
+      sidekiq (>= 6.5.6)
 
 GEM
   remote: https://rubygems.org/
@@ -145,9 +144,9 @@ GEM
     backport (1.2.0)
     bcrypt (3.1.16)
     benchmark (0.2.0)
-    bixby (3.0.2)
-      rubocop (= 0.85.1)
-      rubocop-ast (~> 0.3.0)
+    bixby (5.0.2)
+      rubocop (= 1.28.2)
+      rubocop-ast
       rubocop-performance
       rubocop-rails
       rubocop-rspec
@@ -189,7 +188,7 @@ GEM
     chronic (0.10.2)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
-    connection_pool (2.2.5)
+    connection_pool (2.3.0)
     coveralls_reborn (0.23.1)
       simplecov (>= 0.18.1, < 0.22.0)
       term-ansicolor (~> 1.6)
@@ -264,7 +263,7 @@ GEM
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    i18n (1.11.0)
+    i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     iso-639 (0.3.5)
     jaro_winkler (1.5.4)
@@ -317,7 +316,7 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
-    minitest (5.16.2)
+    minitest (5.16.3)
     msgpack (1.5.1)
     multi_json (1.10.1)
     multi_xml (0.6.0)
@@ -350,7 +349,7 @@ GEM
       omniauth (>= 1.3.1)
     orm_adapter (0.5.0)
     parallel (1.22.1)
-    parser (3.1.2.0)
+    parser (3.1.2.1)
       ast (~> 2.4.1)
     pg (1.3.0)
     pry (0.13.1)
@@ -405,8 +404,8 @@ GEM
     rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (4.5.1)
-    regexp_parser (2.4.0)
+    redis (4.8.0)
+    regexp_parser (2.5.0)
     request_store (1.5.1)
       rack (>= 1.4)
     rerun (0.10.0)
@@ -443,25 +442,26 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
-    rubocop (0.85.1)
+    rubocop (1.28.2)
       parallel (~> 1.10)
-      parser (>= 2.7.0.1)
+      parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.7)
+      regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 0.0.3)
+      rubocop-ast (>= 1.17.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.3.0)
-      parser (>= 2.7.1.4)
-    rubocop-performance (1.7.1)
-      rubocop (>= 0.82.0)
-    rubocop-rails (2.6.0)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.21.0)
+      parser (>= 3.1.1.0)
+    rubocop-performance (1.15.0)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.15.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 0.82.0)
-    rubocop-rspec (1.41.0)
-      rubocop (>= 0.68.1)
+      rubocop (>= 1.7.0, < 2.0)
+    rubocop-rspec (2.11.1)
+      rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     rubyXL (3.4.20)
       nokogiri (>= 1.10.8)
@@ -482,10 +482,10 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
-    sidekiq (6.4.0)
-      connection_pool (>= 2.2.2)
+    sidekiq (6.5.7)
+      connection_pool (>= 2.2.5)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      redis (>= 4.5.0, < 5)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -550,14 +550,14 @@ GEM
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
-    tzinfo (2.0.4)
+    tzinfo (2.0.5)
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.8)
-    unicode-display_width (1.8.0)
+    unicode-display_width (2.3.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webdrivers (5.0.0)
@@ -579,9 +579,6 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yaml (0.2.0)
-    yaml_db (0.7.0)
-      rails (>= 3.0)
-      rake (>= 0.8.7)
     yard (0.9.27)
       webrick (~> 1.7.0)
     yell (2.2.2)
@@ -594,7 +591,7 @@ DEPENDENCIES
   alma!
   aws-sdk-s3
   aws-sdk-sqs
-  bixby (~> 3.0)
+  bixby (~> 5.0)
   bootstrap-sass (~> 3.4.1)
   capistrano-passenger
   capistrano-rails (~> 1.1.1)
@@ -653,7 +650,7 @@ DEPENDENCIES
   rubyzip (>= 1.2.2)
   sass-rails
   selenium-webdriver
-  sidekiq-pro (= 5.2.2)!
+  sidekiq-pro!
   simplecov
   solargraph
   solr_wrapper
@@ -666,8 +663,7 @@ DEPENDENCIES
   webdrivers
   webmock
   whenever (~> 0.10)
-  yaml_db (~> 0.7.0)
   yard
 
 BUNDLED WITH
-   2.2.27
+   2.2.33

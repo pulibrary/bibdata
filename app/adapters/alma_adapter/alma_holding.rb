@@ -35,13 +35,11 @@ class AlmaAdapter
 
     def holding_record
       @holding_record ||=
-        begin
-          MARC::XMLReader.new(
+        MARC::XMLReader.new(
             StringIO.new(
               holding["anies"].first
             )
           ).first
-        end
     end
 
     def holding_id

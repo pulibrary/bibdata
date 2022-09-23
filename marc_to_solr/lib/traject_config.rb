@@ -772,7 +772,7 @@ end
 #    561 XX 3ab
 #    796 XX abcqde
 #    797 XX abcqde
-to_field 'provenance_display', extract_marc('561|1*|3ab:561| *|3ab') #:796abcqde:797abcqde')
+to_field 'provenance_display', extract_marc('561|1*|3ab:561| *|3ab') # :796abcqde:797abcqde')
 
 # Source of acquisition:
 #    541 XX abcdefhno36

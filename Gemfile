@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro', '5.2.2'
+  gem 'sidekiq-pro'
 end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
-gem 'bixby', '~> 3.0'
+gem 'bixby', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-passenger'
 gem 'capistrano-rails', '~> 1.1.1'
@@ -61,7 +61,6 @@ gem 'traject'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
 gem 'whenever', "~> 0.10"
-gem 'yaml_db', '~> 0.7.0'
 gem 'yard'
 
 group :development do

@@ -77,7 +77,7 @@ class NumismaticsIndexer
 
     def json_for(doc)
       path = NumismaticRecordPathBuilder.new(doc).path
-      JSON.parse(open(path).read)
+      JSON.parse(URI.open(path).read)
     rescue => e
       logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
       nil
@@ -99,7 +99,7 @@ class NumismaticsIndexer
       end
 
       def response
-        @response ||= JSON.parse(open("#{url}&page=#{page}").read.force_encoding('UTF-8'))
+        @response ||= JSON.parse(URI.open("#{url}&page=#{page}").read.force_encoding('UTF-8'))
       end
 
       def next_page
