@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>00000ntmaa22000002u 4500</leader>
+        <controlfield tag="008">000000e18791879xx      |           eng d</controlfield>
+        <controlfield tag="001">99125628841606421</controlfield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(PULFA)C0140_c03779-18847</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="c">eng</subfield>
+        </datafield>
+        <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="a">i</subfield>
+            <subfield code="c">1879</subfield>
+            <subfield code="e">1879</subfield>
+        </datafield>
+        <datafield tag="099" ind1=" " ind2=" ">
+            <subfield code="a">C0140_c03779-18847</subfield>
+        </datafield>
+        <datafield tag="100" ind1="1" ind2="0">
+            <subfield code="a">Douglass, Frederick.</subfield>
+            <subfield code="4">cre</subfield>
+            <subfield code="0">https://viaf.org/viaf/10088</subfield>
+        </datafield>
+        <datafield tag="245" ind1=" " ind2=" ">
+            <subfield code="a">Frederick Douglass Letter to William Henry Johnson</subfield>
+            <subfield code="f">1879</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">1</subfield>
+            <subfield code="f">folder</subfield>
+        </datafield>
+        <datafield tag="506" ind1=" " ind2=" ">
+            <subfield code="a">Collection is open for research use.</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+            <subfield code="a">Consists of a one-page autograph letter sent from American abolitionist Frederick Douglass (1818-1895) to fellow abolitionist William Henry Johnson (1833-1918) two years after the close of the Reconstruction era. In the letter, Douglass refers to a speech he was preparing regarding his views on the Exodus movement of 1879, or the first generational migration of African Americans along the Mississippi River towards Kansas following the American Civil War. The speech, entitled "The Negro Exodus from the Gulf States," was given at a meeting of the American Association for the Promotion of Social Sciences held in Saratoga, New York, on September 9, 1879.</subfield>
+        </datafield>
+        <datafield tag="541" ind1=" " ind2=" ">
+            <subfield code="a">Purchased from Raptis Rare Books in 2022 (AM 2023-015).</subfield>
+        </datafield>
+        <datafield tag="583" ind1=" " ind2=" ">
+            <subfield code="a">Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Abolitionists</subfield>
+            <subfield code="z">United States</subfield>
+            <subfield code="x">History</subfield>
+            <subfield code="y">19th century</subfield>
+            <subfield code="v">Correspondence</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">African American abolitionists</subfield>
+            <subfield code="v">Correspondence</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">African Americans</subfield>
+            <subfield code="x">Migrations</subfield>
+            <subfield code="x">History</subfield>
+            <subfield code="y">19th century</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="4">
+            <subfield code="a">Correspondence</subfield>
+            <subfield code="y">19th century</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="a">Johnson, William Henry.</subfield>
+            <subfield code="0">http://viaf.org/viaf/23446671</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Douglass, Frederick.</subfield>
+            <subfield code="4">cre</subfield>
+            <subfield code="0">https://viaf.org/viaf/10088</subfield>
+        </datafield>
+        <datafield tag="856" ind1="4" ind2="2">
+            <subfield code="z">Finding aid online: </subfield>
+            <subfield code="u">https://findingaids.princeton.edu/catalog/C0140_c03779-18847</subfield>
+        </datafield>
+        <datafield tag="982" ind1=" " ind2=" ">
+            <subfield code="c">mss</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2022-09-08 10:21:53 US/Eastern</subfield>
+            <subfield code="b">2022-08-31 13:42:53 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="852" ind1="0" ind2=" ">
+            <subfield code="b">rare</subfield>
+            <subfield code="c">mss</subfield>
+            <subfield code="8">22943320940006421</subfield>
+        </datafield>
+        <datafield tag="952" ind1=" " ind2=" ">
+            <subfield code="d">2022-09-08 14:22:03</subfield>
+            <subfield code="8">22943320940006421</subfield>
+            <subfield code="a">2022-09-02 13:36:16</subfield>
+            <subfield code="b">Special Collections</subfield>
+            <subfield code="c">mss: Manuscripts</subfield>
+            <subfield code="e">false</subfield>
+        </datafield>
+    </record>
+</collection>

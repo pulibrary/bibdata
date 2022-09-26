@@ -782,6 +782,14 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 #    581 XX az36
 to_field 'publications_about_display', extract_marc('581az36')
 
+# Action note:
+#    583 XX a
+to_field 'action_notes_display', extract_marc('583a') do |record, accumulator|
+  MarcExtractor.cached('035').collect_matching_lines(record) do |field, _spec, _extractor|
+    accumulator if field.to_s.include?('PULFA')
+  end
+end
+
 # Indexed in:
 #    510 0X 3abc
 #    510 1X 3abc
