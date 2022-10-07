@@ -136,107 +136,108 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "status" do
-    let(:item_work_order_acq) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "99122455086806421" },
-        "holding_data" => { "holding_id" => "22477860740006421" },
-        "item_data" => {
-          "pid" => "23477860730006421",
-          "base_status" => { "value" => "0", "desc" => "Item not in place" },
-          "process_type" => { "value" => "WORK_ORDER_DEPARTMENT", "desc" => "In Process" },
-          "work_order_type" => { "value" => "AcqWorkOrder", "desc" => "Acquisitions and Cataloging" },
-          "work_order_at" => { "value" => "AcqDepttechserv", "desc" => "Acquisitions and Cataloging" }
-        }
-      )
+    let(:item) { described_class.new(bib_item) }
+    let(:status) { item.calculate_status }
+    let(:base_status) { { "value" => "0", "desc" => "Item in place" } }
+
+    describe 'work order' do
+      let(:process_type) { { "value" => "WORK_ORDER_DEPARTMENT", "desc" => "In Process" } }
+
+      let(:bib_item) do
+        Alma::BibItem.new(
+          "bib_data" => { "mms_id" => "99122455086806421" },
+          "holding_data" => { "holding_id" => "22477860740006421" },
+          "item_data" => {
+            "pid" => "23477860730006421",
+            "base_status" => base_status,
+            "work_order_type" => work_order_type,
+            "work_order_at" => work_order_at
+          }
+        )
+      end
+
+      context 'in acquisitions' do
+        let(:work_order_type) { { "value" => "AcqWorkOrder", "desc" => "Acquisitions and Cataloging" } }
+        let(:work_order_at) { { "value" => "AcqDepttechserv", "desc" => "Acquisitions and Cataloging" } }
+
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
+
+      context 'in collection development' do
+        let(:work_order_type) { { "value" => "CollDev", "desc" => "Collection Development Office" } }
+        let(:work_order_at) { { "value" => "CollDev", "desc" => "Collection Development Office" } }
+
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
+
+      context 'in holdings management' do
+        let(:work_order_type) { { "value" => "HMT", "desc" => "Holdings Management" } }
+        let(:work_order_at) { { "value" => "HMT", "desc" => "Holdings Management" } }
+
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
+    end
+    describe 'process type' do
+      let(:bib_item) do
+        Alma::BibItem.new(
+          "bib_data" => { "mms_id" => "9939075533506421" },
+          "holding_data" => { "holding_id" => "22194161030006421" },
+          "item_data" => {
+            "pid" => "23194161020006421",
+            "base_status" => base_status,
+            "process_type" => process_type
+          }
+        )
+      end
+
+      context 'acquisitions' do
+        let(:process_type) { { "value" => "ACQ", "desc" => "Acquisition" } }
+
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
+      context 'missing' do
+        let(:process_type) { { "value" => "MISSING", "desc" => "Missing" } }
+
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
     end
 
-    let(:item_work_order_coll_dev) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "99122455086806421" },
-        "holding_data" => { "holding_id" => "22477860740006421" },
-        "item_data" => {
-          "pid" => "23477860730006421",
-          "base_status" => { "value" => "0", "desc" => "Item not in place" },
-          "process_type" => { "value" => "WORK_ORDER_DEPARTMENT", "desc" => "In Process" },
-          "work_order_type" => { "value" => "CollDev", "desc" => "Collection Development Office" },
-          "work_order_at" => { "value" => "CollDev", "desc" => "Collection Development Office" }
-        }
-      )
-    end
+    describe 'base status' do
+      let(:bib_item) do
+        Alma::BibItem.new(
+          "bib_data" => { "mms_id" => "9939075533506421" },
+          "holding_data" => { "holding_id" => "22194161030006421" },
+          "item_data" => {
+            "pid" => "23194161020006421",
+            "base_status" => base_status
+          }
+        )
+      end
 
-    let(:item_work_order_holdings_mgmt) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "99122455086806421" },
-        "holding_data" => { "holding_id" => "22477860740006421" },
-        "item_data" => {
-          "pid" => "23477860730006421",
-          "base_status" => { "value" => "1", "desc" => "Item in place" },
-          "process_type" => { "value" => "TRANSIT", "desc" => "Transit" },
-          "work_order_type" => { "value" => "HMT", "desc" => "Holdings Management" },
-          "work_order_at" => { "value" => "HMT", "desc" => "Holdings Management" }
-        }
-      )
-    end
+      context 'in place' do
+        let(:base_status) { { "value" => "1", "desc" => "Item in place" } }
 
-    let(:item_process_type_acq) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "9939075533506421" },
-        "holding_data" => { "holding_id" => "22194161030006421" },
-        "item_data" => {
-          "pid" => "23194161020006421",
-          "base_status" => { "value" => "0", "desc" => "Item not in place" },
-          "process_type" => { "value" => "ACQ", "desc" => "Acquisition" }
-        }
-      )
-    end
+        it "marks the items as 'Available'" do
+          expect(status[:code]).to eq "Available"
+        end
+      end
+      context 'not in place' do
+        let(:base_status) { { "value" => "0", "desc" => "Item not in place" } }
 
-    let(:item_base_status_in_place) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "9939075533506421" },
-        "holding_data" => { "holding_id" => "22194161030006421" },
-        "item_data" => { "pid" => "23194161020006421", "base_status" => { "value" => "1", "desc" => "Item in place" } }
-      )
-    end
-
-    let(:item_base_status_not_in_place) do
-      Alma::BibItem.new(
-        "bib_data" => { "mms_id" => "9939075533506421" },
-        "holding_data" => { "holding_id" => "22194161030006421" },
-        "item_data" => { "pid" => "23194161020006421", "base_status" => { "value" => "0", "desc" => "Item not in place" } }
-      )
-    end
-
-    it "handles items with work order in acquisitions" do
-      item = described_class.new(item_work_order_acq)
-      status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
-    end
-
-    it "handles items with work order in collection development" do
-      item = described_class.new(item_work_order_coll_dev)
-      status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
-    end
-
-    it "handles items with work order in holdings management" do
-      item = described_class.new(item_work_order_holdings_mgmt)
-      status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
-    end
-    it "handles items with process type in acquisitions" do
-      item = described_class.new(item_process_type_acq)
-      status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
-    end
-
-    it "handles items with base status (in place)" do
-      item = described_class.new(item_base_status_in_place)
-      expect(item.calculate_status[:code]).to eq "Available"
-    end
-
-    it "handles items with base status (not in place)" do
-      item = described_class.new(item_base_status_not_in_place)
-      expect(item.calculate_status[:code]).to eq "Not Available"
+        it "marks the items as 'Not Available'" do
+          expect(status[:code]).to eq "Not Available"
+        end
+      end
     end
   end
 end

@@ -1,0 +1,158 @@
+{
+  "item": [
+    {
+      "bib_data": {
+        "mms_id": "9963575053506421",
+        "bib_suppress_from_publishing": "false",
+        "title": "Bidāyat al-hidāyah.",
+        "author": "Ghazzālī,",
+        "issn": null,
+        "isbn": null,
+        "complete_edition": "",
+        "network_number": [
+          "(NjP)6357505-princetondb",
+          "6357505"
+        ],
+        "date_of_publication": "1600",
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9963575053506421"
+      },
+      "holding_data": {
+        "holding_id": "22726823980006421",
+        "holding_suppress_from_publishing": "false",
+        "permanent_call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "permanent_call_number": "Islamic Manuscripts, Garrett no. 337L",
+        "call_number_type": {
+          "value": "8",
+          "desc": "Other scheme"
+        },
+        "call_number": "Islamic Manuscripts, Garrett no. 337L",
+        "accession_number": "",
+        "copy_id": "1",
+        "in_temp_location": false,
+        "temp_library": {
+          "value": null,
+          "desc": null
+        },
+        "temp_location": {
+          "value": null,
+          "desc": null
+        },
+        "temp_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "temp_call_number": "",
+        "temp_call_number_source": "",
+        "temp_policy": {
+          "value": "",
+          "desc": null
+        },
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9963575053506421/holdings/22726823980006421"
+      },
+      "item_data": {
+        "pid": "23726823970006421",
+        "barcode": "",
+        "creation_date": "2012-04-26Z",
+        "modification_date": "2012-05-22Z",
+        "base_status": {
+          "value": "0",
+          "desc": "Item not in place"
+        },
+        "awaiting_reshelving": false,
+        "physical_material_type": {
+          "value": "MANUSCRIPT",
+          "desc": "Manuscript"
+        },
+        "policy": {
+          "value": "Closed",
+          "desc": "Closed"
+        },
+        "provenance": {
+          "value": "",
+          "desc": null
+        },
+        "po_line": "",
+        "is_magnetic": false,
+        "arrival_date": "2012-04-27Z",
+        "year_of_issue": "",
+        "enumeration_a": "",
+        "enumeration_b": "",
+        "enumeration_c": "",
+        "enumeration_d": "",
+        "enumeration_e": "",
+        "enumeration_f": "",
+        "enumeration_g": "",
+        "enumeration_h": "",
+        "chronology_i": "",
+        "chronology_j": "",
+        "chronology_k": "",
+        "chronology_l": "",
+        "chronology_m": "",
+        "break_indicator": {
+          "value": "",
+          "desc": null
+        },
+        "pattern_type": {
+          "value": "",
+          "desc": null
+        },
+        "linking_number": "",
+        "type_of_unit": "",
+        "description": "",
+        "receiving_operator": "import",
+        "process_type": {
+          "value": "MISSING",
+          "desc": "Missing"
+        },
+        "inventory_number": "",
+        "inventory_price": "",
+        "library": {
+          "value": "rare",
+          "desc": "Special Collections"
+        },
+        "location": {
+          "value": "hsvm",
+          "desc": "hsvm: Manuscripts South East"
+        },
+        "alternative_call_number": "",
+        "alternative_call_number_type": {
+          "value": "",
+          "desc": null
+        },
+        "storage_location_id": "",
+        "pages": "",
+        "pieces": "1",
+        "public_note": "",
+        "fulfillment_note": "",
+        "internal_note_1": "",
+        "internal_note_2": "",
+        "internal_note_3": "ON_RESERVE: N | RESERVE_CHARGES: 0 | RECALLS_PLACED: 0 | HOLDS_PLACED: 0 | HISTORICAL_BOOKINGS: 0 | SHORT_LOAN_CHARGES: 0 | 20120427: Missing; ",
+        "statistics_note_1": "",
+        "statistics_note_2": "",
+        "statistics_note_3": "",
+        "requested": false,
+        "edition": null,
+        "imprint": null,
+        "language": null,
+        "physical_condition": {
+          "value": null,
+          "desc": null
+        },
+        "committed_to_retain": {
+          "value": null,
+          "desc": null
+        },
+        "retention_reason": {
+          "value": "",
+          "desc": null
+        },
+        "retention_note": ""
+      },
+      "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9963575053506421/holdings/22726823980006421/items/23726823970006421"
+    }
+  ],
+  "total_record_count": 1
+}
