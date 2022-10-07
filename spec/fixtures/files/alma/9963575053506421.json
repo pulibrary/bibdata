@@ -1,0 +1,50 @@
+{
+  "bib": [
+    {
+      "mms_id": "9963575053506421",
+      "record_format": "marc21",
+      "linked_record_id": {
+        "value": null,
+        "type": null
+      },
+      "title": "Bidāyat al-hidāyah.",
+      "author": "Ghazzālī,",
+      "issn": null,
+      "isbn": null,
+      "network_number": [
+        "(NjP)6357505-princetondb",
+        "6357505"
+      ],
+      "date_of_publication": "1600",
+      "holdings": {
+        "value": null,
+        "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9963575053506421/holdings"
+      },
+      "created_by": "import",
+      "created_date": "2021-07-13Z",
+      "last_modified_by": "System",
+      "last_modified_date": "2021-08-21Z",
+      "suppress_from_publishing": "false",
+      "suppress_from_external_search": "false",
+      "suppress_from_metadoor": "false",
+      "rank": "45",
+      "sync_with_oclc": "NONE",
+      "sync_with_libraries_australia": "NONE",
+      "originating_system": "ILS",
+      "originating_system_id": "6357505-princetondb",
+      "brief_level": {
+        "value": "01",
+        "desc": "01"
+      },
+      "anies": [
+        "<?xml version=\"1.0\" encoding=\"UTF-16\"?><record><leader>02184ctmaa22002772a 4500</leader><controlfield tag=\"001\">9963575053506421</controlfield><controlfield tag=\"005\">20200927201902.0</controlfield><controlfield tag=\"008\">851121q16001699xx            000 0 ara d</controlfield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">6357505</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"035\"><subfield code=\"a\">(NjP)6357505-princetondb</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"040\"><subfield code=\"a\">PUL</subfield><subfield code=\"c\">PUL</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"066\"><subfield code=\"c\">(3</subfield></datafield><datafield ind1=\"0\" ind2=\" \" tag=\"100\"><subfield code=\"a\">Ghazzālī,</subfield><subfield code=\"d\">1058-1111.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/names/n82097778</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"245\"><subfield code=\"6\">880-01</subfield><subfield code=\"a\">Bidāyat al-hidāyah.</subfield></datafield><datafield ind1=\"1\" ind2=\"0\" tag=\"880\"><subfield code=\"6\">245-01/r</subfield><subfield code=\"a\">بداىة الهداىة.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Copied A.H. 1041 [A.D. 1632] by Aḥmad... ʻAbd al-Karīm... al-Shāfiʻī.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Fols. 18; 20.8 x 14.8 cm.; written surface 16.5 x 11 cm.; 29 lines to page; on glazed European paper; in naskhi; with catchwords; entries in red.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">A religious and moral treatise which demonstrates that knowledge without faith in God is vain. It discusses the way to God through obedience to the moral code in the heart and in behavior.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Beg.: بسم الله ... اما بعد فاعلم اىها الحرىص على اقتباس</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Colophon: تم الکتاب وهو بداىة الهداىة بحمد الله وعونه وحسن توفىقه وصلى الله على سىدنا محمد واله وصحبه وسلم بتارىخ ىوم الاربعاء المبارك عاشر شهر رمضان المعظم قدره وحرمته من شهور سنة 1041 على ىد الفقىر الحقىر احمد ... عبد الکرىم ... الشافعي لطف الله بهما وختم لهما بخىر وعفي عنهما وغفر لهما وللمسلمىن اجمعىن</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Marginal notes and glosses. MS in good condition.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Acquired from Brill, Leyden, A.D. 1904.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">ḥājjī Khalīfah, Kashf al-ẓunūn (1835-58), II, p. 24; Ahlwardt, Verzeichnis der arabischen Handschriften, 3263/4; Catalogue des manuscrits arabes de la Bibliothèque Nationale, 1293.</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"500\"><subfield code=\"a\">Printed in Cairo, A.H. 1277, 1303.</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Religious life</subfield><subfield code=\"x\">Islam</subfield><subfield code=\"v\">Early works to 1800.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh86008165</subfield></datafield><datafield ind1=\" \" ind2=\"0\" tag=\"650\"><subfield code=\"a\">Islam</subfield><subfield code=\"x\">Customs and practices</subfield><subfield code=\"v\">Early works to 1800.</subfield><subfield code=\"0\">http://id.loc.gov/authorities/subjects/sh2008104961</subfield></datafield><datafield ind1=\" \" ind2=\"7\" tag=\"655\"><subfield code=\"a\">Manuscripts, Arabic</subfield><subfield code=\"y\">17th century.</subfield><subfield code=\"2\">lcsh</subfield></datafield><datafield ind1=\" \" ind2=\" \" tag=\"AVA\"><subfield code=\"0\">9963575053506421</subfield><subfield code=\"8\">22726823980006421</subfield><subfield code=\"a\">01PRI_INST</subfield><subfield code=\"b\">rare</subfield><subfield code=\"c\">Manuscripts</subfield><subfield code=\"d\">Islamic Manuscripts, Garrett no. 337L</subfield><subfield code=\"e\">unavailable</subfield><subfield code=\"f\">1</subfield><subfield code=\"g\">1</subfield><subfield code=\"j\">hsvm</subfield><subfield code=\"k\">8</subfield><subfield code=\"p\">1</subfield><subfield code=\"q\">Special Collections</subfield></datafield></record>"
+      ],
+      "requests": {
+        "value": 0,
+        "link": null
+      },
+      "link": null
+    }
+  ],
+  "total_record_count": 1
+}

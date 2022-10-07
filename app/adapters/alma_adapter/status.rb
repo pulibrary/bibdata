@@ -14,7 +14,7 @@ class AlmaAdapter::Status
   end
 
   def to_s
-    return "On-site Access" if on_site_holding?
+    return "On-site Access" if on_site_holding? && holding["availability"] != "unavailable"
     return "Some items not available" if holding["availability"] == "check_holdings"
     return holding["availability"].titlecase if holding["availability"]
 
