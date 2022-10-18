@@ -2361,6 +2361,28 @@
         ]
     },
     {
+        "label": "Indigenous Studies Collection",
+        "code": "firestone$isc",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/firestone$isc.json",
+        "library": {
+            "label": "Firestone Library",
+            "code": "firestone",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PA"
+        ]
+    },
+    {
         "label": "Travel Guides",
         "code": "firestone$trv",
         "aeon_location": false,
