@@ -39,6 +39,7 @@ gem 'multi_json', '~> 1.10.1'
 gem 'net-ldap'
 gem 'net-sftp', '~> 2.1', '>= 2.1.2'
 gem 'net-smtp', require: false
+gem 'net-pop', require: false
 gem 'oj'
 gem 'omniauth-cas'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.4.2'
@@ -77,7 +78,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry-byebug', '~> 3.0'
   gem 'pry-rails'
-  gem 'puma'
+  gem 'puma', '~> 4.3'
   gem 'rails-controller-testing'
   gem 'rerun', '~> 0.10.0'
   gem 'simplecov'
