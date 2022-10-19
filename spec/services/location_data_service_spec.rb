@@ -40,9 +40,10 @@ RSpec.describe LocationDataService, type: :service do
       rare_scahsvm = HoldingLocation.find_by(code: 'rare$scahsvm')
       rare_scathx = HoldingLocation.find_by(code: 'rare$scathx')
       mudd_scamudd = HoldingLocation.find_by(code: 'mudd$scamudd')
+      firestone_isc = HoldingLocation.find_by(code: 'firestone$isc')
 
       expect(Library.count).to eq 18
-      expect(HoldingLocation.count).to eq 309
+      expect(HoldingLocation.count).to eq 310
       expect(library_record.label).to eq 'Architecture Library'
       expect(location_record2.label).to eq 'Stacks'
       expect(location_record1.open).to be true
@@ -56,6 +57,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(location_record16.label).to eq 'Scribner Library: Reference'
       expect(location_record17.label).to eq 'Scribner Library'
       expect(location_record18.label).to eq 'Remote Storage (ReCAP): Marquand Library Use Only'
+      expect(firestone_isc.label).to eq 'Indigenous Studies Collection'
       expect(delivery_location_pf.pickup_location).to be true
       expect(firestone_ssrcfo.open).to be true
       expect(firestone_ssrcfo.requestable).to be false
@@ -63,6 +65,9 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_ssrcdc.open).to be true
       expect(firestone_ssrcdc.requestable).to be false
       expect(firestone_ssrcdc.always_requestable).to be false
+      expect(firestone_isc.always_requestable).to be false
+      expect(firestone_isc.requestable).to be true
+      expect(firestone_isc.fulfillment_unit).to eq('General')
       expect(firestone_pres.label).to eq 'Preservation Office: Contact preservation@princeton.edu'
       expect(lewis_serial.label).to eq 'Lewis Library - Serials (Off-Site)'
       expect(rare_xmr.requestable).to be false
