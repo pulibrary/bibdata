@@ -67,14 +67,12 @@ class IndexManager < ActiveRecord::Base
 
   def next_dump
     @next_dump ||=
-      begin
-        if last_dump_completed&.full_dump?
-          previous_to_full_incremental || next_incremental
-        elsif last_dump_completed
-          next_incremental
-        else
-          recent_full_dump || first_incremental
-        end
+      if last_dump_completed&.full_dump?
+        previous_to_full_incremental || next_incremental
+      elsif last_dump_completed
+        next_incremental
+      else
+        recent_full_dump || first_incremental
       end
   end
 

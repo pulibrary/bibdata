@@ -5,7 +5,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -73,7 +73,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -103,7 +103,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -182,7 +182,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:3.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -215,7 +215,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:2.7-browsers
+      - image: cimg/ruby:3.1-browsers
     steps:
       - checkout
       - run: gem install bundler -v '~> 2.0'
