@@ -24,11 +24,20 @@ class AlmaAdapter::Status
 
   def on_site_holding?
     return true if aeon
-    on_site_locations.include? "#{holding['library_code']}$#{holding['location_code']}"
+    on_site_locations? || on_site_sc_locations?
   end
 
   # Holdings in these location are for on-site use only
-  def on_site_locations
-    ["lewis$map", "lewis$maplf", "lewis$maplref", "lewis$mapmc", "lewis$mapmcm"]
+  def on_site_locations?
+    ["lewis$map", "lewis$maplf", "lewis$maplref", "lewis$mapmc", "lewis$mapmcm"].include?(library_location_code)
+  end
+
+  def on_site_sc_locations?
+    additional_locations = ["rare$xmr", "mudd$scamudd"]
+    library_location_code.start_with?('rare$sca') || additional_locations.include?(library_location_code)
+  end
+
+  def library_location_code
+    "#{holding['library_code']}$#{holding['location_code']}"
   end
 end
