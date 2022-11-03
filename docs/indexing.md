@@ -184,7 +184,7 @@ $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-
 ```
 $ ssh deploy@bibdata-alma-worker1   
 $ cd /opt/bibdata/current   
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake liberate:updates
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
 You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
