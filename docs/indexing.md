@@ -42,7 +42,7 @@ The staging catalog uses http://lib-solr8-staging.princeton.edu:8983/solr/catalo
 
 Tunnel to the solr admin panel using the cap task in pulibrary/pul_solr:
 
-$ bundle exec cap [solr8-production || solr8-staging] solr:console
+$ bundle exec cap [production || staging] solr:console
 
 You can select a collection and use the "query" menu option to check how many documents are in the index.
 
@@ -184,7 +184,7 @@ $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-
 ```
 $ ssh deploy@bibdata-alma-worker1   
 $ cd /opt/bibdata/current   
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake liberate:updates
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
 You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
@@ -226,7 +226,7 @@ Then swap the rebuild collection to the production alias.
 - Run the cap task on pul_solr to swap the aliases
 - Make sure you use the right values for PRODUCTION and REBUILD. Instructions for determining the correct values are [in the cap task](https://github.com/pulibrary/pul_solr/blob/main/config/deploy.rb#L99-L101).  For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
-[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-production-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap solr8-production alias:swap
+[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-production-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap production alias:swap
 ```
 
 Then turn sneakers workers back on:
