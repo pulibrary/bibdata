@@ -7,7 +7,7 @@
 set :application, 'bibdata'
 set :stage, :production
 set :rails_env, 'production'
-server 'bibdata-alma-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :worker, :hr_cron, :poller]
+server 'bibdata-alma-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron, :poller]
 server 'bibdata-alma-worker-staging1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
 
 # Extended Server Syntax
