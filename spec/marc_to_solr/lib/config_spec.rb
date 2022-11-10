@@ -69,6 +69,7 @@ describe 'From traject_config.rb', indexing: true do
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
       @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
+      @private_notes_583 = @indexer.map_record(fixture_record('99106353023506421'))
     end
 
     describe "alma loading" do
@@ -1117,37 +1118,40 @@ describe 'From traject_config.rb', indexing: true do
         expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
       end
     end
+    context "Action Note" do
+      it "Has an Action Note when it is a Princeton record" do
+        indexer = IndexerService.build
+        sample = indexer.map_record(fixture_record('99125628841606421', indexer: indexer))
+        note = sample['action_notes_display'][0]
+        expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
+      end
+
+      it "Does not have an Action Note when not a Princeton record" do
+        indexer = IndexerService.build
+        sample = indexer.map_record(fixture_record('SCSB-9879349', indexer: indexer))
+        expect(sample['action_note_display']).to be nil
+      end
+      it "will not index private notes - first indicator 0" do
+        expect(@private_notes_583['action_notes_display']).to be nil
+      end
+    end
+    context "Temporary in resource sharing location" do
+      it "does not show as a temporary location" do
+        indexer = IndexerService.build
+        sample = indexer.map_record(fixture_record('998370993506421', indexer: indexer))
+        holdings = JSON.parse(sample['holdings_1display'][0])
+        expect(holdings['22561746630006421']['items'].count).to eq 1
+        expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP): Mendel Music Library Use Only"
+        expect(sample["location"]).to eq(["Mendel Music Library"])
+      end
+    end
   end
+
   context "invalid utf8 record" do
     it "ignores errors and allows the indexer to continue" do
       indexer = IndexerService.build
       sample = indexer.map_record(fixture_record('99125119454006421', indexer: indexer))
       expect(sample).to be_nil
-    end
-  end
-
-  context "Temporary in resource sharing location" do
-    it "does not show as a temporary location" do
-      indexer = IndexerService.build
-      sample = indexer.map_record(fixture_record('998370993506421', indexer: indexer))
-      holdings = JSON.parse(sample['holdings_1display'][0])
-      expect(holdings['22561746630006421']['items'].count).to eq 1
-      expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP): Mendel Music Library Use Only"
-      expect(sample["location"]).to eq(["Mendel Music Library"])
-    end
-  end
-  context "Action Note" do
-    it "Has an Action Note when it is a Princeton record" do
-      indexer = IndexerService.build
-      sample = indexer.map_record(fixture_record('99125628841606421', indexer: indexer))
-      note = sample['action_notes_display'][0]
-      expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
-    end
-
-    it "Does not have an Action Note when not a Princeton record" do
-      indexer = IndexerService.build
-      sample = indexer.map_record(fixture_record('SCSB-9879349', indexer: indexer))
-      expect(sample['action_note_display']).to be nil
     end
   end
 end
