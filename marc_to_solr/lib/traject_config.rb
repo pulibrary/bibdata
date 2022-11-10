@@ -784,10 +784,13 @@ to_field 'publications_about_display', extract_marc('581az36')
 
 # Action note:
 #    583 XX a
-to_field 'action_notes_display', extract_marc('583a') do |record, accumulator|
-  MarcExtractor.cached('035').collect_matching_lines(record) do |field, _spec, _extractor|
-    accumulator if field.to_s.include?('PULFA')
+to_field 'action_notes_display', extract_marc('583|1*|a:583| *|a') do |record, accumulator|
+  notes = []
+  pulfa = record.fields('035').select { |f| f['a']&.downcase =~ /pulfa/ }
+  accumulator.each_with_index do |value, _i|
+    notes << value if pulfa.present?
   end
+  accumulator.replace(notes)
 end
 
 # Indexed in:
