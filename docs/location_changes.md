@@ -1,5 +1,5 @@
 # When a location changes in Alma:
-
+* A ticket should be created first in https://github.com/PrincetonUniversityLibrary/alma-config/issues with all the necessary information.
 ## 1. Update the local dev environment:
 
 1. Update the necessary files in https://github.com/pulibrary/bibdata/tree/main/config/locations. 
@@ -33,8 +33,8 @@ Deploy your branch on staging and run the following steps to make sure that noth
 3. Review the changes in https://bibdata-staging.princeton.edu/
 
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
-
 ## 3. Update Bibdata production
+### Don't update the locations in Bibdata production during indexing hours https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md.
 
 1. Connect in one of the bibdata production boxes:  
   `ssh deploy@bibdata-alma-worker1`  
