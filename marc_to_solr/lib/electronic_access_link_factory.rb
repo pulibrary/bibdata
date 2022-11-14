@@ -43,6 +43,6 @@ class ElectronicAccessLinkFactory
     parsed_args = parse_subfields(marc_field)
     link_args.merge! parsed_args
 
-    ElectronicAccessLink.new(link_args)
+    ElectronicAccessLink.new(**link_args)
   end
 end

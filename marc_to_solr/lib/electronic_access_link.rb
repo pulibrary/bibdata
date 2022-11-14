@@ -26,7 +26,7 @@ class ElectronicAccessLink
   def clone(link_args)
     default_link_args = { bib_id: @bib_id, holding_id: @holding_id, url_key: @url_key, z_label: @z_label, anchor_text: @anchor_text }
     new_link_args = default_link_args.merge link_args
-    self.class.new new_link_args
+    self.class.new(**new_link_args)
   end
   alias dup clone
 
