@@ -43,7 +43,7 @@ RSpec.describe LocationDataService, type: :service do
 
       expect(delivery_location_pf.pickup_location).to be true
       expect(Library.count).to eq 18
-      expect(HoldingLocation.count).to eq 69
+      expect(HoldingLocation.count).to eq 70
       expect(arch_library.label).to eq 'Architecture Library'
       expect(annex_stacks.label).to eq 'Stacks'
       expect(arch_stacks.open).to be true
@@ -86,6 +86,15 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_pf.delivery_locations.count).to eq 1
       expect(firestone_pf.delivery_locations.first).to eq(delivery_microforms)
       expect(firestone_pf.label).to eq('Remote Storage (ReCAP): Firestone Library Use Only')
+    end
+    it "annex$noncirc circulates to the branch libraries" do
+      non_circ = HoldingLocation.find_by(code: 'annex$noncirc')
+      delivery_firestone = DeliveryLocation.find_by(gfa_pickup: 'PA')
+      delivery_lewis = DeliveryLocation.find_by(gfa_pickup: 'PN')
+      expect(non_circ.circulates).to be true
+      expect(non_circ.delivery_locations.count).to eq 12
+      expect(non_circ.delivery_locations).to include(delivery_firestone)
+      expect(non_circ.delivery_locations).to include(delivery_lewis)
     end
     it "Locations with fulfillment_unit: Reserves are not requestable" do
       arch_res3hr = HoldingLocation.find_by(code: 'arch$res3hr')

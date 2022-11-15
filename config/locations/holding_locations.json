@@ -100,9 +100,17 @@
         },
         "holding_library": null,
         "delivery_locations": [
+            "PA",
+            "PN",
+            "PQ",
+            "PW",
+            "PM",
+            "PL",
+            "PT",
+            "PJ",
+            "PK",
             "QT",
             "QA",
-            "PN",
             "QC"
         ]
     },
