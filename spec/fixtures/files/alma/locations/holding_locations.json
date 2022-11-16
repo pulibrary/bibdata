@@ -52,6 +52,39 @@
         ]
     },
     {
+        "label": "Non-Circulating",
+        "code": "annex$noncirc",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/annex$noncirc.json",
+        "library": {
+            "label": "Forrestal Annex",
+            "code": "annex",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PA",
+            "PN",
+            "PQ",
+            "PW",
+            "PM",
+            "PL",
+            "PT",
+            "PJ",
+            "PK",
+            "QT",
+            "QA",
+            "QC"
+        ]
+    },
+    {
         "label": "Stacks",
         "code": "annex$stacks",
         "aeon_location": false,
@@ -747,6 +780,30 @@
             "order": 0
         },
         "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Remote Storage (ReCAP): Rare Books Archival. Special Collections Use Only",
+        "code": "rare$xrr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$xrr.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
         "delivery_locations": []
     },
     {
@@ -1608,38 +1665,5 @@
         },
         "holding_library": null,
         "delivery_locations": []
-    },
-    {
-        "label": "Non-Circulating",
-        "code": "annex$noncirc",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": false,
-        "circulates": true,
-        "remote_storage": "",
-        "fulfillment_unit": "Closed",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/annex$noncirc.json",
-        "library": {
-            "label": "Forrestal Annex",
-            "code": "annex",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": [
-            "PA",
-            "PN",
-            "PQ",
-            "PW",
-            "PM",
-            "PL",
-            "PT",
-            "PJ",
-            "PK",
-            "QT",
-            "QA",
-            "QC"
-        ]
     }
 ]
