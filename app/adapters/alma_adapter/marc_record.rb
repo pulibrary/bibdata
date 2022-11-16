@@ -58,10 +58,7 @@ class AlmaAdapter
     def strip_non_numeric!
       marc_record.fields.delete_if do |field|
         # tag with non numeric character
-        field.tag =~ /[^0-9]/
-        false
-      rescue
-        true
+        field.tag.scan(/^(\s|\D+)/).present?
       end
     end
 
