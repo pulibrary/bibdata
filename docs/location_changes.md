@@ -32,8 +32,21 @@ Deploy your branch on staging and run the following steps to make sure that noth
 
 3. Review the changes in https://bibdata-staging.princeton.edu/
 
+## 3. Update Bibdata qa
+Test the updated locations in Bibdata-qa https://bibdata-qa.princeton.edu/
+Deploy your branch on qa and run the following steps to make sure that nothing is breaking the tables.
+
+1. Connect in one of the bibdata qa boxes:   
+  `ssh deploy@bibdata-worker-qa1`  
+  `cd /opt/bibdata/current`  
+
+2. Run the following rake task to delete and repopulate the locations in the bibdata qa database:  
+  `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
+
+3. Review the changes in https://bibdata-qa.princeton.edu/
+
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
-## 3. Update Bibdata production
+## 4. Update Bibdata production
 ### Don't update the locations in Bibdata production during indexing hours https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md.
 
 1. Connect in one of the bibdata production boxes:  
