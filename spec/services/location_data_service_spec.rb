@@ -37,13 +37,14 @@ RSpec.describe LocationDataService, type: :service do
       rare_scaex = HoldingLocation.find_by(code: 'rare$scaex')
       rare_scahsvm = HoldingLocation.find_by(code: 'rare$scahsvm')
       rare_scathx = HoldingLocation.find_by(code: 'rare$scathx')
+      rare_xrr = HoldingLocation.find_by(code: 'rare$xrr')
       recap_gp = HoldingLocation.find_by(code: 'recap$gp')
       stokes_spia = HoldingLocation.find_by(code: 'stokes$spia')
       stokes_spr = HoldingLocation.find_by(code: 'stokes$spr')
 
       expect(delivery_location_pf.pickup_location).to be true
       expect(Library.count).to eq 18
-      expect(HoldingLocation.count).to eq 70
+      expect(HoldingLocation.count).to eq 71
       expect(arch_library.label).to eq 'Architecture Library'
       expect(annex_stacks.label).to eq 'Stacks'
       expect(arch_stacks.open).to be true

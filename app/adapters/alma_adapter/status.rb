@@ -33,7 +33,8 @@ class AlmaAdapter::Status
   end
 
   def on_site_sc_locations?
-    additional_locations = ["rare$xmr", "mudd$scamudd"]
+    additional_locations = ["rare$xmr", "mudd$scamudd", "rare$xrr",
+                            "rare$xgr", "rare$xcr", "mudd$phr"]
     library_location_code.start_with?('rare$sca') || additional_locations.include?(library_location_code)
   end
 

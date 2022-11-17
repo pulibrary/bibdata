@@ -4173,6 +4173,32 @@
         ]
     },
     {
+        "label": "Remote Storage (ReCAP): Mudd Archival. Special Collections Use Only",
+        "code": "mudd$phr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/mudd$phr.json",
+        "library": {
+            "label": "Mudd Manuscript Library",
+            "code": "mudd",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
+        "delivery_locations": [
+            "PH"
+        ]
+    },
+    {
         "label": "Princetoniana Collection",
         "code": "mudd$prnc",
         "aeon_location": true,
@@ -4199,10 +4225,10 @@
         "code": "mudd$scamudd",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/mudd$scamudd.json",
@@ -5637,7 +5663,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Cotsen Children’s Library Archival. Special Collections Use Only",
+        "label": "Cotsen Children's Library Archival. Special Collections Use Only",
         "code": "rare$scactsn",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
@@ -5661,10 +5687,10 @@
         "code": "rare$scaex",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scaex.json",
@@ -5681,10 +5707,10 @@
         "code": "rare$scagax",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scagax.json",
@@ -5701,10 +5727,10 @@
         "code": "rare$scahsvm",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scahsvm.json",
@@ -5721,10 +5747,10 @@
         "code": "rare$scamss",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scamss.json",
@@ -5741,10 +5767,10 @@
         "code": "rare$scathx",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scathx.json",
@@ -5761,13 +5787,105 @@
         "code": "rare$scawa",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "",
         "fulfillment_unit": "Limited",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scawa.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Remote Storage (ReCAP): Cotsen Children's Library Archival. Special Collections Use Only",
+        "code": "rare$xcr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$xcr.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
+        "delivery_locations": []
+    },
+    {
+        "label": "Remote Storage (ReCAP): Graphic Arts Archival. Special Collections Use Only",
+        "code": "rare$xgr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$xgr.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
+        "delivery_locations": []
+    },
+    {
+        "label": "Remote Storage (ReCAP): Rare Books Archival. Special Collections Use Only",
+        "code": "rare$xrr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$xrr.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
+        "delivery_locations": []
+    },
+    {
+        "label": "Cotsen Children's Library Archival. Special Collections Use Only",
+        "code": "rare$scahsvc",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scahsvc.json",
         "library": {
             "label": "Special Collections",
             "code": "rare",
@@ -6062,10 +6180,10 @@
         "code": "rare$xmr",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": true,
+        "open": false,
         "requestable": false,
         "always_requestable": false,
-        "circulates": true,
+        "circulates": false,
         "remote_storage": "recap_rmt",
         "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$xmr.json",
@@ -6074,7 +6192,11 @@
             "code": "rare",
             "order": 0
         },
-        "holding_library": null,
+        "holding_library": {
+            "label": "ReCAP",
+            "code": "recap",
+            "order": 0
+        },
         "delivery_locations": []
     },
     {
