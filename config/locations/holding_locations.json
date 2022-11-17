@@ -4194,9 +4194,7 @@
             "code": "recap",
             "order": 0
         },
-        "delivery_locations": [
-            "PH"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Princetoniana Collection",
