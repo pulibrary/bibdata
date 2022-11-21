@@ -603,21 +603,13 @@ to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:77
 # Bib1 has 774 fields for Bib2 and Bib3.
 # Bib2 and Bib3 have a 773 field linking to Bib1.
 to_field 'contained_in_s' do |record, accumulator|
-  f773 = record.fields('773').select { |f| f["w"] =~ /99[0-9]+6421/ }
-  f773.each do |field|
-    accumulator << field["w"].gsub(/^[^0-9]*(99[0-9]+6421).*$/, '\1')
-  end
-  accumulator
+  valid_linked_fields(record, '773', accumulator)
 end
 
 # Related record(s):
 #    3500 BBID774W
 to_field 'related_record_s' do |record, accumulator|
-  f774 = record.fields('774').select { |f| f["w"] =~ /99[0-9]+6421/ }
-  f774.each do |field|
-    accumulator << field["w"].gsub(/^[^0-9]*(99[0-9]+6421).*$/, '\1')
-  end
-  accumulator
+  valid_linked_fields(record, '774', accumulator)
 end
 
 # Link to BIB of other edition
