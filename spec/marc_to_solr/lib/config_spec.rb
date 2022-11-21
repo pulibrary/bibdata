@@ -70,6 +70,9 @@ describe 'From traject_config.rb', indexing: true do
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
       @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
       @private_notes_583 = @indexer.map_record(fixture_record('99106353023506421'))
+      @invalid_773w = @indexer.map_record(fixture_record('9938522893506421'))
+      @invalid_774w = @indexer.map_record(fixture_record('9979952033506421'))
+      @valid_774w = @indexer.map_record(fixture_record('9938522893506421'))
     end
 
     describe "alma loading" do
@@ -306,10 +309,19 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
-    describe "contained_in_s field" do
-      it "indexes the 773w of the constituent record" do
+    describe "bound-with linking fields" do
+      it "indexes a valid 773w field" do
         record = @indexer.map_record(fixture_record('9939073273506421'))
         expect(record['contained_in_s']).to eq(["992953283506421"])
+      end
+      it "does not index an invalid 773w field" do
+        expect(@invalid_773w['contained_in_s']).to be_nil
+      end
+      it "indexes a valid 774w field" do
+        expect(@valid_774w['related_record_s']).to eq(["9934701963506421"])
+      end
+      it "does not index an invalid 774w field" do
+        expect(@invalid_774w['related_record_s']).to be_nil
       end
     end
 

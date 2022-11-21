@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01113caa a2200301K  4500</leader>
+    <controlfield tag="005">20200826222340.0</controlfield>
+    <controlfield tag="008">030202m19011903ja            000 0 jpn d</controlfield>
+    <controlfield tag="001">9938522893506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">3852289</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3852289-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm51561109</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">PUL</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">PUL</subfield>
+    </datafield>
+    <datafield tag="049" ind1=" " ind2=" ">
+      <subfield code="a">PULL</subfield>
+    </datafield>
+    <datafield tag="066" ind1=" " ind2=" ">
+      <subfield code="c">$1</subfield>
+    </datafield>
+    <datafield tag="084" ind1=" " ind2=" ">
+      <subfield code="a">J1442.9/5253 v.1</subfield>
+      <subfield code="2">cscjb</subfield>
+    </datafield>
+    <datafield tag="099" ind1=" " ind2=" ">
+      <subfield code="a">J1442.9/5253 v.1</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Nakae, Tōju,</subfield>
+      <subfield code="d">1608-1648.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n81127208</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01/$1</subfield>
+      <subfield code="a">中江藤樹,</subfield>
+      <subfield code="d">1608-1648.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Okina mondō</subfield>
+      <subfield code="c">Nakae Tōju cho.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02/$1</subfield>
+      <subfield code="a">翁問答</subfield>
+      <subfield code="c">中江藤樹著.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Keian nenkan kankōbon.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+      <subfield code="6">500-03/$1</subfield>
+      <subfield code="a">慶安年間刊行本.</subfield>
+    </datafield>
+    <datafield tag="773" ind1="0" ind2=" ">
+      <subfield code="6">880-04</subfield>
+      <subfield code="7">nnam</subfield>
+      <subfield code="t">Nihon rinri ihen.</subfield>
+      <subfield code="d">Tōkyō Ikuseikai Meiji 34-36 [1901-1903]</subfield>
+      <subfield code="g">v. 1, p. 9-144</subfield>
+      <subfield code="w">(OCoLC)15390917</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+      <subfield code="6">773-04/$1</subfield>
+      <subfield code="7">nnam</subfield>
+      <subfield code="t">日本倫理彙編.</subfield>
+      <subfield code="d">東京育成會明治34-36 [1901-1903]</subfield>
+      <subfield code="g">v. 1, p. 9-144</subfield>
+      <subfield code="w">(OCoLC)15390917</subfield>
+    </datafield>
+    <datafield tag="774" ind1="0" ind2=" ">
+      <subfield code="w">9934701963506421</subfield>
+    </datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <subfield code="a">rcp2552</subfield>
+    </datafield>
+    <datafield tag="945" ind1=" " ind2=" ">
+      <subfield code="a">hyj</subfield>
+      <subfield code="c">J1442.9/5253 v.1</subfield>
+    </datafield>
+    <datafield tag="994" ind1=" " ind2=" ">
+      <subfield code="a">02</subfield>
+      <subfield code="b">PUL</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2022-09-21 13:58:14 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 22:02:10 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2=" ">
+      <subfield code="b">eastasian</subfield>
+      <subfield code="c">hy</subfield>
+      <subfield code="h">J1442.9/5253 v.1</subfield>
+      <subfield code="8">22628595380006421</subfield>
+    </datafield>
+    <datafield tag="866" ind1=" " ind2="0">
+      <subfield code="z">For circulation status see record for: Nihon rinri ihen (J1442.9/5253)</subfield>
+      <subfield code="8">22628595380006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 02:02:10</subfield>
+      <subfield code="8">22628595380006421</subfield>
+      <subfield code="b">East Asian Library</subfield>
+      <subfield code="c">hy: East Asian Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+  </record>
+</collection>
