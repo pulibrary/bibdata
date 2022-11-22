@@ -602,11 +602,15 @@ to_field 'geo_related_record_display', extract_marc('772at:7733abdghikmnoprst:77
 # example: there are 3 bibs attached to one item. Bib1 has the holding and item attached.
 # Bib1 has 774 fields for Bib2 and Bib3.
 # Bib2 and Bib3 have a 773 field linking to Bib1.
-to_field 'contained_in_s', extract_marc('773w')
+to_field 'contained_in_s' do |record, accumulator|
+  valid_linked_fields(record, '773', accumulator)
+end
 
 # Related record(s):
 #    3500 BBID774W
-to_field 'related_record_s', extract_marc('774w')
+to_field 'related_record_s' do |record, accumulator|
+  valid_linked_fields(record, '774', accumulator)
+end
 
 # Link to BIB of other edition
 to_field 'other_editions_s', extract_marc('775w')
