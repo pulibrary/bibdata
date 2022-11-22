@@ -828,9 +828,10 @@ def any_thesaurus_match?(field, thesauri)
   field.any? { |subfield| subfield.code == '2' && thesauri.include?(subfield.value) }
 end
 
+# The regular expression /99[0-9]+6421/ ensures that an mms id is present in a $w
 def valid_linked_fields(record, field_tag, accumulator)
   fields = record.fields(field_tag).select { |f| f["w"] =~ /99[0-9]+6421/ }
   fields.each do |field|
-    accumulator << field["w"].gsub(/^[^0-9]*(99[0-9]+6421).*$/, '\1')
+    accumulator << field["w"].gsub(/^.*(99[0-9]+6421).*$/, '\1')
   end
 end
