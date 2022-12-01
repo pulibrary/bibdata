@@ -95,7 +95,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
 
   # Client: Used by firestone_locator to pull bibliographic data
   #   Also used to pull orangelight and pul_solr test fixtures
-  def bib_solr(format: nil)
+  def bib_solr
     opts = {
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
@@ -105,19 +105,10 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
       solr_doc = indexer.map_record(records)
-      if format == :jsonld
-        render json: solr_to_jsonld(solr_doc), content_type: 'application/ld+json'
-      else
-        render json: solr_doc
-      end
+      render json: solr_doc
     end
   rescue => e
     handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
-  end
-
-  # Client: Used by figgy to pull bibliographic data
-  def bib_jsonld
-    bib_solr format: :jsonld
   end
 
   # Client: No known use cases
@@ -225,23 +216,10 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       url_helpers.root_url(host: request.host_with_port)
     end
 
-    # Generate a JSON-LD context URI using the root url
-    # @return [String] the context URI
-    def context_urls
-      root_url + 'context.json'
-    end
-
     # Generates the URL for the bibliographic record
     # @return [String] the URL
     def bib_id_url
       url_helpers.show_bib_url(params[:bib_id], host: request.host_with_port)
-    end
-
-    # Converts a Solr Document into a JSON-LD graph
-    # @param solr_doc [SolrDocument] the Solr Document being transformed
-    # @return [Hash] the JSON-LD graph serialized as a Hash
-    def solr_to_jsonld(solr_doc = nil)
-      { '@context': context_urls, '@id': bib_id_url }.merge(JSONLDRecord.new(solr_doc).to_h)
     end
 
     # Sanitizes the bib_id HTTP parameter

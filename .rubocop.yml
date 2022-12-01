@@ -42,10 +42,6 @@ AllCops:
 Style/AsciiComments:
   Enabled: false
 
-Style/BlockDelimiters:
-  Exclude:
-    - 'spec/models/jsonld_record_spec.rb'
-
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
 

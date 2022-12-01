@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   get '/bibliographic/:bib_id/holdings/:holding_id/availability', to: 'bibliographic#availability_holding'
   get '/bibliographic/:bib_id', to: 'bibliographic#bib', defaults: { format: :xml }, as: :show_bib
   get '/bibliographic/:bib_id/solr', to: 'bibliographic#bib_solr'
-  get '/bibliographic/:bib_id/jsonld', to: 'bibliographic#bib_jsonld'
   get '/bibliographic/:bib_id/holdings', to: 'bibliographic#bib_holdings', defaults: { format: :xml }
   get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
   get '/availability', to: 'availability#index', defaults: { format: :json }
