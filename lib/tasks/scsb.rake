@@ -74,5 +74,11 @@ namespace :scsb do
     task full: :environment do
       ScsbImportFullJob.perform_later
     end
+
+    desc "Used for monthly cron job - downloads files for full partner record set only on Saturdays"
+    task full_saturdays_only: :environment do
+      abort "This task will only run on Saturdays, to facilitate monthly cron job. If you want to run this job manually on another day, use scsb:import:full" unless Date.today.saturday?
+      ScsbImportFullJob.perform_later
+    end
   end
 end
