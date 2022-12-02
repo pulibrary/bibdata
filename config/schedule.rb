@@ -54,3 +54,8 @@ end
 every 2.weeks, at: '11:00pm', roles: [:cron_production] do
   rake "scsb:request_records[production,mk8066@princeton.edu,HL]", output: "/tmp/cron_log.log"
 end
+
+# Runs on the second Saturday of the month at 9:00 am
+every '0 9 8-14 * *', roles: [:cron_production] do
+  rake "scsb:import:full_saturdays_only", output: "/tmp/cron_log.log"
+end
