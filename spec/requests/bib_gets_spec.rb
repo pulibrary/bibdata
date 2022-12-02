@@ -95,13 +95,6 @@ RSpec.describe "Bibliographic Gets", type: :request do
         expect(response.status).to eq(429)
       end
     end
-    describe "GET /bibliographic/430472/jsonld" do
-      it "responds with an error message to the client" do
-        get "/bibliographic/430472/jsonld"
-
-        expect(response.status).to eq(429)
-      end
-    end
     describe "GET /bibliographic/430472/items" do
       let(:alma_request_url) do
         "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/430472/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library"
@@ -353,74 +346,6 @@ RSpec.describe "Bibliographic Gets", type: :request do
       stub_voyager('00000000')
       get '/bibliographic/00000000/solr'
       expect(response.status).to be(404)
-    end
-  end
-
-  describe 'retrieving json+ld' do
-    it 'retrieves json+ld for a bib record' do
-      pending "Replace with Alma"
-      stub_voyager('1234567')
-      get "/bibliographic/1234567/jsonld"
-      expect(response.status).to be(200)
-      expect(response.content_type).to eq('application/ld+json')
-
-      json_ld_doc = JSON.parse(response.body)
-      expect(json_ld_doc['title']).to eq('@value' => 'Christopher and his kind, 1929-1939 / Christopher Isherwood', '@language' => 'eng')
-    end
-
-    context 'with a bib record which has an ARK' do
-      let(:figgy_query_url) do
-        "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000"
-      end
-      let(:figgy_query_fixture_path) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'figgy_query_response.json') }
-      let(:figgy_query_response) do
-        File.read(figgy_query_fixture_path)
-      end
-
-      before do
-        stub_request(:get, figgy_query_url).to_return(status: 200, body: figgy_query_response)
-      end
-
-      it 'exposes the ARK' do
-        pending "Replace with Alma"
-        bib_id = '10372293'
-        stub_voyager('10372293')
-        stub_ezid(shoulder: "88435", blade: "dsp015425kd270")
-        get "/bibliographic/#{bib_id}/jsonld"
-        expect(response.status).to be(200)
-
-        solr_doc = JSON.parse(response.body)
-        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/10372293')
-        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/dsp015425kd270'
-      end
-    end
-
-    context 'with a bib record which has an ARK for a Figgy resource' do
-      let(:figgy_query_url) do
-        "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000"
-      end
-      let(:figgy_query_fixture_path) { File.join(File.dirname(__FILE__), '..', 'fixtures', 'figgy_query_response.json') }
-      let(:figgy_query_response) do
-        File.read(figgy_query_fixture_path)
-      end
-
-      before do
-        stub_request(:get, figgy_query_url).to_return(status: 200, body: figgy_query_response)
-      end
-
-      it 'exposes the ARK' do
-        pending "Replace with Alma"
-        bib_id = '4609321'
-        stub_voyager('4609321')
-        stub_ezid(shoulder: "88435", blade: "xp68kg247")
-        stub_ezid(shoulder: "88435", blade: "7d278t10z")
-        get "/bibliographic/#{bib_id}/jsonld"
-        expect(response.status).to be(200)
-
-        solr_doc = JSON.parse(response.body)
-        expect(solr_doc['@id']).to eq('http://www.example.com/bibliographic/4609321')
-        expect(solr_doc['identifier']).to eq 'http://arks.princeton.edu/ark:/88435/7d278t10z'
-      end
     end
   end
 
