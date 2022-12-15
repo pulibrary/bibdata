@@ -73,7 +73,7 @@ RSpec.describe AvailabilityController, type: :controller do
           }
         ]
       )
-      get :index, params: { scsb_id: scsb_id, format: :json }
+      get :index, params: { scsb_id:, format: :json }
       bib_barcodes = JSON.parse(response.body)
       expect(bib_barcodes).to eq(bib_response)
     end

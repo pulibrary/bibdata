@@ -103,7 +103,7 @@ namespace :liberate do
   task full: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
     solr = IndexFunctions.rsolr_connection(solr_url)
-    reindex = IndexManager.reindex!(solr_url: solr_url)
+    reindex = IndexManager.reindex!(solr_url:)
     if reindex
       puts "INFO: Reindex started"
     else
@@ -124,7 +124,7 @@ namespace :liberate do
     debug = ENV["DEBUG"] == "true"
     abort "MARC XML file name must be indicated via FILE environment variable" unless file_name
     solr = IndexFunctions.rsolr_connection(solr_url)
-    Alma::Indexer.new(solr_url: solr_url).index_file(file_name, debug)
+    Alma::Indexer.new(solr_url:).index_file(file_name, debug)
     solr.commit
   end
 
@@ -144,7 +144,7 @@ namespace :liberate do
       figgy_cache_adapter = CacheAdapter.new(service: figgy_lightly)
 
       logger = Logger.new(STDOUT)
-      cache_manager = CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger: logger)
+      cache_manager = CacheManager.initialize(figgy_cache: figgy_cache_adapter, logger:)
       cache_manager.seed!
     end
 
@@ -168,7 +168,7 @@ namespace :numismatics do
     desc "Index all the complete, open numismatic coins from figgy"
     task full: :environment do
       solr_url = ENV['SET_URL'] || default_solr_url
-      NumismaticsIndexer.full_index(solr_url: solr_url, progressbar: true)
+      NumismaticsIndexer.full_index(solr_url:, progressbar: true)
     end
   end
 end

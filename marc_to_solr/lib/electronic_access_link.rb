@@ -64,7 +64,7 @@ class ElectronicAccessLink
     return unless ark_class.princeton_ark? url: url
 
     # Cast the URL into an ARK
-    @ark ||= ark_class.parse url: url
+    @ark ||= ark_class.parse url:
   end
 
   # Generates the labels for the link markup

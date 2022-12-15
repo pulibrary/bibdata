@@ -54,9 +54,6 @@ Style/MethodDefParentheses:
 Style/NumericPredicate:
   Enabled: false
 
-Style/HashSyntax:
-  Enabled: false
-
 Layout/LineLength:
   Exclude:
     - 'spec/**/*'

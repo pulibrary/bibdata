@@ -6,7 +6,7 @@ class ElectronicPortfolioBuilder
   # @param embargo [MARC::DataField] embargo data from 954 field
   # @return [String] JSON string
   def self.build(field:, date:, embargo:)
-    new(field: field, date: date, embargo: embargo).build
+    new(field:, date:, embargo:).build
   end
 
   attr_reader :embargo, :field, :date

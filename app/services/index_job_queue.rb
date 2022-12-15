@@ -28,6 +28,6 @@ class IndexJobQueue
   # @param file [String] path to the MARC XML file being indexed
   def add(file:)
     commit = @commit ? self.class.traject_commit_settings : ''
-    IndexJob.perform_later(traject: self.class.traject_path, config: @config, file: file, url: @url, commit: commit)
+    IndexJob.perform_later(traject: self.class.traject_path, config: @config, file:, url: @url, commit:)
   end
 end

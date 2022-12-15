@@ -9,7 +9,7 @@ module ElectronicLocations
     def initialize(ark:, value:)
       ark_uri = ark.to_s
       @ark = ark_uri
-      super(value: value)
+      super(value:)
     end
   end
 end

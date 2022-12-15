@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject(:user) { described_class.new(uid: uid, username: username, email: email, password: password, provider: provider) }
+  subject(:user) { described_class.new(uid:, username:, email:, password:, provider:) }
   let(:uid) { 'user123' }
   let(:username) { 'user123' }
   let(:email) { 'user123@localhost.localdomain' }
@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
   end
 
   describe ".from_cas" do
-    let(:access_token) { OmniAuth::AuthHash.new(provider: provider, uid: uid) }
+    let(:access_token) { OmniAuth::AuthHash.new(provider:, uid:) }
 
     it "finds or creates user in the database" do
       expect { described_class.from_cas(access_token) }.to change(described_class, :count).by(1)

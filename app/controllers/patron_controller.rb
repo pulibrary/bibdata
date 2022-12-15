@@ -22,13 +22,13 @@ class PatronController < ApplicationController
 
     def parse_data
       {
-        netid: netid,
+        netid:,
         first_name: data["first_name"],
         last_name: data["last_name"],
-        barcode: barcode,
+        barcode:,
         university_id: data["primary_id"],
         patron_id: data["primary_id"],
-        patron_group: patron_group,
+        patron_group:,
         patron_group_desc: data["user_group"]["desc"],
         requests_total: data["requests"]["value"],
         loans_total: data["loans"]["value"],

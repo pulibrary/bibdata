@@ -197,7 +197,7 @@ end
 def stub_patron(netid = "bbird", status = 200)
   alma_path = Pathname.new(file_fixture_path).join("alma", "patrons")
   stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/users\/#{netid}/)
-    .to_return(status: status,
+    .to_return(status:,
                headers: { "Content-Type" => "application/json" },
                body: alma_path.join("#{netid}.json"))
 end

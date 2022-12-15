@@ -11,7 +11,7 @@ RSpec.describe CampusAccess, type: :model do
     context 'with an record present' do
       let(:uid) { 'admin123' }
       before do
-        described_class.create(uid: uid)
+        described_class.create(uid:)
       end
 
       it 'finds a user with access' do
@@ -22,7 +22,7 @@ RSpec.describe CampusAccess, type: :model do
     context 'with a training record present' do
       let(:uid) { 'admin123' }
       before do
-        described_class.create(uid: uid, category: 'trained')
+        described_class.create(uid:, category: 'trained')
       end
 
       it 'finds a user with access' do
@@ -47,7 +47,7 @@ RSpec.describe CampusAccess, type: :model do
       described_class.create(uid: 'abc123')
       f = File.expand_path("../../fixtures/access.xlsx", __FILE__)
       trained_file = File.expand_path("../../fixtures/access_learn.xlsx", __FILE__)
-      described_class.load_access(f, trained_file: trained_file, additional_ids: ['learn4'])
+      described_class.load_access(f, trained_file:, additional_ids: ['learn4'])
       expect(described_class.count).to eq(8)
       expect(described_class.all.map { |access| [access.uid, access.category, access.employee_id] }).to contain_exactly(["test1", "full", '010001112'], ["test2", "full", '010001111'], ["test3", "full", '010001113'], ["test6", "full", '010001116'], ["test5", "full", '010001115'], ["learn1", "trained", '999999999'], ["learn2", "trained", '999999998'], ["learn4", "full", '999999996'])
     end

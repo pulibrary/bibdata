@@ -5,9 +5,9 @@ RSpec.describe ElectronicLocation, type: :model do
     described_class.new(
       access_method: ElectronicLocations::Indicators::HTTP,
       relationship: ElectronicLocations::Relationships::VERSION,
-      subfields: subfields,
-      holdings: holdings,
-      iiif_manifest_uris: iiif_manifest_uris
+      subfields:,
+      holdings:,
+      iiif_manifest_uris:
     )
   end
   let(:subfields) do

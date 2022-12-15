@@ -11,7 +11,7 @@ require "datadog/lambda"
 
 def retrieve_secret
   client = Aws::SecretsManager::Client.new
-  resp = client.get_secret_value(secret_id: secret_id)
+  resp = client.get_secret_value(secret_id:)
   JSON.parse(resp.secret_string).fetch("key")
 end
 
@@ -56,7 +56,7 @@ class MessageHandler
     sqs = Aws::SQS::Client.new(region: 'us-east-1')
     queue_url = sqs.get_queue_url(queue_name: ENV["QUEUE_NAME"]).queue_url
     message_body = event["body"].to_json
-    sqs.send_message(queue_url: queue_url, message_body: message_body, message_group_id: "alma_event")
+    sqs.send_message(queue_url:, message_body:, message_group_id: "alma_event")
   end
 
   def queue_name

@@ -10,7 +10,7 @@ RSpec.describe Alma::Indexer, indexing: true do
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
-      indexer = described_class.new(solr_url: solr_url)
+      indexer = described_class.new(solr_url:)
       file_name = file_fixture("alma/full_dump/2.xml")
       Sidekiq::Testing.inline! do
         indexer.index_file(file_name)
@@ -26,7 +26,7 @@ RSpec.describe Alma::Indexer, indexing: true do
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
-      indexer = described_class.new(solr_url: solr_url)
+      indexer = described_class.new(solr_url:)
 
       # Indexes a file with 5 non-deleted records
       file_name = file_fixture("alma/incremental_11_records.xml")
@@ -54,7 +54,7 @@ RSpec.describe Alma::Indexer, indexing: true do
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query("*:*")
 
-      indexer = described_class.new(solr_url: solr_url)
+      indexer = described_class.new(solr_url:)
       file_name = file_fixture("alma/full_dump/three_records_one_bad_utf8.xml")
       Sidekiq::Testing.inline! do
         indexer.index_file(file_name)

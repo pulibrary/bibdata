@@ -5,7 +5,7 @@ class AccessFacetBuilder
   # @param context [Traject::Indexer::Context]
   # @return [Array<String>] access values
   def self.build(record:, context:)
-    new(record: record, context: context).build
+    new(record:, context:).build
   end
 
   attr_reader :record, :context

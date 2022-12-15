@@ -16,7 +16,7 @@ class ElectronicAccessLinkFactory
 
     anchor_text = s_field.value if s_field.code == 'y' || s_field.code == '3'
 
-    values = { holding_id: holding_id, url_key: url_key, z_label: z_label, anchor_text: anchor_text }
+    values = { holding_id:, url_key:, z_label:, anchor_text: }
     values.delete_if { |_key, value| value.nil? }
     values
   end
@@ -39,7 +39,7 @@ class ElectronicAccessLinkFactory
   # @param marc_field the MARC record
   # @return ElectronicAccessLink
   def self.build(bib_id:, marc_field:)
-    link_args = { bib_id: bib_id, holding_id: nil, url_key: nil, z_label: nil, anchor_text: nil }
+    link_args = { bib_id:, holding_id: nil, url_key: nil, z_label: nil, anchor_text: nil }
     parsed_args = parse_subfields(marc_field)
     link_args.merge! parsed_args
 

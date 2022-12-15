@@ -41,7 +41,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       context "when location is #{code}" do
         it "returns Shared" do
           item = described_class.new(
-            build_item(code: code)
+            build_item(code:)
           )
           expect(item.group_designation).to eq "Shared"
         end
@@ -51,7 +51,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       context "when location is #{code}" do
         it "returns Private" do
           item = described_class.new(
-            build_item(code: code)
+            build_item(code:)
           )
 
           expect(item.group_designation).to eq "Private"
@@ -65,7 +65,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       context "when location is #{code}" do
         it "returns In Library Use" do
           item = described_class.new(
-            build_item(code: code)
+            build_item(code:)
           )
 
           expect(item.recap_use_restriction).to eq "In Library Use"
@@ -77,7 +77,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       context "when location is #{code}" do
         it "returns In Library Use" do
           item = described_class.new(
-            build_item(code: code)
+            build_item(code:)
           )
 
           expect(item.recap_use_restriction).to eq "In Library Use"
@@ -89,7 +89,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
       context "when location is #{code}" do
         it "returns Supervised Use" do
           item = described_class.new(
-            build_item(code: code)
+            build_item(code:)
           )
 
           expect(item.recap_use_restriction).to eq "Supervised Use"

@@ -1133,14 +1133,14 @@ describe 'From traject_config.rb', indexing: true do
     context "Action Note" do
       it "Has an Action Note when it is a Princeton record" do
         indexer = IndexerService.build
-        sample = indexer.map_record(fixture_record('99125628841606421', indexer: indexer))
+        sample = indexer.map_record(fixture_record('99125628841606421', indexer:))
         note = sample['action_notes_display'][0]
         expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
       end
 
       it "Does not have an Action Note when not a Princeton record" do
         indexer = IndexerService.build
-        sample = indexer.map_record(fixture_record('SCSB-9879349', indexer: indexer))
+        sample = indexer.map_record(fixture_record('SCSB-9879349', indexer:))
         expect(sample['action_note_display']).to be nil
       end
       it "will not index private notes - first indicator 0" do
@@ -1150,7 +1150,7 @@ describe 'From traject_config.rb', indexing: true do
     context "Temporary in resource sharing location" do
       it "does not show as a temporary location" do
         indexer = IndexerService.build
-        sample = indexer.map_record(fixture_record('998370993506421', indexer: indexer))
+        sample = indexer.map_record(fixture_record('998370993506421', indexer:))
         holdings = JSON.parse(sample['holdings_1display'][0])
         expect(holdings['22561746630006421']['items'].count).to eq 1
         expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP): Mendel Music Library Use Only"
@@ -1162,7 +1162,7 @@ describe 'From traject_config.rb', indexing: true do
   context "invalid utf8 record" do
     it "ignores errors and allows the indexer to continue" do
       indexer = IndexerService.build
-      sample = indexer.map_record(fixture_record('99125119454006421', indexer: indexer))
+      sample = indexer.map_record(fixture_record('99125119454006421', indexer:))
       expect(sample).to be_nil
     end
   end

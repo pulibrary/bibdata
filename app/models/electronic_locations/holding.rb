@@ -8,7 +8,7 @@ module ElectronicLocations
     # @param value [URI::Generic, String] the URI
     def initialize(id:, value:)
       @id = id
-      super(value: value)
+      super(value:)
     end
   end
 end
