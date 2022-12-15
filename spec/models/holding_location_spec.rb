@@ -48,7 +48,7 @@ describe HoldingLocation, type: :model do
       holding_location = FactoryBot.create(:holding_location)
       holding_library = FactoryBot.create(:library)
       expect do
-        holding_location.update(holding_library: holding_library)
+        holding_location.update(holding_library:)
       end.not_to raise_error
     end
   end

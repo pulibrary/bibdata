@@ -13,7 +13,7 @@ class AlmaAdapter
   # get one bib record is supported in the bibdata UI and in the bibliographic_controller
   # @return [MARC::Record]
   def get_bib_record(id, suppressed: true)
-    get_bib_records([id], suppressed: suppressed)&.first
+    get_bib_records([id], suppressed:)&.first
   end
 
   # Get /almaws/v1/bibs Retrieve bibs
@@ -22,7 +22,7 @@ class AlmaAdapter
   # @return [Array<MARC::Record>]
   def get_bib_records(ids, suppressed: true)
     bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    response = AlmaAdapter::MarcResponse.new(bibs: bibs)
+    response = AlmaAdapter::MarcResponse.new(bibs:)
     if suppressed
       response.unsuppressed_marc
     else
@@ -45,7 +45,7 @@ class AlmaAdapter
     bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
     return nil if bibs.count == 0
 
-    av_info = AvailabilityStatus.new(bib: bibs.first, deep_check: deep_check).bib_availability
+    av_info = AvailabilityStatus.new(bib: bibs.first, deep_check:).bib_availability
 
     temp_locations = av_info.any? { |_key, value| value[:temp_location] }
     if temp_locations && deep_check
@@ -64,11 +64,11 @@ class AlmaAdapter
   # Returns availability for a list of bib ids
   def get_availability_many(ids:, deep_check: false)
     options = { timeout: 20 }
-    AlmaAdapter::Execute.call(options: options, message: "Find bibs #{ids.join(',')}") do
+    AlmaAdapter::Execute.call(options:, message: "Find bibs #{ids.join(',')}") do
       bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
       return nil if bibs.count == 0
       availability = bibs.each_with_object({}) do |bib, acc|
-        acc[bib.id] = AvailabilityStatus.new(bib: bib, deep_check: deep_check).bib_availability
+        acc[bib.id] = AvailabilityStatus.new(bib:, deep_check:).bib_availability
       end
       availability
     end
@@ -84,7 +84,7 @@ class AlmaAdapter
     # Fetch the items for the holding and create
     # the availability response for each item
     bib_status = AvailabilityStatus.from_bib(bib: bibs.first)
-    holding_items = bib_status.holding_item_data(holding_id: holding_id)
+    holding_items = bib_status.holding_item_data(holding_id:)
     holding_items[:items].map(&:availability_summary)
   rescue Alma::StandardError => e
     handle_alma_error(client_error: e)
@@ -95,7 +95,7 @@ class AlmaAdapter
   def get_holding_records(id)
     res = connection.get(
       "bibs/#{id}/holdings",
-      apikey: apikey
+      apikey:
     )
 
     res.body.force_encoding("utf-8") if validate_response!(response: res)
@@ -125,7 +125,7 @@ class AlmaAdapter
   end
 
   def holding_by_id(mms_id:, holding_id:)
-    holding = Alma::BibHolding.find(mms_id: mms_id, holding_id: holding_id)
+    holding = Alma::BibHolding.find(mms_id:, holding_id:)
     if holding["errorsExist"]
       # In this case although `holding` is an object of type Alma::BibHolding, its
       # content is really an HTTPartyResponse with the error information. :shrug:
@@ -137,7 +137,7 @@ class AlmaAdapter
 
   def find_user(patron_id)
     options = { enable_loggable: true }
-    AlmaAdapter::Execute.call(options: options, message: "Find user #{patron_id}") do
+    AlmaAdapter::Execute.call(options:, message: "Find user #{patron_id}") do
       return Alma::User.find(patron_id)
     rescue Alma::StandardError => e
       # The Alma gem throws "not found" for all errors but only error code 401861

@@ -23,7 +23,7 @@ class AwsSqsPoller
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
       AlmaDumpTransferJob.perform_later(
-        dump: dump,
+        dump:,
         job_id: message_body["job_instance"]["id"]
       )
     end
@@ -41,7 +41,7 @@ class AlmaDumpFactory
   end
 
   def bib_dump
-    dump = Dump.create(dump_type: dump_type)
+    dump = Dump.create(dump_type:)
     dump.event = dump_event
     dump.generated_date = dump_event.start
     dump.save

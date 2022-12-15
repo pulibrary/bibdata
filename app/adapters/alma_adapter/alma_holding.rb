@@ -1,8 +1,8 @@
 class AlmaAdapter
   class AlmaHolding
     def self.for(holding, holding_record: nil, recap: false)
-      return new(holding, holding_record: holding_record) unless recap
-      AlmaAdapter::RecapAlmaHolding.new(holding, holding_record: holding_record)
+      return new(holding, holding_record:) unless recap
+      AlmaAdapter::RecapAlmaHolding.new(holding, holding_record:)
     end
     attr_reader :holding
     # @param item [Alma::BibHolding]

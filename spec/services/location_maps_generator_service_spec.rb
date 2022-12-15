@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LocationMapsGeneratorService do
-  let(:service) { described_class.new(base_path: base_path) }
+  let(:service) { described_class.new(base_path:) }
   let(:base_path) { './tmp/' }
   let(:locations_path) { File.join(base_path, 'locations.rb') }
   let(:location_display_path) { File.join(base_path, 'location_display.rb') }
@@ -27,7 +27,7 @@ RSpec.describe LocationMapsGeneratorService do
 
     context 'when the holding locations table does not exist' do
       let(:logger) { instance_double(ActiveSupport::Logger) }
-      let(:service) { described_class.new(base_path: base_path, logger: logger) }
+      let(:service) { described_class.new(base_path:, logger:) }
       before do
         allow(logger).to receive(:warn)
         allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
@@ -41,7 +41,7 @@ RSpec.describe LocationMapsGeneratorService do
 
     context 'when there is a database error' do
       let(:logger) { instance_double(ActiveSupport::Logger) }
-      let(:service) { described_class.new(base_path: base_path, logger: logger) }
+      let(:service) { described_class.new(base_path:, logger:) }
       before do
         allow(logger).to receive(:warn)
         allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_raise(StandardError)

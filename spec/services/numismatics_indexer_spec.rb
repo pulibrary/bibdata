@@ -7,13 +7,13 @@ RSpec.describe NumismaticsIndexer do
       mock = instance_double(described_class)
       allow(described_class).to receive(:new).and_return(mock)
       allow(mock).to receive(:full_index)
-      described_class.full_index(solr_url: solr_url)
+      described_class.full_index(solr_url:)
       expect(mock).to have_received(:full_index)
     end
   end
 
   describe "#full_index" do
-    subject(:indexer) { described_class.new(solr_connection: solr_connection, progressbar: false, logger: logger) }
+    subject(:indexer) { described_class.new(solr_connection:, progressbar: false, logger:) }
     let(:solr_connection) { RSolr.connect(url: solr_url) }
     let(:logger) { instance_double(Logger) }
 

@@ -12,7 +12,7 @@ namespace :campus_access do
       additional_ids = CampusAccessException.new(additional_id_file).current_exceptions
       if File.exist?(file_name)
         puts "Reading in the daily access file #{file_name}"
-        CampusAccess.load_access(file_name, trained_file: trainedfile_name, additional_ids: additional_ids)
+        CampusAccess.load_access(file_name, trained_file: trainedfile_name, additional_ids:)
         puts "Access allowed for #{CampusAccess.count} patrons today."
       else
         puts "Access file does not exist '#{file_name}'!"

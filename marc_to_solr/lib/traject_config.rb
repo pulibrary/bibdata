@@ -1463,13 +1463,13 @@ to_field 'electronic_portfolio_s' do |record, accumulator|
   fields.map do |field|
     date = dates.find { |d| d['a'] == field['8'] }
     embargo = embargoes.find { |e| e['a'] == field['8'] }
-    accumulator << ElectronicPortfolioBuilder.build(field: field, date: date, embargo: embargo)
+    accumulator << ElectronicPortfolioBuilder.build(field:, date:, embargo:)
   end
 end
 
 # Generate access_facet
 each_record do |record, context|
-  context.output_hash['access_facet'] = AccessFacetBuilder.build(record: record, context: context)
+  context.output_hash['access_facet'] = AccessFacetBuilder.build(record:, context:)
 end
 
 # Location has:

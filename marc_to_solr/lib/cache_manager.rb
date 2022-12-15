@@ -6,7 +6,7 @@ class CacheManager
   # @param cache [ActiveSupport::Cache::Store, CacheAdapter] Low-level cache
   # @param logger [IO] logger for handling output during HTTP service requests
   def self.initialize(figgy_cache:, logger: STDOUT)
-    @current_cache = new(figgy_cache: figgy_cache, logger: logger)
+    @current_cache = new(figgy_cache:, logger:)
   end
 
   # Retrieve the last initialized cache manager

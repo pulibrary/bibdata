@@ -81,7 +81,7 @@ RSpec.describe BarcodeController, type: :controller do
                      headers: { "Content-Type" => "application/json" },
                      body: alma_path.join("barcode_#{barcode}.json"))
 
-        get :scsb, params: { barcode: barcode }, format: :xml
+        get :scsb, params: { barcode: }, format: :xml
 
         expect(response).to be_not_found
       end

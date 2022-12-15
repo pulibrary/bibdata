@@ -10,7 +10,7 @@ class CompositeCacheMap
   # Seed the cache
   # @param page [Integer] the page number at which to start the caching
   def seed!(page: 1)
-    @cache_maps.each { |cache_map| cache_map.seed!(page: page) }
+    @cache_maps.each { |cache_map| cache_map.seed!(page:) }
   end
 
   # Retrieve the cached values

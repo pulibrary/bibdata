@@ -4,11 +4,11 @@ module AlmaStubbing
     alma_path = Pathname.new(file_fixture_path).join("alma")
     json_body = alma_path.join("#{fixture || ids.join('')}.json")
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{ids.join(',')}")
-      .to_return(status: status, body: json_body)
+      .to_return(status:, body: json_body)
     all_items_path = alma_path.join("#{fixture}_all_items.json")
     return unless all_items_path.exist?
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{ids.first}/holdings/ALL/items")
-      .to_return(status: status, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
+      .to_return(status:, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
   end
 
   def stub_alma_bib_items(mms_id:, status: 200, filename:, limit: 100, offset: nil)
@@ -17,7 +17,7 @@ module AlmaStubbing
     url += "&offset=#{offset}" if offset
     stub_request(:get, url)
       .to_return(
-        status: status,
+        status:,
         headers: { "content-Type" => "application/json" },
         body: alma_path.join(filename)
       )
@@ -55,7 +55,7 @@ module AlmaStubbing
   def stub_alma_library(library_code:, location_code:, body: "{}")
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/#{library_code}/locations/#{location_code}")
       .with(headers: stub_alma_request_headers)
-      .to_return(status: 200, body: body, headers: { "content-Type" => "application/json" })
+      .to_return(status: 200, body:, headers: { "content-Type" => "application/json" })
   end
 
   def stub_alma_per_second_threshold

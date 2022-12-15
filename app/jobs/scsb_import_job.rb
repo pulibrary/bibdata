@@ -4,6 +4,6 @@ class ScsbImportJob < ApplicationJob
 
   def perform(dump_id, timestamp)
     dump = Dump.find(dump_id)
-    Scsb::PartnerUpdates.incremental(dump: dump, timestamp: timestamp)
+    Scsb::PartnerUpdates.incremental(dump:, timestamp:)
   end
 end

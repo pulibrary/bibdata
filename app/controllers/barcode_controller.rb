@@ -26,7 +26,7 @@ class BarcodeController < ApplicationController
         render plain: "Record #{mms_id} not found", status: :not_found
         return
       end
-      holding = adapter.holding_by_id(mms_id: mms_id, holding_id: item.holding_data["holding_id"])
+      holding = adapter.holding_by_id(mms_id:, holding_id: item.holding_data["holding_id"])
       records = if record.linked_record_ids.present?
                   adapter.get_bib_records(record.linked_record_ids)
                 else
@@ -44,11 +44,11 @@ class BarcodeController < ApplicationController
         respond_to do |wants|
           wants.json  do
             json = MultiJson.dump(pass_records_through_xml_parser(records))
-            render json: json
+            render json:
           end
           wants.xml do
             xml = records_to_xml_string(records)
-            render xml: xml
+            render xml:
           end
         end
       end

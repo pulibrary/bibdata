@@ -18,7 +18,7 @@ module Scsb
 
   def scsb_barcode_request(barcodes)
     {
-      barcodes: barcodes
+      barcodes:
     }
   end
 

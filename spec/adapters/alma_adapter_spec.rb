@@ -80,7 +80,7 @@ RSpec.describe AlmaAdapter do
     context "if a string of bibs is provided" do
       it "returns multiple unsuppressed records" do
         ids = ["991227850000541", "991227840000541", "99222441306421"]
-        stub_alma_ids(ids: ids, status: 200, fixture: "unsuppressed_suppressed")
+        stub_alma_ids(ids:, status: 200, fixture: "unsuppressed_suppressed")
 
         expect(adapter.get_bib_records(ids)[0]['001'].value).to eq unsuppressed_two
         expect(adapter.get_bib_records(ids)[1]['001'].value).to eq unsuppressed

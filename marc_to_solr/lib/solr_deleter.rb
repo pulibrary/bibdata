@@ -60,11 +60,11 @@ class SolrDeleter
       uri = "#{@solr_url}/update?waitSearcher=false&wt=json"
       body = build_request_body(ids: batch)
 
-      response = request_deletion(uri: uri, body: body)
+      response = request_deletion(uri:, body:)
       return if valid_response?(response)
 
       # Only retry once
-      retry_response = request_deletion(uri: uri, body: body)
+      retry_response = request_deletion(uri:, body:)
       return if valid_response?(retry_response)
 
       Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}") unless retry_response.nil?

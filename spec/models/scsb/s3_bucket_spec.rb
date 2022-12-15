@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Scsb::S3Bucket, type: :model do
   let(:s3_credentials) { instance_double("Aws::Credentials") }
   let(:s3_client) { Aws::S3::Client.new(region: 'us-east-1', credentials: s3_credentials) }
-  let(:s3) { described_class.new(s3_client: s3_client, s3_bucket_name: 'test') }
+  let(:s3) { described_class.new(s3_client:, s3_bucket_name: 'test') }
 
   describe ".recap_transfer_client" do
     it "uses SCSB_S3 keys" do
@@ -73,7 +73,7 @@ RSpec.describe Scsb::S3Bucket, type: :model do
       path = Rails.root.join('tmp', 's3_bucket_test')
       FileUtils.rm_rf(path)
       Dir.mkdir(path)
-      locations = s3.download_files(files: files, timestamp_filter: 3.days.ago, output_directory: path, file_filter: /NYPL.*\.zip/)
+      locations = s3.download_files(files:, timestamp_filter: 3.days.ago, output_directory: path, file_filter: /NYPL.*\.zip/)
       expect(Dir.entries(path)).to contain_exactly(".", "..", "NYPL_2.zip", "NYPL_1.zip")
       expect(locations).to contain_exactly(File.join(path, "NYPL_1.zip"), File.join(path, "NYPL_2.zip"))
     end
