@@ -243,11 +243,25 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:label]).to eq 'Lewis Library - Term Loan Reserves'
     end
 
-    it "reports On-site access for aeon locations" do
-      FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
-      availability = adapter.get_availability_one(id: "99111299423506421")
-      item = availability["99111299423506421"]["22741556190006421"]
-      expect(item[:status_label]).to eq "On-site Access"
+    context "with aeon locations" do
+      it "reports On-site access for aeon locations" do
+        FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
+        availability = adapter.get_availability_one(id: "99111299423506421")
+        item = availability["99111299423506421"]["22741556190006421"]
+        expect(item[:status_label]).to eq "On-site Access"
+      end
+
+      context 'when the item is missing' do
+        before do
+          stub_alma_ids(ids: "9963575053506421", status: 200, fixture: "9963575053506421")
+        end
+        it 'reports that the item is Not Available' do
+          FactoryBot.create(:aeon_location, code: 'rare$hsvm', label: 'Manuscripts')
+          availability = adapter.get_availability_one(id: "9963575053506421")
+          item = availability["9963575053506421"]["22726823980006421"]
+          expect(item[:status_label]).to eq "Unavailable"
+        end
+      end
     end
 
     it "reports On-site access for some specific (map) locations" do
