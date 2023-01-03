@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim">
+  <marcxml:record>
+    <marcxml:leader>00876cam a2200277   4500</marcxml:leader>
+    <marcxml:controlfield tag="001">SCSB-4026061</marcxml:controlfield>
+    <marcxml:controlfield tag="003">NNC</marcxml:controlfield>
+    <marcxml:controlfield tag="005">20221013013237.0</marcxml:controlfield>
+    <marcxml:controlfield tag="008">760609s1950    pl            001 0 pol  </marcxml:controlfield>
+    <marcxml:controlfield tag="009">2796431</marcxml:controlfield>
+    <marcxml:datafield tag="010" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">   53037266 </marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)ocm02218094</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="9">ARR5257CU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">2796431</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="040" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">DLC</marcxml:subfield>
+      <marcxml:subfield code="c">NAM</marcxml:subfield>
+      <marcxml:subfield code="d">ZCU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="041" ind1="0" ind2=" ">
+      <marcxml:subfield code="a">polsla</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="050" ind1="0" ind2="0">
+      <marcxml:subfield code="a">PG619</marcxml:subfield>
+      <marcxml:subfield code="b">.S56</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="099" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">891.8</marcxml:subfield>
+      <marcxml:subfield code="a">SL543</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="100" ind1="1" ind2=" ">
+      <marcxml:subfield code="a">Słonski, Stanisław.</marcxml:subfield>
+      <marcxml:subfield code="0">http://id.loc.gov/authorities/names/no95004104</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="245" ind1="1" ind2="0">
+      <marcxml:subfield code="a">Grammatyka języka starosłowiańskiego :</marcxml:subfield>
+      <marcxml:subfield code="b">(starobułgarskiego)</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="260" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Warszawa :</marcxml:subfield>
+      <marcxml:subfield code="b">Państwowe Zakłady Wydawn. Szkolnych,</marcxml:subfield>
+      <marcxml:subfield code="c">1950.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="300" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">172 pages ;</marcxml:subfield>
+      <marcxml:subfield code="c">26 cm</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="336" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">text</marcxml:subfield>
+      <marcxml:subfield code="b">txt</marcxml:subfield>
+      <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="337" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">unmediated</marcxml:subfield>
+      <marcxml:subfield code="b">n</marcxml:subfield>
+      <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Church Slavic language</marcxml:subfield>
+      <marcxml:subfield code="x">Grammar.</marcxml:subfield>
+      <marcxml:subfield code="0">http://id.loc.gov/authorities/subjects/sh2008100782</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="8" ind2="0">
+      <marcxml:subfield code="h">891.8 SL543</marcxml:subfield>
+      <marcxml:subfield code="0">4037177</marcxml:subfield>
+      <marcxml:subfield code="b">scsbcul</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">4037177</marcxml:subfield>
+      <marcxml:subfield code="3"/>
+      <marcxml:subfield code="a">5863257</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU58674560</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+  </marcxml:record>
+</marcxml:collection>
