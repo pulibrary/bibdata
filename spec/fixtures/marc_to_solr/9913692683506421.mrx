@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01877cam a2200361   4500</leader>
+    <controlfield tag="005">20221219072443.0</controlfield>
+    <controlfield tag="008">720509s1962    fr a     b    000 0 fre  </controlfield>
+    <controlfield tag="001">9913692683506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">   66098712  </subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">CEB2990TS</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">1369268</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)1369268-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm00304846</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">MRC</subfield>
+      <subfield code="d">NRC</subfield>
+      <subfield code="d">UBA</subfield>
+      <subfield code="d">PUL</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">GN405</subfield>
+      <subfield code="b">.L46</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Lévi-Strauss, Claude.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n79011221</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="3">
+      <subfield code="a">La pensée sauvage.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">[Paris] :</subfield>
+      <subfield code="b">Plon,</subfield>
+      <subfield code="c">[1962]</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">395 pages :</subfield>
+      <subfield code="b">illustrations ;</subfield>
+      <subfield code="c">20 cm</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (pages 361-380).</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="a">Dealer note regarding annotations: 2 (moyennement) : Passages soulignés et notes dans les marges* (traits, flèches, ...) Signet : feuillet arraché du même agenda (31 décembre 1965) que celui dont on trouve deux pages dans L'Anthropologie structurale. Beaucoup moins de notes cependant que dans L'Anthropologie structurale. Check-in observation: Bookmark on pages 20-21, 140-141, 154-155, 228-229, 308-321.</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="a">Stored in box B-000145. Forms part of: The Library of Jacques Derrida, Studio Series. Studio. Wall 1.</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Totemism.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85136223</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Ethnopsychology</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Folk classification.</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="a">Annotations (Provenance)</subfield>
+      <subfield code="2">rbprov</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="a">Insertions (Provenance)</subfield>
+      <subfield code="2">rbprov</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Derrida, Jacques,</subfield>
+      <subfield code="e">former owner.</subfield>
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield tag="773" ind1="0" ind2=" ">
+      <subfield code="3">Derrida copy</subfield>
+      <subfield code="w">99125489925606421</subfield>
+      <subfield code="g">folder 2</subfield>
+      <subfield code="o">1.1.13.20</subfield>
+    </datafield>
+    <datafield tag="856" ind1="4" ind2="1">
+      <subfield code="z">View digital content</subfield>
+      <subfield code="u">http://arks.princeton.edu/ark:/88435/5t34sp67q</subfield>
+    </datafield>
+    <datafield tag="911" ind1=" " ind2=" ">
+      <subfield code="a">19981222</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm00304846</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">11172022</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">304846</subfield>
+    </datafield>
+    <datafield tag="947" ind1=" " ind2=" ">
+      <subfield code="a">CEB2990</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2022-12-19 07:24:43 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 22:46:42 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">GN451.L54</subfield>
+      <subfield code="8">22636769920006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 02:46:42</subfield>
+      <subfield code="8">22636769920006421</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">GN451</subfield>
+      <subfield code="i">.L54</subfield>
+      <subfield code="8">22636769890006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 02:46:42</subfield>
+      <subfield code="8">22636769890006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22636769920006421</subfield>
+      <subfield code="a">23636769900006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="z">stacks</subfield>
+      <subfield code="d">2000-06-12 20:00:00 US/Eastern</subfield>
+      <subfield code="p">32101006928764</subfield>
+      <subfield code="t">2</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22636769890006421</subfield>
+      <subfield code="a">23636769860006421</subfield>
+      <subfield code="j">0</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2005-09-22 20:00:00 US/Eastern</subfield>
+      <subfield code="p">32101059494995</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>

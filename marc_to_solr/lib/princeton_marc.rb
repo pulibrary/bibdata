@@ -830,6 +830,6 @@ end
 def valid_linked_fields(record, field_tag, accumulator)
   fields = record.fields(field_tag).select { |f| f["w"] =~ /99[0-9]+6421/ }
   fields.each do |field|
-    accumulator << field["w"].gsub(/^.*(99[0-9]+6421).*$/, '\1')
+    accumulator << field["w"] if field["w"].start_with?("99") && field["w"].end_with?("06421")
   end
 end
