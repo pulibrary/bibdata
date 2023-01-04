@@ -73,6 +73,7 @@ describe 'From traject_config.rb', indexing: true do
       @invalid_773w = @indexer.map_record(fixture_record('9938522893506421'))
       @invalid_774w = @indexer.map_record(fixture_record('9979952033506421'))
       @valid_774w = @indexer.map_record(fixture_record('9938522893506421'))
+      @linked_773 = @indexer.map_record(fixture_record('9913692683506421'))
     end
 
     describe "alma loading" do
@@ -322,6 +323,9 @@ describe 'From traject_config.rb', indexing: true do
       end
       it "does not index an invalid 774w field" do
         expect(@invalid_774w['related_record_s']).to be_nil
+      end
+      it "indexes a valid 773 that includes 99" do
+        expect(@linked_773['contained_in_s']).to eq(["99125489925606421"])
       end
     end
 
