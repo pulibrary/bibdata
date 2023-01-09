@@ -59,9 +59,6 @@ RSpec.describe PatronController, type: :controller do
           "patron_group_desc" => "UGRD Undergraduate",
           "campus_authorized" => false,
           "campus_authorized_category" => "none",
-          "requests_total" => 0,
-          "loans_total" => 0,
-          "fees_total" => 0.0,
           "active_email" => "cmonster@SCRUBBED_Princeton.EDU"
         )
       end
@@ -88,9 +85,6 @@ RSpec.describe PatronController, type: :controller do
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
         "campus_authorized_category" => "none",
-        "requests_total" => 0,
-        "loans_total" => 0,
-        "fees_total" => 0.0,
         "ldap" => { "ldap_data" => "is here" },
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
@@ -111,9 +105,6 @@ RSpec.describe PatronController, type: :controller do
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
         "campus_authorized_category" => "none",
-        "requests_total" => 0,
-        "loans_total" => 0,
-        "fees_total" => 0.0,
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
@@ -133,9 +124,6 @@ RSpec.describe PatronController, type: :controller do
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => true,
         "campus_authorized_category" => "full",
-        "requests_total" => 0,
-        "loans_total" => 0,
-        "fees_total" => 0.0,
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
@@ -171,8 +159,8 @@ RSpec.describe PatronController, type: :controller do
         expect(JSON.parse(response.body)["barcode"]).to eq active_barcode
         expect(JSON.parse(response.body)).to eq({ "netid" => nil, "first_name" => "Amir", "last_name" => "Abadi",
                                                   "barcode" => "77777777", "university_id" => "BC123456789", "patron_id" => "BC123456789",
-                                                  "patron_group" => "GST", "patron_group_desc" => "GST Guest Patron", "requests_total" => 0,
-                                                  "loans_total" => 17, "fees_total" => 17, "active_email" => "Abadi@other_school.edu",
+                                                  "patron_group" => "GST", "patron_group_desc" => "GST Guest Patron",
+                                                  "active_email" => "Abadi@other_school.edu",
                                                   "campus_authorized" => false, "campus_authorized_category" => "none" })
       end
     end
@@ -180,7 +168,7 @@ RSpec.describe PatronController, type: :controller do
 
   context "When Alma returns PER_THRESHOLD errors" do
     it "returns HTTP 429" do
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/bbird?expand=fees,requests,loans")
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/bbird")
         .to_return(status: 429,
                    headers: { "Content-Type" => "application/json" },
                    body: stub_alma_per_second_threshold)

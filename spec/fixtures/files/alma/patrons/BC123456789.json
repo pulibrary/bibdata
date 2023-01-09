@@ -53,18 +53,6 @@
   },
   "status_date": "2021-07-25Z",
   "last_patron_activity_date": "2022-06-16Z",
-  "requests": {
-    "value": 0,
-    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/BC123456789/requests"
-  },
-  "loans": {
-    "value": 17,
-    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/BC123456789/loans"
-  },
-  "fees": {
-    "value": 17,
-    "link": "https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/BC123456789/fees"
-  },
   "contact_info": {
     "address": [
       {
