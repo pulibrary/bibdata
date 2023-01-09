@@ -138,7 +138,8 @@ class AlmaAdapter
   def find_user(patron_id)
     options = { enable_loggable: true }
     AlmaAdapter::Execute.call(options:, message: "Find user #{patron_id}") do
-      return Alma::User.find(patron_id)
+      raw_api_response = HTTParty.get("https://api-na.hosted.exlibrisgroup.com/almaws/v1/users/#{patron_id}", headers: Alma::User.headers)
+      return Alma::User.new(raw_api_response)
     rescue Alma::StandardError => e
       # The Alma gem throws "not found" for all errors but only error code 401861
       # really represents a record not found.
