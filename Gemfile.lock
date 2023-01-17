@@ -38,10 +38,10 @@ GIT
 
 GIT
   remote: https://github.com/tulibraries/alma_rb.git
-  revision: 587115873dd7ad2edf0184c77a6aa6d36d0eb9fa
+  revision: 803912a705ba5d36317853f8d9ecf5d449cc78f0
   branch: main
   specs:
-    alma (0.4.0)
+    alma (0.4.1)
       activesupport
       ezwadl
       httparty
@@ -342,7 +342,7 @@ GEM
     net-ssh (7.0.1)
     netrc (0.11.0)
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.0)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     oai (1.2.1)
