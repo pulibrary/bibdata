@@ -244,7 +244,7 @@ GEM
       rake
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
-    globalid (1.0.0)
+    globalid (1.0.1)
       activesupport (>= 5.0)
     gyoku (1.4.0)
       builder (>= 2.1.2)
