@@ -67,18 +67,21 @@ Go to the solr admin UI (see above).
 
 #### Full dump
 
-You can go to the bibdata UI Events page to see the most recent full record dump. (https://bibdata.princeton.edu/events) (Look for the most recent All Records to see what will be processed when you run the rake task)
-
-SSH to a bibdata machine as deploy user (Find a worker machine in your environment https://github.com/pulibrary/bibdata/tree/main/config/deploy)
-
-```
-tmux new -s full-index
-$ cd /opt/bibdata/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
-CTRL+b d (to detach from tmux)
-```
-
-Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can go to the bibdata web UI, login, and go to /sidekiq.
+1. In your browser, go to the [bibdata UI Events page](https://bibdata.princeton.edu/events). Click on the most recent "All Records" and note the number of dump files.
+1. SSH to a bibdata machine as deploy user (Find a worker machine in your environment https://github.com/pulibrary/bibdata/tree/main/config/deploy)
+2. Start a tmux session and run the `liberate:full` rake task:
+    ```
+    tmux new -s full-index
+    $ cd /opt/bibdata/current
+    $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
+    CTRL+b d (to detach from tmux)
+    ```
+1. Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index:
+    1. Go to the bibdata web UI
+    2. Login
+    4. Go to https://bibdata.princeton.edu/sidekiq/queues/default
+    5. Confirm that you see roughly the same number of `DumpFileIndexJob`s as you saw dump files in the "All Records" event.
+    6. If desired, click the Live Poll button and confirm that the number of jobs is slowly going down. 
 
 Once the full dump is finished indexing, the IndexManager will queue up dump
 files for each relevant incremental dumps until all the Alma records are
