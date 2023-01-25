@@ -10,7 +10,7 @@ Alma MMS ids start with 99 and end with 3506421
 Frequency of updates: 4x per day: 4am, 10am, 4pm, 10pm see: https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md
 
 ## Source: SCSB
-About 6 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
+Around 10 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
 
 These files are on an aws s3 bucket; the password is in lastpass under SCS Prod S3 Keys in the shared `bibdata` directory. The file path is SCSB > data-exports > PUL > MARCXml > Full. There are .zip files there and .csv files. The zip files contain the MARC dumps.
 
@@ -126,7 +126,7 @@ as deploy user, in `/opt/bibdata/current`
 ```
 $ tmux attach-session -t full-index
 $ cd /opt/bibdata/current
-$ mv /home/deploy/thesis.json /home/deploy/thesis-<date>.json 
+$ mv /home/deploy/theses.json /home/deploy/theses-<date>.json 
 $ FILEPATH=/home/deploy/theses.json bundle exec rake orangetheses:cache_theses
 CTRL+b d (to detach from tmux)
 ```
