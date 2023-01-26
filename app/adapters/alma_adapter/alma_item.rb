@@ -209,7 +209,7 @@ class AlmaAdapter
     end
 
     def supervised_recap_groups
-      ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx"]
+      ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx", "xgr", "xcr", "phr", "xrr", "xmr"]
     end
 
     def no_access_recap_groups

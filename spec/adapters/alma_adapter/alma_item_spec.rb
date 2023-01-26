@@ -85,7 +85,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
         end
       end
     end
-    ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx"].each do |code|
+    ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx", "xgr", "xcr", "phr", "xrr", "xmr"].each do |code|
       context "when location is #{code}" do
         it "returns Supervised Use" do
           item = described_class.new(
