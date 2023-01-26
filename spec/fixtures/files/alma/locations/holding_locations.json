@@ -556,8 +556,8 @@
         "label": "Remote Storage (ReCAP): Marquand Library Use Only",
         "code": "marquand$pv",
         "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": true,
+        "recap_electronic_delivery_location": true,
+        "open": false,
         "requestable": true,
         "always_requestable": false,
         "circulates": true,
@@ -569,8 +569,14 @@
             "code": "marquand",
             "order": 0
         },
-        "holding_library": null,
-        "delivery_locations": []
+        "holding_library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "delivery_locations": [
+            "PJ"
+        ]
     },
     {
         "label": "Remote Storage (ReCAP)",
