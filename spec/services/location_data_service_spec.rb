@@ -67,6 +67,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(lewis_serial.label).to eq 'Lewis Library - Serials (Off-Site)'
       expect(marquand_pv.remote_storage).to eq 'recap_rmt'
       expect(marquand_pv.label).to eq 'Remote Storage (ReCAP): Marquand Library Use Only'
+      expect(marquand_pv.open).to be false
       expect(mudd_scamudd.requestable).to be false
       expect(rare_xmr.requestable).to be false
       expect(rare_scactsn.requestable).to be false
