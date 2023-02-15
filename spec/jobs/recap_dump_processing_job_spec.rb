@@ -11,7 +11,8 @@ RSpec.describe RecapDumpProcessingJob do
 
       described_class.perform_now(dump)
       expect(RecapDumpFileProcessingJob).to have_received(:perform_now).twice
-      expect(RecapBoundwithsProcessingJob).to have_been_enqueued
+      # expect(RecapBoundwithsProcessingJob).to have_been_enqueued
+      # ^ because I commented out RecapBoundwithsProcessingJob.perform_later(dump)
     end
   end
 end

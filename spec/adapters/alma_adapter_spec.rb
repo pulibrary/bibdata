@@ -87,6 +87,11 @@ RSpec.describe AlmaAdapter do
         expect(adapter.get_bib_records(ids).count).to eq 2
       end
     end
+    # context "if a string of bibs is provided and expand is false" do
+    #   it "returns bib records" do
+    #
+    #   end
+    # end
   end
 
   describe '#get_holding_records' do

@@ -18,7 +18,7 @@ class AlmaDumpTransferJob < ApplicationJob
     elsif recap_incremental_dump?(type_constant)
       # RecapBoundwithsProcessingJob will not include all records. Re-enable
       # when this issue is resolved: https://github.com/pulibrary/bibdata/issues/1463
-      # RecapDumpProcessingJob.perform_later(dump)
+      RecapDumpProcessingJob.perform_later(dump)
     end
   end
 

@@ -16,3 +16,4 @@ spec/fixtures/marc_to_solr/figgy_ark_cache
 doc/
 .env
 .aws-sam/
+scsb_logfile.log

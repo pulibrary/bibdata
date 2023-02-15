@@ -10,21 +10,23 @@ class AlmaAdapter
           field.subfields.delete_if { |s| ['h', 'i'].include? s.code }
           field.append(MARC::Subfield.new('h', call_no))
           combine_location(field)
+          field.subfields.each { |s| s.code = '0' if s.code == '8' }
         end
       end
     end
 
     private
 
-      # We need to combine 852 b/c for recap.
+      # c. location - Append the 852$c value to the 852$b joining with a dollar sign - recap.
       def combine_location(field)
         return if field["b"].to_s.include?("$")
-        b_code = "#{field['b']}$#{field['c']}"
-        field.subfields.delete_if { |s| s.code == 'b' }
-        field.append(MARC::Subfield.new('b', b_code))
+        location = [field['b'], field['c']].join('$')
+        field.subfields.delete_if { |s| ['b', 'c'].include? s.code }
+        field.append(MARC::Subfield.new('b', location))
       end
 
-      # Copied from VoyagerHelpers. Combines h and i into one callnumber.
+      # e. call_number - Append the 852$i value to the 852$h joining with a space
+      # (the $h is the subject part of the call numer. $i is the items specific part)
       def callno_from_852(field)
         call_no = field['h']
         return call_no if call_no.nil?

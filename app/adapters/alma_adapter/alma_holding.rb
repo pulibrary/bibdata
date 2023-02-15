@@ -14,9 +14,9 @@ class AlmaAdapter
     def marc_record_enrichment
       [
         enriched_852,
-        prepend_holding_id(holding_record.fields("856")),
         prepend_holding_id(holding_record.fields("866")),
-        prepend_holding_id(holding_record.fields("867"))
+        prepend_holding_id(holding_record.fields("867")),
+        prepend_holding_id(holding_record.fields("868"))
       ].flatten.compact
     end
 
@@ -28,11 +28,13 @@ class AlmaAdapter
       return if fields.blank?
       fields.map do |field|
         field.tap do |f|
+          # adds a new 0. in the notes Mark g. Change $8 subfields in 852, 866, 867, 868 to $0
           f.subfields.unshift(MARC::Subfield.new('0', holding_id))
         end
       end
     end
 
+    # we are not going to use this for recap.
     def holding_record
       @holding_record ||=
         MARC::XMLReader.new(
