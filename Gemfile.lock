@@ -182,7 +182,7 @@ GEM
     celluloid (0.16.0)
       timers (~> 4.0.0)
     cgi (0.3.6)
-    change_the_subject (0.3.1)
+    change_the_subject (0.3.2)
       yaml
     childprocess (4.1.0)
     chronic (0.10.2)
@@ -594,7 +594,7 @@ GEM
       rexml
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    yaml (0.2.0)
+    yaml (0.2.1)
     yard (0.9.28)
       webrick (~> 1.7.0)
     yell (2.2.2)
@@ -613,7 +613,7 @@ DEPENDENCIES
   capistrano-rails (~> 1.1.1)
   capistrano-rails-console
   capybara
-  change_the_subject (~> 0.3.0)
+  change_the_subject (~> 0.3.2)
   coveralls_reborn
   ddtrace (~> 0.54.2)
   devise
@@ -686,4 +686,4 @@ DEPENDENCIES
   yard
 
 BUNDLED WITH
-   2.3.25
+   2.3.26
