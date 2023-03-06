@@ -516,6 +516,18 @@ describe 'From traject_config.rb', indexing: true do
         expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
       end
     end
+    describe 'invalid 008' do
+      let(:too_short_008) do
+        {
+          '008' => '150106s2013'
+        }
+      end
+      it 'does not break indexing' do
+        expect do
+          @indexer.map_record(MARC::Record.new_from_hash('fields' => [too_short_008], 'leader' => leader))
+        end.not_to raise_error
+      end
+    end
     describe 'cjk-only fields' do
       before do
         @record_cjk = @indexer.map_record(fixture_record('9939238033506421'))
