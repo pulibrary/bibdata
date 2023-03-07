@@ -101,7 +101,7 @@ jobs:
           PGHOST: localhost
           PGUSER: bibdata
           SOLR_URL: http://127.0.0.1:8983/solr/bibdata-core-test
-      - image: postgres:10.6-alpine
+      - image: postgres:13.6-alpine
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: bibdata_test
