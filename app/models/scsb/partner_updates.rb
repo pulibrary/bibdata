@@ -144,6 +144,7 @@ module Scsb
 
       def process_record(record)
         record = field_delete(['856', '959'], record)
+        record.leader[5] = 'c' if record.leader[5].eql?('d')
         if bad_utf8?(record)
           @bad_utf8 << record['001']
           record = bad_utf8_fix(record)

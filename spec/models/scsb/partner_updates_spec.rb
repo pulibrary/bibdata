@@ -9,6 +9,8 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
   let(:scsb_file_dir) { Rails.root.join("tmp", "specs", "data") }
   let(:bucket) { instance_double("Scsb::S3Bucket") }
+  let(:scsb_file) { file_fixture("scsb/scsb_leaderd.xml").to_s }
+  let(:scsb_record_leaderd) { MARC::XMLReader.new(scsb_file, external_encoding: 'UTF-8').first }
 
   before do
     FileUtils.rm_rf(scsb_file_dir)
@@ -139,6 +141,15 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       Sidekiq::Testing.inline! do
         expect { IndexFunctions.process_scsb_dumps([dump], Rails.application.config.solr["url"]) }.not_to raise_error
       end
+    end
+  end
+
+  describe '.process' do
+    it 'processes a scsb record and changes leader d to c' do
+      partner_updates = described_class.new(dump:, timestamp:, constant: 'RECAP_RECORDS')
+      expect(scsb_record_leaderd.leader[5]).to eq('d')
+      processed_record = partner_updates.send(:process_record, scsb_record_leaderd)
+      expect(processed_record.leader[5]).to eq('c')
     end
   end
 end
