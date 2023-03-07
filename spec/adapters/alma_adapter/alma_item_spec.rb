@@ -1,6 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe AlmaAdapter::AlmaItem do
+  let(:item_pa_committed_to_retain_not_in_retention_reason) do
+    Alma::BibItem.new(
+      "item_data" => {
+        "library" => {
+          "desc" => "ReCAP", "value" => "recap"
+        },
+        "location" => {
+          "desc" => "rcppa: RECAP",
+          "value" => "pa"
+        },
+        "committed_to_retain" => {
+          "value" => "true", "desc" => "Yes"
+        },
+        "retention_reason" => {
+          "value" => "NotInRetention", "desc" => "NotInRetention Imprints", "retention_note" => ""
+        }
+      }
+    )
+  end
+
+  let(:item_committed_to_retain) do
+    Alma::BibItem.new(
+      "item_data" => {
+        "library" => {
+          "desc" => "ReCAP", "value" => "recap"
+        },
+        "location" => {
+          "desc" => "rcppa: RECAP",
+          "value" => "pa"
+        },
+        "committed_to_retain" => {
+          "value" => "true", "desc" => "Yes"
+        },
+        "retention_reason" => {
+          "value" => "ReCAPItalianImprints", "desc" => "ReCAP Collaborative Collection Development Italian Imprints", "retention_note" => ""
+        }
+      }
+    )
+  end
+
   def build_item(code:)
     Alma::BibItem.new(
       "item_data" => {
@@ -10,6 +50,12 @@ RSpec.describe AlmaAdapter::AlmaItem do
         "location" => {
           "desc" => code,
           "value" => code
+        },
+        "committed_to_retain" => {
+          "value" => "false", "desc" => "No"
+        },
+        "retention_reason" => {
+          "value" => "ReCAPItalianImprints", "desc" => "ReCAP Collaborative Collection Development Italian Imprints", "retention_note" => ""
         }
       }
     )
@@ -37,24 +83,38 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "#group_designation" do
-    ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
-      context "when location is #{code}" do
-        it "returns Shared" do
-          item = described_class.new(
-            build_item(code:)
-          )
-          expect(item.group_designation).to eq "Shared"
-        end
+    context "when it's committed to retain and in committed retention reason" do
+      it "returns Committed" do
+        item = described_class.new(item_committed_to_retain)
+        expect(item.group_designation).to eq "Committed"
       end
     end
-    ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx'].each do |code|
-      context "when location is #{code}" do
-        it "returns Private" do
-          item = described_class.new(
-            build_item(code:)
-          )
+    context "when it's committed to retain and not in committed retention reason" do
+      it "is checking the location" do
+        item = described_class.new(item_pa_committed_to_retain_not_in_retention_reason)
+        expect(item.group_designation).to eq "Shared"
+      end
+    end
+    context "when it's not committed to retain and in committed retention reason" do
+      ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
+        context "when location is #{code}" do
+          it "returns Shared" do
+            item = described_class.new(
+              build_item(code:)
+            )
+            expect(item.group_designation).to eq "Shared"
+          end
+        end
+      end
+      ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx'].each do |code|
+        context "when location is #{code}" do
+          it "returns Private" do
+            item = described_class.new(
+              build_item(code:)
+            )
 
-          expect(item.group_designation).to eq "Private"
+            expect(item.group_designation).to eq "Private"
+          end
         end
       end
     end

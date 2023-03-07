@@ -173,6 +173,7 @@ class AlmaAdapter
 
     def group_designation
       return unless recap_item?
+      return "Committed" if item_cgd_committed?
       case item.location
       when 'pv', 'pa', 'gp', 'qk', 'pf'
         "Shared"
@@ -263,6 +264,22 @@ class AlmaAdapter
       else
         { in_temp_library: false }
       end
+    end
+
+    def item_cgd_committed?
+      item_committed_to_retain == "true" && committed_retention_reasons.include?(item_retention_reason)
+    end
+
+    def committed_retention_reasons
+      Array('ReCAPItalianImprints')
+    end
+
+    def item_retention_reason
+      item_data.dig("retention_reason", "value")
+    end
+
+    def item_committed_to_retain
+      item_data.dig("committed_to_retain", "value")
     end
 
     def item_type
