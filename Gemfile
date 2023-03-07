@@ -22,7 +22,6 @@ gem 'friendly_id', '~> 5.1.0'
 gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
 gem 'honeybadger', '~> 4.0'
-gem 'iso-639'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
@@ -91,3 +90,5 @@ group :development, :test do
 end
 
 gem "omniauth-rails_csrf_protection"
+
+gem "human_languages", "~> 0.6.0"
