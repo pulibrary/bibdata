@@ -12,6 +12,7 @@ require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './augment_the_subject'
+require_relative './language_service'
 require_relative './pul_solr_json_writer'
 require 'stringex'
 require 'library_stdnums'
@@ -48,6 +49,7 @@ end
 $LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 augment_the_subject = AugmentTheSubject.new
+language_service = LanguageService.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -747,13 +749,8 @@ end
 # mul - Multiple languages, sgn - Sign languages, und - Undetermined, ||| - No attempt to code
 to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |m| m.length == 3 ? m : m.scan(/.{1,3}/) }.flatten.uniq
-  codes_iso_639 = codes.reject { |m| ISO_639.find(m).nil? }.map do |m|
-    if ISO_639.find(m).alpha2.empty? || ["zxx", "mul", "sgn", "und", "|||"].include?(m)
-      "en"
-    else
-      ISO_639.find(m).alpha2
-    end
-  end
+  codes_iso_639 = codes.select { |m| language_service.valid_language_code?(m) }
+                       .map { |m| language_service.loc_to_iana(m) }
   accumulator.replace(codes_iso_639)
   accumulator.slice!(1..-1)
 end
