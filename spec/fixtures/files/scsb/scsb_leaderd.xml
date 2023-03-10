@@ -1,0 +1,2178 @@
+<?xml version="1.0" encoding="UTF-8"?><marcxml:collection xmlns:marcxml="http://www.loc.gov/MARC21/slim">
+  <marcxml:record>
+    <marcxml:leader>02949das a2200673 a 4500</marcxml:leader>
+    <marcxml:controlfield tag="001">SCSB-2289160</marcxml:controlfield>
+    <marcxml:controlfield tag="003">NNC</marcxml:controlfield>
+    <marcxml:controlfield tag="005">20220518214037.0</marcxml:controlfield>
+    <marcxml:controlfield tag="008">750824c19309999nyuer p       0   a0eng d</marcxml:controlfield>
+    <marcxml:controlfield tag="009">200552</marcxml:controlfield>
+    <marcxml:datafield tag="010" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">   31007716 </marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="012" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">3</marcxml:subfield>
+      <marcxml:subfield code="b">3</marcxml:subfield>
+      <marcxml:subfield code="e">s</marcxml:subfield>
+      <marcxml:subfield code="i">8407</marcxml:subfield>
+      <marcxml:subfield code="k">1</marcxml:subfield>
+      <marcxml:subfield code="m">1</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="016" ind1="7" ind2=" ">
+      <marcxml:subfield code="a">F12640000</marcxml:subfield>
+      <marcxml:subfield code="2">DNLM</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="019" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">15481688</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="022" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">0015-8259</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="030" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">FORTAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="032" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">206380</marcxml:subfield>
+      <marcxml:subfield code="b">USPS</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(OCoLC)ocm01569892</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="9">AAX2040CU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">(NNC)200552</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="035" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">200552</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="037" ind1=" " ind2=" ">
+      <marcxml:subfield code="b">Fortune, POB 30604, Tampa, FL 33630-0604</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="040" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">MUL</marcxml:subfield>
+      <marcxml:subfield code="c">MUL</marcxml:subfield>
+      <marcxml:subfield code="d">YUS</marcxml:subfield>
+      <marcxml:subfield code="d">NSD</marcxml:subfield>
+      <marcxml:subfield code="d">DLC</marcxml:subfield>
+      <marcxml:subfield code="d">OCL</marcxml:subfield>
+      <marcxml:subfield code="d">NSD</marcxml:subfield>
+      <marcxml:subfield code="d">DLC</marcxml:subfield>
+      <marcxml:subfield code="d">NSD</marcxml:subfield>
+      <marcxml:subfield code="d">NST</marcxml:subfield>
+      <marcxml:subfield code="d">SER</marcxml:subfield>
+      <marcxml:subfield code="d">RCS</marcxml:subfield>
+      <marcxml:subfield code="d">AIP</marcxml:subfield>
+      <marcxml:subfield code="d">HUL</marcxml:subfield>
+      <marcxml:subfield code="d">AIP</marcxml:subfield>
+      <marcxml:subfield code="d">NST</marcxml:subfield>
+      <marcxml:subfield code="d">NSD</marcxml:subfield>
+      <marcxml:subfield code="d">OCL</marcxml:subfield>
+      <marcxml:subfield code="d">NSD</marcxml:subfield>
+      <marcxml:subfield code="d">NST</marcxml:subfield>
+      <marcxml:subfield code="d">AGL</marcxml:subfield>
+      <marcxml:subfield code="d">NST</marcxml:subfield>
+      <marcxml:subfield code="d">WAU</marcxml:subfield>
+      <marcxml:subfield code="d">OCL</marcxml:subfield>
+      <marcxml:subfield code="d">UMC</marcxml:subfield>
+      <marcxml:subfield code="d">OCLCQ</marcxml:subfield>
+      <marcxml:subfield code="d">CDS</marcxml:subfield>
+      <marcxml:subfield code="d">DLC</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="042" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">nsdp</marcxml:subfield>
+      <marcxml:subfield code="a">lc</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="050" ind1="0" ind2="0">
+      <marcxml:subfield code="a">HF5001</marcxml:subfield>
+      <marcxml:subfield code="b">.F7</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="060" ind1="0" ind2="0">
+      <marcxml:subfield code="a">HF 5353 F745</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="070" ind1="0" ind2=" ">
+      <marcxml:subfield code="a">110</marcxml:subfield>
+      <marcxml:subfield code="b">F772</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="082" ind1="0" ind2=" ">
+      <marcxml:subfield code="a">051</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="210" ind1="0" ind2=" ">
+      <marcxml:subfield code="a">Fortune</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="222" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Fortune</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="245" ind1="0" ind2="0">
+      <marcxml:subfield code="a">Fortune.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="246" ind1="1" ind2=" ">
+      <marcxml:subfield code="i">One issue each year has title:</marcxml:subfield>
+      <marcxml:subfield code="a">Fortune 500</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="246" ind1="3" ind2=" ">
+      <marcxml:subfield code="a">Fortune five hundred</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="246" ind1="1" ind2=" ">
+      <marcxml:subfield code="i">Two no. a year are published with title:</marcxml:subfield>
+      <marcxml:subfield code="a">Fortune CNET. Tech review</marcxml:subfield>
+      <marcxml:subfield code="f">v. 144, no. 10 (winter 2002)-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="260" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">[New York, NY, etc.] :</marcxml:subfield>
+      <marcxml:subfield code="b">[Time, etc.]</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="300" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">volumes :</marcxml:subfield>
+      <marcxml:subfield code="b">illustrations (part color) portraits, maps (part color) ;</marcxml:subfield>
+      <marcxml:subfield code="c">33-37 cm</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="310" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Biweekly,</marcxml:subfield>
+      <marcxml:subfield code="b">&lt;v. 145, no. 6- &gt;</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="321" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Biweekly,</marcxml:subfield>
+      <marcxml:subfield code="b">1930?-&lt;Oct. 1975&gt;</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="321" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Biweekly, with 3 issues in Oct.,</marcxml:subfield>
+      <marcxml:subfield code="b">&lt;Aug. 15, 1988- &gt;</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="321" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Weekly, except combined issue in Aug. and extra issues in June and Nov.,</marcxml:subfield>
+      <marcxml:subfield code="b">&lt;June 25, 2001- &gt;</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="336" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">text</marcxml:subfield>
+      <marcxml:subfield code="2">rdacontent</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="337" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">unmediated</marcxml:subfield>
+      <marcxml:subfield code="2">rdamedia</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="338" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">volume</marcxml:subfield>
+      <marcxml:subfield code="2">rdacarrier</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="362" ind1="0" ind2=" ">
+      <marcxml:subfield code="a">Vol. 1 (Feb. 1930)-</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="500" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Editors: 1930-&lt;47&gt; H.R. Luce with others.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="515" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Vols. for 1930-&lt;1952&gt; not numbered but constitute v. 1-46?</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="530" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Also issued in microform and online by subscription; abstracts available without subscription.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="580" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">Has supplement: Fortune. Technology buyer's guide, 1997-1999; Fortune. Technology guide, 2000-2001; Fortune CNET. Technology review, 2001.</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="650" ind1=" " ind2="0">
+      <marcxml:subfield code="a">Business</marcxml:subfield>
+      <marcxml:subfield code="v">Periodicals.</marcxml:subfield>
+      <marcxml:subfield code="0">http://id.loc.gov/authorities/subjects/sh85018269</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="700" ind1="1" ind2=" ">
+      <marcxml:subfield code="a">Luce, Henry R.,</marcxml:subfield>
+      <marcxml:subfield code="d">1898-1967,</marcxml:subfield>
+      <marcxml:subfield code="e">editor.</marcxml:subfield>
+      <marcxml:subfield code="4">http://id.loc.gov/vocabulary/relators/edt</marcxml:subfield>
+      <marcxml:subfield code="0">http://id.loc.gov/authorities/names/n50048448</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="770" ind1="1" ind2=" ">
+      <marcxml:subfield code="t">Fortune. Technology buyer's guide</marcxml:subfield>
+      <marcxml:subfield code="w">(DLC)sn 96048652</marcxml:subfield>
+      <marcxml:subfield code="w">(OCoLC)35996137</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="770" ind1="1" ind2=" ">
+      <marcxml:subfield code="t">Fortune. Technology guide</marcxml:subfield>
+      <marcxml:subfield code="w">(DLC) 2002238094</marcxml:subfield>
+      <marcxml:subfield code="w">(OCoLC)42860996</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="770" ind1="1" ind2=" ">
+      <marcxml:subfield code="t">Fortune CNET. Technology review</marcxml:subfield>
+      <marcxml:subfield code="w">(DLC) 2002238091</marcxml:subfield>
+      <marcxml:subfield code="w">(OCoLC)47152442</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="780" ind1="0" ind2="5">
+      <marcxml:subfield code="t">Fortune CNET. Technology review</marcxml:subfield>
+      <marcxml:subfield code="g">v. 144, no. 10-</marcxml:subfield>
+      <marcxml:subfield code="w">(DLC) 2002238091</marcxml:subfield>
+      <marcxml:subfield code="w">(OCoLC)47152442</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="850" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">CU-Riv</marcxml:subfield>
+      <marcxml:subfield code="a">CaMWUC</marcxml:subfield>
+      <marcxml:subfield code="a">CaOOG</marcxml:subfield>
+      <marcxml:subfield code="a">CaOOL</marcxml:subfield>
+      <marcxml:subfield code="a">DLC</marcxml:subfield>
+      <marcxml:subfield code="a">DNAL</marcxml:subfield>
+      <marcxml:subfield code="a">ICU</marcxml:subfield>
+      <marcxml:subfield code="a">In</marcxml:subfield>
+      <marcxml:subfield code="a">MH-KG</marcxml:subfield>
+      <marcxml:subfield code="a">NSyU</marcxml:subfield>
+      <marcxml:subfield code="a">NcD</marcxml:subfield>
+      <marcxml:subfield code="a">NcRS</marcxml:subfield>
+      <marcxml:subfield code="a">TxU</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="891" ind1="2" ind2="0">
+      <marcxml:subfield code="9">853</marcxml:subfield>
+      <marcxml:subfield code="8">1</marcxml:subfield>
+      <marcxml:subfield code="a">v.</marcxml:subfield>
+      <marcxml:subfield code="b">no.</marcxml:subfield>
+      <marcxml:subfield code="u">13</marcxml:subfield>
+      <marcxml:subfield code="v">r</marcxml:subfield>
+      <marcxml:subfield code="i">(year)</marcxml:subfield>
+      <marcxml:subfield code="j">(month)</marcxml:subfield>
+      <marcxml:subfield code="k">(day)</marcxml:subfield>
+      <marcxml:subfield code="w">s</marcxml:subfield>
+      <marcxml:subfield code="x">01,07</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="891" ind1="4" ind2="1">
+      <marcxml:subfield code="9">863</marcxml:subfield>
+      <marcxml:subfield code="8">1.1</marcxml:subfield>
+      <marcxml:subfield code="a">&lt;148 &gt;</marcxml:subfield>
+      <marcxml:subfield code="b">&lt;1 &gt;</marcxml:subfield>
+      <marcxml:subfield code="i">&lt;2003 &gt;</marcxml:subfield>
+      <marcxml:subfield code="j">&lt;07 &gt;</marcxml:subfield>
+      <marcxml:subfield code="k">&lt;07 &gt;</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="901" ind1=" " ind2=" ">
+      <marcxml:subfield code="a">576b2ca9-e7ee-498b-b4bb-d3d76fa5f79b</marcxml:subfield>
+      <marcxml:subfield code="b">15</marcxml:subfield>
+      <marcxml:subfield code="c">true</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="8" ind2="1">
+      <marcxml:subfield code="h">FN 620</marcxml:subfield>
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="b">scsbcul</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="866" ind1="0" ind2="0">
+      <marcxml:subfield code="a">Microfilm. Ann Arbor, Mich. : University Microfilms International.    microfilm reels ; 35 mm. v.1 (1930)-v.171/172 (2015:Jan./Dec.)</marcxml:subfield>
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.1-3 (1930:Feb.-1931:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443296</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199726</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.4-6 (1931:July-1932:Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443297</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14202000</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.7-9 (1933:Jan.-1934:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443298</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201992</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.10-11 (1934:July-1935:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443299</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201984</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.12-13 (1935:July-1936:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443300</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201976</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.14-15 (1936:July-1937:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443301</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201968</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.16-17 (1937:July-1938:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443302</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201950</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.18-19 (1938:July-1939:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443303</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201941</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.20-21 (1939:July-1940:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443304</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201933</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.22-23 (1940:July-1941:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443305</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201925</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.24-25 (1941:July-1942:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443306</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201917</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.26-27 (1942:July-1943:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443307</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201909</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.28-29 (1943:July-1944:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443308</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201895</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.30-31 (1944:July-1945:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443309</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201887</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.32-33 (1945:July-1946:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443310</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201879</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.34-35 (1946:July-1947:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443311</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201860</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.36-37 (1947:July-1948:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443312</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201852</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.38-39 (1948:July-1949:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443313</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201844</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.40-41 (1949:July-1950:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443314</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201836</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.42-43 (1950:July-1951:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443315</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201828</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.44-45 (1951:July-1952:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443316</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201810</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.46-47 (1952:July-1953:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443317</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201801</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.48-49 (1953:July-1954:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443318</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201798</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.50-51 (1954:July-1955:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443319</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201780</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.52-53 (1955:July-1956:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443320</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201771</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.54-55 (1956:July-1957:June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443321</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201763</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.56 (1957:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443322</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201755</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.57-58 (1958)</marcxml:subfield>
+      <marcxml:subfield code="a">3443323</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201747</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.59-60 (1959)</marcxml:subfield>
+      <marcxml:subfield code="a">3443324</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201739</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.61-62 (1960)</marcxml:subfield>
+      <marcxml:subfield code="a">3443325</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201720</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.63 (1961:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443326</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201712</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.64 (1961:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443327</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201704</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.65 (1962:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443328</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201690</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.66 (1962:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443329</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201682</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.67 (1963:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443330</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201674</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.68 (1963:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443331</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201666</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.69 (1964:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443332</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201658</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.70 (1964:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443333</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201640</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.71 (1965:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443334</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201631</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.72:no.1-3 (1965:July-Sept.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443335</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201615</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.72:no.4-6 (1965:Oct.-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443336</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201607</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.73 (1966:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443337</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201593</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.74 (1966:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443338</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201585</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.75 (1967:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443339</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201577</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.76 (1967:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443340</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201569</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.77 (1968:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443341</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201550</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.78 (1968:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443342</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201542</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.79 (1969:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443343</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201534</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.80 (1969:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443344</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201526</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.81 (1970:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443345</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201518</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.82 (1970:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443346</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201500</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.83 (1971:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443347</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201496</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.84 (1971:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443348</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201488</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.85 (1972:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443349</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201470</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.86 (1972:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443350</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201461</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.87 (1973)</marcxml:subfield>
+      <marcxml:subfield code="a">3443351</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201453</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.89 (1974)</marcxml:subfield>
+      <marcxml:subfield code="a">3443352</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201445</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.91-92 (1975)</marcxml:subfield>
+      <marcxml:subfield code="a">3443353</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201437</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.93-94 (1976)</marcxml:subfield>
+      <marcxml:subfield code="a">3443354</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201429</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.95-96 (1972)</marcxml:subfield>
+      <marcxml:subfield code="a">3443355</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14201410</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.97-98 (1978)</marcxml:subfield>
+      <marcxml:subfield code="a">3443356</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199602</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.99 (1979:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443357</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199599</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.100 (1979:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443358</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199580</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.101 (1980:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443359</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199572</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.102 (1980:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443360</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199564</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.103:no.1-13 (1981:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443361</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199556</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.103:no.14 (1981:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443362</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199548</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.105 (1982:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443363</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199530</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.106 (1982:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443364</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199521</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.107 (1983:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443365</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199513</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.108 (1983:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443366</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199505</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.109 (1984:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443367</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199491</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.110 (1984:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443368</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199483</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.111 (1985:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443369</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199475</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.112 (1985:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443370</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199467</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.113 (1986:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443371</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199459</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.114 (1986:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443372</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199440</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.115 (1987:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443373</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199432</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.116 (1987:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443374</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199424</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.117 (1988:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443375</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199416</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.118 (1988:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443376</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199408</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.119 (1989:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443377</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199394</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.120 (1989:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443378</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199386</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.121 (1990:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443379</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199378</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.122 (1990:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443380</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200201</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.123 (1991:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443381</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200198</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.124 (1991:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443382</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200180</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.125 (1992:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443383</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200171</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.126 (1992:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443384</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200163</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.127 (1993:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443385</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200155</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.128 (1993:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443386</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200147</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.131 (1995:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443387</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200139</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.132 (1995:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443388</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200120</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.133 (1996:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443389</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200112</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.134 (1996:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443390</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200104</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.135 (1997:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443391</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200090</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.136 (1997:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443392</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200082</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.137 (1998:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443393</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200074</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.138 (1998:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443394</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200066</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.139 (1999:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443395</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200058</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.140:no.1-6 (1999:July-Sept.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443396</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200040</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.140:no.7-12 (1999:Oct.-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443397</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200031</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.141:no.1-6 (2000:Jan.-Mar.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443398</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200023</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.141:no.7-12 (2000:Apr.-June12)</marcxml:subfield>
+      <marcxml:subfield code="a">3443399</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200015</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.142:no.1-6 (2000:June26-Sept.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443400</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14200007</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.142:no.7-14 (2000:Oct.-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443401</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199998</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.143 (2001:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443402</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199980</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.144 (2001:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443403</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199971</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.145 (2002:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443404</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199963</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.146 (2002:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443405</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199955</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.147 (2003:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443406</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199947</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.148 (2003:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443407</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199939</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.149 (2004:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443408</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199920</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.150 (2004:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443409</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199912</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.151 (2005:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443410</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199904</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.152 (2005:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443411</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199890</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.153 (2006:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443412</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199882</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.154 (2006:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443413</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199874</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.155 (2007:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443414</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199866</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.156 (2007:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443415</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199858</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.157 (2008:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443416</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU14199840</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.159 (2009:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443417</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU15875016</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.160 (2009:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443418</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU15875679</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.161 (2010:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443419</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU16298063</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.162 (2010:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443420</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU16522761</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.163 (2011:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443421</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU16526686</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.164 (2011:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443422</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU16528425</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.165 (2012:Jan.16-June 11)</marcxml:subfield>
+      <marcxml:subfield code="a">3443423</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18351719</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.166 (2012:July -Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443424</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18352103</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.167 (2013:Jan.14-June 10)</marcxml:subfield>
+      <marcxml:subfield code="a">3443425</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18837956</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.168 (2013:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443426</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18842054</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.169 (2014:Jan.-June)</marcxml:subfield>
+      <marcxml:subfield code="a">3443427</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18862721</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">2258917</marcxml:subfield>
+      <marcxml:subfield code="3">v.170 (2014:July-Dec.)</marcxml:subfield>
+      <marcxml:subfield code="a">3443428</marcxml:subfield>
+      <marcxml:subfield code="h">In Library Use</marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU18863132</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="852" ind1="0" ind2="1">
+      <marcxml:subfield code="h">HF5001 .F73</marcxml:subfield>
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="b">scsbcul</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="866" ind1="0" ind2="0">
+      <marcxml:subfield code="a">2006-2019</marcxml:subfield>
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2006</marcxml:subfield>
+      <marcxml:subfield code="a">21737975</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455390</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2016</marcxml:subfield>
+      <marcxml:subfield code="a">21738050</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457032</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2008</marcxml:subfield>
+      <marcxml:subfield code="a">21738054</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455412</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2018</marcxml:subfield>
+      <marcxml:subfield code="a">21738055</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455404</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2019</marcxml:subfield>
+      <marcxml:subfield code="a">21738073</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455439</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2009</marcxml:subfield>
+      <marcxml:subfield code="a">21738084</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455420</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2017</marcxml:subfield>
+      <marcxml:subfield code="a">21738103</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457075</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2007</marcxml:subfield>
+      <marcxml:subfield code="a">21738115</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26455447</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2013</marcxml:subfield>
+      <marcxml:subfield code="a">21738144</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457083</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2012</marcxml:subfield>
+      <marcxml:subfield code="a">21738157</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457091</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Open</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2010</marcxml:subfield>
+      <marcxml:subfield code="a">21742565</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457059</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2011</marcxml:subfield>
+      <marcxml:subfield code="a">21742566</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457024</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2015</marcxml:subfield>
+      <marcxml:subfield code="a">21742584</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457040</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+    <marcxml:datafield tag="876" ind1=" " ind2=" ">
+      <marcxml:subfield code="0">15220557</marcxml:subfield>
+      <marcxml:subfield code="3">2014</marcxml:subfield>
+      <marcxml:subfield code="a">21742618</marcxml:subfield>
+      <marcxml:subfield code="h"> </marcxml:subfield>
+      <marcxml:subfield code="j">Available</marcxml:subfield>
+      <marcxml:subfield code="k"/>
+      <marcxml:subfield code="p">CU26457067</marcxml:subfield>
+      <marcxml:subfield code="t">1</marcxml:subfield>
+      <marcxml:subfield code="x">Shared</marcxml:subfield>
+      <marcxml:subfield code="z">CU</marcxml:subfield>
+      <marcxml:subfield code="l">RECAP</marcxml:subfield>
+    </marcxml:datafield>
+  </marcxml:record>
+</marcxml:collection>
