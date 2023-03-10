@@ -13,6 +13,7 @@ require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './augment_the_subject'
 require_relative './language_service'
+require_relative './language_extractor'
 require_relative './pul_solr_json_writer'
 require 'stringex'
 require 'library_stdnums'
@@ -726,6 +727,10 @@ to_field 'participant_performer_display', extract_marc('511a')
 # Language(s):
 #    546 XX 3a
 to_field 'language_display', extract_marc('5463a')
+
+to_field 'language_name_display' do |record, accumulator|
+  accumulator.replace(LanguageExtractor.new(language_service, record).specific_names)
+end
 
 to_field 'language_facet', marc_languages
 
