@@ -5,20 +5,22 @@ class ElectronicAccessLinkFactory
   # @return [Hash] the extracted values
   def self.parse_subfield(s_field)
     anchor_text = ''
+    subfield_value = s_field.value
 
-    holding_id = s_field.value if s_field.code == '0'
+    case s_field.code
+    when '0'
+      holding_id = subfield_value
+    when 'u'
+      # e. g. http://arks.princeton.edu/ark:/88435/7d278t10z, https://drive.google.com/open?id=0B3HwfRG3YqiNVVR4bXNvRzNwaGs
+      url_key = subfield_value
+    when 'z'
+      # e. g. "Curatorial documentation"
+      z_label = subfield_value
+    when 'y', '3'
+      anchor_text = subfield_value
+    end
 
-    # e. g. http://arks.princeton.edu/ark:/88435/7d278t10z, https://drive.google.com/open?id=0B3HwfRG3YqiNVVR4bXNvRzNwaGs
-    url_key = s_field.value if s_field.code == 'u'
-
-    # e. g. "Curatorial documentation"
-    z_label = s_field.value if s_field.code == 'z'
-
-    anchor_text = s_field.value if s_field.code == 'y' || s_field.code == '3'
-
-    values = { holding_id:, url_key:, z_label:, anchor_text: }
-    values.delete_if { |_key, value| value.nil? }
-    values
+    { holding_id:, url_key:, z_label:, anchor_text: }.compact
   end
 
   # Extract values from an entire set of MARC subfields
