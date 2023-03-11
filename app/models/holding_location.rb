@@ -18,8 +18,8 @@ class HoldingLocation < ActiveRecord::Base
   validates :aeon_location, :recap_electronic_delivery_location, :open,
             :requestable, :always_requestable, :circulates, inclusion: { in: [true, false] }
 
-  after_create :set_defaults
   after_initialize :associate_non_staff_only_delivery_locations, if: :new_record?
+  after_create :set_defaults
 
   private
 

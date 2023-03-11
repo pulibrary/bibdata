@@ -66,7 +66,7 @@ class PatronController < ApplicationController
     def protect
       unless user_signed_in?
         ips = Rails.application.config.ip_allowlist
-        render plain: "You are unauthorized", status: :forbidden if not ips.include? request.remote_ip
+        render plain: "You are unauthorized", status: :forbidden if ips.exclude?(request.remote_ip)
       end
     end
 end

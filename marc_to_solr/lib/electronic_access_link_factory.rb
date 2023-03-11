@@ -31,7 +31,9 @@ class ElectronicAccessLinkFactory
     subfield_values = subfield_values.empty? ? [{}] : subfield_values
     output = subfield_values.reduce(:merge)
 
+    # rubocop:disable Rails/Pluck, Rails/CompactBlank
     anchor_texts = subfield_values.map { |subfield_value| subfield_value[:anchor_text] }.reject(&:blank?)
+    # rubocop:enable Rails/Pluck, Rails/CompactBlank
     output[:anchor_text] = anchor_texts.reduce { |u, v| u + "#{u}: #{v}" } unless anchor_texts.empty?
 
     output

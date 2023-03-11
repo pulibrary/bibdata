@@ -11,6 +11,12 @@ Rails:
 Rails/Date:
   Enabled: false
 
+# This cop has many false positives with objects
+# from the ruby-marc gem.  Many of these objects
+# have an `include?` method but not an `exclude?`
+Rails/NegateInclude:
+  Enabled: false
+
 Rails/RakeEnvironment:
   Exclude:
     - lib/tasks/*
@@ -27,6 +33,7 @@ Rails/UnknownEnv:
 
 AllCops:
   DisplayCopNames: true
+  NewCops: enable
   TargetRubyVersion: 3.1
   Exclude:
     - 'db/**/*'
