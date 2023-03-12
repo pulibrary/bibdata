@@ -31,7 +31,7 @@ class CampusAccessException
       next if employee_id.blank? # spare rows in the excel spreedsheet
       access = CampusAccess.find_by(employee_id: employee_id.to_s.rjust(9, "0"))
       if access.present?
-        @data << { name_key => "#{user[first_name_idx]} #{user[surname_idx]}", netid_key => access.uid } if !current_exceptions.include?(access.uid) && !access.access?
+        @data << { name_key => "#{user[first_name_idx]} #{user[surname_idx]}", netid_key => access.uid } if current_exceptions.exclude?(access.uid) && !access.access?
       else
         invalid_exceptions << "#{employee_id}, #{user[first_name_idx]} #{user[surname_idx]}"
       end

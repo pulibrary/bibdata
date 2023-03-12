@@ -6,7 +6,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       set_flash_message(:notice, :success, kind: 'from Princeton Central Authentication '\
                                                  'Service') if is_navigational_format?
     else
-      redirect_to request.env['omniauth.origin'], alert: "Unauthorized user"
+      redirect_to request.env['omniauth.origin'], alert: t('users.omniauth_callback.unauthorized')
     end
   end
 end

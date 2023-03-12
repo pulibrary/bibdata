@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  users:
+    omniauth_callback:
+      unauthorized: Unauthorized user

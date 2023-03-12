@@ -9,14 +9,14 @@ RSpec.describe DeleteEventsJob, type: :job do
       it "deletes full dump Events, their Dumps, DumpFiles, and files on disk" do
         old_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months - 1.day
+          e.start = 6.months.ago - 1.day
           e.save
         end
         new_event = FactoryBot.create(:full_dump_event).tap { |e| tmp_dump_files(e) }
         # doesn't delete old incremental events
         incremental_event = FactoryBot.create(:incremental_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months - 1.day
+          e.start = 6.months.ago - 1.day
           e.save
         end
 
@@ -35,14 +35,14 @@ RSpec.describe DeleteEventsJob, type: :job do
       it "deletes incremental dump Events, their Dumps, DumpFiles, and files on disk" do
         old_event = FactoryBot.create(:incremental_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 2.months - 1.day
+          e.start = 2.months.ago - 1.day
           e.save
         end
         new_event = FactoryBot.create(:incremental_dump_event).tap { |e| tmp_dump_files(e) }
         # doesn't delete old full events
         full_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
-          e.start = Time.zone.now - 6.months - 1.day
+          e.start = 6.months.ago - 1.day
           e.save
         end
 

@@ -78,7 +78,9 @@ class ProcessHoldingsHelpers
   end
 
   def build_call_number(field_852)
+    # rubocop:disable Rails/CompactBlank
     call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
+    # rubocop:enable Rails/CompactBlank
     call_number.present? ? call_number.join(' ').strip : []
   end
 

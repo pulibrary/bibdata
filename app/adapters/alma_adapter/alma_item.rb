@@ -118,7 +118,7 @@ class AlmaAdapter
       enums << item.item_data["enumeration_f"]
       enums << item.item_data["enumeration_g"]
       enums << item.item_data["enumeration_h"]
-      enums.reject(&:blank?).join(", ")
+      enums.compact_blank.join(", ")
     end
 
     def chronology
@@ -128,7 +128,7 @@ class AlmaAdapter
       chrons << item.item_data["chronology_k"]
       chrons << item.item_data["chronology_l"]
       chrons << item.item_data["chronology_m"]
-      chrons.reject(&:blank?).join(", ")
+      chrons.compact_blank.join(", ")
     end
 
     def holding_id
