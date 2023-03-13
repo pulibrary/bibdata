@@ -109,3 +109,6 @@ Rails/HasManyOrHasOneDependent:
 Rails/ApplicationRecord:
   Exclude:
     - 'app/models/*'
+
+Security/Open:
+  Enabled: true
