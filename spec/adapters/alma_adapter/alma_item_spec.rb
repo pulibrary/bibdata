@@ -21,7 +21,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
     )
   end
 
-  let(:item_committed_to_retain) do
+  def build_item_committed_to_retain(retention_reason:)
     Alma::BibItem.new(
       "item_data" => {
         "library" => {
@@ -35,13 +35,13 @@ RSpec.describe AlmaAdapter::AlmaItem do
           "value" => "true", "desc" => "Yes"
         },
         "retention_reason" => {
-          "value" => "ReCAPItalianImprints", "desc" => "ReCAP Collaborative Collection Development Italian Imprints", "retention_note" => ""
+          "value" => retention_reason, "desc" => retention_reason, "retention_note" => ""
         }
       }
     )
   end
 
-  def build_item(code:)
+  def build_item(code:, retention_reason:)
     Alma::BibItem.new(
       "item_data" => {
         "library" => {
@@ -55,26 +55,26 @@ RSpec.describe AlmaAdapter::AlmaItem do
           "value" => "false", "desc" => "No"
         },
         "retention_reason" => {
-          "value" => "ReCAPItalianImprints", "desc" => "ReCAP Collaborative Collection Development Italian Imprints", "retention_note" => ""
+          "value" => retention_reason, "desc" => retention_reason, "retention_note" => ""
         }
       }
     )
   end
 
   describe "#recap_customer_code" do
-    context "when location starts with x" do
+    context "When location starts with x" do
       it "returns PG" do
         item = described_class.new(
-          build_item(code: "xx")
+          build_item(code: "xx", retention_reason: "other")
         )
 
         expect(item.recap_customer_code).to eq "PG"
       end
     end
-    context "when location doesn't start with X" do
+    context "When location doesn't start with X" do
       it "capitalizes the code" do
         item = described_class.new(
-          build_item(code: "pa")
+          build_item(code: "pa", retention_reason: "other")
         )
 
         expect(item.recap_customer_code).to eq "PA"
@@ -83,37 +83,45 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "#group_designation" do
-    context "when it's committed to retain and in committed retention reason" do
-      it "returns Committed" do
-        item = described_class.new(item_committed_to_retain)
-        expect(item.group_designation).to eq "Committed"
+    context "It returns Committed" do
+      ['ReCAPItalianImprints', 'IPLCBrill', 'ReCAPSACAP'].each do |retention_reason|
+        it "when it's committed to retain and in committed retention reason #{retention_reason}" do
+          item = described_class.new(
+            build_item_committed_to_retain(retention_reason:)
+          )
+          expect(item.group_designation).to eq "Committed"
+        end
       end
     end
-    context "when it's committed to retain and not in committed retention reason" do
+    context "When it's committed to retain and not in committed retention reason" do
       it "is checking the location" do
         item = described_class.new(item_pa_committed_to_retain_not_in_retention_reason)
         expect(item.group_designation).to eq "Shared"
       end
     end
-    context "when it's not committed to retain and in committed retention reason" do
-      ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
-        context "when location is #{code}" do
-          it "returns Shared" do
-            item = described_class.new(
-              build_item(code:)
-            )
-            expect(item.group_designation).to eq "Shared"
+    context "When it's not committed to retain and in committed retention reason" do
+      ['ReCAPItalianImprints', 'IPLCBrill', 'ReCAPSACAP'].each do |retention_reason|
+        ['pv', 'pa', 'gp', 'qk', 'pf'].each do |code|
+          context "when retention reason is #{retention_reason} and not committed to retain and location is #{code}" do
+            it "is checking the location and returns Shared" do
+              item = described_class.new(
+                build_item(code:, retention_reason:)
+              )
+              expect(item.group_designation).to eq "Shared"
+            end
           end
         end
       end
-      ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx'].each do |code|
-        context "when location is #{code}" do
-          it "returns Private" do
-            item = described_class.new(
-              build_item(code:)
-            )
+      ['ReCAPItalianImprints', 'IPLCBrill', 'ReCAPSACAP'].each do |retention_reason|
+        ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx'].each do |code|
+          context "when retention reason is #{retention_reason} and not committed to retain and location is #{code}" do
+            it "is checking the location and returns Private" do
+              item = described_class.new(
+                build_item(code:, retention_reason:)
+              )
 
-            expect(item.group_designation).to eq "Private"
+              expect(item.group_designation).to eq "Private"
+            end
           end
         end
       end
@@ -122,10 +130,10 @@ RSpec.describe AlmaAdapter::AlmaItem do
 
   describe "#recap_use_restriction" do
     ["pj", "pk", "pl", "pm", "pn", "pt"].each do |code|
-      context "when location is #{code}" do
+      context "When location is #{code}" do
         it "returns In Library Use" do
           item = described_class.new(
-            build_item(code:)
+            build_item(code:, retention_reason: 'other')
           )
 
           expect(item.recap_use_restriction).to eq "In Library Use"
@@ -134,10 +142,10 @@ RSpec.describe AlmaAdapter::AlmaItem do
       end
     end
     ["pv"].each do |code|
-      context "when location is #{code}" do
+      context "When location is #{code}" do
         it "returns In Library Use" do
           item = described_class.new(
-            build_item(code:)
+            build_item(code:, retention_reason: 'other')
           )
 
           expect(item.recap_use_restriction).to eq "In Library Use"
@@ -146,10 +154,10 @@ RSpec.describe AlmaAdapter::AlmaItem do
       end
     end
     ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx", "xgr", "xcr", "phr", "xrr", "xmr"].each do |code|
-      context "when location is #{code}" do
+      context "When location is #{code}" do
         it "returns Supervised Use" do
           item = described_class.new(
-            build_item(code:)
+            build_item(code:, retention_reason: 'other')
           )
 
           expect(item.recap_use_restriction).to eq "Supervised Use"
@@ -160,17 +168,17 @@ RSpec.describe AlmaAdapter::AlmaItem do
   end
 
   describe "#cdl?" do
-    context "when there is no work order type" do
+    context "When there is no work order type" do
       it "flags false" do
         item = described_class.new(
-          build_item(code: "pa")
+          build_item(code: "pa", retention_reason: 'other')
         )
 
         expect(item.cdl?).to eq false
       end
     end
 
-    context "when the work order type is CDL" do
+    context "When the work order type is CDL" do
       it "flags true" do
         item = described_class.new(
           Alma::BibItem.new(
@@ -266,35 +274,35 @@ RSpec.describe AlmaAdapter::AlmaItem do
       )
     end
 
-    it "handles items with work order in acquisitions" do
+    it "Handles items with work order in acquisitions" do
       item = described_class.new(item_work_order_acq)
       status = item.calculate_status
       expect(status[:code]).to eq "Not Available"
     end
 
-    it "handles items with work order in collection development" do
+    it "Handles items with work order in collection development" do
       item = described_class.new(item_work_order_coll_dev)
       status = item.calculate_status
       expect(status[:code]).to eq "Not Available"
     end
 
-    it "handles items with work order in holdings management" do
+    it "Handles items with work order in holdings management" do
       item = described_class.new(item_work_order_holdings_mgmt)
       status = item.calculate_status
       expect(status[:code]).to eq "Not Available"
     end
-    it "handles items with process type in acquisitions" do
+    it "Handles items with process type in acquisitions" do
       item = described_class.new(item_process_type_acq)
       status = item.calculate_status
       expect(status[:code]).to eq "Not Available"
     end
 
-    it "handles items with base status (in place)" do
+    it "Handles items with base status (in place)" do
       item = described_class.new(item_base_status_in_place)
       expect(item.calculate_status[:code]).to eq "Available"
     end
 
-    it "handles items with base status (not in place)" do
+    it "Handles items with base status (not in place)" do
       item = described_class.new(item_base_status_not_in_place)
       expect(item.calculate_status[:code]).to eq "Not Available"
     end

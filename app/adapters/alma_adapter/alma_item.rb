@@ -271,7 +271,7 @@ class AlmaAdapter
     end
 
     def committed_retention_reasons
-      Array('ReCAPItalianImprints')
+      %w[ReCAPItalianImprints IPLCBrill ReCAPSACAP]
     end
 
     def item_retention_reason
