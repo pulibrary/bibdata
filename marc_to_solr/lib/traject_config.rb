@@ -728,6 +728,8 @@ to_field 'participant_performer_display', extract_marc('511a')
 #    546 XX 3a
 to_field 'language_display', extract_marc('5463a')
 
+# Languages for the show page
+#    008, 041$a and 041$d
 to_field 'language_name_display' do |record, accumulator|
   accumulator.replace(LanguageExtractor.new(language_service, record).specific_names)
 end

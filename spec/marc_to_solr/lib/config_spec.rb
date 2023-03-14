@@ -374,7 +374,7 @@ describe 'From traject_config.rb', indexing: true do
       end
       context 'when both an individual and macrolanguage code are available in the record' do
         it 'prefers the individual code' do
-          expect(@iso639_3_with_macrolanguage['language_name_display']).to contain_exactly("Wu Chinese", "English")
+          expect(@iso639_3_with_macrolanguage['language_name_display']).to contain_exactly("Wu Chinese")
         end
       end
     end

@@ -15,7 +15,7 @@ class LanguageExtractor
     elsif all_041_fields.any?
       codes.concat(all_041_codes)
     end
-    codes.reject { |general_code| includes_more_specific_version?(codes, general_code) }
+    codes.uniq.reject { |general_code| includes_more_specific_version?(codes, general_code) }
   end
 
   def specific_names
@@ -54,7 +54,7 @@ class LanguageExtractor
 
     def extract_from_multiple_041s(fields)
       fields.map do |field|
-        field.subfields.select { |sf| %(a h).include? sf.code }
+        field.subfields.select { |sf| %(a d).include? sf.code }
              .map(&:value)
       end.flatten
     end

@@ -62,5 +62,28 @@ RSpec.describe LanguageExtractor do
         expect(extractor.specific_names).not_to include('Chinese')
       end
     end
+    context '041$h' do
+      let(:fields) do
+        [
+          { '008' => '120627s2012    ncuabg  ob    001 0 chi d' },
+          { '041' => { 'subfields' => [{ 'a' => 'chi' }, { 'h' => 'eng' }] } }
+        ]
+      end
+      it 'does not include the translation from 041$h' do
+        expect(extractor.specific_names).to include('Chinese')
+        expect(extractor.specific_names).not_to include('English')
+      end
+    end
+    context '041$d' do
+      let(:fields) do
+        [
+          { '008' => '120627s2012    ncuabg  ob    001 0 spa d' },
+          { '041' => { 'subfields' => [{ 'a' => 'spa' }, { 'd' => 'por' }] } }
+        ]
+      end
+      it 'includes the spoken language from 041$d' do
+        expect(extractor.specific_names).to contain_exactly('Spanish', 'Portuguese')
+      end
+    end
   end
 end
