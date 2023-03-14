@@ -91,4 +91,4 @@ end
 
 gem "omniauth-rails_csrf_protection"
 
-gem "human_languages", "~> 0.6.0"
+gem "human_languages", "~> 0.7"

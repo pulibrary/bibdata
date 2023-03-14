@@ -74,6 +74,9 @@ describe 'From traject_config.rb', indexing: true do
       @invalid_774w = @indexer.map_record(fixture_record('9979952033506421'))
       @valid_774w = @indexer.map_record(fixture_record('9938522893506421'))
       @linked_773 = @indexer.map_record(fixture_record('9913692683506421'))
+      @iso639_3 = @indexer.map_record(fixture_record('99117463983506421'))
+      @iso639_3_with_parallel_041 = @indexer.map_record(fixture_record('99125416143306421'))
+      @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
     end
 
     describe "alma loading" do
@@ -359,6 +362,20 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'returns language value "it" for an italian record' do
         expect(@italian_language_iana['language_iana_s']).to eq ["it"]
+      end
+    end
+
+    describe 'the language_name_display field' do
+      it 'uses 041$2iso-639 if available' do
+        expect(@iso639_3['language_name_display']).to contain_exactly("English", "Kaluli")
+      end
+      it 'prefers 041$2iso-639 over other 041s if available' do
+        expect(@iso639_3_with_parallel_041['language_name_display']).to contain_exactly("Spanish", "Kekchí")
+      end
+      context 'when both an individual and macrolanguage code are available in the record' do
+        it 'prefers the individual code' do
+          expect(@iso639_3_with_macrolanguage['language_name_display']).to contain_exactly("Wu Chinese")
+        end
       end
     end
 

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record>
+  <leader>02022cam a2200421 i 4500</leader>
+  <controlfield tag="005">20230223130343.0</controlfield>
+  <controlfield tag="008">220216s2020    mx a     b    000 0bspa  </controlfield>
+  <controlfield tag="001">99125416143306421</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a">  2021398906</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9786073035262</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">6073035268</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1287951978</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">DLC</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="c">DLC</subfield>
+    <subfield code="d">CUY</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">UKMGB</subfield>
+    <subfield code="d">CLU</subfield>
+    <subfield code="d">TJC</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2=" ">
+    <subfield code="a">spa</subfield>
+    <subfield code="a">myn</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2="7">
+    <subfield code="a">spa</subfield>
+    <subfield code="a">kek</subfield>
+    <subfield code="2">iso639-3</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">ncgt---</subfield>
+  </datafield>
+  <datafield tag="050" ind1="0" ind2="0">
+    <subfield code="a">PM3913</subfield>
+    <subfield code="b">.R89 2020</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Ruz, Mario Humberto,</subfield>
+    <subfield code="e">author.</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="4">
+    <subfield code="a">Las lenguas mayas en la Guatemala colonial :</subfield>
+    <subfield code="b">lengua K'ekch&#xED; /</subfield>
+    <subfield code="c">versi&#xF3;n paleogr&#xE1;fica y edici&#xF3;n de Mario Humberto Ruz y Claudia Margarita B&#xE1;ez Ju&#xE1;rez.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">Primera edici&#xF3;n,</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">Ciudad de M&#xE9;xico :</subfield>
+    <subfield code="b">Universidad Nacional Aut&#xF3;noma de M&#xE9;xico,</subfield>
+    <subfield code="c">2020.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">xxxi, 144 pages, pages xxxiii-xxxix :</subfield>
+    <subfield code="b">illustrations ;</subfield>
+    <subfield code="c">28 cm.</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">unmediated</subfield>
+    <subfield code="b">n</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">volume</subfield>
+    <subfield code="b">nc</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="490" ind1="1" ind2=" ">
+    <subfield code="a">Fuentes para el estudio de la cultura maya ;</subfield>
+    <subfield code="v">22</subfield>
+  </datafield>
+  <datafield tag="505" ind1="0" ind2=" ">
+    <subfield code="a">Arte de la lengua cacch&#xED; de cob&#xE1;n en la verapaz -- Apuntes de lengua queechi y peque&#xF1;o confesionario en la misma lengua -- Doctrina Cristiana en lengua quecchi, escrita por padr&#xF5;n del pueblo de San Agust&#xED;n Lanqu&#xED;n, en la verapaz, por Eugenio Pop, alcalde que fue en [el] a&#xF1;o de [1795] -- Confesionario en lengua kahch&#xED; en m&#xE9;todo breve.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references (pages XXXIII-XXXVII).</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Kekchi language</subfield>
+    <subfield code="z">Guatemala.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Mayan languages</subfield>
+    <subfield code="z">Guatemala.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Kekchi language.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00986700</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Mayan languages.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01012756</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="7">
+    <subfield code="a">Guatemala.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01205154</subfield>
+  </datafield>
+  <datafield tag="700" ind1="1" ind2=" ">
+    <subfield code="a">Ba&#x301;ez Ju&#x301;arez, Claudia M.,</subfield>
+    <subfield code="e">editor.</subfield>
+  </datafield>
+  <datafield tag="830" ind1=" " ind2="0">
+    <subfield code="a">Fuentes para el estudio de la cultura maya ;</subfield>
+    <subfield code="v">22.</subfield>
+  </datafield>
+  <datafield tag="902" ind1=" " ind2=" ">
+    <subfield code="a">940007607</subfield>
+    <subfield code="w">copy</subfield>
+    <subfield code="1">20221118125632.0</subfield>
+  </datafield>
+  <datafield tag="914" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1287951978</subfield>
+    <subfield code="b">OCoLC</subfield>
+    <subfield code="c">match</subfield>
+    <subfield code="d">20230223</subfield>
+    <subfield code="e">processed</subfield>
+    <subfield code="f">1287951978</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2023-02-23 13:03:43 US/Eastern</subfield>
+    <subfield code="b">2021-11-11 12:39:00 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="852" ind1="0" ind2=" ">
+    <subfield code="b">firestone</subfield>
+    <subfield code="c">stacks</subfield>
+    <subfield code="h">PM3913</subfield>
+    <subfield code="i">.R89 2020</subfield>
+    <subfield code="8">22906895560006421</subfield>
+  </datafield>
+  <datafield tag="952" ind1=" " ind2=" ">
+    <subfield code="d">2022-11-18 17:57:31</subfield>
+    <subfield code="8">22906895560006421</subfield>
+    <subfield code="a">2021-11-11 17:39:10</subfield>
+    <subfield code="b">Firestone Library</subfield>
+    <subfield code="c">stacks: Firestone Library</subfield>
+    <subfield code="e">false</subfield>
+  </datafield>
+  <datafield tag="876" ind1=" " ind2=" ">
+    <subfield code="0">22906895560006421</subfield>
+    <subfield code="a">23906895550006421</subfield>
+    <subfield code="j">1</subfield>
+    <subfield code="z">stacks</subfield>
+    <subfield code="d">2021-11-11 12:39:10 US/Eastern</subfield>
+    <subfield code="p">32101113007205</subfield>
+    <subfield code="y">firestone</subfield>
+  </datafield>
+</record>

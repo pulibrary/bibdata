@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record>
+  <leader>04502cam a22006857i 4500</leader>
+  <controlfield tag="005">20210921213022.0</controlfield>
+  <controlfield tag="006">m#####o##d########</controlfield>
+  <controlfield tag="007">cr#mn######a#a</controlfield>
+  <controlfield tag="008">120627s2012    ncuabg  ob    001 0 eng d</controlfield>
+  <controlfield tag="001">99117463983506421</controlfield>
+  <datafield tag="019" ind1=" " ind2=" ">
+    <subfield code="a">822214277</subfield>
+    <subfield code="a">1077882617</subfield>
+    <subfield code="a">1082995253</subfield>
+    <subfield code="a">1086508821</subfield>
+    <subfield code="a">1086574747</subfield>
+    <subfield code="a">1097298210</subfield>
+    <subfield code="a">1110354952</subfield>
+    <subfield code="a">1119150740</subfield>
+    <subfield code="a">1125512363</subfield>
+    <subfield code="a">1135829859</subfield>
+    <subfield code="a">1136407428</subfield>
+    <subfield code="a">1144877401</subfield>
+    <subfield code="a">1167850616</subfield>
+    <subfield code="a">1200074602</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">0822395894</subfield>
+    <subfield code="q">(electronic bk.)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">1283657694</subfield>
+    <subfield code="q">(MyiLibrary)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9780822395898</subfield>
+    <subfield code="q">(electronic bk.)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="a">9781283657693</subfield>
+    <subfield code="q">(MyiLibrary)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="z">0822353652</subfield>
+    <subfield code="q">(pbk. ;</subfield>
+    <subfield code="q">alk. paper)</subfield>
+  </datafield>
+  <datafield tag="020" ind1=" " ind2=" ">
+    <subfield code="z">9780822353652</subfield>
+    <subfield code="q">(pbk. ;</subfield>
+    <subfield code="q">alk. paper)</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)813529053</subfield>
+    <subfield code="z">(OCoLC)822214277</subfield>
+    <subfield code="z">(OCoLC)1077882617</subfield>
+    <subfield code="z">(OCoLC)1082995253</subfield>
+    <subfield code="z">(OCoLC)1086508821</subfield>
+    <subfield code="z">(OCoLC)1086574747</subfield>
+    <subfield code="z">(OCoLC)1097298210</subfield>
+    <subfield code="z">(OCoLC)1110354952</subfield>
+    <subfield code="z">(OCoLC)1119150740</subfield>
+    <subfield code="z">(OCoLC)1125512363</subfield>
+    <subfield code="z">(OCoLC)1135829859</subfield>
+    <subfield code="z">(OCoLC)1136407428</subfield>
+    <subfield code="z">(OCoLC)1144877401</subfield>
+    <subfield code="z">(OCoLC)1167850616</subfield>
+    <subfield code="z">(OCoLC)1200074602</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)ocn813529053</subfield>
+  </datafield>
+  <datafield tag="037" ind1=" " ind2=" ">
+    <subfield code="a">22573/ctv11227rf</subfield>
+    <subfield code="b">JSTOR</subfield>
+  </datafield>
+  <datafield tag="037" ind1=" " ind2=" ">
+    <subfield code="a">397019</subfield>
+    <subfield code="b">MIL</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="a">CDX</subfield>
+    <subfield code="b">eng</subfield>
+    <subfield code="e">rda</subfield>
+    <subfield code="e">pn</subfield>
+    <subfield code="c">CDX</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">YDXCP</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">NDD</subfield>
+    <subfield code="d">VT2</subfield>
+    <subfield code="d">ZMC</subfield>
+    <subfield code="d">MHW</subfield>
+    <subfield code="d">E7B</subfield>
+    <subfield code="d">N$T</subfield>
+    <subfield code="d">OCLCF</subfield>
+    <subfield code="d">ZMC</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">DEBSZ</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">AZU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">MERUC</subfield>
+    <subfield code="d">IOG</subfield>
+    <subfield code="d">OCLCA</subfield>
+    <subfield code="d">CNCGM</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">YOU</subfield>
+    <subfield code="d">LEAUB</subfield>
+    <subfield code="d">BRX</subfield>
+    <subfield code="d">W2U</subfield>
+    <subfield code="d">AUD</subfield>
+    <subfield code="d">OCLCE</subfield>
+    <subfield code="d">CNTRU</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">BWN</subfield>
+    <subfield code="d">COCUF</subfield>
+    <subfield code="d">PUL</subfield>
+    <subfield code="d">JSTOR</subfield>
+    <subfield code="d">SFB</subfield>
+    <subfield code="d">UKUOP</subfield>
+    <subfield code="d">OCLCQ</subfield>
+    <subfield code="d">OCLCO</subfield>
+    <subfield code="d">JHP</subfield>
+    <subfield code="d">OCLCQ</subfield>
+  </datafield>
+  <datafield tag="041" ind1="0" ind2="7">
+    <subfield code="a">bco</subfield>
+    <subfield code="2">iso639-3</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">a-pp---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">DU740.42</subfield>
+    <subfield code="b">.F44 2012eb</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">305.89/912</subfield>
+    <subfield code="2">23</subfield>
+  </datafield>
+  <datafield tag="099" ind1=" " ind2=" ">
+    <subfield code="a">Electronic Resource</subfield>
+  </datafield>
+  <datafield tag="100" ind1="1" ind2=" ">
+    <subfield code="a">Feld, Steven,</subfield>
+    <subfield code="e">author.</subfield>
+    <subfield code="0">http://id.loc.gov/authorities/names/n82001550</subfield>
+  </datafield>
+  <datafield tag="245" ind1="1" ind2="0">
+    <subfield code="a">Sound and sentiment :</subfield>
+    <subfield code="b">birds, weeping, poetics, and song in Kaluli expression /</subfield>
+    <subfield code="c">Steven Feld.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">Third edition.</subfield>
+  </datafield>
+  <datafield tag="250" ind1=" " ind2=" ">
+    <subfield code="a">Thirtieth anniversary edition with a new introduction.</subfield>
+  </datafield>
+  <datafield tag="264" ind1=" " ind2="1">
+    <subfield code="a">Durham, N.C. :</subfield>
+    <subfield code="b">Duke University Press,</subfield>
+    <subfield code="c">2012.</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">1 online resource (xli, 300 pages) :</subfield>
+    <subfield code="b">illustrations, map, music</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="347" ind1=" " ind2=" ">
+    <subfield code="a">data file</subfield>
+    <subfield code="2">rda</subfield>
+  </datafield>
+  <datafield tag="490" ind1="0" ind2=" ">
+    <subfield code="a">Music and sound collection</subfield>
+  </datafield>
+  <datafield tag="546" ind1=" " ind2=" ">
+    <subfield code="a">Includes text in Kaluli.</subfield>
+  </datafield>
+  <datafield tag="504" ind1=" " ind2=" ">
+    <subfield code="a">Includes bibliographical references (pages 284-292) and index.</subfield>
+  </datafield>
+  <datafield tag="520" ind1=" " ind2=" ">
+    <subfield code="a">"This thirtieth anniversary edition of Sound and Sentiment makes Steven Feld's landmark, field-defining book available to a new generation of scholars and students. A sensory ethnography set in the rain forest of Papua New Guinea, among the Kaluli people of Bosavi, Sound and Sentiment introduced the anthropology of sound, or the cultural study of sound. After it was first published in 1982, a second edition, incorporating additional field research and a new postscript, was released in 1990. The third edition includes all of the material from the first two editions, along with a substantial new introduction in which Feld discusses Bosavi's recent history and reflects on the challenges it poses for contemporary theory and representation."--Publisher's description</subfield>
+  </datafield>
+  <datafield tag="588" ind1="0" ind2=" ">
+    <subfield code="a">Online resource; title from digital title page (JSTOR; viewed on January 15, 2021).</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Social life and customs.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Rites and ceremonies.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Music</subfield>
+    <subfield code="x">History and criticism.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Folk music</subfield>
+    <subfield code="z">Papua New Guinea</subfield>
+    <subfield code="x">History and criticism.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Folk songs, Kaluli</subfield>
+    <subfield code="z">Papua New Guinea</subfield>
+    <subfield code="x">History and criticism.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Birds</subfield>
+    <subfield code="x">Mythology</subfield>
+    <subfield code="z">Papua New Guinea.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Birds</subfield>
+    <subfield code="z">Papua New Guinea.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Birds.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00832970</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Birds</subfield>
+    <subfield code="x">Mythology.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00833040</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Folk music.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00929383</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Folk songs, Kaluli.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00929980</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Music.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01430612</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Rites and ceremonies.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01430614</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Kaluli (Papua New Guinean people)</subfield>
+    <subfield code="x">Social life and customs.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01430615</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="7">
+    <subfield code="a">Papua New Guinea.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01212610</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Criticism, interpretation, etc.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01411635</subfield>
+  </datafield>
+  <datafield tag="776" ind1="0" ind2="8">
+    <subfield code="i">Print version:</subfield>
+    <subfield code="a">Feld, Steven.</subfield>
+    <subfield code="t">Sound and sentiment.</subfield>
+    <subfield code="d">Durham, N.C. : Duke University Press, 2012</subfield>
+    <subfield code="z">9780822353652</subfield>
+    <subfield code="z">0822353652</subfield>
+    <subfield code="w">(DLC)  2012024696</subfield>
+    <subfield code="w">(OCoLC)798058349</subfield>
+  </datafield>
+  <datafield tag="856" ind1="4" ind2="0">
+    <subfield code="u">https://www.jstor.org/stable/10.2307/j.ctv113180h</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2023-02-18 13:47:45 US/Eastern</subfield>
+    <subfield code="b">2021-07-13 04:33:04 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2021-07-20 14:38:49 US/Eastern</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2021-07-20 14:38:41 US/Eastern</subfield>
+    <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53835228700006421&amp;Force_direct=true</subfield>
+    <subfield code="s">P2E_JOB</subfield>
+    <subfield code="0">53835228700006421</subfield>
+    <subfield code="w">2021-07-20 18:38:41</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="b">static</subfield>
+    <subfield code="q">2265198-princetondb</subfield>
+    <subfield code="1">52835228710006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99117463983506421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="e">BOOK</subfield>
+    <subfield code="8">53835228700006421</subfield>
+  </datafield>
+</record>
