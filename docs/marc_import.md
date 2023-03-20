@@ -17,3 +17,8 @@ OR with solr in any port:
 ```
 traject -c marc_to_solr/lib/traject_config.rb path-to-xml/example.xml -u http://localhost:<solr-port-number>/solr/local-solr-index -w Traject::JsonWriter
 ```
+
+### Example using lando and Princeton config
+```bash
+traject --debug-mode -c marc_to_solr/lib/traject_config.rb path-to-xml/example.xml -u http://bibdata.dev.solr.lndo.site/solr/bibdata-core-development -w Traject::PulSolrJsonWriter 2>&1
+```

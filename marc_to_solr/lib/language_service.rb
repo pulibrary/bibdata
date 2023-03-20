@@ -31,7 +31,7 @@ class LanguageService
   private
 
     def iso639_5_collective_languages
-      @iso639_5_collective_languages ||= CSV.read(Rails.root.join('config', 'iso639-5.tsv'), headers: true, col_sep: "\t")
+      @iso639_5_collective_languages ||= CSV.read(File.join(File.dirname(__FILE__), 'iso639-5.tsv'), headers: true, col_sep: "\t")
     end
 
     def iso_639_5_include?(code)
