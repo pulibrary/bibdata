@@ -801,6 +801,55 @@ to_field 'action_notes_display', extract_marc('583|1*|a:583| *|a') do |record, a
   accumulator.replace(notes)
 end
 
+to_field 'action_notes_1display' do |record, accumulator|
+  notes = []
+  pulfa = record.fields('035').select { |f| f['a']&.downcase =~ /pulfa/ }
+  is_scsb = scsb_doc?(record['001']&.value)
+
+  record.fields('583').each do |field|
+    public = field.indicator1 == "1"
+    field_link = field["8"]
+
+    if public && (field_link.present? || pulfa.present? || is_scsb)
+      description = ""
+      materials_specified = field["3"]
+      description << "#{materials_specified}: " if materials_specified
+
+      action = field["a"]&.upcase_first
+      description << action if action
+
+      action_interval = field["d"] # technically repeatable
+      description << " #{action_interval}" if action_interval
+
+      authorizations = []
+      field.subfields.each do |s_field|
+        next unless s_field.code == 'f'
+
+        authorizations << s_field.value
+      end
+
+      authorization_phrase = ''
+
+      if authorizations.present?
+        first_auth = authorizations.shift
+        authorization_phrase << " — #{first_auth}"
+        authorizations.each do |auth|
+          authorization_phrase << " #{auth}"
+        end
+      end
+
+      description << authorization_phrase if authorization_phrase.present?
+
+      institution = field["5"]
+      description << " (#{institution})" if institution
+
+      uri = field["u"] || ''
+      notes << { description:, uri: }.to_json.to_s
+    end
+  end
+  accumulator.replace(notes)
+end
+
 # Indexed in:
 #    510 0X 3abc
 #    510 1X 3abc
