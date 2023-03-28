@@ -1193,7 +1193,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(notes.first['uri']).to eq('')
       end
 
-      it "has an Action Note from holding records" do
+      it "has an Action Note from Princeton holding records" do
         record = @indexer.map_record(fixture_record('99126831126106421'))
         note = JSON.parse(record['action_notes_1display'][0])
         expect(note['description']).to eq('Vol. 1: Committed to retain in perpetuity — ReCAP Italian Language Imprints Collaborative Collection (NjP)')
