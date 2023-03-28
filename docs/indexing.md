@@ -10,13 +10,13 @@ Alma MMS ids start with 99 and end with 3506421
 Frequency of updates: 4x per day: 4am, 10am, 4pm, 10pm see: https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md
 
 ## Source: SCSB
-Around 10 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC’s shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
+Around 10 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC's shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
 
 These files are on an aws s3 bucket; the password is in lastpass under SCS Prod S3 Keys in the shared `bibdata` directory. The file path is SCSB > data-exports > PUL > MARCXml > Full. There are .zip files there and .csv files. The zip files contain the MARC dumps.
 
 Frequency of updates: once per day
 
-SCSB ids start with ‘SCSB’
+SCSB ids start with 'SCSB'
 
 ## Source: DSpace
 About 68,800 senior theses pulled from the Dataspace repository http://dataspace.princeton.edu/jspui/handle/88435/dsp019c67wm88m
@@ -25,7 +25,7 @@ Frequency of updates: Once per year. The Mudd Manuscript Library - Collections C
 
 The https://github.com/pulibrary/orangetheses repository is used to pull the theses from dspace.
 
-A thesis record id starts with ‘dsp’. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
+A thesis record id starts with 'dsp'. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
 Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pulled in through orangelight code and so doesn't come through bibdata, but bibdata has a rake task to bulk index all the coins for initial full index creation and any time a full reindex may be needed.
@@ -161,6 +161,7 @@ Many of these tasks output log messages.
 
 Because traject does not log to datadog we lose log output for indexing that runs in the background. See https://github.com/pulibrary/bibdata/issues/1507
 
+
 ### Index the latest Alma changes
 
 There might be new incremental updates from Alma between the time the full reindex finishes and the index swap. Index these latest changes:
@@ -191,17 +192,43 @@ $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-
 ```
 You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
-### Hook up your dev instance to the new index to see how it looks
+
+### Hook up catalog-qa to the new index to see how records are indexed
+
+Turn off sneakers in catalog-qa:
+- cd in your local princeton_ansible directory
+```
+$ pipenv shell   
+$ ansible orangelight_qa -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
+```
+
+`$ ssh deploy@catalog-qa1`
+
+Use your preffered editor -nano or vi- and manually edit `app_configs/orangelight`  
+set the SOLR_URL to `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild` and save
+```
+$ exit
+$ ssh pulsys@catalog-qa1
+$ sudo service nginx restart
+```
+- Go to https://catalog-qa.princeton.edu/ 
+- Do an empty keyword search to get the total number of indexed records.
+- In advanced search > holding location, search for scsbcul, scsbnypl and soon scsbhl to see results only from SCSB indexed records.
+- Do the same search in production and compare the numbers.
+- In facets compare the count of different formats between the two indexes
+
+
+### Hook up your dev instance to the new index to see how records are indexed
 
 - Set up an ssh tunnel to the solr index (you can use the pul_solr cap task given
 above to do this)
 - From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-alma-production-rebuild bin/rails s`
-- Go to localhost:3000 > advanced search > holding location: pul > search
-- This limits results to items from alma
-- Total number of results tells you how many records are in the index
-- In advanced search > holding location, search for scsbcul and scsbnypl (and soon scsbhl) to see results only from SCSB indexed records.
+- Go to localhost:3000  
+- Do a keyword empty search to get the total number of records are the index
+- In advanced search > holding location, search for scsbcul, scsbnypl and scsbhl to see results only from SCSB indexed records.
 - Do the same search in production and compare the numbers.
-- Any other spot checks you like to do? Add them here.
+- In facets compare the count of different formats between the two indexes
+
 
 ### Check solr cloud health
 
@@ -212,6 +239,7 @@ Before you swap in the new index, make sure that the solr cloud is all working a
 1. Open the graph view
 1. On the graph, make sure that every replica is green (active).
 1. If there are any replicas that are not in an active state, fix the underlying solr infrastructure issue before indexing.
+
 
 ### Swap in the new index
 
@@ -237,25 +265,24 @@ Then turn sneakers workers back on:
 
 Then expire the rails cache to get the updated values on the front page of the catalog. You can do this by deploying the app.
 
-## Other tasks
 
-### Delete records from Solr, excluding SCSB and Thesis records
-Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
-- Ssh to bibdata box as deploy user
-- `$ bin/rails c`
-- `> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`
-- `> solr = RSolr.connect(url: solr_url)`
-- `> solr.delete_by_query("id:[1 TO 999999999]")`
-- `> solr.commit`
+### Other tasks
 
-You can see the number of records now in the solr admin panel.
+* Delete records from Solr, excluding SCSB and Thesis records   
+  Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
+Ssh to bibdata box as deploy user
+`$ bin/rails c`   
+`> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`   
+`> solr = RSolr.connect(url: solr_url)`   
+`> solr.delete_by_query("id:[1 TO 999999999]")`   
+`> solr.commit`  
 
-Query to get the SCSB:
-- These are only the records that someone can get in the advanced search -> holding location -> scsbcul or scsbnypl.
-- `> response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
+* Query to get the SCSB:   
+These are all the SCSB records where holding location is scsbcul or scsbnypl or scsbhl.  
+`> response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
 
-Query to delete SCSB:
-- `> solr.delete_by_query("id:SCSB*")`
+* Query to delete SCSB:    
+`> solr.delete_by_query("id:SCSB*")`
 
 ### Adding a replica
 
