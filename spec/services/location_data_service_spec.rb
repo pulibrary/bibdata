@@ -10,6 +10,7 @@ RSpec.describe LocationDataService, type: :service do
   before do
     allow(MARC_LIBERATION_CONFIG).to receive(:[]).with("location_files_dir").and_return(locations_path)
     described_class.delete_existing_and_repopulate
+    @delivery_lewis = DeliveryLocation.find_by(gfa_pickup: "PN")
   end
 
   describe "#delete_existing_and_repopulate" do
@@ -44,7 +45,7 @@ RSpec.describe LocationDataService, type: :service do
 
       expect(delivery_location_pf.pickup_location).to be true
       expect(Library.count).to eq 18
-      expect(HoldingLocation.count).to eq 71
+      expect(HoldingLocation.count).to eq 83
       expect(arch_library.label).to eq 'Architecture Library'
       expect(annex_stacks.label).to eq 'Stacks'
       expect(arch_stacks.open).to be true
@@ -81,6 +82,17 @@ RSpec.describe LocationDataService, type: :service do
       expect(stokes_spia.label).to eq 'Wallace Hall (SPIA)'
       expect(stokes_spr.label).to eq 'Wallace Hall (SPR)'
     end
+    context "Plasma Library" do
+      plasma_location_codes = ["index", "la", "li", "nb", "ps", "rdr", "ref", "rr", "serial", "stacks", "theses"]
+      plasma_location_codes.each do |code|
+        it "plasma location #{code} is open and have delivery location only Lewis" do
+          plasma_location = HoldingLocation.find_by(code: "plasma$#{code}")
+          expect(plasma_location.open).to be true
+          expect(plasma_location.delivery_locations.count).to eq 1
+          expect(plasma_location.delivery_locations.first).to eq(@delivery_lewis)
+        end
+      end
+    end
     it "firestone$pf does not circulate and delivers only to Firestone Library Microforms" do
       firestone_pf = HoldingLocation.find_by(code: 'firestone$pf')
       delivery_microforms = DeliveryLocation.find_by(gfa_pickup: 'PF')
@@ -92,11 +104,11 @@ RSpec.describe LocationDataService, type: :service do
     it "annex$noncirc circulates to the branch libraries" do
       non_circ = HoldingLocation.find_by(code: 'annex$noncirc')
       delivery_firestone = DeliveryLocation.find_by(gfa_pickup: 'PA')
-      delivery_lewis = DeliveryLocation.find_by(gfa_pickup: 'PN')
+      @delivery_lewis = DeliveryLocation.find_by(gfa_pickup: 'PN')
       expect(non_circ.circulates).to be true
       expect(non_circ.delivery_locations.count).to eq 12
       expect(non_circ.delivery_locations).to include(delivery_firestone)
-      expect(non_circ.delivery_locations).to include(delivery_lewis)
+      expect(non_circ.delivery_locations).to include(@delivery_lewis)
     end
     it "Locations with fulfillment_unit: Reserves are not requestable" do
       arch_res3hr = HoldingLocation.find_by(code: 'arch$res3hr')
