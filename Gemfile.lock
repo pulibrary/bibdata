@@ -15,8 +15,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: a5c122490cb169d92fde596f38c8ec02815eccb5
-  tag: v1.4.2
+  revision: 4ac8dc2bd04b10db764fc37df3261531c9937061
+  ref: 4ac8dc2bd04b10db764fc37df3261531c9937061
   specs:
     orangetheses (1.4.2)
       chronic
@@ -218,7 +218,7 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     e2mmap (0.1.0)
-    erb (3.0.0)
+    erb (4.0.2)
       cgi (>= 0.3.3)
     erubi (1.12.0)
     execjs (2.8.1)
@@ -270,7 +270,7 @@ GEM
     human_languages (0.7.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    iso-639 (0.3.5)
+    iso-639 (0.3.6)
     jaro_winkler (1.5.4)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -329,7 +329,7 @@ GEM
     msgpack (1.6.0)
     multi_json (1.10.1)
     multi_xml (0.6.0)
-    multipart-post (2.2.3)
+    multipart-post (2.3.0)
     net-imap (0.3.1)
       net-protocol
     net-ldap (0.17.1)
