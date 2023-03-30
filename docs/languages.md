@@ -11,7 +11,7 @@ There are several standards for representing human languages.  Bibdata concerns 
 These standards have various levels of overlap, as discussed in the following table:
 
 <!-- Using HTML in this table to add row headers and a caption, which are not included in Github-flavored markdown -->
-<table>
+<table aria-label="Codes and other data included in language standards">
     <caption>Codes and other data included in language standards</caption>
     <thead>
         <tr>
@@ -54,7 +54,7 @@ These standards have various levels of overlap, as discussed in the following ta
 MARC codes and ISO 639-3 codes may be found in MARC records, as described in the following table.  IANA codes are not in MARC records, so we compute those ourselves.
 
 <!-- Using HTML in this table to add row headers and a caption, which are not included in Github-flavored markdown -->
-<table>
+<table aria-label="Language codes included in MARC records">
     <caption>Language codes included in MARC records</caption>
     <thead>
         <tr>
@@ -83,7 +83,7 @@ MARC codes and ISO 639-3 codes may be found in MARC records, as described in the
 Language data is stored in the following solr fields.  In general, the `language_facet` field will contain the most languages, to provide patrons with additional access points.  The `language_name_display` is intended for the show page, where we instead want to display only the most specific language information we have.
 
 <!-- Using HTML in this table to add row headers and a caption, which are not included in Github-flavored markdown -->
-<table>
+<table aria-label="Language-related Solr fields">
     <caption>Language-related Solr fields</caption>
     <thead>
         <tr>
