@@ -4324,7 +4324,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Seminar Room",
@@ -4344,7 +4346,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Office",
@@ -4364,14 +4368,16 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "New Book Shelf",
         "code": "plasma$nb",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": false,
+        "open": true,
         "requestable": true,
         "always_requestable": false,
         "circulates": true,
@@ -4385,24 +4391,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PJ",
-            "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PN",
-            "PA",
-            "IL",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB"
+            "PN"
         ]
     },
     {
@@ -4423,7 +4412,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Tech. Reports",
@@ -4443,7 +4434,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Reference",
@@ -4463,7 +4456,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Reserve",
@@ -4503,7 +4498,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Serials",
@@ -4523,14 +4520,16 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Stacks",
         "code": "plasma$stacks",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": false,
+        "open": true,
         "requestable": true,
         "always_requestable": false,
         "circulates": true,
@@ -4544,7 +4543,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PA"
+            "PN"
         ]
     },
     {
@@ -4552,7 +4551,7 @@
         "code": "plasma$theses",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
-        "open": false,
+        "open": true,
         "requestable": true,
         "always_requestable": false,
         "circulates": true,
@@ -4565,7 +4564,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "",
@@ -4585,7 +4586,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PN"
+        ]
     },
     {
         "label": "Sylvia Beach Collection (Beach)",

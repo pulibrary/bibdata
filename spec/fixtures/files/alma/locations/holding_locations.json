@@ -629,6 +629,270 @@
         "delivery_locations": []
     },
     {
+        "label": "Indexes & Abstracts",
+        "code": "plasma$index",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$index.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Seminar Room",
+        "code": "plasma$la",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$la.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Office",
+        "code": "plasma$li",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$li.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "New Book Shelf",
+        "code": "plasma$nb",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$nb.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Periodicals",
+        "code": "plasma$ps",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$ps.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Tech. Reports",
+        "code": "plasma$rdr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$rdr.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Reference",
+        "code": "plasma$ref",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$ref.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Ready Reference",
+        "code": "plasma$rr",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$rr.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Serials",
+        "code": "plasma$serial",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$serial.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Stacks",
+        "code": "plasma$stacks",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$stacks.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "Theses",
+        "code": "plasma$theses",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$theses.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
+        "label": "",
+        "code": "plasma$UNASSIGNED",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/plasma$UNASSIGNED.json",
+        "library": {
+            "label": "Harold P. Furth Plasma Physics Library",
+            "code": "plasma",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
         "label": "Cotsen Children’s Library Archival. Special Collections Use Only",
         "code": "rare$scactsn",
         "aeon_location": false,
