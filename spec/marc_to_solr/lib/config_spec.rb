@@ -77,6 +77,7 @@ describe 'From traject_config.rb', indexing: true do
       @iso639_3 = @indexer.map_record(fixture_record('99117463983506421'))
       @iso639_3_with_parallel_041 = @indexer.map_record(fixture_record('99125416143306421'))
       @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
+      @indigenous_studies = @indexer.map_record(fixture_record('99125398364906421'))
     end
 
     describe "alma loading" do
@@ -1020,6 +1021,23 @@ describe 'From traject_config.rb', indexing: true do
                                                                                "Indians of the West Indies", "Indigenous Studies", "Indigenous peoples of Central America",
                                                                                "Indigenous peoples of Mexico", "Indigenous peoples of North America",
                                                                                "Indigenous peoples of the West Indies"])
+        end
+
+        context 'subdivision that repeats main subject term' do
+          let(:expected_subject_facets) do
+            [
+              "Indigenous peoples of Mexico#{SEPARATOR}Mexico#{SEPARATOR}Hidalgo (State)#{SEPARATOR}Antiquities#{SEPARATOR}Congresses",
+              "Indigenous Studies",
+              "Archaeology#{SEPARATOR}Mexico#{SEPARATOR}Hidalgo (State)#{SEPARATOR}Congresses",
+              "Hidalgo (Mexico : State)#{SEPARATOR}Antiquities#{SEPARATOR}Congresses"
+            ]
+          end
+
+          it 'does not incorrectly substitute both subdivision and main subject term' do
+            pending("Fixing bug described in #2119")
+            expect(@indigenous_studies["subject_facet"]).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
+            expect(@indigenous_studies["subject_facet"]).to match_array(expected_subject_facets)
+          end
         end
       end
       describe 'subject terms changed for Change the Subject' do

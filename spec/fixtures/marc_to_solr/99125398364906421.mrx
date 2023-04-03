@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>04198cam a22004692 4500</leader>
+    <controlfield tag="005">20230125120528.0</controlfield>
+    <controlfield tag="008">210706s mx 000 0 spa d</controlfield>
+    <controlfield tag="001">99125398364906421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a">n2020468618</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9786075393490</subfield>
+      <subfield code="q">(INAH)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9786074825893</subfield>
+      <subfield code="q">(UAEH)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">6075393498</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">6074825890</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1220930692</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">HKB</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="d">HKB</subfield>
+      <subfield code="e">rda</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">n-mx---</subfield>
+    </datafield>
+    <datafield tag="090" ind1=" " ind2=" ">
+      <subfield code="a">F1219.1.H53</subfield>
+      <subfield code="b">A77 2019</subfield>
+    </datafield>
+    <datafield tag="111" ind1="2" ind2=" ">
+      <subfield code="a">Simposio de Arqueología del Estado de Hidalgo</subfield>
+      <subfield code="n">(2nd :</subfield>
+      <subfield code="d">2011 :</subfield>
+      <subfield code="c">Pachuca, Mexico)</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Arqueología contemporánea del estado de Hidalgo /</subfield>
+      <subfield code="c">Sergio Sánchez Vázquez, Alfonso Torres Rodríguez, coordinadores.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">Primera edición.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Ciudad de México :</subfield>
+      <subfield code="b">Secretaría de Cultura, Instituto Nacional de Antropología e Historia ;</subfield>
+      <subfield code="a">Pachuca de Soto, Hidalgo :</subfield>
+      <subfield code="b">Universidad Autónoma del Estado de Hidalgo,</subfield>
+      <subfield code="c">2019.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">216 pages :</subfield>
+      <subfield code="b">illustrations, maps ;</subfield>
+      <subfield code="c">23 cm.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="a">Científica</subfield>
+    </datafield>
+    <datafield tag="490" ind1="0" ind2=" ">
+      <subfield code="a">Colección Arqueología. Serie Memorias.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">The book is a compilation of nine essays that were presented as papers in the
+        2nd Simposio de Arqueología, held at the Instituto de Ciencias Sociales y Humanidades
+        (ICSHu), as well as in the Sala Salvador Toscano of the Centro INAH Hidalgo, in November 2011.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (pages 195-216)</subfield>
+    </datafield>
+    <datafield tag="505" ind1="8" ind2=" ">
+      <subfield code="a">Introducción / Alfonso Torres Rodríguez y Sergio Sánchez Vázquez -- I.
+        Tizayuca: un sitio provincial toltecaJuan / Carlos Equihua Manrique, Adriana Laura Tirado
+        Balandrán y Claudia Nicolás Careta -- II. Prácticas funerarias en un asentamiento
+        toltecaJuan Carlos Equihua Manrique y Karla Patricia Ponce Ordaz -- III. Prácticas
+        osteoculturales entre los pobladores toltecas / Josefina Bautista Martínez y Pablo Neptalí
+        Monterroso Rivas -- IV. Continuidad de las excavaciones arqueológicas de Huapalcalco,
+        realizadas entre 1954 y 1984 / Enriqueta Manzo Olguín -- V. Uso del compás magnético en la
+        ubicación y el trazado de algunos petrograbados de la cultura Xajay / Alfonso Torres
+        Rodríguez y Carlos Alberto Arriaga Mejía 85 VI. Los petroglifos de Xihuingo: acercamiento
+        iconográfico y clasificación inicial / Sergio Sánchez Vázquez -- VII. Arqueología en el
+        centro de Tulancingo. Avances del Proyecto de pozos de sondeo en la Catedral de Tulancingo
+        (2010) / Ma. Guadalupe Islas Monter y Carmen Lorenzo Monterrubio -- VIII. Cartografía
+        hidráulica de tradición prehispánica y colonial del estado de HidalgoElia Rocío Hernández
+        Andón -- IX. Manufactura de herramientas de molienda de tradición prehispánica en Machetla,
+        Hidalgo / Carlos Hernández Reyes.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">Selected papers presented at the II Simposio de Arqueología del Estado de
+        Hidalgo, held in November 2011 in Pachuca, Hidalgo, Mexico. Co-edited between the UAEH and the
+        INAH, it aims to publicize the results of archaeological investigations dating from
+        pre-Hispanic times.</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">In Spanish.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Indians of Mexico</subfield>
+      <subfield code="z">Mexico</subfield>
+      <subfield code="z">Hidalgo (State)</subfield>
+      <subfield code="x">Antiquities</subfield>
+      <subfield code="v">Congresses.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Archaeology</subfield>
+      <subfield code="z">Mexico</subfield>
+      <subfield code="z">Hidalgo (State)</subfield>
+      <subfield code="v">Congresses.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Hidalgo (Mexico : State)</subfield>
+      <subfield code="x">Antiquities</subfield>
+      <subfield code="v">Congresses.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Sánchez Vázquez, Sergio,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Torres Rodríguez, Alfonso,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Colección científica (Instituto Nacional de Antropología e Historia
+        (Mexico))</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Colección Arqueología (Instituto Nacional de Antropología e Historia
+        (Mexico)).</subfield>
+      <subfield code="p">Serie Memorias.</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1220930692</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20230125</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1220930692</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">210810</subfield>
+      <subfield code="e">32.00</subfield>
+      <subfield code="f">79314</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">115200</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2023-01-26 04:24:39 US/Eastern</subfield>
+      <subfield code="b">2021-10-02 20:35:23 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">marquand</subfield>
+      <subfield code="c">pj</subfield>
+      <subfield code="h">F1219.1.H53</subfield>
+      <subfield code="i">A77 2019</subfield>
+      <subfield code="8">22902552400006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-10-03 00:37:23</subfield>
+      <subfield code="8">22902552400006421</subfield>
+      <subfield code="a">2021-10-03 00:37:21</subfield>
+      <subfield code="b">Marquand Library</subfield>
+      <subfield code="c">rcppj: Marquand Remote Storage (ReCAP)</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22902552400006421</subfield>
+      <subfield code="a">23902552390006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pj</subfield>
+      <subfield code="d">2021-10-02 20:37:21 US/Eastern</subfield>
+      <subfield code="p">32101104248198</subfield>
+      <subfield code="y">marquand</subfield>
+    </datafield>
+  </record>
+</collection>
