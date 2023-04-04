@@ -23,6 +23,11 @@ class LanguageExtractor
                   .compact
   end
 
+  def iso639_language_names
+    iso_041_codes.map { |code| @language_service.code_to_name(code) }
+                 .compact
+  end
+
   private
 
     def includes_more_specific_version?(codes, code_to_check)
