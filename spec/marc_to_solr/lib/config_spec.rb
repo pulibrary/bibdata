@@ -77,7 +77,7 @@ describe 'From traject_config.rb', indexing: true do
       @iso639_3 = @indexer.map_record(fixture_record('99117463983506421'))
       @iso639_3_with_parallel_041 = @indexer.map_record(fixture_record('99125416143306421'))
       @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
-      @indigenous_studies = @indexer.map_record(fixture_record('99125398364906421'))
+      @indigenous_studies_mexico = @indexer.map_record(fixture_record('99125398364906421'))
     end
 
     describe "alma loading" do
@@ -1035,8 +1035,8 @@ describe 'From traject_config.rb', indexing: true do
 
           it 'does not incorrectly substitute both subdivision and main subject term' do
             pending("Fixing bug described in #2119")
-            expect(@indigenous_studies["subject_facet"]).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
-            expect(@indigenous_studies["subject_facet"]).to match_array(expected_subject_facets)
+            expect(@indigenous_studies_mexico["subject_facet"]).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
+            expect(@indigenous_studies_mexico["subject_facet"]).to match_array(expected_subject_facets)
           end
         end
       end
