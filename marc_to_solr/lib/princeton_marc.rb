@@ -8,6 +8,7 @@ require_relative 'cache_map'
 require_relative 'composite_cache_map'
 require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
+require_relative 'hierarchical_heading'
 require_relative 'iiif_manifest_url_builder'
 require_relative 'orangelight_url_builder'
 require_relative 'process_holdings_helpers'
@@ -278,20 +279,9 @@ def process_hierarchy(record, fields)
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     include_heading = block_given? ? yield(field) : true
     next unless include_heading && extractor.collect_subfields(field, spec).first
-    subfields = field.subfields.select { |subfield| spec.subfields.include? subfield.code }
-    next unless subfields.count
-    heading = Traject::Macros::Marc21.trim_punctuation(subfields.shift.value)
-    subfields.each do |subfield|
-      if split_on_subfield.include? subfield.code
-        heading << SEPARATOR
-      else
-        heading << ' '
-      end
-      heading << Traject::Macros::Marc21.trim_punctuation(subfield.value)
-    end
-    headings << heading
+    headings << HierarchicalHeading.new(field:, spec:, split_on_subfield:).to_s
   end
-  headings
+  headings.compact
 end
 
 # for the split subject facet
@@ -301,22 +291,16 @@ def process_subject_topic_facet record
   Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:650|*0|abcxz:651|*0|axz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
-      field.subfields.each do |s_field|
-        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
-      end
-      subject = subject.split(SEPARATOR)
-      subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }
+      hierarchical_string = HierarchicalHeading.new(field:, spec:, split_on_subfield: %w[x z]).to_s
+      subjects << hierarchical_string.split(SEPARATOR)
     end
   end
   Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     should_include = siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit])
-    unless subject.nil?
-      field.subfields.each do |s_field|
-        subject = subject.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if (s_field.code == 'x' || s_field.code == 'z')
-      end
-      subject = subject.split(SEPARATOR)
-      subjects << subject.map { |s| Traject::Macros::Marc21.trim_punctuation(s) } if should_include
+    if should_include && !subject.nil?
+      hierarchical_string = HierarchicalHeading.new(field:, spec:, split_on_subfield: %w[x z]).to_s
+      subjects << hierarchical_string.split(SEPARATOR)
     end
   end
   subjects.flatten
