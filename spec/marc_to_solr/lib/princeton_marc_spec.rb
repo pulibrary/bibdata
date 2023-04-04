@@ -596,7 +596,6 @@ describe 'From princeton_marc.rb' do
       let(:subject_terms) { process_hierarchy(repeated_term_marc, fields) }
 
       it 'does not substitute the subfield term when it is part of another subfield' do
-        pending("Fixing bug described in #2119")
         expect(subject_terms).to eq(["Indians of Mexico—Mexico"])
       end
     end

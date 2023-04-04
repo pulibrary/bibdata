@@ -276,17 +276,20 @@ def process_hierarchy(record, fields)
   headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
-    heading = extractor.collect_subfields(field, spec).first
     include_heading = block_given? ? yield(field) : true
-    unless heading.nil?
-      field.subfields.each do |s_field|
-        # when specified, only include heading if it is part of the vocabulary
-        heading = heading.gsub(" #{s_field.value}", "#{SEPARATOR}#{s_field.value}") if split_on_subfield.include?(s_field.code)
+    next unless include_heading && extractor.collect_subfields(field, spec).first
+    subfields = field.subfields.select { |subfield| spec.subfields.include? subfield.code }
+    next unless subfields.count
+    heading = Traject::Macros::Marc21.trim_punctuation(subfields.shift.value)
+    subfields.each do |subfield|
+      if split_on_subfield.include? subfield.code
+        heading << SEPARATOR
+      else
+        heading << ' '
       end
-      heading = heading.split(SEPARATOR)
-      heading = heading.map { |s| Traject::Macros::Marc21.trim_punctuation(s) }.join(SEPARATOR)
-      headings << heading if include_heading
+      heading << Traject::Macros::Marc21.trim_punctuation(subfield.value)
     end
+    headings << heading
   end
   headings
 end

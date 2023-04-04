@@ -1034,7 +1034,6 @@ describe 'From traject_config.rb', indexing: true do
           end
 
           it 'does not incorrectly substitute both subdivision and main subject term' do
-            pending("Fixing bug described in #2119")
             expect(@indigenous_studies_mexico["subject_facet"]).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
             expect(@indigenous_studies_mexico["subject_facet"]).to match_array(expected_subject_facets)
           end
