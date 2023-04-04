@@ -580,6 +580,25 @@ describe 'From princeton_marc.rb' do
         expect(@special_subjects).to eq ["John#{SEPARATOR}Title#{SEPARATOR}split genre 2015"]
       end
     end
+
+    describe 'when a subfield repeats a term in another subfield' do
+      let(:f650_with_repeated_term) do
+        { "650" => {
+          "ind1" => "", "ind2" => "0",
+          "subfields" => [
+            { "a" => "Indians of Mexico",
+              "z" => "Mexico" }
+          ]
+        } }
+      end
+      let(:repeated_term_marc) { MARC::Record.new_from_hash('fields' => [f650_with_repeated_term]) }
+      let(:fields) { '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz' }
+      let(:subject_terms) { process_hierarchy(repeated_term_marc, fields) }
+
+      it 'does not substitute the subfield term when it is part of another subfield' do
+        expect(subject_terms).to eq(["Indians of Mexico—Mexico"])
+      end
+    end
   end
 
   describe 'process_subject_topic_facet function' do
