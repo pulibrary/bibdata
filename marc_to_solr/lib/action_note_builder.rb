@@ -17,8 +17,9 @@ class ActionNoteBuilder
       field_link = field["8"]
       next unless public_note && (field_link.present? || pulfa_record? || scsb_record?)
 
-      notes << { description: description(field), uri: uri(field) }.to_json.to_s
+      notes << { description: description(field), uri: uri(field) }
     end
+    notes = [notes.to_json.to_s] if notes.present?
     notes.presence
   end
 

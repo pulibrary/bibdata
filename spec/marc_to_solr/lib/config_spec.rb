@@ -1185,7 +1185,7 @@ describe 'From traject_config.rb', indexing: true do
       it 'has an action note when it is a PULFA record' do
         record = @indexer.map_record(fixture_record('99125628841606421'))
         expect(record['action_notes_1display']).to be_an_instance_of(Array)
-        notes = record['action_notes_1display'].map { |note| JSON.parse(note) }
+        notes = record['action_notes_1display'].map { |note| JSON.parse(note) }.first
         expect(notes.first).to be_an_instance_of(Hash)
         expect(notes.first.keys).to include('description')
         expect(notes.first['description']).to eq('Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.')
@@ -1195,7 +1195,7 @@ describe 'From traject_config.rb', indexing: true do
 
       it "has an Action Note from Princeton holding records" do
         record = @indexer.map_record(fixture_record('99126831126106421'))
-        note = JSON.parse(record['action_notes_1display'][0])
+        note = JSON.parse(record['action_notes_1display'][0]).first
         expect(note['description']).to eq('Vol. 1: Committed to retain in perpetuity — ReCAP Italian Language Imprints Collaborative Collection (NjP)')
         expect(note['uri']).to eq('http://arks.princeton.edu/ark:/88435/dcxg94j1575')
       end
@@ -1207,13 +1207,28 @@ describe 'From traject_config.rb', indexing: true do
       it "has an Action Note when a SCSB record" do
         record = @indexer.map_record(fixture_record('SCSB-9879349'))
         expect(record['action_notes_1display']).not_to be nil
-        note = JSON.parse(record['action_notes_1display'][0])
+        note = JSON.parse(record['action_notes_1display'][0]).first
         expect(note['description']).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (HUL)")
       end
 
       it "does not have an action note when a non-PULFA, non-holding Princeton record" do
         record = @indexer.map_record(fixture_record('99125256858006421'))
         expect(record['action_notes_1display']).to be nil
+      end
+
+      context 'with multiple action notes' do
+        let(:record) { @indexer.map_record(fixture_record('99126873402206421')) }
+        it "gives a single string value" do
+          expect(record['action_notes_1display'].size).to eq(1)
+        end
+
+        it "can be parsed into a json object" do
+          notes = JSON.parse(record['action_notes_1display'].first)
+          expect(notes).to be_an_instance_of Array
+          expect(notes.size).to eq(2)
+          expect(notes.first["description"]).to eq("Committed to retain in perpetuity — ReCAP South Asian Imprints Collaborative Collection (NjP)")
+          expect(notes.last["description"]).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (NjP)")
+        end
       end
     end
     context "Temporary in resource sharing location" do
