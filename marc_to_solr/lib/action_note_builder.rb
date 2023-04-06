@@ -37,7 +37,7 @@ class ActionNoteBuilder
     def uri(field)
       return '' if field["u"].blank?
 
-      field["u"]
+      field["u"].strip
     end
 
     def action(field)

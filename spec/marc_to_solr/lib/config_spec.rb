@@ -1230,6 +1230,23 @@ describe 'From traject_config.rb', indexing: true do
           expect(notes.last["description"]).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (NjP)")
         end
       end
+
+      context 'with an action note with a space on the ends of the url' do
+        let(:action_note_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s583], 'leader' => leader)) }
+        let(:s583) do
+          { "583" => { "ind1" => "1", "ind2" => " ", "subfields" => [
+            { "a" => "committed to retain" },
+            { "d" => "in perpertuity " },
+            { "f" => "ReCAP" },
+            { "u" => " http://arks.princeton.edu/ark:/88435/dcxg94j1575 " },
+            { "8" => "22961480120006421" }
+          ] } }
+        end
+        it 'strips the spaces' do
+          action_note_json = JSON.parse(action_note_marc["action_notes_1display"].first).first
+          expect(action_note_json["uri"]).to eq("http://arks.princeton.edu/ark:/88435/dcxg94j1575")
+        end
+      end
     end
     context "Temporary in resource sharing location" do
       it "does not show as a temporary location" do
