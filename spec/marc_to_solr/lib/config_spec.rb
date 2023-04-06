@@ -1187,20 +1187,88 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
     context "Action Note" do
-      it "Has an Action Note when it is a Princeton record" do
+      it "has an Action Note when it is a Princeton record" do
         indexer = IndexerService.build
         sample = indexer.map_record(fixture_record('99125628841606421', indexer:))
         note = sample['action_notes_display'][0]
         expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
       end
 
-      it "Does not have an Action Note when not a Princeton record" do
+      it "does not have an Action Note when not a Princeton record" do
         indexer = IndexerService.build
         sample = indexer.map_record(fixture_record('SCSB-9879349', indexer:))
-        expect(sample['action_note_display']).to be nil
+        expect(sample['action_notes_display']).to be nil
       end
       it "will not index private notes - first indicator 0" do
         expect(@private_notes_583['action_notes_display']).to be nil
+      end
+    end
+
+    context "Action Note revised" do
+      it 'has an action note when it is a PULFA record' do
+        record = @indexer.map_record(fixture_record('99125628841606421'))
+        expect(record['action_notes_1display']).to be_an_instance_of(Array)
+        notes = record['action_notes_1display'].map { |note| JSON.parse(note) }.first
+        expect(notes.first).to be_an_instance_of(Hash)
+        expect(notes.first.keys).to include('description')
+        expect(notes.first['description']).to eq('Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.')
+        expect(notes.first.keys).to include('uri')
+        expect(notes.first['uri']).to eq('')
+      end
+
+      it "has an Action Note from Princeton holding records" do
+        record = @indexer.map_record(fixture_record('99126831126106421'))
+        note = JSON.parse(record['action_notes_1display'][0]).first
+        expect(note['description']).to eq('Vol. 1: Committed to retain in perpetuity — ReCAP Italian Language Imprints Collaborative Collection (NjP)')
+        expect(note['uri']).to eq('http://arks.princeton.edu/ark:/88435/dcxg94j1575')
+      end
+
+      it "will not index private notes - first indicator 0" do
+        expect(@private_notes_583['action_notes_1display']).to be nil
+      end
+
+      it "has an Action Note when a SCSB record" do
+        record = @indexer.map_record(fixture_record('SCSB-9879349'))
+        expect(record['action_notes_1display']).not_to be nil
+        note = JSON.parse(record['action_notes_1display'][0]).first
+        expect(note['description']).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (HUL)")
+      end
+
+      it "does not have an action note when a non-PULFA, non-holding Princeton record" do
+        record = @indexer.map_record(fixture_record('99125256858006421'))
+        expect(record['action_notes_1display']).to be nil
+      end
+
+      context 'with multiple action notes' do
+        let(:record) { @indexer.map_record(fixture_record('99126873402206421')) }
+        it "gives a single string value" do
+          expect(record['action_notes_1display'].size).to eq(1)
+        end
+
+        it "can be parsed into a json object" do
+          notes = JSON.parse(record['action_notes_1display'].first)
+          expect(notes).to be_an_instance_of Array
+          expect(notes.size).to eq(2)
+          expect(notes.first["description"]).to eq("Committed to retain in perpetuity — ReCAP South Asian Imprints Collaborative Collection (NjP)")
+          expect(notes.last["description"]).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (NjP)")
+        end
+      end
+
+      context 'with an action note with a space on the ends of the url' do
+        let(:action_note_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s583], 'leader' => leader)) }
+        let(:s583) do
+          { "583" => { "ind1" => "1", "ind2" => " ", "subfields" => [
+            { "a" => "committed to retain" },
+            { "d" => "in perpertuity " },
+            { "f" => "ReCAP" },
+            { "u" => " http://arks.princeton.edu/ark:/88435/dcxg94j1575 " },
+            { "8" => "22961480120006421" }
+          ] } }
+        end
+        it 'strips the spaces' do
+          action_note_json = JSON.parse(action_note_marc["action_notes_1display"].first).first
+          expect(action_note_json["uri"]).to eq("http://arks.princeton.edu/ark:/88435/dcxg94j1575")
+        end
       end
     end
     context "Temporary in resource sharing location" do

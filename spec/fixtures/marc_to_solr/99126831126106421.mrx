@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01537cam a2200409 i 4500</leader>
+    <controlfield tag="005">20230206160402.0</controlfield>
+    <controlfield tag="008">200317s2019 ii b 001 0deng d</controlfield>
+    <controlfield tag="001">99126831126106421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a"> 2020329229</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9788170744085</subfield>
+      <subfield code="q">(hardback)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">8170744083</subfield>
+    </datafield>
+    <datafield tag="025" ind1=" " ind2=" ">
+      <subfield code="a">I-E-2020329229 ; 56-91</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1145057686</subfield>
+    </datafield>
+    <datafield tag="037" ind1=" " ind2=" ">
+      <subfield code="b">Library of Congress -- New Delhi Overseas Office</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DKAGE</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">OCLCO</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">lccopycat</subfield>
+      <subfield code="a">lcode</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">a-ii---</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2="0">
+      <subfield code="a">DS435</subfield>
+      <subfield code="b">.T49 2019</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">954.0072</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Themes and individuals in history /</subfield>
+      <subfield code="c">edited by Suparna Gooptu.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Kolkata :</subfield>
+      <subfield code="b">KP Bagchi &amp; Company,</subfield>
+      <subfield code="c">2019.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">xx, 383 pages ;</subfield>
+      <subfield code="c">23 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Contributed articles.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Copyright: Centre for Advanced Studies, Department of History, University
+        of Calcutta.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">India</subfield>
+      <subfield code="x">Historiography.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">India</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Historiography.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00958221</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">India.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01210276</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Biographies.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01919896</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Gooptu, Suparna,</subfield>
+      <subfield code="e">editor.</subfield>
+    </datafield>
+    <datafield tag="710" ind1="2" ind2=" ">
+      <subfield code="a">University of Calcutta.</subfield>
+      <subfield code="b">Department of History.</subfield>
+      <subfield code="b">Centre for Advanced Studies.</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">410077598</subfield>
+      <subfield code="w">copy</subfield>
+      <subfield code="1">20230201110140.0</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1145057686</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20230206</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1145057686</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2023-02-06 16:04:02 US/Eastern</subfield>
+      <subfield code="b">2023-02-01 11:01:56 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="3">Vol. 1</subfield>
+      <subfield code="a">committed to retain</subfield>
+      <subfield code="d">in perpetuity</subfield>
+      <subfield code="f">ReCAP</subfield>
+      <subfield code="f">Italian Language Imprints Collaborative Collection</subfield>
+      <subfield code="u">http://arks.princeton.edu/ark:/88435/dcxg94j1575</subfield>
+      <subfield code="5">NjP</subfield>
+      <subfield code="8">22961480120006421</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">DS435</subfield>
+      <subfield code="i">.T49 2019</subfield>
+      <subfield code="8">22961480120006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2023-02-24 15:04:57</subfield>
+      <subfield code="8">22961480120006421</subfield>
+      <subfield code="a">2023-02-01 16:02:06</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22961480120006421</subfield>
+      <subfield code="a">23961480110006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2023-02-01 11:02:06 US/Eastern</subfield>
+      <subfield code="x">ReCAPItalianImprints</subfield>
+      <subfield code="p">32101119327524</subfield>
+      <subfield code="y">recap</subfield>
+      <subfield code="w">true</subfield>
+    </datafield>
+  </record>
+</collection>

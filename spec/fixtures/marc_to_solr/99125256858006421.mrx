@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record>
+  <leader>-----nas--2201105-a-4500</leader>
+  <controlfield tag="001">99125256858006421</controlfield>
+  <controlfield tag="005">20201210034503.1</controlfield>
+  <controlfield tag="006">m-----o--d--------</controlfield>
+  <controlfield tag="007">cr-bn||||||abp</controlfield>
+  <controlfield tag="007">cr-bn||||||ada</controlfield>
+  <controlfield tag="008">100321c19749999bg-qr-p-o-----0----0eng-c</controlfield>
+  <datafield tag="010" ind1=" " ind2=" ">
+    <subfield code="a"> 2011235768</subfield>
+  </datafield>
+  <datafield tag="016" ind1="7" ind2=" ">
+    <subfield code="a">008632073</subfield>
+    <subfield code="2">Uk</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(DE-599)ZDB2588441-4</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)564861667</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(CKB)110978977124166</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(CONSER)--2011235768</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(EXLCZ)99110978977124166</subfield>
+  </datafield>
+  <datafield tag="042" ind1=" " ind2=" ">
+    <subfield code="a">dlr</subfield>
+    <subfield code="a">pcc</subfield>
+  </datafield>
+  <datafield tag="043" ind1=" " ind2=" ">
+    <subfield code="a">a-bg---</subfield>
+  </datafield>
+  <datafield tag="050" ind1=" " ind2="4">
+    <subfield code="a">HC440.8.A1</subfield>
+    <subfield code="b">B3</subfield>
+  </datafield>
+  <datafield tag="070" ind1=" " ind2=" ">
+    <subfield code="a">HC440.8.A1B3</subfield>
+  </datafield>
+  <datafield tag="082" ind1="0" ind2="4">
+    <subfield code="a">330.9/549/205</subfield>
+  </datafield>
+  <datafield tag="210" ind1=" " ind2=" ">
+    <subfield code="a">BANGLADESH DEVELOPMENT STUDIES</subfield>
+  </datafield>
+  <datafield tag="210" ind1=" " ind2=" ">
+    <subfield code="a">BANGLADESH DEV STUD</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="4">
+    <subfield code="a">The Bangladesh development studies.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Dacca :</subfield>
+    <subfield code="b">Bangladesh Institute of Development Studies,</subfield>
+    <subfield code="c">1974-</subfield>
+  </datafield>
+  <datafield tag="310" ind1=" " ind2=" ">
+    <subfield code="a">Quarterly</subfield>
+  </datafield>
+  <datafield tag="336" ind1=" " ind2=" ">
+    <subfield code="a">text</subfield>
+    <subfield code="b">txt</subfield>
+    <subfield code="2">rdacontent</subfield>
+  </datafield>
+  <datafield tag="337" ind1=" " ind2=" ">
+    <subfield code="a">computer</subfield>
+    <subfield code="b">c</subfield>
+    <subfield code="2">rdamedia</subfield>
+  </datafield>
+  <datafield tag="338" ind1=" " ind2=" ">
+    <subfield code="a">online resource</subfield>
+    <subfield code="b">cr</subfield>
+    <subfield code="2">rdacarrier</subfield>
+  </datafield>
+  <datafield tag="362" ind1="1" ind2=" ">
+    <subfield code="a">Began with v. 2, no. 3 (July 1974).</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">"Journal of the Bangladesh Institute of Development Studies."</subfield>
+  </datafield>
+  <datafield tag="506" ind1=" " ind2=" ">
+    <subfield code="3">Use copy</subfield>
+    <subfield code="f">Restrictions unspecified</subfield>
+    <subfield code="2">star</subfield>
+    <subfield code="5">MiAaHDL</subfield>
+  </datafield>
+  <datafield tag="515" ind1=" " ind2=" ">
+    <subfield code="a">Publication suspended 1998-1999.</subfield>
+  </datafield>
+  <datafield tag="538" ind1=" " ind2=" ">
+    <subfield code="a">Master and use copy. Digital master created according to Benchmark for
+      Faithful Digital Reproductions of Monographs and Serials, Version 1. Digital Library
+      Federation, December 2002.</subfield>
+    <subfield code="u">http://purl.oclc.org/DLF/benchrepro0212</subfield>
+    <subfield code="5">MiAaHDL</subfield>
+  </datafield>
+  <datafield tag="583" ind1="1" ind2=" ">
+    <subfield code="a">digitized</subfield>
+    <subfield code="c">2010</subfield>
+    <subfield code="h">HathiTrust Digital Library</subfield>
+    <subfield code="l">committed to preserve</subfield>
+    <subfield code="2">pda</subfield>
+    <subfield code="5">MiAaHDL</subfield>
+  </datafield>
+  <datafield tag="588" ind1=" " ind2=" ">
+    <subfield code="a">Description based on: Volume II, Number 3 (July 1974); title from PDF cover
+      (JSTOR, viewed July 22, 2011).</subfield>
+  </datafield>
+  <datafield tag="588" ind1=" " ind2=" ">
+    <subfield code="a">Latest issue consulted: Volume XXXI, Nos. 3 &amp; 4 (September-December 2005)
+      (JSTOR, viewed July 22, 2011).</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="0">
+    <subfield code="a">Bangladesh</subfield>
+    <subfield code="x">Economic conditions</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Economic development</subfield>
+    <subfield code="v">Periodicals.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Economic development.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00901785</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="7">
+    <subfield code="a">Economic history.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst00901974</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="7">
+    <subfield code="a">Bangladesh.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01213724</subfield>
+  </datafield>
+  <datafield tag="650" ind1="0" ind2="7">
+    <subfield code="a">DEVELOPMENT.</subfield>
+    <subfield code="2">unbist</subfield>
+  </datafield>
+  <datafield tag="650" ind1="0" ind2="7">
+    <subfield code="a">BANGLADESH.</subfield>
+    <subfield code="2">unbist</subfield>
+  </datafield>
+  <datafield tag="651" ind1=" " ind2="7">
+    <subfield code="a">Bangladesz.</subfield>
+    <subfield code="2">dbn</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">fast</subfield>
+    <subfield code="0">(OCoLC)fst01411641</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Periodicals.</subfield>
+    <subfield code="2">lcgft</subfield>
+  </datafield>
+  <datafield tag="655" ind1=" " ind2="7">
+    <subfield code="a">Czasopismo ekonomiczne.</subfield>
+    <subfield code="2">dbn</subfield>
+  </datafield>
+  <datafield tag="658" ind1=" " ind2=" ">
+    <subfield code="a">Gospodarka, ekonomia, finanse.</subfield>
+  </datafield>
+  <datafield tag="776" ind1=" " ind2=" ">
+    <subfield code="x">0304-095X</subfield>
+  </datafield>
+  <datafield tag="780" ind1="0" ind2="0">
+    <subfield code="t">The Bangladesh Economic Review</subfield>
+    <subfield code="w">(CKB)1000000000262859</subfield>
+    <subfield code="w">(DLC)73901637</subfield>
+    <subfield code="w">(OCoLC)610583943</subfield>
+  </datafield>
+  <datafield tag="710" ind1="2" ind2=" ">
+    <subfield code="a">Bangladesh Institute of Development Studies.</subfield>
+  </datafield>
+  <datafield tag="906" ind1=" " ind2=" ">
+    <subfield code="a">JOURNAL</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2023-02-03 04:33:01 US/Eastern</subfield>
+    <subfield code="b">2012-02-25 20:55:56 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2022-02-04 14:25:29 US/Eastern</subfield>
+    <subfield code="g">Ezb</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="t">2022-02-04 14:25:29 US/Eastern</subfield>
+    <subfield code="x">
+      https://na05-psb.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53913852320006421&amp;Force_direct=true</subfield>
+    <subfield code="s">System</subfield>
+    <subfield code="0">53913852320006421</subfield>
+    <subfield code="w">2022-02-04 19:25:29</subfield>
+    <subfield code="k"> Available from 2003 volume: 29 issue: 1. Most recent 3 month(s) not
+      available.</subfield>
+    <subfield code="f">false</subfield>
+    <subfield code="m">61913212990006421</subfield>
+    <subfield code="n">EZB Free E-Journals</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62913212980006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125256858006421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">615280000000001088</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53913852320006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1=" " ind2=" ">
+    <subfield code="a">53913852320006421</subfield>
+    <subfield code="b">2003</subfield>
+    <subfield code="d">1</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="h">29</subfield>
+    <subfield code="j">1</subfield>
+  </datafield>
+  <datafield tag="954" ind1=" " ind2=" ">
+    <subfield code="a">53913852320006421</subfield>
+    <subfield code="b">&gt;=</subfield>
+    <subfield code="d">3</subfield>
+  </datafield>
+  <datafield tag="951" ind1=" " ind2=" ">
+    <subfield code="v">2022-04-26 05:08:24 US/Eastern</subfield>
+    <subfield code="g">JSTOR</subfield>
+    <subfield code="u">System</subfield>
+    <subfield code="j">updated parse param to prevent JSTOR links leading to current pub. sites;
+      undo if EL comes up with a global fix --nb, 6/14 / JSTOR journal archives purchased as sep.
+      packages; this combines titles from all; some titles not yet part of packages deactivated</subfield>
+    <subfield code="t">2021-07-15 11:31:47 US/Eastern</subfield>
+    <subfield code="x">
+      https://na05-psb.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53786558830006421&amp;Force_direct=true</subfield>
+    <subfield code="s">SFX</subfield>
+    <subfield code="0">53786558830006421</subfield>
+    <subfield code="k"> Available from 07/01/1974 volume: 2 issue: 3 until 09/30/2020 volume: 43
+      issue: 3.</subfield>
+    <subfield code="f">true</subfield>
+    <subfield code="m">61753480830006421</subfield>
+    <subfield code="n">JSTOR Complete Journals</subfield>
+    <subfield code="b">param</subfield>
+    <subfield code="1">62753499120006421</subfield>
+    <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99125256858006421</subfield>
+    <subfield code="a">Available</subfield>
+    <subfield code="l">61111034808820000</subfield>
+    <subfield code="e">JOURNAL</subfield>
+    <subfield code="8">53786558830006421</subfield>
+  </datafield>
+  <datafield tag="953" ind1=" " ind2=" ">
+    <subfield code="a">53786558830006421</subfield>
+    <subfield code="b">1974</subfield>
+    <subfield code="c">2020</subfield>
+    <subfield code="d">7</subfield>
+    <subfield code="e">9</subfield>
+    <subfield code="f">1</subfield>
+    <subfield code="g">30</subfield>
+    <subfield code="h">2</subfield>
+    <subfield code="i">43</subfield>
+    <subfield code="j">3</subfield>
+    <subfield code="k">3</subfield>
+  </datafield>
+</record>

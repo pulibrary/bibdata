@@ -11,6 +11,7 @@ require_relative './electronic_portfolio_builder'
 require_relative './alma_reader'
 require_relative './solr_deleter'
 require_relative './access_facet_builder'
+require_relative './action_note_builder'
 require_relative './augment_the_subject'
 require_relative './language_service'
 require_relative './language_extractor'
@@ -802,6 +803,12 @@ to_field 'action_notes_display', extract_marc('583|1*|a:583| *|a') do |record, a
     notes << value if pulfa.present?
   end
   accumulator.replace(notes)
+end
+
+# Action note - formatted with link
+to_field 'action_notes_1display' do |record, accumulator|
+  notes = ActionNoteBuilder.build(record:)
+  accumulator.replace(notes) if notes.present?
 end
 
 # Indexed in:

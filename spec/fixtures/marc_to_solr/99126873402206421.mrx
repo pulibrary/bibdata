@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>00505nam a22001335a 4500</leader>
+    <controlfield tag="008">210906s2021 ii a ||| 0 eng d</controlfield>
+    <controlfield tag="001">99126873402206421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+      <subfield code="a"> 2020341097</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9788187393740 ‡q (hardback)</subfield>
+    </datafield>
+    <datafield tag="037" ind1=" " ind2=" ">
+      <subfield code="b">Library of Congress--New Delhi Overseas Office</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">DLC</subfield>
+      <subfield code="b">cat</subfield>
+      <subfield code="c">DLC</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+      <subfield code="a">lcode</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">My Newar my Nepal :</subfield>
+      <subfield code="b"> a symbiotic study in retrospective /</subfield>
+      <subfield code="c"> by Raraabha Vashishtha (PhD).</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">New Delhi :</subfield>
+      <subfield code="b"> Adroit Publishers, </subfield>
+      <subfield code="c"> 2021.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">x, 266 pages : \b illustrations (colour) ; ‡c 23 cm</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2023-03-29 11:23:15 US/Eastern</subfield>
+      <subfield code="b">2023-03-29 11:23:15 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">committed to retain</subfield>
+      <subfield code="d">in perpetuity</subfield>
+      <subfield code="f">ReCAP</subfield>
+      <subfield code="f">South Asian Imprints Collaborative Collection</subfield>
+      <subfield code="5">NjP</subfield>
+      <subfield code="8">22962084190006421</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="8">22962084190006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2023-03-29 15:23:19</subfield>
+      <subfield code="8">22962084190006421</subfield>
+      <subfield code="a">2023-03-29 15:23:18</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="583" ind1="1" ind2=" ">
+      <subfield code="a">committed to retain</subfield>
+      <subfield code="d">in perpetuity</subfield>
+      <subfield code="f">ReCAP</subfield>
+      <subfield code="f">Shared Collection</subfield>
+      <subfield code="5">NjP</subfield>
+      <subfield code="8">22962218820006421</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="8">22962218820006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2023-04-04 17:15:09</subfield>
+      <subfield code="8">22962218820006421</subfield>
+      <subfield code="a">2023-04-04 17:15:08</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22962084190006421</subfield>
+      <subfield code="a">23962084180006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2023-03-29 11:23:18 US/Eastern</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22962218820006421</subfield>
+      <subfield code="a">23962218810006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2023-04-04 13:15:46 US/Eastern</subfield>
+      <subfield code="p">testitem1234</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>
