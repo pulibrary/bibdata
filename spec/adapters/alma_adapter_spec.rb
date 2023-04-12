@@ -360,7 +360,7 @@ RSpec.describe AlmaAdapter do
     it "uses the work_order to calculate status" do
       availability = adapter.get_availability_holding(id: "9965126093506421", holding_id: "22202918790006421")
       item = availability.first
-      expect(item[:status]).to eq "Not Available"
+      expect(item[:status]).to eq "Unavailable"
       expect(item[:status_label]).to eq "Controlled Digital Lending"
       expect(item[:status_source]).to eq "work_order"
     end
@@ -368,7 +368,7 @@ RSpec.describe AlmaAdapter do
     it "uses the process_type to calculate status" do
       availability = adapter.get_availability_holding(id: "9943506421", holding_id: "22261963850006421")
       item = availability.find { |bib_item| bib_item[:id] == "23261963800006421" }
-      expect(item[:status]).to eq "Not Available"
+      expect(item[:status]).to eq "Unavailable"
       expect(item[:status_label]).to eq "Transit"
       expect(item[:status_source]).to eq "process_type"
       expect(item[:process_type]).to eq "TRANSIT"

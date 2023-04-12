@@ -39,14 +39,14 @@ class AlmaAdapter
           status = holding_status_from_item(alma_item)
           availability[holding_id] = status
           all_available &&= status[:status_label] == "Available"
-          none_available &&= status[:status_label] == "Not Available"
+          none_available &&= status[:status_label] == "Unavailable"
         end
 
         # Update the availability's status_label of the holding as a whole.
         holding_availability = if all_available
                                  "Available"
                                elsif none_available
-                                 "Not Available"
+                                 "Unavailable"
                                else
                                  "Some items not available"
                                end

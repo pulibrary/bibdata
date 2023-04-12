@@ -22,7 +22,7 @@ RSpec.describe AlmaAdapter::AvailabilityStatus do
       bib = Alma::Bib.new("mms_id" => "99125378873406421")
       status = described_class.new(bib:, deep_check: true)
       availability = status.bib_availability_from_items
-      expect(availability["22897164770006421"][:status_label]).to eq "Not Available"
+      expect(availability["22897164770006421"][:status_label]).to eq "Unavailable"
     end
 
     it "reports some items not available when there is a mix of statuses" do
