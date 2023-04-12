@@ -277,24 +277,24 @@ RSpec.describe AlmaAdapter::AlmaItem do
     it "Handles items with work order in acquisitions" do
       item = described_class.new(item_work_order_acq)
       status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
+      expect(status[:code]).to eq "Unavailable"
     end
 
     it "Handles items with work order in collection development" do
       item = described_class.new(item_work_order_coll_dev)
       status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
+      expect(status[:code]).to eq "Unavailable"
     end
 
     it "Handles items with work order in holdings management" do
       item = described_class.new(item_work_order_holdings_mgmt)
       status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
+      expect(status[:code]).to eq "Unavailable"
     end
     it "Handles items with process type in acquisitions" do
       item = described_class.new(item_process_type_acq)
       status = item.calculate_status
-      expect(status[:code]).to eq "Not Available"
+      expect(status[:code]).to eq "Unavailable"
     end
 
     it "Handles items with base status (in place)" do
@@ -304,7 +304,7 @@ RSpec.describe AlmaAdapter::AlmaItem do
 
     it "Handles items with base status (not in place)" do
       item = described_class.new(item_base_status_not_in_place)
-      expect(item.calculate_status[:code]).to eq "Not Available"
+      expect(item.calculate_status[:code]).to eq "Unavailable"
     end
   end
 end

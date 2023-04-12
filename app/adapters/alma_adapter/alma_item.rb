@@ -299,7 +299,7 @@ class AlmaAdapter
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       # Work Order documentation: https://lib-confluence.princeton.edu/display/ALMA/Work+Orders
       code = if value.in?(["Bind", "Pres", "CDL", "AcqWorkOrder", "CollDev", "HMT"])
-               "Not Available"
+               "Unavailable"
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
                "Available"
@@ -308,13 +308,13 @@ class AlmaAdapter
     end
 
     def status_from_process_type
-      # For now we return "Not Available" for any item that has a process_type.
+      # For now we return "Unavailable" for any item that has a process_type.
       # You can see a list of all the possible values here:
       #   https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       value = item_data.dig("process_type", "value")
       desc = item_data.dig("process_type", "desc")
 
-      { code: "Not Available", label: desc, source: "process_type", process_type: value }
+      { code: "Unavailable", label: desc, source: "process_type", process_type: value }
     end
 
     def status_from_base_status
@@ -322,7 +322,7 @@ class AlmaAdapter
       desc = item_data.dig("base_status", "desc")
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      code = value == "1" ? "Available" : "Not Available"
+      code = value == "1" ? "Available" : "Unavailable"
       { code:, label: desc, source: "base_status" }
     end
 
