@@ -2,6 +2,13 @@ require 'rails_helper'
 
 RSpec.describe Alma::Indexer::DumpFileIndexer do
   let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_bibdata_test_solr_conn_host']}:#{ENV['lando_bibdata_test_solr_conn_port']}/solr/bibdata-core-test" }
+  let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
+  around do |example|
+    should_backup_file = File.exist? file_path
+    FileUtils.cp(file_path, "#{file_path}.backup") if should_backup_file
+    example.run
+    FileUtils.mv("#{file_path}.backup", file_path) if should_backup_file
+  end
 
   describe "#decompress_file" do
     let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
@@ -30,8 +37,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
       end
     end
     context "with a .gz file" do
-      let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
-
       it 'yields a block' do
         expect { |b| dump_file_indexer.decompress_file(&b) }.to yield_with_args
       end
@@ -71,8 +76,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
     end
 
     context "with a .gz file" do
-      let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
-
       it "indexes a single compressed MARC XML file" do
         solr = RSolr.connect(url: solr_url)
         solr.delete_by_query("*:*")
