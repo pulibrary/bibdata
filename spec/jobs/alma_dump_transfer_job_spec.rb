@@ -165,11 +165,6 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["RECAP_RECORDS"]
         first_dump_file = Dump.first.dump_files.first
         expect(first_dump_file.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
-
-        # Ensure job is not queued
-        # Re-enable when this issue is resolved:
-        # https://github.com/pulibrary/bibdata/issues/1463
-        expect(RecapDumpProcessingJob).not_to have_been_enqueued.once
       end
     end
   end
