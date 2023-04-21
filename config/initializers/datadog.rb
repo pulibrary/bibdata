@@ -2,6 +2,8 @@
 
 Datadog.configure do |c|
   c.tracer(enabled: false) unless Rails.env.production?
+  c.env = 'production'
+  c.service = 'bibdata'
   # Rails
   c.use :rails
 
