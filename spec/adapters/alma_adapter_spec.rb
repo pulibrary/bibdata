@@ -417,29 +417,27 @@ RSpec.describe AlmaAdapter do
         allow(Honeybadger).to receive(:notify)
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
           .with(headers: stub_alma_request_headers)
-          .to_return(status: 200, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json", "x-exl-api-remaining" => "#{Rails.configuration.alma['api_limit'] - 1}" })
+          .to_return(status: 200, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json", "x-exl-api-remaining" => (Rails.configuration.alma['api_limit'] - 1).to_s })
       end
-  
+
       it "notifies Honeybadger" do
         adapter.get_bib_records(["9922486553506421"])
         expect(Honeybadger).to have_received :notify
       end
     end
-    
+
     context "when there are more requests remaining than the threashold" do
       before do
         allow(Honeybadger).to receive(:notify)
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
           .with(headers: stub_alma_request_headers)
-          .to_return(status: 200, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json", "x-exl-api-remaining" => "#{Rails.configuration.alma['api_limit'] + 1}" })
+          .to_return(status: 200, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json", "x-exl-api-remaining" => (Rails.configuration.alma['api_limit'] + 1).to_s })
       end
-      
+
       it "does not notify Honeybadger " do
         adapter.get_bib_records(["9922486553506421"])
         expect(Honeybadger).to_not have_received :notify
       end
     end
-
-    
   end
 end
