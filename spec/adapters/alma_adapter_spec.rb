@@ -410,4 +410,18 @@ RSpec.describe AlmaAdapter do
       expect { adapter.get_availability_holding(id: "9919392043506421", holding_id: "22105104420006421") }.to raise_error(Alma::PerSecondThresholdError)
     end
   end
+
+  describe "Alma API limit" do
+    before do
+      allow(Honeybadger).to receive(:notify)
+      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
+        .with(headers: stub_alma_request_headers)
+        .to_return(status: 200, body: stub_alma_per_second_threshold, headers: { "content-Type" => "application/json", "x-exl-api-remaining" => "149999" })
+    end
+
+    it "notifies Honeybadger when there are less than 150000 requests remaining" do
+      adapter.get_bib_records(["9922486553506421"])
+      expect(Honeybadger).to have_received :notify
+    end
+  end
 end
