@@ -9,7 +9,7 @@ module AlmaApiLimitPatch
       headers:,
       timeout:
     )
-    raise StandardError, get_body_from(response) unless response.code == 200
+    raise Alma::StandardError, get_body_from(response) unless response.code == 200
 
     check_api_limit(response)
     Alma::BibSet.new(get_body_from(response))
