@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 require 'languages'
+require_relative './indigenous_languages'
 
 class LanguageService
+  include IndigenousLanguages
   def loc_to_iana(loc)
     if Languages[loc]&.alpha2.blank? || ["zxx", "mul", "sgn", "und", "|||"].include?(loc)
       "en"

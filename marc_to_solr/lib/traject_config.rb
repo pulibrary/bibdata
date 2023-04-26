@@ -738,6 +738,7 @@ end
 to_field 'language_facet', marc_languages
 to_field 'language_facet' do |record, accumulator|
   accumulator.concat(LanguageExtractor.new(language_service, record).iso639_language_names)
+  accumulator.append('Indigenous Languages (Western Hemisphere)') if language_service.in_an_indigenous_language?(record)
 end
 
 to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|

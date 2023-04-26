@@ -28,6 +28,16 @@ class LanguageExtractor
                  .compact
   end
 
+  def all_language_codes
+    all_041_codes.append(fixed_field_code).compact.uniq
+  end
+
+  def possible_language_subject_headings
+    @marc_record.fields('650')
+                .select { |field| field['v'] == 'Texts' }
+                .map { |field| field['a'] }
+  end
+
   private
 
     def includes_more_specific_version?(codes, code_to_check)
