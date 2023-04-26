@@ -412,7 +412,7 @@ RSpec.describe AlmaAdapter do
   end
 
   describe "Alma API limit" do
-    context "when there are less requests remaining than the threashold" do
+    context "when there are less requests remaining than the threshold" do
       before do
         allow(Honeybadger).to receive(:notify)
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")

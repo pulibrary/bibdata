@@ -16,7 +16,7 @@ default: &default
     "Publishing Platform Job Incremental ReCAP Records":
       dump_type: "PRINCETON_RECAP"
       dump_file_type: "RECAP_RECORDS"
-  api_limit: <%= ENV["ALMA_AIP_LIMIT"] || 150000 %>
+  api_limit: <%= ENV["ALMA_API_LIMIT"] || 150000 %>
 
 development:
   <<: *default
