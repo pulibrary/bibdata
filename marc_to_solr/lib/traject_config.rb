@@ -732,12 +732,12 @@ to_field 'language_display', extract_marc('5463a')
 # Languages for the show page
 #    008, 041$a and 041$d
 to_field 'language_name_display' do |record, accumulator|
-  accumulator.replace(LanguageExtractor.new(language_service, record).specific_names)
+  accumulator.replace(language_service.specific_names(record))
 end
 
 to_field 'language_facet', marc_languages
 to_field 'language_facet' do |record, accumulator|
-  accumulator.concat(LanguageExtractor.new(language_service, record).iso639_language_names)
+  accumulator.concat(language_service.iso639_language_names(record))
   accumulator.append('Indigenous Languages (Western Hemisphere)') if language_service.in_an_indigenous_language?(record)
 end
 

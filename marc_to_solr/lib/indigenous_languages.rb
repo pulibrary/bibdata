@@ -4,7 +4,7 @@
 # from the Western Hemisphere
 module IndigenousLanguages
   def in_an_indigenous_language?(record)
-    language_extractor = LanguageExtractor.new(nil, record)
+    language_extractor = LanguageExtractor.new(record)
     language_extractor.all_language_codes.any? { |code| language_codes.include? code } ||
       language_extractor.possible_language_subject_headings.any? { |heading| subject_headings.include? heading }
   end
