@@ -1,4 +1,4 @@
-### Workflow to update Augment the Facet
+### Workflow to update Indigenous Language lists
 1. A request will come from the metadata librarians or catalogers, either via a Github ticket or through Slack
 1. They will provide you with a link to a Google Sheets document
     * Ensure that everyone on the team who will need access to the sheet can at least view it
