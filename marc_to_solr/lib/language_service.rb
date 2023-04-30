@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 require 'languages'
+require_relative './indigenous_languages'
 
 class LanguageService
+  include IndigenousLanguages
   def loc_to_iana(loc)
     if Languages[loc]&.alpha2.blank? || ["zxx", "mul", "sgn", "und", "|||"].include?(loc)
       "en"
@@ -26,6 +28,33 @@ class LanguageService
     else
       []
     end
+  end
+
+  def specific_names(record)
+    specific_codes(record).map { |code| code_to_name(code) }
+                          .compact
+  end
+
+  def specific_codes(record)
+    extractor = LanguageExtractor.new(record)
+    codes = []
+    codes << extractor.fixed_field_code if extractor.fixed_field_code
+
+    if extractor.iso_041_fields.any?
+      codes.concat(extractor.iso_041_codes)
+    elsif extractor.all_041_fields.any?
+      codes.concat(extractor.all_041_codes)
+    end
+    codes.uniq.reject { |general_code| includes_more_specific_version?(codes, general_code) }
+  end
+
+  def iso639_language_names(record)
+    LanguageExtractor.new(record).iso_041_codes.map { |code| code_to_name(code) }
+                     .compact
+  end
+
+  def includes_more_specific_version?(codes, code_to_check)
+    codes.any? { |individual| macrolanguage_codes(individual).include? code_to_check }
   end
 
   private

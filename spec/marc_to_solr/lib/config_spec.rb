@@ -368,7 +368,7 @@ describe 'From traject_config.rb', indexing: true do
 
     describe 'the language_facet field' do
       it 'includes MARC and ISO 639-3 language codes' do
-        expect(@iso639_3_with_parallel_041['language_facet']).to contain_exactly("Spanish", "Kekchí", "Mayan languages")
+        expect(@iso639_3_with_parallel_041['language_facet']).to contain_exactly("Spanish", "Kekchí", "Mayan languages", "Indigenous Languages (Western Hemisphere)")
       end
     end
 
