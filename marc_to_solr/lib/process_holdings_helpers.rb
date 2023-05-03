@@ -101,6 +101,10 @@ class ProcessHoldingsHelpers
     holding['call_number'] = build_call_number(field_852)
     holding['call_number_browse'] = build_call_number(field_852)
     # Updates current holding key; values are from 852
+    if field_852["k"]
+      holding['sub_location'] = []
+      holding['sub_location'] << field_852['k']
+    end
     if field_852['l']
       holding['shelving_title'] = []
       holding['shelving_title'] << field_852['l']

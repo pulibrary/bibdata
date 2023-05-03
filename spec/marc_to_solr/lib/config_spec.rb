@@ -682,6 +682,13 @@ describe 'From traject_config.rb', indexing: true do
         expect(@holdings['22543249720006421']).to be_falsey # items from this holding are in the temporary location lews$res
       end
 
+      it 'includes 852 subfield k as sub_location' do
+        @holdings = JSON.parse(@sample40['holdings_1display'][0])
+        holding = @holdings["22666524470006421"]
+        expect(holding.keys).to include('sub_location')
+        expect(holding['sub_location']).to match_array(['Oversize RA566.27'])
+      end
+
       describe 'electronic_access_1display' do
         it 'holding 856s are excluded from electronic_access_1display' do
           @electronic_access_1display = JSON.parse(@sample37["electronic_access_1display"].to_s)
