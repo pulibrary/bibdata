@@ -750,11 +750,6 @@ end
 #    546 XX b
 to_field 'script_display', extract_marc('546b')
 
-to_field 'language_code_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
-  codes = accumulator.compact.map { |c| c.length == 3 ? c : c.scan(/.{1,3}/) }
-  accumulator.replace(codes.flatten)
-end
-
 # The language_iana_s field is used in the record page to calculate the html lang attribute
 # Based on https://www.loc.gov/marc/bibliographic/bd008a.html section 35-37 - Language,
 # we additionally exclude:  ### - No information provided, zxx - No linguistic content,

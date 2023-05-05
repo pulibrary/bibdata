@@ -335,7 +335,6 @@ describe 'From traject_config.rb', indexing: true do
 
     describe 'the language_iana_s field' do
       it 'returns a language value based on the IANA Language Subtag Registry, rejecting invalid codes' do
-        expect(@sample1['language_code_s']).to eq(['eng'])
         expect(@sample1['language_iana_s']).to eq(['en'])
       end
 
