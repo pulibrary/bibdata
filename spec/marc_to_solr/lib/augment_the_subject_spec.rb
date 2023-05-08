@@ -12,12 +12,12 @@ RSpec.describe AugmentTheSubject, indexing: true do
     it "builds a list of terms from the csv" do
       subfields = described_class.parse_standalone_a
       expect(subfields).to be_kind_of(Hash)
-      expect(subfields[:standalone_subfield_a].length).to eq 4654
+      expect(subfields[:standalone_subfield_a].length).to eq 5599
     end
 
     it "caches a list of terms from the json" do
       expect(ats.standalone_subfield_a_terms).to be
-      expect(ats.standalone_subfield_a_terms.length).to eq 4654
+      expect(ats.standalone_subfield_a_terms.length).to eq 5599
     end
 
     context "mismatched capitalization" do
@@ -40,7 +40,7 @@ RSpec.describe AugmentTheSubject, indexing: true do
   context "subfield x's that match by themselves" do
     it "caches a list of terms from the json" do
       expect(ats.standalone_subfield_x_terms).to be
-      expect(ats.standalone_subfield_x_terms.length).to eq 10
+      expect(ats.standalone_subfield_x_terms.length).to eq 26
     end
 
     context "only the subfield x is relevant" do

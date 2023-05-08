@@ -222,6 +222,10 @@
     "English language": [
         [
             "Foreign words and phrases",
+            "Algonquian"
+        ],
+        [
+            "Foreign words and phrases",
             "Indian"
         ],
         [
@@ -252,6 +256,12 @@
     "English literature": [
         [
             "Indian influences"
+        ],
+        [
+            "Maya authors"
+        ],
+        [
+            "Mayan influences"
         ]
     ],
     "Ethnology": [
@@ -325,6 +335,11 @@
     "Guatemalan poetry": [
         [
             "Indian authors"
+        ]
+    ],
+    "Hawaiian language": [
+        [
+            "Influence on Eskimo"
         ]
     ],
     "Healing": [
@@ -427,11 +442,17 @@
         ],
         [
             "Inuit"
+        ],
+        [
+            "Mayan"
         ]
     ],
     "Names, Personal": [
         [
             "Indian"
+        ],
+        [
+            "Maya"
         ]
     ],
     "New England": [
@@ -490,6 +511,14 @@
         [
             "Civilization",
             "Indian influences"
+        ],
+        [
+            "History",
+            "Insurrection of Tupac Amaru, 1780-1781"
+        ],
+        [
+            "History",
+            "To 1548"
         ]
     ],
     "Peruvian literature": [
@@ -544,6 +573,11 @@
             "Indian influences"
         ]
     ],
+    "Russian language": [
+        [
+            "Influence on Eskimo"
+        ]
+    ],
     "Saint Vincent": [
         [
             "History",
@@ -552,8 +586,38 @@
     ],
     "Spanish language": [
         [
+            "Foreign elements",
+            "Maya"
+        ],
+        [
+            "Foreign elements",
+            "Mayan"
+        ],
+        [
             "Foreign words and phrases",
             "Indian"
+        ],
+        [
+            "Foreign words and phrases",
+            "Maya"
+        ],
+        [
+            "Influence on Maya"
+        ],
+        [
+            "Influence on Mayan"
+        ],
+        [
+            "Study and teaching (Elementary)",
+            "Mayan speakers"
+        ],
+        [
+            "Study and teaching",
+            "Maya speakers"
+        ],
+        [
+            "Study and teaching",
+            "Mayan speakers"
         ]
     ],
     "Speeches, addresses, etc., American": [
