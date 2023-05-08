@@ -78,8 +78,8 @@ Go to the solr admin UI (see above).
     ```
 1. Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index:
     1. Go to the bibdata web UI
-    2. Login
-    4. Go to https://bibdata.princeton.edu/sidekiq/queues/default
+    2. [Login](https://bibdata.princeton.edu/users/auth/cas)
+    4. Go to the [sidekiq current jobs](https://bibdata.princeton.edu/sidekiq/queues/default)
     5. Confirm that you see roughly the same number of `DumpFileIndexJob`s as you saw dump files in the "All Records" event.
     6. If desired, click the Live Poll button and confirm that the number of jobs is slowly going down. 
 
