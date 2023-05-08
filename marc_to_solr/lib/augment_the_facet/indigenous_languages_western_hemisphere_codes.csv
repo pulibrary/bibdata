@@ -1,45 +1,65 @@
-008 Language (35-37) is,LC languages
-ale,Aleut
-alg,Algonquian (Other)
-apa,Apache languages
-arn,Mapuche
-arp,Arapaho
-ath,Athapascan (Other)
-aym,Aymara
-bla,Siksika
-cai,Central American Indian (Other)
-cho,Choctaw
-chp,Chipewyan
-chr,Cherokee
-cpf,"Creoles and Pidgins, French-based (Other)"
-cre,Cree
-dak,Dakota
-den,Slavey
-gwi,Gwichin
-hai,Haida
-iku,Inuktitut
-iro,Iroquoian (Other)
-kal,Kalâtdlisut
-moh,Mohawk
-mus,Creek
-myn,Mayan languages
-nah,Nahuatl
-nai,North American Indian (Other)
-nav,Navajo
-oji,Ojibwa
-oto,Otomian languages
-que,Quechua
-sai,South American Indian (Other)
-sio,Siouan (Other)
-ter,Terena
-tli,Tlingit
-tsi,Tsimshian
-tup,Tupi languages
-ypk,Yupik languages
-zap,Zapotec
-zun,Zuni
-del,Delaware
-,
-Sources:,
-(1) Indigenous languages of the Americas [URL],
-(2) MARC Code List for Languages [URL],
+008 Language (35-37) or 041 has code,language name,Note
+ale,Aleut,
+alg,Algonquian (Other),
+apa,Apache languages,
+arn,Mapuche,
+arp,Arapaho,
+arw,Arawak,
+ath,Athapascan (Other),
+aym,Aymara,
+bla,Siksika,
+cad,Caddo,
+cai,Central American Indian (Other),
+car,Carib,
+chb,Chibcha,
+chn,Chinook jargon,
+cho,Choctaw,
+chp,Chipewyan,
+chr,Cherokee,
+chy,Cheyenne,
+cre,Cree,
+dak,Dakota,
+del,Delaware,
+den,Slavey,
+dgr,Dogrib,
+esk,Eskimo languages,See note 3
+grn,Guarani,
+gua,Guarani,See note 3
+gwi,Gwichin,
+hai,Haida,
+hup,Hupa,
+iku,Inuktitut,
+ipk,Inupiaq,
+iro,Iroquoian (Other),
+kal,Kalâtdlisut,
+kut,Kootenai,
+lui,Luiseño,
+mic,Micmac,
+moh,Mohawk,
+mus,Creek,
+myn,Mayan languages,
+nah,Nahuatl,
+nai,North American Indian (Other),
+nav,Navajo,
+oji,Ojibwa,
+osa,Osage,
+oto,Otomian languages,
+que,Quechua,
+sai,South American Indian (Other),
+sal,Salishan languages,
+sio,Siouan (Other),
+ter,Terena,
+tli,Tlingit,
+tsi,Tsimshian,
+tup,Tupi languages,
+wak,Wakashan languages,
+was,Washoe,
+ypk,Yupik languages,
+zap,Zapotec,
+zun,Zuni,
+,,
+,,
+Notes,,
+1 Source: MARC Code List for Languages https://www.loc.gov/marc/languages/langhome.html,,
+"2 The list does not include cpf, for Creoles and Pidgins, French-based (Other); crp, for Creoles and Pidgins (Other)",,
+"3 Discontinued MARC code for languages, but present in older bib records",,
