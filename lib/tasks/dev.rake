@@ -54,7 +54,7 @@ namespace :server do
       desc "Updates solr config files from github"
       task :update, [:solr_dir, :config_path] => :environment do |_t, args|
         solr_dir = args[:solr_dir] || Rails.root.join("solr")
-        config_path = args[:config_path] || "catalog-production-alt"
+        config_path = args[:config_path] || "catalog-production-v2"
 
         ["_rest_managed.json", "admin-extra.html", "elevate.xml",
          "mapping-ISOLatin1Accent.txt", "protwords.txt", "schema.xml",
