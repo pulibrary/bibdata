@@ -26,5 +26,10 @@ assignees: ''
 - [ ] Partial re-index
 - [ ] No re-indexing required
 
+### Update documentation?
+- [ ] Update [Indexing documentation](https://lib-confluence.princeton.edu/display/ALMA/MARC+fields+indexed+in+Blacklight)
+- [ ] Update [Documentation directory](https://github.com/pulibrary/bibdata/tree/main/docs)
+
+
 ### Implementation notes, if any
 
