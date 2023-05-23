@@ -1110,6 +1110,43 @@ describe 'From traject_config.rb', indexing: true do
         expect(@homosaurus_655["homoit_genre_s"]).to match(["LGBTQ+ periodicals"])
       end
     end
+    describe 'uncontrolled_keyword' do
+      subject(:record_with_uncontrolled_keywords) { @indexer.map_record(marc_record) }
+      let(:leader) { '1234567890' }
+      let(:field_653) do
+        {
+          "653" => {
+            "ind1" => "",
+            "ind2" => "",
+            "subfields" => [
+              {
+                "a" => "fuel cells"
+              }
+            ]
+          }
+        }
+      end
+      let(:field_653_2) do
+        {
+          "653" => {
+            "ind1" => "1",
+            "ind2" => "1",
+            "subfields" => [
+              {
+                "a" => "Joyce"
+              }
+            ]
+          }
+        }
+      end
+      let(:marc_record) do
+        MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_653, field_653_2])
+      end
+      it 'has a field' do
+        expect(record_with_uncontrolled_keywords['uncontrolled_keyword_unstem_search']).to eq(['fuel cells', 'Joyce'])
+        expect(record_with_uncontrolled_keywords['uncontrolled_keyword_s']).to eq(['fuel cells', 'Joyce'])
+      end
+    end
     describe 'form_genre_display' do
       subject(:form_genre_display) { @indexer.map_record(marc_record) }
       let(:leader) { '1234567890' }
