@@ -2782,6 +2782,32 @@
         "delivery_locations": []
     },
     {
+        "label": "PUL Makerspace",
+        "code": "lewis$maker",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/lewis$maker.json",
+        "library": {
+            "label": "Lewis Library",
+            "code": "lewis",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "Lewis Library",
+            "code": "lewis",
+            "order": 0
+        },
+        "delivery_locations": [
+            "PN"
+        ]
+    },
+    {
         "label": "Documents",
         "code": "lewis$doc",
         "aeon_location": false,
