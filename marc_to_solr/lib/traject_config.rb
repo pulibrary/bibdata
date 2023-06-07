@@ -13,6 +13,7 @@ require_relative './solr_deleter'
 require_relative './access_facet_builder'
 require_relative './action_note_builder'
 require_relative './augment_the_subject'
+require_relative './embargo_date_extractor'
 require_relative './language_service'
 require_relative './language_extractor'
 require_relative './pul_solr_json_writer'
@@ -774,6 +775,18 @@ to_field 'contents_display', extract_marc('505agrt') do |_record, accumulator|
     contents.flatten!
   end
   accumulator.replace(contents) if contents
+end
+
+to_field 'embargo_date_display' do |record, accumulator|
+  accumulator.replace(EmbargoDateExtractor.new(record)
+                                          .dates
+                                          .map { |date| date.strftime('%m/%d/%Y') })
+end
+
+to_field 'embargo_date_tdt' do |record, accumulator|
+  accumulator.replace(EmbargoDateExtractor.new(record)
+                                          .dates
+                                          .map { |date| date.strftime('%FT00:00:00Z') })
 end
 
 # Provenance:

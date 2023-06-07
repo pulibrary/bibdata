@@ -78,6 +78,7 @@ describe 'From traject_config.rb', indexing: true do
       @iso639_3_with_parallel_041 = @indexer.map_record(fixture_record('99125416143306421'))
       @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
       @indigenous_studies_mexico = @indexer.map_record(fixture_record('99125398364906421'))
+      @dissertation_with_embargo = @indexer.map_record(fixture_record('99127127233306421'))
     end
 
     describe "alma loading" do
@@ -914,6 +915,59 @@ describe 'From traject_config.rb', indexing: true do
       end
       it 'senior thesis note can be split across subfields $b and $c' do
         expect(thesis_bc_marc['format']).to include 'Senior thesis'
+      end
+    end
+
+    describe 'embargo_date_display' do
+      let(:indexed) do
+        @indexer.map_record(MARC::Record.new_from_hash('fields' => [marc_fields_hash], 'leader' => leader))
+      end
+
+      context 'when 506$g is a valid date and 506$5 is NjP' do
+        let(:marc_fields_hash) do
+          { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20230607", "5" => "NjP" }] } }
+        end
+
+        it 'indexes a human-readable version of the embargo date' do
+          expect(indexed['embargo_date_display']).to contain_exactly '06/07/2023'
+        end
+      end
+      context 'when 506$g is not a valid date' do
+        let(:marc_fields_hash) do
+          { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "123", "5" => "NjP" }] } }
+        end
+
+        it 'does not index the field' do
+          expect(indexed['embargo_date_display']).to be_nil
+        end
+      end
+      context 'when multiple 506s' do
+        let(:marc_fields_hash) do
+          hash = {}
+          hash.compare_by_identity # Hack to allow the same key twice in the same hash
+          hash['506'] = { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20500101", "5" => "NjP" }] }
+          hash['506'] = { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "19991225", "5" => "Yale" }] }
+          hash
+        end
+
+        it 'indexes only fields with the $5NjP' do
+          expect(indexed['embargo_date_display']).to contain_exactly '01/01/2050'
+        end
+      end
+    end
+
+    describe 'embargo_date_tdt' do
+      context 'when 506$g is a valid date and 506$5 is NjP' do
+        it 'indexes a solr-readable version of the embargo date' do
+          marc_fields_hash = { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20230607", "5" => "NjP" }] } }
+
+          indexed = @indexer.map_record(MARC::Record.new_from_hash('fields' => [marc_fields_hash], 'leader' => leader))
+          expect(indexed['embargo_date_tdt']).to contain_exactly '2023-06-07T00:00:00Z'
+        end
+
+        it 'can find the date from a fixture' do
+          expect(@dissertation_with_embargo['embargo_date_tdt']).to contain_exactly '2023-04-20T00:00:00Z'
+        end
       end
     end
 
