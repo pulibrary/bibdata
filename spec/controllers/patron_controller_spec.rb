@@ -23,9 +23,18 @@ RSpec.describe PatronController, type: :controller do
       expect(response).to have_http_status(403)
     end
 
-    it "allows authenticated users to access patron info" do
+    it "does not allow non-admin users to access patron info" do
       stub_patron
-      user = double('user')
+      user = FactoryBot.create(:user)
+      allow(request.env['warden']).to receive(:authenticate!) { user }
+      allow(controller).to receive(:current_user) { user }
+      get :patron_info, params: { patron_id: 'bbird', format: :json }
+      expect(response).to have_http_status(403)
+    end
+
+    it "allows authenticated admin users to access patron info" do
+      stub_patron
+      user = FactoryBot.create(:admin)
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
       get :patron_info, params: { patron_id: 'bbird', format: :json }
@@ -38,7 +47,7 @@ RSpec.describe PatronController, type: :controller do
 
     before do
       stub_patron(patron_identifier)
-      user = double('user')
+      user = FactoryBot.create(:admin)
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
     end
@@ -172,7 +181,7 @@ RSpec.describe PatronController, type: :controller do
         .to_return(status: 429,
                    headers: { "Content-Type" => "application/json" },
                    body: stub_alma_per_second_threshold)
-      user = double('user')
+      user = FactoryBot.create(:admin)
       allow(request.env['warden']).to receive(:authenticate!) { user }
       allow(controller).to receive(:current_user) { user }
 

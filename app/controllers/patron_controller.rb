@@ -64,9 +64,15 @@ class PatronController < ApplicationController
     end
 
     def protect
-      unless user_signed_in?
+      if user_signed_in?
+        deny_access unless current_user.catalog_admin?
+      else
         ips = Rails.application.config.ip_allowlist
-        render plain: "You are unauthorized", status: :forbidden if ips.exclude?(request.remote_ip)
+        deny_access if ips.exclude?(request.remote_ip)
       end
+    end
+
+    def deny_access
+      render plain: "You are unauthorized", status: :forbidden
     end
 end

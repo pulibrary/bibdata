@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   post '/bibliographic', to: 'bibliographic#update'
 
   require 'sidekiq/web'
-  authenticate :user do
+  authenticate :user, ->(user) { user.catalog_admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
 end
