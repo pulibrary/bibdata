@@ -5,7 +5,7 @@ Action notes are stored in Solr as a JSON field called
 583 field.  It displays as a link in the catalog if
 a 583$u is present, otherwise it displays as plain text.
 
-Action notes are only indexed if the second indicator is
+Action notes are only indexed if the first indicator is
 1 and one or more of the following is true:
 
 * The record is a SCSB record
