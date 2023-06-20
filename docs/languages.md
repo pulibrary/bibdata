@@ -111,7 +111,7 @@ Language data is stored in the following solr fields.  In general, the `language
         <tr>
             <th scope="row"><code>language_display</code></th>
             <td>Show page</td>
-            <td>Additional notes about the languages provided by catalogers (MARC 583 field)</td>
+            <td>Additional notes about the languages provided by catalogers (MARC 546 field)</td>
         </tr>
     </tbody>
 </table>
