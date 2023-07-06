@@ -1246,25 +1246,8 @@ describe 'From traject_config.rb', indexing: true do
         expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
       end
     end
+
     context "Action Note" do
-      it "has an Action Note when it is a Princeton record" do
-        indexer = IndexerService.build
-        sample = indexer.map_record(fixture_record('99125628841606421', indexer:))
-        note = sample['action_notes_display'][0]
-        expect(note).to eq("Item processed and described by Kelly Bolding in August 2022, incorporating some description provided by the dealer.")
-      end
-
-      it "does not have an Action Note when not a Princeton record" do
-        indexer = IndexerService.build
-        sample = indexer.map_record(fixture_record('SCSB-9879349', indexer:))
-        expect(sample['action_notes_display']).to be nil
-      end
-      it "will not index private notes - first indicator 0" do
-        expect(@private_notes_583['action_notes_display']).to be nil
-      end
-    end
-
-    context "Action Note revised" do
       it 'has an action note when it is a PULFA record' do
         record = @indexer.map_record(fixture_record('99125628841606421'))
         expect(record['action_notes_1display']).to be_an_instance_of(Array)
