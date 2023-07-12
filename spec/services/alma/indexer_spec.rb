@@ -86,10 +86,11 @@ RSpec.describe Alma::Indexer, indexing: true do
 
       it 'raises an error' do
         indexer = described_class.new(solr_url:)
+        expected_error_snippet = %r{No such file or directory @ rb_sysopen - spec/fixtures/files/alma/do_not_create_me.tar.gz}
         Sidekiq::Testing.inline! do
-          expect { indexer.index_file(file_path) }.to raise_error(RuntimeError)
+          expect { indexer.index_file(file_path) }.to raise_error(RuntimeError, expected_error_snippet)
         end
-        expect(Rails.logger).to have_received(:error).once.with(%r{No such file or directory @ rb_sysopen - spec/fixtures/files/alma/do_not_create_me.tar.gz})
+        expect(Rails.logger).to have_received(:error).once.with(expected_error_snippet)
       end
     end
   end
