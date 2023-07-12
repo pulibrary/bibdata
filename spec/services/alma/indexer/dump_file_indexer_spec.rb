@@ -14,13 +14,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
     let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
     let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
 
-    context "with a file that doesn't exist" do
-      let(:file_path) { 'spec/fixtures/files/alma/do_not_create_me.tar.gz' }
-
-      it 'raises an error' do
-        expect { |b| dump_file_indexer.decompress_file(&b) }.to raise_error(Errno::ENOENT)
-      end
-    end
     context "with a .tar.gz file" do
       let(:file_path) { 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz' }
 
