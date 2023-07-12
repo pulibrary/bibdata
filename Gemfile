@@ -92,3 +92,5 @@ end
 gem "omniauth-rails_csrf_protection"
 
 gem "human_languages", "~> 0.7"
+
+gem "open3", "~> 0.1.2"
