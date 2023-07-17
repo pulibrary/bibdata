@@ -220,6 +220,14 @@ jobs:
           working_directory: ~/bibdata/webhook_monitor/src/
           command: bundle exec rspec spec
 
+  semgrep:
+    docker:
+        - image: returntocorp/semgrep
+    steps:
+      - checkout
+      - run:
+          name: Check code against community-provided and custom semgrep rules
+          command: semgrep ci --config auto --config .semgrep.yml
 workflows:
   version: 2
   default:
@@ -235,4 +243,5 @@ workflows:
           requires:
             - build
       - build_and_test_webhook
+      - semgrep
 

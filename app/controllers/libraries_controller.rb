@@ -15,6 +15,7 @@ class LibrariesController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_library
+      # nosemgrep
       @library = Library.friendly.find(params[:id])
     end
 end

@@ -1,0 +1,27 @@
+rules:
+  - id: bibdata-no-rails-constant-in-marc-to-solr
+    message: The marc_to_solr directory does not autoload
+             the Rails constant, so indexing will probably
+             fail unexpectedly (even if the test suite passes).
+    severity: ERROR
+    languages:
+      - ruby
+    pattern: "Rails"
+    paths:
+      include:
+        - "marc_to_solr"
+      exclude:
+        - "spec/marc_to_solr"
+  - id: bibdata-do-not-expand-alma-user-find
+    message: "By default, Alma::User.find also retrieves
+             fees, requests, and loans.  This is probably not
+             necessary for bibdata, and has caused the
+             Alma API to return errors in the past.  Add
+             expand: '' to your call if you don't want these
+             expansions."
+    severity: WARNING
+    languages:
+      - ruby
+    patterns:
+      - pattern: "Alma::User.find(...)"
+      - pattern-not: "Alma::User.find(..., expand: '')"

@@ -21,6 +21,7 @@ class EventsController < ApplicationController
   private
 
     def set_event
+      # nosemgrep
       @event = Event.find(params[:id])
     end
 
