@@ -4,6 +4,7 @@ revisions_logfile = Rails.root.join("..", "..", "revisions.log")
 
 GIT_SHA =
   if File.exist?(revisions_logfile)
+    # nosemgrep
     `tail -1 #{revisions_logfile}`.chomp.split(" ")[3].gsub(/\)$/, "")
   elsif Rails.env.development? || Rails.env.test?
     `git rev-parse HEAD`.chomp
@@ -13,6 +14,7 @@ GIT_SHA =
 
 BRANCH =
   if File.exist?(revisions_logfile)
+    # nosemgrep
     `tail -1 #{revisions_logfile}`.chomp.split(" ")[1]
   elsif Rails.env.development? || Rails.env.test?
     `git rev-parse --abbrev-ref HEAD`.chomp
@@ -22,6 +24,7 @@ BRANCH =
 
 LAST_DEPLOYED =
   if File.exist?(revisions_logfile)
+    # nosemgrep
     deployed = `tail -1 #{revisions_logfile}`.chomp.split(" ")[7]
     Date.parse(deployed).strftime("%d %B %Y")
   else

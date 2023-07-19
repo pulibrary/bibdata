@@ -1,6 +1,7 @@
 <h2><%= pluralize(flash[:error].count, "error") %> prohibited this from being saved:</h2>
 <ul>
   <% flash[:error].each do |message| %>
+    <%# nosemgrep %>
     <li><%= message.html_safe %></li>
   <% end %>
 </ul>

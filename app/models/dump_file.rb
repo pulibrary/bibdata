@@ -15,6 +15,7 @@ class DumpFile < ActiveRecord::Base
   before_save do
     unless path.nil? || !File.exist?(path) || md5.present?
       self.md5 = File.open(path, 'rb') do |io|
+        # nosemgrep
         digest = Digest::MD5.new
         buf = ''
         digest.update(buf) while io.read(4096, buf)

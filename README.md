@@ -85,6 +85,22 @@ To run the tests in the `marc_to_solr` directory set RAILS_ENV:
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
 
+## Semgrep
+
+This repository uses [semgrep](https://semgrep.dev/) to:
+
+* Guard against common gotchas within bibdata
+* Perform static security analysis
+
+To run semgrep locally:
+
+```
+brew install semgrep
+semgrep --config .semgrep.yml . # run custom bibdata rules
+semgrep --config auto . # run rules from the semgrep community
+semgrep --config auto --config .semgrep.yml . # run both sets of rules
+```
+
 ## Deploy
 Deployment is through capistrano. To deploy a branch other than "main", prepend an environment variable to your deploy command, e.g.:
 `BRANCH=my_feature bundle exec cap staging deploy`

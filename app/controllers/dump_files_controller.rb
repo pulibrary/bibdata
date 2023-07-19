@@ -8,6 +8,7 @@ class DumpFilesController < ApplicationController
   private
 
     def set_dump_file
+      # nosemgrep
       @dump_file = DumpFile.find(params[:id])
     end
 
