@@ -25,11 +25,6 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: '16.19.0'
-      - run:
-          name: Setup Chrome
-          command: |
-            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo apt install ./google-chrome-stable_current_amd64.deb
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
@@ -115,16 +110,11 @@ jobs:
       - image: pulibrary/ci-solr:8.4-v2.0.0
         command: server/scripts/ci-start.sh
 
-    steps: &test_steps
+    steps:
       - checkout
       - node/install:
           install-yarn: true
           node-version: '16.19.0'
-      - run:
-          name: Setup Chrome
-          command: |
-            wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-            sudo apt install ./google-chrome-stable_current_amd64.deb
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
