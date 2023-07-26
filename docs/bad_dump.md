@@ -1,3 +1,4 @@
+# What to do when dump file fails to index
 1. `ssh deploy@bibdata-alma-worker1`
 1. `cd /opt/bibdata/current`
 1. `RAILS_ENV=production bundle exec rails c`
