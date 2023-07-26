@@ -14,7 +14,7 @@ Use your netid and password to login and access [Alma Development instance](http
 ### Trigger an incremental job in the alma sandbox
 
 1. Login in [Alma Development instance](https://princeton-psb.alma.exlibrisgroup.com/SAML). Use your netid and password.
-2. In the left nav bar click on 'Resources' -> 'Publishing Profiles'. This will return a list of the 'Publishing Profiles'.
+2. In the left nav bar click on 'Resources' → 'Publishing Profiles'. This will return a list of the 'Publishing Profiles'.
 3. Find the one that is called 'Incremental Publishing'. 
 4. Click the ellipsis button.
 5. Click Run. 
@@ -54,14 +54,14 @@ In the API sandbox (see above)
 
 ## Export a set of test records from production
 1. Login to [Alma](https://princeton.alma.exlibrisgroup.com/SAML).
-1. In the left side bar click 'Admin' -> Select 'Manage sets'
+1. In the left side bar click 'Admin' → Select 'Manage sets'
 1. Find or create the set you want to use.
-1. Click on the elipsis button of the set. -> Select 'Members'
+1. Click on the elipsis button of the set. → Select 'Members'
 1. If there are records in the set that it is not desired to export, select the records using the checkbox to the left and click 'Remove Selected'
-1. Click 'Add Members'. Add in the search bar the desired mms_id. -> 'Search' -> Select the listed record using the checkbox -> Click Add Selected.
-1. In the left bar, click 'Resources' -> 'Publishing Profiles' -> Find the 'DRDS Test Record export' publishing profile.
-1. -> Click the elipsis button and select 'Edit'. Configure it to use your set under "Content". Click "Save".
-1. -> Click the elipsis button and select 'Republish'. -> Select 'Rebuild Entire Index' -> Click 'Run Now'.
+1. Click 'Add Members'. Add in the search bar the desired mms_id. → 'Search' → Select the listed record using the checkbox → Click Add Selected.
+1. In the left bar, click 'Resources' → 'Publishing Profiles' → Find the 'DRDS Test Record export' publishing profile.
+1. → Click the elipsis button and select 'Edit'. Configure it to use your set under "Content". Click "Save".
+1. → Click the elipsis button and select 'Republish'. → Select 'Rebuild Entire Index' → Click 'Run Now'.
 1. The new tar.gz file with the selected records will be on the lib-sftp server as '/alma/drds_test_records_new[_i].tar.gz'
 
 ## Finding a Voyager item in Alma
