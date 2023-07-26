@@ -1,3 +1,4 @@
+# "SCSB File Exists" Work Around
 1.  Look in the scratch directory specified on the [events page](https://bibdata.princeton.edu/events) for the directory name <dir_name>
 1. `ls -ltr <dir-name>` to determine if all the files that are present are from the same date (the time does not matter) as the bibdata event error.
    1. If there are no other files
