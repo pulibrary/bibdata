@@ -1,7 +1,7 @@
 Temporary locations:
 
 ## Case 1:  
-An item is moved in a temporary location "lewis$res". The JS availability response for this item would be https://bibdata.princeton.edu/bibliographic/availability.json?deep=true&bib_ids=99125557856006421: 
+An item is moved in a temporary location "lewis$res". The [JS availability response](https://bibdata.princeton.edu/bibliographic/availability.json?deep=true&bib_ids=99125557856006421) for this item would be: 
 ```
 {
   "99125557856006421": {
@@ -57,12 +57,12 @@ The holding id for each item is the permanent location holding id '2293974893000
 ```
 In Orangelight in order to display the status we match the holding_id from the availability response with the holding id (hash key) from the indexed 'holdings_1display' field.  
 
-Currently if a staff member moves an item from a temporary location to a permanent location or the opposite, the new record will not get indexed immediately. See schedule for incremental indexing https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md. This results in a mismatch between the holding id in the JS availability response that Orangelight receives from bibdata and the indexed 'holdings_1display' holding id (hash key). Finally this results in an empty availability status in the record page. This is fixed with the next incremental job.
+Currently if a staff member moves an item from a temporary location to a permanent location or the opposite, the new record will not get indexed immediately. See [Alma Publishing jobs schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md) for incremental indexing. This results in a mismatch between the holding id in the JS availability response that Orangelight receives from bibdata and the indexed 'holdings_1display' holding id (hash key). Finally this results in an empty availability status in the record page. This is fixed with the next incremental job.
 
 ## Case 2: 
 
 Temporary location "RES_SHARE$IN_RS_REQ". This is a **unique** temporary location case.
-When an item is moved to this specific temporary location we index it as a permanent location. The JS availability for this item would be: https://bibdata.princeton.edu/bibliographic/availability.json?deep=true&bib_ids=995217553506421 
+When an item is moved to this specific temporary location we index it as a permanent location. The [JS availability response](https://bibdata.princeton.edu/bibliographic/availability.json?deep=true&bib_ids=995217553506421) for this item would be:  
 ```
 {
   "995217553506421": {
@@ -108,4 +108,4 @@ In this case, in Orangelight, in order to display the status we match the holdin
 
 When a staff member moves an item from this temporary location to a permanent location the availability status will still display, because the holding id in the JS availability response matches the indexed holding id in the holdings_1display.
 
-When a staff member moves an item from a permanent location to this temporary location then there is a mismatch between the JS availability response and the not indexed yet holdings_1display["temp_location_code"]. The holdings_1display["temp_location_code"] is used from Orangelight in order to display the status in the specific temporary location "RES_SHARE$IN_RS_REQ". Finally this results in an empty availability status in the record page. This is fixed with the next incremental job.
+When a staff member moves an item from a permanent location to this temporary location then there is a mismatch between the JS availability response and the not indexed yet holdings_1display["temp_location_code"]. The holdings_1display["temp_location_code"] is used from [Orangelight](https://github.com/pulibrary/orangelight) in order to display the status in the specific temporary location "RES_SHARE$IN_RS_REQ". Finally this results in an empty availability status in the record page. This is fixed with the next incremental job.
