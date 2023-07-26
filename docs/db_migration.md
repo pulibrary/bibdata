@@ -12,4 +12,4 @@ Login in Alma → Resources → Publishing Profiles → (from the list) General 
 Login in Alma → Resources → Publishing Profiles → (from the list) Icremental Publishing → Edit → Publishing Parameters → Scheduling → (select) Every 6 hours, staring at 04:00.
 ## Turn on General Publishing
 Login in Alma → Resources → Publishing Profiles → (from the list) General Publishing → Edit → Publishing Parameters → Scheduling → (select) Every 6 hours, staring at 04:00.
-## Monitor https://www.honeybadger.io/ to make sure there are no database errors.
+## Monitor [Honeybadger](https://www.honeybadger.io/) to make sure there are no database errors.
