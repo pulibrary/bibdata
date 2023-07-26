@@ -12,7 +12,7 @@ Frequency of updates: 4x per day: 4am, 10am, 4pm, 10pm see: https://github.com/p
 ## Source: SCSB
 Around 10 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through HTC's shared collection software https://github.com/ResearchCollectionsAndPreservation/scsb
 
-These files are on an aws s3 bucket; the password is in lastpass under SCS Prod S3 Keys in the shared `bibdata` directory. The file path is SCSB > data-exports > PUL > MARCXml > Full. There are .zip files there and .csv files. The zip files contain the MARC dumps.
+These files are on an aws s3 bucket; the password is in lastpass under SCS Prod S3 Keys in the shared `bibdata` directory. The file path is SCSB → data-exports → PUL → MARCXml → Full. There are .zip files there and .csv files. The zip files contain the MARC dumps.
 
 Frequency of updates: once per day
 
@@ -146,7 +146,7 @@ CTRL+b d (to detach from tmux)
 Before running this task, turn off the sneakers workers on production so that any updates that come through after the full index has been generated will be included in the new index and not lost when you swap out the old index.
 
 To turn off sneakers workers:
-- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
+- cd in your local princeton_ansible directory → pipenv shell → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers stop"
 
 To index the coins:
 
@@ -213,7 +213,7 @@ $ sudo service nginx restart
 ```
 - Go to https://catalog-qa.princeton.edu/ 
 - Do an empty keyword search to get the total number of indexed records.
-- In advanced search > holding location, search for scsbcul, scsbnypl and soon scsbhl to see results only from SCSB indexed records.
+- In advanced search → holding location, search for scsbcul, scsbnypl and soon scsbhl to see results only from SCSB indexed records.
 - Do the same search in production and compare the numbers.
 - In facets compare the count of different formats between the two indexes
 
@@ -225,7 +225,7 @@ above to do this)
 - From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-alma-production-rebuild bin/rails s`
 - Go to localhost:3000  
 - Do a keyword empty search to get the total number of records are the index
-- In advanced search > holding location, search for scsbcul, scsbnypl and scsbhl to see results only from SCSB indexed records.
+- In advanced search → holding location, search for scsbcul, scsbnypl and scsbhl to see results only from SCSB indexed records.
 - Do the same search in production and compare the numbers.
 - In facets compare the count of different formats between the two indexes
 
@@ -261,7 +261,7 @@ Then swap the rebuild collection to the production alias.
 ```
 
 Then turn sneakers workers back on:
-- cd in your local princeton_ansible directory -> pipenv shell -> ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers start"
+- cd in your local princeton_ansible directory → pipenv shell → ansible orangelight_production -u pulsys -m shell -a "sudo service orangelight-sneakers start"
 
 Then expire the rails cache to get the updated values on the front page of the catalog. You can do this by deploying the app.
 
