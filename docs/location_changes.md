@@ -20,7 +20,7 @@
 6. Load locally the rails server; Go to: `localhost:<portnumber>/locations/holding_locations` in your browser and make sure that the locations have been updated.
 
 ## 2. Update Bibdata staging
-Test the updated locations in [Bibdata-staging](https://bibdata-staging.princeton.edu/)
+Test the updated locations in [Bibdata staging](https://bibdata-staging.princeton.edu/)
 Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
 1. Connect in one of the bibdata staging boxes:   
@@ -30,10 +30,10 @@ Deploy your branch on staging and run the following steps to make sure that noth
 2. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-3. Review the changes in [Bibdata-staging](https://bibdata-staging.princeton.edu/).
+3. Review the changes in [Bibdata staging](https://bibdata-staging.princeton.edu/).
 
 ## 3. Update Bibdata qa
-Test the updated locations in [Bibdata-qa](https://bibdata-qa.princeton.edu/).
+Test the updated locations in [Bibdata qa](https://bibdata-qa.princeton.edu/).
 Deploy your branch on qa and run the following steps to make sure that nothing is breaking the tables.
 
 1. Connect in one of the bibdata qa boxes:   
@@ -43,11 +43,11 @@ Deploy your branch on qa and run the following steps to make sure that nothing i
 2. Run the following rake task to delete and repopulate the locations in the bibdata qa database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-3. Review the changes in [Bibdata-qa](https://bibdata-qa.princeton.edu/)
+3. Review the changes in [Bibdata qa](https://bibdata-qa.princeton.edu/)
 
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
 ## 4. Update Bibdata production
-### Don't update the locations in Bibdata production during indexing hours. Please see [schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md).
+### Don't update the locations in Bibdata production during indexing hours. Please see [Alma Publishing Jobs Schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md).
 
 1. Connect in one of the bibdata production boxes:  
   `ssh deploy@bibdata-alma-worker1`  
