@@ -1,5 +1,5 @@
 # When a location changes in Alma:
-* A ticket should be created first in [issues](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information.
+* A ticket should be created first in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information.
 ## 1. Update the local dev environment:
 
 1. Update the necessary files in [bibdata locations directory](https://github.com/pulibrary/bibdata/tree/main/config/locations). 
