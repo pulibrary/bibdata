@@ -1,5 +1,4 @@
-### Scenario 1
-## Test indexing a specific .xml file
+# Scenario 1: Test indexing a specific .xml file
 
 1. Create a publishing file in Alma (Either in the sandbox or production)
     1. Create a Query that contains the data you would like to query.  Save the query after you have it correct
@@ -19,13 +18,11 @@
    ``` 
 1. run `SET_URL=http://lib-solr8-staging.princeton.edu:8983/solr/catalog-staging FILE=/home/deploy/<file name>.xml RAILS_ENV=production bundle exec rake liberate:index_file`
 
-### Scenario 2
-## Test indexing by triggering an incremental dump.
+# Scenario 2: Test indexing by triggering an incremental dump.
 
 Follow: https://github.com/pulibrary/bibdata/blob/main/docs/alma.md#trigger-an-incremental-job-in-the-alma-sandbox
 
-### Scenario 3
-## Test indexing an existing dump file with dump type 'Changed Records'. 
+# Scenario 3: Test indexing an existing dump file with dump type 'Changed Records'. 
 
 1. `ssh deploy@bibdata-alma-worker-staging1`
 2. `cd /opt/bibdata/current`
