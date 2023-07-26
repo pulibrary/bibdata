@@ -10,7 +10,7 @@
             1. "Left match bib field"
             1. "Term in MARC".
         1. A sheet with additional subfields (currently only subfield x)
-1. Download the LC vocabulary sheet as a CSV file (currently File-->Download-->Comma Separated Values (.csv))
+1. Download the LC vocabulary sheet as a CSV file (currently File → Download → Comma Separated Values (.csv))
 1. Rename the file to `indigenous_studies.csv`.
 1. In your local development environment:
     * Replace the file currently at `marc_to_solr/lib/augment_the_subject/indigenous_studies.csv` with the newly downloaded file. Again, ensure that the headings "With subdivisions ǂx etc." and "Term in MARC" have not changed. 
