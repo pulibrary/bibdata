@@ -149,16 +149,6 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
   end
 
-  # Deprecated
-  def update
-    render plain: "Deprecated endpoint", status: :gone
-  end
-
-  # Deprecated
-  def item_discharge
-    render plain: "Deprecated endpoint", status: :gone
-  end
-
   private
 
     def render_not_found(id)

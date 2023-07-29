@@ -30,20 +30,6 @@ Rails.application.routes.draw do
 
   get "/campus_access", to: 'campus_access#index', defaults: { format: :csv }
 
-  # deprecated endpoints
-  get '/barcode/:barcode', to: 'deprecated_endpoints#gone'
-  get '/codes/:location', to: 'deprecated_endpoints#gone'
-  get '/holdings', to: 'deprecated_endpoints#gone'
-  get '/holdings/:holding_id', to: 'deprecated_endpoints#gone'
-  get '/holdings/:holding_id/items', to: 'deprecated_endpoints#gone'
-  get '/items', to: 'deprecated_endpoints#gone'
-  get '/items/:item_id', to: 'deprecated_endpoints#gone'
-  get '/patron/:patron_id/codes', to: 'deprecated_endpoints#gone', constraints: { patron_id: /[^\/]+/ }
-  get '/courses', to: 'deprecated_endpoints#gone'
-  get '/bib_ids', to: 'deprecated_endpoints#gone'
-  post '/bibliographic/:mms_id/holdings/:holding_id/items/:item_pid/discharge', to: 'bibliographic#item_discharge', defaults: { format: :json }
-  post '/bibliographic', to: 'bibliographic#update'
-
   require 'sidekiq/web'
   authenticate :user, ->(user) { user.catalog_admin? } do
     mount Sidekiq::Web => '/sidekiq'
