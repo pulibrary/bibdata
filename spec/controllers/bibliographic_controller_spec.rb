@@ -21,14 +21,6 @@ RSpec.describe BibliographicController, type: :controller do
     allow(AlmaAdapter).to receive(:new).and_return(adapter)
   end
 
-  describe '#update' do
-    it "returns 410 gone" do
-      post :update, params: { bib_id: }
-      expect(response.status).to be 410
-      expect(response.body).to have_content("Deprecated endpoint")
-    end
-  end
-
   describe '#bib' do
     let(:unsuppressed) { "99121886293506421" }
     before do
@@ -248,14 +240,6 @@ RSpec.describe BibliographicController, type: :controller do
         get :bib_items, params: { bib_id: '9920809213506421' }, format: 'json'
         expect(response.status).to be 404
       end
-    end
-  end
-
-  describe '#item_discharge' do
-    it "returns 410 gone" do
-      post :item_discharge, params: { mms_id: "9968643943506421", holding_id: "22258767470006421", item_pid: "23258799999906421", auth_token: "hard_coded_secret" }, format: :json
-      expect(response.status).to be 410
-      expect(response.body).to have_content("Deprecated endpoint")
     end
   end
 
