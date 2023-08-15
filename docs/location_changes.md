@@ -1,6 +1,6 @@
 # When a location changes in Alma:
-* A ticket should be created first in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information.
-## 1. Update the local dev environment:
+* A ticket should be created first in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information. [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config) is a private repository and you may not have access. Please ask if you can gain access.  
+## 1. Update the local dev environment: 
 
 1. Update the necessary files in [bibdata locations directory](https://github.com/pulibrary/bibdata/tree/main/config/locations). 
    * If there is a new holding location then update the [holding_locations.json file](https://github.com/pulibrary/bibdata/blob/main/config/locations/holding_locations.json) with the appropriate information. 
