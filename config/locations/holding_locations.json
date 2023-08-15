@@ -6868,6 +6868,26 @@
         "delivery_locations": []
     },
     {
+        "label": "New Book Shelf",
+        "code": "stokes$nb",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "General",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/stokes$nb.json",
+        "library": {
+            "label": "Stokes Library",
+            "code": "stokes",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "Wallace Hall",
         "code": "stokes$piapr",
         "aeon_location": false,
@@ -6885,7 +6905,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": ["PM"]
     },
     {
         "label": "Remote Storage (ReCAP): Stokes Library Use Only",
