@@ -85,7 +85,6 @@ group :development, :test do
   gem 'solargraph'
   gem 'solr_wrapper'
   gem 'timecop'
-  gem "webdrivers"
   gem 'webmock'
 end
 
