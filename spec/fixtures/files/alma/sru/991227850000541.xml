@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>1</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <leader>01017cam a22003018a 4500</leader>
+          <controlfield tag="001">991227850000541</controlfield>
+          <controlfield tag="005">20200723143350.0</controlfield>
+          <controlfield tag="008">850614s1985    nyu           00010 eng  </controlfield>
+          <datafield ind1=" " ind2=" " tag="010">
+            <subfield code="a">   84043113 </subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="020">
+            <subfield code="a">0847805972 :</subfield>
+            <subfield code="c">$60.00</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(OCoLC)11814035</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">(CStRLIN)NJPG85-B14944</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="9">ABH8202TS</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="035">
+            <subfield code="a">263059</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="039">
+            <subfield code="a">2</subfield>
+            <subfield code="b">3</subfield>
+            <subfield code="c">3</subfield>
+            <subfield code="d">3</subfield>
+            <subfield code="e">3</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="040">
+            <subfield code="d">CStRLIN</subfield>
+            <subfield code="d">NhD</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="050">
+            <subfield code="a">N6537.W36</subfield>
+            <subfield code="b">G66 1985</subfield>
+          </datafield>
+          <datafield ind1="0" ind2=" " tag="082">
+            <subfield code="a">759.13</subfield>
+            <subfield code="2">19</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="100">
+            <subfield code="a">Goodyear, Frank Henry,</subfield>
+            <subfield code="d">1944-</subfield>
+            <subfield code="0">http://id.loc.gov/authorities/names/n79145637</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="245">
+            <subfield code="a">Welliver /</subfield>
+            <subfield code="c">introduction by John Ashbery ; text by Frank H. Goodyear.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="260">
+            <subfield code="a">New York :</subfield>
+            <subfield code="b">Rizzoli,</subfield>
+            <subfield code="c">1985.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="300">
+            <subfield code="a">165 p. :</subfield>
+            <subfield code="b">ill. ;</subfield>
+            <subfield code="c">37 cm.</subfield>
+          </datafield>
+          <datafield ind1="1" ind2="0" tag="600">
+            <subfield code="a">Welliver, Neil.</subfield>
+            <subfield code="0">http://id.loc.gov/authorities/names/n81061784</subfield>
+          </datafield>
+          <datafield ind1="1" ind2=" " tag="700">
+            <subfield code="a">Welliver, Neil.</subfield>
+          </datafield>
+          <datafield ind1=" " ind2=" " tag="AVA">
+            <subfield code="0">9922486553506421</subfield>
+            <subfield code="8">22639754960006421</subfield>
+            <subfield code="a">01PRI_INST</subfield>
+            <subfield code="b">firestone</subfield>
+            <subfield code="c">Stacks</subfield>
+            <subfield code="d">PQ8180.17.A73 A813 1997</subfield>
+            <subfield code="e">unavailable</subfield>
+            <subfield code="f">1</subfield>
+            <subfield code="g">1</subfield>
+            <subfield code="j">stacks</subfield>
+            <subfield code="k">0</subfield>
+            <subfield code="p">1</subfield>
+            <subfield code="q">Firestone Library</subfield>
+          </datafield>
+        </record>
+      </recordData>
+      <recordIdentifier>9922486553506421</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+  </records>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2023-09-05T12:18:50-0400</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>

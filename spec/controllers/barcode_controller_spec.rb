@@ -5,7 +5,8 @@ RSpec.describe BarcodeController, type: :controller do
     context "when given a valid barcode" do
       it "enriches a complex MARC with holdings and item info" do
         stub_alma_item_barcode(mms_id: "998574693506421", item_id: "23153444680006421", holding_id: "22153448500006421", barcode: "32101044947941")
-        stub_alma_ids(ids: "998574693506421", status: 200, fixture: "998574693506421")
+        stub_sru('alma.mms_id=998574693506421',
+                 '998574693506421')
         stub_alma_holding(mms_id: "998574693506421", holding_id: "22153448500006421")
 
         get :scsb, params: { barcode: "32101044947941" }, format: :xml
@@ -29,26 +30,29 @@ RSpec.describe BarcodeController, type: :controller do
       end
 
       it "enriches a bound-with item with multiple bibs it's attached to" do
-        stub_alma_item_barcode(mms_id: "99121886293506421", item_id: "23269289930006421", holding_id: "22269289940006421", barcode: "32101066958685")
-        stub_alma_ids(ids: "99121886293506421", status: 200, fixture: "99121886293506421")
-        stub_alma_holding(mms_id: "99121886293506421", holding_id: "22269289940006421")
-        stub_alma_ids(ids: ["9929455783506421", "9929455793506421", "9929455773506421"], status: 200, fixture: "bound_with_linked_records")
+        stub_alma_item_barcode(mms_id: "99126768656906421", item_id: "23959387670006421", holding_id: "22639719450006421", barcode: "32101111979348")
+        stub_sru('alma.mms_id=99126768656906421',
+                 '99126768656906421')
+        stub_alma_holding(mms_id: "99126768656906421", holding_id: "22639719450006421")
+        stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=996310183506421%20or%20alma.mms_id=996310063506421',
+                 'constituents', 2)
 
-        get :scsb, params: { barcode: "32101066958685" }, format: :xml
+        get :scsb, params: { barcode: "32101111979348" }, format: :xml
 
         expect(response).to be_successful
         records = MARC::XMLReader.new(StringIO.new(response.body)).to_a
-        expect(records.length).to eq 3
-        expect(records.map { |x| x["001"].value }).to eq ["9929455773506421", "9929455783506421", "9929455793506421"]
+        expect(records.length).to eq 2
+        expect(records.map { |x| x["001"].value }).to eq ["996310183506421", "996310063506421"]
         records.each do |record|
-          expect(record["876"]["z"]).to eq "PA"
-          expect(record["852"]["h"]).to eq "3488.93344.333"
+          expect(record["876"]["z"]).to eq "PF"
+          expect(record["852"]["h"]).to eq "MICROFICHE 1138"
         end
       end
 
       it "enriches the MARC record with holdings and item info" do
         stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
-        stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
+        stub_sru('alma.mms_id=9972625743506421',
+                 '9972625743506421')
         stub_alma_holding(mms_id: "9972625743506421", holding_id: "2240957220006421")
 
         voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join("alma", "comparison", "voyager_scsb_32101069559514.xml"))).first
@@ -89,6 +93,7 @@ RSpec.describe BarcodeController, type: :controller do
     context "when the bib record linked to a barcode is suppressed" do
       it "returns a 200" do
         stub_alma_item_barcode(mms_id: "9958708973506421", item_id: "23178060180006421", holding_id: "22178060190006421", barcode: "32101076720315")
+        stub_sru("alma.mms_id=9958708973506421", "9958708973506421")
         stub_alma_ids(ids: "9958708973506421", status: 200, fixture: "9958708973506421")
         stub_alma_holding(mms_id: "9958708973506421", holding_id: "22178060190006421")
         get :scsb, params: { barcode: "32101076720315" }, format: :xml
@@ -114,7 +119,8 @@ RSpec.describe BarcodeController, type: :controller do
 
       it "handles error on holdings API call" do
         stub_alma_item_barcode(mms_id: "9972625743506421", item_id: "2340957190006421", holding_id: "2240957220006421", barcode: "32101069559514")
-        stub_alma_ids(ids: "9972625743506421", status: 200, fixture: "9972625743506421")
+        stub_sru('alma.mms_id=9972625743506421',
+                 '9972625743506421')
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9972625743506421/holdings/2240957220006421")
           .to_return(status: 429,
                      headers: { "Content-Type" => "application/json" },

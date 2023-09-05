@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>1</numberOfRecords>
+    <records>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>00903cam a2200253 a 4500</leader>
+            <controlfield tag="001">9972625743506421</controlfield>
+            <controlfield tag="005">20221217080558.0</controlfield>
+            <controlfield tag="008">121022s2012    fr            000 0 fre d</controlfield>
+            <datafield ind1=" " ind2=" " tag="020">
+              <subfield code="a">9782851948502</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="020">
+              <subfield code="a">2851948504</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(NjP)7262574-princetondb</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(OCoLC)ocn818134486</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="z">(NjP)Voyager7262574</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">TZT</subfield>
+              <subfield code="b">eng</subfield>
+              <subfield code="c">TZT</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="4" tag="050">
+              <subfield code="a">PQ2603.A695</subfield>
+              <subfield code="b">S35 2012</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="100">
+              <subfield code="a">Bataille, Georges.</subfield>
+            </datafield>
+            <datafield ind1="1" ind2="3" tag="245">
+              <subfield code="a">La scissiparité /</subfield>
+              <subfield code="c">Georges Bataille ; dessins de Jean-Gilles Badaire.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="260">
+              <subfield code="a">[Saint-Clément de Rivière] :</subfield>
+              <subfield code="b">Fata Morgana,</subfield>
+              <subfield code="c">[2012].</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">41 p.:</subfield>
+              <subfield code="b">ill.;</subfield>
+              <subfield code="c">22 cm.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="653">
+              <subfield code="a">Literature</subfield>
+              <subfield code="a">Narrative</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="700">
+              <subfield code="a">Badaire, Jean-Gilles.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n96092946</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="902">
+              <subfield code="a">of</subfield>
+              <subfield code="b">m</subfield>
+              <subfield code="6">a</subfield>
+              <subfield code="7">m</subfield>
+              <subfield code="d">v</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="e">20130320</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="904">
+              <subfield code="a">wcs</subfield>
+              <subfield code="b">o</subfield>
+              <subfield code="h">m</subfield>
+              <subfield code="c">b</subfield>
+              <subfield code="e">20121212</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="914">
+              <subfield code="a">(OCoLC)ocn818134486</subfield>
+              <subfield code="b">OCoLC</subfield>
+              <subfield code="c">match</subfield>
+              <subfield code="d">11172022</subfield>
+              <subfield code="e">processed</subfield>
+              <subfield code="f">818134486</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVA">
+              <subfield code="0">9972625743506421</subfield>
+              <subfield code="8">22733158370006421</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="b">recap</subfield>
+              <subfield code="c">Remote Storage</subfield>
+              <subfield code="d">PQ2603.A695 S35 2012</subfield>
+              <subfield code="e">available</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="g">0</subfield>
+              <subfield code="j">pa</subfield>
+              <subfield code="k">0</subfield>
+              <subfield code="p">1</subfield>
+              <subfield code="q">ReCAP</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>9972625743506421</recordIdentifier>
+        <recordPosition>1</recordPosition>
+      </record>
+    </records>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T14:41:01-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

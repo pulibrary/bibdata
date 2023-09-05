@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>0</numberOfRecords>
+    <records/>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T13:12:43-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

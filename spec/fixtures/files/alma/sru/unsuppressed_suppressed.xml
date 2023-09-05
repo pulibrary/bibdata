@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+  <version>1.2</version>
+  <numberOfRecords>2</numberOfRecords>
+  <records>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">991227850000541</controlfield>
+        </record>
+      </recordData>
+      <recordIdentifier>991227850000541</recordIdentifier>
+      <recordPosition>1</recordPosition>
+    </record>
+    <record>
+      <recordSchema>marcxml</recordSchema>
+      <recordPacking>xml</recordPacking>
+      <recordData>
+        <record xmlns="http://www.loc.gov/MARC21/slim">
+          <controlfield tag="001">991227840000541</controlfield>
+        </record>
+      </recordData>
+      <recordIdentifier>991227840000541</recordIdentifier>
+      <recordPosition>2</recordPosition>
+    </record>
+  </records>
+  <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+    <xb:exact>true</xb:exact>
+    <xb:responseDate>2023-09-05T12:18:50-0400</xb:responseDate>
+  </extraResponseData>
+</searchRetrieveResponse>

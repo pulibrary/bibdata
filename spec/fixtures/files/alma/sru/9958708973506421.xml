@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>1</numberOfRecords>
+    <records>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>02122cgm a2200469Ka 4500</leader>
+            <controlfield tag="001">9958708973506421</controlfield>
+            <controlfield tag="005">20090911130018.0</controlfield>
+            <controlfield tag="007">vd cvaizu</controlfield>
+            <controlfield tag="008">041015s2002    mx 180            vlspa d</controlfield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(OCoLC)ocm56747018</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(OCoLC)56747018</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(NjP)5870897-princetondb</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">HCO</subfield>
+              <subfield code="c">HCO</subfield>
+              <subfield code="d">OCLCQ</subfield>
+              <subfield code="d">OCL</subfield>
+              <subfield code="d">OCLCA</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="041">
+              <subfield code="a">spa</subfield>
+              <subfield code="a">eng</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="043">
+              <subfield code="a">n-mx---</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="092">
+              <subfield code="a">972.01</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="245">
+              <subfield code="a">Azul Maya</subfield>
+              <subfield code="h">[videorecording] :</subfield>
+              <subfield code="b">un viaje por el Caribe Mexicano /</subfield>
+              <subfield code="c">un programa de Gonzalo Infante y Miguel Quintana Pali ; C/Producciónes.</subfield>
+            </datafield>
+            <datafield ind1="3" ind2="0" tag="246">
+              <subfield code="a">Viaje por el Caribe Mexicano</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="260">
+              <subfield code="a">México, D.F. :</subfield>
+              <subfield code="b">C/Producciónes :</subfield>
+              <subfield code="b">México Antiguo,</subfield>
+              <subfield code="c">2002.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">1 videodisc (90 min.) :</subfield>
+              <subfield code="b">sd., col. ;</subfield>
+              <subfield code="c">4 3/4 in.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="440">
+              <subfield code="a">Ciudades del Mexico antiguo</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="500">
+              <subfield code="a">Latin American and Iberian videos in Princeton University Library</subfield>
+              <subfield code="5">NjP</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="538">
+              <subfield code="a">DVD.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="546">
+              <subfield code="a">Spanish and English soundtracks.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="508">
+              <subfield code="a">Dirrecion, Gonzalo Infante ; realizacion, Juan José González ; textos, Gonzalo Infante ; voz, Hector Miranda, Eugenio Castillo.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="500">
+              <subfield code="a">"This documentary guide and map will transport us to the Mexican Caribbean, visiting all the places of interest in this paradise"--Container.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="520">
+              <subfield code="a">Covers tourist destinations such as Cancún, Cozumel and Xcaret, and sites of ancient ruins such as Chichén Itzá and Tulum.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="586">
+              <subfield code="a">Cinevue International Film Festival Award Winner: Best Travelogue Film.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Mayas</subfield>
+              <subfield code="x">Antiquities.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Travelogues (Television programs)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Mexico</subfield>
+              <subfield code="x">Antiquities.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Gulf Coast (Mexico)</subfield>
+              <subfield code="x">Description and travel.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Yucatán Peninsula</subfield>
+              <subfield code="x">Description and travel.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Cancún (Mexico)</subfield>
+              <subfield code="x">Description and travel.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Cozumel (Mexico)</subfield>
+              <subfield code="x">Description and travel.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Parque Xcaret (Mexico)</subfield>
+              <subfield code="x">Description and travel.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Chichén Itzá Site (Mexico)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="651">
+              <subfield code="a">Tulum Site (Mexico)</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="700">
+              <subfield code="a">Infante, Gonzalo.</subfield>
+            </datafield>
+            <datafield ind1="2" ind2=" " tag="710">
+              <subfield code="a">C/Producciones (Firm)</subfield>
+            </datafield>
+            <datafield ind1="2" ind2=" " tag="710">
+              <subfield code="a">México Antiguo (Firm)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="902">
+              <subfield code="a">ldm</subfield>
+              <subfield code="b">m</subfield>
+              <subfield code="6">g</subfield>
+              <subfield code="7">m</subfield>
+              <subfield code="d">e</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="e">20090911</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="904">
+              <subfield code="a">ldm</subfield>
+              <subfield code="b">o</subfield>
+              <subfield code="h">m</subfield>
+              <subfield code="c">v</subfield>
+              <subfield code="e">20090814</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVA">
+              <subfield code="0">9958708973506421</subfield>
+              <subfield code="8">22617904420006421</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="b">recap</subfield>
+              <subfield code="c">Remote Storage: Video Collection</subfield>
+              <subfield code="d">DVD 4755</subfield>
+              <subfield code="e">available</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="g">0</subfield>
+              <subfield code="j">qv</subfield>
+              <subfield code="k">8</subfield>
+              <subfield code="p">1</subfield>
+              <subfield code="q">ReCAP</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>9958708973506421</recordIdentifier>
+        <recordPosition>1</recordPosition>
+      </record>
+    </records>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T15:53:38-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

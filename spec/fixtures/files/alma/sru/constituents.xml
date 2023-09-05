@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>2</numberOfRecords>
+    <records>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>01134cas a2200325 a 4500</leader>
+            <controlfield tag="001">996310183506421</controlfield>
+            <controlfield tag="005">20230123142440.0</controlfield>
+            <controlfield tag="007">he#bmb024baca</controlfield>
+            <controlfield tag="008">900306c19879999oncar   b    f0    0eng d</controlfield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(OCoLC)175314437</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(CStRLIN)NJPG90-S915</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="9">ACW7217TS</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(NjP)631018-princetondb</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="z">(NjP)Voyager631018</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">NjP</subfield>
+              <subfield code="c">NjP</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="043">
+              <subfield code="a">n-cn---</subfield>
+            </datafield>
+            <datafield ind1="2" ind2=" " tag="110">
+              <subfield code="a">National Archives of Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n88075694</subfield>
+            </datafield>
+            <datafield ind1="1" ind2="0" tag="245">
+              <subfield code="a">Accessions</subfield>
+              <subfield code="h">[microform] /</subfield>
+              <subfield code="c">National Archives of Canada.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="260">
+              <subfield code="a">[Ottawa] :</subfield>
+              <subfield code="b">The Archives,</subfield>
+              <subfield code="c">[1987?-</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">v. ;</subfield>
+              <subfield code="c">28 cm.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="310">
+              <subfield code="a">Annual</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="362">
+              <subfield code="a">1986-1987-</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="533">
+              <subfield code="a">Microfiche.</subfield>
+              <subfield code="b">[S.l. :</subfield>
+              <subfield code="c">s.n.,</subfield>
+              <subfield code="d">1986?</subfield>
+              <subfield code="e">microfiches.</subfield>
+            </datafield>
+            <datafield ind1="2" ind2="0" tag="610">
+              <subfield code="a">National Archives of Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n88075694</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Archives</subfield>
+              <subfield code="z">Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/subjects/sh2009115535</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="780">
+              <subfield code="a">Public Archives Canada.</subfield>
+              <subfield code="t">Accessions</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="773">
+              <subfield code="w">99126768656906421</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="911">
+              <subfield code="a">19921028</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="912">
+              <subfield code="a">19910104000000.0</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="998">
+              <subfield code="a">03/06/90</subfield>
+              <subfield code="s">9114</subfield>
+              <subfield code="n">NjP</subfield>
+              <subfield code="w">NJPG90S915</subfield>
+              <subfield code="d">03/06/90</subfield>
+              <subfield code="c">DLJ</subfield>
+              <subfield code="b">CDC</subfield>
+              <subfield code="i">900306</subfield>
+              <subfield code="l">NJPG</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVA">
+              <subfield code="0">99126768656906421</subfield>
+              <subfield code="8">22639719450006421</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="b">firestone</subfield>
+              <subfield code="c">Remote Storage (ReCAP): Firestone Library Use Only</subfield>
+              <subfield code="d">MICROFICHE 1138</subfield>
+              <subfield code="e">available</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="g">0</subfield>
+              <subfield code="j">pf</subfield>
+              <subfield code="k">8</subfield>
+              <subfield code="p">1</subfield>
+              <subfield code="q">Firestone Library</subfield>
+              <subfield code="t">Accessions [microform] / National Archives of Canada: 1986-1987-</subfield>
+              <subfield code="t">Accessions [microform] / Public Archives Canada: 1985-1986</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>996310183506421</recordIdentifier>
+        <recordPosition>1</recordPosition>
+      </record>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>01207cas a2200337 a 4500</leader>
+            <controlfield tag="001">996310063506421</controlfield>
+            <controlfield tag="005">20230123142421.0</controlfield>
+            <controlfield tag="007">he#bmb024baca</controlfield>
+            <controlfield tag="008">900302d19861986oncar   b    f0    0eng d</controlfield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(OCoLC)17544493</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(CStRLIN)NJPG90-S902</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="9">ACW7205TS</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(NjP)631006-princetondb</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="z">(NjP)Voyager631006</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">NjP</subfield>
+              <subfield code="c">NjP</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="043">
+              <subfield code="a">n-cn---</subfield>
+            </datafield>
+            <datafield ind1="2" ind2=" " tag="110">
+              <subfield code="a">Public Archives Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n84073167</subfield>
+            </datafield>
+            <datafield ind1="1" ind2="0" tag="245">
+              <subfield code="a">Accessions</subfield>
+              <subfield code="h">[microform] /</subfield>
+              <subfield code="c">Public Archives Canada.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="260">
+              <subfield code="a">[Ottawa] :</subfield>
+              <subfield code="b">The Archives,</subfield>
+              <subfield code="c">[1986?].</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">1 v. ;</subfield>
+              <subfield code="c">28 cm.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="310">
+              <subfield code="a">Annual</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="362">
+              <subfield code="a">1985-1986.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="533">
+              <subfield code="a">Microfiche.</subfield>
+              <subfield code="b">[S.l. :</subfield>
+              <subfield code="c">s.n.,</subfield>
+              <subfield code="d">1986?</subfield>
+              <subfield code="e">4 microfiches.</subfield>
+            </datafield>
+            <datafield ind1="2" ind2="0" tag="610">
+              <subfield code="a">Public Archives Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n84073167</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="650">
+              <subfield code="a">Archives</subfield>
+              <subfield code="z">Canada.</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/subjects/sh2009115535</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="1" tag="780">
+              <subfield code="a">Public Archives Canada. Federal Archives Division.</subfield>
+              <subfield code="t">Accessions</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="785">
+              <subfield code="a">National Archives of Canada.</subfield>
+              <subfield code="t">Accessions</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="773">
+              <subfield code="w">99126768656906421</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="911">
+              <subfield code="a">19921028</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="912">
+              <subfield code="a">19910104000000.0</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="998">
+              <subfield code="a">03/06/90</subfield>
+              <subfield code="s">9114</subfield>
+              <subfield code="n">NjP</subfield>
+              <subfield code="w">NJPG90S902</subfield>
+              <subfield code="d">03/02/90</subfield>
+              <subfield code="c">DLJ</subfield>
+              <subfield code="b">CDC</subfield>
+              <subfield code="i">900306</subfield>
+              <subfield code="l">NJPG</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVA">
+              <subfield code="0">99126768656906421</subfield>
+              <subfield code="8">22639719450006421</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="b">firestone</subfield>
+              <subfield code="c">Remote Storage (ReCAP): Firestone Library Use Only</subfield>
+              <subfield code="d">MICROFICHE 1138</subfield>
+              <subfield code="e">available</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="g">0</subfield>
+              <subfield code="j">pf</subfield>
+              <subfield code="k">8</subfield>
+              <subfield code="p">1</subfield>
+              <subfield code="q">Firestone Library</subfield>
+              <subfield code="t">Accessions [microform] / National Archives of Canada: 1986-1987-</subfield>
+              <subfield code="t">Accessions [microform] / Public Archives Canada: 1985-1986</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>996310063506421</recordIdentifier>
+        <recordPosition>2</recordPosition>
+      </record>
+    </records>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T15:43:57-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

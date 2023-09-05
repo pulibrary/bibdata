@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class AlmaAdapter
   class ::Alma::PerSecondThresholdError < Alma::StandardError; end
   class ::Alma::NotFoundError < Alma::StandardError; end
@@ -11,28 +13,26 @@ class AlmaAdapter
   # @param id [String] e.g. id = "991227830000541"
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
   # get one bib record is supported in the bibdata UI and in the bibliographic_controller
-  # @return [MARC::Record]
-  def get_bib_record(id, suppressed: true)
-    get_bib_records([id], suppressed:)&.first
+  # @return [AlmaAdapter::MarcRecord]
+  def get_bib_record(id, show_suppressed: false)
+    return nil unless /\A\d+\z/.match? id
+    get_bib_records([id], show_suppressed:)&.first
   end
 
   # Get /almaws/v1/bibs Retrieve bibs
   # @param ids [Array] e.g. ids = ["991227850000541","991227840000541","99222441306421"]
   # @see https://developers.exlibrisgroup.com/console/?url=/wp-content/uploads/alma/openapi/bibs.json#/Catalog/get%2Falmaws%2Fv1%2Fbibs Values that could be passed to the alma API
-  # @return [Array<MARC::Record>]
-  def get_bib_records(ids, suppressed: true)
-    bibs = Alma::Bib.find(Array.wrap(ids), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    response = AlmaAdapter::MarcResponse.new(bibs:)
-    if suppressed
-      response.unsuppressed_marc
-    else
-      response.all_marc
+  # @return [Array<AlmaAdapter::MarcRecord>]
+  def get_bib_records(ids, show_suppressed: false)
+    cql_query = show_suppressed ? "" : "alma.mms_tagSuppressed=false%20and%20"
+    cql_query << ids.map { |id| "alma.mms_id=#{id}" }.join("%20or%20")
+    sru_url = "#{Rails.configuration.alma['sru_url']}?"\
+              "version=1.2&operation=searchRetrieve&"\
+              "recordSchema=marcxml&query=#{cql_query}"\
+              "&maximumRecords=#{ids.count}"
+    MARC::XMLReader.new(URI(sru_url).open, parser: :nokogiri).map do |record|
+      MarcRecord.new(nil, record)
     end
-  rescue Alma::StandardError => client_error
-    errors = build_alma_errors(from: client_error)
-    raise errors.first if !errors.empty? && errors.first.is_a?(Alma::PerSecondThresholdError)
-
-    []
   end
 
   def get_availability(ids:)
