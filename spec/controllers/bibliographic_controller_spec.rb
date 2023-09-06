@@ -24,14 +24,14 @@ RSpec.describe BibliographicController, type: :controller do
   describe '#bib' do
     let(:unsuppressed) { "99121886293506421" }
     before do
-      stub_alma_ids(ids: "99121886293506421", status: 200)
+      stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=99121886293506421', unsuppressed)
     end
     it 'renders a marc xml record' do
       get :bib, params: { bib_id: unsuppressed }, format: :xml
       expect(response.body).not_to be_empty
       expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
       record = MARC::XMLReader.new(StringIO.new(response.body)).first
-      expect(record["AVA"]).to be_present
+      expect(record["AVE"]).to be_present
     end
 
     it "doesn't render AVA/AVE if holdings=false" do
@@ -39,7 +39,7 @@ RSpec.describe BibliographicController, type: :controller do
       expect(response.body).not_to be_empty
       expect(response.body).to include("record xmlns='http://www.loc.gov/MARC21/slim'")
       record = MARC::XMLReader.new(StringIO.new(response.body)).first
-      expect(record["AVA"]).not_to be_present
+      expect(record["AVE"]).not_to be_present
     end
 
     context 'when an error is encountered in the controller' do

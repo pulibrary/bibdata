@@ -30,60 +30,38 @@ RSpec.describe AlmaAdapter do
   describe "#get_bib_record" do
     context "when an unsuppressed bib is provided" do
       it "returns one record" do
-        unsuppressed_id = "991227850000541"
-        stub_alma_ids(ids: unsuppressed_id, status: 200, fixture: "unsuppressed_991227850000541")
-        expect(adapter.get_bib_record(unsuppressed_id)['001'].value).to eq "991227850000541"
+        stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=991227850000541', '991227850000541')
+        expect(adapter.get_bib_record(unsuppressed)['001'].value).to eq "991227850000541"
       end
     end
     context "when a suppressed bib is provided" do
       it "returns nil" do
-        id = "99222441306421"
-        stub_alma_ids(ids: id, status: 200, fixture: "suppressed_#{id}")
+        stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=99222441306421', 'empty')
         expect(adapter.get_bib_record(suppressed)).to be nil
       end
     end
     context "when a record is not found" do
       it "returns nil" do
-        stub_alma_ids(ids: "1234", status: 200, fixture: "not_found")
-
+        stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=1234', 'empty')
         expect(adapter.get_bib_record("1234")).to be nil
       end
     end
     context "when a bad ID is given" do
       it "returns nil" do
-        stub_alma_ids(ids: "bananas", status: 400, fixture: "bad_request")
-
         expect(adapter.get_bib_record("bananas")).to be nil
-      end
-    end
-
-    context "record with no physical inventory" do
-      it "doesn't have an AVA tag" do
-        id = "99171146000521"
-        stub_alma_ids(ids: id, status: 200, fixture: "#{id}_no_AVA")
-
-        expect(adapter.get_bib_record(id)['AVA']).to be nil
-      end
-    end
-
-    context "record with electronic inventory" do
-      it "has an AVE tag" do
-        id = "99171146000521"
-        stub_alma_ids(ids: id, status: 200, fixture: "#{id}_no_AVA")
-
-        expect(adapter.get_bib_record(id)['AVE']).not_to be nil
       end
     end
   end
 
   describe "#get_bib_records" do
-    context "if a string of bibs is provided" do
+    context "if an array of bib ids is provided" do
       it "returns multiple unsuppressed records" do
         ids = ["991227850000541", "991227840000541", "99222441306421"]
-        stub_alma_ids(ids:, status: 200, fixture: "unsuppressed_suppressed")
+        stub_sru('alma.mms_tagSuppressed=false%20and%20alma.mms_id=991227850000541%20or%20alma.mms_id=991227840000541%20or%20alma.mms_id=99222441306421',
+                 'unsuppressed_suppressed', 3)
 
-        expect(adapter.get_bib_records(ids)[0]['001'].value).to eq unsuppressed_two
-        expect(adapter.get_bib_records(ids)[1]['001'].value).to eq unsuppressed
+        expect(adapter.get_bib_records(ids)[0]['001'].value).to eq unsuppressed
+        expect(adapter.get_bib_records(ids)[1]['001'].value).to eq unsuppressed_two
         expect(adapter.get_bib_records(ids).count).to eq 2
       end
     end
@@ -421,12 +399,12 @@ RSpec.describe AlmaAdapter do
       end
 
       it "notifies Honeybadger" do
-        adapter.get_bib_records(["9922486553506421"])
+        adapter.get_availability_one(id: "9922486553506421")
         expect(Honeybadger).to have_received :notify
       end
     end
 
-    context "when there are more requests remaining than the threashold" do
+    context "when there are more requests remaining than the threshold" do
       before do
         allow(Honeybadger).to receive(:notify)
         stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421")
@@ -435,7 +413,7 @@ RSpec.describe AlmaAdapter do
       end
 
       it "does not notify Honeybadger " do
-        adapter.get_bib_records(["9922486553506421"])
+        adapter.get_availability_one(id: "9922486553506421")
         expect(Honeybadger).to_not have_received :notify
       end
     end

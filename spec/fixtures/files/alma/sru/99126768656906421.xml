@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>1</numberOfRecords>
+    <records>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>00469nac a2200121 i 4500</leader>
+            <controlfield tag="001">99126768656906421</controlfield>
+            <controlfield tag="005">20230123142814.0</controlfield>
+            <controlfield tag="008">211122s        nyu           000 0 eng d</controlfield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">NjP</subfield>
+              <subfield code="b">eng</subfield>
+              <subfield code="e">rda</subfield>
+              <subfield code="c">NjP</subfield>
+            </datafield>
+            <datafield ind1="0" ind2="0" tag="245">
+              <subfield code="a">Multi-title collection including Accessions and 1 other.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="500">
+              <subfield code="a">Composite resource comprising 2 titles.</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="774">
+              <subfield code="a">Accessions [microform] / National Archives of Canada</subfield>
+              <subfield code="t">t</subfield>
+              <subfield code="w">996310183506421</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="774">
+              <subfield code="a">Accessions [microform] / Public Archives Canada</subfield>
+              <subfield code="t">t</subfield>
+              <subfield code="w">996310063506421</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVA">
+              <subfield code="0">99126768656906421</subfield>
+              <subfield code="8">22639719450006421</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="b">firestone</subfield>
+              <subfield code="c">Remote Storage (ReCAP): Firestone Library Use Only</subfield>
+              <subfield code="d">MICROFICHE 1138</subfield>
+              <subfield code="e">available</subfield>
+              <subfield code="f">1</subfield>
+              <subfield code="g">0</subfield>
+              <subfield code="j">pf</subfield>
+              <subfield code="k">8</subfield>
+              <subfield code="p">1</subfield>
+              <subfield code="q">Firestone Library</subfield>
+              <subfield code="t">Accessions [microform] / National Archives of Canada: 1986-1987-</subfield>
+              <subfield code="t">Accessions [microform] / Public Archives Canada: 1985-1986</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>99126768656906421</recordIdentifier>
+        <recordPosition>1</recordPosition>
+      </record>
+    </records>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T15:27:02-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

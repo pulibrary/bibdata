@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/">
+    <version>1.2</version>
+    <numberOfRecords>1</numberOfRecords>
+    <records>
+      <record>
+        <recordSchema>marcxml</recordSchema>
+        <recordPacking>xml</recordPacking>
+        <recordData>
+          <record xmlns="http://www.loc.gov/MARC21/slim">
+            <leader>01968nam a22003257i 4500</leader>
+            <controlfield tag="001">99121886293506421</controlfield>
+            <controlfield tag="005">20201119192523.0</controlfield>
+            <controlfield tag="006">m        |</controlfield>
+            <controlfield tag="007">cr||||||||||||</controlfield>
+            <controlfield tag="008">080818r20061865xxk     o    f||| | eng d</controlfield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="9">(PROQUESTUKPARLIAMENT)hcpp1865041625</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="a">(NjP)12188629-princetondb</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="035">
+              <subfield code="z">(NjP)Voyager12188629</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="040">
+              <subfield code="a">UK-CbPIL</subfield>
+              <subfield code="b">eng</subfield>
+              <subfield code="e">rda</subfield>
+              <subfield code="c">UK-CbPIL</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="099">
+              <subfield code="a">Electronic Resource</subfield>
+            </datafield>
+            <datafield ind1="2" ind2=" " tag="110">
+              <subfield code="a">Great Britain. Parliament. House of Commons</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n79113783</subfield>
+            </datafield>
+            <datafield ind1="1" ind2="0" tag="245">
+              <subfield code="a">Poor relief. Return showing the amount expended in the in-maintenance and out-relief of the poor in the unions in England and Wales, which comprise about fifteen-seventeenths of the entire population, distinguishing irremovable from other paupers, during the ten years ended Lady-day 1864.</subfield>
+            </datafield>
+            <datafield ind1="1" ind2=" " tag="246">
+              <subfield code="i">Cockton index title:</subfield>
+              <subfield code="a">Return of Amount expended for In-maintenance and Out-relief of Poor in Unions in England and Wales, 1855-64</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="1" tag="264">
+              <subfield code="a">Cambridge [Eng.] :</subfield>
+              <subfield code="b">Proquest LLC,</subfield>
+              <subfield code="c">2006.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="300">
+              <subfield code="a">1 online resource.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="336">
+              <subfield code="a">text</subfield>
+              <subfield code="b">txt</subfield>
+              <subfield code="2">rdacontent</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="337">
+              <subfield code="a">computer</subfield>
+              <subfield code="b">c</subfield>
+              <subfield code="2">rdamedia</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="338">
+              <subfield code="a">online resource</subfield>
+              <subfield code="b">cr</subfield>
+              <subfield code="2">rdacarrier</subfield>
+            </datafield>
+            <datafield ind1=" " ind2="0" tag="440">
+              <subfield code="a">Accounts and papers</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="490">
+              <subfield code="a">[1865] ;</subfield>
+              <subfield code="v">(103)</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="500">
+              <subfield code="a">Title from back cover.</subfield>
+            </datafield>
+            <datafield ind1="0" ind2=" " tag="505">
+              <subfield code="a">Vol.XLVIII, 2 pp.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="534">
+              <subfield code="p">Transcribed from:</subfield>
+              <subfield code="t">Poor relief. Return showing the amount expended in the in-maintenance and out-relief of the poor in the unions in England and Wales, which comprise about fifteen-seventeenths of the entire population, distinguishing irremovable from other paupers, during the ten years ended Lady-day 1864.</subfield>
+              <subfield code="f">1865 (103) XLVIII:</subfield>
+              <subfield code="c">Original Publisher details.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="540">
+              <subfield code="a">Copyright (c) ProQuest LLC 2008. All rights reserved.</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="590">
+              <subfield code="a">Microfilm.</subfield>
+              <subfield code="b">Cambridge :</subfield>
+              <subfield code="c">Chadwyck-Healey</subfield>
+              <subfield code="d">[19801983]</subfield>
+              <subfield code="e">Fiche numbers 71.364.</subfield>
+            </datafield>
+            <datafield ind1="2" ind2="0" tag="610">
+              <subfield code="a">Great Britain. Parliament. House of Commons</subfield>
+              <subfield code="0">http://id.loc.gov/authorities/names/n79113783</subfield>
+            </datafield>
+            <datafield ind1=" " ind2=" " tag="AVE">
+              <subfield code="8">53852780330006421</subfield>
+              <subfield code="c">61834639920006421</subfield>
+              <subfield code="e">Available</subfield>
+              <subfield code="l">online</subfield>
+              <subfield code="m">U.K. parliamentary papers.</subfield>
+              <subfield code="a">01PRI_INST</subfield>
+              <subfield code="0">99121886293506421</subfield>
+            </datafield>
+          </record>
+        </recordData>
+        <recordIdentifier>99121886293506421</recordIdentifier>
+        <recordPosition>1</recordPosition>
+      </record>
+    </records>
+    <extraResponseData xmlns:xb="http://www.exlibris.com/repository/search/xmlbeans/">
+      <xb:exact>true</xb:exact>
+      <xb:responseDate>2023-09-05T14:08:05-0400</xb:responseDate>
+    </extraResponseData>
+  </searchRetrieveResponse>

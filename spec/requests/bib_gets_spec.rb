@@ -57,44 +57,6 @@ RSpec.describe "Bibliographic Gets", type: :request do
         .to_return(status: 429, headers: alma_response_headers, body: alma_response_body)
     end
 
-    describe "GET /bibliographic?bib_id=430472" do
-      it "responds with an error message to the client" do
-        get "/bibliographic?bib_id=430472"
-
-        expect(response.status).to eq(301)
-        follow_redirect!
-
-        expect(response.status).to eq(429)
-      end
-    end
-    describe "GET /bibliographic/430472" do
-      it "responds with an error message to the client" do
-        get "/bibliographic/430472"
-
-        expect(response.status).to eq(429)
-      end
-    end
-    describe "GET /bibliographic/430472.json" do
-      it "responds with an error message to the client" do
-        get "/bibliographic/430472.json"
-
-        expect(response.status).to eq(429)
-      end
-    end
-    describe "GET /bibliographic/430472.xml" do
-      it "responds with an error message to the client" do
-        get "/bibliographic/430472.xml"
-
-        expect(response.status).to eq(429)
-      end
-    end
-    describe "GET /bibliographic/430472/solr" do
-      it "responds with an error message to the client" do
-        get "/bibliographic/430472/solr"
-
-        expect(response.status).to eq(429)
-      end
-    end
     describe "GET /bibliographic/430472/items" do
       let(:alma_request_url) do
         "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/430472/holdings/ALL/items?direction=asc&expand=due_date_policy,due_date&limit=100&order_by=library"

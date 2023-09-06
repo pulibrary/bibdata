@@ -17,6 +17,7 @@ default: &default
       dump_type: "PRINCETON_RECAP"
       dump_file_type: "RECAP_RECORDS"
   api_limit: <%= ENV["ALMA_API_LIMIT"] || 150000 %>
+  sru_url: <%= ENV["ALMA_SRU_URL"] || "https://princeton-psb.alma.exlibrisgroup.com/view/sru/01PRI_INST" %>
 
 development:
   <<: *default

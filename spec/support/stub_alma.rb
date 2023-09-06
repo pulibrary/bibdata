@@ -87,6 +87,11 @@ module AlmaStubbing
       'User-Agent' => 'Ruby'
     }
   end
+
+  def stub_sru(cql_query, fixture_file_name, maximum_records = 1)
+    stub_request(:get, "#{Rails.configuration.alma['sru_url']}?maximumRecords=#{maximum_records}&operation=searchRetrieve&query=#{cql_query}&recordSchema=marcxml&version=1.2")
+      .to_return(status: 200, body: file_fixture("alma/sru/#{fixture_file_name}.xml"))
+  end
 end
 
 RSpec.configure do |config|
