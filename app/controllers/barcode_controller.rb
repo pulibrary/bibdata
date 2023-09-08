@@ -3,7 +3,7 @@ class BarcodeController < ApplicationController
 
   def index
     if params[:barcode]
-      redirect_to action: :barcode, barcode: params[:barcode], status: :moved_permanently
+      redirect_to action: :barcode, barcode: sanitized_barcode, status: :moved_permanently
     else
       render plain: "Please supply a barcode.", status: :not_found
     end
@@ -56,4 +56,10 @@ class BarcodeController < ApplicationController
   rescue => e
     handle_alma_exception(exception: e, message: "Error for barcode: #{barcode}")
   end
+
+  private
+
+    def sanitized_barcode
+      sanitize(params[:barcode])
+    end
 end
