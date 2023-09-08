@@ -8,11 +8,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   def index
     if params[:bib_id]
       if params.fetch(:holdings_only, '0') == '1'
-        redirect_to action: :bib_holdings, bib_id: sanitized_bibid, adapter: sanitized_adapter, status: :moved_permanently
+        redirect_to action: :bib_holdings, bib_id: sanitized_bibid, status: :moved_permanently
       elsif params.fetch(:items_only, '0') == '1'
-        redirect_to action: :bib_items, bib_id: sanitized_bibid, adapter: sanitized_adapter, status: :moved_permanently
+        redirect_to action: :bib_items, bib_id: sanitized_bibid, status: :moved_permanently
       else
-        redirect_to action: :bib, bib_id: sanitized_bibid, adapter: sanitized_adapter, status: :moved_permanently
+        redirect_to action: :bib, bib_id: sanitized_bibid, status: :moved_permanently
       end
     else
       render plain: "Record please supply a bib id", status: :not_found
@@ -209,10 +209,6 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     # @return [String]
     def sanitized_bibid
       CGI.escape(params[:bib_id])
-    end
-
-    def sanitized_adapter
-      CGI.escape(params[:adapter])
     end
 
     def add_locator_call_no(records)
