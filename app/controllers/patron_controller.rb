@@ -20,6 +20,10 @@ class PatronController < ApplicationController
 
   private
 
+    def sanitize(str)
+      str.gsub(/[^A-Za-z0-9.]/, '')
+    end
+
     def parse_data
       {
         netid:,

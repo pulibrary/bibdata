@@ -60,6 +60,6 @@ class BarcodeController < ApplicationController
   private
 
     def sanitized_barcode
-      sanitize(params[:barcode])
+      CGI.escape(params[:barcode])
     end
 end

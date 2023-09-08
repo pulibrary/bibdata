@@ -108,12 +108,12 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       render json: solr_doc
     end
   rescue => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
   # Client: No known use cases
   def bib_holdings
-    records = adapter.get_holding_records(sanitize(params[:bib_id]))
+    records = adapter.get_holding_records(sanitized_bibid)
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
@@ -129,7 +129,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       end
     end
   rescue => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
   # bibliographic/:bib_id/items
@@ -208,11 +208,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     # Sanitizes the bib_id HTTP parameter
     # @return [String]
     def sanitized_bibid
-      sanitize(params[:bib_id])
+      CGI.escape(params[:bib_id])
     end
 
     def sanitized_adapter
-      sanitize(params[:adapter])
+      CGI.escape(params[:adapter])
     end
 
     def add_locator_call_no(records)
