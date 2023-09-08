@@ -13,12 +13,4 @@ module ApplicationHelper
       flash_type.to_s
     end
   end
-
-  def sanitize(str)
-    str.gsub(/[^A-Za-z0-9.]/, '')
-  end
-
-  def sanitize_array(arr)
-    arr.map { |s| sanitize(s) }
-  end
 end

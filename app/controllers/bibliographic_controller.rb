@@ -8,11 +8,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   def index
     if params[:bib_id]
       if params.fetch(:holdings_only, '0') == '1'
-        redirect_to action: :bib_holdings, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
+        redirect_to action: :bib_holdings, bib_id: sanitized_bibid, status: :moved_permanently
       elsif params.fetch(:items_only, '0') == '1'
-        redirect_to action: :bib_items, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
+        redirect_to action: :bib_items, bib_id: sanitized_bibid, status: :moved_permanently
       else
-        redirect_to action: :bib, bib_id: params[:bib_id], adapter: params[:adapter], status: :moved_permanently
+        redirect_to action: :bib, bib_id: sanitized_bibid, status: :moved_permanently
       end
     else
       render plain: "Record please supply a bib id", status: :not_found
@@ -70,10 +70,10 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     }
 
     begin
-      records = adapter.get_bib_record(bib_id_param)
+      records = adapter.get_bib_record(sanitized_bibid)
       records.strip_non_numeric! unless opts[:holdings]
     rescue => e
-      return handle_alma_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{bib_id_param}")
+      return handle_alma_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{sanitized_bibid}")
     end
 
     if records.nil?
@@ -100,7 +100,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       holdings: params.fetch('holdings', 'true') == 'true',
       holdings_in_bib: params.fetch('holdings_in_bib', 'true') == 'true'
     }
-    records = adapter.get_bib_record(bib_id_param)
+    records = adapter.get_bib_record(sanitized_bibid)
     if records.nil?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
@@ -108,12 +108,12 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       render json: solr_doc
     end
   rescue => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
   # Client: No known use cases
   def bib_holdings
-    records = adapter.get_holding_records(sanitize(params[:bib_id]))
+    records = adapter.get_holding_records(sanitized_bibid)
     if records.empty?
       render plain: "Record #{params[:bib_id]} not found or suppressed", status: :not_found
     else
@@ -129,7 +129,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       end
     end
   rescue => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitize(params[:bib_id])}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
   # bibliographic/:bib_id/items
@@ -137,7 +137,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   #   call number and location data
   def bib_items
     item_keys = ["id", "pid", "perm_location", "temp_location", "cdl"]
-    holding_summary = adapter.get_items_for_bib(bib_id_param).holding_summary(item_key_filter: item_keys)
+    holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
 
     respond_to do |wants|
       wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
@@ -146,7 +146,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   rescue Alma::BibItemSet::ResponseError
     render_not_found(params[:bib_id])
   rescue => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{bib_id_param}")
+    handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{sanitized_bibid}")
   end
 
   private
@@ -170,13 +170,6 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       else
         redirect_to user_cas_omniauth_authorize_path
       end
-    end
-
-    # Retrieve and sanitize the Bib. ID from the request parameters
-    # @return [String]
-    def sanitized_id
-      id = params[:bib_id]
-      sanitize(id)
     end
 
     # Generate the options for retrieving bib. records from Voyager
@@ -214,8 +207,8 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
 
     # Sanitizes the bib_id HTTP parameter
     # @return [String]
-    def bib_id_param
-      sanitize(params[:bib_id])
+    def sanitized_bibid
+      CGI.escape(params[:bib_id])
     end
 
     def add_locator_call_no(records)
