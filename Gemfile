@@ -60,9 +60,9 @@ gem 'selenium-webdriver'
 gem 'sidekiq', '<7'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
+gem 'terser'
 gem 'traject'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
 gem 'whenever', "~> 0.10"
 gem 'yard'
 
