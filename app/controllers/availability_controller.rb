@@ -18,7 +18,7 @@ class AvailabilityController < ApplicationController
       end
     elsif params[:scsb_id]
       scsb_lookup = ScsbLookup.new
-      avail = scsb_lookup.find_by_id(sanitize(params[:scsb_id]))
+      avail = scsb_lookup.find_by_id(CGI.escape(params[:scsb_id]))
       if avail.empty?
         render plain: "SCSB Record: #{params[:scsb_id]} not found.", status: :not_found
       else
@@ -30,4 +30,10 @@ class AvailabilityController < ApplicationController
       render plain: "Please provide a bib id.", status: :not_found
     end
   end
+
+  private
+
+    def sanitize_array(arr)
+      arr.map { |s| CGI.escape(s) }
+    end
 end
