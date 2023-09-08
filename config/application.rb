@@ -43,5 +43,6 @@ module MarcLiberation
     config.authz = netids.split if netids
 
     config.alma = config_for(:alma).with_indifferent_access
+    config.autoloader = :zeitwerk
   end
 end
