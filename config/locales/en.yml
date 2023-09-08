@@ -34,3 +34,4 @@ en:
   users:
     omniauth_callback:
       unauthorized: Unauthorized user
+    signout_html: "<strong><a href='https://fed.princeton.edu/cas/logout'>Sign out from CAS</a></strong>"
