@@ -46,7 +46,7 @@ gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764f
 gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
-gem 'rails', '~> 6.1'
+gem 'rails', '~> 7.0'
 gem 'responders', '~> 3.0'
 gem 'rest-client'
 gem 'rsolr'
@@ -60,9 +60,9 @@ gem 'selenium-webdriver'
 gem 'sidekiq', '<7'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
+gem 'terser'
 gem 'traject'
 gem 'turbolinks'
-gem 'uglifier', '>= 1.3.0'
 gem 'whenever', "~> 0.10"
 gem 'yard'
 
