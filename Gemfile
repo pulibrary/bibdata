@@ -78,7 +78,7 @@ group :development, :test do
   gem 'faker'
   gem 'pry-byebug', '~> 3.0'
   gem 'pry-rails'
-  gem 'puma', '~> 4.3'
+  gem 'puma', '~> 5.6'
   gem 'rails-controller-testing'
   gem 'rerun', '~> 0.10.0'
   gem 'simplecov'
