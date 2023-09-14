@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro', '5.5.5'
+  gem 'sidekiq-pro'
 end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
@@ -57,7 +57,7 @@ gem 'rubyXL'
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails'
 gem 'selenium-webdriver'
-gem 'sidekiq', '<7'
+gem 'sidekiq'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'terser'
