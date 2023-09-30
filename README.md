@@ -19,7 +19,7 @@ wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&t
 Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
 ### Setup server
-1. Install Lando from https://github.com/lando/lando/releases (at least 3.0.0-rrc.2)
+1. Install Lando from [lando releases GitHub](https://github.com/lando/lando/releases) (at least 3.0.0-rrc.2)
 1. Install Sidekiq Pro credentials:
 ```
 lpass login emailhere
@@ -107,7 +107,7 @@ Deployment is through capistrano. To deploy a branch other than "main", prepend 
 
 ## Locations Configuration
 
-See: https://github.com/pulibrary/bibdata/blob/main/docs/location_changes.md
+See: [Location Changes documentation](https://github.com/pulibrary/bibdata/blob/main/docs/location_changes.md)
 
 ## API Endpoints
 [API Endpoint documentation](docs/api_endpoints.md)
