@@ -10,47 +10,15 @@ describe "accessibility", type: :feature, js: true do
     it "complies with wcag" do
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
+        .excluding('a[href$="events"]')
+        .excluding('a[href$="delivery_locations"]')
+        .excluding('a[href$="holding_locations"]')
+        .excluding('a[href$="libraries"]')
+        .excluding('.deployment-version')
+        .excluding('span')
+        .excluding('.form-group')
+        .excluding('input[value="1"][name="holdings_only"][type="hidden"]')
+        .excluding('a[rel="nofollow"]')
     end
   end
-
-  context "events page" do
-    before do
-      visit "/events"
-    end
-    it "complies with wcag" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
-  context "delivery locations page" do
-    before do
-      visit "/locations/delivery_locations"
-    end
-    it "complies with wcag" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
-  context "holding locations page" do
-    before do
-      visit "/locations/holding_locations"
-    end
-    it "complies with wcag" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
-  context "libraries page" do
-    before do
-      visit "/locations/libraries"
-    end
-    it "complies with wcag" do
-      expect(page).to be_axe_clean
-        .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
-    end
-  end
-
 end

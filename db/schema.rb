@@ -10,21 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
+ActiveRecord::Schema.define(version: 2022_08_05_174853) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cached_marc_records", force: :cascade do |t|
     t.string "bib_id"
     t.text "marc"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "campus_accesses", force: :cascade do |t|
     t.string "uid"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "category", default: "full"
     t.string "employee_id"
     t.index ["uid"], name: "index_campus_accesses_on_uid"
@@ -33,8 +34,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
   create_table "dump_file_types", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "constant"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["constant"], name: "index_dump_file_types_on_constant"
   end
 
@@ -42,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.integer "dump_id"
     t.string "path"
     t.string "md5"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "dump_file_type_id"
     t.integer "index_status", default: 0
     t.index ["dump_file_type_id"], name: "index_dump_files_on_dump_file_type_id"
@@ -53,8 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
   create_table "dump_types", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "constant"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["constant"], name: "index_dump_types_on_constant"
   end
 
@@ -62,23 +63,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.integer "event_id"
     t.integer "dump_type_id"
     t.text "delete_ids"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.text "update_ids"
     t.text "create_ids"
     t.string "index_status"
-    t.datetime "generated_date", precision: nil
+    t.datetime "generated_date"
     t.index ["dump_type_id"], name: "index_dumps_on_dump_type_id"
     t.index ["event_id"], name: "index_dumps_on_event_id"
   end
 
   create_table "events", id: :serial, force: :cascade do |t|
-    t.datetime "start", precision: nil
-    t.datetime "finish", precision: nil
+    t.datetime "start"
+    t.datetime "finish"
     t.text "error"
     t.boolean "success"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "message_body"
   end
 
@@ -87,7 +88,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at", precision: nil
+    t.datetime "created_at"
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
@@ -99,8 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.string "bibid"
     t.string "status"
     t.string "origin"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["oclc_number"], name: "index_hathi_accesses_on_oclc_number"
     t.index ["origin"], name: "index_hathi_accesses_on_origin"
     t.index ["status"], name: "index_hathi_accesses_on_status"
@@ -110,8 +111,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.string "solr_collection"
     t.bigint "dump_in_progress_id"
     t.bigint "last_dump_completed_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "in_progress"
     t.index ["dump_in_progress_id"], name: "index_index_managers_on_dump_in_progress_id"
     t.index ["last_dump_completed_id"], name: "index_index_managers_on_last_dump_completed_id"
@@ -124,8 +125,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.string "phone_number"
     t.string "contact_email"
     t.boolean "staff_only", default: false
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "locations_library_id"
     t.string "gfa_pickup"
     t.boolean "pickup_location", default: false
@@ -136,8 +137,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
   create_table "locations_holding_locations", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "locations_library_id"
     t.boolean "aeon_location", default: false
     t.boolean "recap_electronic_delivery_location", default: false
@@ -161,8 +162,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
   create_table "locations_libraries", id: :serial, force: :cascade do |t|
     t.string "label"
     t.string "code"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "order", default: 0
   end
 
@@ -170,15 +171,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_05_174853) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at", precision: nil
-    t.datetime "remember_created_at", precision: nil
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at", precision: nil
-    t.datetime "last_sign_in_at", precision: nil
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
     t.string "username"
