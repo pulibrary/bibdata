@@ -88,6 +88,11 @@ group :development, :test do
   gem 'webmock'
 end
 
+group :test do
+  gem 'axe-core-api'
+  gem 'axe-core-rspec'
+end
+
 gem "omniauth-rails_csrf_protection"
 
 gem "human_languages", "~> 0.7"
