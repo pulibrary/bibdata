@@ -80,7 +80,7 @@ rake liberate:arks:clear_cache
 Ensure redis is running
 
 To run the tests in the `marc_to_solr` directory set RAILS_ENV:
-`$ RAILS_ENV=test bundle exec rspec marc_to_solr/spec`
+`$  RAILS_ENV=test bundle exec rspec spec/marc_to_solr`
 
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
