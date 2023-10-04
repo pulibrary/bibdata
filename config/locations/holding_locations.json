@@ -6383,6 +6383,26 @@
         ]
     },
     {
+        "label": "William H. Scheide Library Archival. Special Collections Use Only",
+        "code": "rare$scawhs",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/rare$scawhs.json",
+        "library": {
+            "label": "Special Collections",
+            "code": "rare",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "Remote Storage: Government Documents",
         "code": "recap$gp",
         "aeon_location": false,
