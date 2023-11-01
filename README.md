@@ -7,7 +7,7 @@ Formerly known as MARC Liberation (since it liberates MARC data from Voyager).
 [![BSD 2-Clause License](https://img.shields.io/badge/license-BSD-blue.svg?style=plastic)](./LICENSE)
 
 Find Internal Documentation on our [confluence
-wiki](https://lib-confluence.princeton.edu/pages/viewpage.action?spaceKey=ALMA&title=Alma)
+wiki](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/overview)
 
 ## Development and testing
 
