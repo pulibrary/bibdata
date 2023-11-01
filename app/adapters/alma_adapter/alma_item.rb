@@ -296,8 +296,8 @@ class AlmaAdapter
       value = item_data["work_order_type"]["value"]
       desc = item_data["work_order_type"]["desc"]
 
-      # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      # Work Order documentation: https://lib-confluence.princeton.edu/display/ALMA/Work+Orders
+      # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
+      # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
       code = if value.in?(["Bind", "Pres", "CDL", "AcqWorkOrder", "CollDev", "HMT"])
                "Unavailable"
              else

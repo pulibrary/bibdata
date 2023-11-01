@@ -27,7 +27,7 @@ assignees: ''
 - [ ] No re-indexing required
 
 ### Update documentation?
-- [ ] Update [Indexing documentation](https://lib-confluence.princeton.edu/display/ALMA/MARC+fields+indexed+in+Blacklight)
+- [ ] Update [Indexing documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770331/MARC+fields+indexed+in+Blacklight)
 - [ ] Update [Documentation directory](https://github.com/pulibrary/bibdata/tree/main/docs)
 
 
