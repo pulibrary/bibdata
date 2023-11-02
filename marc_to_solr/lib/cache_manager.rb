@@ -1,3 +1,4 @@
+require 'active_support'
 require 'active_support/core_ext/module'
 
 # Class for handling instances of caching objects
