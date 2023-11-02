@@ -48,7 +48,7 @@ gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764f
 gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.1'
 gem 'responders', '~> 3.0'
 gem 'rest-client'
 gem 'rsolr'
