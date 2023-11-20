@@ -1,0 +1,44 @@
+{
+  "03634f56b35a3140b85e01d5f84b9cb3_0": {
+    "author": "Jane Sandberg",
+    "comment": "This md5 hash is not used for cryptographic purposes.  While it would be good to move away from md5 entirely, this is not an actual vulnerability.",
+    "false_positive": false,
+    "ignored_at": "2023-11-20T17:50:07Z"
+  },
+  "2f80f050c0ef46b67b4460871a5f14e8_0": {
+    "author": "Jane Sandberg",
+    "comment": "This rake task is generating an .env.  Therefore, it is appropriate that it is writing protected credentials to a file.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:44:36Z"
+  },
+  "2f80f050c0ef46b67b4460871a5f14e8_1": {
+    "author": "Jane Sandberg",
+    "comment": "This rake task is generating an .env.  Therefore, it is appropriate that it is writing protected credentials to a file.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:44:46Z"
+  },
+  "a6e77c6d42db8f03ffbe5acae290f72c_0": {
+    "author": "Jane Sandberg",
+    "comment": "This contact information is for a location, not a person, so it doesn't need the same level of protection.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:47:27Z"
+  },
+  "a6e77c6d42db8f03ffbe5acae290f72c_1": {
+    "author": "Jane Sandberg",
+    "comment": "This contact information is for a location, not a person, so it doesn't need the same level of protection.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:47:17Z"
+  },
+  "a6e77c6d42db8f03ffbe5acae290f72c_2": {
+    "author": "Jane Sandberg",
+    "comment": "This contact information is for a location, not a person, so it doesn't need the same level of protection.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:46:37Z"
+  },
+  "c52fc1468bbbd5867590436ec290f478_0": {
+    "author": "Jane Sandberg",
+    "comment": "This line is saying that the MARC 856$k subfield is a password field, it is not hardcoding an actual password.",
+    "false_positive": true,
+    "ignored_at": "2023-11-20T17:38:11Z"
+  }
+}
