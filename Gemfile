@@ -44,7 +44,8 @@ gem 'net-sftp', '~> 2.1', '>= 2.1.2'
 gem 'net-smtp', require: false
 gem 'oj'
 gem 'omniauth-cas'
-gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764fc37df3261531c9937061'
+# gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764fc37df3261531c9937061'
+gem 'orangetheses', github: 'pulibrary/orangetheses', ref: 'main'
 gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
