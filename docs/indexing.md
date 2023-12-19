@@ -78,7 +78,7 @@ Go to the solr admin UI (see above).
     ```
 1. Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index:
     1. Go to the bibdata web UI
-    2. [Login](https://bibdata.princeton.edu/users/auth/cas)
+    2. Login
     4. Go to the [sidekiq current jobs](https://bibdata.princeton.edu/sidekiq/queues/default)
     5. Confirm that you see roughly the same number of `DumpFileIndexJob`s as you saw dump files in the "All Records" event.
     6. If desired, click the Live Poll button and confirm that the number of jobs is slowly going down. 
@@ -93,21 +93,12 @@ Takes 6-7 hours to complete.
 
 ### Index Partner SCSB records
 
-If needed, use the SCSB API to request new full dump records from the system to be generated into the SCSB bucket. EUS can help with this step.
+If needed, [use the SCSB API to request new full dump records from the system to be generated into the SCSB bucket](./scsb/request_full.md).
 
-If needed, pull the most recent SCSB full dump records into a dump file:
-
-SSH to a bibdata machine as deploy user (Find a worker machine in your [environment](https://github.com/pulibrary/bibdata/tree/main/config/deploy)).
-```
-$ tmux attach-session -t full-index
-$ cd /opt/bibdata/current
-$ bundle exec rake scsb:import:full
-CTRL+b d (to detach from tmux)
-```
-This kicks off an import job which will return immediately.  This can be monitored in [sidekiq busy queue](https://bibdata.princeton.edu/sidekiq/busy) or [sidekiq waiting queue](https://bibdata.princeton.edu/sidekiq/queues/default)
-
-Takes 24-25 hours to complete. As they download and unpack they will be placed
-in `/tmp/updates/` and as they are processed they will be moved to `/data/bibdata_files/scsb_update_files/`; you can follow the progress by listing the files in these directories.  You can also find the most recent Full Partner ReCAP Records from [the events page](https://bibdata.princeton.edu/events), and look at the dump files in its json.  Be sure not to deploy bibdata in the middle of this job, or else the job will have to start all over again from the beginning.
+Then, if needed, [pull the most recent SCSB full dump records into dump files](./scsb/dump_files.md).
+This is only necessary if the most recent "Full Partner ReCAP Records" is missing files, or if
+the monthly process hasn't run for a while and there is no recent event of this type.
+Note that this process takes 12 hours, and you can't deploy in the middle of the process.
 
 Once the files are all downloaded and processed, index them with
 
