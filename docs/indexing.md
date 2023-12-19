@@ -95,10 +95,10 @@ Takes 6-7 hours to complete.
 
 If needed, [use the SCSB API to request new full dump records from the system to be generated into the SCSB bucket](./scsb/request_full.md).
 
-If needed, [pull the most recent SCSB full dump records into dump files](./scsb/dump_files.md).
+Then, if needed, [pull the most recent SCSB full dump records into dump files](./scsb/dump_files.md).
 This is only necessary if the most recent "Full Partner ReCAP Records" is missing files, or if
 the monthly process hasn't run for a while and there is no recent event of this type.
-Note that this process takes 24 hours, and you can't deploy in the middle of the process.
+Note that this process takes 12 hours, and you can't deploy in the middle of the process.
 
 Once the files are all downloaded and processed, index them with
 
