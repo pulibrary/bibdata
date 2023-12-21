@@ -17,7 +17,6 @@ Lint/AssignmentInCondition:
   Exclude:
     - 'app/models/dump_file.rb'
     - 'app/services/language_service.rb'
-    - 'bin/spring'
     - 'lib/tasks/orangeindex.rake'
     - 'app/services/index_functions.rb'
 
