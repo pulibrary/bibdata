@@ -6,7 +6,7 @@ RSpec.describe IndexFunctions do
       { 'ids' =>
         { 'delete_ids' => ['134', '234'] } }
     end
-    it 'reuturns an array of bib ids for deletion' do
+    it 'returns an array of bib ids for deletion' do
       expect(described_class.delete_ids(dump)).to eq ['134', '234']
     end
   end

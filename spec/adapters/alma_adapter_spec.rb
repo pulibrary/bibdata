@@ -14,8 +14,7 @@ RSpec.describe AlmaAdapter do
       .to_return(status: 200, body: unsuppressed_two_holdings_fixture, headers: {
                    'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
                    'Content-Type' => 'application/xml;charset=UTF-8',
-                   'Accept' => 'application/xml',
-                   'User-Agent' => 'Faraday v1.0.1'
+                   'Accept' => 'application/xml'
                  })
     stub_alma_bib_items(
       mms_id: unsuppressed,

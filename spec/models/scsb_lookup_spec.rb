@@ -11,8 +11,7 @@ RSpec.describe ScsbLookup do
             'Accept' => 'application/json',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Api-Key' => 'TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Faraday v1.0.1'
+            'Content-Type' => 'application/json'
           }
         )
         .to_raise(Faraday::ConnectionFailed)
@@ -35,8 +34,7 @@ RSpec.describe ScsbLookup do
             'Accept' => 'application/json',
             'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
             'Api-Key' => 'TESTME',
-            'Content-Type' => 'application/json',
-            'User-Agent' => 'Faraday v1.0.1'
+            'Content-Type' => 'application/json'
           }
         )
         .to_raise(Faraday::ConnectionFailed)

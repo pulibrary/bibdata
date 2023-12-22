@@ -10,17 +10,17 @@ gem 'bcrypt_pbkdf'
 gem 'bixby', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capistrano-passenger'
-gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rails'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'
 gem 'change_the_subject', '~> 0.3.2'
 gem 'ddtrace', '~> 0.54.2'
 gem 'devise'
 gem 'ed25519'
-gem 'faraday', '~> 1.0.1'
-gem 'faraday_middleware', '~> 1.0.0'
+gem 'faraday', '~> 1.0'
+gem 'faraday_middleware', '~> 1.0'
 gem 'ffi', '>= 1.9.25'
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id'
 gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
 gem 'honeybadger', '~> 4.0'
@@ -29,18 +29,18 @@ gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
 gem 'lcsort'
 gem 'library_stdnums'
-gem 'lightly', '~> 0.2.1'
+gem 'lightly', "~> 0.2.1"
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.2.3'
 gem 'loops', github: 'kovyrin/loops', branch: 'master'
 gem 'marc', '~> 1.0'
 gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.7.0'
-gem 'multi_json', '~> 1.10.1'
+gem 'multi_json'
 gem 'net-imap', require: false
 gem 'net-ldap'
 gem 'net-pop', require: false
-gem 'net-sftp', '~> 2.1', '>= 2.1.2'
+gem 'net-sftp'
 gem 'net-smtp', require: false
 gem 'oj'
 gem 'omniauth-cas'
@@ -49,7 +49,7 @@ gem 'pg'
 gem "rack", ">= 2.0.6"
 gem 'rack-conneg', '~> 0.1.5'
 gem 'rails', '~> 7.0'
-gem 'responders', '~> 3.0'
+gem 'responders'
 gem 'rest-client'
 gem 'rsolr'
 gem 'rspec-rails'
@@ -68,10 +68,6 @@ gem 'turbolinks'
 gem 'whenever', "~> 0.10"
 gem 'yard'
 
-group :development do
-  # gem 'spring'
-end
-
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'coveralls_reborn'
@@ -82,7 +78,6 @@ group :development, :test do
   gem 'pry-rails'
   gem 'puma', '~> 5.6'
   gem 'rails-controller-testing'
-  gem 'rerun', '~> 0.10.0'
   gem 'simplecov'
   gem 'solargraph'
   gem 'solr_wrapper'
