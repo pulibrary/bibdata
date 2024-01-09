@@ -3434,7 +3434,7 @@
         "always_requestable": true,
         "circulates": false,
         "remote_storage": "",
-        "fulfillment_unit": "Limited",
+        "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$fesrf.json",
         "library": {
             "label": "Marquand Library",
@@ -3542,7 +3542,7 @@
         "always_requestable": true,
         "circulates": false,
         "remote_storage": "",
-        "fulfillment_unit": "Limited",
+        "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$ph.json",
         "library": {
             "label": "Marquand Library",
@@ -3564,7 +3564,7 @@
         "always_requestable": true,
         "circulates": false,
         "remote_storage": "",
-        "fulfillment_unit": "Limited",
+        "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$phref.json",
         "library": {
             "label": "Marquand Library",
@@ -3668,7 +3668,7 @@
         "always_requestable": true,
         "circulates": false,
         "remote_storage": "",
-        "fulfillment_unit": "Limited",
+        "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$ref.json",
         "library": {
             "label": "Marquand Library",
