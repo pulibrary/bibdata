@@ -12,7 +12,7 @@ RSpec.describe ::DumpLogIdsService do
     end
 
     it "validates the dump type" do
-      dump = FactoryBot.create(:recap_incremental_dump)
+      dump = FactoryBot.create(:partner_recap_daily_dump)
       service = described_class.new
       expect { service.process_dump(dump.id) }.to raise_error(StandardError)
     end
