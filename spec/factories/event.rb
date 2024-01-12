@@ -23,8 +23,14 @@ FactoryBot.define do
     label { "Princeton Recap" }
   end
 
-  factory :partner_full_dump_type, class: "DumpType" do
+  factory :partner_recap_daily_dump_type, class: "DumpType" do
+    constant { "PARTNER_RECAP" }
+    label { "Updated Partner ReCAP Records" }
+  end
+
+  factory :partner_recap_full_dump_type, class: "DumpType" do
     constant { "PARTNER_RECAP_FULL" }
+    label { "Full Partner ReCAP Records" }
   end
 
   factory :full_dump_file_type, class: "DumpFileType" do
@@ -42,6 +48,16 @@ FactoryBot.define do
     label { 'Recap Records' }
   end
 
+  factory :partner_recap_daily_dump_file_type, class: "DumpFileType" do
+    constant { 'RECAP_RECORDS' }
+    label { 'Updated ReCAP Records' }
+  end
+
+  factory :partner_recap_full_dump_file_type, class: "DumpFileType" do
+    constant { 'Full ReCAP Records' }
+    label { 'RECAP_RECORDS_FULL' }
+  end
+
   factory :dump_file do
     association :dump_file_type, factory: :full_dump_file_type
   end
@@ -52,6 +68,14 @@ FactoryBot.define do
 
   factory :recap_incremental_dump_file, class: "DumpFile" do
     association :dump_file_type, factory: :recap_incremental_dump_file_type
+  end
+
+  factory :partner_recap_daily_dump_file, class: "DumpFile" do
+    association :dump_file_type, factory: :partner_recap_daily_dump_file_type
+  end
+
+  factory :partner_recap_full_dump_file, class: "DumpFile" do
+    association :dump_file_type, factory: :partner_recap_full_dump_file_type
   end
 
   factory :empty_dump, class: "Dump" do
@@ -70,7 +94,7 @@ FactoryBot.define do
   end
 
   factory :empty_partner_full_dump, class: "Dump" do
-    association :dump_type, factory: :partner_full_dump_type
+    association :dump_type, factory: :partner_recap_full_dump_type
     association :event
   end
 
@@ -123,6 +147,29 @@ FactoryBot.define do
     end
   end
 
+  factory :partner_recap_daily_dump, class: "Dump" do
+    association :dump_type, factory: :partner_recap_daily_dump_type
+    delete_ids { [] }
+    update_ids { [] }
+    dump_files do
+      [
+        association(:partner_recap_daily_dump_file, path: 'spec/fixtures/scsb_updates/scsb_update_20240110_192400_1.xml.gz'),
+        association(:partner_recap_daily_dump_file, path: 'spec/fixtures/scsb_updates/scsb_update_20240108_183400_1.xml.gz')
+      ]
+    end
+  end
+
+  factory :partner_recap_full_dump, class: "Dump" do
+    association :dump_type, factory: :partner_recap_full_dump_type
+    delete_ids { [] }
+    update_ids { [] }
+    dump_files do
+      [
+        association(:partner_recap_full_dump_file, path: 'spec/fixtures/scsb_updates/scsbfull_nypl_20240101_150000_1.xml.gz')
+      ]
+    end
+  end
+
   factory :full_dump_event, class: "Event" do
     start { Time.now - 3600 }
     finish { Time.now - 100 }
@@ -141,5 +188,25 @@ FactoryBot.define do
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :incremental_dump
+  end
+
+  factory :partner_recap_daily_event, class: "Event" do
+    start { Time.now - 3600 }
+    finish { Time.now - 100 }
+    error { nil }
+    success { true }
+    created_at { finish }
+    updated_at { finish }
+    association :dump, factory: :partner_recap_daily_dump
+  end
+
+  factory :partner_recap_full_event, class: "Event" do
+    start { Time.now - 3600 }
+    finish { Time.now - 100 }
+    error { nil }
+    success { true }
+    created_at { finish }
+    updated_at { finish }
+    association :dump, factory: :partner_recap_full_dump
   end
 end
