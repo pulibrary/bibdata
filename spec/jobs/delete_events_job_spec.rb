@@ -5,7 +5,7 @@ RSpec.describe DeleteEventsJob, type: :job do
     let(:copy_path) { File.join('tmp', 'delete_files_job') }
     after { FileUtils.rmtree(copy_path) }
 
-    context "for full dump events with start date older than 6 months" do
+    context "for full dump events with start date older than 2 months" do
       it "deletes full dump Events, their Dumps, DumpFiles, and files on disk" do
         old_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
@@ -20,7 +20,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: 'ALL_RECORDS', older_than: 6.months.ago.to_i)
+        described_class.perform_now(dump_type: 'ALL_RECORDS', older_than: 2.months.ago.to_i)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, incremental_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, incremental_event.dump.id)
@@ -54,6 +54,54 @@ RSpec.describe DeleteEventsJob, type: :job do
         expect(Dir.empty?(File.join(copy_path, old_event.id.to_s))).to be true
         expect(Dir.empty?(File.join(copy_path, new_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, full_event.id.to_s))).to be false
+      end
+    end
+    context "for partner ReCAP dump events with start date older than 2 months" do
+      it "deletes daily partner ReCAP dump Events, their Dumps, DumpFiles, and files on disk" do
+        old_partner_recap_event = FactoryBot.create(:partner_recap_daily_event).tap do |e|
+          tmp_dump_files(e)
+          e.start = 2.months.ago - 1.day
+          e.save
+        end
+        new_partner_recap_daily_event = FactoryBot.create(:partner_recap_daily_event).tap { |e| tmp_dump_files(e) }
+        # Doesn't delete old partner ReCAP full events
+        full_partner_recap_event = FactoryBot.create(:partner_recap_full_event).tap do |e|
+          tmp_dump_files(e)
+          e.start = 6.months.ago - 1.day
+          e.save
+        end
+
+        described_class.perform_now(dump_type: 'PARTNER_RECAP', older_than: 2.months.ago.to_i)
+
+        expect(Event.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.id, full_partner_recap_event.id)
+        expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.dump.id, full_partner_recap_event.dump.id)
+        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*(new_partner_recap_daily_event.dump.dump_files.map(&:id) + full_partner_recap_event.dump.dump_files.map(&:id)))
+        expect(Dir.empty?(File.join(copy_path, old_partner_recap_event.id.to_s))).to be true
+        expect(Dir.empty?(File.join(copy_path, new_partner_recap_daily_event.id.to_s))).to be false
+        expect(Dir.empty?(File.join(copy_path, full_partner_recap_event.id.to_s))).to be false
+      end
+      it "deletes partner ReCAP full dump Events, their Dumps, DumpFiles, and files on disk" do
+        old_full_partner_recap_event = FactoryBot.create(:partner_recap_full_event).tap do |e|
+          tmp_dump_files(e)
+          e.start = 6.months.ago - 1.day
+          e.save
+        end
+        new_full_partner_recap_event = FactoryBot.create(:partner_recap_full_event).tap { |e| tmp_dump_files(e) }
+        # doesn't delete old partner ReCAP daily events
+        partner_recap_daily_event = FactoryBot.create(:partner_recap_daily_event).tap do |e|
+          tmp_dump_files(e)
+          e.start = 6.months.ago - 1.day
+          e.save
+        end
+
+        described_class.perform_now(dump_type: 'PARTNER_RECAP_FULL', older_than: 2.months.ago.to_i)
+
+        expect(Event.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.id, partner_recap_daily_event.id)
+        expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.dump.id, partner_recap_daily_event.dump.id)
+        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*new_full_partner_recap_event.dump.dump_files.map(&:id) + partner_recap_daily_event.dump.dump_files.map(&:id))
+        expect(Dir.empty?(File.join(copy_path, old_full_partner_recap_event.id.to_s))).to be true
+        expect(Dir.empty?(File.join(copy_path, new_full_partner_recap_event.id.to_s))).to be false
+        expect(Dir.empty?(File.join(copy_path, partner_recap_daily_event.id.to_s))).to be false
       end
     end
   end
