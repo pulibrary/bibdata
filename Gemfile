@@ -23,7 +23,7 @@ gem 'ffi', '>= 1.9.25'
 gem 'friendly_id'
 gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
-gem 'honeybadger', '~> 4.0'
+gem 'honeybadger'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
@@ -94,4 +94,4 @@ gem "omniauth-rails_csrf_protection"
 
 gem "human_languages", "~> 0.7"
 
-gem "open3", "~> 0.1.2"
+gem "open3"
