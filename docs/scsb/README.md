@@ -4,7 +4,7 @@ As illustrated in the diagram below, here are the steps of a full index of SCSB 
 
 * Bibdata requests a dump of each partner's records via the SCSB API
 * SCSB creates dump files and uploads them to S3
-* Bibdata downloads files from S3
+* Bibdata downloads files from S3 every two weeks
 * Bibdata creates a new Event for the files, using the
 [date in the filename as the `generated_date`](https://github.com/pulibrary/bibdata/blob/fe7e6068502e86bb99d6094f76c72c4175dbdcd7/app/models/scsb/partner_updates.rb#L39-L42).
 This date corresponds to the date that bibdata first requested the dump via the API.
