@@ -2782,6 +2782,27 @@
         "delivery_locations": []
     },
     {
+        "label": "Tech Equipment",
+        "code": "firestone$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/firestone$tech.json",
+        "library": {
+            "label": "Firestone Library",
+            "code": "firestone",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    }
+    ,
+    {
         "label": "PUL Makerspace",
         "code": "lewis$maker",
         "aeon_location": false,
