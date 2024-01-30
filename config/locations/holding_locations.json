@@ -6740,7 +6740,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "QA"
+        ]
     },
     {
         "label": "Borrowing Resource Sharing Requests",
