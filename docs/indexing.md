@@ -7,7 +7,7 @@ The Alma ILS is the source of princeton's MARC data, both physical and electroni
 
 Alma MMS ids start with 99 and end with 3506421
 
-Frequency of updates: 4x per day: 4am, 10am, 4pm, 10pm see: [Alma Publishing Jobs Schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md)
+Frequency of updates see: [Alma Publishing Jobs Schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md)
 
 ## Source: SCSB
 Around 10 million items shared by our ReCAP Partners, Columbia, NYPL, and Harvard, pulled through [HTC's shared collection software](https://github.com/ResearchCollectionsAndPreservation/scsb).

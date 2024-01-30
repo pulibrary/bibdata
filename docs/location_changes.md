@@ -1,5 +1,6 @@
 # When a location changes in Alma:
 * A ticket should be created first in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information. [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config) is a private repository and you may not have access. Please ask if you can gain access.  
+
 ## 1. Update the local dev environment: 
 
 1. Update the necessary files in [bibdata locations directory](https://github.com/pulibrary/bibdata/tree/main/config/locations). 
@@ -48,6 +49,7 @@ Deploy your branch on qa and run the following steps to make sure that nothing i
 *If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
 ## 4. Update Bibdata production
 ### Don't update the locations in Bibdata production during indexing hours. Please see [Alma Publishing Jobs Schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md).
+The indexing takes place after the [Alma Publishing Job](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md) completes and an event is created with a `Finish` timestamp and `Success: true` in bibdata.
 
 1. Connect in one of the bibdata production boxes:  
   `ssh deploy@bibdata-alma-worker1`  
