@@ -27,6 +27,7 @@ describe 'From traject_config.rb', indexing: true do
       @sample42 = @indexer.map_record(fixture_record('9939339473506421'))
       @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
       @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
+      @sample45 = @indexer.map_record(fixture_record('99127174504906421'))
       @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
       @record_temporary_location_v2 = @indexer.map_record(fixture_record('99124695833506421_custom_holdings'))
       @record_at_resource_sharing = @indexer.map_record(fixture_record('19299349640006421'))
@@ -687,6 +688,12 @@ describe 'From traject_config.rb', indexing: true do
         holding = @holdings["22666524470006421"]
         expect(holding.keys).to include('sub_location')
         expect(holding['sub_location']).to match_array(['Oversize RA566.27'])
+      end
+
+      it 'includes 852 subfield x as process_type' do
+        @holdings = JSON.parse(@sample45['holdings_1display'][0])
+        item = @holdings['22982806110006421']['items'].first
+        expect(item['process_type']).to eq('WORK_ORDER_DEPARTMENT')
       end
 
       describe 'electronic_access_1display' do

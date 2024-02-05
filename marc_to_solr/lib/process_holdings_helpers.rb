@@ -136,7 +136,13 @@ class ProcessHoldingsHelpers
     item[:copy_number] = field_876['t'] if field_876['t']
     item[:use_statement] = field_876['h'] if field_876['h'] && is_scsb
     item[:storage_location] = field_876['l'] if field_876['l'] && is_scsb
-    item[:cgd] = field_876['x'] if field_876['x'] && is_scsb
+    if field_876['x']
+      if is_scsb
+        item[:cgd] = field_876['x']
+      else
+        item[:process_type] = field_876['x']
+      end
+    end
     item[:collection_code] = field_876['z'] if field_876['z'] && is_scsb
     item
   end
