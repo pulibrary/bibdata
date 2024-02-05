@@ -65,7 +65,7 @@ gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'terser'
 gem 'traject'
 gem 'turbolinks'
-gem 'whenever', "~> 0.10"
+gem 'whenever'
 gem 'yard'
 
 group :development, :test do
@@ -74,9 +74,9 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem 'faker'
-  gem 'pry-byebug', '~> 3.0'
+  gem 'pry-byebug'
   gem 'pry-rails'
-  gem 'puma', '~> 5.6'
+  gem 'puma'
   gem 'rails-controller-testing'
   gem 'simplecov'
   gem 'solargraph'
