@@ -24,7 +24,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '18.17.0'
+          node-version: '18.19.1'
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
@@ -114,7 +114,7 @@ jobs:
       - checkout
       - node/install:
           install-yarn: true
-          node-version: '18.17.0'
+          node-version: '18.19.1'
       - restore_cache:
           keys:
             # this cache is never found because ruby-oci8 isn't included in ci
