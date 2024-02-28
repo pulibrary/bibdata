@@ -631,7 +631,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yaml (0.3.0)
-    yard (0.9.34)
+    yard (0.9.35)
     yell (2.2.2)
     zeitwerk (2.6.12)
 
