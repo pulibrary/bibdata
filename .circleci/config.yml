@@ -106,7 +106,7 @@ jobs:
           POSTGRES_USER: bibdata
           POSTGRES_DB: bibdata_test
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: redis:4.0.9-alpine
+      - image: cimg/redis:7.2
       - image: pulibrary/ci-solr:8.4-v2.0.0
         command: server/scripts/ci-start.sh
 
