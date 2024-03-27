@@ -108,6 +108,15 @@ namespace :liberate do
     IndexManager.for(solr_url).index_remaining!
   end
 
+  desc "Index single incremental dump"
+  task index_single_dump: :environment do
+    solr_url = ENV['SOLR_URL'] || default_solr_url
+    next_dump = Dump.find(1177)
+    next_dump.dump_files.each do |dump_file|
+      Alma::Indexer::DumpFileIndexer.new(dump_file, solr_url:).index!
+    end
+  end
+
   desc "Index a single MARC XML file against SET_URL"
   task index_file: :environment do
     solr_url = ENV['SET_URL'] || default_solr_url
