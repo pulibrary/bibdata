@@ -1,5 +1,6 @@
 class ScsbImportFullJob < ApplicationJob
   def perform
+    FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
     Event.record do |event|
       event.dump = created_dump
       event.save!

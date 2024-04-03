@@ -19,6 +19,7 @@ RSpec.describe ScsbImportFullJob do
     let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
 
     before do
+      allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
@@ -32,6 +33,7 @@ RSpec.describe ScsbImportFullJob do
       expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'CUL_20210429_192300.zip'))).to be false
       expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'NYPL_20210430_015000.zip'))).to be false
       expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'HL_20210716_063500.zip'))).to be false
+      expect(Dir.exist?(Rails.root.join("tmp", "specs", "update_directory"))).to be true
     end
   end  
 end
