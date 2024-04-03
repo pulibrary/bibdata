@@ -26,7 +26,12 @@ RSpec.describe ScsbImportFullJob do
     end
 
     it 'removes stale files' do
-      expect {one = one}
+
+      expect { described_class.perform_now }.to change { Event.count }.by(1)
+      
+      expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'CUL_20210429_192300.zip'))).to be false
+      expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'NYPL_20210430_015000.zip'))).to be false
+      expect(File.file?(Rails.root.join("tmp", "specs", "update_directory", 'HL_20210716_063500.zip'))).to be false
     end
   end  
 end
