@@ -10,7 +10,6 @@ class PatronController < ApplicationController
     patron_access = CampusAccess.where(uid: patron_id).first || CampusAccess.new(uid: patron_id, category: "none")
     info[:campus_authorized] = patron_access.access?
     info[:campus_authorized_category] = patron_access.category
-    info[:ldap] = Ldap.find_by_netid(patron_id) if params[:ldap].present? && sanitize(params[:ldap]) == "true"
     respond_to do |wants|
       wants.json  { render json: MultiJson.dump(info) }
     end

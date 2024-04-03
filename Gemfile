@@ -38,7 +38,6 @@ gem 'marc', '~> 1.0'
 gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.9.1'
 gem 'multi_json'
 gem 'net-imap', require: false
-gem 'net-ldap'
 gem 'net-pop', require: false
 gem 'net-sftp'
 gem 'net-smtp', require: false
