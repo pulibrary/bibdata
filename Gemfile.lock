@@ -16,8 +16,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: 4ac8dc2bd04b10db764fc37df3261531c9937061
-  ref: 4ac8dc2bd04b10db764fc37df3261531c9937061
+  revision: 3c288ca746bbe5369bca9027d5b159b47dbc97e2
+  ref: main
   specs:
     orangetheses (1.4.2)
       chronic
@@ -26,6 +26,7 @@ GIT
       iso-639
       nokogiri
       oai
+      psych (~> 5.1)
       retriable
       rsolr
       yaml
@@ -415,6 +416,8 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
+    psych (5.1.2)
+      stringio
     public_suffix (5.0.4)
     puma (5.6.8)
       nio4r (~> 2.0)
@@ -581,6 +584,7 @@ GEM
     sshkit-interactive (0.3.0)
       sshkit (~> 1.12)
     stomp (1.4.10)
+    stringio (3.1.0)
     sync (0.5.0)
     term-ansicolor (1.7.1)
       tins (~> 1.0)
