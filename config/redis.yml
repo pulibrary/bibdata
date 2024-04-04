@@ -1,6 +1,7 @@
 development:
   host: <%= ENV["lando_bibdata_redis_conn_host"] || "localhost" %>
   port: <%= ENV["lando_bibdata_redis_conn_port"] || 6379 %>
+  db: 1
 test:
   host: <%= ENV["lando_bibdata_redis_conn_host"] || "localhost" %>
   port: <%= ENV["lando_bibdata_redis_conn_port"] || 6379 %>

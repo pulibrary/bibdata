@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 source "https://gems.contribsys.com/" do
-  gem 'sidekiq-pro', '5.5.5'
+  gem 'sidekiq-pro'
 end
 
 gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
@@ -23,7 +23,7 @@ gem 'ffi', '>= 1.9.25'
 gem 'friendly_id'
 gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
-gem 'honeybadger', '~> 4.0'
+gem 'honeybadger'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
@@ -35,7 +35,7 @@ gem 'logstash-event'
 gem 'loofah', '>= 2.2.3'
 gem 'loops', github: 'kovyrin/loops', branch: 'master'
 gem 'marc', '~> 1.0'
-gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.7.0'
+gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.9.1'
 gem 'multi_json'
 gem 'net-imap', require: false
 gem 'net-ldap'
@@ -59,7 +59,7 @@ gem 'rubyXL'
 gem 'rubyzip', '>= 1.2.2'
 gem 'sass-rails'
 gem 'selenium-webdriver'
-gem 'sidekiq', '<7'
+gem 'sidekiq'
 gem 'stomp'
 gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'terser'
@@ -94,4 +94,4 @@ gem "omniauth-rails_csrf_protection"
 
 gem "human_languages", "~> 0.7"
 
-gem "open3", "~> 0.1.2"
+gem "open3"

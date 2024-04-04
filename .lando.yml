@@ -17,7 +17,7 @@ services:
     type: postgres:13
     portforward: true
   bibdata_redis:
-    type: redis:4.0.9
+    type: redis:7
     portforward: true
 proxy:
   bibdata_test_solr:

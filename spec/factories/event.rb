@@ -18,11 +18,6 @@ FactoryBot.define do
     label { "Changed Records" }
   end
 
-  factory :recap_incremental_dump_type, class: "DumpType" do
-    constant { "PRINCETON_RECAP" }
-    label { "Princeton Recap" }
-  end
-
   factory :partner_recap_daily_dump_type, class: "DumpType" do
     constant { "PARTNER_RECAP" }
     label { "Updated Partner ReCAP Records" }
@@ -88,8 +83,8 @@ FactoryBot.define do
     association :event
   end
 
-  factory :empty_recap_incremental_dump, class: "Dump" do
-    association :dump_type, factory: :recap_incremental_dump_type
+  factory :empty_partner_recap_incremental_dump, class: "Dump" do
+    association :dump_type, factory: :partner_recap_daily_dump_type
     association :event
   end
 
@@ -101,25 +96,6 @@ FactoryBot.define do
   factory :empty_partner_recap_dump, class: "Dump" do
     dump_type { DumpType.find_by(constant: "PARTNER_RECAP") }
     association :event
-  end
-
-  factory :recap_incremental_dump, class: "Dump" do
-    association :dump_type, factory: :recap_incremental_dump_type
-    dump_files do
-      [
-        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz'),
-        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/boundwiths.tar.gz')
-      ]
-    end
-  end
-
-  factory :recap_incremental_dump_no_boundwiths, class: "Dump" do
-    association :dump_type, factory: :recap_incremental_dump_type
-    dump_files do
-      [
-        association(:recap_incremental_dump_file, path: 'spec/fixtures/files/alma/scsb_dump_fixtures/recap_6836725000006421_20210401_010420[012]_new_1.xml.tar.gz')
-      ]
-    end
   end
 
   factory :full_dump, class: "Dump" do

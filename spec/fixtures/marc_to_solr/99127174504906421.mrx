@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>01038nam a22002775i 4500</leader>
+        <controlfield tag="005">20230606020223.0</controlfield>
+        <controlfield tag="008">230524s2023 xr oq 0 u cze d</controlfield>
+        <controlfield tag="001">99127174504906421</controlfield>
+        <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">9781785514289:</subfield>
+            <subfield code="c">USD42</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(RuMoEVIS)2504941B</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">RuMoEVIS</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="e">rda</subfield>
+            <subfield code="c">RuMoEVIS</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2="7">
+            <subfield code="a">ces</subfield>
+            <subfield code="2">iso639-3</subfield>
+        </datafield>
+        <datafield tag="043" ind1=" " ind2=" ">
+            <subfield code="a">e-xr---</subfield>
+        </datafield>
+        <datafield tag="245" ind1="0" ind2="0">
+            <subfield code="a">50 mistrovských děl českého umění období fin de siècle :</subfield>
+            <subfield code="b">ze sbírek západočeské galerie v Plzni /</subfield>
+            <subfield code="c">Roman Musil.</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Plzeň :</subfield>
+            <subfield code="b">Scala Arts &amp; Heritage Publishers Ltd :</subfield>
+            <subfield code="b">Západočeská galerie v Plzni,</subfield>
+            <subfield code="c">2023.</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">120 pages :</subfield>
+            <subfield code="b">color illustrations ;</subfield>
+            <subfield code="c">20 cm</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">text</subfield>
+            <subfield code="b">txt</subfield>
+            <subfield code="2">rdacontent</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">unmediated</subfield>
+            <subfield code="b">n</subfield>
+            <subfield code="2">rdamedia</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">volume</subfield>
+            <subfield code="b">nc</subfield>
+            <subfield code="2">rdacarrier</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+            <subfield code="a">In Czech.</subfield>
+        </datafield>
+        <datafield tag="653" ind1="0" ind2=" ">
+            <subfield code="a">Art museums, galleries, etc.</subfield>
+        </datafield>
+        <datafield tag="653" ind1="0" ind2=" ">
+            <subfield code="a">Czechoslovak Republic,1918-1992.</subfield>
+        </datafield>
+        <datafield tag="653" ind1="0" ind2=" ">
+            <subfield code="a">Czechoslovakia.</subfield>
+        </datafield>
+        <datafield tag="653" ind1="0" ind2=" ">
+            <subfield code="a">History of the arts.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Musil, Roman,</subfield>
+            <subfield code="e">editor.</subfield>
+        </datafield>
+        <datafield tag="910" ind1=" " ind2=" ">
+            <subfield code="d">500749</subfield>
+            <subfield code="e">6652</subfield>
+            <subfield code="f">C1502mon</subfield>
+            <subfield code="g">MNUEAST</subfield>
+            <subfield code="h">rcppj</subfield>
+        </datafield>
+        <datafield tag="980" ind1=" " ind2=" ">
+            <subfield code="a">2504941B</subfield>
+            <subfield code="b">42.00</subfield>
+            <subfield code="e">42.00</subfield>
+            <subfield code="f">20048055</subfield>
+            <subfield code="g">1</subfield>
+            <subfield code="z">20230601</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2023-11-22 13:54:50 US/Eastern</subfield>
+            <subfield code="b">2023-06-07 02:01:58 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="852" ind1="0" ind2=" ">
+            <subfield code="b">marquand</subfield>
+            <subfield code="c">pj</subfield>
+            <subfield code="8">22982806110006421</subfield>
+        </datafield>
+        <datafield tag="952" ind1=" " ind2=" ">
+            <subfield code="d">2023-06-07 06:05:04</subfield>
+            <subfield code="8">22982806110006421</subfield>
+            <subfield code="a">2023-06-07 06:05:00</subfield>
+            <subfield code="b">Marquand Library</subfield>
+            <subfield code="c">rcppj: Marquand Remote Storage (ReCAP)</subfield>
+            <subfield code="e">false</subfield>
+        </datafield>
+        <datafield tag="876" ind1=" " ind2=" ">
+            <subfield code="0">22982806110006421</subfield>
+            <subfield code="a">23982806100006421</subfield>
+            <subfield code="j">0</subfield>
+            <subfield code="x">WORK_ORDER_DEPARTMENT</subfield>
+            <subfield code="z">pj</subfield>
+            <subfield code="d">2023-06-07 02:05:00 US/Eastern</subfield>
+            <subfield code="p">32101116186956</subfield>
+            <subfield code="y">marquand</subfield>
+        </datafield>
+    </record>
+</collection>
