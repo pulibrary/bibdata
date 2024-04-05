@@ -1,6 +1,7 @@
 class ScsbImportFullJob < ApplicationJob
   def perform
-    FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
+    delete_stale_files
+
     Event.record do |event|
       event.dump = created_dump
       event.save!
@@ -17,5 +18,10 @@ class ScsbImportFullJob < ApplicationJob
 
     def created_dump
       Dump.create!(dump_type:)
+    end
+
+    def delete_stale_files
+      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
+      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml")
     end
 end
