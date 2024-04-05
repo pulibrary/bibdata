@@ -19,6 +19,7 @@ RSpec.describe ScsbImportFullJob do
     let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
 
     before do
+      FileUtils.mkdir_p(update_directory_path)
       allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
