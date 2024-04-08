@@ -6,14 +6,18 @@ module Scsb
   def items_by_id(id, source = 'scsb')
     request_body = scsb_bib_id_request(id, source)
     request_body_json = request_body.to_json
-    scsb_request('/sharedCollection/bibAvailabilityStatus', request_body_json)
+    scsb_request_response_customize(scsb_request_response: scsb_request('/sharedCollection/bibAvailabilityStatus', request_body_json))
   end
 
   # Retrieves items from the SCSB endpoint using a barcode
   def items_by_barcode(barcodes)
     request_body = scsb_barcode_request(barcodes)
     request_body_json = request_body.to_json
-    scsb_request('/sharedCollection/itemAvailabilityStatus', request_body_json)
+    scsb_request_response_customize(scsb_request_response: scsb_request('/sharedCollection/itemAvailabilityStatus', request_body_json))
+  end
+
+  def scsb_request_response_customize(scsb_request_response:)
+    scsb_request_response.each { |r| r["itemAvailabilityStatus"] = "Unavailable" if r["itemAvailabilityStatus"] == "Not Available" }
   end
 
   def scsb_barcode_request(barcodes)
