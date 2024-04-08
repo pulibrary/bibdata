@@ -77,6 +77,16 @@ RSpec.describe AvailabilityController, type: :controller do
       bib_barcodes = JSON.parse(response.body)
       expect(bib_barcodes).to eq(bib_response)
     end
+    it 'returns status Unavailable when SCSB status is Not Available' do
+      stub_request(:post, "https://test.api.com/sharedCollection/bibAvailabilityStatus")
+        .with(body: '{"bibliographicId":"5270946","institutionId":"scsb"}',
+              headers: request_headers)
+        .to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Not Available", "errorMessage": null}]', headers: {})
+
+      get :index, params: { scsb_id:, format: :json }
+      bib_barcodes = JSON.parse(response.body)
+      expect(bib_barcodes["32101055068314"]["itemAvailabilityStatus"]).to eq('Unavailable')
+    end
   end
 
   describe 'scsb by barcode' do
@@ -132,6 +142,19 @@ RSpec.describe AvailabilityController, type: :controller do
       get :index, params: { barcodes: ['32101055068314', '32101055068313'], format: :json }
       bib_barcodes = JSON.parse(response.body)
       expect(bib_barcodes).to eq(bib_response)
+    end
+
+    it 'updates barcode status to Unavaible when the SCSB response says Not Available' do
+      stub_request(:post, "https://test.api.com/sharedCollection/itemAvailabilityStatus")
+        .with(body: "{\"barcodes\":[\"32101055068314\",\"32101055068313\"]}",
+              headers: request_headers)
+        .to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null},{ "itemBarcode": "32101055068313", "itemAvailabilityStatus": "Not Available", "errorMessage": null}]', headers: {})
+
+      get :index, params: { barcodes: ['32101055068314', '32101055068313'], format: :json }
+      bib_barcodes = JSON.parse(response.body)
+
+      scsb_barcode_unavailable = bib_barcodes["32101055068313"]
+      expect(scsb_barcode_unavailable["itemAvailabilityStatus"]).to eq('Unavailable')
     end
   end
 end
