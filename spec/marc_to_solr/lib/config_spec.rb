@@ -28,6 +28,7 @@ describe 'From traject_config.rb', indexing: true do
       @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
       @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
       @sample45 = @indexer.map_record(fixture_record('99127174504906421'))
+      @record_with_255a = @indexer.map_record(fixture_record('9952690273506421'))
       @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
       @record_temporary_location_v2 = @indexer.map_record(fixture_record('99124695833506421_custom_holdings'))
       @record_at_resource_sharing = @indexer.map_record(fixture_record('19299349640006421'))
@@ -463,6 +464,14 @@ describe 'From traject_config.rb', indexing: true do
     describe 'notes from record show up in the notes_index' do
       it 'shows tag 500 and 538' do
         expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
+      end
+    end
+    describe 'description_display' do
+      it 'shows tag 255' do
+        expect(@record_with_255a['description_display']).to include('Scales differ.')
+      end
+      it 'shows tag 300' do
+        expect(@record_with_255a['description_display']).to include('1 map on 3 sheets : col. ; each 64 x 54 cm.')
       end
     end
     describe 'publication end date' do
