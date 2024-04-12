@@ -73,12 +73,6 @@ RSpec.describe PatronController, type: :controller do
       end
     end
 
-    it "converts patron group to 'staff'" do
-      get :patron_info, params: { patron_id: patron_identifier, format: :json }
-      expect(response).to have_http_status(200)
-      expect(JSON.parse(response.body)["patron_group"]).to eq "staff"
-    end
-
     it "allows authenticated users to access patron info and ldap data when desired" do
       expect(Ldap).to receive(:find_by_netid).with(patron_identifier).and_return(ldap_data: "is here")
       get :patron_info, params: { patron_id: patron_identifier, ldap: true, format: :json }
@@ -90,7 +84,7 @@ RSpec.describe PatronController, type: :controller do
         "barcode" => "00000000000000",
         "university_id" => "100000000",
         "patron_id" => "100000000",
-        "patron_group" => "staff",
+        "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
         "campus_authorized_category" => "none",
@@ -110,7 +104,7 @@ RSpec.describe PatronController, type: :controller do
         "barcode" => "00000000000000",
         "university_id" => "100000000",
         "patron_id" => "100000000",
-        "patron_group" => "staff",
+        "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => false,
         "campus_authorized_category" => "none",
@@ -129,7 +123,7 @@ RSpec.describe PatronController, type: :controller do
         "barcode" => "00000000000000",
         "university_id" => "100000000",
         "patron_id" => "100000000",
-        "patron_group" => "staff",
+        "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
         "campus_authorized" => true,
         "campus_authorized_category" => "full",
