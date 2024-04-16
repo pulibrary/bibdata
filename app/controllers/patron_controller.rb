@@ -62,9 +62,7 @@ class PatronController < ApplicationController
     end
 
     def patron_group
-      val = data["user_group"]["value"]
-      return "staff" if val == "P"
-      val
+      data["user_group"]["value"]
     end
 
     def protect
