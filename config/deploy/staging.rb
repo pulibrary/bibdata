@@ -6,7 +6,7 @@
 
 set :application, 'bibdata'
 set :stage, :production
-set :rails_env, 'production'
+set :rails_env, 'staging'
 server 'bibdata-alma-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron, :poller]
 server 'bibdata-alma-staging2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron, :poller]
 server 'bibdata-alma-worker-staging1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]

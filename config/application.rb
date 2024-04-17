@@ -3,9 +3,9 @@ require File.expand_path('../boot', __FILE__)
 require 'rails/all'
 require_relative 'lando_env' if Rails.env.development? || Rails.env.test?
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
-Bundler.require(*Rails.groups)
+# Require the gems listed in Gemfile, but only the default ones
+# and those for the environment rails is running in
+Bundler.require(:default, Rails.env)
 
 module MarcLiberation
   class Application < Rails::Application

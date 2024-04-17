@@ -34,6 +34,7 @@ jobs:
       - run: sudo apt-get -y update
       - run: sudo apt-get install -y postgresql-client || true
       - run: gem install bundler -v '~> 2.0'
+      - run: bundle config set --local without production
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3

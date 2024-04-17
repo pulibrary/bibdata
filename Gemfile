@@ -14,7 +14,6 @@ gem 'capistrano-rails'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'
 gem 'change_the_subject', '~> 0.3.2'
-gem 'ddtrace', '~> 0.54.2'
 gem 'devise'
 gem 'ed25519'
 gem 'faraday', '~> 1.0'
@@ -24,6 +23,7 @@ gem 'friendly_id'
 gem 'gyoku', '~> 1.0'
 gem 'high_voltage', '~> 3.0'
 gem 'honeybadger'
+gem 'human_languages', '~> 0.7'
 gem 'jbuilder'
 gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
@@ -44,6 +44,8 @@ gem 'net-sftp'
 gem 'net-smtp', require: false
 gem 'oj'
 gem 'omniauth-cas'
+gem 'omniauth-rails_csrf_protection'
+gem 'open3'
 gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764fc37df3261531c9937061'
 gem 'pg'
 gem "rack", ">= 2.0.6"
@@ -68,6 +70,10 @@ gem 'turbolinks'
 gem 'whenever', "~> 0.10"
 gem 'yard'
 
+group :production do
+  gem "ddtrace", '~> 0.54.2'
+end
+
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'coveralls_reborn'
@@ -89,9 +95,3 @@ group :test do
   gem 'axe-core-api'
   gem 'axe-core-rspec'
 end
-
-gem "omniauth-rails_csrf_protection"
-
-gem "human_languages", "~> 0.7"
-
-gem "open3"

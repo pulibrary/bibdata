@@ -1,8 +1,15 @@
+default: &default
+  addresses: <%= ENV["BIBDATA_IP_ALLOWLIST"] || "" %>
+
 development:
   addresses: "127.0.0.1 ::1"
 
 test:
   addresses: "127.0.0.1"
 
+staging:
+  <<: *default
+qa:
+  <<: *default
 production:
-  addresses: <%= ENV["BIBDATA_IP_ALLOWLIST"] || "" %>
+  <<: *default

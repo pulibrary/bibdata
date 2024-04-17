@@ -9,3 +9,9 @@ test:
 
 production:
   <<: *default
+
+staging:
+  <<: *default
+
+qa:
+  <<: *default
