@@ -12,3 +12,5 @@ production: &production
   db: <%= ENV['BIBDATA_REDIS_DB'] || 5 %>
 staging:
   <<: *production
+qa:
+  <<: *production
