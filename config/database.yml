@@ -27,3 +27,7 @@ production:
 staging:
   <<: *default
   pool: 20
+
+qa:
+  <<: *default
+  pool: 20

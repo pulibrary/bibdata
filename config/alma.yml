@@ -31,3 +31,9 @@ test:
 
 production:
   <<: *default
+
+qa:
+  <<: *default
+
+staging:
+  <<: *default

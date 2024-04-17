@@ -7,7 +7,7 @@
 set :application, 'bibdata'
 
 set :stage, :production
-set :rails_env, 'production'
+set :rails_env, 'qa'
 server 'bibdata-qa1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron, :poller]
 server 'bibdata-qa2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron, :poller]
 server 'bibdata-worker-qa1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
