@@ -9,19 +9,26 @@ figgy_base_url: "https://figgy.princeton.edu"
 location_files_dir: <%= ENV['LOCATION_FILES_DIR'] || 'config/locations' %> 
 
 dump_types:
-- label: 'All Records' # used for full dumps
+- id: 1
+  label: 'All Records' # used for full dumps
   constant: 'ALL_RECORDS'
-- label: 'Changed Records' # used for incremental dumps
+- id: 2
+  label: 'Changed Records' # used for incremental dumps
   constant: 'CHANGED_RECORDS'
-- label: 'Updated Princeton ReCAP Records' # used for Princeton records we send to SCSB
+- id: 3
+  label: 'Updated Princeton ReCAP Records' # used for Princeton records we send to SCSB
   constant: 'PRINCETON_RECAP'
-- label: 'Updated Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
+- id: 4
+  label: 'Updated Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
   constant: 'PARTNER_RECAP'
-- label: 'Full Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
+- id: 5
+  label: 'Full Partner ReCAP Records' # used for records we get from SCSB partners (NYPL and Columbia)
   constant: 'PARTNER_RECAP_FULL'
-- label: 'All Bib IDs' # no longer used
+- id: 6
+  label: 'All Bib IDs' # no longer used
   constant: 'BIB_IDS'
-- label: 'All Bib IDs with Holdings' # no longer used
+- id: 7
+  label: 'All Bib IDs with Holdings' # no longer used
   constant: 'MERGED_IDS'
 
 dump_file_types:

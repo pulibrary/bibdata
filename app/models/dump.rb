@@ -22,10 +22,10 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  scope :partner_recap_full, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP_FULL')) }
-  scope :partner_recap, -> { where(dump_type: DumpType.where(constant: 'PARTNER_RECAP')) }
-  scope :changed_records, -> { where(dump_type: DumpType.where(constant: 'CHANGED_RECORDS')) }
-  scope :full_dumps, -> { where(dump_type: DumpType.where(constant: 'ALL_RECORDS')) }
+  scope :partner_recap_full, -> { where(dump_type_id: 5) }
+  scope :partner_recap, -> { where(dump_type_id: 4) }
+  scope :changed_records, -> { where(dump_type_id: 2) }
+  scope :full_dumps, -> { where(dump_type_id: 1) }
 
   class << self
     ##
@@ -34,7 +34,7 @@ class Dump < ActiveRecord::Base
       dump = nil
       timestamp = incremental_update_timestamp
       Event.record do |event|
-        dump = Dump.create(dump_type: DumpType.find_by(constant: "PARTNER_RECAP"))
+        dump = Dump.create(dump_type_id: 4)
         ScsbImportJob.perform_later(dump.id, timestamp)
         dump.event = event
         dump.save

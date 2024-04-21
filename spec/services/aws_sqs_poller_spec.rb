@@ -14,8 +14,6 @@ RSpec.describe AwsSqsPoller do
   end
 
   before do
-    FactoryBot.create(:full_dump_type)
-    FactoryBot.create(:incremental_dump_type)
     Aws.config[:sqs] = {
       stub_responses: {
         receive_message: [

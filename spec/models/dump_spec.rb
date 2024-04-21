@@ -4,9 +4,9 @@ RSpec.describe Dump, type: :model do
   let(:partner_recap) { 'PARTNER_RECAP' }
   let(:princeton_recap) { 'PRINCETON_RECAP' }
   let(:partner_recap_full) { 'PARTNER_RECAP_FULL' }
-  let(:princeton_recap_dump_type) { DumpType.find_by(constant: princeton_recap) }
-  let(:partner_recap_dump_type) { DumpType.find_by(constant: partner_recap) }
-  let(:partner_recap_full_dump_type) { DumpType.find_by(constant: partner_recap_full) }
+  let(:princeton_recap_dump_type) { DumpType.find(3) }
+  let(:partner_recap_dump_type) { DumpType.find(4) }
+  let(:partner_recap_full_dump_type) { DumpType.find(5) }
   let(:test_create_time) { '2017-04-29 20:10:29'.to_time }
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
   let(:dump_princeton_recap_success) { described_class.create(event_id: event_success.id, dump_type_id: princeton_recap_dump_type.id, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }

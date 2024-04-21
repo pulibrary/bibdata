@@ -11,7 +11,7 @@ class DataSeeder
 
   def generate_dump_types
     dump_types.each do |dt|
-      DumpType.find_or_create_by(label: dt['label'], constant: dt['constant'])
+      DumpType.find_or_create_by(id: dt['id'], label: dt['label'], constant: dt['constant'])
     end
     logger.info "Created #{dump_types.count} dump types"
   end
