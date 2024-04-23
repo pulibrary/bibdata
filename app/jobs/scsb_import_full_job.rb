@@ -12,12 +12,8 @@ class ScsbImportFullJob < ApplicationJob
 
   private
 
-    def dump_type
-      @dump_type ||= DumpType.find_or_create_by!(constant: DumpType::PARTNER_RECAP_FULL)
-    end
-
     def created_dump
-      Dump.create!(dump_type:)
+      Dump.create!(dump_type_id: 5)
     end
 
     def delete_stale_files

@@ -8,26 +8,6 @@ FactoryBot.define do
     updated_at { finish }
   end
 
-  factory :full_dump_type, class: "DumpType" do
-    constant { "ALL_RECORDS" }
-    label { "All Records" }
-  end
-
-  factory :incremental_dump_type, class: "DumpType" do
-    constant { "CHANGED_RECORDS" }
-    label { "Changed Records" }
-  end
-
-  factory :partner_recap_daily_dump_type, class: "DumpType" do
-    constant { "PARTNER_RECAP" }
-    label { "Updated Partner ReCAP Records" }
-  end
-
-  factory :partner_recap_full_dump_type, class: "DumpType" do
-    constant { "PARTNER_RECAP_FULL" }
-    label { "Full Partner ReCAP Records" }
-  end
-
   factory :full_dump_file_type, class: "DumpFileType" do
     constant { "BIB_RECORDS" }
     label { "All Bib Records" }
@@ -74,35 +54,35 @@ FactoryBot.define do
   end
 
   factory :empty_dump, class: "Dump" do
-    association :dump_type, factory: :full_dump_type
+    dump_type_id { 1 }
     association :event
   end
 
   factory :empty_incremental_dump, class: "Dump" do
-    association :dump_type, factory: :incremental_dump_type
+    dump_type_id { 2 }
     association :event
   end
 
   factory :empty_partner_recap_incremental_dump, class: "Dump" do
-    association :dump_type, factory: :partner_recap_daily_dump_type
+    dump_type_id { 4 }
     association :event
   end
 
   factory :empty_partner_full_dump, class: "Dump" do
-    association :dump_type, factory: :partner_recap_full_dump_type
+    dump_type_id { 5 }
     association :event
   end
 
   factory :empty_partner_recap_dump, class: "Dump" do
-    dump_type { DumpType.find_by(constant: "PARTNER_RECAP") }
+    dump_type_id { 4 }
     association :event
   end
 
   factory :full_dump, class: "Dump" do
-    association :dump_type, factory: :full_dump_type
     generated_date { Time.new(2021, 7, 13, 11, 0, 0, "+00:00") }
     delete_ids { [] }
     update_ids { [] }
+    dump_type_id { 1 }
     dump_files do
       [
         association(:dump_file, path: 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz'),
@@ -112,9 +92,9 @@ FactoryBot.define do
   end
 
   factory :incremental_dump, class: "Dump" do
-    association :dump_type, factory: :incremental_dump_type
     delete_ids { [] }
     update_ids { [] }
+    dump_type_id { 2 }
     dump_files do
       [
         association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/1.tar.gz'),
@@ -124,7 +104,7 @@ FactoryBot.define do
   end
 
   factory :partner_recap_daily_dump, class: "Dump" do
-    association :dump_type, factory: :partner_recap_daily_dump_type
+    dump_type_id { 4 }
     delete_ids { [] }
     update_ids { [] }
     dump_files do
@@ -136,7 +116,7 @@ FactoryBot.define do
   end
 
   factory :partner_recap_full_dump, class: "Dump" do
-    association :dump_type, factory: :partner_recap_full_dump_type
+    dump_type_id { 5 }
     delete_ids { [] }
     update_ids { [] }
     dump_files do
