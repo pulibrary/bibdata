@@ -77,7 +77,7 @@ class IndexManager < ActiveRecord::Base
   end
 
   def recent_full_dump
-    Dump.full_dumps.joins(:event).order("events.start" => "DESC").first
+    Dump.full_dump.joins(:event).order("events.start" => "DESC").first
   end
 
   def first_incremental

@@ -2,7 +2,7 @@ class DumpLogIdsService
   # Process a dump of MARC files and updates the Dump's delete_id and update_id properties
   def process_dump(id)
     dump = Dump.find(id)
-    raise StandardError.new, "Dump is of type #{dump.dump_type.constant}, must be CHANGED_RECORDS" if dump.dump_type.constant != "CHANGED_RECORDS"
+    raise StandardError.new, "Dump is of type #{dump.dump_type}, must be changed_records" unless dump.changed_records?
 
     delete_ids = []
     update_ids = []

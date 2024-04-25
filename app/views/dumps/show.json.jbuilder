@@ -1,4 +1,4 @@
-json.type @dump.dump_type.constant.downcase
+json.type @dump.dump_type.downcase
 json.generated_date @dump.generated_date
 json.files do
   DumpFileType.all.each do |dft|

@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates, type: :model do
   include ActiveJob::TestHelper
-  let(:partner_recap_dump_type) { DumpType.find_by(constant: 'PARTNER_RECAP') }
   let(:log_file_type) { DumpFileType.find_by(constant: 'LOG_FILE') }
-  let(:dump) { Dump.create(dump_type: partner_recap_dump_type) }
+  let(:dump) { Dump.create(dump_type: :partner_recap) }
   let(:timestamp) { Dump.send(:incremental_update_timestamp) }
   let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
   let(:scsb_file_dir) { Rails.root.join("tmp", "specs", "data") }

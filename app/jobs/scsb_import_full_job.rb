@@ -13,7 +13,7 @@ class ScsbImportFullJob < ApplicationJob
   private
 
     def created_dump
-      Dump.create!(dump_type_id: 5)
+      Dump.create!(dump_type: :partner_recap_full)
     end
 
     def delete_stale_files

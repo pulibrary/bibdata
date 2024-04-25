@@ -20,7 +20,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: 'ALL_RECORDS', older_than: 2.months.ago.to_i)
+        described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, incremental_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, incremental_event.dump.id)
@@ -46,7 +46,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: 'CHANGED_RECORDS', older_than: 2.months.ago.to_i)
+        described_class.perform_now(dump_type: :changed_records, older_than: 2.months.ago)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, full_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, full_event.dump.id)
@@ -71,7 +71,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: 'PARTNER_RECAP', older_than: 2.months.ago.to_i)
+        described_class.perform_now(dump_type: :partner_recap, older_than: 2.months.ago)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.id, full_partner_recap_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.dump.id, full_partner_recap_event.dump.id)
@@ -94,7 +94,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: 'PARTNER_RECAP_FULL', older_than: 2.months.ago.to_i)
+        described_class.perform_now(dump_type: :partner_recap_full, older_than: 2.months.ago)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.id, partner_recap_daily_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.dump.id, partner_recap_daily_event.dump.id)

@@ -10,7 +10,7 @@ location_files_dir: <%= ENV['LOCATION_FILES_DIR'] || 'config/locations' %>
 
 dump_types:
 - id: 1
-  label: 'All Records' # used for full dumps
+  label: 'Full Dumps' # used for full dumps
   constant: 'ALL_RECORDS'
 - id: 2
   label: 'Changed Records' # used for incremental dumps

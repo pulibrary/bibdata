@@ -41,15 +41,15 @@ class AlmaDumpFactory
   end
 
   def bib_dump
-    dump = Dump.create(dump_type_id:)
+    dump = Dump.create(dump_type:)
     dump.event = dump_event
     dump.generated_date = dump_event.start
     dump.save
     dump
   end
 
-  def dump_type_id
-    @dump_type_id ||= Rails.configuration.alma[:jobs][job_name]["dump_type_id"]
+  def dump_type
+    @dump_type ||= Rails.configuration.alma[:jobs][job_name]["dump_type"]
   end
 
   def job_name

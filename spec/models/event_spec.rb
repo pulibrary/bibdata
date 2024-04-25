@@ -5,8 +5,8 @@ RSpec.describe Event, type: :model do
   before(:all) do
     bibs = './spec/fixtures/sample_bib_ids.txt'
     10.times { dump_test_bib_ids(bibs) }
-    10.times { test_events('CHANGED_RECORDS') }
-    5.times { test_events('ALL_RECORDS') }
+    10.times { test_events(:changed_records) }
+    5.times { test_events(:full_dump) }
   end
 
   after(:all) do
@@ -22,7 +22,7 @@ RSpec.describe Event, type: :model do
   def dump_test_bib_ids(bibs)
     dump = nil
     Event.record do |event|
-      dump = Dump.create(dump_type: DumpType.find_by(constant: 'BIB_IDS'))
+      dump = Dump.create(dump_type: :bib_ids)
       dump.event = event
       dump_file = DumpFile.create(dump:, dump_file_type: DumpFileType.find_by(constant: 'BIB_IDS'))
       FileUtils.cp bibs, dump_file.path
@@ -37,7 +37,7 @@ RSpec.describe Event, type: :model do
   def test_events(type)
     dump = nil
     Event.record do |event|
-      dump = Dump.create(dump_type: DumpType.find_by(constant: type))
+      dump = Dump.create(dump_type: type)
       dump.event = event
       dump.save
     end
