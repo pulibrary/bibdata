@@ -9,7 +9,6 @@ class Dump < ActiveRecord::Base
   DONE = 'done'.freeze
 
   belongs_to :event
-  belongs_to :dump_type
   has_many :dump_files
   # These only apply to change dumps (stored in db rather than text files)
   serialize :delete_ids
@@ -22,10 +21,15 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  scope :partner_recap_full, -> { where(dump_type_id: 5) }
-  scope :partner_recap, -> { where(dump_type_id: 4) }
-  scope :changed_records, -> { where(dump_type_id: 2) }
-  scope :full_dumps, -> { where(dump_type_id: 1) }
+  enum dump_type: {
+    full_dump: 1,
+    changed_records: 2,
+    princeton_recap: 3,
+    partner_recap: 4,
+    partner_recap_full: 5,
+    bib_ids: 6,
+    merged_ids: 7
+  }
 
   class << self
     ##
@@ -34,7 +38,7 @@ class Dump < ActiveRecord::Base
       dump = nil
       timestamp = incremental_update_timestamp
       Event.record do |event|
-        dump = Dump.create(dump_type_id: 4)
+        dump = Dump.create(dump_type: :partner_recap)
         ScsbImportJob.perform_later(dump.id, timestamp)
         dump.event = event
         dump.save
@@ -63,10 +67,6 @@ class Dump < ActiveRecord::Base
         Dump.partner_recap.last&.created_at
       end
   end # class << self
-
-  def full_dump?
-    dump_type.constant == 'ALL_RECORDS'
-  end
 
   def subsequent_partner_incrementals
     Dump.partner_recap.where(generated_date: generated_date..Float::INFINITY)

@@ -1,16 +1,15 @@
 namespace :marc_liberation do
   namespace :delete do
     task events: :environment do
-      DeleteEventsJob.perform_later(dump_type: 'ALL_RECORDS', older_than: 2.months.ago.to_i)
-      DeleteEventsJob.perform_later(dump_type: 'CHANGED_RECORDS', older_than: 2.months.ago.to_i)
-      DeleteEventsJob.perform_later(dump_type: 'PARTNER_RECAP_FULL', older_than: 2.months.ago.to_i)
-      DeleteEventsJob.perform_later(dump_type: 'PARTNER_RECAP', older_than: 2.months.ago.to_i)
+      DeleteEventsJob.perform_later(dump_type: :full_dump, older_than: 2.months.ago)
+      DeleteEventsJob.perform_later(dump_type: :changed_records, older_than: 2.months.ago)
+      DeleteEventsJob.perform_later(dump_type: :partner_recap_full, older_than: 2.months.ago)
+      DeleteEventsJob.perform_later(dump_type: :partner_recap, older_than: 2.months.ago)
     end
   end
 
   task load_dump_types: :environment do
     seeder = DataSeeder.new
-    seeder.generate_dump_types
     seeder.generate_dump_file_types
   end
 end

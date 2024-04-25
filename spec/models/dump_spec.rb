@@ -4,12 +4,12 @@ RSpec.describe Dump, type: :model do
   let(:partner_recap) { 'PARTNER_RECAP' }
   let(:princeton_recap) { 'PRINCETON_RECAP' }
   let(:partner_recap_full) { 'PARTNER_RECAP_FULL' }
-  let(:princeton_recap_dump_type) { DumpType.find(3) }
-  let(:partner_recap_dump_type) { DumpType.find(4) }
-  let(:partner_recap_full_dump_type) { DumpType.find(5) }
+  let(:princeton_recap_dump_type) { 'princeton_recap' }
+  let(:partner_recap_dump_type) { 'partner_recap' }
+  let(:partner_recap_full_dump_type) { 'partner_recap_full' }
   let(:test_create_time) { '2017-04-29 20:10:29'.to_time }
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
-  let(:dump_princeton_recap_success) { described_class.create(event_id: event_success.id, dump_type_id: princeton_recap_dump_type.id, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
+  let(:dump_princeton_recap_success) { described_class.create(event_id: event_success.id, dump_type: :princeton_recap, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
 
   describe ".partner_recap" do
     it "is a scope that can chain" do
@@ -29,7 +29,7 @@ RSpec.describe Dump, type: :model do
           described_class.partner_update
 
           created_dump = described_class.last
-          expect(created_dump.dump_type.constant).to eq "PARTNER_RECAP"
+          expect(created_dump.dump_type).to eq "partner_recap"
           expect(ScsbImportJob).to have_received(:perform_later).with(anything, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
         end
       end
@@ -42,7 +42,7 @@ RSpec.describe Dump, type: :model do
         described_class.partner_update
 
         created_dump = described_class.last
-        expect(created_dump.dump_type.constant).to eq "PARTNER_RECAP"
+        expect(created_dump.dump_type).to eq "partner_recap"
         expect(ScsbImportJob).to have_received(:perform_later).with(anything, dump.created_at.to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
       end
     end

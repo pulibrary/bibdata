@@ -70,7 +70,7 @@ RSpec.describe AwsSqsPoller do
       )
 
       expect(Dump.all.count).to eq 1
-      expect(Dump.first.dump_type.constant).to eq "ALL_RECORDS"
+      expect(Dump.first.dump_type).to eq('full_dump')
       event = Dump.first.event
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2020-12-15T19:56:37.694Z"
@@ -92,7 +92,7 @@ RSpec.describe AwsSqsPoller do
       )
 
       expect(Dump.all.count).to eq 1
-      expect(Dump.first.dump_type.constant).to eq "CHANGED_RECORDS"
+      expect(Dump.first.dump_type).to eq 'changed_records'
       event = Dump.first.event
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2021-02-08T17:03:52.894Z"
@@ -114,7 +114,7 @@ RSpec.describe AwsSqsPoller do
       )
 
       expect(Dump.all.count).to eq 1
-      expect(Dump.first.dump_type.constant).to eq "PRINCETON_RECAP"
+      expect(Dump.first.dump_type).to eq "princeton_recap"
       event = Dump.first.event
       expect(event.message_body).to eq message_body
       expect(event.start).to eq "2021-02-08T17:03:52.894Z"

@@ -1,18 +1,11 @@
 class DeleteEventsJob < ApplicationJob
-  # @param dump_type [String] the dump type of the dumps you want to clean up
-  # @param older_than [int] the Time before which dumps should be deleted, serialized as an integer
+  # @param dump_type [Symbol] the dump type of the dumps you want to clean up
+  # @param older_than [int] the Time before which dumps should be deleted
   def perform(dump_type:, older_than:)
-    start = Event.arel_table[:start]
-    ids = Event
-          .joins(dump: :dump_type)
-          .where('dump_types.constant': dump_type)
-          .where(start.lt(deserialize_time(older_than)))
-          .map(&:id)
-
-    Event.destroy(ids)
-  end
-
-  def deserialize_time(time)
-    Time.zone.at(time)
+    event_ids = Event.joins(:dump)
+                     .where('dump.dump_type': dump_type)
+                     .where(start: ..older_than)
+                     .map(&:id)
+    Event.destroy(event_ids)
   end
 end

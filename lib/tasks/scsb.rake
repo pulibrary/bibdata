@@ -36,13 +36,12 @@ namespace :scsb do
 
   desc "Adds a local dump file to the database"
   task add_local_dump_file: :environment do
-    abort "usage: FILE=full-file-path.xml.gz rake add_local_dump_file" unless ENV['FILE']
+    abort "usage: FILE=full-file-path.xml.gz rake scsb:add_local_dump_file" unless ENV['FILE']
     ev = Event.new(success: true)
     ev.save
 
-    dump_type = ENV['DUMP_TYPE'] || "PARTNER_RECAP"
-    dump_type_id = DumpType.where(constant: dump_type).first.id
-    dump = Dump.new(event_id: ev.id, dump_type_id:)
+    dump_type = ENV['DUMP_TYPE'] || :partner_recap
+    dump = Dump.new(event_id: ev.id, dump_type: dump_type.downcase.to_sym)
     dump.save
 
     dump_file_type = ENV['DUMP_FILE_TYPE'] || "RECAP_RECORDS"

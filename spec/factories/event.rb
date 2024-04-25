@@ -54,27 +54,27 @@ FactoryBot.define do
   end
 
   factory :empty_dump, class: "Dump" do
-    dump_type_id { 1 }
+    dump_type { :full_dump }
     association :event
   end
 
   factory :empty_incremental_dump, class: "Dump" do
-    dump_type_id { 2 }
+    dump_type { :changed_records }
     association :event
   end
 
   factory :empty_partner_recap_incremental_dump, class: "Dump" do
-    dump_type_id { 4 }
+    dump_type { :partner_recap }
     association :event
   end
 
   factory :empty_partner_full_dump, class: "Dump" do
-    dump_type_id { 5 }
+    dump_type { :partner_recap_full }
     association :event
   end
 
   factory :empty_partner_recap_dump, class: "Dump" do
-    dump_type_id { 4 }
+    dump_type { :partner_recap }
     association :event
   end
 
@@ -82,7 +82,7 @@ FactoryBot.define do
     generated_date { Time.new(2021, 7, 13, 11, 0, 0, "+00:00") }
     delete_ids { [] }
     update_ids { [] }
-    dump_type_id { 1 }
+    dump_type { :full_dump }
     dump_files do
       [
         association(:dump_file, path: 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz'),
@@ -94,7 +94,7 @@ FactoryBot.define do
   factory :incremental_dump, class: "Dump" do
     delete_ids { [] }
     update_ids { [] }
-    dump_type_id { 2 }
+    dump_type { :changed_records }
     dump_files do
       [
         association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/1.tar.gz'),
@@ -104,7 +104,7 @@ FactoryBot.define do
   end
 
   factory :partner_recap_daily_dump, class: "Dump" do
-    dump_type_id { 4 }
+    dump_type { :partner_recap }
     delete_ids { [] }
     update_ids { [] }
     dump_files do
@@ -116,7 +116,7 @@ FactoryBot.define do
   end
 
   factory :partner_recap_full_dump, class: "Dump" do
-    dump_type_id { 5 }
+    dump_type { :partner_recap_full }
     delete_ids { [] }
     update_ids { [] }
     dump_files do
