@@ -41,11 +41,9 @@ class AlmaDumpFactory
   end
 
   def bib_dump
-    dump = Dump.create(dump_type:)
-    dump.event = dump_event
-    dump.generated_date = dump_event.start
-    dump.save
-    dump
+    Dump.create(dump_type:,
+                event: dump_event,
+                generated_date: dump_event.start)
   end
 
   def dump_type
