@@ -68,6 +68,7 @@ describe 'From traject_config.rb', indexing: true do
       @electronic_no_852 = @indexer.map_record(fixture_record('99125406065106421'))
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
+      @fast_subject_heading = @indexer.map_record(fixture_record('9979775553506421'))
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
       @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
       @private_notes_583 = @indexer.map_record(fixture_record('99106353023506421'))
@@ -1169,6 +1170,12 @@ describe 'From traject_config.rb', indexing: true do
         # # this should combine both, without lc subfields
         expect(@homosaurus["subject_topic_facet"]).to match_array(["Transgender people", "Trans", "Transgender community", "Transgender culture"])
         expect(@homosaurus_655["homoit_genre_s"]).to match(["LGBTQ+ periodicals"])
+      end
+    end
+    describe 'fast subject heading fields' do
+      it 'works in a fixture file that only has fast headings' do
+        expect(@fast_subject_heading["fast_subject_display"]).to match_array(["Criticism, interpretation, etc."])
+        expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc."])
       end
     end
     describe 'form_genre_display' do
