@@ -47,7 +47,7 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
     Event.record do |event|
       dump = Dump.create(dump_type: :bib_ids)
       dump.event = event
-      dump_file = DumpFile.create(dump:, dump_file_type: DumpFileType.find_by(constant: 'BIB_IDS'))
+      dump_file = DumpFile.create(dump:, dump_file_type: :bib_ids)
       FileUtils.cp bibs, dump_file.path
       dump_file.save
       dump_file.zip

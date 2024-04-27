@@ -8,49 +8,20 @@ FactoryBot.define do
     updated_at { finish }
   end
 
-  factory :full_dump_file_type, class: "DumpFileType" do
-    constant { "BIB_RECORDS" }
-    label { "All Bib Records" }
-  end
-
-  factory :incremental_dump_file_type, class: "DumpFileType" do
-    constant { 'UPDATED_RECORDS' }
-    label { 'Updated Records' }
-  end
-
-  factory :recap_incremental_dump_file_type, class: "DumpFileType" do
-    constant { 'RECAP_RECORDS' }
-    label { 'Recap Records' }
-  end
-
-  factory :partner_recap_daily_dump_file_type, class: "DumpFileType" do
-    constant { 'RECAP_RECORDS' }
-    label { 'Updated ReCAP Records' }
-  end
-
-  factory :partner_recap_full_dump_file_type, class: "DumpFileType" do
-    constant { 'Full ReCAP Records' }
-    label { 'RECAP_RECORDS_FULL' }
-  end
-
   factory :dump_file do
-    association :dump_file_type, factory: :full_dump_file_type
+    dump_file_type { :bib_records }
   end
 
   factory :incremental_dump_file, class: "DumpFile" do
-    association :dump_file_type, factory: :incremental_dump_file_type
-  end
-
-  factory :recap_incremental_dump_file, class: "DumpFile" do
-    association :dump_file_type, factory: :recap_incremental_dump_file_type
+    dump_file_type { :updated_records }
   end
 
   factory :partner_recap_daily_dump_file, class: "DumpFile" do
-    association :dump_file_type, factory: :partner_recap_daily_dump_file_type
+    dump_file_type { :recap_records }
   end
 
   factory :partner_recap_full_dump_file, class: "DumpFile" do
-    association :dump_file_type, factory: :partner_recap_full_dump_file_type
+    dump_file_type { :recap_records_full }
   end
 
   factory :empty_dump, class: "Dump" do

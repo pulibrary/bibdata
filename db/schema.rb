@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_23_192157) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_27_003355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,9 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_23_192157) do
     t.string "md5"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
-    t.integer "dump_file_type_id"
     t.integer "index_status", default: 0
-    t.index ["dump_file_type_id"], name: "index_dump_files_on_dump_file_type_id"
+    t.integer "dump_file_type"
     t.index ["dump_id"], name: "index_dump_files_on_dump_id"
   end
 

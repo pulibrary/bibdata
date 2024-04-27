@@ -44,9 +44,8 @@ namespace :scsb do
     dump = Dump.new(event_id: ev.id, dump_type: dump_type.downcase.to_sym)
     dump.save
 
-    dump_file_type = ENV['DUMP_FILE_TYPE'] || "RECAP_RECORDS"
-    dump_file_type_id = DumpFileType.where(constant: dump_file_type).first.id
-    dump_file = DumpFile.new(dump_id: dump.id, dump_file_type_id:, path: ENV['FILE'])
+    dump_file_type = ENV['DUMP_FILE_TYPE'] || :recap_records
+    dump_file = DumpFile.new(dump_id: dump.id, dump_file_type: dump_file_type.downcase.to_sym, path: ENV['FILE'])
     dump_file.save
   end
 

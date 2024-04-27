@@ -32,19 +32,27 @@ dump_types:
   constant: 'MERGED_IDS'
 
 dump_file_types:
-- label: 'All Bib Records' # used with ALL_RECORDS dumps
+- id: 1
+  label: 'All Bib Records' # used with ALL_RECORDS dumps
   constant: 'BIB_RECORDS'
-- label: 'Updated Records' # used with CHANGED_RECORDS dumps
+- id: 2
+  label: 'Updated Records' # used with CHANGED_RECORDS dumps
   constant: 'UPDATED_RECORDS'
-- label: 'Updated ReCAP Records' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
+- id: 3
+  label: 'Updated ReCAP Records' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'RECAP_RECORDS'
-- label: 'Full ReCAP Records' # used with PARTNER_RECAP_FULL dumps
+- id: 4
+  label: 'Full ReCAP Records' # used with PARTNER_RECAP_FULL dumps
   constant: 'RECAP_RECORDS_FULL'
-- label: 'Log File' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
+- id: 5
+  label: 'Log File' # used with PRINCETON_RECAP and PARTNER_RECAP dumps
   constant: 'LOG_FILE'
-- label: 'New Records' # no longer used
+- id: 6
+  label: 'New Records' # no longer used
   constant: 'NEW_RECORDS'
-- label: 'All Bib IDs with Holdings' #no longer used
+- id: 7
+  label: 'All Bib IDs with Holdings' #no longer used
   constant: 'MERGED_IDS'
-- label: 'All Bib IDs' #no longer used
+- id: 8
+  label: 'All Bib IDs' #no longer used
   constant: 'BIB_IDS'

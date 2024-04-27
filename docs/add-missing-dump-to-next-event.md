@@ -11,12 +11,11 @@ event_id = 1104
 missing_dump_files = ["/data/marc_liberation_files/incremental_16931978440006421_20220314_110330[029]_new.tar.gz",
                       "/data/marc_liberation_files/incremental_16935925020006421_20220314_140320[055]_delete.tar.gz",
                       "/data/marc_liberation_files/incremental_16935925020006421_20220314_140320[055]_new.tar.gz"]
-type = DumpFileType.find_by(constant: "UPDATED_RECORDS")
 dump = Dump.find(event_id)
 original_files  = dump.dump_files
 original_files.each {|file| file.dump_id = nil; file.save}
 missing_dump_files.each do |missing|
-  DumpFile.create(dump_file_type: type, path: missing, dump_id: dump.id)
+  DumpFile.create(dump_file_type: :updated_records, path: missing, dump_id: dump.id)
 end
 
 original_files.each do |file|

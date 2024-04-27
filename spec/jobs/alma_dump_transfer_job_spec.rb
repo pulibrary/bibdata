@@ -54,11 +54,8 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       let(:session_stub) { instance_double(Net::SFTP::Session) }
       let(:dir_stub) { instance_double(Net::SFTP::Operations::Dir) }
       let(:download_stub) { instance_double(Net::SFTP::Operations::Download) }
-      let(:event) { FactoryBot.create(:full_dump_file_type) }
 
       before do
-        event
-
         allow(Net::SFTP).to receive(:start).and_yield(session_stub)
         allow(session_stub).to receive(:dir).and_return(dir_stub)
         allow(dir_stub).to receive(:entries).and_return([name1, name2, name3])
@@ -74,7 +71,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.all.count).to eq 1
 
         expect(dump.dump_files.count).to eq 2
-        expect(dump.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["BIB_RECORDS"]
+        expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ["bib_records"]
         expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
 
         expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
@@ -100,10 +97,6 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         end
       end
 
-      before do
-        FactoryBot.create(:incremental_dump_file_type)
-      end
-
       it 'downloads the file' do
         session_stub = instance_double(Net::SFTP::Session)
         dir_stub = instance_double(Net::SFTP::Operations::Dir)
@@ -119,7 +112,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
-        expect(Dump.first.dump_files.map(&:dump_file_type).map(&:constant).uniq).to eq ["UPDATED_RECORDS"]
+        expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ["updated_records"]
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
         expect(IndexRemainingDumpsJob).to have_received(:perform_async).once
       end
