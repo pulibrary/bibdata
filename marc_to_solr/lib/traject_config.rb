@@ -924,9 +924,19 @@ end
 
 to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz', alternate_script: :only)
 
-to_field 'fast_subject_display', extract_marc('655|*7|abcvxyz')
+to_field 'fast_subject_display' do |record, accumulator|
+  next unless record['655']
+  next unless record['655']['2'] == 'fast'
+  value = record['655']['a']
+  accumulator << value
+end
 
-to_field 'fast_subject_unstem_search', extract_marc('655|*7|abcvxyz')
+to_field 'fast_subject_unstem_search' do |record, accumulator|
+  next unless record['655']
+  next unless record['655']['2'] == 'fast'
+  value = record['655']['a']
+  accumulator << value
+end
 
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|

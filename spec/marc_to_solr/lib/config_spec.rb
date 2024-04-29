@@ -69,6 +69,7 @@ describe 'From traject_config.rb', indexing: true do
       @holdings_with_and_no_items = @indexer.map_record(fixture_record('99122643653506421'))
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
       @fast_subject_heading = @indexer.map_record(fixture_record('9979775553506421'))
+      @non_fast_655 = @indexer.map_record(fixture_record('99125525173506421'))
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
       @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
       @private_notes_583 = @indexer.map_record(fixture_record('99106353023506421'))
@@ -1176,6 +1177,10 @@ describe 'From traject_config.rb', indexing: true do
       it 'works in a fixture file that only has fast headings' do
         expect(@fast_subject_heading["fast_subject_display"]).to match_array(["Criticism, interpretation, etc."])
         expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc."])
+      end
+      it 'does not work in a fixture file with no fast headings' do
+        expect(@non_fast_655["fast_subject_display"]).to be_blank
+        expect(@non_fast_655["fast_subject_unstem_search"]).to be_blank
       end
     end
     describe 'form_genre_display' do
