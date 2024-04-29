@@ -107,7 +107,7 @@ Then using the datadog libraries in your lambda should all work.
 
 #### Datadog integration: how it works
 
-When you wrap the logic of your lambda in the datadog funciton it adds a log
+When you wrap the logic of your lambda in the datadog function it adds a log
 line to your cloudwatch logs, it doesn't actually send anything to datadog yet.
 
 The Datadog lambda ("forwarder") bundles up your logs and ships them to Datadog.
