@@ -7,9 +7,4 @@ namespace :marc_liberation do
       DeleteEventsJob.perform_later(dump_type: :partner_recap, older_than: 2.months.ago)
     end
   end
-
-  task load_dump_types: :environment do
-    seeder = DataSeeder.new
-    seeder.generate_dump_file_types
-  end
 end

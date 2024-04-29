@@ -4,8 +4,18 @@ require 'rubygems/package'
 
 class DumpFile < ActiveRecord::Base
   belongs_to :dump
-  belongs_to :dump_file_type
   enum index_status: { enqueued: 0, started: 1, done: 2 }
+
+  enum dump_file_type: {
+    bib_records: 1,
+    updated_records: 2,
+    recap_records: 3,
+    recap_records_full: 4,
+    log_file: 5,
+    new_records: 6,
+    merged_ids: 7,
+    bib_ids: 8
+  }
 
   after_create do
     self.path = generate_fp if path.nil?
@@ -29,10 +39,7 @@ class DumpFile < ActiveRecord::Base
   end
 
   def recap_record_type?
-    [
-      DumpFileType.find_by(constant: 'RECAP_RECORDS'),
-      DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL')
-    ].include? dump_file_type
+    self.recap_records? || self.recap_records_full?
   end
 
   def zipped?

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates, type: :model do
   include ActiveJob::TestHelper
-  let(:log_file_type) { DumpFileType.find_by(constant: 'LOG_FILE') }
+  let(:log_file_type) { :log_file }
   let(:dump) { Dump.create(dump_type: :partner_recap) }
   let(:timestamp) { Dump.send(:incremental_update_timestamp) }
   let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
@@ -28,7 +28,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
 
   describe '.full' do
     let(:dump) { FactoryBot.create(:empty_partner_full_dump) }
-    let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL') }
+    let(:file_type) { :recap_records_full }
 
     context "when there are files" do
       before do
@@ -105,7 +105,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
   end
 
   describe '.incremental' do
-    let(:file_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
+    let(:file_type) { :recap_records }
     before do
       FileUtils.cp('spec/fixtures/scsb_updates/updates.zip', update_directory_path.join("CUL-NYPL-HL_20210622_183200.zip"))
       FileUtils.cp('spec/fixtures/scsb_updates/deletes.zip', update_directory_path.join("CUL-NYPL-HL_20210622_183300.zip"))
@@ -145,7 +145,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
 
   describe '.process' do
     it 'processes a scsb record and changes leader d to c' do
-      partner_updates = described_class.new(dump:, timestamp:, constant: 'RECAP_RECORDS')
+      partner_updates = described_class.new(dump:, timestamp:, dump_file_type: :recap_records)
       expect(scsb_record_leaderd.leader[5]).to eq('d')
       processed_record = partner_updates.send(:process_record, scsb_record_leaderd)
       expect(processed_record.leader[5]).to eq('c')

@@ -4,16 +4,16 @@ module Scsb
   class PartnerUpdates
     def self.full(dump:)
       timestamp = DateTime.now.to_time
-      constant = 'RECAP_RECORDS_FULL'
-      new(dump:, timestamp:, constant:).process_full_files
+      dump_file_type = :recap_records_full
+      new(dump:, timestamp:, dump_file_type:).process_full_files
     end
 
     def self.incremental(dump:, timestamp:)
-      constant = 'RECAP_RECORDS'
-      new(dump:, timestamp: timestamp.to_time, constant:).process_incremental_files
+      dump_file_type = :recap_records
+      new(dump:, timestamp: timestamp.to_time, dump_file_type:).process_incremental_files
     end
 
-    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.partner_transfer_client, constant:)
+    def initialize(dump:, timestamp:, s3_bucket: Scsb::S3Bucket.partner_transfer_client, dump_file_type:)
       @dump = dump
       @s3_bucket = s3_bucket
       @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
@@ -24,7 +24,7 @@ module Scsb
       @leader = []
       @composed_chars = []
       @bad_utf8 = []
-      @dump_file_constant = constant
+      @dump_file_type = dump_file_type
     end
 
     def process_full_files
@@ -169,9 +169,8 @@ module Scsb
         empty_subfield_fix(record)
       end
 
-      def attach_dump_file(filepath, constant = nil)
-        constant ||= @dump_file_constant
-        dump_file_type = DumpFileType.find_by(constant:)
+      def attach_dump_file(filepath, dump_file_type: nil)
+        dump_file_type ||= @dump_file_type
         df = DumpFile.create(dump_file_type:, path: filepath)
         df.zip
         df.save
@@ -189,7 +188,7 @@ module Scsb
         }
         filepath = log_file_name
         File.write(filepath, log_file.to_json.to_s)
-        attach_dump_file(filepath, 'LOG_FILE')
+        attach_dump_file(filepath, dump_file_type: :log_file)
       end
 
       def log_file_name

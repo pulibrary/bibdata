@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe Alma::Indexer::DumpFileIndexer do
   let(:solr_url) { ENV["SOLR_URL"] || "http://#{ENV['lando_bibdata_test_solr_conn_host']}:#{ENV['lando_bibdata_test_solr_conn_port']}/solr/bibdata-core-test" }
   let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
+  let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
+  let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
+
   around do |example|
     should_backup_file = File.exist? file_path
     FileUtils.cp(file_path, "#{file_path}.backup") if should_backup_file
@@ -11,9 +14,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
   end
 
   describe "#decompress_file" do
-    let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
-    let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
-
     context "with a .tar.gz file" do
       let(:file_path) { 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz' }
 
@@ -42,9 +42,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer do
   end
 
   describe "#index!" do
-    let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
-    let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
-
     context "with a .tar.gz file" do
       let(:file_path) { 'spec/fixtures/files/alma/full_dump/2.xml.tar.gz' }
 

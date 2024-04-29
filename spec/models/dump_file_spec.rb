@@ -38,19 +38,16 @@ RSpec.describe DumpFile, type: :model do
   end
 
   describe '#recap_record_type?' do
-    let(:recap_record_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS') }
-    let(:recap_record_full_type) { DumpFileType.find_by(constant: 'RECAP_RECORDS_FULL') }
-    let(:other_type) { DumpFileType.create }
-    it 'returns true for RECAP_RECORDS type' do
-      df = described_class.new(dump_file_type: recap_record_type)
+    it 'returns true for :recap_records type' do
+      df = described_class.new(dump_file_type: :recap_records)
       expect(df.recap_record_type?).to eq true
     end
-    it 'returns true for RECAP_RECORDS_FULL type' do
-      df = described_class.new(dump_file_type: recap_record_full_type)
+    it 'returns true for :recap_records_full type' do
+      df = described_class.new(dump_file_type: :recap_records_full)
       expect(df.recap_record_type?).to eq true
     end
     it 'otherwise returns false' do
-      df = described_class.new(dump_file_type: other_type)
+      df = described_class.new(dump_file_type: :bib_records)
       expect(df.recap_record_type?).to eq false
     end
   end

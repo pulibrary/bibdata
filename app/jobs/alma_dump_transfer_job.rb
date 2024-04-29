@@ -4,40 +4,37 @@ require 'net/sftp'
 # DumpFile objects. Kicks off further processing if neccessary
 class AlmaDumpTransferJob < ApplicationJob
   queue_as :default
+  attr_reader :dump_file_type
 
   def perform(dump:, job_id:)
-    type_constant = dump_file_type(dump)
-    AlmaDownloader.files_for(job_id:, type_constant:).each do |file|
+    @dump_file_type = find_dump_file_type(dump)
+    AlmaDownloader.files_for(job_id:, dump_file_type:).each do |file|
       dump.dump_files << file
     end
 
     dump.save
 
-    IndexManager.for(Rails.application.config.solr["url"]).index_remaining! if incremental_dump?(type_constant)
+    IndexManager.for(Rails.application.config.solr["url"]).index_remaining! if incremental_dump?
   end
 
-  def incremental_dump?(type_constant)
-    type_constant == "UPDATED_RECORDS"
+  def incremental_dump?
+    dump_file_type == :updated_records
   end
 
-  def recap_incremental_dump?(type_constant)
-    type_constant == "RECAP_RECORDS"
-  end
-
-  def dump_file_type(dump)
+  def find_dump_file_type(dump)
     job_config = find_job_configuration(dump:)
-    job_config["dump_file_type"]
+    job_config["dump_file_type"].downcase.to_sym
   end
 
   class AlmaDownloader
-    def self.files_for(job_id:, type_constant:)
-      new(job_id:, type_constant:).files_for
+    def self.files_for(job_id:, dump_file_type:)
+      new(job_id:, dump_file_type:).files_for
     end
 
-    attr_reader :job_id, :type_constant
-    def initialize(job_id:, type_constant:)
+    attr_reader :job_id, :dump_file_type
+    def initialize(job_id:, dump_file_type:)
       @job_id = job_id
-      @type_constant = type_constant
+      @dump_file_type = dump_file_type
     end
 
     def files_for
@@ -57,10 +54,6 @@ class AlmaDumpTransferJob < ApplicationJob
       end
 
       dump_files
-    end
-
-    def dump_file_type
-      DumpFileType.find_by(constant: type_constant)
     end
 
     # look to sftp server and identify the desired files using job_id
