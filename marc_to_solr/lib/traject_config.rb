@@ -884,6 +884,8 @@ to_field 'homoit_subject_display' do |record, accumulator|
 end
 
 to_field 'fast_subject_display' do |record, accumulator|
+  subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  next if subjects.present?
   record.fields.select { |field| field.tag[0] == '6' }.each do |field|
     next unless field['2'] == 'fast'
     value = field['a']
