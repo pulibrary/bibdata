@@ -22,7 +22,7 @@ This document describes the steps to dump the database from the bibdata producti
 
 1. ssh to one of the [bibdata staging VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L7-L10):
 
-  `ssh deploy@bibdata-alma-staging1`
+  `ssh deploy@bibdata-staging1`
   - Run:  
       `env | grep -i postgres` to find which [postgres staging VM](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/postgresql#L11-L12), bibdata staging is connected to.
       `env | grep -i DB` to find the staging database name in the env variable: `BIBDATA_DB`
@@ -33,7 +33,7 @@ If the postgres production VM has the public key from the postgres staging VM th
 3. ssh as pulsys in all the [bibdata staging machines](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L7-L10) and stop the nginx service:
 
 e.g.: 
-   `ssh pulsys@bibdata-alma-staging1`
+   `ssh pulsys@bibdata-staging1`
    `sudo service nginx stop`
 
 
@@ -55,7 +55,7 @@ e.g.:
 6. ssh as pulsys in all the [bibdata staging machines](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L7-L10) and start the nginx service:
 
 e.g.: 
-   `ssh pulsys@bibdata-alma-staging1`
+   `ssh pulsys@bibdata-staging1`
    `sudo service nginx start
 
 7. Go to `https://bibdata-staging.princeton.edu/events` and make sure the application is working as expected and lists all the events that the production site has.
@@ -67,17 +67,8 @@ For example: you want to test an issue on staging using the event with ID:6248:
       - `DumpFile.where(dump_id: 6248)` you should be able to see in attribute `path:` the `incremental_36489280620006421_20240423_130418[009]_new.tar.gz`.
 
    2. scp the file into one of the bibdata staging VMs:
-       - scp the file to your local and then to `deploy@bibdata-alma-staging1:/data/bibdata_files`
+       - scp the file to your local and then to `deploy@bibdata-staging1:/data/bibdata_files`
        - Visit https://bibdata-staging.princeton.edu/dumps/6248.json. The webpage should not error. You can also confirm that the file is attached to this event by searching the bibdata staging DB.
-       - `deploy@bibdata-alma-staging1:/opt/bibdata/current$ bundle exec rails c`
+       - `deploy@bibdata-staging1:/opt/bibdata/current$ bundle exec rails c`
 
        - `DumpFile.where(dump_id: 6248)` you should be able to see in path: attribute the `incremental_36489280620006421_20240423_130418[009]_new.tar.gz`.
-
-
-
-
-
-
-
-
-

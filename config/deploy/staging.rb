@@ -7,11 +7,11 @@
 set :application, 'bibdata'
 set :stage, :production
 set :rails_env, 'staging'
-server 'bibdata-alma-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron]
-server 'bibdata-alma-staging2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron]
+server 'bibdata-staging1.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron]
+server 'bibdata-staging2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron]
 # Worker 1 gets the poller daemon installed via Princeton Ansible
-server 'bibdata-alma-worker-staging1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
-server 'bibdata-alma-worker-staging2.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging]
+server 'bibdata-worker-staging1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging, :poller]
+server 'bibdata-worker-staging2.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_staging]
 
 # Extended Server Syntax
 # ======================
