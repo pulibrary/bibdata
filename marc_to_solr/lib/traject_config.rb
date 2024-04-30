@@ -883,6 +883,14 @@ to_field 'homoit_subject_display' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
+to_field 'fast_subject_display' do |record, accumulator|
+  record.fields.select { |field| field.tag[0] == '6' }.each do |field|
+    next unless field['2'] == 'fast'
+    value = field['a']
+    accumulator << value
+  end
+end
+
 # Adds lc, siku, local, and homoit subject unstem_search fields
 # Note that lc unstem search should include both archaic and replaced terms
 each_record do |_record, context|
@@ -890,6 +898,7 @@ each_record do |_record, context|
   context.output_hash['local_subject_unstem_search'] = context.output_hash['local_subject_display']
   context.output_hash['siku_subject_unstem_search'] = context.output_hash['siku_subject_display']
   context.output_hash['homoit_subject_unstem_search'] = context.output_hash['homoit_subject_display']
+  context.output_hash['fast_subject_unstem_search'] = context.output_hash['fast_subject_display']
 end
 
 # used for the browse lists and hierarchical subject/genre facet
@@ -924,19 +933,6 @@ end
 
 to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz', alternate_script: :only)
 
-to_field 'fast_subject_display' do |record, accumulator|
-  next unless record['655']
-  next unless record['655']['2'] == 'fast'
-  value = record['655']['a']
-  accumulator << value
-end
-
-to_field 'fast_subject_unstem_search' do |record, accumulator|
-  next unless record['655']
-  next unless record['655']['2'] == 'fast'
-  value = record['655']['a']
-  accumulator << value
-end
 
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|
