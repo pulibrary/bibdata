@@ -6,7 +6,7 @@ This document describes the steps to dump the database from the bibdata producti
 
 1. ssh to one of the [bibdata production VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L12-L15):
 
-  `ssh deploy@bibdata-alma1`
+  `ssh deploy@bibdata-prod1`
   - Run:  
     `env | grep -i postgres` to find which [postgres production VM](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/postgresql#L8-L9), bibdata is connected to.
     `env | grep -i DB` to find the production database name in the env variable: BIBDATA_DB  

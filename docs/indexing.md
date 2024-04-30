@@ -110,7 +110,7 @@ This will also index any incremental files we have that were generated after the
 
 ### Index Theses
 
-SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12) that is used for indexing and start a tmux session. `ssh deploy@bibdata-alma-worker1`
+SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
 
 as deploy user, in `/opt/bibdata/current`
 
@@ -160,7 +160,7 @@ There might be new incremental updates from Alma between the time the full reind
 SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13) that is used for indexing.      
 
 ```
-$ ssh deploy@bibdata-alma-worker1
+$ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
 ```
@@ -171,13 +171,13 @@ There will be new SCSB updates that need to be indexed. We import these updates 
 SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13 ) that is used for indexing.
 1. The following rake task will index the latest 'Updated Partner ReCAP Records' dump file.
 ```
-$ ssh deploy@bibdata-alma-worker1
+$ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
 ```
 2. The following rake task will index the 'Updated Partner ReCAP Records' since the SET_DATE until now. The SET_DATE below is an example date. 
 ```
-$ ssh deploy@bibdata-alma-worker1   
+$ ssh deploy@bibdata-worker-prod1   
 $ cd /opt/bibdata/current   
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
