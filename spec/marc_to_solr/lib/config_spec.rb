@@ -70,7 +70,7 @@ describe 'From traject_config.rb', indexing: true do
       @local_subject_heading = @indexer.map_record(fixture_record('local_subject_heading'))
       @fast_subject_heading = @indexer.map_record(fixture_record('9979775553506421'))
       @fast_and_lc_heading = @indexer.map_record(fixture_record('9980679413506421'))
-      @non_fast_655 = @indexer.map_record(fixture_record('99125525173506421'))
+      @non_fast_heading = @indexer.map_record(fixture_record('99125525173506421'))
       @siku_subject_headings = @indexer.map_record(fixture_record('9918309193506421'))
       @translated_contents = @indexer.map_record(fixture_record('9969362593506421'))
       @private_notes_583 = @indexer.map_record(fixture_record('99106353023506421'))
@@ -1177,11 +1177,11 @@ describe 'From traject_config.rb', indexing: true do
     describe 'fast subject heading fields' do
       it 'indexes fast headings' do
         expect(@fast_subject_heading["fast_subject_display"]).to match_array(["Criticism, interpretation, etc.", "Children's literature, Russian", "Russia (Federation)"])
-        expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc.",  "Children's literature, Russian", "Russia (Federation)"])
+        expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc.", "Children's literature, Russian", "Russia (Federation)"])
       end
       it 'does not index fast headings in a fixture file with no fast headings' do
-        expect(@non_fast_655["fast_subject_display"]).to be_blank
-        expect(@non_fast_655["fast_subject_unstem_search"]).to be_blank
+        expect(@non_fast_heading["fast_subject_display"]).to be_blank
+        expect(@non_fast_heading["fast_subject_unstem_search"]).to be_blank
       end
       it 'does not index fast headings when lc headings are present' do
         expect(@fast_and_lc_heading["fast_subject_display"]).to be_blank
