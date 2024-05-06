@@ -1,5 +1,5 @@
 # What to do when dump file fails to index
-1. `ssh deploy@bibdata-alma-worker1`
+1. `ssh deploy@bibdata-worker-prod1`
 1. `cd /opt/bibdata/current`
 1. `RAILS_ENV=production bundle exec rails c`
 1. Find the IndexManager instance that uses the solr production collection. Currently the name of the solr catalog production collection is:`catalog-alma-production`.  

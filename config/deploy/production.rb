@@ -7,21 +7,12 @@
 set :application, 'bibdata'
 set :stage, :production
 set :rails_env, 'production'
-# begin old boxes
-server 'bibdata-alma1.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
-server 'bibdata-alma2.princeton.edu', user: 'deploy', roles: [:web, :app, :db, :hr_cron]
-# Worker 1 gets the poller daemon installed via Princeton Ansible
-server 'bibdata-alma-worker1.princeton.edu', user: 'deploy', roles: [:db, :worker, :cron, :cron_production, :poller]
-server 'bibdata-alma-worker2.princeton.edu', user: 'deploy', roles: [:db, :worker]
-# end old boxes
 
-# begin new boxes
 server 'bibdata-prod1.princeton.edu', user: 'deploy', roles: [:web, :app, :db]
 server 'bibdata-prod2.princeton.edu', user: 'deploy', roles: [:web, :app]
 # Worker 1 gets the poller daemon installed via Princeton Ansible
 server 'bibdata-worker-prod1.princeton.edu', user: 'deploy', roles: [:worker, :cron, :cron_production, :poller]
 server 'bibdata-worker-prod2.princeton.edu', user: 'deploy', roles: [:worker]
-# end new boxes
 
 # Extended Server Syntax
 # ======================

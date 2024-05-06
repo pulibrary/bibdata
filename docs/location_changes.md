@@ -25,7 +25,7 @@ Test the updated locations in [Bibdata staging](https://bibdata-staging.princeto
 Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
 1. Connect in one of the bibdata staging boxes:   
-  `ssh deploy@bibdata-alma-worker-staging1`  
+  `ssh deploy@bibdata-worker-staging1`  
   `cd /opt/bibdata/current`  
 
 2. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
@@ -52,7 +52,7 @@ Deploy your branch on qa and run the following steps to make sure that nothing i
 The indexing takes place after the [Alma Publishing Job](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md) completes and an event is created with a `Finish` timestamp and `Success: true` in bibdata.
 
 1. Connect in one of the bibdata production boxes:  
-  `ssh deploy@bibdata-alma-worker1`  
+  `ssh deploy@bibdata-worker-prod1`  
   `cd /opt/bibdata/current`  
 
 2. Run the following rake task to delete and repopulate the locations in the production database:  

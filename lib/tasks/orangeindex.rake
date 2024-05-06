@@ -10,7 +10,7 @@ require_relative '../../marc_to_solr/lib/cache_manager'
 require_relative '../../marc_to_solr/lib/cache_map'
 require_relative '../../marc_to_solr/lib/composite_cache_map'
 
-default_bibdata_url = 'https://bibdata-alma-staging.princeton.edu'
+default_bibdata_url = 'https://bibdata-staging.princeton.edu'
 bibdata_url = ENV['BIBDATA_URL'] || default_bibdata_url
 
 default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'

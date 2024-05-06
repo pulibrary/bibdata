@@ -87,7 +87,7 @@ Once the full dump is finished indexing, the IndexManager will queue up dump
 files for each relevant incremental dumps until all the Alma records are
 indexed.
 
-To keep tabs on how long the individual dump files take to index you can look at sidekiq DumpFileIndexJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3ADumpFileIndexJob%20-host%3Abibdata-alma-staging1%20-host%3Abibdata-alma-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
+To keep tabs on how long the individual dump files take to index you can look at sidekiq DumpFileIndexJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3ADumpFileIndexJob%20-host%3Abibdata-staging1%20-host%3Abibdata-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
 
 Takes 6-7 hours to complete.
 
@@ -110,7 +110,7 @@ This will also index any incremental files we have that were generated after the
 
 ### Index Theses
 
-SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12) that is used for indexing and start a tmux session. `ssh deploy@bibdata-alma-worker1`
+SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
 
 as deploy user, in `/opt/bibdata/current`
 
@@ -160,7 +160,7 @@ There might be new incremental updates from Alma between the time the full reind
 SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13) that is used for indexing.      
 
 ```
-$ ssh deploy@bibdata-alma-worker1
+$ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
 ```
@@ -171,13 +171,13 @@ There will be new SCSB updates that need to be indexed. We import these updates 
 SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L12-L13 ) that is used for indexing.
 1. The following rake task will index the latest 'Updated Partner ReCAP Records' dump file.
 ```
-$ ssh deploy@bibdata-alma-worker1
+$ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
 ```
 2. The following rake task will index the 'Updated Partner ReCAP Records' since the SET_DATE until now. The SET_DATE below is an example date. 
 ```
-$ ssh deploy@bibdata-alma-worker1   
+$ ssh deploy@bibdata-worker-prod1   
 $ cd /opt/bibdata/current   
 $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
