@@ -45,7 +45,7 @@ GEM
     mini_portile2 (2.8.6)
     msgpack (1.6.0)
     multi_json (1.15.0)
-    nokogiri (1.15.6)
+    nokogiri (1.16.5)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     pry (0.14.1)
