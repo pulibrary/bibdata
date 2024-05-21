@@ -4015,7 +4015,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Remote Storage (ReCAP)",
+        "label": "Remote Storage (ReCAP): Mendel Music Library Use Only",
         "code": "mendel$pk",
         "aeon_location": false,
         "recap_electronic_delivery_location": true,
@@ -4045,7 +4045,7 @@
         ]
     },
     {
-        "label": "Remote Storage (ReCAP): Mendel Music Library Use Only",
+        "label": "Remote Storage (ReCAP)",
         "code": "mendel$qk",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,

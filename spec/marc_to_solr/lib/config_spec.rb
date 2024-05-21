@@ -1353,7 +1353,7 @@ describe 'From traject_config.rb', indexing: true do
         sample = indexer.map_record(fixture_record('998370993506421', indexer:))
         holdings = JSON.parse(sample['holdings_1display'][0])
         expect(holdings['22561746630006421']['items'].count).to eq 1
-        expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP): Mendel Music Library Use Only"
+        expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP)"
         expect(sample["location"]).to eq(["Mendel Music Library"])
       end
     end
