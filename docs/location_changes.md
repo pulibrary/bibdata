@@ -1,7 +1,8 @@
 # When a location changes in Alma:
-* A ticket should be created first in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information. [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config) is a private repository and you may not have access. Please ask if you can gain access.  
+* The Alma-Tech team will create a first ticket in [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config/issues) with all the necessary information. [Alma Config repository](https://github.com/PrincetonUniversityLibrary/alma-config) is a private repository and you may not have access. Please ask if you can gain access.
+* The Alma-Tech team will create a second maintenance ticket in [Bibdata repository](https://github.com/pulibrary/bibdata/issues/new?assignees=&labels=maintenance&projects=&template=maintenance-task.md&title=).  
 
-## 1. Update the local dev environment: 
+## 1. Update the local dev environment:
 
 1. Update the necessary files in [bibdata locations directory](https://github.com/pulibrary/bibdata/tree/main/config/locations). 
    * If there is a new holding location then update the [holding_locations.json file](https://github.com/pulibrary/bibdata/blob/main/config/locations/holding_locations.json) with the appropriate information. 
@@ -21,41 +22,59 @@
 6. Load locally the rails server; Go to: `localhost:<portnumber>/locations/holding_locations` in your browser and make sure that the locations have been updated.
 
 ## 2. Update Bibdata staging
-Test the updated locations in [Bibdata staging](https://bibdata-staging.princeton.edu/)
-Deploy your branch on staging and run the following steps to make sure that nothing is breaking the tables.
 
-1. Connect in one of the bibdata staging boxes:   
-  `ssh deploy@bibdata-worker-staging1`  
-  `cd /opt/bibdata/current`  
+1. Deploy your branch on staging and follow the steps to make sure that nothing is breaking the tables:
 
-2. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
+2. Stop the workers (this step is optional in staging): 
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_staging -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata staging web servers. They don't run the worker service.)     
+
+3. Connect in one of the [bibdata-staging workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L9C1-L10):
+    
+    - `ssh deploy@bibdata-worker-staging1`  
+    - `cd /opt/bibdata/current` 
+
+4. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-3. Review the changes in [Bibdata staging](https://bibdata-staging.princeton.edu/).
+5. Review the location changes in [Bibdata staging](https://bibdata-staging.princeton.edu/).
 
-## 3. Update Bibdata qa
-Test the updated locations in [Bibdata qa](https://bibdata-qa.princeton.edu/).
-Deploy your branch on qa and run the following steps to make sure that nothing is breaking the tables.
+6. If in step 2 you stopped the workers then start the workers: 
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_staging -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata staging web servers. They don't run the worker service.)   
 
-1. Connect in one of the bibdata qa boxes:   
-  `ssh deploy@bibdata-worker-qa1`  
-  `cd /opt/bibdata/current`  
+## 3. Update Bibdata QA
 
-2. Run the following rake task to delete and repopulate the locations in the bibdata qa database:  
+1. Deploy your branch on qa and follow the steps to make sure that nothing is breaking the tables.
+
+2. Stop the workers (this step is optional in QA): 
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_qa -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata qa web servers. They don't run the worker service.) 
+
+3. Connect in one of [bibdata-qa workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L4-L5):    
+    - `ssh deploy@bibdata-worker-qa1`  
+    - `cd /opt/bibdata/current`  
+
+4. Run the following rake task to delete and repopulate the locations in the bibdata qa database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-3. Review the changes in [Bibdata qa](https://bibdata-qa.princeton.edu/)
+5. Review the changes in [Bibdata qa](https://bibdata-qa.princeton.edu/)
+6.  If in step 2 you stopped the workers then start the workers:
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_qa -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata qa web servers. They don't run the worker service)    
 
-*If it runs successfully merge and deploy to production; go to the next step to update the location tables in production.*
+*If there were no errors updating the location tables in QA or in staging, merge the branch and go to the next step to update the location tables in production.*
 ## 4. Update Bibdata production
-### Don't update the locations in Bibdata production during indexing hours. Please see [Alma Publishing Jobs Schedule](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md).
-The indexing takes place after the [Alma Publishing Job](https://github.com/pulibrary/bibdata/blob/main/docs/alma_publishing_jobs_schedule.md) completes and an event is created with a `Finish` timestamp and `Success: true` in bibdata.
 
-1. Connect in one of the bibdata production boxes:  
-  `ssh deploy@bibdata-worker-prod1`  
-  `cd /opt/bibdata/current`  
+1. Deploy the main branch to production.   
 
-2. Run the following rake task to delete and repopulate the locations in the production database:  
+2. Stop the workers: 
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_production -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata production web servers. They don't run the worker service) . 
+
+3. Connect in one of [bibdata-production workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L14-L15):    
+    - `ssh deploy@bibdata-worker-prod1`  
+    - `cd /opt/bibdata/current`  
+
+4. Run the following rake task to delete and repopulate the locations in the bibdata production database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-3. Review the changes in [Bibdata](https://bibdata.princeton.edu/).
+5. Review the changes in [Bibdata production](https://bibdata.princeton.edu/)
+
+6. Start the workers:
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_production -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata production web servers. They don't run the worker service) 
