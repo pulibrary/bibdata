@@ -259,21 +259,34 @@ Then expire the rails cache to get the updated values on the front page of the c
 
 ### Other tasks
 
-* Delete records from Solr, excluding SCSB and Thesis records   
-  Tunnel to the solr box, go to admin panel, you can see how many records there are by submitting a blank query
-Ssh to bibdata box as deploy user
-`$ bin/rails c`   
-`> solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`   
-`> solr = RSolr.connect(url: solr_url)`   
-`> solr.delete_by_query("id:[1 TO 999999999]")`   
-`> solr.commit`  
+#### Query/Delete records from Solr
 
-* Query to get the SCSB:   
-These are all the SCSB records where holding location is scsbcul or scsbnypl or scsbhl.  
-`> response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
+* Tunnel to the solr box:
+    `ssh -L 9000:localhost:8983 pulsys@lib-solr-prod7`
+* Go to the admin panel -> Query -> Submit a blank Query => you can see how many records are indexed in the collection.
 
-* Query to delete SCSB:    
-`> solr.delete_by_query("id:SCSB*")`
+* ssh to one of the [production bibdata boxes]:(https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L12-L15) as deploy user
+  
+    `ssh deploy@bibdata-worker-prod1`    
+    `cd /opt/bibdata/current/`    
+    `bundle exec rails c`    
+* Set the solr url connection to be the catalog-alma-production-rebuild collection:
+  
+    `solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`   
+    `solr = RSolr.connect(url: solr_url)`
+
+* Delete records from Solr, excluding SCSB and Thesis records:
+  
+    `solr.delete_by_query("id:[1 TO 999999999]")`   
+    `solr.commit`  
+
+* Query to Get all the indexed SCSB records. Currently the holdings locations for SCSB are: scsbcul or scsbnypl or scsbhl:
+  
+    `response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
+
+* Query to Delete all SCSB recors:
+      
+    `solr.delete_by_query("id:SCSB*")`
 
 ### Adding a replica
 
