@@ -277,4 +277,4 @@ These are all the SCSB records where holding location is scsbcul or scsbnypl or 
 
 ### Adding a replica
 
-You have to specify the nodename in an unintuitive way, like `lib-solr-staging4.princeton.edu:8983_solr`. The full command to add a replica is, e.g. `pulsys@lib-solr-staging4:~$ curl "http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection=catalog-staging&shard=shard2&node=lib-solr-staging4.princeton.edu:8983_solr"
+You have to specify the nodename in an unintuitive way, like `lib-solr-staging4d.princeton.edu:8983_solr`. The full command to add a replica is, e.g. `pulsys@lib-solr-staging4d:~$ curl "http://localhost:8983/solr/admin/collections?action=ADDREPLICA&collection=catalog-staging&shard=shard2&node=lib-solr-staging4d.princeton.edu:8983_solr"
