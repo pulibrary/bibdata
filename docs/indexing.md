@@ -265,7 +265,7 @@ Then expire the rails cache to get the updated values on the front page of the c
     `ssh -L 9000:localhost:8983 pulsys@lib-solr-prod7`
 * Go to the admin panel -> Query -> Submit a blank Query => you can see how many records are indexed in the collection.
 
-* ssh to one of the [production bibdata boxes]:(https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L12-L15) as deploy user
+* ssh to one of the [production bibdata boxes](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L12-L15) as deploy user
   
     `ssh deploy@bibdata-worker-prod1`    
     `cd /opt/bibdata/current/`    
@@ -282,11 +282,12 @@ Then expire the rails cache to get the updated values on the front page of the c
 
 * Query to Get all the indexed SCSB records. Currently the holdings locations for SCSB are: scsbcul or scsbnypl or scsbhl:
   
-    `response_scsb = solr.get ‘select’, :params=> {:q => ‘id:SCSB*’}`
+    `response_scsb = solr.get 'select', :params=> {:q => 'id:SCSB*'}`
 
-* Query to Delete all SCSB recors:
+* Query to Delete all SCSB records:
       
-    `solr.delete_by_query("id:SCSB*")`
+    `solr.delete_by_query("id:SCSB*")`    
+    `solr.commit`
 
 ### Adding a replica
 
