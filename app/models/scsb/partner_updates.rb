@@ -37,11 +37,22 @@ module Scsb
     end
 
     def set_generated_date
-      date_strs = @dump.dump_files.map { |df| File.basename(df.path).split("_")[2] }
-      @dump.generated_date = date_strs.map { |d| DateTime.parse(d) }.sort.first
+      @dump.generated_date = date_strings.map { |str| DateTime.parse(str) }.sort.first
+    end
+
+    def date_strings
+      @dump.dump_files.map do |df|
+        if df.dump_file_type == "recap_records_full_metadata"
+          File.basename(df.path).split("_")[3]
+        else
+          File.basename(df.path).split("_")[2]
+        end
+      end
     end
 
     def download_and_process_full(inst:, prefix:)
+      return false unless validate_csv(inst:)
+
       matcher = /#{inst}.*\.zip/
       file = download_full_file(matcher)
       if file
@@ -52,6 +63,32 @@ module Scsb
         @dump.event.error = error.join("; ")
         @dump.event.save
       end
+    end
+
+    def validate_csv(inst:)
+      matcher = /#{inst}.*\.csv/
+      file = download_full_file(matcher)
+      includes_private = ''
+      if file
+        filename = File.basename(file)
+        filepath = "#{@scsb_file_dir}/#{filename}"
+        attach_dump_file(filepath, dump_file_type: :recap_records_full_metadata)
+        foo = CSV.read(file, headers: true)
+        includes_private = foo["Collection Group Id(s)"].first.include?('3')
+        if includes_private
+          error = Array.wrap(@dump.event.error)
+          error << "Metadata file indicates that dump for #{inst} includes private records, not processing."
+          @dump.event.error = error.join("; ")
+          @dump.event.save
+        end
+        File.unlink(file) if File.exist?(file)
+      else
+        error = Array.wrap(@dump.event.error)
+        error << "No metadata files found matching #{inst}"
+        @dump.event.error = error.join("; ")
+        @dump.event.save
+      end
+      !includes_private
     end
 
     def process_incremental_files
@@ -172,8 +209,10 @@ module Scsb
       def attach_dump_file(filepath, dump_file_type: nil)
         dump_file_type ||= @dump_file_type
         df = DumpFile.create(dump_file_type:, path: filepath)
-        df.zip
-        df.save
+        if dump_file_type != :recap_records_full_metadata
+          df.zip
+          df.save
+        end
         @dump.dump_files << df
         @dump.save
       end

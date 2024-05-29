@@ -14,7 +14,8 @@ class DumpFile < ActiveRecord::Base
     log_file: 5,
     new_records: 6,
     merged_ids: 7,
-    bib_ids: 8
+    bib_ids: 8,
+    recap_records_full_metadata: 9
   }
 
   after_create do
