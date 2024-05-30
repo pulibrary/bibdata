@@ -7,5 +7,7 @@ class DeleteEventsJob < ApplicationJob
                      .where(start: ..older_than)
                      .map(&:id)
     Event.destroy(event_ids)
+  rescue ActiveRecord::InvalidForeignKey => error
+    Rails.logger.warn("Likely tried to delete a dump that is either the 'dump_in_progress' or 'last_dump_completed' for an index manager.\n Error message: #{error.message}")
   end
 end

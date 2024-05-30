@@ -104,6 +104,29 @@ RSpec.describe DeleteEventsJob, type: :job do
         expect(Dir.empty?(File.join(copy_path, partner_recap_daily_event.id.to_s))).to be false
       end
     end
+
+    context "for full dump events that are still associated with an index manager" do
+      let!(:index_manager) { FactoryBot.create(:index_manager, dump_in_progress: old_event.dump) }
+      let(:old_event) do
+        FactoryBot.create(:full_dump_event).tap do |e|
+          tmp_dump_files(e)
+          e.start = 6.months.ago - 1.day
+          e.save
+        end
+      end
+
+      it 'does not raise an error' do
+        expect do
+          described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
+        end.not_to raise_error
+      end
+
+      it 'logs a warning about the failed deletion' do
+        allow(Rails.logger).to receive(:warn)
+        described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
+        expect(Rails.logger).to have_received(:warn).with(/update or delete on table/)
+      end
+    end
   end
 end
 
