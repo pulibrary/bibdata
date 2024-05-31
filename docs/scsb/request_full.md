@@ -1,4 +1,13 @@
 # Request partners full dump from SCSB
+## Using a rake task
+1. You must have the `SCSB_AUTH_KEY` for the SCSB environment you want to request records from - either `uat` or `production`. You can find these in the bibdata vault in Prancible.
+1. Run the rake task for requesting the full dumps, once for each institution you wish to request. The options are `CUL`, `HL`, or `NYPL` Include the email that you want updates to be sent to. For some shells you will need to escape the brackets used to surround the variables, as shown below. Also, note that there are no spaces after the commas in the list of variables. 
+    ```bash
+    bundle exec rake scsb:request_records\[ENVIRONMENT,YOUR_EMAIL,INSTITUTION\] SCSB_AUTH_KEY=some-long-hash
+
+    e.g.
+    bundle exec rake scsb:request_records\[production,mk8066@princeton.edu,CUL\] SCSB_AUTH_KEY=some-long-hash
+    ```
 
 ## Through the UI
 
