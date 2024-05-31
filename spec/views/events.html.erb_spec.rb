@@ -10,9 +10,9 @@ RSpec.describe "events/index", type: :view do
                event3 = FactoryBot.create(:event, start: Time.now - 1.month, finish: Time.now - 1.month + 180, error: nil, success: true)
              ])
       render
-      expect(rendered).to have_css('tr.table-striped:nth-child(1) > td:nth-child(2)', text: event1.start.localtime.to_s(:db_twelve_hour))
-      expect(rendered).to have_css('tr.table-striped:nth-child(2) > td:nth-child(2)', text: event2.start.localtime.to_s(:db_twelve_hour))
-      expect(rendered).to have_css('tr.table-striped:nth-child(3) > td:nth-child(2)', text: event3.start.localtime.to_s(:db_twelve_hour))
+      expect(rendered).to have_css('tr.table-striped:nth-child(1) > td:nth-child(2)', text: event1.start.localtime.to_fs(:db_twelve_hour))
+      expect(rendered).to have_css('tr.table-striped:nth-child(2) > td:nth-child(2)', text: event2.start.localtime.to_fs(:db_twelve_hour))
+      expect(rendered).to have_css('tr.table-striped:nth-child(3) > td:nth-child(2)', text: event3.start.localtime.to_fs(:db_twelve_hour))
     end
 
     it "does not include Delete column for unauthenticated users" do
