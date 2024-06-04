@@ -770,6 +770,10 @@ describe 'From princeton_marc.rb' do
       @holdings_scsb_hl = JSON.parse(@record_scsb_hl["holdings_1display"][0])
       @holding_id_scsb_hl = "10615189"
       @holdings_scsb_hl_block = @holdings_scsb_hl[@holding_id_scsb_hl]
+
+      @record_scsb_mixed = @indexer.map_record(fixture_record('scsb_harvard_multiple'))
+      @holdings_scsb_mixed = JSON.parse(@record_scsb_mixed["holdings_1display"][0])
+      @holding_id_scsb_mixed_public = "10615483"
     end
 
     it 'indexes location if it exists' do
@@ -847,6 +851,12 @@ describe 'From princeton_marc.rb' do
       end
       it "indexes 876$l for scsb" do
         expect(@holdings_scsb_hl_block['items'][0]['storage_location']).to eq("HD")
+      end
+
+      context 'with a record with both public and private holdings' do
+        it 'indexes only public items for SCSB' do
+          expect(@holdings_scsb_mixed.keys).to match_array([@holding_id_scsb_mixed_public])
+        end
       end
     end
   end

@@ -29,8 +29,14 @@ class ProcessHoldingsHelpers
     end
   end
 
-  def items_by_holding_id(holding_id)
-    record.fields("876").select { |f| f["0"] == holding_id }
+  def items_by_852(field_852)
+    holding_id = holding_id(field_852)
+    items = record.fields("876").select { |f| f["0"] == holding_id }
+    items.map { |item| item unless private_scsb_item?(item, field_852) }.compact
+  end
+
+  def private_scsb_item?(field_876, field_852)
+    field_876['x'] == 'Private' && scsb?(field_852)
   end
 
   # Select 852 fields from an Alma or SCSB record
@@ -82,6 +88,12 @@ class ProcessHoldingsHelpers
     call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
     # rubocop:enable Rails/CompactBlank
     call_number.present? ? call_number.join(' ').strip : []
+  end
+
+  def includes_only_private_scsb_items?(field_852)
+    return false unless scsb?(field_852)
+
+    items_by_852(field_852).empty?
   end
 
   # Builds the holding, without any item-specific information
