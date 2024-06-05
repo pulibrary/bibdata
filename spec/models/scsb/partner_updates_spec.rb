@@ -33,6 +33,9 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
         FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/HL_20210716_063500.zip', update_directory_path)
+        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_CUL_20210429_192300.csv', scsb_file_dir)
+        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', scsb_file_dir)
+        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_HL_20210716_063500.csv', scsb_file_dir)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_CUL_20210429_192300.csv', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_HL_20210716_063500.csv', update_directory_path)
@@ -58,9 +61,9 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
           File.join(scsb_file_dir, "scsbfull_hl_20210716_063500_1.xml.gz"),
           File.join(scsb_file_dir, "scsbfull_hl_20210716_063500_2.xml.gz"),
-          File.join(scsb_file_dir, "ExportDataDump_Full_CUL_20210429_192300.csv"),
-          File.join(scsb_file_dir, "ExportDataDump_Full_NYPL_20210430_015000.csv"),
-          File.join(scsb_file_dir, "ExportDataDump_Full_HL_20210716_063500.csv"),
+          File.join(scsb_file_dir, "ExportDataDump_Full_CUL_20210429_192300.csv.gz"),
+          File.join(scsb_file_dir, "ExportDataDump_Full_NYPL_20210430_015000.csv.gz"),
+          File.join(scsb_file_dir, "ExportDataDump_Full_HL_20210716_063500.csv.gz"),
           a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
         )
         expect(dump.generated_date).to eq DateTime.parse("2021-04-29")
@@ -112,6 +115,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     context "when there are no CUL or HL files" do
       before do
         FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
+        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', scsb_file_dir)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', update_directory_path)
         allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(nil)
         allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/)).and_return(nil)
@@ -130,7 +134,7 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
         expect(dump.dump_files.map(&:path)).to contain_exactly(
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
-          File.join(scsb_file_dir, "ExportDataDump_Full_NYPL_20210430_015000.csv"),
+          File.join(scsb_file_dir, "ExportDataDump_Full_NYPL_20210430_015000.csv.gz"),
           a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
         )
         expect(dump.event.error).to eq "No metadata files found matching CUL; No metadata files found matching HL"

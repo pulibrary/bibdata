@@ -209,10 +209,8 @@ module Scsb
       def attach_dump_file(filepath, dump_file_type: nil)
         dump_file_type ||= @dump_file_type
         df = DumpFile.create(dump_file_type:, path: filepath)
-        if dump_file_type != :recap_records_full_metadata
-          df.zip
-          df.save
-        end
+        df.zip
+        df.save
         @dump.dump_files << df
         @dump.save
       end
