@@ -52,6 +52,7 @@ describe 'From traject_config.rb', indexing: true do
       @scsb_nypl = @indexer.map_record(fixture_record('SCSB-8157262'))
       @scsb_alt_title = @indexer.map_record(fixture_record('scsb_cul_alt_title'))
       @scsb_private = @indexer.map_record(fixture_record('scsb_harvard_private'))
+      @scsb_multiple = @indexer.map_record(fixture_record('scsb_harvard_multiple'))
       @scsb_committed = @indexer.map_record(fixture_record('scsb_harvard_committed'))
       @scsb_uncommittable = @indexer.map_record(fixture_record('scsb_harvard_uncommittable'))
       @recap_record = @indexer.map_record(fixture_record('994081873506421'))
@@ -1259,12 +1260,21 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'private recap items' do
+      it "skips indexing record if only item is private" do
+        expect(@scsb_private).to be nil
+      end
+      it "skips indexing private items" do
+        expect(@scsb_multiple).to be
+        holdings = JSON.parse(@scsb_multiple["holdings_1display"].first)
+        public_holding_id = "10615483"
+        expect(holdings.keys).to match_array([public_holding_id])
+      end
+    end
+
     describe 'recap_notes_display' do
       it "skips indexing for Princeton Recap records" do
         expect(@recap_record["recap_notes_display"]).to be nil
-      end
-      it "Indexes H - P, if a private SCSB record" do
-        expect(@scsb_private["recap_notes_display"]).to eq ["H - P"]
       end
       it "Indexes C - S, if a shared SCSB record" do
         expect(@scsb_alt_title["recap_notes_display"]).to eq ["C - S"]

@@ -700,15 +700,16 @@ def process_holdings(record)
   all_holdings = {}
   holdings_helpers = ProcessHoldingsHelpers.new(record:)
   holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
+    next if holdings_helpers.includes_only_private_scsb_items?(field_852)
     holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
     holding = holdings_helpers.build_holding(field_852, permanent: true)
-    items_by_holding_id = holdings_helpers.items_by_holding_id(holding_id)
+    items_by_holding = holdings_helpers.items_by_852(field_852)
     group_866_867_868_fields = holdings_helpers.group_866_867_868_on_holding_perm_id(holding_id, field_852)
     # if there are items (876 fields)
-    if items_by_holding_id.present?
-      add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings, holding)
-      add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings)
+    if items_by_holding.present?
+      add_permanent_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings, holding)
+      add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings)
     else
       # if there are no items (876 fields), create the holding by using the 852 field
       all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
@@ -718,8 +719,8 @@ def process_holdings(record)
   all_holdings
 end
 
-def add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings, holding)
-  locations = holdings_helpers.select_permanent_location_876(items_by_holding_id, field_852)
+def add_permanent_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings, holding)
+  locations = holdings_helpers.select_permanent_location_876(items_by_holding, field_852)
 
   locations.each do |field_876|
     holding_key = holdings_helpers.holding_id(field_852)
@@ -727,10 +728,12 @@ def add_permanent_items_to_holdings(items_by_holding_id, field_852, holdings_hel
   end
 end
 
-def add_temporary_items_to_holdings(items_by_holding_id, field_852, holdings_helpers, all_holdings)
-  locations = holdings_helpers.select_temporary_location_876(items_by_holding_id, field_852)
+def add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings)
+  locations = holdings_helpers.select_temporary_location_876(items_by_holding, field_852)
 
   locations.each do |field_876|
+    next if holdings_helpers.includes_only_private_scsb_items?(field_852)
+
     if holdings_helpers.current_location_code(field_876) == 'RES_SHARE$IN_RS_REQ'
       holding = holdings_helpers.build_holding(field_852, permanent: true)
       holding_key = holdings_helpers.holding_id(field_852)

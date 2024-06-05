@@ -1242,6 +1242,16 @@ to_field 'holdings_1display' do |record, accumulator|
   accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
 end
 
+# Skip SCSB records that include only private items
+each_record do |record, context|
+  recap_notes = process_recap_notes(record)
+  next if recap_notes.empty?
+  next if recap_notes.map { |note| note.include?("P") }.include?(false)
+
+  id = id_extractor.extract(record).first
+  context.skip!("Skipped #{id} because record includes only private items.")
+end
+
 ## for recap notes
 to_field 'recap_notes_display' do |record, accumulator|
   recap_notes = process_recap_notes(record)
