@@ -36,7 +36,7 @@ The Catalog index is currently on a solrcloud cluster with 2 shards and a replic
 
 The collections `catalog-alma-production1` and `catalog-alma-production2` are swapped as needed and should be accessed via the aliases `catalog-alma-production` and `catalog-alma-production-rebuild`
 
-The staging catalog uses [catalog-staging](http://lib-solr8-staging.princeton.edu:8983/solr/catalog-staging) and also has a rebuild index, `catalog-staging-rebuild`.
+The staging catalog uses [catalog-staging](http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging) and also has a rebuild index, `catalog-staging-rebuild`.
 
 ## Accessing the solr admin UI
 
