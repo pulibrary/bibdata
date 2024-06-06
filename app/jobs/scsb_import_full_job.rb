@@ -19,5 +19,6 @@ class ScsbImportFullJob < ApplicationJob
     def delete_stale_files
       FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
       FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml")
+      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.csv")
     end
 end

@@ -70,18 +70,20 @@ module Scsb
       file = download_full_file(matcher)
       includes_private = ''
       if file
-        filename = File.basename(file)
-        filepath = "#{@scsb_file_dir}/#{filename}"
-        attach_dump_file(filepath, dump_file_type: :recap_records_full_metadata)
-        foo = CSV.read(file, headers: true)
-        includes_private = foo["Collection Group Id(s)"].first.include?('3')
+
+        csv = CSV.read(file, headers: true)
+        includes_private = csv["Collection Group Id(s)"].first.include?('3')
         if includes_private
           error = Array.wrap(@dump.event.error)
           error << "Metadata file indicates that dump for #{inst} includes private records, not processing."
           @dump.event.error = error.join("; ")
           @dump.event.save
         end
-        File.unlink(file) if File.exist?(file)
+        filename = File.basename(file)
+        destination_filepath = "#{@scsb_file_dir}/#{filename}"
+        FileUtils.move(file, destination_filepath)
+        attach_dump_file(destination_filepath, dump_file_type: :recap_records_full_metadata)
+        File.unlink(destination_filepath) if File.exist?(destination_filepath)
       else
         error = Array.wrap(@dump.event.error)
         error << "No metadata files found matching #{inst}"

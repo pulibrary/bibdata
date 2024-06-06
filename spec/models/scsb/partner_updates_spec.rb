@@ -33,9 +33,6 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
         FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/HL_20210716_063500.zip', update_directory_path)
-        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_CUL_20210429_192300.csv', scsb_file_dir)
-        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', scsb_file_dir)
-        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_HL_20210716_063500.csv', scsb_file_dir)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_CUL_20210429_192300.csv', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', update_directory_path)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_HL_20210716_063500.csv', update_directory_path)
@@ -115,7 +112,6 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
     context "when there are no CUL or HL files" do
       before do
         FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
-        FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', scsb_file_dir)
         FileUtils.cp('spec/fixtures/scsb_updates/ExportDataDump_Full_NYPL_20210430_015000.csv', update_directory_path)
         allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/)).and_return(nil)
         allow(bucket).to receive(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/)).and_return(nil)
