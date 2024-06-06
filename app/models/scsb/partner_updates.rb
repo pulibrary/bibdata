@@ -58,10 +58,7 @@ module Scsb
       if file
         process_partner_updates(files: [file], file_prefix: prefix)
       else
-        error = Array.wrap(@dump.event.error)
-        error << "No full dump files found matching #{inst}"
-        @dump.event.error = error.join("; ")
-        @dump.event.save
+        add_error(message: "No full dump files found matching #{inst}")
       end
     end
 
@@ -70,25 +67,16 @@ module Scsb
       file = download_full_file(matcher)
       includes_private = ''
       if file
-
         csv = CSV.read(file, headers: true)
         includes_private = csv["Collection Group Id(s)"].first.include?('3')
-        if includes_private
-          error = Array.wrap(@dump.event.error)
-          error << "Metadata file indicates that dump for #{inst} includes private records, not processing."
-          @dump.event.error = error.join("; ")
-          @dump.event.save
-        end
+        add_error(message: "Metadata file indicates that dump for #{inst} includes private records, not processing.") if includes_private
         filename = File.basename(file)
         destination_filepath = "#{@scsb_file_dir}/#{filename}"
         FileUtils.move(file, destination_filepath)
         attach_dump_file(destination_filepath, dump_file_type: :recap_records_full_metadata)
         File.unlink(destination_filepath) if File.exist?(destination_filepath)
       else
-        error = Array.wrap(@dump.event.error)
-        error << "No metadata files found matching #{inst}"
-        @dump.event.error = error.join("; ")
-        @dump.event.save
+        add_error(message: "No metadata files found matching #{inst}")
       end
       !includes_private
     end
@@ -104,6 +92,13 @@ module Scsb
     end
 
     private
+
+      def add_error(message:)
+        error = Array.wrap(@dump.event.error)
+        error << message
+        @dump.event.error = error.join("; ")
+        @dump.event.save
+      end
 
       def download_partner_updates
         file_list = @s3_bucket.list_files(prefix: ENV['SCSB_S3_PARTNER_UPDATES'] || 'data-exports/PUL/MARCXml/Incremental')
