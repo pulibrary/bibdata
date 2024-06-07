@@ -1,12 +1,8 @@
 module Scsb
   class PartnerUpdates
     class Full < Update
-      attr_accessor :s3_bucket
-
       def initialize(dump:, dump_file_type:, timestamp: DateTime.now.to_time)
         super
-        @s3_bucket = Scsb::S3Bucket.partner_transfer_client
-        @scsb_file_dir = ENV['SCSB_FILE_DIR']
       end
 
       def process_full_files
