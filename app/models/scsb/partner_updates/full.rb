@@ -29,11 +29,13 @@ module Scsb
       def validate_csv(inst:)
         matcher = /#{inst}.*\.csv/
         file = download_full_file(matcher)
-        includes_private = ''
+        matches_expected_collections = false
         if file
           csv = CSV.read(file, headers: true)
-          includes_private = csv["Collection Group Id(s)"].first.include?('3')
-          add_error(message: "Metadata file indicates that dump for #{inst} includes private records, not processing.") if includes_private
+          matches_expected_collections = csv["Collection Group Id(s)"].first == '1*2*5*6'
+          unless matches_expected_collections
+            add_error(message: "Metadata file indicates that dump for #{inst} does not include the correct Group IDs, not processing. Group ids: #{csv['Collection Group Id(s)'].first}")
+          end
           filename = File.basename(file)
           destination_filepath = "#{@scsb_file_dir}/#{filename}"
           FileUtils.move(file, destination_filepath)
@@ -42,7 +44,7 @@ module Scsb
         else
           add_error(message: "No metadata files found matching #{inst}")
         end
-        !includes_private
+        matches_expected_collections
       end
 
       def download_full_file(file_filter)

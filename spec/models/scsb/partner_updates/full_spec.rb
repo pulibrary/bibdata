@@ -28,7 +28,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
         end
         it 'adds errors to the dump' do
           partner_full_update.process_full_files
-          expect(dump.event.error).to include("Metadata file indicates that dump for CUL includes private records, not processing.")
+          expect(dump.event.error).to include("Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6")
         end
         it 'does not process files that include private records' do
           partner_full_update.process_full_files
