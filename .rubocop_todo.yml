@@ -295,9 +295,6 @@ Style/GuardClause:
   Exclude:
     - 'app/controllers/availability_controller.rb'
     - 'app/controllers/patron_controller.rb'
-    - 'app/jobs/scsb_edd_job.rb'
-    - 'app/jobs/scsb_recall_job.rb'
-    - 'app/jobs/scsb_request_job.rb'
     - 'app/services/language_service.rb'
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/iiif_manifest_url_builder.rb'
@@ -452,14 +449,6 @@ Style/SafeNavigation:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'marc_to_solr/lib/traject_config.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiteralsInInterpolation:
-  Exclude:
-    - 'spec/mailers/scsb_mailer_spec.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 # Configuration parameters: IgnoredMethods.
@@ -495,7 +484,6 @@ Style/RedundantInterpolation:
   Exclude:
     - 'app/models/concerns/file_path_generator.rb'
     - 'lib/tasks/orangeindex.rake'
-    - 'spec/mailers/scsb_mailer_spec.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
