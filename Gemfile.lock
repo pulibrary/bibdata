@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/kovyrin/loops.git
-  revision: da4cc4727236de3c585b7825ea78bb893ea03df1
-  branch: master
-  specs:
-    loops (2.1.0.dev)
-
-GIT
   remote: https://github.com/pulibrary/marc_cleanup.git
   revision: 98d24b82de9f4e93aaf73353ef1067edbdff2c40
   tag: v0.9.1
@@ -686,7 +679,6 @@ DEPENDENCIES
   lograge
   logstash-event
   loofah (>= 2.2.3)
-  loops!
   marc (~> 1.0)
   marc_cleanup!
   multi_json

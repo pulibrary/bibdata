@@ -33,7 +33,6 @@ gem 'lightly', "~> 0.2.1"
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.2.3'
-gem 'loops', github: 'kovyrin/loops', branch: 'master'
 gem 'marc', '~> 1.0'
 gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.9.1'
 gem 'multi_json'

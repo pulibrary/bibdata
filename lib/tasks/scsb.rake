@@ -1,14 +1,4 @@
 namespace :scsb do
-  desc 'starts monitoring jobs for loops'
-  task :start_daemon do
-    %x[bundle exec loops start -d 2>&1]
-  end
-
-  desc 'stops loops'
-  task :stop_daemon do
-    %x[bundle exec loops stop 2>&1]
-  end
-
   desc "Index SCSB records with all changed records since SET_DATE, against SET_URL"
   task updates: :environment do
     if ENV['SET_URL'] && ENV['SET_DATE']
