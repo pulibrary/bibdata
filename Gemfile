@@ -13,7 +13,7 @@ gem 'capistrano-passenger'
 gem 'capistrano-rails'
 gem 'capistrano-rails-console', require: false
 gem 'capybara'
-gem 'change_the_subject', '~> 0.3.4'
+gem 'change_the_subject', '~> 0.3.5'
 gem 'devise'
 gem 'ed25519'
 gem 'faraday', '~> 1.0'
