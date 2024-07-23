@@ -44,4 +44,7 @@ Rails.application.configure do
     allow_localhost: true,
     allow: 'chromedriver.storage.googleapis.com'
   }
+
+  # Set the log file size to:
+  config.log_file_size = 100.megabytes
 end

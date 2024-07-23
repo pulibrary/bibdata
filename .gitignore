@@ -1,5 +1,5 @@
 /.bundle
-/log/*.log
+/log/**
 /tmp
 # Ignore everything
 /data/*

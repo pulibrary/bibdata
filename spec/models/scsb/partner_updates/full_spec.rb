@@ -21,7 +21,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
 
         let(:fixture_files) { [nypl_zip, nypl_csv, hl_zip, hl_csv] }
         before do
-          FileUtils.cp(Rails.root.join(fixture_path, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
+          FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
         end
         it 'determines that the file is not valid' do
           expect(partner_full_update.validate_csv(inst: "CUL")).to be false

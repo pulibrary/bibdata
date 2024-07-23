@@ -26,7 +26,7 @@ RSpec.shared_context 'scsb_partner_updates_full' do
   before do
     # Copy the fixtures to the temporary location for the tests
     fixture_files.each do |path|
-      FileUtils.cp(Rails.root.join(fixture_path, path), update_directory_path)
+      FileUtils.cp(Rails.root.join(fixture_paths, path), update_directory_path)
     end
     # Mock the remote S3 bucket interaction
     filter_response_pairs.each do |filter, response|
