@@ -67,7 +67,6 @@ gem 'terser'
 gem 'traject'
 gem 'turbolinks'
 gem 'whenever', "~> 0.10"
-gem 'yard'
 
 group :production do
   gem "ddtrace", '~> 0.54.2'

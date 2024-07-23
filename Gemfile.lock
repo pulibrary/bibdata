@@ -723,7 +723,6 @@ DEPENDENCIES
   turbolinks
   webmock
   whenever (~> 0.10)
-  yard
 
 BUNDLED WITH
    2.3.26
