@@ -11,6 +11,7 @@ require_relative 'electronic_access_link'
 require_relative 'electronic_access_link_factory'
 require_relative 'hierarchical_heading'
 require_relative 'iiif_manifest_url_builder'
+require_relative 'linked_fields_extractor'
 require_relative 'orangelight_url_builder'
 require_relative 'process_holdings_helpers'
 
@@ -817,10 +818,6 @@ def any_thesaurus_match?(field, thesauri)
   field.any? { |subfield| subfield.code == '2' && thesauri.include?(subfield.value) }
 end
 
-# The regular expression /99[0-9]+6421/ ensures that an mms id is present in a $w
 def valid_linked_fields(record, field_tag, accumulator)
-  fields = record.fields(field_tag).select { |f| f["w"] =~ /99[0-9]+6421/ }
-  fields.each do |field|
-    accumulator << field["w"] if field["w"].start_with?("99") && field["w"].end_with?("06421")
-  end
+  accumulator.concat LinkedFieldsExtractor.new(record, field_tag).mms_ids
 end
