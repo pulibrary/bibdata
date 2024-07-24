@@ -48,7 +48,6 @@ gem 'open3'
 gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764fc37df3261531c9937061'
 gem 'pg'
 gem "rack", ">= 2.0.6"
-gem 'rack-conneg', '~> 0.1.5'
 gem 'rails', '~> 7.0'
 gem 'responders'
 gem 'rest-client'
