@@ -1,5 +1,7 @@
 # encoding: UTF-8
 # Traject config goes here
+require 'active_support'
+require "active_support/core_ext/object/blank"
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
