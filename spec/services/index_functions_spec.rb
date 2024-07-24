@@ -13,7 +13,7 @@ RSpec.describe IndexFunctions do
 
   describe '.logger' do
     it 'constructs a logger for STDOUT' do
-      expect(described_class.logger).to be_a(Logger)
+      expect(described_class.logger).to be_a(ActiveSupport::BroadcastLogger)
     end
 
     context 'when within a Rails environment' do

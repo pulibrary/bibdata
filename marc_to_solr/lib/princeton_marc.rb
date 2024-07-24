@@ -1,4 +1,5 @@
 # encoding: UTF-8
+require 'active_support'
 require 'library_stdnums'
 require 'lightly'
 require 'uri'
