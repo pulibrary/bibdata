@@ -284,6 +284,8 @@ GEM
       rexml (~> 3.0)
     hashdiff (1.1.0)
     hashie (5.0.0)
+    health-monitor-rails (12.1.0)
+      railties (>= 6.1)
     high_voltage (3.1.2)
     honeybadger (5.4.1)
     http (5.1.1)
@@ -665,6 +667,7 @@ DEPENDENCIES
   ffi (>= 1.9.25)
   friendly_id
   gyoku (~> 1.0)
+  health-monitor-rails
   high_voltage (~> 3.0)
   honeybadger
   human_languages (~> 0.7)
