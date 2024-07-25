@@ -1,0 +1,105 @@
+{
+    "id": "38205463100006421",
+    "action": "JOB_END",
+    "institution": {
+        "value": "01PRI_INST",
+        "desc": "Princeton University Library"
+    },
+    "time": "2024-06-11T18:27:10.961Z",
+    "job_instance": {
+        "id": "38205463100006421",
+        "name": "Publishing Platform Job Incremental Publishing",
+        "progress": 101.3,
+        "status": {
+            "value": "COMPLETED_FAILED",
+            "desc": "Completed with Errors"
+        },
+        "external_id": "38205728880006421",
+        "submitted_by": {
+            "value": "System"
+        },
+        "submit_time": "2024-06-11T17:00:11.594Z",
+        "start_time": "2024-06-11T17:20:13.584Z",
+        "end_time": "2024-06-11T18:27:10.961Z",
+        "status_date": "2024-06-11Z",
+        "alert": [
+            {
+                "value": "alert_general_error",
+                "desc": "The job completed with errors. For more information view the report details (or contact Support using the process ID)."
+            }
+        ],
+        "counter": [
+            {
+                "type": {
+                    "value": "label.new.records",
+                    "desc": "New Records"
+                },
+                "value": "66"
+            },
+            {
+                "type": {
+                    "value": "label.updated.records",
+                    "desc": "Updated Records"
+                },
+                "value": "3453"
+            },
+            {
+                "type": {
+                    "value": "label.deleted.records",
+                    "desc": "Deleted Records"
+                },
+                "value": "0"
+            },
+            {
+                "type": {
+                    "value": "c.jobs.publishing.failed.publishing",
+                    "desc": "Unpublished failed records"
+                },
+                "value": "0"
+            },
+            {
+                "type": {
+                    "value": "c.jobs.publishing.skipped",
+                    "desc": "Skipped records (update date changed but no data change)"
+                },
+                "value": "224"
+            },
+            {
+                "type": {
+                    "value": "c.jobs.publishing.filtered_out",
+                    "desc": "Filtered records (not published due to filter)"
+                },
+                "value": "0"
+            },
+            {
+                "type": {
+                    "value": "c.jobs.publishing.totalRecordsWrittenToFile",
+                    "desc": "Total records written to file"
+                },
+                "value": "0"
+            },
+            {
+                "type": {
+                    "value": "FTP has failed.",
+                    "desc": ""
+                },
+                "value": "Download zip file for manual FTP."
+            }
+        ],
+        "job_info": {
+            "id": "S32986800410006421",
+            "name": "Publishing Platform Job Incremental Publishing",
+            "description": "Publishing Platform Job",
+            "type": {
+                "value": "SCHEDULED",
+                "desc": "Scheduled"
+            },
+            "category": {
+                "value": "PUBLISHING",
+                "desc": "Publishing"
+            },
+            "link": "/almaws/v1/conf/jobs/S32986800410006421"
+        },
+        "link": "/almaws/v1/conf/jobs/S32986800410006421/instances/38205463100006421"
+    }
+}

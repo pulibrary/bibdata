@@ -102,6 +102,7 @@ FactoryBot.define do
     finish { Time.now - 100 }
     error { nil }
     success { true }
+    alma_job_status { "COMPLETED_SUCCESS" }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :full_dump
@@ -112,6 +113,7 @@ FactoryBot.define do
     finish { Time.now - 100 }
     error { nil }
     success { true }
+    alma_job_status { "COMPLETED_SUCCESS" }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :incremental_dump
@@ -122,6 +124,7 @@ FactoryBot.define do
     finish { Time.now - 100 }
     error { nil }
     success { true }
+    alma_job_status {}
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :partner_recap_daily_dump
@@ -132,6 +135,7 @@ FactoryBot.define do
     finish { Time.now - 100 }
     error { nil }
     success { true }
+    alma_job_status {}
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :partner_recap_full_dump
