@@ -9,6 +9,7 @@
       <th>Start</th>
       <th>Finish</th>
       <th>Success</th>
+      <th>Alma Job Status</th>
       <th>Error</th>
       <th>Dump Type</th>
       <th>Bibs Updated</th>
@@ -23,9 +24,10 @@
     <% @events.each do |event| %>
       <tr class="table-striped<%= event.success ? '' : ' warning'%>">
         <td><%=event.id%></td>
-        <td class="nowrap"><%= event.start.localtime.to_fs(:db_twelve_hour) %></td>
-        <td class="nowrap "><%= event.finish.localtime.to_fs(:db_twelve_hour) if event.finish %></td>
+        <td class="nowrap"><%= event.start&.localtime&.to_fs(:db_twelve_hour) %></td>
+        <td class="nowrap "><%= event.finish&.localtime&.to_fs(:db_twelve_hour) if event.finish %></td>
         <td><%= event.success %></td>
+        <td><%= event.alma_job_status %></td>
         <td ><%= event.error %></td>
         <% if event.dump.nil? %>
           <td colspan="3" />

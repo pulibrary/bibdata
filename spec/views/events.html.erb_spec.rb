@@ -27,5 +27,11 @@ RSpec.describe "events/index", type: :view do
       render
       expect(rendered).to include "<th>Delete?</th>"
     end
+
+    it "includes Alma Job Status column" do
+      assign(:events, [FactoryBot.create(:event)])
+      render
+      expect(rendered).to include "<th>Alma Job Status</th>"
+    end
   end
 end

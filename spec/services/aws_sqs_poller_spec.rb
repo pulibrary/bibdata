@@ -99,6 +99,32 @@ RSpec.describe AwsSqsPoller do
       expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
       expect(Dump.first.generated_date).to eq event.start
     end
+    it "creates an event with alma job status COMPLETED_SUCCESS" do
+      expect { described_class.poll }.to have_enqueued_job(
+        AlmaDumpTransferJob
+      ).with(
+        job_id:,
+        dump: instance_of(Dump)
+      )
+      event = Dump.first.event
+      expect(event.alma_job_status).to eq "COMPLETED_SUCCESS"
+    end
+  end
+
+  context "when an alma job completes with errors an incremental dump job comes through" do
+    let(:job_id) { "38205463100006421" }
+    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump_alma_job_failed.json'))).to_json }
+
+    it "creates an event with alma job status COMPLETED_FAILED" do
+      expect { described_class.poll }.to have_enqueued_job(
+        AlmaDumpTransferJob
+      ).with(
+        job_id:,
+        dump: instance_of(Dump)
+      )
+      event = Dump.first.event
+      expect(event.alma_job_status).to eq "COMPLETED_FAILED"
+    end
   end
 
   context "when a ReCAP dump comes through" do

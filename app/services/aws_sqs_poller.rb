@@ -54,11 +54,16 @@ class AlmaDumpFactory
     message["job_instance"]["name"]
   end
 
+  def alma_job_status
+    message["job_instance"]["status"]["value"]
+  end
+
   def dump_event
     @event ||= Event.create(
       start: event_start,
       finish: event_finish,
       success: true,
+      alma_job_status:,
       message_body: message.to_json
     )
   end
