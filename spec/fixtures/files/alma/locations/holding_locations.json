@@ -227,7 +227,7 @@
         ]
     },
     {
-        "label": "Firestone Library - Remote Storage (ReCAP): Supervised use in Firestone",
+        "label": "Remote Storage (ReCAP): Firestone Library Use Only",
         "code": "firestone$pb",
         "aeon_location": false,
         "recap_electronic_delivery_location": true,

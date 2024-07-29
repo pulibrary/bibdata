@@ -169,7 +169,7 @@ RSpec.describe LocationDataService, type: :service do
         expect(location_arch_pw.recap_electronic_delivery_location).to be true
         expect(location_engineer_pt.recap_electronic_delivery_location).to be true
         expect(location_firestone_pb.recap_electronic_delivery_location).to be true
-        expect(location_firestone_pb.label).to eq("Firestone Library - Remote Storage (ReCAP): Supervised use in Firestone")
+        expect(location_firestone_pb.label).to eq("Remote Storage (ReCAP): Firestone Library Use Only")
         expect(location_lewis_pn.recap_electronic_delivery_location).to be true
         expect(location_marquand_pj.recap_electronic_delivery_location).to be true
         expect(location_mendel_pk.recap_electronic_delivery_location).to be true
