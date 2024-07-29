@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
   has_one :dump
+  validates :message_body, uniqueness: { allow_blank: true }
 
   before_destroy do
     self.dump.destroy unless self.dump.nil?
