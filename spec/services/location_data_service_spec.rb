@@ -156,6 +156,17 @@ RSpec.describe LocationDataService, type: :service do
       expect(new_location.id).to eq 31
     end
 
+    describe "delivery locations" do
+      it "Delivery location Firestone Library has multiple gfa_pickup" do
+        firestone_pf = DeliveryLocation.find_by(gfa_pickup: "PF")
+        expect(firestone_pf.label).to eq 'Firestone Library'
+        firestone_pa = DeliveryLocation.find_by(gfa_pickup: "PA")
+        expect(firestone_pa.label).to eq 'Firestone Library'
+        firestone_pb = DeliveryLocation.find_by(gfa_pickup: "PB")
+        expect(firestone_pb.label).to eq 'Firestone Library'
+      end
+    end
+
     describe "new recap locations" do
       it "they have recap_edd true and holding_library same as library" do
         location_arch_pw = HoldingLocation.find_by(code: 'arch$pw')
