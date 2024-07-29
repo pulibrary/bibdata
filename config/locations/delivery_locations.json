@@ -86,7 +86,7 @@
     },
     {
         "id": 6,
-        "label": "Firestone Library, Microforms",
+        "label": "Firestone Library",
         "address": "One Washington Rd. Princeton, NJ 08544",
         "phone_number": "609-258-3252",
         "contact_email": "microfms@princeton.edu",
@@ -341,7 +341,7 @@
     },
     {
         "id": 28,
-        "label": "Firestone Library, Microforms (Firestone Use Only)",
+        "label": "Firestone Library",
         "address": "One Washington Rd. Princeton, NJ 08544",
         "phone_number": "609-258-3252",
         "contact_email": "microfms@princeton.edu",
