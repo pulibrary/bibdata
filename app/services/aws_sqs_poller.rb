@@ -59,7 +59,7 @@ class AlmaDumpFactory
   end
 
   def dump_event
-    @event ||= Event.create(
+    @event ||= Event.create!(
       start: event_start,
       finish: event_finish,
       success: true,
