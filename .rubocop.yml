@@ -21,6 +21,10 @@ Rails/RakeEnvironment:
   Exclude:
     - lib/tasks/*
 
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Exclude:
+    - 'app/models/dump.rb'
+
 Rails/TimeZone:
   Enabled: false
 

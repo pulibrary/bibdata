@@ -60,6 +60,7 @@ FactoryBot.define do
         association(:dump_file, path: 'spec/fixtures/files/alma/full_dump/2.xml.tar.gz')
       ]
     end
+    event_id { 1 }
   end
 
   factory :incremental_dump, class: "Dump" do
@@ -72,6 +73,7 @@ FactoryBot.define do
         association(:incremental_dump_file, path: 'spec/fixtures/files/alma/incremental_dump/2.tar.gz')
       ]
     end
+    event_id { 1 }
   end
 
   factory :partner_recap_daily_dump, class: "Dump" do
@@ -84,6 +86,7 @@ FactoryBot.define do
         association(:partner_recap_daily_dump_file, path: 'spec/fixtures/scsb_updates/scsb_update_20240108_183400_1.xml.gz')
       ]
     end
+    event_id { 1 }
   end
 
   factory :partner_recap_full_dump, class: "Dump" do
@@ -95,6 +98,7 @@ FactoryBot.define do
         association(:partner_recap_full_dump_file, path: 'spec/fixtures/scsb_updates/scsbfull_nypl_20240101_150000_1.xml.gz')
       ]
     end
+    event_id { 1 }
   end
 
   factory :full_dump_event, class: "Event" do

@@ -7,9 +7,20 @@ RSpec.describe Dump, type: :model do
   let(:princeton_recap_dump_type) { 'princeton_recap' }
   let(:partner_recap_dump_type) { 'partner_recap' }
   let(:partner_recap_full_dump_type) { 'partner_recap_full' }
+  let(:alma_incremental) { 'changed_records' }
   let(:test_create_time) { '2017-04-29 20:10:29'.to_time }
   let(:event_success) { Event.create(start: '2020-10-20 19:00:15', finish: '2020-10-20 19:00:41', error: nil, success: true, created_at: "2020-10-20 19:00:41", updated_at: "2020-10-20 19:00:41") }
   let(:dump_princeton_recap_success) { described_class.create(event_id: event_success.id, dump_type: :princeton_recap, created_at: "2020-10-20 19:00:15", updated_at: "2020-10-20 19:00:41") }
+
+  it "does not create a dump with an event_id nil" do
+    expect do
+      described_class.create!(dump_type: alma_incremental, event_id: event_success.id)
+    end.to change { Dump.count }.by 1
+
+    expect do
+      described_class.create!(dump_type: partner_recap_dump_type, event_id: nil)
+    end.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Event can't be blank")
+  end
 
   describe ".partner_recap" do
     it "is a scope that can chain" do
@@ -60,18 +71,18 @@ RSpec.describe Dump, type: :model do
 
   describe '#subsequent_partner_incrementals' do
     it "gets all partner_recap dumps with generated_date after mine" do
-      dump0 = described_class.create(dump_type: partner_recap_full_dump_type, generated_date: 2.days.ago)
-      dump1 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago)
-      dump2 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 3.days.ago)
-      dump3 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago)
+      dump0 = described_class.create(dump_type: partner_recap_full_dump_type, generated_date: 2.days.ago, event_id: event_success.id)
+      dump1 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago, event_id: event_success.id)
+      dump2 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 3.days.ago, event_id: event_success.id)
+      dump3 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago, event_id: event_success.id)
       expect(dump1.subsequent_partner_incrementals).to contain_exactly(dump1, dump3)
     end
   end
 
   describe '.latest_generated' do
     it 'returns the last-created dump' do
-      dump1 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago)
-      dump2 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago)
+      dump1 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago, event_id: event_success.id)
+      dump2 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago, event_id: event_success.id)
       expect(described_class.latest_generated.id).to eq dump1.id
     end
   end
@@ -84,7 +95,7 @@ RSpec.describe Dump, type: :model do
     end
 
     it 'sets to create time of previous partner recap dump when there' do
-      described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time)
+      described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time, event_id: event_success.id)
       timestamp = described_class.send(:last_incremental_update)
       expect(timestamp).to eq(test_create_time)
     end
@@ -99,7 +110,7 @@ RSpec.describe Dump, type: :model do
     end
 
     it 'sets to create time of previous partner recap dump when there' do
-      described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time)
+      described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time, event_id: event_success.id)
       timestamp = described_class.send(:incremental_update_timestamp)
       expect(timestamp).to eq(test_create_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
     end

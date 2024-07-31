@@ -14,6 +14,7 @@ class Dump < ActiveRecord::Base
   serialize :delete_ids
   serialize :update_ids
   serialize :recap_barcodes
+  validates :event_id, presence: true
 
   before_destroy do
     self.dump_files.each do |df|
