@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_29_225210) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_31_183705) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_29_225210) do
   end
 
   create_table "dumps", id: :serial, force: :cascade do |t|
-    t.integer "event_id"
+    t.integer "event_id", null: false
     t.text "delete_ids"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false

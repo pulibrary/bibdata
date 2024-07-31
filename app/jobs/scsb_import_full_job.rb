@@ -3,7 +3,8 @@ class ScsbImportFullJob < ApplicationJob
     delete_stale_files
 
     Event.record do |event|
-      event.dump = created_dump
+      event.save
+      event.dump = created_dump(event)
       event.save!
 
       Scsb::PartnerUpdates.full(dump: event.dump)
@@ -12,8 +13,8 @@ class ScsbImportFullJob < ApplicationJob
 
   private
 
-    def created_dump
-      Dump.create!(dump_type: :partner_recap_full)
+    def created_dump(event)
+      Dump.create!(dump_type: :partner_recap_full, event_id: event.id)
     end
 
     def delete_stale_files
