@@ -637,8 +637,12 @@ to_field 'restrictions_note_display', extract_marc('5063abcde')
 to_field 'biographical_historical_note_display', extract_marc('545ab')
 
 # Summary note:
-#    520 XX 3ab
-to_field 'summary_note_display', extract_marc('5203abc')
+#    520 XX 3ab where the first indicator is not 4
+to_field 'summary_note_display', extract_marc('520|  |3abc:520|0 |3abc:520|1 |3abc:520|2 |3abc:520|3 |3abc:520|8 |3abc')
+
+# Content advice:
+#    520 4  3abc
+to_field 'content_advice_display', extract_marc('520|4 |3abc')
 
 # Notes:
 #    500 XX 3a

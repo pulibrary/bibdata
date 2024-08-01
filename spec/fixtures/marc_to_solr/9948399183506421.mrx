@@ -1,0 +1,75 @@
+<record>
+  <leader>01400ckm a2200301u 4500</leader>
+  <controlfield tag="005">20240712144746.0</controlfield>
+  <controlfield tag="008">060302q19201939xr nnn j 00 incze|d</controlfield>
+  <controlfield tag="001">9948399183506421</controlfield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(idCotsen)73331</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="9">(cotsenAccess)149882</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(cotsendb)32106</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(NjP)4839918-princetondb</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="a">(OCoLC)on1340486091</subfield>
+  </datafield>
+  <datafield tag="035" ind1=" " ind2=" ">
+    <subfield code="z">(NjP)Voyager4839918</subfield>
+  </datafield>
+  <datafield tag="040" ind1=" " ind2=" ">
+    <subfield code="b">eng</subfield>
+    <subfield code="c">NjP</subfield>
+  </datafield>
+  <datafield tag="245" ind1="0" ind2="0">
+    <subfield code="a">Černý Petr.</subfield>
+  </datafield>
+  <datafield tag="260" ind1=" " ind2=" ">
+    <subfield code="a">Czechoslovakia :</subfield>
+    <subfield code="b">s.n.,</subfield>
+    <subfield code="c">ca. 1930</subfield>
+  </datafield>
+  <datafield tag="300" ind1=" " ind2=" ">
+    <subfield code="a">[25] cards :</subfield>
+    <subfield code="b">col. illus. ;</subfield>
+    <subfield code="c">7.9 x 5.3 cm.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">A Czech version of the popular children's card game "Black Peter." The Black Peter card depicts a racial caricature of a black child holding a pipe. The rest of the cards bear illustrations of Czechoslovakian children at play, anthropomorphized animals, and fairy tale characters such as Little Red Riding Hood.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Translated title: Black Peter.</subfield>
+  </datafield>
+  <datafield tag="500" ind1=" " ind2=" ">
+    <subfield code="a">Instructions are printed on the rear panel of the sleeve.</subfield>
+  </datafield>
+  <datafield tag="520" ind1="4" ind2=" ">
+    <subfield code="a">Contains a racial caricature of a black child in a derogatory visual style known as "picaninny."</subfield>
+  </datafield>
+  <datafield tag="563" ind1=" " ind2=" ">
+    <subfield code="a">Pub. color-printed pictorial sleeve, 8 x 5.5 x 0.7 cm.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Cards.</subfield>
+  </datafield>
+  <datafield tag="653" ind1=" " ind2=" ">
+    <subfield code="a">Racial stereotypes - Negro.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Card games</subfield>
+    <subfield code="v">Specimens.</subfield>
+  </datafield>
+  <datafield tag="650" ind1=" " ind2="0">
+    <subfield code="a">Matching games</subfield>
+    <subfield code="v">Specimens.</subfield>
+  </datafield>
+  <datafield tag="950" ind1=" " ind2=" ">
+    <subfield code="c">2023-08-10 18:59:09 US/Eastern</subfield>
+    <subfield code="b">2021-07-12 11:51:12 US/Eastern</subfield>
+    <subfield code="a">false</subfield>
+  </datafield>
+</record>

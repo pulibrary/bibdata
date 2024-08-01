@@ -85,6 +85,7 @@ describe 'From traject_config.rb', indexing: true do
       @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
       @indigenous_studies_mexico = @indexer.map_record(fixture_record('99125398364906421'))
       @dissertation_with_embargo = @indexer.map_record(fixture_record('99127127233306421'))
+      @content_advice = @indexer.map_record(fixture_record('9948399183506421'))
     end
 
     describe "alma loading" do
@@ -607,6 +608,15 @@ describe 'From traject_config.rb', indexing: true do
       it 'value can be both in the library and online when there are multiple holdings' do
         expect(@online_at_library['access_facet']).to include 'Online'
         expect(@online_at_library['access_facet']).to include 'In the Library'
+      end
+    end
+
+    describe 'content_advice' do
+      it 'identifies a frist indicator 4 as a content_advice field' do
+        expect(@title_vern_display['summary_note_display']).to include 'Collection of answers'
+        expect(online['summary_note']).to include 'The Afrobarometer project'
+        expect(@online_at_library['summary_note']).to include 'The Atacama B-Mode Search'
+        expect(@content_advice['content_advice']).to include 'Contains a racial caricature'
       end
     end
 
