@@ -6,7 +6,7 @@ end
 
 if Dump.count < 9 && Rails.env.development?
   Event.all.each do |event|
-    event.dump = Dump.create!(dump_type: :changed_records)
+    event.dump = Dump.create!(dump_type: :changed_records, event:)
     event.save
   end
 end
