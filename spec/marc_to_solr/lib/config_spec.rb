@@ -189,6 +189,48 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'summary_note_display' do
+      it 'returns the summary_note_display field' do
+        record = fixture_record('9948545023506421')
+        indexed_record = @indexer.map_record(record)
+        expect(indexed_record['summary_note_display'].first).to include('Collection of answers by Hibat')
+      end
+      it 'does not include the content_advice field' do
+        record = fixture_record('9948545023506421')
+        indexed_record = @indexer.map_record(record)
+        expect(indexed_record['content_advice_display']).to be nil
+      end
+      context 'with empty indicators' do
+        let(:f520) { { "520" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Some generic summary" }] } } }
+
+        it 'includes the summary_note_display' do
+          record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
+          expect(record['summary_note_display'].first).to eq('Some generic summary')
+          expect(record['content_advice_display']).to be nil
+        end
+      end
+      context 'with first indicator 4 for content_advice' do
+        let(:f520) { { "520" => { "ind1" => "4", "ind2" => " ", "subfields" => [{ "a" => "Some sensitive content advice" }] } } }
+
+        it 'includes content_advice_display and does not include summary_note_display' do
+          record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
+          expect(record['summary_note_display']).to be nil
+          expect(record['content_advice_display'].first).to eq('Some sensitive content advice')
+        end
+      end
+      context 'valid summary note indicators' do
+        let(:valid_indicators) { [' ', '0', '1', '2', '3', '8'] }
+
+        it 'creates a summary note display' do
+          valid_indicators.each do |ind|
+            f520 = { "520" => { "ind1" => ind, "ind2" => " ", "subfields" => [{ "a" => "Some generic summary" }] } }
+            record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
+            expect(record['summary_note_display'].first).to eq('Some generic summary')
+            expect(record['content_advice_display']).to be nil
+          end
+        end
+      end
+    end
     describe "electronic_portfolio_s" do
       it "returns the electronic_portfolio_s field" do
         record = @indexer.map_record(fixture_record('99122306151806421'))
