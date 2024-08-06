@@ -32,6 +32,19 @@ end
 
 class AlmaDumpFactory
   attr_reader :message
+  class AlmaDumpError < StandardError
+    attr_reader :alma_message
+    def initialize(alma_message)
+      super
+      @alma_message = alma_message
+    end
+
+    def message
+      status = alma_message["job_instance"]["status"]["value"]
+      "Alma job completed with invalid status. Alma status: #{status}. Job id: #{alma_message['id']}"
+    end
+  end
+
   def initialize(message)
     @message = message
   end
@@ -55,7 +68,13 @@ class AlmaDumpFactory
   end
 
   def alma_job_status
-    message["job_instance"]["status"]["value"]
+    status = message["job_instance"]["status"]["value"]
+    raise AlmaDumpError, message unless status == 'COMPLETED_SUCCESS'
+    status
+  rescue => e
+    Rails.logger.error(e.message)
+    Honeybadger.notify(e)
+    status
   end
 
   def dump_event
