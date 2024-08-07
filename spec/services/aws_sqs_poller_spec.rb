@@ -125,6 +125,14 @@ RSpec.describe AwsSqsPoller do
       event = Dump.first.event
       expect(event.alma_job_status).to eq "COMPLETED_FAILED"
     end
+
+    it 'logs error and sends to honeybadger' do
+      allow(Honeybadger).to receive(:notify)
+      allow(Rails.logger).to receive(:error)
+      described_class.poll
+      expect(Honeybadger).to have_received(:notify).with(instance_of(AlmaDumpFactory::AlmaDumpError))
+      expect(Rails.logger).to have_received(:error).with("Alma job completed with invalid status. Alma status: COMPLETED_FAILED. Job id: 38205463100006421")
+    end
   end
 
   context "when a ReCAP dump comes through" do
