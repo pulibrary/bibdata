@@ -1550,7 +1550,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Microforms Services (Film B)",
+        "label": "Microform Guides (FilmB)",
         "code": "firestone$flmb",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
