@@ -54,7 +54,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_secw.label).to eq 'Scribner Library: Common Works Collection'
       expect(firestone_seref.label).to eq 'Scribner Library: Reference'
       expect(firestone_se.label).to eq 'Scribner Library'
-      expect(firestone_isc.label).to eq 'Indigenous Studies Collection'
+      expect(firestone_isc.label).to eq 'Lenape Collection (ISC)'
       expect(firestone_ssrcfo.open).to be true
       expect(firestone_ssrcfo.requestable).to be false
       expect(firestone_ssrcfo.always_requestable).to be false

@@ -2596,7 +2596,7 @@
         ]
     },
     {
-        "label": "Indigenous Studies Collection",
+        "label": "Lenape Collection (ISC)",
         "code": "firestone$isc",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
@@ -2800,8 +2800,7 @@
         },
         "holding_library": null,
         "delivery_locations": []
-    }
-    ,
+    },
     {
         "label": "PUL Makerspace",
         "code": "lewis$maker",
@@ -6926,7 +6925,9 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": ["PM"]
+        "delivery_locations": [
+            "PM"
+        ]
     },
     {
         "label": "Remote Storage (ReCAP): Stokes Library Use Only",
