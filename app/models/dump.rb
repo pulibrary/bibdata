@@ -39,9 +39,9 @@ class Dump < ActiveRecord::Base
       dump = nil
       timestamp = incremental_update_timestamp
       Event.record do |event|
-        dump = Dump.create(dump_type: :partner_recap)
+        event.save
+        dump = Dump.create(dump_type: :partner_recap, event_id: event.id)
         ScsbImportJob.perform_later(dump.id, timestamp)
-        dump.event = event
         dump.save
       end
       dump

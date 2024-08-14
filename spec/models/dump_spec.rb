@@ -41,7 +41,7 @@ RSpec.describe Dump, type: :model do
 
           created_dump = described_class.last
           expect(created_dump.dump_type).to eq "partner_recap"
-          expect(ScsbImportJob).to have_received(:perform_later).with(anything, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+          expect(ScsbImportJob).to have_received(:perform_later).with(created_dump.id, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
         end
       end
     end
