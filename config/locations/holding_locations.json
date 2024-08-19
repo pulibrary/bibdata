@@ -559,6 +559,26 @@
         "delivery_locations": []
     },
     {
+        "label": "Tech Equipment",
+        "code": "eastasian$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/eastasian$tech.json",
+        "library": {
+            "label": "East Asian Library",
+            "code": "eastasian",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "",
         "code": "eastasian$cjk",
         "aeon_location": false,
@@ -887,6 +907,26 @@
         "library": {
             "label": "East Asian Library",
             "code": "eastasian",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Tech Equipment",
+        "code": "engineer$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/engineer$tech.json",
+        "library": {
+            "label": "Engineering Library",
+            "code": "engineer",
             "order": 0
         },
         "holding_library": null,
@@ -2802,6 +2842,26 @@
         "delivery_locations": []
     },
     {
+        "label": "Tech Equipment",
+        "code": "lewis$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/lewis$tech.json",
+        "library": {
+            "label": "Lewis Library",
+            "code": "lewis",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "PUL Makerspace",
         "code": "lewis$maker",
         "aeon_location": false,
@@ -3445,6 +3505,26 @@
         "delivery_locations": []
     },
     {
+        "label": "Tech Equipment",
+        "code": "marquand$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$tech.json",
+        "library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "Tang Reading Room Remote Storage: Marquand Use Only",
         "code": "marquand$fesrf",
         "aeon_location": false,
@@ -3843,6 +3923,26 @@
         "library": {
             "label": "Marquand Library",
             "code": "marquand",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Tech Equipment",
+        "code": "mendel$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/mendel$tech.json",
+        "library": {
+            "label": "Mendel Music Library",
+            "code": "mendel",
             "order": 0
         },
         "holding_library": null,
@@ -6826,6 +6926,26 @@
         "delivery_locations": [
             "QX"
         ]
+    },
+    {
+        "label": "Tech Equipment",
+        "code": "stokes$tech",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "",
+        "fulfillment_unit": "Media",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/stokes$tech.json",
+        "library": {
+            "label": "Stokes Library",
+            "code": "stokes",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
     },
     {
         "label": "Indexes. Wallace Hall",
