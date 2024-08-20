@@ -398,7 +398,7 @@ GEM
     net-ssh (7.2.3)
     netrc (0.11.0)
     nio4r (2.7.3)
-    nokogiri (1.16.6)
+    nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     oai (1.2.1)
@@ -423,13 +423,13 @@ GEM
     parser (3.3.0.5)
       ast (~> 2.4.1)
       racc
-    pg (1.5.4)
+    pg (1.5.7)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
     puma (6.4.2)
       nio4r (~> 2.0)
-    racc (1.8.0)
+    racc (1.8.1)
     rack (3.1.7)
     rack-protection (4.0.0)
       base64 (>= 0.1.0)
@@ -658,7 +658,7 @@ GEM
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    whenever (0.11.0)
+    whenever (1.0.0)
       chronic (>= 0.6.3)
     xml-simple (1.1.9)
       rexml
@@ -710,7 +710,7 @@ DEPENDENCIES
   lightly (~> 0.2.1)
   lograge
   logstash-event
-  loofah (>= 2.2.3)
+  loofah (>= 2.22)
   marc (~> 1.0)
   marc_cleanup!
   multi_json
@@ -736,7 +736,7 @@ DEPENDENCIES
   rubocop
   rubocop-rspec
   rubyXL
-  rubyzip (>= 1.2.2)
+  rubyzip
   sass-rails
   selenium-webdriver
   sidekiq
@@ -751,8 +751,8 @@ DEPENDENCIES
   traject
   turbolinks
   webmock
-  whenever (~> 0.10)
+  whenever
   yard
 
 BUNDLED WITH
-   2.3.26
+   2.5.17
