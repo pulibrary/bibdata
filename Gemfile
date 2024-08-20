@@ -79,8 +79,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem 'faker'
-  gem 'pry-byebug', '~> 3.0'
-  gem 'pry-rails'
   gem 'puma'
   gem 'rails-controller-testing'
   gem 'simplecov'
