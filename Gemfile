@@ -57,7 +57,7 @@ gem 'rspec-rails'
 gem 'rubocop'
 gem 'rubocop-rspec'
 gem 'rubyXL'
-gem 'rubyzip', '>= 1.2.2'
+gem 'rubyzip'
 gem 'sass-rails'
 gem 'selenium-webdriver'
 gem 'sidekiq'
@@ -66,7 +66,7 @@ gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
 gem 'terser'
 gem 'traject'
 gem 'turbolinks'
-gem 'whenever', "~> 0.10"
+gem 'whenever'
 gem 'yard'
 
 group :production do

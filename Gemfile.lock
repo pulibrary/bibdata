@@ -213,15 +213,6 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-<<<<<<< HEAD
-    date (3.3.4)
-    ddtrace (1.14.0)
-      debase-ruby_core_source (= 3.2.1)
-      libdatadog (~> 3.0.0.1.0)
-      libddwaf (~> 1.9.0.0.0)
-      msgpack
-    debase-ruby_core_source (3.2.1)
-=======
     csv (3.3.0)
     datadog-ci (0.8.3)
       msgpack
@@ -233,7 +224,6 @@ GEM
       libddwaf (~> 1.14.0.0.0)
       msgpack
     debase-ruby_core_source (3.3.1)
->>>>>>> 9ada69ca ([#2451] Update ddtrace)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.9.4)
@@ -387,14 +377,8 @@ GEM
     mime-types-data (3.2024.0806)
     mini_mime (1.1.5)
     mini_portile2 (2.8.7)
-<<<<<<< HEAD
-    minitar (0.9)
-    minitest (5.24.1)
-    mize (0.5.0)
-=======
     minitar (1.0.1)
     minitest (5.25.1)
->>>>>>> 9ada69ca ([#2451] Update ddtrace)
     msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.7.1)
@@ -718,11 +702,7 @@ DEPENDENCIES
   capybara
   change_the_subject (~> 0.3.5)
   coveralls_reborn
-<<<<<<< HEAD
   ddtrace (~> 1.14.0)
-=======
-  ddtrace (~> 1.0)
->>>>>>> 9ada69ca ([#2451] Update ddtrace)
   devise
   dotenv-rails
   ed25519
