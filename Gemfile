@@ -47,7 +47,7 @@ gem 'omniauth-cas'
 gem 'omniauth-rails_csrf_protection'
 gem 'open3'
 gem 'orangetheses', github: 'pulibrary/orangetheses', ref: '4ac8dc2bd04b10db764fc37df3261531c9937061'
-gem 'pg'
+gem 'pg', '~> 1.5', '>= 1.5.7'
 gem "rack"
 gem 'rails', '~> 7.1'
 gem 'responders'

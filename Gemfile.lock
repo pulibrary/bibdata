@@ -730,7 +730,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   open3
   orangetheses!
-  pg
+  pg (~> 1.5, >= 1.5.7)
   puma
   rack
   rails (~> 7.1)
