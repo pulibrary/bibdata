@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 if Rails.env.production?
   Datadog.configure do |c|
-    c.tracer(enabled: false) unless Rails.env.production?
-    c.env = Rails.env
-    c.service = 'bibdata'
+    c.tracing.eanbled = false unless Rails.env.production?
+    c.env = 'production'
+    # c.service = 'bibdata'
     # Rails
-    c.use :rails
+    c.tracing.instrument :rails
   
     # Redis
-    c.use :redis
+    c.tracing.instrument :redis
   
     # Net::HTTP
-    c.use :http
+    c.tracing.instrument :http
   
     # Sidekiq
-    c.use :sidekiq
+    c.tracing.instrument :sidekiq
   
     # Faraday
-    c.use :faraday
+    c.tracing.instrument :faraday
   end
 end

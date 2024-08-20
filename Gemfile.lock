@@ -217,10 +217,12 @@ GEM
       rexml
     crass (1.0.6)
     date (3.3.4)
-    ddtrace (0.54.2)
-      debase-ruby_core_source (<= 0.10.14)
+    ddtrace (1.14.0)
+      debase-ruby_core_source (= 3.2.1)
+      libdatadog (~> 3.0.0.1.0)
+      libddwaf (~> 1.9.0.0.0)
       msgpack
-    debase-ruby_core_source (0.10.14)
+    debase-ruby_core_source (3.2.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.1)
@@ -335,6 +337,9 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     lcsort (0.9.1)
+    libdatadog (3.0.0.1.0)
+    libddwaf (1.9.0.0.1)
+      ffi (~> 1.0)
     library_stdnums (1.6.0)
     lightly (0.2.1)
     llhttp-ffi (0.4.0)
@@ -371,7 +376,7 @@ GEM
     minitar (0.9)
     minitest (5.24.1)
     mize (0.5.0)
-    msgpack (1.6.0)
+    msgpack (1.7.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
@@ -682,7 +687,7 @@ DEPENDENCIES
   capybara
   change_the_subject (~> 0.3.5)
   coveralls_reborn
-  ddtrace (~> 0.54.2)
+  ddtrace (~> 1.14.0)
   devise
   dotenv-rails
   ed25519
