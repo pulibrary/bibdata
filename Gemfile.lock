@@ -371,7 +371,6 @@ GEM
       marc (~> 1.0)
     marcel (1.0.4)
     matrix (0.4.2)
-    method_source (1.1.0)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2024.0806)
@@ -430,14 +429,6 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.7)
-    pry (0.14.2)
-      coderay (~> 1.1)
-      method_source (~> 1.0)
-    pry-byebug (3.10.1)
-      byebug (~> 11.0)
-      pry (>= 0.13, < 0.15)
-    pry-rails (0.3.11)
-      pry (>= 0.13.0)
     psych (5.1.2)
       stringio
     public_suffix (6.0.1)
@@ -702,7 +693,7 @@ DEPENDENCIES
   capybara
   change_the_subject (~> 0.3.5)
   coveralls_reborn
-  ddtrace (~> 1.14.0)
+  ddtrace (~> 1.0)
   devise
   dotenv-rails
   ed25519
@@ -751,7 +742,7 @@ DEPENDENCIES
   rubocop
   rubocop-rspec
   rubyXL
-  rubyzip (>= 1.2.2)
+  rubyzip
   sass-rails
   selenium-webdriver
   sidekiq
@@ -766,8 +757,8 @@ DEPENDENCIES
   traject
   turbolinks
   webmock
-  whenever (~> 0.10)
+  whenever
   yard
 
 BUNDLED WITH
-   2.4.19
+   2.5.17
