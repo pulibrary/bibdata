@@ -12,7 +12,7 @@ default: &default
 
 development:
   <<: *default
-  database: bibdata_alma_dev
+  database: bibdata_dev
   pool: 5
 
 test:
