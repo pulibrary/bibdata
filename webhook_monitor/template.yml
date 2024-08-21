@@ -116,7 +116,7 @@ Resources:
   WebhookReceiver:
     Type: "AWS::Serverless::Function"
     Properties:
-      Runtime: ruby3.2
+      Runtime: ruby2.7
       Handler: index.handler
       MemorySize: 512
       Timeout: 30

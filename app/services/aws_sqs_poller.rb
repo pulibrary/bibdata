@@ -85,6 +85,10 @@ class AlmaDumpFactory
       alma_job_status:,
       message_body: message.to_json
     )
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error("#{e.message} message_body: #{message.to_json}")
+    Honeybadger.notify("#{e.message} message_body: #{message.to_json}")
+    raise e
   end
 
   def event_start
