@@ -26,6 +26,8 @@ class AwsSqsPoller
         dump:,
         job_id: message_body["job_instance"]["id"]
       )
+    rescue AlmaDumpFactory::AlmaDuplicateEventError
+
     end
   end
 end
@@ -43,6 +45,10 @@ class AlmaDumpFactory
       status = alma_message["job_instance"]["status"]["value"]
       "Alma job completed with invalid status. Alma status: #{status}. Job id: #{alma_message['id']}"
     end
+  end
+
+  class AlmaDuplicateEventError < StandardError
+    
   end
 
   def initialize(message)
@@ -88,7 +94,7 @@ class AlmaDumpFactory
   rescue ActiveRecord::RecordInvalid => e
     Rails.logger.error("#{e.message} message_body: #{message.to_json}")
     Honeybadger.notify("#{e.message} message_body: #{message.to_json}")
-    raise e
+    raise AlmaDuplicateEventError
   end
 
   def event_start
