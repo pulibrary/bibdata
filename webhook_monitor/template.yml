@@ -40,7 +40,7 @@ Resources:
           Fn::GetAtt:
             - DeadLetterSqsQueue
             - Arn
-        maxReceiveCount: 1000
+        maxReceiveCount: 100
       ContentBasedDeduplication: true
       MessageRetentionPeriod: 1_209_600
   APIGateway:
