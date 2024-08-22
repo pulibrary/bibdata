@@ -27,7 +27,7 @@ class AwsSqsPoller
         job_id: message_body["job_instance"]["id"]
       )
     rescue AlmaDumpFactory::AlmaDuplicateEventError
-
+      Rails.logger.error("Rescue from AlmaDuplicateEventError with alma_process_id: #{message_body['job_instance']['id']}")
     end
   end
 end
@@ -48,7 +48,6 @@ class AlmaDumpFactory
   end
 
   class AlmaDuplicateEventError < StandardError
-    
   end
 
   def initialize(message)

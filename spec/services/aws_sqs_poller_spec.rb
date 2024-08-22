@@ -82,6 +82,19 @@ RSpec.describe AwsSqsPoller do
   context "when a incremental dump job comes through" do
     let(:job_id) { "6587815790006421" }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
+    context "with a duplicate event" do
+      before do
+        described_class.poll
+      end
+
+      it "doesn't raise an error or kicks off a background job" do
+        allow(Rails.logger).to receive(:error)
+        expect { described_class.poll }.not_to have_enqueued_job(
+        AlmaDumpTransferJob
+      )
+        expect(Rails.logger).to have_received(:error)
+      end
+    end
 
     it "Creates an event and kicks off a background job" do
       expect { described_class.poll }.to have_enqueued_job(
