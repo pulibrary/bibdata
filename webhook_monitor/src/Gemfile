@@ -2,11 +2,16 @@
 
 source 'https://rubygems.org'
 
-gem "aws-sdk-lambda"
 gem "aws-sdk-secretsmanager"
-gem "aws-sdk-sqs"
-gem "datadog-lambda"
-gem "ddtrace"
-gem 'nokogiri'
-gem 'pry-byebug', '~> 3.0'
-gem 'rspec'
+
+group :development do
+  gem "aws-sdk-lambda"
+  gem "aws-sdk-sqs"
+  gem "datadog-lambda"
+  gem "ddtrace"
+  gem "nokogiri"
+end
+
+group :test do
+  gem 'rspec'
+end
