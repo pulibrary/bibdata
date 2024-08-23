@@ -7,8 +7,8 @@ gem "aws-sdk-secretsmanager"
 group :development do
   gem "aws-sdk-lambda"
   gem "aws-sdk-sqs"
-  gem "ddtrace"
   gem "datadog-lambda"
+  gem "ddtrace", "~> 1.1.0"
   gem "nokogiri"
 end
 
