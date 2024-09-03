@@ -8,6 +8,7 @@
   "CF" => "Data file",
   "CR" => "CDROM",
   "CS" => "Software",
+  "DB" => "Databases",
   "DI" => "Dictionaries",
   "DR" => "Directories",
   "EN" => "Encyclopedias",
