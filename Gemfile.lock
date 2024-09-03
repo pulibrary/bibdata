@@ -216,13 +216,16 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    date (3.3.4)
-    ddtrace (1.14.0)
-      debase-ruby_core_source (= 3.2.1)
-      libdatadog (~> 3.0.0.1.0)
-      libddwaf (~> 1.9.0.0.0)
+    datadog-ci (0.8.3)
       msgpack
-    debase-ruby_core_source (3.2.1)
+    date (3.3.4)
+    ddtrace (1.23.3)
+      datadog-ci (~> 0.8.1)
+      debase-ruby_core_source (= 3.3.1)
+      libdatadog (~> 7.0.0.1.0)
+      libddwaf (~> 1.14.0.0.0)
+      msgpack
+    debase-ruby_core_source (3.3.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.8.1)
@@ -282,7 +285,7 @@ GEM
     faraday-retry (1.0.3)
     faraday_middleware (1.2.0)
       faraday (~> 1.0)
-    ffi (1.16.3)
+    ffi (1.17.0)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -337,8 +340,8 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     lcsort (0.9.1)
-    libdatadog (3.0.0.1.0)
-    libddwaf (1.9.0.0.1)
+    libdatadog (7.0.0.1.0)
+    libddwaf (1.14.0.0.0)
       ffi (~> 1.0)
     library_stdnums (1.6.0)
     lightly (0.2.1)
@@ -687,7 +690,7 @@ DEPENDENCIES
   capybara
   change_the_subject (~> 0.3.5)
   coveralls_reborn
-  ddtrace (~> 1.14.0)
+  ddtrace
   devise
   dotenv-rails
   ed25519
