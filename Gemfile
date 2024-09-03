@@ -70,7 +70,7 @@ gem 'whenever'
 gem 'yard'
 
 group :production do
-  gem "ddtrace", '~> 1.14.0'
+  gem "ddtrace"
 end
 
 group :development, :test do
