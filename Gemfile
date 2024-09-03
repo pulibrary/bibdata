@@ -75,6 +75,7 @@ end
 
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
+  gem 'byebug'
   gem 'coveralls_reborn'
   gem "dotenv-rails"
   gem "factory_bot_rails"
