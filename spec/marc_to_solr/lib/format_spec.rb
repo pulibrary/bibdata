@@ -4,10 +4,9 @@ require 'rails_helper'
 describe 'From format.rb' do
   let(:marc) { MARC::Record.new }
 
-  { 'Book' => ['aa', 'ab', 'ac', 'ad', 'am'],
+  { 'Book' => ['aa', 'ab', 'ac', 'ad', 'ai', 'am'],
     'Journal' => ['as'],
     'Data file' => ['m '],
-    'Databases' => ['ai'],
     'Visual material' => ['k ', 'o ', 'r '],
     'Video/Projected medium' => ['g '],
     'Musical score' => ['c ', 'd '],

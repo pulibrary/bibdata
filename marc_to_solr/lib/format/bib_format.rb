@@ -31,16 +31,11 @@ class BibFormat
     format << "MP" if bibformat_mp(type, lev) # map
     format << "MW" if bibformat_mw(type, lev) # manuscript
     format << "BK" if bibformat_bk(type, lev) # book
-    format << "DB" if bibformat_db(type, lev) # databases
     format
   end
 
   def bibformat_bk(type, lev)
     (type == 't') || ((type == 'a') && %w[a b c d i m].include?(lev))
-  end
-
-  def bibformat_db(type, lev)
-    (type == 'a') && (lev == 'i')
   end
 
   def bibformat_jn(type, lev)
