@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>04603cai a2200745Ii 4500</leader>
+    <controlfield tag="005">20201017002234.0</controlfield>
+    <controlfield tag="006">m     o  j        </controlfield>
+    <controlfield tag="007">cr u||||||||||</controlfield>
+    <controlfield tag="008">200106c20199999gw  x   o b   0   b2ger d</controlfield>
+    <controlfield tag="001">99121427653506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1134993103</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)1134993103</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)12142765-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="z">(NjP)Voyager12142765</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">ITD</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">ITD</subfield>
+      <subfield code="d">ITD</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">WTU</subfield>
+      <subfield code="d">NjP</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2=" ">
+      <subfield code="a">ger</subfield>
+      <subfield code="a">eng</subfield>
+    </datafield>
+    <datafield tag="245" ind1="0" ind2="0">
+      <subfield code="a">Klemperer online :</subfield>
+      <subfield code="b">Tagebücher 1918-1959.</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2=" ">
+      <subfield code="a">Klemperer online :</subfield>
+      <subfield code="b">diaries, 1918-1959</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="a">Tagebücher 1918-1959</subfield>
+    </datafield>
+    <datafield tag="246" ind1="3" ind2="0">
+      <subfield code="a">Diaries, 1918-1959</subfield>
+    </datafield>
+    <datafield tag="264" ind1="3" ind2="1">
+      <subfield code="a">[München] :</subfield>
+      <subfield code="b">De Gruyter Oldenbourg,</subfield>
+      <subfield code="c">2019-</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Berlin :</subfield>
+      <subfield code="b">Walter de Gruyter GmbH,</subfield>
+      <subfield code="c">[2019]-</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 online resource</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">"The database makes available the complete and unabridged diaries of Victor Klemperer. The texts feature an extensive commentary and are fully indexed"--Database home screen, viewed April 21, 2020.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">"The database covers the entire four-decade period (from 1918 to 1959) in which Klemperer kept his diaries. Klemperer, who primarily identified as "German," was the son of a reform rabbi and converted to Protestantism in 1912. For the Nazis, however, he remained a Jew and was persecuted as such. His careful observations and analyses from the Weimar Republic, the National Socialist era, and the German Democratic Republic illuminate what it meant to live under these three regimes. As the Nazis rose to power, he adopted the role of a "cultural historian of the catastrophe," documenting the ongoing withdrawal of rights from Jews. These observations are accompanied by a minute account of his day-to-day life under National Socialism. His post-1945 diaries testify to a desire for a radical new beginning - both for himself and for Germany. Though less well known than his other diaries and until now never published in full, these provide significant insights into the divided post-war Germany and early East Germany, as well as Klemperer's engagement with Communism and Zionism."--from the database overview.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Edited by Walter Nowojski and Christian Löser.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Diaries available as transcripts and facsimile manuscripts.</subfield>
+    </datafield>
+    <datafield tag="538" ind1=" " ind2=" ">
+      <subfield code="a">Mode of access: World Wide Web.</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">Interface in English and German; contents in German.</subfield>
+    </datafield>
+    <datafield tag="588" ind1=" " ind2=" ">
+      <subfield code="a">Description based on online resource; title from home screen, viewed April 21, 2020.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Klemperer, Victor,</subfield>
+      <subfield code="d">1881-1960</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Klemperer, Victor,</subfield>
+      <subfield code="d">1881-1960</subfield>
+      <subfield code="x">Manuscripts.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Germany</subfield>
+      <subfield code="x">Politics and government</subfield>
+      <subfield code="y">1933-1945.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/subjects/sh85054640</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Antisemitism</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="y">20th century</subfield>
+      <subfield code="v">Sources.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">National socialism</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="x">History</subfield>
+      <subfield code="v">Sources.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Jews</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Christian converts from Judaism</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Young men</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Philologists</subfield>
+      <subfield code="z">Germany</subfield>
+      <subfield code="v">Diaries.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="7">
+      <subfield code="a">Klemperer, Victor,</subfield>
+      <subfield code="d">1881-1960.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00222837</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Antisemitism.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00810769</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Christian converts from Judaism.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00858969</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Jews.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00983135</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">National socialism.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01033761</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Philologists.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01060688</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Politics and government.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01919741</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Young men.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01183263</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">Germany.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01210272</subfield>
+    </datafield>
+    <datafield tag="648" ind1=" " ind2="7">
+      <subfield code="a">1900-1999</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Databases.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411643</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Diaries.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423794</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Facsimiles.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411642</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">History.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411628</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Manuscripts.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01424060</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Sources.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423900</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Databases.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026081</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Facsimiles.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026099</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Diaries.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026085</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2="2">
+      <subfield code="a">Klemperer, Victor,</subfield>
+      <subfield code="d">1881-1960.</subfield>
+      <subfield code="t">Diaries.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Nowojski, Walter,</subfield>
+      <subfield code="e">editor.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n88075804</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Löser, Christian,</subfield>
+      <subfield code="d">1936-</subfield>
+      <subfield code="e">editor.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n84193211</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">connell</subfield>
+      <subfield code="b">m</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">i</subfield>
+      <subfield code="d">w</subfield>
+      <subfield code="f">0</subfield>
+      <subfield code="e">20201016</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2023-11-12 12:22:59 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 09:48:08 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2021-07-20 12:21:34 US/Eastern</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="t">2021-07-20 12:21:29 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53812730350006421&amp;Force_direct=true</subfield>
+      <subfield code="s">P2E_JOB</subfield>
+      <subfield code="0">53812730350006421</subfield>
+      <subfield code="w">2021-07-20 16:21:29</subfield>
+      <subfield code="f">false</subfield>
+      <subfield code="b">static</subfield>
+      <subfield code="1">52812730360006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99121427653506421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="e">JOURNAL</subfield>
+      <subfield code="8">53812730350006421</subfield>
+    </datafield>
+  </record>
+</collection>
