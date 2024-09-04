@@ -28,6 +28,9 @@ describe 'From traject_config.rb', indexing: true do
       @sample43 = @indexer.map_record(fixture_record('9935444363506421'))
       @sample44 = @indexer.map_record(fixture_record('9913811723506421'))
       @sample45 = @indexer.map_record(fixture_record('99127174504906421'))
+      @format_databases = @indexer.map_record(fixture_record('99121427653506421'))
+      @format_journal = @indexer.map_record(fixture_record('991213506421'))
+      @format_book = @indexer.map_record(fixture_record('9918573506421'))
       @record_with_255a = @indexer.map_record(fixture_record('9952690273506421'))
       @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
       @record_temporary_location_v2 = @indexer.map_record(fixture_record('99124695833506421_custom_holdings'))
@@ -453,6 +456,17 @@ describe 'From traject_config.rb', indexing: true do
     describe 'the id field' do
       it 'has exactly 1 value' do
         expect(@sample1['id'].length).to eq 1
+      end
+    end
+    describe 'leader positions 06 07' do
+      it 'is a databases format if there is an: ai' do
+        expect(@format_databases['format']).to eq ['Databases']
+      end
+      it 'is a journal format if there is an: as ' do
+        expect(@format_journal['format']).to eq ['Journal']
+      end
+      it 'is a book format if there is an: am ' do
+        expect(@format_book['format']).to eq ['Book']
       end
     end
     describe 'numeric_id_b' do
