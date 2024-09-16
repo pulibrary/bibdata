@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   resources :dump_files, only: [:show]
   resources :events, only: [:show, :index, :destroy]
   resources :dumps, only: [:show]
-  resources :campus_access_exceptions, only: [:new, :create]
 
   scope :locations do
     resources :holding_locations
@@ -28,8 +27,6 @@ Rails.application.routes.draw do
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
   get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
-
-  get "/campus_access", to: 'campus_access#index', defaults: { format: :csv }
 
   require 'sidekiq/web'
   authenticate :user, ->(user) { user.catalog_admin? } do

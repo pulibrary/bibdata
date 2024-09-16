@@ -49,10 +49,6 @@ Lint/UselessAssignment:
     - 'marc_to_solr/lib/traject_config.rb'
     - 'spec/controllers/availability_controller_spec.rb'
 
-Lint/Void:
-  Exclude:
-    - 'app/models/campus_access.rb'
-
 # Offense count: 13
 Metrics/AbcSize:
   Max: 176
@@ -103,10 +99,6 @@ Metrics/PerceivedComplexity:
 Naming/AccessorMethodName:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
-
-Naming/PredicateName:
-  Exclude:
-    - 'app/models/campus_access.rb'
 
 # Offense count: 10
 # Configuration parameters: EnforcedStyle.
