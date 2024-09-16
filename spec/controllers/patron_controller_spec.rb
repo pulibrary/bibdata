@@ -66,8 +66,6 @@ RSpec.describe PatronController, type: :controller do
           "patron_id" => "100000000",
           "patron_group" => "UGRD",
           "patron_group_desc" => "UGRD Undergraduate",
-          "campus_authorized" => false,
-          "campus_authorized_category" => "none",
           "active_email" => "cmonster@SCRUBBED_Princeton.EDU"
         )
       end
@@ -86,8 +84,6 @@ RSpec.describe PatronController, type: :controller do
         "patron_id" => "100000000",
         "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
-        "campus_authorized" => false,
-        "campus_authorized_category" => "none",
         "ldap" => { "ldap_data" => "is here" },
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
@@ -106,14 +102,11 @@ RSpec.describe PatronController, type: :controller do
         "patron_id" => "100000000",
         "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
-        "campus_authorized" => false,
-        "campus_authorized_category" => "none",
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
 
-    it "allows authenticated users to access patron info and includes campus access" do
-      CampusAccess.create(uid: patron_identifier)
+    it "allows authenticated users to access patron info" do
       get :patron_info, params: { patron_id: patron_identifier, format: :json }
       expect(response).to have_http_status(200)
       expect(JSON.parse(response.body)).to eq(
@@ -125,8 +118,6 @@ RSpec.describe PatronController, type: :controller do
         "patron_id" => "100000000",
         "patron_group" => "P",
         "patron_group_desc" => "P Faculty & Professional",
-        "campus_authorized" => true,
-        "campus_authorized_category" => "full",
         "active_email" => "bbird@SCRUBBED_princeton.edu"
       )
     end
@@ -163,8 +154,7 @@ RSpec.describe PatronController, type: :controller do
         expect(JSON.parse(response.body)).to eq({ "netid" => nil, "first_name" => "Amir", "last_name" => "Abadi",
                                                   "barcode" => "77777777", "university_id" => "BC123456789", "patron_id" => "BC123456789",
                                                   "patron_group" => "GST", "patron_group_desc" => "GST Guest Patron",
-                                                  "active_email" => "Abadi@other_school.edu",
-                                                  "campus_authorized" => false, "campus_authorized_category" => "none" })
+                                                  "active_email" => "Abadi@other_school.edu" })
       end
     end
   end

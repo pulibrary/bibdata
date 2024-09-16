@@ -34,7 +34,6 @@ set :linked_dirs, %w{
   vendor/bundle
   public/system
   log
-  campus_access
 }
 
 
