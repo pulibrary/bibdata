@@ -58,7 +58,7 @@ e.g.:
    `ssh pulsys@bibdata-staging1`
    `sudo service nginx start
 
-7. Go to `https://bibdata-staging.princeton.edu/events` and make sure the application is working as expected and lists all the events that the production site has.
+7. Go to `https://bibdata-staging.lib.princeton.edu/events` and make sure the application is working as expected and lists all the events that the production site has.
 
 8. The files that are connected to these events exist in bibdata production `/data/bibdata_files`. 
 For example: you want to test an issue on staging using the event with ID:6248:  
@@ -68,7 +68,7 @@ For example: you want to test an issue on staging using the event with ID:6248:
 
    2. scp the file into one of the bibdata staging VMs:
        - scp the file to your local and then to `deploy@bibdata-staging1:/data/bibdata_files`
-       - Visit https://bibdata-staging.princeton.edu/dumps/6248.json. The webpage should not error. You can also confirm that the file is attached to this event by searching the bibdata staging DB.
+       - Visit https://bibdata-staging.lib.princeton.edu/dumps/6248.json. The webpage should not error. You can also confirm that the file is attached to this event by searching the bibdata staging DB.
        - `deploy@bibdata-staging1:/opt/bibdata/current$ bundle exec rails c`
 
        - `DumpFile.where(dump_id: 6248)` you should be able to see in path: attribute the `incremental_36489280620006421_20240423_130418[009]_new.tar.gz`.

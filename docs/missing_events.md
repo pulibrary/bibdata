@@ -48,7 +48,7 @@ You can adjust the value in the UI but also remember to adjust it in the codebas
 - If you trigger a Publishing job in the Princeton Alma Sandbox and you are missing the event/dump with the dumpFile then follow the same steps as above using the following:
 
 - [Bibdata staging VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L6-L10)
-- [Bibdata staging events page](https://bibdata-staging.princeton.edu/events)
+- [Bibdata staging events page](https://bibdata-staging.lib.princeton.edu/events)
 - [Princeton Alma Sandbox](https://princeton-psb.alma.exlibrisgroup.com/)
 - [alma-webhook-monitor-staging](https://us-east-1.console.aws.amazon.com/cloudwatch/home?region=us-east-1#logsV2:log-groups/log-group/$252Faws$252Flambda$252Falma-webhook-monitor-staging-WebhookReceiver-za2o0tUQ0XNM)
 - [AWS SQS AlmaBibExportStaging](https://us-east-1.console.aws.amazon.com/sqs/v3/home?region=us-east-1#/queues/https%3A%2F%2Fsqs.us-east-1.amazonaws.com%2F080265008837%2FAlmaBibExportStaging.fifo)
