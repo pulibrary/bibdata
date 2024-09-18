@@ -219,6 +219,17 @@ jobs:
       - run:
           name: Check code against community-provided and custom semgrep rules
           command: semgrep ci --config auto --config .semgrep.yml
+
+  bearer:
+    docker:
+      - image: cimg/ruby:3.2
+    environment:
+      # Set to default branch of your repo
+      DEFAULT_BRANCH: main
+    steps:
+      - checkout
+      - run: curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b /tmp
+      - run: CURRENT_BRANCH=$CIRCLE_BRANCH SHA=$CIRCLE_SHA1 /tmp/bearer scan .
 workflows:
   version: 2
   default:
@@ -235,4 +246,4 @@ workflows:
             - build
       - build_and_test_webhook
       - semgrep
-
+      - bearer

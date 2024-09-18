@@ -1,0 +1,8 @@
+{
+  "c52fc1468bbbd5867590436ec290f478_0": {
+    "author": "Max Kadel",
+    "comment": "False positive - not actually a password, just mapping a MARC subfield code.",
+    "false_positive": true,
+    "ignored_at": "2024-09-18T16:11:06Z"
+  }
+}
