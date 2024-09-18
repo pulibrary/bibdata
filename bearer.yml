@@ -1,0 +1,34 @@
+disable-version-check: false
+log-level: info
+report:
+    fail-on-severity: critical,high,medium,low
+    format: ""
+    no-color: false
+    output: ""
+    report: security
+    severity: critical,high,medium,low,warning
+rule:
+    disable-default-rules: false
+    only-rule: []
+    # Tickets to remediate these rules and remove from this stanza:
+    #   ruby_lang_file_generation - https://github.com/pulibrary/bibdata/issues/2487
+    #   ruby_lang_weak_hash_md - https://github.com/pulibrary/bibdata/issues/2488
+    #   ruby_rails_open_redirect - https://github.com/pulibrary/bibdata/issues/2489
+    #   ruby_rails_default_encryption - https://github.com/pulibrary/bibdata/issues/2490
+    skip-rule: [ruby_lang_file_generation, ruby_lang_weak_hash_md, ruby_rails_open_redirect, ruby_rails_default_encryption]
+scan:
+    context: ""
+    data_subject_mapping: ""
+    disable-domain-resolution: true
+    domain-resolution-timeout: 3s
+    exit-code: -1
+    external-rule-dir: []
+    force: false
+    hide_progress_bar: false
+    internal-domains: []
+    parallel: 0
+    quiet: false
+    scanner:
+        - sast
+    skip-path: []
+    skip-test: true
