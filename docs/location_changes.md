@@ -28,7 +28,7 @@
 2. Stop the workers (this step is optional in staging): 
     - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_staging -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata staging web servers. They don't run the worker service.)     
 
-3. Connect in one of the [bibdata-staging workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L9C1-L10):
+3. Connect in one of the [bibdata_staging workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L9C1-L10):
     
     - `ssh deploy@bibdata-worker-staging1`  
     - `cd /opt/bibdata/current` 
@@ -36,7 +36,7 @@
 4. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
   `RAILS_ENV=production bundle exec rake bibdata:delete_and_repopulate_locations`
 
-5. Review the location changes in [Bibdata staging](https://bibdata-staging.princeton.edu/).
+5. Review the location changes in [Bibdata staging](https://bibdata-staging.lib.princeton.edu/).
 
 6. If in step 2 you stopped the workers then start the workers: 
     - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_staging -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata staging web servers. They don't run the worker service.)   

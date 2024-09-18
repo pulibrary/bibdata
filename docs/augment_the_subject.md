@@ -22,4 +22,4 @@
     * Run the rspec tests tagged "indexing" `bundle exec rspec --tag indexing`
         * If there are failing tests, work to get them passing 
     * On a branch, commit the changes resulting from these steps and open a pull request
-1. Deploy the branch to bibdata-staging, and test according to the practices in the test_indexing.md file. 
+1. Deploy the branch to the Bibdata staging environment, and test according to the practices in the test_indexing.md file. 

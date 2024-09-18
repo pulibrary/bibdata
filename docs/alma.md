@@ -19,8 +19,8 @@ Use your netid and password to login and access [Alma Development instance](http
 4. Click the ellipsis button.
 5. Click Run. 
 This will trigger an incremental job in the alma sandbox. It takes around 45-60 minutes to complete. 
-If there are updated records then in [bibdata staging events](https://bibdata-staging.princeton.edu/events) a new event will be created with the 'dump type': 'Changed Records'. This event holds a dump file from the incremental dump that was triggered in the alma sandbox. [Example](https://bibdata-staging.princeton.edu/dumps/1124.json) with two dump_files.
-In [bibdata staging sidekiq](https://bibdata-staging.princeton.edu/sidekiq) you can see the indexing progress. Keep in mind that it is fast and you might not notice the indexing job in the dashboard.
+If there are updated records then in [bibdata staging events](https://bibdata-staging.lib.princeton.edu/events) a new event will be created with the 'dump type': 'Changed Records'. This event holds a dump file from the incremental dump that was triggered in the alma sandbox. [Example](https://bibdata-staging.lib.princeton.edu/dumps/1124.json) with two dump_files.
+In [bibdata staging sidekiq](https://bibdata-staging.lib.princeton.edu/sidekiq) you can see the indexing progress. Keep in mind that it is fast and you might not notice the indexing job in the dashboard.
 The indexing process uses the value of the env SOLR_URL that you can see if you ssh in bibdata-staging1.
 
 ## Accessing the Alma Production instance
