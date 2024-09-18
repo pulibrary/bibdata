@@ -840,7 +840,7 @@ describe 'From princeton_marc.rb' do
         expect(@holdings_scsb_block['location_has']).to eq(["no. 107-112"])
       end
       it "indexes 876 for scsb" do
-        expect(@holdings_scsb_block['items'][0]['enumeration']).to eq("no. 107-112")
+        expect(@holdings_scsb_block['items'][0]['description']).to eq("no. 107-112")
         expect(@holdings_scsb_block['items'][0]['id']).to eq("15555520")
         expect(@holdings_scsb_block['items'][0]['use_statement']).to eq("In Library Use")
         expect(@holdings_scsb_block['items'][0]['status_at_load']).to eq("Available")

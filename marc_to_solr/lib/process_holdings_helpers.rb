@@ -141,7 +141,7 @@ class ProcessHoldingsHelpers
     is_scsb = scsb?(field_852)
     item = {}
     item[:holding_id] = field_876['0'] if field_876['0']
-    item[:enumeration] = field_876['3'] if field_876['3']
+    item[:description] = field_876['3'] if field_876['3']
     item[:id] = field_876['a'] if field_876['a']
     item[:status_at_load] = field_876['j'] if field_876['j']
     item[:barcode] = field_876['p'] if field_876['p']
