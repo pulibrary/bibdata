@@ -2,6 +2,14 @@
 
 <h1>Events</h1>
 
+<lux-data-table :columns="[
+  { 'name': 'id', 'display_name': 'Event ID', 'sortable': true},
+  { 'name': 'start', 'display_name': 'Start', 'sortable': true},
+  { 'name': 'finish', 'display_name': 'Finish', 'sortable': true},
+  { 'name': 'success', 'display_name': 'Success', 'sortable': true},
+]">
+</lux-data-table>
+
 <table class="table table-condensed">
   <thead>
     <tr>

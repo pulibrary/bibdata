@@ -10,10 +10,20 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require bootstrap-sprockets
 //= require rails-ujs
-//= require jquery-tablesorter
-//= require jquery-tablesorter/widgets/widget-editable
 //= require turbolinks
 //= require_tree .
+
+window.addEventListener('load', () => {
+    const { createApp } = Vue
+    createApp().use(Lux.default).mount('#app')
+    jQuery(function() {
+        // Now that lux has loaded, we can add the
+        // jquery tablesorter, which allows users to
+        // filter the table
+        $("table").tablesorter({
+            widthFixed: true,
+            widgets: ['stickyHeaders', 'filter', 'zebra'],
+        });
+    });
+})

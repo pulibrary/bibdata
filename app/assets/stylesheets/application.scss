@@ -1,15 +1,10 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
 @import 'variables/colors';
 @import 'variables/typography';
 
 @import 'base/typography';
-@import "jquery-tablesorter/theme.blue";
 
 body {
   color: $primary-color;
-  padding-top: 90px;
 }
 
 td.nowrap {

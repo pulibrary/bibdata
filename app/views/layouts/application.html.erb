@@ -4,9 +4,12 @@
   <title>Bibdata</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'https://unpkg.com/lux-design-system@5.6.3/dist/style.css', nonce: true %>
+  <%= javascript_include_tag 'https://unpkg.com/vue@3.5.6/dist/vue.global.prod.js', nonce: true %>
+  <%= javascript_include_tag 'https://unpkg.com/lux-design-system@5.6.3/dist/lux-styleguidist.iife.js', nonce: true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body id="app">
   <div class="container">
     <%= render partial: "shared/navbar" %>  	
     <%= render partial: "shared/flash_messages", flash: flash %>

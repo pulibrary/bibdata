@@ -1,20 +1,14 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-      <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'high_voltage/pages' %>"><%= link_to 'Home', main_app.root_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'events' %>"><%= link_to 'Events', main_app.events_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'delivery_locations' %>"><%= link_to 'Delivery Locations', main_app.delivery_locations_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'holding_locations' %>"><%= link_to 'Holding Locations', main_app.holding_locations_path %></li>
-        <li class="<%= 'active' if params[:controller] == 'libraries' %>"><%= link_to 'Libraries', main_app.libraries_path %></li>
+<lux-library-header app-name="Bibdata" abbr-name="Bibdata" theme="dark">
+      <lux-menu-bar type="main-menu" :menu-items="[
+        {name: 'Home', component: 'Home', href: '/'},
+        {name: 'Events', component: 'Events', href: '<%= main_app.events_path %>'},
+        {name: 'Delivery Locations', component: 'Delivery', href: '<%= main_app.delivery_locations_path %>'},
+        {name: 'Holding Locations', component: 'Holding', href: '<%= main_app.holding_locations_path %>'},
+        {name: 'Libraries', component: 'Libraries', href: '<%= main_app.libraries_path %>'},
         <% if current_user %>
-        <li>
-          <%= link_to 'Logout', main_app.destroy_user_session_path, :method => :delete %>
-        </li>
+          {name: 'Logout', component: 'Libraries', href: '<%= main_app.destroy_user_session_path %>', method: 'DELETE'}
         <% else %>
-        <li>
-          <%= link_to 'Login', main_app.user_cas_omniauth_authorize_path, method: :post %>
-        </li>
+          {name: 'Login', component: 'Libraries', href: '<%= main_app.user_cas_omniauth_authorize_path %>', method: 'POST'}
         <% end %>
-      </ul>
-  </div>
-</nav>
+]" />
+</lux-library-header>
