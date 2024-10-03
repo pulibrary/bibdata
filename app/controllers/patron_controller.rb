@@ -63,11 +63,16 @@ class PatronController < ApplicationController
     end
 
     def protect
+      Rails.logger.info("Incoming patron request: IP is #{request.remote_ip}, User signed in is #{user_signed_in?}")
       if user_signed_in?
         deny_access unless current_user.catalog_admin?
       else
         ips = Rails.application.config.ip_allowlist
-        deny_access if ips.exclude?(request.remote_ip)
+        Rails.logger.info("Is IP address excluded from the allow list?: #{ips.exclude?(request.remote_ip)}")
+        if ips.exclude?(request.remote_ip)
+          deny_access
+          Rails.logger.info("Denied patron request: IP #{request.remote_ip} is not in the list: #{ips.join(', ')}")
+        end
       end
     end
 
