@@ -3,7 +3,7 @@ source "https://gems.contribsys.com/" do
   gem 'sidekiq-pro'
 end
 
-gem 'alma', github: 'tulibraries/alma_rb', branch: 'main'
+gem 'alma'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
 gem 'bcrypt_pbkdf'
