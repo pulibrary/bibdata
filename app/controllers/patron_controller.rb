@@ -72,6 +72,12 @@ class PatronController < ApplicationController
         if ips.exclude?(request.remote_ip)
           deny_access
           Rails.logger.info("Denied patron request: IP #{request.remote_ip} is not in the list: #{ips.join(', ')}")
+          headers = {}.tap do |envs|
+            request.headers.each do |key, value|
+              envs[key] = value if key.downcase.starts_with?('http')
+            end
+          end
+          Rails.logger.info("Headers of the request: #{headers}")
         end
       end
     end
