@@ -14,7 +14,9 @@ class AlmaAdapter
     # Returns availability information for each of the holdings in the Bib record.
     def bib_availability
       sequence = 0
+      byebug
       availability = holdings.each_with_object({}) do |holding, acc|
+        byebug
         sequence += 1
         status = holding_status(holding:)
         acc[status[:id]] = status unless status.nil?
@@ -74,6 +76,7 @@ class AlmaAdapter
 
       if holding["holding_id"].nil?
         holding["holding_id"] = "#{holding['library_code']}$#{holding['location_code']}"
+        byebug
         # The ALma call from the Alma::AvailabilityResponse returns holding in temp_location with holding_id nil
         # see https://github.com/tulibraries/alma_rb/blob/affabad4094bc2abf0e8546b336d2a667d5ffab5/lib/alma/bib_item.rb#L53
         # In this case we create a holding_id using the name of the 'temporary_library$temporary_location'
@@ -148,6 +151,7 @@ class AlmaAdapter
       # This method does NOT issue a separate call to the Alma API to get the information, instead it
       # extracts the availability information (i.e. the AVA and AVE fields) from the bib record.
       # If temp_location is true cannot get holding_id from this call because of https://github.com/tulibraries/alma_rb/blob/affabad4094bc2abf0e8546b336d2a667d5ffab5/lib/alma/bib_item.rb#L53
+      byebug
       @availability_response ||= Alma::AvailabilityResponse.new(Array.wrap(bib)).availability[bib.id][:holdings]
     end
 
