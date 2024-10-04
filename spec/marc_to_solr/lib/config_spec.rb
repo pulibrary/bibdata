@@ -30,6 +30,7 @@ describe 'From traject_config.rb', indexing: true do
       @sample45 = @indexer.map_record(fixture_record('99127174504906421'))
       @format_databases = @indexer.map_record(fixture_record('99121427653506421'))
       @format_journal = @indexer.map_record(fixture_record('991213506421'))
+      @format_microform_journal = @indexer.map_record(fixture_record('9931192963506421'))
       @format_book = @indexer.map_record(fixture_record('9918573506421'))
       @record_with_255a = @indexer.map_record(fixture_record('9952690273506421'))
       @record_temporary_location = @indexer.map_record(fixture_record('99124695833506421'))
@@ -467,6 +468,11 @@ describe 'From traject_config.rb', indexing: true do
       end
       it 'is a book format if there is an: am ' do
         expect(@format_book['format']).to eq ['Book']
+      end
+    end
+    describe 'microform format' do
+      it 'is indexed as a microform and its original format' do
+        expect(@format_microform_journal['format']).to contain_exactly 'Journal', 'Microform'
       end
     end
     describe 'numeric_id_b' do

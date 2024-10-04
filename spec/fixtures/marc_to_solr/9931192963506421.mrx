@@ -1,0 +1,185 @@
+<record>
+    <leader>02179cas a2200481 a 4500</leader>
+    <controlfield tag="005">20200824192616.0</controlfield>
+    <controlfield tag="007">hd adb016bucu</controlfield>
+    <controlfield tag="008">900220c19469999ja wr p a 0 d0jpn d</controlfield>
+    <controlfield tag="001">9931192963506421</controlfield>
+    <datafield tag="010" ind1=" " ind2=" ">
+        <subfield code="a"> 87649314 /AJ</subfield>
+    </datafield>
+    <datafield tag="022" ind1=" " ind2=" ">
+        <subfield code="a">0422-8359</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+        <subfield code="a">(CStRLIN)NJPX90-S58</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+        <subfield code="a">(NjP)3119296-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+        <subfield code="z">(NjP)Voyager3119296</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+        <subfield code="a">NIC</subfield>
+        <subfield code="c">NIC</subfield>
+        <subfield code="d">DLC</subfield>
+        <subfield code="d">CStRLIN</subfield>
+        <subfield code="d">NjP-G</subfield>
+    </datafield>
+    <datafield tag="042" ind1=" " ind2=" ">
+        <subfield code="a">lc</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+        <subfield code="a">a-ja---</subfield>
+    </datafield>
+    <datafield tag="050" ind1="0" ind2=" ">
+        <subfield code="a">HC462.8</subfield>
+        <subfield code="b">.E36</subfield>
+    </datafield>
+    <datafield tag="066" ind1=" " ind2=" ">
+        <subfield code="c">$1</subfield>
+    </datafield>
+    <datafield tag="090" ind1=" " ind2=" ">
+        <subfield code="a">\Micro-\film\J00026</subfield>
+        <subfield code="i">04/24/90 CT</subfield>
+    </datafield>
+    <datafield tag="130" ind1="0" ind2=" ">
+        <subfield code="6">880-01</subfield>
+        <subfield code="a">Ekonomisuto (Osaka, Japan)</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+        <subfield code="6">130-01/$1</subfield>
+        <subfield code="a">エコノミスト (Osaka, Japan)</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+        <subfield code="6">880-02</subfield>
+        <subfield code="a">Ekonomisuto [microform].</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+        <subfield code="6">245-02/$1</subfield>
+        <subfield code="a">エコノミスト [microform].</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+        <subfield code="6">880-03</subfield>
+        <subfield code="a">Ōsaka-shi :</subfield>
+        <subfield code="b">Mainichi Shinbunsha,</subfield>
+        <subfield code="c">Shōwa 21 [1946]-</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2=" ">
+        <subfield code="6">260-03/$1</subfield>
+        <subfield code="a">大阪市 :</subfield>
+        <subfield code="b">每日新聞社,</subfield>
+        <subfield code="c">昭和21 [1946]-</subfield>
+    </datafield>
+    <datafield tag="265" ind1=" " ind2=" ">
+        <subfield code="a">Mainichi Shinbunsha, Tōkyō Honsha, 1-1, Hitotsubashi 1, Chiyoda-ku,
+            Tōkyō-to 100</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+        <subfield code="a">v. :</subfield>
+        <subfield code="b">ill. ;</subfield>
+        <subfield code="c">26 cm.</subfield>
+    </datafield>
+    <datafield tag="310" ind1=" " ind2=" ">
+        <subfield code="a">Weekly,</subfield>
+        <subfield code="b">1952-nen 7-gatsu 1-nichi-</subfield>
+    </datafield>
+    <datafield tag="321" ind1=" " ind2=" ">
+        <subfield code="a">Semimonthly,</subfield>
+        <subfield code="b">Shōwa 21-nen i.e. 1946, 1-gatsu 1-nichi-Shōwa 22-nen i.e. 1947,
+            11-gatsu 15-nichi</subfield>
+    </datafield>
+    <datafield tag="321" ind1=" " ind2=" ">
+        <subfield code="a">Three times a month,</subfield>
+        <subfield code="b">Shōwa 22-nen i.e. 1947, 12-gatsu 1-nichi-1952-nen 6-gatsu 21-nichi</subfield>
+    </datafield>
+    <datafield tag="362" ind1="0" ind2=" ">
+        <subfield code="6">880-04</subfield>
+        <subfield code="a">Dai 24-nen, dai 1-gō (Shōwa 21-nen [1946] 1-gatsu 1-nichi)-</subfield>
+    </datafield>
+    <datafield tag="880" ind1="0" ind2=" ">
+        <subfield code="6">362-04/$1</subfield>
+        <subfield code="a">第24年, 第1号 (昭和21年 [1946] 1月1日)-</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+        <subfield code="a">Title from cover.</subfield>
+    </datafield>
+    <datafield tag="525" ind1=" " ind2=" ">
+        <subfield code="a">Vols. for &lt;1984- &gt; accompanied by special monthly supplements with
+            topics of the time.</subfield>
+    </datafield>
+    <datafield tag="533" ind1=" " ind2=" ">
+        <subfield code="a">Microfilm.</subfield>
+        <subfield code="b">Tokyo :</subfield>
+        <subfield code="c">Nihon Maikuro Shashin,</subfield>
+        <subfield code="d">Shōwa 58 [1983].</subfield>
+        <subfield code="e">&lt;22&gt; reels ; 16 mm.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+        <subfield code="a">Japan</subfield>
+        <subfield code="x">Economic conditions</subfield>
+        <subfield code="y">1945-</subfield>
+        <subfield code="x">Periodicals.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+        <subfield code="a">Economic history</subfield>
+        <subfield code="y">1945-</subfield>
+        <subfield code="v">Periodicals.</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/subjects/sh2008102584</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+        <subfield code="a">Periodicals.</subfield>
+        <subfield code="2">lcgft</subfield>
+        <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026139</subfield>
+    </datafield>
+    <datafield tag="780" ind1="0" ind2="0">
+        <subfield code="t">Keizai Mainichi</subfield>
+        <subfield code="w">(DLC) 87649315</subfield>
+        <subfield code="w">(OCoLC)17203175</subfield>
+    </datafield>
+    <datafield tag="850" ind1=" " ind2=" ">
+        <subfield code="a">DLC</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+        <subfield code="l">J</subfield>
+        <subfield code="n">#50</subfield>
+        <subfield code="p">2</subfield>
+        <subfield code="i">04/24/90 C</subfield>
+    </datafield>
+    <datafield tag="955" ind1=" " ind2=" ">
+        <subfield code="l">J</subfield>
+        <subfield code="c">1</subfield>
+        <subfield code="q">Gest A39014nifco</subfield>
+        <subfield code="i">04/24/90 C</subfield>
+    </datafield>
+    <datafield tag="998" ind1=" " ind2=" ">
+        <subfield code="a">04/24/90</subfield>
+        <subfield code="t">c</subfield>
+        <subfield code="s">9110</subfield>
+        <subfield code="n">NjP-G</subfield>
+        <subfield code="w">DCLCR87649314S</subfield>
+        <subfield code="d">02/20/90</subfield>
+        <subfield code="c">MS</subfield>
+        <subfield code="b">NS</subfield>
+        <subfield code="i">900424</subfield>
+        <subfield code="l">NJPX</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+        <subfield code="c">2023-12-12 04:34:31 US/Eastern</subfield>
+        <subfield code="b">2021-07-12 14:35:01 US/Eastern</subfield>
+        <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="8" ind2="0">
+        <subfield code="b">eastasian</subfield>
+        <subfield code="c">cjk</subfield>
+        <subfield code="h">Microfilm J00026</subfield>
+        <subfield code="8">22547777480006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+        <subfield code="a">2021-07-12 18:35:01</subfield>
+        <subfield code="8">22547777480006421</subfield>
+        <subfield code="b">East Asian Library</subfield>
+        <subfield code="c">cjk: East Asian Library</subfield>
+        <subfield code="e">false</subfield>
+    </datafield>
+</record>
