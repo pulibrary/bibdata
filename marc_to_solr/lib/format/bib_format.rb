@@ -14,6 +14,7 @@ class BibFormat
     lev  = ldr[7]
     @code = []
     @code << self.determine_bib_code(type, lev)
+    @code << 'WM' if microform? record
     @code = @code.flatten
     # Removed per @tampakis recommendation to keep items with an unknown format
     # value out of the format facet
@@ -74,4 +75,10 @@ class BibFormat
   def bibformat_mw(type, _lev)
     %w[d f p t].include?(type)
   end
+
+  private
+
+    def microform?(record)
+      record.fields('007').any? { |field| field.value&.start_with? 'h' }
+    end
 end
