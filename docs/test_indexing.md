@@ -9,11 +9,11 @@
 1. Download the file from the Alma SFTP.  If you ran the job from the Alma sandbox look in the /alma/sandbox directory otherwise the file should be created at the /alma directory.
 1. Unzip and rename the file to something that makes sense to you locally `<file name>.xml`
 1. sftp the file up to the staging worker machine
-   `scp <local file> deploy@bibdata-worker-staging1:`
+   `scp <local file> deploy@bibdata-worker-staging1.lib.princeton.edu:`
 1. deploy the code you would like to test to the staging server you sftped the file up to 
 1. ssh onto the place that you ftped the file to and go to the current deployment directory
    ```
-   ssh deploy@bibdata-worker-staging1
+   ssh deploy@bibdata-worker-staging1.lib.princeton.edu
    cd /opt/bibdata/current
    ``` 
 1. run `SET_URL=http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging FILE=/home/deploy/<file name>.xml RAILS_ENV=staging bundle exec rake liberate:index_file`
@@ -24,7 +24,7 @@ Follow: [Incremental job in Alma Sandbox](https://github.com/pulibrary/bibdata/b
 
 # Scenario 3: Test indexing an existing dump file with dump type 'Changed Records'. 
 
-1. `ssh deploy@bibdata-worker-staging1`
+1. `ssh deploy@bibdata-worker-staging1.lib.princeton.edu`
 2. `cd /opt/bibdata/current`
 3. `bundle exec rails c`
 4. Assuming that the env SOLR_URL=http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging find the index_manager that is currently used. `index_mgr=IndexManager.all.where(solr_collection: "http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging").first`
