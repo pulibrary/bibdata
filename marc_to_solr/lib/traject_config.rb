@@ -7,6 +7,7 @@ require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
 require 'change_the_subject'
 require_relative './format'
+require_relative './genre'
 require_relative './princeton_marc'
 require_relative './geo'
 require_relative './electronic_portfolio_builder'
@@ -1023,8 +1024,7 @@ end
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
 to_field 'genre_facet' do |record, accumulator|
-  genres = process_genre_facet(record)
-  accumulator.replace(genres)
+  accumulator.replace(Genre.new(record).to_a)
 end
 
 # Related name(s):
