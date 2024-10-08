@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: ccab30a4dca2cffa343a97ea84d2d879ccd3c6ea
-  tag: v1.4.3
+  revision: 4ac8dc2bd04b10db764fc37df3261531c9937061
+  ref: 4ac8dc2bd04b10db764fc37df3261531c9937061
   specs:
     orangetheses (1.4.2)
       chronic
@@ -19,7 +19,6 @@ GIT
       iso-639
       nokogiri
       oai
-      psych (~> 5.1)
       retriable
       rsolr
       yaml
@@ -255,7 +254,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.2.3)
       i18n (>= 1.8.11, < 2)
-    faraday (1.10.4)
+    faraday (1.10.3)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -275,7 +274,7 @@ GEM
     faraday-httpclient (1.0.1)
     faraday-multipart (1.0.4)
       multipart-post (~> 2)
-    faraday-net_http (1.0.2)
+    faraday-net_http (1.0.1)
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
@@ -381,7 +380,7 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
-    multipart-post (2.4.1)
+    multipart-post (2.3.0)
     mutex_m (0.2.0)
     net-imap (0.4.14)
       date
@@ -732,7 +731,7 @@ DEPENDENCIES
   rails-controller-testing
   responders
   rest-client
-  rsolr (~> 2.5.0)
+  rsolr
   rspec-rails
   rubocop
   rubocop-rspec
