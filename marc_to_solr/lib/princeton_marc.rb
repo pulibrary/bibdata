@@ -158,7 +158,6 @@ end
 
 # only includes values before $t
 def process_names record
-  names = []
   Traject::MarcExtractor.cached('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq').collect_matching_lines(record) do |field, spec, extractor|
     name = extractor.collect_subfields(field, spec).first
     unless name.nil?
@@ -169,10 +168,9 @@ def process_names record
         after_t = true if s_field.code == 't'
       end
       name = name.chomp(remove)
-      names << Traject::Macros::Marc21.trim_punctuation(name)
+      Traject::Macros::Marc21.trim_punctuation(name)
     end
-  end
-  names.uniq
+  end.compact.uniq
 end
 
 # only includes values before $t
@@ -249,7 +247,6 @@ end
 # @param [MARC::Record]
 # @return [Array] pub info strings from fields 260 and 264.
 def set_pub_citation(record)
-  pub_citation = []
   Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, _spec, _extractor|
     a_pub_info = nil
     b_pub_info = nil
@@ -263,9 +260,8 @@ def set_pub_citation(record)
     pub_info += a_pub_info unless a_pub_info.nil?
     pub_info += ": " if !a_pub_info.nil? && !b_pub_info.nil?
     pub_info += b_pub_info unless b_pub_info.nil?
-    pub_citation << pub_info if !pub_info.empty?
-  end
-  pub_citation
+    pub_info if !pub_info.empty?
+  end.compact
 end
 
 SEPARATOR = '—'
@@ -276,36 +272,33 @@ SEPARATOR = '—'
 # For example, if you only want subject headings from the Bilindex vocabulary,
 # you could use `process_hierarchy(record, '650|*7|abcvxyz') { |field| field['2'] == 'bidex' }`
 def process_hierarchy(record, fields)
-  headings = []
   split_on_subfield = ['t', 'v', 'x', 'y', 'z']
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     include_heading = block_given? ? yield(field) : true
     next unless include_heading && extractor.collect_subfields(field, spec).first
-    headings << HierarchicalHeading.new(field:, spec:, split_on_subfield:).to_s
-  end
-  headings.compact
+    HierarchicalHeading.new(field:, spec:, split_on_subfield:).to_s
+  end.compact
 end
 
 # for the split subject facet
 # split with em dash along x,z
 def process_subject_topic_facet record
-  subjects = []
-  Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:650|*0|abcxz:651|*0|axz').collect_matching_lines(record) do |field, spec, extractor|
+  lcsh_subjects = Traject::MarcExtractor.cached('600|*0|abcdfklmnopqrtxz:610|*0|abfklmnoprstxz:611|*0|abcdefgklnpqstxz:630|*0|adfgklmnoprstxz:650|*0|abcxz:651|*0|axz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     unless subject.nil?
       hierarchical_string = HierarchicalHeading.new(field:, spec:, split_on_subfield: %w[x z]).to_s
-      subjects << hierarchical_string.split(SEPARATOR)
+      hierarchical_string.split(SEPARATOR)
     end
-  end
-  Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
+  end.compact
+  other_thesaurus_subjects = Traject::MarcExtractor.cached('650|*7|abcxz').collect_matching_lines(record) do |field, spec, extractor|
     subject = extractor.collect_subfields(field, spec).first
     should_include = siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit])
     if should_include && !subject.nil?
       hierarchical_string = HierarchicalHeading.new(field:, spec:, split_on_subfield: %w[x z]).to_s
-      subjects << hierarchical_string.split(SEPARATOR)
+      hierarchical_string.split(SEPARATOR)
     end
-  end
-  subjects.flatten
+  end.flatten.compact
+  lcsh_subjects + other_thesaurus_subjects
 end
 
 def strip_non_numeric num_str
