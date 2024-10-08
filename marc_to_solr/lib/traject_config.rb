@@ -1279,8 +1279,7 @@ end
 # Process location code once
 # 852|b and 852|c
 each_record do |record, context|
-  location_codes = []
-  MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
+  location_codes = MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code_start_22?(field['8'])
     is_scsb = scsb_doc?(record['001'].value)
@@ -1294,9 +1293,8 @@ each_record do |record, context|
         holding_b += "$#{field['c']}" if field['c'] && is_alma
       end
     end
-    location_codes << holding_b
-    location_codes.compact!
-  end
+    holding_b
+  end.compact
   if location_codes.any?
     location_codes.uniq!
     ## need to go through any location code that isn't from voyager, thesis, or graphic arts
