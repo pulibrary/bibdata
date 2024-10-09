@@ -64,7 +64,7 @@ class Genre
       potential_genres = Traject::MarcExtractor.cached('600|*0|vx:610|*0|vx:611|*0|vx:630|*0|vx:650|*0|vx:651|*0|vx:655|*0|a:655|*0|vx').collect_matching_lines(record) do |field, spec, extractor|
         extractor.collect_subfields(field, spec)
       end
-      if potential_genres.any? { |genre| genre_term_indicates_primary_source? genre }
+      if potential_genres.any? { |genre| genre_term_indicates_primary_source? genre } && !literary_work?
         ['Primary source']
       else
         []
@@ -72,7 +72,7 @@ class Genre
     end
 
     def genres_from_autobiography
-      if biography? && author_matches_subject?
+      if biography? && author_matches_subject? && !literary_work?
         ['Primary source']
       else
         []
@@ -81,7 +81,7 @@ class Genre
 
     def genre_term_indicates_primary_source?(genre)
       normalized_genre = genre.downcase.strip.delete_suffix('.')
-      primary_source_genres.include? normalized_genre
+      primary_source_genres.any? { |primary_source_genre| normalized_genre.include? primary_source_genre }
     end
 
     def biography?
@@ -149,20 +149,30 @@ class Genre
 
     def primary_source_genres
       [
+        'atlases',
         'charters',
         'correspondence',
         'diaries',
         'documents',
         'interview',
         'interviews',
+        'law and legislation',
         'letters',
         'manuscripts',
+        'maps',
         'notebooks, sketchbooks, etc',
         'oral history',
         'pamphlets',
         'personal narratives',
+        'photographs',
+        'pictorial works',
         'sources',
-        'speeches'
+        'speeches',
+        'statistics'
       ]
+    end
+
+    def literary_work?
+      record.fields('008').any? { |litf| %w[1 d e f j p].include? litf.value[33] }
     end
 end
