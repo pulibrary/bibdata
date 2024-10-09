@@ -78,9 +78,9 @@ RSpec.describe Genre do
         expect(genres).to include('Primary source')
       end
     end
-    context 'when the 650 subfield v has Archival resources' do
+    context 'when the 650 subfield v has Pamphlets' do
       let(:genres) do
-        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Tales" }, { "z" => "Argentina" }, { "v" => "Archival resources." }] } }
+        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Franco-Prussian War, 1870-1871" }, { "v" => "Pamphlets." }] } }
         sample_marc = MARC::Record.new_from_hash('fields' => [g650])
         described_class.new(sample_marc).to_a
       end
