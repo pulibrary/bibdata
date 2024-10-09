@@ -149,20 +149,16 @@ class Genre
 
     def primary_source_genres
       [
-        'archival resources',
-        'archives',
         'charters',
         'correspondence',
         'diaries',
         'documents',
-        'early works',
         'interview',
         'interviews',
         'letters',
         'manuscripts',
         'notebooks, sketchbooks, etc',
         'oral history',
-        'oratory',
         'pamphlets',
         'personal narratives',
         'sources',
