@@ -92,11 +92,22 @@ RSpec.describe Genre do
       let(:genres) do
         g008 = { "008" => 'f'.rjust(34) } # f = Novel when it is in the 33rd position
         g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Franco-Prussian War, 1870-1871" }, { "v" => "Pamphlets." }] } }
-        sample_marc = MARC::Record.new_from_hash('fields' => [g008, g650])
+        sample_marc = MARC::Record.new_from_hash('fields' => [g008, g650], 'leader' => '04137cam a2200853Ii 4500')
         described_class.new(sample_marc).to_a
       end
       it 'does not include Primary Source in the list of genres' do
         expect(genres).not_to include('Primary source')
+      end
+    end
+    context 'when the 650 subfield v has Pamphlets, and the 008 says it is non-fiction' do
+      let(:genres) do
+        g008 = { "008" => '0'.rjust(34) } # 0 = Nonfiction when it is in the 33rd position
+        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Franco-Prussian War, 1870-1871" }, { "v" => "Pamphlets." }] } }
+        sample_marc = MARC::Record.new_from_hash('fields' => [g008, g650], 'leader' => '04137cam a2200853Ii 4500')
+        described_class.new(sample_marc).to_a
+      end
+      it 'includes Primary Source in the list of genres' do
+        expect(genres).to include('Primary source')
       end
     end
     context 'when the 651 subfield x has Pictorial works' do
