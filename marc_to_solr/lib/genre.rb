@@ -12,7 +12,7 @@ class Genre
   # 655 $a, $v, $x filtered
   def to_a
     @as_array ||= (
-      genres_from_subfield_x + genres_from_subject_vocabularies + genres_from_subfield_v + genre_from_primary_source_mapping + genres_from_autobiography
+      genres_from_subfield_x + genres_from_subject_vocabularies + genres_from_subfield_v + genres_from_primary_source_mapping + genres_from_autobiography
     ).compact.uniq
   end
 
@@ -60,7 +60,7 @@ class Genre
       end
     end
 
-    def genre_from_primary_source_mapping
+    def genres_from_primary_source_mapping
       potential_genres = Traject::MarcExtractor.cached('600|*0|vx:610|*0|vx:611|*0|vx:630|*0|vx:650|*0|vx:651|*0|vx:655|*0|a:655|*0|vx').collect_matching_lines(record) do |field, spec, extractor|
         extractor.collect_subfields(field, spec)
       end
@@ -173,6 +173,10 @@ class Genre
     end
 
     def literary_work?
-      record.fields('008').any? { |litf| %w[1 d e f j p].include? litf.value[33] }
+      book? && record.fields('008').any? { |litf| %w[1 d e f j p].include? litf.value[33] }
+    end
+
+    def book?
+      record.leader && record.leader[6..7]&.match?(/a[acdim]/)
     end
 end
