@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: ca71394be4120278c4eb1e14dd30540e4e8988e4
-  ref: ca71394be4120278c4eb1e14dd30540e4e8988e4
+  revision: fa58de83e990ac5668cf6ad163841be6e6e379d0
+  branch: i85-jrgriffiniii-index-error
   specs:
     orangetheses (1.4.2)
       chronic
