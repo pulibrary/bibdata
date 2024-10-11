@@ -508,6 +508,15 @@ describe 'From traject_config.rb', indexing: true do
         expect(@title_vern_display['title_vern_display'].length).to eq(1)
       end
     end
+
+    describe 'geographic_facet field' do
+      let(:f650) { { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Vocal Music", "z" => "France", "y" => "18th century" }] } } }
+
+      it 'creates a facet for where the item is about' do
+        record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
+        expect(record['geographic_facet'].first).to eq('France')
+      end
+    end
     describe 'publication_place_facet field' do
       it 'maps the 3-digit code in the 008[15-17] to a name' do
         expect(@sample1['publication_place_facet']).to eq ['Michigan']
