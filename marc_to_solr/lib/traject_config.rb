@@ -920,6 +920,9 @@ to_field 'subject_facet' do |record, accumulator|
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
 end
 
+# See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
+to_field "geographic_facet", marc_geo_facet
+
 to_field 'homoit_genre_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
   accumulator.replace(genres)
