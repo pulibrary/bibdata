@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: https://github.com/pulibrary/orangetheses.git
-  revision: 4ac8dc2bd04b10db764fc37df3261531c9937061
-  ref: 4ac8dc2bd04b10db764fc37df3261531c9937061
+  revision: 189493c6cd540c233e6586836ca59b8dcc2f410a
+  branch: i85-jrgriffiniii-index-error
   specs:
     orangetheses (1.4.2)
       chronic
@@ -19,6 +19,7 @@ GIT
       iso-639
       nokogiri
       oai
+      psych (~> 5.1)
       retriable
       rsolr
       yaml
