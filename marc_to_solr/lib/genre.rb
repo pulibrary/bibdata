@@ -156,7 +156,6 @@ class Genre
         'documents',
         'interview',
         'interviews',
-        'law and legislation',
         'letters',
         'manuscripts',
         'maps',
