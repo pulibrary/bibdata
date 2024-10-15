@@ -89,6 +89,7 @@ describe 'From traject_config.rb', indexing: true do
       @iso639_3_with_macrolanguage = @indexer.map_record(fixture_record('9930372403506421'))
       @indigenous_studies_mexico = @indexer.map_record(fixture_record('99125398364906421'))
       @dissertation_with_embargo = @indexer.map_record(fixture_record('99127127233306421'))
+      @diary = @indexer.map_record(fixture_record('99117267623506421'))
     end
 
     describe "alma loading" do
@@ -1328,6 +1329,14 @@ describe 'From traject_config.rb', indexing: true do
       it "indexes the subfields as semicolon-delimited values" do
         expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
         expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
+      end
+    end
+
+    describe 'genre_facet' do
+      context 'when the document is a diary' do
+        it 'indexes the facet "Primary source"' do
+          expect(@diary['genre_facet']).to include 'Primary source'
+        end
       end
     end
 

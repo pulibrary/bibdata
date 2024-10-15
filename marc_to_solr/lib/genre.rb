@@ -12,8 +12,8 @@ class Genre
   # 655 $a, $v, $x filtered
   def to_a
     @as_array ||= (
-      genres_from_subfield_x + genres_from_subject_vocabularies + genres_from_subfield_v
-    ).uniq
+      genres_from_subfield_x + genres_from_subject_vocabularies + genres_from_subfield_v + genres_from_primary_source_mapping + genres_from_autobiography
+    ).compact.uniq
   end
 
   private
@@ -58,6 +58,43 @@ class Genre
         end
         genre
       end
+    end
+
+    def genres_from_primary_source_mapping
+      potential_genres = Traject::MarcExtractor.cached('600|*0|vx:610|*0|vx:611|*0|vx:630|*0|vx:650|*0|vx:651|*0|vx:655|*0|a:655|*0|vx').collect_matching_lines(record) do |field, spec, extractor|
+        extractor.collect_subfields(field, spec)
+      end
+      if potential_genres.any? { |genre| genre_term_indicates_primary_source? genre } && !literary_work?
+        ['Primary source']
+      else
+        []
+      end
+    end
+
+    def genres_from_autobiography
+      if biography? && author_matches_subject? && !literary_work?
+        ['Primary source']
+      else
+        []
+      end
+    end
+
+    def genre_term_indicates_primary_source?(genre)
+      normalized_genre = genre.downcase.strip.delete_suffix('.')
+      primary_source_genres.any? { |primary_source_genre| normalized_genre.include? primary_source_genre }
+    end
+
+    def biography?
+      potential_genres = Traject::MarcExtractor.cached('600|*0|vx:610|*0|vx:611|*0|vx:630|*0|vx:650|*0|avx:651|*0|vx:655|*0|avx').collect_matching_lines(record) do |field, spec, extractor|
+        extractor.collect_subfields(field, spec)
+      end
+      potential_genres.include?('Biography')
+    end
+
+    def author_matches_subject?
+      authors = Traject::MarcExtractor.cached('100abcdjq').extract(record).uniq.map { |name| Traject::Macros::Marc21.trim_punctuation name.downcase.strip }
+      name_subjects = Traject::MarcExtractor.cached('600abcdjq').extract(record).uniq.map { |name| Traject::Macros::Marc21.trim_punctuation name.downcase.strip }
+      authors.any? { |author| name_subjects.include? author }
     end
 
     def likely_genre_term term
@@ -108,5 +145,37 @@ class Genre
         'Study and teaching',
         'Translations into '
       ]
+    end
+
+    def primary_source_genres
+      [
+        'atlases',
+        'charters',
+        'correspondence',
+        'diaries',
+        'documents',
+        'interview',
+        'interviews',
+        'letters',
+        'manuscripts',
+        'maps',
+        'notebooks, sketchbooks, etc',
+        'oral history',
+        'pamphlets',
+        'personal narratives',
+        'photographs',
+        'pictorial works',
+        'sources',
+        'speeches',
+        'statistics'
+      ]
+    end
+
+    def literary_work?
+      book? && record.fields('008').any? { |litf| %w[1 d e f j p].include? litf.value[33] }
+    end
+
+    def book?
+      record.leader && record.leader[6..7]&.match?(/a[acdim]/)
     end
 end
