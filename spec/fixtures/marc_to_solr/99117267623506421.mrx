@@ -1,2 +1,388 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<collection><record><leader>04137cam a2200853Ii 4500</leader><controlfield tag="005">20240812122717.0</controlfield><controlfield tag="008">191113s2019    cc fh    b    000 0achi d</controlfield><controlfield tag="001">99117267623506421</controlfield><datafield tag="020" ind1=" " ind2=" "><subfield code="a">9787101138320</subfield></datafield><datafield tag="020" ind1=" " ind2=" "><subfield code="a">7101138322</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(NjP)11726762-princetondb</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="a">(OCoLC)on1101985602</subfield></datafield><datafield tag="035" ind1=" " ind2=" "><subfield code="z">(NjP)Voyager11726762</subfield></datafield><datafield tag="040" ind1=" " ind2=" "><subfield code="a">BCBTC</subfield><subfield code="b">eng</subfield><subfield code="e">rda</subfield><subfield code="c">BCBTC</subfield><subfield code="d">OCLCQ</subfield><subfield code="d">CLU</subfield><subfield code="d">OCLCF</subfield><subfield code="d">ZYU</subfield><subfield code="d">CGU</subfield><subfield code="d">PUL</subfield></datafield><datafield tag="043" ind1=" " ind2=" "><subfield code="a">a-cc---</subfield></datafield><datafield tag="049" ind1=" " ind2=" "><subfield code="a">PULL</subfield></datafield><datafield tag="050" ind1=" " ind2="4"><subfield code="a">DS757.23.H427</subfield><subfield code="b">A3 2019</subfield></datafield><datafield tag="100" ind1="1" ind2=" "><subfield code="6">880-01</subfield><subfield code="a">He, Rulin,</subfield><subfield code="d">1618-1689</subfield><subfield code="e">author.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">100-01</subfield><subfield code="a">何汝霖,</subfield><subfield code="d">1618-1689,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="245" ind1="1" ind2="0"><subfield code="6">880-02</subfield><subfield code="a">Wan Qing jun ji da chen ri ji wu zhong /</subfield><subfield code="c">[Qing] He Rulin, Ji Zhichang, Shen Zhaolin, Xu Gengshen, Liao Shouheng zhuan ; Zhang Jian, Zheng Yuan zheng li.</subfield></datafield><datafield tag="880" ind1="1" ind2="0"><subfield code="6">245-02</subfield><subfield code="a">晚清軍機大臣日記五種 /</subfield><subfield code="c">[清]何汝霖, 季芝昌, 沈兆霖, 许庚身, 廖寿恒撰 ; 张剑, 郑园整理.</subfield></datafield><datafield tag="246" ind1="3" ind2=" "><subfield code="a">Wan Qing jun ji da chen ri ji 5 zhong</subfield></datafield><datafield tag="250" ind1=" " ind2=" "><subfield code="6">880-03</subfield><subfield code="a">Beijing di 1 ban.</subfield></datafield><datafield tag="880" ind1=" " ind2=" "><subfield code="6">250-03</subfield><subfield code="a">北京第1版.</subfield></datafield><datafield tag="264" ind1=" " ind2="1"><subfield code="6">880-04</subfield><subfield code="a">Beijing Shi :</subfield><subfield code="b">Zhonghua shu ju,</subfield><subfield code="c">2019.</subfield></datafield><datafield tag="880" ind1=" " ind2="1"><subfield code="6">264-04</subfield><subfield code="a">北京市 :</subfield><subfield code="b">中华书局,</subfield><subfield code="c">2019.</subfield></datafield><datafield tag="300" ind1=" " ind2=" "><subfield code="a">2 volumes (2, 11, 14, 964 pages), 6 unnumbered pages of plates :</subfield><subfield code="b">facsimiles (some color) ;</subfield><subfield code="c">21 cm.</subfield></datafield><datafield tag="336" ind1=" " ind2=" "><subfield code="a">text</subfield><subfield code="b">txt</subfield><subfield code="2">rdacontent</subfield></datafield><datafield tag="337" ind1=" " ind2=" "><subfield code="a">unmediated</subfield><subfield code="b">n</subfield><subfield code="2">rdamedia</subfield></datafield><datafield tag="338" ind1=" " ind2=" "><subfield code="a">volume</subfield><subfield code="b">nc</subfield><subfield code="2">rdacarrier</subfield></datafield><datafield tag="490" ind1="1" ind2=" "><subfield code="6">880-05</subfield><subfield code="a">Zhongguo jin dai ren wu ri ji cong shu</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">490-05</subfield><subfield code="a">中国近代人物日记丛书</subfield></datafield><datafield tag="504" ind1=" " ind2=" "><subfield code="a">Includes bibliographical references.</subfield></datafield><datafield tag="600" ind1="1" ind2="0"><subfield code="6">880-06</subfield><subfield code="a">He, Rulin,</subfield><subfield code="d">1618-1689</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="880" ind1="1" ind2="4"><subfield code="6">600-06</subfield><subfield code="a">何汝霖,</subfield><subfield code="d">1618-1689</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="600" ind1="1" ind2="0"><subfield code="6">880-07</subfield><subfield code="a">Ji, Zhichang,</subfield><subfield code="d">1791-1861</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="880" ind1="1" ind2="4"><subfield code="6">600-07</subfield><subfield code="a">季芝昌,</subfield><subfield code="d">1791-1861</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="600" ind1="1" ind2="0"><subfield code="6">880-08</subfield><subfield code="a">Shen, Zhaolin,</subfield><subfield code="d">1801-1862</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="880" ind1="1" ind2="4"><subfield code="6">600-08</subfield><subfield code="a">沈兆霖,</subfield><subfield code="d">1801-1862</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="600" ind1="1" ind2="0"><subfield code="6">880-09</subfield><subfield code="a">Xu, Gengshen</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="880" ind1="1" ind2="4"><subfield code="6">600-09</subfield><subfield code="a">许庚身</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="600" ind1="1" ind2="0"><subfield code="6">880-10</subfield><subfield code="a">Liao, Shouheng</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="880" ind1="1" ind2="4"><subfield code="6">600-10</subfield><subfield code="a">廖寿恒</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="650" ind1=" " ind2="0"><subfield code="a">Statesmen</subfield><subfield code="z">China</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="651" ind1=" " ind2="0"><subfield code="a">China</subfield><subfield code="x">Officials and employees</subfield><subfield code="v">Diaries.</subfield></datafield><datafield tag="651" ind1=" " ind2="0"><subfield code="a">China</subfield><subfield code="x">History</subfield><subfield code="y">1861-1912</subfield><subfield code="v">Sources.</subfield></datafield><datafield tag="600" ind1="1" ind2="7"><subfield code="a">Shen, Zhaolin,</subfield><subfield code="d">1801-1862.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst00173986</subfield></datafield><datafield tag="650" ind1=" " ind2="7"><subfield code="a">Employees.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst00909111</subfield></datafield><datafield tag="650" ind1=" " ind2="7"><subfield code="a">Statesmen.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst01131990</subfield></datafield><datafield tag="651" ind1=" " ind2="7"><subfield code="a">China.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst01206073</subfield></datafield><datafield tag="648" ind1=" " ind2="7"><subfield code="a">1861-1912</subfield><subfield code="2">fast</subfield></datafield><datafield tag="655" ind1=" " ind2="7"><subfield code="a">Diaries.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst01423794</subfield></datafield><datafield tag="655" ind1=" " ind2="7"><subfield code="a">History.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst01411628</subfield></datafield><datafield tag="655" ind1=" " ind2="7"><subfield code="a">Sources.</subfield><subfield code="2">fast</subfield><subfield code="0">(OCoLC)fst01423900</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-11</subfield><subfield code="a">Ji, Zhichang,</subfield><subfield code="d">1791-1861,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-11</subfield><subfield code="a">季芝昌,</subfield><subfield code="d">1791-1861,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-12</subfield><subfield code="a">Shen, Zhaolin,</subfield><subfield code="d">1801-1862,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-12</subfield><subfield code="a">沈兆霖,</subfield><subfield code="d">1801-1862,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-13</subfield><subfield code="a">Xu, Gengshen,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-13</subfield><subfield code="a">许庚身,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-14</subfield><subfield code="a">Liao, Shouheng,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-14</subfield><subfield code="a">廖寿恒,</subfield><subfield code="e">author.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-15</subfield><subfield code="a">Zhang, Jian,</subfield><subfield code="e">editor.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-15</subfield><subfield code="a">张剑,</subfield><subfield code="e">editor.</subfield></datafield><datafield tag="700" ind1="1" ind2=" "><subfield code="6">880-16</subfield><subfield code="a">Zheng, Yuan,</subfield><subfield code="e">editor.</subfield></datafield><datafield tag="880" ind1="1" ind2=" "><subfield code="6">700-16</subfield><subfield code="a">郑园,</subfield><subfield code="e">editor.</subfield></datafield><datafield tag="830" ind1=" " ind2="0"><subfield code="6">880-17</subfield><subfield code="a">Zhongguo jin dai ren wu ri ji cong shu</subfield></datafield><datafield tag="880" ind1=" " ind2="0"><subfield code="6">830-17</subfield><subfield code="a">中国近代人物日记丛书.</subfield></datafield><datafield tag="902" ind1=" " ind2=" "><subfield code="a">gml</subfield><subfield code="b">m</subfield><subfield code="6">a</subfield><subfield code="7">m</subfield><subfield code="d">v</subfield><subfield code="f">2</subfield><subfield code="e">20210122</subfield></datafield><datafield tag="904" ind1=" " ind2=" "><subfield code="a">ww</subfield><subfield code="b">o</subfield><subfield code="h">m</subfield><subfield code="c">t</subfield><subfield code="e">20191204</subfield></datafield><datafield tag="914" ind1=" " ind2=" "><subfield code="a">(OCoLC)on1101985602</subfield><subfield code="b">OCoLC</subfield><subfield code="c">match</subfield><subfield code="d">20221117</subfield><subfield code="e">processed</subfield><subfield code="f">1101985602</subfield></datafield><datafield tag="938" ind1=" " ind2=" "><subfield code="a">Beijing Zhenben Technology Co. Ltd.</subfield><subfield code="b">BCBT</subfield><subfield code="n">bcbtc20190516031</subfield></datafield><datafield tag="994" ind1=" " ind2=" "><subfield code="a">C0</subfield><subfield code="b">PUL</subfield></datafield><datafield tag="999" ind1=" " ind2=" "><subfield code="a">11726762</subfield></datafield><datafield tag="950" ind1=" " ind2=" "><subfield code="c">2024-09-12 06:09:05 US/Eastern</subfield><subfield code="b">2021-07-12 18:45:56 US/Eastern</subfield><subfield code="a">false</subfield></datafield><datafield tag="852" ind1="0" ind2=" "><subfield code="b">eastasian</subfield><subfield code="c">cjk</subfield><subfield code="h">DS757.23.H427</subfield><subfield code="i">A3 2019</subfield><subfield code="8">22592871540006421</subfield></datafield><datafield tag="866" ind1=" " ind2="0"><subfield code="a">Vol.1-v.2</subfield><subfield code="8">22592871540006421</subfield></datafield><datafield tag="952" ind1=" " ind2=" "><subfield code="a">2021-07-12 22:45:56</subfield><subfield code="8">22592871540006421</subfield><subfield code="b">East Asian Library</subfield><subfield code="c">cjk: East Asian Library</subfield><subfield code="e">false</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22592871540006421</subfield><subfield code="a">23592871530006421</subfield><subfield code="3">vol.1</subfield><subfield code="j">1</subfield><subfield code="z">cjk</subfield><subfield code="d">2020-12-17 19:00:00 US/Eastern</subfield><subfield code="p">32101108406198</subfield><subfield code="t">0</subfield><subfield code="y">eastasian</subfield></datafield><datafield tag="876" ind1=" " ind2=" "><subfield code="0">22592871540006421</subfield><subfield code="a">23592871520006421</subfield><subfield code="3">vol.2</subfield><subfield code="j">1</subfield><subfield code="z">cjk</subfield><subfield code="d">2021-01-27 19:00:00 US/Eastern</subfield><subfield code="p">32101104612039</subfield><subfield code="t">0</subfield><subfield code="y">eastasian</subfield></datafield></record></collection>
+<collection>
+    <record>
+        <leader>04137cam a2200853Ii 4500</leader>
+        <controlfield tag="005">20240812122717.0</controlfield>
+        <controlfield tag="008">191113s2019 cc fh b 000 0achi d</controlfield>
+        <controlfield tag="001">99117267623506421</controlfield>
+        <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">9787101138320</subfield>
+        </datafield>
+        <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">7101138322</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(NjP)11726762-princetondb</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)on1101985602</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="z">(NjP)Voyager11726762</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">BCBTC</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="e">rda</subfield>
+            <subfield code="c">BCBTC</subfield>
+            <subfield code="d">OCLCQ</subfield>
+            <subfield code="d">CLU</subfield>
+            <subfield code="d">OCLCF</subfield>
+            <subfield code="d">ZYU</subfield>
+            <subfield code="d">CGU</subfield>
+            <subfield code="d">PUL</subfield>
+        </datafield>
+        <datafield tag="043" ind1=" " ind2=" ">
+            <subfield code="a">a-cc---</subfield>
+        </datafield>
+        <datafield tag="049" ind1=" " ind2=" ">
+            <subfield code="a">PULL</subfield>
+        </datafield>
+        <datafield tag="050" ind1=" " ind2="4">
+            <subfield code="a">DS757.23.H427</subfield>
+            <subfield code="b">A3 2019</subfield>
+        </datafield>
+        <datafield tag="100" ind1="1" ind2=" ">
+            <subfield code="6">880-01</subfield>
+            <subfield code="a">He, Rulin,</subfield>
+            <subfield code="d">1618-1689</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">100-01</subfield>
+            <subfield code="a">何汝霖,</subfield>
+            <subfield code="d">1618-1689,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="245" ind1="1" ind2="0">
+            <subfield code="6">880-02</subfield>
+            <subfield code="a">Wan Qing jun ji da chen ri ji wu zhong /</subfield>
+            <subfield code="c">[Qing] He Rulin, Ji Zhichang, Shen Zhaolin, Xu Gengshen, Liao
+                Shouheng zhuan ; Zhang Jian, Zheng Yuan zheng li.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="0">
+            <subfield code="6">245-02</subfield>
+            <subfield code="a">晚清軍機大臣日記五種 /</subfield>
+            <subfield code="c">[清]何汝霖, 季芝昌, 沈兆霖, 许庚身, 廖寿恒撰 ; 张剑, 郑园整理.</subfield>
+        </datafield>
+        <datafield tag="246" ind1="3" ind2=" ">
+            <subfield code="a">Wan Qing jun ji da chen ri ji 5 zhong</subfield>
+        </datafield>
+        <datafield tag="250" ind1=" " ind2=" ">
+            <subfield code="6">880-03</subfield>
+            <subfield code="a">Beijing di 1 ban.</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2=" ">
+            <subfield code="6">250-03</subfield>
+            <subfield code="a">北京第1版.</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="6">880-04</subfield>
+            <subfield code="a">Beijing Shi :</subfield>
+            <subfield code="b">Zhonghua shu ju,</subfield>
+            <subfield code="c">2019.</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2="1">
+            <subfield code="6">264-04</subfield>
+            <subfield code="a">北京市 :</subfield>
+            <subfield code="b">中华书局,</subfield>
+            <subfield code="c">2019.</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">2 volumes (2, 11, 14, 964 pages), 6 unnumbered pages of plates :</subfield>
+            <subfield code="b">facsimiles (some color) ;</subfield>
+            <subfield code="c">21 cm.</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">text</subfield>
+            <subfield code="b">txt</subfield>
+            <subfield code="2">rdacontent</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">unmediated</subfield>
+            <subfield code="b">n</subfield>
+            <subfield code="2">rdamedia</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">volume</subfield>
+            <subfield code="b">nc</subfield>
+            <subfield code="2">rdacarrier</subfield>
+        </datafield>
+        <datafield tag="490" ind1="1" ind2=" ">
+            <subfield code="6">880-05</subfield>
+            <subfield code="a">Zhongguo jin dai ren wu ri ji cong shu</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">490-05</subfield>
+            <subfield code="a">中国近代人物日记丛书</subfield>
+        </datafield>
+        <datafield tag="504" ind1=" " ind2=" ">
+            <subfield code="a">Includes bibliographical references.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="6">880-06</subfield>
+            <subfield code="a">He, Rulin,</subfield>
+            <subfield code="d">1618-1689</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="4">
+            <subfield code="6">600-06</subfield>
+            <subfield code="a">何汝霖,</subfield>
+            <subfield code="d">1618-1689</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="6">880-07</subfield>
+            <subfield code="a">Ji, Zhichang,</subfield>
+            <subfield code="d">1791-1861</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="4">
+            <subfield code="6">600-07</subfield>
+            <subfield code="a">季芝昌,</subfield>
+            <subfield code="d">1791-1861</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="6">880-08</subfield>
+            <subfield code="a">Shen, Zhaolin,</subfield>
+            <subfield code="d">1801-1862</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="4">
+            <subfield code="6">600-08</subfield>
+            <subfield code="a">沈兆霖,</subfield>
+            <subfield code="d">1801-1862</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="6">880-09</subfield>
+            <subfield code="a">Xu, Gengshen</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="4">
+            <subfield code="6">600-09</subfield>
+            <subfield code="a">许庚身</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="0">
+            <subfield code="6">880-10</subfield>
+            <subfield code="a">Liao, Shouheng</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2="4">
+            <subfield code="6">600-10</subfield>
+            <subfield code="a">廖寿恒</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Statesmen</subfield>
+            <subfield code="z">China</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="0">
+            <subfield code="a">China</subfield>
+            <subfield code="x">Officials and employees</subfield>
+            <subfield code="v">Diaries.</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="0">
+            <subfield code="a">China</subfield>
+            <subfield code="x">History</subfield>
+            <subfield code="y">1861-1912</subfield>
+            <subfield code="v">Sources.</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="7">
+            <subfield code="a">Shen, Zhaolin,</subfield>
+            <subfield code="d">1801-1862.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst00173986</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Employees.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst00909111</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="7">
+            <subfield code="a">Statesmen.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01131990</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="7">
+            <subfield code="a">China.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01206073</subfield>
+        </datafield>
+        <datafield tag="648" ind1=" " ind2="7">
+            <subfield code="a">1861-1912</subfield>
+            <subfield code="2">fast</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Diaries.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01423794</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">History.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01411628</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Sources.</subfield>
+            <subfield code="2">fast</subfield>
+            <subfield code="0">(OCoLC)fst01423900</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-11</subfield>
+            <subfield code="a">Ji, Zhichang,</subfield>
+            <subfield code="d">1791-1861,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-11</subfield>
+            <subfield code="a">季芝昌,</subfield>
+            <subfield code="d">1791-1861,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-12</subfield>
+            <subfield code="a">Shen, Zhaolin,</subfield>
+            <subfield code="d">1801-1862,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-12</subfield>
+            <subfield code="a">沈兆霖,</subfield>
+            <subfield code="d">1801-1862,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-13</subfield>
+            <subfield code="a">Xu, Gengshen,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-13</subfield>
+            <subfield code="a">许庚身,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-14</subfield>
+            <subfield code="a">Liao, Shouheng,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-14</subfield>
+            <subfield code="a">廖寿恒,</subfield>
+            <subfield code="e">author.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-15</subfield>
+            <subfield code="a">Zhang, Jian,</subfield>
+            <subfield code="e">editor.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-15</subfield>
+            <subfield code="a">张剑,</subfield>
+            <subfield code="e">editor.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="6">880-16</subfield>
+            <subfield code="a">Zheng, Yuan,</subfield>
+            <subfield code="e">editor.</subfield>
+        </datafield>
+        <datafield tag="880" ind1="1" ind2=" ">
+            <subfield code="6">700-16</subfield>
+            <subfield code="a">郑园,</subfield>
+            <subfield code="e">editor.</subfield>
+        </datafield>
+        <datafield tag="830" ind1=" " ind2="0">
+            <subfield code="6">880-17</subfield>
+            <subfield code="a">Zhongguo jin dai ren wu ri ji cong shu</subfield>
+        </datafield>
+        <datafield tag="880" ind1=" " ind2="0">
+            <subfield code="6">830-17</subfield>
+            <subfield code="a">中国近代人物日记丛书.</subfield>
+        </datafield>
+        <datafield tag="902" ind1=" " ind2=" ">
+            <subfield code="a">gml</subfield>
+            <subfield code="b">m</subfield>
+            <subfield code="6">a</subfield>
+            <subfield code="7">m</subfield>
+            <subfield code="d">v</subfield>
+            <subfield code="f">2</subfield>
+            <subfield code="e">20210122</subfield>
+        </datafield>
+        <datafield tag="904" ind1=" " ind2=" ">
+            <subfield code="a">ww</subfield>
+            <subfield code="b">o</subfield>
+            <subfield code="h">m</subfield>
+            <subfield code="c">t</subfield>
+            <subfield code="e">20191204</subfield>
+        </datafield>
+        <datafield tag="914" ind1=" " ind2=" ">
+            <subfield code="a">(OCoLC)on1101985602</subfield>
+            <subfield code="b">OCoLC</subfield>
+            <subfield code="c">match</subfield>
+            <subfield code="d">20221117</subfield>
+            <subfield code="e">processed</subfield>
+            <subfield code="f">1101985602</subfield>
+        </datafield>
+        <datafield tag="938" ind1=" " ind2=" ">
+            <subfield code="a">Beijing Zhenben Technology Co. Ltd.</subfield>
+            <subfield code="b">BCBT</subfield>
+            <subfield code="n">bcbtc20190516031</subfield>
+        </datafield>
+        <datafield tag="994" ind1=" " ind2=" ">
+            <subfield code="a">C0</subfield>
+            <subfield code="b">PUL</subfield>
+        </datafield>
+        <datafield tag="999" ind1=" " ind2=" ">
+            <subfield code="a">11726762</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2024-09-12 06:09:05 US/Eastern</subfield>
+            <subfield code="b">2021-07-12 18:45:56 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="852" ind1="0" ind2=" ">
+            <subfield code="b">eastasian</subfield>
+            <subfield code="c">cjk</subfield>
+            <subfield code="h">DS757.23.H427</subfield>
+            <subfield code="i">A3 2019</subfield>
+            <subfield code="8">22592871540006421</subfield>
+        </datafield>
+        <datafield tag="866" ind1=" " ind2="0">
+            <subfield code="a">Vol.1-v.2</subfield>
+            <subfield code="8">22592871540006421</subfield>
+        </datafield>
+        <datafield tag="952" ind1=" " ind2=" ">
+            <subfield code="a">2021-07-12 22:45:56</subfield>
+            <subfield code="8">22592871540006421</subfield>
+            <subfield code="b">East Asian Library</subfield>
+            <subfield code="c">cjk: East Asian Library</subfield>
+            <subfield code="e">false</subfield>
+        </datafield>
+        <datafield tag="876" ind1=" " ind2=" ">
+            <subfield code="0">22592871540006421</subfield>
+            <subfield code="a">23592871530006421</subfield>
+            <subfield code="3">vol.1</subfield>
+            <subfield code="j">1</subfield>
+            <subfield code="z">cjk</subfield>
+            <subfield code="d">2020-12-17 19:00:00 US/Eastern</subfield>
+            <subfield code="p">32101108406198</subfield>
+            <subfield code="t">0</subfield>
+            <subfield code="y">eastasian</subfield>
+        </datafield>
+        <datafield tag="876" ind1=" " ind2=" ">
+            <subfield code="0">22592871540006421</subfield>
+            <subfield code="a">23592871520006421</subfield>
+            <subfield code="3">vol.2</subfield>
+            <subfield code="j">1</subfield>
+            <subfield code="z">cjk</subfield>
+            <subfield code="d">2021-01-27 19:00:00 US/Eastern</subfield>
+            <subfield code="p">32101104612039</subfield>
+            <subfield code="t">0</subfield>
+            <subfield code="y">eastasian</subfield>
+        </datafield>
+    </record>
+</collection>
