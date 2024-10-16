@@ -120,6 +120,16 @@ RSpec.describe Genre do
         expect(genres).to include('Primary source')
       end
     end
+    context 'when the 650 subfield x has Computer network resources' do
+      let(:genres) do
+        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Dating (Social customs)" }, { "x" => "Computer network resources." }] } }
+        sample_marc = MARC::Record.new_from_hash('fields' => [g650])
+        described_class.new(sample_marc).to_a
+      end
+      it 'does not include Primary Source in the list of genres' do
+        expect(genres).not_to include('Primary source')
+      end
+    end
     context 'when the 650 subfield a is Biography' do
       let(:genres) do
         g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Biography" }] } }

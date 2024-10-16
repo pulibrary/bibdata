@@ -81,7 +81,7 @@ class Genre
 
     def genre_term_indicates_primary_source?(genre)
       normalized_genre = genre.downcase.strip.delete_suffix('.')
-      primary_source_genres.any? { |primary_source_genre| normalized_genre.include? primary_source_genre }
+      primary_source_genres.any? { |primary_source_genre| normalized_genre.match?(/(^|\W)#{primary_source_genre}($|\W)/) }
     end
 
     def biography?
