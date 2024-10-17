@@ -42,21 +42,25 @@ class AlmaAdapter
 
   # Returns availability for one bib id
   def get_availability_one(id:, deep_check: false)
-    bibs = Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(",")).each
-    return nil if bibs.count == 0
-
-    av_info = AvailabilityStatus.new(bib: bibs.first, deep_check:).bib_availability
-
-    temp_locations = av_info.any? { |_key, value| value[:temp_location] }
-    if temp_locations && deep_check
-      # We don't get enough information at the holding level for items located
-      # in temporary locations. But if the client requests it we can drill into
-      # the item information to get all the information (keep in mind that this
-      # involves an extra API call that is slow-ish.)
-      av_info = AvailabilityStatus.new(bib: bibs.first).bib_availability_from_items
+    get_availability_status = lambda do |bib|
+      av_info = AvailabilityStatus.new(bib:, deep_check:).bib_availability
+      temp_locations = av_info.any? { |_key, value| value[:temp_location] }
+      if temp_locations && deep_check
+        # We don't get enough information at the holding level for items located
+        # in temporary locations. But if the client requests it we can drill into
+        # the item information to get all the information (keep in mind that this
+        # involves an extra API call that is slow-ish.)
+        AvailabilityStatus.new(bib:).bib_availability_from_items
+      else
+        av_info
+      end
     end
 
-    { bibs.first.id => av_info }
+    Alma::Bib.find(Array.wrap(id), expand: ["p_avail", "e_avail", "d_avail", "requests"].join(","))
+             .each
+             .lazy
+             .map { |bib| { bib.id => get_availability_status.call(bib) } }
+             .first
   rescue Alma::StandardError => e
     handle_alma_error(client_error: e)
   end
