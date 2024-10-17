@@ -88,6 +88,26 @@ RSpec.describe Genre do
         expect(genres).to include('Primary source')
       end
     end
+    context 'when the 650 subfield v has Personal narratives' do
+      let(:genres) do
+        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "World War, 1939-1945" }, { "v" => "Personal narratives." }] } }
+        sample_marc = MARC::Record.new_from_hash('fields' => [g650])
+        described_class.new(sample_marc).to_a
+      end
+      it 'includes Primary Source in the list of genres' do
+        expect(genres).to include('Primary source')
+      end
+    end
+    context 'when the 650 subfield v has Personal narratives, Italian.' do
+      let(:genres) do
+        g650 = { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "World War, 1939-1945" }, { "v" => "Personal narratives, Italian." }] } }
+        sample_marc = MARC::Record.new_from_hash('fields' => [g650])
+        described_class.new(sample_marc).to_a
+      end
+      it 'includes Primary Source in the list of genres' do
+        expect(genres).to include('Primary source')
+      end
+    end
     context 'when the 650 subfield v has Pamphlets, and the 008 says it is a novel' do
       let(:genres) do
         g008 = { "008" => 'f'.rjust(34) } # f = Novel when it is in the 33rd position
