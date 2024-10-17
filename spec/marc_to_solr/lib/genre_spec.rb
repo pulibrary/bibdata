@@ -54,8 +54,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g650])
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when the 600 subfield x has Notebooks, sketchbooks, etc.' do
@@ -64,8 +64,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g600])
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when there is an extra space after the period "etc. "' do
@@ -74,8 +74,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g600])
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when the 650 subfield v has Pamphlets' do
@@ -84,8 +84,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g650])
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when the 650 subfield v has Pamphlets, and the 008 says it is a novel' do
@@ -95,8 +95,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g008, g650], 'leader' => '04137cam a2200853Ii 4500')
         described_class.new(sample_marc).to_a
       end
-      it 'does not include Primary Source in the list of genres' do
-        expect(genres).not_to include('Primary source')
+      it 'does not include Primary sources in the list of genres' do
+        expect(genres).not_to include('Primary sources')
       end
     end
     context 'when the 650 subfield v has Pamphlets, and the 008 says it is non-fiction' do
@@ -106,8 +106,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g008, g650], 'leader' => '04137cam a2200853Ii 4500')
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when the 651 subfield x has Pictorial works' do
@@ -116,8 +116,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g651])
         described_class.new(sample_marc).to_a
       end
-      it 'includes Primary Source in the list of genres' do
-        expect(genres).to include('Primary source')
+      it 'includes Primary sources in the list of genres' do
+        expect(genres).to include('Primary sources')
       end
     end
     context 'when the 650 subfield x has Computer network resources' do
@@ -126,8 +126,8 @@ RSpec.describe Genre do
         sample_marc = MARC::Record.new_from_hash('fields' => [g650])
         described_class.new(sample_marc).to_a
       end
-      it 'does not include Primary Source in the list of genres' do
-        expect(genres).not_to include('Primary source')
+      it 'does not include Primary sources in the list of genres' do
+        expect(genres).not_to include('Primary sources')
       end
     end
     context 'when the 650 subfield a is Biography' do
@@ -137,7 +137,7 @@ RSpec.describe Genre do
         described_class.new(sample_marc).to_a
       end
       it 'does not include Primary source' do
-        expect(genres).not_to include('Primary source')
+        expect(genres).not_to include('Primary sources')
       end
     end
     context 'when the 650 subfield a is Biography and the 600 and 100 match' do
@@ -149,7 +149,7 @@ RSpec.describe Genre do
         described_class.new(sample_marc).to_a
       end
       it 'includes Primary source' do
-        expect(genres).to include 'Primary source'
+        expect(genres).to include 'Primary sources'
       end
     end
     context 'when the 651 subfield v is Biography' do
@@ -159,7 +159,7 @@ RSpec.describe Genre do
         described_class.new(sample_marc).to_a
       end
       it 'does not include Primary source' do
-        expect(genres).not_to include('Primary source')
+        expect(genres).not_to include('Primary sources')
       end
     end
     context 'when the 651 subfield v is Biography, and the 600 and 100 match' do
@@ -171,7 +171,7 @@ RSpec.describe Genre do
         described_class.new(sample_marc).to_a
       end
       it 'includes Primary source' do
-        expect(genres).to contain_exactly 'Primary source', 'Biography'
+        expect(genres).to contain_exactly 'Primary sources', 'Biography'
       end
     end
   end

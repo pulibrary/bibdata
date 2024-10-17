@@ -65,7 +65,7 @@ class Genre
         extractor.collect_subfields(field, spec)
       end
       if potential_genres.any? { |genre| genre_term_indicates_primary_source? genre } && !literary_work?
-        ['Primary source']
+        ['Primary sources']
       else
         []
       end
@@ -73,7 +73,7 @@ class Genre
 
     def genres_from_autobiography
       if biography? && author_matches_subject? && !literary_work?
-        ['Primary source']
+        ['Primary sources']
       else
         []
       end

@@ -1334,8 +1334,8 @@ describe 'From traject_config.rb', indexing: true do
 
     describe 'genre_facet' do
       context 'when the document is a diary' do
-        it 'indexes the facet "Primary source"' do
-          expect(@diary['genre_facet']).to include 'Primary source'
+        it 'indexes the facet "Primary sources"' do
+          expect(@diary['genre_facet']).to include 'Primary sources'
         end
       end
     end
