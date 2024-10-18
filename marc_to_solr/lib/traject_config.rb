@@ -895,7 +895,7 @@ to_field 'fast_subject_display' do |record, accumulator|
   next if subjects.present?
   record.fields.select { |field| field.tag[0] == '6' }.each do |field|
     next unless field['2'] == 'fast'
-    value = field['a']
+    value = field['a'].delete('.')
     accumulator << value
   end
 end
