@@ -11,10 +11,16 @@ class AwsSqsPoller
       end_polling = true
     end
 
+    poller.after_empty_receive do |stats|
+      Rails.logger.info("AWS SQS Poller after_empty_receive request_count: #{stats.request_count}")
+      Rails.logger.info("AWS SQS Poller after_empty_receive received_message_count: #{stats.received_message_count}")
+      Rails.logger.info("AWS SQS Poller after_empty_receive last_message_received_at: #{stats.last_message_received_at}")
+    end
+
     poller.before_request do |stats|
-      Rails.logger.info("AWS SQS Poller request_count: #{stats.request_count}")
-      Rails.logger.info("AWS SQS Poller message_count: #{stats.received_message_count}")
-      Rails.logger.info("AWS SQS Poller last_message_received_at: #{stats.last_message_received_at}")
+      Rails.logger.info("AWS SQS Poller before_request request_count: #{stats.request_count}")
+      Rails.logger.info("AWS SQS Poller before_request message_count: #{stats.received_message_count}")
+      Rails.logger.info("AWS SQS Poller before_request last_message_received_at: #{stats.last_message_received_at}")
       throw :stop_polling if end_polling
     end
 
