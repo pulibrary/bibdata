@@ -16,8 +16,10 @@ class AwsSqsPoller
     end
 
     poller.poll do |msg|
+      Rails.logger.info("Polls message")
       message_body = JSON.parse(msg[:body])
       job_name = message_body["job_instance"]["name"]
+      Rails.logger.info("AWS SQS Poller message_body: #{message_body}")
       next unless Rails.configuration.alma[:jobs].keys.include?(job_name)
       dump = AlmaDumpFactory.bib_dump(message_body)
       # running dump creation in the background prevents the queue
