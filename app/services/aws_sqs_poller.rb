@@ -11,13 +11,24 @@ class AwsSqsPoller
       end_polling = true
     end
 
-    poller.before_request do |_stats|
+    poller.after_empty_receive do |stats|
+      Rails.logger.info("AWS SQS Poller after_empty_receive request_count: #{stats.request_count}")
+      Rails.logger.info("AWS SQS Poller after_empty_receive received_message_count: #{stats.received_message_count}")
+      Rails.logger.info("AWS SQS Poller after_empty_receive last_message_received_at: #{stats.last_message_received_at}")
+    end
+
+    poller.before_request do |stats|
+      Rails.logger.info("AWS SQS Poller before_request request_count: #{stats.request_count}")
+      Rails.logger.info("AWS SQS Poller before_request message_count: #{stats.received_message_count}")
+      Rails.logger.info("AWS SQS Poller before_request last_message_received_at: #{stats.last_message_received_at}")
       throw :stop_polling if end_polling
     end
 
     poller.poll do |msg|
+      Rails.logger.info("Polls message")
       message_body = JSON.parse(msg[:body])
       job_name = message_body["job_instance"]["name"]
+      Rails.logger.info("AWS SQS Poller message_body: #{message_body}")
       next unless Rails.configuration.alma[:jobs].keys.include?(job_name)
       dump = AlmaDumpFactory.bib_dump(message_body)
       # running dump creation in the background prevents the queue
