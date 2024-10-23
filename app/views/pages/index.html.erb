@@ -1,1 +1,22 @@
 <h1>PUL Bibliographic Data Web Service</h1>
+<h2>Indexing Process</h2>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Solr collection</th>
+      <th>Last dump indexed</th>
+      <th>Timestamp</th>
+      <th>In progress</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% IndexManager.all.each do |index_manager| %>
+    <tr>
+      <td><%= index_manager.solr_collection %></td>
+      <td><%= index_manager.last_dump_completed_id ? link_to(index_manager.last_dump_completed_id, dump_url(index_manager.last_dump_completed_id, format: :json)) : '' %></td>
+      <td><%= index_manager.updated_at %></td>
+      <td><%= index_manager.in_progress %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
