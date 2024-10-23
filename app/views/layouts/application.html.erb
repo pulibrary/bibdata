@@ -10,9 +10,11 @@
   <div class="container">
     <%= render partial: "shared/navbar" %>  	
     <%= render partial: "shared/flash_messages", flash: flash %>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </div>
-  <div class="deployment-version">
+  <div class="deployment-version" role="contentinfo">
     Version <span title="<%= GIT_SHA %>"><%= BRANCH %> last updated <%= LAST_DEPLOYED %>.</span>
   </div>
 </body>
