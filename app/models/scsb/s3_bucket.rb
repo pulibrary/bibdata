@@ -36,8 +36,14 @@ module Scsb
     end
 
     def list_files(prefix:)
-      objects = s3_client.list_objects(bucket: s3_bucket_name, prefix:, delimiter: '')
-      objects.contents
+      file_list = []
+      response = s3_client.list_objects_v2(bucket: s3_bucket_name, prefix:, delimiter: '')
+      file_list << response.contents.entries
+      while response.next_continuation_token
+        response = s3_client.list_objects_v2(bucket: s3_bucket_name, prefix:, delimiter: '', continuation_token: response.next_continuation_token)
+        file_list << response.contents.entries
+      end
+      file_list.flatten
     end
 
     def download_file(key:)

@@ -27,9 +27,10 @@ RSpec.describe Scsb::S3Bucket, type: :model do
 
   describe "list_files" do
     it "returns the objects" do
-      allow(s3_client).to receive(:list_objects).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(Aws::S3::Types::ListObjectsOutput.new(contents: Aws::Xml::DefaultList.new))
+      allow(s3_client).to receive(:list_objects_v2).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(Aws::S3::Types::ListObjectsV2Output.new(contents: Aws::Xml::DefaultList.new, next_continuation_token: 'xyz123'))
+      allow(s3_client).to receive(:list_objects_v2).with(bucket: 'test', prefix: 'prefix', delimiter: '', continuation_token: 'xyz123').and_return(Aws::S3::Types::ListObjectsV2Output.new(contents: Aws::Xml::DefaultList.new))
       results = s3.list_files(prefix: 'prefix')
-      expect(results).to be_a(Aws::Xml::DefaultList)
+      expect(results).to be_an(Array)
       expect(results.size).to eq(0)
     end
   end
@@ -88,9 +89,9 @@ RSpec.describe Scsb::S3Bucket, type: :model do
         Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_2.zip", last_modified: Time.new(2.days.ago.to_i)),
         Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/CUL_3.zip", last_modified: Time.new(1.week.ago.to_i))
       ]
-      aws_list = Aws::S3::Types::ListObjectsOutput.new(contents: Aws::Xml::DefaultList.new(files))
+      aws_list = Aws::S3::Types::ListObjectsV2Output.new(contents: Aws::Xml::DefaultList.new(files))
 
-      allow(s3_client).to receive(:list_objects).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
+      allow(s3_client).to receive(:list_objects_v2).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
 
       output1 = Aws::S3::Types::GetObjectOutput.new(body: StringIO.new("abc123"))
       allow(s3_client).to receive(:get_object).with(bucket: 'test', key: 'exports/ABC/MARCXml/Full/CUL_1.zip').and_return(output1)
@@ -107,9 +108,9 @@ RSpec.describe Scsb::S3Bucket, type: :model do
       files = [
         Aws::S3::Types::Object.new(key: "exports/ABC/MARCXml/Full/NYPL_1.zip", last_modified: Time.new(1.day.ago.to_i))
       ]
-      aws_list = Aws::S3::Types::ListObjectsOutput.new(contents: Aws::Xml::DefaultList.new(files))
+      aws_list = Aws::S3::Types::ListObjectsV2Output.new(contents: Aws::Xml::DefaultList.new(files))
 
-      allow(s3_client).to receive(:list_objects).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
+      allow(s3_client).to receive(:list_objects_v2).with(bucket: 'test', prefix: 'prefix', delimiter: '').and_return(aws_list)
 
       path = Rails.root.join('tmp', 's3_bucket_test')
       FileUtils.rm_rf(path)
