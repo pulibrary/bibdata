@@ -150,9 +150,6 @@ To index the coins:
 
 Many of these tasks output log messages.
 
-Because traject does not log to datadog we lose log output for indexing that runs in the background. See https://github.com/pulibrary/bibdata/issues/1507
-
-
 ### Index the latest Alma changes
 
 There might be new incremental updates from Alma between the time the full reindex finishes and the index swap. Index these latest changes:
