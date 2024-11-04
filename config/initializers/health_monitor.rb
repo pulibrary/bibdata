@@ -3,6 +3,8 @@ Rails.application.config.after_initialize do
   HealthMonitor.configure do |config|
     config.cache
 
+    config.add_custom_provider(CustomProvider)
+
     config.add_custom_provider(SolrStatus)
 
     # Make this health check available at /health
