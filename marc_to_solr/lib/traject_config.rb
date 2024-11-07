@@ -972,6 +972,17 @@ to_field 'lc_rest_facet' do |record, accumulator|
   end
 end
 
+to_field 'lc_facet' do |record, accumulator|
+  if record['050']
+    if record['050']['a']
+      first_letter = record['050']['a'].lstrip.slice(0, 1)
+      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter]
+      accumulator << "#{Traject::TranslationMap.new("callnumber_map")[first_letter]}:#{Traject::TranslationMap.new("callnumber_map")[letters]}"
+    end
+  end
+end
+
 to_field 'sudoc_facet' do |record, accumulator|
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
     letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
