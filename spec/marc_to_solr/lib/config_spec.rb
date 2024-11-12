@@ -977,6 +977,21 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'lc_facet' do
+      it 'includes a field with data for the classification facet' do
+        lc_facet = @sample40['lc_facet']
+        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine'])
+      end
+      it 'handles cases where the call number is a single letter' do
+        lc_facet = @sample44['lc_facet']
+        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources:Z - Bibliography, Library Science, Information Resources'])
+      end
+      it 'handles cases where there is no call number' do
+        lc_facet = @record_no_call_number['lc_facet']
+        expect(lc_facet).to be_nil
+      end
+    end
+
     describe 'series 490 dedup, non-filing' do
       let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
       let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
