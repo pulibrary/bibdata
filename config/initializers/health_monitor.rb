@@ -4,13 +4,16 @@ Rails.application.config.after_initialize do
     config.cache
 
     config.add_custom_provider(SolrStatus)
+    config.file_absence.configure do |file_config|
+      file_config.filename = "public/remove-from-nginx"
+    end
 
     # Make this health check available at /health
     config.path = :health
 
     config.error_callback = proc do |e|
       Rails.logger.error "Health check failed with: #{e.message}"
-      Honeybadger.notify(e)
+      Honeybadger.notify(e) unless e.is_a?(HealthMonitor::Providers::FileAbsenceException)
     end
   end
 end
