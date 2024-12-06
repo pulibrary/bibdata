@@ -12,8 +12,10 @@ class BibFormat
     ldr = record.leader
     type = ldr[6]
     lev  = ldr[7]
+    check_pulfa = record['035'] && record['035']['a'].start_with?('(PULFA)')
+    check_dacs = record['040'] && record['040']['e'] == 'dacs'
     @code = []
-    @code << self.determine_bib_code(type, lev)
+    @code << self.determine_bib_code(type, lev, check_pulfa, check_dacs)
     @code << 'WM' if microform? record
     @code = @code.flatten
     # Removed per @tampakis recommendation to keep items with an unknown format
@@ -21,7 +23,7 @@ class BibFormat
     # @code << 'XX' if @code.empty?
   end
 
-  def determine_bib_code(type, lev)
+  def determine_bib_code(type, lev, check_pulfa, check_dacs)
     format = []
     format << "AJ" if bibformat_jn(type, lev) # journal
     format << "CF" if bibformat_cf(type, lev) # data file
@@ -31,13 +33,14 @@ class BibFormat
     format << "AU" if bibformat_au(type, lev) # audio
     format << "MP" if bibformat_mp(type, lev) # map
     format << "MW" if bibformat_mw(type, lev) # manuscript
-    format << "BK" if bibformat_bk(type, lev) # book
+    format << "BK" if bibformat_bk(type, lev, check_pulfa) # book
     format << "DB" if bibformat_db(type, lev) # databases
+    format << "XA" if bibformat_xa(type, lev, check_pulfa, check_dacs) # archival item
     format
   end
 
-  def bibformat_bk(type, lev)
-    (type == 't') || ((type == 'a') && %w[a b c d m].include?(lev))
+  def bibformat_bk(type, lev, check_pulfa)
+    ((type == 't') && !check_pulfa) || ((type == 'a') && %w[a b c d m].include?(lev))
   end
 
   def bibformat_db(type, lev)
@@ -74,6 +77,10 @@ class BibFormat
 
   def bibformat_mw(type, _lev)
     %w[d f p t].include?(type)
+  end
+
+  def bibformat_xa(type, lev, check_pulfa, check_dacs)
+    (type == 't') && (lev == 'm') && check_pulfa && check_dacs
   end
 
   private
