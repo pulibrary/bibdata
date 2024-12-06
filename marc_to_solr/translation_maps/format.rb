@@ -35,6 +35,7 @@
   "VL" => "Motion picture",
   "VM" => "Visual material",
   "VP" => "Video/Projected medium",
+  "XA" => "Archival Item",
   "WM" => "Microform",
   "XC" => "Conference",
   "XS" => "Statistics",
