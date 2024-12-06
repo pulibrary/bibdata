@@ -1,6 +1,9 @@
 # given a record, find the bib_format code
 require_relative '../format.rb'
 
+# This class is responsible for assigning one or more 2-letter
+# codes that represent the format of a title.  The 2-letter
+# codes can be found in the Format translation map.
 class BibFormat
   attr_reader :code
 
@@ -9,83 +12,98 @@ class BibFormat
   # @param [MARC::Record] record The record to test
 
   def initialize(record)
-    ldr = record.leader
-    type = ldr[6]
-    lev  = ldr[7]
-    check_pulfa = record['035'] && record['035']['a'].start_with?('(PULFA)')
-    check_dacs = record['040'] && record['040']['e'] == 'dacs'
+    @record = record
     @code = []
-    @code << self.determine_bib_code(type, lev, check_pulfa, check_dacs)
-    @code << 'WM' if microform? record
+    @code << self.determine_bib_code
+    @code << 'WM' if microform?
     @code = @code.flatten
-    # Removed per @tampakis recommendation to keep items with an unknown format
-    # value out of the format facet
-    # @code << 'XX' if @code.empty?
   end
 
-  def determine_bib_code(type, lev, check_pulfa, check_dacs)
+  def determine_bib_code
     format = []
-    format << "AJ" if bibformat_jn(type, lev) # journal
-    format << "CF" if bibformat_cf(type, lev) # data file
-    format << "VM" if bibformat_vm(type, lev) # visual material
-    format << "VP" if bibformat_vp(type, lev) # video
-    format << "MS" if bibformat_mu(type, lev) # musical score
-    format << "AU" if bibformat_au(type, lev) # audio
-    format << "MP" if bibformat_mp(type, lev) # map
-    format << "MW" if bibformat_mw(type, lev) # manuscript
-    format << "BK" if bibformat_bk(type, lev, check_pulfa) # book
-    format << "DB" if bibformat_db(type, lev) # databases
-    format << "XA" if bibformat_xa(type, lev, check_pulfa, check_dacs) # archival item
+    format << "AJ" if bibformat_jn # journal
+    format << "CF" if bibformat_cf # data file
+    format << "VM" if bibformat_vm # visual material
+    format << "VP" if bibformat_vp # video
+    format << "MS" if bibformat_mu # musical score
+    format << "AU" if bibformat_au # audio
+    format << "MP" if bibformat_mp # map
+    format << "MW" if bibformat_mw # manuscript
+    format << "BK" if bibformat_bk # book
+    format << "DB" if bibformat_db # databases
+    format << "XA" if bibformat_xa # archival item
     format
   end
 
-  def bibformat_bk(type, lev, check_pulfa)
+  def bibformat_bk
     ((type == 't') && !check_pulfa) || ((type == 'a') && %w[a b c d m].include?(lev))
   end
 
-  def bibformat_db(type, lev)
+  def bibformat_db
     (type == 'a') && (lev == 'i')
   end
 
-  def bibformat_jn(type, lev)
+  def bibformat_jn
     (type == 'a') && (lev == 's')
   end
 
-  def bibformat_cf(type, _lev)
+  def bibformat_cf
     (type == 'm')
   end
 
-  def bibformat_au(type, _lev)
+  def bibformat_au
     %w[i j].include?(type)
   end
 
-  def bibformat_vm(type, _lev)
+  def bibformat_vm
     %w[k o r].include?(type)
   end
 
-  def bibformat_vp(type, _lev)
+  def bibformat_vp
     (type == 'g')
   end
 
-  def bibformat_mu(type, _lev)
+  def bibformat_mu
     %w[c d].include?(type)
   end
 
-  def bibformat_mp(type, _lev)
+  def bibformat_mp
     %w[e f].include?(type)
   end
 
-  def bibformat_mw(type, _lev)
+  def bibformat_mw
     %w[d f p t].include?(type)
   end
 
-  def bibformat_xa(type, lev, check_pulfa, check_dacs)
+  def bibformat_xa
     (type == 't') && (lev == 'm') && check_pulfa && check_dacs
   end
 
   private
 
-    def microform?(record)
+    attr_reader :record
+
+    def microform?
       record.fields('007').any? { |field| field.value&.start_with? 'h' }
+    end
+
+    def ldr
+      @ldr ||= record.leader
+    end
+
+    def type
+      @type ||= ldr[6]
+    end
+
+    def lev
+      @lev ||= ldr[7]
+    end
+
+    def check_pulfa
+      @check_pulfa ||= record['035'] && record['035']['a'] && record['035']['a'].start_with?('(PULFA)')
+    end
+
+    def check_dacs
+      @check_dacs ||= record['040'] && record['040']['e'] == 'dacs'
     end
 end
