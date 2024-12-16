@@ -14,7 +14,7 @@ describe 'From format.rb' do
     'Audio' => ['i ', 'j '],
     'Map' => ['e '],
     'Manuscript' => ['d ', 'f ', 't ', 'p '],
-    'Archival Item' => ['tm']
+    'Archival item' => ['tm']
   }.each do |k, v|
     it "properly determines format for #{k}" do
       v.each do |c|
