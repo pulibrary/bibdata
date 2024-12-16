@@ -76,7 +76,7 @@ class BibFormat
   end
 
   def bibformat_xa
-    (type == 't') && (lev == 'm') && check_pulfa && check_dacs
+    (type == 't') && (lev == 'm') && check_pulfa && archival?
   end
 
   private
@@ -103,7 +103,21 @@ class BibFormat
       @check_pulfa ||= record['035'] && record['035']['a'] && record['035']['a'].start_with?('(PULFA)')
     end
 
-    def check_dacs
-      @check_dacs ||= record['040'] && record['040']['e'] == 'dacs'
+    def archival?
+      @archival ||= begin
+        cataloging_sources = record.fields('040')
+        return true if cataloging_sources.empty?
+
+        cataloging_sources.any? { |field| field_uses_archival_standard?(field) }
+      end
+    end
+
+    def field_uses_archival_standard?(field)
+      field.subfields.any? { |subfield| subfield.code == 'e' && archival_standard?(subfield.value) } ||
+        field.subfields.none? { |subfield| subfield.code == 'e' && !archival_standard?(subfield.value) }
+    end
+
+    def archival_standard?(code)
+      %w[dacs appm].include? code
     end
 end

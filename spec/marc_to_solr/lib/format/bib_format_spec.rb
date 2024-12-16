@@ -33,5 +33,50 @@ RSpec.describe BibFormat do
       bib_format = described_class.new(record)
       expect(bib_format.code).to contain_exactly 'MS', 'MW', 'WM'
     end
+    it 'returns XA and MW if it is a manuscript archival item' do
+      record = MARC::Record.new
+      record.leader = '00804ctmaa2200217Ma 4500'
+      system_control_number_field = MARC::DataField.new('035', '', '', ['a', '(PULFA)C1778_c01107-90354'])
+      record.append system_control_number_field
+
+      bib_format = described_class.new(record)
+      expect(bib_format.code).to contain_exactly 'XA', 'MW'
+    end
+    it 'returns XA and MW if it is a manuscript archival item described using the appm standard' do
+      record = MARC::Record.new
+      record.leader = '00804ctmaa2200217Ma 4500'
+      record.append MARC::DataField.new('035', '', '', ['a', '(PULFA)C1778_c01107-90354'])
+      record.append MARC::DataField.new('040', '', '', ['e', 'appm'])
+
+      bib_format = described_class.new(record)
+      expect(bib_format.code).to contain_exactly 'XA', 'MW'
+    end
+    it 'returns XA and MW if it is a manuscript archival item described using the dacs standard' do
+      record = MARC::Record.new
+      record.leader = '00804ctmaa2200217Ma 4500'
+      record.append MARC::DataField.new('035', '', '', ['a', '(PULFA)C1778_c01107-90354'])
+      record.append MARC::DataField.new('040', '', '', ['e', 'dacs'])
+
+      bib_format = described_class.new(record)
+      expect(bib_format.code).to contain_exactly 'XA', 'MW'
+    end
+    it 'returns XA and MW if it is a manuscript archival item described using an unknown standard' do
+      record = MARC::Record.new
+      record.leader = '00804ctmaa2200217Ma 4500'
+      record.append MARC::DataField.new('035', '', '', ['a', '(PULFA)C1778_c01107-90354'])
+      record.append MARC::DataField.new('040', '', '', ['a', 'NjP'])
+
+      bib_format = described_class.new(record)
+      expect(bib_format.code).to contain_exactly 'XA', 'MW'
+    end
+    it 'returns MW if it is a manuscript described using a non-archival standard' do
+      record = MARC::Record.new
+      record.leader = '00804ctmaa2200217Ma 4500'
+      record.append MARC::DataField.new('035', '', '', ['a', '(PULFA)C1778_c01107-90354'])
+      record.append MARC::DataField.new('040', '', '', ['e', 'aacr'])
+
+      bib_format = described_class.new(record)
+      expect(bib_format.code).to contain_exactly 'MW'
+    end
   end
 end
