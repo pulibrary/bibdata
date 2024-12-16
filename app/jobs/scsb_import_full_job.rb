@@ -18,8 +18,14 @@ class ScsbImportFullJob < ApplicationJob
     end
 
     def delete_stale_files
-      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
-      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml")
-      FileUtils.rm Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.csv")
+      files_to_delete = Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
+                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml"))
+                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.csv"))
+      files_to_delete.each do |file|
+        FileUtils.rm file
+      rescue Errno::ENOENT
+        Rails.logger.warn("Attempted to delete file #{file}, but it was no longer present on the filesystem")
+        next
+      end
     end
 end
