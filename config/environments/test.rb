@@ -36,9 +36,6 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  # Don't use sidekiq in tests
-  config.active_job.queue_adapter = :test
-
   config.action_mailer.default_url_options = { host: "www.example.com" }
   config.webmock_disable_opts = {
     allow_localhost: true,

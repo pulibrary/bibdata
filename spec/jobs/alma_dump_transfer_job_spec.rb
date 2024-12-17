@@ -7,9 +7,6 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
     before do
       allow(IndexRemainingDumpsJob).to receive(:perform_async)
     end
-    after do
-      ActiveJob::Base.queue_adapter.enqueued_jobs = []
-    end
 
     context "with a full dump" do
       let(:job_id) { "1436402400006421" }

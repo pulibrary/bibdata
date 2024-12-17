@@ -3,6 +3,7 @@ require 'coveralls'
 require 'webmock/rspec'
 require 'traject'
 require 'support/required_environments'
+require 'sidekiq/testing'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..'))
 
