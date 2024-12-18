@@ -22,7 +22,6 @@ module Scsb
         file = download_full_file(matcher) # turn into job
         if file
           ProcessPartnerUpdatesJob.perform_later(dump_id: @dump.id, files: [file.to_s], file_prefix: prefix, update_directory: @update_directory.to_s, scsb_file_dir: @scsb_file_dir.to_s)
-          # process_partner_updates(files: [file], file_prefix: prefix) # turn into job
         else
           add_error(message: "No full dump files found matching #{inst}")
         end

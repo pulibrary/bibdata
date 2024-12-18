@@ -142,6 +142,8 @@ RSpec.describe Dump, type: :model do
     let(:dump) { Dump.create!(dump_type: :partner_recap_full, event:) }
 
     before do
+      FileUtils.rm_rf(scsb_file_dir)
+      FileUtils.mkdir_p(scsb_file_dir)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', scsb_file_dir)
     end
     it 'can attach a dump file to a dump' do

@@ -9,42 +9,52 @@ module Scsb
         @s3_bucket = Scsb::S3Bucket.partner_transfer_client
         @scsb_file_dir = ENV['SCSB_FILE_DIR']
         @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-        @inv_xml = []
-        @tab_newline = []
-        @leader = []
-        @composed_chars = []
-        @bad_utf8 = []
       end
 
       def process_partner_updates(files:, file_prefix: 'scsb_update_')
         xml_files = []
         files.each do |file|
-          filename = File.basename(file, '.zip')
-          filename.gsub!(/^[^_]+_([0-9]+)_([0-9]+).*$/, '\1_\2')
-          file_increment = 1
-          Zip::File.open(file) do |zip_file|
-            zip_file.each do |entry|
-              target = "#{@update_directory}/#{filename}_#{file_increment}.xml"
-              xml_files << target
-              entry.extract(target)
-              file_increment += 1
-            end
-          end
-          File.unlink(file)
+          xml_files << Scsb::PartnerUpdates::Update.extract_files(file:, update_directory: @update_directory)
         end
-        xml_files.each do |file|
-          filename = File.basename(file)
-          reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-          filepath = "#{@scsb_file_dir}/#{file_prefix}#{filename}"
-          writer = MARC::XMLWriter.new(filepath)
-          reader.each { |record| writer.write(process_record(record)) }
-          writer.close
-          File.unlink(file)
-          Dump.attach_dump_file(dump_id: @dump.id, filepath:, dump_file_type: @dump_file_type)
+        xml_files.flatten.each do |file|
+          Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file:, dump_id: @dump.id, scsb_file_dir: @scsb_file_dir, file_prefix:, dump_file_type: @dump_file_type)
         end
       end
 
-      def process_record(record)
+      def self.extract_files(file:, update_directory:)
+        extracted_files = []
+        filename = File.basename(file, '.zip')
+        filename.gsub!(/^[^_]+_([0-9]+)_([0-9]+).*$/, '\1_\2')
+        file_increment = 1
+        Zip::File.open(file) do |zip_file|
+          zip_file.each do |entry|
+            target = "#{update_directory}/#{filename}_#{file_increment}.xml"
+            extracted_files << target
+            entry.extract(target)
+            file_increment += 1
+          end
+        end
+        File.unlink(file)
+        extracted_files
+      end
+
+      def self.attach_cleaned_dump_file(file:, dump_id:, scsb_file_dir:, file_prefix:, dump_file_type: :recap_records_full)
+        @inv_xml = []
+        @tab_newline = []
+        @leader = []
+        @composed_chars = []
+        @bad_utf8 = []
+        original_filename = File.basename(file)
+        reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
+        new_filepath = "#{scsb_file_dir}/#{file_prefix}#{original_filename}"
+        writer = MARC::XMLWriter.new(new_filepath)
+        reader.each { |record| writer.write(process_record(record)) }
+        writer.close
+        File.unlink(file)
+        Dump.attach_dump_file(dump_id:, filepath: new_filepath, dump_file_type:)
+      end
+
+      def self.process_record(record)
         record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
         if bad_utf8?(record)
