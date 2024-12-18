@@ -5,6 +5,11 @@ class ProcessPartnerUpdatesJob < ApplicationJob
     @leader = []
     @composed_chars = []
     @bad_utf8 = []
+    xml_files = extract_files(files:, update_directory:)
+    attach_cleaned_dump_files(xml_files:, dump_id:, scsb_file_dir:, file_prefix:)
+  end
+
+  def extract_files(files:, update_directory:)
     xml_files = []
     files.each do |file|
       filename = File.basename(file, '.zip')
@@ -20,6 +25,10 @@ class ProcessPartnerUpdatesJob < ApplicationJob
       end
       File.unlink(file)
     end
+    xml_files
+  end
+
+  def attach_cleaned_dump_files(xml_files:, dump_id:, scsb_file_dir:, file_prefix:)
     xml_files.each do |file|
       filename = File.basename(file)
       reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')

@@ -12,7 +12,7 @@ RSpec.describe ProcessPartnerUpdatesJob, type: :job do
     it 'tries to unzip the files' do
       allow(Zip::File).to receive(:open).with('a_file')
       allow(File).to receive(:unlink)
-      described_class.perform_now(files: ['a_file'], file_prefix: 'scsb_update_')
+      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
       expect(Zip::File).to have_received(:open).with('a_file')
     end
   end
