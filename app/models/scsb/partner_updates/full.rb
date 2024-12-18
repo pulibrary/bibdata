@@ -14,18 +14,21 @@ module Scsb
         log_record_fixes
       end
 
-      def download_and_process_full(inst:, prefix:)
+      def download_and_process_full(inst:, prefix:) # turn into job
         return false unless validate_csv(inst:)
 
         matcher = /#{inst}.*\.zip/
-        file = download_full_file(matcher)
+        # DownloadFullFilesJob.perform_later
+        file = download_full_file(matcher) # turn into job
         if file
-          process_partner_updates(files: [file], file_prefix: prefix)
+          ProcessPartnerUpdatesJob.perform_later(dump_id: @dump.id, files: [file.to_s], file_prefix: prefix, update_directory: @update_directory.to_s, scsb_file_dir: @scsb_file_dir.to_s)
+          # process_partner_updates(files: [file], file_prefix: prefix) # turn into job
         else
           add_error(message: "No full dump files found matching #{inst}")
         end
       end
 
+      # Ensures that CSV is present and that it does not include any private records
       def validate_csv(inst:)
         matcher = /#{inst}.*\.csv/
         file = download_full_file(matcher)

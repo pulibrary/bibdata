@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
+  include ActiveJob::TestHelper
   include_context 'scsb_partner_updates_full'
 
   it 'can be instantiated' do
@@ -39,6 +40,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
           # cleans up
+          perform_enqueued_jobs
           expect(Dir.empty?(update_directory_path)).to be true
         end
       end
@@ -59,10 +61,11 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
 
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
         partner_full_update.process_full_files
-
+        perform_enqueued_jobs
         # attaches marcxml and log files
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
         expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
+        dump.reload
         expect(dump.dump_files.map(&:path)).to contain_exactly(
           File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
           File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
@@ -91,7 +94,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
 
     it 'does not download anything, adds an error message' do
       partner_full_update.process_full_files
-
+      perform_enqueued_jobs
       expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
       expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
     end
