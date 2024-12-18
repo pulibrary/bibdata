@@ -6,19 +6,7 @@ RSpec.describe Scsb::PartnerUpdates::Update, type: :model do
   let(:filepath) { File.join(scsb_file_dir, 'CUL_20210429_192300.zip') }
   let(:dump) { Dump.create(dump_type: :partner_recap_full) }
 
-  describe '#attach_dump_file' do
-    before do
-      FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', scsb_file_dir)
-    end
-    it 'can attach a dump file to a dump' do
-      expect do
-        update.attach_dump_file(filepath, dump_file_type: :recap_records_full)
-      end.to change { DumpFile.count }
-      expect(dump.dump_files.size).to eq(1)
-    end
-  end
-
-  describe '.process' do
+  describe '#process' do
     let(:scsb_record_leaderd) { MARC::XMLReader.new(scsb_file, external_encoding: 'UTF-8').first }
     let(:scsb_file) { file_fixture("scsb/scsb_leaderd.xml").to_s }
     let(:timestamp) { Dump.send(:incremental_update_timestamp) }

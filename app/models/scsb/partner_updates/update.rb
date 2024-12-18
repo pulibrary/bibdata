@@ -16,15 +16,6 @@ module Scsb
         @bad_utf8 = []
       end
 
-      def attach_dump_file(filepath, dump_file_type: nil)
-        dump_file_type ||= @dump_file_type
-        df = DumpFile.create(dump_file_type:, path: filepath)
-        df.zip
-        df.save
-        @dump.dump_files << df
-        @dump.save
-      end
-
       def process_partner_updates(files:, file_prefix: 'scsb_update_')
         xml_files = []
         files.each do |file|
@@ -49,7 +40,7 @@ module Scsb
           reader.each { |record| writer.write(process_record(record)) }
           writer.close
           File.unlink(file)
-          attach_dump_file(filepath)
+          Dump.attach_dump_file(dump_id: @dump.id, filepath:, dump_file_type: @dump_file_type)
         end
       end
 
@@ -97,7 +88,7 @@ module Scsb
         }
         filepath = log_file_name
         File.write(filepath, log_file.to_json.to_s)
-        attach_dump_file(filepath, dump_file_type: :log_file)
+        Dump.attach_dump_file(dump_id: @dump.id, filepath:, dump_file_type: :log_file)
       end
 
       def log_file_name

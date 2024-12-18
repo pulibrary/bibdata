@@ -42,7 +42,7 @@ module Scsb
           filename = File.basename(file)
           destination_filepath = "#{@scsb_file_dir}/#{filename}"
           FileUtils.move(file, destination_filepath)
-          attach_dump_file(destination_filepath, dump_file_type: :recap_records_full_metadata)
+          Dump.attach_dump_file(dump_id: dump.id, filepath: destination_filepath, dump_file_type: :recap_records_full_metadata)
           File.unlink(destination_filepath) if File.exist?(destination_filepath)
         else
           add_error(message: "No metadata files found matching #{inst}")
