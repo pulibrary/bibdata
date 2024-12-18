@@ -50,6 +50,15 @@ class Dump < ActiveRecord::Base
       order('generated_date desc').first
     end
 
+    def attach_dump_file(dump_id:, filepath:, dump_file_type: :recap_records_full)
+      df = DumpFile.create(dump_file_type:, path: filepath)
+      df.zip
+      df.save!
+      dump = Dump.find(dump_id)
+      dump.dump_files << df
+      dump.save!
+    end
+
     private
 
       ##

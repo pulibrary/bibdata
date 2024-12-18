@@ -15,6 +15,7 @@ RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model do
       # attaches marcxml and log files
       expect(dump.dump_files.where(dump_file_type: :recap_records).length).to eq(2)
       expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
+      dump.reload
       expect(dump.dump_files.map(&:path)).to contain_exactly(
         File.join(scsb_file_dir, 'scsb_update_20210622_183200_1.xml.gz'),
         File.join(scsb_file_dir, 'scsb_update_20210622_183200_2.xml.gz'),
