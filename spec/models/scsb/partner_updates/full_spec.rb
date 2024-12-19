@@ -33,6 +33,8 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
         end
         it 'does not process files that include private records' do
           partner_full_update.process_full_files
+          perform_enqueued_jobs
+          perform_enqueued_jobs
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
           # Does not download records associated with metadata with private records
           expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
@@ -40,7 +42,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
           # cleans up
-          perform_enqueued_jobs
           expect(Dir.empty?(update_directory_path)).to be true
         end
       end
@@ -62,10 +63,11 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
         partner_full_update.process_full_files
         perform_enqueued_jobs
+        perform_enqueued_jobs
+        dump.reload
         # attaches marcxml and log files
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
         expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
-        dump.reload
         expect(dump.dump_files.map(&:path)).to contain_exactly(
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
           File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
