@@ -17,7 +17,7 @@ module Scsb
           xml_files << Scsb::PartnerUpdates::Update.extract_files(file:, update_directory: @update_directory)
         end
         xml_files.flatten.each do |file|
-          Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file:, dump_id: @dump.id, scsb_file_dir: @scsb_file_dir, file_prefix:, dump_file_type: @dump_file_type)
+          Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file:, dump_id: @dump.id, file_prefix:, dump_file_type: @dump_file_type)
         end
       end
 
@@ -38,7 +38,8 @@ module Scsb
         extracted_files
       end
 
-      def self.attach_cleaned_dump_file(file:, dump_id:, scsb_file_dir:, file_prefix:, dump_file_type: :recap_records_full)
+      def self.attach_cleaned_dump_file(file:, dump_id:, file_prefix:, dump_file_type: :recap_records_full)
+        scsb_file_dir = ENV['SCSB_FILE_DIR']
         @inv_xml = []
         @tab_newline = []
         @leader = []
