@@ -1,5 +1,7 @@
 require 'json/add/regexp'
 
+# Checks that the associated CSV is valid, then kicks off the DownloadPartnerFilesJob, which in turn
+# kicks off the ProcessPartnerUpdatesJob
 class DownloadAndProcessFullJob < ApplicationJob
   def perform(inst:, prefix:, dump_id:)
     @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
