@@ -1,3 +1,5 @@
+require 'json/add/regexp'
+
 module Scsb
   class PartnerUpdates
     class Full < Update
@@ -17,19 +19,13 @@ module Scsb
       def download_and_process_full(inst:, prefix:) # turn into job
         return false unless validate_csv(inst:)
 
-        matcher = /#{inst}.*\.zip/
-        # DownloadFullFilesJob.perform_later
-        file = download_full_file(matcher) # turn into job
-        if file
-          ProcessPartnerUpdatesJob.perform_later(dump_id: @dump.id, files: [file.to_s], file_prefix: prefix, update_directory: @update_directory.to_s, scsb_file_dir: @scsb_file_dir.to_s)
-        else
-          add_error(message: "No full dump files found matching #{inst}")
-        end
+        matcher = /#{inst}.*\.zip/.as_json
+        DownloadPartnerFilesJob.perform_later(file_filter: matcher, dump_id: @dump.id, file_prefix: prefix)
       end
 
       # Ensures that CSV is present and that it does not include any private records
       def validate_csv(inst:)
-        matcher = /#{inst}.*\.csv/
+        matcher = /#{inst}.*\.csv/.as_json
         file = download_full_file(matcher)
         matches_expected_collections = false
         if file
@@ -50,6 +46,7 @@ module Scsb
       end
 
       def download_full_file(file_filter)
+        file_filter = Regexp.json_create(file_filter)
         prefix = ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full'
         @s3_bucket.download_recent(prefix:, output_directory: @update_directory, file_filter:)
       end

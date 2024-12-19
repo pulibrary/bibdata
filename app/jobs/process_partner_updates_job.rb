@@ -4,7 +4,7 @@ class ProcessPartnerUpdatesJob < ApplicationJob
     files.each do |file|
       xml_files = Scsb::PartnerUpdates::Update.extract_files(file:, update_directory:)
       xml_files.each do |xml_file|
-        Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file: xml_file, dump_id:, scsb_file_dir:, file_prefix:)
+        Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file: xml_file, dump_id:, scsb_file_dir:, file_prefix:, dump_file_type: :recap_records_full)
       end
     end
   end
