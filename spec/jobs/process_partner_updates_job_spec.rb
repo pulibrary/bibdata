@@ -16,4 +16,11 @@ RSpec.describe ProcessPartnerUpdatesJob, type: :job do
       expect(Zip::File).to have_received(:open).with('a_file')
     end
   end
+  it 'is idempotent' do
+    pending('making the job idempotent')
+    expect do
+      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
+      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
+    end.not_to raise_error
+  end
 end
