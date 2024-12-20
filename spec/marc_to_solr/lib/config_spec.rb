@@ -1276,6 +1276,10 @@ describe 'From traject_config.rb', indexing: true do
         expect(@fast_subject_heading["fast_subject_display"]).to match_array(["Criticism, interpretation, etc", "Children's literature, Russian", "Russia (Federation)"])
         expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc", "Children's literature, Russian", "Russia (Federation)"])
       end
+      it 'does not add fast headings to subject_facet or subject_topic_facet' do
+        expect(@fast_subject_heading["subject_facet"]).to be_blank
+        expect(@fast_subject_heading["subject_topic_facet"]).to be_blank
+      end
       it 'does not index fast headings in a fixture file with no fast headings' do
         expect(@non_fast_heading["fast_subject_display"]).to be_blank
         expect(@non_fast_heading["fast_subject_unstem_search"]).to be_blank
