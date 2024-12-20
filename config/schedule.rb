@@ -60,6 +60,6 @@ every '0 9 8-14 * *', roles: [:cron_production] do
   rake "scsb:import:full_saturdays_only", output: "/tmp/cron_log.log"
 end
 
-every :hour, roles[:cron_production] do
+every :hour, roles: [:cron_production] do
   rake "index_timestamp:check"
 end
