@@ -1,24 +1,46 @@
 require 'rails_helper'
 
 RSpec.describe ScsbImportFullJob do
-  it 'creates an event' do
-    allow(Scsb::PartnerUpdates).to receive(:full)
+  include ActiveJob::TestHelper
+  let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
 
-    expect { described_class.perform_now }.to change { Event.count }.by(1)
-    event = Event.last
+  context 'with full setup' do
+    before do
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.add Sidekiq::Batch::Server
+      end
+    end
+    include_context 'scsb_partner_updates_full'
 
-    expect(event.start).not_to be nil
-    expect(event.finish).not_to be nil
-    expect(event.dump).to be_a(Dump)
-    expect(event.dump.dump_type).to eq("partner_recap_full")
-    expect(Scsb::PartnerUpdates).to have_received(:full)
+    it 'creates an event' do
+      allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
+      allow(Scsb::PartnerUpdates::Update).to receive(:set_generated_date).and_call_original
+      allow(Scsb::PartnerUpdates::Update).to receive(:log_record_fixes).and_call_original
+      allow(FileUtils).to receive(:rm) # Don't delete the files for this test
+      expect { described_class.perform_now }.to change { Event.count }.by(1)
+      event = Event.last
+
+      expect(event.start).not_to be nil
+      expect(event.finish).not_to be nil
+      expect(event.dump).to be_a(Dump)
+      expect(event.dump.dump_type).to eq("partner_recap_full")
+
+      expect(DownloadAndProcessFullJob).to have_been_enqueued.exactly(3).times
+      perform_enqueued_jobs
+      perform_enqueued_jobs
+      perform_enqueued_jobs
+      expect(Scsb::PartnerUpdates::Update).to have_received(:set_generated_date)
+      event.reload
+      expect(event.success?).to eq(true)
+
+    end
   end
+
 
   describe 'when there are stale files in the update directory path' do
     let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
 
     before do
-      FileUtils.mkdir_p(update_directory_path)
       allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
