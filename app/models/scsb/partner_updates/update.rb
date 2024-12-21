@@ -107,6 +107,21 @@ module Scsb
         "#{@scsb_file_dir}/fixes_#{@last_dump.to_time.strftime('%Y_%m_%d')}.json"
       end
 
+      def self.set_generated_date(dump_id:)
+        dump = Dump.find(dump_id)
+        dump.generated_date = date_strings(dump:).map { |str| DateTime.parse(str) }.sort.first
+      end
+
+      def self.date_strings(dump:)
+        dump.dump_files.map do |df|
+          if df.dump_file_type == "recap_records_full_metadata"
+            File.basename(df.path).split("_")[3]
+          else
+            File.basename(df.path).split("_")[2]
+          end
+        end
+      end
+
       def set_generated_date
         @dump.generated_date = date_strings.map { |str| DateTime.parse(str) }.sort.first
       end
