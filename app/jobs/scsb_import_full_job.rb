@@ -1,13 +1,20 @@
 class ScsbImportFullJob < ApplicationJob
   def perform
+    prepare_directory
     delete_stale_files
 
     Event.record do |event|
       event.save
       event.dump = created_dump(event)
       event.save!
-
-      Scsb::PartnerUpdates.full(dump: event.dump)
+      dump_id = event.dump.id
+      batch = Sidekiq::Batch.new
+      batch.on(:success, Scsb::PartnerUpdates::Update.set_generated_date(dump_id:))
+      batch.jobs do
+        institutions.each do |institution|
+          DownloadAndProcessFullJob.perform_later(inst: institution[:inst], prefix: institution[:prefix], dump_id: dump_id)
+        end
+      end
     end
   end
 
@@ -15,6 +22,11 @@ class ScsbImportFullJob < ApplicationJob
 
     def created_dump(event)
       Dump.create!(dump_type: :partner_recap_full, event_id: event.id)
+    end
+
+    def prepare_directory
+      update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
+      FileUtils.mkdir_p(update_directory)
     end
 
     def delete_stale_files
@@ -27,5 +39,13 @@ class ScsbImportFullJob < ApplicationJob
         Rails.logger.warn("Attempted to delete file #{file}, but it was no longer present on the filesystem")
         next
       end
+    end
+
+    def institutions
+      [
+        { inst: "NYPL", prefix: 'scsbfull_nypl_' },
+        { inst: "CUL", prefix: 'scsbfull_cul_' },
+        { inst: "HL", prefix: 'scsbfull_hl_' }
+      ]
     end
 end
