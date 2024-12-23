@@ -10,7 +10,6 @@ class Event < ActiveRecord::Base
     def record
       event = Event.new
       event.start = Time.now.utc
-      event.success = true
       yield(event)
     rescue Exception => e
       event.success = false

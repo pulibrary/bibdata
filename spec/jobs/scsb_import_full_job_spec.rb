@@ -5,11 +5,6 @@ RSpec.describe ScsbImportFullJob, indexing: true do
   let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
 
   context 'with full setup' do
-    before do
-      Sidekiq::Testing.server_middleware do |chain|
-        chain.add Sidekiq::Batch::Server
-      end
-    end
     around do |example|
       Sidekiq::Testing.server_middleware do |chain|
         chain.add Sidekiq::Batch::Server
@@ -22,6 +17,7 @@ RSpec.describe ScsbImportFullJob, indexing: true do
     include_context 'scsb_partner_updates_full'
 
     it 'creates an event' do
+      Sidekiq::Testing.inline!
       allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:generated_date).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:log_record_fixes).and_call_original
@@ -35,9 +31,6 @@ RSpec.describe ScsbImportFullJob, indexing: true do
       expect(event.dump.dump_type).to eq("partner_recap_full")
 
       expect(DownloadAndProcessFullJob).to have_been_enqueued.exactly(3).times
-      perform_enqueued_jobs
-      perform_enqueued_jobs
-      perform_enqueued_jobs
       expect(Scsb::PartnerUpdates::Update).to have_received(:generated_date)
       event.reload
       expect(event.success?).to eq(true)
