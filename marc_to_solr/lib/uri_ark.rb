@@ -3,8 +3,8 @@
 class URI::ARK < URI::Generic
   attr_reader :nmah, :naan, :name
 
-  ARK_REGEX = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/
-  PRINCETON_ARK_REGEX = /[\/?]ark\:\/88435\/(.+)\/?/
+  ARK_REGEX = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/.freeze
+  PRINCETON_ARK_REGEX = /[\/?]ark\:\/88435\/(.+)\/?/.freeze
 
   # Constructs an ARK from a URL
   # @param url [URI::Generic] the URL for the ARK resource
