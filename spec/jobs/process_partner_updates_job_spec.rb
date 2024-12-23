@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe ProcessPartnerUpdatesJob, type: :job do
+RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
   it 'enqueues a job' do
     expect { described_class.perform_later }.to have_enqueued_job
   end

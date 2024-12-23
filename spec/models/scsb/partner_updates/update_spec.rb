@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Scsb::PartnerUpdates::Update, type: :model do
+RSpec.describe Scsb::PartnerUpdates::Update, type: :model, indexing: true do
   let(:update) { described_class.new(dump:, dump_file_type: :recap_records_full, timestamp: DateTime.now.to_time) }
   let(:scsb_file_dir) { Rails.root.join('tmp', 'specs', 'data') }
   let(:filepath) { File.join(scsb_file_dir, 'CUL_20210429_192300.zip') }

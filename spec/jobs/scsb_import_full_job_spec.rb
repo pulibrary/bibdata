@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ScsbImportFullJob do
+RSpec.describe ScsbImportFullJob, indexing: true do
   include ActiveJob::TestHelper
   let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
 
@@ -10,11 +10,20 @@ RSpec.describe ScsbImportFullJob do
         chain.add Sidekiq::Batch::Server
       end
     end
+    around do |example|
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.add Sidekiq::Batch::Server
+      end
+      example.run
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.remove Sidekiq::Batch::Server
+      end
+    end
     include_context 'scsb_partner_updates_full'
 
     it 'creates an event' do
       allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
-      allow(Scsb::PartnerUpdates::Update).to receive(:set_generated_date).and_call_original
+      allow(Scsb::PartnerUpdates::Update).to receive(:generated_date).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:log_record_fixes).and_call_original
       allow(FileUtils).to receive(:rm) # Don't delete the files for this test
       expect { described_class.perform_now }.to change { Event.count }.by(1)
@@ -29,13 +38,11 @@ RSpec.describe ScsbImportFullJob do
       perform_enqueued_jobs
       perform_enqueued_jobs
       perform_enqueued_jobs
-      expect(Scsb::PartnerUpdates::Update).to have_received(:set_generated_date)
+      expect(Scsb::PartnerUpdates::Update).to have_received(:generated_date)
       event.reload
       expect(event.success?).to eq(true)
-
     end
   end
-
 
   describe 'when there are stale files in the update directory path' do
     let(:update_directory_path) { Rails.root.join('tmp', 'specs', 'update_directory') }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IndexJob, type: :job do
+RSpec.describe IndexJob, type: :job, indexing: true do
   subject(:index_job) { described_class.new }
 
   let(:traject) { '/usr/bin/env traject' }

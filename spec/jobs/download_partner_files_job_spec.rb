@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe DownloadPartnerFilesJob, type: :job do
+RSpec.describe DownloadPartnerFilesJob, type: :job, indexing: true do
   include ActiveJob::TestHelper
   include_context 'scsb_partner_updates_full'
 
