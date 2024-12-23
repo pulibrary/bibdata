@@ -512,7 +512,7 @@ GEM
     reverse_markdown (2.1.1)
       nokogiri
     rexml (3.4.0)
-    rsolr (2.6.0)
+    rsolr (2.5.0)
       builder (>= 2.1.2)
       faraday (>= 0.9, < 3, != 2.0.0)
     rspec-core (3.13.2)
@@ -746,7 +746,7 @@ DEPENDENCIES
   rails-controller-testing
   responders
   rest-client
-  rsolr
+  rsolr (~> 2.5.0)
   rspec-rails
   rubocop
   rubocop-rspec

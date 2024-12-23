@@ -54,7 +54,7 @@ gem "rack"
 gem 'rails', '~> 7.1.0'
 gem 'responders'
 gem 'rest-client'
-gem 'rsolr'
+gem 'rsolr', '~> 2.5.0'
 gem 'rspec-rails'
 gem 'rubocop'
 gem 'rubocop-rspec'
