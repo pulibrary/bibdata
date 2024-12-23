@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DeleteEventsJob, type: :job do
+RSpec.describe DeleteEventsJob, type: :job, indexing: true do
   describe "#perform" do
     let(:copy_path) { File.join('tmp', 'delete_files_job') }
     after { FileUtils.rmtree(copy_path) }

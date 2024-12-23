@@ -106,7 +106,7 @@ module Scsb
         "#{@scsb_file_dir}/fixes_#{@last_dump.to_time.strftime('%Y_%m_%d')}.json"
       end
 
-      def self.set_generated_date(dump_id:)
+      def self.generated_date(dump_id:)
         dump = Dump.find(dump_id)
         dump.generated_date = date_strings(dump:).map { |str| DateTime.parse(str) }.sort.first
       end

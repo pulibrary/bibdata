@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
+RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
   include ActiveJob::TestHelper
   include_context 'scsb_partner_updates_full'
 

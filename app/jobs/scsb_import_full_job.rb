@@ -9,10 +9,10 @@ class ScsbImportFullJob < ApplicationJob
       event.save!
       dump_id = event.dump.id
       batch = Sidekiq::Batch.new
-      batch.on(:success, Scsb::PartnerUpdates::Update.set_generated_date(dump_id:))
+      batch.on(:success, Scsb::PartnerUpdates::Update.generated_date(dump_id:))
       batch.jobs do
         institutions.each do |institution|
-          DownloadAndProcessFullJob.perform_later(inst: institution[:inst], prefix: institution[:prefix], dump_id: dump_id)
+          DownloadAndProcessFullJob.perform_later(inst: institution[:inst], prefix: institution[:prefix], dump_id:)
         end
       end
     end

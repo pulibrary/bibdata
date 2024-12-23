@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DumpFileIndexJob do
+RSpec.describe DumpFileIndexJob, indexing: true do
   let(:dump) { FactoryBot.create(:incremental_dump) }
   let(:dump_file_id) { dump.dump_files.first.id }
   describe "#perform" do
