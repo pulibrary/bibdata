@@ -121,24 +121,7 @@ Naming/VariableNumber:
     - 'spec/marc_to_solr/lib/princeton_marc_spec.rb'
     - 'spec/requests/bib_gets_spec.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Performance/Casecmp:
-  Exclude:
-    - 'marc_to_solr/lib/format/bib_types.rb'
 
-# Offense count: 10
-# Cop supports --auto-correct.
-Performance/RedundantMatch:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
-    - 'marc_to_solr/lib/traject_config.rb'
-
-# Offense count: 4
-# Cop supports --auto-correct.
-Performance/StringReplacement:
-  Exclude:
-    - 'marc_to_solr/lib/princeton_marc.rb'
 
 # Offense count: 12
 RSpec/AnyInstance:
@@ -208,29 +191,6 @@ RSpec/NotToNot:
 RSpec/VerifiedDoubles:
   Exclude:
     - 'spec/controllers/patron_controller_spec.rb'
-
-# Offense count: 1
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: strict, flexible
-Rails/Date:
-  Exclude:
-    - 'lib/tasks/orangeindex.rake'
-    - 'app/models/concerns/scsb_partner_updates.rb'
-
-# Offense count: 3
-Rails/FilePath:
-  Exclude:
-    - 'config/initializers/marc_liberation.rb'
-    - 'config/initializers/traject_initializer.rb'
-    - 'spec/rails_helper.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: referer, referrer
-Rails/RequestReferer:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
