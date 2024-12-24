@@ -1,9 +1,9 @@
 {
-  "96c8bf129cd985608c41f865f39cbdab_0": {
+  "ae44d47da68aa18de4af6effc88e9827_0": {
     "author": "Max Kadel",
     "comment": "Not user input, only allows one of three possible strings",
     "false_positive": true,
-    "ignored_at": "2024-12-24T19:28:57Z"
+    "ignored_at": "2024-12-24T19:44:24Z"
   },
   "c52fc1468bbbd5867590436ec290f478_0": {
     "author": "Max Kadel",
