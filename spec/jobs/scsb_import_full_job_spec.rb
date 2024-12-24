@@ -17,6 +17,22 @@ RSpec.describe ScsbImportFullJob do
     expect(Scsb::PartnerUpdates).to have_received(:full)
   end
 
+  describe 'when there is no directory' do
+    let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
+    before do
+      FileUtils.rm_rf(update_directory_path)
+
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
+
+    end
+    it 'creates the update directory' do
+      expect(Dir.exist?(update_directory_path)).to be false
+      described_class.perform_async
+      expect(Dir.exist?(update_directory_path)).to be true
+    end
+  end
+
   describe 'when there are stale files in the update directory path' do
     let(:update_directory_path) { Rails.root.join("tmp", "specs", "update_directory") }
 

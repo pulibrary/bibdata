@@ -1,7 +1,7 @@
 class ScsbImportFullJob
   include Sidekiq::Job
   def perform
-    delete_stale_files
+    prepare_directory
 
     Event.record do |event|
       event.save
@@ -18,10 +18,16 @@ class ScsbImportFullJob
       Dump.create!(dump_type: :partner_recap_full, event_id: event.id)
     end
 
-    def delete_stale_files
-      files_to_delete = Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
-                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml"))
-                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.csv"))
+    def prepare_directory
+      update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
+      FileUtils.mkdir_p(update_directory)
+      delete_stale_files(update_directory:)
+    end
+
+    def delete_stale_files(update_directory:)
+      files_to_delete = Dir.glob("#{update_directory}/*.zip")
+                           .concat(Dir.glob("#{update_directory}/*.xml"))
+                           .concat(Dir.glob("#{update_directory}/*.csv"))
       files_to_delete.each do |file|
         FileUtils.rm file
       rescue Errno::ENOENT
