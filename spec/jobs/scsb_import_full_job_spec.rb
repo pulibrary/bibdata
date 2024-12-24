@@ -24,16 +24,15 @@ RSpec.describe ScsbImportFullJob, indexing: true do
       allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:generated_date).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:log_record_fixes).and_call_original
+      allow(DownloadAndProcessFullJob).to receive(:perform_async).and_call_original
       allow(FileUtils).to receive(:rm) # Don't delete the files for this test
       expect { described_class.perform_async }.to change { Event.count }.by(1)
       event = Event.last
-
       expect(event.start).not_to be nil
       expect(event.finish).not_to be nil
       expect(event.dump).to be_a(Dump)
       expect(event.dump.dump_type).to eq("partner_recap_full")
-
-      expect(DownloadAndProcessFullJob).to have_been_enqueued.exactly(3).times
+      expect(DownloadAndProcessFullJob).to have_received(:perform_async).exactly(3).times
       expect(Scsb::PartnerUpdates::Update).to have_received(:generated_date)
       event.reload
       expect(event.success?).to eq(true)

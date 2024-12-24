@@ -17,7 +17,8 @@ module Scsb
         prepare_directory
         dump_id = @dump.id
         @institutions.each do |institution|
-          DownloadAndProcessFullJob.perform_later(inst: institution[:inst], prefix: institution[:prefix], dump_id:)
+          params = { inst: institution[:inst], prefix: institution[:prefix], dump_id: }.stringify_keys
+          DownloadAndProcessFullJob.perform_async(params)
         end
         set_generated_date
         log_record_fixes
