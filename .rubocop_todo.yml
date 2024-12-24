@@ -579,6 +579,7 @@ Style/Documentation:
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
   Exclude:
+    - 'app/jobs/process_partner_updates_job.rb'
     - 'app/jobs/scsb_import_full_job.rb'
     - 'app/models/scsb/partner_updates/full.rb'
     - 'app/models/scsb/partner_updates/incremental.rb'

@@ -13,6 +13,7 @@ module Scsb
         event_id = options['event_id']
         event = Event.find(event_id)
         return unless status.failures != 0
+
         event.success = false
         event.error << "Sidekiq batch: #{status.bid} completed with errors for event_id: #{event_id}"
         event.save!

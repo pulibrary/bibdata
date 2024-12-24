@@ -21,7 +21,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
         let(:fixture_files) { [cul_csv] }
 
         it 'determines that the file is valid' do
-          expect(described_class.validate_csv(inst: "CUL", dump_id: dump.id)).to be true
+          expect(described_class.validate_csv(inst: 'CUL', dump_id: dump.id)).to be true
         end
       end
       context 'that are private' do
@@ -32,13 +32,13 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
           FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
         end
         it 'determines that the file is not valid' do
-          expect(described_class.validate_csv(inst: "CUL", dump_id: dump.id)).to be false
+          expect(described_class.validate_csv(inst: 'CUL', dump_id: dump.id)).to be false
         end
         it 'adds errors to the dump' do
           Sidekiq::Testing.inline! do
             partner_full_update.process_full_files
             dump.reload
-            expect(dump.event.error).to include("Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6")
+            expect(dump.event.error).to include('Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6')
           end
         end
         it 'does not process files that include private records' do

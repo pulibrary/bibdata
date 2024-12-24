@@ -13,7 +13,7 @@ class ProcessPartnerUpdatesJob
 
   def attach_xml_files(xml_files:, dump_id:, file_prefix:)
     batch = Sidekiq::Batch.new
-    batch.description = "Attaches each xml file extracted from the zip file downloaded from S3"
+    batch.description = 'Attaches each xml file extracted from the zip file downloaded from S3'
     batch.on(:success, Scsb::PartnerUpdates::AttachXmlFileJobCallback, xml_files:)
     batch.jobs do
       xml_files.each do |xml_file|

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ScsbImportFullJob, indexing: true do
-  let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
+  let(:data_directory_path) { Rails.root.join('tmp', 'specs', 'data') }
 
   before do
     Sidekiq::Testing.inline!
@@ -30,11 +30,11 @@ RSpec.describe ScsbImportFullJob, indexing: true do
       expect(event.start).not_to be nil
       expect(event.finish).not_to be nil
       expect(event.dump).to be_a(Dump)
-      expect(event.dump.dump_type).to eq("partner_recap_full")
+      expect(event.dump.dump_type).to eq('partner_recap_full')
       expect(DownloadAndProcessFullJob).to have_received(:perform_async).exactly(3).times
       expect(Scsb::PartnerUpdates::Update).to have_received(:generated_date)
       event.reload
-      expect(event.success?).to eq(true)
+      expect(event.success?).to be(true)
     end
   end
 

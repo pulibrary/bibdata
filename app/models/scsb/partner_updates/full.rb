@@ -6,9 +6,9 @@ module Scsb
       def initialize(dump:, dump_file_type:, timestamp: DateTime.now.to_time)
         @dump = dump
         @institutions = [
-          { inst: "NYPL", prefix: 'scsbfull_nypl_' },
-          { inst: "CUL", prefix: 'scsbfull_cul_' },
-          { inst: "HL", prefix: 'scsbfull_hl_' }
+          { inst: 'NYPL', prefix: 'scsbfull_nypl_' },
+          { inst: 'CUL', prefix: 'scsbfull_cul_' },
+          { inst: 'HL', prefix: 'scsbfull_hl_' }
         ]
         super
       end
@@ -43,7 +43,7 @@ module Scsb
         matches_expected_collections = false
         if file
           csv = CSV.read(file, headers: true)
-          group_ids = csv["Collection Group Id(s)"].first
+          group_ids = csv['Collection Group Id(s)'].first
           matches_expected_collections = group_ids == '1*2*5*6'
           unless matches_expected_collections
             add_error(message: "Metadata file indicates that dump for #{inst} does not include the correct Group IDs, not processing. Group ids: #{group_ids}", dump_id:)
@@ -63,7 +63,7 @@ module Scsb
         dump_event = Dump.find(dump_id).event
         error = Array.wrap(dump_event.error)
         error << message
-        dump_event.error = error.join("; ")
+        dump_event.error = error.join('; ')
         dump_event.save
       end
 

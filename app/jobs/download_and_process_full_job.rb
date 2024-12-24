@@ -5,13 +5,14 @@ require 'json/add/regexp'
 class DownloadAndProcessFullJob
   include Sidekiq::Job
   def perform(params)
-    @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-    @scsb_file_dir = ENV['SCSB_FILE_DIR']
+    @update_directory = ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', '/tmp/updates')
+    @scsb_file_dir = ENV.fetch('SCSB_FILE_DIR', nil)
     dump_id = params['dump_id']
     inst = params['inst']
     return false unless Scsb::PartnerUpdates::Full.validate_csv(inst:, dump_id:)
+
     # nosemgrep
-    matcher = (/#{inst}.*\.zip/.as_json if inst == "CUL" || inst == "HL" || inst == "NYPL")
+    matcher = (/#{inst}.*\.zip/.as_json if ['CUL', 'HL', 'NYPL'].include?(inst))
     download_params = { file_filter: matcher, dump_id:, file_prefix: params['prefix'] }.stringify_keys
     DownloadPartnerFilesJob.perform_async(download_params)
   end

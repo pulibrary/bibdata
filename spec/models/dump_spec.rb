@@ -136,8 +136,9 @@ RSpec.describe Dump, type: :model do
       expect(described_class.last.update_ids).to contain_exactly('barcode1', 'barcode2')
     end
   end
+
   describe '#attach_dump_file' do
-    let(:scsb_file_dir) { Rails.root.join("tmp", "specs", "data") }
+    let(:scsb_file_dir) { Rails.root.join('tmp/specs/data') }
     let(:filepath) { File.join(scsb_file_dir, 'CUL_20210429_192300.zip') }
     let(:event) { FactoryBot.create(:event) }
     let(:dump) { Dump.create!(dump_type: :partner_recap_full, event:) }
@@ -147,10 +148,11 @@ RSpec.describe Dump, type: :model do
       FileUtils.mkdir_p(scsb_file_dir)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', scsb_file_dir)
     end
+
     it 'can attach a dump file to a dump' do
       expect do
         described_class.attach_dump_file(dump_id: dump.id, filepath:, dump_file_type: :recap_records_full)
-      end.to change { DumpFile.count }
+      end.to change(DumpFile.count)
       expect(dump.dump_files.size).to eq(1)
     end
   end
