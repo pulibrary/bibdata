@@ -3,7 +3,7 @@ class NormalUriFactory
   # Constructor
   # @param value [String] String value for the URL
   def initialize(value:)
-    @parser = URI::Parser.new
+    @parser = URI::DEFAULT_PARSER
     @value = clean(value)
   end
 

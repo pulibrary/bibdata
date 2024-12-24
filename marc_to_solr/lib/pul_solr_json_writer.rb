@@ -8,7 +8,7 @@ require 'json'
 require 'httpclient'
 
 require 'uri'
-require 'thread'     # for Mutex/Queue
+# for Mutex/Queue
 require 'concurrent' # for atomic_fixnum
 
 # ==========================

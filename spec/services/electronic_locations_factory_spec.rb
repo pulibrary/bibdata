@@ -19,13 +19,13 @@ RSpec.describe ElectronicLocationsFactory, type: :service do
   let(:electronic_access_links) do
     {
       'http://localdomain/resource' => ['this is a link', 'this is a note about the resource'],
-      'iiif_manifest_paths': iiif_manifest_paths,
-      'holding_record_856s': holdings
+      iiif_manifest_paths:,
+      holding_record_856s: holdings
     }
   end
   let(:document) do
     {
-      'electronic_access_1display': [JSON.dump(electronic_access_links)]
+      electronic_access_1display: [JSON.dump(electronic_access_links)]
     }.stringify_keys
   end
 

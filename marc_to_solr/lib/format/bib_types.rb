@@ -91,7 +91,7 @@ class BibTypes
       end
     end
 
-    types << 'VD' if self['538a'].grep(/\Advd(?!\-rom)/i).size > 0
+    types << 'VD' if self['538a'].grep(/\Advd(?!-rom)/i).size > 0
 
     types << 'VH' if self['538a'].grep(/\AVHS/i).size > 0
 
@@ -166,7 +166,7 @@ class BibTypes
     if (bib_format == 'MU') && %w[i j].include?(ldr6) && self['007[1]'].include?('d')
       record.fields('300').each do |f|
         str = f.subfields.collect { |s| s.value }.join(' ')
-        if (str =~ /DISC/i) && str =~ /33 1\/3 RPM/i
+        if (str =~ /DISC/i) && str =~ %r{33 1/3 RPM}i
           types << 'RL'
           break
         end
@@ -214,6 +214,7 @@ class BibTypes
 
   def microform_types
     return [] unless record['008']
+
     types = ['WM']
     f8_23 = record['008'].value[23]
     return types if %w[BK MU SE MX].include?(bib_format) && %w[a b c].include?(f8_23)
@@ -361,7 +362,7 @@ class BibTypes
   def conference_types
     # Get the easy stuff done first
 
-    return ['XC'] if (record['008'] && (record['008'].value[29] == '1')) || record.fields(['111', '711', '811']).size > 0
+    return ['XC'] if (record['008'] && (record['008'].value[29] == '1')) || record.fields(%w[111 711 811]).size > 0
 
     if (bib_format == 'CF')
       @record.fields('006').map { |f| f.value }.each do |f|
@@ -374,7 +375,7 @@ class BibTypes
       return ['XC']
     end
 
-    return ['XC'] if @xv6XX.match? /congresses/i
+    return ['XC'] if @xv6XX.match?(/congresses/i)
 
     # Nope.
     return []
@@ -394,11 +395,9 @@ class BibTypes
   #                                         008   F27-01     EQUAL      s
 
   def statistics_types
-    if bib_format == 'BK'
-      return ['XS'] if record['008'] && record['008'].value[24..27] =~ /s/
-    end
+    return ['XS'] if bib_format == 'BK' && (record['008'] && record['008'].value[24..27] =~ /s/)
 
-    return ['XS'] if @xv6XX.match? /\AStatistic/i
+    return ['XS'] if @xv6XX.match?(/\AStatistic/i)
 
     # Nope
     return []
@@ -434,9 +433,9 @@ class BibTypes
 
     types << 'DR' if f8_24.include? 'r'
 
-    types << 'EN' if @xv6XX.match? /encyclopedias/i
-    types << 'DI' if @xv6XX.match? /dictionaries/i
-    types << 'DR' if @xv6XX.match? /directories/i
+    types << 'EN' if @xv6XX.match?(/encyclopedias/i)
+    types << 'DI' if @xv6XX.match?(/dictionaries/i)
+    types << 'DR' if @xv6XX.match?(/directories/i)
 
     types.uniq!
     return types
@@ -451,7 +450,7 @@ class BibTypes
     return ['BI'] if record['008'] && %w[a b c].include?(record['008'].value[34])
     return ['BI'] if (%w[a b c] & self['006[17]']).size > 0
 
-    return ['BI'] if @xv6XX.match? /(?:biography|diaries)/i
+    return ['BI'] if @xv6XX.match?(/(?:biography|diaries)/i)
 
     # Nope
     return []
@@ -484,7 +483,7 @@ class BibTypes
                                  'comic books',
                                  'illustrations',
                                  'drawings',
-                                 'slides',].map { |s| Regexp.new('\b' + s + '\b', true) }
+                                 'slides'].map { |s| Regexp.new('\b' + s + '\b', true) }
   self.pp_regexp = Regexp.union(self.pp_regexp, /\bart\b/i)
 
   def pp_types

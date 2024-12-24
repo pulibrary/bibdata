@@ -7,14 +7,15 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
     before do
       allow(IndexRemainingDumpsJob).to receive(:perform_async)
     end
+
     after do
       ActiveJob::Base.queue_adapter.enqueued_jobs = []
     end
 
-    context "with a full dump" do
-      let(:job_id) { "1436402400006421" }
+    context 'with a full dump' do
+      let(:job_id) { '1436402400006421' }
 
-      let(:filename1) { "fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz" }
+      let(:filename1) { 'fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz' }
       let(:name1) do
         Net::SFTP::Protocol::V01::Name.new(
           filename1,
@@ -25,7 +26,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       let(:remote_path1) { "/alma/publishing/#{filename1}" }
       let(:local_path1) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1) }
 
-      let(:filename2) { "fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz" }
+      let(:filename2) { 'fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz' }
       let(:name2) do
         Net::SFTP::Protocol::V01::Name.new(
           filename2,
@@ -36,7 +37,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       let(:remote_path2) { "/alma/publishing/#{filename2}" }
       let(:local_path2) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2) }
 
-      let(:filename3) { "fulldump_1434819190006421_2020121520_new_1.xml.tar.gz" }
+      let(:filename3) { 'fulldump_1434819190006421_2020121520_new_1.xml.tar.gz' }
       let(:name3) do
         Net::SFTP::Protocol::V01::Name.new(
           filename3,
@@ -47,7 +48,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
 
       let(:dump) do
         FactoryBot.create(:empty_dump).tap do |d|
-          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job General Publishing\"}}"
+          d.event.message_body = '{"job_instance": {"name":"Publishing Platform Job General Publishing"}}'
           d.event.save
         end
       end
@@ -71,16 +72,16 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(Dump.all.count).to eq 1
 
         expect(dump.dump_files.count).to eq 2
-        expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ["bib_records"]
+        expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ['bib_records']
         expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
 
         expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
       end
     end
 
-    context "with an incremental dump" do
-      let(:job_id) { "6587815790006421" }
-      let(:filename) { "incremental_6587815790006421_20210208_200239[040]_new.tar.gz" }
+    context 'with an incremental dump' do
+      let(:job_id) { '6587815790006421' }
+      let(:filename) { 'incremental_6587815790006421_20210208_200239[040]_new.tar.gz' }
       let(:name) do
         Net::SFTP::Protocol::V01::Name.new(
           filename,
@@ -92,7 +93,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       let(:local_path) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename) }
       let(:dump) do
         FactoryBot.create(:empty_incremental_dump).tap do |d|
-          d.event.message_body = "{\"job_instance\": {\"name\":\"Publishing Platform Job Incremental Publishing\"}}"
+          d.event.message_body = '{"job_instance": {"name":"Publishing Platform Job Incremental Publishing"}}'
           d.event.save
         end
       end
@@ -112,7 +113,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
-        expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ["updated_records"]
+        expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ['updated_records']
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
         expect(IndexRemainingDumpsJob).to have_received(:perform_async).once
       end

@@ -23,15 +23,15 @@ class ProcessHoldingsHelpers
 
   def group_866_867_868_on_holding_perm_id(holding_perm_id, field_852)
     if scsb?(field_852)
-      record.fields("866".."868").select { |f| f["0"] == holding_perm_id }
+      record.fields('866'..'868').select { |f| f['0'] == holding_perm_id }
     else
-      record.fields("866".."868").select { |f| f["8"] == holding_perm_id }
+      record.fields('866'..'868').select { |f| f['8'] == holding_perm_id }
     end
   end
 
   def items_by_852(field_852)
     holding_id = holding_id(field_852)
-    items = record.fields("876").select { |f| f["0"] == holding_id }
+    items = record.fields('876').select { |f| f['0'] == holding_id }
     items.map { |item| item unless private_scsb_item?(item, field_852) }.compact
   end
 
@@ -43,7 +43,7 @@ class ProcessHoldingsHelpers
   # returns an array of MARC 852 (full holdings) fields
   def fields_852_alma_or_scsb
     record.fields('852').select do |f|
-      alma_code_start_22?(f['8']) || scsb_doc?(record['001'].value) && f['0']
+      alma_code_start_22?(f['8']) || (scsb_doc?(record['001'].value) && f['0'])
     end
   end
 
@@ -65,6 +65,7 @@ class ProcessHoldingsHelpers
   # Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
   def select_permanent_location_876(group_876_fields, field_852)
     return group_876_fields if /^scsb/.match?(field_852['b'])
+
     group_876_fields.select do |field_876|
       !in_temporary_location(field_876, field_852)
     end
@@ -73,6 +74,7 @@ class ProcessHoldingsHelpers
   # Select 876 fields (items) with current location. 876 location is NOT equal to the 852 permanent location.
   def select_temporary_location_876(group_876_fields, field_852)
     return [] if /^scsb/.match?(field_852['b'])
+
     group_876_fields.select do |field_876|
       in_temporary_location(field_876, field_852)
     end
@@ -102,18 +104,18 @@ class ProcessHoldingsHelpers
     holding = {}
     if permanent
       holding['location_code'] = permanent_location_code(field_852)
-      holding['location'] = Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
-      holding['library'] = Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
+      holding['location'] = Traject::TranslationMap.new('locations', default: '__passthrough__')[holding['location_code']]
+      holding['library'] = Traject::TranslationMap.new('location_display', default: '__passthrough__')[holding['location_code']]
     else
       holding['location_code'] = current_location_code(field_876)
-      holding['current_location'] = Traject::TranslationMap.new("locations", default: "__passthrough__")[holding['location_code']]
-      holding['current_library'] = Traject::TranslationMap.new("location_display", default: "__passthrough__")[holding['location_code']]
+      holding['current_location'] = Traject::TranslationMap.new('locations', default: '__passthrough__')[holding['location_code']]
+      holding['current_library'] = Traject::TranslationMap.new('location_display', default: '__passthrough__')[holding['location_code']]
     end
 
     holding['call_number'] = build_call_number(field_852)
     holding['call_number_browse'] = build_call_number(field_852)
     # Updates current holding key; values are from 852
-    if field_852["k"]
+    if field_852['k']
       holding['sub_location'] = []
       holding['sub_location'] << field_852['k']
     end
@@ -131,8 +133,8 @@ class ProcessHoldingsHelpers
   # Build the items array in all_holdings hash
   def holding_items(value:, all_holdings:, item:)
     if all_holdings[value].present?
-      all_holdings[value]["items"] ||= []
-      all_holdings[value]["items"] << item
+      all_holdings[value]['items'] ||= []
+      all_holdings[value]['items'] << item
     end
     all_holdings
   end

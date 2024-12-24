@@ -1,4 +1,4 @@
-class BibliographicController < ApplicationController # rubocop:disable Metrics/ClassLength
+class BibliographicController < ApplicationController
   include FormattingConcern
 
   def adapter
@@ -15,7 +15,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         redirect_to action: :bib, bib_id: sanitized_bibid, status: :moved_permanently
       end
     else
-      render plain: "Record please supply a bib id", status: :not_found
+      render plain: 'Record please supply a bib id', status: :not_found
     end
   end
 
@@ -24,11 +24,11 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   #   show page
   def availability
     id = params[:bib_id]
-    availability = adapter.get_availability_one(id:, deep_check: (params[:deep] == "true"))
+    availability = adapter.get_availability_one(id:, deep_check: (params[:deep] == 'true'))
     respond_to do |wants|
       wants.json { render json: availability }
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve availability for ID: #{id}")
   end
 
@@ -36,12 +36,12 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   # Client: This endpoint is used by orangelight to render status on the catalog
   #   search results page
   def availability_many
-    ids = (params[:bib_ids] || "").split(",")
+    ids = (params[:bib_ids] || '').split(',')
     availability = adapter.get_availability_many(ids:, deep_check: ActiveModel::Type::Boolean.new.cast(params[:deep]))
     respond_to do |wants|
       wants.json { render json: availability }
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve availability for IDs: #{ids}")
   end
 
@@ -55,9 +55,9 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         wants.json { render json: availability, status: availability.nil? ? 404 : 200 }
       end
     else
-      render plain: "Please supply a bib id and a holding id", status: :not_found
+      render plain: 'Please supply a bib id and a holding id', status: :not_found
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve holdings for: #{params[:bib_id]}/#{params[:holding_id]}")
   end
 
@@ -72,7 +72,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     begin
       records = adapter.get_bib_record(sanitized_bibid)
       records.strip_non_numeric! unless opts[:holdings]
-    rescue => e
+    rescue StandardError => e
       return handle_alma_exception(exception: e, message: "Failed to retrieve the record using the bib. ID: #{sanitized_bibid}")
     end
 
@@ -107,7 +107,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
       solr_doc = indexer.map_record(records)
       render json: solr_doc
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
@@ -128,7 +128,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
         end
       end
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve the holding records for the bib. ID: #{sanitized_bibid}")
   end
 
@@ -136,7 +136,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
   # Client: Used by figgy to check CDL status. Used by firestone_locator for
   #   call number and location data
   def bib_items
-    item_keys = ["id", "pid", "perm_location", "temp_location", "cdl"]
+    item_keys = %w[id pid perm_location temp_location cdl]
     holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
 
     respond_to do |wants|
@@ -145,7 +145,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     end
   rescue Alma::BibItemSet::ResponseError
     render_not_found(params[:bib_id])
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{sanitized_bibid}")
   end
 
@@ -166,7 +166,7 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
     # Ensure that the client is authenticated and the user is a catalog administrator
     def protect
       if user_signed_in?
-        render plain: "You are unauthorized", status: :forbidden if !current_user.catalog_admin?
+        render plain: 'You are unauthorized', status: :forbidden if !current_user.catalog_admin?
       else
         redirect_to user_cas_omniauth_authorize_path
       end
@@ -213,29 +213,33 @@ class BibliographicController < ApplicationController # rubocop:disable Metrics/
 
     def add_locator_call_no(records)
       records.each do |location, holdings|
-        next unless location == "firestone$stacks"
+        next unless location == 'firestone$stacks'
+
         holdings.each do |holding|
-          holding["sortable_call_number"] = sortable_call_number(holding["call_number"])
+          holding['sortable_call_number'] = sortable_call_number(holding['call_number'])
         end
       end
     end
 
     def sortable_call_number(call_no)
       return call_no unless /^[A-Za-z]/.match?(call_no)
+
       call_no = make_sortable_call_number(call_no)
       lsort_result = Lcsort.normalize(call_no)
       return lsort_result.gsub('..', '.') unless lsort_result.nil?
+
       force_number_part_to_have_4_digits(call_no)
-    rescue
+    rescue StandardError
       call_no
     end
 
     def make_sortable_call_number(call_no)
-      tokens = call_no.split(" ")
-      needs_adjustment = ["oversize", "folio"].include? tokens.first.downcase
+      tokens = call_no.split(' ')
+      needs_adjustment = %w[oversize folio].include? tokens.first.downcase
       return call_no unless needs_adjustment
+
       # Move the first token (e.g. Oversize or Folio) to the end
-      (tokens[1..] << tokens[0]).join(" ")
+      (tokens[1..] << tokens[0]).join(' ')
     end
 
     # This routine adjust something from "A53.blah" to "A0053.blah" for sorting purposes

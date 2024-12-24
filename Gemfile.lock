@@ -749,6 +749,8 @@ DEPENDENCIES
   rsolr (~> 2.5.0)
   rspec-rails
   rubocop
+  rubocop-performance
+  rubocop-rails
   rubocop-rspec
   rubyXL
   rubyzip

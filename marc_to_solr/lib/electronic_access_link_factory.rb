@@ -1,4 +1,3 @@
-
 class ElectronicAccessLinkFactory
   # Extract values from a given MARC subfield
   # @param s_field the MARC subfield
@@ -28,7 +27,7 @@ class ElectronicAccessLinkFactory
   # @return [Hash] the values
   def self.parse_subfields(marc_field)
     subfield_values = marc_field.subfields.map { |subfield| parse_subfield(subfield) }
-    subfield_values = subfield_values.empty? ? [{}] : subfield_values
+    subfield_values = [{}] if subfield_values.empty?
     output = subfield_values.reduce(:merge)
 
     # rubocop:disable Rails/Pluck, Rails/CompactBlank

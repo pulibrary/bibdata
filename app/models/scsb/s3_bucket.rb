@@ -70,6 +70,7 @@ module Scsb
       matching_files = list_files(prefix:).select { |obj| obj.key.match?(file_filter) }
       recent_file = matching_files.sort_by(&:last_modified).last
       return nil unless recent_file
+
       fetch_files([recent_file], output_directory).first
     end
 

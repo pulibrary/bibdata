@@ -1,7 +1,6 @@
-# encoding: UTF-8
 # Traject config goes here
 require 'active_support'
-require "active_support/core_ext/object/blank"
+require 'active_support/core_ext/object/blank'
 require 'traject/macros/marc21_semantics'
 require 'traject/macros/marc_format_classifier'
 require 'bundler/setup'
@@ -30,20 +29,20 @@ extend Traject::Macros::MarcFormats
 # rubocop:disable Style/GuardClause
 error_count = Concurrent::AtomicFixnum.new(0)
 settings do
-  provide "solr.url", "http://localhost:8983/solr/blacklight-core-development" # default
-  provide "solr.version", "8.4.1"
-  provide "reader_class_name", "AlmaReader"
-  provide "marc_source.type", "xml"
-  provide "solr_writer.max_skipped", "50"
-  provide "marc4j_reader.source_encoding", "UTF-8"
-  provide "log.error_file", "./log/traject-error.log"
-  provide "allow_duplicate_values", false
-  provide "figgy_cache_dir", ENV['FIGGY_ARK_CACHE_PATH'] || "tmp/figgy_ark_cache"
-  provide "mapping_rescue", lambda { |context, exception|
+  provide 'solr.url', 'http://localhost:8983/solr/blacklight-core-development' # default
+  provide 'solr.version', '8.4.1'
+  provide 'reader_class_name', 'AlmaReader'
+  provide 'marc_source.type', 'xml'
+  provide 'solr_writer.max_skipped', '50'
+  provide 'marc4j_reader.source_encoding', 'UTF-8'
+  provide 'log.error_file', './log/traject-error.log'
+  provide 'allow_duplicate_values', false
+  provide 'figgy_cache_dir', ENV.fetch('FIGGY_ARK_CACHE_PATH', nil) || 'tmp/figgy_ark_cache'
+  provide 'mapping_rescue', lambda { |context, exception|
     error_count.increment
     context.logger.error "Encountered exception: #{exception}, total errors #{error_count}"
 
-    if exception.message == "invalid byte sequence in UTF-8"
+    if exception.message == 'invalid byte sequence in UTF-8'
       context.skip!
     else
       raise exception
@@ -52,7 +51,7 @@ settings do
 end
 # rubocop:enable Style/GuardClause
 
-$LOAD_PATH.unshift(File.expand_path('../../', __FILE__)) # include marc_to_solr directory so local translation_maps can be loaded
+$LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr directory so local translation_maps can be loaded
 
 augment_the_subject = AugmentTheSubject.new
 language_service = LanguageService.new
@@ -70,10 +69,10 @@ each_record do |record, context|
 end
 
 after_processing do
-  using_solr = ["Traject::SolrJsonWriter", "Traject::PulSolrJsonWriter"].include?(@settings["writer_class_name"])
+  using_solr = ['Traject::SolrJsonWriter', 'Traject::PulSolrJsonWriter'].include?(@settings['writer_class_name'])
   if using_solr
     # Delete records from Solr
-    deleter = SolrDeleter.new(@settings["solr.url"], logger)
+    deleter = SolrDeleter.new(@settings['solr.url'], logger)
     deleter.delete(deleted_ids)
   else
     # In debug mode just log what would be deleted
@@ -99,11 +98,12 @@ to_field 'cjk_all' do |record, accumulator|
   result = []
   record.each do |field|
     next unless  keep_fields.include?(field.tag)
+
     subfield_values = field.subfields
                            .reject { |sf| sf.code == '6' }
                            .collect(&:value)
 
-    next unless !subfield_values.empty?
+    next if subfield_values.empty?
 
     result << subfield_values.join(' ')
   end
@@ -113,7 +113,7 @@ end
 # 880 field is "vernacular" and may link to a translation in a 5xx
 # Only add 880 alt script values associated with a 5xx field
 to_field 'cjk_notes' do |record, accumulator|
-  fields = record.fields.select { |f| f.tag == "880" }
+  fields = record.fields.select { |f| f.tag == '880' }
   linked_fields = fields.select do |f|
     f.subfields.find { |sf| sf.code == '6' && sf.value.start_with?('5') }.present?
   end
@@ -160,14 +160,14 @@ end
 # to_field 'author_vern_display', extract_marc('100aqbcdek:110abcdefgkln:111abcdefgklnpq', :trim_punctuation => true, :alternate_script => :only, :first => true)
 
 to_field 'marc_relator_display' do |record, accumulator|
-  MarcExtractor.cached("100:110:111").collect_matching_lines(record) do |field, _spec, _extractor|
+  MarcExtractor.cached('100:110:111').collect_matching_lines(record) do |field, _spec, _extractor|
     relator = 'Author'
     field.subfields.each do |s_field|
       if s_field.code == 'e'
         relator = s_field.value.capitalize.gsub(/[[:punct:]]?$/, '')
         break
       elsif s_field.code == '4'
-        relator = Traject::TranslationMap.new("relators")[s_field.value]
+        relator = Traject::TranslationMap.new('relators')[s_field.value]
       end
     end
     accumulator << relator
@@ -193,7 +193,7 @@ to_field 'title_vern_display', extract_marc('245abcfghknps', alternate_script: :
 
 # to_field 'title_sort', marc_sortable_title
 to_field 'title_sort' do |record, accumulator|
-  MarcExtractor.cached("245abcfghknps", alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('245abcfghknps', alternate_script: false).collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first
     str = str.slice(field.indicator2.to_i, str.length) if str
     accumulator << str if accumulator[0].nil?
@@ -201,7 +201,7 @@ to_field 'title_sort' do |record, accumulator|
 end
 
 to_field 'title_vern_sort' do |record, accumulator|
-  MarcExtractor.cached("245abcfghknps", alternate_script: :only).collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('245abcfghknps', alternate_script: :only).collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first
     str = str.slice(field.indicator2.to_i, str.length) if str
     accumulator << str if accumulator[0].nil?
@@ -210,7 +210,7 @@ end
 
 # roman and alt-script title with and without non-filing characters, excluding $h
 to_field 'title_no_h_index' do |record, accumulator|
-  MarcExtractor.cached("245abcfgknps").collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('245abcfgknps').collect_matching_lines(record) do |field, spec, extractor|
     str = extractor.collect_subfields(field, spec).first
     if str
       accumulator << str
@@ -309,7 +309,7 @@ to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulato
   end
   if record['264']
     rec_264 = []
-    MarcExtractor.cached("264abcefg3").collect_matching_lines(record) do |field, spec, extractor|
+    MarcExtractor.cached('264abcefg3').collect_matching_lines(record) do |field, spec, extractor|
       rec_264 << [field, spec, extractor]
     end
     rec_264.sort_by! { |r| r[0].indicator2.to_i if r[0].indicator2 }
@@ -343,7 +343,7 @@ end
 # Physical Items Enrichment -> Create date subfield 876d
 # Electronic Inventory Enrichment -> Activation date subfield 951w
 to_field 'cataloged_tdt' do |record, accumulator|
-  extractor_doc_id = MarcExtractor.cached("001")
+  extractor_doc_id = MarcExtractor.cached('001')
   doc_id = extractor_doc_id.extract(record).first
   unless /^SCSB-\d+/.match?(doc_id)
     cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
@@ -354,8 +354,8 @@ to_field 'cataloged_tdt' do |record, accumulator|
                        alma_950(record)
                      end
     begin
-      accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
-    rescue
+      accumulator[0] = Time.parse(cataloged_date).utc.strftime('%Y-%m-%dT%H:%M:%SZ') unless cataloged_date.nil?
+    rescue StandardError
       logger.error "#{record['001']} - error parsing cataloged date #{cataloged_date}"
     end
   end
@@ -376,7 +376,7 @@ end
 # format - allow multiple - "first" one is used for thumbnail
 to_field 'format' do |record, accumulator|
   formats = Format.new(record).bib_format
-  formats.each { |fmt| accumulator << Traject::TranslationMap.new("format")[fmt] }
+  formats.each { |fmt| accumulator << Traject::TranslationMap.new('format')[fmt] }
 end
 
 # Medium/Support:
@@ -424,13 +424,13 @@ to_field 'coverage_display' do |record, accumulator|
   accumulator[0] = coverage unless coverage.nil?
 end
 
-to_field "geocode_display" do |record, acc|
-  marc_geo_map = Traject::TranslationMap.new("marc_geographic")
-  extractor_043a = MarcExtractor.cached("043a", separator: nil)
+to_field 'geocode_display' do |record, acc|
+  marc_geo_map = Traject::TranslationMap.new('marc_geographic')
+  extractor_043a = MarcExtractor.cached('043a', separator: nil)
   acc.concat(
     extractor_043a.extract(record).collect do |code|
       # remove any trailing hyphens, then map
-      marc_geo_map[code.gsub(/\-+\Z/, '')]
+      marc_geo_map[code.gsub(/-+\Z/, '')]
     end.compact
   )
 end
@@ -627,7 +627,7 @@ to_field 'other_editions_s', extract_marc('775w')
 to_field 'related_record_info_display', extract_marc('776i')
 
 # Notes index field 5XX
-to_field "notes_index", extract_all_marc_values(from: '500', to: '599')
+to_field 'notes_index', extract_all_marc_values(from: '500', to: '599')
 
 # Restrictions note:
 #    506 XX 3abcde
@@ -893,8 +893,10 @@ end
 to_field 'fast_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   next if subjects.present?
+
   record.fields.select { |field| field.tag[0] == '6' }.each do |field|
     next unless field['2'] == 'fast'
+
     value = field['a']&.delete_suffix('.')
     accumulator << value
   end
@@ -921,7 +923,7 @@ to_field 'subject_facet' do |record, accumulator|
 end
 
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
-to_field "geographic_facet", marc_geo_facet
+to_field 'geographic_facet', marc_geo_facet
 
 to_field 'homoit_genre_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
@@ -954,84 +956,90 @@ to_field 'subject_topic_facet' do |record, accumulator|
 end
 
 to_field 'lc_1letter_facet' do |record, accumulator|
-  if record['050']
-    if record['050']['a']
-      first_letter = record['050']['a'].lstrip.slice(0, 1)
-      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
+  if record['050'] && (record['050']['a'])
+    first_letter = record['050']['a'].lstrip.slice(0, 1)
+    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
+      accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
     end
   end
 end
 
 to_field 'lc_rest_facet' do |record, accumulator|
-  if record['050']
-    if record['050']['a']
-      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-      accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
-    end
+  if record['050'] && (record['050']['a'])
+    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    accumulator << Traject::TranslationMap.new('callnumber_map')[letters]
   end
 end
 
 to_field 'lc_facet' do |record, accumulator|
-  if record['050']
-    if record['050']['a']
-      first_letter = record['050']['a'].lstrip.slice(0, 1)
-      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-      accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter]
-      accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}:#{Traject::TranslationMap.new('callnumber_map')[letters]}"
-    end
+  if record['050'] && (record['050']['a'])
+    first_letter = record['050']['a'].lstrip.slice(0, 1)
+    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
+    accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}:#{Traject::TranslationMap.new('callnumber_map')[letters]}"
   end
 end
 
 to_field 'sudoc_facet' do |record, accumulator|
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
+    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    end
+    if !Traject::TranslationMap.new('sudocs')[letters].nil?
+      accumulator << Traject::TranslationMap.new('sudocs')[letters]
+    end
   end
 end
 
 to_field 'call_number_scheme_facet' do |record, accumulator|
-  if record['050']
-    if record['050']['a']
-      first_letter = record['050']['a'].lstrip.slice(0, 1)
-      letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
-      accumulator << "Library of Congress" if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
-    end
+  if record['050'] && (record['050']['a'])
+    first_letter = record['050']['a'].lstrip.slice(0, 1)
+    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    accumulator << 'Library of Congress' if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-    accumulator << "Superintendent of Documents" if !Traject::TranslationMap.new("sudocs")[letters].nil?
+    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    end
+    accumulator << 'Superintendent of Documents' if !Traject::TranslationMap.new('sudocs')[letters].nil?
   end
 end
 
 to_field 'call_number_group_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-        first_letter = record['050']['a'].lstrip.slice(0, 1)
-        accumulator << Traject::TranslationMap.new("callnumber_map")[first_letter] if !Traject::TranslationMap.new("callnumber_map")[letters].nil?
+    if record['050'] && record['050']['a'] && /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+      first_letter = record['050']['a'].lstrip.slice(0, 1)
+      if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
+        accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
       end
     end
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs_split")[letters] if !Traject::TranslationMap.new("sudocs_split")[letters].nil?
+    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    end
+    if !Traject::TranslationMap.new('sudocs_split')[letters].nil?
+      accumulator << Traject::TranslationMap.new('sudocs_split')[letters]
+    end
   end
 end
 
 to_field 'call_number_full_facet' do |record, accumulator|
   MarcExtractor.cached('050a').collect_matching_lines(record) do |field, spec, extractor|
-    if record['050'] && record['050']['a']
-      if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-        letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
-        accumulator << Traject::TranslationMap.new("callnumber_map")[letters]
-      end
+    if record['050'] && record['050']['a'] && /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+      accumulator << Traject::TranslationMap.new('callnumber_map')[letters]
     end
   end
   MarcExtractor.cached('086|0 |a').collect_matching_lines(record) do |field, spec, extractor|
-    letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0] if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
-    accumulator << Traject::TranslationMap.new("sudocs")[letters] if !Traject::TranslationMap.new("sudocs")[letters].nil?
+    if /([[:alpha:]])*/.match?(extractor.collect_subfields(field, spec).first)
+      letters = /([[:alpha:]])*/.match(extractor.collect_subfields(field, spec).first)[0]
+    end
+    if !Traject::TranslationMap.new('sudocs')[letters].nil?
+      accumulator << Traject::TranslationMap.new('sudocs')[letters]
+    end
   end
 end
 
@@ -1049,7 +1057,7 @@ end
 # Json string mapping relator terms and names for display
 to_field 'related_name_json_1display' do |record, accumulator|
   rel_name_hash = {}
-  MarcExtractor.cached("700aqbcdk:710abcdfgkln:711abcdfgklnpq").collect_matching_lines(record) do |field, spec, extractor|
+  MarcExtractor.cached('700aqbcdk:710abcdfgkln:711abcdfgklnpq').collect_matching_lines(record) do |field, spec, extractor|
     rel_name = Traject::Macros::Marc21.trim_punctuation(extractor.collect_subfields(field, spec).first)
     relators = []
     non_t = true
@@ -1060,7 +1068,7 @@ to_field 'related_name_json_1display' do |record, accumulator|
         break
 
       end
-      relators << Traject::TranslationMap.new("relators")[s_field.value] || s_field.value if s_field.code == '4'
+      (relators << Traject::TranslationMap.new('relators')[s_field.value]) || s_field.value if s_field.code == '4'
     end
     relators << 'Related name' if relators.empty?
     relators.each do |relator|
@@ -1153,10 +1161,11 @@ to_field 'data_source_display', extract_marc('786at', trim_punctuation: true)
 #    020 XX a
 # Dont index if subfield $a is not present
 to_field 'isbn_display' do |record, accumulator|
-  MarcExtractor.cached("020aq").collect_matching_lines(record) do |field, _spec, _extractor|
+  MarcExtractor.cached('020aq').collect_matching_lines(record) do |field, _spec, _extractor|
     a_array = []
     q_array = []
     next if field['a'].blank?
+
     field.subfields.each do |m|
       if m.code == 'a'
         a_array << m.value
@@ -1266,7 +1275,7 @@ end
 each_record do |record, context|
   recap_notes = process_recap_notes(record)
   next if recap_notes.empty?
-  next if recap_notes.map { |note| note.include?("P") }.include?(false)
+  next if recap_notes.map { |note| note.include?('P') }.include?(false)
 
   id = id_extractor.extract(record).first
   context.skip!("Skipped #{id} because record includes only private items.")
@@ -1284,16 +1293,16 @@ end
 
 each_record do |_record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
-  if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?("seniorprincetonuniversity")
+  if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?('seniorprincetonuniversity')
     context.output_hash['format'] ||= []
-    context.output_hash['format'] << Traject::TranslationMap.new("format")['ST']
+    context.output_hash['format'] << Traject::TranslationMap.new('format')['ST']
   end
 end
 
 # Process location code once
 # 852|b and 852|c
 each_record do |record, context|
-  location_codes = MarcExtractor.cached("852").collect_matching_lines(record) do |field, _spec, _extractor|
+  location_codes = MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code_start_22?(field['8'])
     is_scsb = scsb_doc?(record['001'].value)
@@ -1314,18 +1323,20 @@ each_record do |record, context|
     ## need to go through any location code that isn't from voyager, thesis, or graphic arts
     ## issue with the ReCAP project records
     context.output_hash['location_code_s'] = location_codes
-    context.output_hash['location'] = Traject::TranslationMap.new("location_display").translate_array(location_codes)
-    mapped_codes = Traject::TranslationMap.new("locations")
+    context.output_hash['location'] = Traject::TranslationMap.new('location_display').translate_array(location_codes)
+    mapped_codes = Traject::TranslationMap.new('locations')
 
     # The holding_library is used with some locations to add an additional owning library,
     # which is included in advanced search but not facets.
-    holding_library = Traject::TranslationMap.new("holding_library")
+    holding_library = Traject::TranslationMap.new('holding_library')
     location_codes.each do |l|
       if mapped_codes[l]
         context.output_hash['location_display'] ||= []
         context.output_hash['location_display'] << mapped_codes[l]
 
-        context.output_hash['location'] << holding_library[l] if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
+        if /^ReCAP/ =~ mapped_codes[l] && ['Special Collections', 'Marquand Library'].include?(holding_library[l])
+          context.output_hash['location'] << holding_library[l]
+        end
       else
         logger.error "#{record['001']} - Invalid Location Code: #{l}"
       end
@@ -1352,6 +1363,7 @@ to_field 'uniform_240' do |record, accumulator|
   MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+
       accumulator << s_field.value
     end
     break
@@ -1361,6 +1373,7 @@ to_field 'uniform_240_vern' do |record, accumulator|
   MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+
       accumulator << s_field.value
     end
     break
@@ -1371,6 +1384,7 @@ to_field 'uniform_130' do |record, accumulator|
   MarcExtractor.cached('130apldfhkmnorst', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+
       accumulator << s_field.value
     end
     break
@@ -1381,6 +1395,7 @@ to_field 'uniform_130_vern' do |record, accumulator|
   MarcExtractor.cached('130apldfhkmnorst', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+
       accumulator << s_field.value
     end
     break
@@ -1485,7 +1500,7 @@ end
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
 to_field 'call_number_browse_s' do |record, accumulator|
-  accumulator << browse_fields(record, khi_key_order: ['h', 'i', 'k'])
+  accumulator << browse_fields(record, khi_key_order: %w[h i k])
   accumulator.flatten!
 end
 
@@ -1496,10 +1511,11 @@ to_field 'call_number_locator_display' do |record, accumulator|
   values = []
   result = []
   alma_852(record).each do |field|
-    subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["h", "i"].include?(s.code) }.compact
+    subfields = field.subfields.reject { |s| s.value.empty? }.collect { |s| s if %w[h i].include?(s.code) }.compact
     next if subfields.empty?
+
     values = [field['h'], field['i']].compact.reject(&:empty?)
-    result << values.join(" ") if values.present?
+    result << values.join(' ') if values.present?
   end
   accumulator << result
   accumulator.flatten!
@@ -1575,10 +1591,8 @@ each_record do |_record, context|
       context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
     end
   end
-  if context.output_hash['title_display']
-    if context.output_hash['title_display'].length > 1
-      logger.error "#{context.output_hash['id'].first} - Multiple titles"
-      context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
-    end
+  if context.output_hash['title_display'] && (context.output_hash['title_display'].length > 1)
+    logger.error "#{context.output_hash['id'].first} - Multiple titles"
+    context.output_hash['title_display'] = context.output_hash['title_display'].slice(0, 1)
   end
 end

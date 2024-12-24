@@ -23,12 +23,12 @@ class ElectronicPortfolioBuilder
 
   def build
     {
-      'desc': field['k'],
-      'title': portfolio_title,
-      'url': field['x'],
-      'start': start_date,
-      'end': end_date,
-      'notes': public_notes
+      desc: field['k'],
+      title: portfolio_title,
+      url: field['x'],
+      start: start_date,
+      end: end_date,
+      notes: public_notes
     }.to_json
   end
 

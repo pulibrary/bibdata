@@ -1,4 +1,3 @@
-# encoding: utf-8
 require 'zip'
 require 'net/sftp'
 require 'date'
@@ -61,7 +60,7 @@ class Dump < ActiveRecord::Base
       # * look for the last partner recap dump and get its creation date
       # * or, if neither of those, use yesterday
       def incremental_update_timestamp
-        (ENV['TIMESTAMP'] || last_incremental_update || DateTime.now - 1).to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
+        (ENV.fetch('TIMESTAMP', nil) || last_incremental_update || (DateTime.now - 1)).to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z')
       end
 
       def last_incremental_update

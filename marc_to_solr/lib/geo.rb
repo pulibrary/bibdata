@@ -16,6 +16,7 @@ def decimal_coordinate record
       # logger.error "#{record['001']} - missing coordinate"
       break
     end
+
     coverage << "northlimit=#{c['n']}; eastlimit=#{c['e']}; southlimit=#{c['s']}; westlimit=#{c['w']}; units=degrees; projection=EPSG:4326"
   end
   # turning of geo coordinate logging for now
@@ -25,5 +26,6 @@ end
 
 def valid_coordinate_format? c, _record
   return false unless /^[-+]?[0-9]*\.?[0-9]+$/.match?(c)
+
   true
 end

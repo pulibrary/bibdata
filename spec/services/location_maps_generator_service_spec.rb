@@ -28,12 +28,13 @@ RSpec.describe LocationMapsGeneratorService do
     context 'when the holding locations table does not exist' do
       let(:logger) { instance_double(ActiveSupport::Logger) }
       let(:service) { described_class.new(base_path:, logger:) }
+
       before do
         allow(logger).to receive(:warn)
         allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_return(false)
       end
 
-      it 'logs the  error' do
+      it 'logs the error' do
         service.generate
         expect(logger).to have_received(:warn).with(/has not been created/)
       end
@@ -42,6 +43,7 @@ RSpec.describe LocationMapsGeneratorService do
     context 'when there is a database error' do
       let(:logger) { instance_double(ActiveSupport::Logger) }
       let(:service) { described_class.new(base_path:, logger:) }
+
       before do
         allow(logger).to receive(:warn)
         allow(ActiveRecord::Base.connection).to receive(:table_exists?).and_raise(StandardError)

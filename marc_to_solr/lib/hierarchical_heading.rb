@@ -11,6 +11,7 @@ class HierarchicalHeading
 
   def to_s
     return unless any_subfields?
+
     compile_string
   end
 

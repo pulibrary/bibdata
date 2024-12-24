@@ -5,7 +5,7 @@ require 'active_support/core_ext/string'
 # Retrieves and stores paginated Solr responses containing the ARK's and BibID's
 class CacheMap
   def self.cache_key_for(ark:)
-    ark.gsub(/[\:\/]/, '_')
+    ark.gsub(%r{[:/]}, '_')
   end
 
   # Constructor
@@ -99,8 +99,8 @@ class CacheMap
         http_response = Faraday.get(url)
         values = JSON.parse(http_response.body)
         values.fetch('response')
-      rescue StandardError => err
-        @logger.error "Failed to seed the ARK cached from Solr: #{err}"
+      rescue StandardError => e
+        @logger.error "Failed to seed the ARK cached from Solr: #{e}"
         {}
       end
     end
@@ -108,6 +108,6 @@ class CacheMap
     # Generate the unique key for the cache from the hostname and path for Solr
     # @return [String] the cache key
     def cache_key
-      [@host.gsub(/[\.\/]/, '_'), @path.gsub(/[\.\/]/, '_')].join('_')
+      [@host.gsub(%r{[./]}, '_'), @path.gsub(%r{[./]}, '_')].join('_')
     end
 end

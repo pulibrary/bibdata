@@ -27,10 +27,11 @@ class DumpLogIdsService
       update_ids = []
       reader = Nokogiri::XML::Reader(marc_file)
       reader.each do |node|
-        next unless node.name == "record" && node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+        next unless node.name == 'record' && node.node_type == Nokogiri::XML::Reader::TYPE_ELEMENT
+
         xml = Nokogiri::XML(node.outer_xml)
         id = xml.xpath("//controlfield[@tag='001']/text()").text
-        leader = xml.xpath("//leader/text()").text
+        leader = xml.xpath('//leader/text()').text
         if leader[5] == 'd'
           delete_ids << id
         else

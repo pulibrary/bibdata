@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'active_support'
 require 'library_stdnums'
 require 'lightly'
@@ -26,34 +25,32 @@ module MARC
     @@FOUR_DIGIT_PATTERN_OTHER_1 = /^l(\d{3})/
     @@FOUR_DIGIT_PATTERN_OTHER_2 = /^\[(20|19|18|17|16|15|14|13|12|11|10)\](\d{2})/
     @@FOUR_DIGIT_PATTERN_OTHER_3 = /^\[?(20|19|18|17|16|15|14|13|12|11|10)(\d)[^\d]\]?/
-    @@FOUR_DIGIT_PATTERN_OTHER_4 = /i\.e\.\,? (20|19|18|17|16|15|14|13|12|11|10)(\d{2})/
-    @@FOUR_DIGIT_PATTERN_OTHER_5 = /^\[?(\d{2})\-\-\??\]?/
+    @@FOUR_DIGIT_PATTERN_OTHER_4 = /i\.e\.,? (20|19|18|17|16|15|14|13|12|11|10)(\d{2})/
+    @@FOUR_DIGIT_PATTERN_OTHER_5 = /^\[?(\d{2})--\??\]?/
     @@BC_DATE_PATTERN = /[0-9]+ [Bb]\.?[Cc]\.?/
     def best_date
       date = nil
-      if self['260']
-        if self['260']['c']
-          field_260c = self['260']['c']
-          case field_260c
-          when @@THREE_OR_FOUR_DIGITS
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_BRACES
-            date = $1
-          when @@FOUR_DIGIT_PATTERN_ONE_BRACE
-            date = $1
-          when @@FOUR_DIGIT_PATTERN_OTHER_1
-            date = "1#{$1}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_2
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_3
-            date = "#{$1}#{$2}0"
-          when @@FOUR_DIGIT_PATTERN_OTHER_4
-            date = "#{$1}#{$2}"
-          when @@FOUR_DIGIT_PATTERN_OTHER_5
-            date = "#{$1}00"
-          when @@BC_DATE_PATTERN
-            date = nil
-          end
+      if self['260'] && (self['260']['c'])
+        field_260c = self['260']['c']
+        case field_260c
+        when @@THREE_OR_FOUR_DIGITS
+          date = "#{$1}#{$2}"
+        when @@FOUR_DIGIT_PATTERN_BRACES
+          date = $1
+        when @@FOUR_DIGIT_PATTERN_ONE_BRACE
+          date = $1
+        when @@FOUR_DIGIT_PATTERN_OTHER_1
+          date = "1#{$1}"
+        when @@FOUR_DIGIT_PATTERN_OTHER_2
+          date = "#{$1}#{$2}"
+        when @@FOUR_DIGIT_PATTERN_OTHER_3
+          date = "#{$1}#{$2}0"
+        when @@FOUR_DIGIT_PATTERN_OTHER_4
+          date = "#{$1}#{$2}"
+        when @@FOUR_DIGIT_PATTERN_OTHER_5
+          date = "#{$1}00"
+        when @@BC_DATE_PATTERN
+          date = nil
         end
       end
       date ||= self.date_from_008
@@ -62,8 +59,8 @@ module MARC
     def date_from_008
       if self['008']
         d = self['008'].value[7, 4]
-        d = d.gsub 'u', '0' unless d == 'uuuu'
-        d = d.gsub ' ', '0' unless d == '    '
+        d = d.tr 'u', '0' unless d == 'uuuu'
+        d = d.tr ' ', '0' unless d == '    '
         d if /^[0-9]{4}$/.match?(d)
       end
     end
@@ -71,17 +68,15 @@ module MARC
     def end_date_from_008
       if self['008']
         d = self['008'].value[11, 4]
-        d = d.gsub 'u', '9' unless d == 'uuuu'
-        d = d.gsub ' ', '9' unless d == '    '
+        d = d.tr 'u', '9' unless d == 'uuuu'
+        d = d.tr ' ', '9' unless d == '    '
         d if /^[0-9]{4}$/.match?(d)
       end
     end
 
     def date_display
       date = nil
-      if self['260']
-        date = self['260']['c'] if self['260']['c']
-      end
+      date = self['260']['c'] if self['260'] && (self['260']['c'])
       date ||= self.date_from_008
     end
   end
@@ -126,10 +121,14 @@ def standard_no_hash record
     standard_number = nil
     field.subfields.each do |s_field|
       standard_number = s_field.value if s_field.code == 'a'
-      standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO) if (s_field.code == '2') && (standard_label == '$2')
+      if (s_field.code == '2') && (standard_label == '$2')
+        standard_label = subfield_specified_hash_key(s_field.value, FALLBACK_STANDARD_NO)
+      end
     end
     standard_label = FALLBACK_STANDARD_NO if standard_label == '$2'
-    standard_no[standard_label] ? standard_no[standard_label] << standard_number : standard_no[standard_label] = [standard_number] unless standard_number.nil?
+    unless standard_number.nil?
+      standard_no[standard_label] ? standard_no[standard_label] << standard_number : standard_no[standard_label] = [standard_number]
+    end
   end
   standard_no
 end
@@ -143,13 +142,19 @@ def other_versions record
   linked_nums = []
   Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
-      linked_nums << StdNum::ISBN.normalize(s_field.value) if (field.tag == "020") || ((field.tag == "776") && (s_field.code == 'z'))
-      linked_nums << StdNum::ISSN.normalize(s_field.value) if (field.tag == "022") || ((field.tag == "776") && (s_field.code == 'x'))
-      linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == "035") && oclc_number?(s_field.value)
-      if ((field.tag == "776") && (s_field.code == 'w')) || ((field.tag == "787") && (s_field.code == 'w'))
+      if (field.tag == '020') || ((field.tag == '776') && (s_field.code == 'z'))
+        linked_nums << StdNum::ISBN.normalize(s_field.value)
+      end
+      if (field.tag == '022') || ((field.tag == '776') && (s_field.code == 'x'))
+        linked_nums << StdNum::ISSN.normalize(s_field.value)
+      end
+      linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == '035') && oclc_number?(s_field.value)
+      if ((field.tag == '776') && (s_field.code == 'w')) || ((field.tag == '787') && (s_field.code == 'w'))
         linked_nums << oclc_normalize(s_field.value, prefix: true) if oclc_number?(s_field.value)
-        linked_nums << "BIB" + strip_non_numeric(s_field.value) unless s_field.value.include?('(')
-        logger.error "#{record['001']} - linked field formatting: #{s_field.value}" if s_field.value.include?('(') && !s_field.value.start_with?('(')
+        linked_nums << ('BIB' + strip_non_numeric(s_field.value)) unless s_field.value.include?('(')
+        if s_field.value.include?('(') && !s_field.value.start_with?('(')
+          logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
+        end
       end
     end
   end
@@ -178,6 +183,7 @@ def process_alt_script_names record
   names = []
   Traject::MarcExtractor.cached('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq').collect_matching_lines(record) do |field, spec, extractor|
     next unless field.tag == '880'
+
     name = extractor.collect_subfields(field, spec).first
     unless name.nil?
       remove = ''
@@ -222,7 +228,7 @@ def process_author_roles record
       if /1../.match?(field.tag)
         names['primary_author'] = name
       else
-        relator = ""
+        relator = ''
         field.subfields.each do |s_field|
           # relator code (subfield 4)
           if s_field.code == '4'
@@ -250,7 +256,7 @@ def set_pub_citation(record)
   Traject::MarcExtractor.cached('260:264').collect_matching_lines(record) do |field, _spec, _extractor|
     a_pub_info = nil
     b_pub_info = nil
-    pub_info = ""
+    pub_info = ''
     field.subfields.each do |s_field|
       a_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'a'
       b_pub_info = Traject::Macros::Marc21.trim_punctuation(s_field.value).strip if s_field.code == 'b'
@@ -258,7 +264,7 @@ def set_pub_citation(record)
 
     # Build publication info string and add to citation array.
     pub_info += a_pub_info unless a_pub_info.nil?
-    pub_info += ": " if !a_pub_info.nil? && !b_pub_info.nil?
+    pub_info += ': ' if !a_pub_info.nil? && !b_pub_info.nil?
     pub_info += b_pub_info unless b_pub_info.nil?
     pub_info if !pub_info.empty?
   end.compact
@@ -272,10 +278,11 @@ SEPARATOR = '—'
 # For example, if you only want subject headings from the Bilindex vocabulary,
 # you could use `process_hierarchy(record, '650|*7|abcvxyz') { |field| field['2'] == 'bidex' }`
 def process_hierarchy(record, fields)
-  split_on_subfield = ['t', 'v', 'x', 'y', 'z']
+  split_on_subfield = %w[t v x y z]
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
     include_heading = block_given? ? yield(field) : true
     next unless include_heading && extractor.collect_subfields(field, spec).first
+
     HierarchicalHeading.new(field:, spec:, split_on_subfield:).to_s
   end.compact
 end
@@ -318,11 +325,11 @@ def oclc_normalize oclc, opts = { prefix: false }
   if opts[:prefix] == true
     case oclc_num.length
     when 1..8
-      "ocm" + "%08d" % oclc_num
+      'ocm' + ('%08d' % oclc_num)
     when 9
-      "ocn" + oclc_num
+      'ocn' + oclc_num
     else
-      "on" + oclc_num
+      'on' + oclc_num
     end
   else
     oclc_num
@@ -446,6 +453,7 @@ def everything_after_t_alt_script record, fields
   values = []
   Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, _spec, _extractor|
     next unless field.tag == '880'
+
     after_t = false
     title = []
     field.subfields.each do |s_field|
@@ -491,6 +499,7 @@ def prep_name_title record, fields
     non_t = true
     field.subfields.each do |s_field|
       next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+
       non_a = false if s_field.code == 'a'
       non_t = false if s_field.code == 't'
       if non_t
@@ -531,25 +540,25 @@ end
 
 # Removes empty call_number fields from holdings_1display
 def remove_empty_call_number_fields(holding)
-  holding.tap { |h| ["call_number", "call_number_browse"].map { |k| h.delete(k) if h.fetch(k, []).empty? } }
+  holding.tap { |h| %w[call_number call_number_browse].map { |k| h.delete(k) if h.fetch(k, []).empty? } }
 end
 
 # Collects only non empty khi
 def call_number_khi(field)
-  field.subfields.reject { |s| s.value.empty? }.collect { |s| s if ["k", "h", "i"].include?(s.code) }.compact
+  field.subfields.reject { |s| s.value.empty? }.collect { |s| s if %w[k h i].include?(s.code) }.compact
 end
 
 # Alma Princeton item
 def alma_code_start_22?(code)
-  code.to_s.start_with?("22") && code.to_s.end_with?("06421")
+  code.to_s.start_with?('22') && code.to_s.end_with?('06421')
 end
 
 def alma_code_start_53?(code)
-  code.to_s.start_with?("53") && code.to_s.end_with?("06421")
+  code.to_s.start_with?('53') && code.to_s.end_with?('06421')
 end
 
 def scsb_code_start?(code)
-  code.to_s.start_with?("scsb")
+  code.to_s.start_with?('scsb')
 end
 
 def alma_852(record)
@@ -560,7 +569,7 @@ def scsb_852(record)
   record.fields('852').select { |f| scsb_code_start?(f['b']) }
 end
 
-def browse_fields(record, khi_key_order: ['k', 'h', 'i'])
+def browse_fields(record, khi_key_order: %w[k h i])
   result = []
   fields = if scsb_doc?(record['001']&.value)
              scsb_852(record)
@@ -570,8 +579,9 @@ def browse_fields(record, khi_key_order: ['k', 'h', 'i'])
   fields.each do |field|
     subfields = call_number_khi(field)
     next if subfields.empty?
+
     values = [field[khi_key_order[0]], field[khi_key_order[1]], field[khi_key_order[2]]].compact.reject(&:empty?)
-    result << values.join(" ") if values.present?
+    result << values.join(' ') if values.present?
   end
   result
 end
@@ -582,7 +592,7 @@ end
 
 def alma_951_active(record)
   alma_951 = record.fields('951').select { |f| alma_code_start_53?(f['8']) }
-  alma_951&.select { |f| f['a'] == "Available" }
+  alma_951&.select { |f| f['a'] == 'Available' }
 end
 
 def alma_953(record)
@@ -594,7 +604,7 @@ def alma_954(record)
 end
 
 def alma_950(record)
-  field_950_a = record.fields('950').select { |f| ["true", "false"].include?(f['a']) }
+  field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
   field_950_a.map { |f| f['b'] }.first if field_950_a.present?
 end
 
@@ -610,6 +620,7 @@ def process_holdings(record)
   holdings_helpers = ProcessHoldingsHelpers.new(record:)
   holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
     next if holdings_helpers.includes_only_private_scsb_items?(field_852)
+
     holding_id = holdings_helpers.holding_id(field_852)
     # Calculate the permanent holding
     holding = holdings_helpers.build_holding(field_852, permanent: true)
@@ -621,9 +632,13 @@ def process_holdings(record)
       add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helpers, all_holdings)
     else
       # if there are no items (876 fields), create the holding by using the 852 field
-      all_holdings[holding_id] = remove_empty_call_number_fields(holding) unless holding_id.nil? || invalid_location?(holding['location_code'])
+      unless holding_id.nil? || invalid_location?(holding['location_code'])
+        all_holdings[holding_id] = remove_empty_call_number_fields(holding)
+      end
     end
-    all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings:, holding_id:) if all_holdings.present? && all_holdings[holding_id]
+    if all_holdings.present? && all_holdings[holding_id]
+      all_holdings = holdings_helpers.process_866_867_868_fields(fields: group_866_867_868_fields, all_holdings:, holding_id:)
+    end
   end
   all_holdings
 end
@@ -655,18 +670,16 @@ def add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helper
   end
 end
 
-# rubocop:disable Metrics/ParameterLists
 def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
   item = holdings_helpers.build_item(field_852:, field_876:)
-  if holding_key.present? || !invalid_location?(holding['location_code'])
-    all_holdings[holding_key] = remove_empty_call_number_fields(holding) if all_holdings[holding_key].nil?
+  if (holding_key.present? || !invalid_location?(holding['location_code'])) && all_holdings[holding_key].nil?
+    all_holdings[holding_key] = remove_empty_call_number_fields(holding)
   end
   all_holdings = holdings_helpers.holding_items(value: holding_key, all_holdings:, item:)
 end
-# rubocop:enable Metrics/ParameterLists
 
 def invalid_location?(code)
-  Traject::TranslationMap.new("locations")[code].nil?
+  Traject::TranslationMap.new('locations')[code].nil?
 end
 
 def process_recap_notes record
@@ -675,6 +688,7 @@ def process_recap_notes record
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     is_scsb = scsb_doc?(record['001'].value) && field['0']
     next unless is_scsb
+
     field.subfields.each do |s_field|
       if s_field.code == 'b'
         partner_lib = s_field.value # ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
@@ -684,6 +698,7 @@ def process_recap_notes record
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
     is_scsb = scsb_doc?(record['001'].value) && field['0']
     next unless is_scsb
+
     col_group = ''
     field.subfields.each do |s_field|
       if s_field.code == 'x'
@@ -704,8 +719,8 @@ def process_recap_notes record
       partner_display_string = 'N'
     elsif partner_lib == 'scsbcul'
       partner_display_string = 'C'
-    elsif partner_lib == "scsbhl"
-      partner_display_string = "H"
+    elsif partner_lib == 'scsbhl'
+      partner_display_string = 'H'
     end
     item_notes << "#{partner_display_string} - #{col_group}"
   end

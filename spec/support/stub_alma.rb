@@ -1,61 +1,62 @@
 module AlmaStubbing
   def stub_alma_ids(ids:, status:, fixture: nil)
     ids = Array.wrap(ids)
-    alma_path = Pathname.new(file_fixture_path).join("alma")
+    alma_path = Pathname.new(file_fixture_path).join('alma')
     json_body = alma_path.join("#{fixture || ids.join('')}.json")
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=#{ids.join(',')}")
       .to_return(status:, body: json_body)
     all_items_path = alma_path.join("#{fixture}_all_items.json")
     return unless all_items_path.exist?
+
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{ids.first}/holdings/ALL/items")
       .to_return(status:, body: all_items_path, headers: { 'Content-Type' => 'application/json' })
   end
 
-  def stub_alma_bib_items(mms_id:, status: 200, filename:, limit: 100, offset: nil)
-    alma_path = Pathname.new(file_fixture_path).join("alma")
+  def stub_alma_bib_items(mms_id:, filename:, status: 200, limit: 100, offset: nil)
+    alma_path = Pathname.new(file_fixture_path).join('alma')
     url =  "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/ALL/items?expand=due_date_policy,due_date&order_by=library&direction=asc&limit=#{limit}"
     url += "&offset=#{offset}" if offset
     stub_request(:get, url)
       .to_return(
         status:,
-        headers: { "content-Type" => "application/json" },
+        headers: { 'content-Type' => 'application/json' },
         body: alma_path.join(filename)
       )
   end
 
   def stub_alma_holding(mms_id:, holding_id:)
-    alma_path = Pathname.new(file_fixture_path).join("alma")
-    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/#{mms_id}\/holdings\/#{holding_id}$/)
+    alma_path = Pathname.new(file_fixture_path).join('alma')
+    stub_request(:get, %r{.*\.exlibrisgroup\.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}$})
       .to_return(status: 200,
-                 headers: { "Content-Type" => "application/json" },
+                 headers: { 'Content-Type' => 'application/json' },
                  body: alma_path.join("holding_#{holding_id}.json"))
   end
 
-  def stub_alma_holding_items(mms_id:, holding_id:, filename:, query: "limit=100")
-    alma_path = Pathname.new(file_fixture_path).join("alma")
-    query_string = [query, "order_by=enum_a"].select(&:present?).join("&")
+  def stub_alma_holding_items(mms_id:, holding_id:, filename:, query: 'limit=100')
+    alma_path = Pathname.new(file_fixture_path).join('alma')
+    query_string = [query, 'order_by=enum_a'].select(&:present?).join('&')
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items?#{query_string}")
       .to_return(status: 200,
-                 headers: { "Content-Type" => "application/json" },
+                 headers: { 'Content-Type' => 'application/json' },
                  body: alma_path.join(filename))
   end
 
   def stub_alma_item_barcode(mms_id:, item_id:, barcode:, holding_id:)
-    alma_path = Pathname.new(file_fixture_path).join("alma")
-    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/items.*/)
+    alma_path = Pathname.new(file_fixture_path).join('alma')
+    stub_request(:get, %r{.*\.exlibrisgroup\.com/almaws/v1/items.*})
       .with(query: { item_barcode: barcode })
       .to_return(status: 302,
-                 headers: { "Location" => "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items/#{item_id}" })
-    stub_request(:get, /.*\.exlibrisgroup\.com\/almaws\/v1\/bibs\/#{mms_id}\/holdings\/#{holding_id}\/items\/#{item_id}.*/)
+                 headers: { 'Location' => "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items/#{item_id}" })
+    stub_request(:get, %r{.*\.exlibrisgroup\.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items/#{item_id}.*})
       .to_return(status: 200,
-                 headers: { "Content-Type" => "application/json" },
+                 headers: { 'Content-Type' => 'application/json' },
                  body: alma_path.join("barcode_#{barcode}.json"))
   end
 
-  def stub_alma_library(library_code:, location_code:, body: "{}")
+  def stub_alma_library(library_code:, location_code:, body: '{}')
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/conf/libraries/#{library_code}/locations/#{location_code}")
       .with(headers: stub_alma_request_headers)
-      .to_return(status: 200, body:, headers: { "content-Type" => "application/json" })
+      .to_return(status: 200, body:, headers: { 'content-Type' => 'application/json' })
   end
 
   def stub_alma_per_second_threshold

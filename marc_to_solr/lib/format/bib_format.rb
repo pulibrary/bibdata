@@ -1,5 +1,5 @@
 # given a record, find the bib_format code
-require_relative '../format.rb'
+require_relative '../format'
 
 # This class is responsible for assigning one or more 2-letter
 # codes that represent the format of a title.  The 2-letter
@@ -21,17 +21,17 @@ class BibFormat
 
   def determine_bib_code
     format = []
-    format << "AJ" if bibformat_jn # journal
-    format << "CF" if bibformat_cf # data file
-    format << "VM" if bibformat_vm # visual material
-    format << "VP" if bibformat_vp # video
-    format << "MS" if bibformat_mu # musical score
-    format << "AU" if bibformat_au # audio
-    format << "MP" if bibformat_mp # map
-    format << "MW" if bibformat_mw # manuscript
-    format << "BK" if bibformat_bk # book
-    format << "DB" if bibformat_db # databases
-    format << "XA" if bibformat_xa # archival item
+    format << 'AJ' if bibformat_jn # journal
+    format << 'CF' if bibformat_cf # data file
+    format << 'VM' if bibformat_vm # visual material
+    format << 'VP' if bibformat_vp # video
+    format << 'MS' if bibformat_mu # musical score
+    format << 'AU' if bibformat_au # audio
+    format << 'MP' if bibformat_mp # map
+    format << 'MW' if bibformat_mw # manuscript
+    format << 'BK' if bibformat_bk # book
+    format << 'DB' if bibformat_db # databases
+    format << 'XA' if bibformat_xa # archival item
     format
   end
 

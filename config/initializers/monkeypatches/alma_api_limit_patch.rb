@@ -20,7 +20,9 @@ module AlmaApiLimitPatch
     def check_api_limit(response)
       remaining_requests = response.headers['x-exl-api-remaining'].to_i
       api_limit = Rails.configuration.alma['api_limit']
-      Honeybadger.notify("Approaching Alma API limit, #{remaining_requests} requests remaining") if remaining_requests < api_limit
+      if remaining_requests < api_limit
+        Honeybadger.notify("Approaching Alma API limit, #{remaining_requests} requests remaining")
+      end
     end
 end
 

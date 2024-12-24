@@ -115,8 +115,8 @@ class DumpFile < ActiveRecord::Base
   end
 
   def decompressed_filename(entry)
-    file_name, decompress_extension = entry.full_name.split(".")
-    decompress_extension ||= "xml"
-    ["full_reindex_file_unzip_#{file_name}", "." + decompress_extension]
+    file_name, decompress_extension = entry.full_name.split('.')
+    decompress_extension ||= 'xml'
+    ["full_reindex_file_unzip_#{file_name}", '.' + decompress_extension]
   end
 end

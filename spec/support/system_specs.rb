@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require "capybara/rspec"
-require "selenium-webdriver"
+require 'capybara/rspec'
+require 'selenium-webdriver'
 
 Capybara.default_max_wait_time = 60
 Capybara.server = :puma, { Silent: true }
@@ -13,7 +13,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    if ENV["RUN_IN_BROWSER"]
+    if ENV['RUN_IN_BROWSER']
       driven_by(:selenium_chrome)
     else
       driven_by(:selenium_chrome_headless)

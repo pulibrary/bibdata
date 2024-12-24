@@ -10,6 +10,7 @@ RSpec.describe ElectronicLocation, type: :model do
       iiif_manifest_uris:
     )
   end
+
   let(:subfields) do
     [
       {

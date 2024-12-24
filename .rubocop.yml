@@ -1,43 +1,14 @@
 inherit_from: .rubocop_todo.yml
 
-require: rubocop-rspec
-
-inherit_gem:
-  bixby: bixby_default.yml
-
-Rails:
-  Enabled: true
-
-Rails/Date:
-  Enabled: false
-
-# This cop has many false positives with objects
-# from the ruby-marc gem.  Many of these objects
-# have an `include?` method but not an `exclude?`
-Rails/NegateInclude:
-  Enabled: false
-
-Rails/RakeEnvironment:
-  Exclude:
-    - lib/tasks/*
-
-Rails/RedundantPresenceValidationOnBelongsTo:
-  Exclude:
-    - 'app/models/dump.rb'
-
-Rails/TimeZone:
-  Enabled: false
-
-Rails/UnknownEnv:
-  Environments:
-    - production
-    - staging
-    - development
-    - test
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
 
 AllCops:
   DisplayCopNames: true
   NewCops: enable
+  TargetRubyVersion: 3.2
   Exclude:
     - 'db/**/*'
     - 'bin/*'
@@ -64,6 +35,10 @@ Style/MethodDefParentheses:
 Style/NumericPredicate:
   Enabled: false
 
+Style/FormatString:
+  Exclude:
+    - 'marc_to_solr/lib/princeton_marc.rb'
+
 Layout/LineLength:
   Exclude:
     - 'spec/**/*'
@@ -86,6 +61,7 @@ RSpec/DescribeClass:
   Exclude:
     - 'spec/db/seeds_spec.rb'
     - 'spec/marc_to_solr/**/*'
+    - 'spec/system/location_views_associated_links_spec.rb'
 
 RSpec/ExampleLength:
   Enabled: false

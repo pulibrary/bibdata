@@ -1,6 +1,7 @@
 class AlmaAdapter
   class AlmaItem < SimpleDelegator
     attr_reader :item
+
     # @param item [Alma::BibItem]
     def initialize(item)
       @item = item
@@ -9,10 +10,11 @@ class AlmaAdapter
 
     def self.reserve_location?(library_code, location_code)
       return false if library_code.nil? || location_code.nil?
+
       Rails.cache.fetch("library_#{library_code}_#{location_code}", expires_in: 30.minutes) do
         # We could get this information from our location table if we want to avoid the Alma API call.
         record = Alma::Location.find(library_code:, location_code:)
-        record.response.dig("fulfillment_unit", "value") == "Reserves"
+        record.response.dig('fulfillment_unit', 'value') == 'Reserves'
       end
     end
 
@@ -22,6 +24,7 @@ class AlmaAdapter
 
     def composite_temp_location
       return unless in_temp_location?
+
       "#{temp_library}$#{temp_location}"
     end
 
@@ -47,9 +50,9 @@ class AlmaAdapter
 
     def composite_library_label_display
       if in_temp_location?
-        holding_data.dig("temp_library", "desc")
+        holding_data.dig('temp_library', 'desc')
       else
-        item_data.dig("library", "desc")
+        item_data.dig('library', 'desc')
       end
     end
 
@@ -61,8 +64,9 @@ class AlmaAdapter
     #   /items endpoint. In migrating to Alma this is largely the policy value
     #   with a fallback.
     def type
-      return "Gen" if item_data["policy"]["value"].blank?
-      item_data["policy"]["value"]
+      return 'Gen' if item_data['policy']['value'].blank?
+
+      item_data['policy']['value']
     end
 
     # 876 field used for enrichment in
@@ -86,99 +90,104 @@ class AlmaAdapter
 
     def recap_876_fields
       return [] unless recap_item?
+
       [
         MARC::Subfield.new('h', recap_use_restriction),
         MARC::Subfield.new('x', group_designation),
         MARC::Subfield.new('z', recap_customer_code),
         MARC::Subfield.new('j', recap_status),
-        MARC::Subfield.new('l', "RECAP"),
+        MARC::Subfield.new('l', 'RECAP'),
         MARC::Subfield.new('k', item.holding_library)
       ]
     end
 
     # Status isn't used for recap records, but 876j is a required field.
     def recap_status
-      "Not Used"
+      'Not Used'
     end
 
     def enum_cron
       return if enumeration.blank? && chronology.blank?
       return enumeration if chronology.blank?
       return chronology if enumeration.blank?
+
       "#{enumeration} (#{chronology})"
     end
 
     def enumeration
       enums = []
-      enums << item.item_data["enumeration_a"]
-      enums << item.item_data["enumeration_b"]
-      enums << item.item_data["enumeration_c"]
-      enums << item.item_data["enumeration_d"]
-      enums << item.item_data["enumeration_e"]
-      enums << item.item_data["enumeration_f"]
-      enums << item.item_data["enumeration_g"]
-      enums << item.item_data["enumeration_h"]
-      enums.compact_blank.join(", ")
+      enums << item.item_data['enumeration_a']
+      enums << item.item_data['enumeration_b']
+      enums << item.item_data['enumeration_c']
+      enums << item.item_data['enumeration_d']
+      enums << item.item_data['enumeration_e']
+      enums << item.item_data['enumeration_f']
+      enums << item.item_data['enumeration_g']
+      enums << item.item_data['enumeration_h']
+      enums.compact_blank.join(', ')
     end
 
     def chronology
       chrons = []
-      chrons << item.item_data["chronology_i"]
-      chrons << item.item_data["chronology_j"]
-      chrons << item.item_data["chronology_k"]
-      chrons << item.item_data["chronology_l"]
-      chrons << item.item_data["chronology_m"]
-      chrons.compact_blank.join(", ")
+      chrons << item.item_data['chronology_i']
+      chrons << item.item_data['chronology_j']
+      chrons << item.item_data['chronology_k']
+      chrons << item.item_data['chronology_l']
+      chrons << item.item_data['chronology_m']
+      chrons.compact_blank.join(', ')
     end
 
     def holding_id
-      item.holding_data["holding_id"]
+      item.holding_data['holding_id']
     end
 
     def item_id
-      item.item_data["pid"]
+      item.item_data['pid']
     end
 
     def barcode
-      item.item_data["barcode"]
+      item.item_data['barcode']
     end
 
     def copy_number
-      item.holding_data["copy_id"]
+      item.holding_data['copy_id']
     end
 
     def call_number
-      item.holding_data["call_number"]
+      item.holding_data['call_number']
     end
 
     def cdl?
-      item.item_data.dig("work_order_type", "value") == "CDL"
+      item.item_data.dig('work_order_type', 'value') == 'CDL'
     end
 
     def recap_customer_code
       return unless recap_item?
-      return "PG" if item.location[0].casecmp("x").zero?
+      return 'PG' if item.location[0].casecmp('x').zero?
+
       item.location.upcase
     end
 
     def recap_use_restriction
       return unless recap_item?
+
       case item.location
       when *in_library_recap_groups
-        "In Library Use"
+        'In Library Use'
       when *supervised_recap_groups
-        "Supervised Use"
+        'Supervised Use'
       end
     end
 
     def group_designation
       return unless recap_item?
-      return "Committed" if item_cgd_committed?
+      return 'Committed' if item_cgd_committed?
+
       case item.location
       when 'pv', 'pa', 'gp', 'qk', 'pf'
-        "Shared"
+        'Shared'
       when *(in_library_recap_groups_and_private + supervised_recap_groups + no_access_recap_groups)
-        "Private"
+        'Private'
       end
     end
 
@@ -194,7 +203,7 @@ class AlmaAdapter
     end
 
     def default_recap_groups
-      ["pa", "gp", "qk", "pf"]
+      %w[pa gp qk pf]
     end
 
     def in_library_recap_groups
@@ -206,47 +215,47 @@ class AlmaAdapter
     end
 
     def in_library_recap_groups_and_private
-      ['pj', 'pk', 'pl', 'pm', 'pn', 'pt']
+      %w[pj pk pl pm pn pt]
     end
 
     def supervised_recap_groups
-      ["pb", "ph", "ps", "pw", "pz", "xc", "xg", "xm", "xn", "xp", "xr", "xw", "xx", "xgr", "xcr", "phr", "xrr", "xmr"]
+      %w[pb ph ps pw pz xc xg xm xn xp xr xw xx xgr xcr phr xrr xmr]
     end
 
     def no_access_recap_groups
-      ['jq', 'pe', 'pg', 'ph', 'pq', 'qb', 'ql', 'qv', 'qx']
+      %w[jq pe pg ph pq qb ql qv qx]
     end
 
     # Returns a JSON representation used for the /items endpoint.
     def as_json
-      item["item_data"].merge(
-        "id" => item_id,
-        "copy_number" => copy_number.to_i,
-        "temp_location" => composite_temp_location,
-        "perm_location" => composite_perm_location,
-        "item_type" => type,
-        "cdl" => cdl?
+      item['item_data'].merge(
+        'id' => item_id,
+        'copy_number' => copy_number.to_i,
+        'temp_location' => composite_temp_location,
+        'perm_location' => composite_perm_location,
+        'item_type' => type,
+        'cdl' => cdl?
       )
     end
 
     def availability_summary
       status = calculate_status
       {
-        barcode: item_data["barcode"],
-        id: item_data["pid"],
+        barcode: item_data['barcode'],
+        id: item_data['pid'],
         holding_id:,
-        copy_number: holding_data["copy_id"],
+        copy_number: holding_data['copy_id'],
         status: status[:code],        # Available
         status_label: status[:label], # Item in place
         status_source: status[:source], # e.g. work_order, process_type, base_status
         process_type: status[:process_type],
-        on_reserve: on_reserve? ? "Y" : "N",
+        on_reserve: on_reserve? ? 'Y' : 'N',
         item_type:, # e.g., Gen
         pickup_location_id: library, # firestone
         pickup_location_code: library, # firestone
         location: composite_location, # firestone$stacks
         label: holding_location_label(composite_location), # Firestore Library
-        description: item_data["description"], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
+        description: item_data['description'], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
         enum_display: enumeration, # in Alma there are many enumerations
         chron_display: chronology # in Alma there are many chronologies
       }.merge(temp_library_availability_summary)
@@ -267,7 +276,7 @@ class AlmaAdapter
     end
 
     def item_cgd_committed?
-      item_committed_to_retain == "true" && committed_retention_reasons.include?(item_retention_reason)
+      item_committed_to_retain == 'true' && committed_retention_reasons.include?(item_retention_reason)
     end
 
     def committed_retention_reasons
@@ -275,62 +284,63 @@ class AlmaAdapter
     end
 
     def item_retention_reason
-      item_data.dig("retention_reason", "value")
+      item_data.dig('retention_reason', 'value')
     end
 
     def item_committed_to_retain
-      item_data.dig("committed_to_retain", "value")
+      item_data.dig('committed_to_retain', 'value')
     end
 
     def item_type
-      item_data.dig("policy", "value")
+      item_data.dig('policy', 'value')
     end
 
     def calculate_status
-      return status_from_work_order_type if item_data.dig("work_order_type", "value").present?
-      return status_from_process_type if item_data.dig("process_type", "value").present?
+      return status_from_work_order_type if item_data.dig('work_order_type', 'value').present?
+      return status_from_process_type if item_data.dig('process_type', 'value').present?
+
       status_from_base_status
     end
 
     def status_from_work_order_type
-      value = item_data["work_order_type"]["value"]
-      desc = item_data["work_order_type"]["desc"]
+      value = item_data['work_order_type']['value']
+      desc = item_data['work_order_type']['desc']
 
       # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
       # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
-      code = if value.in?(["Bind", "Pres", "CDL", "AcqWorkOrder", "CollDev", "HMT"])
-               "Unavailable"
+      code = if value.in?(%w[Bind Pres CDL AcqWorkOrder CollDev HMT])
+               'Unavailable'
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
-               "Available"
+               'Available'
              end
-      { code:, label: desc, source: "work_order" }
+      { code:, label: desc, source: 'work_order' }
     end
 
     def status_from_process_type
       # For now we return "Unavailable" for any item that has a process_type.
       # You can see a list of all the possible values here:
       #   https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      value = item_data.dig("process_type", "value")
-      desc = item_data.dig("process_type", "desc")
+      value = item_data.dig('process_type', 'value')
+      desc = item_data.dig('process_type', 'desc')
 
-      { code: "Unavailable", label: desc, source: "process_type", process_type: value }
+      { code: 'Unavailable', label: desc, source: 'process_type', process_type: value }
     end
 
     def status_from_base_status
-      value = item_data.dig("base_status", "value")
-      desc = item_data.dig("base_status", "desc")
+      value = item_data.dig('base_status', 'value')
+      desc = item_data.dig('base_status', 'desc')
 
       # Source for values: https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
-      code = value == "1" ? "Available" : "Unavailable"
-      { code:, label: desc, source: "base_status" }
+      code = value == '1' ? 'Available' : 'Unavailable'
+      { code:, label: desc, source: 'base_status' }
     end
 
     # Create the label by retrieving the value from the holding library label (external_name in Alma)
     # Add the library label in front if it exists
     def holding_location_label(code)
       label = HoldingLocation.find_by(code:)&.label
-      [composite_library_label_display, label].select(&:present?).join(" - ")
+      [composite_library_label_display, label].select(&:present?).join(' - ')
     end
   end
 end

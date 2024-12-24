@@ -22,7 +22,10 @@ module IndigenousLanguages
     def fetch_subject_headings_from_file
       column_name = 'LCSH for indigenous languages'
       csv = CSV.read(File.join(File.dirname(__FILE__), 'augment_the_facet', 'indigenous_languages_western_hemisphere_lcsh.csv'), headers: true)
-      raise "Invalid CSV format, must have a column named \"#{column_name}\" containing LCSH" unless csv.headers.include? column_name
+      unless csv.headers.include? column_name
+        raise "Invalid CSV format, must have a column named \"#{column_name}\" containing LCSH"
+      end
+
       csv[column_name]
     end
 

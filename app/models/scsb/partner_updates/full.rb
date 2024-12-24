@@ -7,9 +7,9 @@ module Scsb
 
       def process_full_files
         prepare_directory
-        download_and_process_full(inst: "NYPL", prefix: 'scsbfull_nypl_')
-        download_and_process_full(inst: "CUL", prefix: 'scsbfull_cul_')
-        download_and_process_full(inst: "HL", prefix: 'scsbfull_hl_')
+        download_and_process_full(inst: 'NYPL', prefix: 'scsbfull_nypl_')
+        download_and_process_full(inst: 'CUL', prefix: 'scsbfull_cul_')
+        download_and_process_full(inst: 'HL', prefix: 'scsbfull_hl_')
         set_generated_date
         log_record_fixes
       end
@@ -32,7 +32,7 @@ module Scsb
         matches_expected_collections = false
         if file
           csv = CSV.read(file, headers: true)
-          matches_expected_collections = csv["Collection Group Id(s)"].first == '1*2*5*6'
+          matches_expected_collections = csv['Collection Group Id(s)'].first == '1*2*5*6'
           unless matches_expected_collections
             add_error(message: "Metadata file indicates that dump for #{inst} does not include the correct Group IDs, not processing. Group ids: #{csv['Collection Group Id(s)'].first}")
           end
