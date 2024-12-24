@@ -3,9 +3,15 @@ require 'rails_helper'
 RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
   include ActiveJob::TestHelper
   include_context 'scsb_partner_updates_full'
-
-  it 'can be instantiated' do
-    described_class.new(dump:, dump_file_type: :something)
+  around do |example|
+    Sidekiq::Testing.inline!
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.add Sidekiq::Batch::Server
+    end
+    example.run
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.remove Sidekiq::Batch::Server
+    end
   end
 
   context 'with files' do
@@ -32,11 +38,13 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
           perform_enqueued_jobs
           perform_enqueued_jobs
           perform_enqueued_jobs
+          perform_enqueued_jobs
           dump.reload
           expect(dump.event.error).to include("Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6")
         end
         it 'does not process files that include private records' do
           partner_full_update.process_full_files
+          perform_enqueued_jobs
           perform_enqueued_jobs
           perform_enqueued_jobs
           perform_enqueued_jobs
@@ -67,6 +75,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
 
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
         partner_full_update.process_full_files
+        perform_enqueued_jobs
         perform_enqueued_jobs
         perform_enqueued_jobs
         perform_enqueued_jobs

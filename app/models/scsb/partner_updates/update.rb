@@ -39,6 +39,7 @@ module Scsb
       end
 
       def self.attach_cleaned_dump_file(file:, dump_id:, file_prefix:, dump_file_type: :recap_records_full)
+        
         scsb_file_dir = ENV['SCSB_FILE_DIR']
         @inv_xml = []
         @tab_newline = []
@@ -48,10 +49,11 @@ module Scsb
         original_filename = File.basename(file)
         reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
         new_filepath = "#{scsb_file_dir}/#{file_prefix}#{original_filename}"
+        puts("Attach to dump file original_file_path: #{file}, new_filepath: #{new_filepath}")
         writer = MARC::XMLWriter.new(new_filepath)
         reader.each { |record| writer.write(process_record(record)) }
         writer.close
-        File.unlink(file)
+        # File.unlink(file)
         Dump.attach_dump_file(dump_id:, filepath: new_filepath, dump_file_type:)
       end
 

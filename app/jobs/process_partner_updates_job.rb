@@ -5,13 +5,13 @@ class ProcessPartnerUpdatesJob < ApplicationJob
     update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
     files.each do |file|
       xml_files = Scsb::PartnerUpdates::Update.extract_files(file:, update_directory:)
-      attach_xml_files(xml_files:, dump_id:, file_prefix:)
-    end
-  end
-
-  def attach_xml_files(xml_files:, dump_id:, file_prefix:)
-    xml_files.each do |xml_file|
-      Scsb::PartnerUpdates::Update.attach_cleaned_dump_file(file: xml_file, dump_id:, file_prefix:, dump_file_type: :recap_records_full)
+      batch = Sidekiq::Batch.new
+      batch.on(:success, Scsb::PartnerUpdates::AttachXmlFileJobCallback, xml_files:)
+      batch.jobs do
+        xml_files.each do |xml_file|
+          AttachXmlFileJob.perform_later(file: xml_file, dump_id:, file_prefix:, dump_file_type: :recap_records_full)
+        end
+      end
     end
   end
 end
