@@ -1,12 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe DeleteEventsJob, type: :job do
-  describe "#perform" do
+  describe '#perform' do
     let(:copy_path) { File.join('tmp', 'delete_files_job') }
+
     after { FileUtils.rmtree(copy_path) }
 
-    context "for full dump events with start date older than 2 months" do
-      it "deletes full dump Events, their Dumps, DumpFiles, and files on disk" do
+    context 'for full dump events with start date older than 2 months' do
+      it 'deletes full dump Events, their Dumps, DumpFiles, and files on disk' do
         old_event = FactoryBot.create(:full_dump_event).tap do |e|
           tmp_dump_files(e)
           e.start = 6.months.ago - 1.day
@@ -31,8 +32,8 @@ RSpec.describe DeleteEventsJob, type: :job do
       end
     end
 
-    context "for incremental dump events with start date older than 2 months" do
-      it "deletes incremental dump Events, their Dumps, DumpFiles, and files on disk" do
+    context 'for incremental dump events with start date older than 2 months' do
+      it 'deletes incremental dump Events, their Dumps, DumpFiles, and files on disk' do
         old_event = FactoryBot.create(:incremental_dump_event).tap do |e|
           tmp_dump_files(e)
           e.start = 2.months.ago - 1.day
@@ -56,8 +57,9 @@ RSpec.describe DeleteEventsJob, type: :job do
         expect(Dir.empty?(File.join(copy_path, full_event.id.to_s))).to be false
       end
     end
-    context "for partner ReCAP dump events with start date older than 2 months" do
-      it "deletes daily partner ReCAP dump Events, their Dumps, DumpFiles, and files on disk" do
+
+    context 'for partner ReCAP dump events with start date older than 2 months' do
+      it 'deletes daily partner ReCAP dump Events, their Dumps, DumpFiles, and files on disk' do
         old_partner_recap_event = FactoryBot.create(:partner_recap_daily_event).tap do |e|
           tmp_dump_files(e)
           e.start = 2.months.ago - 1.day
@@ -80,7 +82,8 @@ RSpec.describe DeleteEventsJob, type: :job do
         expect(Dir.empty?(File.join(copy_path, new_partner_recap_daily_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, full_partner_recap_event.id.to_s))).to be false
       end
-      it "deletes partner ReCAP full dump Events, their Dumps, DumpFiles, and files on disk" do
+
+      it 'deletes partner ReCAP full dump Events, their Dumps, DumpFiles, and files on disk' do
         old_full_partner_recap_event = FactoryBot.create(:partner_recap_full_event).tap do |e|
           tmp_dump_files(e)
           e.start = 6.months.ago - 1.day
@@ -105,7 +108,7 @@ RSpec.describe DeleteEventsJob, type: :job do
       end
     end
 
-    context "for full dump events that are still associated with an index manager" do
+    context 'for full dump events that are still associated with an index manager' do
       let!(:index_manager) { FactoryBot.create(:index_manager, dump_in_progress: old_event.dump) }
       let(:old_event) do
         FactoryBot.create(:full_dump_event).tap do |e|

@@ -36,21 +36,21 @@ class ElectronicAccessLink
     return unless @url_key
     return @url if @url
 
-    if !@url_key.valid_encoding?
-      @logger.error "#{@bib_id} - invalid character encoding for 856$u value (invalid bytes replaced by *): #{@url_key.scrub('*')}"
-      @url_key = nil
-    else
+    if @url_key.valid_encoding?
       @url_key = normal_url.to_s
-      if !@url_key&.match?(URI.regexp)
+      if !@url_key&.match?(URI::DEFAULT_PARSER.make_regexp)
         @logger.error "#{@bib_id} - invalid URL for 856$u value: #{@url_key}"
         @url_key = nil
-      elsif @url_key.start_with?(/http:\/[A-Za-z]/)
+      elsif @url_key.start_with?(%r{http:/[A-Za-z]})
         # Misleading URL "http:/" instead of "http://"
         @logger.error "#{@bib_id} - invalid URL for 856$u value (http:/): #{@url_key}"
         @url_key = nil
       else
         @url = URI.parse(@url_key)
       end
+    else
+      @logger.error "#{@bib_id} - invalid character encoding for 856$u value (invalid bytes replaced by *): #{@url_key.scrub('*')}"
+      @url_key = nil
     end
   rescue URI::InvalidURIError
     @logger.error "#{@bib_id} - invalid URL for 856$u value: #{@url_key}"
@@ -71,6 +71,7 @@ class ElectronicAccessLink
   # @return [Array<String>]
   def url_labels
     return @url_labels if @url_labels
+
     # Build the URL
     url_labels = [@anchor_text] # anchor text is first element
     url_labels << @z_label if @z_label # optional 2nd element if z
@@ -109,6 +110,7 @@ class ElectronicAccessLink
 
       # If a valid URL was extracted from the MARC metadata...
       return unless url&.host
+
       @anchor_text = url.host if @anchor_text.blank?
     end
 end

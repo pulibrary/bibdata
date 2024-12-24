@@ -1,11 +1,11 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe AwsSqsPoller do
   include ActiveJob::TestHelper
 
   let(:poller_mock) do
     Aws::SQS::QueuePoller.new(
-      "https://example.com",
+      'https://example.com',
       idle_timeout: 1 # stop the polling in test after 1 second so we can run expectations; seems to work as long as we send a final empty message
     )
   end
@@ -32,14 +32,15 @@ RSpec.describe AwsSqsPoller do
     Aws.config.clear
   end
 
-  context "when the process is killed" do
+  context 'when the process is killed' do
     let(:poller_mock) do
       Aws::SQS::QueuePoller.new(
-        "https://example.com"
+        'https://example.com'
       )
     end
-    let(:job_id) { "1434818870006421" }
+    let(:job_id) { '1434818870006421' }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
+
     it "doesn't throw an error, logs it, and ends polling" do
       # Add the default signal handler back, RSpec's doesn't kill the process.
       old_signal_handler = Signal.trap 'TERM', 'SYSTEM_DEFAULT'
@@ -57,11 +58,11 @@ RSpec.describe AwsSqsPoller do
     end
   end
 
-  context "when a full dump job comes through" do
-    let(:job_id) { "1434818870006421" }
+  context 'when a full dump job comes through' do
+    let(:job_id) { '1434818870006421' }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
 
-    it "Creates an event and kicks off a background job" do
+    it 'Creates an event and kicks off a background job' do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
@@ -73,16 +74,17 @@ RSpec.describe AwsSqsPoller do
       expect(Dump.first.dump_type).to eq('full_dump')
       event = Dump.first.event
       expect(event.message_body).to eq message_body
-      expect(event.start).to eq "2020-12-15T19:56:37.694Z"
-      expect(event.finish).to eq "2020-12-15T19:56:55.145Z"
+      expect(event.start).to eq '2020-12-15T19:56:37.694Z'
+      expect(event.finish).to eq '2020-12-15T19:56:55.145Z'
       expect(Dump.first.generated_date).to eq event.start
     end
   end
 
-  context "when a incremental dump job comes through" do
-    let(:job_id) { "6587815790006421" }
+  context 'when a incremental dump job comes through' do
+    let(:job_id) { '6587815790006421' }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
-    context "with a duplicate event" do
+
+    context 'with a duplicate event' do
       before do
         Event.create!(message_body:)
       end
@@ -90,13 +92,13 @@ RSpec.describe AwsSqsPoller do
       it "doesn't raise an error or kicks off a background job" do
         allow(Rails.logger).to receive(:error)
         expect { described_class.poll }.not_to have_enqueued_job(
-        AlmaDumpTransferJob
-      )
-        expect(Rails.logger).to have_received(:error).with("Rescue from AlmaDuplicateEventError with alma_process_id: 6587815790006421")
+          AlmaDumpTransferJob
+        )
+        expect(Rails.logger).to have_received(:error).with('Rescue from AlmaDuplicateEventError with alma_process_id: 6587815790006421')
       end
     end
 
-    it "Creates an event and kicks off a background job" do
+    it 'Creates an event and kicks off a background job' do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
@@ -107,11 +109,12 @@ RSpec.describe AwsSqsPoller do
       expect(Dump.first.dump_type).to eq 'changed_records'
       event = Dump.first.event
       expect(event.message_body).to eq message_body
-      expect(event.start).to eq "2021-02-08T17:03:52.894Z"
-      expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
+      expect(event.start).to eq '2021-02-08T17:03:52.894Z'
+      expect(event.finish).to eq '2021-02-08T20:40:41.941Z'
       expect(Dump.first.generated_date).to eq event.start
     end
-    it "creates an event with alma job status COMPLETED_SUCCESS" do
+
+    it 'creates an event with alma job status COMPLETED_SUCCESS' do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
@@ -119,15 +122,15 @@ RSpec.describe AwsSqsPoller do
         dump: instance_of(Dump)
       )
       event = Dump.first.event
-      expect(event.alma_job_status).to eq "COMPLETED_SUCCESS"
+      expect(event.alma_job_status).to eq 'COMPLETED_SUCCESS'
     end
   end
 
-  context "when an alma job completes with errors an incremental dump job comes through" do
-    let(:job_id) { "38205463100006421" }
+  context 'when an alma job completes with errors an incremental dump job comes through' do
+    let(:job_id) { '38205463100006421' }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump_alma_job_failed.json'))).to_json }
 
-    it "creates an event with alma job status COMPLETED_FAILED" do
+    it 'creates an event with alma job status COMPLETED_FAILED' do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
@@ -135,7 +138,7 @@ RSpec.describe AwsSqsPoller do
         dump: instance_of(Dump)
       )
       event = Dump.first.event
-      expect(event.alma_job_status).to eq "COMPLETED_FAILED"
+      expect(event.alma_job_status).to eq 'COMPLETED_FAILED'
     end
 
     it 'logs error and sends to honeybadger' do
@@ -143,15 +146,15 @@ RSpec.describe AwsSqsPoller do
       allow(Rails.logger).to receive(:error)
       described_class.poll
       expect(Honeybadger).to have_received(:notify).with(instance_of(AlmaDumpFactory::AlmaDumpError))
-      expect(Rails.logger).to have_received(:error).with("Alma job completed with invalid status. Alma status: COMPLETED_FAILED. Job id: 38205463100006421")
+      expect(Rails.logger).to have_received(:error).with('Alma job completed with invalid status. Alma status: COMPLETED_FAILED. Job id: 38205463100006421')
     end
   end
 
-  context "when a ReCAP dump comes through" do
-    let(:job_id) { "6587815790006421" }
+  context 'when a ReCAP dump comes through' do
+    let(:job_id) { '6587815790006421' }
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json'))).to_json }
 
-    it "Creates an event and kicks off a background job" do
+    it 'Creates an event and kicks off a background job' do
       expect { described_class.poll }.to have_enqueued_job(
         AlmaDumpTransferJob
       ).with(
@@ -160,19 +163,19 @@ RSpec.describe AwsSqsPoller do
       )
 
       expect(Dump.all.count).to eq 1
-      expect(Dump.first.dump_type).to eq "princeton_recap"
+      expect(Dump.first.dump_type).to eq 'princeton_recap'
       event = Dump.first.event
       expect(event.message_body).to eq message_body
-      expect(event.start).to eq "2021-02-08T17:03:52.894Z"
-      expect(event.finish).to eq "2021-02-08T20:40:41.941Z"
+      expect(event.start).to eq '2021-02-08T17:03:52.894Z'
+      expect(event.finish).to eq '2021-02-08T20:40:41.941Z'
       expect(Dump.first.generated_date).to eq event.start
     end
   end
 
-  context "when some other job comes through" do
+  context 'when some other job comes through' do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json'))).to_json }
 
-    it "Does nothing" do
+    it 'Does nothing' do
       expect { described_class.poll }.not_to have_enqueued_job
       expect(Dump.all.count).to eq 0
       expect(Event.all.count).to eq 0

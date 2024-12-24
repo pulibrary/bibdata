@@ -1,12 +1,13 @@
 # frozen_string_literal: true
+
 require 'languages'
 require_relative './indigenous_languages'
 
 class LanguageService
   include IndigenousLanguages
   def loc_to_iana(loc)
-    if Languages[loc]&.alpha2.blank? || ["zxx", "mul", "sgn", "und", "|||"].include?(loc)
-      "en"
+    if Languages[loc]&.alpha2.blank? || ['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
+      'en'
     else
       Languages[loc].alpha2.to_s
     end
@@ -14,6 +15,7 @@ class LanguageService
 
   def valid_language_code?(code)
     return false if code.blank?
+
     Languages[code].present? || iso_639_5_include?(code)
   end
 
@@ -69,6 +71,7 @@ class LanguageService
 
     def iso_639_5_name(code)
       return unless iso_639_5_include?(code)
+
       iso639_5_collective_languages.find { |row| row['code'] == code }['Label (English)']
     end
 end

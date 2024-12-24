@@ -1,9 +1,9 @@
 require 'sidekiq/pro/web'
 Rails.application.routes.draw do
-  mount HealthMonitor::Engine, at: "/"
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: "users/sessions" }
+  mount HealthMonitor::Engine, at: '/'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions' }
   resources :dump_files, only: [:show]
-  resources :events, only: [:show, :index, :destroy]
+  resources :events, only: %i[show index destroy]
   resources :dumps, only: [:show]
 
   scope :locations do
@@ -26,7 +26,8 @@ Rails.application.routes.draw do
   get '/barcode', to: 'barcode#index', defaults: { format: :txt }
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
-  get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json }, constraints: { patron_id: /[^\/]+/ }
+  get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json },
+                            constraints: { patron_id: %r{[^/]+} }
 
   require 'sidekiq/web'
   authenticate :user, ->(user) { user.catalog_admin? } do

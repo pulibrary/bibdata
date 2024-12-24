@@ -10,6 +10,7 @@ class IndexManager < ActiveRecord::Base
     solr_url ||= rebuild_solr_url
     manager = self.for(solr_url)
     return false if manager.in_progress?
+
     manager.last_dump_completed = nil
     manager.save
     manager.wipe!
@@ -21,15 +22,16 @@ class IndexManager < ActiveRecord::Base
     "#{Rails.application.config.solr['url']}-rebuild"
   end
 
-  belongs_to :dump_in_progress, class_name: "Dump"
-  belongs_to :last_dump_completed, class_name: "Dump"
+  belongs_to :dump_in_progress, class_name: 'Dump'
+  belongs_to :last_dump_completed, class_name: 'Dump'
 
   def wipe!
-    RSolr.connect(url: solr_collection).delete_by_query("*:*")
+    RSolr.connect(url: solr_collection).delete_by_query('*:*')
   end
 
   def index_next_dump!
     return unless next_dump
+
     self.dump_in_progress = next_dump
     self.in_progress = true
     save
@@ -41,28 +43,27 @@ class IndexManager < ActiveRecord::Base
   end
 
   def index_remaining!
-    logger.warn "IndexManager is in progress" if in_progress?
+    logger.warn 'IndexManager is in progress' if in_progress?
 
     # Don't do anything unless there's a job to index and we're not already
     # indexing.
     return unless next_dump && !in_progress?
+
     save!
     # Create an overall catchup batch.
     batch = Sidekiq::Batch.new
-    batch.on(:success, "IndexManager::Workflow#indexed_remaining", 'index_manager_id' => id)
+    batch.on(:success, 'IndexManager::Workflow#indexed_remaining', 'index_manager_id' => id)
     batch.description = "Performing catch-up index into #{solr_collection}"
     batch.jobs do
       IndexRemainingDumpsJob.perform_async(id)
     end
   end
 
-  def generate_batch
+  def generate_batch(&)
     batch = Sidekiq::Batch.new
     batch.on(:success, IndexManager::Workflow, 'dump_id' => next_dump.id, 'index_manager_id' => id)
     batch.description = "Indexing Dump #{next_dump.id} into #{solr_collection}"
-    batch.jobs do
-      yield
-    end
+    batch.jobs(&)
   end
 
   def next_dump
@@ -77,19 +78,19 @@ class IndexManager < ActiveRecord::Base
   end
 
   def recent_full_dump
-    Dump.full_dump.joins(:event).order("events.start" => "DESC").first
+    Dump.full_dump.joins(:event).order('events.start' => 'DESC').first
   end
 
   def first_incremental
-    Dump.changed_records.joins(:event).order("events.start" => "ASC").first
+    Dump.changed_records.joins(:event).order('events.start' => 'ASC').first
   end
 
   def previous_to_full_incremental
-    Dump.changed_records.joins(:event).where("events.start < ?", last_dump_completed.event.start.to_s).where.not(id: last_dump_completed.id).order("events.start" => "DESC").first
+    Dump.changed_records.joins(:event).where('events.start < ?', last_dump_completed.event.start.to_s).where.not(id: last_dump_completed.id).order('events.start' => 'DESC').first
   end
 
   def next_incremental
-    incremental_dump = Dump.changed_records.joins(:event).where("events.start": last_dump_completed.event.start..Float::INFINITY).where.not(id: last_dump_completed.id).order("events.start" => "ASC").first
+    incremental_dump = Dump.changed_records.joins(:event).where('events.start': last_dump_completed.event.start..Float::INFINITY).where.not(id: last_dump_completed.id).order('events.start' => 'ASC').first
     if incremental_dump&.dump_files&.empty?
       self.last_dump_completed = incremental_dump
       incremental_dump = next_incremental
@@ -109,6 +110,7 @@ class IndexManager < ActiveRecord::Base
       # dumps.
       if status.parent_bid
         return unless index_manager.next_dump
+
         overall = Sidekiq::Batch.new(status.parent_bid)
         overall.jobs do
           index_manager.index_next_dump!

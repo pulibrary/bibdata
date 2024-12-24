@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
 
   def after_sign_out_path_for(_resource_or_scope)
-    request.referrer
+    request.referer
   end
 
   def handle_alma_exception(exception:, message:)

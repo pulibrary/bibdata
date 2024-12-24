@@ -25,11 +25,11 @@ class ElectronicLocation
   end
 
   def uri
-    @subfields.flat_map { |x| x["u"] }.compact.first
+    @subfields.flat_map { |x| x['u'] }.compact.first
   end
 
   def label
-    @subfields.flat_map { |x| x["y"] }.compact.first || uri
+    @subfields.flat_map { |x| x['y'] }.compact.first || uri
   end
 
   private

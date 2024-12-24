@@ -13,8 +13,8 @@ class ActionNoteBuilder
     notes = []
 
     @record.fields('583').each do |field|
-      public_note = field.indicator1 == "1"
-      field_link = field["8"]
+      public_note = field.indicator1 == '1'
+      field_link = field['8']
       next unless public_note && (field_link.present? || pulfa_record? || scsb_record?)
 
       notes << { description: description(field), uri: uri(field) }
@@ -26,7 +26,7 @@ class ActionNoteBuilder
   private
 
     def description(field)
-      description = ""
+      description = ''
       description << materials_specified(field)
       description << action(field)
       description << action_interval(field)
@@ -35,19 +35,19 @@ class ActionNoteBuilder
     end
 
     def uri(field)
-      return '' if field["u"].blank?
+      return '' if field['u'].blank?
 
-      field["u"].strip
+      field['u'].strip
     end
 
     def action(field)
-      return '' if field["a"].blank?
+      return '' if field['a'].blank?
 
-      field["a"]&.upcase_first
+      field['a']&.upcase_first
     end
 
     def action_interval(field)
-      return '' if field["d"].blank?
+      return '' if field['d'].blank?
 
       " #{field['d']}"
     end
@@ -70,13 +70,13 @@ class ActionNoteBuilder
     end
 
     def institution(field)
-      return '' if field["5"].blank?
+      return '' if field['5'].blank?
 
       " (#{field['5']})"
     end
 
     def materials_specified(field)
-      return '' if field["3"].blank?
+      return '' if field['3'].blank?
 
       "#{field['3']}: "
     end

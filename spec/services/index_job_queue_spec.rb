@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe IndexJobQueue, type: :service do
   subject(:index_job_queue) { described_class.new(config:, url:) }
+
   let(:config) { Rails.application.config.traject['config'] }
   let(:url) { Rails.application.config.solr['url'] }
   let(:file) { Rails.root.join('spec', 'fixtures', '1234567.mrx') }
@@ -19,16 +20,20 @@ RSpec.describe IndexJobQueue, type: :service do
   end
 
   describe '#add' do
-    let(:index_job) { class_double('IndexJob').as_stubbed_const(transfer_nested_constants: true) }
+    let(:index_job) { class_double(IndexJob).as_stubbed_const(transfer_nested_constants: true) }
+
     before do
       allow(index_job).to receive(:perform_later)
       index_job_queue.add(file:)
     end
+
     it 'enqueues an IndexJob to be performed' do
       expect(index_job).to have_received(:perform_later).with(traject: described_class.traject_path, config:, file:, url:, commit: described_class.traject_commit_settings)
     end
+
     context 'when Solr should not commit after POSTing a single Document' do
       subject(:index_job_queue) { described_class.new(config:, url:, commit: false) }
+
       it 'enqueues an IndexJob to be performed without automatically committing' do
         expect(index_job).to have_received(:perform_later).with(traject: described_class.traject_path, config:, file:, url:, commit: '')
       end

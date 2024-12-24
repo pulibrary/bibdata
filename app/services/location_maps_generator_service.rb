@@ -8,6 +8,7 @@ class LocationMapsGeneratorService
   end
 
   attr_reader :base_path, :logger
+
   def initialize(base_path: Rails.root.join('marc_to_solr', 'translation_maps'), logger: Rails.logger)
     @base_path = base_path
     @logger = logger
@@ -54,14 +55,14 @@ class LocationMapsGeneratorService
     end
 
     def holding_locations_table_exists?
-      if !ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
-        logger.warn("Failed to seed the holding locations for Traject as the database table has not been created. Please invoke bundle exec rake db:create")
-        false
-      else
+      if ActiveRecord::Base.connection.table_exists?('locations_holding_locations')
         true
+      else
+        logger.warn('Failed to seed the holding locations for Traject as the database table has not been created. Please invoke bundle exec rake db:create')
+        false
       end
-    rescue StandardError => database_error
-      logger.warn("Failed to seed the holding locations for Traject due to a database error: #{database_error}.")
+    rescue StandardError => e
+      logger.warn("Failed to seed the holding locations for Traject due to a database error: #{e}.")
       false
     end
 

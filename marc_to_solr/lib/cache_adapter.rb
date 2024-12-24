@@ -22,6 +22,7 @@ class CacheAdapter
   # @return [Object, nil] the value (or nil if no objects have been cached)
   def fetch(key)
     return nil unless @service.cached?(key)
+
     @service.get(key)
   end
 

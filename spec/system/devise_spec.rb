@@ -14,30 +14,30 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
   end
 
   unless ENV['CI']
-    scenario 'Anyone can retrieve an event dump' do
+    it 'Anyone can retrieve an event dump' do
       event = Event.last
       visit "/events/#{event.id}"
-      click_link "Dump"
+      click_link 'Dump'
     end
 
-    scenario "anyone can retrieve JSON feeds for events" do
-      visit "/events.json"
+    it 'anyone can retrieve JSON feeds for events' do
+      visit '/events.json'
     end
 
-    scenario "unauthenticated users can not delete events" do
-      visit "/events"
-      expect(page).not_to have_link "Delete"
+    it 'unauthenticated users can not delete events' do
+      visit '/events'
+      expect(page).not_to have_link 'Delete'
     end
 
-    scenario "only authenticated users can delete events" do
+    it 'only authenticated users can delete events' do
       sign_in FactoryBot.create(:admin), scope: :user
-      visit "/events"
-      expect(page).to have_link "Delete"
+      visit '/events'
+      expect(page).to have_link 'Delete'
     end
   end
 
-  ["libraries", "holding_locations", "delivery_locations"].each_with_index do |data_type, _i|
-    scenario "anyone can retrieve JSON feeds for #{data_type}" do
+  %w[libraries holding_locations delivery_locations].each_with_index do |data_type, _i|
+    it "anyone can retrieve JSON feeds for #{data_type}" do
       visit "/locations/#{data_type}.json"
     end
   end

@@ -6,11 +6,11 @@ module Scsb
           Aws::S3::Client.new(
             region: 'us-east-2',
             credentials: Aws::Credentials.new(
-              ENV['SCSB_S3_PARTNER_ACCESS_KEY'],
-              ENV['SCSB_S3_PARTNER_SECRET_ACCESS_KEY']
+              ENV.fetch('SCSB_S3_PARTNER_ACCESS_KEY', nil),
+              ENV.fetch('SCSB_S3_PARTNER_SECRET_ACCESS_KEY', nil)
             )
           ),
-        s3_bucket_name: ENV['SCSB_S3_PARTNER_BUCKET_NAME']
+        s3_bucket_name: ENV.fetch('SCSB_S3_PARTNER_BUCKET_NAME', nil)
       )
     end
 
@@ -20,11 +20,11 @@ module Scsb
         Aws::S3::Client.new(
           region: 'us-east-2',
           credentials: Aws::Credentials.new(
-            ENV['SCSB_S3_ACCESS_KEY'],
-            ENV['SCSB_S3_SECRET_ACCESS_KEY']
+            ENV.fetch('SCSB_S3_ACCESS_KEY', nil),
+            ENV.fetch('SCSB_S3_SECRET_ACCESS_KEY', nil)
           )
         ),
-        s3_bucket_name: ENV['SCSB_S3_BUCKET_NAME']
+        s3_bucket_name: ENV.fetch('SCSB_S3_BUCKET_NAME', nil)
       )
     end
 
@@ -51,7 +51,7 @@ module Scsb
       object.body
     end
 
-    def upload_file(key:, file_path:, prefix: ENV['SCSB_S3_UPDATES'] || 'data-feed/submitcollections/PUL/cgd_protection')
+    def upload_file(key:, file_path:, prefix: ENV.fetch('SCSB_S3_UPDATES', nil) || 'data-feed/submitcollections/PUL/cgd_protection')
       status = true
       File.open(file_path, 'rb') do |file|
         status && s3_client.put_object(bucket: s3_bucket_name, body: file, key: "#{prefix}/scsb_#{key}")
@@ -70,6 +70,7 @@ module Scsb
       matching_files = list_files(prefix:).select { |obj| obj.key.match?(file_filter) }
       recent_file = matching_files.sort_by(&:last_modified).last
       return nil unless recent_file
+
       fetch_files([recent_file], output_directory).first
     end
 
@@ -88,9 +89,7 @@ module Scsb
           filename = File.basename(obj[:key])
           data = download_file(key: obj.key)
           dest = File.join(output_directory, filename)
-          File.open(dest, 'wb') do |output|
-            output.write(data.read)
-          end
+          File.binwrite(dest, data.read)
           dest
         end
       end

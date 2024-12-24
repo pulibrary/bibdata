@@ -3,6 +3,7 @@ class AlmaAdapter
   # or access the MARC data for an individual record.
   class MarcRecord < SimpleDelegator
     attr_reader :bib, :marc_record
+
     # @param bib [Alma::Bib]
     # @param marc_record [MARC::Record]
     # @note We accept these two separately because parsing a bunch of MARC
@@ -15,7 +16,7 @@ class AlmaAdapter
     end
 
     def suppressed?
-      bib["suppress_from_publishing"] == "true"
+      bib['suppress_from_publishing'] == 'true'
     end
 
     def linked_record_ids
@@ -23,7 +24,7 @@ class AlmaAdapter
         alma_bib_id?(field['w']) && field['t']
       end
       linked_record_fields.map do |field|
-        field["w"]
+        field['w']
       end
     end
 
@@ -35,7 +36,7 @@ class AlmaAdapter
     # Remove source record 852s and 86Xs, to reduce confusion when holding
     # data is added.
     def delete_conflicting_holding_data!
-      marc_record.fields.delete_if { |f| ['852', '866', '867', '868'].include? f.tag }
+      marc_record.fields.delete_if { |f| %w[852 866 867 868].include? f.tag }
     end
 
     # Remove source record 876s. These probably come from a publishing job, and
@@ -64,7 +65,7 @@ class AlmaAdapter
 
     # Pass a specific field code to check if it is an alma id.
     def alma_bib_id?(code)
-      code.to_s.start_with?("99") && code.to_s.end_with?("06421")
+      code.to_s.start_with?('99') && code.to_s.end_with?('06421')
     end
   end
 end

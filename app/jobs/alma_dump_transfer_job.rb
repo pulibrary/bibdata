@@ -14,7 +14,7 @@ class AlmaDumpTransferJob < ApplicationJob
 
     dump.save
 
-    IndexManager.for(Rails.application.config.solr["url"]).index_remaining! if incremental_dump?
+    IndexManager.for(Rails.application.config.solr['url']).index_remaining! if incremental_dump?
   end
 
   def incremental_dump?
@@ -23,7 +23,7 @@ class AlmaDumpTransferJob < ApplicationJob
 
   def find_dump_file_type(dump)
     job_config = find_job_configuration(dump:)
-    job_config["dump_file_type"].downcase.to_sym
+    job_config['dump_file_type'].downcase.to_sym
   end
 
   class AlmaDownloader
@@ -32,6 +32,7 @@ class AlmaDumpTransferJob < ApplicationJob
     end
 
     attr_reader :job_id, :dump_file_type
+
     def initialize(job_id:, dump_file_type:)
       @job_id = job_id
       @dump_file_type = dump_file_type
@@ -62,7 +63,7 @@ class AlmaDumpTransferJob < ApplicationJob
     end
 
     def remote_base_path
-      Rails.configuration.alma["sftp_alma_base_path"]
+      Rails.configuration.alma['sftp_alma_base_path']
     end
 
     def dump_file_path(remote_path)
@@ -80,7 +81,7 @@ class AlmaDumpTransferJob < ApplicationJob
     # documentation is at
     # https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/080Publishing_and_Inventory_Enrichment#File_name
     def parse_job_id(name)
-      name.split("_")[1]
+      name.split('_')[1]
     end
 
     # Do the actual download from the sftp server
@@ -99,15 +100,15 @@ class AlmaDumpTransferJob < ApplicationJob
     end
 
     def sftp_username
-      Rails.configuration.alma["sftp_username"]
+      Rails.configuration.alma['sftp_username']
     end
 
     def sftp_password
-      Rails.configuration.alma["sftp_password"]
+      Rails.configuration.alma['sftp_password']
     end
 
     def sftp_host
-      Rails.configuration.alma["sftp_host"]
+      Rails.configuration.alma['sftp_host']
     end
   end
 
@@ -125,7 +126,7 @@ class AlmaDumpTransferJob < ApplicationJob
     end
 
     def find_job_configuration(dump:)
-      job_name = event_message(dump:).dig("job_instance", "name")
+      job_name = event_message(dump:).dig('job_instance', 'name')
 
       jobs_configuration[job_name] || {}
     end

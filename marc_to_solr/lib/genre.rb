@@ -1,8 +1,8 @@
 # This class is responsible for listing the
 # genres present in a given MARC record
 class Genre
-  SUBJECT_GENRE_VOCABULARIES = ['sk', 'aat', 'lcgft', 'rbbin', 'rbgenr', 'rbmscv',
-                                'rbpap', 'rbpri', 'rbprov', 'rbpub', 'rbtyp', 'homoit'].freeze
+  SUBJECT_GENRE_VOCABULARIES = %w[sk aat lcgft rbbin rbgenr rbmscv
+                                  rbpap rbpri rbprov rbpub rbtyp homoit].freeze
 
   def initialize(record)
     @record = record
@@ -24,6 +24,7 @@ class Genre
       Traject::MarcExtractor.cached('600|*0|x:610|*0|x:611|*0|x:630|*0|x:650|*0|x:651|*0|x:655|*0|x').collect_matching_lines(record) do |field, spec, extractor|
         genre = extractor.collect_subfields(field, spec).first
         next if genre.nil?
+
         genre = Traject::Macros::Marc21.trim_punctuation(genre)
         genre if likely_genre_term(genre)
       end
@@ -37,6 +38,7 @@ class Genre
         end
         genre = extractor.collect_subfields(field, spec).first
         next if genre.nil?
+
         genre = Traject::Macros::Marc21.trim_punctuation(genre)
         if genre.match?(/^\s+$/)
           logger.error "#{record['001']} - Blank genre field"
@@ -51,6 +53,7 @@ class Genre
       Traject::MarcExtractor.cached('600|*0|v:610|*0|v:611|*0|v:630|*0|v:650|*0|v:651|*0|v:655|*0|a:655|*0|v').collect_matching_lines(record) do |field, spec, extractor|
         genre = extractor.collect_subfields(field, spec).first
         next if genre.nil?
+
         genre = Traject::Macros::Marc21.trim_punctuation(genre)
         if genre.match?(/^\s+$/)
           logger.error "#{record['001']} - Blank genre field"

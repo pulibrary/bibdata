@@ -1,6 +1,6 @@
-require "rails_helper"
+require 'rails_helper'
 # This class is currently defined in the aws_sqs_poller.rb file, so auto-loaders can't find it
-require 'app/services/aws_sqs_poller.rb'
+require 'app/services/aws_sqs_poller'
 
 RSpec.describe AlmaDumpFactory do
   context 'looking at the dump more than once' do

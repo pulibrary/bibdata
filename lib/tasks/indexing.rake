@@ -1,6 +1,6 @@
 namespace :bibdata do
   namespace :indexing do
-    desc "Start the sqs poller -- for use by system daemon"
+    desc 'Start the sqs poller -- for use by system daemon'
     task poll_sqs: :environment do
       AwsSqsPoller.poll
     end

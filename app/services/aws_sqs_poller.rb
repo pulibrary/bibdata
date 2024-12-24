@@ -2,12 +2,12 @@
 # for full dump events and kicks off a job to process them.
 class AwsSqsPoller
   def self.poll
-    queue_url = Rails.configuration.alma["sqs_queue_url"]
+    queue_url = Rails.configuration.alma['sqs_queue_url']
     poller = Aws::SQS::QueuePoller.new(queue_url)
     end_polling = false
 
     # End polling if the process is killed by restarting.
-    Signal.trap("TERM") do
+    Signal.trap('TERM') do
       end_polling = true
     end
 
@@ -25,17 +25,18 @@ class AwsSqsPoller
     end
 
     poller.poll do |msg|
-      Rails.logger.info("Polls message")
+      Rails.logger.info('Polls message')
       message_body = JSON.parse(msg[:body])
-      job_name = message_body["job_instance"]["name"]
+      job_name = message_body['job_instance']['name']
       Rails.logger.info("AWS SQS Poller message_body: #{message_body}")
       next unless Rails.configuration.alma[:jobs].keys.include?(job_name)
+
       dump = AlmaDumpFactory.bib_dump(message_body)
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
       AlmaDumpTransferJob.perform_later(
         dump:,
-        job_id: message_body["job_instance"]["id"]
+        job_id: message_body['job_instance']['id']
       )
     rescue AlmaDumpFactory::AlmaDuplicateEventError
       Rails.logger.error("Rescue from AlmaDuplicateEventError with alma_process_id: #{message_body['job_instance']['id']}")
@@ -45,15 +46,17 @@ end
 
 class AlmaDumpFactory
   attr_reader :message
+
   class AlmaDumpError < StandardError
     attr_reader :alma_message
+
     def initialize(alma_message)
       super
       @alma_message = alma_message
     end
 
     def message
-      status = alma_message["job_instance"]["status"]["value"]
+      status = alma_message['job_instance']['status']['value']
       "Alma job completed with invalid status. Alma status: #{status}. Job id: #{alma_message['id']}"
     end
   end
@@ -76,18 +79,19 @@ class AlmaDumpFactory
   end
 
   def dump_type
-    @dump_type ||= Rails.configuration.alma[:jobs][job_name]["dump_type"]
+    @dump_type ||= Rails.configuration.alma[:jobs][job_name]['dump_type']
   end
 
   def job_name
-    message["job_instance"]["name"]
+    message['job_instance']['name']
   end
 
   def alma_job_status
-    status = message["job_instance"]["status"]["value"]
+    status = message['job_instance']['status']['value']
     raise AlmaDumpError, message unless status == 'COMPLETED_SUCCESS'
+
     status
-  rescue => e
+  rescue StandardError => e
     Rails.logger.error(e.message)
     Honeybadger.notify(e)
     status
@@ -107,10 +111,10 @@ class AlmaDumpFactory
   end
 
   def event_start
-    message["job_instance"]["start_time"]
+    message['job_instance']['start_time']
   end
 
   def event_finish
-    message["job_instance"]["end_time"]
+    message['job_instance']['end_time']
   end
 end

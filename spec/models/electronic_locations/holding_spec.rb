@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ElectronicLocations::Holding, type: :model do
   subject(:holding) { described_class.new(id: 'test-id', value: 'http://localdomain/test') }
+
   describe '#id' do
     it 'accesses the holding ID' do
       expect(holding.id).to eq 'test-id'

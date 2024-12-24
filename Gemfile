@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-source "https://gems.contribsys.com/" do
+source 'https://gems.contribsys.com/' do
   gem 'sidekiq-pro'
 end
 
@@ -32,12 +32,12 @@ gem 'jquery-rails'
 gem 'jquery-tablesorter', '~> 1.21'
 gem 'lcsort'
 gem 'library_stdnums'
-gem 'lightly', "~> 0.2.1"
+gem 'lightly', '~> 0.2.1'
 gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.22'
 gem 'marc', '~> 1.0'
-gem 'marc_cleanup', github: "pulibrary/marc_cleanup", tag: 'v0.9.1'
+gem 'marc_cleanup', github: 'pulibrary/marc_cleanup', tag: 'v0.9.1'
 gem 'multi_json'
 gem 'net-imap', require: false
 gem 'net-ldap'
@@ -50,23 +50,23 @@ gem 'omniauth-rails_csrf_protection'
 gem 'open3'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.4.4'
 gem 'pg'
-gem "rack"
+gem 'rack'
 gem 'rails', '~> 7.1.0'
 gem 'responders'
 gem 'rest-client'
 gem 'rsolr', '~> 2.5.0'
 gem 'rspec-rails'
 gem 'rubocop'
+gem 'rubocop-performance'
 gem 'rubocop-rails'
 gem 'rubocop-rspec'
-gem 'rubocop-performance'
 gem 'rubyXL'
 gem 'rubyzip'
 gem 'sass-rails'
 gem 'selenium-webdriver'
 gem 'sidekiq'
 gem 'stomp'
-gem 'stringex', github: "pulibrary/stringex", tag: 'vpton.2.5.2.2'
+gem 'stringex', github: 'pulibrary/stringex', tag: 'vpton.2.5.2.2'
 gem 'terser'
 gem 'traject'
 gem 'turbolinks'
@@ -74,15 +74,15 @@ gem 'whenever'
 gem 'yard'
 
 group :production do
-  gem "ddtrace"
+  gem 'ddtrace'
 end
 
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'byebug'
   gem 'coveralls_reborn'
-  gem "dotenv-rails"
-  gem "factory_bot_rails"
+  gem 'dotenv-rails'
+  gem 'factory_bot_rails'
   gem 'faker'
   gem 'puma'
   gem 'rails-controller-testing'

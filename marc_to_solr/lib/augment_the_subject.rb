@@ -17,9 +17,15 @@ class AugmentTheSubject
   # Ensure the needed config files exist
   def initialize
     raise "Cannot find lcsh csv file at #{LCSH_TERMS_CSV_FILE}" unless File.exist?(LCSH_TERMS_CSV_FILE)
-    raise "Cannot find lcsh standalone subfield a file at #{LCSH_STANDALONE_A_FILE}" unless File.exist?(LCSH_STANDALONE_A_FILE)
-    raise "Cannot find lcsh standalone subfield x file at #{LCSH_STANDALONE_X_FILE}" unless File.exist?(LCSH_STANDALONE_X_FILE)
-    raise "Cannot find lcsh required subfields file at #{LCSH_REQUIRED_SUBFIELDS}" unless File.exist?(LCSH_REQUIRED_SUBFIELDS)
+    unless File.exist?(LCSH_STANDALONE_A_FILE)
+      raise "Cannot find lcsh standalone subfield a file at #{LCSH_STANDALONE_A_FILE}"
+    end
+    unless File.exist?(LCSH_STANDALONE_X_FILE)
+      raise "Cannot find lcsh standalone subfield x file at #{LCSH_STANDALONE_X_FILE}"
+    end
+    unless File.exist?(LCSH_REQUIRED_SUBFIELDS)
+      raise "Cannot find lcsh required subfields file at #{LCSH_REQUIRED_SUBFIELDS}"
+    end
   end
 
   def standalone_subfield_a_terms
@@ -69,7 +75,7 @@ class AugmentTheSubject
   # @param [<String>] terms
   # @return [<String>]
   def add_indigenous_studies(terms)
-    terms << "Indigenous Studies" if indigenous_studies?(terms)
+    terms << 'Indigenous Studies' if indigenous_studies?(terms)
     terms
   end
 
@@ -131,9 +137,9 @@ class AugmentTheSubject
   def self.parse_standalone_a
     subfield_a_aggregator = Set.new
     CSV.foreach(LCSH_TERMS_CSV_FILE, headers: true) do |row|
-      requires_subfield = row["With subdivisions ǂx etc."] == 'y'
+      requires_subfield = row['With subdivisions ǂx etc.'] == 'y'
       unless requires_subfield
-        lcsh_term = row["Term in MARC"]
+        lcsh_term = row['Term in MARC']
         subfield_a = lcsh_term.chomp.split('ǂ').first.strip
         subfield_a_aggregator << subfield_a
       end
@@ -148,8 +154,8 @@ class AugmentTheSubject
   def self.parse_required_subfields
     output = {}
     CSV.foreach(LCSH_TERMS_CSV_FILE, headers: true) do |row|
-      if row["With subdivisions ǂx etc."] == 'y'
-        term = row["Term in MARC"]
+      if row['With subdivisions ǂx etc.'] == 'y'
+        term = row['Term in MARC']
         term_list = term.chomp.split(/ ǂ. /)
         subfield_a = term_list.shift
         if output[subfield_a]

@@ -8,13 +8,13 @@ RSpec.describe LocationDataService, type: :service do
   let(:libraries) { File.join(locations_path, 'libraries.json') }
 
   before do
-    allow(MARC_LIBERATION_CONFIG).to receive(:[]).with("location_files_dir").and_return(locations_path)
+    allow(MARC_LIBERATION_CONFIG).to receive(:[]).with('location_files_dir').and_return(locations_path)
     described_class.delete_existing_and_repopulate
-    @delivery_lewis = DeliveryLocation.find_by(gfa_pickup: "PN")
+    @delivery_lewis = DeliveryLocation.find_by(gfa_pickup: 'PN')
   end
 
-  describe "#delete_existing_and_repopulate" do
-    it "deletes existing data and populates library and location data from json" do
+  describe '#delete_existing_and_repopulate' do
+    it 'deletes existing data and populates library and location data from json' do
       arch_library = Library.find_by(code: 'arch')
       arch_stacks = HoldingLocation.find_by(code: 'arch$stacks')
       annex_stacks = HoldingLocation.find_by(code: 'annex$stacks')
@@ -82,8 +82,9 @@ RSpec.describe LocationDataService, type: :service do
       expect(stokes_spia.label).to eq 'Wallace Hall (SPIA)'
       expect(stokes_spr.label).to eq 'Wallace Hall (SPR)'
     end
-    context "Plasma Library" do
-      plasma_location_codes = ["index", "la", "li", "nb", "ps", "rdr", "ref", "rr", "serial", "stacks", "theses"]
+
+    context 'Plasma Library' do
+      plasma_location_codes = %w[index la li nb ps rdr ref rr serial stacks theses]
       plasma_location_codes.each do |code|
         it "plasma location #{code} is open and have delivery location only Lewis" do
           plasma_location = HoldingLocation.find_by(code: "plasma$#{code}")
@@ -93,7 +94,8 @@ RSpec.describe LocationDataService, type: :service do
         end
       end
     end
-    it "firestone$pf does not circulate and delivers only to Firestone Library Microforms" do
+
+    it 'firestone$pf does not circulate and delivers only to Firestone Library Microforms' do
       firestone_pf = HoldingLocation.find_by(code: 'firestone$pf')
       delivery_microforms = DeliveryLocation.find_by(gfa_pickup: 'PF')
       expect(firestone_pf.circulates).to be false
@@ -101,7 +103,8 @@ RSpec.describe LocationDataService, type: :service do
       expect(firestone_pf.delivery_locations.first).to eq(delivery_microforms)
       expect(firestone_pf.label).to eq('Remote Storage (ReCAP): Firestone Library Use Only')
     end
-    it "annex$noncirc circulates to the branch libraries" do
+
+    it 'annex$noncirc circulates to the branch libraries' do
       non_circ = HoldingLocation.find_by(code: 'annex$noncirc')
       delivery_firestone = DeliveryLocation.find_by(gfa_pickup: 'PA')
       @delivery_lewis = DeliveryLocation.find_by(gfa_pickup: 'PN')
@@ -110,17 +113,18 @@ RSpec.describe LocationDataService, type: :service do
       expect(non_circ.delivery_locations).to include(delivery_firestone)
       expect(non_circ.delivery_locations).to include(@delivery_lewis)
     end
-    it "Locations with fulfillment_unit: Reserves are not requestable" do
+
+    it 'Locations with fulfillment_unit: Reserves are not requestable' do
       arch_res3hr = HoldingLocation.find_by(code: 'arch$res3hr')
       eastasian_reserve = HoldingLocation.find_by(code: 'eastasian$reserve')
 
       expect(arch_res3hr.fulfillment_unit).to eq 'Reserves'
-      expect(arch_res3hr.requestable).to eq false
+      expect(arch_res3hr.requestable).to be false
       expect(eastasian_reserve.fulfillment_unit).to eq 'Reserves'
-      expect(eastasian_reserve.requestable).to eq false
+      expect(eastasian_reserve.requestable).to be false
     end
 
-    it "creates SCSB locations" do
+    it 'creates SCSB locations' do
       scsbnypl_record = HoldingLocation.find_by(code: 'scsbnypl')
       scsbhl_record = HoldingLocation.find_by(code: 'scsbhl')
       scsbcul_record = HoldingLocation.find_by(code: 'scsbcul')
@@ -141,34 +145,34 @@ RSpec.describe LocationDataService, type: :service do
       expect(scsbhl_record.label).to eq 'Remote Storage'
     end
 
-    it "deletes existing delivery locations table and populates new from json file" do
+    it 'deletes existing delivery locations table and populates new from json file' do
       Library.find_by(code: 'annex')
     end
 
-    it "sets a static ID" do
+    it 'sets a static ID' do
       # Run a second time to ensure idempotency.
 
-      location = DeliveryLocation.find_by(gfa_pickup: "PW")
+      location = DeliveryLocation.find_by(gfa_pickup: 'PW')
 
       expect(location.id).to eq 3
-      expect(location.label).to eq "Architecture Library"
+      expect(location.label).to eq 'Architecture Library'
       new_location = FactoryBot.create(:delivery_location)
       expect(new_location.id).to eq 31
     end
 
-    describe "delivery locations" do
-      it "Delivery location Firestone Library has multiple gfa_pickup" do
-        firestone_pf = DeliveryLocation.find_by(gfa_pickup: "PF")
+    describe 'delivery locations' do
+      it 'Delivery location Firestone Library has multiple gfa_pickup' do
+        firestone_pf = DeliveryLocation.find_by(gfa_pickup: 'PF')
         expect(firestone_pf.label).to eq 'Firestone Library'
-        firestone_pa = DeliveryLocation.find_by(gfa_pickup: "PA")
+        firestone_pa = DeliveryLocation.find_by(gfa_pickup: 'PA')
         expect(firestone_pa.label).to eq 'Firestone Library'
-        firestone_pb = DeliveryLocation.find_by(gfa_pickup: "PB")
+        firestone_pb = DeliveryLocation.find_by(gfa_pickup: 'PB')
         expect(firestone_pb.label).to eq 'Firestone Library'
       end
     end
 
-    describe "new recap locations" do
-      it "they have recap_edd true and holding_library same as library" do
+    describe 'new recap locations' do
+      it 'they have recap_edd true and holding_library same as library' do
         location_arch_pw = HoldingLocation.find_by(code: 'arch$pw')
         location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')
         location_firestone_pb = HoldingLocation.find_by(code: 'firestone$pb')
@@ -180,7 +184,7 @@ RSpec.describe LocationDataService, type: :service do
         expect(location_arch_pw.recap_electronic_delivery_location).to be true
         expect(location_engineer_pt.recap_electronic_delivery_location).to be true
         expect(location_firestone_pb.recap_electronic_delivery_location).to be true
-        expect(location_firestone_pb.label).to eq("Remote Storage (ReCAP): Firestone Library Use Only")
+        expect(location_firestone_pb.label).to eq('Remote Storage (ReCAP): Firestone Library Use Only')
         expect(location_lewis_pn.recap_electronic_delivery_location).to be true
         expect(location_marquand_pj.recap_electronic_delivery_location).to be true
         expect(location_mendel_pk.recap_electronic_delivery_location).to be true
@@ -192,12 +196,14 @@ RSpec.describe LocationDataService, type: :service do
         expect(location_rare_xw.holding_library.label).to eq location_rare_xw.library.label
         expect(location_mendel_pk.holding_library.label).to eq location_mendel_pk.library.label
       end
-      it "Engineer$pt has delivery location only PT" do
+
+      it 'Engineer$pt has delivery location only PT' do
         location_engineer_pt = HoldingLocation.find_by(code: 'engineer$pt')
         expect(location_engineer_pt.delivery_locations.count).to eq(1)
         expect(location_engineer_pt.delivery_locations.first.gfa_pickup).to eq('PT')
       end
-      it "new recap location rare$xw has recap_edd false" do
+
+      it 'new recap location rare$xw has recap_edd false' do
         location_rare_xw = HoldingLocation.find_by(code: 'rare$xw')
         expect(location_rare_xw.recap_electronic_delivery_location).to be false
       end

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'Library json view', type: :request do
@@ -10,7 +11,7 @@ describe 'Library json view', type: :request do
 
   describe 'the response body' do
     it "/libraries looks as we'd expect, sorted by order" do
-      2.times { FactoryBot.create(:library) }
+      FactoryBot.create_list(:library, 2)
       expected = []
       Library.all.each do |library|
         attrs = {

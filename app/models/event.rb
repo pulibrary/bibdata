@@ -15,7 +15,7 @@ class Event < ActiveRecord::Base
     rescue Exception => e
       event.success = false
       event.error = "#{e.class}: #{e.message}"
-      STDERR.puts e.message if defined?(Rake)
+      warn e.message if defined?(Rake)
     ensure
       event.finish = Time.now.utc
       event.save!

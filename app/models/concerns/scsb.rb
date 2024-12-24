@@ -17,7 +17,9 @@ module Scsb
   end
 
   def scsb_request_response_customize(scsb_request_response:)
-    scsb_request_response.each { |r| r["itemAvailabilityStatus"] = "Unavailable" if r["itemAvailabilityStatus"] == "Not Available" }
+    scsb_request_response.each do |r|
+      r['itemAvailabilityStatus'] = 'Unavailable' if r['itemAvailabilityStatus'] == 'Not Available'
+    end
   end
 
   def scsb_barcode_request(barcodes)
@@ -34,17 +36,16 @@ module Scsb
   end
 
   def scsb_conn
-    conn = Faraday.new(url: scsb_server) do |faraday|
+    Faraday.new(url: scsb_server) do |faraday|
       faraday.request  :url_encoded # form-encode POST params
       faraday.response :logger unless Rails.env.test? # log requests to STDOUT
       faraday.adapter  Faraday.default_adapter # make requests with Net::HTTP
     end
-    conn
   end
 
   def parse_scsb_message(message)
     parsed = JSON.parse(message)
-    parsed.class == Hash ? parsed.with_indifferent_access : parsed
+    parsed.instance_of?(Hash) ? parsed.with_indifferent_access : parsed
   rescue JSON::ParserError
     Rails.logger.error("Failed to parse a message from the SCSB server: #{message}")
     {}
@@ -64,24 +65,24 @@ module Scsb
 
   def parse_scsb_response(response)
     parsed = scsb_response_json(response)
-    parsed.class == Hash ? parsed.with_indifferent_access : parsed
+    parsed.instance_of?(Hash) ? parsed.with_indifferent_access : parsed
   end
 
   private
 
     def scsb_auth_key
-      if !Rails.env.test?
-        ENV['SCSB_AUTH_KEY']
-      else
+      if Rails.env.test?
         'TESTME'
+      else
+        ENV['SCSB_AUTH_KEY']
       end
     end
 
     def scsb_server
-      if !Rails.env.test?
-        ENV['SCSB_SERVER']
-      else
+      if Rails.env.test?
         'https://test.api.com/'
+      else
+        ENV['SCSB_SERVER']
       end
     end
 
@@ -94,8 +95,8 @@ module Scsb
         req.body = request_body
       end
       parse_scsb_response(response)
-    rescue Faraday::ConnectionFailed, Faraday::TimeoutError => connection_failed
+    rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
       Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
-      raise connection_failed
+      raise e
     end
 end

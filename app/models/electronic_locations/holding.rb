@@ -3,6 +3,7 @@ module ElectronicLocations
   # (Holdings are URL's for resources with an additional identifier)
   class Holding < OnlineLocation
     attr_reader :id
+
     # Constructor
     # @param id [String] the identifier for the holding
     # @param value [URI::Generic, String] the URI

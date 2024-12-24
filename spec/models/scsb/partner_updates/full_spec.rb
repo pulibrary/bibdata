@@ -13,23 +13,28 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
         let(:fixture_files) { [cul_csv] }
 
         it 'determines that the file is valid' do
-          expect(partner_full_update.validate_csv(inst: "CUL")).to be true
+          expect(partner_full_update.validate_csv(inst: 'CUL')).to be true
         end
       end
+
       context 'that are private' do
         let(:cul_private_csv) { 'private_ExportDataDump_Full_CUL_20210429_192300.csv' }
 
         let(:fixture_files) { [nypl_zip, nypl_csv, hl_zip, hl_csv] }
+
         before do
           FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
         end
+
         it 'determines that the file is not valid' do
-          expect(partner_full_update.validate_csv(inst: "CUL")).to be false
+          expect(partner_full_update.validate_csv(inst: 'CUL')).to be false
         end
+
         it 'adds errors to the dump' do
           partner_full_update.process_full_files
-          expect(dump.event.error).to include("Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6")
+          expect(dump.event.error).to include('Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6')
         end
+
         it 'does not process files that include private records' do
           partner_full_update.process_full_files
           expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
@@ -64,12 +69,12 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
         expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
         expect(dump.dump_files.map(&:path)).to contain_exactly(
-          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_1.xml.gz"),
-          File.join(scsb_file_dir, "scsbfull_nypl_20210430_015000_2.xml.gz"),
-          File.join(scsb_file_dir, "ExportDataDump_Full_NYPL_20210430_015000.csv.gz"),
-          a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
+          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
+          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
+          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz'),
+          a_string_matching(%r{#{scsb_file_dir}/fixes_\d{4}_\d{2}_\d{2}.json.gz})
         )
-        expect(dump.event.error).to eq "No metadata files found matching CUL; No metadata files found matching HL"
+        expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
         # cleans up
         expect(Dir.empty?(update_directory_path)).to be true
       end
@@ -93,7 +98,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
       partner_full_update.process_full_files
 
       expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
-      expect(dump.event.error).to eq "No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL"
+      expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
     end
   end
 end

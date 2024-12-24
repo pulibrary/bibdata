@@ -23,13 +23,13 @@ class AlmaAdapter::Execute
     begin
       # Sets the new configuration values
       options.keys.each do |key|
-        Alma.configure { |config| config.send(key.to_s + "=", options[key]) }
+        Alma.configure { |config| config.send(key.to_s + '=', options[key]) }
       end
       yield
     ensure
       # Restore the options to their original values
       options.keys.each do |key|
-        Alma.configure { |config| config.send(key.to_s + "=", original[key]) }
+        Alma.configure { |config| config.send(key.to_s + '=', original[key]) }
       end
       log_elapsed(start, message)
     end

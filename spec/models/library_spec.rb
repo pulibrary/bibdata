@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe Library, type: :model do
@@ -31,21 +32,25 @@ describe Library, type: :model do
           FactoryBot.create(:library, code: 'mycode42')
         end.not_to raise_error
       end
+
       it 'new is a valid code for friendly_id' do
         expect do
           FactoryBot.create(:library, code: 'new')
         end.not_to raise_error
       end
+
       it 'code can be 1 character' do
         expect do
           FactoryBot.create(:library, code: 'f')
         end.not_to raise_error
       end
+
       it 'code can be 14 characters' do
         expect do
           FactoryBot.create(:library, code: 'cotsenresearch')
         end.not_to raise_error
       end
+
       it 'may not be create' do
         expect do
           FactoryBot.create(:library, code: 'create')

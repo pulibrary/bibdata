@@ -1,4 +1,3 @@
-# encoding: UTF-8
 require 'rails_helper'
 
 describe 'From geo.rb' do
@@ -12,8 +11,8 @@ describe 'From geo.rb' do
       @e = '20.2355'
       @n = '25.221'
       @s = '-0.2444'
-      @proper_034 = { "034" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "d" => @w }, { "e" => @e }, { "f" => @n }, { "g" => @s }] } }
-      @bad_034 = { "034" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "d" => @w }, { "e" => @e }, { "f" => @n }, { "g" => 'blah' }] } }
+      @proper_034 = { '034' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'd' => @w }, { 'e' => @e }, { 'f' => @n }, { 'g' => @s }] } }
+      @bad_034 = { '034' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'd' => @w }, { 'e' => @e }, { 'f' => @n }, { 'g' => 'blah' }] } }
       @good_bbox = MARC::Record.new_from_hash('fields' => [@proper_034])
       @bad_bbox = MARC::Record.new_from_hash('fields' => [@bad_034])
       @good_coverage = @indexer.send(:decimal_coordinate, @good_bbox)
@@ -27,13 +26,15 @@ describe 'From geo.rb' do
 
   describe '#valid_coordinate_format?' do
     it 'returns true for decimal format' do
-      expect(@indexer.send(:valid_coordinate_format?, '-89', {})).to eq(true)
+      expect(@indexer.send(:valid_coordinate_format?, '-89', {})).to be(true)
     end
+
     it 'returns false for degree format' do
-      expect(@indexer.send(:valid_coordinate_format?, 'N0820000', {})).to eq(false)
+      expect(@indexer.send(:valid_coordinate_format?, 'N0820000', {})).to be(false)
     end
+
     it 'returns false for unrecognized format' do
-      expect(@indexer.send(:valid_coordinate_format?, 'mistake', {})).to eq(false)
+      expect(@indexer.send(:valid_coordinate_format?, 'mistake', {})).to be(false)
     end
   end
 end

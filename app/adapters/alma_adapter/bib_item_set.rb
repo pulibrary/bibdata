@@ -5,6 +5,7 @@ class AlmaAdapter
     include Enumerable
 
     attr_reader :items, :adapter
+
     delegate :get_bib_record, to: :adapter
     # @param [Array<AlmaAdapter::AlmaItem>] items Array of items to wrap up.
     # @param [AlmaAdapter] adapter
@@ -13,8 +14,8 @@ class AlmaAdapter
       @adapter = adapter
     end
 
-    def each(&block)
-      items.each(&block)
+    def each(&)
+      items.each(&)
     end
 
     # minimal summary of locations / holdings / items data used for bib_items
@@ -26,9 +27,9 @@ class AlmaAdapter
       location_grouped.map do |location_code, location_items|
         holdings = location_items.group_by(&:holding_id).map do |holding_id, holding_items|
           {
-            "holding_id" => holding_id,
-            "call_number" => holding_items.first.call_number,
-            "items" => holding_items_filter(holding_items.map(&:as_json), item_key_filter)
+            'holding_id' => holding_id,
+            'call_number' => holding_items.first.call_number,
+            'items' => holding_items_filter(holding_items.map(&:as_json), item_key_filter)
           }.compact
         end
         [location_code, holdings]
@@ -39,6 +40,7 @@ class AlmaAdapter
 
       def holding_items_filter(items, filter)
         return items unless filter
+
         items.map do |h|
           h.keep_if do |k, _v|
             filter.include? k

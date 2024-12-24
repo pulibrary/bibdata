@@ -9,9 +9,9 @@ describe 'From traject_config.rb', indexing: true do
     indexer.reader!(f).first
   end
 
-  context "valid records" do
+  context 'valid records' do
     before(:all) do
-      stub_request(:get, "https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000")
+      stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
       @sample2 = @indexer.map_record(fixture_record('993456823506421'))
@@ -92,65 +92,70 @@ describe 'From traject_config.rb', indexing: true do
       @diary = @indexer.map_record(fixture_record('99117267623506421'))
     end
 
-    describe "alma loading" do
-      it "can map an alma record" do
+    describe 'alma loading' do
+      it 'can map an alma record' do
         record = @indexer.map_record(fixture_record('9918573506421'))
       end
-      it "can index electronic locations for alma" do
+
+      it 'can index electronic locations for alma' do
         record = @indexer.map_record(fixture_record('9918573506421'))
-        access_links = record["electronic_access_1display"]
-        expect(JSON.parse(access_links.first)).to eq("http://dx.doi.org/10.1007/BFb0088073" => ["dx.doi.org"])
+        access_links = record['electronic_access_1display']
+        expect(JSON.parse(access_links.first)).to eq('http://dx.doi.org/10.1007/BFb0088073' => ['dx.doi.org'])
       end
-      it "does not index elf locations for alma" do
-        expect(@sample38["location_display"]).to be_nil
-        expect(@sample38["location"]).to be_nil
-        expect(@sample38["holdings_1display"]).to be_nil
+
+      it 'does not index elf locations for alma' do
+        expect(@sample38['location_display']).to be_nil
+        expect(@sample38['location']).to be_nil
+        expect(@sample38['holdings_1display']).to be_nil
       end
     end
-    describe "locations" do
-      it "will index the location_code_s" do
+
+    describe 'locations' do
+      it 'will index the location_code_s' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
-        expect(record["location_code_s"]).to eq ["lewis$stacks", "firestone$stacks"]
+        expect(record['location_code_s']).to eq ['lewis$stacks', 'firestone$stacks']
       end
     end
 
     describe 'scsb locations' do
-      it "will index a scsbnypl location" do
-        expect(@scsb_nypl["location_code_s"]).to eq ["scsbnypl"]
-        expect(@scsb_nypl["location"]).to eq ["ReCAP"]
-        expect(@scsb_nypl["advanced_location_s"]).to eq ["scsbnypl", "ReCAP"]
-        expect(@scsb_nypl["location_display"]).to eq ["Remote Storage"]
+      it 'will index a scsbnypl location' do
+        expect(@scsb_nypl['location_code_s']).to eq ['scsbnypl']
+        expect(@scsb_nypl['location']).to eq ['ReCAP']
+        expect(@scsb_nypl['advanced_location_s']).to eq %w[scsbnypl ReCAP]
+        expect(@scsb_nypl['location_display']).to eq ['Remote Storage']
       end
     end
-    describe "holdings" do
-      it "can index holdings" do
+
+    describe 'holdings' do
+      it 'can index holdings' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
-        holdings = JSON.parse(record["holdings_1display"][0])
-        holding_1 = holdings["22685775490006421"]
-        holding_2 = holdings["22685775470006421"]
-        expect(holding_1["location"]).to eq "Stacks"
-        expect(holding_1["library"]).to eq "Lewis Library"
-        expect(holding_1["location_code"]).to eq "lewis$stacks"
-        expect(holding_2["location"]).to eq "Stacks"
-        expect(holding_2["library"]).to eq "Firestone Library"
-        expect(holding_2["location_code"]).to eq "firestone$stacks"
+        holdings = JSON.parse(record['holdings_1display'][0])
+        holding_1 = holdings['22685775490006421']
+        holding_2 = holdings['22685775470006421']
+        expect(holding_1['location']).to eq 'Stacks'
+        expect(holding_1['library']).to eq 'Lewis Library'
+        expect(holding_1['location_code']).to eq 'lewis$stacks'
+        expect(holding_2['location']).to eq 'Stacks'
+        expect(holding_2['library']).to eq 'Firestone Library'
+        expect(holding_2['location_code']).to eq 'firestone$stacks'
       end
     end
 
     describe 'contents_display' do
       context 'with a contents note' do
         it 'naively splits on double dashes' do
-          expect(@sample34['contents_display']).to match_array(["Disc 1. Mammy water", "(1956, 19 min.) ; The mad masters", "(1956, 29 min.)", "Moi, un noir", "(1959, 74 min.)", "Disc 2. The human pyramid", "(1961, 93 min.)", "The lion hunters", "(1967, 81 min.)", "Disc 3. Jaguar", "(1967, 93 min.)", "Little by little (1971, 96 min.)", "Disc 4. The punishment", "(1964, 64 min.)", "Jean Rouch, the adventerous filmmaker / Laurent VeÌdrine (2017, 55 min.)."])
-          expect(@sample37['contents_display']).to match_array(["Book 1. April-June", "Book 2. July-September", "Book 3. October-December."])
-          expect(@record_call_number2['contents_display']).to match_array(["Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06)", "Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17)", "Got lost (2007-2008) / Helmut Lachenmann (24:56)", "Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27)", "Ophelia sings (2012) / Wolfgang Rihm (9:45)", "Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30)."])
-          expect(@translated_contents['contents_display']).to match_array(["Pod svodami mraka i sveta / Anatoliĭ Korolev", "Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.", "Под сводами мрака и света / Анатолий Королев", "Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина."])
+          expect(@sample34['contents_display']).to match_array(['Disc 1. Mammy water', '(1956, 19 min.) ; The mad masters', '(1956, 29 min.)', 'Moi, un noir', '(1959, 74 min.)', 'Disc 2. The human pyramid', '(1961, 93 min.)', 'The lion hunters', '(1967, 81 min.)', 'Disc 3. Jaguar', '(1967, 93 min.)', 'Little by little (1971, 96 min.)', 'Disc 4. The punishment', '(1964, 64 min.)', 'Jean Rouch, the adventerous filmmaker / Laurent VeÌdrine (2017, 55 min.).'])
+          expect(@sample37['contents_display']).to match_array(['Book 1. April-June', 'Book 2. July-September', 'Book 3. October-December.'])
+          expect(@record_call_number2['contents_display']).to match_array(['Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06)', 'Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17)', 'Got lost (2007-2008) / Helmut Lachenmann (24:56)', 'Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27)', 'Ophelia sings (2012) / Wolfgang Rihm (9:45)', 'Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30).'])
+          expect(@translated_contents['contents_display']).to match_array(['Pod svodami mraka i sveta / Anatoliĭ Korolev', 'Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.', 'Под сводами мрака и света / Анатолий Королев', 'Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина.'])
         end
       end
     end
+
     describe 'the cataloged_date from publishing job' do
-      describe "the date cataloged facets" do
-        context "When the record has 950, 876 and 951 fields" do
-          it "will index the oldest 876d field" do
+      describe 'the date cataloged facets' do
+        context 'When the record has 950, 876 and 951 fields' do
+          it 'will index the oldest 876d field' do
             marc_record = fixture_record('99299653506421_custom_951')
             fields_876_sorted = alma_876(marc_record).map { |f| f['d'] }.sort
             expect(marc_record['876']['d']).to be_truthy
@@ -159,8 +164,9 @@ describe 'From traject_config.rb', indexing: true do
             expect(Time.parse(@added_custom_951['cataloged_tdt'].first)).to eq Time.parse(fields_876_sorted.first).utc
           end
         end
-        context "When the record has only a 950b field" do
-          it "will index the 950b field" do
+
+        context 'When the record has only a 950b field' do
+          it 'will index the 950b field' do
             record = fixture_record('9939339473506421')
             expect(record['950']['b']).to be_truthy
             expect(record['876']).to be_falsey
@@ -169,21 +175,22 @@ describe 'From traject_config.rb', indexing: true do
           end
         end
 
-        context "When the record fails to parse the time" do
-          it "logs the error and moves on" do
+        context 'When the record fails to parse the time' do
+          it 'logs the error and moves on' do
             allow(Time).to receive(:parse).and_raise(ArgumentError)
             expect { @indexer.map_record(fixture_record('9992320213506421')) }.not_to raise_error
           end
         end
       end
 
-      context "When it is a SCSB partner record" do
-        it "does not have a date cataloged facet" do
+      context 'When it is a SCSB partner record' do
+        it 'does not have a date cataloged facet' do
           expect(@scsb_nypl['cataloged_tdt']).to be_nil
         end
       end
-      context "When it is an electronic record" do
-        it "will index the 951w field" do
+
+      context 'When it is an electronic record' do
+        it 'will index the 951w field' do
           record = fixture_record('99122424622606421')
           indexed_record = @indexer.map_record(record)
           expect(record['951']['w']).to be_truthy
@@ -200,44 +207,49 @@ describe 'From traject_config.rb', indexing: true do
         indexed_record = @indexer.map_record(record)
         expect(indexed_record['summary_note_display'].first).to include('Collection of answers by Hibat')
       end
+
       it 'does not include the content_advice field' do
         record = fixture_record('9948545023506421')
         indexed_record = @indexer.map_record(record)
-        expect(indexed_record['content_advice_display']).to be nil
+        expect(indexed_record['content_advice_display']).to be_nil
       end
+
       context 'with empty indicators' do
-        let(:f520) { { "520" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Some generic summary" }] } } }
+        let(:f520) { { '520' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Some generic summary' }] } } }
 
         it 'includes the summary_note_display' do
           record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
           expect(record['summary_note_display'].first).to eq('Some generic summary')
-          expect(record['content_advice_display']).to be nil
+          expect(record['content_advice_display']).to be_nil
         end
       end
+
       context 'with first indicator 4 for content_advice' do
-        let(:f520) { { "520" => { "ind1" => "4", "ind2" => " ", "subfields" => [{ "a" => "Some sensitive content advice" }] } } }
+        let(:f520) { { '520' => { 'ind1' => '4', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Some sensitive content advice' }] } } }
 
         it 'includes content_advice_display and does not include summary_note_display' do
           record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
-          expect(record['summary_note_display']).to be nil
+          expect(record['summary_note_display']).to be_nil
           expect(record['content_advice_display'].first).to eq('Some sensitive content advice')
         end
       end
+
       context 'valid summary note indicators' do
         let(:valid_indicators) { [' ', '0', '1', '2', '3', '8'] }
 
         it 'creates a summary note display' do
           valid_indicators.each do |ind|
-            f520 = { "520" => { "ind1" => ind, "ind2" => " ", "subfields" => [{ "a" => "Some generic summary" }] } }
+            f520 = { '520' => { 'ind1' => ind, 'ind2' => ' ', 'subfields' => [{ 'a' => 'Some generic summary' }] } }
             record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f520], 'leader' => leader))
             expect(record['summary_note_display'].first).to eq('Some generic summary')
-            expect(record['content_advice_display']).to be nil
+            expect(record['content_advice_display']).to be_nil
           end
         end
       end
     end
-    describe "electronic_portfolio_s" do
-      it "returns the electronic_portfolio_s field" do
+
+    describe 'electronic_portfolio_s' do
+      it 'returns the electronic_portfolio_s field' do
         record = @indexer.map_record(fixture_record('99122306151806421'))
         portfolios = record['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         nature = portfolios.find { |p| p['title'] == 'Nature' }
@@ -260,12 +272,13 @@ describe 'From traject_config.rb', indexing: true do
         expect(ebsco['end']).to eq '2015'
 
         # electronic_portfolio_s should not include non alma 951(s).
-        expect(resource1).to be nil
-        expect(resource2).to be nil
-        expect(resource3).to be nil
-        expect(resource4).to be nil
+        expect(resource1).to be_nil
+        expect(resource2).to be_nil
+        expect(resource3).to be_nil
+        expect(resource4).to be_nil
       end
-      it "takes into account the 954 embargo field" do
+
+      it 'takes into account the 954 embargo field' do
         portfolios = @electronic_portfolio_embargo['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         portfolio1 = portfolios.find { |p| p['title'] == 'EBSCOhost Academic Search Ultimate' }
         portfolio2 = portfolios.find { |p| p['title'] == 'Taylor & Francis Medical Library' }
@@ -277,113 +290,139 @@ describe 'From traject_config.rb', indexing: true do
         expect(portfolio2['start']).to eq '1997'
         expect(portfolio2['end']).to eq 'latest'
       end
-      it "will not index an inactive electronic_portfolio" do
-        expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be nil
+
+      it 'will not index an inactive electronic_portfolio' do
+        expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be_nil
       end
-      it "finds collection notes" do
+
+      it 'finds collection notes' do
         portfolio = @electronic_portfolio_with_notes['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         expect(portfolio.any? { |hash| hash['notes'].include? 'scroll down and click either on "CCSDS Recommendations (Blue Books)" or on "CCSDS Reports (Green Books)" to display its clickable contents' }).to be true
       end
+
       describe 'with active and inactive portfolio' do
         before do
           @active_portfolios1 = @custom_inactive_electronic_portfolio['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         end
+
         it 'will index the active portfolio' do
-          expect(@active_portfolios1.any? { |hash| hash['title'] == "SciTech Premium Collection" }).to be true
-          expect(@active_portfolios1.any? { |hash| hash["url"] == "https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&portfolio_pid=53788872140006421&Force_direct=true" }).to be true
+          expect(@active_portfolios1.any? { |hash| hash['title'] == 'SciTech Premium Collection' }).to be true
+          expect(@active_portfolios1.any? { |hash| hash['url'] == 'https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&portfolio_pid=53788872140006421&Force_direct=true' }).to be true
         end
-        it "will not index the inactive portfolio" do
+
+        it 'will not index the inactive portfolio' do
           expect(@active_portfolios1).not_to include '53821583960006421'
         end
       end
+
       describe 'active portfolio not part of a collection' do
         before do
           @active_portfolios2 = @electronic_portfolio_active_no_collection_name['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         end
-        it "has title: Online content" do
+
+        it 'has title: Online content' do
           expect(@active_portfolios2[0]['title']).to eq 'Online Content'
         end
       end
     end
-    describe "call_number_display field" do
-      it "indexes the call_number_display field" do
-        expect(@sample40['call_number_display']).to eq(["Oversize RA566.27 .B7544 2003q"])
+
+    describe 'call_number_display field' do
+      it 'indexes the call_number_display field' do
+        expect(@sample40['call_number_display']).to eq(['Oversize RA566.27 .B7544 2003q'])
       end
-      it "returns the call_number_display field with k subfield in the beginning" do
-        expect(@record_call_number1['call_number_display']).to eq(["Eng 20Q 6819"])
+
+      it 'returns the call_number_display field with k subfield in the beginning' do
+        expect(@record_call_number1['call_number_display']).to eq(['Eng 20Q 6819'])
       end
-      it "returns an array of call_number_display values" do
-        expect(@sample43['call_number_display']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
-        expect(@sample44['call_number_display']).to eq(["0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N"])
+
+      it 'returns an array of call_number_display values' do
+        expect(@sample43['call_number_display']).to eq(['01.XIII.19', 'JV6225 .R464 2001'])
+        expect(@sample44['call_number_display']).to eq(['0230.317', 'Z209.N56 E2 1928', 'Pamphlets', '2006-1620N'])
       end
-      it "skips indexing the field if subfields $h and $i and $k are missing" do
-        expect(@record_call_number_nil['call_number_display']).to be nil
+
+      it 'skips indexing the field if subfields $h and $i and $k are missing' do
+        expect(@record_call_number_nil['call_number_display']).to be_nil
       end
-      it "doesnt have trailing spaces" do
-        expect(@record_call_number2['call_number_display']).to eq(["CD- 50000"])
+
+      it 'doesnt have trailing spaces' do
+        expect(@record_call_number2['call_number_display']).to eq(['CD- 50000'])
       end
+
       it 'returns the enrichment call_number_display with k in front' do
-        expect(@sample41['call_number_display']).to eq(["A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A GA 2015.00160"])
+        expect(@sample41['call_number_display']).to eq(['A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A GA 2015.00160'])
       end
+
       it 'returns the call_number_display for a SCSB record' do
-        expect(@scsb_nypl['call_number_display']).to contain_exactly("JSM 95-217", "JSM 95-216")
+        expect(@scsb_nypl['call_number_display']).to contain_exactly('JSM 95-217', 'JSM 95-216')
       end
     end
 
-    describe "call_number_browse field" do
-      it "indexes the call_number_browse field" do
-        expect(@sample40['call_number_browse_s']).to eq([".B7544 2003q Oversize RA566.27"])
+    describe 'call_number_browse field' do
+      it 'indexes the call_number_browse field' do
+        expect(@sample40['call_number_browse_s']).to eq(['.B7544 2003q Oversize RA566.27'])
       end
-      it "returns the call_number_browse field with k subfield at the end and no trailing spaces" do
+
+      it 'returns the call_number_browse field with k subfield at the end and no trailing spaces' do
         record_call_number = @indexer.map_record(fixture_record('9957270023506421'))
-        expect(@record_call_number1['call_number_browse_s']).to eq(["6819 Eng 20Q"])
+        expect(@record_call_number1['call_number_browse_s']).to eq(['6819 Eng 20Q'])
       end
-      it "returns an array of call_number_browse_s values" do
-        expect(@sample43['call_number_browse_s']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
-        expect(@sample44['call_number_browse_s']).to eq(["0230.317", "Z209.N56 E2 1928", "Pamphlets", "2006-1620N"])
+
+      it 'returns an array of call_number_browse_s values' do
+        expect(@sample43['call_number_browse_s']).to eq(['01.XIII.19', 'JV6225 .R464 2001'])
+        expect(@sample44['call_number_browse_s']).to eq(['0230.317', 'Z209.N56 E2 1928', 'Pamphlets', '2006-1620N'])
       end
-      it "skips indexing the field if subfields $h and $i and $k are missing" do
-        expect(@record_call_number_nil['call_number_browse_s']).to be nil
+
+      it 'skips indexing the field if subfields $h and $i and $k are missing' do
+        expect(@record_call_number_nil['call_number_browse_s']).to be_nil
       end
-      it "doesnt have trailing spaces" do
-        expect(@record_call_number2['call_number_browse_s']).to eq(["CD- 50000"])
+
+      it 'doesnt have trailing spaces' do
+        expect(@record_call_number2['call_number_browse_s']).to eq(['CD- 50000'])
       end
+
       it 'returns the enrichment call_number_browse with k at the end' do
-        expect(@sample41['call_number_browse_s']).to eq(["GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A"])
+        expect(@sample41['call_number_browse_s']).to eq(['GA 2015.00160 A Middle 30/Drawer 11/GC024/Full Folio/20th-21st c./Artists A'])
       end
+
       it 'returns the call_number_browse_s for a SCSB record' do
-        expect(@scsb_nypl['call_number_browse_s']).to contain_exactly("JSM 95-217", "JSM 95-216")
+        expect(@scsb_nypl['call_number_browse_s']).to contain_exactly('JSM 95-217', 'JSM 95-216')
       end
     end
 
-    describe "call_number_locator_display field" do
-      it "returns the call_number_locator_display field with no subfield k" do
-        expect(@sample40['call_number_locator_display']).to eq([".B7544 2003q"])
+    describe 'call_number_locator_display field' do
+      it 'returns the call_number_locator_display field with no subfield k' do
+        expect(@sample40['call_number_locator_display']).to eq(['.B7544 2003q'])
       end
-      it "returns an array of call_number_locator_display values with no subfield k" do
-        expect(@sample43['call_number_locator_display']).to eq(["01.XIII.19", "JV6225 .R464 2001"])
+
+      it 'returns an array of call_number_locator_display values with no subfield k' do
+        expect(@sample43['call_number_locator_display']).to eq(['01.XIII.19', 'JV6225 .R464 2001'])
       end
-      it "skips indexing the field if subfields $h and $i are missing" do
-        expect(@record_call_number_nil['call_number_locator_display']).to be nil
+
+      it 'skips indexing the field if subfields $h and $i are missing' do
+        expect(@record_call_number_nil['call_number_locator_display']).to be_nil
       end
     end
 
-    describe "bound-with linking fields" do
-      it "indexes a valid 773w field" do
+    describe 'bound-with linking fields' do
+      it 'indexes a valid 773w field' do
         record = @indexer.map_record(fixture_record('9939073273506421'))
-        expect(record['contained_in_s']).to eq(["992953283506421"])
+        expect(record['contained_in_s']).to eq(['992953283506421'])
       end
-      it "does not index an invalid 773w field" do
+
+      it 'does not index an invalid 773w field' do
         expect(@invalid_773w['contained_in_s']).to be_nil
       end
-      it "indexes a valid 774w field" do
-        expect(@valid_774w['related_record_s']).to eq(["9934701963506421"])
+
+      it 'indexes a valid 774w field' do
+        expect(@valid_774w['related_record_s']).to eq(['9934701963506421'])
       end
-      it "does not index an invalid 774w field" do
+
+      it 'does not index an invalid 774w field' do
         expect(@invalid_774w['related_record_s']).to be_nil
       end
-      it "indexes a valid 773 that includes 99" do
-        expect(@linked_773['contained_in_s']).to eq(["99125489925606421"])
+
+      it 'indexes a valid 773 that includes 99' do
+        expect(@linked_773['contained_in_s']).to eq(['99125489925606421'])
       end
     end
 
@@ -399,59 +438,61 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'returns the language value of a multilanguage document' do
         # a multilanguage has value 008 mul. Skip this value and look 041
-        expect(@multilanguage_iana['language_iana_s']).to eq ["en"] # ISO_639 for 041$a
+        expect(@multilanguage_iana['language_iana_s']).to eq ['en'] # ISO_639 for 041$a
       end
 
       it 'returns the language value of a sign language document' do
-        expect(@sign_language_iana['language_iana_s']).to eq ["zh"] # ISO_639 for 041$a chi
+        expect(@sign_language_iana['language_iana_s']).to eq ['zh'] # ISO_639 for 041$a chi
       end
 
       it 'defaults to "en" when the language value is undetermined' do
-        expect(@undetermined_language_iana['language_iana_s']).to eq ["en"]
+        expect(@undetermined_language_iana['language_iana_s']).to eq ['en']
       end
 
       it 'defaults to "en" for a record with no linguistic content' do
-        expect(@no_linguistic_language_iana['language_iana_s']).to eq ["en"]
+        expect(@no_linguistic_language_iana['language_iana_s']).to eq ['en']
       end
 
       it 'returns language value "it" for an italian record' do
-        expect(@italian_language_iana['language_iana_s']).to eq ["it"]
+        expect(@italian_language_iana['language_iana_s']).to eq ['it']
       end
     end
 
     describe 'the language_facet field' do
       it 'includes MARC and ISO 639-3 language codes' do
-        expect(@iso639_3_with_parallel_041['language_facet']).to contain_exactly("Spanish", "Kekchí", "Mayan languages", "Indigenous Languages (Western Hemisphere)")
+        expect(@iso639_3_with_parallel_041['language_facet']).to contain_exactly('Spanish', 'Kekchí', 'Mayan languages', 'Indigenous Languages (Western Hemisphere)')
       end
     end
 
     describe 'the language_name_display field' do
       it 'uses 041$2iso-639 if available' do
-        expect(@iso639_3['language_name_display']).to contain_exactly("English", "Kaluli")
+        expect(@iso639_3['language_name_display']).to contain_exactly('English', 'Kaluli')
       end
+
       it 'prefers 041$2iso-639 over other 041s if available' do
-        expect(@iso639_3_with_parallel_041['language_name_display']).to contain_exactly("Spanish", "Kekchí")
+        expect(@iso639_3_with_parallel_041['language_name_display']).to contain_exactly('Spanish', 'Kekchí')
       end
+
       context 'when both an individual and macrolanguage code are available in the record' do
         it 'prefers the individual code' do
-          expect(@iso639_3_with_macrolanguage['language_name_display']).to contain_exactly("Wu Chinese")
+          expect(@iso639_3_with_macrolanguage['language_name_display']).to contain_exactly('Wu Chinese')
         end
       end
     end
 
     describe 'the isbn_display field' do
       it 'has more than one q subfields' do
-        expect(@sample35['isbn_display']).to eq(["9780816695706 (hardcover : alkaline paper)", "0816695709 (hardcover : alkaline paper)", "9780816695713 (paperback : alkaline paper)", "0816695717 (paperback : alkaline paper)"])
+        expect(@sample35['isbn_display']).to eq(['9780816695706 (hardcover : alkaline paper)', '0816695709 (hardcover : alkaline paper)', '9780816695713 (paperback : alkaline paper)', '0816695717 (paperback : alkaline paper)'])
       end
 
       it 'has one a subfield' do
-        expect(@sample2['isbn_display']).to eq(["0947752196"])
+        expect(@sample2['isbn_display']).to eq(['0947752196'])
       end
 
       it 'skips indexing if subfield $a is missing' do
-        expect(@sample38['isbn_display']).to eq ["9780429424304 (electronic book)", "0429424302 (electronic book)"]
+        expect(@sample38['isbn_display']).to eq ['9780429424304 (electronic book)', '0429424302 (electronic book)']
         expect(@sample38['isbn_display']).not_to include ' (hardcover)'
-        expect(@sample39['isbn_display']).to be nil
+        expect(@sample39['isbn_display']).to be_nil
       end
     end
 
@@ -460,52 +501,64 @@ describe 'From traject_config.rb', indexing: true do
         expect(@sample1['id'].length).to eq 1
       end
     end
+
     describe 'leader positions 06 07' do
       it 'is a databases format if there is an: ai' do
         expect(@format_databases['format']).to eq ['Databases']
       end
-      it 'is a journal format if there is an: as ' do
+
+      it 'is a journal format if there is an: as' do
         expect(@format_journal['format']).to eq ['Journal']
       end
-      it 'is a book format if there is an: am ' do
+
+      it 'is a book format if there is an: am' do
         expect(@format_book['format']).to eq ['Book']
       end
     end
+
     describe 'microform format' do
       it 'is indexed as a microform and its original format' do
         expect(@format_microform_journal['format']).to contain_exactly 'Journal', 'Microform'
       end
     end
+
     describe 'numeric_id_b' do
       it 'returns desired boolean' do
-        expect(@sample1['numeric_id_b'].first).to eq true
-        expect(@scsb_nypl['numeric_id_b'].first).to eq false
+        expect(@sample1['numeric_id_b'].first).to be true
+        expect(@scsb_nypl['numeric_id_b'].first).to be false
       end
     end
+
     describe 'the title_sort field' do
       it 'does not have initial articles' do
         expect(@sample1['title_sort'][0].start_with?('Advanced concepts')).to be_truthy
       end
     end
+
     describe 'the author_display field' do
       it 'takes from the 100 field' do
         expect(@sample1['author_display'][0]).to eq 'Singh, Digvijai, 1934-'
       end
+
       it 'shows only 100 field' do
         expect(@sample2['author_display'][0]).to eq 'White, Michael M.'
       end
+
       it 'shows 110 field' do
         expect(@sample3['author_display'][0]).to eq 'World Data Center A for Glaciology'
       end
     end
+
     describe 'the author_citation_display field' do
       it 'shows only the 100 a subfield' do
         expect(@sample1['author_citation_display'][0]).to eq 'Singh, Digvijai'
       end
+
       it 'shows only the 700 a subfield' do
         expect(@sample36['author_citation_display']).to include 'Ishizuka, Harumichi'
       end
     end
+
     describe 'the title vernacular display' do
       it 'is a single value for scsb records' do
         expect(@scsb_alt_title['title_vern_display'].length).to eq(1)
@@ -517,39 +570,46 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'geographic_facet field' do
-      let(:f650) { { "650" => { "ind1" => " ", "ind2" => "0", "subfields" => [{ "a" => "Vocal Music", "z" => "France", "y" => "18th century" }] } } }
+      let(:f650) { { '650' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'Vocal Music', 'z' => 'France', 'y' => '18th century' }] } } }
 
       it 'creates a facet for where the item is about' do
         record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
         expect(record['geographic_facet'].first).to eq('France')
       end
     end
+
     describe 'publication_place_facet field' do
       it 'maps the 3-digit code in the 008[15-17] to a name' do
         expect(@sample1['publication_place_facet']).to eq ['Michigan']
       end
+
       it 'maps the 2-digit code in the 008[15-17] to a name' do
         expect(@added_title_246['publication_place_facet']).to eq ['Japan']
       end
     end
+
     describe 'the pub_citation_display field' do
       it 'shows the the 260 a and b subfields' do
         expect(@sample2['pub_citation_display']).to include 'London: Firethorn Press'
       end
     end
+
     describe 'notes from record show up in the notes_index' do
       it 'shows tag 500 and 538' do
         expect(@sample34['notes_index']).to include('DVD ; all regions ; Dolby digital.', 'Originally released as documentary films 1956-1971.')
       end
     end
+
     describe 'description_display' do
       it 'shows tag 255' do
         expect(@record_with_255a['description_display']).to include('Scales differ.')
       end
+
       it 'shows tag 300' do
         expect(@record_with_255a['description_display']).to include('1 map on 3 sheets : col. ; each 64 x 54 cm.')
       end
     end
+
     describe 'publication end date' do
       let(:place) { 'Cincinnati, Ohio :' }
       let(:name) { 'American Drama Institute,' }
@@ -582,19 +642,19 @@ describe 'From traject_config.rb', indexing: true do
       end
       let(:p260) do
         {
-          "260" => {
-            "ind1" => " ",
-            "ind2" => " ",
-            "subfields" => [{ "a" => place }, { "b" => name }, { "c" => date }]
+          '260' => {
+            'ind1' => ' ',
+            'ind2' => ' ',
+            'subfields' => [{ 'a' => place }, { 'b' => name }, { 'c' => date }]
           }
         }
       end
       let(:p260_complete) do
         {
-          "260" => {
-            "ind1" => " ",
-            "ind2" => " ",
-            "subfields" => [{ "a" => place }, { "b" => name }, { "c" => date_full }]
+          '260' => {
+            'ind1' => ' ',
+            'ind2' => ' ',
+            'subfields' => [{ 'a' => place }, { 'b' => name }, { 'c' => date_full }]
           }
         }
       end
@@ -604,67 +664,83 @@ describe 'From traject_config.rb', indexing: true do
       let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [not_ceased_008, p260], 'leader' => leader)) }
       let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
       let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
+
       it 'displays 264 tag sorted by indicator2' do
-        expect(@sample34['pub_created_display']).to eq ["[Paris] : Les Films de La Pleiade, 1956-1971.", "[Brooklyn, N.Y.] : Icarus Films, [2017]", "Â©1956-1971"]
+        expect(@sample34['pub_created_display']).to eq ['[Paris] : Les Films de La Pleiade, 1956-1971.', '[Brooklyn, N.Y.] : Icarus Films, [2017]', 'Â©1956-1971']
       end
+
       it 'displays when 008-6 is d and an end date is present in the 008' do
         expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
       end
+
       it 'when u is present in the end date string convert it to a 9' do
         expect(date_199u_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1999'
       end
+
       it 'does not display when 008-6 is d but end date is 9999' do
         expect(date_9999_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
       end
+
       it 'does not display when 008-6 is d but end date is not present' do
         expect(no_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
       end
+
       it 'does not display when 008-6 is not d' do
         expect(not_ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-'
       end
+
       it 'does not display when the publisher field ends with a character other than a dash' do
         expect(no_trailing_date_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-1998'
       end
     end
+
     describe 'invalid 008' do
       let(:too_short_008) do
         {
           '008' => '150106s2013'
         }
       end
+
       it 'does not break indexing' do
         expect do
           @indexer.map_record(MARC::Record.new_from_hash('fields' => [too_short_008], 'leader' => leader))
         end.not_to raise_error
       end
     end
+
     describe 'cjk-only fields' do
       before do
         @record_cjk = @indexer.map_record(fixture_record('9939238033506421'))
       end
+
       it 'displays 880 in pub_created_vern_display and subject field' do
         expect(@record_cjk['pub_created_vern_display']).to eq ['[China : s.n.], 清乾隆癸亥 [8年, 1743]']
         expect(@record_cjk['cjk_subject']).to eq ['子部 醫家類 兒科.']
       end
+
       it 'cjk_all contains 880 fields in a single string' do
         expect(@record_cjk['cjk_all'][0]).to include('葉其蓁. 抱乙子幼科指掌遺藁 : 五卷 / 葉其蓁編輯 ; [葉] 大本述. 幼科指掌.  [China : s.n.], 清乾隆癸亥 [8年, 1743] 子部 醫家類 兒科. ')
       end
+
       it 'cjk_notes contains 880 fields associated with 5xx fields' do
         expect(@record_cjk['cjk_notes'][0]).to include('乾隆癸亥李大倫"序"言刻書事.')
         expect(@record_cjk['cjk_notes'][0]).not_to include('子部')
       end
     end
+
     describe 'related_name_json_1display' do
       it 'trims punctuation the same way as author_s facet' do
         rel_names = JSON.parse(@related_names['related_name_json_1display'][0])
         rel_names['Related name'].each { |n| expect(@related_names['author_s']).to include(n) }
       end
+
       it 'allows multiple roles from single field' do
         rel_names = JSON.parse(@label_i_246['related_name_json_1display'][0])
         expect(rel_names['Film director']).to include('Kim, ToÌ†k-su')
         expect(rel_names['Screenwriter']).to include('Kim, ToÌ†k-su')
       end
     end
+
     describe 'access_facet' do
       it 'value is in the library for non-electronic records' do
         expect(@sample3['access_facet']).to include 'In the Library'
@@ -683,82 +759,95 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'holdings_1display' do
+      let(:current_record) { @indexer.map_record(record_fixture_path) }
+      let(:record_fixture_path) { fixture_record(id) }
+
       it 'groups holding info into a hash keyed on the mfhd id' do
-        @holdings = JSON.parse(@sample37["holdings_1display"][0])
-        expect(@holdings.keys).to eq ["22170509880006421", "22170509890006421", "22170509900006421"]
+        @holdings = JSON.parse(@sample37['holdings_1display'][0])
+        expect(@holdings.keys).to eq %w[22170509880006421 22170509890006421 22170509900006421]
 
         expect(@holdings['22170509880006421']['location_code']).to eq 'engineer$stacks'
         expect(@holdings['22170509890006421']['location_code']).to eq 'lewis$stacks'
         expect(@holdings['22170509900006421']['location_code']).to eq 'firestone$stacks'
         expect(@holdings['22170509890006421']['location_note']).to eq ['To borrow this ebook, please request an iPad from the circulation desk at Lewis Library']
       end
-      it "does not include an empty call number field" do
-        @holdings = JSON.parse(@record_call_number_nil["holdings_1display"][0])
-        expect(@holdings['22690128630006421']['call_number']).to be nil
-        expect(@holdings['22690128630006421']['call_number_browse']).to be nil
+
+      it 'does not include an empty call number field' do
+        @holdings = JSON.parse(@record_call_number_nil['holdings_1display'][0])
+        expect(@holdings['22690128630006421']['call_number']).to be_nil
+        expect(@holdings['22690128630006421']['call_number_browse']).to be_nil
       end
+
       it "can index when there's no 852 call number fields (khij)" do
-        @holdings = JSON.parse(@record_no_call_number["holdings_1display"][0])
-        expect(@holdings['22100565840006421']['call_number']).to be nil
-        expect(@holdings['22100565840006421']['call_number_browse']).to be nil
+        @holdings = JSON.parse(@record_no_call_number['holdings_1display'][0])
+        expect(@holdings['22100565840006421']['call_number']).to be_nil
+        expect(@holdings['22100565840006421']['call_number_browse']).to be_nil
       end
-      it "includes a call number field when there is a subfield with a value" do
-        @holdings = JSON.parse(@sample40["holdings_1display"][0])
-        expect(@holdings['22666524470006421']['call_number']).to eq ".B7544 2003q Oversize RA566.27"
-        expect(@holdings['22666524470006421']['call_number_browse']).to eq ".B7544 2003q Oversize RA566.27"
+
+      it 'includes a call number field when there is a subfield with a value' do
+        @holdings = JSON.parse(@sample40['holdings_1display'][0])
+        expect(@holdings['22666524470006421']['call_number']).to eq '.B7544 2003q Oversize RA566.27'
+        expect(@holdings['22666524470006421']['call_number_browse']).to eq '.B7544 2003q Oversize RA566.27'
       end
-      it "indexes permanent and temporary locations" do
+
+      it 'indexes permanent and temporary locations' do
         # permanent location code: lewis$stacks
         # temporary location code: lewis$res
-        @holdings = JSON.parse(@record_temporary_location["holdings_1display"][0])
-        expect(@holdings['22745884920006421']['location_code']).to eq "lewis$stacks"
-        expect(@holdings['22745884920006421']["items"][0]['id']).to eq "23745884910006421"
-        expect(@holdings["22745884920006421"]["items"].count).to eq 1
-        expect(@holdings["lewis$res"]["location_code"]).to eq "lewis$res"
-        expect(@holdings["lewis$res"]["current_location"]).to eq "Course Reserve"
-        expect(@holdings["lewis$res"]["current_library"]).to eq "Lewis Library"
-        expect(@holdings["lewis$res"]["items"].count).to eq 1
-        expect(@holdings["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
-        expect(@holdings["lewis$res"]["items"][0]["holding_id"]).to eq '22745884920006421'
+        @holdings = JSON.parse(@record_temporary_location['holdings_1display'][0])
+        expect(@holdings['22745884920006421']['location_code']).to eq 'lewis$stacks'
+        expect(@holdings['22745884920006421']['items'][0]['id']).to eq '23745884910006421'
+        expect(@holdings['22745884920006421']['items'].count).to eq 1
+        expect(@holdings['lewis$res']['location_code']).to eq 'lewis$res'
+        expect(@holdings['lewis$res']['current_location']).to eq 'Course Reserve'
+        expect(@holdings['lewis$res']['current_library']).to eq 'Lewis Library'
+        expect(@holdings['lewis$res']['items'].count).to eq 1
+        expect(@holdings['lewis$res']['items'][0]['id']).to eq '23898873500006421'
+        expect(@holdings['lewis$res']['items'][0]['holding_id']).to eq '22745884920006421'
 
         # custom fixture @record_temporary_location_v2 with permanent and temporary locations
-        @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
-        expect(@holdings_v2["22745884920006421"]["items"].count).to eq 2
-        expect(@holdings_v2["22745884920006421"]["items"][0]["id"]).to eq '23745884910006421'
-        expect(@holdings_v2["22745884920006421"]["items"][1]["id"]).to eq '23799884910006421'
-        expect(@holdings_v2["lewis$res"]["items"].count).to eq 3
-        expect(@holdings_v2["lewis$res"]["items"][0]["id"]).to eq '23898873500006421'
-        expect(@holdings_v2["lewis$res"]["items"][1]["id"]).to eq '23888873500006421'
-        expect(@holdings_v2["lewis$res"]["items"][2]["id"]).to eq '23998873500006421'
+        @holdings_v2 = JSON.parse(@record_temporary_location_v2['holdings_1display'][0])
+        expect(@holdings_v2['22745884920006421']['items'].count).to eq 2
+        expect(@holdings_v2['22745884920006421']['items'][0]['id']).to eq '23745884910006421'
+        expect(@holdings_v2['22745884920006421']['items'][1]['id']).to eq '23799884910006421'
+        expect(@holdings_v2['lewis$res']['items'].count).to eq 3
+        expect(@holdings_v2['lewis$res']['items'][0]['id']).to eq '23898873500006421'
+        expect(@holdings_v2['lewis$res']['items'][1]['id']).to eq '23888873500006421'
+        expect(@holdings_v2['lewis$res']['items'][2]['id']).to eq '23998873500006421'
       end
-      it "indexes the temp_location_code when holding in a temporary location" do
-        @holdings_v2 = JSON.parse(@record_temporary_location_v2["holdings_1display"][0])
-        expect(@holdings_v2["lewis$res"]["temp_location_code"]).to eq 'lewis$res'
+
+      it 'indexes the temp_location_code when holding in a temporary location' do
+        @holdings_v2 = JSON.parse(@record_temporary_location_v2['holdings_1display'][0])
+        expect(@holdings_v2['lewis$res']['temp_location_code']).to eq 'lewis$res'
       end
-      it "does not index the temp_location_code when holding in a permanent location" do
-        @holdings = JSON.parse(@record_temporary_location["holdings_1display"][0])
+
+      it 'does not index the temp_location_code when holding in a permanent location' do
+        @holdings = JSON.parse(@record_temporary_location['holdings_1display'][0])
         expect(@holdings['22745884920006421']['temp_location_code']).to be_falsey
       end
       # temporary location RES_SHARE$IN_RS_REQ is the only temporary location
       # that is always indexed as permanent using the permanent location code and has temp_location_code
-      it "indexes temp_location_code when temporary location is RES_SHARE$IN_RS_REQ" do
+
+      it 'indexes temp_location_code when temporary location is RES_SHARE$IN_RS_REQ' do
         # permanent location code: firestone$stacks
         # temporary location code: RES_SHARE$IN_RS_REQ
-        @holdings = JSON.parse(@record_at_resource_sharing["holdings_1display"][0])
-        expect(@holdings["22673914610006421"]['location_code']).to eq 'firestone$stacks'
-        expect(@holdings["22673914610006421"]["items"][0]['id']).to eq '23673914600006421'
-        expect(@holdings["22673914610006421"]["items"].count).to eq 1
-        expect(@holdings["22673914610006421"]["temp_location_code"]).to eq 'RES_SHARE$IN_RS_REQ'
+        @holdings = JSON.parse(@record_at_resource_sharing['holdings_1display'][0])
+        expect(@holdings['22673914610006421']['location_code']).to eq 'firestone$stacks'
+        expect(@holdings['22673914610006421']['items'][0]['id']).to eq '23673914600006421'
+        expect(@holdings['22673914610006421']['items'].count).to eq 1
+        expect(@holdings['22673914610006421']['temp_location_code']).to eq 'RES_SHARE$IN_RS_REQ'
       end
-      it "indexes the permanent holding when there are no items (876)" do
-        @holdings = JSON.parse(@holding_no_items["holdings_1display"][0])
+
+      it 'indexes the permanent holding when there are no items (876)' do
+        @holdings = JSON.parse(@holding_no_items['holdings_1display'][0])
         expect(@holdings['22537847690006421']['location_code']).to eq 'rare$ex'
         expect(@holdings['22537847690006421']['call_number_browse']).to eq '3400.899'
         expect(@holdings['22537847690006421']['items']).to be_falsey
       end
+
       it 'if there is no 852 it will have no holdings' do
-        expect(@electronic_no_852["holdings_1display"]).to be_falsey
+        expect(@electronic_no_852['holdings_1display']).to be_falsey
       end
+
       it 'indexes holdings with items' do
         @holdings = JSON.parse(@holdings_with_and_no_items['holdings_1display'][0])
         expect(@holdings['22543249620006421']['items'].count).to eq 1
@@ -770,7 +859,7 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'includes 852 subfield k as sub_location' do
         @holdings = JSON.parse(@sample40['holdings_1display'][0])
-        holding = @holdings["22666524470006421"]
+        holding = @holdings['22666524470006421']
         expect(holding.keys).to include('sub_location')
         expect(holding['sub_location']).to match_array(['Oversize RA566.27'])
       end
@@ -783,7 +872,7 @@ describe 'From traject_config.rb', indexing: true do
 
       describe 'electronic_access_1display' do
         it 'holding 856s are excluded from electronic_access_1display' do
-          @electronic_access_1display = JSON.parse(@sample37["electronic_access_1display"].to_s)
+          @electronic_access_1display = JSON.parse(@sample37['electronic_access_1display'].to_s)
           expect(@electronic_access_1display).not_to include('holding_record_856s')
         end
       end
@@ -803,19 +892,18 @@ describe 'From traject_config.rb', indexing: true do
           end
         end
       end
+
       describe 'location facet values for Recap items' do
         it 'marquand recap items display as marquand and are in the marquand location facet' do
           expect(@added_title_246['location_display']).to eq ['Remote Storage (ReCAP): Marquand Library Use Only']
           expect(@added_title_246['location']).to eq ['Marquand Library']
         end
+
         it 'mudd recap items display as mudd and are in the mudd location facet' do
           expect(@online_at_library['location_display']).to include 'Remote Storage (ReCAP): Mudd Library Use Only'
           expect(@online_at_library['location']).to eq ['Mudd Manuscript Library']
         end
       end
-
-      let(:record_fixture_path) { fixture_record(id) }
-      let(:current_record) { @indexer.map_record(record_fixture_path) }
 
       describe 'including libraries and codes in advanced_location_s facet' do
         let(:id) { '9992320213506421' }
@@ -834,42 +922,50 @@ describe 'From traject_config.rb', indexing: true do
           expect(location_code_s).not_to include('Lewis Library')
         end
       end
+
       describe 'other_title_display array 246s included' do
         it 'regardless of 2nd indicator value' do
           expect(@added_title_246['other_title_display']).to include 'Bi ni itaru yamai'
           expect(@added_title_246['other_title_display']).to include 'Morimura Yasumasa, the sickness unto beauty'
           expect(@added_title_246['other_title_display']).to include 'Sickness unto beauty'
         end
+
         it 'when no 2nd indicator' do
           expect(@other_title_246['other_title_display']).to include 'Episcopus, civitas, territorium'
         end
+
         it 'excludes other title when subfield $i is present' do
           expect(@label_i_246['other_title_display']).to be_nil
         end
       end
+
       describe 'other_title_1display 246s hash' do
         it 'excludes titles with 2nd indicator labels' do
           expect(@added_title_246['other_title_1display']).to be_nil
         end
+
         it 'uses label from $i when available' do
           other_title_hash = JSON.parse(@label_i_246['other_title_1display'].first)
           expect(other_title_hash['English title also known as']).to include 'Dad for rent'
         end
       end
+
       describe 'multiple 245s' do
         it 'only uses first 245 in single-valued title_display field' do
           expect(@sample3['title_display'].length).to eq 1
         end
       end
+
       describe 'multiformat record' do
         it 'manuscript book includes both formats, manuscript first' do
-          expect(@manuscript_book['format']).to eq ['Manuscript', 'Book']
+          expect(@manuscript_book['format']).to eq %w[Manuscript Book]
         end
       end
+
       describe '852 $b $c location code processing' do
         it 'supports multiple location codes in separate 852s' do
           record = @indexer.map_record(fixture_record('9992320213506421'))
-          expect(record['location_code_s']).to eq(["lewis$stacks", "firestone$stacks"])
+          expect(record['location_code_s']).to eq(['lewis$stacks', 'firestone$stacks'])
         end
         # TODO: ALMA
         # it 'only includes the first $b within a single tag' do
@@ -877,26 +973,28 @@ describe 'From traject_config.rb', indexing: true do
       end
 
       describe 'mixing extract_marc and everything_after_t' do
-        let(:t400) { { "400" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
-        let(:t440) { { "440" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "AWESOME" }, { "a" => "John" }, { "n" => "1492" }, { "k" => "dont ignore" }] } } }
+        let(:t400) { { '400' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 't' => 'TITLE' }] } } }
+        let(:t440) { { '440' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 't' => 'AWESOME' }, { 'a' => 'John' }, { 'n' => '1492' }, { 'k' => 'dont ignore' }] } } }
 
         it 'includes 400 field when 440 missing for series_title_index field' do
           no_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400], 'leader' => leader))
           expect(no_440['series_title_index']).to include('TITLE')
         end
+
         it 'includes 400 and 440 field for series_title_index field' do
           yes_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400, t440], 'leader' => leader))
           expect(yes_440['series_title_index']).to match_array(['TITLE', 'John 1492'])
         end
+
         it 'excludes series_title_index field when no matching values' do
           expect(@sample1['series_title_index']).to be_nil
         end
       end
 
       describe 'both a and t must be present in linked title field' do
-        let(:t760) { { "760" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "t" => "TITLE" }] } } }
-        let(:a762) { { "762" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "NAME" }] } } }
-        let(:at765) { { "765" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Both" }, { "t" => "name and title" }] } } }
+        let(:t760) { { '760' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 't' => 'TITLE' }] } } }
+        let(:a762) { { '762' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'NAME' }] } } }
+        let(:at765) { { '765' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Both' }, { 't' => 'name and title' }] } } }
         let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t760, a762, at765], 'leader' => leader)) }
 
         it 'only includes 765at' do
@@ -909,7 +1007,7 @@ describe 'From traject_config.rb', indexing: true do
       end
 
       describe '#related_record_info_display' do
-        let(:i776) { { "776" => { "ind1" => "", "ind2" => "", "subfields" => [{ "i" => "Test description" }] } } }
+        let(:i776) { { '776' => { 'ind1' => '', 'ind2' => '', 'subfields' => [{ 'i' => 'Test description' }] } } }
         let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [i776], 'leader' => leader)) }
 
         it 'indexes the 776$i value' do
@@ -918,12 +1016,12 @@ describe 'From traject_config.rb', indexing: true do
       end
 
       describe 'name_uniform_title_display field' do
-        let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Name," }] } } }
-        let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "AltName ;" }] } } }
-        let(:t240) { { "240" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-02" }, { "a" => "Uniform Title," }, { "p" => "5" }] } } }
-        let(:t240_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "240-02" }, { "a" => "AltUniform Title," }, { "p" => "5" }] } } }
-        let(:t245) { { "245" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-03" }, { "a" => "Title 245a" }] } } }
-        let(:t245_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "245-03" }, { "a" => "VernTitle 245a" }] } } }
+        let(:n100) { { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01' }, { 'a' => 'Name,' }] } } }
+        let(:n100_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '100-01' }, { 'a' => 'AltName ;' }] } } }
+        let(:t240) { { '240' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-02' }, { 'a' => 'Uniform Title,' }, { 'p' => '5' }] } } }
+        let(:t240_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '240-02' }, { 'a' => 'AltUniform Title,' }, { 'p' => '5' }] } } }
+        let(:t245) { { '245' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-03' }, { 'a' => 'Title 245a' }] } } }
+        let(:t245_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '245-03' }, { 'a' => 'VernTitle 245a' }] } } }
         let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
         let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader)) }
 
@@ -935,43 +1033,45 @@ describe 'From traject_config.rb', indexing: true do
         end
 
         it 'name title browse field includes both scripts, includes 245 when no uniform title present' do
-          expect(no_uniform_title['name_title_browse_s']).to match_array(["Name. Title 245a",
-                                                                          "AltName. VernTitle 245a"])
+          expect(no_uniform_title['name_title_browse_s']).to match_array(['Name. Title 245a',
+                                                                          'AltName. VernTitle 245a'])
         end
       end
 
       describe 'uniform_title_1display field' do
         context 'with no author' do
           context 'in English' do
-            let(:t130) { { "130" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "a" => "Bible.", "l" => "Latin.", "s" => "Vulgate.", "f" => "1461." }] } } }
+            let(:t130) { { '130' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Bible.', 'l' => 'Latin.', 's' => 'Vulgate.', 'f' => '1461.' }] } } }
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130], 'leader' => leader)) }
 
             it 'has the English language field' do
-              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Bible.", "Latin.", "Vulgate.", "1461."]])
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([['Bible.', 'Latin.', 'Vulgate.', '1461.']])
             end
           end
+
           context 'with Arabic and English' do
-            let(:t130) { { "130" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "6" => "880-01", "a" => "Awrāq (Madrid, Spain)" }] } } }
-            let(:t880) { { "880" => { "ind1" => "0", "ind2" => " ", "subfields" => [{ "6" => "130-01", "a" => "اوراق (Madrid, Spain)" }] } } }
+            let(:t130) { { '130' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01', 'a' => 'Awrāq (Madrid, Spain)' }] } } }
+            let(:t880) { { '880' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ '6' => '130-01', 'a' => 'اوراق (Madrid, Spain)' }] } } }
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130, t880], 'leader' => leader)) }
 
             it 'has the English and vernacular field' do
-              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([["Awrāq (Madrid, Spain)"], ["اوراق (Madrid, Spain)"]])
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([['Awrāq (Madrid, Spain)'], ['اوراق (Madrid, Spain)']])
             end
           end
         end
+
         context 'with an author' do
-          let(:n100) { { "100" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-01" }, { "a" => "Name," }] } } }
-          let(:n100_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "100-01" }, { "a" => "AltName ;" }] } } }
-          let(:t240) { { "240" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-02" }, { "a" => "Uniform Title," }, { "p" => "5" }] } } }
-          let(:t240_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "240-02" }, { "a" => "AltUniform Title," }, { "p" => "5" }] } } }
-          let(:t245) { { "245" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "880-03" }, { "a" => "Title 245a" }] } } }
-          let(:t245_vern) { { "880" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "6" => "245-03" }, { "a" => "VernTitle 245a" }] } } }
+          let(:n100) { { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01' }, { 'a' => 'Name,' }] } } }
+          let(:n100_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '100-01' }, { 'a' => 'AltName ;' }] } } }
+          let(:t240) { { '240' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-02' }, { 'a' => 'Uniform Title,' }, { 'p' => '5' }] } } }
+          let(:t240_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '240-02' }, { 'a' => 'AltUniform Title,' }, { 'p' => '5' }] } } }
+          let(:t245) { { '245' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-03' }, { 'a' => 'Title 245a' }] } } }
+          let(:t245_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '245-03' }, { 'a' => 'VernTitle 245a' }] } } }
           let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
 
           it 'does not create a uniform_title_1display' do
-            expect(uniform_title['uniform_title_1display']).to be nil
-            expect(uniform_title['uniform_title_search_s']).to be nil
+            expect(uniform_title['uniform_title_1display']).to be_nil
+            expect(uniform_title['uniform_title_search_s']).to be_nil
           end
         end
       end
@@ -982,10 +1082,12 @@ describe 'From traject_config.rb', indexing: true do
         lc_facet = @sample40['lc_facet']
         expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine'])
       end
+
       it 'handles cases where the call number is a single letter' do
         lc_facet = @sample44['lc_facet']
         expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources:Z - Bibliography, Library Science, Information Resources'])
       end
+
       it 'handles cases where there is no call number' do
         lc_facet = @record_no_call_number['lc_facet']
         expect(lc_facet).to be_nil
@@ -993,9 +1095,9 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'series 490 dedup, non-filing' do
-      let(:s490) { { "490" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title" }] } } }
-      let(:s830) { { "830" => { "ind1" => "", "ind2" => " ", "subfields" => [{ "a" => "Series title." }] } } }
-      let(:s440) { { "440" => { "ind1" => "", "ind2" => "4", "subfields" => [{ "a" => "The Series" }] } } }
+      let(:s490) { { '490' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Series title' }] } } }
+      let(:s830) { { '830' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Series title.' }] } } }
+      let(:s440) { { '440' => { 'ind1' => '', 'ind2' => '4', 'subfields' => [{ 'a' => 'The Series' }] } } }
       let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
 
       it '490s are not included when they are covered by another series field' do
@@ -1006,20 +1108,23 @@ describe 'From traject_config.rb', indexing: true do
         expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
       end
     end
+
     describe 'senior thesis 502 note' do
-      let(:senior_thesis_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)-Princeton University" }] } } }
+      let(:senior_thesis_502) { { '502' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Thesis (Senior)-Princeton University' }] } } }
       let(:senior_thesis_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [senior_thesis_502], 'leader' => leader)) }
-      let(:whitespace_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "a" => "Thesis (Senior)  -- Princeton University" }] } } }
+      let(:whitespace_502) { { '502' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Thesis (Senior)  -- Princeton University' }] } } }
       let(:senior_thesis_whitespace) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [whitespace_502], 'leader' => leader)) }
-      let(:subfield_bc_502) { { "502" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "b" => "Senior" }, { "c" => "Princeton University" }] } } }
+      let(:subfield_bc_502) { { '502' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'b' => 'Senior' }, { 'c' => 'Princeton University' }] } } }
       let(:thesis_bc_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [subfield_bc_502], 'leader' => leader)) }
 
       it 'Princeton senior theses are properly classified' do
         expect(senior_thesis_marc['format']).to include 'Senior thesis'
       end
+
       it 'whitespace is ignored in classifying senior thesis' do
         expect(senior_thesis_whitespace['format']).to include 'Senior thesis'
       end
+
       it 'senior thesis note can be split across subfields $b and $c' do
         expect(thesis_bc_marc['format']).to include 'Senior thesis'
       end
@@ -1032,28 +1137,30 @@ describe 'From traject_config.rb', indexing: true do
 
       context 'when 506$g is a valid date and 506$5 is NjP' do
         let(:marc_fields_hash) do
-          { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20230607", "5" => "NjP" }] } }
+          { '506' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'g' => '20230607', '5' => 'NjP' }] } }
         end
 
         it 'indexes a human-readable version of the embargo date' do
           expect(indexed['embargo_date_display']).to contain_exactly '06/07/2023'
         end
       end
+
       context 'when 506$g is not a valid date' do
         let(:marc_fields_hash) do
-          { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "123", "5" => "NjP" }] } }
+          { '506' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'g' => '123', '5' => 'NjP' }] } }
         end
 
         it 'does not index the field' do
           expect(indexed['embargo_date_display']).to be_nil
         end
       end
+
       context 'when multiple 506s' do
         let(:marc_fields_hash) do
           hash = {}
           hash.compare_by_identity # Hack to allow the same key twice in the same hash
-          hash['506'] = { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20500101", "5" => "NjP" }] }
-          hash['506'] = { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "19991225", "5" => "Yale" }] }
+          hash['506'] = { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'g' => '20500101', '5' => 'NjP' }] }
+          hash['506'] = { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'g' => '19991225', '5' => 'Yale' }] }
           hash
         end
 
@@ -1066,7 +1173,7 @@ describe 'From traject_config.rb', indexing: true do
     describe 'embargo_date_tdt' do
       context 'when 506$g is a valid date and 506$5 is NjP' do
         it 'indexes a solr-readable version of the embargo date' do
-          marc_fields_hash = { "506" => { "ind1" => " ", "ind2" => " ", "subfields" => [{ "g" => "20230607", "5" => "NjP" }] } }
+          marc_fields_hash = { '506' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'g' => '20230607', '5' => 'NjP' }] } }
 
           indexed = @indexer.map_record(MARC::Record.new_from_hash('fields' => [marc_fields_hash], 'leader' => leader))
           expect(indexed['embargo_date_tdt']).to contain_exactly '2023-06-07T00:00:00Z'
@@ -1084,61 +1191,69 @@ describe 'From traject_config.rb', indexing: true do
       context 'with a subfield code e' do
         it 'capitalizes and removes punctuation' do
           expect(@sample35['marc_relator_display']).to eq(['Author'])
-          expect(@sample41['marc_relator_display']). to eq(['Engraver'])
+          expect(@sample41['marc_relator_display']).to eq(['Engraver'])
         end
       end
+
       context 'with no subfields' do
-        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [] } } }
+        let(:example_100) { { '100' => { 'ind1' => '1', 'ind2' => '2', 'subfields' => [] } } }
 
         it 'defaults to Author' do
           expect(relator_record['marc_relator_display']).to eq(['Author'])
         end
       end
+
       context 'with a subfield code 4' do
-        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "4" => "cre" }] } } }
+        let(:example_100) { { '100' => { 'ind1' => '1', 'ind2' => '2', 'subfields' => [{ '4' => 'cre' }] } } }
 
         it 'maps to the relator' do
           expect(relator_record['marc_relator_display']).to eq(['Creator'])
         end
       end
-      context 'with both subfield e and 4' do
-        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "e" => "Something Else" }, { "4" => "cre" }] } } }
 
-        it "saves subfield 4 to solr" do
-          expect(relator_record['marc_relator_display']).to eq(["Something else"])
+      context 'with both subfield e and 4' do
+        let(:example_100) { { '100' => { 'ind1' => '1', 'ind2' => '2', 'subfields' => [{ 'e' => 'Something Else' }, { '4' => 'cre' }] } } }
+
+        it 'saves subfield 4 to solr' do
+          expect(relator_record['marc_relator_display']).to eq(['Something else'])
         end
       end
-      context 'with subfield 4 before subfield e' do
-        let(:example_100) { { "100" => { "ind1" => "1", "ind2" => "2", "subfields" => [{ "4" => "cre" }, { "e" => "Something Else" }] } } }
 
-        it "saves subfield 4 to solr" do
-          expect(relator_record['marc_relator_display']).to eq(["Something else"])
+      context 'with subfield 4 before subfield e' do
+        let(:example_100) { { '100' => { 'ind1' => '1', 'ind2' => '2', 'subfields' => [{ '4' => 'cre' }, { 'e' => 'Something Else' }] } } }
+
+        it 'saves subfield 4 to solr' do
+          expect(relator_record['marc_relator_display']).to eq(['Something else'])
         end
       end
     end
 
-    context "subject display and unstem fields" do
-      let(:s650_sk) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject" }, { "2" => "sk" }] } } }
-      let(:s650_skbb) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Siku Subject with skbb code" }, { "2" => "skbb" }] } } }
-      let(:s650_local) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Local Subject" }, { "2" => "local" }, { "5" => "NjP" }] } } }
-      let(:s650_homoit) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Homosaurus Subject" }, { "2" => "homoit" }] } } }
+    context 'subject display and unstem fields' do
+      let(:s650_sk) { { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Siku Subject' }, { '2' => 'sk' }] } } }
+      let(:s650_skbb) { { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Siku Subject with skbb code' }, { '2' => 'skbb' }] } } }
+      let(:s650_local) { { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Local Subject' }, { '2' => 'local' }, { '5' => 'NjP' }] } } }
+      let(:s650_homoit) { { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Homosaurus Subject' }, { '2' => 'homoit' }] } } }
 
-      let(:s650_exclude) { { "650" => { "ind1" => "", "ind2" => "7", "subfields" => [{ "a" => "Exclude from subject browse" }, { "2" => "bad" }] } } }
+      let(:s650_exclude) { { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Exclude from subject browse' }, { '2' => 'bad' }] } } }
+
       describe 'subject display and unstem fields' do
-        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "LC Subject" }] } } }
+        let(:s650_lcsh) { { '650' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ 'a' => 'LC Subject' }] } } }
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_skbb, s650_exclude, s650_local, s650_homoit], 'leader' => leader)) }
 
         it 'include lc subjects and local subjects in the same display field' do
           expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
         end
+
         it 'includes siku subjects in separate fields' do
           expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
           expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
         end
+
         it 'includes homoit subjects in separate fields' do
           expect(subject_marc['homoit_subject_display']).to match_array(['Homosaurus Subject'])
           expect(subject_marc['homoit_subject_unstem_search']).to match_array(['Homosaurus Subject'])
         end
+
         it 'include lc, siku, and local subjects in separate unstem fields' do
           expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
           expect(subject_marc['local_subject_display']).to match_array(['Local Subject'])
@@ -1148,11 +1263,13 @@ describe 'From traject_config.rb', indexing: true do
         it 'works using a fixture file' do
           expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
-          expect(@siku_subject_headings['siku_subject_display']).to match_array(["Zi bu—Zhu jia lei—Jidu jiao zhi shu", "子部—諸家類—基督教之屬", "Zi bu—Tian wen suan fa lei—Li fa.", "子部—天文算法類—曆法."])
+          expect(@siku_subject_headings['siku_subject_display']).to match_array(['Zi bu—Zhu jia lei—Jidu jiao zhi shu', '子部—諸家類—基督教之屬', 'Zi bu—Tian wen suan fa lei—Li fa.', '子部—天文算法類—曆法.'])
         end
       end
+
       describe 'subject facet fields' do
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_sk, s650_skbb, s650_exclude, s650_local, s650_homoit], 'leader' => leader)) }
+
         it 'includes siku subjects in subject_facet and subject_topic_facet' do
           expect(subject_marc['subject_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
           expect(subject_marc['subject_topic_facet']).to include('Siku Subject', 'Siku Subject with skbb code')
@@ -1173,145 +1290,157 @@ describe 'From traject_config.rb', indexing: true do
           expect(subject_marc['subject_topic_facet']).not_to include('Exclude from subject browse')
         end
       end
+
       describe 'subject terms augmented for Indigenous Studies' do
-        let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Indians of North America", "z" => "Connecticut." }] } } }
+        let(:s650_lcsh) { { '650' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ 'a' => 'Indians of North America', 'z' => 'Connecticut.' }] } } }
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
 
         it 'augments the subject terms to add Indigenous Studies and changes to Indigenous subject term' do
-          expect(subject_marc["subject_facet"]).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-          expect(subject_marc['subject_topic_facet']).to match_array(["Indigenous peoples of North America", "Connecticut", "Indigenous Studies"])
-          expect(subject_marc['lc_subject_display']).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
-          expect(subject_marc["subject_unstem_search"]).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous peoples of North America#{SEPARATOR}Connecticut", "Indigenous Studies"])
+          expect(subject_marc['subject_facet']).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
+          expect(subject_marc['subject_topic_facet']).to match_array(['Indigenous peoples of North America', 'Connecticut', 'Indigenous Studies'])
+          expect(subject_marc['lc_subject_display']).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
+          expect(subject_marc['subject_unstem_search']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
         end
+
         it 'works against a fixture' do
-          expect(@indigenous_studies["subject_facet"]).to match_array(["Indigenous peoples of Central America", "Indigenous peoples of Mexico",
-                                                                       "Indigenous peoples of North America", "Indigenous peoples of the West Indies", "Indigenous Studies"])
-          expect(@indigenous_studies["subject_topic_facet"]).to match_array(["Indigenous peoples of Central America", "Indigenous peoples of Mexico",
-                                                                             "Indigenous peoples of North America", "Indigenous peoples of the West Indies", "Indigenous Studies"])
-          expect(@indigenous_studies["lc_subject_display"]).to match_array(["Indigenous peoples of Central America", "Indigenous peoples of Mexico",
-                                                                            "Indigenous peoples of North America", "Indigenous peoples of the West Indies", "Indigenous Studies"])
-          expect(@indigenous_studies["subject_unstem_search"]).to match_array(["Indians of Central America", "Indians of Mexico", "Indians of North America",
-                                                                               "Indians of the West Indies", "Indigenous Studies", "Indigenous peoples of Central America",
-                                                                               "Indigenous peoples of Mexico", "Indigenous peoples of North America",
-                                                                               "Indigenous peoples of the West Indies"])
+          expect(@indigenous_studies['subject_facet']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
+                                                                       'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
+          expect(@indigenous_studies['subject_topic_facet']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
+                                                                             'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
+          expect(@indigenous_studies['lc_subject_display']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
+                                                                            'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
+          expect(@indigenous_studies['subject_unstem_search']).to match_array(['Indians of Central America', 'Indians of Mexico', 'Indians of North America',
+                                                                               'Indians of the West Indies', 'Indigenous Studies', 'Indigenous peoples of Central America',
+                                                                               'Indigenous peoples of Mexico', 'Indigenous peoples of North America',
+                                                                               'Indigenous peoples of the West Indies'])
         end
 
         context 'subdivision that repeats main subject term' do
           let(:expected_subject_facets) do
             [
               "Indigenous peoples of Mexico#{SEPARATOR}Mexico#{SEPARATOR}Hidalgo (State)#{SEPARATOR}Antiquities#{SEPARATOR}Congresses",
-              "Indigenous Studies",
+              'Indigenous Studies',
               "Archaeology#{SEPARATOR}Mexico#{SEPARATOR}Hidalgo (State)#{SEPARATOR}Congresses",
               "Hidalgo (Mexico : State)#{SEPARATOR}Antiquities#{SEPARATOR}Congresses"
             ]
           end
 
           it 'does not incorrectly substitute both subdivision and main subject term' do
-            expect(@indigenous_studies_mexico["subject_facet"]).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
-            expect(@indigenous_studies_mexico["subject_facet"]).to match_array(expected_subject_facets)
+            expect(@indigenous_studies_mexico['subject_facet']).not_to include('Indians of—Mexico—Mexico—Hidalgo (State)—Antiquities—Congresses')
+            expect(@indigenous_studies_mexico['subject_facet']).to match_array(expected_subject_facets)
           end
         end
       end
+
       describe 'subject terms changed for Change the Subject' do
         context 'when the subject term is an exact match in $a' do
-          let(:s650_lcsh) { { "650" => { "ind1" => "", "ind2" => "0", "subfields" => [{ "a" => "Illegal aliens", "z" => "United States." }] } } }
+          let(:s650_lcsh) { { '650' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ 'a' => 'Illegal aliens', 'z' => 'United States.' }] } } }
           let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
+
           it 'changes the subject term in display fields, but includes both old and new in search fields' do
-            expect(subject_marc["subject_facet"]).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-            expect(subject_marc['subject_topic_facet']).to match_array(["Undocumented immigrants", "United States"])
+            expect(subject_marc['subject_facet']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
+            expect(subject_marc['subject_topic_facet']).to match_array(['Undocumented immigrants', 'United States'])
             expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-            expect(subject_marc["subject_unstem_search"]).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
+            expect(subject_marc['subject_unstem_search']).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
           end
+
           it 'works against a fixture' do
             corrected_subjects_compound = [
-              "Undocumented immigrants—United States",
-              "Emigration and immigration law—United States",
-              "Emigration and immigration—Religious aspects—Christianity",
-              "Political theology—United States",
-              "Religion and state—United States",
-              "Christianity and law",
-              "Undocumented immigrants—Government policy—United States"
+              'Undocumented immigrants—United States',
+              'Emigration and immigration law—United States',
+              'Emigration and immigration—Religious aspects—Christianity',
+              'Political theology—United States',
+              'Religion and state—United States',
+              'Christianity and law',
+              'Undocumented immigrants—Government policy—United States'
             ]
             corrected_subjects_atomic = [
-              "Christianity",
-              "Christianity and law",
-              "Emigration and immigration",
-              "Emigration and immigration law",
-              "Government policy",
-              "Political theology",
-              "Religion and state",
-              "Religious aspects",
-              "Undocumented immigrants",
-              "United States"
+              'Christianity',
+              'Christianity and law',
+              'Emigration and immigration',
+              'Emigration and immigration law',
+              'Government policy',
+              'Political theology',
+              'Religion and state',
+              'Religious aspects',
+              'Undocumented immigrants',
+              'United States'
             ]
-            replaced_terms = ["Illegal aliens—Government policy—United States", "Illegal aliens—United States"]
+            replaced_terms = ['Illegal aliens—Government policy—United States', 'Illegal aliens—United States']
             subjects_for_searching = corrected_subjects_compound + replaced_terms
 
-            expect(@change_the_subject1["subject_facet"]).to match_array(corrected_subjects_compound)
-            expect(@change_the_subject1["subject_topic_facet"]).to match_array(corrected_subjects_atomic)
-            expect(@change_the_subject1["lc_subject_display"]).to match_array(corrected_subjects_compound)
-            expect(@change_the_subject1["subject_unstem_search"]).to match_array(subjects_for_searching)
+            expect(@change_the_subject1['subject_facet']).to match_array(corrected_subjects_compound)
+            expect(@change_the_subject1['subject_topic_facet']).to match_array(corrected_subjects_atomic)
+            expect(@change_the_subject1['lc_subject_display']).to match_array(corrected_subjects_compound)
+            expect(@change_the_subject1['subject_unstem_search']).to match_array(subjects_for_searching)
           end
         end
       end
     end
+
     describe 'homosaurus fields' do
       let(:lc_only_terms) { ["Transgender people#{SEPARATOR}Ephemera", "Transgender people#{SEPARATOR}Periodicals"] }
-      let(:homosaurus_terms) { ["Trans", "Transgender community", "Transgender culture"] }
+      let(:homosaurus_terms) { ['Trans', 'Transgender community', 'Transgender culture'] }
       let(:lc_and_homosaurus_terms) { lc_only_terms + homosaurus_terms }
 
       it 'works against a fixture' do
-        expect(@homosaurus["homoit_subject_display"]).to match_array(homosaurus_terms)
-        expect(@homosaurus["homoit_subject_unstem_search"]).to match_array(homosaurus_terms)
-        expect(@homosaurus["lc_subject_display"]).to match_array(lc_only_terms)
-        expect(@homosaurus["subject_unstem_search"]).to match_array(lc_only_terms)
-        expect(@homosaurus["subject_facet"]).to match_array(lc_and_homosaurus_terms)
+        expect(@homosaurus['homoit_subject_display']).to match_array(homosaurus_terms)
+        expect(@homosaurus['homoit_subject_unstem_search']).to match_array(homosaurus_terms)
+        expect(@homosaurus['lc_subject_display']).to match_array(lc_only_terms)
+        expect(@homosaurus['subject_unstem_search']).to match_array(lc_only_terms)
+        expect(@homosaurus['subject_facet']).to match_array(lc_and_homosaurus_terms)
         # # this should combine both, without lc subfields
-        expect(@homosaurus["subject_topic_facet"]).to match_array(["Transgender people", "Trans", "Transgender community", "Transgender culture"])
-        expect(@homosaurus_655["homoit_genre_s"]).to match(["LGBTQ+ periodicals"])
+        expect(@homosaurus['subject_topic_facet']).to match_array(['Transgender people', 'Trans', 'Transgender community', 'Transgender culture'])
+        expect(@homosaurus_655['homoit_genre_s']).to match(['LGBTQ+ periodicals'])
       end
     end
+
     describe 'fast subject heading fields' do
       it 'indexes fast headings' do
-        expect(@fast_subject_heading["fast_subject_display"]).to match_array(["Criticism, interpretation, etc", "Children's literature, Russian", "Russia (Federation)"])
-        expect(@fast_subject_heading["fast_subject_unstem_search"]).to match_array(["Criticism, interpretation, etc", "Children's literature, Russian", "Russia (Federation)"])
+        expect(@fast_subject_heading['fast_subject_display']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
+        expect(@fast_subject_heading['fast_subject_unstem_search']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
       end
+
       it 'does not add fast headings to subject_facet or subject_topic_facet' do
-        expect(@fast_subject_heading["subject_facet"]).to be_blank
-        expect(@fast_subject_heading["subject_topic_facet"]).to be_blank
+        expect(@fast_subject_heading['subject_facet']).to be_blank
+        expect(@fast_subject_heading['subject_topic_facet']).to be_blank
       end
+
       it 'does not index fast headings in a fixture file with no fast headings' do
-        expect(@non_fast_heading["fast_subject_display"]).to be_blank
-        expect(@non_fast_heading["fast_subject_unstem_search"]).to be_blank
+        expect(@non_fast_heading['fast_subject_display']).to be_blank
+        expect(@non_fast_heading['fast_subject_unstem_search']).to be_blank
       end
+
       it 'does not index fast headings when lc headings are present' do
-        expect(@fast_and_lc_heading["fast_subject_display"]).to be_blank
-        expect(@fast_and_lc_heading["fast_subject_unstem_search"]).to be_blank
+        expect(@fast_and_lc_heading['fast_subject_display']).to be_blank
+        expect(@fast_and_lc_heading['fast_subject_unstem_search']).to be_blank
       end
     end
+
     describe 'form_genre_display' do
       subject(:form_genre_display) { @indexer.map_record(marc_record) }
+
       let(:leader) { '1234567890' }
       let(:field_655) do
         {
-          "655" => {
-            "ind1" => "",
-            "ind2" => "7",
-            "subfields" => [
+          '655' => {
+            'ind1' => '',
+            'ind2' => '7',
+            'subfields' => [
               {
-                "a" => "Culture."
+                'a' => 'Culture.'
               },
               {
-                "v" => "Awesome"
+                'v' => 'Awesome'
               },
               {
-                "x" => "Dramatic rendition"
+                'x' => 'Dramatic rendition'
               },
               {
-                "y" => "19th century."
+                'y' => '19th century.'
               },
               {
-                "2" => "lcgft"
+                '2' => 'lcgft'
               }
             ]
           }
@@ -1319,24 +1448,24 @@ describe 'From traject_config.rb', indexing: true do
       end
       let(:field_655_2) do
         {
-          "655" => {
-            "ind1" => "",
-            "ind2" => "7",
-            "subfields" => [
+          '655' => {
+            'ind1' => '',
+            'ind2' => '7',
+            'subfields' => [
               {
-                "a" => "Poetry"
+                'a' => 'Poetry'
               },
               {
-                "x" => "Translations into French"
+                'x' => 'Translations into French'
               },
               {
-                "v" => "Maps"
+                'v' => 'Maps'
               },
               {
-                "y" => "19th century."
+                'y' => '19th century.'
               },
               {
-                "2" => "aat"
+                '2' => 'aat'
               }
             ]
           }
@@ -1345,9 +1474,10 @@ describe 'From traject_config.rb', indexing: true do
       let(:marc_record) do
         MARC::Record.new_from_hash('leader' => leader, 'fields' => [field_655, field_655_2])
       end
-      it "indexes the subfields as semicolon-delimited values" do
-        expect(form_genre_display["lcgft_s"].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
-        expect(form_genre_display["aat_s"].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
+
+      it 'indexes the subfields as semicolon-delimited values' do
+        expect(form_genre_display['lcgft_s'].first).to eq("Culture#{SEPARATOR}Awesome#{SEPARATOR}Dramatic rendition#{SEPARATOR}19th century")
+        expect(form_genre_display['aat_s'].last).to eq("Poetry#{SEPARATOR}Translations into French#{SEPARATOR}Maps#{SEPARATOR}19th century")
       end
     end
 
@@ -1360,36 +1490,41 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'private recap items' do
-      it "skips indexing record if only item is private" do
-        expect(@scsb_private).to be nil
+      it 'skips indexing record if only item is private' do
+        expect(@scsb_private).to be_nil
       end
-      it "skips indexing private items" do
+
+      it 'skips indexing private items' do
         expect(@scsb_multiple).to be
-        holdings = JSON.parse(@scsb_multiple["holdings_1display"].first)
-        public_holding_id = "10615483"
+        holdings = JSON.parse(@scsb_multiple['holdings_1display'].first)
+        public_holding_id = '10615483'
         expect(holdings.keys).to match_array([public_holding_id])
       end
     end
 
     describe 'recap_notes_display' do
-      it "skips indexing for Princeton Recap records" do
-        expect(@recap_record["recap_notes_display"]).to be nil
+      it 'skips indexing for Princeton Recap records' do
+        expect(@recap_record['recap_notes_display']).to be_nil
       end
-      it "Indexes C - S, if a shared SCSB record" do
-        expect(@scsb_alt_title["recap_notes_display"]).to eq ["C - S"]
+
+      it 'Indexes C - S, if a shared SCSB record' do
+        expect(@scsb_alt_title['recap_notes_display']).to eq ['C - S']
       end
-      it "Indexes N - O, if not a private/shared SCSB record" do
-        expect(@scsb_nypl["recap_notes_display"]).to eq ["N - O"]
+
+      it 'Indexes N - O, if not a private/shared SCSB record' do
+        expect(@scsb_nypl['recap_notes_display']).to eq ['N - O']
       end
-      it "Indexes H - C, if committed SCSB record" do
-        expect(@scsb_committed["recap_notes_display"]).to eq ["H - C"]
+
+      it 'Indexes H - C, if committed SCSB record' do
+        expect(@scsb_committed['recap_notes_display']).to eq ['H - C']
       end
-      it "Indexes H - U, if uncommittable SCSB record" do
-        expect(@scsb_uncommittable["recap_notes_display"]).to eq ["H - U"]
+
+      it 'Indexes H - U, if uncommittable SCSB record' do
+        expect(@scsb_uncommittable['recap_notes_display']).to eq ['H - U']
       end
     end
 
-    context "Action Note" do
+    context 'Action Note' do
       it 'has an action note when it is a PULFA record' do
         record = @indexer.map_record(fixture_record('99125628841606421'))
         expect(record['action_notes_1display']).to be_an_instance_of(Array)
@@ -1401,75 +1536,78 @@ describe 'From traject_config.rb', indexing: true do
         expect(notes.first['uri']).to eq('')
       end
 
-      it "has an Action Note from Princeton holding records" do
+      it 'has an Action Note from Princeton holding records' do
         record = @indexer.map_record(fixture_record('99126831126106421'))
         note = JSON.parse(record['action_notes_1display'][0]).first
         expect(note['description']).to eq('Vol. 1: Committed to retain in perpetuity — ReCAP Italian Language Imprints Collaborative Collection (NjP)')
         expect(note['uri']).to eq('http://arks.princeton.edu/ark:/88435/dcxg94j1575')
       end
 
-      it "will not index private notes - first indicator 0" do
-        expect(@private_notes_583['action_notes_1display']).to be nil
+      it 'will not index private notes - first indicator 0' do
+        expect(@private_notes_583['action_notes_1display']).to be_nil
       end
 
-      it "has an Action Note when a SCSB record" do
+      it 'has an Action Note when a SCSB record' do
         record = @indexer.map_record(fixture_record('SCSB-9879349'))
-        expect(record['action_notes_1display']).not_to be nil
+        expect(record['action_notes_1display']).not_to be_nil
         note = JSON.parse(record['action_notes_1display'][0]).first
-        expect(note['description']).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (HUL)")
+        expect(note['description']).to eq('Committed to retain in perpetuity — ReCAP Shared Collection (HUL)')
       end
 
-      it "does not have an action note when a non-PULFA, non-holding Princeton record" do
+      it 'does not have an action note when a non-PULFA, non-holding Princeton record' do
         record = @indexer.map_record(fixture_record('99125256858006421'))
-        expect(record['action_notes_1display']).to be nil
+        expect(record['action_notes_1display']).to be_nil
       end
 
       context 'with multiple action notes' do
         let(:record) { @indexer.map_record(fixture_record('99126873402206421')) }
-        it "gives a single string value" do
+
+        it 'gives a single string value' do
           expect(record['action_notes_1display'].size).to eq(1)
         end
 
-        it "can be parsed into a json object" do
+        it 'can be parsed into a json object' do
           notes = JSON.parse(record['action_notes_1display'].first)
           expect(notes).to be_an_instance_of Array
           expect(notes.size).to eq(2)
-          expect(notes.first["description"]).to eq("Committed to retain in perpetuity — ReCAP South Asian Imprints Collaborative Collection (NjP)")
-          expect(notes.last["description"]).to eq("Committed to retain in perpetuity — ReCAP Shared Collection (NjP)")
+          expect(notes.first['description']).to eq('Committed to retain in perpetuity — ReCAP South Asian Imprints Collaborative Collection (NjP)')
+          expect(notes.last['description']).to eq('Committed to retain in perpetuity — ReCAP Shared Collection (NjP)')
         end
       end
 
       context 'with an action note with a space on the ends of the url' do
         let(:action_note_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s583], 'leader' => leader)) }
         let(:s583) do
-          { "583" => { "ind1" => "1", "ind2" => " ", "subfields" => [
-            { "a" => "committed to retain" },
-            { "d" => "in perpertuity " },
-            { "f" => "ReCAP" },
-            { "u" => " http://arks.princeton.edu/ark:/88435/dcxg94j1575 " },
-            { "8" => "22961480120006421" }
+          { '583' => { 'ind1' => '1', 'ind2' => ' ', 'subfields' => [
+            { 'a' => 'committed to retain' },
+            { 'd' => 'in perpertuity ' },
+            { 'f' => 'ReCAP' },
+            { 'u' => ' http://arks.princeton.edu/ark:/88435/dcxg94j1575 ' },
+            { '8' => '22961480120006421' }
           ] } }
         end
+
         it 'strips the spaces' do
-          action_note_json = JSON.parse(action_note_marc["action_notes_1display"].first).first
-          expect(action_note_json["uri"]).to eq("http://arks.princeton.edu/ark:/88435/dcxg94j1575")
+          action_note_json = JSON.parse(action_note_marc['action_notes_1display'].first).first
+          expect(action_note_json['uri']).to eq('http://arks.princeton.edu/ark:/88435/dcxg94j1575')
         end
       end
     end
-    context "Temporary in resource sharing location" do
-      it "does not show as a temporary location" do
+
+    context 'Temporary in resource sharing location' do
+      it 'does not show as a temporary location' do
         indexer = IndexerService.build
         sample = indexer.map_record(fixture_record('998370993506421', indexer:))
         holdings = JSON.parse(sample['holdings_1display'][0])
         expect(holdings['22561746630006421']['items'].count).to eq 1
-        expect(holdings['22561746630006421']["location"]).to eq "Remote Storage (ReCAP)"
-        expect(sample["location"]).to eq(["Mendel Music Library"])
+        expect(holdings['22561746630006421']['location']).to eq 'Remote Storage (ReCAP)'
+        expect(sample['location']).to eq(['Mendel Music Library'])
       end
     end
   end
 
-  context "invalid utf8 record" do
-    it "ignores errors and allows the indexer to continue" do
+  context 'invalid utf8 record' do
+    it 'ignores errors and allows the indexer to continue' do
       indexer = IndexerService.build
       sample = indexer.map_record(fixture_record('99125119454006421', indexer:))
       expect(sample).to be_nil

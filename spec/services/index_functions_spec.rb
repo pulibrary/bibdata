@@ -4,10 +4,11 @@ RSpec.describe IndexFunctions do
   describe '#delete_ids' do
     let(:dump) do
       { 'ids' =>
-        { 'delete_ids' => ['134', '234'] } }
+        { 'delete_ids' => %w[134 234] } }
     end
+
     it 'returns an array of bib ids for deletion' do
-      expect(described_class.delete_ids(dump)).to eq ['134', '234']
+      expect(described_class.delete_ids(dump)).to eq %w[134 234]
     end
   end
 

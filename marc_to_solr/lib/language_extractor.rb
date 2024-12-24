@@ -30,11 +30,13 @@ class LanguageExtractor
 
   def iso_041_codes
     return [] unless iso_041_fields.any?
+
     extract_from_multiple_041s(iso_041_fields)
   end
 
   def all_041_codes
     return [] unless all_041_fields.any?
+
     extract_from_multiple_041s(all_041_fields)
   end
 

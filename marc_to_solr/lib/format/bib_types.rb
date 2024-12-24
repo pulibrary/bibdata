@@ -91,7 +91,7 @@ class BibTypes
       end
     end
 
-    types << 'VD' if self['538a'].grep(/\Advd(?!\-rom)/i).size > 0
+    types << 'VD' if self['538a'].grep(/\Advd(?!-rom)/i).size > 0
 
     types << 'VH' if self['538a'].grep(/\AVHS/i).size > 0
 
@@ -166,7 +166,7 @@ class BibTypes
     if (bib_format == 'MU') && %w[i j].include?(ldr6) && self['007[1]'].include?('d')
       record.fields('300').each do |f|
         str = f.subfields.collect { |s| s.value }.join(' ')
-        if (str =~ /DISC/i) && str =~ /33 1\/3 RPM/i
+        if (str =~ /DISC/i) && str =~ %r{33 1/3 RPM}i
           types << 'RL'
           break
         end
@@ -214,6 +214,7 @@ class BibTypes
 
   def microform_types
     return [] unless record['008']
+
     types = ['WM']
     f8_23 = record['008'].value[23]
     return types if %w[BK MU SE MX].include?(bib_format) && %w[a b c].include?(f8_23)
@@ -361,7 +362,7 @@ class BibTypes
   def conference_types
     # Get the easy stuff done first
 
-    return ['XC'] if (record['008'] && (record['008'].value[29] == '1')) || record.fields(['111', '711', '811']).size > 0
+    return ['XC'] if (record['008'] && (record['008'].value[29] == '1')) || record.fields(%w[111 711 811]).size > 0
 
     if (bib_format == 'CF')
       @record.fields('006').map { |f| f.value }.each do |f|
@@ -394,9 +395,7 @@ class BibTypes
   #                                         008   F27-01     EQUAL      s
 
   def statistics_types
-    if bib_format == 'BK'
-      return ['XS'] if record['008'] && record['008'].value[24..27] =~ /s/
-    end
+    return ['XS'] if bib_format == 'BK' && (record['008'] && record['008'].value[24..27] =~ /s/)
 
     return ['XS'] if @xv6XX.match? /\AStatistic/i
 

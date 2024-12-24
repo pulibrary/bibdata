@@ -49,7 +49,7 @@ FactoryBot.define do
     remote_storage
   end
 
-  factory :aeon_location, class: HoldingLocation do
+  factory :aeon_location, class: 'HoldingLocation' do
     label { 'location-label' }
     aeon_location { true }
     recap_electronic_delivery_location { false }
@@ -61,7 +61,7 @@ FactoryBot.define do
     library { build(:library, code: 'rare$jrare', label: 'Special Collections Aeon') }
   end
 
-  factory :map_location, class: HoldingLocation do
+  factory :map_location, class: 'HoldingLocation' do
     label { 'location-label' }
     aeon_location { false }
     recap_electronic_delivery_location { false }
@@ -73,7 +73,7 @@ FactoryBot.define do
     library { build(:library, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case') }
   end
 
-  factory :special_collection_location, class: HoldingLocation do
+  factory :special_collection_location, class: 'HoldingLocation' do
     label { 'location-label' }
     aeon_location { false }
     recap_electronic_delivery_location { false }

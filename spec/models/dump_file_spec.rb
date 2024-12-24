@@ -18,7 +18,7 @@ RSpec.describe DumpFile, type: :model do
     end
   end
 
-  context "when MD5 is populated" do
+  context 'when MD5 is populated' do
     it "doesn't re-call it on save" do
       subject.save
       allow(Digest::MD5).to receive(:new)
@@ -40,15 +40,17 @@ RSpec.describe DumpFile, type: :model do
   describe '#recap_record_type?' do
     it 'returns true for :recap_records type' do
       df = described_class.new(dump_file_type: :recap_records)
-      expect(df.recap_record_type?).to eq true
+      expect(df.recap_record_type?).to be true
     end
+
     it 'returns true for :recap_records_full type' do
       df = described_class.new(dump_file_type: :recap_records_full)
-      expect(df.recap_record_type?).to eq true
+      expect(df.recap_record_type?).to be true
     end
+
     it 'otherwise returns false' do
       df = described_class.new(dump_file_type: :bib_records)
-      expect(df.recap_record_type?).to eq false
+      expect(df.recap_record_type?).to be false
     end
   end
 
@@ -80,7 +82,7 @@ RSpec.describe DumpFile, type: :model do
       end
     end
 
-    context "with a .tar.gz file" do
+    context 'with a .tar.gz file' do
       let(:file_path) { 'spec/fixtures/files/alma/full_dump/1.xml.tar.gz' }
 
       it 'yields a block' do

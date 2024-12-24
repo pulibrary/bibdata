@@ -5,7 +5,7 @@ class BarcodeController < ApplicationController
     if params[:barcode]
       redirect_to action: :barcode, barcode: sanitized_barcode, status: :moved_permanently
     else
-      render plain: "Please supply a barcode.", status: :not_found
+      render plain: 'Please supply a barcode.', status: :not_found
     end
   end
 
@@ -13,12 +13,10 @@ class BarcodeController < ApplicationController
   #   to pull data from our ILS when items are accessioned
   def scsb
     barcode = params[:barcode]
-    if !valid_barcode?(barcode)
-      render plain: "Barcode #{barcode} not valid.", status: :not_found
-    else
+    if valid_barcode?(barcode)
       adapter = AlmaAdapter.new
       item = adapter.item_by_barcode(barcode)
-      mms_id = item["bib_data"]["mms_id"]
+      mms_id = item['bib_data']['mms_id']
       record = adapter.get_bib_record(mms_id, show_suppressed: true)
 
       # If the bib record is not found, the returned record will be nil and the controller should return with a 404 status
@@ -26,7 +24,7 @@ class BarcodeController < ApplicationController
         render plain: "Record #{mms_id} not found", status: :not_found
         return
       end
-      holding = adapter.holding_by_id(mms_id:, holding_id: item.holding_data["holding_id"])
+      holding = adapter.holding_by_id(mms_id:, holding_id: item.holding_data['holding_id'])
       records = if record.linked_record_ids.present?
                   adapter.get_bib_records(record.linked_record_ids)
                 else
@@ -52,8 +50,10 @@ class BarcodeController < ApplicationController
           end
         end
       end
+    else
+      render plain: "Barcode #{barcode} not valid.", status: :not_found
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Error for barcode: #{barcode}")
   end
 

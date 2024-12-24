@@ -2,13 +2,14 @@ module Scsb
   class PartnerUpdates
     class Update
       attr_accessor :dump
+
       def initialize(dump:, dump_file_type:, timestamp:)
         @last_dump = timestamp
         @dump = dump
         @dump_file_type = dump_file_type
         @s3_bucket = Scsb::S3Bucket.partner_transfer_client
-        @scsb_file_dir = ENV['SCSB_FILE_DIR']
-        @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
+        @scsb_file_dir = ENV.fetch('SCSB_FILE_DIR', nil)
+        @update_directory = ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', nil) || '/tmp/updates'
         @inv_xml = []
         @tab_newline = []
         @leader = []
@@ -54,7 +55,7 @@ module Scsb
       end
 
       def process_record(record)
-        record = field_delete(['856', '959'], record)
+        record = field_delete(%w[856 959], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
         if bad_utf8?(record)
           @bad_utf8 << record['001']
@@ -83,7 +84,7 @@ module Scsb
       def add_error(message:)
         error = Array.wrap(@dump.event.error)
         error << message
-        @dump.event.error = error.join("; ")
+        @dump.event.error = error.join('; ')
         @dump.event.save
       end
 
@@ -110,10 +111,10 @@ module Scsb
 
       def date_strings
         @dump.dump_files.map do |df|
-          if df.dump_file_type == "recap_records_full_metadata"
-            File.basename(df.path).split("_")[3]
+          if df.dump_file_type == 'recap_records_full_metadata'
+            File.basename(df.path).split('_')[3]
           else
-            File.basename(df.path).split("_")[2]
+            File.basename(df.path).split('_')[2]
           end
         end
       end

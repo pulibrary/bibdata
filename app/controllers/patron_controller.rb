@@ -2,16 +2,17 @@ class PatronController < ApplicationController
   before_action :protect
 
   attr_accessor :patron_id
+
   # Client: This endpoint is used by requests and orangelight for auth and by figgy
   #   to log patron types on CDL use
   def patron_info
     @patron_id = sanitize(params[:patron_id])
     info = parse_data
-    info[:ldap] = Ldap.find_by_netid(patron_id) if params[:ldap].present? && sanitize(params[:ldap]) == "true"
+    info[:ldap] = Ldap.find_by_netid(patron_id) if params[:ldap].present? && sanitize(params[:ldap]) == 'true'
     respond_to do |wants|
       wants.json  { render json: MultiJson.dump(info) }
     end
-  rescue => e
+  rescue StandardError => e
     handle_alma_exception(exception: e, message: "Error fetching patron: #{@patron_id}")
   end
 
@@ -24,21 +25,21 @@ class PatronController < ApplicationController
     def parse_data
       {
         netid:,
-        first_name: data["first_name"],
-        last_name: data["last_name"],
+        first_name: data['first_name'],
+        last_name: data['last_name'],
         barcode:,
-        university_id: data["primary_id"],
-        patron_id: data["primary_id"],
+        university_id: data['primary_id'],
+        patron_id: data['primary_id'],
         patron_group:,
-        patron_group_desc: data["user_group"]["desc"],
+        patron_group_desc: data['user_group']['desc'],
         active_email: primary_email
       }
     end
 
     def primary_email
-      data["contact_info"]["email"].find do |email|
-        email["preferred"] == true
-      end&.fetch("email_address", nil)
+      data['contact_info']['email'].find do |email|
+        email['preferred'] == true
+      end&.fetch('email_address', nil)
     end
 
     def data
@@ -46,20 +47,20 @@ class PatronController < ApplicationController
     end
 
     def identifiers
-      @identifiers ||= data["user_identifier"]
+      @identifiers ||= data['user_identifier']
     end
 
     def barcode
-      identifiers.find { |id| id["id_type"]["value"] == "BARCODE" && id["status"] == "ACTIVE" }["value"]
+      identifiers.find { |id| id['id_type']['value'] == 'BARCODE' && id['status'] == 'ACTIVE' }['value']
     end
 
     def netid
-      identifier = identifiers.find { |id| id["id_type"]["value"] == "NET_ID" } || {}
-      identifier["value"]
+      identifier = identifiers.find { |id| id['id_type']['value'] == 'NET_ID' } || {}
+      identifier['value']
     end
 
     def patron_group
-      data["user_group"]["value"]
+      data['user_group']['value']
     end
 
     def protect
@@ -83,6 +84,6 @@ class PatronController < ApplicationController
     end
 
     def deny_access
-      render plain: "You are unauthorized", status: :forbidden
+      render plain: 'You are unauthorized', status: :forbidden
     end
 end
