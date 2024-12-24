@@ -1,9 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
-  include ActiveJob::TestHelper
   include_context 'scsb_partner_updates_full'
-
+  around do |example|
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.add Sidekiq::Batch::Server
+    end
+    example.run
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.remove Sidekiq::Batch::Server
+    end
+  end
   it 'can be instantiated' do
     described_class.new(dump:, dump_file_type: :something)
   end
@@ -30,9 +37,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
         it 'adds errors to the dump' do
           Sidekiq::Testing.inline! do
             partner_full_update.process_full_files
-            perform_enqueued_jobs
-            perform_enqueued_jobs
-            perform_enqueued_jobs
             dump.reload
             expect(dump.event.error).to include("Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6")
           end
@@ -40,9 +44,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
         it 'does not process files that include private records' do
           Sidekiq::Testing.inline! do
             partner_full_update.process_full_files
-            perform_enqueued_jobs
-            perform_enqueued_jobs
-            perform_enqueued_jobs
             expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
             # Does not download records associated with metadata with private records
             expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
@@ -72,9 +73,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
         Sidekiq::Testing.inline! do
           partner_full_update.process_full_files
-          perform_enqueued_jobs
-          perform_enqueued_jobs
-          perform_enqueued_jobs
           dump.reload
           # attaches marcxml and log files
           expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
@@ -109,9 +107,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
     it 'does not download anything, adds an error message' do
       Sidekiq::Testing.inline! do
         partner_full_update.process_full_files
-        perform_enqueued_jobs
-        perform_enqueued_jobs
-        perform_enqueued_jobs
         dump.reload
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
         expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'

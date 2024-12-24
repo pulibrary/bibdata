@@ -27,11 +27,8 @@ module Scsb
       def self.download_partner_files(file_filter:, dump_id:, file_prefix:)
         file = Scsb::PartnerUpdates::Full.download_full_file(file_filter)
         if file
-          ProcessPartnerUpdatesJob.perform_later(
-            dump_id:,
-            files: [file.to_s],
-            file_prefix:
-          )
+          params = { dump_id:, files: [file.to_s], file_prefix: }.stringify_keys
+          ProcessPartnerUpdatesJob.perform_async(params)
         else
           Scsb::PartnerUpdates::Full.add_error(message: "No full dump files found matching #{file_filter}", dump_id:)
         end

@@ -1,9 +1,12 @@
 # Extracts the xml files from the Partner zip files (previously downloaded from S3), and attaches the xml files to the associated dump
-class ProcessPartnerUpdatesJob < ApplicationJob
+class ProcessPartnerUpdatesJob
+  include Sidekiq::Job
   # Used for full dumps, since order does not matter for full dumps, unlike incremental dumps
-  def perform(dump_id:, files:, file_prefix:)
+  def perform(params)
     update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-    files.each do |file|
+    file_prefix = params['file_prefix']
+    dump_id = params['dump_id']
+    params['files'].each do |file|
       xml_files = Scsb::PartnerUpdates::Update.extract_files(file:, update_directory:)
       attach_xml_files(xml_files:, dump_id:, file_prefix:)
     end
