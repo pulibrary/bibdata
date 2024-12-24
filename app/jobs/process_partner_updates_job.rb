@@ -6,10 +6,9 @@ class ProcessPartnerUpdatesJob
     update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
     file_prefix = params['file_prefix']
     dump_id = params['dump_id']
-    params['files'].each do |file|
-      xml_files = Scsb::PartnerUpdates::Update.extract_files(file:, update_directory:)
-      attach_xml_files(xml_files:, dump_id:, file_prefix:)
-    end
+    file = params['file']
+    xml_files = Scsb::PartnerUpdates::Update.extract_files(file:, update_directory:)
+    attach_xml_files(xml_files:, dump_id:, file_prefix:)
   end
 
   def attach_xml_files(xml_files:, dump_id:, file_prefix:)

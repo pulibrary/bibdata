@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
-  let(:params) { { files: ['a_file'], file_prefix: 'scsb_update_' }.stringify_keys }
+  let(:params) { { file_prefix: 'scsb_update_', file: 'a_file' }.stringify_keys }
   it 'accepts the expected parameters' do
     expect { described_class.perform_async(params) }.not_to raise_error
   end
