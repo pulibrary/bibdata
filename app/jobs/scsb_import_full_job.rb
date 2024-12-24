@@ -18,9 +18,9 @@ class ScsbImportFullJob < ApplicationJob
     end
 
     def delete_stale_files
-      files_to_delete = Dir.glob("#{ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', nil)}/*.zip")
-                           .concat(Dir.glob("#{ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', nil)}/*.xml"))
-                           .concat(Dir.glob("#{ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', nil)}/*.csv"))
+      files_to_delete = Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.zip")
+                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.xml"))
+                           .concat(Dir.glob("#{ENV['SCSB_PARTNER_UPDATE_DIRECTORY']}/*.csv"))
       files_to_delete.each do |file|
         FileUtils.rm file
       rescue Errno::ENOENT

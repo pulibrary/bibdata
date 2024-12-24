@@ -48,7 +48,7 @@ module Scsb
       end
 
       def download_full_file(file_filter)
-        prefix = ENV.fetch('SCSB_S3_PARTNER_FULLS', nil) || 'data-exports/PUL/MARCXml/Full'
+        prefix = ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full'
         @s3_bucket.download_recent(prefix:, output_directory: @update_directory, file_filter:)
       end
     end

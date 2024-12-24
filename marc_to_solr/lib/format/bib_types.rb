@@ -375,7 +375,7 @@ class BibTypes
       return ['XC']
     end
 
-    return ['XC'] if @xv6XX.match? /congresses/i
+    return ['XC'] if @xv6XX.match?(/congresses/i)
 
     # Nope.
     return []
@@ -397,7 +397,7 @@ class BibTypes
   def statistics_types
     return ['XS'] if bib_format == 'BK' && (record['008'] && record['008'].value[24..27] =~ /s/)
 
-    return ['XS'] if @xv6XX.match? /\AStatistic/i
+    return ['XS'] if @xv6XX.match?(/\AStatistic/i)
 
     # Nope
     return []
@@ -433,9 +433,9 @@ class BibTypes
 
     types << 'DR' if f8_24.include? 'r'
 
-    types << 'EN' if @xv6XX.match? /encyclopedias/i
-    types << 'DI' if @xv6XX.match? /dictionaries/i
-    types << 'DR' if @xv6XX.match? /directories/i
+    types << 'EN' if @xv6XX.match?(/encyclopedias/i)
+    types << 'DI' if @xv6XX.match?(/dictionaries/i)
+    types << 'DR' if @xv6XX.match?(/directories/i)
 
     types.uniq!
     return types
@@ -450,7 +450,7 @@ class BibTypes
     return ['BI'] if record['008'] && %w[a b c].include?(record['008'].value[34])
     return ['BI'] if (%w[a b c] & self['006[17]']).size > 0
 
-    return ['BI'] if @xv6XX.match? /(?:biography|diaries)/i
+    return ['BI'] if @xv6XX.match?(/(?:biography|diaries)/i)
 
     # Nope
     return []
@@ -483,7 +483,7 @@ class BibTypes
                                  'comic books',
                                  'illustrations',
                                  'drawings',
-                                 'slides',].map { |s| Regexp.new('\b' + s + '\b', true) }
+                                 'slides'].map { |s| Regexp.new('\b' + s + '\b', true) }
   self.pp_regexp = Regexp.union(self.pp_regexp, /\bart\b/i)
 
   def pp_types

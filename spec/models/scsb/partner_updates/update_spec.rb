@@ -10,7 +10,6 @@ RSpec.describe Scsb::PartnerUpdates::Update, type: :model do
     before do
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', scsb_file_dir)
     end
-
     it 'can attach a dump file to a dump' do
       expect do
         update.attach_dump_file(filepath, dump_file_type: :recap_records_full)

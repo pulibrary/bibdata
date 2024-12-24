@@ -10,7 +10,6 @@ RSpec.describe Scsb::PartnerUpdates, type: :model do
       described_class.full(dump:)
     end
   end
-
   describe '.incremental' do
     include_context 'scsb_partner_updates_incremental'
 

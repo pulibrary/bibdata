@@ -35,6 +35,10 @@ Style/MethodDefParentheses:
 Style/NumericPredicate:
   Enabled: false
 
+Style/FormatString:
+  Exclude:
+    - 'marc_to_solr/lib/princeton_marc.rb'
+
 Layout/LineLength:
   Exclude:
     - 'spec/**/*'
@@ -57,6 +61,7 @@ RSpec/DescribeClass:
   Exclude:
     - 'spec/db/seeds_spec.rb'
     - 'spec/marc_to_solr/**/*'
+    - 'spec/system/location_views_associated_links_spec.rb'
 
 RSpec/ExampleLength:
   Enabled: false

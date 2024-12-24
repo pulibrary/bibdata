@@ -8,8 +8,8 @@ module Scsb
         @dump = dump
         @dump_file_type = dump_file_type
         @s3_bucket = Scsb::S3Bucket.partner_transfer_client
-        @scsb_file_dir = ENV.fetch('SCSB_FILE_DIR', nil)
-        @update_directory = ENV.fetch('SCSB_PARTNER_UPDATE_DIRECTORY', nil) || '/tmp/updates'
+        @scsb_file_dir = ENV['SCSB_FILE_DIR']
+        @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
         @inv_xml = []
         @tab_newline = []
         @leader = []
@@ -55,7 +55,7 @@ module Scsb
       end
 
       def process_record(record)
-        record = field_delete(%w[856 959], record)
+        record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
         if bad_utf8?(record)
           @bad_utf8 << record['001']

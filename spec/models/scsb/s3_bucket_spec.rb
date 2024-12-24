@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Scsb::S3Bucket, type: :model do
-  let(:s3_credentials) { instance_double(Aws::Credentials) }
+  let(:s3_credentials) { instance_double('Aws::Credentials') }
   let(:s3_client) { Aws::S3::Client.new(region: 'us-east-1', credentials: s3_credentials) }
   let(:s3) { described_class.new(s3_client:, s3_bucket_name: 'test') }
 
@@ -118,7 +118,7 @@ RSpec.describe Scsb::S3Bucket, type: :model do
 
       location = s3.download_recent(prefix: 'prefix', output_directory: path, file_filter: /CUL.*\.zip/)
       expect(Dir.entries(path)).to contain_exactly('.', '..')
-      expect(location).to be_nil
+      expect(location).to eq nil
     end
   end
 end

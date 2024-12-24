@@ -7,8 +7,8 @@ RSpec.describe ScsbImportFullJob do
     expect { described_class.perform_now }.to change { Event.count }.by(1)
     event = Event.last
 
-    expect(event.start).not_to be_nil
-    expect(event.finish).not_to be_nil
+    expect(event.start).not_to be nil
+    expect(event.finish).not_to be nil
     expect(event.dump).to be_a(Dump)
     expect(event.dump.dump_type).to eq('partner_recap_full')
     expect(Scsb::PartnerUpdates).to have_received(:full)
@@ -42,7 +42,6 @@ RSpec.describe ScsbImportFullJob do
         allow(FileUtils).to receive(:rm).and_call_original
         allow(FileUtils).to receive(:rm).with(Rails.root.join('tmp', 'specs', 'update_directory', 'NYPL_20210430_015000.zip').to_s).and_raise(Errno::ENOENT, 'No such file or directory @ apply2files')
       end
-
       it 'still deletes the other files that have not failed' do
         described_class.perform_now
 

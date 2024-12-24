@@ -670,7 +670,6 @@ def add_temporary_items_to_holdings(items_by_holding, field_852, holdings_helper
   end
 end
 
-# rubocop:disable Metrics/ParameterLists
 def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all_holdings, holding)
   item = holdings_helpers.build_item(field_852:, field_876:)
   if (holding_key.present? || !invalid_location?(holding['location_code'])) && all_holdings[holding_key].nil?
@@ -678,7 +677,6 @@ def add_item_to_holding(field_852, field_876, holding_key, holdings_helpers, all
   end
   all_holdings = holdings_helpers.holding_items(value: holding_key, all_holdings:, item:)
 end
-# rubocop:enable Metrics/ParameterLists
 
 def invalid_location?(code)
   Traject::TranslationMap.new('locations')[code].nil?
