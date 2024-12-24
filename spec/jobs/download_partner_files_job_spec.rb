@@ -13,9 +13,9 @@ RSpec.describe DownloadPartnerFilesJob, type: :job, indexing: true do
 
   it 'enqueues ProcessPartnerUpdatesJob' do
     Sidekiq::Testing.inline! do
-      expect do
-        described_class.perform_async(params)
-      end.to have_enqueued_job(ProcessPartnerUpdatesJob).once
+      allow(ProcessPartnerUpdatesJob).to receive(:perform_async).and_call_original
+      described_class.perform_async(params)
+      expect(ProcessPartnerUpdatesJob).to have_received(:perform_async).once
     end
   end
 end

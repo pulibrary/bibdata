@@ -1,26 +1,27 @@
 require 'rails_helper'
 RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
-  it 'enqueues a job' do
-    expect { described_class.perform_later }.to have_enqueued_job
-  end
-
+  let(:params) { { files: ['a_file'], file_prefix: 'scsb_update_' }.stringify_keys }
   it 'accepts the expected parameters' do
-    expect { described_class.perform_later(files: ['a_file'], file_prefix: 'scsb_update_') }.not_to raise_error
+    expect { described_class.perform_async(params) }.not_to raise_error
   end
 
   context 'with zipped files' do
     it 'tries to unzip the files' do
-      allow(Zip::File).to receive(:open).with('a_file')
-      allow(File).to receive(:unlink)
-      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
-      expect(Zip::File).to have_received(:open).with('a_file')
+      Sidekiq::Testing.inline! do
+        allow(Zip::File).to receive(:open).with('a_file')
+        allow(File).to receive(:unlink)
+        described_class.perform_async(params)
+        expect(Zip::File).to have_received(:open).with('a_file')
+      end
     end
   end
   it 'is idempotent' do
     pending('making the job idempotent')
-    expect do
-      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
-      described_class.perform_now(dump_id: 123, files: ['a_file'], file_prefix: 'scsb_update_')
-    end.not_to raise_error
+    Sidekiq::Testing.inline! do
+      expect do
+        described_class.perform_async(params)
+        described_class.perform_async(params)
+      end.not_to raise_error
+    end
   end
 end

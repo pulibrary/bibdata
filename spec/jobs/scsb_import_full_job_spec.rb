@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ScsbImportFullJob, indexing: true do
-  include ActiveJob::TestHelper
   let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
 
   before do
