@@ -52,7 +52,7 @@ module Scsb
         writer = MARC::XMLWriter.new(new_filepath)
         reader.each { |record| writer.write(process_record(record)) }
         writer.close
-        File.unlink(file)
+        File.unlink(file) if dump_file_type == :recap_records
         Dump.attach_dump_file(dump_id:, filepath: new_filepath, dump_file_type:)
       end
 
