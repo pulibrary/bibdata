@@ -62,5 +62,5 @@ every '0 9 8-14 * *', roles: [:cron_production] do
 end
 
 every :hour, roles: [:cron_production] do
-  rake "index_timestamp:check"
+  rake 'index_timestamp:check'
 end
