@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AlmaDumpTransferJob, type: :job do
+RSpec.describe AlmaDumpTransferJob, type: :job, indexing: true do
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
 
   describe 'perform' do

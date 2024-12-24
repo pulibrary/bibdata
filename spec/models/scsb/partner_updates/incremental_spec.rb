@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model do
+RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model, indexing: true do
   include_context 'scsb_partner_updates_incremental'
   let(:partner_incremental_update) { described_class.new(dump:, dump_file_type: :recap_records, timestamp:) }
 
@@ -11,7 +11,7 @@ RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model do
   describe 'incremental update' do
     it 'downloads, processes, and attaches the files' do
       partner_incremental_update.process_incremental_files
-
+      dump.reload
       # attaches marcxml and log files
       expect(dump.dump_files.where(dump_file_type: :recap_records).length).to eq(2)
       expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
