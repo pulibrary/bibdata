@@ -1,4 +1,6 @@
-class ScsbImportFullJob < ApplicationJob
+class ScsbImportFullJob
+  include Sidekiq::Job
+
   def perform
     delete_stale_files
 
