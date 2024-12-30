@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ScsbImportFullJob, indexing: true do
-  let(:data_directory_path) { Rails.root.join("tmp", "specs", "data") }
+  let(:data_directory_path) { Rails.root.join('tmp', 'specs', 'data') }
 
   before do
     Sidekiq::Testing.inline!
@@ -30,11 +30,11 @@ RSpec.describe ScsbImportFullJob, indexing: true do
       expect(event.start).not_to be nil
       expect(event.finish).not_to be nil
       expect(event.dump).to be_a(Dump)
-      expect(event.dump.dump_type).to eq("partner_recap_full")
+      expect(event.dump.dump_type).to eq('partner_recap_full')
       expect(DownloadAndProcessFullJob).to have_received(:perform_async).exactly(3).times
       expect(Scsb::PartnerUpdates::Update).to have_received(:generated_date)
       event.reload
-      expect(event.success?).to eq(true)
+      expect(event.success?).to be(true)
     end
   end
 
@@ -44,6 +44,8 @@ RSpec.describe ScsbImportFullJob, indexing: true do
     before do
       allow(ENV).to receive(:[]).and_call_original
       allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
+      allow(ENV).to receive(:fetch).and_call_original
+      allow(ENV).to receive(:fetch).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
       FileUtils.cp('spec/fixtures/scsb_updates/HL_20210716_063500.zip', update_directory_path)

@@ -1,6 +1,7 @@
 require 'rails_helper'
 RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
   let(:params) { { file_prefix: 'scsb_update_', file: 'a_file' }.stringify_keys }
+
   it 'accepts the expected parameters' do
     expect { described_class.perform_async(params) }.not_to raise_error
   end
@@ -15,6 +16,7 @@ RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
       end
     end
   end
+
   it 'is idempotent' do
     pending('making the job idempotent')
     Sidekiq::Testing.inline! do

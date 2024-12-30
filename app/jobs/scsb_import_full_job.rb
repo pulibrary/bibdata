@@ -46,9 +46,9 @@ class ScsbImportFullJob
 
     def institutions
       [
-        { inst: "NYPL", prefix: 'scsbfull_nypl_' },
-        { inst: "CUL", prefix: 'scsbfull_cul_' },
-        { inst: "HL", prefix: 'scsbfull_hl_' }
+        { inst: 'NYPL', prefix: 'scsbfull_nypl_' },
+        { inst: 'CUL', prefix: 'scsbfull_cul_' },
+        { inst: 'HL', prefix: 'scsbfull_hl_' }
       ]
     end
 end

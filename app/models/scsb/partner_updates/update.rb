@@ -114,10 +114,10 @@ module Scsb
 
       def self.date_strings(dump:)
         dump.dump_files.map do |df|
-          if df.dump_file_type == "recap_records_full_metadata"
-            File.basename(df.path).split("_")[3]
+          if df.dump_file_type == 'recap_records_full_metadata'
+            File.basename(df.path).split('_')[3]
           else
-            File.basename(df.path).split("_")[2]
+            File.basename(df.path).split('_')[2]
           end
         end
       end
