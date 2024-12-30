@@ -3,8 +3,8 @@
 class URI::ARK < URI::Generic
   attr_reader :nmah, :naan, :name
 
-  ARK_REGEX = /\:\/\/(.+)\/ark\:\/(.+)\/(.+)\/?/
-  PRINCETON_ARK_REGEX = /[\/?]ark\:\/88435\/(.+)\/?/
+  ARK_REGEX = %r{://(.+)/ark:/(.+)/(.+)/?}
+  PRINCETON_ARK_REGEX = %r{[/?]ark:/88435/(.+)/?}
 
   # Constructs an ARK from a URL
   # @param url [URI::Generic] the URL for the ARK resource
@@ -31,6 +31,7 @@ class URI::ARK < URI::Generic
     return false if url.to_s.start_with?('http:http:')
     return false unless PRINCETON_ARK_REGEX.match(url.to_s)
     return false unless ARK_REGEX.match(url.to_s)
+
     true
   end
 
@@ -45,6 +46,7 @@ class URI::ARK < URI::Generic
     # Extract the components from the ARK URL into member variables
     def extract_components!
       raise StandardError, "Invalid ARK URL using: #{self.to_s}" unless self.class.princeton_ark?(url: self)
+
       m = ARK_REGEX.match(self.to_s)
 
       @nmah = m[1]

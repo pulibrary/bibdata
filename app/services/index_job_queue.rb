@@ -1,4 +1,3 @@
-
 # Service Class for reindexing MARC records
 class IndexJobQueue
   # Generates the path to the Traject executable

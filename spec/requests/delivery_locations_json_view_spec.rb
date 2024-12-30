@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'DeliveryLocation', type: :request do
@@ -11,7 +12,7 @@ describe 'DeliveryLocation', type: :request do
 
     describe 'the response body' do
       it "/delivery_locations looks as we'd expect" do
-        2.times { FactoryBot.create(:delivery_location) }
+        FactoryBot.create_list(:delivery_location, 2)
         expected = []
         DeliveryLocation.all.each do |delivery_location|
           attrs = {
@@ -68,7 +69,7 @@ describe 'DeliveryLocation', type: :request do
 
     describe 'the response body' do
       it '/delivery_locations contains expected fields' do
-        2.times { FactoryBot.create(:delivery_location) }
+        FactoryBot.create_list(:delivery_location, 2)
         expected = []
         DeliveryLocation.all.each do |delivery_location|
           attrs = [

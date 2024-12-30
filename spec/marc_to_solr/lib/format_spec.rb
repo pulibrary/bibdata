@@ -3,8 +3,9 @@ require 'rails_helper'
 # rubocop:disable Layout/MultilineHashBraceLayout
 describe 'From format.rb' do
   let(:marc) { MARC::Record.new }
+  let(:marc) { MARC::Record.new }
 
-  { 'Book' => ['aa', 'ab', 'ac', 'ad', 'am'],
+  { 'Book' => %w[aa ab ac ad am],
     'Journal' => ['as'],
     'Data file' => ['m '],
     'Databases' => ['ai'],
@@ -22,25 +23,23 @@ describe 'From format.rb' do
 
         if marc.leader[6] == 'a'
           field = MARC::DataField.new('035', '0', '0',
-          MARC::Subfield.new('a', '(PULFA)'))
+                                      MARC::Subfield.new('a', '(PULFA)'))
           marc.append(field)
         end
 
         if c == 'tm'
           field = MARC::DataField.new('035', '0', '0',
-          MARC::Subfield.new('a', '(PULFA)'))
+                                      MARC::Subfield.new('a', '(PULFA)'))
           marc.append(field)
           field = MARC::DataField.new('040', '0', '0',
-          MARC::Subfield.new('e', 'dacs'))
+                                      MARC::Subfield.new('e', 'dacs'))
           marc.append(field)
         end
         fmt = Format.new(marc).bib_format
-        expect(Traject::TranslationMap.new("format").translate_array!(fmt)).to include k
+        expect(Traject::TranslationMap.new('format').translate_array!(fmt)).to include k
       end
     end
   end
-
-  let(:marc) { MARC::Record.new }
 
   {
     'Book' => ['tm']
@@ -49,7 +48,7 @@ describe 'From format.rb' do
       v.each do |c|
         marc.leader[6..7] = c
         fmt = Format.new(marc).bib_format
-        expect(Traject::TranslationMap.new("format").translate_array!(fmt)).to include k
+        expect(Traject::TranslationMap.new('format').translate_array!(fmt)).to include k
       end
     end
   end

@@ -84,7 +84,6 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
             a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
           )
           expect(dump.event.error).to eq "No metadata files found matching CUL; No metadata files found matching HL"
-
           # cleans up
           expect(Dir.empty?(update_directory_path)).to be true
         end

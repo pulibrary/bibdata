@@ -3,6 +3,7 @@ module ElectronicLocations
   # @see http://iiif.io/api/presentation/2.0/#manifest
   class IIIFManifestURI < OnlineLocation
     attr_reader :ark
+
     # Constructor
     # @param ark [URK::ARK, String] the ARK URI
     # @param value [URI::Generic, String] the manifest URI

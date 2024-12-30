@@ -2,14 +2,14 @@
 
 source 'https://rubygems.org'
 
-gem "aws-sdk-secretsmanager"
+gem 'aws-sdk-secretsmanager'
 
 group :development do
-  gem "aws-sdk-lambda"
-  gem "aws-sdk-sqs"
-  gem "datadog-lambda"
-  gem "ddtrace"
-  gem "nokogiri"
+  gem 'aws-sdk-lambda'
+  gem 'aws-sdk-sqs'
+  gem 'datadog-lambda'
+  gem 'ddtrace'
+  gem 'nokogiri'
 end
 
 group :test do

@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe HoldingLocationsController, type: :controller do
@@ -17,7 +18,7 @@ describe HoldingLocationsController, type: :controller do
 
     it 'holding_locations is active in navbar' do
       get :index
-      expect(response.body.include?('<li class="active"><a href="/locations/holding_locations')).to eq true
+      expect(response.body.include?('<li class="active"><a href="/locations/holding_locations')).to be true
     end
   end
 

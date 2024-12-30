@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require File.expand_path('boot', __dir__)
 
 require 'rails/all'
 require_relative 'lando_env' if Rails.env.development? || Rails.env.test?
@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env)
 
 module MarcLiberation
   class Application < Rails::Application
-    config.encoding = "utf-8"
+    config.encoding = 'utf-8'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -31,7 +31,7 @@ module MarcLiberation
 
     config.ip_allowlist = []
     ip_allowlist = config_for(:ip_allowlist)
-    ip_allowlist_addresses = ip_allowlist["addresses"]
+    ip_allowlist_addresses = ip_allowlist['addresses']
     config.ip_allowlist = ip_allowlist_addresses.split if ip_allowlist_addresses
 
     config.traject = config_for(:traject)
@@ -39,7 +39,7 @@ module MarcLiberation
 
     config.authz = []
     authz = config_for(:authz)
-    netids = authz["netids"]
+    netids = authz['netids']
     config.authz = netids.split if netids
 
     config.alma = config_for(:alma).with_indifferent_access

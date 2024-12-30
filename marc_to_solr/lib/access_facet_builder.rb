@@ -43,6 +43,6 @@ class AccessFacetBuilder
       field = record.find { |f| f.tag == '856' }
       indicator = field.try(:indicator2)
 
-      return 'Online' if indicator == '0' || indicator == '1' || indicator == ' '
+      return 'Online' if ['0', '1', ' '].include?(indicator)
     end
 end

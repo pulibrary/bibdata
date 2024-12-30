@@ -12,45 +12,45 @@ FactoryBot.define do
     dump_file_type { :bib_records }
   end
 
-  factory :incremental_dump_file, class: "DumpFile" do
+  factory :incremental_dump_file, class: 'DumpFile' do
     dump_file_type { :updated_records }
   end
 
-  factory :partner_recap_daily_dump_file, class: "DumpFile" do
+  factory :partner_recap_daily_dump_file, class: 'DumpFile' do
     dump_file_type { :recap_records }
   end
 
-  factory :partner_recap_full_dump_file, class: "DumpFile" do
+  factory :partner_recap_full_dump_file, class: 'DumpFile' do
     dump_file_type { :recap_records_full }
   end
 
-  factory :empty_dump, class: "Dump" do
+  factory :empty_dump, class: 'Dump' do
     dump_type { :full_dump }
     association :event
   end
 
-  factory :empty_incremental_dump, class: "Dump" do
+  factory :empty_incremental_dump, class: 'Dump' do
     dump_type { :changed_records }
     association :event
   end
 
-  factory :empty_partner_recap_incremental_dump, class: "Dump" do
+  factory :empty_partner_recap_incremental_dump, class: 'Dump' do
     dump_type { :partner_recap }
     association :event
   end
 
-  factory :empty_partner_full_dump, class: "Dump" do
+  factory :empty_partner_full_dump, class: 'Dump' do
     dump_type { :partner_recap_full }
     association :event
   end
 
-  factory :empty_partner_recap_dump, class: "Dump" do
+  factory :empty_partner_recap_dump, class: 'Dump' do
     dump_type { :partner_recap }
     association :event
   end
 
-  factory :full_dump, class: "Dump" do
-    generated_date { Time.new(2021, 7, 13, 11, 0, 0, "+00:00") }
+  factory :full_dump, class: 'Dump' do
+    generated_date { Time.new(2021, 7, 13, 11, 0, 0, '+00:00') }
     delete_ids { [] }
     update_ids { [] }
     dump_type { :full_dump }
@@ -63,7 +63,7 @@ FactoryBot.define do
     event_id { 1 }
   end
 
-  factory :incremental_dump, class: "Dump" do
+  factory :incremental_dump, class: 'Dump' do
     delete_ids { [] }
     update_ids { [] }
     dump_type { :changed_records }
@@ -76,7 +76,7 @@ FactoryBot.define do
     event_id { 1 }
   end
 
-  factory :partner_recap_daily_dump, class: "Dump" do
+  factory :partner_recap_daily_dump, class: 'Dump' do
     dump_type { :partner_recap }
     delete_ids { [] }
     update_ids { [] }
@@ -89,7 +89,7 @@ FactoryBot.define do
     event_id { 1 }
   end
 
-  factory :partner_recap_full_dump, class: "Dump" do
+  factory :partner_recap_full_dump, class: 'Dump' do
     dump_type { :partner_recap_full }
     delete_ids { [] }
     update_ids { [] }
@@ -101,29 +101,29 @@ FactoryBot.define do
     event_id { 1 }
   end
 
-  factory :full_dump_event, class: "Event" do
+  factory :full_dump_event, class: 'Event' do
     start { Time.now - 3600 }
     finish { Time.now - 100 }
     error { nil }
     success { true }
-    alma_job_status { "COMPLETED_SUCCESS" }
+    alma_job_status { 'COMPLETED_SUCCESS' }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :full_dump
   end
 
-  factory :incremental_dump_event, class: "Event" do
+  factory :incremental_dump_event, class: 'Event' do
     start { Time.now - 3600 }
     finish { Time.now - 100 }
     error { nil }
     success { true }
-    alma_job_status { "COMPLETED_SUCCESS" }
+    alma_job_status { 'COMPLETED_SUCCESS' }
     created_at { finish }
     updated_at { finish }
     association :dump, factory: :incremental_dump
   end
 
-  factory :partner_recap_daily_event, class: "Event" do
+  factory :partner_recap_daily_event, class: 'Event' do
     start { Time.now - 3600 }
     finish { Time.now - 100 }
     error { nil }
@@ -134,7 +134,7 @@ FactoryBot.define do
     association :dump, factory: :partner_recap_daily_dump
   end
 
-  factory :partner_recap_full_event, class: "Event" do
+  factory :partner_recap_full_event, class: 'Event' do
     start { Time.now - 3600 }
     finish { Time.now - 100 }
     error { nil }

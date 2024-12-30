@@ -14,7 +14,7 @@ class CacheManager
   # @return [CacheManager]
   def self.current
     @current_cache
-  rescue
+  rescue StandardError
     raise NotImplementedError, 'Please initialize a cache using CacheManager.initialize(cache: Rails.cache, logger: Rails.logger)'
   end
 
@@ -22,6 +22,7 @@ class CacheManager
   # @param dir [String] path to the cache directory
   def self.clear(dir:)
     return unless Dir.exist? dir
+
     FileUtils.rm_r Dir.glob("#{dir}/*")
   end
 
@@ -39,7 +40,7 @@ class CacheManager
   # Retrieve the stored (or seed) the cache for the ARK's in Figgy
   # @return [CacheMap]
   def figgy_ark_cache
-    @figgy_ark_cache ||= CacheMap.new(cache: @figgy_cache, host: "figgy.princeton.edu", logger: @logger)
+    @figgy_ark_cache ||= CacheMap.new(cache: @figgy_cache, host: 'figgy.princeton.edu', logger: @logger)
   end
 
   # Retrieve the stored (or seed) the cache for the ARK's in all repositories

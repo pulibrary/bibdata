@@ -5,7 +5,7 @@ class AvailabilityController < ApplicationController
 
   def index
     if params[:ids] || params[:id] || params[:mfhd] || params[:mfhd_serial]
-      render plain: "This endpoint no longer accepts this param", status: :bad_request
+      render plain: 'This endpoint no longer accepts this param', status: :bad_request
     elsif params[:barcodes]
       scsb_lookup = ScsbLookup.new
       avail = scsb_lookup.find_by_barcodes(sanitize_array(params[:barcodes]))
@@ -27,7 +27,7 @@ class AvailabilityController < ApplicationController
         end
       end
     else
-      render plain: "Please provide a bib id.", status: :not_found
+      render plain: 'Please provide a bib id.', status: :not_found
     end
   end
 

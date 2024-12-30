@@ -2,6 +2,7 @@ module Scsb
   class PartnerUpdates
     class Update
       attr_accessor :dump
+
       def initialize(dump:, dump_file_type:, timestamp:)
         @last_dump = timestamp
         @dump = dump
@@ -85,7 +86,7 @@ module Scsb
       def add_error(message:)
         error = Array.wrap(@dump.event.error)
         error << message
-        @dump.event.error = error.join("; ")
+        @dump.event.error = error.join('; ')
         @dump.event.save
       end
 
@@ -127,10 +128,10 @@ module Scsb
 
       def date_strings
         @dump.dump_files.map do |df|
-          if df.dump_file_type == "recap_records_full_metadata"
-            File.basename(df.path).split("_")[3]
+          if df.dump_file_type == 'recap_records_full_metadata'
+            File.basename(df.path).split('_')[3]
           else
-            File.basename(df.path).split("_")[2]
+            File.basename(df.path).split('_')[2]
           end
         end
       end

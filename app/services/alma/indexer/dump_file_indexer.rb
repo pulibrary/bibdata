@@ -1,6 +1,7 @@
 class Alma::Indexer
   class DumpFileIndexer
     attr_reader :dump_file, :solr_url
+
     delegate :index_file, to: :indexer
     def initialize(dump_file, solr_url:)
       @dump_file = dump_file
@@ -17,8 +18,9 @@ class Alma::Indexer
       @indexer ||= Alma::Indexer.new(solr_url:)
     end
 
-    def decompress_file(&block)
-      return dump_file.tar_decompress_file(&block) if dump_file.path.include?(".tar")
+    def decompress_file(&)
+      return dump_file.tar_decompress_file(&) if dump_file.path.include?('.tar')
+
       # SCSB files are only g-zipped.
       dump_file.unzip
       yield File.open(dump_file.path)

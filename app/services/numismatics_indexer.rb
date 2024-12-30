@@ -6,6 +6,7 @@ class NumismaticsIndexer
   end
 
   attr_reader :solr_connection, :progressbar, :logger
+
   def initialize(solr_connection:, progressbar:, logger:)
     @solr_connection = solr_connection
     @progressbar = progressbar
@@ -34,7 +35,7 @@ class NumismaticsIndexer
 
   def solr_documents
     json_response = PaginatingJsonResponse.new(url: search_url, logger:)
-    pb = progressbar ? ProgressBar.create(total: json_response.total, format: "%a %e %P% Processed: %c from %C") : nil
+    pb = progressbar ? ProgressBar.create(total: json_response.total, format: '%a %e %P% Processed: %c from %C') : nil
     json_response.lazy.map do |json_record|
       pb&.increment
       json_record
@@ -43,6 +44,7 @@ class NumismaticsIndexer
 
   class NumismaticRecordPathBuilder
     attr_reader :result
+
     def initialize(result)
       @result = result
     end
@@ -52,13 +54,14 @@ class NumismaticsIndexer
     end
 
     def id
-      result["id"]
+      result['id']
     end
   end
 
   class PaginatingJsonResponse
     include Enumerable
     attr_reader :url, :logger
+
     def initialize(url:, logger:)
       @url = url
       @logger = logger
@@ -78,7 +81,7 @@ class NumismaticsIndexer
     def json_for(doc)
       path = NumismaticRecordPathBuilder.new(doc).path
       JSON.parse(URI(path).open.read)
-    rescue => e
+    rescue StandardError => e
       logger.warn("Failed to retrieve numismatics document from #{path}, error was: #{e.class}: #{e.message}")
       nil
     end
@@ -89,13 +92,14 @@ class NumismaticsIndexer
 
     class Response
       attr_reader :url, :page
+
       def initialize(url:, page:)
         @url = url
         @page = page
       end
 
       def docs
-        response["data"]
+        response['data']
       end
 
       def response
@@ -103,12 +107,13 @@ class NumismaticsIndexer
       end
 
       def next_page
-        return nil unless response["meta"]["pages"]["next_page"]
-        Response.new(url:, page: response["meta"]["pages"]["next_page"])
+        return nil unless response['meta']['pages']['next_page']
+
+        Response.new(url:, page: response['meta']['pages']['next_page'])
       end
 
       def total_count
-        response["meta"]["pages"]["total_count"]
+        response['meta']['pages']['total_count']
       end
     end
   end

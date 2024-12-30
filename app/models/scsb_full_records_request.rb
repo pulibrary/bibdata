@@ -36,12 +36,12 @@ class ScsbFullRecordsRequest
       req.headers['Accept'] = '*/*'
       req.headers['api_key'] = scsb_auth_key
     end
-    expected_response_body = "Export process has started and we will send an email notification upon completion"
+    expected_response_body = 'Export process has started and we will send an email notification upon completion'
     Rails.logger.error("Received unexpected response: #{response.body}") unless response.body == expected_response_body
     response
-  rescue Faraday::ConnectionFailed, Faraday::TimeoutError => connection_failed
+  rescue Faraday::ConnectionFailed, Faraday::TimeoutError => e
     Rails.logger.warn("#{self.class}: Connection error for #{scsb_server}")
-    raise connection_failed
+    raise e
   end
 
   def repository_codes(institution_code)
@@ -56,10 +56,10 @@ class ScsbFullRecordsRequest
   private
 
     def scsb_auth_key
-      if !Rails.env.test?
-        ENV['SCSB_AUTH_KEY']
-      else
+      if Rails.env.test?
         'TESTME'
+      else
+        ENV['SCSB_AUTH_KEY']
       end
     end
 end

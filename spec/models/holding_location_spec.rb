@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'rails_helper'
 
 describe HoldingLocation, type: :model do
@@ -19,14 +20,14 @@ describe HoldingLocation, type: :model do
 
     it 'is valid without a label' do
       holding_location = FactoryBot.create(:holding_location)
-      holding_location.send('label=', nil)
-      expect(holding_location.valid?).to eq true
+      holding_location.send(:label=, nil)
+      expect(holding_location.valid?).to be true
     end
 
     it 'is valid without a remote_storage' do
       holding_location = FactoryBot.create(:holding_location)
-      holding_location.send('remote_storage=', nil)
-      expect(holding_location.valid?).to eq true
+      holding_location.send(:remote_storage=, nil)
+      expect(holding_location.valid?).to be true
     end
 
     it 'code must be unique' do
@@ -71,7 +72,7 @@ describe HoldingLocation, type: :model do
     end
 
     it 'associates all non-staff-only delivery locations by default' do
-      2.times { FactoryBot.create(:delivery_location, staff_only: false) }
+      FactoryBot.create_list(:delivery_location, 2, staff_only: false)
       FactoryBot.create(:delivery_location, staff_only: true)
       holding_location = FactoryBot.create(:holding_location)
       expect(holding_location.delivery_locations.count).to eq 2

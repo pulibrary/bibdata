@@ -1,5 +1,5 @@
-require "net/http"
-require "json"
+require 'net/http'
+require 'json'
 
 # This class allow us to delete Solr records with our current
 # version of Traject. Once we upgrade to Traject version 3.1
@@ -27,7 +27,7 @@ class SolrDeleter
       @logger&.info "Deleting #{body}"
       start_time = Time.now
       response = Faraday.post(uri) do |req|
-        req.headers = { "Content-Type" => content_type }
+        req.headers = { 'Content-Type' => content_type }
         req.body = body
         req.options.open_timeout = 60
         req.options.read_timeout = 60
@@ -41,12 +41,12 @@ class SolrDeleter
     end
 
     def build_request_body(ids:)
-      output = ["<delete>"]
+      output = ['<delete>']
       ids.each do |id|
         output << "<id>#{id}</id>"
       end
 
-      output << "</delete>"
+      output << '</delete>'
       output.join
     end
 
@@ -67,6 +67,8 @@ class SolrDeleter
       retry_response = request_deletion(uri:, body:)
       return if valid_response?(retry_response)
 
-      Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}") unless retry_response.nil?
+      unless retry_response.nil?
+        Honeybadger.notify("Error deleting Solr documents. IDs: #{batch.join(', ')}. Status: #{retry_response.status}. Body: #{retry_response.body}")
+      end
     end
 end

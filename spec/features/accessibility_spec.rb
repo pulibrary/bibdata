@@ -1,13 +1,14 @@
 # frozen_string_literal: true
-require "rails_helper"
 
-describe "accessibility", type: :feature, js: true do
-  context "home page" do
+require 'rails_helper'
+
+describe 'accessibility', type: :feature, js: true do
+  context 'home page' do
     before do
-      visit "/"
+      visit '/'
     end
 
-    it "complies with wcag" do
+    it 'complies with wcag' do
       expect(page).to be_axe_clean
         .according_to(:wcag2a, :wcag2aa, :wcag21a, :wcag21aa)
         .excluding('a[href$="events"]')

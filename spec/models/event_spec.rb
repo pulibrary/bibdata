@@ -13,29 +13,33 @@ RSpec.describe Event, type: :model do
       10.times { test_events(:changed_records) }
       5.times { test_events(:full_dump) }
     end
+
     it 'creates an unsuccessful event' do
       expect(test_failed_event.success).to be false
     end
   end
 
-  context "When attempting to create duplicate events" do
+  context 'When attempting to create duplicate events' do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
 
     before do
       described_class.create(message_body:)
     end
-    it "does not create a duplicate event" do
+
+    it 'does not create a duplicate event' do
       expect do
         described_class.create(message_body:)
       end.not_to change { Event.count }
       expect(Event.count).to eq 1
     end
-    it "does not create a duplicate event and raises an error" do
+
+    it 'does not create a duplicate event and raises an error' do
       expect do
         described_class.create!(message_body:)
       end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Message body has already been taken')
     end
   end
+
   def dump_test_bib_ids(bibs)
     dump = nil
     Event.record do |event|

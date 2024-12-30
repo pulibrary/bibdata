@@ -33,7 +33,7 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: ENV["APPLICATION_URL"] || "localhost" }
+  config.action_mailer.default_url_options = { host: ENV.fetch('APPLICATION_URL', nil) || 'localhost' }
 
   # Set the log file size to:
   config.log_file_size = 100.megabytes

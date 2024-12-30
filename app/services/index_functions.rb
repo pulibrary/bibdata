@@ -20,8 +20,8 @@ module IndexFunctions
 
   def self.rsolr_connection(solr_url)
     RSolr.connect(url: solr_url, timeout: 300, open_timeout: 300)
-  rescue StandardError => error
-    logger.error "Failed to connect to Solr: #{error.message}"
+  rescue StandardError => e
+    logger.error "Failed to connect to Solr: #{e.message}"
     nil
   end
 
@@ -32,6 +32,7 @@ module IndexFunctions
     dumps.each do |dump|
       dump.dump_files.each do |df|
         next unless df.recap_record_type?
+
         DumpFileIndexJob.perform_async(df.id, solr_url)
       end
       solr.delete_by_id(dump.delete_ids) if dump.delete_ids.present?

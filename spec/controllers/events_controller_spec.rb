@@ -1,10 +1,11 @@
 # frozen_string_literal: true
-require "rails_helper"
+
+require 'rails_helper'
 
 RSpec.describe EventsController, type: :controller do
-  describe "#index" do
-    context "events page" do
-      it "lists the events, ordered by start asc in UTC" do
+  describe '#index' do
+    context 'events page' do
+      it 'lists the events, ordered by start asc in UTC' do
         event2 = FactoryBot.create(:event, start: Time.now - 3.months, finish: Time.now - 3.months + 180, error: nil, success: true)
         event3 = FactoryBot.create(:event, start: Time.now - 2.months, finish: Time.now - 2.months + 180, error: nil, success: true)
         event1 = FactoryBot.create(:event)
