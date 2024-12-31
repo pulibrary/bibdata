@@ -36,7 +36,7 @@ gem 'lograge'
 gem 'logstash-event'
 gem 'loofah', '>= 2.22'
 gem 'marc', '~> 1.0'
-gem 'marc_cleanup', github: 'pulibrary/marc_cleanup', tag: 'v0.9.1', require: false
+gem 'marc_cleanup', github: 'pulibrary/marc_cleanup', tag: 'v0.9.3', require: false
 gem 'multi_json'
 gem 'mutex_m'
 gem 'net-imap', require: false

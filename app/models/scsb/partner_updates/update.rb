@@ -1,3 +1,5 @@
+require 'marc_cleanup'
+
 module Scsb
   class PartnerUpdates
     class Update
