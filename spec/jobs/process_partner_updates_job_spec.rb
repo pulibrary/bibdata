@@ -3,6 +3,8 @@ RSpec.describe ProcessPartnerUpdatesJob, type: :job, indexing: true do
   let(:params) { { file_prefix: 'scsb_update_', file: 'a_file' }.stringify_keys }
 
   it 'accepts the expected parameters' do
+    allow(Zip::File).to receive(:open).with('a_file')
+    allow(File).to receive(:unlink)
     expect { described_class.perform_async(params) }.not_to raise_error
   end
 

@@ -18,6 +18,10 @@ module Scsb
         event.error << "Sidekiq batch: #{status.bid} completed with errors for event_id: #{event_id}"
         event.save!
       end
+
+      def finished_downloading(status, _options)
+        # overall = Sidekiq::Batch.new(status.parent_bid)
+      end
     end
   end
 end

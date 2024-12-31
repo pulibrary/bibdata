@@ -1,5 +1,6 @@
 require 'json/add/regexp'
 
+# Step 1 of overall batch
 # Checks that the associated CSV is valid, then kicks off the DownloadPartnerFilesJob, which in turn
 # kicks off the ProcessPartnerUpdatesJob
 class DownloadAndProcessFullJob
