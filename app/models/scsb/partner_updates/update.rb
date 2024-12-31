@@ -57,6 +57,8 @@ module Scsb
       end
 
       def self.process_record(record)
+        # DON'T LEAVE THIS IN! SO BROKEN!
+        raise if Time.now.utc.sec % 4 == 0
         record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
         if bad_utf8?(record)
