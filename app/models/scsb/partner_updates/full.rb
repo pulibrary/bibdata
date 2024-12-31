@@ -16,9 +16,12 @@ module Scsb
       def process_full_files
         prepare_directory
         dump_id = @dump.id
-        @institutions.each do |institution|
-          params = { inst: institution[:inst], prefix: institution[:prefix], dump_id: }.stringify_keys
-          DownloadAndProcessFullJob.perform_async(params)
+        batch = Sidekiq::Batch.new
+        batch.jobs do
+          @institutions.each do |institution|
+            params = { inst: institution[:inst], prefix: institution[:prefix], dump_id: }.stringify_keys
+            DownloadAndProcessFullJob.perform_async(params)
+          end
         end
         set_generated_date
         log_record_fixes

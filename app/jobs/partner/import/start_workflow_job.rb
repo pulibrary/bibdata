@@ -4,8 +4,10 @@ module Partner
       include Sidekiq::Job
 
       def perform(dump_id)
+        # at this point batch should be the overall batch
         batch.jobs do
           download_step = Sidekiq::Batch.new
+          download_step.description = "Download and process full partner files for dump: #{dump_id}"
           download_step.on(:success, 'Scsb::PartnerUpdates::Callback#finished_downloading', 'dump_id' => dump_id)
           download_step.jobs do
             institutions.each do |institution|
