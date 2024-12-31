@@ -22,7 +22,7 @@ RSpec.describe Partner::Import::FullJob, indexing: true do
 
     it 'creates an event' do
       Sidekiq::Testing.inline!
-      allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
+      # allow(Scsb::PartnerUpdates::Full).to receive(:process_full_files).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:generated_date).and_call_original
       allow(Scsb::PartnerUpdates::Update).to receive(:log_record_fixes).and_call_original
       allow(Partner::Import::StartWorkflowJob).to receive(:perform_async).and_call_original

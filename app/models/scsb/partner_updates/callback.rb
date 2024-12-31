@@ -4,6 +4,7 @@ module Scsb
       # called by batch.on(:success)
       def on_success(_status, options)
         event = Event.find(options['event_id'])
+        event.finish = Time.now.utc
         event.success = true
         event.save!
         Scsb::PartnerUpdates::Update.generated_date(dump_id: event.dump.id)
@@ -16,6 +17,7 @@ module Scsb
 
         event.success = false
         event.error << "Sidekiq batch: #{status.bid} completed with errors for event_id: #{event_id}"
+        event.finish = Time.now.utc
         event.save!
       end
 
