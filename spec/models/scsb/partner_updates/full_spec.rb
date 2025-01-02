@@ -1,8 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
+RSpec.describe Scsb::PartnerUpdates::Full, type: :model, indexing: true do
   include_context 'scsb_partner_updates_full'
-
+  around do |example|
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.add Sidekiq::Batch::Server
+    end
+    example.run
+    Sidekiq::Testing.server_middleware do |chain|
+      chain.remove Sidekiq::Batch::Server
+    end
+  end
   it 'can be instantiated' do
     described_class.new(dump:, dump_file_type: :something)
   end
@@ -13,7 +21,7 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
         let(:fixture_files) { [cul_csv] }
 
         it 'determines that the file is valid' do
-          expect(partner_full_update.validate_csv(inst: 'CUL')).to be true
+          expect(described_class.validate_csv(inst: 'CUL', dump_id: dump.id)).to be true
         end
       end
       context 'that are private' do
@@ -24,22 +32,27 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
           FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
         end
         it 'determines that the file is not valid' do
-          expect(partner_full_update.validate_csv(inst: 'CUL')).to be false
+          expect(described_class.validate_csv(inst: 'CUL', dump_id: dump.id)).to be false
         end
         it 'adds errors to the dump' do
-          partner_full_update.process_full_files
-          expect(dump.event.error).to include('Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6')
+          Sidekiq::Testing.inline! do
+            partner_full_update.process_full_files
+            dump.reload
+            expect(dump.event.error).to include('Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6')
+          end
         end
         it 'does not process files that include private records' do
-          partner_full_update.process_full_files
-          expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
-          # Does not download records associated with metadata with private records
-          expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
-          # Still downloads and processes records not associated with private records
-          expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
-          expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
-          # cleans up
-          expect(Dir.empty?(update_directory_path)).to be true
+          Sidekiq::Testing.inline! do
+            partner_full_update.process_full_files
+            expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
+            # Does not download records associated with metadata with private records
+            expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
+            # Still downloads and processes records not associated with private records
+            expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
+            expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
+            # cleans up
+            expect(Dir.empty?(update_directory_path)).to be true
+          end
         end
       end
     end
@@ -58,20 +71,22 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
       end
 
       it 'downloads, processes, and attaches the nypl files and adds an error message' do
-        partner_full_update.process_full_files
-
-        # attaches marcxml and log files
-        expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
-        expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
-        expect(dump.dump_files.map(&:path)).to contain_exactly(
-          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
-          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
-          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz'),
-          a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
-        )
-        expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
-        # cleans up
-        expect(Dir.empty?(update_directory_path)).to be true
+        Sidekiq::Testing.inline! do
+          partner_full_update.process_full_files
+          dump.reload
+          # attaches marcxml and log files
+          expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
+          expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
+          expect(dump.dump_files.map(&:path)).to contain_exactly(
+            File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
+            File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
+            File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz'),
+            a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
+          )
+          expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
+          # cleans up
+          expect(Dir.empty?(update_directory_path)).to be true
+        end
       end
     end
   end
@@ -90,10 +105,12 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
     end
 
     it 'does not download anything, adds an error message' do
-      partner_full_update.process_full_files
-
-      expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
-      expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
+      Sidekiq::Testing.inline! do
+        partner_full_update.process_full_files
+        dump.reload
+        expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
+        expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
+      end
     end
   end
 end

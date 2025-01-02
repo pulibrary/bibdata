@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ScsbImportJob do
+RSpec.describe ScsbImportJob, indexing: true do
   it 'initiates the incremental partner update' do
     allow(Scsb::PartnerUpdates).to receive(:incremental)
     described_class.perform_now(FactoryBot.create(:empty_partner_recap_incremental_dump).id, DateTime.now)

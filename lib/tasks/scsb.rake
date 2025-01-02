@@ -63,7 +63,7 @@ namespace :scsb do
   namespace :import do
     desc 'Creates an Event and downloads files for a full partner record set'
     task full: :environment do
-      ScsbImportFullJob.perform_later
+      Partner::Import::FullJob.perform_async
     end
 
     desc 'Used for monthly cron job - downloads files for full partner record set only on Saturdays'
@@ -71,7 +71,7 @@ namespace :scsb do
       unless Date.today.saturday?
         abort 'This task will only run on Saturdays, to facilitate monthly cron job. If you want to run this job manually on another day, use scsb:import:full'
       end
-      ScsbImportFullJob.perform_later
+      Partner::Import::FullJob.perform_async
     end
   end
 end
