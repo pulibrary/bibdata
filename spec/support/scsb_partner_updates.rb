@@ -14,8 +14,11 @@ RSpec.shared_context 'scsb_partner_updates' do
     FileUtils.mkdir_p(update_directory_path)
 
     allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:fetch).and_call_original
     allow(ENV).to receive(:[]).with('SCSB_FILE_DIR').and_return(scsb_file_dir)
+    allow(ENV).to receive(:fetch).with('SCSB_PARTNER_UPDATE_DIRECTORY', '/tmp/updates').and_return(update_directory_path)
     allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
+
     allow(Scsb::S3Bucket).to receive(:partner_transfer_client).and_return(s3_bucket)
   end
 end

@@ -213,14 +213,6 @@ RSpec/BeEq:
   Exclude:
     - 'spec/models/scsb/s3_bucket_spec.rb'
 
-# Offense count: 2
-# This cop supports safe auto-correction (--auto-correct).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: be, be_nil
-RSpec/BeNil:
-  Exclude:
-    - 'spec/jobs/scsb_import_full_job_spec.rb'
-
 # Offense count: 17
 RSpec/BeforeAfterAll:
   Exclude:
@@ -275,7 +267,6 @@ RSpec/EmptyLineAfterFinalLet:
 # This cop supports safe auto-correction (--auto-correct).
 RSpec/EmptyLineAfterHook:
   Exclude:
-    - 'spec/jobs/scsb_import_full_job_spec.rb'
     - 'spec/models/scsb/partner_updates/full_spec.rb'
     - 'spec/models/scsb/partner_updates/update_spec.rb'
 
@@ -285,7 +276,6 @@ RSpec/EmptyLineAfterHook:
 # SupportedStyles: method_call, block
 RSpec/ExpectChange:
   Exclude:
-    - 'spec/jobs/scsb_import_full_job_spec.rb'
     - 'spec/models/dump_spec.rb'
     - 'spec/models/event_spec.rb'
     - 'spec/models/scsb/partner_updates/update_spec.rb'
@@ -433,7 +423,6 @@ Rails/FilePath:
     - 'app/services/location_maps_generator_service.rb'
     - 'lib/tasks/orangeindex.rake'
     - 'spec/jobs/index_job_spec.rb'
-    - 'spec/jobs/scsb_import_full_job_spec.rb'
     - 'spec/marc_to_solr/lib/format/bib_format_spec.rb'
     - 'spec/models/event_spec.rb'
     - 'spec/models/scsb/partner_updates/update_spec.rb'
@@ -579,7 +568,6 @@ Style/Documentation:
 # Configuration parameters: AllowedVars.
 Style/FetchEnvVar:
   Exclude:
-    - 'app/jobs/scsb_import_full_job.rb'
     - 'app/models/scsb/partner_updates/full.rb'
     - 'app/models/scsb/partner_updates/incremental.rb'
     - 'app/models/scsb/partner_updates/update.rb'
