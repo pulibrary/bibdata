@@ -11,7 +11,7 @@ RSpec.describe Import::Alma, type: :job do
     end
 
     before do
-      allow(IndexRemainingDumpsJob).to receive(:perform_async)
+      allow(Index::RemainingDumpsJob).to receive(:perform_async)
     end
 
     after do
@@ -81,7 +81,7 @@ RSpec.describe Import::Alma, type: :job do
         expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ['bib_records']
         expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
 
-        expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
+        expect(Index::RemainingDumpsJob).not_to have_received(:perform_async)
       end
     end
 
@@ -121,7 +121,7 @@ RSpec.describe Import::Alma, type: :job do
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ['updated_records']
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
-        expect(IndexRemainingDumpsJob).to have_received(:perform_async).once
+        expect(Index::RemainingDumpsJob).to have_received(:perform_async).once
       end
     end
   end

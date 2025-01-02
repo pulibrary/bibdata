@@ -55,7 +55,7 @@ class IndexManager < ActiveRecord::Base
     batch.on(:success, 'IndexManager::Workflow#indexed_remaining', 'index_manager_id' => id)
     batch.description = "Performing catch-up index into #{solr_collection}"
     batch.jobs do
-      IndexRemainingDumpsJob.perform_async(id)
+      Index::RemainingDumpsJob.perform_async(id)
     end
   end
 
