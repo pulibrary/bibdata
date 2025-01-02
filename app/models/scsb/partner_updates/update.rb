@@ -12,11 +12,6 @@ module Scsb
         @s3_bucket = Scsb::S3Bucket.partner_transfer_client
         @scsb_file_dir = ENV['SCSB_FILE_DIR']
         @update_directory = ENV['SCSB_PARTNER_UPDATE_DIRECTORY'] || '/tmp/updates'
-        @inv_xml = []
-        @tab_newline = []
-        @leader = []
-        @composed_chars = []
-        @bad_utf8 = []
       end
 
       def attach_dump_file(filepath, dump_file_type: nil)
@@ -59,26 +54,11 @@ module Scsb
       def process_record(record)
         record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
-        if bad_utf8?(record)
-          @bad_utf8 << record['001']
-          record = bad_utf8_fix(record)
-        end
-        if invalid_xml_chars?(record)
-          @inv_xml << record['001']
-          record = invalid_xml_fix(record)
-        end
-        if tab_newline_char?(record)
-          @tab_newline << record['001']
-          record = tab_newline_fix(record)
-        end
-        if leader_errors?(record)
-          @leader << record['001']
-          record = leaderfix(record)
-        end
-        if composed_chars_errors?(record)
-          @composed_chars << record['001']
-          record = composed_chars_normalize(record)
-        end
+        record = bad_utf8_fix(record) if bad_utf8?(record)
+        record = invalid_xml_fix(record) if invalid_xml_chars?(record)
+        record = tab_newline_fix(record) if tab_newline_char?(record)
+        record = leaderfix(record) if leader_errors?(record)
+        record = composed_chars_normalize(record) if composed_chars_errors?(record)
         record = extra_space_fix(record)
         empty_subfield_fix(record)
       end
@@ -88,23 +68,6 @@ module Scsb
         error << message
         @dump.event.error = error.join('; ')
         @dump.event.save
-      end
-
-      def log_record_fixes
-        log_file = {
-          inv_xml: @inv_xml,
-          tab_newline: @tab_newline,
-          leader: @leader,
-          composed_chars: @composed_chars,
-          bad_utf8: @bad_utf8
-        }
-        filepath = log_file_name
-        File.write(filepath, log_file.to_json.to_s)
-        attach_dump_file(filepath, dump_file_type: :log_file)
-      end
-
-      def log_file_name
-        "#{@scsb_file_dir}/fixes_#{@last_dump.to_time.strftime('%Y_%m_%d')}.json"
       end
 
       def set_generated_date

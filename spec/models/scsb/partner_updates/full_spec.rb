@@ -62,12 +62,10 @@ RSpec.describe Scsb::PartnerUpdates::Full, type: :model do
 
         # attaches marcxml and log files
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
-        expect(dump.dump_files.where(dump_file_type: :log_file).length).to eq(1)
         expect(dump.dump_files.map(&:path)).to contain_exactly(
           File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
           File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
-          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz'),
-          a_string_matching(/#{scsb_file_dir}\/fixes_\d{4}_\d{2}_\d{2}.json.gz/)
+          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz')
         )
         expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
         # cleans up
