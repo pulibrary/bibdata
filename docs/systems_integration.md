@@ -8,8 +8,7 @@ sequenceDiagram
     AWS Listener->>Datadog: Logs webhook receipt 
     AWS Listener->>AWS SQS: Enqueues message with job details
     Bibdata AWS SqsPoller daemon->>AWS SQS: Polls job details   
-    Bibdata AWS SqsPoller daemon->>Bibdata AlmaDumpTransferJob: Creates a new event, a dump, and enqueues a job
-    Bibdata AlmaDumpTransferJob->>lib-sftp: Fetches files with given job ids. Attaches DumpFiles to Dump.
+    Bibdata AWS SqsPoller daemon->>Bibdata Import::Alma: Creates a new event, a dump, and enqueues a job
+    Bibdata Import::Alma->>lib-sftp: Fetches files with given job ids. Attaches DumpFiles to Dump.
 
 ```
-

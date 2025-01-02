@@ -1,9 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe AlmaDumpTransferJob, type: :job do
+RSpec.describe Import::Alma, type: :job do
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
 
   describe 'perform' do
+    around do |example|
+      Sidekiq::Testing.inline! do
+        example.run
+      end
+    end
+
     before do
       allow(IndexRemainingDumpsJob).to receive(:perform_async)
     end
@@ -65,7 +71,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       end
 
       it 'downloads the files' do
-        described_class.perform_now(dump:, job_id:)
+        described_class.perform_async(dump.id, job_id)
 
         expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
         expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
@@ -108,7 +114,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(session_stub).to receive(:download).and_return(download_stub)
         allow(download_stub).to receive(:wait)
 
-        described_class.perform_now(dump:, job_id:)
+        described_class.perform_async(dump.id, job_id)
 
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1

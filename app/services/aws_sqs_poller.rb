@@ -34,9 +34,9 @@ class AwsSqsPoller
       dump = AlmaDumpFactory.bib_dump(message_body)
       # running dump creation in the background prevents the queue
       # event from timing out and requeuing
-      AlmaDumpTransferJob.perform_later(
-        dump:,
-        job_id: message_body['job_instance']['id']
+      Import::Alma.perform_async(
+        dump.id,
+        message_body['job_instance']['id']
       )
     rescue AlmaDumpFactory::AlmaDuplicateEventError
       Rails.logger.error("Rescue from AlmaDuplicateEventError with alma_process_id: #{message_body['job_instance']['id']}")

@@ -44,8 +44,8 @@ RSpec.describe AwsSqsPoller do
     it "doesn't throw an error, logs it, and ends polling" do
       # Add the default signal handler back, RSpec's doesn't kill the process.
       old_signal_handler = Signal.trap 'TERM', 'SYSTEM_DEFAULT'
-      # Force a process kill in AlmaDumpTransferJob
-      allow(AlmaDumpTransferJob).to receive(:perform_later) do
+      # Force a process kill in Import::Alma
+      allow(Import::Alma).to receive(:perform_async) do
         Process.kill 'TERM', 0
       end
 
@@ -63,13 +63,9 @@ RSpec.describe AwsSqsPoller do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
 
     it 'Creates an event and kicks off a background job' do
-      expect { described_class.poll }.to have_enqueued_job(
-        AlmaDumpTransferJob
-      ).with(
-        job_id:,
-        dump: instance_of(Dump)
-      )
-
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
       expect(Dump.all.count).to eq 1
       expect(Dump.first.dump_type).to eq('full_dump')
       event = Dump.first.event
@@ -91,20 +87,17 @@ RSpec.describe AwsSqsPoller do
 
       it "doesn't raise an error or kicks off a background job" do
         allow(Rails.logger).to receive(:error)
-        expect { described_class.poll }.not_to have_enqueued_job(
-          AlmaDumpTransferJob
-        )
+        allow(Import::Alma).to receive(:perform_async)
+        described_class.poll
+        expect(Import::Alma).not_to have_received(:perform_async)
         expect(Rails.logger).to have_received(:error).with('Rescue from AlmaDuplicateEventError with alma_process_id: 6587815790006421')
       end
     end
 
     it 'Creates an event and kicks off a background job' do
-      expect { described_class.poll }.to have_enqueued_job(
-        AlmaDumpTransferJob
-      ).with(
-        job_id:,
-        dump: instance_of(Dump)
-      )
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
       expect(Dump.all.count).to eq 1
       expect(Dump.first.dump_type).to eq 'changed_records'
       event = Dump.first.event
@@ -115,12 +108,9 @@ RSpec.describe AwsSqsPoller do
     end
 
     it 'creates an event with alma job status COMPLETED_SUCCESS' do
-      expect { described_class.poll }.to have_enqueued_job(
-        AlmaDumpTransferJob
-      ).with(
-        job_id:,
-        dump: instance_of(Dump)
-      )
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
       event = Dump.first.event
       expect(event.alma_job_status).to eq 'COMPLETED_SUCCESS'
     end
@@ -131,12 +121,9 @@ RSpec.describe AwsSqsPoller do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump_alma_job_failed.json'))).to_json }
 
     it 'creates an event with alma job status COMPLETED_FAILED' do
-      expect { described_class.poll }.to have_enqueued_job(
-        AlmaDumpTransferJob
-      ).with(
-        job_id:,
-        dump: instance_of(Dump)
-      )
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
       event = Dump.first.event
       expect(event.alma_job_status).to eq 'COMPLETED_FAILED'
     end
@@ -155,12 +142,9 @@ RSpec.describe AwsSqsPoller do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json'))).to_json }
 
     it 'Creates an event and kicks off a background job' do
-      expect { described_class.poll }.to have_enqueued_job(
-        AlmaDumpTransferJob
-      ).with(
-        job_id:,
-        dump: instance_of(Dump)
-      )
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
 
       expect(Dump.all.count).to eq 1
       expect(Dump.first.dump_type).to eq 'princeton_recap'
@@ -176,7 +160,9 @@ RSpec.describe AwsSqsPoller do
     let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json'))).to_json }
 
     it 'Does nothing' do
-      expect { described_class.poll }.not_to have_enqueued_job
+      allow(Import::Alma).to receive(:perform_async)
+      described_class.poll
+      expect(Import::Alma).not_to have_received(:perform_async)
       expect(Dump.all.count).to eq 0
       expect(Event.all.count).to eq 0
     end
