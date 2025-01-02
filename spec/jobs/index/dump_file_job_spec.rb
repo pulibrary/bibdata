@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe DumpFileIndexJob do
+RSpec.describe Index::DumpFileJob do
   let(:dump) { FactoryBot.create(:incremental_dump) }
   let(:dump_file_id) { dump.dump_files.first.id }
 
   describe '#perform' do
     it 'raises an error when traject errors' do
-      expect { described_class.new.perform(dump_file_id, 'http://localhost:8983/solr/badcollection') }.to raise_error
+      expect { described_class.new.perform(dump_file_id, 'http://localhost:8983/solr/badcollection') }.to raise_error(RuntimeError)
     end
   end
 

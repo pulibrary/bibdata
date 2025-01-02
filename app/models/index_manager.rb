@@ -37,7 +37,7 @@ class IndexManager < ActiveRecord::Base
     save
     generate_batch do
       next_dump.dump_files.each do |dump_file|
-        DumpFileIndexJob.perform_async(dump_file.id, solr_collection)
+        Index::DumpFileJob.perform_async(dump_file.id, solr_collection)
       end
     end
   end

@@ -80,14 +80,14 @@ Go to the solr admin UI (see above).
     1. Go to the bibdata web UI
     2. Login
     4. Go to the [sidekiq current jobs](https://bibdata.princeton.edu/sidekiq/queues/default)
-    5. Confirm that you see roughly the same number of `DumpFileIndexJob`s as you saw dump files in the "All Records" event.
+    5. Confirm that you see roughly the same number of `Index::DumpFileJob`s as you saw dump files in the "All Records" event.
     6. If desired, click the Live Poll button and confirm that the number of jobs is slowly going down. 
 
 Once the full dump is finished indexing, the IndexManager will queue up dump
 files for each relevant incremental dumps until all the Alma records are
 indexed.
 
-To keep tabs on how long the individual dump files take to index you can look at sidekiq DumpFileIndexJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3ADumpFileIndexJob%20-host%3Abibdata-staging1%20-host%3Abibdata-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
+To keep tabs on how long the individual dump files take to index you can look at sidekiq Index::DumpFileJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3AIndex::DumpFileJob%20-host%3Abibdata-staging1%20-host%3Abibdata-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
 
 Takes 6-7 hours to complete.
 

@@ -377,11 +377,6 @@ RSpec/StubbedMock:
     - 'spec/controllers/patron_controller_spec.rb'
 
 # Offense count: 1
-RSpec/UnspecifiedException:
-  Exclude:
-    - 'spec/jobs/dump_file_index_job_spec.rb'
-
-# Offense count: 1
 # This cop supports safe auto-correction (--auto-correct).
 # Configuration parameters: EnforcedStyle.
 # SupportedStyles: constant, string
