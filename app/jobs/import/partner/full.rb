@@ -7,14 +7,15 @@ module Import
         delete_stale_files
         event = Event.new
         event.start = Time.now.utc
-        event.success = true
         event.save!
         event.dump = created_dump(event)
         event.save!
-        Scsb::PartnerUpdates.full(dump: event.dump)
-      ensure
-        event.finish = Time.now.utc
-        event.save!
+        overall = Sidekiq::Batch.new
+        overall.description = "Full partner update process for event: #{event.id}"
+        overall.on(:success, 'Import::Partner::FullCallbacks#overall_success', 'event_id' => event.id)
+        overall.jobs do
+          Import::Partner::StartWorkflowJob.perform_async(event.dump.id)
+        end
       end
 
       private

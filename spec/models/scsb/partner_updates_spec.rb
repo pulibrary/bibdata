@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Scsb::PartnerUpdates, type: :model do
-  describe '.full' do
-    include_context 'scsb_partner_updates_full'
-    it 'maintains the same api' do
-      # for detailed testing see partner_updates/full_spec.rb
-      described_class.full(dump:)
-    end
-  end
   describe '.incremental' do
     include_context 'scsb_partner_updates_incremental'
 
