@@ -6,7 +6,6 @@ module Scsb
         update_files = download_partner_updates
         process_partner_updates(files: update_files)
         set_generated_date
-        log_record_fixes
         delete_files = download_partner_deletes
         process_partner_deletes(files: delete_files)
       end
