@@ -155,14 +155,6 @@ class BibliographicController < ApplicationController
       render plain: "Record #{id} not found or suppressed", status: :not_found
     end
 
-    # Construct or access the indexing service
-    # @return [IndexingService]
-    def index_job_queue
-      traject_config = Rails.application.config.traject
-      solr_config = Rails.application.config.solr
-      @index_job_queue ||= IndexJobQueue.new(config: traject_config['config'], url: solr_config['url'])
-    end
-
     # Ensure that the client is authenticated and the user is a catalog administrator
     def protect
       if user_signed_in?
