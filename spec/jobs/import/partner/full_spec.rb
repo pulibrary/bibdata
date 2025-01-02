@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Import::Partner::Full do
+  include_context 'scsb_partner_updates_full'
   around do |example|
     Sidekiq::Testing.inline! do
       example.run
@@ -20,41 +21,48 @@ RSpec.describe Import::Partner::Full do
     expect(Scsb::PartnerUpdates).to have_received(:full)
   end
 
+  context 'performing in a batch' do
+    around do |example|
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.add Sidekiq::Batch::Server
+      end
+      example.run
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.remove Sidekiq::Batch::Server
+      end
+    end
+
+    it 'can be run in a batch' do
+      allow(FileUtils).to receive(:rm) # Don't delete the files for this test
+      test_batch = Sidekiq::Batch.new
+      test_batch.jobs do
+        described_class.perform_async
+      end
+    end
+  end
+
   describe 'when there are stale files in the update directory path' do
     let(:update_directory_path) { Rails.root.join('tmp/specs/update_directory') }
 
-    before do
-      FileUtils.mkdir_p(update_directory_path)
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:fetch).and_call_original
-      allow(ENV).to receive(:fetch).with('SCSB_PARTNER_UPDATE_DIRECTORY', '/tmp/updates').and_return(update_directory_path)
-      allow(ENV).to receive(:[]).with('SCSB_PARTNER_UPDATE_DIRECTORY').and_return(update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/CUL_20210429_192300.zip', update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/NYPL_20210430_015000.zip', update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/HL_20210716_063500.zip', update_directory_path)
-      FileUtils.cp('spec/fixtures/scsb_updates/scsb_update_20240108_183400_1.xml', update_directory_path)
-    end
-
     it 'removes stale files' do
+      allow(FileUtils).to receive(:rm)
       expect { described_class.perform_async }.to change(Event, :count).by(1)
-
-      expect(File.file?(Rails.root.join('tmp/specs/update_directory/CUL_20210429_192300.zip'))).to be false
-      expect(File.file?(Rails.root.join('tmp/specs/update_directory/NYPL_20210430_015000.zip'))).to be false
-      expect(File.file?(Rails.root.join('tmp/specs/update_directory/HL_20210716_063500.zip'))).to be false
-      expect(File.file?(Rails.root.join('tmp/specs/update_directory/scsb_update_20240108_183400_1.xml'))).to be false
+      expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/CUL_20210429_192300.zip').to_s)
+      expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/NYPL_20210430_015000.zip').to_s)
+      expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/HL_20210716_063500.zip').to_s)
       expect(Dir.exist?(Rails.root.join('tmp/specs/update_directory'))).to be true
     end
 
     context 'when one file deletion fails' do
       before do
-        allow(FileUtils).to receive(:rm).and_call_original
+        allow(FileUtils).to receive(:rm)
         allow(FileUtils).to receive(:rm).with(Rails.root.join('tmp/specs/update_directory/NYPL_20210430_015000.zip').to_s).and_raise(Errno::ENOENT, 'No such file or directory @ apply2files')
       end
 
       it 'still deletes the other files that have not failed' do
         described_class.perform_async
 
-        expect(FileUtils).to have_received(:rm).exactly(4).times
+        expect(FileUtils).to have_received(:rm).exactly(6).times
         expect(File.file?(Rails.root.join('tmp/specs/update_directory/CUL_20210429_192300.zip'))).to be false
         expect(File.file?(Rails.root.join('tmp/specs/update_directory/HL_20210716_063500.zip'))).to be false
         expect(File.file?(Rails.root.join('tmp/specs/update_directory/scsb_update_20240108_183400_1.xml'))).to be false

@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AwsSqsPoller do
-  include ActiveJob::TestHelper
-
   let(:poller_mock) do
     Aws::SQS::QueuePoller.new(
       'https://example.com',

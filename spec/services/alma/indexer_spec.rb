@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Alma::Indexer, indexing: true do
-  include ActiveJob::TestHelper
-
   let(:solr_url) { ENV.fetch('SOLR_URL', nil) || "http://#{ENV.fetch('lando_bibdata_test_solr_conn_host', nil)}:#{ENV.fetch('lando_bibdata_test_solr_conn_port', nil)}/solr/bibdata-core-test" }
 
   describe '#index_file' do
