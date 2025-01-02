@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DeleteEventsJob, type: :job do
+  around do |example|
+    Sidekiq::Testing.inline! do
+      example.run
+    end
+  end
+
   describe '#perform' do
     let(:copy_path) { File.join('tmp', 'delete_files_job') }
 
@@ -20,8 +26,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.start = 6.months.ago - 1.day
           e.save
         end
-
-        described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
+        described_class.perform_async('full_dump', 2.months.ago.to_s)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, incremental_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, incremental_event.dump.id)
@@ -47,7 +52,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: :changed_records, older_than: 2.months.ago)
+        described_class.perform_async('changed_records', 2.months.ago.to_s)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, full_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, full_event.dump.id)
@@ -73,7 +78,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: :partner_recap, older_than: 2.months.ago)
+        described_class.perform_async('partner_recap', 2.months.ago.to_s)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.id, full_partner_recap_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.dump.id, full_partner_recap_event.dump.id)
@@ -97,7 +102,7 @@ RSpec.describe DeleteEventsJob, type: :job do
           e.save
         end
 
-        described_class.perform_now(dump_type: :partner_recap_full, older_than: 2.months.ago)
+        described_class.perform_async('partner_recap_full', 2.months.ago.to_s)
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.id, partner_recap_daily_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.dump.id, partner_recap_daily_event.dump.id)
@@ -120,13 +125,13 @@ RSpec.describe DeleteEventsJob, type: :job do
 
       it 'does not raise an error' do
         expect do
-          described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
+          described_class.perform_async('full_dump', 2.months.ago.to_s)
         end.not_to raise_error
       end
 
       it 'logs a warning about the failed deletion' do
         allow(Rails.logger).to receive(:warn)
-        described_class.perform_now(dump_type: :full_dump, older_than: 2.months.ago)
+        described_class.perform_async('full_dump', 2.months.ago.to_s)
         expect(Rails.logger).to have_received(:warn).with(/update or delete on table/)
       end
     end

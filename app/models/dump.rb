@@ -36,11 +36,11 @@ class Dump < ActiveRecord::Base
     # Create a dump of partner recap incremental records.
     def partner_update
       dump = nil
-      timestamp = incremental_update_timestamp
+      timestamp = incremental_update_timestamp.to_s
       Event.record do |event|
         event.save
         dump = Dump.create(dump_type: :partner_recap, event_id: event.id)
-        ScsbImportJob.perform_later(dump.id, timestamp)
+        Import::Partner::Incremental.perform_async(dump.id, timestamp)
         dump.save
       end
       dump

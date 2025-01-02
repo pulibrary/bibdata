@@ -35,13 +35,13 @@ RSpec.describe Dump, type: :model do
       it 'creates a dump using the current time and imports SCSB partner records into it' do
         frozen_time = Time.local(2021, 6, 7, 12, 0, 0)
         Timecop.freeze(frozen_time) do
-          allow(ScsbImportJob).to receive(:perform_later)
+          allow(Import::Partner::Incremental).to receive(:perform_async)
 
           described_class.partner_update
 
           created_dump = described_class.last
           expect(created_dump.dump_type).to eq 'partner_recap'
-          expect(ScsbImportJob).to have_received(:perform_later).with(created_dump.id, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+          expect(Import::Partner::Incremental).to have_received(:perform_async).with(created_dump.id, (frozen_time - 1.day).strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
         end
       end
     end
@@ -49,13 +49,13 @@ RSpec.describe Dump, type: :model do
     context "when there's a previous partner recap dump" do
       it 'uses the timestamp from that dump' do
         dump = FactoryBot.create(:empty_partner_recap_dump)
-        allow(ScsbImportJob).to receive(:perform_later)
+        allow(Import::Partner::Incremental).to receive(:perform_async)
 
         described_class.partner_update
 
         created_dump = described_class.last
         expect(created_dump.dump_type).to eq 'partner_recap'
-        expect(ScsbImportJob).to have_received(:perform_later).with(anything, dump.created_at.to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+        expect(Import::Partner::Incremental).to have_received(:perform_async).with(anything, dump.created_at.to_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
       end
     end
   end

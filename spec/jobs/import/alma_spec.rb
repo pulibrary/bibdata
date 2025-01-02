@@ -1,11 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe AlmaDumpTransferJob, type: :job do
+RSpec.describe Import::Alma, type: :job do
   let(:attrs) { Net::SFTP::Protocol::V01::Attributes.new({}) }
 
   describe 'perform' do
+    around do |example|
+      Sidekiq::Testing.inline! do
+        example.run
+      end
+    end
+
     before do
-      allow(IndexRemainingDumpsJob).to receive(:perform_async)
+      allow(Index::RemainingDumpsJob).to receive(:perform_async)
     end
 
     after do
@@ -65,7 +71,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
       end
 
       it 'downloads the files' do
-        described_class.perform_now(dump:, job_id:)
+        described_class.perform_async(dump.id, job_id)
 
         expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
         expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
@@ -75,7 +81,7 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ['bib_records']
         expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
 
-        expect(IndexRemainingDumpsJob).not_to have_received(:perform_async)
+        expect(Index::RemainingDumpsJob).not_to have_received(:perform_async)
       end
     end
 
@@ -108,14 +114,14 @@ RSpec.describe AlmaDumpTransferJob, type: :job do
         allow(session_stub).to receive(:download).and_return(download_stub)
         allow(download_stub).to receive(:wait)
 
-        described_class.perform_now(dump:, job_id:)
+        described_class.perform_async(dump.id, job_id)
 
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
         expect(Dump.all.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ['updated_records']
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)
-        expect(IndexRemainingDumpsJob).to have_received(:perform_async).once
+        expect(Index::RemainingDumpsJob).to have_received(:perform_async).once
       end
     end
   end

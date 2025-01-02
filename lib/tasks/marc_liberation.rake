@@ -1,10 +1,11 @@
 namespace :marc_liberation do
   namespace :delete do
     task events: :environment do
-      DeleteEventsJob.perform_later(dump_type: :full_dump, older_than: 2.months.ago)
-      DeleteEventsJob.perform_later(dump_type: :changed_records, older_than: 2.months.ago)
-      DeleteEventsJob.perform_later(dump_type: :partner_recap_full, older_than: 2.months.ago)
-      DeleteEventsJob.perform_later(dump_type: :partner_recap, older_than: 2.months.ago)
+      older_than = 2.months.ago.to_s
+      DeleteEventsJob.perform_async('full_dump', older_than)
+      DeleteEventsJob.perform_async('changed_records', older_than)
+      DeleteEventsJob.perform_async('partner_recap_full', older_than)
+      DeleteEventsJob.perform_async('partner_recap', older_than)
     end
   end
 end

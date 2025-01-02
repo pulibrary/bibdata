@@ -34,7 +34,7 @@ RSpec.describe IndexManager, type: :model, indexing: true do
       existing_index_manager.last_dump_completed = incremental_event.dump
       existing_index_manager.save
       solr.add(id: 'should_be_deleted')
-      allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
+      allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
       solr.commit
 
       Sidekiq::Testing.inline! do
@@ -48,8 +48,8 @@ RSpec.describe IndexManager, type: :model, indexing: true do
         run_all_callbacks
       end
 
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(full_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(full_event.dump.dump_files.first.id, anything)
       response = solr.get('select', params: { q: '*:*' })
       expect(response['response']['numFound']).to eq 9
       existing_index_manager.reload
@@ -82,7 +82,7 @@ RSpec.describe IndexManager, type: :model, indexing: true do
     end
 
     it "doesn't index anything if it's caught up" do
-      allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
+      allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
       full_event = FactoryBot.create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
 
       index_manager = described_class.for(solr_url)
@@ -96,12 +96,12 @@ RSpec.describe IndexManager, type: :model, indexing: true do
       index_manager = described_class.find(index_manager.id)
       expect(index_manager.index_next_dump!).to be_nil
       expect(index_manager.reload.dump_in_progress).to be_nil
-      expect(DumpFileIndexJob).to have_received(:perform_async).exactly(2).times
+      expect(Index::DumpFileJob).to have_received(:perform_async).exactly(2).times
       expect(index_manager).not_to be_in_progress
     end
 
     it 'indexes the previous incremental if the most recent full dump has been done' do
-      allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
+      allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
       # This incremental is before the pre-full-dump incremental, don't run it
       pre_pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
       pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
@@ -130,12 +130,12 @@ RSpec.describe IndexManager, type: :model, indexing: true do
       end
       solr.commit
 
-      expect(DumpFileIndexJob).not_to have_received(:perform_async).with(pre_pre_incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(pre_incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).not_to have_received(:perform_async).with(pre_pre_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(pre_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
       # This one doesn't run just because index_next_dump! wasn't called enough
       # times.
-      expect(DumpFileIndexJob).not_to have_received(:perform_async).with(final_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).not_to have_received(:perform_async).with(final_incremental_event.dump.dump_files.first.id, anything)
       response = solr.get('select', params: { q: '*:*' })
       expect(response['response']['numFound']).to eq 9
       index_manager.reload
@@ -147,7 +147,7 @@ RSpec.describe IndexManager, type: :model, indexing: true do
 
   describe '#index_remaining' do
     it "indexes everything that's left to be indexed" do
-      allow(DumpFileIndexJob).to receive(:perform_async).and_call_original
+      allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
 
       # This incremental is before the full dump, don't run it
       pre_pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
@@ -164,10 +164,10 @@ RSpec.describe IndexManager, type: :model, indexing: true do
         run_all_callbacks
       end
 
-      expect(DumpFileIndexJob).not_to have_received(:perform_async).with(pre_pre_incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(pre_incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
-      expect(DumpFileIndexJob).to have_received(:perform_async).with(final_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).not_to have_received(:perform_async).with(pre_pre_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(pre_incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(incremental_event.dump.dump_files.first.id, anything)
+      expect(Index::DumpFileJob).to have_received(:perform_async).with(final_incremental_event.dump.dump_files.first.id, anything)
       response = solr.get('select', params: { q: '*:*' })
       expect(response['response']['numFound']).to eq 9
       index_manager.reload
