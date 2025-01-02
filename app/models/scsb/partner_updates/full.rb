@@ -37,7 +37,8 @@ module Scsb
             add_error(message: "Metadata file indicates that dump for #{inst} does not include the correct Group IDs, not processing. Group ids: #{csv['Collection Group Id(s)'].first}")
           end
           filename = File.basename(file)
-          destination_filepath = "#{@scsb_file_dir}/#{filename}"
+          scsb_file_dir = ENV['SCSB_FILE_DIR']
+          destination_filepath = "#{scsb_file_dir}/#{filename}"
           FileUtils.move(file, destination_filepath)
           attach_dump_file(destination_filepath, dump_file_type: :recap_records_full_metadata)
           File.unlink(destination_filepath) if File.exist?(destination_filepath)
