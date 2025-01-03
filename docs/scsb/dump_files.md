@@ -26,7 +26,10 @@ title: Full Partner Import Workflow
 ---
 graph LR;
     A[Full - Creates event and batch]-->B[StartWorkflowJob];
-    B --> C[Download-HUL] & D[Download-CUL] & E[Download-NYPL];
+    B --> NN[Validate metadata CSV-HUL] & OO[Validate metadata CSV-CUL] & PP[Validate metadata CSV-NYPL];
+    NN --> C[Download-HUL];
+    OO --> D[Download-CUL];
+    PP --> E[Download-NYPL];
     C --> F[Unzip-HUL];
     D --> G[Unzip-CUL];
     E --> H[Unzip-NYPL];
