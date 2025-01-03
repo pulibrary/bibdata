@@ -4,18 +4,27 @@ module Import
       include Sidekiq::Job
       def perform(dump_id)
         dump = Dump.find(dump_id)
-        partner_updates = Scsb::PartnerUpdates::Full.new(dump:, dump_file_type: :recap_records_full)
         batch.jobs do
-          download_and_process_batch = Sidekiq::Batch.new
-          download_and_process_batch.description = 'Download partner records from S3'
-          download_and_process_batch.on(:success, 'Import::Partner::FullCallbacks#download_and_process_success', 'dump_id' => dump.id)
-          download_and_process_batch.jobs do
-            partner_updates.download_and_process_full(inst: 'NYPL', prefix: 'scsbfull_nypl_')
-            partner_updates.download_and_process_full(inst: 'CUL', prefix: 'scsbfull_cul_')
-            partner_updates.download_and_process_full(inst: 'HL', prefix: 'scsbfull_hl_')
+          institutions.each do |institution, prefix|
+            validate_csv_batch = Sidekiq::Batch.new
+            validate_csv_batch.description = "Ensure there are no private records included for institution #{institution}"
+            validate_csv_batch.on(:success, 'Import::Partner::FullCallbacks#validate_csv_success', 'dump_id' => dump_id, 'institution' => institution, 'prefix' => prefix)
+            validate_csv_batch.jobs do
+              ValidateCsvJob.perform_async(dump_id, institution, prefix)
+            end
           end
         end
       end
+
+      private
+
+        def institutions
+          {
+            'NYPL' => 'scsbfull_nypl_',
+            'CUL' => 'scsbfull_cul_',
+            'HL' => 'scsbfull_hl_'
+          }
+        end
     end
   end
 end

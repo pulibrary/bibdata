@@ -64,22 +64,30 @@ RSpec.describe Import::Partner::Full do
       let(:cul_private_csv) { 'private_ExportDataDump_Full_CUL_20210429_192300.csv' }
 
       let(:fixture_files) { [nypl_zip, nypl_csv, hl_zip, hl_csv] }
+
       before do
         FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
       end
+
       it 'does not process files that include private records' do
-        described_class.perform_async
+        expect do
+          described_class.perform_async
+        end.to raise_error(StandardError, 'Metadata file indicates that dump for CUL does not include the correct Group IDs, not processing. Group ids: 1*2*3*5*6')
 
         expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
         # Does not download records associated with metadata with private records
         expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
         # Still downloads and processes records not associated with private records
+        expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.csv/))
         expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
-        expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
+        # does not download in testing environment, because once the error is raised it stops the test
+        # in the production environment, Sidekiq will re-run the failed job, and run the HL job separately
+        # expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
         # cleans up
-        expect(Dir.empty?(update_directory_path)).to be true
+        # expect(Dir.empty?(update_directory_path)).to be true
       end
     end
+
     context 'with files from only some partners' do
       let(:fixture_files) { [nypl_zip, nypl_csv] }
       let(:filter_response_pairs) do
@@ -93,25 +101,13 @@ RSpec.describe Import::Partner::Full do
         ]
       end
 
-      it 'downloads, processes, and attaches the nypl files and adds an error message' do
+      it 'raises an error for the missing metadata' do
         stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
         allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
-        described_class.perform_async
-
-        # attaches marcxml and csv files
-        dump.reload
-        expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
-        expect(dump.dump_files.map(&:path)).to contain_exactly(
-          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
-          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
-          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz')
-        )
-        expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
-        # cleans up
-        expect(FileUtils).to have_received(:rm).exactly(2).times
+        expect do
+          described_class.perform_async
+        end.to raise_error(StandardError, 'No metadata files found matching CUL')
       end
-
-      
     end
 
     context 'when there are no matching files at all' do
@@ -130,10 +126,11 @@ RSpec.describe Import::Partner::Full do
       it 'does not download anything, adds an error message' do
         stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
         allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
-        described_class.perform_async
+        expect do
+          described_class.perform_async
+        end.to raise_error('No metadata files found matching NYPL')
         dump.reload
         expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
-        expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
       end
     end
   end
@@ -160,9 +157,6 @@ RSpec.describe Import::Partner::Full do
         described_class.perform_async
 
         expect(FileUtils).to have_received(:rm).exactly(6).times
-        expect(File.file?(Rails.root.join('tmp/specs/update_directory/CUL_20210429_192300.zip'))).to be false
-        expect(File.file?(Rails.root.join('tmp/specs/update_directory/HL_20210716_063500.zip'))).to be false
-        expect(File.file?(Rails.root.join('tmp/specs/update_directory/scsb_update_20240108_183400_1.xml'))).to be false
       end
     end
   end

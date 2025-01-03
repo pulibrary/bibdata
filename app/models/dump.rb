@@ -56,6 +56,15 @@ class Dump < ActiveRecord::Base
       dump.save!
     end
 
+    def attach_dump_file(dump_id, file_path, dump_file_type = nil)
+      dump = Dump.find(dump_id)
+      df = DumpFile.create(dump_file_type:, path: file_path)
+      df.zip
+      df.save
+      dump.dump_files << df
+      dump.save
+    end
+
     private
 
       ##
