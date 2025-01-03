@@ -31,10 +31,8 @@ RSpec.describe Import::Partner::Full do
     end
 
     it 'creates an event' do
-      stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
-      allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
-      allow(stub_partner_update).to receive(:download_and_process_full).and_call_original
       allow(Dump).to receive(:generated_date).and_call_original
+      allow(Zip::File).to receive(:open).and_call_original
 
       expect { described_class.perform_async }.to change(Event, :count).by(1)
       event = Event.last
@@ -44,7 +42,8 @@ RSpec.describe Import::Partner::Full do
       expect(event.finish).not_to be_nil
       expect(event.dump).to be_a(Dump)
       expect(event.dump.dump_type).to eq('partner_recap_full')
-      expect(stub_partner_update).to have_received(:download_and_process_full).exactly(3).times
+      # Opens one zip file for each institution
+      expect(Zip::File).to have_received(:open).exactly(3).times
       expect(Dump).to have_received(:generated_date)
     end
 
@@ -83,8 +82,6 @@ RSpec.describe Import::Partner::Full do
         # does not download in testing environment, because once the error is raised it stops the test
         # in the production environment, Sidekiq will re-run the failed job, and run the HL job separately
         # expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
-        # cleans up
-        # expect(Dir.empty?(update_directory_path)).to be true
       end
     end
 
