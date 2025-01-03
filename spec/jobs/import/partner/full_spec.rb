@@ -59,6 +59,83 @@ RSpec.describe Import::Partner::Full do
       expect(event.finish).to be_nil
       expect(event.success).to be_nil
     end
+
+    context 'with files that include private records' do
+      let(:cul_private_csv) { 'private_ExportDataDump_Full_CUL_20210429_192300.csv' }
+
+      let(:fixture_files) { [nypl_zip, nypl_csv, hl_zip, hl_csv] }
+      before do
+        FileUtils.cp(Rails.root.join(fixture_paths, cul_private_csv), Rails.root.join(update_directory_path, cul_csv))
+      end
+      it 'does not process files that include private records' do
+        described_class.perform_async
+
+        expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.csv/))
+        # Does not download records associated with metadata with private records
+        expect(s3_bucket).not_to have_received(:download_recent).with(hash_including(file_filter: /CUL.*\.zip/))
+        # Still downloads and processes records not associated with private records
+        expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /NYPL.*\.zip/))
+        expect(s3_bucket).to have_received(:download_recent).with(hash_including(file_filter: /HL.*\.zip/))
+        # cleans up
+        expect(Dir.empty?(update_directory_path)).to be true
+      end
+    end
+    context 'with files from only some partners' do
+      let(:fixture_files) { [nypl_zip, nypl_csv] }
+      let(:filter_response_pairs) do
+        [
+          [/CUL.*\.zip/, nil],
+          [/CUL.*\.csv/, nil],
+          [/HL.*\.zip/, nil],
+          [/HL.*\.csv/, nil],
+          [/NYPL.*\.zip/, Rails.root.join(update_directory_path, nypl_zip).to_s],
+          [/NYPL.*\.csv/, Rails.root.join(update_directory_path, nypl_csv).to_s]
+        ]
+      end
+
+      it 'downloads, processes, and attaches the nypl files and adds an error message' do
+        stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
+        allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
+        described_class.perform_async
+
+        # attaches marcxml and csv files
+        dump.reload
+        expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(2)
+        expect(dump.dump_files.map(&:path)).to contain_exactly(
+          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_1.xml.gz'),
+          File.join(scsb_file_dir, 'scsbfull_nypl_20210430_015000_2.xml.gz'),
+          File.join(scsb_file_dir, 'ExportDataDump_Full_NYPL_20210430_015000.csv.gz')
+        )
+        expect(dump.event.error).to eq 'No metadata files found matching CUL; No metadata files found matching HL'
+        # cleans up
+        expect(FileUtils).to have_received(:rm).exactly(2).times
+      end
+
+      
+    end
+
+    context 'when there are no matching files at all' do
+      let(:dump) { FactoryBot.create(:empty_partner_full_dump) }
+      let(:filter_response_pairs) do
+        [
+          [/CUL.*\.zip/, nil],
+          [/CUL.*\.csv/, nil],
+          [/NYPL.*\.zip/, nil],
+          [/NYPL.*\.csv/, nil],
+          [/HL.*\.zip/, nil],
+          [/HL.*\.csv/, nil]
+        ]
+      end
+
+      it 'does not download anything, adds an error message' do
+        stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
+        allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
+        described_class.perform_async
+        dump.reload
+        expect(dump.dump_files.where(dump_file_type: :recap_records_full).length).to eq(0)
+        expect(dump.event.error).to eq 'No metadata files found matching NYPL; No metadata files found matching CUL; No metadata files found matching HL'
+      end
+    end
   end
 
   describe 'when there are stale files in the update directory path' do
