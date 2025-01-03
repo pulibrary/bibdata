@@ -33,7 +33,8 @@ RSpec.describe Import::Partner::Full do
     it 'creates an event' do
       stub_partner_update = Scsb::PartnerUpdates::Full.new(dump: event.dump, dump_file_type: :recap_records_full)
       allow(Scsb::PartnerUpdates::Full).to receive(:new).and_return(stub_partner_update)
-      allow(stub_partner_update).to receive(:process_full_files).and_call_original
+      allow(stub_partner_update).to receive(:download_and_process_full).and_call_original
+      allow(Dump).to receive(:generated_date).and_call_original
 
       expect { described_class.perform_async }.to change(Event, :count).by(1)
       event = Event.last
@@ -43,7 +44,8 @@ RSpec.describe Import::Partner::Full do
       expect(event.finish).not_to be_nil
       expect(event.dump).to be_a(Dump)
       expect(event.dump.dump_type).to eq('partner_recap_full')
-      expect(stub_partner_update).to have_received(:process_full_files)
+      expect(stub_partner_update).to have_received(:download_and_process_full).exactly(3).times
+      expect(Dump).to have_received(:generated_date)
     end
 
     it 'runs callbacks' do

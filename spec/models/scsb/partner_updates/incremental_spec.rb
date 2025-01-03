@@ -18,7 +18,7 @@ RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model do
         File.join(scsb_file_dir, 'scsb_update_20210622_183200_1.xml.gz'),
         File.join(scsb_file_dir, 'scsb_update_20210622_183200_2.xml.gz')
       )
-
+      dump.reload
       expect(dump.generated_date).to eq DateTime.parse('2021-06-22')
 
       # Adds delete IDs
