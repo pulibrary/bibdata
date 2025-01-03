@@ -5,7 +5,7 @@ module Scsb
         prepare_directory
         update_files = download_partner_updates
         process_partner_updates(files: update_files)
-        set_generated_date
+        Dump.generated_date(dump.id)
         delete_files = download_partner_deletes
         process_partner_deletes(files: delete_files)
       end

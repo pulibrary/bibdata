@@ -5,13 +5,6 @@ module Scsb
         super
       end
 
-      def process_full_files
-        download_and_process_full(inst: 'NYPL', prefix: 'scsbfull_nypl_')
-        download_and_process_full(inst: 'CUL', prefix: 'scsbfull_cul_')
-        download_and_process_full(inst: 'HL', prefix: 'scsbfull_hl_')
-        set_generated_date
-      end
-
       def download_and_process_full(inst:, prefix:)
         return false unless validate_csv(inst:)
 

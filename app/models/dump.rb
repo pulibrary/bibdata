@@ -50,6 +50,12 @@ class Dump < ActiveRecord::Base
       order('generated_date desc').first
     end
 
+    def generated_date(dump_id)
+      dump = Dump.find(dump_id)
+      dump.generated_date = dump.date_strings.map { |str| DateTime.parse(str) }.min
+      dump.save!
+    end
+
     private
 
       ##
@@ -67,6 +73,16 @@ class Dump < ActiveRecord::Base
         Dump.partner_recap.last&.created_at
       end
   end # class << self
+
+  def date_strings
+    dump_files.map do |df|
+      if df.dump_file_type == 'recap_records_full_metadata'
+        File.basename(df.path).split('_')[3]
+      else
+        File.basename(df.path).split('_')[2]
+      end
+    end
+  end
 
   def subsequent_partner_incrementals
     Dump.partner_recap.where(generated_date: generated_date..Float::INFINITY)

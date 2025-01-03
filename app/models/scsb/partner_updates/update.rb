@@ -70,10 +70,6 @@ module Scsb
         @dump.event.save
       end
 
-      def set_generated_date
-        @dump.generated_date = date_strings.map { |str| DateTime.parse(str) }.sort.first
-      end
-
       def date_strings
         @dump.dump_files.map do |df|
           if df.dump_file_type == 'recap_records_full_metadata'
