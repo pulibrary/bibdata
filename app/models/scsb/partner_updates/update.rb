@@ -51,6 +51,18 @@ module Scsb
         end
       end
 
+      def self.process_record(record)
+        record = field_delete(['856', '959'], record)
+        record.leader[5] = 'c' if record.leader[5].eql?('d')
+        record = bad_utf8_fix(record) if bad_utf8?(record)
+        record = invalid_xml_fix(record) if invalid_xml_chars?(record)
+        record = tab_newline_fix(record) if tab_newline_char?(record)
+        record = leaderfix(record) if leader_errors?(record)
+        record = composed_chars_normalize(record) if composed_chars_errors?(record)
+        record = extra_space_fix(record)
+        empty_subfield_fix(record)
+      end
+
       def process_record(record)
         record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')

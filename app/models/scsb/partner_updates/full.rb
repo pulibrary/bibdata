@@ -5,16 +5,6 @@ module Scsb
         super
       end
 
-      def download_and_process_full(inst:, prefix:)
-        matcher = /#{inst}.*\.zip/
-        file = download_full_file(matcher)
-        if file
-          process_partner_updates(files: [file], file_prefix: prefix)
-        else
-          add_error(message: "No full dump files found matching #{inst}")
-        end
-      end
-
       def self.validate_csv(dump_id, file, institution)
         matches_expected_collections = false
         raise StandardError, "No metadata files found matching #{institution}" unless file
