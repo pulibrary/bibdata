@@ -26,14 +26,8 @@ module Import
         end
       end
 
-      def download_file_success(status, options)
-        # institution = options['institution']
-        # dump_id = options['dump_id']
-        # prefix = options['prefix']
-        # dump = Dump.find(dump_id)
-        # partner_updates = Scsb::PartnerUpdates::Full.new(dump:, dump_file_type: :recap_records_full)
-        # partner_updates.download_and_process_full(inst: institution, prefix: prefix)
-      end
+      # Empty callbacks in preparation for future further breaking down of background jobs
+      def download_file_success(status, options); end
 
       def process_xml_file_success(status, options); end
     end
