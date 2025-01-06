@@ -10,13 +10,26 @@ module Import
       end
 
       def validate_csv_success(status, options)
-        dump = Dump.find(options['dump_id'])
+        institution = options['institution']
+        dump_id = options['dump_id']
+        prefix = options['prefix']
+        dump = Dump.find(dump_id)
+
         overall = Sidekiq::Batch.new(status.parent_bid)
         overall.jobs do
-          partner_updates = Scsb::PartnerUpdates::Full.new(dump:, dump_file_type: :recap_records_full)
-          partner_updates.download_and_process_full(inst: options['institution'], prefix: options['prefix'])
+          download_full_file_batch = Sidekiq::Batch.new
+          download_full_file_batch.description = "Download full dump for institution #{institution}"
+          download_full_file_batch.on(:success, 'Import::Partner::FullCallbacks#download_file_success', 'dump_id' => dump_id, 'institution' => institution, 'prefix' => prefix)
+          download_full_file_batch.jobs do
+            Import::Partner::DownloadFullFileJob.perform_async(dump_id, institution, prefix)
+          end
         end
       end
+
+      # Empty callbacks in preparation for future further breaking down of background jobs
+      def download_file_success(status, options); end
+
+      def process_xml_file_success(status, options); end
     end
   end
 end

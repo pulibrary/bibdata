@@ -44,14 +44,14 @@ module Scsb
           reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
           filepath = "#{@scsb_file_dir}/#{file_prefix}#{filename}"
           writer = MARC::XMLWriter.new(filepath)
-          reader.each { |record| writer.write(process_record(record)) }
+          reader.each { |record| writer.write(Scsb::PartnerUpdates::Update.process_record(record)) }
           writer.close
           File.unlink(file)
           attach_dump_file(filepath)
         end
       end
 
-      def process_record(record)
+      def self.process_record(record)
         record = field_delete(['856', '959'], record)
         record.leader[5] = 'c' if record.leader[5].eql?('d')
         record = bad_utf8_fix(record) if bad_utf8?(record)
