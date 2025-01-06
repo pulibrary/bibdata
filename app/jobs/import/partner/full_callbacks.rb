@@ -29,7 +29,11 @@ module Import
       # Empty callbacks in preparation for future further breaking down of background jobs
       def download_file_success(status, options); end
 
-      def process_xml_file_success(status, options); end
+      def process_xml_file_success(_status, options)
+        # unlink big zip file here
+        zip_file = options['zip_file']
+        File.unlink(zip_file) if File.exist?(zip_file)
+      end
     end
   end
 end
