@@ -26,7 +26,7 @@ RSpec.describe Scsb::PartnerUpdates::Update, type: :model do
     it 'processes a scsb record and changes leader d to c' do
       partner_updates = described_class.new(dump:, timestamp:, dump_file_type: :recap_records)
       expect(scsb_record_leaderd.leader[5]).to eq('d')
-      processed_record = partner_updates.send(:process_record, scsb_record_leaderd)
+      processed_record = described_class.send(:process_record, scsb_record_leaderd)
       expect(processed_record.leader[5]).to eq('c')
     end
   end
