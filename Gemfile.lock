@@ -160,6 +160,9 @@ GEM
     bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     benchmark (0.4.0)
+    benchmark-malloc (0.2.0)
+    benchmark-perf (0.6.0)
+    benchmark-trend (0.4.0)
     bigdecimal (3.1.9)
     bootstrap-sass (3.4.1)
       autoprefixer-rails (>= 5.2.1)
@@ -504,6 +507,15 @@ GEM
     rsolr (2.5.0)
       builder (>= 2.1.2)
       faraday (>= 0.9, < 3, != 2.0.0)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-benchmark (0.6.0)
+      benchmark-malloc (~> 0.2)
+      benchmark-perf (~> 0.6)
+      benchmark-trend (~> 0.4)
+      rspec (>= 3.0)
     rspec-core (3.13.2)
       rspec-support (~> 3.13.0)
     rspec-expectations (3.13.3)
@@ -739,6 +751,7 @@ DEPENDENCIES
   responders
   rest-client
   rsolr (~> 2.5.0)
+  rspec-benchmark
   rspec-rails
   rubocop
   rubocop-performance

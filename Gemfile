@@ -86,6 +86,7 @@ group :development, :test do
   gem 'faker'
   gem 'puma'
   gem 'rails-controller-testing'
+  gem 'rspec-benchmark'
   gem 'simplecov'
   gem 'solargraph'
   gem 'solr_wrapper'
