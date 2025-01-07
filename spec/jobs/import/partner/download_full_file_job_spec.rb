@@ -5,7 +5,13 @@ RSpec.describe Import::Partner::DownloadFullFileJob do
 
   around do |example|
     Sidekiq::Testing.inline! do
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.add Sidekiq::Batch::Server
+      end
       example.run
+      Sidekiq::Testing.server_middleware do |chain|
+        chain.remove Sidekiq::Batch::Server
+      end
     end
   end
 

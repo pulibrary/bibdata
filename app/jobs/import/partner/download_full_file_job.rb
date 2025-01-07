@@ -12,18 +12,10 @@ module Import
         batch.jobs do
           process_xml_files_batch = Sidekiq::Batch.new
           process_xml_files_batch.description = "Process #{xml_files.size} unzipped xml files from #{institution}"
-          process_xml_files_batch.on(:success, 'Import::Partner::FullCallbacks#process_xml_file_success')
+          process_xml_files_batch.on(:success, 'Import::Partner::FullCallbacks#process_xml_file_success', 'zip_file' => zip_file)
           process_xml_files_batch.jobs do
-            scsb_file_dir = ENV.fetch('SCSB_FILE_DIR')
             xml_files.each do |file|
-              filename = File.basename(file)
-              reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
-              file_path = "#{scsb_file_dir}/#{filename}"
-              writer = MARC::XMLWriter.new(file_path)
-              reader.each { |record| writer.write(Scsb::PartnerUpdates::Full.process_record(record)) }
-              writer.close
-              File.unlink(file)
-              Dump.attach_dump_file(dump_id, file_path, :recap_records_full)
+              Import::Partner::ProcessXmlFileJob.perform_async(dump_id, file)
             end
           end
         end
@@ -47,7 +39,6 @@ module Import
             Rails.logger.info(e.message)
           end
         end
-        File.unlink(file)
         xml_files
       end
     end

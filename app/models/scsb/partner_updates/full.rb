@@ -25,11 +25,6 @@ module Scsb
         matches_expected_collections
       end
 
-      def download_full_file(file_filter)
-        prefix = ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full'
-        @s3_bucket.download_recent(prefix:, output_directory: @update_directory, file_filter:)
-      end
-
       def self.download_full_file(institution, extension)
         Scsb::S3Bucket.partner_transfer_client.download_recent(
           prefix: ENV['SCSB_S3_PARTNER_FULLS'] || 'data-exports/PUL/MARCXml/Full',
