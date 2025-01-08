@@ -43,7 +43,7 @@ RSpec.describe IndigenousLanguages do
     context 'when 650 has a relevant language and $v Texts' do
       let(:fields) do
         [
-          { '650' => { 'subfields' => [{ 'a' => 'Munsee language', 'v' => 'Texts' }] } }
+          { '650' => { 'subfields' => [{ 'a' => 'Munsee language', 'v' => 'Texts.' }] } }
         ]
       end
 

@@ -11,7 +11,7 @@ class LanguageExtractor
 
   def possible_language_subject_headings
     @marc_record.fields('650')
-                .select { |field| field['v'] == 'Texts' }
+                .select { |field| field['v']&.match(/^texts/i) }
                 .map { |field| field['a'] }
   end
 
