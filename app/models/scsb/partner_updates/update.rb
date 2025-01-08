@@ -41,7 +41,7 @@ module Scsb
         end
         xml_files.each do |file|
           filename = File.basename(file)
-          reader = MARC::XMLReader.new(file.to_s, external_encoding: 'UTF-8')
+          reader = MARC::XMLReader.new(file.to_s, parser: :nokogiri)
           filepath = "#{@scsb_file_dir}/#{file_prefix}#{filename}"
           writer = MARC::XMLWriter.new(filepath)
           reader.each { |record| writer.write(Scsb::PartnerUpdates::Update.process_record(record)) }
