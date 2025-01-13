@@ -278,6 +278,14 @@ GEM
     faraday_middleware (1.2.1)
       faraday (~> 1.0)
     ffi (1.17.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-aarch64-linux-musl)
+    ffi (1.17.1-arm-linux-gnu)
+    ffi (1.17.1-arm-linux-musl)
+    ffi (1.17.1-x86-linux-gnu)
+    ffi (1.17.1-x86-linux-musl)
+    ffi (1.17.1-x86_64-linux-gnu)
+    ffi (1.17.1-x86_64-linux-musl)
     ffi-compiler (1.3.2)
       ffi (>= 1.15.5)
       rake
@@ -337,7 +345,13 @@ GEM
       kramdown (~> 2.0)
     lcsort (0.9.1)
     libdatadog (14.3.1.1.0)
+    libdatadog (14.3.1.1.0-aarch64-linux)
+    libdatadog (14.3.1.1.0-x86_64-linux)
     libddwaf (1.18.0.0.0)
+      ffi (~> 1.0)
+    libddwaf (1.18.0.0.0-aarch64-linux)
+      ffi (~> 1.0)
+    libddwaf (1.18.0.0.0-x86_64-linux)
       ffi (~> 1.0)
     library_stdnums (1.6.0)
     lightly (0.2.1)
@@ -400,6 +414,18 @@ GEM
     nio4r (2.7.4)
     nokogiri (1.18.1)
       mini_portile2 (~> 2.8.2)
+      racc (~> 1.4)
+    nokogiri (1.18.1-aarch64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.1-aarch64-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.1-arm-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.1-arm-linux-musl)
+      racc (~> 1.4)
+    nokogiri (1.18.1-x86_64-linux-gnu)
+      racc (~> 1.4)
+    nokogiri (1.18.1-x86_64-linux-musl)
       racc (~> 1.4)
     oai (1.2.1)
       builder (>= 3.1.0)
@@ -685,7 +711,17 @@ GEM
     zeitwerk (2.7.1)
 
 PLATFORMS
+  aarch64-linux
+  aarch64-linux-gnu
+  aarch64-linux-musl
+  arm-linux-gnu
+  arm-linux-musl
   ruby
+  x86-linux-gnu
+  x86-linux-musl
+  x86_64-linux
+  x86_64-linux-gnu
+  x86_64-linux-musl
 
 DEPENDENCIES
   alma (~> 0.5.0)
