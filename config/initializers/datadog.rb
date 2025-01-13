@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 if Rails.env.production?
   Datadog.configure do |c|
-    c.tracing.eanbled = false unless Rails.env.production?
     c.env = 'production'
     # c.service = 'bibdata'
     # Rails
