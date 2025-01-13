@@ -74,7 +74,7 @@ gem 'whenever'
 gem 'yard'
 
 group :production do
-  gem 'ddtrace'
+  gem 'datadog', require: 'datadog/auto_instrument'
 end
 
 group :development, :test do
