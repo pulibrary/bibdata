@@ -198,7 +198,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.4.1-browsers
+      - image: cimg/ruby:3.3.6-browsers
     steps:
       - checkout
       - run: gem install bundler -v '~> 2.0'

@@ -336,12 +336,9 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     lcsort (0.9.1)
-<<<<<<< HEAD
     libdatadog (14.3.1.1.0)
     libddwaf (1.18.0.0.0)
       ffi (~> 1.0)
-=======
->>>>>>> a59605b0 (Upgrade to ruby 3.4.1)
     library_stdnums (1.6.0)
     lightly (0.2.1)
     llhttp-ffi (0.5.0)
