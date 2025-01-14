@@ -221,7 +221,7 @@ to_field 'title_no_h_index' do |record, accumulator|
   accumulator
 end
 
-to_field 'title_t', extract_marc('245abchknps', alternate_script: false, first: true)
+to_field 'title_unstem_search', extract_marc('245abchknps', alternate_script: false, first: true)
 to_field 'title_citation_display', extract_marc('245ab', trim_punctuation: true)
 
 ## Series, Title, and Title starts with index-only fields ##
@@ -319,7 +319,7 @@ to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulato
   end
 end
 
-to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
+to_field 'pub_created_unstem_search', extract_marc('260abcefg:264abcefg3')
 
 to_field 'pub_citation_display' do |record, accumulator|
   pub_info = set_pub_citation(record)
@@ -415,7 +415,6 @@ to_field 'electronic_access_index', extract_marc('856')
 # 515 XX a
 # 362 XX az
 to_field 'description_display', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:362az')
-to_field 'description_t', extract_marc('254a:255abcdefg:3422abcdefghijklmnopqrstuv:343abcdefghi:352abcdegi:355abcdefghj:507ab:256a:516a:753abc:755axyz:3003abcefg:515a:362az')
 
 to_field 'number_of_pages_citation_display', extract_marc('300a', trim_punctuation: true)
 
