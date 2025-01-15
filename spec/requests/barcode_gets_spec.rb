@@ -15,8 +15,8 @@ RSpec.describe 'Barcode Gets', type: :request do
 
   describe 'GET /barcode/32101037077862123456/scsb' do
     it 'returns a 404 when the barcode is not a valid form' do
-      stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/items?item_barcode=32101037077862123456")
-        .to_return(status: 404, body: "", headers: {})
+      stub_request(:get, 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/items?item_barcode=32101037077862123456')
+        .to_return(status: 404, body: '', headers: {})
       get '/barcode/32101037077862123456/scsb'
       expect(response.status).to be(404)
     end
