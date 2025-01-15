@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   get '/bibliographic/:bib_id/items', to: 'bibliographic#bib_items', defaults: { format: :json }
   get '/availability', to: 'availability#index', defaults: { format: :json }
 
-  get '/barcode', to: 'barcode#index', defaults: { format: :txt }
   get '/barcode/:barcode/scsb', to: 'barcode#scsb', defaults: { format: :xml }
 
   get '/patron/:patron_id', to: 'patron#patron_info', format: false, defaults: { format: :json },

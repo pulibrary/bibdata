@@ -1,14 +1,6 @@
 class BarcodeController < ApplicationController
   include FormattingConcern
 
-  def index
-    if params[:barcode]
-      redirect_to action: :barcode, barcode: sanitized_barcode, status: :moved_permanently
-    else
-      render plain: 'Please supply a barcode.', status: :not_found
-    end
-  end
-
   # Client: This endpoint is used by the ReCAP inventory management system, LAS,
   #   to pull data from our ILS when items are accessioned
   def scsb
@@ -56,10 +48,4 @@ class BarcodeController < ApplicationController
   rescue StandardError => e
     handle_alma_exception(exception: e, message: "Error for barcode: #{barcode}")
   end
-
-  private
-
-    def sanitized_barcode
-      CGI.escape(params[:barcode])
-    end
 end
