@@ -7,7 +7,7 @@ jobs:
 
     # Primary command image where all commands run
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:3.4.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -66,7 +66,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:3.4.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -96,7 +96,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:3.4.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -165,7 +165,7 @@ jobs:
     working_directory: ~/bibdata
 
     docker:
-      - image: cimg/ruby:3.3.6-browsers
+      - image: cimg/ruby:3.4.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -222,7 +222,7 @@ jobs:
 
   bearer:
     docker:
-      - image: cimg/ruby:3.3
+      - image: cimg/ruby:3.4
     environment:
       # Set to default branch of your repo
       DEFAULT_BRANCH: main
