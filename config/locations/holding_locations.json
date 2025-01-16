@@ -1113,7 +1113,7 @@
         ]
     },
     {
-        "label": "Reserve",
+        "label": "STEM Reserves",
         "code": "engineer$res",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
