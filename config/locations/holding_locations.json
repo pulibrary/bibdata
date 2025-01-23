@@ -2884,7 +2884,7 @@
             "order": 0
         },
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -2910,7 +2910,7 @@
             "order": 0
         },
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -2932,7 +2932,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -2994,7 +2994,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -3196,24 +3196,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PJ",
-            "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PN",
-            "PA",
-            "IL",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB"
+            "PT"
         ]
     },
     {
@@ -3281,7 +3264,7 @@
         "delivery_locations": [
             "QT",
             "QA",
-            "PN",
+            "PT",
             "QC",
             "QP"
         ]
@@ -3313,7 +3296,8 @@
             "QA",
             "QC",
             "PS",
-            "QP"
+            "QP",
+            "PT"
         ]
     },
     {
@@ -3335,7 +3319,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -3417,7 +3401,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -3439,7 +3423,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
@@ -3481,7 +3465,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PN"
+            "PT"
         ]
     },
     {
