@@ -51,7 +51,6 @@
             "PK",
             "PM",
             "QA",
-            "PN",
             "PA",
             "QC"
         ]
@@ -77,7 +76,6 @@
         "delivery_locations": [
             "QT",
             "QA",
-            "PN",
             "QC"
         ]
     },
@@ -101,7 +99,6 @@
         "holding_library": null,
         "delivery_locations": [
             "PA",
-            "PN",
             "PQ",
             "PW",
             "PM",
@@ -314,7 +311,6 @@
             "PH",
             "PM",
             "QA",
-            "PN",
             "PA",
             "QC"
         ]
