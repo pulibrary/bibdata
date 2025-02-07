@@ -976,8 +976,12 @@ to_field 'lc_facet' do |record, accumulator|
   if record['050'] && (record['050']['a'])
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    map_first = Traject::TranslationMap.new('callnumber_map')[first_letter]
+    map_rest = Traject::TranslationMap.new('callnumber_map')[letters]
     accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
-    accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}:#{Traject::TranslationMap.new('callnumber_map')[letters]}"
+    if map_first && map_rest
+      accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}:#{Traject::TranslationMap.new('callnumber_map')[letters]}"
+    end
   end
 end
 
