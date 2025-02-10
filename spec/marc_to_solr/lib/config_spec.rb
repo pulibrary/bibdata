@@ -1096,7 +1096,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(lc_facet).to be_nil
       end
 
-      it 'handles cases where the call number is invalid' do
+      it 'does not index data into the lc_facet field if the call number is invalid' do
         expect(record['lc_facet']).to be_nil
       end
     end
