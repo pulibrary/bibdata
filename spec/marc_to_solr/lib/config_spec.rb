@@ -1078,6 +1078,9 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'lc_facet' do
+      let(:t050) { { '050' => { 'ind1' => '0', 'ind2' => '0', 'subfields' => [{ 'a' => 'IN PROCESS' }] } } }
+      let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t050], 'leader' => leader)) }
+
       it 'includes a field with data for the classification facet' do
         lc_facet = @sample40['lc_facet']
         expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine'])
@@ -1091,6 +1094,10 @@ describe 'From traject_config.rb', indexing: true do
       it 'handles cases where there is no call number' do
         lc_facet = @record_no_call_number['lc_facet']
         expect(lc_facet).to be_nil
+      end
+
+      it 'does not index data into the lc_facet field if the call number is invalid' do
+        expect(record['lc_facet']).to be_nil
       end
     end
 
