@@ -99,8 +99,8 @@
           "desc": "In Process"
         },
         "work_order_type": {
-          "value": "CDL",
-          "desc": "Controlled Digital Lending"
+          "value": "HMT",
+          "desc": "Holdings Management"
         },
         "work_order_at": {
           "value": "digitization",

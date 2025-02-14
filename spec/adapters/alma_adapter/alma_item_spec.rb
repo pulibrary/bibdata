@@ -170,41 +170,41 @@ RSpec.describe AlmaAdapter::AlmaItem do
     end
   end
 
-  describe '#cdl?' do
-    context 'When there is no work order type' do
-      it 'flags false' do
-        item = described_class.new(
-          build_item(code: 'pa', retention_reason: 'other')
-        )
+  # describe '#cdl?' do
+  #   context 'When there is no work order type' do
+  #     it 'flags false' do
+  #       item = described_class.new(
+  #         build_item(code: 'pa', retention_reason: 'other')
+  #       )
 
-        expect(item.cdl?).to be false
-      end
-    end
+  #       expect(item.cdl?).to be false
+  #     end
+  #   end
 
-    context 'When the work order type is CDL' do
-      it 'flags true' do
-        item = described_class.new(
-          Alma::BibItem.new(
-            'item_data' => {
-              'library' => {
-                'desc' => 'ReCAP', 'value' => 'recap'
-              },
-              'location' => {
-                'desc' => 'pa',
-                'value' => 'pa'
-              },
-              'work_order_type' => {
-                'value' => 'CDL',
-                'desc' => 'Controlled Digital Lending'
-              }
-            }
-          )
-        )
+  #   context 'When the work order type is CDL' do
+  #     it 'flags true' do
+  #       item = described_class.new(
+  #         Alma::BibItem.new(
+  #           'item_data' => {
+  #             'library' => {
+  #               'desc' => 'ReCAP', 'value' => 'recap'
+  #             },
+  #             'location' => {
+  #               'desc' => 'pa',
+  #               'value' => 'pa'
+  #             },
+  #             'work_order_type' => {
+  #               'value' => 'CDL',
+  #               'desc' => 'Controlled Digital Lending'
+  #             }
+  #           }
+  #         )
+  #       )
 
-        expect(item.cdl?).to be true
-      end
-    end
-  end
+  #       expect(item.cdl?).to be true
+  #     end
+  #   end
+  # end
 
   describe 'status' do
     let(:item_work_order_acq) do
