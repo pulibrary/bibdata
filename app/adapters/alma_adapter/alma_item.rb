@@ -157,9 +157,9 @@ class AlmaAdapter
       item.holding_data['call_number']
     end
 
-    def cdl?
-      item.item_data.dig('work_order_type', 'value') == 'CDL'
-    end
+    # def cdl?
+    #   item.item_data.dig('work_order_type', 'value') == 'CDL'
+    # end
 
     def recap_customer_code
       return unless recap_item?
@@ -233,8 +233,8 @@ class AlmaAdapter
         'copy_number' => copy_number.to_i,
         'temp_location' => composite_temp_location,
         'perm_location' => composite_perm_location,
-        'item_type' => type,
-        'cdl' => cdl?
+        'item_type' => type
+        # 'cdl' => cdl?
       )
     end
 
@@ -308,7 +308,7 @@ class AlmaAdapter
 
       # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
       # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
-      code = if value.in?(%w[Bind Pres CDL AcqWorkOrder CollDev HMT])
+      code = if value.in?(%w[Bind Pres AcqWorkOrder CollDev HMT])
                'Unavailable'
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"

@@ -135,19 +135,19 @@ class BibliographicController < ApplicationController
   # bibliographic/:bib_id/items
   # Client: Used by figgy to check CDL status. Used by firestone_locator for
   #   call number and location data
-  def bib_items
-    item_keys = %w[id pid perm_location temp_location cdl]
-    holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
+  # def bib_items
+  #   item_keys = %w[id pid perm_location temp_location cdl]
+  #   holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
 
-    respond_to do |wants|
-      wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
-      wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
-    end
-  rescue Alma::BibItemSet::ResponseError
-    render_not_found(params[:bib_id])
-  rescue StandardError => e
-    handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{sanitized_bibid}")
-  end
+  #   respond_to do |wants|
+  #     wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
+  #     wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
+  #   end
+  # rescue Alma::BibItemSet::ResponseError
+  #   render_not_found(params[:bib_id])
+  # rescue StandardError => e
+  #   handle_alma_exception(exception: e, message: "Failed to retrieve items for bib ID: #{sanitized_bibid}")
+  # end
 
   private
 
