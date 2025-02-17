@@ -20,10 +20,10 @@ RSpec.describe AlmaAdapter do
     #   mms_id: unsuppressed,
     #   filename: "bib_items_list_#{unsuppressed}.json"
     # )
-    stub_alma_bib_items(
-      mms_id: unsuppressed_two_loc_two_items,
-      filename: "#{unsuppressed_two_loc_two_items}_two_locations_two_items.json"
-    )
+    # stub_alma_bib_items(
+    #   mms_id: unsuppressed_two_loc_two_items,
+    #   filename: "#{unsuppressed_two_loc_two_items}_two_locations_two_items.json"
+    # )
   end
 
   describe '#get_bib_record' do
