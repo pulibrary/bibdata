@@ -68,7 +68,6 @@ class AlmaAdapter
         label: holding_location_label(holding, location_info),
         status_label:,
         copy_number: nil,
-        # cdl: false,
         temp_location: false,
         id: holding['holding_id']
       }
@@ -80,10 +79,6 @@ class AlmaAdapter
         # In this case we create a holding_id using the name of the 'temporary_library$temporary_location'
         status[:id] = holding['holding_id']
         status[:temp_location] = true
-        # elsif status[:status_label] == 'Unavailable' && @deep_check
-        # # Notice that we only check if a holding is available via CDL when necessary
-        # # because it requires an extra (slow-ish) API call.
-        # status[:cdl] = cdl_holding?(holding['holding_id'])
       end
 
       status
@@ -97,7 +92,6 @@ class AlmaAdapter
         label: alma_item.composite_location_label_display,
         status_label: alma_item.calculate_status[:code],
         copy_number: alma_item.copy_number,
-        # cdl: alma_item.cdl?,
         temp_location: alma_item.in_temp_location?,
         id: alma_item.holding_id
       }
@@ -173,17 +167,6 @@ class AlmaAdapter
     end
 
     private
-
-      # def cdl_holding?(holding_id)
-      #   cdl = false
-      #   (item_data[holding_id] || []).each do |bib_item|
-      #     if AlmaItem.new(bib_item).cdl?
-      #       cdl = true
-      #       break
-      #     end
-      #   end
-      #   cdl
-      # end
 
       # Returns the extra location information that we store in the local database
       def location_record(holding)

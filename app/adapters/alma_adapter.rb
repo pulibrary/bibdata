@@ -110,14 +110,14 @@ class AlmaAdapter
 
   # @param id [String]. e.g id = "991227850000541"
   # @return [AlmaAdapter::BibItemSet]
-  # def get_items_for_bib(id)
-  #   alma_options = { timeout: 10 }
-  #   AlmaAdapter::Execute.call(options: alma_options, message: "Find items for bib #{id}") do
-  #     find_options = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, expand: 'due_date_policy,due_date', order_by: 'library', direction: 'asc' }
-  #     bib_items = Alma::BibItem.find(id, find_options).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
-  #     AlmaAdapter::BibItemSet.new(items: bib_items, adapter: self)
-  #   end
-  # end
+  def get_items_for_bib(id)
+    alma_options = { timeout: 10 }
+    AlmaAdapter::Execute.call(options: alma_options, message: "Find items for bib #{id}") do
+      find_options = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, expand: 'due_date_policy,due_date', order_by: 'library', direction: 'asc' }
+      bib_items = Alma::BibItem.find(id, find_options).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
+      AlmaAdapter::BibItemSet.new(items: bib_items, adapter: self)
+    end
+  end
 
   def item_by_barcode(barcode)
     item = Alma::BibItem.find_by_barcode(barcode)

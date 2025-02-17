@@ -157,10 +157,6 @@ class AlmaAdapter
       item.holding_data['call_number']
     end
 
-    # def cdl?
-    #   item.item_data.dig('work_order_type', 'value') == 'CDL'
-    # end
-
     def recap_customer_code
       return unless recap_item?
       return 'PG' if item.location[0].casecmp('x').zero?
@@ -234,7 +230,6 @@ class AlmaAdapter
         'temp_location' => composite_temp_location,
         'perm_location' => composite_perm_location,
         'item_type' => type
-        # 'cdl' => cdl?
       )
     end
 
