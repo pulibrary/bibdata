@@ -230,6 +230,17 @@ jobs:
       - checkout
       - run: curl -sfL https://raw.githubusercontent.com/Bearer/bearer/main/contrib/install.sh | sh -s -- -b /tmp
       - run: CURRENT_BRANCH=$CIRCLE_BRANCH SHA=$CIRCLE_SHA1 /tmp/bearer scan .
+  deploy:
+    docker:
+      - image: cimg/ruby:3.4
+    environment:
+      # Set to default branch of your repo
+      DEFAULT_BRANCH: main
+    steps:
+      - run:
+          name: Deploy to Staging
+          command: "curl -k \"https://ansible-tower.princeton.edu/api/v2/job_templates/57/launch/\" --header \"Content-Type: application/json\" --header \"Authorization: Bearer $TOWER_TOKEN\" -d '{\"credential_passwords\":{},\"extra_vars\":{\"repo_name\":\"bibdata\"}}'"
+
 workflows:
   version: 2
   default:
@@ -245,5 +256,12 @@ workflows:
           requires:
             - build
       - build_and_test_webhook
+      - deploy:
+         requires:
+          - test
+         filters:
+           branches:
+             only:
+               - main
       - semgrep
       - bearer
