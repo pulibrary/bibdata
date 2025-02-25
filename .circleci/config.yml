@@ -233,9 +233,6 @@ jobs:
   deploy:
     docker:
       - image: cimg/ruby:3.4
-    environment:
-      # Set to default branch of your repo
-      DEFAULT_BRANCH: main
     steps:
       - run:
           name: Deploy to Staging
