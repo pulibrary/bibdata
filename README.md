@@ -1,6 +1,6 @@
 # Bibdata
 
-Formerly known as MARC Liberation (since it liberates MARC data from Voyager).
+Local API for retrieving bibliographic and other useful data from Alma.
 
 [![CircleCI](https://circleci.com/gh/pulibrary/bibdata.svg?style=svg)](https://circleci.com/gh/pulibrary/bibdata)
 [![CoverageStatus](https://coveralls.io/repos/github/pulibrary/bibdata/badge.svg?branch=main)](https://coveralls.io/github/pulibrary/bibdata?branch=main)
