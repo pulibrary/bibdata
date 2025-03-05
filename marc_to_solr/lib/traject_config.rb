@@ -326,6 +326,9 @@ to_field 'pub_citation_display' do |record, accumulator|
   accumulator.replace(pub_info)
 end
 
+to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)
+to_field 'publisher_citation_display', extract_marc('260b:264|*1|b', trim_punctuation: true, first: true)
+
 to_field 'pub_date_display' do |record, accumulator|
   accumulator << record.date_from_008
 end
@@ -336,6 +339,16 @@ end
 
 to_field 'pub_date_end_sort' do |record, accumulator|
   accumulator << record.end_date_from_008
+end
+
+to_field 'publication_date_citation_display' do |record, accumulator|
+  next unless record['008']
+
+  raw = record['008'].value[7, 4]
+  next unless /^\d{4}$/.match? raw
+  next if raw == '9999'
+
+  accumulator << raw
 end
 
 # catalog_date https://github.com/pulibrary/marc_liberation/issues/926
