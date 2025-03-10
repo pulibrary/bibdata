@@ -27,18 +27,22 @@ RSpec.describe Index::NumismaticsJob do
   end
 
   context 'with many Solr documents' do
-    let(:numismatics_indexer) { NumismaticsIndexer.new(solr_connection: RSolr.connect(url: solr_url), progressbar: false, logger: Rails.logger) }
+    let(:solr_connection) { RSolr.connect(url: solr_url) }
+    let(:numismatics_indexer) { NumismaticsIndexer.new(solr_connection:, progressbar: false, logger: Rails.logger) }
 
     before do
       allow(NumismaticsIndexer).to receive(:new).and_return(numismatics_indexer)
+      allow(RSolr).to receive(:connect).and_return(solr_connection)
     end
 
     it 'enqueues a job for each batch of Solr documents' do
       allow(Index::NumismaticsBatchJob).to receive(:perform_async).and_call_original
       allow(numismatics_indexer).to receive(:index_in_chunks).and_call_original
+      allow(solr_connection).to receive(:commit).and_call_original
       described_class.perform_async(solr_url, 2)
       expect(Index::NumismaticsBatchJob).to have_received(:perform_async).exactly(3).times
       expect(numismatics_indexer).to have_received(:index_in_chunks).exactly(3).times
+      expect(solr_connection).to have_received(:commit).once
     end
   end
 

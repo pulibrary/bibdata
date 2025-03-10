@@ -17,17 +17,15 @@ class NumismaticsIndexer
     solr_documents.each_slice(500) do |docs|
       index_in_chunks(docs)
     end
+    # soft commit to avoid timeouts
+    solr_connection.commit(commit_attributes: { waitSearcher: false })
   end
 
   def index_in_chunks(docs)
-    begin
-      solr_connection.add(docs)
-    rescue RSolr::Error::Http => e
-      logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
-      index_individually(docs)
-    end
-    # soft commit to avoid timeouts
-    solr_connection.commit(commit_attributes: { waitSearcher: false })
+    solr_connection.add(docs)
+  rescue RSolr::Error::Http => e
+    logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
+    index_individually(docs)
   end
 
   # index a batch of records one at a time, logging and continuing on error
