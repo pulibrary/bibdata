@@ -15,6 +15,12 @@ class NumismaticsIndexer
 
   def full_index
     solr_documents.each_slice(500) do |docs|
+      index_in_chunks(docs)
+    end
+  end
+
+  def index_in_chunks(docs)
+    begin
       solr_connection.add(docs)
     rescue RSolr::Error::Http => e
       logger.warn("Failed to index batch, retrying individually, error was: #{e.class}: #{e.message.strip}")
