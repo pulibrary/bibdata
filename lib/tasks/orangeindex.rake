@@ -161,7 +161,7 @@ namespace :numismatics do
     desc 'Index all the complete, open numismatic coins from figgy'
     task full: :environment do
       solr_url = ENV.fetch('SET_URL', nil) || default_solr_url
-      NumismaticsIndexer.full_index(solr_url:, progressbar: true)
+      Index::NumismaticsJob.perform_async(solr_url)
     end
   end
 end

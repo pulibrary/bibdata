@@ -64,7 +64,7 @@ RSpec.describe NumismaticsIndexer do
         solr_connection.commit
 
         # raise for the first set, allow the first individual retry, raise for
-        # the second in dividual retry, allow all the rest
+        # the second individual retry, allow all the rest
         responses = %i[raise call raise]
         allow(solr_connection).to receive(:add).and_wrap_original do |original, *args|
           v = responses.shift
