@@ -142,9 +142,8 @@ To turn off sneakers workers:
 To index the coins:
 
 - as deploy user, in `/opt/bibdata/current`
-- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full 2> /tmp/numismatics_index_[date].log`
-- It will show a progress bar as it runs. Takes 30 min to an hour.
-- Note that the default log writes to STDERR to distinguish its output from the progress bar
+- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full`
+- Runs in background jobs via Sidekiq. Takes 30 min to an hour.
 
 ### Logs
 
