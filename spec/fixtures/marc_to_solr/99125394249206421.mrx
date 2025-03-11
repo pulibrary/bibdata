@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>02407nam a2200433 i 4500</leader>
+    <controlfield tag="005">20240718134414.0</controlfield>
+    <controlfield tag="008">210511s2021    ru a          000 0brus d</controlfield>
+    <controlfield tag="001">99125394249206421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9785910224722</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="9">(RuMoNKB)1195770</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1252714400</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">RuMoNKB</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">RuMoNKB</subfield>
+    </datafield>
+    <datafield tag="041" ind1="0" ind2=" ">
+      <subfield code="a">rus</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="b">dan</subfield>
+      <subfield code="b">ger</subfield>
+      <subfield code="b">ita</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-ur---</subfield>
+      <subfield code="a">e-ru---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">ML422.V43</subfield>
+      <subfield code="b">C44 2021</subfield>
+    </datafield>
+    <datafield tag="066" ind1=" " ind2=" ">
+      <subfield code="c">(N</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="6">880-01</subfield>
+      <subfield code="a">Cherëmushkin, Pëtr</subfield>
+      <subfield code="q">(Pëtr Germanovich),</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2=" ">
+      <subfield code="6">100-01</subfield>
+      <subfield code="a">Черёмушкин, Пётр</subfield>
+      <subfield code="q">(Пётр Германович),</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="6">880-02</subfield>
+      <subfield code="a">Aleksandr Vedernikov, glavnyĭ dirizher /</subfield>
+      <subfield code="c">Pëtr Cherëmushkin.</subfield>
+    </datafield>
+    <datafield tag="880" ind1="1" ind2="0">
+      <subfield code="6">245-02</subfield>
+      <subfield code="a">Александр Ведерников, главный дирижер /</subfield>
+      <subfield code="c">Пётр Черёмушкин.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="6">880-03</subfield>
+      <subfield code="a">Moskva :</subfield>
+      <subfield code="b">AIRO-XXI,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield tag="880" ind1=" " ind2="1">
+      <subfield code="6">264-03</subfield>
+      <subfield code="a">Москва :</subfield>
+      <subfield code="b">АИРО-XXI,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">183 pages :</subfield>
+      <subfield code="b">illustrations (chiefly color) ;</subfield>
+      <subfield code="c">30 cm</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">still image</subfield>
+      <subfield code="b">sti</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="a">Summary in English, Danish, German and Italian.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Vedernikov, A. (Aleksandr)</subfield>
+    </datafield>
+    <datafield tag="610" ind1="2" ind2="0">
+      <subfield code="a">Bolʹshoĭ teatr Rossii.</subfield>
+      <subfield code="b">Orkestr</subfield>
+    </datafield>
+    <datafield tag="610" ind1="2" ind2="0">
+      <subfield code="a">Bolshoĭ teatr Rossii</subfield>
+      <subfield code="x">History.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Conductors (Music)</subfield>
+      <subfield code="z">Russia (Federation)</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Conductors (Music)</subfield>
+      <subfield code="z">Soviet Union</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Musicians, Russian</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield tag="910" ind1=" " ind2=" ">
+      <subfield code="c">F1301mon</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1252714400</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20240717</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1252714400</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="a">20210811</subfield>
+      <subfield code="b">RuMoNKB</subfield>
+      <subfield code="f">NPRA1447</subfield>
+      <subfield code="i">39.00</subfield>
+      <subfield code="j">31.20</subfield>
+      <subfield code="n">11957701447</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="b">FY22</subfield>
+      <subfield code="c">rcppa</subfield>
+      <subfield code="n">2022</subfield>
+      <subfield code="q">32101108804400</subfield>
+    </datafield>
+    <datafield tag="986" ind1=" " ind2=" ">
+      <subfield code="h">ML422.V43</subfield>
+      <subfield code="i">C44 2021</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2024-07-18 13:44:14 US/Eastern</subfield>
+      <subfield code="b">2021-09-22 20:51:56 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">ML422.V43</subfield>
+      <subfield code="i">C44 2021q</subfield>
+      <subfield code="8">22901505800006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-11-01 14:24:25</subfield>
+      <subfield code="8">22901505800006421</subfield>
+      <subfield code="a">2021-09-23 00:52:11</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22901505800006421</subfield>
+      <subfield code="a">23901505790006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2021-09-22 20:52:11 US/Eastern</subfield>
+      <subfield code="p">32101108804400</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>

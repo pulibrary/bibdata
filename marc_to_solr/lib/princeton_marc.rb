@@ -287,6 +287,13 @@ def process_hierarchy(record, fields)
   end.compact
 end
 
+def accumulate_subheading(heading_split_on_separator)
+  heading_split_on_separator.reduce([]) do |accumulator, subheading|
+    # accumulator.last ? "#{accumulator.last}#{SEPARATOR}#{subsubject}" : subsubject
+    accumulator.append([accumulator.last, subheading].compact.join(SEPARATOR))
+  end
+end
+
 # for the split subject facet
 # split with em dash along x,z
 def process_subject_topic_facet record

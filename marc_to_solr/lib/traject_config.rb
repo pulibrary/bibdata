@@ -935,6 +935,19 @@ to_field 'subject_facet' do |record, accumulator|
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
 end
 
+# used for the Browse lists and hierarchical subject facet
+# used on the Details section in the record page to search for LC subject headings and their subdivisions using
+# the facet[lc_subject_facet] field
+to_field 'lc_subject_facet' do |record, accumulator|
+  lc_subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
+  lc_subjects = augment_the_subject.add_indigenous_studies(lc_subjects)
+  lc_subjects = ChangeTheSubject.fix(subject_terms: lc_subjects)
+  lc_subjects_split_on_separator = lc_subjects.join.split(SEPARATOR)
+  lc_subjects_with_subheadings = accumulate_subheading(lc_subjects_split_on_separator)
+
+  accumulator.replace(lc_subjects_with_subheadings)
+end
+
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
 to_field 'geographic_facet', marc_geo_facet
 
