@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01356cam a2200313Ia 4500</leader>
+    <controlfield tag="005">20240826143147.0</controlfield>
+    <controlfield tag="008">890815s1988    it       r    001 0 ita d</controlfield>
+    <controlfield tag="001">9933506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)NJPGRRP-B</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)3-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="z">(NjP)Voyager3</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm19590730</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">IUL</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">IUL</subfield>
+      <subfield code="d">OCL</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">e-it---</subfield>
+    </datafield>
+    <datafield tag="050" ind1=" " ind2="4">
+      <subfield code="a">Z342</subfield>
+      <subfield code="b">.M47 1988</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Messina, Claudio M.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/nr88005576</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Guida ragionata alle librerie antiquarie e d'occasione d'Italia, 1989 /</subfield>
+      <subfield code="c">Claudio M. Messina; con uno scritto di Umberto Eco.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">2. ed.</subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">Roma :</subfield>
+      <subfield code="b">Biblioteca del Vascello, Stampa Alternativa,</subfield>
+      <subfield code="c">1988.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">220 p. ;</subfield>
+      <subfield code="c">17 cm.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Includes index.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Booksellers and bookselling</subfield>
+      <subfield code="z">Italy</subfield>
+      <subfield code="v">Directories.</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Directories.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2014026087</subfield>
+    </datafield>
+    <datafield tag="773" ind1="0" ind2=" ">
+      <subfield code="t">Multi-title collection including Alpaslanʾdan Atatürkʾe kadar Türk zaferlerleri ansiklopedisi and 12 other(s).</subfield>
+      <subfield code="w">99125040713506421</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)ocm19590730</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20240306</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">19590730</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2023-11-18 21:46:00 US/Eastern</subfield>
+      <subfield code="b">2021-07-13 08:24:19 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="956" ind1="4" ind2="2">
+      <subfield code="u">http://d-nb.info/991834119/04</subfield>
+      <subfield code="3">Inhaltsverzeichnis</subfield>
+    </datafield>
+    <datafield tag="999" ind1=" " ind2=" ">
+      <subfield code="a">3</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2024-11-11 18:57:02 US/Eastern</subfield>
+      <subfield code="b">2021-07-13 08:24:19 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">rare</subfield>
+      <subfield code="c">xc</subfield>
+      <subfield code="h">Z342</subfield>
+      <subfield code="i">.M48 1988</subfield>
+      <subfield code="8">22740186070006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 12:24:19</subfield>
+      <subfield code="8">22740186070006421</subfield>
+      <subfield code="b">Special Collections</subfield>
+      <subfield code="c">rcpxc: Cotsen Remote Storage (ReCAP)</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2="0">
+      <subfield code="b">recap</subfield>
+      <subfield code="c">pa</subfield>
+      <subfield code="h">Z342</subfield>
+      <subfield code="i">.M48 1988</subfield>
+      <subfield code="8">22740186090006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="a">2021-07-13 12:24:19</subfield>
+      <subfield code="8">22740186090006421</subfield>
+      <subfield code="b">ReCAP</subfield>
+      <subfield code="c">rcppa: RECAP</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22740186070006421</subfield>
+      <subfield code="a">23740186060006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">xc</subfield>
+      <subfield code="d">2010-01-06 19:00:00 US/Eastern</subfield>
+      <subfield code="p">32101070543648</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">rare</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22740186090006421</subfield>
+      <subfield code="a">23740186080006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">pa</subfield>
+      <subfield code="d">2000-06-12 20:00:00 US/Eastern</subfield>
+      <subfield code="p">32101085875258</subfield>
+      <subfield code="t">1</subfield>
+      <subfield code="y">recap</subfield>
+    </datafield>
+  </record>
+</collection>

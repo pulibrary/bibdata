@@ -90,6 +90,8 @@ describe 'From traject_config.rb', indexing: true do
       @indigenous_studies_mexico = @indexer.map_record(fixture_record('99125398364906421'))
       @dissertation_with_embargo = @indexer.map_record(fixture_record('99127127233306421'))
       @diary = @indexer.map_record(fixture_record('99117267623506421'))
+      @lc_subject_facet = @indexer.map_record(fixture_record('9933506421'))
+      @lc_subject_facet2 = @indexer.map_record(fixture_record('99125394249206421'))
     end
 
     describe 'alma loading' do
@@ -1271,6 +1273,35 @@ describe 'From traject_config.rb', indexing: true do
           expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
           expect(@siku_subject_headings['siku_subject_display']).to match_array(['Zi bu—Zhu jia lei—Jidu jiao zhi shu', '子部—諸家類—基督教之屬', 'Zi bu—Tian wen suan fa lei—Li fa.', '子部—天文算法類—曆法.'])
+        end
+      end
+
+      describe 'lc_subject_facet' do
+        # @lc_subject_facet "lc_subject_facet": [
+        #     "Booksellers and bookselling—Italy—Directories",
+        #     "Booksellers and bookselling-Italy",
+        #     "Booksellers and bookselling"
+        #   ]
+
+        # @lc_subject_facet2 "lc_subject_facet": [
+        # ["Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii",
+        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)",
+        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)",
+        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)",
+        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union",
+        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union—BiographyMusicians, Russian",
+        #  "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union—BiographyMusicians, Russian—Biography"]
+        it 'includes all lc subjects in lc_subject_facet' do
+          expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling—Italy—Directories')
+        end
+
+        it 'includes the subdivisions in the lc_subject_facet' do
+          expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling—Italy')
+          expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)')
         end
       end
 
