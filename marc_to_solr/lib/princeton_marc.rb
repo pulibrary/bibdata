@@ -287,6 +287,19 @@ def process_hierarchy(record, fields)
   end.compact
 end
 
+def accumulate_hierarchy_per_field(record, fields)
+  split_on_subfield = %w[t v x y z]
+  Traject::MarcExtractor.cached(fields).collect_matching_lines(record) do |field, spec, extractor|
+    include_heading = block_given? ? yield(field) : true
+    next unless include_heading && extractor.collect_subfields(field, spec).first
+
+    hierarchical_heading = HierarchicalHeading.new(field:, spec:, split_on_subfield:).to_s
+
+    heading_split_on_separator = hierarchical_heading.split(SEPARATOR)
+    accumulate_subheading(heading_split_on_separator)
+  end.compact
+end
+
 def accumulate_subheading(heading_split_on_separator)
   heading_split_on_separator.reduce([]) do |accumulator, subheading|
     # accumulator.last ? "#{accumulator.last}#{SEPARATOR}#{subsubject}" : subsubject
