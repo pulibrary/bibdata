@@ -1283,14 +1283,21 @@ describe 'From traject_config.rb', indexing: true do
         #     "Booksellers and bookselling"
         #   ]
 
-        # @lc_subject_facet2 "lc_subject_facet": [
-        # ["Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii",
-        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)",
-        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)",
-        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)",
-        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union",
-        # "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union—BiographyMusicians, Russian",
-        #  "Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)—Soviet Union—BiographyMusicians, Russian—Biography"]
+        # @lc_subject_facet2
+        # lc_subject_facet: [
+        # "Vedernikov, A. (Aleksandr)",
+        # "Bolʹshoĭ teatr Rossii Orkestr",
+        # "Bolshoĭ teatr Rossii",
+        # "Bolshoĭ teatr Rossii—History",
+        # "Conductors (Music)",
+        # "Conductors (Music)—Russia (Federation)",
+        # "Conductors (Music)—Russia (Federation)—Biography",
+        # "Conductors (Music)—Soviet Union",
+        # "Conductors (Music)—Soviet Union—Biography",
+        # "Musicians, Russian",
+        # "Musicians, Russian—Biography"
+        # ]
+
         it 'includes all lc subjects in lc_subject_facet' do
           expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling—Italy—Directories')
         end
@@ -1298,10 +1305,17 @@ describe 'From traject_config.rb', indexing: true do
         it 'includes the subdivisions in the lc_subject_facet' do
           expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling—Italy')
           expect(@lc_subject_facet['lc_subject_facet']).to include('Booksellers and bookselling')
-          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii')
-          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)')
-          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)')
-          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)Bolʹshoĭ teatr Rossii OrkestrBolshoĭ teatr Rossii—HistoryConductors (Music)—Russia (Federation)—BiographyConductors (Music)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Vedernikov, A. (Aleksandr)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Bolʹshoĭ teatr Rossii Orkestr')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Bolshoĭ teatr Rossii')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Bolshoĭ teatr Rossii—History')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)—Russia (Federation)')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)—Russia (Federation)—Biography')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)—Soviet Union')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)—Soviet Union—Biography')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Musicians, Russian')
+          expect(@lc_subject_facet2['lc_subject_facet']).to include('Musicians, Russian—Biography')
         end
       end
 
