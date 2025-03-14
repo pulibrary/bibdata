@@ -1,0 +1,575 @@
+<record>
+    <leader>06243cam a2201297 i 4500</leader>
+    <controlfield tag="005">20250206030149.0</controlfield>
+    <controlfield tag="008">180320t20182018caua   j b    001 1 eng c</controlfield>
+    <controlfield tag="001">99120508103506421</controlfield>
+    <datafield ind1=" " ind2=" " tag="010">
+      <subfield code="a">  2018011856</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="019">
+      <subfield code="a">1029056543</subfield>
+      <subfield code="a">1030284092</subfield>
+      <subfield code="a">1031420006</subfield>
+      <subfield code="a">1031439546</subfield>
+      <subfield code="a">1031439942</subfield>
+      <subfield code="a">1031477108</subfield>
+      <subfield code="a">1031920500</subfield>
+      <subfield code="a">1031922621</subfield>
+      <subfield code="a">1032236607</subfield>
+      <subfield code="a">1033550818</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9781452173801</subfield>
+      <subfield code="q">(hardcover ;</subfield>
+      <subfield code="q">alk. paper)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">145217380X</subfield>
+      <subfield code="q">(hardcover ;</subfield>
+      <subfield code="q">alk. paper)</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="024">
+      <subfield code="a">9781452173801</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(NjP)12050810-princetondb</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="z">(OCoLC)1029056543</subfield>
+      <subfield code="z">(OCoLC)1030284092</subfield>
+      <subfield code="z">(OCoLC)1031420006</subfield>
+      <subfield code="z">(OCoLC)1031439546</subfield>
+      <subfield code="z">(OCoLC)1031439942</subfield>
+      <subfield code="z">(OCoLC)1031477108</subfield>
+      <subfield code="z">(OCoLC)1031920500</subfield>
+      <subfield code="z">(OCoLC)1031922621</subfield>
+      <subfield code="z">(OCoLC)1032236607</subfield>
+      <subfield code="z">(OCoLC)1033550818</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="z">(NjP)Voyager12050810</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="z">(NjP)Voyager12050810</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)on1032290997</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">NJQ/DLC</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">KSU</subfield>
+      <subfield code="d">MDB</subfield>
+      <subfield code="d">LNC</subfield>
+      <subfield code="d">CZA</subfield>
+      <subfield code="d">TCH</subfield>
+      <subfield code="d">WAU</subfield>
+      <subfield code="d">YDX</subfield>
+      <subfield code="d">VP@</subfield>
+      <subfield code="d">DLC</subfield>
+      <subfield code="d">WAU</subfield>
+      <subfield code="d">LLCLS</subfield>
+      <subfield code="d">WAU</subfield>
+      <subfield code="d">TME</subfield>
+      <subfield code="d">CTB</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">T7R</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">YUS</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">POISA</subfield>
+      <subfield code="d">JEZ</subfield>
+      <subfield code="d">LMJ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">XOL</subfield>
+      <subfield code="d">WAU</subfield>
+      <subfield code="d">NZHWP</subfield>
+      <subfield code="d">UTP</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">NJB</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">IDU</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">BYV</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">IQW</subfield>
+      <subfield code="d">HLS</subfield>
+      <subfield code="d">GZN</subfield>
+      <subfield code="d">BDX</subfield>
+      <subfield code="d">QQ3</subfield>
+      <subfield code="d">NYP</subfield>
+      <subfield code="d">ZLM</subfield>
+      <subfield code="d">IUK</subfield>
+      <subfield code="d">CGP</subfield>
+      <subfield code="d">AZD</subfield>
+      <subfield code="d">EZB</subfield>
+      <subfield code="d">TXKYL</subfield>
+      <subfield code="d">JTO</subfield>
+      <subfield code="d">IDV</subfield>
+      <subfield code="d">XFF</subfield>
+      <subfield code="d">TU2</subfield>
+      <subfield code="d">TL4</subfield>
+      <subfield code="d">NZBAL</subfield>
+      <subfield code="d">LKC</subfield>
+      <subfield code="d">CNCBE</subfield>
+      <subfield code="d">B@L</subfield>
+      <subfield code="d">DYJ</subfield>
+      <subfield code="d">JX9</subfield>
+      <subfield code="d">ILM</subfield>
+      <subfield code="d">SFB</subfield>
+      <subfield code="d">VVB</subfield>
+      <subfield code="d">UNITY</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">CFS</subfield>
+      <subfield code="d">MNE</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">YBM</subfield>
+      <subfield code="d">EMRUN</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="042">
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="043">
+      <subfield code="a">n-us---</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="050">
+      <subfield code="a">PN6231.P3</subfield>
+      <subfield code="b">B83 2018</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="055">
+      <subfield code="a">PZ7.1.B863</subfield>
+      <subfield code="b">Day 2018</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="055">
+      <subfield code="a">PN6231.P3</subfield>
+      <subfield code="b">B83 2018</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="082">
+      <subfield code="a">818/.607</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="084">
+      <subfield code="a">JUV060000</subfield>
+      <subfield code="a">JUV002210</subfield>
+      <subfield code="a">JUV013020</subfield>
+      <subfield code="a">JUV061000</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Bundo, Marlon</subfield>
+      <subfield code="c">(Rabbit),</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="2" tag="245">
+      <subfield code="a">A day in the life of Marlon Bundo /</subfield>
+      <subfield code="c">written by Marlon Bundo with Jill Twiss ; illustrated by EG Keller.</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="246">
+      <subfield code="a">Last week tonight with John Oliver presents A day in the life of Marlon Bundo</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">San Francisco :</subfield>
+      <subfield code="b">Chronicle Books,</subfield>
+      <subfield code="c">[2018]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="264">
+      <subfield code="c">&#xA9;2018</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 volume (unpaged) :</subfield>
+      <subfield code="b">color illustrations ;</subfield>
+      <subfield code="c">27 cm</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="380">
+      <subfield code="a">Fiction</subfield>
+      <subfield code="2">marcgt</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="385">
+      <subfield code="a">Children</subfield>
+      <subfield code="2">lcdgt</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="504">
+      <subfield code="a">Includes bibliographical references and index.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">A gentle parody of Charlotte Pence's "Marlon Bundo's A day in the life of the vice president" that stresses lessons of love, democracy and acceptance.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="541">
+      <subfield code="3">Princeton copy 1</subfield>
+      <subfield code="c">Gift;</subfield>
+      <subfield code="a">Andrea Immel;</subfield>
+      <subfield code="d">2024.</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="586">
+      <subfield code="a">Rainbow Book List, 2019</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">"Last week tonight with John Oliver presents" --At head of title.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">"What makes A Day in the Life of Marlon Bundo particularly strong is that, while an unabashed political parody, it also stands on its own as a children's book. It would have been easy for John Oliver's team to lean heavily on the gimmick of satirizing a loathed figure in American politics, but they instead focused on developing a charming story with genuinely funny jokes..." --The Globe &amp; Mail.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Rabbits</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Toleration</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Democracy</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Rabbits</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Toleration</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Democracy</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Homosexuels</subfield>
+      <subfield code="x">Mariage</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Amitie&#x301;</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">JUVENILE FICTION</subfield>
+      <subfield code="x">Animals</subfield>
+      <subfield code="x">Rabbits.</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">JUVENILE FICTION</subfield>
+      <subfield code="x">Family</subfield>
+      <subfield code="x">Marriage &amp; Divorce.</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">JUVENILE FICTION</subfield>
+      <subfield code="x">LGBT.</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Public opinion</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Democracy</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Rabbits</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Toleration</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">homoit</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Marriage</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">homoit</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendships</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">homoit</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Rabbits</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Presidents</subfield>
+      <subfield code="z">United States</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Romance fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Democracy</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Rabbits</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Presidents</subfield>
+      <subfield code="z">United States</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Democracy</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Same-sex marriage</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Presidents</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="600">
+      <subfield code="a">Bundo, Marlon</subfield>
+      <subfield code="c">(Rabbit)</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="1" tag="600">
+      <subfield code="a">Bundo, Marlon</subfield>
+      <subfield code="c">(Rabbit)</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="655">
+      <subfield code="a">Picture books for children.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">picture books.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">parody.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Political fiction</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Parodies (Literature)</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Animal fiction</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Gay fiction</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Juvenile works</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Picture books</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Romance fiction</subfield>
+      <subfield code="2">fast</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Children's stories</subfield>
+      <subfield code="v">Pictorial works.</subfield>
+      <subfield code="2">gsafd</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Gay romance fiction</subfield>
+      <subfield code="2">homoit</subfield>
+      <subfield code="0">https://homosaurus.org/v3/homoit0001593</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">LGBTQ+ relationships</subfield>
+      <subfield code="2">homoit</subfield>
+      <subfield code="0">https://homosaurus.org/v3/homoit0001237</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Picture books.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Political fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Animal fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Romance fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Gay fiction.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Parodies (Literature)</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Livres d'images.</subfield>
+      <subfield code="2">rvmgf</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Romans homosexuels.</subfield>
+      <subfield code="2">rvmgf</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Parodies.</subfield>
+      <subfield code="2">rvmgf</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Juvenile literature.</subfield>
+      <subfield code="2">rbmscv</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="730">
+      <subfield code="a">Last week tonight with John Oliver (Television program)</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Twiss, Jill,</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="a">Keller, E. G.</subfield>
+      <subfield code="c">(Illustrator)</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="700">
+      <subfield code="i">Parody of (work):</subfield>
+      <subfield code="a">Pence, Charlotte,</subfield>
+      <subfield code="d">1993-</subfield>
+      <subfield code="t">Marlon Bundo's A day in the life of the vice president.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="902">
+      <subfield code="a">jba</subfield>
+      <subfield code="b">o</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20200817</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="914">
+      <subfield code="a">(OCoLC)on1032290997</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20250205</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1032290997</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="950">
+      <subfield code="c">2024-01-24 07:43:30 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 08:41:38 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="950">
+      <subfield code="c">2025-02-06 03:01:49 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 08:41:38 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield ind1="8" ind2=" " tag="852">
+      <subfield code="b">rare</subfield>
+      <subfield code="c">ctsn</subfield>
+      <subfield code="h">Q-001835</subfield>
+      <subfield code="k">Eng 21Q /</subfield>
+      <subfield code="8">22483367710006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="z">Princeton copy 1</subfield>
+      <subfield code="8">22483367710006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="952">
+      <subfield code="d">2025-02-06 13:29:25</subfield>
+      <subfield code="8">22483367710006421</subfield>
+      <subfield code="a">2021-07-12 12:41:38</subfield>
+      <subfield code="b">Special Collections</subfield>
+      <subfield code="c">ctsn: Cotsen Children's Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="876">
+      <subfield code="0">22483367710006421</subfield>
+      <subfield code="a">231041742350006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">ctsn</subfield>
+      <subfield code="d">2025-02-03 10:18:12 US/Eastern</subfield>
+      <subfield code="p">32101103309165</subfield>
+      <subfield code="y">rare</subfield>
+    </datafield>
+  </record>

@@ -1,0 +1,211 @@
+ <record>
+    <leader>02053nec a2200385Ia 4500</leader>
+    <controlfield tag="005">20231026041617.0</controlfield>
+    <controlfield tag="007">aj#aafb|</controlfield>
+    <controlfield tag="008">940111s18522000nju       a     0   eng d</controlfield>
+    <controlfield tag="001">99129068748706421</controlfield>
+    <datafield ind1="1" ind2=" " tag="034">
+      <subfield code="a">a</subfield>
+      <subfield code="b">4800</subfield>
+      <subfield code="d">-074.671175</subfield>
+      <subfield code="e">-074.637615</subfield>
+      <subfield code="f">040.373122</subfield>
+      <subfield code="g">040.342006</subfield>
+      <subfield code="2">bound</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)on1405896033</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">NjP</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">NjP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="043">
+      <subfield code="a">n-us-nj</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="090">
+      <subfield code="a">X129874870</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Bevan, John</subfield>
+      <subfield code="c">(Surveyor),</subfield>
+      <subfield code="e">surveyor.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/n2010039939</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">[Map of Princeton, Mercer County, New Jersey] /</subfield>
+      <subfield code="c">[surveyed and published by John Bevan, city surveyor, Commercial Building, Jersey City, N.J.]</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="255">
+      <subfield code="a">Scale [ca. 1:4,800]. 400 feet to the inch.</subfield>
+      <subfield code="c">(W 74&#xB0;40&#x2B9;16&#x2BA;--W 74&#xB0;38&#x2B9;15&#x2BA;/N 40&#xB0;22&#x2B9;23&#x2BA;--N 40&#xB0;20&#x2B9;31&#x2BA;).</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="260">
+      <subfield code="a">[Jersey City] :</subfield>
+      <subfield code="b">John Bevan,</subfield>
+      <subfield code="c">1852, c1851</subfield>
+      <subfield code="e">(N.Y. :</subfield>
+      <subfield code="f">Lith. of Sarony &amp; Co.)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">2 maps :</subfield>
+      <subfield code="b">photocopies,</subfield>
+      <subfield code="c">on sheets 44 x 61 cm or smaller.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">cartographic image</subfield>
+      <subfield code="b">cri</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">sheet</subfield>
+      <subfield code="b">nb</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Two photocopies of the original lithographed map, one positive and one negative.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">Includes names of property owners, list of subscribers, and views of buildings.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="500">
+      <subfield code="a">"Entered according to Act of Congress in the year 1851 by John Bevan ... "</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Real property</subfield>
+      <subfield code="z">New Jersey</subfield>
+      <subfield code="z">Princeton</subfield>
+      <subfield code="v">Maps.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="651">
+      <subfield code="a">Princeton (N.J.)</subfield>
+      <subfield code="y">19th century</subfield>
+      <subfield code="v">Maps.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Maps</subfield>
+      <subfield code="z">New Jersey</subfield>
+      <subfield code="z">Princeton</subfield>
+      <subfield code="y">19th century.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Cadastral maps</subfield>
+      <subfield code="z">New Jersey</subfield>
+      <subfield code="z">Princeton</subfield>
+      <subfield code="y">1852.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">City maps</subfield>
+      <subfield code="z">New Jersey</subfield>
+      <subfield code="z">Princeton</subfield>
+      <subfield code="y">1852.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Wall maps</subfield>
+      <subfield code="z">New Jersey</subfield>
+      <subfield code="z">Princeton</subfield>
+      <subfield code="y">1852.</subfield>
+      <subfield code="2">local</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Maps.</subfield>
+      <subfield code="2">lcgft</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/genreForms/gf2011026387</subfield>
+    </datafield>
+    <datafield ind1="2" ind2=" " tag="710">
+      <subfield code="a">Sarony &amp; Co.,</subfield>
+      <subfield code="e">lithographer.</subfield>
+      <subfield code="0">http://id.loc.gov/authorities/names/nr89018451</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="902">
+      <subfield code="a">110106599</subfield>
+      <subfield code="w">original</subfield>
+      <subfield code="1">20231024152716.0</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="914">
+      <subfield code="a">(OCoLC)on1405896033</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">create</subfield>
+      <subfield code="d">20231025</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1405896033</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="950">
+      <subfield code="c">2023-10-27 07:25:15 US/Eastern</subfield>
+      <subfield code="b">2023-10-24 15:27:16 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield ind1="8" ind2=" " tag="852">
+      <subfield code="b">rare</subfield>
+      <subfield code="c">map</subfield>
+      <subfield code="h">HMC01.3423.2</subfield>
+      <subfield code="k">D-Alcove 4, Drawer 19,</subfield>
+      <subfield code="8">22994414640006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="a">negative image</subfield>
+      <subfield code="8">22994414640006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="z">Princeton copy 2</subfield>
+      <subfield code="8">22994414640006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="952">
+      <subfield code="d">2023-10-24 19:31:33</subfield>
+      <subfield code="8">22994414640006421</subfield>
+      <subfield code="a">2023-10-24 19:31:29</subfield>
+      <subfield code="b">Special Collections</subfield>
+      <subfield code="c">map: Rare Books Historic Map Collection</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield ind1="8" ind2=" " tag="852">
+      <subfield code="b">rare</subfield>
+      <subfield code="c">map</subfield>
+      <subfield code="h">HMC01.3423.1</subfield>
+      <subfield code="k">D-Alcove 4, Drawer 19,</subfield>
+      <subfield code="8">22994414700006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="a">positive image</subfield>
+      <subfield code="8">22994414700006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="z">Princeton copy 1</subfield>
+      <subfield code="8">22994414700006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="952">
+      <subfield code="d">2023-10-24 19:31:04</subfield>
+      <subfield code="8">22994414700006421</subfield>
+      <subfield code="a">2023-10-24 19:30:06</subfield>
+      <subfield code="b">Special Collections</subfield>
+      <subfield code="c">map: Rare Books Historic Map Collection</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="876">
+      <subfield code="0">22994414700006421</subfield>
+      <subfield code="a">23994414660006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">map</subfield>
+      <subfield code="d">2023-10-24 15:30:27 US/Eastern</subfield>
+      <subfield code="p">32101113815904</subfield>
+      <subfield code="y">rare</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="876">
+      <subfield code="0">22994414640006421</subfield>
+      <subfield code="a">23994414630006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">map</subfield>
+      <subfield code="d">2023-10-24 15:31:50 US/Eastern</subfield>
+      <subfield code="p">32101113815912</subfield>
+      <subfield code="y">rare</subfield>
+    </datafield>
+  </record>

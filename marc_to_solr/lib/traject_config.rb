@@ -892,8 +892,32 @@ to_field 'siku_subject_display' do |record, accumulator|
   accumulator.replace(subjects)
 end
 
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for Siku subject headings and their subdivisions using
+# the facet[siku_subject_facet] field
+to_field 'siku_subject_facet' do |record, accumulator|
+  subjects = accumulate_hierarchy_per_field(record, '650|*7|abcvxyz') { |field| siku_heading? field }
+  accumulator.replace(subjects)
+end
+
 to_field 'local_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
+  accumulator.replace(subjects)
+end
+
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for Local subject headings and their subdivisions using
+# the facet[local_subject_facet] field
+to_field 'local_subject_facet' do |record, accumulator|
+  subjects = accumulate_hierarchy_per_field(record, '650|*7|abcvxyz') { |field| local_heading? field }
+  accumulator.replace(subjects)
+end
+
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for homoit subject headings and their subdivisions using
+# the facet[homoit_subject_facet] field
+to_field 'homoit_subject_facet' do |record, accumulator|
+  subjects = accumulate_hierarchy_per_field(record, '650|*7|avxyz') { |field| any_thesaurus_match?(field, %w[homoit]) }
   accumulator.replace(subjects)
 end
 
@@ -936,7 +960,7 @@ to_field 'subject_facet' do |record, accumulator|
 end
 
 # used for the Browse lists and hierarchical subject facet
-# used on the Details section in the record page to search for LC subject headings and their subdivisions using
+# used in the record page -> Details section to search for LC subject headings and their subdivisions using
 # the facet[lc_subject_facet] field
 to_field 'lc_subject_facet' do |record, accumulator|
   lc_subjects = accumulate_hierarchy_per_field(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
@@ -954,8 +978,24 @@ to_field 'homoit_genre_s' do |record, accumulator|
   accumulator.replace(genres)
 end
 
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for homoit genre headings and their subdivisions using
+# the facet[homoit_genre_facet] field
+to_field 'homoit_genre_facet' do |record, accumulator|
+  genres = accumulate_hierarchy_per_field(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
+  accumulator.replace(genres)
+end
+
 to_field 'lcgft_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft] }
+  accumulator.replace(genres)
+end
+
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for LC genre headings and their subdivisions using
+# the facet[lcgft_genre_facet] field
+to_field 'lcgft_genre_facet' do |record, accumulator|
+  genres = accumulate_hierarchy_per_field(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft] }
   accumulator.replace(genres)
 end
 
@@ -964,8 +1004,24 @@ to_field 'aat_s' do |record, accumulator|
   accumulator.replace(genres)
 end
 
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for AAT genre headings and their subdivisions using
+# the facet[aat_genre_facet] field
+to_field 'aat_genre_facet' do |record, accumulator|
+  genres = accumulate_hierarchy_per_field(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[aat] }
+  accumulator.replace(genres)
+end
+
 to_field 'rbgenr_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
+  accumulator.replace(genres)
+end
+
+# used for the Browse lists and hierarchical subject facet
+# used in the record page -> Details section to search for Rare Books genre headings and their subdivisions using
+# the facet[rbgenr_genre_facet] field
+to_field 'rbgenr_genre_facet' do |record, accumulator|
+  genres = accumulate_hierarchy_per_field(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp] }
   accumulator.replace(genres)
 end
 
