@@ -92,7 +92,7 @@ describe 'From traject_config.rb', indexing: true do
       @diary = @indexer.map_record(fixture_record('99117267623506421'))
       @lc_subject_facet = @indexer.map_record(fixture_record('9933506421'))
       @lc_subject_facet2 = @indexer.map_record(fixture_record('99125394249206421'))
-      @homoit_subject_facet = @indexer.map_record(fixture_record('99120508103506421'))
+      @record_99120508103506421 = @indexer.map_record(fixture_record('99120508103506421'))
       @record_99129068748706421 = @indexer.map_record(fixture_record('99129068748706421'))
       @record_99131369793306421 = @indexer.map_record(fixture_record('99131369793306421'))
       @siku_subject_facet = @indexer.map_record(fixture_record('9918309193506421'))
@@ -1325,12 +1325,19 @@ describe 'From traject_config.rb', indexing: true do
 
       describe 'homoit_subject_facet' do
         it 'includes all homoit subjects in homoit_subject_facet' do
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Same-sex marriage')
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Same-sex marriage—Juvenile fiction')
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Marriage')
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Marriage—Juvenile fiction')
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Friendships')
-          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Friendships—Juvenile fiction')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Same-sex marriage')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Same-sex marriage—Juvenile fiction')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Marriage')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Marriage—Juvenile fiction')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Friendships')
+          expect(@record_99120508103506421['homoit_subject_facet']).to include('Friendships—Juvenile fiction')
+        end
+      end
+
+      describe 'homoit_genre_facet' do
+        it 'includes all homoit subjects in homoit_subject_facet' do
+          expect(@record_99120508103506421['homoit_genre_facet']).to include('Gay romance fiction')
+          expect(@record_99120508103506421['homoit_genre_facet']).to include('LGBTQ+ relationships')
         end
       end
 
