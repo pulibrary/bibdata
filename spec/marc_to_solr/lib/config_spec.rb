@@ -92,6 +92,10 @@ describe 'From traject_config.rb', indexing: true do
       @diary = @indexer.map_record(fixture_record('99117267623506421'))
       @lc_subject_facet = @indexer.map_record(fixture_record('9933506421'))
       @lc_subject_facet2 = @indexer.map_record(fixture_record('99125394249206421'))
+      @homoit_subject_facet = @indexer.map_record(fixture_record('99120508103506421'))
+      @record_99129068748706421 = @indexer.map_record(fixture_record('99129068748706421'))
+      @record_99131369793306421 = @indexer.map_record(fixture_record('99131369793306421'))
+      @siku_subject_facet = @indexer.map_record(fixture_record('9918309193506421'))
     end
 
     describe 'alma loading' do
@@ -1316,6 +1320,63 @@ describe 'From traject_config.rb', indexing: true do
           expect(@lc_subject_facet2['lc_subject_facet']).to include('Conductors (Music)—Soviet Union—Biography')
           expect(@lc_subject_facet2['lc_subject_facet']).to include('Musicians, Russian')
           expect(@lc_subject_facet2['lc_subject_facet']).to include('Musicians, Russian—Biography')
+        end
+      end
+
+      describe 'homoit_subject_facet' do
+        it 'includes all homoit subjects in homoit_subject_facet' do
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Same-sex marriage')
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Same-sex marriage—Juvenile fiction')
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Marriage')
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Marriage—Juvenile fiction')
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Friendships')
+          expect(@homoit_subject_facet['homoit_subject_facet']).to include('Friendships—Juvenile fiction')
+        end
+      end
+
+      describe 'aat_genre_facet' do
+        it 'includes all aat genres in aat_genre_facet' do
+          expect(@record_99129068748706421['aat_genre_facet']).to include('Cadastral maps')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('Cadastral maps—New Jersey')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('Cadastral maps—New Jersey—Princeton')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('Cadastral maps—New Jersey—Princeton—1852')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('City maps')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('City maps—New Jersey')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('City maps—New Jersey—Princeton')
+          expect(@record_99129068748706421['aat_genre_facet']).to include('City maps—New Jersey—Princeton—1852')
+        end
+      end
+
+      describe 'lcgft_genre_facet' do
+        it 'includes all lc genres subjects in lcgft_genre_facet' do
+          expect(@record_99129068748706421['lcgft_genre_facet']).to include('Maps')
+          expect(@record_99129068748706421['lcgft_genre_facet']).to include('Maps—New Jersey')
+          expect(@record_99129068748706421['lcgft_genre_facet']).to include('Maps—New Jersey—Princeton')
+          expect(@record_99129068748706421['lcgft_genre_facet']).to include('Maps—New Jersey—Princeton—19th century')
+        end
+      end
+
+      describe 'rbgenr_genre_facet' do
+        it 'includes all rare books genres in rbgenr_genre_facet' do
+          expect(@record_99131369793306421['rbgenr_genre_facet']).to include('Dust jackets (Bindings)')
+          expect(@record_99131369793306421['rbgenr_genre_facet']).to include('Dust jackets (Bindings)—2013')
+          expect(@record_99131369793306421['rbgenr_genre_facet']).to include('Dust jackets (Binding)')
+          expect(@record_99131369793306421['rbgenr_genre_facet']).to include('Dust jackets (Binding)—2013')
+        end
+      end
+
+      describe 'siku_subject_facet' do
+        it 'includes all siku subjects in siku_subject_facet' do
+          expect(@siku_subject_facet['siku_subject_facet']).to include('Zi bu')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('Zi bu—Zhu jia lei')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('Zi bu—Zhu jia lei—Jidu jiao zhi shu')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('子部')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('子部—諸家類')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('子部—諸家類—基督教之屬')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('Zi bu—Tian wen suan fa lei')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('Zi bu—Tian wen suan fa lei—Li fa.')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('子部—天文算法類')
+          expect(@siku_subject_facet['siku_subject_facet']).to include('子部—天文算法類—曆法.')
         end
       end
 

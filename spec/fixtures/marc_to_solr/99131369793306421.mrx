@@ -1,0 +1,466 @@
+<record>
+    <leader>04857cam a2201021 i 4500</leader>
+    <controlfield tag="005">20250213054213.0</controlfield>
+    <controlfield tag="008">121212s2013    nyua   b      000 1 eng  </controlfield>
+    <controlfield tag="001">99131369793306421</controlfield>
+    <datafield ind1=" " ind2=" " tag="010">
+      <subfield code="a">  2012046025</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="019">
+      <subfield code="a">821203422</subfield>
+      <subfield code="a">857568995</subfield>
+      <subfield code="a">859307227</subfield>
+      <subfield code="a">859738614</subfield>
+      <subfield code="a">880954062</subfield>
+      <subfield code="a">936051338</subfield>
+      <subfield code="a">966047490</subfield>
+      <subfield code="a">999539842</subfield>
+      <subfield code="a">1005272164</subfield>
+      <subfield code="a">1018170112</subfield>
+      <subfield code="a">1183341319</subfield>
+      <subfield code="a">1304509785</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">9780618756612</subfield>
+      <subfield code="q">(hardcover)</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="020">
+      <subfield code="a">0618756612</subfield>
+      <subfield code="q">(hardcover)</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="024">
+      <subfield code="a">9780618756612</subfield>
+      <subfield code="d">51799</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="035">
+      <subfield code="a">(OCoLC)ocn858777860</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="037">
+      <subfield code="b">Houghton Mifflin Harcourt, 6277 Sea Harbor Dr 5th Fl, Orlando, FL, USA, 32887</subfield>
+      <subfield code="n">SAN 215-3793</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="040">
+      <subfield code="a">DLC</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="e">rda</subfield>
+      <subfield code="c">DLC</subfield>
+      <subfield code="d">YDXCP</subfield>
+      <subfield code="d">BTCTA</subfield>
+      <subfield code="d">BDX</subfield>
+      <subfield code="d">UPZ</subfield>
+      <subfield code="d">ABG</subfield>
+      <subfield code="d">XFF</subfield>
+      <subfield code="d">ZR1</subfield>
+      <subfield code="d">ITD</subfield>
+      <subfield code="d">FUG</subfield>
+      <subfield code="d">VP@</subfield>
+      <subfield code="d">TWTCL</subfield>
+      <subfield code="d">CZL</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">ZCU</subfield>
+      <subfield code="d">IPU</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">CGN</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">TDS</subfield>
+      <subfield code="d">CNGUL</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">ZGV</subfield>
+      <subfield code="d">CALHP</subfield>
+      <subfield code="d">ALROG</subfield>
+      <subfield code="d">BYV</subfield>
+      <subfield code="d">CHILD</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">PX9</subfield>
+      <subfield code="d">KL6</subfield>
+      <subfield code="d">KJ6</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">CCH</subfield>
+      <subfield code="d">O2C</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">FWR</subfield>
+      <subfield code="d">NZ1</subfield>
+      <subfield code="d">ROB</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">CSA</subfield>
+      <subfield code="d">CBA</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">TL4</subfield>
+      <subfield code="d">GZW</subfield>
+      <subfield code="d">NZAUC</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">NJT</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCL</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">BUF</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">JABUK</subfield>
+      <subfield code="d">MSO</subfield>
+      <subfield code="d">VJ2</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCQ</subfield>
+      <subfield code="d">IAZ</subfield>
+      <subfield code="d">OCLCL</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="042">
+      <subfield code="a">cyac</subfield>
+      <subfield code="a">pcc</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="050">
+      <subfield code="a">PZ7.W6367</subfield>
+      <subfield code="b">Mr 2013</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="055">
+      <subfield code="a">PZ7.W6367</subfield>
+      <subfield code="b">Mr 2013</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="0" tag="082">
+      <subfield code="a">[E]</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="084">
+      <subfield code="a">JUV002050</subfield>
+      <subfield code="a">JUV002140</subfield>
+      <subfield code="a">JUV019000</subfield>
+      <subfield code="a">JUV053000</subfield>
+      <subfield code="a">JUV008000</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="084">
+      <subfield code="a">I712.85</subfield>
+      <subfield code="2">clc</subfield>
+    </datafield>
+    <datafield ind1="1" ind2=" " tag="100">
+      <subfield code="a">Wiesner, David,</subfield>
+      <subfield code="e">author,</subfield>
+      <subfield code="e">illustrator.</subfield>
+    </datafield>
+    <datafield ind1="1" ind2="0" tag="245">
+      <subfield code="a">Mr. Wuffles! /</subfield>
+      <subfield code="c">David Wiesner.</subfield>
+    </datafield>
+    <datafield ind1="3" ind2=" " tag="246">
+      <subfield code="a">Mister Wuffles!</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="264">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Clarion Books, Houghton Mifflin Harcourt,</subfield>
+      <subfield code="c">2013.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="300">
+      <subfield code="a">1 volume (unpaged) :</subfield>
+      <subfield code="b">color illustrations ;</subfield>
+      <subfield code="c">24 x 29 cm</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="336">
+      <subfield code="a">still image</subfield>
+      <subfield code="b">sti</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="337">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="338">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="520">
+      <subfield code="a">"Mr. Wuffles ignores all his cat toys but one, which turns out to be a spaceship piloted by small green aliens. When Mr. Wuffles plays rough with the little ship, the aliens must venture into the cat's territory to make emergency repairs."--Publisher information.</subfield>
+    </datafield>
+    <datafield ind1="0" ind2=" " tag="541">
+      <subfield code="3">Princeton copy 1</subfield>
+      <subfield code="c">Gift;</subfield>
+      <subfield code="a">Andrea Immel;</subfield>
+      <subfield code="d">2024.</subfield>
+      <subfield code="5">NjP</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="521">
+      <subfield code="a">Ages: 4-8.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="521">
+      <subfield code="a">Grades: PreS-3.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="586">
+      <subfield code="a">2014 ALA Notable Children's Books List</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="586">
+      <subfield code="a">Caldecott Honor book, 2014.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Toys</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Extraterrestrial beings</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Cats</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Curiosity</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="650">
+      <subfield code="a">Stories without words.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Cats</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Toys</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="1" tag="650">
+      <subfield code="a">Extraterrestrial beings</subfield>
+      <subfield code="v">Fiction.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Jouets</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Extraterrestres</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Curiosite&#x301;</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Amitie&#x301;</subfield>
+      <subfield code="v">Romans, nouvelles, etc. pour la jeunesse.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="6" tag="650">
+      <subfield code="a">Histoires sans paroles.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">stories without words.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Cats</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Curiosity</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Extraterrestrial beings</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendship</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Stories without words.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Toys</subfield>
+      <subfield code="v">Juvenile fiction.</subfield>
+      <subfield code="2">cct</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Cats.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00849374</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Curiosity.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00885290</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Extraterrestrial beings.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01742248</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Friendship.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00935174</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Stories without words.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01134080</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Toys.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01153487</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Cats</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Toys</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="650">
+      <subfield code="a">Extraterrestrial beings</subfield>
+      <subfield code="v">Fiction.</subfield>
+      <subfield code="2">sears</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="655">
+      <subfield code="a">Stories without words.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="4" tag="655">
+      <subfield code="a">Caldecott Medal : Honor book</subfield>
+      <subfield code="y">2014.</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">stories without words.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">picture books.</subfield>
+      <subfield code="2">aat</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="7" tag="655">
+      <subfield code="c">FIC016000</subfield>
+      <subfield code="a">FICTION / Humorous.</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1="0" ind2="7" tag="655">
+      <subfield code="c">JUV002000</subfield>
+      <subfield code="a">FICTION / Animals / General.</subfield>
+      <subfield code="2">bisacsh</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Picture books.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01726789</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Wordless picture books.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01726751</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Fiction.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01423787</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Juvenile works.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411637</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Wordless picture books.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Picture books.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">NP.</subfield>
+      <subfield code="2">lexile</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Dust jackets (Bindings)</subfield>
+      <subfield code="y">2013.</subfield>
+      <subfield code="2">rbbin</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Dust jackets (Binding)</subfield>
+      <subfield code="y">2013.</subfield>
+      <subfield code="2">rbbin</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Histoires sans paroles.</subfield>
+      <subfield code="2">rvmgf</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="7" tag="655">
+      <subfield code="a">Livres d'images.</subfield>
+      <subfield code="2">rvmgf</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="758">
+      <subfield code="i">has work:</subfield>
+      <subfield code="a">Mr Wuffles! (Text)</subfield>
+      <subfield code="1">https://id.oclc.org/worldcat/entity/E39PCFW3TBdp9tGKbyJFKY9BCP</subfield>
+      <subfield code="4">https://id.oclc.org/worldcat/ontology/hasWork</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="902">
+      <subfield code="a">960223597</subfield>
+      <subfield code="w">copy</subfield>
+      <subfield code="1">20250211103504.0</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="914">
+      <subfield code="a">(OCoLC)ocn858777860</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20250212</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">858777860</subfield>
+    </datafield>
+    <datafield ind1="4" ind2=" " tag="956">
+      <subfield code="u">http://www.hmhbooks.com</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="950">
+      <subfield code="c">2025-02-13 05:42:13 US/Eastern</subfield>
+      <subfield code="b">2025-02-11 10:37:27 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield ind1="8" ind2=" " tag="852">
+      <subfield code="b">rare</subfield>
+      <subfield code="c">ctsn</subfield>
+      <subfield code="h">Alma-96536</subfield>
+      <subfield code="k">Eng 21Q unprocessed</subfield>
+      <subfield code="8">221042801910006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2="0" tag="866">
+      <subfield code="z">Princeton copy 1</subfield>
+      <subfield code="8">221042801910006421</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="952">
+      <subfield code="d">2025-02-11 15:38:54</subfield>
+      <subfield code="8">221042801910006421</subfield>
+      <subfield code="a">2025-02-11 15:38:09</subfield>
+      <subfield code="b">Special Collections</subfield>
+      <subfield code="c">ctsn: Cotsen Children's Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield ind1=" " ind2=" " tag="876">
+      <subfield code="0">221042801910006421</subfield>
+      <subfield code="a">231042801890006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">ctsn</subfield>
+      <subfield code="d">2025-02-11 10:38:47 US/Eastern</subfield>
+      <subfield code="p">32101103309728</subfield>
+      <subfield code="y">rare</subfield>
+    </datafield>
+  </record>
