@@ -1,33 +1,34 @@
 # Scraped from http://www.loc.gov/marc/countries/countries_code.html at 2025-03-18
 # Intentionally includes discontinued codes, except -ai Anguilla, which is used for Armenia.
+# Also includes hierarchies for available countries (currently Australia, Canada, the United Kingdom, the United States, and the historical USSR).
 
 'aa': 'Albania'
-'abc': 'Alberta'
+'abc': ['Canada', 'Canada:Alberta']
 'ac': 'Ashmore and Cartier Islands'
-'aca': 'Australian Capital Territory'
+'aca': ['Australia', 'Australia:Australian Capital Territory']
 'ae': 'Algeria'
 'af': 'Afghanistan'
 'ag': 'Argentina'
 'ai': 'Armenia (Republic)'
-'air': 'Armenian S.S.R.'
+'air': ['Soviet Union', 'Soviet Union:Armenian S.S.R.']
 'aj': 'Azerbaijan'
-'ajr': 'Azerbaijan S.S.R.'
-'aku': 'Alaska'
-'alu': 'Alabama'
+'ajr': ['Soviet Union', 'Soviet Union:Azerbaijan S.S.R.']
+'aku': ['United States', 'United States:Alaska']
+'alu': ['United States', 'United States:Alabama']
 'am': 'Anguilla'
 'an': 'Andorra'
 'ao': 'Angola'
 'aq': 'Antigua and Barbuda'
-'aru': 'Arkansas'
+'aru': ['United States', 'United States:Arkansas']
 'as': 'American Samoa'
 'at': 'Australia'
 'au': 'Austria'
 'aw': 'Aruba'
 'ay': 'Antarctica'
-'azu': 'Arizona'
+'azu': ['United States', 'United States:Arizona']
 'ba': 'Bahrain'
 'bb': 'Barbados'
-'bcc': 'British Columbia'
+'bcc': ['Canada', 'Canada:British Columbia']
 'bd': 'Burundi'
 'be': 'Belgium'
 'bf': 'Bahamas'
@@ -45,10 +46,10 @@
 'bu': 'Bulgaria'
 'bv': 'Bouvet Island'
 'bw': 'Belarus'
-'bwr': 'Byelorussian S.S.R.'
+'bwr': ['Soviet Union', 'Soviet Union:Byelorussian S.S.R.']
 'bx': 'Brunei'
 'ca': 'Caribbean Netherlands'
-'cau': 'California'
+'cau': ['United States', 'United States:California']
 'cb': 'Cambodia'
 'cc': 'China'
 'cd': 'Chad'
@@ -63,20 +64,20 @@
 'cm': 'Cameroon'
 'cn': 'Canada'
 'co': 'Curaçao'
-'cou': 'Colorado'
+'cou': ['United States', 'United States:Colorado']
 'cp': 'Canton and Enderbury Islands'
 'cq': 'Comoros'
 'cr': 'Costa Rica'
 'cs': 'Czechoslovakia'
-'ctu': 'Connecticut'
+'ctu': ['United States', 'United States:Connecticut']
 'cu': 'Cuba'
 'cv': 'Cabo Verde'
 'cw': 'Cook Islands'
 'cx': 'Central African Republic'
 'cy': 'Cyprus'
 'cz': 'Canal Zone'
-'dcu': 'District of Columbia'
-'deu': 'Delaware'
+'dcu': ['United States', 'United States:District of Columbia']
+'deu': ['United States', 'United States:Delaware']
 'dk': 'Denmark'
 'dm': 'Benin'
 'dq': 'Dominica'
@@ -85,9 +86,9 @@
 'ec': 'Ecuador'
 'eg': 'Equatorial Guinea'
 'em': 'Timor-Leste'
-'enk': 'England'
+'enk': ['United Kingdom', 'United Kingdom:England']
 'er': 'Estonia'
-'err': 'Estonia'
+'err': ['Soviet Union', 'Soviet Union:Estonia']
 'es': 'El Salvador'
 'et': 'Ethiopia'
 'fa': 'Faroe Islands'
@@ -95,13 +96,13 @@
 'fi': 'Finland'
 'fj': 'Fiji'
 'fk': 'Falkland Islands'
-'flu': 'Florida'
+'flu': ['United States', 'United States:Florida']
 'fm': 'Micronesia (Federated States)'
 'fp': 'French Polynesia'
 'fr': 'France'
 'fs': 'Terres australes et antarctiques françaises'
 'ft': 'Djibouti'
-'gau': 'Georgia'
+'gau': ['United States', 'United States:Georgia']
 'gb': 'Kiribati'
 'gd': 'Grenada'
 'ge': 'Germany (East)'
@@ -115,27 +116,27 @@
 'gp': 'Guadeloupe'
 'gr': 'Greece'
 'gs': 'Georgia (Republic)'
-'gsr': 'Georgian S.S.R.'
+'gsr': ['Soviet Union', 'Soviet Union:Georgian S.S.R.']
 'gt': 'Guatemala'
 'gu': 'Guam'
 'gv': 'Guinea'
 'gw': 'Germany'
 'gy': 'Guyana'
 'gz': 'Gaza Strip'
-'hiu': 'Hawaii'
+'hiu': ['United States', 'United States:Hawaii']
 'hk': 'Hong Kong'
 'hm': 'Heard and McDonald Islands'
 'ho': 'Honduras'
 'ht': 'Haiti'
 'hu': 'Hungary'
-'iau': 'Iowa'
+'iau': ['United States', 'United States:Iowa']
 'ic': 'Iceland'
-'idu': 'Idaho'
+'idu': ['United States', 'United States:Idaho']
 'ie': 'Ireland'
 'ii': 'India'
-'ilu': 'Illinois'
+'ilu': ['United States', 'United States:Illinois']
 'im': 'Isle of Man'
-'inu': 'Indiana'
+'inu': ['United States', 'United States:Indiana']
 'io': 'Indonesia'
 'iq': 'Iraq'
 'ir': 'Iran'
@@ -153,96 +154,96 @@
 'jo': 'Jordan'
 'ke': 'Kenya'
 'kg': 'Kyrgyzstan'
-'kgr': 'Kirghiz S.S.R.'
+'kgr': ['Soviet Union', 'Soviet Union:Kirghiz S.S.R.']
 'kn': 'Korea (North)'
 'ko': 'Korea (South)'
-'ksu': 'Kansas'
+'ksu': ['United States', 'United States:Kansas']
 'ku': 'Kuwait'
 'kv': 'Kosovo'
-'kyu': 'Kentucky'
+'kyu': ['United States', 'United States:Kentucky']
 'kz': 'Kazakhstan'
-'kzr': 'Kazakh S.S.R.'
-'lau': 'Louisiana'
+'kzr': ['Soviet Union', 'Soviet Union:Kazakh S.S.R.']
+'lau': ['United States', 'United States:Louisiana']
 'lb': 'Liberia'
 'le': 'Lebanon'
 'lh': 'Liechtenstein'
 'li': 'Lithuania'
-'lir': 'Lithuania'
+'lir': ['Soviet Union', 'Soviet Union:Lithuania']
 'ln': 'Central and Southern Line Islands'
 'lo': 'Lesotho'
 'ls': 'Laos'
 'lu': 'Luxembourg'
 'lv': 'Latvia'
-'lvr': 'Latvia'
+'lvr': ['Soviet Union', 'Soviet Union:Latvia']
 'ly': 'Libya'
-'mau': 'Massachusetts'
-'mbc': 'Manitoba'
+'mau': ['United States', 'United States:Massachusetts']
+'mbc': ['Canada', 'Canada:Manitoba']
 'mc': 'Monaco'
-'mdu': 'Maryland'
-'meu': 'Maine'
+'mdu': ['United States', 'United States:Maryland']
+'meu': ['United States', 'United States:Maine']
 'mf': 'Mauritius'
 'mg': 'Madagascar'
 'mh': 'Macao'
-'miu': 'Michigan'
+'miu': ['United States', 'United States:Michigan']
 'mj': 'Montserrat'
 'mk': 'Oman'
 'ml': 'Mali'
 'mm': 'Malta'
-'mnu': 'Minnesota'
+'mnu': ['United States', 'United States:Minnesota']
 'mo': 'Montenegro'
-'mou': 'Missouri'
+'mou': ['United States', 'United States:Missouri']
 'mp': 'Mongolia'
 'mq': 'Martinique'
 'mr': 'Morocco'
-'msu': 'Mississippi'
-'mtu': 'Montana'
+'msu': ['United States', 'United States:Mississippi']
+'mtu': ['United States', 'United States:Montana']
 'mu': 'Mauritania'
 'mv': 'Moldova'
-'mvr': 'Moldavian S.S.R.'
+'mvr': ['Soviet Union', 'Soviet Union:Moldavian S.S.R.']
 'mw': 'Malawi'
 'mx': 'Mexico'
 'my': 'Malaysia'
 'mz': 'Mozambique'
 'na': 'Netherlands Antilles'
-'nbu': 'Nebraska'
-'ncu': 'North Carolina'
-'ndu': 'North Dakota'
+'nbu': ['United States', 'United States:Nebraska']
+'ncu': ['United States', 'United States:North Carolina']
+'ndu': ['United States', 'United States:North Dakota']
 'ne': 'Netherlands'
-'nfc': 'Newfoundland and Labrador'
+'nfc': ['Canada', 'Canada:Newfoundland and Labrador']
 'ng': 'Niger'
-'nhu': 'New Hampshire'
-'nik': 'Northern Ireland'
-'nju': 'New Jersey'
-'nkc': 'New Brunswick'
+'nhu': ['United States', 'United States:New Hampshire']
+'nik': ['United Kingdom', 'United Kingdom:Northern Ireland']
+'nju': ['United States', 'United States:New Jersey']
+'nkc': ['Canada', 'Canada:New Brunswick']
 'nl': 'New Caledonia'
 'nm': 'Northern Mariana Islands'
-'nmu': 'New Mexico'
+'nmu': ['United States', 'United States:New Mexico']
 'nn': 'Vanuatu'
 'no': 'Norway'
 'np': 'Nepal'
 'nq': 'Nicaragua'
 'nr': 'Nigeria'
-'nsc': 'Nova Scotia'
-'ntc': 'Northwest Territories'
+'nsc': ['Canada', 'Canada:Nova Scotia']
+'ntc': ['Canada', 'Canada:Northwest Territories']
 'nu': 'Nauru'
-'nuc': 'Nunavut'
-'nvu': 'Nevada'
+'nuc': ['Canada', 'Canada:Nunavut']
+'nvu': ['United States', 'United States:Nevada']
 'nw': 'Northern Mariana Islands'
 'nx': 'Norfolk Island'
-'nyu': 'New York (State)'
+'nyu': ['United States', 'United States:New York (State)']
 'nz': 'New Zealand'
-'ohu': 'Ohio'
-'oku': 'Oklahoma'
-'onc': 'Ontario'
-'oru': 'Oregon'
+'ohu': ['United States', 'United States:Ohio']
+'oku': ['United States', 'United States:Oklahoma']
+'onc': ['Canada', 'Canada:Ontario']
+'oru': ['United States', 'United States:Oregon']
 'ot': 'Mayotte'
-'pau': 'Pennsylvania'
+'pau': ['United States', 'United States:Pennsylvania']
 'pc': 'Pitcairn Island'
 'pe': 'Peru'
 'pf': 'Paracel Islands'
 'pg': 'Guinea-Bissau'
 'ph': 'Philippines'
-'pic': 'Prince Edward Island'
+'pic': ['Canada', 'Canada:Prince Edward Island']
 'pk': 'Pakistan'
 'pl': 'Poland'
 'pn': 'Panama'
@@ -253,23 +254,23 @@
 'pw': 'Palau'
 'py': 'Paraguay'
 'qa': 'Qatar'
-'qea': 'Queensland'
-'quc': 'Québec (Province)'
+'qea': ['Australia', 'Australia:Queensland']
+'quc': ['Canada', 'Canada:Québec (Province)']
 'rb': 'Serbia'
 're': 'Réunion'
 'rh': 'Zimbabwe'
-'riu': 'Rhode Island'
+'riu': ['United States', 'United States:Rhode Island']
 'rm': 'Romania'
 'ru': 'Russia (Federation)'
-'rur': 'Russian S.F.S.R.'
+'rur': ['Soviet Union', 'Soviet Union:Russian S.F.S.R.']
 'rw': 'Rwanda'
 'ry': 'Ryukyu Islands, Southern'
 'sa': 'South Africa'
 'sb': 'Svalbard'
 'sc': 'Saint-Barthélemy'
-'scu': 'South Carolina'
+'scu': ['United States', 'United States:South Carolina']
 'sd': 'South Sudan'
-'sdu': 'South Dakota'
+'sdu': ['United States', 'United States:South Dakota']
 'se': 'Seychelles'
 'sf': 'Sao Tome and Principe'
 'sg': 'Senegal'
@@ -280,14 +281,14 @@
 'sl': 'Sierra Leone'
 'sm': 'San Marino'
 'sn': 'Sint Maarten'
-'snc': 'Saskatchewan'
+'snc': ['Canada', 'Canada:Saskatchewan']
 'so': 'Somalia'
 'sp': 'Spain'
 'sq': 'Swaziland'
 'sr': 'Surinam'
 'ss': 'Western Sahara'
 'st': 'Saint-Martin'
-'stk': 'Scotland'
+'stk': ['United Kingdom', 'United Kingdom:Scotland']
 'su': 'Saudi Arabia'
 'sv': 'Swan Islands'
 'sw': 'Sweden'
@@ -295,41 +296,41 @@
 'sy': 'Syria'
 'sz': 'Switzerland'
 'ta': 'Tajikistan'
-'tar': 'Tajik S.S.R.'
+'tar': ['Soviet Union', 'Soviet Union:Tajik S.S.R.']
 'tc': 'Turks and Caicos Islands'
 'tg': 'Togo'
 'th': 'Thailand'
 'ti': 'Tunisia'
 'tk': 'Turkmenistan'
-'tkr': 'Turkmen S.S.R.'
+'tkr': ['Soviet Union', 'Soviet Union:Turkmen S.S.R.']
 'tl': 'Tokelau'
-'tma': 'Tasmania'
-'tnu': 'Tennessee'
+'tma': ['Australia', 'Australia:Tasmania']
+'tnu': ['United States', 'United States:Tennessee']
 'to': 'Tonga'
 'tr': 'Trinidad and Tobago'
 'ts': 'United Arab Emirates'
 'tt': 'Trust Territory of the Pacific Islands'
 'tu': 'Turkey'
 'tv': 'Tuvalu'
-'txu': 'Texas'
+'txu': ['United States', 'United States:Texas']
 'tz': 'Tanzania'
 'ua': 'Egypt'
 'uc': 'United States Misc. Caribbean Islands'
 'ug': 'Uganda'
 'ui': 'United Kingdom Misc. Islands'
-'uik': 'United Kingdom Misc. Islands'
+'uik': ['United Kingdom', 'United Kingdom:United Kingdom Misc. Islands']
 'uk': 'United Kingdom'
 'un': 'Ukraine'
-'unr': 'Ukraine'
+'unr': ['Soviet Union', 'Soviet Union:Ukraine']
 'up': 'United States Misc. Pacific Islands'
 'ur': 'Soviet Union'
 'us': 'United States'
-'utu': 'Utah'
+'utu': ['United States', 'United States:Utah']
 'uv': 'Burkina Faso'
 'uy': 'Uruguay'
 'uz': 'Uzbekistan'
-'uzr': 'Uzbek S.S.R.'
-'vau': 'Virginia'
+'uzr': ['Soviet Union', 'Soviet Union:Uzbek S.S.R.']
+'vau': ['United States', 'United States:Virginia']
 'vb': 'British Virgin Islands'
 'vc': 'Vatican City'
 've': 'Venezuela'
@@ -337,27 +338,27 @@
 'vm': 'Vietnam'
 'vn': 'Vietnam, North'
 'vp': 'Various places'
-'vra': 'Victoria'
+'vra': ['Australia', 'Australia:Victoria']
 'vs': 'Vietnam, South'
-'vtu': 'Vermont'
-'wau': 'Washington (State)'
+'vtu': ['United States', 'United States:Vermont']
+'wau': ['United States', 'United States:Washington (State)']
 'wb': 'West Berlin'
-'wea': 'Western Australia'
+'wea': ['Australia', 'Australia:Western Australia']
 'wf': 'Wallis and Futuna'
-'wiu': 'Wisconsin'
+'wiu': ['United States', 'United States:Wisconsin']
 'wj': 'West Bank of the Jordan River'
 'wk': 'Wake Island'
-'wlk': 'Wales'
+'wlk': ['United Kingdom', 'United Kingdom:Wales']
 'ws': 'Samoa'
-'wvu': 'West Virginia'
-'wyu': 'Wyoming'
+'wvu': ['United States', 'United States:West Virginia']
+'wyu': ['United States', 'United States:Wyoming']
 'xa': 'Christmas Island (Indian Ocean)'
 'xb': 'Cocos (Keeling) Islands'
 'xc': 'Maldives'
 'xd': 'Saint Kitts-Nevis'
 'xe': 'Marshall Islands'
 'xf': 'Midway Islands'
-'xga': 'Coral Sea Islands Territory'
+'xga': ['Australia', 'Australia:Coral Sea Islands Territory']
 'xh': 'Niue'
 'xi': 'Saint Kitts-Nevis-Anguilla'
 'xj': 'Saint Helena'
@@ -365,21 +366,21 @@
 'xl': 'Saint Pierre and Miquelon'
 'xm': 'Saint Vincent and the Grenadines'
 'xn': 'Macedonia'
-'xna': 'New South Wales'
+'xna': ['Australia', 'Australia:New South Wales']
 'xo': 'Slovakia'
-'xoa': 'Northern Territory'
+'xoa': ['Australia', 'Australia:Northern Territory']
 'xp': 'Spratly Island'
 'xr': 'Czech Republic'
-'xra': 'South Australia'
+'xra': ['Australia', 'Australia:South Australia']
 'xs': 'South Georgia and the South Sandwich Islands'
 'xv': 'Slovenia'
 'xx': 'No place, unknown, or undetermined'
-'xxc': 'Canada'
-'xxk': 'United Kingdom'
+'xxc': ['Canada', 'Canada:Canada']
+'xxk': ['United Kingdom', 'United Kingdom:United Kingdom']
 'xxr': 'Soviet Union'
-'xxu': 'United States'
+'xxu': ['United States', 'United States:United States']
 'ye': 'Yemen'
-'ykc': 'Yukon Territory'
+'ykc': ['Canada', 'Canada:Yukon Territory']
 'ys': 'Yemen (People''s Democratic Republic)'
 'yu': 'Serbia and Montenegro'
 'za': 'Zambia'

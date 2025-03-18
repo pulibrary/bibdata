@@ -594,6 +594,16 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'publication_place_hierarchical_facet field' do
+      it 'maps the 3-digit code in the 008[15-17] to a country and state' do
+        expect(@sample1['publication_place_hierarchical_facet']).to eq ['United States', 'United States:Michigan']
+      end
+
+      it 'maps the 2-digit code in the 008[15-17] to a country' do
+        expect(@added_title_246['publication_place_hierarchical_facet']).to eq ['Japan']
+      end
+    end
+
     describe 'the pub_citation_display field' do
       it 'shows the the 260 a and b subfields' do
         expect(@sample2['pub_citation_display']).to include 'London: Firethorn Press'
