@@ -1525,6 +1525,12 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'fast_subject_facet' do
+      it 'indexes fast_subject_facet' do
+        expect(@fast_subject_heading['fast_subject_facet']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
+      end
+    end
+
     describe 'fast subject heading fields' do
       it 'indexes fast headings' do
         expect(@fast_subject_heading['fast_subject_display']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
@@ -1544,6 +1550,10 @@ describe 'From traject_config.rb', indexing: true do
       it 'does not index fast headings when lc headings are present' do
         expect(@fast_and_lc_heading['fast_subject_display']).to be_blank
         expect(@fast_and_lc_heading['fast_subject_unstem_search']).to be_blank
+      end
+
+      it 'does not index fast_subject_facet when lc headings are present' do
+        expect(@fast_and_lc_heading['fast_subject_facet']).to be_blank
       end
     end
 
