@@ -77,11 +77,14 @@ group :production do
   gem 'datadog', require: 'datadog/auto_instrument'
 end
 
+group :development do
+  gem 'dotenv-rails'
+end
+
 group :development, :test do
   # bundler and rake come in from the voyager_helpers gemspec
   gem 'byebug'
   gem 'coveralls_reborn'
-  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'puma'
