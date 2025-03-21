@@ -2,13 +2,6 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require_relative 'config/application'
-require 'rubocop/rake_task'
 require 'honeybadger/init/ruby'
 
 Rails.application.load_tasks
-
-desc 'Run style checker'
-RuboCop::RakeTask.new do |task|
-  task.requires << 'rubocop-rspec'
-  task.fail_on_error = true
-end
