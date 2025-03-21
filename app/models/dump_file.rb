@@ -4,9 +4,9 @@ require 'rubygems/package'
 
 class DumpFile < ActiveRecord::Base
   belongs_to :dump
-  enum index_status: { enqueued: 0, started: 1, done: 2 }
+  enum :index_status, { enqueued: 0, started: 1, done: 2 }
 
-  enum dump_file_type: {
+  enum :dump_file_type, {
     bib_records: 1,
     updated_records: 2,
     recap_records: 3,
