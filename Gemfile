@@ -7,15 +7,10 @@ end
 gem 'alma', '~> 0.5.0'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
-gem 'bcrypt_pbkdf'
 gem 'bootstrap-sass', '~> 3.4.1'
-gem 'capistrano-passenger'
-gem 'capistrano-rails'
-gem 'capistrano-rails-console', require: false
 gem 'capybara'
 gem 'change_the_subject', '~> 0.4.0'
 gem 'devise'
-gem 'ed25519'
 gem 'faraday', '~> 1.0'
 gem 'faraday_middleware', '~> 1.0'
 gem 'ffi', '>= 1.9.25'
@@ -55,15 +50,9 @@ gem 'rails', '~> 7.2'
 gem 'responders'
 gem 'rest-client'
 gem 'rsolr', '~> 2.5.0'
-gem 'rspec-rails'
-gem 'rubocop'
-gem 'rubocop-performance'
-gem 'rubocop-rails'
-gem 'rubocop-rspec'
 gem 'rubyXL'
 gem 'rubyzip'
 gem 'sass-rails'
-gem 'selenium-webdriver'
 gem 'sidekiq'
 gem 'stomp'
 gem 'stringex', github: 'pulibrary/stringex', tag: 'vpton.2.5.2.2'
@@ -78,7 +67,12 @@ group :production do
 end
 
 group :development do
+  gem 'bcrypt_pbkdf'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-rails-console', require: false
   gem 'dotenv-rails'
+  gem 'ed25519'
 end
 
 group :development, :test do
@@ -90,6 +84,10 @@ group :development, :test do
   gem 'puma'
   gem 'rails-controller-testing'
   gem 'rspec-benchmark'
+  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rails'
+  gem 'rubocop-rspec'
   gem 'simplecov'
   gem 'solargraph'
   gem 'solr_wrapper'
@@ -100,4 +98,6 @@ end
 group :test do
   gem 'axe-core-api', require: false
   gem 'axe-core-rspec', require: false
+  gem 'rspec-rails'
+  gem 'selenium-webdriver'
 end
