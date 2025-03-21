@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'rails_helper'
+create_global_indexer_service
 
 ##
 # When our catalog records contain subject headings, that should be classified as

@@ -34,6 +34,7 @@ RSpec.configure do |config|
 
   config.infer_spec_type_from_file_location!
   config.when_first_matching_example_defined(:axe) { require 'axe-rspec' }
+  config.when_first_matching_example_defined(:indexing) { create_global_indexer_service }
 
   WebMock.disable_net_connect!(Rails.application.config.webmock_disable_opts)
 end
