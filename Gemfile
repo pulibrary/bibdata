@@ -98,6 +98,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'axe-core-api'
-  gem 'axe-core-rspec'
+  gem 'axe-core-api', require: false
+  gem 'axe-core-rspec', require: false
 end

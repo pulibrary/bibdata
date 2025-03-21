@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'accessibility', type: :feature, js: true do
+describe 'accessibility', type: :feature, js: true, axe: true do
   context 'home page' do
     before do
       visit '/'
