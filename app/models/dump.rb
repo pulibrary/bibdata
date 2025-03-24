@@ -10,9 +10,8 @@ class Dump < ActiveRecord::Base
   belongs_to :event
   has_many :dump_files
   # These only apply to change dumps (stored in db rather than text files)
-  serialize :delete_ids
-  serialize :update_ids
-  serialize :recap_barcodes
+  serialize :delete_ids, coder: YAML
+  serialize :update_ids, coder: YAML
   validates :event_id, presence: true
 
   before_destroy do
@@ -21,7 +20,7 @@ class Dump < ActiveRecord::Base
     end
   end
 
-  enum dump_type: {
+  enum :dump_type, {
     full_dump: 1,
     changed_records: 2,
     princeton_recap: 3,
