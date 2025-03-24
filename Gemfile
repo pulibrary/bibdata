@@ -7,10 +7,12 @@ end
 gem 'alma', '~> 0.5.0'
 gem 'aws-sdk-s3'
 gem 'aws-sdk-sqs'
+gem 'bcrypt_pbkdf'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'capybara'
 gem 'change_the_subject', '~> 0.4.0'
 gem 'devise'
+gem 'ed25519'
 gem 'faraday', '~> 1.0'
 gem 'faraday_middleware', '~> 1.0'
 gem 'ffi', '>= 1.9.25'
@@ -67,12 +69,10 @@ group :production do
 end
 
 group :development do
-  gem 'bcrypt_pbkdf'
   gem 'capistrano-passenger'
   gem 'capistrano-rails'
   gem 'capistrano-rails-console', require: false
   gem 'dotenv-rails'
-  gem 'ed25519'
 end
 
 group :development, :test do
