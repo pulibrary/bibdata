@@ -12,8 +12,11 @@ RSpec.describe Users::OmniauthCallbacksController do
       it 'alerts the user on failure' do
         controller = described_class.new
         controller.request = ActionDispatch::TestRequest.new('omniauth.origin' => '/')
-        controller.should_receive(:redirect_to).with('/', alert: 'Unauthorized user')
+        allow(controller).to receive(:redirect_to)
+
         controller.cas
+
+        expect(controller).to have_received(:redirect_to).with('/', alert: 'Unauthorized user')
       end
     end
   end
