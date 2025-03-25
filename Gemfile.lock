@@ -293,9 +293,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    gyoku (1.4.0)
-      builder (>= 2.1.2)
-      rexml (~> 3.0)
     hashdiff (1.1.2)
     hashie (5.0.0)
     health-monitor-rails (12.4.0)
@@ -744,7 +741,6 @@ DEPENDENCIES
   faraday_middleware (~> 1.0)
   ffi (>= 1.9.25)
   friendly_id
-  gyoku (~> 1.0)
   health-monitor-rails (= 12.4.0)
   high_voltage (~> 3.0)
   honeybadger
