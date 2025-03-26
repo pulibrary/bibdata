@@ -582,6 +582,15 @@ describe 'From traject_config.rb', indexing: true do
         record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
         expect(record['geographic_facet'].first).to eq('France')
       end
+
+      describe 'local overrides' do
+        let(:f650) { { '650' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'Oil spills', 'z' => 'America, Gulf of' }] } } }
+
+        it 'creates a facet for local marc geographic locations' do
+          record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
+          expect(record['geographic_facet'].first).to eq('Mexico, Gulf of')
+        end
+      end
     end
 
     describe 'publication_place_facet field' do

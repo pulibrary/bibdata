@@ -990,7 +990,10 @@ to_field 'publication_place_hierarchical_facet', extract_marc('008[15-17]') do |
 end
 
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
-to_field 'geographic_facet', marc_geo_facet
+to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
+  subjects = ChangeTheSubject.fix(subject_terms: accumulator)
+  accumulator.replace(subjects)
+end
 
 to_field 'homoit_genre_s' do |record, accumulator|
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[homoit] }
