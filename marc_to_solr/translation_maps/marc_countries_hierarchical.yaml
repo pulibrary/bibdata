@@ -375,10 +375,10 @@
 'xs': 'South Georgia and the South Sandwich Islands'
 'xv': 'Slovenia'
 'xx': 'No place, unknown, or undetermined'
-'xxc': ['Canada', 'Canada:Canada']
-'xxk': ['United Kingdom', 'United Kingdom:United Kingdom']
-'xxr': 'Soviet Union'
-'xxu': ['United States', 'United States:United States']
+'xxc': ['Canada', 'Canada:Canada (unspecified)']
+'xxk': ['United Kingdom', 'United Kingdom:United Kingdom (unspecified)']
+'xxr': ['Soviet Union', 'Soviet Union:Soviet Union (unspecified)']
+'xxu': ['United States', 'United States:United States (unknown) (unspecified)']
 'ye': 'Yemen'
 'ykc': ['Canada', 'Canada:Yukon Territory']
 'ys': 'Yemen (People''s Democratic Republic)'
