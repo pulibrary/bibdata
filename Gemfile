@@ -49,7 +49,7 @@ gem 'pg'
 gem 'rack'
 gem 'rails', '~> 7.2'
 gem 'responders'
-gem 'rest-client'
+gem 'rest-client', require: false
 gem 'rsolr', '~> 2.5.0'
 gem 'rubyzip'
 gem 'sass-rails'
