@@ -982,6 +982,14 @@ to_field 'lc_subject_facet' do |record, accumulator|
   accumulator.replace(lc_subjects)
 end
 
+to_field 'publication_place_hierarchical_pipe_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
+  places = accumulator.compact.map do |location|
+    Traject::TranslationMap.new('marc_countries_hierarchical_pipe')[location.strip]
+  end
+  accumulator.replace(places.compact.flatten)
+end
+
+# TODO: Remove in favor of publication_place_hierarchical_pipe_facet once reindex complete
 to_field 'publication_place_hierarchical_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
   places = accumulator.compact.map do |location|
     Traject::TranslationMap.new('marc_countries_hierarchical')[location.strip]
@@ -1074,7 +1082,8 @@ to_field 'lc_rest_facet' do |record, accumulator|
   end
 end
 
-to_field 'lc_facet' do |record, accumulator|
+to_field 'lc_pipe_facet' do |record, accumulator|
+  delimiter = '|'
   if record['050'] && (record['050']['a'])
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
@@ -1082,7 +1091,22 @@ to_field 'lc_facet' do |record, accumulator|
     map_rest = Traject::TranslationMap.new('callnumber_map')[letters]
     accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
     if map_first && map_rest
-      accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}:#{Traject::TranslationMap.new('callnumber_map')[letters]}"
+      accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}#{delimiter}#{Traject::TranslationMap.new('callnumber_map')[letters]}"
+    end
+  end
+end
+
+# TODO: Remove in favor of lc_pipe_facet once reindex complete
+to_field 'lc_facet' do |record, accumulator|
+  delimiter = ':'
+  if record['050'] && (record['050']['a'])
+    first_letter = record['050']['a'].lstrip.slice(0, 1)
+    letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
+    map_first = Traject::TranslationMap.new('callnumber_map')[first_letter]
+    map_rest = Traject::TranslationMap.new('callnumber_map')[letters]
+    accumulator << Traject::TranslationMap.new('callnumber_map')[first_letter]
+    if map_first && map_rest
+      accumulator << "#{Traject::TranslationMap.new('callnumber_map')[first_letter]}#{delimiter}#{Traject::TranslationMap.new('callnumber_map')[letters]}"
     end
   end
 end

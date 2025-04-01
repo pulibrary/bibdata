@@ -609,6 +609,17 @@ describe 'From traject_config.rb', indexing: true do
       end
     end
 
+    describe 'publication_place_hierarchical_pipe_facet field' do
+      it 'maps the 3-digit code in the 008[15-17] to a country and state' do
+        expect(@sample1['publication_place_hierarchical_pipe_facet']).to eq ['United States', 'United States|Michigan']
+      end
+
+      it 'maps the 2-digit code in the 008[15-17] to a country' do
+        expect(@added_title_246['publication_place_hierarchical_pipe_facet']).to eq ['Japan']
+      end
+    end
+
+    # TODO: Remove in favor of publication_place_hierarchical_pipe_facet once reindex complete
     describe 'publication_place_hierarchical_facet field' do
       it 'maps the 3-digit code in the 008[15-17] to a country and state' do
         expect(@sample1['publication_place_hierarchical_facet']).to eq ['United States', 'United States:Michigan']
@@ -1107,6 +1118,31 @@ describe 'From traject_config.rb', indexing: true do
         end
       end
     end
+
+    describe 'lc_pipe_facet' do
+      let(:t050) { { '050' => { 'ind1' => '0', 'ind2' => '0', 'subfields' => [{ 'a' => 'IN PROCESS' }] } } }
+      let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t050], 'leader' => leader)) }
+
+      it 'includes a field with data for the classification facet' do
+        lc_facet = @sample40['lc_pipe_facet']
+        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine|RA - Public Aspects of Medicine'])
+      end
+
+      it 'handles cases where the call number is a single letter' do
+        lc_facet = @sample44['lc_pipe_facet']
+        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|Z - Bibliography, Library Science, Information Resources'])
+      end
+
+      it 'handles cases where there is no call number' do
+        lc_facet = @record_no_call_number['lc_pipe_facet']
+        expect(lc_facet).to be_nil
+      end
+
+      it 'does not index data into the lc_facet field if the call number is invalid' do
+        expect(record['lc_pipe_facet']).to be_nil
+      end
+    end
+    # TODO: Remove in favor of lc_pipe_facet once reindex complete
 
     describe 'lc_facet' do
       let(:t050) { { '050' => { 'ind1' => '0', 'ind2' => '0', 'subfields' => [{ 'a' => 'IN PROCESS' }] } } }
