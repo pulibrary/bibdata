@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe HierarchicalHeading do
   it 'does not include fields that are outside the spec' do

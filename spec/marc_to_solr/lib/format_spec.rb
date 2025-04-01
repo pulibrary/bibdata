@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 # rubocop:disable Layout/MultilineHashBraceLayout
 describe 'From format.rb' do
