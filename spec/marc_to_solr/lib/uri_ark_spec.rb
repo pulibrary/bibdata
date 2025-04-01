@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe URI::ARK do
   describe '#princeton_ark?' do

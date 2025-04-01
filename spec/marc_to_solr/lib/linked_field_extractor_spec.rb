@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe LinkedFieldsExtractor do
   let(:extractor) { described_class.new(MARC::Record.new_from_hash('fields' => fields), '773') }

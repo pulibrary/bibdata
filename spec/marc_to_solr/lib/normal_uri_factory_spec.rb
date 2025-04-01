@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe NormalUriFactory do
   let(:nuf) { described_class.new(value: test_uri) }

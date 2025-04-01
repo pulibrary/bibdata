@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe IndigenousLanguages do
   describe '#in_an_indigenous_language?' do
