@@ -1083,7 +1083,7 @@ to_field 'lc_rest_facet' do |record, accumulator|
 end
 
 to_field 'lc_pipe_facet' do |record, accumulator|
-  delimiter = '|'
+  delimiter = '|||'
   if record['050'] && (record['050']['a'])
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]

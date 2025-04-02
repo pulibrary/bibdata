@@ -611,7 +611,7 @@ describe 'From traject_config.rb', indexing: true do
 
     describe 'publication_place_hierarchical_pipe_facet field' do
       it 'maps the 3-digit code in the 008[15-17] to a country and state' do
-        expect(@sample1['publication_place_hierarchical_pipe_facet']).to eq ['United States', 'United States|Michigan']
+        expect(@sample1['publication_place_hierarchical_pipe_facet']).to eq ['United States', 'United States|||Michigan']
       end
 
       it 'maps the 2-digit code in the 008[15-17] to a country' do
@@ -1125,12 +1125,12 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'includes a field with data for the classification facet' do
         lc_facet = @sample40['lc_pipe_facet']
-        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine|RA - Public Aspects of Medicine'])
+        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine|||RA - Public Aspects of Medicine'])
       end
 
       it 'handles cases where the call number is a single letter' do
         lc_facet = @sample44['lc_pipe_facet']
-        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|Z - Bibliography, Library Science, Information Resources'])
+        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|||Z - Bibliography, Library Science, Information Resources'])
       end
 
       it 'handles cases where there is no call number' do
