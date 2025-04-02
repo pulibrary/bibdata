@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model do
+RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model, sidekiq: true do
   include_context 'scsb_partner_updates_incremental'
   let(:partner_incremental_update) { described_class.new(dump:, dump_file_type: :recap_records, timestamp:) }
 
