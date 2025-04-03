@@ -11,7 +11,6 @@ An item is moved in a temporary location "lewis$res". The [JS availability respo
       "label": "Lewis Library - Course Reserve",
       "status_label": "Available",
       "copy_number": null,
-      "cdl": false,
       "temp_location": true,
       "id": "lewis$res"
     }
@@ -72,7 +71,6 @@ When an item is moved to this specific temporary location we index it as a perma
       "label": "Resource Sharing Library - Lending Resource Sharing Requests",
       "status_label": "Unavailable",
       "copy_number": null,
-      "cdl": false,
       "temp_location": true,
       "id": "RES_SHARE$IN_RS_REQ"
     }

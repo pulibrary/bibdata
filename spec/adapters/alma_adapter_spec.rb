@@ -119,8 +119,6 @@ RSpec.describe AlmaAdapter do
   describe 'record availability' do
     let(:bib_record_with_ava) { file_fixture('alma/9922486553506421.json') }
     let(:bib_record_with_ava_holding_items) { file_fixture('alma/9922486553506421_holding_items.json') }
-    let(:bib_record_with_cdl) { file_fixture('alma/9965126093506421.json') }
-    let(:bib_record_with_cdl_holding_items) { file_fixture('alma/9965126093506421_holding_items.json') }
     let(:bib_record_with_ave) { file_fixture('alma/99122426947506421.json') }
     let(:bib_record_with_av_other) { file_fixture('alma/9952822483506421.json') }
     let(:two_bib_records) { file_fixture('alma/two_bibs.json') }
@@ -131,14 +129,6 @@ RSpec.describe AlmaAdapter do
       stub_request(:get, 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9922486553506421')
         .with(headers: stub_alma_request_headers)
         .to_return(status: 200, body: bib_record_with_ava, headers: { 'content-Type' => 'application/json' })
-
-      stub_request(:get, 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9965126093506421')
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record_with_cdl, headers: { 'content-Type' => 'application/json' })
-
-      stub_request(:get, 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9965126093506421/holdings/ALL/items?order_by=enum_a')
-        .with(headers: stub_alma_request_headers)
-        .to_return(status: 200, body: bib_record_with_cdl_holding_items, headers: { 'content-Type' => 'application/json' })
 
       stub_request(:get, 'https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs?expand=p_avail,e_avail,d_avail,requests&mms_id=9952822483506421')
         .with(headers: stub_alma_request_headers)
@@ -178,25 +168,6 @@ RSpec.describe AlmaAdapter do
       expect(holding[:status_label]).to eq 'Unavailable'
       expect(holding[:label]).to eq 'Firestone Library - Stacks'
       expect(holding[:location]).to eq 'firestone$stacks'
-      expect(holding[:cdl]).to be false
-    end
-
-    it 'by default does not report CDL availability for unavailable records' do
-      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
-      availability = adapter.get_availability_one(id: '9965126093506421')
-      holding = availability['9965126093506421']['22202918790006421']
-      expect(holding[:status_label]).to eq 'Unavailable'
-      expect(holding[:cdl]).to be false
-      expect(holding[:label]).to eq 'Firestone Library - Stacks'
-    end
-
-    it 'reports CDL availability for unavailable records when requesting deep check' do
-      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
-      availability = adapter.get_availability_one(id: '9965126093506421', deep_check: true)
-      holding = availability['9965126093506421']['22202918790006421']
-      expect(holding[:status_label]).to eq 'Unavailable'
-      expect(holding[:cdl]).to be true
-      expect(holding[:label]).to eq 'Firestone Library - Stacks'
     end
 
     it 'reports some items available' do
@@ -343,7 +314,7 @@ RSpec.describe AlmaAdapter do
       availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
       item = availability.first
       expect(item[:status]).to eq 'Unavailable'
-      expect(item[:status_label]).to eq 'Controlled Digital Lending'
+      expect(item[:status_label]).to eq 'Holdings Management'
       expect(item[:status_source]).to eq 'work_order'
     end
 

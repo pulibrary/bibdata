@@ -136,7 +136,7 @@ class BibliographicController < ApplicationController
   # Client: Used by figgy to check CDL status. Used by firestone_locator for
   #   call number and location data
   def bib_items
-    item_keys = %w[id pid perm_location temp_location cdl]
+    item_keys = %w[id pid perm_location temp_location]
     holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
 
     respond_to do |wants|
