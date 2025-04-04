@@ -1,0 +1,162 @@
+<record>
+    <leader>02361cam a2200469 a 4500</leader>
+    <controlfield tag="001">99129088125406421</controlfield>
+    <controlfield tag="005">20250109110138.0</controlfield>
+    <controlfield tag="006">m    |   d |      </controlfield>
+    <controlfield tag="007">cr||n||||||||n</controlfield>
+    <controlfield tag="008">020906s1740    enkbef  ob    001 0 eng d</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(GALE)CY102895915</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)85789598</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CKB)4920000002457879</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(CStRLIN)CTRG02-B786</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(MiFhGG)CTRG02-B786</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(EXLCZ)994920000002457879</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">ResP</subfield>
+      <subfield code="c">ResP</subfield>
+      <subfield code="d">Thomson Gale</subfield>
+    </datafield>
+    <datafield tag="041" ind1="1" ind2=" ">
+      <subfield code="a">eng</subfield>
+      <subfield code="h">spa</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">nw-----</subfield>
+      <subfield code="a">nm-----</subfield>
+      <subfield code="a">cc-----</subfield>
+      <subfield code="a">nwcu---</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Gonzalez Carranza, Domingo.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="2">
+      <subfield code="a">A geographical description of the coasts, harbours, and sea ports of the Spanish West-Indies :</subfield>
+      <subfield code="b">particularly of Porto Bello, Cartagena, and the island of Cuba : with observations of the currents, and the variations of the compass in the Bay of Mexico, and the North Sea of America /</subfield>
+      <subfield code="c">translated from a curious and authentic manuscript, written in Spanish by Domingo Gonzales Carranza ; to which is added, an appendix, containing Capt. Parker's own account of his taking the town of Porto Bello, in the year 1601 ; [edited by Caleb Smith]</subfield>
+    </datafield>
+    <datafield tag="246" ind1=" " ind2=" ">
+      <subfield code="a">Geographical description of the coasts, harbours, and sea ports of the Spanish West-Indies </subfield>
+    </datafield>
+    <datafield tag="260" ind1=" " ind2=" ">
+      <subfield code="a">London :</subfield>
+      <subfield code="b">Printed for the editor Caleb Smith,</subfield>
+      <subfield code="c">1740.</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">1 online resource (xi, 124, [8] p., [5] fold. leaves of plates ) </subfield>
+      <subfield code="b">map, plans ;</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">computer</subfield>
+      <subfield code="b">c</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">online resource</subfield>
+      <subfield code="b">cr</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Sabin Americana : History of the Americas, 1500-1926</subfield>
+    </datafield>
+    <datafield tag="510" ind1="4" ind2=" ">
+      <subfield code="a">RLIN,</subfield>
+      <subfield code="c">CTRG02-B786</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Includes index.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Reproduction of original from Huntington Library.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Sabin no. 11030.</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Pilot guides</subfield>
+      <subfield code="z">Mexico, Gulf of</subfield>
+      <subfield code="v">Early works to 1800.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Pilot guides</subfield>
+      <subfield code="z">America, Gulf of</subfield>
+      <subfield code="v">Early works to 1800.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">West Indies</subfield>
+      <subfield code="x">Description and travel</subfield>
+      <subfield code="v">Early works to 1800.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Mexico, Gulf of.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">America, Gulf of</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Cuba</subfield>
+      <subfield code="x">Description and travel</subfield>
+      <subfield code="v">Early works to 1800.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Parker, William,</subfield>
+      <subfield code="d">d. 1618.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Smith, Caleb,</subfield>
+      <subfield code="d">fl. 1740.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Sabin Americana : History of the Americas, 1500-1926.</subfield>
+    </datafield>
+    <datafield tag="906" ind1=" " ind2=" ">
+      <subfield code="a">BOOK</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2025-01-10 01:24:58 US/Eastern</subfield>
+      <subfield code="b">2023-05-06 13:30:30 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="951" ind1=" " ind2=" ">
+      <subfield code="v">2023-11-09 15:03:02 US/Eastern</subfield>
+      <subfield code="g">Gale</subfield>
+      <subfield code="u">System</subfield>
+      <subfield code="r">669130-princetondb</subfield>
+      <subfield code="t">2023-11-09 15:03:02 US/Eastern</subfield>
+      <subfield code="x">https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=53999455720006421&amp;Force_direct=true</subfield>
+      <subfield code="s">System</subfield>
+      <subfield code="0">53999455720006421</subfield>
+      <subfield code="w">2023-11-09 20:03:02</subfield>
+      <subfield code="f">true</subfield>
+      <subfield code="m">61998608740006421</subfield>
+      <subfield code="n">Sabin Americana: History of the Americas, 1500–1926</subfield>
+      <subfield code="b">param</subfield>
+      <subfield code="q">1810778-princetondb</subfield>
+      <subfield code="1">62998608730006421</subfield>
+      <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99129088125406421</subfield>
+      <subfield code="a">Available</subfield>
+      <subfield code="l">612470000000000038</subfield>
+      <subfield code="e">BOOK</subfield>
+      <subfield code="8">53999455720006421</subfield>
+    </datafield>
+  </record>
