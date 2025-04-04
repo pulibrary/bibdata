@@ -1,3 +1,4 @@
+# class to stub alma requests
 module AlmaStubbing
   def stub_alma_ids(ids:, status:, fixture: nil)
     ids = Array.wrap(ids)

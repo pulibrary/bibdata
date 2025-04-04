@@ -1,9 +1,10 @@
 inherit_from: .rubocop_todo.yml
 
-require:
+plugins:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
+  - rubocop-factory_bot
 
 AllCops:
   DisplayCopNames: true
