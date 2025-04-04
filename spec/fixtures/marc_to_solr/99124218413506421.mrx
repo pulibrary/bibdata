@@ -1,0 +1,241 @@
+<record>
+    <leader>03767cam a2200553 i 4500</leader>
+    <controlfield tag="005">20240509073310.0</controlfield>
+    <controlfield tag="008">210118t20212021nyua     b    000 0 eng d</controlfield>
+    <controlfield tag="001">99124218413506421</controlfield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">9781643136424</subfield>
+      <subfield code="q">(hardcover)</subfield>
+    </datafield>
+    <datafield tag="020" ind1=" " ind2=" ">
+      <subfield code="a">1643136429</subfield>
+      <subfield code="q">(hardcover)</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="n">(MLS)2954964</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)12421841-princetondb</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="z">(NjP)Voyager12421841</subfield>
+    </datafield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1235777950</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">TOH</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">TOH</subfield>
+      <subfield code="d">BDX</subfield>
+      <subfield code="d">DAD</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">OCLCF</subfield>
+      <subfield code="d">HQD</subfield>
+      <subfield code="d">WIM</subfield>
+      <subfield code="d">GO3</subfield>
+      <subfield code="d">OCLCO</subfield>
+      <subfield code="d">YDX</subfield>
+      <subfield code="d">OCLCO</subfield>
+    </datafield>
+    <datafield tag="043" ind1=" " ind2=" ">
+      <subfield code="a">n-us-ak</subfield>
+    </datafield>
+    <datafield tag="050" ind1="1" ind2="4">
+      <subfield code="a">GV199.42.A42</subfield>
+      <subfield code="b">D46143 2021</subfield>
+    </datafield>
+    <datafield tag="082" ind1="0" ind2="4">
+      <subfield code="a">796.522092</subfield>
+      <subfield code="2">23</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">Dean, Patrick</subfield>
+      <subfield code="c">(Outdoor writer)</subfield>
+      <subfield code="e">author.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="2">
+      <subfield code="a">A window to heaven :</subfield>
+      <subfield code="b">the daring first ascent of Denali, America's wildest peak /</subfield>
+      <subfield code="c">Patrick Dean.</subfield>
+    </datafield>
+    <datafield tag="250" ind1=" " ind2=" ">
+      <subfield code="a">First Pegasus Books cloth edition.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">New York :</subfield>
+      <subfield code="b">Pegasus Books,</subfield>
+      <subfield code="c">2021.</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="4">
+      <subfield code="c">©2021</subfield>
+    </datafield>
+    <datafield tag="300" ind1=" " ind2=" ">
+      <subfield code="a">316 pages :</subfield>
+      <subfield code="b">illustrations (16 pages of plates, some color) ;</subfield>
+      <subfield code="c">24 cm.</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">text</subfield>
+      <subfield code="b">txt</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacarrier</subfield>
+    </datafield>
+    <datafield tag="504" ind1=" " ind2=" ">
+      <subfield code="a">Includes bibliographical references (pages 285-310).</subfield>
+    </datafield>
+    <datafield tag="505" ind1="0" ind2=" ">
+      <subfield code="a">Tall mountain -- From London to the American frontier -- "The mountain," exploring the west, and fighting for justice -- Grit, good works, &amp; the Grand Canyon -- Going inside by dogsled and Yukon river boat -- Walter Harper &amp; the nobler ideal -- The seventy mile kid -- The great monarch of the north -- The "fraudulent narrative," the judge, and the sourdoughs -- To the foot of Denali -- The highway of desire -- The northeast ridge -- A privileged communion -- "A liar and a sneak" -- "The light of a bright example" -- The long trail.</subfield>
+    </datafield>
+    <datafield tag="520" ind1=" " ind2=" ">
+      <subfield code="a">"In 1913, four men made a months-long journey by dog sled to the base of the tallest mountain in North America. Several groups had already tried but failed to reach the top of a mountain whose size--occupying 120 square miles of the earth's surface --and position as the Earth's northernmost peak of more than 6,000 meters elevation make it one of the world's deadliest mountains. Although its height from base to top is actually greater than Everest's, it is Denali's weather, not altitude, that have caused the great majority of fatalities--over a hundred since 1903. Denali experiences weather more severe than the North Pole, with temperatures of forty below zero and winds that howl at 80 to 100 miles per hour for days at a stretch. But in 1913 none of this mattered to Hudson Stuck, a fifty-year old Episcopal priest, Harry Karstens, the hardened Alaskan wilderness guide, Walter Harper, part of the Koyukon people, and Robert Tatum, a divinity student, both just in their twenties. They were all determined to be the first to set foot on top of Denali"--Provided by publisher.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Harper, Walter,</subfield>
+      <subfield code="d">1892-1918.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="0">
+      <subfield code="a">Stuck, Hudson,</subfield>
+      <subfield code="d">1863-1920.</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="7">
+      <subfield code="a">Harper, Walter,</subfield>
+      <subfield code="d">1892-1918.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01822928</subfield>
+    </datafield>
+    <datafield tag="600" ind1="1" ind2="7">
+      <subfield code="a">Stuck, Hudson,</subfield>
+      <subfield code="d">1863-1920.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst00211327</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Mountaineers</subfield>
+      <subfield code="z">Alaska</subfield>
+      <subfield code="v">Biography.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Mountaineering</subfield>
+      <subfield code="z">Alaska</subfield>
+      <subfield code="z">Denali, Mount</subfield>
+      <subfield code="x">History.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Mountaineering</subfield>
+      <subfield code="z">Alaska</subfield>
+      <subfield code="z">McKinley, Mount</subfield>
+      <subfield code="x">History.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Mountaineering.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01028334</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="7">
+      <subfield code="a">Mountaineers.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01028364</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">McKinley, Mount (Alaska)</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Denali, Mount (Alaska)</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="0">
+      <subfield code="a">Alaska</subfield>
+      <subfield code="x">History.</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">Alaska.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01204480</subfield>
+    </datafield>
+    <datafield tag="651" ind1=" " ind2="7">
+      <subfield code="a">Alaska</subfield>
+      <subfield code="z">Mount Denali.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01333516</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Biographies.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01919896</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">History.</subfield>
+      <subfield code="2">fast</subfield>
+      <subfield code="0">(OCoLC)fst01411628</subfield>
+    </datafield>
+    <datafield tag="902" ind1=" " ind2=" ">
+      <subfield code="a">yj</subfield>
+      <subfield code="b">s</subfield>
+      <subfield code="6">a</subfield>
+      <subfield code="7">m</subfield>
+      <subfield code="d">v</subfield>
+      <subfield code="f">1</subfield>
+      <subfield code="e">20210511</subfield>
+    </datafield>
+    <datafield tag="914" ind1=" " ind2=" ">
+      <subfield code="a">(OCoLC)on1235777950</subfield>
+      <subfield code="b">OCoLC</subfield>
+      <subfield code="c">match</subfield>
+      <subfield code="d">20240508</subfield>
+      <subfield code="e">processed</subfield>
+      <subfield code="f">1235777950</subfield>
+    </datafield>
+    <datafield tag="980" ind1=" " ind2=" ">
+      <subfield code="i">27.95</subfield>
+      <subfield code="j">25.99</subfield>
+      <subfield code="n">2954964</subfield>
+    </datafield>
+    <datafield tag="982" ind1=" " ind2=" ">
+      <subfield code="b">FY21</subfield>
+      <subfield code="n">2021</subfield>
+      <subfield code="q">32101112783590</subfield>
+    </datafield>
+    <datafield tag="986" ind1=" " ind2=" ">
+      <subfield code="h">GV199.42.A42</subfield>
+      <subfield code="i">D46143 2021</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2025-03-24 18:10:28 US/Eastern</subfield>
+      <subfield code="b">2021-07-12 21:14:50 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+    <datafield tag="852" ind1="0" ind2=" ">
+      <subfield code="b">firestone</subfield>
+      <subfield code="c">stacks</subfield>
+      <subfield code="h">GV199.42.A42</subfield>
+      <subfield code="i">D46143 2021</subfield>
+      <subfield code="8">22619939160006421</subfield>
+    </datafield>
+    <datafield tag="952" ind1=" " ind2=" ">
+      <subfield code="d">2021-10-27 23:05:07</subfield>
+      <subfield code="8">22619939160006421</subfield>
+      <subfield code="a">2021-07-13 01:14:50</subfield>
+      <subfield code="b">Firestone Library</subfield>
+      <subfield code="c">stacks: Firestone Library</subfield>
+      <subfield code="e">false</subfield>
+    </datafield>
+    <datafield tag="876" ind1=" " ind2=" ">
+      <subfield code="0">22619939160006421</subfield>
+      <subfield code="a">23619939150006421</subfield>
+      <subfield code="j">1</subfield>
+      <subfield code="z">stacks</subfield>
+      <subfield code="d">2021-04-21 20:00:00 US/Eastern</subfield>
+      <subfield code="p">32101112783590</subfield>
+      <subfield code="t">0</subfield>
+      <subfield code="y">firestone</subfield>
+    </datafield>
+  </record>
