@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/pulibrary/change_the_subject.git
-  revision: fe1e123565e6534b238e3d4e9423c15f31d52881
-  branch: changes-04042025
+  revision: d98cb217e46cae75d4b021d398abc8bae264d83d
+  branch: main
   specs:
     change_the_subject (1.0.0)
       yaml
