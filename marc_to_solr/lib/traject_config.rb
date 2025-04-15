@@ -42,6 +42,7 @@ $LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr direc
 
 augment_the_subject = AugmentTheSubject.new
 language_service = LanguageService.new
+change_the_subject = ChangeTheSubject.new
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -860,7 +861,7 @@ to_field 'cumulative_index_finding_aid_display', extract_marc('555|8*|3abcd')
 to_field 'lc_subject_display' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   subjects = augment_the_subject.add_indigenous_studies(subjects)
-  subjects = ChangeTheSubject.fix(subject_terms: subjects)
+  subjects = change_the_subject.fix(subject_terms: subjects)
   local_subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| local_heading? field }
   accumulator.replace(subjects | local_subjects)
 end
@@ -869,7 +870,7 @@ end
 to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   new_subjects = augment_the_subject.add_indigenous_studies(subjects)
-  new_subjects = ChangeTheSubject.fix(subject_terms: new_subjects)
+  new_subjects = change_the_subject.fix(subject_terms: new_subjects)
   combined_subjects = Array(subjects).concat(Array(new_subjects))&.uniq
   accumulator.replace(combined_subjects)
 end
@@ -952,7 +953,7 @@ end
 to_field 'subject_facet' do |record, accumulator|
   subjects = process_hierarchy(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   subjects = augment_the_subject.add_indigenous_studies(subjects)
-  subjects = ChangeTheSubject.fix(subject_terms: subjects)
+  subjects = change_the_subject.fix(subject_terms: subjects)
   additional_subject_thesauri = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading?(field) || local_heading?(field) || any_thesaurus_match?(field, %w[homoit]) }
   genres = process_hierarchy(record, '655|*7|avxyz') { |field| any_thesaurus_match? field, %w[lcgft aat rbbin rbgenr rbmscv rbpap rbpri rbprov rbpub rbtyp homoit] }
   accumulator.replace([subjects, additional_subject_thesauri, genres].flatten)
@@ -964,7 +965,7 @@ end
 to_field 'lc_subject_facet' do |record, accumulator|
   lc_subjects = accumulate_hierarchy_per_field(record, '600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:651|*0|avxyz')
   lc_subjects = augment_the_subject.add_indigenous_studies(lc_subjects)
-  lc_subjects = ChangeTheSubject.fix(subject_terms: lc_subjects)
+  lc_subjects = change_the_subject.fix(subject_terms: lc_subjects)
 
   accumulator.replace(lc_subjects)
 end
@@ -986,7 +987,7 @@ end
 
 # See https://github.com/traject/traject/blob/main/lib/traject/macros/marc21_semantics.rb#L435
 to_field 'geographic_facet', marc_geo_facet do |_record, accumulator|
-  subjects = ChangeTheSubject.fix(subject_terms: accumulator)
+  subjects = change_the_subject.fix(subject_terms: accumulator)
   accumulator.replace(subjects)
 end
 
@@ -1048,7 +1049,7 @@ to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnop
 to_field 'subject_topic_facet' do |record, accumulator|
   subjects = process_subject_topic_facet(record)
   subjects = augment_the_subject.add_indigenous_studies(subjects)
-  subjects = ChangeTheSubject.fix(subject_terms: subjects)
+  subjects = change_the_subject.fix(subject_terms: subjects)
   accumulator.replace(subjects)
 end
 
