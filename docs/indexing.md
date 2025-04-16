@@ -89,7 +89,7 @@ indexed.
 
 To keep tabs on how long the individual dump files take to index you can look at sidekiq Index::DumpFileJobs in [APM on datadog](https://app.datadoghq.com/apm/resource/sidekiq/sidekiq.job/3cb3f9643d54b111?query=env%3Anone%20service%3Asidekiq%20operation_name%3Asidekiq.job%20resource_name%3AIndex::DumpFileJob%20-host%3Abibdata-staging1%20-host%3Abibdata-worker-staging1&cols=log_duration%2Clog_http.method%2Clog_http.status_code%2Ccore_error.type%2Ccore_operation_name%2Ccore_status%2Ccore_type%2Ctag_name%2Ctag_role%2Ctag_source%2Clog_trace.origin.service%2Clog_trace.origin.operation_name%2Ccore_host&env=none&index=apm-search&spanID=3126729460444177693&topGraphs=latency%3Alatency%2CbreakdownAs%3Apercentage%2Cerrors%3Acount%2Chits%3Arate&start=1629732542112&end=1629818942112&paused=false), filtered to exclude the staging machines.
 
-Takes 6-7 hours to complete.
+Takes 7-8 hours to complete.
 
 ### Index Partner SCSB records
 
@@ -98,7 +98,7 @@ If needed, [use the SCSB API to request new full dump records from the system to
 Then, if needed, [pull the most recent SCSB full dump records into dump files](./scsb/dump_files.md).
 This is only necessary if the most recent "Full Partner ReCAP Records" is missing files, or if
 the monthly process hasn't run for a while and there is no recent event of this type.
-Note that this process takes 12 hours, and you can't deploy in the middle of the process.
+Note that this process takes 12 hours.
 
 Once the files are all downloaded and processed, index them with
 
@@ -107,6 +107,8 @@ Once the files are all downloaded and processed, index them with
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
 This will also index any incremental files we have that were generated after the full dump files.
+
+Takes 6-7 hours to complete.
 
 ### Index Theses
 
