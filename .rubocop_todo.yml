@@ -58,15 +58,6 @@ FactoryBot/SyntaxMethods:
     - 'spec/views/events.html.erb_spec.rb'
     - 'spec/views/pages/index.html.erb_spec.rb'
 
-# Offense count: 4
-# This cop supports safe autocorrection (--autocorrect).
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: space, no_space
-Layout/LineContinuationSpacing:
-  Exclude:
-    - 'app/adapters/alma_adapter.rb'
-    - 'app/controllers/users/omniauth_callbacks_controller.rb'
-
 # Offense count: 3
 # This cop supports safe autocorrection (--autocorrect).
 # Configuration parameters: AllowedMethods, AllowedPatterns.
@@ -75,13 +66,6 @@ Lint/AmbiguousBlockAssociation:
     - 'marc_to_solr/lib/format/bib_types.rb'
     - 'spec/models/event_spec.rb'
     - 'spec/models/scsb/partner_updates/update_spec.rb'
-
-# Offense count: 2
-# This cop supports unsafe autocorrection (--autocorrect-all).
-# Configuration parameters: AllowSafeAssignment.
-Lint/AssignmentInCondition:
-  Exclude:
-    - 'app/models/dump_file.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowedMethods.

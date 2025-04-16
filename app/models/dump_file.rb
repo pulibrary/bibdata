@@ -53,7 +53,7 @@ class DumpFile < ActiveRecord::Base
       uncompressed_path = path
       Zlib::GzipWriter.open(gz_path) do |gz|
         File.open(uncompressed_path) do |fp|
-          while chunk = fp.read(16 * 1024)
+          while (chunk = fp.read(16 * 1024))
             gz.write chunk
           end
         end
@@ -73,7 +73,7 @@ class DumpFile < ActiveRecord::Base
 
       Zlib::GzipReader.open(gz_path) do |gz|
         File.open(uncompressed_path, 'wb') do |fp|
-          while chunk = gz.read(16 * 1024)
+          while (chunk = gz.read(16 * 1024))
             fp.write chunk
           end
         end

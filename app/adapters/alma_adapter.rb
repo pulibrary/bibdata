@@ -28,9 +28,9 @@ class AlmaAdapter
   def get_bib_records(ids, show_suppressed: false)
     cql_query = show_suppressed ? '' : 'alma.mms_tagSuppressed=false%20and%20'
     cql_query << ids.map { |id| "alma.mms_id=#{id}" }.join('%20or%20')
-    sru_url = "#{Rails.configuration.alma['sru_url']}?"\
-              'version=1.2&operation=searchRetrieve&'\
-              "recordSchema=marcxml&query=#{cql_query}"\
+    sru_url = "#{Rails.configuration.alma['sru_url']}?" \
+              'version=1.2&operation=searchRetrieve&' \
+              "recordSchema=marcxml&query=#{cql_query}" \
               "&maximumRecords=#{ids.count}"
     MARC::XMLReader.new(URI(sru_url).open, parser: :nokogiri).map do |record|
       MarcRecord.new(nil, record)
