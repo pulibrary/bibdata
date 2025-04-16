@@ -1,3 +1,4 @@
+# module to stub the alma api
 module AlmaStubbing
   def stub_alma_ids(ids:, status:, fixture: nil)
     ids = Array.wrap(ids)
