@@ -1,5 +1,5 @@
 require 'active_support'
-require 'library_stdnums'
+require 'library_standard_numbers'
 require 'lightly'
 require 'uri'
 require_relative 'cache_adapter'
@@ -143,10 +143,10 @@ def other_versions record
   Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, _spec, _extractor|
     field.subfields.each do |s_field|
       if (field.tag == '020') || ((field.tag == '776') && (s_field.code == 'z'))
-        linked_nums << StdNum::ISBN.normalize(s_field.value)
+        linked_nums << LibraryStandardNumbers::ISBN.normalize(s_field.value)
       end
       if (field.tag == '022') || ((field.tag == '776') && (s_field.code == 'x'))
-        linked_nums << StdNum::ISSN.normalize(s_field.value)
+        linked_nums << LibraryStandardNumbers::ISSN.normalize(s_field.value)
       end
       linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == '035') && oclc_number?(s_field.value)
       if ((field.tag == '776') && (s_field.code == 'w')) || ((field.tag == '787') && (s_field.code == 'w'))

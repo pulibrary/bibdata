@@ -7,7 +7,7 @@ require 'bundler/setup'
 require 'change_the_subject'
 require_relative '../lib'
 require 'stringex'
-require 'library_stdnums'
+require 'library_standard_numbers'
 require 'time'
 require 'iso-639'
 extend Traject::Macros::Marc21Semantics
@@ -1333,19 +1333,19 @@ end
 
 to_field 'lccn_s', extract_marc('010a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
-    accumulator[i] = StdNum::LCCN.normalize(value)
+    accumulator[i] = LibraryStandardNumbers::LCCN.normalize(value)
   end
 end
 
 to_field 'issn_s', extract_marc('022a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
-    accumulator[i] = StdNum::ISSN.normalize(value)
+    accumulator[i] = LibraryStandardNumbers::ISSN.normalize(value)
   end
 end
 
 to_field 'isbn_s', extract_marc('020a') do |_record, accumulator|
   accumulator.each_with_index do |value, i|
-    accumulator[i] = StdNum::ISBN.normalize(value)
+    accumulator[i] = LibraryStandardNumbers::ISBN.normalize(value)
   end
   accumulator
 end
