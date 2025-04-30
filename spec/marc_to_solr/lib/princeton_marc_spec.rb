@@ -363,17 +363,17 @@ describe 'From princeton_marc.rb' do
       expect(@linked_nums).to include(oclc_normalize(@oclc_num2, prefix: true))
       expect(@linked_nums).to include(oclc_normalize(@oclc_num4, prefix: true))
       expect(@linked_nums).to include('BIB' + strip_non_numeric(@bib))
-      expect(@linked_nums).to include(StdNum::ISSN.normalize(@issn_num))
-      expect(@linked_nums).to include(StdNum::ISSN.normalize(@issn_num2))
-      expect(@linked_nums).to include(StdNum::ISBN.normalize(@isbn_num))
-      expect(@linked_nums).to include(StdNum::ISBN.normalize(@isbn_num2))
-      expect(@linked_nums).to include(StdNum::ISBN.normalize(@isbn_num2_10d))
+      expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num))
+      expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num2))
+      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num))
+      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num2))
+      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))
     end
 
     it 'removes duplicates' do
-      expect(StdNum::ISBN.normalize(@isbn_num2)).to eq(StdNum::ISBN.normalize(@isbn_num2_10d))
-      expect(@linked_nums.count(StdNum::ISSN.normalize(@issn_num))).to eq 1
-      expect(@linked_nums.count(StdNum::ISBN.normalize(@isbn_num2_10d))).to eq 1
+      expect(LibraryStandardNumbers::ISBN.normalize(@isbn_num2)).to eq(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))
+      expect(@linked_nums.count(LibraryStandardNumbers::ISSN.normalize(@issn_num))).to eq 1
+      expect(@linked_nums.count(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))).to eq 1
     end
 
     it 'excludes numbers not in expect subfields' do
