@@ -43,6 +43,7 @@ $LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr direc
 augment_the_subject = AugmentTheSubject.new
 language_service = LanguageService.new
 change_the_subject = ChangeTheSubject.new
+# mms_report = MmsRecordsReport.new.mms_records_report
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new
@@ -116,6 +117,14 @@ to_field 'cjk_notes' do |record, accumulator|
   end
 
   accumulator << values.compact.join(' ')
+end
+
+to_field 'figgy_1display' do |record, accumulator|
+  mms_report = MmsRecordsReport.new.mms_records_report
+  next unless mms_report.keys.include?(record['001']&.value)
+  open_items = mms_report[record['001'].value].select { |item| item['visibility']['label'] == 'open' }
+  next unless open_items.present?
+  accumulator << open_items.to_json.to_s
 end
 
 # Author/Artist:

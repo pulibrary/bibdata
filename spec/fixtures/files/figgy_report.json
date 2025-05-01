@@ -1,0 +1,1017 @@
+{
+  "99129146648906421": [
+    {
+      "visibility": {
+        "value": "restricted",
+        "label": "private",
+        "definition": "Only privileged users of this application can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/1ab2345-bde9-4165-ba00-4eb0e772e145/manifest"
+    }
+  ],
+  "9954388673506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 167",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/de99a0b8-4afd-4290-9252-14c31a506fee/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 101",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7b4fc1dd-f9f5-4f01-a1f6-569dd87be2c5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 102",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/e2e84c66-4ee0-494f-9ca3-7780bcde3b9e/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 154",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/548270c3-8222-4f62-bf23-b26ee717ea2b/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 156",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/0f066930-bb8b-4d54-bbf1-9be52f3cec82/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 139",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/79c9bd41-c059-45a6-8d78-94a77347c6c6/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 138",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/095ef630-1b83-4809-8b13-212faebc9e76/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 105",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/d0f11bef-43e5-424c-9122-63ad45e63e6c/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 155",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7fa9bde0-7615-4af0-bb1c-c602eabf4821/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 152",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/1f877224-56a4-400a-97a9-5f89b82a2e50/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 151",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/ee31d312-c3b3-4c99-a587-cd3867150259/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 169",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c58d6b49-749e-4405-a014-6cc3172444c8/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 168",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f8dfee65-8bb9-42b5-976a-ed725bddb0e5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 119",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/90a8921f-b098-4d9d-af69-295d4450c674/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 122",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/1ee1750c-3520-450a-81e0-adb65a811170/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 124",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/d0feff5b-0398-46f7-a681-edc5a2d69425/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 123",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/608b7b68-6bd1-4718-89d7-38df4ef13202/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 129",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/d14ff2c2-4d82-4262-be37-be67be154c32/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 133",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/4412b608-33a7-485a-8549-ac00c3fde2c4/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 149",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c2bc388f-3447-4700-b40a-021761daf6e3/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 159",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a920af69-d11a-4376-80f8-8242fc3d375a/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 158",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/cc8097ee-fccd-4aae-9d2a-ee6039572113/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 160",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/06ea8add-e785-4cf5-9de7-ff783191cde1/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 172",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/db0106c4-d0ce-4d7b-9acd-2d4e4d760bdc/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 171",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9101b935-eda2-455d-a2af-a8a42b489d3e/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 173",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/03c5817f-6ac7-4e4b-80f1-d4cffa02554b/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 103",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a5316d0e-6552-42d7-b851-7213cfc15889/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 107",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/13888584-c0a8-43e1-9b07-4eb372726969/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 106",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/1b086636-6d9a-411d-9c95-fb3c96387944/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 120",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7da8d716-a540-4969-95b3-feb40e1aceb2/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 125",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f37b6172-7ed3-40c2-b902-9b200047ad28/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 126",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f76f8550-453d-4eb6-94da-1cb158fb8500/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 130",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7945d23e-9234-45ec-a7bb-bc2194b5aaec/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 127",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/5f697c02-399f-42b7-8ee9-d1b665b130a4/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 134",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9b4c4bd3-1076-4ad1-a441-3156f0be6503/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 141",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9ccbb016-fa85-4cda-8e9a-c09ab5e325b5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 143",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/ca050fdd-1bc5-4ccf-ae69-6a0ea3143444/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 144",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/072d10f4-a49c-457e-92ab-d1b296c88d26/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 157",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/47e40b2e-e749-4b9b-a31b-a2abeb3e3e9e/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 162",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/3e0c1d61-5f3d-4481-a7c3-7fcf6b256ad0/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 164",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/3c6f653c-cc36-48ee-9ee7-b0aed030631a/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 165",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9905ff1c-3a99-4b52-8590-a0db36236b26/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 166",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/4e80e966-7204-4948-b605-bbff15df3067/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 115",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/91c5fa01-4aca-415d-82aa-2466ab6725fb/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 140",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/d2003e1d-e5a1-4937-a630-31c346d3771a/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 148",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/18992a5c-9aad-4277-8e5b-e6f3ae74fbdc/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 145",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/275c8ca3-99bb-4434-8eee-08c336418ef4/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 117",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/04f083d0-b2a2-4d25-a087-2c2070d19b9d/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 116",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c26af37b-54ec-40c9-8d4a-571c361f926c/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 174",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/0d3d0e46-8d09-48ef-a64f-98d486f61ab6/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 175",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c30c52ef-d102-41bd-a750-7765ccc17561/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 121",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9c5204d2-35b0-4cf2-afc2-bb1f677acdf5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 114",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/b12712bb-bce1-4c83-a9ee-881a641bf982/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 132",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/6918474c-4a1a-4f26-a215-03652a182098/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Overview 2",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/fb3f8cf6-b516-4633-9202-7bf21ef4ec03/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 113",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/e4a36c76-457a-4d96-af40-66a95c31afe5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 110",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/1ff1840c-478c-491f-818b-2985d4cf8f3a/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 135",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/6db058ba-f269-4bbf-ad5d-8ed1a84551e2/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 128",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c976fc8d-ccae-4df6-b9cc-c1ba135768a4/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 161",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/cbf34d22-f852-40a6-ba88-43c2441b5e35/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 146",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/997511c7-6d4e-4174-b5ca-c28172e9cdca/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 163",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/8483e0a6-dd0d-49e1-8254-31a520992bfc/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 104",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/990072bf-1653-4069-8300-3def7630f196/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/723b0cc9-918c-42e1-80ec-d989ea011f35/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 137",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/21109e08-d9e5-4be9-9e11-a7ef73923119/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 136",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/99f865f1-a643-462b-bf88-429b9804d320/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 153",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/41d2692d-e944-4d7e-95d8-c55843ae5595/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 150",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c4546b6c-7c92-4823-bcf1-6dbea7c4b980/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 108",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/8c33c2b2-f020-44bb-8730-fb379a043315/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 147",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/6e0b3184-5c82-47fe-821b-e80629e595b9/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Index",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7d2bb78b-9a6c-4cba-8525-fa1f75fce769/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 111",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f51ee3a0-f5d2-42ec-a35c-909d0f540d2f/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 112",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/6367feff-3d8b-4624-8172-4248b82a6d51/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 131",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/25f0ed91-f2ac-4a84-b22a-c9b924a24728/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 170",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/0c597d3f-895d-4342-b024-8fb4731123be/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 109",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/b96f6a9c-53a8-4fbf-ae13-c6f92f3d8ff7/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 142",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a3e7a686-524c-4aaf-b1fe-7f2e7f6a954b/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Overview 1",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/136f6142-e043-4ad3-9683-f08b4755603d/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 118",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a09df206-ad02-4eb7-8c38-de0b75308c6d/manifest"
+    }
+  ],
+  "9985303323506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/42375b88-d37a-46d5-88d9-878c991a2a4a/manifest"
+    }
+  ],
+  "9972141903506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a8bd4357-f71e-4e4c-819d-413b6eeed8f9/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9a00c73b-8d99-4ae5-bb90-2de65f2a2d17/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c8ee7023-c8d7-451c-9dad-d90719330356/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/a73e6a70-4d0f-41b5-a647-ca7f4ded23c2/manifest"
+    }
+  ],
+  "9968450023506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f4e3da7b-57d4-40a8-ab79-b8da6114b125/manifest"
+    }
+  ],
+  "9956204733506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9414b757-de40-4287-8db4-afd1245c46a3/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 1",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/d887552d-2a9c-4ac2-a139-1f8a8f2ec54a/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 2",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/10c43bb6-74ec-4727-a146-851a5d627d49/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Map",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f145dd10-da1d-4be3-99f0-2ba234fe2fa6/manifest"
+    }
+  ],
+  "9955485863506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 17",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7bbf9115-adec-4eee-8f65-24f7e9bfb02e/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 18",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/effd4e6e-e5c6-457a-9956-d3adce43b0bb/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Index",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7d59c553-9acd-4827-be14-cc3a90ba3f68/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 15",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/3c80e8d4-4c52-4ecf-b546-8c3dc2cdc985/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 13",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9cc67989-9a76-4713-9708-ba472f3d8253/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 3",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/61577cc4-4933-4fbd-a512-acf84016e3da/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 8",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/f20408a2-bab1-409a-baff-34ee1366b43d/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 7",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/980a7aaf-d3e9-4b4a-aef7-4254bbc852f2/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 19",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/9aebdd74-df72-43b1-9925-94d179797705/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 2",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/652dd3e8-09d8-4848-b17c-5c21464ae4c3/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 9",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/34b14285-57ac-4aa1-ace8-aeeb568654f3/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 6",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/3bbb7c99-5309-4934-8ba2-32c0b2a7c26b/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 10",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/b0e80ffe-ba81-4b1a-ba12-92d71daea0c5/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 12",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/585c8d3b-8c82-490b-adc3-586b9a062a41/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 14",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/c40ad5d2-537b-4d08-ba18-f21e303b0f28/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 5",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/18e0bdfc-54f2-4001-aa41-cb8bc0a97bf9/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 16",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/00e3ac15-2ff6-4450-be3d-1777534715d0/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/e3613416-b2af-4fc6-94c3-28ee78a5fe88/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 4",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/494d3ae1-910b-4d34-a39b-b91995a2a72b/manifest"
+    },
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": "Sheet 11",
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/30fff40c-5662-4d77-984e-942b66be961e/manifest"
+    }
+  ],
+  "99118383073506421": [
+    {
+      "visibility": {
+        "value": "open",
+        "label": "open",
+        "definition": "Open to the world. Anyone can view."
+      },
+      "portion_note": null,
+      "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_resources/dbe54ff2-6bef-4432-9f04-593b6fc2492d/manifest"
+    }
+  ]
+}

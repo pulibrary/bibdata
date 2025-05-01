@@ -9,8 +9,15 @@ describe 'From traject_config.rb', indexing: true do
     indexer.reader!(f).first
   end
 
+  before do
+    allow(ENV).to receive(:fetch).and_return('FAKE_TOKEN')
+  end
+
   context 'valid records' do
     before(:all) do
+      Rails.cache.clear
+      stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
+      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
@@ -97,6 +104,7 @@ describe 'From traject_config.rb', indexing: true do
       @record_99131369793306421 = @indexer.map_record(fixture_record('99131369793306421'))
       @siku_subject_facet = @indexer.map_record(fixture_record('9918309193506421'))
       @custom_fixture = @indexer.map_record(fixture_record('99129088125406421'))
+      @figgy_example = @indexer.map_record(fixture_record('99118383073506421'))
     end
 
     describe 'alma loading' do
@@ -823,6 +831,32 @@ describe 'From traject_config.rb', indexing: true do
       it 'value can be both in the library and online when there are multiple holdings' do
         expect(@online_at_library['access_facet']).to include 'Online'
         expect(@online_at_library['access_facet']).to include 'In the Library'
+      end
+
+      describe 'with items from figgy' do
+        describe 'a public item' do
+          it 'includes Online in the access facet' do
+            expect(@figgy_example['access_facet']).to include('Online')
+            # expect(figgy_example['access_facet']).to include('In the Library')
+          end
+        end
+      end
+    end
+
+    describe 'figgy_1display' do
+      it 'has info about the figgy resource' do
+        expect(@figgy_example['figgy_1display']).to be_present
+        keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
+        expect(keys).to match_array(["visibility", "portion_note", "iiif_manifest_url"])
+      end
+      describe 'a private figgy object' do
+        let(:leader) { '99129146648906421' }
+
+        it 'does not have info about the figgy object' do
+          f001 = { '001' => '99129146648906421' }
+          private_figgy_record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f001],'leader' => leader))
+          expect(private_figgy_record['figgy_1display']).to be_nil
+        end
       end
     end
 

@@ -23,7 +23,8 @@ class AccessFacetBuilder
     [
       electronic_portfolio,
       in_library,
-      marc_indicator
+      marc_indicator,
+      digitized_in_figgy
     ].uniq.compact
   end
 
@@ -44,5 +45,10 @@ class AccessFacetBuilder
       indicator = field.try(:indicator2)
 
       return 'Online' if ['0', '1', ' '].include?(indicator)
+    end
+
+    def digitized_in_figgy
+      return 'Online' if context.output_hash['figgy_1display'].present?
+      # byebug if record['001'].value == '99118383073506421'
     end
 end
