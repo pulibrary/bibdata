@@ -9,15 +9,12 @@ describe 'From traject_config.rb', indexing: true do
     indexer.reader!(f).first
   end
 
-  before do
-    allow(ENV).to receive(:fetch).and_return('FAKE_TOKEN')
-  end
-
   context 'valid records' do
     before(:all) do
-      Rails.cache.clear
+      # Note - in order for this stub to work the environment variable CATALOG_SYNC_TOKEN cannot be set in the environment
+      # Our usual mocks for environment variables do not seem to work
       stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
+        .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))
@@ -847,14 +844,15 @@ describe 'From traject_config.rb', indexing: true do
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
-        expect(keys).to match_array(["visibility", "portion_note", "iiif_manifest_url"])
+        expect(keys).to match_array(['visibility', 'portion_note', 'iiif_manifest_url'])
       end
+
       describe 'a private figgy object' do
         let(:leader) { '99129146648906421' }
 
         it 'does not have info about the figgy object' do
           f001 = { '001' => '99129146648906421' }
-          private_figgy_record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f001],'leader' => leader))
+          private_figgy_record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f001], 'leader' => leader))
           expect(private_figgy_record['figgy_1display']).to be_nil
         end
       end

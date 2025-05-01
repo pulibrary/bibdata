@@ -8,7 +8,8 @@ RSpec.describe MmsRecordsReport do
 
   before do
     Rails.cache.clear
-    allow(ENV).to receive(:fetch).and_return('FAKE_TOKEN')
+    allow(ENV).to receive(:fetch).and_call_original
+    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN').and_return('FAKE_TOKEN')
     figgy_request
   end
 
@@ -17,7 +18,6 @@ RSpec.describe MmsRecordsReport do
   end
 
   it 'caches the report' do
-    pending('Implementing caching without using Rails - or with loading Rails correctly')
     described_class.new.mms_records_report
     described_class.new.mms_records_report
     expect(figgy_request).to have_been_requested.once
