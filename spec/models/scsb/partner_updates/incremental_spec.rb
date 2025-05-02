@@ -4,15 +4,6 @@ RSpec.describe Scsb::PartnerUpdates::Incremental, type: :model, sidekiq: true do
   include_context 'scsb_partner_updates_incremental'
   let(:partner_incremental_update) { described_class.new(dump:, dump_file_type: :recap_records, timestamp:) }
 
-  before do
-    allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN').and_return('FAKE_TOKEN')
-    stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
-    # Create the cached report before Traject tries to get it within a sub-process
-    MmsRecordsReport.new.mms_records_report
-  end
-
   it 'can be instantiated' do
     described_class.new(dump:, dump_file_type: :something, timestamp:)
   end

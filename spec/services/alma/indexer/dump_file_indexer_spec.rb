@@ -6,15 +6,6 @@ RSpec.describe Alma::Indexer::DumpFileIndexer, sidekiq: true do
   let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
   let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
 
-  before do
-    allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN').and_return('FAKE_TOKEN')
-    stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
-    # Create the cached report before Traject tries to get it within a sub-process
-    MmsRecordsReport.new.mms_records_report
-  end
-
   around do |example|
     should_backup_file = File.exist? file_path
     FileUtils.cp(file_path, "#{file_path}.backup") if should_backup_file

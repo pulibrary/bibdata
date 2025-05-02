@@ -9,12 +9,16 @@ describe 'From traject_config.rb', indexing: true do
     indexer.reader!(f).first
   end
 
+  before do
+    allow(ENV).to receive(:fetch).and_call_original
+    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN', 'FAKE_TOKEN').and_return('FAKE_TOKEN')
+  end
+
   context 'valid records' do
     before(:all) do
-      # Note - in order for this stub to work the environment variable CATALOG_SYNC_TOKEN cannot be set in the environment
-      # Our usual mocks for environment variables do not seem to work
       stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-        .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
+        .to_return(status: 200, body: File.open('spec/fixtures/files/figgy/figgy_report.json'))
+      MmsRecordsReport.new.to_translation_map
       stub_request(:get, 'https://figgy.princeton.edu/catalog.json?f%5Bidentifier_tesim%5D%5B0%5D=ark&page=1&q=&rows=1000000')
       @indexer = IndexerService.build
       @sample1 = @indexer.map_record(fixture_record('99276293506421'))

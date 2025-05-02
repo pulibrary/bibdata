@@ -10,7 +10,6 @@ require 'stringex'
 require 'library_stdnums'
 require 'time'
 require 'iso-639'
-require_relative '../../app/models/mms_records_report'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -121,13 +120,11 @@ to_field 'cjk_notes' do |record, accumulator|
 end
 
 to_field 'figgy_1display' do |record, accumulator|
-  mms_report = MmsRecordsReport.new.mms_records_report
-  next unless mms_report.key?(record['001']&.value)
+  figgy_items = Traject::TranslationMap.new('figgy_mms_ids')[record['001']&.value]
 
-  open_items = mms_report[record['001'].value].select { |item| item['visibility']['label'] == 'open' }
-  next if open_items.blank?
+  next unless figgy_items
 
-  accumulator << open_items.to_json.to_s
+  accumulator << figgy_items.to_json.to_s
 end
 
 # Author/Artist:

@@ -6,6 +6,7 @@
 !/data/.keep
 marc_to_solr/translation_maps/locations.rb
 marc_to_solr/translation_maps/location_display.rb
+marc_to_solr/translation_maps/figgy_mms_ids.yaml
 /coverage
 /db/data.yml
 .DS_Store

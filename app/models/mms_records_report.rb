@@ -10,14 +10,11 @@ class MmsRecordsReport
   end
 
   def self.endpoint
-    # @endpoint ||= (MARC_LIBERATION_CONFIG['figgy_base_url']).to_s
-    @endpoint ||= 'https://figgy.princeton.edu'
+    @endpoint ||= (MARC_LIBERATION_CONFIG['figgy_base_url']).to_s
   end
 
   def mms_records_report
-    # expires_in 24 hours - 60 * 60 * 24 = 86400
-    # expiration time in seconds
-    mms_report_cache.fetch('mms_records_report', expires_in: 86400) do
+    Rails.cache.fetch('mms_records_report', expires_in: 24.hours) do
       response = MmsRecordsReport.figgy_connection.get('/reports/mms_records.json', { auth_token: ENV.fetch('CATALOG_SYNC_TOKEN', 'FAKE_TOKEN') })
       raise AuthenticationError if response.status == 403
 
@@ -25,8 +22,20 @@ class MmsRecordsReport
     end
   end
 
-  def mms_report_cache
-    @mms_report_cache ||= ActiveSupport::Cache::FileStore.new('./tmp/cache/')
+  def to_translation_map(translation_map_path: Rails.root.join('marc_to_solr/translation_maps/figgy_mms_ids.yaml'))
+    File.write(translation_map_path, open_records.to_yaml)
+    translation_map_path
+  end
+
+  def open_records
+    open_records_hash = {}
+    mms_records_report.each do |key, items|
+      open_items = items.select { |item| item.dig('visibility', 'label') == 'open' }
+      next if open_items.blank?
+
+      open_records_hash[key] = open_items
+    end
+    open_records_hash
   end
 
   def self.figgy_connection

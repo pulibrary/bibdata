@@ -3,15 +3,6 @@ require 'rails_helper'
 RSpec.describe Alma::Indexer, indexing: true, sidekiq: true do
   let(:solr_url) { ENV.fetch('SOLR_URL', nil) || "http://#{ENV.fetch('lando_bibdata_test_solr_conn_host', nil)}:#{ENV.fetch('lando_bibdata_test_solr_conn_port', nil)}/solr/bibdata-core-test" }
 
-  before do
-    allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN').and_return('FAKE_TOKEN')
-    stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
-    # Create the cached report before Traject tries to get it within a sub-process
-    MmsRecordsReport.new.mms_records_report
-  end
-
   describe '#index_file' do
     it 'indexes a single uncompressed MARC XML file' do
       solr = RSolr.connect(url: solr_url)

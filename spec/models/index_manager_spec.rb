@@ -5,10 +5,6 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
   let(:solr) { RSolr.connect(url: solr_url) }
 
   before do
-    allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with('CATALOG_SYNC_TOKEN').and_return('FAKE_TOKEN')
-    stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy_report.json'))
     Sidekiq::BatchSet.new.to_a.each(&:delete)
     solr.delete_by_query('*:*')
     solr.commit

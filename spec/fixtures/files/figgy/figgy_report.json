@@ -22,9 +22,9 @@
     },
     {
       "visibility": {
-        "value": "open",
-        "label": "open",
-        "definition": "Open to the world. Anyone can view."
+        "value": "restricted",
+        "label": "private",
+        "definition": "Only privileged users of this application can view."
       },
       "portion_note": "Sheet 101",
       "iiif_manifest_url": "https://figgy.princeton.edu/concern/scanned_maps/7b4fc1dd-f9f5-4f01-a1f6-569dd87be2c5/manifest"
