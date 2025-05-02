@@ -838,7 +838,6 @@ describe 'From traject_config.rb', indexing: true do
         describe 'a public item' do
           it 'includes Online in the access facet' do
             expect(@figgy_example['access_facet']).to include('Online')
-            # expect(figgy_example['access_facet']).to include('In the Library')
           end
         end
       end

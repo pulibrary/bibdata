@@ -39,6 +39,10 @@ every 1.day, at: '6:00am', roles: [:cron_production] do
   rake 'marc_liberation:partner_update', output: '/tmp/cron_log.log'
 end
 
+every 1.day, at: '7:00am' do
+  rake 'figgy_mms_ids:build_translation_map', output: '/tmp/cron_log.log'
+end
+
 # delete old events, dumps, and files on disk
 every 1.week, roles: %i[cron_staging cron_production] do
   rake 'marc_liberation:delete:events'

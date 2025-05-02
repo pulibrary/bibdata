@@ -43,7 +43,6 @@ $LOAD_PATH.unshift(File.expand_path('..', __dir__)) # include marc_to_solr direc
 augment_the_subject = AugmentTheSubject.new
 language_service = LanguageService.new
 change_the_subject = ChangeTheSubject.new
-# mms_report = MmsRecordsReport.new.mms_records_report
 
 id_extractor = Traject::MarcExtractor.new('001', first: true)
 deleted_ids = Concurrent::Set.new

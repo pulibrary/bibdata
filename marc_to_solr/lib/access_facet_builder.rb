@@ -49,6 +49,5 @@ class AccessFacetBuilder
 
     def digitized_in_figgy
       return 'Online' if context.output_hash['figgy_1display'].present?
-      # byebug if record['001'].value == '99118383073506421'
     end
 end
