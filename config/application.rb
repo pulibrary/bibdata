@@ -44,5 +44,6 @@ module MarcLiberation
     config.authz = netids.split if netids
 
     config.alma = config_for(:alma).with_indifferent_access
+    config.autoload_lib(ignore: %w[assets tasks])
   end
 end

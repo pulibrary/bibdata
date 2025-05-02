@@ -17,3 +17,7 @@ spec/fixtures/marc_to_solr/figgy_ark_cache
 doc/
 .env
 .aws-sam/
+target
+/lib/bibdata_rs/bibdata_rs.*
+Makefile
+mkmf.log

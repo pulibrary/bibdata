@@ -1,0 +1,10 @@
+[package]
+name = "bibdata_rs"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+magnus = { version = "0.6.2" }
