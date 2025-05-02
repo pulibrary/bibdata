@@ -15,7 +15,7 @@ class MmsRecordsReport
   end
 
   def mms_records_report
-    # expires_in 24 hours - 60 * 60 * 24
+    # expires_in 24 hours - 60 * 60 * 24 = 86400
     # expiration time in seconds
     mms_report_cache.fetch('mms_records_report', expires_in: 86400) do
       response = MmsRecordsReport.figgy_connection.get('/reports/mms_records.json', { auth_token: ENV.fetch('CATALOG_SYNC_TOKEN', 'FAKE_TOKEN') })
