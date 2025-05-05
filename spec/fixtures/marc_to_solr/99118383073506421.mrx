@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+  <record>
+    <leader>01244ccm a2200337z 4500</leader>
+    <controlfield tag="005">20240318115910.0</controlfield>
+    <controlfield tag="007">cr#un#---uuuuu</controlfield>
+    <controlfield tag="008">190531t19241924xxuuuze n zxx d</controlfield>
+    <controlfield tag="001">99118383073506421</controlfield>
+    <datafield tag="035" ind1=" " ind2=" ">
+      <subfield code="a">(NjP)11838307-princetondb</subfield>
+    </datafield>
+    <datafield tag="040" ind1=" " ind2=" ">
+      <subfield code="a">NjP</subfield>
+      <subfield code="b">eng</subfield>
+      <subfield code="c">NjP</subfield>
+    </datafield>
+    <datafield tag="100" ind1="1" ind2=" ">
+      <subfield code="a">White, Lew,</subfield>
+      <subfield code="e">composer.</subfield>
+    </datafield>
+    <datafield tag="245" ind1="1" ind2="0">
+      <subfield code="a">Love light lane</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="1">
+      <subfield code="a">Philadelphia, PA :</subfield>
+      <subfield code="b">The Stanley Music Co.,</subfield>
+      <subfield code="c">[1924]</subfield>
+    </datafield>
+    <datafield tag="264" ind1=" " ind2="4">
+      <subfield code="c">©1924</subfield>
+    </datafield>
+    <datafield tag="336" ind1=" " ind2=" ">
+      <subfield code="a">notated music</subfield>
+      <subfield code="b">ntm</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="337" ind1=" " ind2=" ">
+      <subfield code="a">unmediated</subfield>
+      <subfield code="b">n</subfield>
+      <subfield code="2">rdamedia</subfield>
+    </datafield>
+    <datafield tag="338" ind1=" " ind2=" ">
+      <subfield code="a">volume</subfield>
+      <subfield code="b">nc</subfield>
+      <subfield code="2">rdacontent</subfield>
+    </datafield>
+    <datafield tag="348" ind1=" " ind2=" ">
+      <subfield code="a">part</subfield>
+      <subfield code="2">rdanfm</subfield>
+    </datafield>
+    <datafield tag="490" ind1="1" ind2=" ">
+      <subfield code="a">Fred D. Valva collection of silent film and vaudeville theatre orchestra
+        music</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Instrumentation: bass, cello, clarinet, cornet, flute, percussion, piano,
+        trombone, viola, violin.</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">"The Ballad Beautiful"</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">Box and folder number: 077 / 006</subfield>
+    </datafield>
+    <datafield tag="546" ind1=" " ind2=" ">
+      <subfield code="b">Staff notation</subfield>
+    </datafield>
+    <datafield tag="500" ind1=" " ind2=" ">
+      <subfield code="a">If this score is not currently digitized and you would like to view it in
+        person or have it digitized, please contact Mendel Music Library by emailing
+        muslib@princeton.edu for further assistance.</subfield>
+    </datafield>
+    <datafield tag="650" ind1=" " ind2="0">
+      <subfield code="a">Silent film music.</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Parts (Music)</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield tag="655" ind1=" " ind2="7">
+      <subfield code="a">Silent film music.</subfield>
+      <subfield code="2">lcgft</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Herscher, Lou</subfield>
+      <subfield code="q">(Louis),</subfield>
+      <subfield code="d">1894-1974,</subfield>
+      <subfield code="e">composer.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Parish, Mitchell,</subfield>
+      <subfield code="e">lyricist.</subfield>
+    </datafield>
+    <datafield tag="700" ind1="1" ind2=" ">
+      <subfield code="a">Held, Will P.,</subfield>
+      <subfield code="e">arranger.</subfield>
+    </datafield>
+    <datafield tag="830" ind1=" " ind2="0">
+      <subfield code="a">Fred D. Valva collection of silent film and vaudeville theater orchestra
+        music.</subfield>
+    </datafield>
+    <datafield tag="950" ind1=" " ind2=" ">
+      <subfield code="c">2024-04-22 10:46:34 US/Eastern</subfield>
+      <subfield code="b">2021-07-13 02:52:33 US/Eastern</subfield>
+      <subfield code="a">false</subfield>
+    </datafield>
+  </record>
+</collection>

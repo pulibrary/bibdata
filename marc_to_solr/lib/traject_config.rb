@@ -118,6 +118,14 @@ to_field 'cjk_notes' do |record, accumulator|
   accumulator << values.compact.join(' ')
 end
 
+to_field 'figgy_1display' do |record, accumulator|
+  figgy_items = Traject::TranslationMap.new('figgy_mms_ids')[record['001']&.value]
+
+  next unless figgy_items
+
+  accumulator << figgy_items.to_json.to_s
+end
+
 # Author/Artist:
 #    100 XX aqbcdek A aq
 #    110 XX abcdefgkln A ab
