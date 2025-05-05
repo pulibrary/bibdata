@@ -34,6 +34,7 @@ set :linked_dirs, %w{
   log
 }
 
+set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
