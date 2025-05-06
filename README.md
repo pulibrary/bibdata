@@ -86,6 +86,16 @@ To run the tests in the `marc_to_solr` directory set RAILS_ENV:
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
 
+## Compiling
+
+Some business logic is written in Rust.  This code is compiled when you
+do any of the following actions:
+* deploy
+* run an rspec test with the `rust` tag
+* call a class, module, or method that is provided by the Rust code and there is no
+  existing binary
+* run `bundle exec rake compile`
+
 ## Semgrep
 
 This repository uses [semgrep](https://semgrep.dev/) to:
