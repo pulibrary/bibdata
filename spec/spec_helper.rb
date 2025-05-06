@@ -13,6 +13,7 @@ if in_ci?
   )
   SimpleCov.start('rails') do
     add_filter '/spec'
+    add_filter '/lib/tasks'
   end
 end
 
