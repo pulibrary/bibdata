@@ -15,16 +15,17 @@ struct Thesis {
 }
 
 #[derive(Deserialize, Debug)]
-pub struct Response {
-    pub data: Vec<Item>,
-}
-
-#[derive(Deserialize, Debug)]
 pub struct Item {
     pub id: String,
     pub attributes: Attributes,
 }
 
+#[derive(Deserialize, Debug)]
+pub struct Response {
+    pub data: Vec<Item>,
+}
+
+#[derive(Deserialize, Debug)]
 pub struct Attributes {
     #[serde(rename = "sort_title")]
     pub title_sort: String,
