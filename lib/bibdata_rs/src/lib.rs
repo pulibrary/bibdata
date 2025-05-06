@@ -15,26 +15,25 @@ struct Thesis {
 }
 
 #[derive(Deserialize, Debug)]
-pub struct Item {
-    pub id: String,
-    pub attributes: Attributes,
-}
-
-#[derive(Deserialize, Debug)]
 pub struct Response {
     pub data: Vec<Item>,
 }
 
 #[derive(Deserialize, Debug)]
 pub struct Attributes {
-    #[serde(rename = "sort_title")]
-    pub title_sort: String,
+    title: Vec<String>,
     // alternative -> other_title_display
-    #[serde(rename = "transliterated_title")]
-    pub other_title_display: Vec<String>,
-    // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
-    #[serde(rename = "creator")]
-    creator: Vec<String>,
+    // #[serde(rename = "transliterated_title")]
+    // pub other_title_display: Vec<String>,
+    // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
+    // #[serde(rename = "creator")]
+    // creator: Vec<String>,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct Item {
+    id: String,
+    attributes: Attributes,
 }
 
 pub struct CatalogClient {
@@ -62,6 +61,18 @@ impl CatalogClient {
     }
 }
 
+impl Serialize for Attributes {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: Serializer,
+    {
+        let mut serializer = serializer.serialize_struct("Attributes", 1)?;
+        serializer.serialize_field("title_display", &self.title.first())?;
+        serializer.serialize_field("title_citation_display", &self.title.first())?;
+        serializer.end()
+    }
+}
+
 impl Serialize for Thesis {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
@@ -74,8 +85,13 @@ impl Serialize for Thesis {
         serializer.end()
     }
 }
+fn json_ephemera_document(path: String) -> String {
+    let data = fs::read_to_string(path).expect("Unable to read file");
+    let metadata: Attributes = serde_json::from_str(&data).expect("Unable to parse JSON");
+    serde_json::to_string(&metadata).unwrap()
+}
 
-fn json_document(path: String) -> String {
+fn json_theses_document(path: String) -> String {
     let data = fs::read_to_string(path).expect("Unable to read file");
     let metadata: Metadata = serde_xml_rs::SerdeXml::new()
         .namespace("oai_dc", "http://www.openarchives.org/OAI/2.0/oai_dc/")
@@ -89,7 +105,7 @@ fn json_document(path: String) -> String {
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("BibdataRs")?;
     let submodule = module.define_module("Theses")?;
-    submodule.define_singleton_method("json_document", function!(json_document, 1))?;
+    submodule.define_singleton_method("json_document", function!(json_theses_document, 1))?;
     Ok(())
 }
 
@@ -103,5 +119,12 @@ mod tests {
         let client = CatalogClient::default();
         let result = client.get_data().await;
         assert!(result.is_ok());
+    }
+
+    #[test]
+    fn test_json_ephemera_document() {
+        let path = "/Users/cc62/apps_team/bibdata/spec/fixtures/files/ephemera/ephemera1.json";
+        let result = json_ephemera_document(path.to_string());
+        assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\"}");
     }
 }

@@ -1,0 +1,240 @@
+{
+    "@context": [
+      "https://bibdata.princeton.edu/context.json",
+      {
+        "wgs84": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+        "latitude": {
+          "@id": "wgs84:lat"
+        },
+        "longitude": {
+          "@id": "wgs84:lon"
+        }
+      }
+    ],
+    "@id": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd",
+    "edm_rights": {
+      "@id": "http://rightsstatements.org/vocab/CNE/1.0/",
+      "@type": "dcterms:RightsStatement",
+      "pref_label": "Copyright Not Evaluated"
+    },
+    "memberOf": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/f12456b9-342f-4681-80a3-da1b7854aaac",
+        "@type": "pcdm:Collection",
+        "title": "Born Digital Monographs, Serials, & Series Reports"
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/92d97b5e-cde8-4eeb-8e56-6d5d0f294038",
+        "@type": "pcdm:Collection",
+        "barcode": "00000000000000",
+        "label": "Box Monographic reports and papers (Publicly Accessible)",
+        "box_number": "Monographic reports and papers (Publicly Accessible)"
+      }
+    ],
+    "system_created_at": "2024-12-03T21:47:49Z",
+    "system_updated_at": "2025-04-25T15:31:54Z",
+    "@type": "pcdm:Object",
+    "title": [
+      "Of technique : chance procedures on turntable : a book of essays & illustrations"
+    ],
+    "alternative": [
+      "Chance procedures on turntable"
+    ],
+    "creator": [
+      "Chavez, Maria"
+    ],
+    "contributor": [
+      "Test, Test"
+    ],
+    "publisher": [
+      "Rolling Press"
+    ],
+    "barcode": "00000000000000",
+    "label": "Folder 00000000000000",
+    "is_part_of": "Born Digital Monographs, Serials, & Series Reports",
+    "coverage": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/8d175872-80fc-4389-bd0b-5034d1178669",
+        "@type": "skos:Concept",
+        "pref_label": "Andorra",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAEGeographicAreas",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Geographic Areas"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/countries/an\"]"
+          }
+        }
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/6170d545-fe9b-4df9-ae72-776083f00102",
+        "@type": "skos:Concept",
+        "pref_label": "Anguilla",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAEGeographicAreas",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Geographic Areas"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/countries/am\"]"
+          }
+        }
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/4761b799-a961-458e-987a-190122066a90",
+        "@type": "skos:Concept",
+        "pref_label": "Argentina",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAEGeographicAreas",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Geographic Areas"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/countries/ag\"]"
+          }
+        }
+      }
+    ],
+    "format": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/5dbeae15-f46a-4411-a385-ce6df02231dc",
+        "@type": "skos:Concept",
+        "pref_label": "Books",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/ephemeraGenres",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "Ephemera Genres"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "http://id.loc.gov/vocabulary/graphicMaterials/tgm001221"
+          }
+        }
+      }
+    ],
+    "origin_place": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/91004621-0204-4c75-aaa4-0ce3a3167dd0",
+        "@type": "skos:Concept",
+        "pref_label": "Colombia",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAEGeographicAreas",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Geographic Areas"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/countries/ck\"]"
+          }
+        }
+      }
+    ],
+    "language": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/6c38683a-cc07-4dea-bd52-09a29fb0f59f",
+        "@type": "skos:Concept",
+        "pref_label": "English",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAELanguagesNeato",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Languages neato"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/iso639-1/en\"]"
+          }
+        }
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/766dba0b-6393-4c29-b237-c3468e6c5d9d",
+        "@type": "skos:Concept",
+        "pref_label": "Spanish",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAELanguagesNeato",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "LAE Languages neato"
+        },
+        "exact_match": {
+          "@id": {
+            "@id": "[\"http://id.loc.gov/vocabulary/iso639-1/es\"]"
+          }
+        }
+      }
+    ],
+    "subject": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/abf14319-f4bd-48d3-b4ab-5369354cc4aa",
+        "@type": "skos:Concept",
+        "pref_label": "Music",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAESubjects/artsAndCulture",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "Arts and culture"
+        },
+        "exact_match": {
+          "@id": "http://id.loc.gov/authorities/subjects/sh85088762"
+        }
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/63608c1f-deb5-4389-a9b6-93a21c286cc9",
+        "@type": "skos:Concept",
+        "pref_label": "Performing arts",
+        "in_scheme": {
+          "@id": "https://figgy.princeton.edu/ns/lAESubjects/artsAndCulture",
+          "@type": "skos:ConceptScheme",
+          "pref_label": "Arts and culture"
+        },
+        "exact_match": {
+          "@id": "http://id.loc.gov/authorities/subjects/sh85099818"
+        }
+      }
+    ],
+    "category": [
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/2f56878f-da0e-4e10-b56f-6a9690fc2c47",
+        "@type": "skos:ConceptScheme",
+        "pref_label": "Arts and culture"
+      },
+      {
+        "@id": "https://figgy-staging.princeton.edu/catalog/2f56878f-da0e-4e10-b56f-6a9690fc2c47",
+        "@type": "skos:ConceptScheme",
+        "pref_label": "Arts and culture"
+      }
+    ],
+    "description": [
+      "This is the first full text on abstract turntablism performance practice in existence. The book is a Conceptual Sound Art album that deals with one's \"inner ear/ inner dialogue\". As an interactive sculpture, pages with illustrations are encouraged to be torn from the book to assist the reader to create their own abstract turntablism works. This interaction allows the book to change over time without Maria's intentions. Every book becomes the shape that the owner chooses with every sound imagined or literally performed live. With this book object/ conceptual album anyone can become an abstract turntablist or simply learn a unique approach to abstract turntablism."
+    ],
+    "source": [
+      "https://mariachavez.bandcamp.com/merch/of-technique-chance-procedures-on-turntable-pdf-only"
+    ],
+    "sort_title": [
+      "of technique : chance procedures on turntable : a book of essays & illustrations"
+    ],
+    "page_count": "116",
+    "created": "12/03/24 09:47:49 PM UTC",
+    "modified": "04/25/25 03:31:54 PM UTC",
+    "folder_number": "00000000000000",
+    "date_range": [
+      {
+        "@type": "edm:TimeSpan",
+        "begin": [
+          "2012"
+        ],
+        "end": [
+          "2014"
+        ],
+        "skos:prefLabel": "approximately 2012-2014",
+        "crm:P79_beginning_is_qualified_by": "approximate",
+        "crm:P80_end_is_qualified_by": "approximate"
+      }
+    ],
+    "date_created": [
+      "2012"
+    ],
+    "series": "A Series of Reports",
+    "provenance": "Test text."
+  }
