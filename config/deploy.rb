@@ -109,7 +109,11 @@ namespace :deploy do
 
   desc 'Compile Rust code'
   task :compile do
-    on roles(:all) { execute :rake, 'compile' }
+    on roles(:all) do
+      within release_path do
+        execute :rake, 'compile'
+      end
+    end
   end
   after :updated, :compile
 
