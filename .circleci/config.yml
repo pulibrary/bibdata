@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.3
+  rust: circleci/rust@1.6.2
 jobs:
   build:
     working_directory: ~/bibdata
@@ -22,6 +23,7 @@ jobs:
 
     steps:
       - checkout
+      - rust/install
       - node/install:
           install-yarn: true
           node-version: '22.14.0'
@@ -42,9 +44,6 @@ jobs:
           key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
-      - run:
-          name: create a temp directory
-          command: mkdir tmp
 
       - run:
           name: Load config into solr
@@ -113,6 +112,7 @@ jobs:
 
     steps:
       - checkout
+      - rust/install
       - node/install:
           install-yarn: true
           node-version: '22.14.0'
@@ -128,6 +128,9 @@ jobs:
       - run:
           name: Install dependencies
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - run:
+          name: Compile Rust code
+          command: bundle exec rake compile
       - save_cache:
           key: v4-bibdata-{{ checksum "Gemfile.lock" }}
           paths:

@@ -1,0 +1,3 @@
+[workspace]
+members = ["./lib/bibdata_rs"]
+resolver = "2"

@@ -98,3 +98,6 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
+
+gem 'rake-compiler'
+gem 'rb_sys', '~> 0.9.111'

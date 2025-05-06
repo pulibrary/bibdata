@@ -107,6 +107,16 @@ namespace :deploy do
     end
   end
 
+  desc 'Compile Rust code'
+  task :compile do
+    on roles(:all) do
+      within release_path do
+        execute :rake, 'compile'
+      end
+    end
+  end
+  after :updated, :compile
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
