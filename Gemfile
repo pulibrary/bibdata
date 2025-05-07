@@ -101,5 +101,3 @@ end
 
 gem 'rake-compiler'
 gem 'rb_sys', '~> 0.9.111'
-
-gem 'oai', '~> 1.3'
