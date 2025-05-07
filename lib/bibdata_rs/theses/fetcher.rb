@@ -112,19 +112,6 @@ module BibdataRs::Theses
       theses.flatten
     end
 
-    def index_collection(indexer, id)
-      fetched = fetch_collection(id)
-      fetched.each do |record|
-        indexer.index_hash(record)
-      end
-    end
-
-    def index_all_collections(indexer)
-      collections.each do |c|
-        index_collection(indexer, c)
-      end
-    end
-
     ##
     # Cache all collections
     def cache_all_collections(indexer)
