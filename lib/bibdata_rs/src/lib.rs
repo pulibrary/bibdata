@@ -49,7 +49,7 @@ impl Default for CatalogClient {
 
 impl CatalogClient {
     pub fn new() -> Self {
-        let figgy_ephemera_url = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL").ok();
+        let figgy_ephemera_url = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL");
         CatalogClient {
             url: figgy_ephemera_url.unwrap()
         }
@@ -116,20 +116,35 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
 mod tests {
     use std::path::PathBuf;
     use super::*;
+    use mockito::mock;
 
     #[tokio::test]
     async fn test_get_data() {
-        std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", "https://figgy-staging.princeton.edu/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%26Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=");
+        let mock_url = mockito::server_url();
+        std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &mock_url);
+        
+        let mock = mock("GET", "/")
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body(r#"{ "data": [] }"#)
+            .create();
+
         let client = CatalogClient::default();
         let result = client.get_data().await;
-        assert!(result.is_ok());
+
+        mock.assert();
+        
+        match result {
+            Ok(_response) => assert!(true),
+            Err(e) => panic!("Request failed: {}", e), 
+        }
     }
 
     #[test]
     fn test_json_ephemera_document() {
         let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        let path = "spec/fixtures/files/ephemera/ephemera1.json";
-        d.push(path);
+        
+        d.push("../../spec/fixtures/files/ephemera/ephemera1.json");
         
         let result = json_ephemera_document(d.to_string_lossy().to_string());
         assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\"}");
