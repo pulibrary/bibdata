@@ -2,7 +2,6 @@ use magnus::{function, prelude::*, Error, Ruby};
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 use std::fs;
 
-
 #[derive(Deserialize)]
 struct Metadata {
     #[serde(rename = "oai_dc:dc")]
@@ -23,10 +22,13 @@ pub struct Response {
 #[derive(Deserialize, Debug)]
 pub struct Attributes {
     title: Vec<String>,
-    #[serde(rename = "alternative")]
-    alternative_title_display: Vec<String>,
-    #[serde(rename = "transliterated_title")]
-    transliterated_title_display: Vec<String>,
+    #[serde(rename = "alternative", skip_serializing_if = "Option::is_none")]
+    alternative_title_display: Option<Vec<String>>,
+    #[serde(
+        rename = "transliterated_title",
+        skip_serializing_if = "Option::is_none"
+    )]
+    transliterated_title_display: Option<Vec<String>>,
     // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
     // #[serde(rename = "creator")]
     // creator: Vec<String>,
@@ -52,7 +54,7 @@ impl CatalogClient {
     pub fn new() -> Self {
         let figgy_ephemera_url = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL");
         CatalogClient {
-            url: figgy_ephemera_url.unwrap()
+            url: figgy_ephemera_url.unwrap(),
         }
     }
 
@@ -77,8 +79,12 @@ impl Serialize for Attributes {
 }
 impl Attributes {
     fn other_title_display(&self) -> Vec<String> {
-        let mut combined = self.alternative_title_display.clone();
-        combined.extend(self.transliterated_title_display.clone());
+        let mut combined = self.alternative_title_display.clone().unwrap_or_default();
+        combined.extend(
+            self.transliterated_title_display
+                .clone()
+                .unwrap_or_default(),
+        );
         combined
     }
 }
@@ -117,21 +123,22 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     let submodule = module.define_module("Theses")?;
     let submodule_ephemera = submodule.define_module("Ephemera")?;
     submodule.define_singleton_method("json_document", function!(json_theses_document, 1))?;
-    submodule_ephemera.define_singleton_method("json_document", function!(json_ephemera_document, 1))?;
+    submodule_ephemera
+        .define_singleton_method("json_document", function!(json_ephemera_document, 1))?;
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
-    use std::path::PathBuf;
     use super::*;
     use mockito::mock;
+    use std::path::PathBuf;
 
     #[tokio::test]
     async fn test_get_data() {
         let mock_url = mockito::server_url();
         std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &mock_url);
-        
+
         let mock = mock("GET", "/")
             .with_status(200)
             .with_header("content-type", "application/json")
@@ -142,20 +149,32 @@ mod tests {
         let result = client.get_data().await;
 
         mock.assert();
-        
+
         match result {
             Ok(_response) => assert!(true),
-            Err(e) => panic!("Request failed: {}", e), 
+            Err(e) => panic!("Request failed: {}", e),
         }
     }
 
     #[test]
     fn test_json_ephemera_document() {
         let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        
+
         d.push("../../spec/fixtures/files/ephemera/ephemera1.json");
-        
+
         let result = json_ephemera_document(d.to_string_lossy().to_string());
         assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":[\"Of technique : chance procedures on turntable : a book of essays & illustrations\"],\"other_title_display\":[\"Chance procedures on turntable\",\"custom transliterated title\"]}");
+    }
+    mod no_transliterated_title {
+        use super::*;
+        #[test]
+        fn test_json_ephemera_document() {
+            let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+
+            d.push("../../spec/fixtures/files/ephemera/ephemera_no_transliterated_title.json");
+
+            let result = json_ephemera_document(d.to_string_lossy().to_string());
+            assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":[\"Of technique : chance procedures on turntable : a book of essays & illustrations\"],\"other_title_display\":[\"Chance procedures on turntable\"]}");
+        }
     }
 }
