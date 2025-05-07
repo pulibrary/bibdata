@@ -24,6 +24,9 @@ pub struct Response {
 pub struct Attributes {
     title: Vec<String>,
     // alternative -> other_title_display
+    #[serde(alias = "alternative", alias = "transliterated_title")]
+    other_title_display: Vec<String>,
+    // // transliterated_title
     // #[serde(rename = "transliterated_title")]
     // pub other_title_display: Vec<String>,
     // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
@@ -67,9 +70,10 @@ impl Serialize for Attributes {
     where
         S: Serializer,
     {
-        let mut serializer = serializer.serialize_struct("Attributes", 1)?;
+        let mut serializer = serializer.serialize_struct("Attributes", 2)?;
         serializer.serialize_field("title_display", &self.title.first())?;
-        serializer.serialize_field("title_citation_display", &self.title.first())?;
+        serializer.serialize_field("title_citation_display", &self.title)?;
+        serializer.serialize_field("other_title_display", &self.other_title_display)?;
         serializer.end()
     }
 }
@@ -147,6 +151,6 @@ mod tests {
         d.push("../../spec/fixtures/files/ephemera/ephemera1.json");
         
         let result = json_ephemera_document(d.to_string_lossy().to_string());
-        assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\"}");
+        assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":[\"Of technique : chance procedures on turntable : a book of essays & illustrations\"],\"other_title_display\":[\"Chance procedures on turntable\"]}");
     }
 }
