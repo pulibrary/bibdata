@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="static/style.xsl"?><OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd"><responseDate>2021-09-22T17:35:25Z</responseDate><request verb="GetRecord" identifier="oai:dataspace.princeton.edu:88435/dsp012z10wq21r" metadataPrefix="oai_dc">https://dataspace.princeton.edu/oai/request</request><GetRecord><record><header><identifier>oai:dataspace.princeton.edu:88435/dsp012z10wq21r</identifier><datestamp>2012-09-25T14:13:09Z</datestamp><setSpec>com_88435_dsp01bg257f052</setSpec><setSpec>col_88435_dsp016q182k13h</setSpec></header><metadata><oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:doc="http://www.lyncode.com/xoai" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+    <dc:title>Engineering solutions for a carbon-constrained world</dc:title>
+    <dc:creator>Celia, M. A.</dc:creator>
+    <dc:creator>Nordbotten, J. M.</dc:creator>
+    <dc:subject>wedges</dc:subject>
+    <dc:subject>CCS</dc:subject>
+    <dc:description>Realistic solutions to reduce or reverse the relentless increase in atmospheric CO2 concentrations will require enormous efforts, new approaches to energy systems, and new technologies.  While a variety of existing technologies can contribute substantially to large-scale solutions, none can solve the problem on its own.  An important technology associated with carbon-free electricity from fossil fuels is Carbon Capture and Storage, or CCS.  While no new technologies are required to implement this concept, regulatory, economic, and technical risk assessment developments are required for large-scale implementation. New analysis tools are being developed to address these broad issues associated with CCS.  These broad requirements associated with CCS highlight the multi-disciplinary nature of the carbon problem and provide opportunities for new approaches in both the engineering professions and in engineering education.</dc:description>
+    <dc:date>2009-11-25T16:50:00Z</dc:date>
+    <dc:date>2009-12-07T22:31:16Z</dc:date>
+    <dc:date>2009-11-25T16:50:00Z</dc:date>
+    <dc:date>2009-12-07T22:31:16Z</dc:date>
+    <dc:date>2008-08-01</dc:date>
+    <dc:date>2009-11-25T16:50:00Z</dc:date>
+    <dc:date>2009-11-25</dc:date>
+    <dc:type>Article</dc:type>
+    <dc:identifier>http://arks.princeton.edu/ark:/88435/dsp012z10wq21r</dc:identifier>
+    <dc:language>en_US</dc:language>
+  </oai_dc:dc>
+</metadata></record></GetRecord></OAI-PMH>
