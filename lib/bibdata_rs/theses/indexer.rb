@@ -279,10 +279,7 @@ module BibdataRs::Theses
     def title_search_hash(titles)
       return if titles.nil?
 
-      title = titles.first
-      title.scan(/\\\(.*?\\\)/).each do |latex|
-        title = title.gsub(latex, latex.gsub(/[^\p{Alnum}]/, ''))
-      end
+      title = BibdataRs::Theses::normalize_latex titles.first
       title == titles.first ? title : [titles.first, title]
     end
 
