@@ -269,7 +269,7 @@ module BibdataRs::Theses
     end
 
     def map_program(program)
-      lc_authorized_programs[program]
+      BibdataRs::Theses::map_program program
     end
 
     def lc_authorized_departments
@@ -323,51 +323,6 @@ module BibdataRs::Theses
         'Spanish and Portuguese Languages and Cultures' => 'Princeton University. Department of Spanish and Portuguese Languages and Cultures',
         'Statistics' => 'Princeton University. Department of Statistics',
         'School of Public and International Affairs' => 'School of Public and International Affairs'
-      }
-    end
-
-    def lc_authorized_programs
-      {
-        'African American Studies Program' => 'Princeton University. Program in African-American Studies',
-        'African Studies Program' => 'Princeton University. Program in African Studies',
-        'American Studies Program' => 'Princeton University. Program in American Studies',
-        'Applications of Computing Program' => 'Princeton University. Program in Applications of Computing',
-        'Architecture and Engineering Program' => 'Princeton University. Program in Architecture and Engineering',
-        'Center for Statistics and Machine Learning' => 'Princeton University. Center for Statistics and Machine Learning',
-        'Creative Writing Program' => 'Princeton University. Creative Writing Program',
-        'East Asian Studies Program' => 'Princeton University. Program in East Asian Studies',
-        'Engineering Biology Program' => 'Princeton University. Program in Engineering Biology',
-        'Engineering and Management Systems Program' => 'Princeton University. Program in Engineering and Management Systems',
-        'Environmental Studies Program' => 'Princeton University. Program in Environmental Studies',
-        'Ethnographic Studies Program' => 'Princeton University. Program in Ethnographic Studies',
-        'European Cultural Studies Program' => 'Princeton University. Program in European Cultural Studies',
-        'Finance Program' => 'Princeton University. Program in Finance',
-        'Geological Engineering Program' => 'Princeton University. Program in Geological Engineering',
-        'Global Health and Health Policy Program' => 'Princeton University. Program in Global Health and Health Policy',
-        'Hellenic Studies Program' => 'Princeton University. Program in Hellenic Studies',
-        'Humanities Council and Humanistic Studies Program' => 'Princeton University. Program in Humanistic Studies',
-        'Judaic Studies Program' => 'Princeton University. Program in Judaic Studies',
-        'Latin American Studies Program' => 'Princeton University. Program in Latin American Studies',
-        'Latino Studies Program' => 'Princeton University. Program in Latino Studies',
-        'Linguistics Program' => 'Princeton University. Program in Linguistics',
-        'Materials Science and Engineering Program' => 'Princeton University. Program in Materials Science and Engineering',
-        'Medieval Studies Program' => 'Princeton University. Program in Medieval Studies',
-        'Near Eastern Studies Program' => 'Princeton University. Program in Near Eastern Studies',
-        'Neuroscience Program' => 'Princeton University. Program in Neuroscience',
-        'Program in Cognitive Science' => 'Princeton University. Program in Cognitive Science',
-        'Program in Entrepreneurship' => 'Princeton University. Program in Entrepreneurship',
-        'Program in Gender and Sexuality Studies' => 'Princeton University. Program in Gender and Sexuality Studies',
-        'Program in Music Theater' => 'Princeton University. Program in Music Theater',
-        'Program in Technology & Society, Technology Track' => 'Princeton University. Program in Technology and Society',
-        'Program in Values and Public Life' => 'Princeton University. Program in Values and Public Life',
-        'Quantitative and Computational Biology Program' => 'Princeton University. Program in Quantitative and Computational Biology',
-        'Robotics & Intelligent Systems Program' => 'Princeton University. Program in Robotics and Intelligent Systems',
-        'Russian & Eurasian Studies Program' => 'Princeton University. Program in Russian, East European and Eurasian Studies',
-        'South Asian Studies Program' => 'Princeton University. Program in South Asian Studies',
-        'Theater' => 'Princeton University. Program in Theater',
-        'Theater Program' => 'Princeton University. Program in Theater',
-        'Sustainable Energy Program' => 'Princeton University. Program in Sustainable Energy',
-        'Urban Studies Program' => 'Princeton University. Program in Urban Studies'
       }
     end
   end
