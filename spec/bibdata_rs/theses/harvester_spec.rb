@@ -43,8 +43,8 @@ describe 'BibdataRs::Theses::Harvester' do
   end
 
   describe '#_client' do
-    let(:headers) { subject.instance_variable_get('@headers') }
-    let(:base) { subject.instance_variable_get('@base') }
+    let(:headers) { subject.instance_variable_get(:@headers) }
+    let(:base) { subject.instance_variable_get(:@base) }
 
     describe 'defaults' do
       subject { BibdataRs::Theses::Harvester.new.send(:client) }

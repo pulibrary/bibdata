@@ -13,13 +13,9 @@ module BibdataRs::Theses
       @logger = logger
     end
 
-    def key?(value)
-      document.key?(value)
-    end
+    delegate :key?, to: :document
 
-    def [](value)
-      document[value]
-    end
+    delegate :[], to: :document
 
     def id
       document['id']
@@ -108,41 +104,35 @@ module BibdataRs::Theses
 
     private
 
-    # rubocop:disable Layout/LineLength
-    def walkin_restrictions
-      "Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>."
-    end
-    # rubocop:enable Layout/LineLength
+      def walkin_restrictions
+        "Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>."
+      end
 
-    # rubocop:disable Layout/LineLength
-    def invalid_embargo_restrictions_note
-      "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{id}\"> Mudd Manuscript Library</a>."
-    end
-    # rubocop:enable Layout/LineLength
+      # rubocop:disable Layout/LineLength
+      def invalid_embargo_restrictions_note
+        "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{id}\"> Mudd Manuscript Library</a>."
+      end
+      # rubocop:enable Layout/LineLength
 
-    # rubocop:disable Layout/LineLength
-    def embargo_restrictions_note
-      "This content is embargoed until #{formatted_embargo_date}. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{id}\"> Mudd Manuscript Library</a>."
-    end
-    # rubocop:enable Layout/LineLength
+      # rubocop:disable Layout/LineLength
+      def embargo_restrictions_note
+        "This content is embargoed until #{formatted_embargo_date}. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{id}\"> Mudd Manuscript Library</a>."
+      end
+      # rubocop:enable Layout/LineLength
 
-    # rubocop:disable Metrics/MethodLength
-    # rubocop:disable Metrics/PerceivedComplexity
-    def restrictions_note_display
-      if location || access_rights
-        restrictions_access
-      elsif walkin?
-        walkin_restrictions
-      elsif embargo_present?
-        if !embargo_valid?
-          logger.warn("Failed to parse the embargo date for #{id}")
-          invalid_embargo_restrictions_note
-        elsif embargo_active?
-          embargo_restrictions_note
+      def restrictions_note_display
+        if location || access_rights
+          restrictions_access
+        elsif walkin?
+          walkin_restrictions
+        elsif embargo_present?
+          if !embargo_valid?
+            logger.warn("Failed to parse the embargo date for #{id}")
+            invalid_embargo_restrictions_note
+          elsif embargo_active?
+            embargo_restrictions_note
+          end
         end
       end
-    end
-    # rubocop:enable Metrics/MethodLength
-    # rubocop:enable Metrics/PerceivedComplexity
   end
 end
