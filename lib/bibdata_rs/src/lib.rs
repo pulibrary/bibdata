@@ -16,5 +16,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "json_document",
         function!(ephemera_item::json_ephemera_document, 1),
     )?;
+    submodule.define_singleton_method("map_program", function!(theses::map_program, 1))?;
     Ok(())
 }
