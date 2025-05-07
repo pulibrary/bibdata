@@ -151,7 +151,9 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rake db:setup
-
+      - run: 
+          name: Test rust with cargo
+          command: cargo test
       - run:
           name: Test with RSpec
           command: bundle exec rspec spec
