@@ -303,7 +303,7 @@ module BibdataRs::Theses
           expect(solr_document).to be_a(DataspaceDocument)
           expect(values).to be_a(Hash)
           expect(values).to include('restrictions_note_display')
-          expect(values['restrictions_note_display']).to be nil
+          expect(values['restrictions_note_display']).to be_nil
         end
       end
 
@@ -367,7 +367,7 @@ module BibdataRs::Theses
             expect(solr_document).to be_a(DataspaceDocument)
             expect(values).to be_a(Hash)
             expect(values).to include('restrictions_note_display')
-            expect(values['restrictions_note_display']).to be nil
+            expect(values['restrictions_note_display']).to be_nil
           end
         end
 

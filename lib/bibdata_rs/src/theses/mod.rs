@@ -1,5 +1,5 @@
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
-use std::fs;
+use std::{fs, env};
 
 pub mod department;
 pub mod latex;
@@ -40,4 +40,40 @@ pub fn json_document(path: String) -> String {
     serde_json::to_string(&metadata.thesis).unwrap()
 }
 
+pub fn theses_cache_path() -> String {
+    match env::var("FILEPATH") {
+        Ok(value) => value.to_owned(),
+        Err(_) => "/tmp/theses.json".to_owned()
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_determines_the_path_to_cache_the_theses() {
+        without_mangling_filepath(|| {
+            env::set_var("FILEPATH", "/home/user/theses.json");
+            assert_eq!(theses_cache_path(), "/home/user/theses.json");
+        });
+    }
+
+    #[test]
+    fn it_defaults_theses_cache_path_to_tmp() {
+        without_mangling_filepath(|| {
+            env::remove_var("FILEPATH");
+            assert_eq!(theses_cache_path(), "/tmp/theses.json");
+        });
+    }
+
+    fn without_mangling_filepath<T: Fn() -> ()>(f: T) {
+        let original = match env::var("FILEPATH") {
+            Ok(value) => Some(value),
+            Err(_) => None
+        };
+        f();
+        if original.is_some() { env::set_var("FILEPATH", original.unwrap()) } else { env::remove_var("FILEPATH");}
+    }
+}
 

@@ -52,9 +52,7 @@ module BibdataRs::Theses
           dir = Dir.mktmpdir(nil, @dir)
           dirs << dir
         end
-        File.open(File.join(dir, "#{i}.xml"), 'w') do |f|
-          f.write(record.metadata)
-        end
+        File.write(File.join(dir, "#{i}.xml"), record.metadata)
       end
       dirs
     end
@@ -79,15 +77,15 @@ module BibdataRs::Theses
 
     private
 
-    def headers
-      {
-        metadataPrefix: @metadata_prefix,
-        set: @set
-      }
-    end
+      def headers
+        {
+          metadataPrefix: @metadata_prefix,
+          set: @set
+        }
+      end
 
-    def client
-      @client ||= OAI::Client.new(@server)
-    end
+      def client
+        @client ||= OAI::Client.new(@server)
+      end
   end
 end

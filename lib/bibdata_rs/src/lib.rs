@@ -19,5 +19,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule.define_singleton_method("map_program", function!(theses::program::map_program, 1))?;
     submodule.define_singleton_method("map_department", function!(theses::department::map_department, 1))?;
     submodule.define_singleton_method("normalize_latex", function!(theses::latex::normalize_latex, 1))?;
+    submodule.define_singleton_method("theses_cache_path", function!(theses::theses_cache_path, 0))?;
     Ok(())
 }
