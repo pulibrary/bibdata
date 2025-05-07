@@ -16,6 +16,7 @@ module BibdataRs::Theses
   class Fetcher
     attr_writer :logger
 
+    # leave in Ruby, since the Rails thing is so convenient
     def self.config_file_path
       Rails.root.join('config/dspace.yml')
     end

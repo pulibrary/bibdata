@@ -41,19 +41,22 @@ pub fn json_document(path: String) -> String {
 }
 
 pub fn theses_cache_path() -> String {
-    match env::var("FILEPATH") {
-        Ok(value) => value.to_owned(),
-        Err(_) => "/tmp/theses.json".to_owned()
-    }
+    env::var("FILEPATH").unwrap_or("/tmp/theses.json".to_owned())
+}
+
+pub fn rails_env() -> String {
+    env::var("RAILS_ENV").unwrap_or("development".to_owned())
 }
 
 #[cfg(test)]
 mod tests {
+    use std::sync::Mutex;
+
     use super::*;
 
     #[test]
     fn it_determines_the_path_to_cache_the_theses() {
-        without_mangling_filepath(|| {
+        preserving_envvar("FILEPATH", || {
             env::set_var("FILEPATH", "/home/user/theses.json");
             assert_eq!(theses_cache_path(), "/home/user/theses.json");
         });
@@ -61,19 +64,44 @@ mod tests {
 
     #[test]
     fn it_defaults_theses_cache_path_to_tmp() {
-        without_mangling_filepath(|| {
+        preserving_envvar("FILEPATH", || {
             env::remove_var("FILEPATH");
             assert_eq!(theses_cache_path(), "/tmp/theses.json");
         });
     }
 
-    fn without_mangling_filepath<T: Fn() -> ()>(f: T) {
-        let original = match env::var("FILEPATH") {
+    #[test]
+    fn it_determines_the_rails_env() {
+        preserving_envvar("RAILS_ENV", || {
+            env::set_var("RAILS_ENV", "production");
+            assert_eq!(rails_env(), "production");
+        });
+    }
+
+    #[test]
+    fn it_defaults_the_rails_env_to_development() {
+        preserving_envvar("RAILS_ENV", || {
+            env::remove_var("RAILS_ENV");
+            assert_eq!(rails_env(), "development");
+        });
+    }
+
+    lazy_static::lazy_static! {
+        static ref ENV_MUTEX: Mutex<()> = Mutex::new(());
+    }
+
+    fn preserving_envvar<T: Fn() -> ()>(key: &str, f: T) {
+        let _lock = ENV_MUTEX.lock().unwrap(); // Ensure exclusive access to environment variables
+        let original = match env::var(key) {
             Ok(value) => Some(value),
-            Err(_) => None
+            Err(_) => None,
         };
         f();
-        if original.is_some() { env::set_var("FILEPATH", original.unwrap()) } else { env::remove_var("FILEPATH");}
+        if let Some(value) = original {
+            env::set_var(key, value);
+        } else {
+            env::remove_var(key);
+        }
     }
 }
 
