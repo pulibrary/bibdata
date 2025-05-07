@@ -77,6 +77,7 @@ dependencies = [
  "lazy_static",
  "magnus",
  "mockito",
+ "regex",
  "reqwest",
  "serde",
  "serde-xml-rs",
