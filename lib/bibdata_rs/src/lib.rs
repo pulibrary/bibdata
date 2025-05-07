@@ -2,6 +2,7 @@ use magnus::{function, prelude::*, Error, Ruby};
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 use std::fs;
 
+
 #[derive(Deserialize)]
 struct Metadata {
     #[serde(rename = "oai_dc:dc")]
@@ -105,12 +106,15 @@ fn json_theses_document(path: String) -> String {
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("BibdataRs")?;
     let submodule = module.define_module("Theses")?;
+    let submodule_ephemera = submodule.define_module("Ephemera")?;
     submodule.define_singleton_method("json_document", function!(json_theses_document, 1))?;
+    submodule_ephemera.define_singleton_method("json_document", function!(json_ephemera_document, 1))?;
     Ok(())
 }
 
 #[cfg(test)]
 mod tests {
+    use std::path::PathBuf;
     use super::*;
 
     #[tokio::test]
@@ -123,8 +127,11 @@ mod tests {
 
     #[test]
     fn test_json_ephemera_document() {
-        let path = "/Users/cc62/apps_team/bibdata/spec/fixtures/files/ephemera/ephemera1.json";
-        let result = json_ephemera_document(path.to_string());
+        let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        let path = "spec/fixtures/files/ephemera/ephemera1.json";
+        d.push(path);
+        
+        let result = json_ephemera_document(d.to_string_lossy().to_string());
         assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\"}");
     }
 }
