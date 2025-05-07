@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'BibdataRs::Theses::Fetcher', :rust do
   let(:fetcher) { BibdataRs::Theses::Fetcher.new }
@@ -37,7 +37,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
   context 'cache theses as json' do
     around do |example|
       File.delete(cache) if File.exist?(cache)
-      temp_filepath = ENV['FILEPATH']
+      temp_filepath = ENV.fetch('FILEPATH', nil)
       ENV['FILEPATH'] = cache
       example.run
       ENV['FILEPATH'] = temp_filepath
@@ -57,13 +57,13 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     it 'knows where to write cached files' do
-      expect(fetcher.json_file_path).to eq cache
+      expect(BibdataRs::Theses.theses_cache_path).to eq cache
     end
 
     it 'writes a collection to a cache file' do
-      expect(File.exist?(cache)).to eq false
+      expect(File.exist?(cache)).to be false
       BibdataRs::Theses::Fetcher.write_collection_to_cache('361')
-      expect(File.exist?(cache)).to eq true
+      expect(File.exist?(cache)).to be true
       cached_file = File.read(cache)
       expect(cached_file).to be_a(String)
       expect(cached_file).not_to be_empty
@@ -76,9 +76,9 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     it 'writes all collections to a cache file' do
-      expect(File.exist?(cache)).to eq false
+      expect(File.exist?(cache)).to be false
       BibdataRs::Theses::Fetcher.write_all_collections_to_cache
-      expect(File.exist?(cache)).to eq true
+      expect(File.exist?(cache)).to be true
       cache_export = JSON.parse(File.read(cache))
       expect(cache_export.first['id']).to eq 'dsp0141687h67f'
     end
@@ -106,27 +106,27 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
   context 'within the staging environment' do
     let(:community_json) do
       {
-        "id": 267,
-        "name": 'Princeton University Undergraduate Senior Theses, 1924-2021',
-        "handle": '88435/dsp019c67wm88m',
-        "type": 'community',
-        "link": '/rest/communities/267',
-        "expand": %w[
+        id: 267,
+        name: 'Princeton University Undergraduate Senior Theses, 1924-2021',
+        handle: '88435/dsp019c67wm88m',
+        type: 'community',
+        link: '/rest/communities/267',
+        expand: %w[
           parentCommunity
           collections
           subCommunities
           logo
           all
         ],
-        "logo": nil,
-        "parentCommunity": nil,
-        "copyrightText": '',
-        "introductoryText": "<h4>Members of the Princeton community wishing to view a senior thesis from 2014-2021 while away from campus should follow the instructions outlined on the <a href=\"https://princeton.service-now.com/snap?sys_id=6023&id=kb_article\">OIT website</a> for connecting to campus resources remotely. </h4>\r\n<h5>\r\nSee our <a href=\"http://libguides.princeton.edu/SeniorTheses/Home/\">Senior Thesis LibGuide</a> for helfpul information on searching and accessing Senior Theses</h5>",
-        "shortDescription": '',
-        "sidebarText": '',
-        "countItems": 70_734,
-        "subcommunities": [],
-        "collections": []
+        logo: nil,
+        parentCommunity: nil,
+        copyrightText: '',
+        introductoryText: "<h4>Members of the Princeton community wishing to view a senior thesis from 2014-2021 while away from campus should follow the instructions outlined on the <a href=\"https://princeton.service-now.com/snap?sys_id=6023&id=kb_article\">OIT website</a> for connecting to campus resources remotely. </h4>\r\n<h5>\r\nSee our <a href=\"http://libguides.princeton.edu/SeniorTheses/Home/\">Senior Thesis LibGuide</a> for helfpul information on searching and accessing Senior Theses</h5>",
+        shortDescription: '',
+        sidebarText: '',
+        countItems: 70_734,
+        subcommunities: [],
+        collections: []
       }
     end
     let(:communities_response_json) do
@@ -143,7 +143,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     before do
-      @env = ENV['RAILS_ENV']
+      @env = ENV.fetch('RAILS_ENV', nil)
       ENV['RAILS_ENV'] = 'staging'
 
       stub_request(:get, 'https://dataspace-staging.princeton.edu/rest/communities/').to_return(status: 200, body: communities_response_body)
@@ -167,27 +167,27 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
   context 'within the production environment' do
     let(:community_json) do
       {
-        "id": 267,
-        "name": 'Princeton University Undergraduate Senior Theses, 1924-2021',
-        "handle": '88435/dsp019c67wm88m',
-        "type": 'community',
-        "link": '/rest/communities/267',
-        "expand": %w[
+        id: 267,
+        name: 'Princeton University Undergraduate Senior Theses, 1924-2021',
+        handle: '88435/dsp019c67wm88m',
+        type: 'community',
+        link: '/rest/communities/267',
+        expand: %w[
           parentCommunity
           collections
           subCommunities
           logo
           all
         ],
-        "logo": nil,
-        "parentCommunity": nil,
-        "copyrightText": '',
-        "introductoryText": "<h4>Members of the Princeton community wishing to view a senior thesis from 2014-2021 while away from campus should follow the instructions outlined on the <a href=\"https://princeton.service-now.com/snap?sys_id=6023&id=kb_article\">OIT website</a> for connecting to campus resources remotely. </h4>\r\n<h5>\r\nSee our <a href=\"http://libguides.princeton.edu/SeniorTheses/Home/\">Senior Thesis LibGuide</a> for helfpul information on searching and accessing Senior Theses</h5>",
-        "shortDescription": '',
-        "sidebarText": '',
-        "countItems": 70_734,
-        "subcommunities": [],
-        "collections": []
+        logo: nil,
+        parentCommunity: nil,
+        copyrightText: '',
+        introductoryText: "<h4>Members of the Princeton community wishing to view a senior thesis from 2014-2021 while away from campus should follow the instructions outlined on the <a href=\"https://princeton.service-now.com/snap?sys_id=6023&id=kb_article\">OIT website</a> for connecting to campus resources remotely. </h4>\r\n<h5>\r\nSee our <a href=\"http://libguides.princeton.edu/SeniorTheses/Home/\">Senior Thesis LibGuide</a> for helfpul information on searching and accessing Senior Theses</h5>",
+        shortDescription: '',
+        sidebarText: '',
+        countItems: 70_734,
+        subcommunities: [],
+        collections: []
       }
     end
     let(:communities_response_json) do
@@ -204,7 +204,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     before do
-      @env = ENV['RAILS_ENV']
+      @env = ENV.fetch('RAILS_ENV', nil)
       ENV['RAILS_ENV'] = 'production'
 
       stub_request(:get, 'https://dataspace.princeton.edu/rest/communities/').to_return(status: 200, body: communities_response_body)

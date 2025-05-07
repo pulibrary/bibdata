@@ -16,30 +16,17 @@ module BibdataRs::Theses
   class Fetcher
     attr_writer :logger
 
+    # leave in Ruby, since the Rails thing is so convenient
     def self.config_file_path
       Rails.root.join('config/dspace.yml')
     end
 
-    def self.config_file
-      IO.read(config_file_path)
-    end
-
-    def self.config_erb
-      ERB.new(config_file).result(binding)
-    rescue StandardError, SyntaxError => e
-      raise("#{config_file} was found, but could not be parsed with ERB. \n#{e.inspect}")
-    end
-
-    def self.config_yaml
-      YAML.safe_load(config_erb, aliases: true)
-    end
-
     def self.env
-      ENV['RAILS_ENV'] || 'development'
+      ENV.fetch('RAILS_ENV', nil) || 'development'
     end
 
     def self.env_config
-      config_yaml[env]
+      Rails.application.config_for config_file_path, env:
     end
 
     def self.default_server
@@ -70,12 +57,6 @@ module BibdataRs::Theses
         built.level = Logger::DEBUG
         built
       end
-    end
-
-    ##
-    # Where files get cached for later indexing
-    def json_file_path
-      @json_file_path ||= ENV['FILEPATH'] || '/tmp/theses.json'
     end
 
     ##
@@ -112,19 +93,6 @@ module BibdataRs::Theses
       theses.flatten
     end
 
-    def index_collection(indexer, id)
-      fetched = fetch_collection(id)
-      fetched.each do |record|
-        indexer.index_hash(record)
-      end
-    end
-
-    def index_all_collections(indexer)
-      collections.each do |c|
-        index_collection(indexer, c)
-      end
-    end
-
     ##
     # Cache all collections
     def cache_all_collections(indexer)
@@ -158,7 +126,7 @@ module BibdataRs::Theses
     def self.write_collection_to_cache(collection_id)
       indexer = Indexer.new
       fetcher = Fetcher.new
-      File.open(fetcher.json_file_path, 'w') do |f|
+      File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
         documents = fetcher.cache_collection(indexer, collection_id)
         solr_documents = documents.map(&:to_solr)
         json_cache = JSON.pretty_generate(solr_documents)
@@ -172,7 +140,7 @@ module BibdataRs::Theses
     def self.write_all_collections_to_cache
       indexer = Indexer.new
       fetcher = Fetcher.new
-      File.open(fetcher.json_file_path, 'w') do |f|
+      File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
         documents = fetcher.cache_all_collections(indexer)
         solr_documents = documents.map(&:to_solr)
         json_cache = JSON.pretty_generate(solr_documents)
@@ -189,87 +157,87 @@ module BibdataRs::Theses
 
     private
 
-    def build_collection_url(id:, offset:)
-      "#{@server}/collections/#{id}/items?limit=#{@rest_limit}&offset=#{offset}&expand=metadata"
-    end
+      def build_collection_url(id:, offset:)
+        "#{@server}/collections/#{id}/items?limit=#{@rest_limit}&offset=#{offset}&expand=metadata"
+      end
 
-    def flatten_json(items)
-      items.collect do |i|
-        h = {}
-        h['id'] = i['handle'][%r{[^/]*$}]
-        i['metadata'].each do |m|
-          m['value'] = map_department(m['value']) if m['key'] == 'pu.department'
-          m['value'] = map_program(m['value']) if m['key'] == 'pu.certificate'
-          next if m['value'].nil?
+      def flatten_json(items)
+        items.collect do |i|
+          h = {}
+          h['id'] = i['handle'][%r{[^/]*$}]
+          i['metadata'].each do |m|
+            m['value'] = map_department(m['value']) if m['key'] == 'pu.department'
+            m['value'] = map_program(m['value']) if m['key'] == 'pu.certificate'
+            next if m['value'].nil?
 
-          if h[m['key']].nil?
-            h[m['key']] = [m['value']]
-          else
-            h[m['key']] << m['value']
+            if h[m['key']].nil?
+              h[m['key']] = [m['value']]
+            else
+              h[m['key']] << m['value']
+            end
           end
+          h
         end
-        h
       end
-    end
 
-    def api_client
-      Faraday
-    end
-
-    def api_communities
-      @api_communities ||= begin
-        response = api_client.get("#{@server}/communities/")
-        response.body
-      rescue StandardError => e
-        Faraday.logger.warn(e)
-        '[]'
+      def api_client
+        Faraday
       end
-    end
 
-    def json_api_communities
-      @json_api_communities ||= JSON.parse(api_communities)
-    end
-
-    ##
-    # Parse the JSON feed containing all of the communities, and return only the
-    # community that matches the handle.
-    # @return [JSON] a json representation of the DSpace community
-    def api_community
-      return if json_api_communities.empty?
-
-      @api_community ||= json_api_communities.find { |c| c['handle'] == @community }
-    end
-
-    ##
-    # Get all of the collections for a given community
-    def api_collections
-      @api_collections ||= begin
-        collections_url = "#{@server}/communities/#{api_community_id}/collections"
-        logger.info("Querying #{collections_url} for the collections...")
-        response = api_client.get(collections_url)
-        response.body
+      def api_communities
+        @api_communities ||= begin
+          response = api_client.get("#{@server}/communities/")
+          response.body
+        rescue StandardError => e
+          Faraday.logger.warn(e)
+          '[]'
+        end
       end
-    end
 
-    ##
-    # All of the collections for a given community, parsed as JSON
-    def api_collections_json
-      @api_collections_json ||= JSON.parse(api_collections)
-    end
+      def json_api_communities
+        @json_api_communities ||= JSON.parse(api_communities)
+      end
 
-    # example to debug using a specific collection id.
-    # @collections ||= api_collections_json.map { |i| i['id'] = '2666' }
-    # https://dataspace-dev.princeton.edu/rest/collections/2666/items
-    def collections
-      @collections ||= api_collections_json.map { |i| i['id'] }
-    end
+      ##
+      # Parse the JSON feed containing all of the communities, and return only the
+      # community that matches the handle.
+      # @return [JSON] a json representation of the DSpace community
+      def api_community
+        return if json_api_communities.empty?
 
-    def map_department(dept)
-      BibdataRs::Theses::map_department dept
-    end
+        @api_community ||= json_api_communities.find { |c| c['handle'] == @community }
+      end
 
-    def map_program(program)
-      BibdataRs::Theses::map_program program
-    end
+      ##
+      # Get all of the collections for a given community
+      def api_collections
+        @api_collections ||= begin
+          collections_url = "#{@server}/communities/#{api_community_id}/collections"
+          logger.info("Querying #{collections_url} for the collections...")
+          response = api_client.get(collections_url)
+          response.body
+        end
+      end
+
+      ##
+      # All of the collections for a given community, parsed as JSON
+      def api_collections_json
+        @api_collections_json ||= JSON.parse(api_collections)
+      end
+
+      # example to debug using a specific collection id.
+      # @collections ||= api_collections_json.map { |i| i['id'] = '2666' }
+      # https://dataspace-dev.princeton.edu/rest/collections/2666/items
+      def collections
+        @collections ||= api_collections_json.map { |i| i['id'] }
+      end
+
+      def map_department(dept)
+        BibdataRs::Theses.map_department dept
+      end
+
+      def map_program(program)
+        BibdataRs::Theses.map_program program
+      end
   end
 end

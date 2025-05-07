@@ -74,18 +74,22 @@ module BibdataRs::Theses
         expect(subject['pu.certificate'].length).to eq 1
       end
     end
+
     describe '#map_department' do
-    it 'returns the library of congress department name when it is a match' do
-      expect(BibdataRs::Theses::Fetcher.new.send(:map_department, 'Comparative Literature')).to eq 'Princeton University. Department of Comparative Literature'
+      it 'returns the library of congress department name when it is a match' do
+        expect(BibdataRs::Theses::Fetcher.new.send(:map_department, 'Comparative Literature')).to eq 'Princeton University. Department of Comparative Literature'
+      end
+
+      it 'returns nil when there is no relevant library of congress department name' do
+        expect(BibdataRs::Theses::Fetcher.new.send(:map_department, 'Interesting New Department')).to be_nil
+      end
     end
-    it 'returns nil when there is no relevant library of congress department name' do
-      expect(BibdataRs::Theses::Fetcher.new.send(:map_department, 'Interesting New Department')).to be_nil
-    end
-  end
+
     describe '#map_program' do
       it 'returns the library of congress program name when it is a match' do
         expect(BibdataRs::Theses::Fetcher.new.send(:map_program, 'African Studies Program')).to eq 'Princeton University. Program in African Studies'
       end
+
       it 'returns nil when there is no relevant library of congress program name' do
         expect(BibdataRs::Theses::Fetcher.new.send(:map_program, 'Interesting New Program')).to be_nil
       end
