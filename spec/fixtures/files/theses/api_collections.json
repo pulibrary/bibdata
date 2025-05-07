@@ -1,0 +1,28 @@
+[
+    {
+      "id": 361,
+      "name": "Aeronautical Engineering, 1945-1975",
+      "handle": "88435/dsp015m60qr96c",
+      "type": "collection",
+      "link": "/rest/collections/361",
+      "expand": [
+        "parentCommunityList",
+        "parentCommunity",
+        "items",
+        "license",
+        "logo",
+        "all"
+      ],
+      "logo": null,
+      "parentCommunity": null,
+      "parentCommunityList": [],
+      "items": [],
+      "license": null,
+      "copyrightText": "",
+      "introductoryText": "",
+      "shortDescription": "",
+      "sidebarText": "",
+      "numberItems": 83
+    }
+  ]
+  

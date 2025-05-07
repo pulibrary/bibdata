@@ -1,0 +1,18 @@
+---
+default: &default
+  server: <%= ENV["DSPACE_URL"] || "https://dataspace-dev.princeton.edu/rest" %>
+  community: 88435/dsp019c67wm88m
+  rest_limit: 100
+  retry_limit: 5
+
+development: *default
+
+test: *default
+
+staging:
+  <<: *default
+  server: <%= ENV["DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
+
+production:
+  <<: *default
+  server: <%= ENV["DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
