@@ -1,6 +1,8 @@
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 use std::{fs, env};
 
+pub mod collection;
+pub mod config;
 pub mod department;
 pub mod latex;
 pub mod program;

@@ -17,26 +17,21 @@ module BibdataRs::Theses
     attr_writer :logger
 
     # leave in Ruby, since the Rails thing is so convenient
-    def self.config_file_path
-      Rails.root.join('config/dspace.yml')
-    end
-
-    def self.env
-      ENV.fetch('RAILS_ENV', nil) || 'development'
-    end
-
     def self.env_config
-      Rails.application.config_for config_file_path, env:
+      Rails.application.config_for Rails.root.join('config/dspace.yml'), env: BibdataRs::Theses::rails_env
     end
 
+    # leave in Ruby (if needed), since the config file is tricky in rust since it contains a variety of data types
     def self.default_server
       env_config['server']
     end
 
+    # leave in Ruby (if needed), since the config file is tricky in rust since it contains a variety of data types
     def self.default_community
       env_config['community']
     end
 
+    # leave in Ruby (if needed), since the config file is tricky in rust since it contains a variety of data types
     def self.default_rest_limit
       env_config['rest_limit']
     end
@@ -44,6 +39,7 @@ module BibdataRs::Theses
     # @param [Hash] opts  options to pass to the client
     # @option opts [String] :server ('https://dataspace.princeton.edu/rest/')
     # @option opts [String] :community ('88435/dsp019c67wm88m')
+    # leave in ruby for now
     def initialize(server: nil, community: nil, rest_limit: nil)
       @server = server || self.class.default_server
       @community = community || self.class.default_community
@@ -51,6 +47,7 @@ module BibdataRs::Theses
       @rest_limit = rest_limit || self.class.default_rest_limit
     end
 
+    # leave in ruby for now
     def logger
       @logger ||= begin
         built = Logger.new($stdout)
@@ -62,6 +59,7 @@ module BibdataRs::Theses
     ##
     # Write to the log anytime an API call fails and we have to retry.
     # See https://github.com/kamui/retriable#callbacks for more information.
+    # leave in ruby right now, since I'm not sure how to return a proc in Magnus
     def log_retries
       proc do |exception, try, elapsed_time, next_interval|
         logger.debug "#{exception.class}: '#{exception.message}' - #{try} tries in #{elapsed_time} seconds and #{next_interval} seconds until the next try."
@@ -71,6 +69,7 @@ module BibdataRs::Theses
     ##
     # @param id [String] thesis collection id
     # @return [Array<Hash>] metadata hash for each record
+    # Rewrite in Rust, but rewrite flatten_json first?  Or does it make sense to do them separately???
     def fetch_collection(id)
       theses = []
       offset = 0
@@ -158,7 +157,7 @@ module BibdataRs::Theses
     private
 
       def build_collection_url(id:, offset:)
-        "#{@server}/collections/#{id}/items?limit=#{@rest_limit}&offset=#{offset}&expand=metadata"
+        BibdataRs::Theses::collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
       end
 
       def flatten_json(items)
