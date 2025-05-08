@@ -1,3 +1,4 @@
+use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
 
 mod ephemera;
@@ -11,7 +12,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule.define_singleton_method("json_document", function!(theses::json_document, 1))?;
     submodule_ephemera.define_singleton_method(
         "json_document",
-        function!(ephemera::json_ephemera_document, 1),
+        function!(ephemera_item::json_ephemera_document, 1),
     )?;
     Ok(())
 }

@@ -1,4 +1,9 @@
+use std::path::PathBuf;
+
+use mockito::mock;
 use serde::Deserialize;
+
+use super::CatalogClient;
 
 #[derive(Deserialize, Debug)]
 pub struct FolderResponse {
@@ -8,12 +13,6 @@ pub struct FolderResponse {
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolder {
     id: String,
-}
-
-pub async fn get_folder_data(&self) -> Result<FolderResponse, reqwest::Error> {
-    let response = reqwest::get(&self.url).await?;
-    let data: FolderResponse = response.json().await?;
-    Ok(data)
 }
 
 pub async fn read_ephemera_folders() -> Result<Vec<String>, Box<dyn std::error::Error>> {

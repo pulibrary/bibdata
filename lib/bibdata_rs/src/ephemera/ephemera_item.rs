@@ -51,12 +51,6 @@ impl Attributes {
     }
 }
 
-pub async fn get_item_data(&self) -> Result<ItemResponse, reqwest::Error> {
-    let response = reqwest::get(&self.url).await?;
-    let data: ItemResponse = response.json().await?;
-    Ok(data)
-}
-
 pub fn json_ephemera_document(path: String) -> String {
     let data = fs::read_to_string(path).expect("Unable to read file");
     let metadata: Attributes = serde_json::from_str(&data).expect("Unable to parse JSON");
@@ -65,6 +59,8 @@ pub fn json_ephemera_document(path: String) -> String {
 
 #[cfg(test)]
 mod tests {
+    use crate::ephemera::CatalogClient;
+
     use super::*;
     use mockito::mock;
     use std::path::PathBuf;

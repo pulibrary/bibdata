@@ -1,5 +1,8 @@
-mod ephemera_folder;
-mod ephemera_item;
+use ephemera_folder::FolderResponse;
+use ephemera_item::ItemResponse;
+
+pub mod ephemera_folder;
+pub mod ephemera_item;
 
 pub struct CatalogClient {
     url: String,
@@ -17,5 +20,16 @@ impl CatalogClient {
         CatalogClient {
             url: figgy_ephemera_url.unwrap(),
         }
+    }
+    pub async fn get_folder_data(&self) -> Result<FolderResponse, reqwest::Error> {
+        let response = reqwest::get(&self.url).await?;
+        let data: FolderResponse = response.json().await?;
+        Ok(data)
+    }
+
+    pub async fn get_item_data(&self) -> Result<ItemResponse, reqwest::Error> {
+        let response = reqwest::get(&self.url).await?;
+        let data: ItemResponse = response.json().await?;
+        Ok(data)
     }
 }
