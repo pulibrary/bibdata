@@ -36,58 +36,6 @@ module BibdataRs::Theses
       'format' => 'Senior thesis'
     }.freeze
 
-    # @todo This needs to be refactored into a separate Class
-    def self.config_file
-      Rails.root.join('config/solr.yml')
-    end
-
-    def self.config_yaml
-      ERB.new(IO.read(config_file)).result(binding)
-    rescue StandardError, SyntaxError => e
-      raise("#{config_file} was found, but could not be parsed with ERB. \n#{e.inspect}")
-    end
-
-    def self.config_values
-      YAML.safe_load(config_yaml)
-    end
-
-    def self.env
-      ENV.fetch('ORANGETHESES_ENV', nil) || 'development'
-    end
-
-    def self.config
-      OpenStruct.new(solr: config_values[env])
-    end
-
-    def self.default_solr_url
-      config.solr['url']
-    end
-
-    def initialize(solr_server = nil)
-      solr_server ||= self.class.default_solr_url
-      @solr = RSolr.connect(url: solr_server)
-      @logger = Logger.new($stdout)
-      @logger.level = Logger::INFO
-      @logger.formatter = proc do |severity, datetime, _progname, msg|
-        time = datetime.strftime('%H:%M:%S')
-        "[#{time}] #{severity}: #{msg}\n"
-      end
-    end
-
-    # @param element  A REXML::Element (because this is what we get from the OAI gem)
-    # @return  The HTTP response status from Solr (??)
-    def index(metadata_element)
-      dc_elements = pull_dc_elements(metadata_element)
-      doc = build_hash(dc_elements)
-      @logger.info("Adding #{doc['id']}")
-      @solr.add(doc, add_attributes: { commitWithin: 10 })
-    rescue NoMethodError => e
-      @logger.error(e.to_s)
-      @logger.error(metadata_element)
-    rescue StandardError => e
-      @logger.error(e.to_s)
-      dc_elements.each { |element| @logger.error(element.to_s) }
-    end
 
     # Constructs DataspaceDocument objects from a Hash of attributes
     # @returns [DataspaceDocument]
@@ -141,20 +89,6 @@ module BibdataRs::Theses
       DataspaceDocument.new(document: attrs, logger: @logger)
     end
 
-    # @param doc [Hash] Metadata hash with dc and pu terms
-    # @return  The HTTP response status from Solr (??)
-    def index_document(**values)
-      solr_doc = build_solr_document(**values)
-
-      @logger.info("Adding #{solr_doc['id']}")
-      @solr.add(solr_doc, add_attributes: { commitWithin: 10 })
-    rescue NoMethodError => e
-      @logger.error(e.to_s)
-      @logger.error(doc.to_s)
-    rescue StandardError => e
-      @logger.error(e.to_s)
-      @logger.error(doc.to_s)
-    end
 
     private
 
@@ -175,7 +109,7 @@ module BibdataRs::Theses
           'access_facet' => 'Online',
           'electronic_access_1display' => ark(dc_elements),
           'standard_no_1display' => non_ark_ids(dc_elements),
-          'electronic_portfolio_s' => online_holding({})
+          'electronic_portfolio_s' => BibdataRs::Theses.online_holding_string([])
 
         }
         h.merge!(map_non_special_to_solr(dc_elements))
@@ -213,14 +147,6 @@ module BibdataRs::Theses
           e.name == 'identifier' && e.text.start_with?('http://arks.princeton')
         end
         arks.empty? ? nil : { arks.first.text => dspace_display_text(dc_elements) }.to_json.to_s
-      end
-
-      def online_holding(doc)
-        BibdataRs::Theses.online_holding_string doc['dc.identifier.other']
-      end
-
-      def physical_holding(doc)
-        return BibdataRs::Theses::physical_holding_string doc['dc.identifier.other']
       end
 
       def non_ark_ids(dc_elements)
@@ -398,47 +324,20 @@ module BibdataRs::Theses
       end
 
       def class_year_fields(doc)
-        h = {}
-        if doc.key?('pu.date.classyear') && doc['pu.date.classyear'].first =~ /^\d+$/
-          h['class_year_s'] = doc['pu.date.classyear']
-          h['pub_date_start_sort'] = doc['pu.date.classyear']
-          h['pub_date_end_sort'] = doc['pu.date.classyear']
-        end
-        h
+        JSON.parse BibdataRs::Theses.class_year_fields(doc['pu.date.classyear'])
       end
 
       # online access when there isn't a restriction/location note
       def holdings_access(doc)
-        # This handles cases for items in the Mudd Library
-        doc_embargoed = BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
-        doc_on_site_only = on_site_only?(doc)
-
-        if doc_embargoed
-          {
-            'location' => 'Mudd Manuscript Library',
-            'location_display' => 'Mudd Manuscript Library',
-            'location_code_s' => 'mudd$stacks',
-            'advanced_location_s' => ['mudd$stacks', 'Mudd Manuscript Library'],
-            'access_facet' => nil,
-            'holdings_1display' => nil,
-            'advanced_location_s' => ['mudd$stacks', 'Mudd Manuscript Library']
-          }
-        elsif doc_on_site_only
-          {
-            'location' => 'Mudd Manuscript Library',
-            'location_display' => 'Mudd Manuscript Library',
-            'location_code_s' => 'mudd$stacks',
-            'advanced_location_s' => ['mudd$stacks', 'Mudd Manuscript Library'],
-            'access_facet' => 'In the Library',
-            'holdings_1display' => physical_holding(doc)
-          }
-
-        else
-          {
-            'access_facet' => 'Online',
-            'electronic_portfolio_s' => online_holding(doc)
-          }
-        end
+        JSON.parse BibdataRs::Theses.holding_access_string(
+          doc.key?('pu.location'),
+          doc.key?('pu.rights.accessRights'),
+          doc['pu.mudd.walkin'],
+          doc.fetch('pu.date.classyear', []),
+          doc['pu.embargo.lift'],
+          doc['pu.embargo.terms'],
+          doc['dc.identifier.other']
+        )
       end
   end
 end

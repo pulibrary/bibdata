@@ -573,9 +573,6 @@ module BibdataRs::Theses
       let(:doc_restrictions) { doc }
       let(:doc_embargo) { doc.merge('pu.embargo.terms' => ['2100-01-01']) }
       let(:doc_no_restrictions) { {} }
-      let(:online_holding) { JSON.parse(subject.send(:online_holding, doc_no_restrictions)) }
-      let(:physical_holding) { JSON.parse(subject.send(:physical_holding, doc_restrictions)) }
-      let(:embargo_holding) { JSON.parse(subject.send(:physical_holding, doc_embargo)) }
 
       describe 'in the library' do
         it 'in the library access for record with restrictions note' do
@@ -589,40 +586,18 @@ module BibdataRs::Theses
           result = subject.send(:holdings_access, doc_restrictions)
           expect(result).not_to include('advanced_location_s')
         end
-
-        it 'holdings include call number' do
-          expect(physical_holding['thesis'].key?('call_number')).to be true
-        end
-
-        it 'holdings include call number browse' do
-          expect(physical_holding['thesis'].key?('call_number_browse')).to be true
-        end
-
-        it 'holdings dspace value is true' do
-          expect(physical_holding['thesis']['dspace']).to be true
-        end
       end
 
       describe 'embargo' do
         it 'in the library access for record with restrictions note' do
           expect(subject.send(:holdings_access, doc_embargo)['access_facet']).to be_nil
           entries = subject.send(:holdings_access, doc_embargo)
-          expect(entries).to include('access_facet')
-          result = entries['access_facet']
-          expect(result).to be_nil
+          expect(entries['access_facet']).to be_nil
         end
 
         it 'includes mudd as an advanced location value' do
           expect(subject.send(:holdings_access,
                               doc_embargo)['advanced_location_s']).to include('Mudd Manuscript Library')
-        end
-
-        it 'holdings include call number' do
-          expect(embargo_holding['thesis'].key?('call_number_browse')).to be true
-        end
-
-        it 'holdings dspace value is true' do
-          expect(embargo_holding['thesis']['dspace']).to be true
         end
       end
 
@@ -634,14 +609,6 @@ module BibdataRs::Theses
 
         it 'electronic portfolio field' do
           expect(subject.send(:holdings_access, doc_no_restrictions)['electronic_portfolio_s']).to include('thesis')
-        end
-
-        it 'holdings include call number' do
-          expect(online_holding['thesis'].key?('call_number')).to be true
-        end
-
-        it 'holdings include call number browse' do
-          expect(online_holding['thesis'].key?('call_number_browse')).to be true
         end
       end
     end
