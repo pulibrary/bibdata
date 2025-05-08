@@ -6,8 +6,6 @@ require 'tmpdir'
 require 'openssl'
 require 'retriable'
 require 'logger'
-require 'yaml'
-require 'erb'
 
 # Do not fail if SSL negotiation with DSpace isn't working
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
