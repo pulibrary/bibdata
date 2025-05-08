@@ -13,13 +13,23 @@ pub struct FolderResponse {
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolder {
     id: String,
+    links: Links,
 }
 
+#[derive(Deserialize, Debug)]
+pub struct Links {
+    #[serde(rename = "self")]
+    url: String,
+}
 pub async fn read_ephemera_folders() -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let client = CatalogClient::default();
     let response = client.get_folder_data().await?;
 
-    let ids: Vec<String> = response.data.into_iter().map(|item| item.id).collect();
+    let ids: Vec<String> = response
+        .data
+        .into_iter()
+        .map(|item| item.links.url)
+        .collect();
     Ok(ids)
 }
 
@@ -39,8 +49,10 @@ async fn test_read_ephemera_folders() {
 
     let result = read_ephemera_folders().await.unwrap();
     assert!(!result.is_empty());
-    assert!(result.contains(&"33fc03db-3bca-4388-84d3-6b48092199d6".to_string()));
-    assert!(result.contains(&"2f555300-9cba-4467-a80c-f8893e9b1379".to_string()));
+    assert!(result.contains(
+        &"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd"
+            .to_string()
+    ));
 
     mock.assert();
 }
