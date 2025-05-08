@@ -65,7 +65,16 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "restrictions_access",
         function!(theses::restrictions::restrictions_access, 2),
     )?;
-    submodule.define_singleton_method("physical_class_year", function!(theses::holdings::physical_class_year, 1))?;
-    submodule.define_singleton_method("on_site_only", function!(theses::holdings::on_site_only, 6))?;
+    submodule.define_singleton_method(
+        "physical_class_year",
+        function!(theses::holdings::physical_class_year, 1),
+    )?;
+    submodule
+        .define_singleton_method("on_site_only", function!(theses::holdings::on_site_only, 6))?;
+    submodule.define_singleton_method(
+        "holding_access_string",
+        function!(theses::solr::holding_access_string, 7),
+    )?;
+    submodule.define_singleton_method("class_year_fields", function!(theses::solr::class_year_fields, 1))?;
     Ok(())
 }

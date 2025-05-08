@@ -31,7 +31,8 @@ pub fn embargo_date(
     lift_dates: Option<Vec<String>>,
     terms_dates: Option<Vec<String>>,
 ) -> Option<String> {
-    parsed_embargo_date(lift_dates, terms_dates).map(|date| format!("{}", date.format("%B %-d, %Y")))
+    parsed_embargo_date(lift_dates, terms_dates)
+        .map(|date| format!("{}", date.format("%B %-d, %Y")))
 }
 
 pub fn has_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> bool {
