@@ -54,6 +54,13 @@ pub fn rails_env() -> String {
     env::var("RAILS_ENV").unwrap_or("development".to_owned())
 }
 
+pub fn looks_like_yes(possible: Option<Vec<String>>) -> bool {
+    match possible {
+        Some(vec) => vec.first().map_or("", |v| v) == "yes",
+        None => false
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use std::sync::Mutex;
