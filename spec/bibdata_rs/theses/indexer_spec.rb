@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require 'rails_helper'
 require 'rexml/document'
 
 module BibdataRs::Theses
@@ -302,6 +302,12 @@ module BibdataRs::Theses
       end
     end
 
+    describe 'format' do
+      it 'is senior thesis' do
+        expect(subject.build_solr_document(**{})['format']).to eq 'Senior thesis'
+      end
+    end
+
     describe '#_class_year_fields' do
       let(:class_year) { ['2014'] }
       let(:doc_int) { { 'pu.date.classyear' => class_year } }
@@ -309,17 +315,21 @@ module BibdataRs::Theses
       let(:doc_no_field) { {} }
 
       it 'returns empty hash when no integer in classyear field' do
-        expect(subject.send(:class_year_fields, doc_no_int)).to eq({})
+        expect(subject.build_solr_document(**doc_no_int)['class_year_s']).to be_nil
+        expect(subject.build_solr_document(**doc_no_int)['pub_date_start_sort']).to be_nil
+        expect(subject.build_solr_document(**doc_no_int)['pub_date_end_sort']).to be_nil
       end
 
       it 'returns empty hash when no classyear field' do
-        expect(subject.send(:class_year_fields, doc_no_field)).to eq({})
+        expect(subject.build_solr_document(**doc_no_field)['class_year_s']).to be_nil
+        expect(subject.build_solr_document(**doc_no_field)['pub_date_start_sort']).to be_nil
+        expect(subject.build_solr_document(**doc_no_field)['pub_date_end_sort']).to be_nil
       end
 
       it 'returns hash with class year as value for year fields' do
-        expect(subject.send(:class_year_fields, doc_int)['class_year_s']).to eq(class_year)
-        expect(subject.send(:class_year_fields, doc_int)['pub_date_start_sort']).to eq(class_year)
-        expect(subject.send(:class_year_fields, doc_int)['pub_date_end_sort']).to eq(class_year)
+        expect(subject.build_solr_document(**doc_int)['class_year_s']).to eq(class_year)
+        expect(subject.build_solr_document(**doc_int)['pub_date_start_sort']).to eq(class_year)
+        expect(subject.build_solr_document(**doc_int)['pub_date_end_sort']).to eq(class_year)
       end
     end
 
@@ -330,39 +340,36 @@ module BibdataRs::Theses
 
       describe 'in the library' do
         it 'in the library access for record with restrictions note' do
-          entries = subject.send(:holdings_access, doc_restrictions)
+          entries = subject.build_solr_document(**doc_restrictions).document
           expect(entries).to include('access_facet')
           result = entries['access_facet']
           expect(result).to eq('Online')
         end
 
-        it 'includes mudd as an advanced location value' do
-          result = subject.send(:holdings_access, doc_restrictions)
+        it 'does not have an advanced location value' do
+          result = subject.build_solr_document(**doc_restrictions).document
           expect(result).not_to include('advanced_location_s')
         end
       end
 
       describe 'embargo' do
         it 'in the library access for record with restrictions note' do
-          expect(subject.send(:holdings_access, doc_embargo)['access_facet']).to be_nil
-          entries = subject.send(:holdings_access, doc_embargo)
-          expect(entries['access_facet']).to be_nil
+          expect(subject.build_solr_document(**doc_embargo).document['access_facet']).to be_nil
         end
 
         it 'includes mudd as an advanced location value' do
-          expect(subject.send(:holdings_access,
-                              doc_embargo)['advanced_location_s']).to include('Mudd Manuscript Library')
+          expect(subject.build_solr_document(**doc_embargo).document['advanced_location_s']).to include('Mudd Manuscript Library')
         end
       end
 
       # Alma update
       describe 'online' do
         it 'online access for record without restrictions note' do
-          expect(subject.send(:holdings_access, doc_no_restrictions)['access_facet']).to eq('Online')
+          expect(subject.build_solr_document(**doc_no_restrictions).document['access_facet']).to eq('Online')
         end
 
         it 'electronic portfolio field' do
-          expect(subject.send(:holdings_access, doc_no_restrictions)['electronic_portfolio_s']).to include('thesis')
+          expect(subject.build_solr_document(**doc_no_restrictions).document['electronic_portfolio_s']).to include('thesis')
         end
       end
     end

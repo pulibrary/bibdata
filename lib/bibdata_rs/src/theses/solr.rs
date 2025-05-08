@@ -3,6 +3,7 @@ use serde::Serialize;
 
 #[derive(Debug, Default, Serialize)]
 struct SolrDocument {
+    format: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     location: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -23,6 +24,22 @@ struct SolrDocument {
     pub_date_start_sort: Option<Vec<String>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub_date_end_sort: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    author_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    author_s: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    advisor_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    contributor_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    department_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    certificate_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    description_display: Option<Vec<String>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    summary_note_display: Option<Vec<String>>,
 }
 
 impl SolrDocument {
@@ -43,6 +60,14 @@ struct SolrDocumentBuilder {
     class_year_s: Option<Vec<String>>,
     pub_date_start_sort: Option<Vec<String>>,
     pub_date_end_sort: Option<Vec<String>>,
+    author_display: Option<Vec<String>>,
+    author_s: Option<Vec<String>>,
+    advisor_display: Option<Vec<String>>,
+    contributor_display: Option<Vec<String>>,
+    department_display: Option<Vec<String>>,
+    certificate_display: Option<Vec<String>>,
+    description_display: Option<Vec<String>>,
+    summary_note_display: Option<Vec<String>>,
 }
 impl SolrDocumentBuilder {
     pub fn with_location(&mut self, location: impl Into<String>) -> &mut Self {
@@ -83,16 +108,73 @@ impl SolrDocumentBuilder {
         self.class_year_s = Some(class_year_s.into());
         self
     }
-    pub fn with_pub_date_start_sort(&mut self, pub_date_start_sort: impl Into<Vec<String>>) -> &mut Self {
+    pub fn with_pub_date_start_sort(
+        &mut self,
+        pub_date_start_sort: impl Into<Vec<String>>,
+    ) -> &mut Self {
         self.pub_date_start_sort = Some(pub_date_start_sort.into());
         self
     }
-    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: impl Into<Vec<String>>) -> &mut Self {
+    pub fn with_pub_date_end_sort(
+        &mut self,
+        pub_date_end_sort: impl Into<Vec<String>>,
+    ) -> &mut Self {
         self.pub_date_end_sort = Some(pub_date_end_sort.into());
+        self
+    }
+    pub fn with_author_display(&mut self, author_display: impl Into<Vec<String>>) -> &mut Self {
+        self.author_display = Some(author_display.into());
+        self
+    }
+    pub fn with_author_s(&mut self, author_s: impl Into<String>) -> &mut Self {
+        if self.author_s.is_none() {
+            self.author_s = Some(Vec::new());
+        }
+        self.author_s.as_mut().unwrap().push(author_s.into());
+        self
+    }
+    pub fn with_advisor_display(&mut self, advisor_display: impl Into<Vec<String>>) -> &mut Self {
+        self.advisor_display = Some(advisor_display.into());
+        self
+    }
+    pub fn with_contributor_display(
+        &mut self,
+        contributor_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
+        self.contributor_display = Some(contributor_display.into());
+        self
+    }
+    pub fn with_department_display(
+        &mut self,
+        department_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
+        self.department_display = Some(department_display.into());
+        self
+    }
+    pub fn with_certificate_display(
+        &mut self,
+        certificate_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
+        self.certificate_display = Some(certificate_display.into());
+        self
+    }
+    pub fn with_description_display(
+        &mut self,
+        description_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
+        self.description_display = Some(description_display.into());
+        self
+    }
+    pub fn with_summary_note_display(
+        &mut self,
+        summary_note_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
+        self.summary_note_display = Some(summary_note_display.into());
         self
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
+            format: "Senior thesis".to_owned(),
             location: self.location.clone(),
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
@@ -103,6 +185,14 @@ impl SolrDocumentBuilder {
             class_year_s: self.class_year_s.clone(),
             pub_date_start_sort: self.pub_date_start_sort.clone(),
             pub_date_end_sort: self.pub_date_end_sort.clone(),
+            author_display: self.author_display.clone(),
+            author_s: self.author_s.clone(),
+            advisor_display: self.advisor_display.clone(),
+            contributor_display: self.contributor_display.clone(),
+            department_display: self.department_display.clone(),
+            certificate_display: self.certificate_display.clone(),
+            description_display: self.description_display.clone(),
+            summary_note_display: self.summary_note_display.clone(),
         }
     }
 }
@@ -164,12 +254,65 @@ pub fn class_year_fields(class_year: Option<Vec<String>>) -> String {
     if let Some(years) = class_year {
         if let Some(year) = years.first() {
             if year.chars().all(|c| c.is_numeric()) {
-                builder.with_class_year_s(vec![year.to_owned()])
+                builder
+                    .with_class_year_s(vec![year.to_owned()])
                     .with_pub_date_start_sort(vec![year.to_owned()])
                     .with_pub_date_end_sort(vec![year.to_owned()]);
-            }    
+            }
         }
     }
+    serde_json::to_string(&builder.build()).unwrap_or_default()
+}
+
+pub fn non_special_fields(
+    author: Option<Vec<String>>,
+    advisor: Option<Vec<String>>,
+    contributor: Option<Vec<String>>,
+    department: Option<Vec<String>>,
+    certificate: Option<Vec<String>>,
+    extent: Option<Vec<String>>,
+    description_abstract: Option<Vec<String>>,
+) -> String {
+    let mut builder = SolrDocument::builder();
+
+    // Mapping implementation
+    if let Some(val) = author {
+        builder.with_author_display(val.clone());
+        val.iter().for_each(|value| {
+            builder.with_author_s(value);
+        });
+    }
+    if let Some(val) = advisor {
+        builder.with_advisor_display(val.clone());
+        val.iter().for_each(|value| {
+            builder.with_author_s(value);
+        });
+    }
+    if let Some(val) = contributor {
+        builder.with_contributor_display(val.clone());
+        val.iter().for_each(|value| {
+            builder.with_author_s(value);
+        });
+    }
+    if let Some(val) = department {
+        builder.with_department_display(val.clone());
+        val.iter().for_each(|value| {
+            builder.with_author_s(value);
+        });
+    }
+    if let Some(val) = certificate {
+        builder.with_certificate_display(val.clone());
+        val.iter().for_each(|value| {
+            builder.with_author_s(value);
+        });
+    }
+    if let Some(val) = extent {
+        builder.with_description_display(val);
+    }
+    if let Some(val) = description_abstract {
+        builder.with_summary_note_display(val);
+    }
+
     serde_json::to_string(&builder.build()).unwrap_or_default()
 }
 
@@ -181,6 +324,7 @@ mod tests {
     fn test_build_an_empty_solr_document() {
         let document = SolrDocument::builder().build();
         assert_eq!(document.location, None);
+        assert_eq!(document.format, "Senior thesis");
     }
 
     #[test]
