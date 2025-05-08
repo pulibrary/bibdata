@@ -28,12 +28,7 @@ module BibdataRs::Theses
     end
 
     def restrictions_access
-      values = [
-        location,
-        access_rights
-      ]
-      flattened = values.flatten
-      flattened.compact
+      BibdataRs::Theses.restrictions_access(location, access_rights)
     end
 
     def walkin?
