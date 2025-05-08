@@ -440,14 +440,7 @@ module BibdataRs::Theses
 
       # default English
       def code_to_language(codes)
-        languages = []
-        # en_US is not valid iso code
-        codes&.each do |c|
-          code_lang = ISO_639.find(c[/^[^_]*/]) # en_US is not valid iso code
-          l = code_lang.nil? ? 'English' : code_lang.english_name
-          languages << l
-        end
-        languages.empty? ? 'English' : languages.uniq
+        BibdataRs::Theses::codes_to_english_names(codes)
       end
 
       def map_rest_non_special_to_solr(doc)
