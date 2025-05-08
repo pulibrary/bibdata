@@ -302,31 +302,23 @@ module BibdataRs::Theses
       end
 
       def on_site_only?(doc)
-        output = false
-
+        return true if BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
+        return false unless physical_class_year?(class_years: doc.fetch('pu.date.classyear', []))
+        
         has_location = doc.key?('pu.location')
-        output ||= has_location
-
         has_rights = doc.key?('pu.rights.accessRights')
-        output ||= has_rights
+        looks_like_yes = BibdataRs::Theses.looks_like_yes(doc['pu.mudd.walkin'])
 
-        output ||= BibdataRs::Theses.looks_like_yes(doc['pu.mudd.walkin'])
+        has_location || has_rights || looks_like_yes
+      end
 
-        if output
-          values = doc.fetch('pu.date.classyear', [])
-          output = if values.empty?
-                     false
-                   else
+      def physical_class_year?(class_years:)
+        return false if class_years.empty?
 
-                     classyear = values.first
-                     # For theses, there is no physical copy since 2013
-                     # anything 2012 and prior have a physical copy
-                     # @see https://github.com/pulibrary/orangetheses/issues/76
-                     classyear.to_i < 2013
-                   end
-        end
-        output ||= BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
-        output
+        # For theses, there is no physical copy since 2013
+        # anything 2012 and prior have a physical copy
+        # @see https://github.com/pulibrary/orangetheses/issues/76
+        class_years.first.to_i < 2013
       end
 
       def walkin_text
