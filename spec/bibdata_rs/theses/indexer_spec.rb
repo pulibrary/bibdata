@@ -575,7 +575,7 @@ module BibdataRs::Theses
       let(:doc_no_restrictions) { {} }
       let(:online_holding) { JSON.parse(subject.send(:online_holding, doc_no_restrictions)) }
       let(:physical_holding) { JSON.parse(subject.send(:physical_holding, doc_restrictions)) }
-      let(:embargo_holding) { JSON.parse(subject.send(:physical_holding, doc_embargo, accessible: false)) }
+      let(:embargo_holding) { JSON.parse(subject.send(:physical_holding, doc_embargo)) }
 
       describe 'in the library' do
         it 'in the library access for record with restrictions note' do
@@ -622,7 +622,7 @@ module BibdataRs::Theses
         end
 
         it 'holdings dspace value is true' do
-          expect(embargo_holding['thesis']['dspace']).to be false
+          expect(embargo_holding['thesis']['dspace']).to be true
         end
       end
 
