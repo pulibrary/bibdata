@@ -40,7 +40,7 @@
                 }
             },
             "links": {
-                "self": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd"
+                "self": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd"
             }
         },
         {
@@ -66,7 +66,7 @@
                 }
             },
             "links": {
-                "self": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b48092199d6"
+                "self": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b45592199d6"
             }
         },
         {
@@ -92,7 +92,7 @@
                 }
             },
             "links": {
-                "self": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8893e9b1379"
+                "self": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-9967-a80c-f8893e9b1379"
             }
         },
         {
@@ -118,8 +118,217 @@
                 }
             },
             "links": {
-                "self": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360c27537fe"
+                "self": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9266-0360c27537fe"
+            }
+        },
+        {
+            "id": "af4a941d-96a4-463e-9043-cfa512e5eddd",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Of technique : chance procedures on turntable : a book of essays &amp; illustrations",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Of technique : chance procedures on turntable : a book of essays &amp; illustrations",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9055-cfa512e5eddd"
+            }
+        },
+        {
+            "id": "33fc03db-3bca-4388-84d3-6b48092199d6",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Making cities : economies of production and urbanization in Mediterranean Europe, 1000-500 BC.",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b48092199d6#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b48092199d6#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Making cities : economies of production and urbanization in Mediterranean Europe, 1000-500 BC.",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84gg-6b48092199d6"
+            }
+        },
+        {
+            "id": "2f555300-9cba-4467-a80c-f8893e9b1379",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "CENSUS OF POPULATION AND DWELLINGS 2021",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8893e9b1379#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8893e9b1379#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "CENSUS OF POPULATION AND DWELLINGS 2021",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-7767-a80c-f8893e9b1379"
+            }
+        },
+        {
+            "id": "602ebba6-1bae-4ba0-9282-0360c27537fe",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Alcuin Society newsletter, No. 22",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360c27537fe#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360c27537fe#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Alcuin Society newsletter, No. 22",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-036jj27537fe"
+            }
+        },
+        {
+            "id": "af4a941d-96a4-463e-9043-cfa512e5eddd",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Of technique : chance procedures on turntable : a book of essays &amp; illustrations",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Of technique : chance procedures on turntable : a book of essays &amp; illustrations",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-c66512e5eddd"
+            }
+        },
+        {
+            "id": "33fc03db-3bca-4388-84d3-6b48092199d6",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Making cities : economies of production and urbanization in Mediterranean Europe, 1000-500 BC.",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b48092199d6#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6b48092199d6#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Making cities : economies of production and urbanization in Mediterranean Europe, 1000-500 BC.",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84d3-6648092199d6"
+            }
+        },
+        {
+            "id": "2f555300-9cba-4467-a80c-f8893e9b1379",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "CENSUS OF POPULATION AND DWELLINGS 2021",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8893e9b1379#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8893e9b1379#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "CENSUS OF POPULATION AND DWELLINGS 2021",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/2f555300-9cba-4467-a80c-f8553e9b1379"
+            }
+        },
+        {
+            "id": "602ebba6-1bae-4ba0-9282-0360c27537fe",
+            "type": "Ephemera Folder",
+            "attributes": {
+                "title": "Alcuin Society newsletter, No. 22",
+                "state_ssim": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360c27537fe#state_ssim",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "complete",
+                        "label": "State"
+                    }
+                },
+                "figgy_title_ssi": {
+                    "id": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360c27537fe#figgy_title_ssi",
+                    "type": "document_value",
+                    "attributes": {
+                        "value": "Alcuin Society newsletter, No. 22",
+                        "label": "Figgy Title Ssi"
+                    }
+                }
+            },
+            "links": {
+                "self": "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9282-0360997537fe"
             }
         }
+        
     ]
 }

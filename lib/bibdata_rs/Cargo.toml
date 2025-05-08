@@ -13,6 +13,7 @@ serde-xml-rs = "0.8.0"
 serde_json = "1.0.140"
 reqwest = { version = "0.12.15", features = ["json", "blocking"] }
 tokio = { version = "1", features = ["full"] }
+itertools = "0.14.0"
 
 [dev-dependencies]
 mockito = "0.31"
