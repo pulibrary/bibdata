@@ -2,7 +2,7 @@ use chrono::prelude::*;
 use parse_datetime::parse_datetime;
 
 pub fn has_current_embargo(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> bool {
-    match first_embargo_date(lift_dates, terms_dates) {
+    match parsed_embargo_date(lift_dates, terms_dates) {
         Some(date) => {
             date > Utc::now()
         },
@@ -23,7 +23,7 @@ pub fn embargo_text(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<Str
 }
 
 pub fn embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> Option<String> {
-    match first_embargo_date(lift_dates, terms_dates) {
+    match parsed_embargo_date(lift_dates, terms_dates) {
         Some(date) => {
             Some(format!("{}", date.format("%B %-d, %Y")))
         },
@@ -31,8 +31,26 @@ pub fn embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<Str
     }
 }
 
-fn first_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> Option<DateTime<FixedOffset>> {
-    let raw_dates = match (lift_dates, terms_dates) {
+pub fn has_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> bool {
+    raw_embargo_date(lift_dates, terms_dates).is_some()
+}
+
+
+pub fn has_parseable_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> bool {
+    parsed_embargo_date(lift_dates, terms_dates).is_some()
+}
+
+fn parsed_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> Option<DateTime<FixedOffset>> {
+    match raw_embargo_date(lift_dates, terms_dates) {
+        Some(date) => {
+            parse_datetime(date).ok()
+        },
+        None => None
+    }
+}
+
+fn raw_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<String>>) -> Option<String> {
+    match (lift_dates, terms_dates) {
         (None, None) => { return None },
         (Some(v), None) => v,
         (None, Some(v)) => v,
@@ -41,13 +59,7 @@ fn first_embargo_date(lift_dates: Option<Vec<String>>, terms_dates: Option<Vec<S
             all_dates.extend(v2);
             all_dates
         }
-    };
-    match raw_dates.first() {
-        Some(date) => {
-            parse_datetime(date).ok()
-        },
-        None => None
-    }
+    }.first().cloned()
 }
 
 

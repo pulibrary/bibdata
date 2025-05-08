@@ -21,54 +21,16 @@ module BibdataRs::Theses
       document['id']
     end
 
-    def embargo_lift_field
-      return unless document.key?('pu.embargo.lift')
-
-      @embargo_lift_field ||= document['pu.embargo.lift']
-    end
-
-    def embargo_terms_field
-      return unless document.key?('pu.embargo.terms')
-
-      @embargo_terms_field ||= document['pu.embargo.terms']
-    end
-
-    def embargo_date_fields
-      @embargo_date_fields ||= embargo_lift_field || embargo_terms_field
-    end
-
-    def embargo_date_field
-      return if embargo_date_fields.nil?
-
-      embargo_date_fields.first
-    end
-
-    def embargo_date
-      return if embargo_date_field.nil?
-
-      @embargo_date ||= Chronic.parse(embargo_date_field)
-    end
-
     def embargo_present?
-      !embargo_date_field.nil?
-    end
-
-    def formatted_embargo_date
-      return if embargo_date.nil?
-
-      @formatted_embargo_date ||= embargo_date.strftime('%B %-d, %Y')
+      BibdataRs::Theses.has_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
     end
 
     def embargo_valid?
-      return false unless embargo_present?
-
-      !embargo_date.nil?
+      BibdataRs::Theses.has_parseable_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
     end
 
     def embargo_active?
-      return false unless embargo_valid?
-
-      embargo_date > Time.now
+      BibdataRs::Theses.has_current_embargo(document['pu.embargo.lift'], document['pu.embargo.terms'])
     end
 
     def location
@@ -112,7 +74,7 @@ module BibdataRs::Theses
 
       # rubocop:disable Layout/LineLength
       def embargo_restrictions_note
-        "This content is embargoed until #{formatted_embargo_date}. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{id}\"> Mudd Manuscript Library</a>."
+        BibdataRs::Theses.embargo_text(document['pu.embargo.lift'], document['pu.embargo.terms'], id)
       end
       # rubocop:enable Layout/LineLength
 
