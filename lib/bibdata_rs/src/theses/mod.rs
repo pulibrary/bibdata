@@ -10,6 +10,7 @@ pub mod just_testing;
 pub mod language;
 pub mod latex;
 pub mod program;
+pub mod restrictions;
 
 #[derive(Deserialize)]
 struct Metadata {
@@ -57,7 +58,7 @@ pub fn rails_env() -> String {
 pub fn looks_like_yes(possible: Option<Vec<String>>) -> bool {
     match possible {
         Some(vec) => vec.first().map_or("", |v| v) == "yes",
-        None => false
+        None => false,
     }
 }
 

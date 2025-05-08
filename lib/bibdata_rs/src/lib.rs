@@ -38,19 +38,32 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule
         .define_singleton_method("call_number", function!(theses::holdings::call_number, 1))?;
-    submodule
-        .define_singleton_method("online_holding_string", function!(theses::holdings::online_holding_string, 1))?;
-    submodule
-        .define_singleton_method("physical_holding_string", function!(theses::holdings::physical_holding_string, 1))?;
-    submodule
-        .define_singleton_method("has_current_embargo", function!(theses::embargo::has_current_embargo, 2))?;
-    submodule
-        .define_singleton_method("has_embargo_date", function!(theses::embargo::has_embargo_date, 2))?;
-    submodule
-        .define_singleton_method("has_parseable_embargo_date", function!(theses::embargo::has_parseable_embargo_date, 2))?;
+    submodule.define_singleton_method(
+        "online_holding_string",
+        function!(theses::holdings::online_holding_string, 1),
+    )?;
+    submodule.define_singleton_method(
+        "physical_holding_string",
+        function!(theses::holdings::physical_holding_string, 1),
+    )?;
+    submodule.define_singleton_method(
+        "has_current_embargo",
+        function!(theses::embargo::has_current_embargo, 2),
+    )?;
+    submodule.define_singleton_method(
+        "has_embargo_date",
+        function!(theses::embargo::has_embargo_date, 2),
+    )?;
+    submodule.define_singleton_method(
+        "has_parseable_embargo_date",
+        function!(theses::embargo::has_parseable_embargo_date, 2),
+    )?;
     submodule
         .define_singleton_method("embargo_text", function!(theses::embargo::embargo_text, 3))?;
-    submodule
-        .define_singleton_method("looks_like_yes", function!(theses::looks_like_yes, 1))?;
+    submodule.define_singleton_method("looks_like_yes", function!(theses::looks_like_yes, 1))?;
+    submodule.define_singleton_method(
+        "restrictions_access",
+        function!(theses::restrictions::restrictions_access, 2),
+    )?;
     Ok(())
 }

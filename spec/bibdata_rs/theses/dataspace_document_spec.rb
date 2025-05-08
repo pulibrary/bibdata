@@ -44,5 +44,18 @@ describe 'BibdataRs::Theses::DataspaceDocument', :rust do
         expect(logger).to have_received(:warn).with('Failed to parse the embargo date for test-id')
       end
     end
+    context 'when there are dc.rights.accessRights' do
+      let(:document) do
+        {
+          'id' => id,
+          'dc.rights.accessRights' => 'Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.'
+        }
+      end
+
+      it 'logs a warning' do
+        expect(solr_document).to be_a(Hash)
+        expect(solr_document['restrictions_note_display']).to eq ["Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."]
+      end
+    end
   end
 end
