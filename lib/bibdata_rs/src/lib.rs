@@ -36,5 +36,11 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "codes_to_english_names",
         function!(theses::language::codes_to_english_names, 1),
     )?;
+    submodule
+        .define_singleton_method("call_number", function!(theses::holdings::call_number, 1))?;
+    submodule
+        .define_singleton_method("online_holding_string", function!(theses::holdings::online_holding_string, 1))?;
+    submodule
+        .define_singleton_method("physical_holding_string", function!(theses::holdings::physical_holding_string, 1))?;
     Ok(())
 }

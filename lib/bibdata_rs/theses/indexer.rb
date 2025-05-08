@@ -216,26 +216,11 @@ module BibdataRs::Theses
       end
 
       def online_holding(doc)
-        {
-          'thesis' => {
-            'call_number' => call_number(doc['dc.identifier.other']),
-            'call_number_browse' => call_number(doc['dc.identifier.other']),
-            'dspace' => true
-          }
-        }.to_json.to_s
+        BibdataRs::Theses.online_holding_string doc['dc.identifier.other']
       end
 
-      def physical_holding(doc, accessible: true)
-        {
-          'thesis' => {
-            'location' => 'Mudd Manuscript Library',
-            'library' => 'Mudd Manuscript Library',
-            'location_code' => 'mudd$stacks',
-            'call_number' => call_number(doc['dc.identifier.other']),
-            'call_number_browse' => call_number(doc['dc.identifier.other']),
-            'dspace' => accessible
-          }
-        }.to_json.to_s
+      def physical_holding(doc)
+        return BibdataRs::Theses::physical_holding_string doc['dc.identifier.other']
       end
 
       def non_ark_ids(dc_elements)
@@ -289,7 +274,7 @@ module BibdataRs::Theses
       end
 
       def call_number(non_ark_ids)
-        non_ark_ids.nil? ? 'AC102' : "AC102 #{non_ark_ids.first}"
+        BibdataRs::Theses::call_number non_ark_ids
       end
 
       def first_or_nil(field)
