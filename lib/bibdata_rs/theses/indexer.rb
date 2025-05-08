@@ -310,7 +310,7 @@ module BibdataRs::Theses
         has_rights = doc.key?('pu.rights.accessRights')
         output ||= has_rights
 
-        output ||= walkin?(doc)
+        output ||= BibdataRs::Theses.looks_like_yes(doc['pu.mudd.walkin'])
 
         if output
           values = doc.fetch('pu.date.classyear', [])
@@ -329,26 +329,6 @@ module BibdataRs::Theses
         output
       end
 
-      def embargo(doc)
-        date = doc['pu.embargo.lift'] || doc['pu.embargo.terms']
-        date = Chronic.parse(date.first) unless date.nil?
-        date = date.strftime('%B %-d, %Y') unless date.nil?
-        date
-      end
-
-      def walkin?(doc)
-        walkin = doc['pu.mudd.walkin']
-        !walkin.nil? && walkin.first == 'yes'
-      end
-
-      def build_embargo_text(doc)
-        embargo_date = embargo(doc)
-        doc_id = doc['id']
-        "This content is embargoed until #{embargo_date}. For more information contact the "\
-          "<a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/#{doc_id}\"> "\
-          'Mudd Manuscript Library</a>.'
-      end
-
       def walkin_text
         'Walk-in Access. This thesis can only be viewed on computer terminals at the '\
           '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.'
@@ -356,12 +336,10 @@ module BibdataRs::Theses
 
       def restrictions_display_text(doc)
         if BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
-          output = build_embargo_text(doc)
-
-          return output
+          return BibdataRs::Theses.embargo_text(doc['pu.embargo.lift'], doc['pu.embargo.terms'], doc['id'])
         end
 
-        if walkin?(doc)
+        if BibdataRs::Theses.looks_like_yes(doc['pu.mudd.walkin'])
           output = walkin_text
 
           return output
