@@ -325,21 +325,8 @@ module BibdataRs::Theses
                      classyear.to_i < 2013
                    end
         end
-        output ||= embargo?(doc)
+        output ||= BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
         output
-      end
-
-      def embargo?(doc)
-        date = doc['pu.embargo.lift'] || doc['pu.embargo.terms']
-        return false if date.nil?
-
-        date = Chronic.parse(date.first)
-        if date.nil?
-          @logger.info("No valid embargo date for #{doc['id']}")
-          return false
-        end
-
-        date > Time.now
       end
 
       def embargo(doc)
@@ -368,7 +355,7 @@ module BibdataRs::Theses
       end
 
       def restrictions_display_text(doc)
-        if embargo?(doc)
+        if BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
           output = build_embargo_text(doc)
 
           return output
@@ -462,7 +449,7 @@ module BibdataRs::Theses
       # online access when there isn't a restriction/location note
       def holdings_access(doc)
         # This handles cases for items in the Mudd Library
-        doc_embargoed = embargo?(doc)
+        doc_embargoed = BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
         doc_on_site_only = on_site_only?(doc)
 
         if doc_embargoed
