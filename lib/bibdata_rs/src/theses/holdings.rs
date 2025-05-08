@@ -10,23 +10,21 @@ pub fn call_number(non_ark_ids: Option<Vec<String>>) -> String {
 }
 
 pub fn online_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String> {
-    serde_json::to_string(
-        &ThesisHoldingHash {
-            thesis: OnlineHolding {
-                call_number: call_number(non_ark_ids)
-            }
-        }
-    ).ok()
+    serde_json::to_string(&ThesisHoldingHash {
+        thesis: OnlineHolding {
+            call_number: call_number(non_ark_ids),
+        },
+    })
+    .ok()
 }
 
 pub fn physical_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String> {
-    serde_json::to_string(
-        &ThesisHoldingHash {
-            thesis: PhysicalHolding {
-                call_number: call_number(non_ark_ids)
-            }
-        }
-    ).ok()
+    serde_json::to_string(&ThesisHoldingHash {
+        thesis: PhysicalHolding {
+            call_number: call_number(non_ark_ids),
+        },
+    })
+    .ok()
 }
 
 #[derive(Debug, Serialize)]
@@ -98,12 +96,11 @@ mod tests {
     fn it_can_serialize_online_holding() {
         let hash = ThesisHoldingHash {
             thesis: OnlineHolding {
-                call_number: "AC102".to_owned()
-            }
+                call_number: "AC102".to_owned(),
+            },
         };
         assert_eq!(
-            serde_json::to_string(&hash)
-            .unwrap(),
+            serde_json::to_string(&hash).unwrap(),
             r#"{"thesis":{"call_number":"AC102","call_number_browse":"AC102","dspace":true}}"#
         );
     }
@@ -112,12 +109,11 @@ mod tests {
     fn it_can_serialize_physical_holding() {
         let hash = ThesisHoldingHash {
             thesis: PhysicalHolding {
-                call_number: "AC102".to_owned()
-            }
+                call_number: "AC102".to_owned(),
+            },
         };
         assert_eq!(
-            serde_json::to_string(&hash)
-            .unwrap(),
+            serde_json::to_string(&hash).unwrap(),
             r#"{"thesis":{"location":"Mudd Manuscript Library","library":"Mudd Manuscript Library","location_code":"mudd$stacks","call_number":"AC102","call_number_browse":"AC102","dspace":true}}"#
         );
     }
