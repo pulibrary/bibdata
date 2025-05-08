@@ -1,9 +1,11 @@
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
-use std::{fs, env};
+use std::{env, fs};
 
 pub mod collection;
 pub mod config;
 pub mod department;
+pub mod just_testing;
+pub mod language;
 pub mod latex;
 pub mod program;
 
@@ -106,4 +108,3 @@ mod tests {
         }
     }
 }
-

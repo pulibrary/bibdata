@@ -1,5 +1,8 @@
 pub fn collection_url(server: String, id: String, rest_limit: String, offset: String) -> String {
-    format!("{}/collections/{}/items?limit={}&offset={}&expand=metadata", server, id, rest_limit, offset)
+    format!(
+        "{}/collections/{}/items?limit={}&offset={}&expand=metadata",
+        server, id, rest_limit, offset
+    )
 }
 
 #[cfg(test)]
