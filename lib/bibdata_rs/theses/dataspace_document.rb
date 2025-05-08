@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'chronic'
-
 module BibdataRs::Theses
   # Class modeling the behavior for Solr Documents generated with DataSpace Item
   #   metadata
@@ -19,18 +17,6 @@ module BibdataRs::Theses
 
     def id
       document['id']
-    end
-
-    def embargo_present?
-      BibdataRs::Theses.has_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
-    end
-
-    def embargo_valid?
-      BibdataRs::Theses.has_parseable_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
-    end
-
-    def embargo_active?
-      BibdataRs::Theses.has_current_embargo(document['pu.embargo.lift'], document['pu.embargo.terms'])
     end
 
     def location
@@ -72,23 +58,18 @@ module BibdataRs::Theses
       end
       # rubocop:enable Layout/LineLength
 
-      # rubocop:disable Layout/LineLength
-      def embargo_restrictions_note
-        BibdataRs::Theses.embargo_text(document['pu.embargo.lift'], document['pu.embargo.terms'], id)
-      end
-      # rubocop:enable Layout/LineLength
 
       def restrictions_note_display
         if location || access_rights
           restrictions_access
         elsif walkin?
           walkin_restrictions
-        elsif embargo_present?
-          if !embargo_valid?
+        elsif BibdataRs::Theses.has_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
+          if !BibdataRs::Theses.has_parseable_embargo_date(document['pu.embargo.lift'], document['pu.embargo.terms'])
             logger.warn("Failed to parse the embargo date for #{id}")
             invalid_embargo_restrictions_note
-          elsif embargo_active?
-            embargo_restrictions_note
+          elsif BibdataRs::Theses.has_current_embargo(document['pu.embargo.lift'], document['pu.embargo.terms'])
+            BibdataRs::Theses.embargo_text(document['pu.embargo.lift'], document['pu.embargo.terms'], id)
           end
         end
       end
