@@ -648,7 +648,7 @@ module BibdataRs::Theses
 
     describe '#_code_to_language' do
       it 'defaults to English when no dc.language.iso field' do
-        expect(subject.send(:code_to_language, nil)).to eq 'English'
+        expect(subject.send(:code_to_language, nil)).to eq ['English']
       end
 
       it 'maps valid language code to standard language name' do
