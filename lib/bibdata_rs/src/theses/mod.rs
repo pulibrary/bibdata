@@ -11,6 +11,7 @@ pub mod language;
 pub mod latex;
 pub mod program;
 pub mod restrictions;
+pub mod solr;
 
 #[derive(Deserialize)]
 struct Metadata {

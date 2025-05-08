@@ -1,5 +1,5 @@
-use serde::{ser::SerializeStruct, Serialize};
 use crate::theses::{embargo, looks_like_yes};
+use serde::{ser::SerializeStruct, Serialize};
 
 pub fn call_number(non_ark_ids: Option<Vec<String>>) -> String {
     let ids = non_ark_ids.unwrap_or_default();
@@ -34,7 +34,7 @@ pub fn physical_class_year(class_years: Vec<String>) -> bool {
     // @see https://github.com/pulibrary/orangetheses/issues/76
     match class_years.first() {
         Some(year) => year < &"2013".to_string(),
-        None => false
+        None => false,
     }
 }
 
@@ -52,8 +52,12 @@ pub fn on_site_only(
     embargo_lift: Option<Vec<String>>,
     embargo_terms: Option<Vec<String>>,
 ) -> bool {
-    if embargo::has_current_embargo(embargo_lift, embargo_terms) { return true };
-    if !physical_class_year(class_year) { return false }
+    if embargo::has_current_embargo(embargo_lift, embargo_terms) {
+        return true;
+    };
+    if !physical_class_year(class_year) {
+        return false;
+    }
     location || access_rights || looks_like_yes(mudd_walkin)
 }
 
@@ -158,7 +162,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = Some(vec!["2100-01-01".to_owned()]);
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            true
+        );
     }
 
     #[test]
@@ -169,7 +183,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = Some(vec!["2100-01-01".to_owned()]);
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            true
+        );
     }
 
     #[test]
@@ -180,7 +204,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            false
+        );
     }
 
     #[test]
@@ -191,7 +225,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            false
+        );
     }
 
     #[test]
@@ -202,7 +246,17 @@ mod tests {
         let class_year = vec!["2012-01-01T00:00:00Z".to_owned()];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            true
+        );
     }
 
     #[test]
@@ -213,7 +267,17 @@ mod tests {
         let class_year = vec!["2013-01-01T00:00:00Z".to_owned()];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            false
+        );
     }
 
     #[test]
@@ -224,7 +288,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            false
+        );
     }
 
     #[test]
@@ -235,7 +309,17 @@ mod tests {
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+        assert_eq!(
+            on_site_only(
+                location,
+                access_rights,
+                mudd_walkin,
+                class_year,
+                embargo_lift,
+                embargo_terms
+            ),
+            false
+        );
     }
 
     #[test]
