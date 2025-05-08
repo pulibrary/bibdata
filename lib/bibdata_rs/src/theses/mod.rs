@@ -4,6 +4,7 @@ use std::{env, fs};
 pub mod collection;
 pub mod config;
 pub mod department;
+pub mod embargo;
 pub mod holdings;
 pub mod just_testing;
 pub mod language;
