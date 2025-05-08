@@ -1,4 +1,5 @@
 use serde::{ser::SerializeStruct, Serialize};
+use crate::theses::{embargo, looks_like_yes};
 
 pub fn call_number(non_ark_ids: Option<Vec<String>>) -> String {
     let ids = non_ark_ids.unwrap_or_default();
@@ -28,6 +29,9 @@ pub fn physical_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<Strin
 }
 
 pub fn physical_class_year(class_years: Vec<String>) -> bool {
+    // For theses, there is no physical copy since 2013
+    // anything 2012 and prior have a physical copy
+    // @see https://github.com/pulibrary/orangetheses/issues/76
     match class_years.first() {
         Some(year) => year < &"2013".to_string(),
         None => false
@@ -41,15 +45,16 @@ pub fn physical_class_year(class_years: Vec<String>) -> bool {
 // let embargo_lift = "pu.embargo.lift";
 // let embargo_terms = "pu.embargo.terms";
 pub fn on_site_only(
-    location: Option<Vec<String>>,
-    access_rights: Option<String>,
+    location: bool,
+    access_rights: bool,
     mudd_walkin: Option<Vec<String>>,
-    class_year: Option<Vec<String>>,
+    class_year: Vec<String>,
     embargo_lift: Option<Vec<String>>,
     embargo_terms: Option<Vec<String>>,
 ) -> bool {
-
-    true
+    if embargo::has_current_embargo(embargo_lift, embargo_terms) { return true };
+    if !physical_class_year(class_year) { return false }
+    location || access_rights || looks_like_yes(mudd_walkin)
 }
 
 #[derive(Debug, Serialize)]
@@ -101,6 +106,8 @@ impl Serialize for PhysicalHolding {
 
 #[cfg(test)]
 mod tests {
+    use std::vec;
+
     use super::*;
 
     #[test]
@@ -142,15 +149,93 @@ mod tests {
             r#"{"thesis":{"location":"Mudd Manuscript Library","library":"Mudd Manuscript Library","location_code":"mudd$stacks","call_number":"AC102","call_number_browse":"AC102","dspace":true}}"#
         );
     }
+
     #[test]
-    fn it_can_determine_if_onsite_only() {
-        let location = Some(vec!["physical location".to_string()]);
-        let access_rights = None;
+    fn it_is_onsite_only_when_embargo_terms_is_some() {
+        let location = false;
+        let access_rights = false;
         let mudd_walkin = None;
-        let class_year = None;
+        let class_year = vec![];
+        let embargo_lift = None;
+        let embargo_terms = Some(vec!["2100-01-01".to_owned()]);
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+    }
+
+    #[test]
+    fn it_is_onsite_only_when_embargo_lift_is_some() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = None;
+        let class_year = vec![];
+        let embargo_lift = Some(vec!["2100-01-01".to_owned()]);
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+    }
+
+    #[test]
+    fn it_is_not_onsite_only_when_embargo_lift_is_past() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = None;
+        let class_year = vec![];
+        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+    }
+
+    #[test]
+    fn it_is_not_onsite_only_when_embargo_lift_is_past_and_walkin() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let class_year = vec![];
+        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+    }
+
+    #[test]
+    fn it_is_onsite_only_when_prior_to_2013() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let class_year = vec!["2012-01-01T00:00:00Z".to_owned()];
+        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true);
+    }
+
+    #[test]
+    fn it_is_not_onsite_only_when_from_2013() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let class_year = vec!["2013-01-01T00:00:00Z".to_owned()];
+        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+    }
+
+    #[test]
+    fn it_is_not_onsite_only_when_physical_location_is_true() {
+        let location = true;
+        let access_rights = false;
+        let mudd_walkin = None;
+        let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = None;
-        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), true)
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
+    }
+
+    #[test]
+    fn it_is_not_onsite_only_when_no_restrictions_field() {
+        let location = false;
+        let access_rights = false;
+        let mudd_walkin = None;
+        let class_year = vec![];
+        let embargo_lift = None;
+        let embargo_terms = None;
+        assert_eq!(on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms), false);
     }
 
     #[test]
