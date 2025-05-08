@@ -88,12 +88,8 @@ module BibdataRs::Theses
       flattened.compact
     end
 
-    def walkin
-      @walkin ||= document['pu.mudd.walkin']
-    end
-
     def walkin?
-      !walkin.nil? && walkin.first == 'yes'
+      BibdataRs::Theses.looks_like_yes document['pu.mudd.walkin']
     end
 
     def to_solr

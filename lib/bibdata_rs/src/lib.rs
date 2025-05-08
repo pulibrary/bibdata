@@ -44,5 +44,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         .define_singleton_method("physical_holding_string", function!(theses::holdings::physical_holding_string, 1))?;
     submodule
         .define_singleton_method("has_current_embargo", function!(theses::embargo::has_current_embargo, 2))?;
+    submodule
+        .define_singleton_method("embargo_text", function!(theses::embargo::embargo_text, 3))?;
+    submodule
+        .define_singleton_method("looks_like_yes", function!(theses::looks_like_yes, 1))?;
     Ok(())
 }
