@@ -75,6 +75,13 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "holding_access_string",
         function!(theses::solr::holding_access_string, 7),
     )?;
-    submodule.define_singleton_method("class_year_fields", function!(theses::solr::class_year_fields, 1))?;
+    submodule.define_singleton_method(
+        "class_year_fields",
+        function!(theses::solr::class_year_fields, 1),
+    )?;
+    submodule.define_singleton_method(
+        "non_special_fields",
+        function!(theses::solr::non_special_fields, 7),
+    )?;
     Ok(())
 }
