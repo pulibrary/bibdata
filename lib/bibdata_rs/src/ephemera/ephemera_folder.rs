@@ -76,7 +76,6 @@ mod tests {
 
         let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
         d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
-
         let mock = mock("GET", "/")
             .with_status(200)
             .with_header("content-type", "application/json")
@@ -84,6 +83,7 @@ mod tests {
             .create();
 
         let data = read_ephemera_folders().await.unwrap();
+        assert!(!data.is_empty());
         let chunk_size = 3;
         let mut result: Vec<Vec<String>> = Vec::new();
         for chunk in data.chunks(chunk_size) {
@@ -96,7 +96,14 @@ mod tests {
         assert_eq!(result[1].len(), 3); // Second chunk should have 3 items
         assert_eq!(result[2].len(), 3); // Third chunk should have 3 items
         assert_eq!(result[3].len(), 3); // Forth chunk should have 3 items
-
+        assert_eq!(
+            result[1],
+            [
+                "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9266-0360c27537fe",
+                "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9055-cfa512e5eddd",
+                "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84gg-6b48092199d6"
+            ]
+        );
         mock.assert();
     }
 }
