@@ -65,30 +65,16 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "restrictions_access",
         function!(theses::restrictions::restrictions_access, 2),
     )?;
-    submodule.define_singleton_method(
-        "physical_class_year",
-        function!(theses::holdings::physical_class_year, 1),
-    )?;
     submodule
         .define_singleton_method("on_site_only", function!(theses::holdings::on_site_only, 6))?;
     submodule.define_singleton_method(
-        "holding_access_string",
-        function!(theses::solr::holding_access_string, 7),
+        "title_search_versions",
+        function!(theses::dataspace_api::fake_title_search_versions, 1),
     )?;
-    submodule.define_singleton_method(
-        "class_year_fields",
-        function!(theses::solr::class_year_fields, 1),
-    )?;
-    submodule.define_singleton_method(
-        "non_special_fields",
-        function!(theses::solr::non_special_fields, 7),
-    )?;
-    submodule.define_singleton_method(
-        "basic_fields",
-        function!(theses::solr::basic_fields, 12),
-    )?;
-    submodule.define_singleton_method("title_search_versions", function!(theses::dataspace_api::fake_title_search_versions, 1))?;
     submodule.define_singleton_method("ark_hash", function!(theses::holdings::ark_hash, 7))?;
-    submodule.define_singleton_method("ruby_json_to_solr_json", function!(theses::dataspace_api::ruby_json_to_solr_json, 1))?;
+    submodule.define_singleton_method(
+        "ruby_json_to_solr_json",
+        function!(theses::dataspace_api::ruby_json_to_solr_json, 1),
+    )?;
     Ok(())
 }

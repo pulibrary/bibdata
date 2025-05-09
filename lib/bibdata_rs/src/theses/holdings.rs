@@ -30,7 +30,7 @@ pub fn physical_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<Strin
     .ok()
 }
 
-pub fn physical_class_year(class_years: Vec<String>) -> bool {
+fn physical_class_year(class_years: Vec<String>) -> bool {
     // For theses, there is no physical copy since 2013
     // anything 2012 and prior have a physical copy
     // @see https://github.com/pulibrary/orangetheses/issues/76
@@ -51,7 +51,14 @@ pub fn ark_hash(
 ) -> Option<String> {
     let arks = identifier_uri.unwrap_or_default();
     let key = arks.first()?;
-    let value = if on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms) {
+    let value = if on_site_only(
+        location,
+        access_rights,
+        mudd_walkin,
+        class_year,
+        embargo_lift,
+        embargo_terms,
+    ) {
         ["DataSpace", "Citation only"]
     } else {
         ["DataSpace", "Full text"]
@@ -60,7 +67,6 @@ pub fn ark_hash(
     hash.insert(key.into(), value.into());
     Some(serde_json::to_string(&hash).unwrap())
 }
-
 
 pub fn on_site_only(
     location: bool,
