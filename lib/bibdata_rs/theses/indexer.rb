@@ -60,32 +60,6 @@ module BibdataRs::Theses
           '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.'
       end
 
-      def restrictions_display_text(doc)
-        if BibdataRs::Theses::has_current_embargo(doc['pu.embargo.lift'], doc['pu.embargo.terms'])
-          return BibdataRs::Theses.embargo_text(doc['pu.embargo.lift'], doc['pu.embargo.terms'], doc['id'])
-        end
-
-        if BibdataRs::Theses.looks_like_yes(doc['pu.mudd.walkin'])
-          output = walkin_text
-
-          return output
-        end
-
-        fields = []
-        if doc.key?('pu.location')
-          field = doc['pu.location']
-          fields << field
-        end
-
-        if doc.key?('dc.rights.accessRights')
-          field = doc['pu.rights.accessRights']
-          fields << field
-        end
-
-        flattened = fields.flatten
-        flattened.compact
-      end
-
 
       # default English
       def code_to_language(codes)

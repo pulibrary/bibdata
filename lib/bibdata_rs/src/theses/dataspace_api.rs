@@ -15,10 +15,6 @@ struct Metadata {
     contributor_advisor: Option<Vec<String>>,
     #[serde(rename = "dc.contributor.author")]
     contributor_author: Option<Vec<String>>,
-    #[serde(rename = "dc.date.accessioned")]
-    date_accessioned: Option<Vec<String>>,
-    #[serde(rename = "dc.date.available")]
-    date_available: Option<Vec<String>>,
     #[serde(rename = "pu.date.classyear")]
     date_classyear: Option<Vec<String>>,
     #[serde(rename = "dc.description.abstract")]
