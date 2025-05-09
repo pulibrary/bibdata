@@ -59,32 +59,33 @@ pub fn json_ephemera_document(path: String) -> String {
 
 #[cfg(test)]
 mod tests {
-    use crate::ephemera::CatalogClient;
+    use crate::{ephemera::CatalogClient, testing_support::preserving_envvar_async};
 
     use super::*;
-    use mockito::mock;
     use std::path::PathBuf;
 
     #[tokio::test]
     async fn test_get_item_data() {
-        let mock_url = mockito::server_url();
-        std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &mock_url);
-
-        let mock = mock("GET", "/")
-            .with_status(200)
-            .with_header("content-type", "application/json")
-            .with_body(r#"{ "data": [] }"#)
-            .create();
-
-        let client = CatalogClient::default();
-        let result = client.get_item_data().await;
-
-        mock.assert();
-
-        match result {
-            Ok(_response) => assert!(true),
-            Err(e) => panic!("Request failed: {}", e),
-        }
+        preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
+            let mut server = mockito::Server::new_async().await;
+            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
+    
+            let mock = server.mock("GET", "/")
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body(r#"{ "data": [] }"#)
+                .create_async().await;
+    
+            let client = CatalogClient::default();
+            let result = client.get_item_data().await;
+    
+            mock.assert_async().await;
+    
+            match result {
+                Ok(_response) => assert!(true),
+                Err(e) => panic!("Request failed: {}", e),
+            }
+        }).await
     }
 
     #[test]
