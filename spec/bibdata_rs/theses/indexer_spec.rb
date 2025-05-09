@@ -266,23 +266,5 @@ module BibdataRs::Theses
         end
       end
     end
-
-    describe '#_code_to_language' do
-      it 'defaults to English when no dc.language.iso field' do
-        expect(subject.send(:code_to_language, nil)).to eq ['English']
-      end
-
-      it 'maps valid language code to standard language name' do
-        expect(subject.send(:code_to_language, ['fr'])).to include 'French'
-      end
-
-      it 'supports multiple language codes' do
-        expect(subject.send(:code_to_language, %w[el it])).to include('Greek, Modern (1453-)', 'Italian')
-      end
-
-      it 'dedups' do
-        expect(subject.send(:code_to_language, %w[en_US en])).to eq ['English']
-      end
-    end
   end
 end

@@ -55,16 +55,5 @@ module BibdataRs::Theses
         )
       end
 
-      def walkin_text
-        'Walk-in Access. This thesis can only be viewed on computer terminals at the '\
-          '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.'
-      end
-
-
-      # default English
-      def code_to_language(codes)
-        BibdataRs::Theses::codes_to_english_names(codes)
-      end
-
   end
 end
