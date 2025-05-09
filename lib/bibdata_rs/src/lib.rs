@@ -1,5 +1,6 @@
 use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
+use theses::communities;
 
 mod config;
 mod ephemera;
@@ -55,5 +56,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "ruby_json_to_solr_json",
         function!(theses::dataspace_api::ruby_json_to_solr_json, 1),
     )?;
+    submodule.define_singleton_method("api_communities_json", function!(communities::api_communities_json, 1))?;
     Ok(())
 }
