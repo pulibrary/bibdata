@@ -60,21 +60,6 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
       expect(BibdataRs::Theses.theses_cache_path).to eq cache
     end
 
-    it 'writes a collection to a cache file' do
-      expect(File.exist?(cache)).to be false
-      BibdataRs::Theses::Fetcher.write_collection_to_cache('361')
-      expect(File.exist?(cache)).to be true
-      cached_file = File.read(cache)
-      expect(cached_file).to be_a(String)
-      expect(cached_file).not_to be_empty
-      cache_exports = JSON.parse(cached_file)
-      expect(cache_exports).to be_an(Array)
-      expect(cache_exports.length).to eq(1)
-      cache_export = cache_exports.first
-      expect(cache_export).to be_a(Hash)
-      expect(cache_export).to include('id' => 'dsp0141687h67f')
-    end
-
     it 'writes all collections to a cache file' do
       expect(File.exist?(cache)).to be false
       BibdataRs::Theses::Fetcher.write_all_collections_to_cache

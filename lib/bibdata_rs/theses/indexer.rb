@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require 'chronic'
 require 'logger'
 require 'json'
-
 
 module BibdataRs::Theses
   class Indexer
@@ -14,46 +12,5 @@ module BibdataRs::Theses
       attrs = JSON.parse BibdataRs::Theses.ruby_json_to_solr_json(values.to_json)
       DataspaceDocument.new(document: attrs, logger: @logger)
     end
-
-
-    private
-
-
-      def title_sort_hash(titles)
-        titles.first.downcase.gsub(/[^\p{Alnum}\s]/, '').gsub(/^(a|an|the)\s/, '').gsub(/\s/, '') unless titles.nil?
-      end
-
-      def title_search_hash(titles)
-        BibdataRs::Theses.title_search_versions titles
-      end
-
-      def ark_hash(doc)
-        BibdataRs::Theses.ark_hash(doc['dc.identifier.uri'], doc.key?('pu.location'),
-          doc.key?('pu.rights.accessRights'),
-          doc['pu.mudd.walkin'],
-          doc.fetch('pu.date.classyear', []),
-          doc['pu.embargo.lift'],
-          doc['pu.embargo.terms'])
-      end
-
-      def call_number(non_ark_ids)
-        BibdataRs::Theses::call_number non_ark_ids
-      end
-
-      def first_or_nil(field)
-        field&.first
-      end
-
-      def on_site_only?(doc)
-        BibdataRs::Theses::on_site_only(
-          doc.key?('pu.location'),
-          doc.key?('pu.rights.accessRights'),
-          doc['pu.mudd.walkin'],
-          doc.fetch('pu.date.classyear', []),
-          doc['pu.embargo.lift'],
-          doc['pu.embargo.terms']
-        )
-      end
-
   end
 end

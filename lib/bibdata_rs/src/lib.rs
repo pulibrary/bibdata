@@ -33,20 +33,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(theses::collection::collection_url, 4),
     )?;
     submodule.define_singleton_method(
-        "codes_to_english_names",
-        function!(theses::language::codes_to_english_names, 1),
-    )?;
-    submodule
-        .define_singleton_method("call_number", function!(theses::holdings::call_number, 1))?;
-    submodule.define_singleton_method(
-        "online_holding_string",
-        function!(theses::holdings::online_holding_string, 1),
-    )?;
-    submodule.define_singleton_method(
-        "physical_holding_string",
-        function!(theses::holdings::physical_holding_string, 1),
-    )?;
-    submodule.define_singleton_method(
         "has_current_embargo",
         function!(theses::embargo::has_current_embargo, 2),
     )?;
@@ -65,13 +51,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "restrictions_access",
         function!(theses::restrictions::restrictions_access, 2),
     )?;
-    submodule
-        .define_singleton_method("on_site_only", function!(theses::holdings::on_site_only, 6))?;
-    submodule.define_singleton_method(
-        "title_search_versions",
-        function!(theses::dataspace_api::fake_title_search_versions, 1),
-    )?;
-    submodule.define_singleton_method("ark_hash", function!(theses::holdings::ark_hash, 7))?;
     submodule.define_singleton_method(
         "ruby_json_to_solr_json",
         function!(theses::dataspace_api::ruby_json_to_solr_json, 1),

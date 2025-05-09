@@ -46,6 +46,7 @@ module BibdataRs::Theses
     end
 
     # leave in ruby for now
+    # USED
     def logger
       @logger ||= begin
         built = Logger.new($stdout)
@@ -58,6 +59,7 @@ module BibdataRs::Theses
     # Write to the log anytime an API call fails and we have to retry.
     # See https://github.com/kamui/retriable#callbacks for more information.
     # leave in ruby right now, since I'm not sure how to return a proc in Magnus
+    # USED
     def log_retries
       proc do |exception, try, elapsed_time, next_interval|
         logger.debug "#{exception.class}: '#{exception.message}' - #{try} tries in #{elapsed_time} seconds and #{next_interval} seconds until the next try."
@@ -68,6 +70,7 @@ module BibdataRs::Theses
     # @param id [String] thesis collection id
     # @return [Array<Hash>] metadata hash for each record
     # Rewrite in Rust, but rewrite flatten_json first?  Or does it make sense to do them separately???
+    # USED
     def fetch_collection(id)
       theses = []
       offset = 0
@@ -92,6 +95,7 @@ module BibdataRs::Theses
 
     ##
     # Cache all collections
+    # USED
     def cache_all_collections(indexer)
       solr_documents = []
 
@@ -105,6 +109,7 @@ module BibdataRs::Theses
 
     ##
     # Cache a single collection
+    # USED
     def cache_collection(indexer, collection_id)
       solr_documents = []
 
@@ -118,22 +123,9 @@ module BibdataRs::Theses
     end
 
     ##
-    # Get a json representation of a single collection and write it as JSON to
-    # a cache file.
-    def self.write_collection_to_cache(collection_id)
-      indexer = Indexer.new
-      fetcher = Fetcher.new
-      File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
-        documents = fetcher.cache_collection(indexer, collection_id)
-        solr_documents = documents.map(&:to_solr)
-        json_cache = JSON.pretty_generate(solr_documents)
-        f.puts(json_cache)
-      end
-    end
-
-    ##
     # Get a json representation of all thesis collections and write it as JSON to
     # a cache file.
+    # USED
     def self.write_all_collections_to_cache
       indexer = Indexer.new
       fetcher = Fetcher.new
@@ -148,16 +140,19 @@ module BibdataRs::Theses
     ##
     # The DSpace id of the community we're fetching content for.
     # E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
+    # USED
     def api_community_id
       @api_community_id ||= api_community['id'].to_s
     end
 
     private
 
+      # USED
       def build_collection_url(id:, offset:)
         BibdataRs::Theses::collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
       end
 
+      # USED
       def flatten_json(items)
         items.collect do |i|
           h = {}
@@ -177,12 +172,15 @@ module BibdataRs::Theses
         end
       end
 
+      # USED
       def api_client
         Faraday
       end
 
+      # USED
       def api_communities
         @api_communities ||= begin
+        byebug
           response = api_client.get("#{@server}/communities/")
           response.body
         rescue StandardError => e
@@ -191,6 +189,7 @@ module BibdataRs::Theses
         end
       end
 
+      # USED
       def json_api_communities
         @json_api_communities ||= JSON.parse(api_communities)
       end
@@ -199,6 +198,7 @@ module BibdataRs::Theses
       # Parse the JSON feed containing all of the communities, and return only the
       # community that matches the handle.
       # @return [JSON] a json representation of the DSpace community
+      # USED
       def api_community
         return if json_api_communities.empty?
 
@@ -207,6 +207,7 @@ module BibdataRs::Theses
 
       ##
       # Get all of the collections for a given community
+      # USED
       def api_collections
         @api_collections ||= begin
           collections_url = "#{@server}/communities/#{api_community_id}/collections"
@@ -218,6 +219,7 @@ module BibdataRs::Theses
 
       ##
       # All of the collections for a given community, parsed as JSON
+      # USED
       def api_collections_json
         @api_collections_json ||= JSON.parse(api_collections)
       end
@@ -225,14 +227,17 @@ module BibdataRs::Theses
       # example to debug using a specific collection id.
       # @collections ||= api_collections_json.map { |i| i['id'] = '2666' }
       # https://dataspace-dev.princeton.edu/rest/collections/2666/items
+      # USED
       def collections
         @collections ||= api_collections_json.map { |i| i['id'] }
       end
 
+      # USED
       def map_department(dept)
         BibdataRs::Theses.map_department dept
       end
 
+      # USED
       def map_program(program)
         BibdataRs::Theses.map_program program
       end
