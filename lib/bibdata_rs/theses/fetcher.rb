@@ -180,7 +180,7 @@ module BibdataRs::Theses
       # USED
       def api_communities
         @api_communities ||= begin
-        byebug
+          BibdataRs::Theses.api_communities_json(@server)
           response = api_client.get("#{@server}/communities/")
           response.body
         rescue StandardError => e

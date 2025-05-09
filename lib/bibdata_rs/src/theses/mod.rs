@@ -2,6 +2,7 @@ use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 use std::{env, fs};
 
 pub mod collection;
+pub mod communities;
 pub mod config;
 pub mod dataspace_api;
 pub mod department;
