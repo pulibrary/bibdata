@@ -45,4 +45,12 @@ mod tests {
     fn english_name_gives_parenthetical_information_if_available() {
         assert_eq!(english_name("el"), "Greek, Modern (1453-)");
     }
+
+    #[test]
+    fn test_codes_to_english_names() {
+        assert_eq!(codes_to_english_names(None), vec!["English"]);
+        assert_eq!(codes_to_english_names(Some(vec!["fr".to_owned()])), vec!["French"]);
+        assert_eq!(codes_to_english_names(Some(vec!["el".to_owned(), "it".to_owned()])), vec!["Greek, Modern (1453-)", "Italian"]);
+        assert_eq!(codes_to_english_names(Some(vec!["en_US".to_owned(), "en".to_owned()])), vec!["English"]);
+    }
 }
