@@ -35,9 +35,9 @@ module BibdataRs::Theses
       }
     end
 
-    let(:dspace) { subject.send(:dataspace) }
-    let(:full_text) { subject.send(:full_text) }
-    let(:citation) { subject.send(:citation) }
+    let(:dspace) { "DataSpace" }
+    let(:full_text) { "Full text" }
+    let(:citation) { "Citation only" }
 
 
     describe '#_on_site_only?' do

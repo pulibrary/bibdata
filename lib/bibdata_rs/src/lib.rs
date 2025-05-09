@@ -87,5 +87,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "basic_fields",
         function!(theses::solr::basic_fields, 12),
     )?;
+    submodule.define_singleton_method("title_search_versions", function!(theses::dataspace_api::fake_title_search_versions, 1))?;
+    submodule.define_singleton_method("ark_hash", function!(theses::holdings::ark_hash, 7))?;
+    submodule.define_singleton_method("ruby_json_to_solr_json", function!(theses::dataspace_api::ruby_json_to_solr_json, 1))?;
     Ok(())
 }
