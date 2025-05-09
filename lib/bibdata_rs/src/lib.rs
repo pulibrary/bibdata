@@ -83,5 +83,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "non_special_fields",
         function!(theses::solr::non_special_fields, 7),
     )?;
+    submodule.define_singleton_method(
+        "basic_fields",
+        function!(theses::solr::basic_fields, 12),
+    )?;
     Ok(())
 }

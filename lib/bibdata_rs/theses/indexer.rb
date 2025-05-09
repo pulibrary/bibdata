@@ -32,24 +32,31 @@ module BibdataRs::Theses
       language_facet = code_to_language(language_iso)
       language_name_display = language_facet
 
-      attrs = {
-        'id' => id,
-        'title_t' => title_t,
-        'title_citation_display' => title_citation_display,
-        'title_display' => title_display,
-        'title_sort' => title_sort,
-        'author_sort' => author_sort,
-        'electronic_access_1display' => electronic_access_1display,
-        'restrictions_note_display' => restrictions_display_text(values),
-        'call_number_display' => call_number_display,
-        'call_number_browse_s' => call_number_browse_s,
-        'language_facet' => language_facet,
-        'language_name_display' => language_name_display
-      }
-      mapped = map_rest_non_special_to_solr(values)
-      attrs.merge!(mapped)
+      attrs = JSON.parse BibdataRs::Theses::basic_fields(
+        id,
+        title_t,
+        title_citation_display,
+        title_display,
+        title_sort,
+        author_sort,
+        electronic_access_1display,
+        Array(restrictions_display_text(values)),
+        call_number_display,
+        call_number_browse_s,
+        language_facet,
+        language_name_display
+      )
+      attrs.merge!(JSON.parse BibdataRs::Theses.non_special_fields(
+        values['dc.contributor.author'],
+        values['dc.contributor.advisor'],
+        values['dc.contributor'],
+        values['pu.department'],
+        values['pu.certificate'],
+        values['dc.format.extent'],
+        values['dc.description.abstract']
+      )){|key, oldval, newval| oldval unless oldval.nil? }
 
-      attrs.merge!(JSON.parse BibdataRs::Theses.class_year_fields(values['pu.date.classyear']))
+      attrs.merge!(JSON.parse BibdataRs::Theses.class_year_fields(values['pu.date.classyear'])){|key, oldval, newval| oldval unless oldval.nil?}
       attrs.merge!(JSON.parse BibdataRs::Theses.holding_access_string(
         values.key?('pu.location'),
         values.key?('pu.rights.accessRights'),
@@ -58,7 +65,7 @@ module BibdataRs::Theses
         values['pu.embargo.lift'],
         values['pu.embargo.terms'],
         values['dc.identifier.other']
-      ))
+      )){|key, oldval, newval| oldval unless oldval.nil?}
 
       DataspaceDocument.new(document: attrs, logger: @logger)
     end
@@ -162,18 +169,6 @@ module BibdataRs::Theses
       # default English
       def code_to_language(codes)
         BibdataRs::Theses::codes_to_english_names(codes)
-      end
-
-      def map_rest_non_special_to_solr(doc)
-        JSON.parse BibdataRs::Theses.non_special_fields(
-          doc['dc.contributor.author'],
-          doc['dc.contributor.advisor'],
-          doc['dc.contributor'],
-          doc['pu.department'],
-          doc['pu.certificate'],
-          doc['dc.format.extent'],
-          doc['dc.description.abstract']
-        )
       end
 
       def class_year_fields(doc)

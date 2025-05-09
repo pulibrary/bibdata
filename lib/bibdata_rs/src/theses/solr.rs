@@ -3,6 +3,18 @@ use serde::Serialize;
 
 #[derive(Debug, Default, Serialize)]
 struct SolrDocument {
+    id: String,
+    title_t: Option<String>,
+    title_citation_display: Option<String>,
+    title_display: Option<String>,
+    title_sort: Option<String>,
+    author_sort: Option<String>,
+    electronic_access_1display: Option<String>,
+    restrictions_display_text: Option<Vec<String>>,
+    call_number_display: String,
+    call_number_browse_s: String,
+    language_facet: Vec<String>,
+    language_name_display: Vec<String>,
     format: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     location: Option<String>,
@@ -50,6 +62,18 @@ impl SolrDocument {
 
 #[derive(Default)]
 struct SolrDocumentBuilder {
+    id: String,
+    title_t: Option<String>,
+    title_citation_display: Option<String>,
+    title_display: Option<String>,
+    title_sort: Option<String>,
+    author_sort: Option<String>,
+    electronic_access_1display: Option<String>,
+    restrictions_display_text: Option<Vec<String>>,
+    call_number_display: String,
+    call_number_browse_s: String,
+    language_facet: Vec<String>,
+    language_name_display: Vec<String>,
     location: Option<String>,
     location_display: Option<String>,
     location_code_s: Option<String>,
@@ -70,6 +94,60 @@ struct SolrDocumentBuilder {
     summary_note_display: Option<Vec<String>>,
 }
 impl SolrDocumentBuilder {
+    pub fn with_id(&mut self, id: impl Into<String>) -> &mut Self {
+        self.id = id.into();
+        self
+    }
+    pub fn with_title_t(&mut self, title_t: impl Into<String>) -> &mut Self {
+        self.title_t = Some(title_t.into());
+        self
+    }
+    pub fn with_title_citation_display(&mut self, title_citation_display: impl Into<String>) -> &mut Self {
+        self.title_citation_display = Some(title_citation_display.into());
+        self
+    }
+    pub fn with_title_display(&mut self, title_display: impl Into<String>) -> &mut Self {
+        self.title_display = Some(title_display.into());
+        self
+    }
+    pub fn with_title_sort(&mut self, title_sort: impl Into<String>) -> &mut Self {
+        self.title_sort = Some(title_sort.into());
+        self
+    }
+    pub fn with_author_sort(&mut self, author_sort: impl Into<String>) -> &mut Self {
+        self.author_sort = Some(author_sort.into());
+        self
+    }
+    pub fn with_electronic_access_1display(&mut self, electronic_access_1display: impl Into<String>) -> &mut Self {
+        self.electronic_access_1display = Some(electronic_access_1display.into());
+        self
+    }
+
+    pub fn with_restrictions_display_text(&mut self, restrictions_display_text: impl Into<Vec<String>>) -> &mut Self {
+        self.restrictions_display_text = Some(restrictions_display_text.into());
+        self
+    }
+
+    pub fn with_call_number_display(&mut self, call_number_display: impl Into<String>) -> &mut Self {
+        self.call_number_display = call_number_display.into();
+        self
+    }
+
+    pub fn with_call_number_browse_s(&mut self, call_number_browse_s: impl Into<String>) -> &mut Self {
+        self.call_number_browse_s = call_number_browse_s.into();
+        self
+    }
+
+    pub fn with_language_facet(&mut self, language_facet: impl Into<Vec<String>>) -> &mut Self {
+        self.language_facet = language_facet.into();
+        self
+    }
+
+    pub fn with_language_name_display(&mut self, language_name_display: impl Into<Vec<String>>) -> &mut Self {
+        self.language_name_display = language_name_display.into();
+        self
+    }
+
     pub fn with_location(&mut self, location: impl Into<String>) -> &mut Self {
         self.location = Some(location.into());
         self
@@ -174,6 +252,18 @@ impl SolrDocumentBuilder {
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
+            id: self.id.clone(),
+            title_t: self.title_t.clone(),
+    title_citation_display: self.title_citation_display.clone(),
+    title_display: self.title_display.clone(),
+    title_sort: self.title_sort.clone(),
+    author_sort: self.author_sort.clone(),
+    electronic_access_1display: self.electronic_access_1display.clone(),
+    restrictions_display_text: self.restrictions_display_text.clone(),
+    call_number_display: self.call_number_display.clone(),
+    call_number_browse_s: self.call_number_browse_s.clone(),
+    language_facet: self.language_facet.clone(),
+    language_name_display: self.language_name_display.clone(),
             format: "Senior thesis".to_owned(),
             location: self.location.clone(),
             location_display: self.location_display.clone(),
@@ -261,6 +351,36 @@ pub fn class_year_fields(class_year: Option<Vec<String>>) -> String {
             }
         }
     }
+    serde_json::to_string(&builder.build()).unwrap_or_default()
+}
+
+pub fn basic_fields(
+    id: Option<String>,
+    title_t: Option<String>,
+    title_citation_display: Option<String>,
+    title_display: Option<String>,
+    title_sort: Option<String>,
+    author_sort: Option<String>,
+    electronic_access_1display: Option<String>,
+    restrictions_display_text: Option<Vec<String>>,
+    call_number_display: String,
+    call_number_browse_s: String,
+    language_facet: Vec<String>,
+    language_name_display: Vec<String>,
+) -> String {
+    let mut builder = SolrDocument::builder();
+    builder.with_call_number_display(call_number_display)
+        .with_call_number_browse_s(call_number_browse_s)
+        .with_language_facet(language_facet)
+        .with_language_name_display(language_name_display);
+    if let Some(value) = id { builder.with_id(value); }
+    if let Some(value) = title_t { builder.with_title_t(value); }
+    if let Some(value) = title_citation_display { builder.with_title_citation_display(value); }
+    if let Some(value) = title_display { builder.with_title_display(value); }
+    if let Some(value) = title_sort { builder.with_title_sort(value); }
+    if let Some(value) = author_sort { builder.with_author_sort(value); }
+    if let Some(value) = electronic_access_1display { builder.with_electronic_access_1display(value); }
+    if let Some(value) = restrictions_display_text { builder.with_restrictions_display_text(value); }
     serde_json::to_string(&builder.build()).unwrap_or_default()
 }
 
