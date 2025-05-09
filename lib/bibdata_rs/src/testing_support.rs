@@ -1,4 +1,4 @@
-use std::{env, sync::Mutex};
+use std::{env, future::Future, sync::Mutex};
 
 // A mutex to ensure that the environment variable access is thread-safe
 lazy_static::lazy_static! {
@@ -26,6 +26,17 @@ pub(crate) fn preserving_envvar<T: Fn()>(key: &str, f: T) {
     let _lock = ENV_MUTEX.lock().unwrap(); // Ensure exclusive access to environment variables
     let original = env::var(key).ok();
     f();
+    if let Some(value) = original {
+        env::set_var(key, value);
+    } else {
+        env::remove_var(key);
+    }
+}
+
+pub(crate) async fn preserving_envvar_async<T: Fn() -> U, U: Future>(key: &str, f: T) {
+    let _lock = ENV_MUTEX.lock().unwrap(); // Ensure exclusive access to environment variables
+    let original = env::var(key).ok();
+    f().await;
     if let Some(value) = original {
         env::set_var(key, value);
     } else {
