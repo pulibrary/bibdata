@@ -4,7 +4,7 @@ require 'rails_helper'
 require 'rexml/document'
 
 module BibdataRs::Theses
-  describe Indexer do
+  describe Indexer, :rust do
     def load_fixture(name)
       REXML::Document.new(File.new(fixture_path(name))).root
     end
@@ -259,7 +259,7 @@ module BibdataRs::Theses
     end
 
     describe '#_map_rest_non_special_to_solr' do
-      let(:h) { subject.send(:map_rest_non_special_to_solr, doc) }
+      let(:h) { subject.build_solr_document(**doc).document }
 
       it 'adds the expected keys' do
         expect(h).to include('author_display' => doc['dc.contributor.author'])
@@ -267,10 +267,6 @@ module BibdataRs::Theses
                         doc['dc.contributor.advisor'], doc['pu.department']].flatten
         expect(h['author_s']).to match_array(author_facet)
         expect(h).to include('summary_note_display' => doc['dc.description.abstract'])
-      end
-
-      it 'but leaves others out' do
-        expect(h).not_to have_key('id')
       end
     end
 
