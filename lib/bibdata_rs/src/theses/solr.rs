@@ -2,12 +2,12 @@ use crate::theses::{embargo, holdings};
 use serde::Serialize;
 
 #[derive(Debug, Default, Serialize)]
-struct SolrDocument {
-    id: String,
-    title_t: Option<String>,
-    title_citation_display: Option<String>,
-    title_display: Option<String>,
-    title_sort: Option<String>,
+pub struct SolrDocument {
+    pub id: String,
+    pub title_citation_display: Option<String>,
+    pub title_display: Option<String>,
+    pub title_t: Option<Vec<String>>,
+    pub title_sort: Option<String>,
     author_sort: Option<String>,
     electronic_access_1display: Option<String>,
     restrictions_display_text: Option<Vec<String>>,
@@ -61,9 +61,9 @@ impl SolrDocument {
 }
 
 #[derive(Default)]
-struct SolrDocumentBuilder {
+pub struct SolrDocumentBuilder {
     id: String,
-    title_t: Option<String>,
+    title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
     title_display: Option<String>,
     title_sort: Option<String>,
@@ -98,28 +98,28 @@ impl SolrDocumentBuilder {
         self.id = id.into();
         self
     }
-    pub fn with_title_t(&mut self, title_t: impl Into<String>) -> &mut Self {
-        self.title_t = Some(title_t.into());
+    pub fn with_title_t(&mut self, title_t: &Option<Vec<String>>) -> &mut Self {
+        self.title_t = title_t.clone();
         self
     }
-    pub fn with_title_citation_display(&mut self, title_citation_display: impl Into<String>) -> &mut Self {
-        self.title_citation_display = Some(title_citation_display.into());
+    pub fn with_title_citation_display(&mut self, title_citation_display: &Option<&String>) -> &mut Self {
+        self.title_citation_display = title_citation_display.clone().cloned();
         self
     }
-    pub fn with_title_display(&mut self, title_display: impl Into<String>) -> &mut Self {
-        self.title_display = Some(title_display.into());
+    pub fn with_title_display(&mut self, title_display: &Option<&String>) -> &mut Self {
+        self.title_display = title_display.clone().cloned();
         self
     }
-    pub fn with_title_sort(&mut self, title_sort: impl Into<String>) -> &mut Self {
-        self.title_sort = Some(title_sort.into());
+    pub fn with_title_sort(&mut self, title_sort: &Option<String>) -> &mut Self {
+        self.title_sort = title_sort.clone();
         self
     }
     pub fn with_author_sort(&mut self, author_sort: impl Into<String>) -> &mut Self {
         self.author_sort = Some(author_sort.into());
         self
     }
-    pub fn with_electronic_access_1display(&mut self, electronic_access_1display: impl Into<String>) -> &mut Self {
-        self.electronic_access_1display = Some(electronic_access_1display.into());
+    pub fn with_electronic_access_1display(&mut self, electronic_access_1display: &Option<String>) -> &mut Self {
+        self.electronic_access_1display = electronic_access_1display.clone();
         self
     }
 
@@ -356,7 +356,7 @@ pub fn class_year_fields(class_year: Option<Vec<String>>) -> String {
 
 pub fn basic_fields(
     id: Option<String>,
-    title_t: Option<String>,
+    title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
     title_display: Option<String>,
     title_sort: Option<String>,
@@ -372,14 +372,15 @@ pub fn basic_fields(
     builder.with_call_number_display(call_number_display)
         .with_call_number_browse_s(call_number_browse_s)
         .with_language_facet(language_facet)
-        .with_language_name_display(language_name_display);
+        .with_language_name_display(language_name_display)
+        .with_title_t(&title_t)
+        .with_title_citation_display(&title_citation_display.as_ref())
+        .with_title_display(&title_display.as_ref())
+        .with_title_sort(&title_sort)
+        .with_electronic_access_1display(&electronic_access_1display);
+
     if let Some(value) = id { builder.with_id(value); }
-    if let Some(value) = title_t { builder.with_title_t(value); }
-    if let Some(value) = title_citation_display { builder.with_title_citation_display(value); }
-    if let Some(value) = title_display { builder.with_title_display(value); }
-    if let Some(value) = title_sort { builder.with_title_sort(value); }
     if let Some(value) = author_sort { builder.with_author_sort(value); }
-    if let Some(value) = electronic_access_1display { builder.with_electronic_access_1display(value); }
     if let Some(value) = restrictions_display_text { builder.with_restrictions_display_text(value); }
     serde_json::to_string(&builder.build()).unwrap_or_default()
 }

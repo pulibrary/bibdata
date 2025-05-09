@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use crate::theses::{embargo, looks_like_yes};
 use serde::{ser::SerializeStruct, Serialize};
 
@@ -38,12 +40,28 @@ pub fn physical_class_year(class_years: Vec<String>) -> bool {
     }
 }
 
-// let location = "pu.location";
-// let access_rights = "pu.rights.accessRights";
-// let mudd_walkin = "pu.mudd.walkin";
-// let classyear = "pu.date.classyear";
-// let embargo_lift = "pu.embargo.lift";
-// let embargo_terms = "pu.embargo.terms";
+pub fn ark_hash(
+    identifier_uri: Option<Vec<String>>,
+    location: bool,
+    access_rights: bool,
+    mudd_walkin: Option<Vec<String>>,
+    class_year: Vec<String>,
+    embargo_lift: Option<Vec<String>>,
+    embargo_terms: Option<Vec<String>>,
+) -> Option<String> {
+    let arks = identifier_uri.unwrap_or_default();
+    let key = arks.first()?;
+    let value = if on_site_only(location, access_rights, mudd_walkin, class_year, embargo_lift, embargo_terms) {
+        ["DataSpace", "Citation only"]
+    } else {
+        ["DataSpace", "Full text"]
+    };
+    let mut hash: HashMap<String, serde_json::Value> = HashMap::new();
+    hash.insert(key.into(), value.into());
+    Some(serde_json::to_string(&hash).unwrap())
+}
+
+
 pub fn on_site_only(
     location: bool,
     access_rights: bool,

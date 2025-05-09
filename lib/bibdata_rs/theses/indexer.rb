@@ -11,41 +11,7 @@ module BibdataRs::Theses
     # Constructs DataspaceDocument objects from a Hash of attributes
     # @returns [DataspaceDocument]
     def build_solr_document(**values)
-      id = values['id']
-
-      title = values['dc.title']
-      title_t = title_search_hash(title)
-      title_citation_display = first_or_nil(title)
-      title_display = title_citation_display
-      title_sort = title_sort_hash(title)
-
-      author = values['dc.contributor.author']
-      author_sort = first_or_nil(author)
-
-      electronic_access_1display = ark_hash(values)
-
-      identifier_other = values['dc.identifier.other']
-      call_number_display = call_number(identifier_other)
-      call_number_browse_s = call_number_display
-
-      language_iso = values['dc.language.iso']
-      language_facet = code_to_language(language_iso)
-      language_name_display = language_facet
-
-      attrs = JSON.parse BibdataRs::Theses::basic_fields(
-        id,
-        title_t,
-        title_citation_display,
-        title_display,
-        title_sort,
-        author_sort,
-        electronic_access_1display,
-        Array(restrictions_display_text(values)),
-        call_number_display,
-        call_number_browse_s,
-        language_facet,
-        language_name_display
-      )
+      attrs = JSON.parse BibdataRs::Theses.ruby_json_to_solr_json(values.to_json)
       attrs.merge!(JSON.parse BibdataRs::Theses.non_special_fields(
         values['dc.contributor.author'],
         values['dc.contributor.advisor'],
@@ -78,20 +44,17 @@ module BibdataRs::Theses
         titles.first.downcase.gsub(/[^\p{Alnum}\s]/, '').gsub(/^(a|an|the)\s/, '').gsub(/\s/, '') unless titles.nil?
       end
 
-      # Take first title, strip out latex expressions when present to include along
-      # with non-normalized version (allowing users to get matches both when LaTex
-      # is pasted directly into the search box and when sub/superscripts are placed
-      # adjacent to regular characters
       def title_search_hash(titles)
-        return if titles.nil?
-
-        title = BibdataRs::Theses.normalize_latex titles.first
-        title == titles.first ? title : [titles.first, title]
+        BibdataRs::Theses.title_search_versions titles
       end
 
       def ark_hash(doc)
-        arks = doc['dc.identifier.uri']
-        arks.nil? ? nil : { arks.first => dspace_display_text_hash(doc) }.to_json.to_s
+        BibdataRs::Theses.ark_hash(doc['dc.identifier.uri'], doc.key?('pu.location'),
+          doc.key?('pu.rights.accessRights'),
+          doc['pu.mudd.walkin'],
+          doc.fetch('pu.date.classyear', []),
+          doc['pu.embargo.lift'],
+          doc['pu.embargo.terms'])
       end
 
       def call_number(non_ark_ids)
@@ -100,16 +63,6 @@ module BibdataRs::Theses
 
       def first_or_nil(field)
         field&.first
-      end
-
-      def dspace_display_text_hash(doc)
-        text = [dataspace]
-        text << if on_site_only?(doc)
-                  citation
-                else
-                  full_text
-                end
-        text
       end
 
       def on_site_only?(doc)
@@ -154,17 +107,6 @@ module BibdataRs::Theses
         flattened.compact
       end
 
-      def dataspace
-        'DataSpace'
-      end
-
-      def full_text
-        'Full text'
-      end
-
-      def citation
-        'Citation only'
-      end
 
       # default English
       def code_to_language(codes)
