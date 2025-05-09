@@ -1,4 +1,3 @@
-use crate::theses::{embargo, holdings};
 use serde::Serialize;
 
 #[derive(Debug, Default, Serialize)]
@@ -102,12 +101,15 @@ impl SolrDocumentBuilder {
         self.title_t = title_t.clone();
         self
     }
-    pub fn with_title_citation_display(&mut self, title_citation_display: &Option<&String>) -> &mut Self {
-        self.title_citation_display = title_citation_display.clone().cloned();
+    pub fn with_title_citation_display(
+        &mut self,
+        title_citation_display: &Option<&String>,
+    ) -> &mut Self {
+        self.title_citation_display = (*title_citation_display).cloned();
         self
     }
     pub fn with_title_display(&mut self, title_display: &Option<&String>) -> &mut Self {
-        self.title_display = title_display.clone().cloned();
+        self.title_display = (*title_display).cloned();
         self
     }
     pub fn with_title_sort(&mut self, title_sort: &Option<String>) -> &mut Self {
@@ -118,22 +120,34 @@ impl SolrDocumentBuilder {
         self.author_sort = Some(author_sort.into());
         self
     }
-    pub fn with_electronic_access_1display(&mut self, electronic_access_1display: &Option<String>) -> &mut Self {
+    pub fn with_electronic_access_1display(
+        &mut self,
+        electronic_access_1display: &Option<String>,
+    ) -> &mut Self {
         self.electronic_access_1display = electronic_access_1display.clone();
         self
     }
 
-    pub fn with_restrictions_display_text(&mut self, restrictions_display_text: impl Into<Vec<String>>) -> &mut Self {
+    pub fn with_restrictions_display_text(
+        &mut self,
+        restrictions_display_text: impl Into<Vec<String>>,
+    ) -> &mut Self {
         self.restrictions_display_text = Some(restrictions_display_text.into());
         self
     }
 
-    pub fn with_call_number_display(&mut self, call_number_display: impl Into<String>) -> &mut Self {
+    pub fn with_call_number_display(
+        &mut self,
+        call_number_display: impl Into<String>,
+    ) -> &mut Self {
         self.call_number_display = call_number_display.into();
         self
     }
 
-    pub fn with_call_number_browse_s(&mut self, call_number_browse_s: impl Into<String>) -> &mut Self {
+    pub fn with_call_number_browse_s(
+        &mut self,
+        call_number_browse_s: impl Into<String>,
+    ) -> &mut Self {
         self.call_number_browse_s = call_number_browse_s.into();
         self
     }
@@ -143,127 +157,124 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_language_name_display(&mut self, language_name_display: impl Into<Vec<String>>) -> &mut Self {
+    pub fn with_language_name_display(
+        &mut self,
+        language_name_display: impl Into<Vec<String>>,
+    ) -> &mut Self {
         self.language_name_display = language_name_display.into();
         self
     }
 
-    pub fn with_location(&mut self, location: impl Into<String>) -> &mut Self {
-        self.location = Some(location.into());
+    pub fn with_location(&mut self, location: Option<String>) -> &mut Self {
+        self.location = location;
         self
     }
-    pub fn with_location_display(&mut self, location_display: impl Into<String>) -> &mut Self {
-        self.location_display = Some(location_display.into());
+    pub fn with_location_display(&mut self, location_display: Option<String>) -> &mut Self {
+        self.location_display = location_display;
         self
     }
-    pub fn with_location_code_s(&mut self, location_code_s: impl Into<String>) -> &mut Self {
-        self.location_code_s = Some(location_code_s.into());
+    pub fn with_location_code_s(&mut self, location_code_s: Option<String>) -> &mut Self {
+        self.location_code_s = location_code_s;
         self
     }
     pub fn with_advanced_location_s(
         &mut self,
-        advanced_location_s: impl Into<Vec<String>>,
+        advanced_location_s: Option<Vec<String>>,
     ) -> &mut Self {
-        self.advanced_location_s = Some(advanced_location_s.into());
+        self.advanced_location_s = advanced_location_s;
         self
     }
-    pub fn with_access_facet(&mut self, access_facet: impl Into<String>) -> &mut Self {
-        self.access_facet = Some(access_facet.into());
+    pub fn with_access_facet(&mut self, access_facet: Option<String>) -> &mut Self {
+        self.access_facet = access_facet;
         self
     }
-    pub fn with_holdings_1display(&mut self, holdings_1display: impl Into<String>) -> &mut Self {
-        self.holdings_1display = Some(holdings_1display.into());
+    pub fn with_holdings_1display(&mut self, holdings_1display: Option<String>) -> &mut Self {
+        self.holdings_1display = holdings_1display;
         self
     }
     pub fn with_electronic_portfolio_s(
         &mut self,
-        electronic_portfolio_s: impl Into<String>,
+        electronic_portfolio_s: Option<String>,
     ) -> &mut Self {
-        self.electronic_portfolio_s = Some(electronic_portfolio_s.into());
+        self.electronic_portfolio_s = electronic_portfolio_s;
         self
     }
-    pub fn with_class_year_s(&mut self, class_year_s: impl Into<Vec<String>>) -> &mut Self {
-        self.class_year_s = Some(class_year_s.into());
+    pub fn with_class_year_s(&mut self, class_year_s: &Option<Vec<String>>) -> &mut Self {
+        self.class_year_s = class_year_s.clone();
         self
     }
     pub fn with_pub_date_start_sort(
         &mut self,
-        pub_date_start_sort: impl Into<Vec<String>>,
+        pub_date_start_sort: &Option<Vec<String>>,
     ) -> &mut Self {
-        self.pub_date_start_sort = Some(pub_date_start_sort.into());
+        self.pub_date_start_sort = pub_date_start_sort.clone();
         self
     }
-    pub fn with_pub_date_end_sort(
-        &mut self,
-        pub_date_end_sort: impl Into<Vec<String>>,
-    ) -> &mut Self {
-        self.pub_date_end_sort = Some(pub_date_end_sort.into());
+    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: &Option<Vec<String>>) -> &mut Self {
+        self.pub_date_end_sort = pub_date_end_sort.clone();
         self
     }
-    pub fn with_author_display(&mut self, author_display: impl Into<Vec<String>>) -> &mut Self {
-        self.author_display = Some(author_display.into());
+    pub fn with_author_display(&mut self, author_display: Option<Vec<String>>) -> &mut Self {
+        self.author_display = author_display;
         self
     }
-    pub fn with_author_s(&mut self, author_s: impl Into<String>) -> &mut Self {
-        if self.author_s.is_none() {
-            self.author_s = Some(Vec::new());
-        }
-        self.author_s.as_mut().unwrap().push(author_s.into());
+    pub fn with_author_s(&mut self, author_s: Vec<String>) -> &mut Self {
+        self.author_s = Some(author_s.clone());
         self
     }
-    pub fn with_advisor_display(&mut self, advisor_display: impl Into<Vec<String>>) -> &mut Self {
-        self.advisor_display = Some(advisor_display.into());
+    pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {
+        self.advisor_display = advisor_display;
         self
     }
     pub fn with_contributor_display(
         &mut self,
-        contributor_display: impl Into<Vec<String>>,
+        contributor_display: Option<Vec<String>>,
     ) -> &mut Self {
-        self.contributor_display = Some(contributor_display.into());
+        self.contributor_display = contributor_display;
         self
     }
     pub fn with_department_display(
         &mut self,
-        department_display: impl Into<Vec<String>>,
+        department_display: Option<Vec<String>>,
     ) -> &mut Self {
-        self.department_display = Some(department_display.into());
+        self.department_display = department_display;
         self
     }
     pub fn with_certificate_display(
         &mut self,
-        certificate_display: impl Into<Vec<String>>,
+        certificate_display: Option<Vec<String>>,
     ) -> &mut Self {
-        self.certificate_display = Some(certificate_display.into());
+        self.certificate_display = certificate_display;
         self
     }
     pub fn with_description_display(
         &mut self,
-        description_display: impl Into<Vec<String>>,
+        description_display: Option<Vec<String>>,
     ) -> &mut Self {
-        self.description_display = Some(description_display.into());
+        self.description_display = description_display;
         self
     }
     pub fn with_summary_note_display(
         &mut self,
-        summary_note_display: impl Into<Vec<String>>,
+        summary_note_display: Option<Vec<String>>,
     ) -> &mut Self {
-        self.summary_note_display = Some(summary_note_display.into());
+        self.summary_note_display = summary_note_display;
         self
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
             id: self.id.clone(),
             title_t: self.title_t.clone(),
-    title_citation_display: self.title_citation_display.clone(),
-    title_display: self.title_display.clone(),
-    title_sort: self.title_sort.clone(),
-    author_sort: self.author_sort.clone(),
-    electronic_access_1display: self.electronic_access_1display.clone(),
-    restrictions_display_text: self.restrictions_display_text.clone(),
-    call_number_display: self.call_number_display.clone(),
-    call_number_browse_s: self.call_number_browse_s.clone(),
-    language_facet: self.language_facet.clone(),
-    language_name_display: self.language_name_display.clone(),
+            title_citation_display: self.title_citation_display.clone(),
+            title_display: self.title_display.clone(),
+            title_sort: self.title_sort.clone(),
+            author_sort: self.author_sort.clone(),
+            electronic_access_1display: self.electronic_access_1display.clone(),
+            restrictions_display_text: self.restrictions_display_text.clone(),
+            call_number_display: self.call_number_display.clone(),
+            call_number_browse_s: self.call_number_browse_s.clone(),
+            language_facet: self.language_facet.clone(),
+            language_name_display: self.language_name_display.clone(),
             format: "Senior thesis".to_owned(),
             location: self.location.clone(),
             location_display: self.location_display.clone(),
@@ -287,155 +298,6 @@ impl SolrDocumentBuilder {
     }
 }
 
-pub fn holding_access_string(
-    location: bool,
-    access_rights: bool,
-    mudd_walkin: Option<Vec<String>>,
-    class_year: Vec<String>,
-    embargo_lift: Option<Vec<String>>,
-    embargo_terms: Option<Vec<String>>,
-    call_number_identifiers: Option<Vec<String>>,
-) -> String {
-    let mut builder = SolrDocument::builder();
-    // TODO: Remove the clone, has_current_embargo should also (only?) accept references
-    if embargo::has_current_embargo(embargo_lift.clone(), embargo_terms.clone()) {
-        builder
-            .with_location("Mudd Manuscript Library")
-            .with_location_display("Mudd Manuscript Library")
-            .with_location_code_s("mudd$stacks")
-            .with_advanced_location_s(vec![
-                "mudd$stacks".to_owned(),
-                "Mudd Manuscript Library".to_owned(),
-            ]);
-    } else if holdings::on_site_only(
-        location,
-        access_rights,
-        mudd_walkin,
-        class_year,
-        embargo_lift,
-        embargo_terms,
-    ) {
-        builder
-            .with_location("Mudd Manuscript Library")
-            .with_location_display("Mudd Manuscript Library")
-            .with_location_code_s("mudd$stacks")
-            .with_advanced_location_s(vec![
-                "mudd$stacks".to_owned(),
-                "Mudd Manuscript Library".to_owned(),
-            ])
-            .with_access_facet("In the Library");
-        if let Some(holdings_1display) = holdings::physical_holding_string(call_number_identifiers)
-        {
-            builder.with_holdings_1display(holdings_1display);
-        }
-    } else {
-        builder.with_access_facet("Online");
-        if let Some(electronic_portfolio_s) =
-            holdings::online_holding_string(call_number_identifiers)
-        {
-            builder.with_electronic_portfolio_s(electronic_portfolio_s);
-        }
-    }
-    serde_json::to_string(&builder.build()).unwrap_or_default()
-}
-
-pub fn class_year_fields(class_year: Option<Vec<String>>) -> String {
-    let mut builder = SolrDocument::builder();
-    if let Some(years) = class_year {
-        if let Some(year) = years.first() {
-            if year.chars().all(|c| c.is_numeric()) {
-                builder
-                    .with_class_year_s(vec![year.to_owned()])
-                    .with_pub_date_start_sort(vec![year.to_owned()])
-                    .with_pub_date_end_sort(vec![year.to_owned()]);
-            }
-        }
-    }
-    serde_json::to_string(&builder.build()).unwrap_or_default()
-}
-
-pub fn basic_fields(
-    id: Option<String>,
-    title_t: Option<Vec<String>>,
-    title_citation_display: Option<String>,
-    title_display: Option<String>,
-    title_sort: Option<String>,
-    author_sort: Option<String>,
-    electronic_access_1display: Option<String>,
-    restrictions_display_text: Option<Vec<String>>,
-    call_number_display: String,
-    call_number_browse_s: String,
-    language_facet: Vec<String>,
-    language_name_display: Vec<String>,
-) -> String {
-    let mut builder = SolrDocument::builder();
-    builder.with_call_number_display(call_number_display)
-        .with_call_number_browse_s(call_number_browse_s)
-        .with_language_facet(language_facet)
-        .with_language_name_display(language_name_display)
-        .with_title_t(&title_t)
-        .with_title_citation_display(&title_citation_display.as_ref())
-        .with_title_display(&title_display.as_ref())
-        .with_title_sort(&title_sort)
-        .with_electronic_access_1display(&electronic_access_1display);
-
-    if let Some(value) = id { builder.with_id(value); }
-    if let Some(value) = author_sort { builder.with_author_sort(value); }
-    if let Some(value) = restrictions_display_text { builder.with_restrictions_display_text(value); }
-    serde_json::to_string(&builder.build()).unwrap_or_default()
-}
-
-pub fn non_special_fields(
-    author: Option<Vec<String>>,
-    advisor: Option<Vec<String>>,
-    contributor: Option<Vec<String>>,
-    department: Option<Vec<String>>,
-    certificate: Option<Vec<String>>,
-    extent: Option<Vec<String>>,
-    description_abstract: Option<Vec<String>>,
-) -> String {
-    let mut builder = SolrDocument::builder();
-
-    // Mapping implementation
-    if let Some(val) = author {
-        builder.with_author_display(val.clone());
-        val.iter().for_each(|value| {
-            builder.with_author_s(value);
-        });
-    }
-    if let Some(val) = advisor {
-        builder.with_advisor_display(val.clone());
-        val.iter().for_each(|value| {
-            builder.with_author_s(value);
-        });
-    }
-    if let Some(val) = contributor {
-        builder.with_contributor_display(val.clone());
-        val.iter().for_each(|value| {
-            builder.with_author_s(value);
-        });
-    }
-    if let Some(val) = department {
-        builder.with_department_display(val.clone());
-        val.iter().for_each(|value| {
-            builder.with_author_s(value);
-        });
-    }
-    if let Some(val) = certificate {
-        builder.with_certificate_display(val.clone());
-        val.iter().for_each(|value| {
-            builder.with_author_s(value);
-        });
-    }
-    if let Some(val) = extent {
-        builder.with_description_display(val);
-    }
-    if let Some(val) = description_abstract {
-        builder.with_summary_note_display(val);
-    }
-
-    serde_json::to_string(&builder.build()).unwrap_or_default()
-}
 
 #[cfg(test)]
 mod tests {
@@ -451,7 +313,7 @@ mod tests {
     #[test]
     fn test_build_a_solr_document_with_location() {
         let document = SolrDocument::builder()
-            .with_location("Mudd Manuscript Library")
+            .with_location(Some("Mudd Manuscript Library".to_owned()))
             .build();
         assert_eq!(document.location.unwrap(), "Mudd Manuscript Library");
     }

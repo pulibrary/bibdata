@@ -12,27 +12,6 @@ module BibdataRs::Theses
     # @returns [DataspaceDocument]
     def build_solr_document(**values)
       attrs = JSON.parse BibdataRs::Theses.ruby_json_to_solr_json(values.to_json)
-      attrs.merge!(JSON.parse BibdataRs::Theses.non_special_fields(
-        values['dc.contributor.author'],
-        values['dc.contributor.advisor'],
-        values['dc.contributor'],
-        values['pu.department'],
-        values['pu.certificate'],
-        values['dc.format.extent'],
-        values['dc.description.abstract']
-      )){|key, oldval, newval| oldval unless oldval.nil? }
-
-      attrs.merge!(JSON.parse BibdataRs::Theses.class_year_fields(values['pu.date.classyear'])){|key, oldval, newval| oldval unless oldval.nil?}
-      attrs.merge!(JSON.parse BibdataRs::Theses.holding_access_string(
-        values.key?('pu.location'),
-        values.key?('pu.rights.accessRights'),
-        values['pu.mudd.walkin'],
-        values.fetch('pu.date.classyear', []),
-        values['pu.embargo.lift'],
-        values['pu.embargo.terms'],
-        values['dc.identifier.other']
-      )){|key, oldval, newval| oldval unless oldval.nil?}
-
       DataspaceDocument.new(document: attrs, logger: @logger)
     end
 
@@ -113,8 +92,5 @@ module BibdataRs::Theses
         BibdataRs::Theses::codes_to_english_names(codes)
       end
 
-      def class_year_fields(doc)
-        JSON.parse BibdataRs::Theses.class_year_fields(doc['pu.date.classyear'])
-      end
   end
 end
