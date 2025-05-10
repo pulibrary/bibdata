@@ -1,7 +1,5 @@
 use std::env;
 
-pub mod collection;
-pub mod communities;
 pub mod config;
 pub mod dataspace;
 pub mod dataspace_solr_mapping;
