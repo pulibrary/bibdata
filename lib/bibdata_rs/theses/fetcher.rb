@@ -77,15 +77,16 @@ module BibdataRs::Theses
       completed = false
 
       until completed
-        url = build_collection_url(id:, offset:)
+        url = BibdataRs::Theses::collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
         logger.debug("Querying for the DSpace Collection at #{url}...")
         Retriable.retriable(on: JSON::ParserError, tries: Orangetheses::RETRY_LIMIT, on_retry: log_retries) do
           response = api_client.get(url)
           items = JSON.parse(response.body)
+
           if items.empty?
             completed = true
           else
-            theses << flatten_json(items)
+            theses << items
             offset += @rest_limit
           end
         end
@@ -115,6 +116,7 @@ module BibdataRs::Theses
 
       elements = fetch_collection(collection_id)
       elements.each do |attrs|
+        byebug
         solr_document = indexer.build_solr_document(**attrs)
         solr_documents << solr_document
       end
@@ -146,11 +148,6 @@ module BibdataRs::Theses
     end
 
     private
-
-      # USED
-      def build_collection_url(id:, offset:)
-        BibdataRs::Theses::collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
-      end
 
       # USED
       def flatten_json(items)

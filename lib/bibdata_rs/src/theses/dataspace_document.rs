@@ -1,63 +1,76 @@
+extern crate serde;
+
 use crate::theses::{embargo, holdings, language, latex, solr};
 use itertools::Itertools;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use serde::de::Deserializer;
 
 // This is an intermediate representation of the data from dspace, representing the key value pairs taken from
 // DSpace API metadata
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Serialize)]
 pub struct DataspaceDocument {
     id: Option<String>,
-
-    #[serde(rename = "pu.certificate")]
     certificate: Option<Vec<String>>,
-
-    #[serde(rename = "dc.contributor")]
     contributor: Option<Vec<String>>,
-
-    #[serde(rename = "dc.contributor.advisor")]
     contributor_advisor: Option<Vec<String>>,
-
-    #[serde(rename = "dc.contributor.author")]
     contributor_author: Option<Vec<String>>,
-
-    #[serde(rename = "pu.date.classyear")]
     date_classyear: Option<Vec<String>>,
-
-    #[serde(rename = "dc.description.abstract")]
     description_abstract: Option<Vec<String>>,
-
-    #[serde(rename = "pu.department")]
     department: Option<Vec<String>>,
-
-    #[serde(rename = "pu.embargo.lift")]
     embargo_lift: Option<Vec<String>>,
-
-    #[serde(rename = "pu.embargo.terms")]
     embargo_terms: Option<Vec<String>>,
-
-    #[serde(rename = "dc.format.extent")]
     format_extent: Option<Vec<String>>,
-
-    #[serde(rename = "dc.identifier.other")]
     identifier_other: Option<Vec<String>>,
-
-    #[serde(rename = "dc.identifier.uri")]
     identifier_uri: Option<Vec<String>>,
-
-    #[serde(rename = "dc.language.iso")]
     language_iso: Option<Vec<String>>,
-
-    #[serde(rename = "pu.location")]
     location: Option<Vec<String>>,
-
-    #[serde(rename = "pu.mudd.walkin")]
     mudd_walkin: Option<Vec<String>>,
-
-    #[serde(rename = "dc.rights.accessRights")]
     rights_access_rights: Option<Vec<String>>,
-
-    #[serde(rename = "dc.title")]
     title: Option<Vec<String>>,
+}
+
+impl<'de> Deserialize<'de> for DataspaceDocument {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        #[derive(Deserialize)]
+        struct KeyValuePair {
+            key: String,
+            value: String,
+        }
+
+        #[derive(Deserialize)]
+        struct RawDocument {
+            handle: String,
+            metadata: Vec<KeyValuePair>,
+        }
+
+        let raw = RawDocument::deserialize(deserializer)?;
+        let mut builder = DataspaceDocument::builder();
+
+        builder = builder.with_id(Some(raw.handle.split_once("/").unwrap_or_default().1.to_owned()));
+
+        for entry in raw.metadata {
+            match entry.key.as_str() {
+                "dc.contributor" => builder = builder.with_contributor(entry.value),
+                "dc.contributor.advisor" => builder = builder.with_contributor_advisor(entry.value),
+                "dc.contributor.author" => builder = builder.with_contributor_author(entry.value),
+                "dc.format.extent" => builder = builder.with_format_extent(entry.value),
+                "dc.identifier.uri" => builder = builder.with_identifier_uri(entry.value),
+                "dc.language.iso" => builder = builder.with_language_iso(entry.value),
+                "dc.rights.accessRights" => builder = builder.with_rights_access_rights(entry.value),
+                "dc.title" => builder = builder.with_title(entry.value),
+                "pu.certificate" => builder = builder.with_certificate(entry.value),
+                "pu.date.classyear" => builder = builder.with_date_classyear(entry.value),
+                "pu.department" => builder = builder.with_department(entry.value),
+                "pu.location" => builder = builder.with_location(entry.value),
+                "pu.mudd.walkin" => builder = builder.with_mudd_walkin(entry.value),
+                _ => (),
+            };
+        }
+        Ok(builder.build())
+    }
 }
 
 impl DataspaceDocument {
@@ -98,23 +111,48 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_contributor(mut self, contributor: Option<Vec<String>>) -> Self {
-        self.contributor = contributor;
+    pub fn with_certificate(mut self, certificate: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.certificate {
+            vec.push(certificate.into())
+        } else {
+            self.certificate = Some(vec![certificate.into()]);
+        };
         self
     }
 
-    pub fn with_contributor_advisor(mut self, contributor_advisor: Option<Vec<String>>) -> Self {
-        self.contributor_advisor = contributor_advisor;
+    pub fn with_contributor(mut self, contributor: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.contributor {
+            vec.push(contributor.into())
+        } else {
+            self.contributor = Some(vec![contributor.into()]);
+        };
         self
     }
 
-    pub fn with_contributor_author(mut self, contributor_author: Option<Vec<String>>) -> Self {
-        self.contributor_author = contributor_author;
+    pub fn with_contributor_advisor(mut self, contributor_advisor: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.contributor_advisor {
+            vec.push(contributor_advisor.into())
+        } else {
+            self.contributor_advisor = Some(vec![contributor_advisor.into()]);
+        };
         self
     }
 
-    pub fn with_date_classyear(mut self, date_classyear: Option<Vec<String>>) -> Self {
-        self.date_classyear = date_classyear;
+    pub fn with_contributor_author(mut self, contributor_author: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.contributor_author {
+            vec.push(contributor_author.into())
+        } else {
+            self.contributor_author = Some(vec![contributor_author.into()]);
+        };
+        self
+    }
+
+    pub fn with_date_classyear(mut self, date_classyear: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.date_classyear {
+            vec.push(date_classyear.into())
+        } else {
+            self.date_classyear = Some(vec![date_classyear.into()]);
+        };
         self
     }
 
@@ -123,8 +161,12 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_department(mut self, department: Option<Vec<String>>) -> Self {
-        self.department = department;
+    pub fn with_department(mut self, department: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.department {
+            vec.push(department.into())
+        } else {
+            self.department = Some(vec![department.into()]);
+        };
         self
     }
 
@@ -138,33 +180,66 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_format_extent(mut self, format_extent: Option<Vec<String>>) -> Self {
-        self.format_extent = format_extent;
+    pub fn with_format_extent(mut self, format_extent: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.format_extent {
+            vec.push(format_extent.into())
+        } else {
+            self.format_extent = Some(vec![format_extent.into()]);
+        };
         self
     }
 
-    pub fn with_identifier_uri(mut self, identifier_uri: Option<Vec<String>>) -> Self {
-        self.identifier_uri = identifier_uri;
+    pub fn with_identifier_uri(mut self, identifier_uri: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.identifier_uri {
+            vec.push(identifier_uri.into())
+        } else {
+            self.identifier_uri = Some(vec![identifier_uri.into()]);
+        };
         self
     }
 
-    pub fn with_language_iso(mut self, language_iso: Option<Vec<String>>) -> Self {
-        self.language_iso = language_iso;
+    pub fn with_language_iso(mut self, language_iso: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.language_iso {
+            vec.push(language_iso.into())
+        } else {
+            self.language_iso = Some(vec![language_iso.into()]);
+        };
         self
     }
 
-    pub fn with_location(mut self, location: Option<Vec<String>>) -> Self {
-        self.location = location;
+    pub fn with_location(mut self, location: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.location {
+            vec.push(location.into())
+        } else {
+            self.location = Some(vec![location.into()]);
+        };
         self
     }
 
-    pub fn with_mudd_walkin(mut self, mudd_walkin: Option<Vec<String>>) -> Self {
-        self.mudd_walkin = mudd_walkin;
+    pub fn with_mudd_walkin(mut self, mudd_walkin: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.mudd_walkin {
+            vec.push(mudd_walkin.into())
+        } else {
+            self.mudd_walkin = Some(vec![mudd_walkin.into()]);
+        };
         self
     }
 
-    pub fn with_title(mut self, title: Option<Vec<String>>) -> Self {
-        self.title = title;
+    pub fn with_rights_access_rights(mut self, rights_access_rights: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.rights_access_rights {
+            vec.push(rights_access_rights.into())
+        } else {
+            self.rights_access_rights = Some(vec![rights_access_rights.into()]);
+        };
+        self
+    }
+
+    pub fn with_title(mut self, title: String) -> Self {
+        if let Some(ref mut vec) = self.title {
+            vec.push(title)
+        } else {
+            self.title = Some(vec![title]);
+        };
         self
     }
 
@@ -366,6 +441,12 @@ pub fn ruby_json_to_solr_json(ruby: String) -> String {
     serde_json::to_string(&solr::SolrDocument::from(metadata)).unwrap()
 }
 
+// DELETE ME: just a temporary function for testing in Ruby
+pub fn parse_dspace_api_json(api: String) -> String {
+    let documents: Vec<DataspaceDocument> = serde_json::from_str(&api).unwrap();
+    serde_json::to_string(&documents).unwrap()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -375,7 +456,7 @@ mod tests {
         let metadata = DataspaceDocument::builder()
             .with_id(Some("123456".to_string()))
             .with_embargo_lift(Some(vec!["2010-07-01".to_string()]))
-            .with_mudd_walkin(Some(vec!["yes".to_string()]))
+            .with_mudd_walkin("yes")
             .build();
 
         assert_eq!(metadata.id.unwrap(), "123456");
@@ -388,17 +469,15 @@ mod tests {
         let metadata = DataspaceDocument::builder()
             .with_id(Some("dsp01b2773v788".to_string()))
             .with_description_abstract(Some(vec!["Summary".to_string()]))
-            .with_contributor(Some(vec!["Wolff, Tamsen".to_string()]))
-            .with_contributor_advisor(Some(vec!["Sandberg, Robert".to_string()]))
-            .with_contributor_author(Some(vec!["Clark, Hillary".to_string()]))
-            .with_date_classyear(Some(vec!["2014".to_string()]))
-            .with_department(Some(vec![
-                "Princeton University. Department of English".to_string(),
-                "Princeton University. Program in Theater".to_string(),
-            ]))
-            .with_format_extent(Some(vec!["102 pages".to_string()]))
-            .with_language_iso(Some(vec!["en_US".to_string()]))
-            .with_title(Some(vec!["Dysfunction: A Play in One Act".to_string()]))
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_format_extent("102 pages")
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act".to_string())
             .build();
 
         let solr = solr::SolrDocument::from(metadata);
@@ -415,20 +494,16 @@ mod tests {
         let metadata = DataspaceDocument::builder()
             .with_id(Some("dsp01b2773v788".to_string()))
             .with_description_abstract(Some(vec!["Summary".to_string()]))
-            .with_contributor(Some(vec!["Wolff, Tamsen".to_string()]))
-            .with_contributor_advisor(Some(vec!["Sandberg, Robert".to_string()]))
-            .with_contributor_author(Some(vec!["Clark, Hillary".to_string()]))
-            .with_date_classyear(Some(vec!["2014".to_string()]))
-            .with_department(Some(vec![
-                "Princeton University. Department of English".to_string(),
-                "Princeton University. Program in Theater".to_string(),
-            ]))
-            .with_identifier_uri(Some(vec![
-                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_string(),
-            ]))
-            .with_format_extent(Some(vec!["102 pages".to_string()]))
-            .with_language_iso(Some(vec!["en_US".to_string()]))
-            .with_title(Some(vec!["Dysfunction: A Play in One Act".to_string()]))
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
+            .with_format_extent("102 pages")
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act".to_string())
             .build();
 
         assert_eq!(
@@ -442,20 +517,16 @@ mod tests {
         let metadata = DataspaceDocument::builder()
             .with_id(Some("dsp01b2773v788".to_string()))
             .with_description_abstract(Some(vec!["Summary".to_string()]))
-            .with_contributor(Some(vec!["Wolff, Tamsen".to_string()]))
-            .with_contributor_advisor(Some(vec!["Sandberg, Robert".to_string()]))
-            .with_contributor_author(Some(vec!["Clark, Hillary".to_string()]))
-            .with_date_classyear(Some(vec!["2014".to_string()]))
-            .with_department(Some(vec![
-                "Princeton University. Department of English".to_string(),
-                "Princeton University. Program in Theater".to_string(),
-            ]))
-            .with_identifier_uri(Some(vec![
-                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_string(),
-            ]))
-            .with_format_extent(Some(vec!["102 pages".to_string()]))
-            .with_language_iso(Some(vec!["en_US".to_string()]))
-            .with_title(Some(vec!["Dysfunction: A Play in One Act".to_string()]))
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
+            .with_format_extent("102 pages")
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act".to_string())
             .build();
 
         assert_eq!(
@@ -469,17 +540,15 @@ mod tests {
         let metadata = DataspaceDocument::builder()
             .with_id(Some("dsp01b2773v788".to_string()))
             .with_description_abstract(Some(vec!["Summary".to_string()]))
-            .with_contributor(Some(vec!["Wolff, Tamsen".to_string()]))
-            .with_contributor_advisor(Some(vec!["Sandberg, Robert".to_string()]))
-            .with_contributor_author(Some(vec!["Clark, Hillary".to_string()]))
-            .with_date_classyear(Some(vec!["2014".to_string()]))
-            .with_department(Some(vec![
-                "Princeton University. Department of English".to_string(),
-                "Princeton University. Program in Theater".to_string(),
-            ]))
-            .with_format_extent(Some(vec!["102 pages".to_string()]))
-            .with_language_iso(Some(vec!["en_US".to_string()]))
-            .with_title(Some(vec!["Dysfunction: A Play in One Act".to_string()]))
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_format_extent("102 pages".to_string())
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act".to_string())
             .build();
 
         assert_eq!(metadata.ark_hash(), None);
@@ -515,25 +584,60 @@ mod tests {
         assert!(DataspaceDocument::builder().with_embargo_lift(Some(vec!["2100-01-01".to_string()])).build().on_site_only(), "doc with embargo lift field should return true");
         assert!(DataspaceDocument::builder()
             .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
-            .with_mudd_walkin(Some(vec!["yes".to_string()]))
-            .with_date_classyear(Some(vec!["2012-01-01T00:00:00Z".to_string()]))
+            .with_mudd_walkin("yes")
+            .with_date_classyear("2012-01-01T00:00:00Z")
             .build()
             .on_site_only(), "with a specified accession date prior to 2013, it should return true");
 
-        assert!(!DataspaceDocument::builder().with_location(Some(vec!["physical location".to_string()])).build().on_site_only(), "doc with location field should return false");
+        assert!(!DataspaceDocument::builder().with_location("physical location").build().on_site_only(), "doc with location field should return false");
         assert!(!DataspaceDocument::builder().with_embargo_lift(Some(vec!["2000-01-01".to_string()])).build().on_site_only(), "doc with expired embargo lift field should return false");
         assert!(!DataspaceDocument::builder()
             .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
-            .with_mudd_walkin(Some(vec!["yes".to_string()]))
+            .with_mudd_walkin("yes")
             .build()
             .on_site_only(), "without a specified accession date, it should return false");
         assert!(!DataspaceDocument::builder()
             .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
-            .with_mudd_walkin(Some(vec!["yes".to_string()]))
-            .with_date_classyear(Some(vec!["2013-01-01T00:00:00Z".to_string()]))
+            .with_mudd_walkin("yes")
+            .with_date_classyear("2013-01-01T00:00:00Z")
             .build()
             .on_site_only(), "with a specified accession date in 2013, it should return false");
         assert!(!DataspaceDocument::builder().build().on_site_only(), "doc with no access-related fields should return false");
         assert!(!DataspaceDocument::builder().build().on_site_only());
+    }
+
+    #[test]
+    fn it_can_parse_json() {
+        // TODO: put this json in its own file
+        let json = r#"[{"id":4350,"name":"Dysfunction: A Play in One Act","handle":"88435/dsp01b2773v788","type":"item","link":"/rest/items/4350",
+            "expand":["parentCollection","parentCollectionList","parentCommunityList","bitstreams","all"],"lastModified":"2014-09-09 14:03:06.28",
+            "parentCollection":null,"parentCollectionList":null,"parentCommunityList":null,"metadata":[
+            {"key":"dc.contributor","value":"Wolff, Tamsen","language":null},{"key":"dc.contributor","value":"2nd contributor","language":null},
+            {"key":"dc.contributor.advisor","value":"Sandberg, Robert","language":null},
+            {"key":"dc.contributor.author","value":"Clark, Hillary","language":null},{"key":"dc.date.accessioned","value":"2013-07-11T14:31:58Z",
+            "language":null},{"key":"dc.date.available","value":"2013-07-11T14:31:58Z","language":null},
+            {"key":"dc.date.created","value":"2013-04-02","language":null},{"key":"dc.date.issued","value":"2013-07-11","language":null},
+            {"key":"dc.identifier.uri","value":"http://arks.princeton.edu/ark:/88435/dsp01b2773v788","language":null},
+            {"key":"dc.format.extent","value":"102 pages","language":"en_US"},{"key":"dc.language.iso","value":"en_US","language":"en_US"},
+            {"key":"dc.title","value":"Dysfunction: A Play in One Act","language":"en_US"},
+            {"key":"dc.type","value":"Princeton University Senior Theses","language":null},{"key":"pu.date.classyear","value":"2013","language":"en_US"},
+            {"key":"pu.department","value":"English","language":"en_US"},{"key":"pu.department","value":"NA","language":"en_US"},
+            {"key":"pu.certificate","value":"Creative Writing Program","language":"en_US"},{"key":"pu.certificate","value":"NA","language":"en_US"},
+            {"key":"pu.pdf.coverpage","value":"SeniorThesisCoverPage","language":null},{"key":"dc.rights.accessRights","value":"Walk-in Access...","language":null}],
+            "bitstreams":null,"archived":"true","withdrawn":"false"}]"#;
+        let metadata: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
+        assert_eq!(metadata.len(), 1);
+        assert_eq!(metadata[0].id, Some("dsp01b2773v788".to_owned()));
+        assert_eq!(metadata[0].title, Some(vec!["Dysfunction: A Play in One Act".to_owned()]));
+        assert_eq!(metadata[0].contributor, Some(vec!["Wolff, Tamsen".to_owned(), "2nd contributor".to_owned()]));
+        assert_eq!(metadata[0].contributor_advisor, Some(vec!["Sandberg, Robert".to_owned()]));
+        assert_eq!(metadata[0].contributor_author, Some(vec!["Clark, Hillary".to_owned()]));
+        assert_eq!(metadata[0].identifier_uri, Some(vec!["http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned()]));
+        assert_eq!(metadata[0].format_extent, Some(vec!["102 pages".to_owned()]));
+        assert_eq!(metadata[0].language_iso, Some(vec!["en_US".to_owned()]));
+        assert_eq!(metadata[0].date_classyear, Some(vec!["2013".to_owned()]));
+        assert_eq!(metadata[0].department, Some(vec!["English".to_owned(), "NA".to_owned()]));
+        assert_eq!(metadata[0].certificate, Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()]));
+        assert_eq!(metadata[0].rights_access_rights, Some(vec!["Walk-in Access...".to_owned()]));
     }
 }
