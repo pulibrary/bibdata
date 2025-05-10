@@ -1,6 +1,6 @@
 extern crate serde;
 
-use crate::theses::{embargo, holdings, language, latex, solr};
+use crate::theses::{department, embargo, holdings, language, latex, program, solr};
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
 use serde::de::Deserializer;
@@ -354,6 +354,30 @@ impl DataspaceDocument {
         }
     }
 
+    pub fn authorized_departments(&self) -> Option<Vec<String>> {
+        match &self.department {
+            Some(departments) => Some(departments
+                .iter()
+                .map(|department| department::map_department(department.to_owned()))
+                .filter_map(|department| department)
+                .collect()
+            ),
+            None => None
+        }
+    }
+
+    pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
+        match &self.certificate {
+            Some(certificates) => Some(certificates
+                .iter()
+                .map(|certificate| program::map_program(certificate.to_owned()))
+                .filter_map(|certificate| certificate)
+                .collect()
+            ),
+            None => None
+        }
+    }
+
     /// Take first title, strip out latex expressions when present to include along
     /// with non-normalized version (allowing users to get matches both when LaTex
     /// is pasted directly into the search box and when sub/superscripts are placed
@@ -400,9 +424,9 @@ impl From<DataspaceDocument> for solr::SolrDocument {
             .with_author_sort(&value.contributor_author.clone().unwrap_or_default().first())
             .with_call_number_browse_s(value.call_number())
             .with_call_number_display(value.call_number())
-            .with_certificate_display(value.certificate.clone())
+            .with_certificate_display(value.authorized_ceritificates())
             .with_contributor_display(value.contributor.clone())
-            .with_department_display(value.department.clone())
+            .with_department_display(value.authorized_departments())
             .with_holdings_1display(holdings::physical_holding_string(value.identifier_uri.clone()))
             .with_location(value.location())
             .with_location_code_s(value.location_code())
@@ -583,6 +607,63 @@ mod tests {
             assert_eq!(solr.access_facet.unwrap(), "Online");
             assert!(solr.electronic_portfolio_s.unwrap().contains("thesis"));
         }
+
+        #[test]
+        fn with_allowed_department_name() {
+            let document = DataspaceDocument::builder().with_department("English").build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.department_display.unwrap(), vec!["Princeton University. Department of English"], "it should map to the LC authorized name for the department");
+        }
+
+        #[test]
+        fn with_disallowed_department_name() {
+            let document = DataspaceDocument::builder().with_department("NA").build();
+            let solr = solr::SolrDocument::from(document);
+            assert!(solr.department_display.unwrap().is_empty(), "it should not include department names that are not in the authorized list");
+        }
+
+        #[test]
+        fn with_multiple_allowed_department_names() {
+            let document = DataspaceDocument::builder()
+                .with_department("English")
+                .with_department("German")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(
+                solr.department_display.unwrap(),
+                vec!["Princeton University. Department of English", "Princeton University. Department of Germanic Languages and Literatures"],
+                "it should map to all LC authorized department names"
+            );
+        }
+
+        #[test]
+        fn with_allowed_certificate_name() {
+            let document = DataspaceDocument::builder().with_certificate("Creative Writing Program").build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.certificate_display.unwrap(), vec!["Princeton University. Creative Writing Program"], "it should map to the LC authorized name for the program");
+        }
+
+        #[test]
+        fn with_disallowed_certificate_name() {
+            let document = DataspaceDocument::builder().with_certificate("NA").build();
+            let solr = solr::SolrDocument::from(document);
+            assert!(solr.certificate_display.unwrap().is_empty(), "it should not include program names that are not in the authorized list");
+        }
+
+        #[test]
+        fn with_multiple_allowed_certificate_names() {
+            let document = DataspaceDocument::builder()
+                .with_certificate("Environmental Studies Program")
+                .with_certificate("African Studies Program")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(
+                solr.certificate_display.unwrap(),
+                vec!["Princeton University. Program in Environmental Studies", "Princeton University. Program in African Studies"],
+                "it should map to all LC authorized program names"
+            );
+        }
+
     }
 
     #[test]
