@@ -36,6 +36,7 @@ module BibdataRs::Theses
     end
 
     def to_solr
+      byebug
       values = document.dup
       values['restrictions_note_display'] = restrictions_note_display
       values

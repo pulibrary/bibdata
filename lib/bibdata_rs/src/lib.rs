@@ -59,6 +59,5 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(theses::dataspace_document::ruby_json_to_solr_json, 1),
     )?;
     submodule.define_singleton_method("api_communities_json", function!(communities::api_communities_json, 1))?;
-    submodule.define_singleton_method("parse_dspace_api_json", function!(dataspace_document::parse_dspace_api_json, 1))?;
     Ok(())
 }

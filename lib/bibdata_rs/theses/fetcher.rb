@@ -116,7 +116,7 @@ module BibdataRs::Theses
 
       elements = fetch_collection(collection_id)
       elements.each do |attrs|
-        byebug
+        byebug if attrs['handle'] == '88435/dsp01k0698788n'
         solr_document = indexer.build_solr_document(**attrs)
         solr_documents << solr_document
       end

@@ -37,7 +37,7 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
         #[derive(Deserialize)]
         struct KeyValuePair {
             key: String,
-            value: String,
+            value: Option<String>,
         }
 
         #[derive(Deserialize)]
@@ -52,21 +52,23 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
         builder = builder.with_id(Some(raw.handle.split_once("/").unwrap_or_default().1.to_owned()));
 
         for entry in raw.metadata {
-            match entry.key.as_str() {
-                "dc.contributor" => builder = builder.with_contributor(entry.value),
-                "dc.contributor.advisor" => builder = builder.with_contributor_advisor(entry.value),
-                "dc.contributor.author" => builder = builder.with_contributor_author(entry.value),
-                "dc.format.extent" => builder = builder.with_format_extent(entry.value),
-                "dc.identifier.uri" => builder = builder.with_identifier_uri(entry.value),
-                "dc.language.iso" => builder = builder.with_language_iso(entry.value),
-                "dc.rights.accessRights" => builder = builder.with_rights_access_rights(entry.value),
-                "dc.title" => builder = builder.with_title(entry.value),
-                "pu.certificate" => builder = builder.with_certificate(entry.value),
-                "pu.date.classyear" => builder = builder.with_date_classyear(entry.value),
-                "pu.department" => builder = builder.with_department(entry.value),
-                "pu.location" => builder = builder.with_location(entry.value),
-                "pu.mudd.walkin" => builder = builder.with_mudd_walkin(entry.value),
-                _ => (),
+            if let Some(val) = entry.value {
+                match entry.key.as_str() {
+                    "dc.contributor" => builder = builder.with_contributor(val),
+                    "dc.contributor.advisor" => builder = builder.with_contributor_advisor(val),
+                    "dc.contributor.author" => builder = builder.with_contributor_author(val),
+                    "dc.format.extent" => builder = builder.with_format_extent(val),
+                    "dc.identifier.uri" => builder = builder.with_identifier_uri(val),
+                    "dc.language.iso" => builder = builder.with_language_iso(val),
+                    "dc.rights.accessRights" => builder = builder.with_rights_access_rights(val),
+                    "dc.title" => builder = builder.with_title(val),
+                    "pu.certificate" => builder = builder.with_certificate(val),
+                    "pu.date.classyear" => builder = builder.with_date_classyear(val),
+                    "pu.department" => builder = builder.with_department(val),
+                    "pu.location" => builder = builder.with_location(val),
+                    "pu.mudd.walkin" => builder = builder.with_mudd_walkin(val),
+                    _ => (),
+                };
             };
         }
         Ok(builder.build())
@@ -267,22 +269,6 @@ impl DataspaceDocumentBuilder {
     }
 }
 
-/// Take first title, strip out latex expressions when present to include along
-/// with non-normalized version (allowing users to get matches both when LaTex
-/// is pasted directly into the search box and when sub/superscripts are placed
-/// adjacent to regular characters
-fn title_search_versions(possible_titles: &Option<Vec<String>>) -> Option<Vec<String>> {
-    match possible_titles {
-        Some(titles) => {
-            titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
-                        .into_iter()
-                        .unique()
-                        .collect())
-        }
-        None => None,
-    }
-}
-
 
 impl DataspaceDocument {
     pub fn ark_hash(&self) -> Option<String> {
@@ -360,6 +346,22 @@ impl DataspaceDocument {
         }
     }
 
+    /// Take first title, strip out latex expressions when present to include along
+    /// with non-normalized version (allowing users to get matches both when LaTex
+    /// is pasted directly into the search box and when sub/superscripts are placed
+    /// adjacent to regular characters
+    pub fn title_search_versions(&self) -> Option<Vec<String>> {
+        match &self.title {
+            Some(titles) => {
+                titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
+                            .into_iter()
+                            .unique()
+                            .collect())
+            }
+            None => None,
+        }
+    }
+
     fn has_current_embargo(&self) -> bool {
         embargo::has_current_embargo(self.embargo_lift.clone(), self.embargo_terms.clone())
     }
@@ -402,7 +404,7 @@ impl From<DataspaceDocument> for solr::SolrDocument {
             .with_title_citation_display(&first_title)
             .with_title_display(&first_title)
             .with_title_sort(&title_sort(&value.title))
-            .with_title_t(&title_search_versions(&value.title))
+            .with_title_t(&value.title_search_versions())
             .with_language_facet(value.languages())
             .with_language_name_display(value.languages())
             .with_class_year_s(&value.class_year())
@@ -439,12 +441,6 @@ fn title_sort(titles: &Option<Vec<String>>) -> Option<String> {
 pub fn ruby_json_to_solr_json(ruby: String) -> String {
     let metadata: DataspaceDocument = serde_json::from_str(&ruby).unwrap();
     serde_json::to_string(&solr::SolrDocument::from(metadata)).unwrap()
-}
-
-// DELETE ME: just a temporary function for testing in Ruby
-pub fn parse_dspace_api_json(api: String) -> String {
-    let documents: Vec<DataspaceDocument> = serde_json::from_str(&api).unwrap();
-    serde_json::to_string(&documents).unwrap()
 }
 
 #[cfg(test)]
@@ -625,19 +621,27 @@ mod tests {
             {"key":"pu.certificate","value":"Creative Writing Program","language":"en_US"},{"key":"pu.certificate","value":"NA","language":"en_US"},
             {"key":"pu.pdf.coverpage","value":"SeniorThesisCoverPage","language":null},{"key":"dc.rights.accessRights","value":"Walk-in Access...","language":null}],
             "bitstreams":null,"archived":"true","withdrawn":"false"}]"#;
-        let metadata: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
-        assert_eq!(metadata.len(), 1);
-        assert_eq!(metadata[0].id, Some("dsp01b2773v788".to_owned()));
-        assert_eq!(metadata[0].title, Some(vec!["Dysfunction: A Play in One Act".to_owned()]));
-        assert_eq!(metadata[0].contributor, Some(vec!["Wolff, Tamsen".to_owned(), "2nd contributor".to_owned()]));
-        assert_eq!(metadata[0].contributor_advisor, Some(vec!["Sandberg, Robert".to_owned()]));
-        assert_eq!(metadata[0].contributor_author, Some(vec!["Clark, Hillary".to_owned()]));
-        assert_eq!(metadata[0].identifier_uri, Some(vec!["http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned()]));
-        assert_eq!(metadata[0].format_extent, Some(vec!["102 pages".to_owned()]));
-        assert_eq!(metadata[0].language_iso, Some(vec!["en_US".to_owned()]));
-        assert_eq!(metadata[0].date_classyear, Some(vec!["2013".to_owned()]));
-        assert_eq!(metadata[0].department, Some(vec!["English".to_owned(), "NA".to_owned()]));
-        assert_eq!(metadata[0].certificate, Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()]));
-        assert_eq!(metadata[0].rights_access_rights, Some(vec!["Walk-in Access...".to_owned()]));
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
+        assert_eq!(documents.len(), 1);
+        assert_eq!(documents[0].id, Some("dsp01b2773v788".to_owned()));
+        assert_eq!(documents[0].title, Some(vec!["Dysfunction: A Play in One Act".to_owned()]));
+        assert_eq!(documents[0].contributor, Some(vec!["Wolff, Tamsen".to_owned(), "2nd contributor".to_owned()]));
+        assert_eq!(documents[0].contributor_advisor, Some(vec!["Sandberg, Robert".to_owned()]));
+        assert_eq!(documents[0].contributor_author, Some(vec!["Clark, Hillary".to_owned()]));
+        assert_eq!(documents[0].identifier_uri, Some(vec!["http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned()]));
+        assert_eq!(documents[0].format_extent, Some(vec!["102 pages".to_owned()]));
+        assert_eq!(documents[0].language_iso, Some(vec!["en_US".to_owned()]));
+        assert_eq!(documents[0].date_classyear, Some(vec!["2013".to_owned()]));
+        assert_eq!(documents[0].department, Some(vec!["English".to_owned(), "NA".to_owned()]));
+        assert_eq!(documents[0].certificate, Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()]));
+        assert_eq!(documents[0].rights_access_rights, Some(vec!["Walk-in Access...".to_owned()]));
+    }
+
+    #[test]
+    fn it_can_handle_null_values() {
+        let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":[{"key":"dc.contributor", "value":null}]}]"#;
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
+        assert_eq!(documents.len(), 1);
+        assert!(documents[0].contributor.is_none());
     }
 }
