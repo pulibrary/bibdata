@@ -5,5 +5,8 @@ fn magnus_err_from_reqwest_err(value: &reqwest::Error) -> magnus::Error {
 }
 
 pub fn api_communities_json(server: String) -> Result<String, magnus::Error> {
-    reqwest::blocking::get(format!("{}/communities/", server)).map_err(|e| magnus_err_from_reqwest_err(&e))?.text().map_err(|e| magnus_err_from_reqwest_err(&e))
+    reqwest::blocking::get(format!("{}/communities/", server))
+        .map_err(|e| magnus_err_from_reqwest_err(&e))?
+        .text()
+        .map_err(|e| magnus_err_from_reqwest_err(&e))
 }

@@ -317,7 +317,6 @@ impl SolrDocumentBuilder {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use super::*;

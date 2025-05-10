@@ -17,12 +17,16 @@ impl From<DataspaceDocument> for solr::SolrDocument {
             .with_certificate_display(value.authorized_ceritificates())
             .with_contributor_display(value.contributor.clone())
             .with_department_display(value.authorized_departments())
-            .with_holdings_1display(holdings::physical_holding_string(value.identifier_uri.clone()))
+            .with_holdings_1display(holdings::physical_holding_string(
+                value.identifier_uri.clone(),
+            ))
             .with_location(value.location())
             .with_location_code_s(value.location_code())
             .with_location_display(value.location())
             .with_electronic_access_1display(&value.ark_hash())
-            .with_electronic_portfolio_s(holdings::online_holding_string(value.identifier_other.clone()))
+            .with_electronic_portfolio_s(holdings::online_holding_string(
+                value.identifier_other.clone(),
+            ))
             .with_restrictions_note_display(value.restrictions_note_display())
             .with_title_citation_display(&first_title)
             .with_title_display(&first_title)
@@ -39,7 +43,6 @@ impl From<DataspaceDocument> for solr::SolrDocument {
     }
 }
 
-
 fn title_sort(titles: &Option<Vec<String>>) -> Option<String> {
     match titles {
         Some(title_vec) => {
@@ -55,7 +58,7 @@ fn title_sort(titles: &Option<Vec<String>>) -> Option<String> {
                     .trim_start_matches("the ")
                     .chars()
                     .filter(|c| !c.is_whitespace())
-                    .collect::<String>()
+                    .collect::<String>(),
             )
         }
         None => None,
@@ -85,12 +88,21 @@ mod tests {
         let solr = solr::SolrDocument::from(metadata);
 
         assert_eq!(solr.id, "dsp01b2773v788");
-        assert_eq!(solr.title_t.unwrap(), vec!["Dysfunction: A Play in One Act"]);
-        assert_eq!(solr.title_citation_display.unwrap(), "Dysfunction: A Play in One Act");
-        assert_eq!(solr.title_display.unwrap(), "Dysfunction: A Play in One Act");
+        assert_eq!(
+            solr.title_t.unwrap(),
+            vec!["Dysfunction: A Play in One Act"]
+        );
+        assert_eq!(
+            solr.title_citation_display.unwrap(),
+            "Dysfunction: A Play in One Act"
+        );
+        assert_eq!(
+            solr.title_display.unwrap(),
+            "Dysfunction: A Play in One Act"
+        );
         assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
     }
-    
+
     #[test]
     fn it_adds_the_expected_fields() {
         let document = DataspaceDocument::builder()
@@ -112,7 +124,12 @@ mod tests {
         assert_eq!(solr.author_display, Some(vec!["Clark, Hillary".to_owned()]));
         assert_eq!(
             solr.author_s.unwrap().sort(),
-            vec!["Clark, Hillary".to_owned(), "Sandberg, Robert".to_owned(), "Wolff, Tamsen".to_owned()].sort()
+            vec![
+                "Clark, Hillary".to_owned(),
+                "Sandberg, Robert".to_owned(),
+                "Wolff, Tamsen".to_owned()
+            ]
+            .sort()
         );
         assert_eq!(solr.summary_note_display, Some(vec!["Summary".to_owned()]))
     }
@@ -126,17 +143,20 @@ mod tests {
 
     #[test]
     fn integer_in_classyear_field() {
-        let document = DataspaceDocument::builder().with_date_classyear("2014").build();
+        let document = DataspaceDocument::builder()
+            .with_date_classyear("2014")
+            .build();
         let solr = solr::SolrDocument::from(document);
         assert_eq!(solr.class_year_s.unwrap(), vec!["2014".to_owned()]);
         assert_eq!(solr.pub_date_start_sort.unwrap(), vec!["2014".to_owned()]);
         assert_eq!(solr.pub_date_end_sort.unwrap(), vec!["2014".to_owned()]);
     }
 
-
     #[test]
     fn non_integer_in_classyear_field() {
-        let document = DataspaceDocument::builder().with_date_classyear("Undated").build();
+        let document = DataspaceDocument::builder()
+            .with_date_classyear("Undated")
+            .build();
         let solr = solr::SolrDocument::from(document);
         assert!(solr.class_year_s.is_none());
         assert!(solr.pub_date_start_sort.is_none());
@@ -154,7 +174,9 @@ mod tests {
 
     #[test]
     fn with_access_rights() {
-        let document = DataspaceDocument::builder().with_rights_access_rights("Walk-in Access...").build();
+        let document = DataspaceDocument::builder()
+            .with_rights_access_rights("Walk-in Access...")
+            .build();
         let solr = solr::SolrDocument::from(document);
         assert_eq!(solr.access_facet.unwrap(), "Online");
         assert!(solr.advanced_location_s.is_none());
@@ -168,7 +190,13 @@ mod tests {
             .build();
         let solr = solr::SolrDocument::from(document);
         assert!(solr.access_facet.is_none());
-        assert_eq!(solr.advanced_location_s.unwrap(), vec!["mudd$stacks".to_owned(), "Mudd Manuscript Library".to_owned()]);
+        assert_eq!(
+            solr.advanced_location_s.unwrap(),
+            vec![
+                "mudd$stacks".to_owned(),
+                "Mudd Manuscript Library".to_owned()
+            ]
+        );
     }
 
     #[test]
@@ -181,16 +209,25 @@ mod tests {
 
     #[test]
     fn with_allowed_department_name() {
-        let document = DataspaceDocument::builder().with_department("English").build();
+        let document = DataspaceDocument::builder()
+            .with_department("English")
+            .build();
         let solr = solr::SolrDocument::from(document);
-        assert_eq!(solr.department_display.unwrap(), vec!["Princeton University. Department of English"], "it should map to the LC authorized name for the department");
+        assert_eq!(
+            solr.department_display.unwrap(),
+            vec!["Princeton University. Department of English"],
+            "it should map to the LC authorized name for the department"
+        );
     }
 
     #[test]
     fn with_disallowed_department_name() {
         let document = DataspaceDocument::builder().with_department("NA").build();
         let solr = solr::SolrDocument::from(document);
-        assert!(solr.department_display.unwrap().is_empty(), "it should not include department names that are not in the authorized list");
+        assert!(
+            solr.department_display.unwrap().is_empty(),
+            "it should not include department names that are not in the authorized list"
+        );
     }
 
     #[test]
@@ -202,23 +239,35 @@ mod tests {
         let solr = solr::SolrDocument::from(document);
         assert_eq!(
             solr.department_display.unwrap(),
-            vec!["Princeton University. Department of English", "Princeton University. Department of Germanic Languages and Literatures"],
+            vec![
+                "Princeton University. Department of English",
+                "Princeton University. Department of Germanic Languages and Literatures"
+            ],
             "it should map to all LC authorized department names"
         );
     }
 
     #[test]
     fn with_allowed_certificate_name() {
-        let document = DataspaceDocument::builder().with_certificate("Creative Writing Program").build();
+        let document = DataspaceDocument::builder()
+            .with_certificate("Creative Writing Program")
+            .build();
         let solr = solr::SolrDocument::from(document);
-        assert_eq!(solr.certificate_display.unwrap(), vec!["Princeton University. Creative Writing Program"], "it should map to the LC authorized name for the program");
+        assert_eq!(
+            solr.certificate_display.unwrap(),
+            vec!["Princeton University. Creative Writing Program"],
+            "it should map to the LC authorized name for the program"
+        );
     }
 
     #[test]
     fn with_disallowed_certificate_name() {
         let document = DataspaceDocument::builder().with_certificate("NA").build();
         let solr = solr::SolrDocument::from(document);
-        assert!(solr.certificate_display.unwrap().is_empty(), "it should not include program names that are not in the authorized list");
+        assert!(
+            solr.certificate_display.unwrap().is_empty(),
+            "it should not include program names that are not in the authorized list"
+        );
     }
 
     #[test]
@@ -230,7 +279,10 @@ mod tests {
         let solr = solr::SolrDocument::from(document);
         assert_eq!(
             solr.certificate_display.unwrap(),
-            vec!["Princeton University. Program in Environmental Studies", "Princeton University. Program in African Studies"],
+            vec![
+                "Princeton University. Program in Environmental Studies",
+                "Princeton University. Program in African Studies"
+            ],
             "it should map to all LC authorized program names"
         );
     }
