@@ -116,7 +116,7 @@ module BibdataRs::Theses
 
       elements = fetch_collection(collection_id)
       elements.each do |attrs|
-        solr_document = DataspaceDocument.new(document: JSON.parse(BibdataRs::Theses.ruby_json_to_solr_json(attrs.to_json)), logger: @logger)
+        solr_document = JSON.parse(BibdataRs::Theses.ruby_json_to_solr_json(attrs.to_json))
         solr_documents << solr_document
       end
 
@@ -130,8 +130,7 @@ module BibdataRs::Theses
     def self.write_all_collections_to_cache
       fetcher = Fetcher.new
       File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
-        documents = fetcher.cache_all_collections
-        solr_documents = documents.map(&:to_solr)
+        solr_documents = fetcher.cache_all_collections
         json_cache = JSON.pretty_generate(solr_documents)
         f.puts(json_cache)
       end
