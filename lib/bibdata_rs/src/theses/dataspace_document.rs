@@ -7,38 +7,55 @@ use serde::Deserialize;
 #[derive(Debug, Deserialize)]
 struct Metadata {
     id: Option<String>,
+
     #[serde(rename = "pu.certificate")]
     certificate: Option<Vec<String>>,
+
     #[serde(rename = "dc.contributor")]
     contributor: Option<Vec<String>>,
+
     #[serde(rename = "dc.contributor.advisor")]
     contributor_advisor: Option<Vec<String>>,
+
     #[serde(rename = "dc.contributor.author")]
     contributor_author: Option<Vec<String>>,
+
     #[serde(rename = "pu.date.classyear")]
     date_classyear: Option<Vec<String>>,
+
     #[serde(rename = "dc.description.abstract")]
     description_abstract: Option<Vec<String>>,
+
     #[serde(rename = "pu.department")]
     department: Option<Vec<String>>,
+
     #[serde(rename = "pu.embargo.lift")]
     embargo_lift: Option<Vec<String>>,
+
     #[serde(rename = "pu.embargo.terms")]
     embargo_terms: Option<Vec<String>>,
+
     #[serde(rename = "dc.format.extent")]
     format_extent: Option<Vec<String>>,
+
     #[serde(rename = "dc.identifier.other")]
     identifier_other: Option<Vec<String>>,
+
     #[serde(rename = "dc.identifier.uri")]
     identifier_uri: Option<Vec<String>>,
+
     #[serde(rename = "dc.language.iso")]
     language_iso: Option<Vec<String>>,
+
     #[serde(rename = "pu.location")]
     location: Option<Vec<String>>,
+
     #[serde(rename = "pu.mudd.walkin")]
     mudd_walkin: Option<Vec<String>>,
+
     #[serde(rename = "dc.rights.accessRights")]
     rights_access_rights: Option<Vec<String>>,
+
     #[serde(rename = "dc.title")]
     title: Option<Vec<String>>,
 }
@@ -59,17 +76,7 @@ fn title_search_versions(possible_titles: &Option<Vec<String>>) -> Option<Vec<St
     }
 }
 
-pub fn fake_title_search_versions(possible_titles: Option<Vec<String>>) -> Option<Vec<String>> {
-    match possible_titles {
-        Some(titles) => {
-            titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
-                        .into_iter()
-                        .unique()
-                        .collect())
-        }
-        None => None,
-    }
-}
+
 impl Metadata {
     pub fn ark_hash(&self) -> Option<String> {
         holdings::ark_hash(
@@ -173,6 +180,7 @@ impl From<Metadata> for solr::SolrDocument {
             .with_advisor_display(value.contributor_advisor.clone())
             .with_author_display(value.contributor_author.clone())
             .with_author_s(value.all_authors())
+            .with_author_sort(&value.contributor_author.clone().unwrap_or_default().first())
             .with_call_number_browse_s(value.call_number())
             .with_call_number_display(value.call_number())
             .with_certificate_display(value.certificate.clone())

@@ -4,7 +4,7 @@ use std::{env, fs};
 pub mod collection;
 pub mod communities;
 pub mod config;
-pub mod dataspace_api;
+pub mod dataspace_document;
 pub mod department;
 pub mod embargo;
 pub mod holdings;

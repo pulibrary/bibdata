@@ -4,8 +4,10 @@ use theses::communities;
 
 mod config;
 mod ephemera;
-mod testing_support;
 mod theses;
+
+#[cfg(test)]
+mod testing_support;
 
 #[magnus::init]
 fn init(ruby: &Ruby) -> Result<(), Error> {
@@ -54,7 +56,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule.define_singleton_method(
         "ruby_json_to_solr_json",
-        function!(theses::dataspace_api::ruby_json_to_solr_json, 1),
+        function!(theses::dataspace_document::ruby_json_to_solr_json, 1),
     )?;
     submodule.define_singleton_method("api_communities_json", function!(communities::api_communities_json, 1))?;
     Ok(())
