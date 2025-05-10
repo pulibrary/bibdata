@@ -48,11 +48,8 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
       expect(fetched).to be_an(Array)
       expect(fetched.length).to eq(1)
       document = fetched.first
-      expect(document).to be_a(BibdataRs::Theses::DataspaceDocument)
-      solr_document = document.to_solr
-      expect(solr_document).to be_a(Hash)
-      expect(solr_document).to include('id' => 'dsp0141687h67f')
-      expect(solr_document).to include('title_display' => 'Calibration of the Princeton University Subsonic Instructional Wind Tunnel')
+      expect(document).to include('id' => 'dsp0141687h67f')
+      expect(document).to include('title_display' => 'Calibration of the Princeton University Subsonic Instructional Wind Tunnel')
     end
 
     it 'knows where to write cached files' do
