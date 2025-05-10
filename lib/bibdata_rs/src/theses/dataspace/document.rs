@@ -1,9 +1,11 @@
 extern crate serde;
 
-use crate::theses::{department, embargo, holdings, language, latex, looks_like_yes, program, restrictions, solr};
+use crate::theses::{
+    department, embargo, holdings, language, latex, looks_like_yes, program, restrictions, solr,
+};
 use itertools::Itertools;
-use serde::{Deserialize, Serialize};
 use serde::de::Deserializer;
+use serde::{Deserialize, Serialize};
 
 // This is an intermediate representation of the data from dspace, representing the key value pairs taken from
 // DSpace API metadata
@@ -137,12 +139,26 @@ impl DataspaceDocument {
 
     pub fn restrictions_note_display(&self) -> Option<Vec<String>> {
         if self.location.is_some() || self.rights_access_rights.is_some() {
-            Some(restrictions::restrictions_access(self.location.clone().unwrap_or_default().first().cloned(), self.rights_access_rights.clone().unwrap_or_default().first().cloned()))
+            Some(restrictions::restrictions_access(
+                self.location.clone().unwrap_or_default().first().cloned(),
+                self.rights_access_rights
+                    .clone()
+                    .unwrap_or_default()
+                    .first()
+                    .cloned(),
+            ))
         } else if looks_like_yes(self.mudd_walkin.clone()) {
             Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
         } else if embargo::has_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
-            if embargo::has_parseable_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
-                Some(vec![embargo::embargo_text(self.embargo_lift.clone(), self.embargo_terms.clone(), self.id.clone().unwrap_or_default())])
+            if embargo::has_parseable_embargo_date(
+                self.embargo_lift.clone(),
+                self.embargo_terms.clone(),
+            ) {
+                Some(vec![embargo::embargo_text(
+                    self.embargo_lift.clone(),
+                    self.embargo_terms.clone(),
+                    self.id.clone().unwrap_or_default(),
+                )])
             } else {
                 Some(vec![
                     format!("This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.", self.id.clone().unwrap_or_default())
@@ -175,27 +191,17 @@ impl DataspaceDocument {
     }
 
     pub fn authorized_departments(&self) -> Option<Vec<String>> {
-        match &self.department {
-            Some(departments) => Some(departments
-                .iter()
-                .map(|department| department::map_department(department.to_owned()))
-                .filter_map(|department| department)
-                .collect()
-            ),
-            None => None
-        }
+        self.department.as_ref().map(|departments| departments
+                    .iter()
+                    .filter_map(|department| department::map_department(department.to_owned()))
+                    .collect())
     }
 
     pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
-        match &self.certificate {
-            Some(certificates) => Some(certificates
-                .iter()
-                .map(|certificate| program::map_program(certificate.to_owned()))
-                .filter_map(|certificate| certificate)
-                .collect()
-            ),
-            None => None
-        }
+        self.certificate.as_ref().map(|certificates| certificates
+                    .iter()
+                    .filter_map(|certificate| program::map_program(certificate.to_owned()))
+                    .collect())
     }
 
     /// Take first title, strip out latex expressions when present to include along
@@ -204,12 +210,12 @@ impl DataspaceDocument {
     /// adjacent to regular characters
     pub fn title_search_versions(&self) -> Option<Vec<String>> {
         match &self.title {
-            Some(titles) => {
-                titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
-                            .into_iter()
-                            .unique()
-                            .collect())
-            }
+            Some(titles) => titles.first().map(|title| {
+                vec![title.to_string(), latex::normalize_latex(title.to_string())]
+                    .into_iter()
+                    .unique()
+                    .collect()
+            }),
             None => None,
         }
     }
@@ -430,7 +436,6 @@ impl DataspaceDocumentBuilder {
     }
 }
 
-
 pub fn ruby_json_to_solr_json(ruby: String) -> String {
     let metadata: DataspaceDocument = serde_json::from_str(&ruby).unwrap();
     serde_json::to_string(&solr::SolrDocument::from(metadata)).unwrap()
@@ -520,29 +525,65 @@ mod tests {
 
     #[test]
     fn on_site_only() {
-        assert!(DataspaceDocument::builder().with_embargo_terms("2100-01-01").build().on_site_only(), "doc with embargo terms field should return true");
-        assert!(DataspaceDocument::builder().with_embargo_lift("2100-01-01").build().on_site_only(), "doc with embargo lift field should return true");
-        assert!(DataspaceDocument::builder()
-            .with_embargo_lift("2000-01-01")
-            .with_mudd_walkin("yes")
-            .with_date_classyear("2012-01-01T00:00:00Z")
-            .build()
-            .on_site_only(), "with a specified accession date prior to 2013, it should return true");
+        assert!(
+            DataspaceDocument::builder()
+                .with_embargo_terms("2100-01-01")
+                .build()
+                .on_site_only(),
+            "doc with embargo terms field should return true"
+        );
+        assert!(
+            DataspaceDocument::builder()
+                .with_embargo_lift("2100-01-01")
+                .build()
+                .on_site_only(),
+            "doc with embargo lift field should return true"
+        );
+        assert!(
+            DataspaceDocument::builder()
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
+                .with_date_classyear("2012-01-01T00:00:00Z")
+                .build()
+                .on_site_only(),
+            "with a specified accession date prior to 2013, it should return true"
+        );
 
-        assert!(!DataspaceDocument::builder().with_location("physical location").build().on_site_only(), "doc with location field should return false");
-        assert!(!DataspaceDocument::builder().with_embargo_lift("2000-01-01").build().on_site_only(), "doc with expired embargo lift field should return false");
-        assert!(!DataspaceDocument::builder()
-            .with_embargo_lift("2000-01-01")
-            .with_mudd_walkin("yes")
-            .build()
-            .on_site_only(), "without a specified accession date, it should return false");
-        assert!(!DataspaceDocument::builder()
-            .with_embargo_lift("2000-01-01")
-            .with_mudd_walkin("yes")
-            .with_date_classyear("2013-01-01T00:00:00Z")
-            .build()
-            .on_site_only(), "with a specified accession date in 2013, it should return false");
-        assert!(!DataspaceDocument::builder().build().on_site_only(), "doc with no access-related fields should return false");
+        assert!(
+            !DataspaceDocument::builder()
+                .with_location("physical location")
+                .build()
+                .on_site_only(),
+            "doc with location field should return false"
+        );
+        assert!(
+            !DataspaceDocument::builder()
+                .with_embargo_lift("2000-01-01")
+                .build()
+                .on_site_only(),
+            "doc with expired embargo lift field should return false"
+        );
+        assert!(
+            !DataspaceDocument::builder()
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
+                .build()
+                .on_site_only(),
+            "without a specified accession date, it should return false"
+        );
+        assert!(
+            !DataspaceDocument::builder()
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
+                .with_date_classyear("2013-01-01T00:00:00Z")
+                .build()
+                .on_site_only(),
+            "with a specified accession date in 2013, it should return false"
+        );
+        assert!(
+            !DataspaceDocument::builder().build().on_site_only(),
+            "doc with no access-related fields should return false"
+        );
         assert!(!DataspaceDocument::builder().build().on_site_only());
     }
 
@@ -568,17 +609,49 @@ mod tests {
         let documents: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
         assert_eq!(documents.len(), 1);
         assert_eq!(documents[0].id, Some("dsp01b2773v788".to_owned()));
-        assert_eq!(documents[0].title, Some(vec!["Dysfunction: A Play in One Act".to_owned()]));
-        assert_eq!(documents[0].contributor, Some(vec!["Wolff, Tamsen".to_owned(), "2nd contributor".to_owned()]));
-        assert_eq!(documents[0].contributor_advisor, Some(vec!["Sandberg, Robert".to_owned()]));
-        assert_eq!(documents[0].contributor_author, Some(vec!["Clark, Hillary".to_owned()]));
-        assert_eq!(documents[0].identifier_uri, Some(vec!["http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned()]));
-        assert_eq!(documents[0].format_extent, Some(vec!["102 pages".to_owned()]));
+        assert_eq!(
+            documents[0].title,
+            Some(vec!["Dysfunction: A Play in One Act".to_owned()])
+        );
+        assert_eq!(
+            documents[0].contributor,
+            Some(vec![
+                "Wolff, Tamsen".to_owned(),
+                "2nd contributor".to_owned()
+            ])
+        );
+        assert_eq!(
+            documents[0].contributor_advisor,
+            Some(vec!["Sandberg, Robert".to_owned()])
+        );
+        assert_eq!(
+            documents[0].contributor_author,
+            Some(vec!["Clark, Hillary".to_owned()])
+        );
+        assert_eq!(
+            documents[0].identifier_uri,
+            Some(vec![
+                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned()
+            ])
+        );
+        assert_eq!(
+            documents[0].format_extent,
+            Some(vec!["102 pages".to_owned()])
+        );
         assert_eq!(documents[0].language_iso, Some(vec!["en_US".to_owned()]));
         assert_eq!(documents[0].date_classyear, Some(vec!["2013".to_owned()]));
-        assert_eq!(documents[0].department, Some(vec!["English".to_owned(), "NA".to_owned()]));
-        assert_eq!(documents[0].certificate, Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()]));
-        assert_eq!(documents[0].rights_access_rights, Some(vec!["Walk-in Access...".to_owned()]));
+        assert_eq!(
+            documents[0].department,
+            Some(vec!["English".to_owned(), "NA".to_owned()])
+        );
+        assert_eq!(
+            documents[0].certificate,
+            Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()])
+        );
+        assert_eq!(
+            documents[0].rights_access_rights,
+            Some(vec!["Walk-in Access...".to_owned()])
+        );
     }
 
     #[test]
