@@ -8,7 +8,6 @@ pub mod dataspace_document;
 pub mod department;
 pub mod embargo;
 pub mod holdings;
-pub mod just_testing;
 pub mod language;
 pub mod latex;
 pub mod program;
