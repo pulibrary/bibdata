@@ -1,6 +1,6 @@
 extern crate serde;
 
-use crate::theses::{department, embargo, holdings, language, latex, program, solr};
+use crate::theses::{department, embargo, holdings, language, latex, looks_like_yes, program, restrictions, solr};
 use itertools::Itertools;
 use serde::{Deserialize, Serialize};
 use serde::de::Deserializer;
@@ -130,6 +130,24 @@ impl DataspaceDocument {
     pub fn location_code(&self) -> Option<String> {
         if self.has_current_embargo() || self.on_site_only() {
             Some("mudd$stacks".to_owned())
+        } else {
+            None
+        }
+    }
+
+    pub fn restrictions_note_display(&self) -> Option<Vec<String>> {
+        if self.location.is_some() || self.rights_access_rights.is_some() {
+            Some(restrictions::restrictions_access(self.location.clone().unwrap_or_default().first().cloned(), self.rights_access_rights.clone().unwrap_or_default().first().cloned()))
+        } else if looks_like_yes(self.mudd_walkin.clone()) {
+            Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
+        } else if embargo::has_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
+            if embargo::has_parseable_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
+                Some(vec![embargo::embargo_text(self.embargo_lift.clone(), self.embargo_terms.clone(), self.id.clone().unwrap_or_default())])
+            } else {
+                Some(vec![
+                    format!("This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.", self.id.clone().unwrap_or_default())
+                ])
+            }
         } else {
             None
         }
@@ -307,8 +325,12 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_embargo_lift(mut self, embargo_lift: Option<Vec<String>>) -> Self {
-        self.embargo_lift = embargo_lift;
+    pub fn with_embargo_lift(mut self, embargo_lift: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.embargo_lift {
+            vec.push(embargo_lift.into())
+        } else {
+            self.embargo_lift = Some(vec![embargo_lift.into()]);
+        };
         self
     }
 
@@ -422,7 +444,7 @@ mod tests {
     fn it_can_build_a_document() {
         let metadata = DataspaceDocument::builder()
             .with_id("123456")
-            .with_embargo_lift(Some(vec!["2010-07-01".to_string()]))
+            .with_embargo_lift("2010-07-01")
             .with_mudd_walkin("yes")
             .build();
 
@@ -499,23 +521,23 @@ mod tests {
     #[test]
     fn on_site_only() {
         assert!(DataspaceDocument::builder().with_embargo_terms("2100-01-01").build().on_site_only(), "doc with embargo terms field should return true");
-        assert!(DataspaceDocument::builder().with_embargo_lift(Some(vec!["2100-01-01".to_string()])).build().on_site_only(), "doc with embargo lift field should return true");
+        assert!(DataspaceDocument::builder().with_embargo_lift("2100-01-01").build().on_site_only(), "doc with embargo lift field should return true");
         assert!(DataspaceDocument::builder()
-            .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
+            .with_embargo_lift("2000-01-01")
             .with_mudd_walkin("yes")
             .with_date_classyear("2012-01-01T00:00:00Z")
             .build()
             .on_site_only(), "with a specified accession date prior to 2013, it should return true");
 
         assert!(!DataspaceDocument::builder().with_location("physical location").build().on_site_only(), "doc with location field should return false");
-        assert!(!DataspaceDocument::builder().with_embargo_lift(Some(vec!["2000-01-01".to_string()])).build().on_site_only(), "doc with expired embargo lift field should return false");
+        assert!(!DataspaceDocument::builder().with_embargo_lift("2000-01-01").build().on_site_only(), "doc with expired embargo lift field should return false");
         assert!(!DataspaceDocument::builder()
-            .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
+            .with_embargo_lift("2000-01-01")
             .with_mudd_walkin("yes")
             .build()
             .on_site_only(), "without a specified accession date, it should return false");
         assert!(!DataspaceDocument::builder()
-            .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
+            .with_embargo_lift("2000-01-01")
             .with_mudd_walkin("yes")
             .with_date_classyear("2013-01-01T00:00:00Z")
             .build()

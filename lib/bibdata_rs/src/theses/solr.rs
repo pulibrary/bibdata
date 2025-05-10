@@ -65,6 +65,9 @@ pub struct SolrDocument {
     pub pub_date_start_sort: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub restrictions_note_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_note_display: Option<Vec<String>>,
 }
 
@@ -84,6 +87,7 @@ pub struct SolrDocumentBuilder {
     author_sort: Option<String>,
     electronic_access_1display: Option<String>,
     restrictions_display_text: Option<Vec<String>>,
+    restrictions_note_display: Option<Vec<String>>,
     call_number_display: String,
     call_number_browse_s: String,
     language_facet: Vec<String>,
@@ -261,6 +265,13 @@ impl SolrDocumentBuilder {
         self.description_display = description_display;
         self
     }
+    pub fn with_restrictions_note_display(
+        &mut self,
+        restrictions_note_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.restrictions_note_display = restrictions_note_display;
+        self
+    }
     pub fn with_summary_note_display(
         &mut self,
         summary_note_display: Option<Vec<String>>,
@@ -300,6 +311,7 @@ impl SolrDocumentBuilder {
             department_display: self.department_display.clone(),
             certificate_display: self.certificate_display.clone(),
             description_display: self.description_display.clone(),
+            restrictions_note_display: self.restrictions_note_display.clone(),
             summary_note_display: self.summary_note_display.clone(),
         }
     }
