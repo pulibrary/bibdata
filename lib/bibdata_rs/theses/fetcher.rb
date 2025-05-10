@@ -147,25 +147,6 @@ module BibdataRs::Theses
 
     private
 
-      # USED
-      def flatten_json(items)
-        items.collect do |i|
-          h = {}
-          h['id'] = i['handle'][%r{[^/]*$}]
-          i['metadata'].each do |m|
-            m['value'] = map_department(m['value']) if m['key'] == 'pu.department'
-            m['value'] = map_program(m['value']) if m['key'] == 'pu.certificate'
-            next if m['value'].nil?
-
-            if h[m['key']].nil?
-              h[m['key']] = [m['value']]
-            else
-              h[m['key']] << m['value']
-            end
-          end
-          h
-        end
-      end
 
       # USED
       def api_client
