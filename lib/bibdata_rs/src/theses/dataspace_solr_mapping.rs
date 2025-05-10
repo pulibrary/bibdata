@@ -23,6 +23,7 @@ impl From<DataspaceDocument> for solr::SolrDocument {
             .with_location_display(value.location())
             .with_electronic_access_1display(&value.ark_hash())
             .with_electronic_portfolio_s(holdings::online_holding_string(value.identifier_other.clone()))
+            .with_restrictions_note_display(value.restrictions_note_display())
             .with_title_citation_display(&first_title)
             .with_title_display(&first_title)
             .with_title_sort(&title_sort(&value.title))
@@ -232,6 +233,40 @@ mod tests {
             vec!["Princeton University. Program in Environmental Studies", "Princeton University. Program in African Studies"],
             "it should map to all LC authorized program names"
         );
+    }
+
+    mod restrictions_note_display {
+        use super::*;
+
+        #[test]
+        fn when_lift_date_is_invalid() {
+            let document = DataspaceDocument::builder()
+                .with_id("test-id")
+                .with_embargo_lift("invalid")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+        }
+
+        #[test]
+        fn when_terms_date_is_invalid() {
+            let document = DataspaceDocument::builder()
+                .with_id("test-id")
+                .with_embargo_terms("invalid")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+        }
+
+        #[test]
+        fn when_there_are_access_rights() {
+            let document = DataspaceDocument::builder()
+                .with_id("test-id")
+                .with_rights_access_rights("Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."]);
+        }
     }
 
     mod title_sort {
