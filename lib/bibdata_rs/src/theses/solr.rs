@@ -116,8 +116,8 @@ impl SolrDocumentBuilder {
         self.title_sort = title_sort.clone();
         self
     }
-    pub fn with_author_sort(&mut self, author_sort: impl Into<String>) -> &mut Self {
-        self.author_sort = Some(author_sort.into());
+    pub fn with_author_sort(&mut self, author_sort: &Option<&String>) -> &mut Self {
+        self.author_sort = (*author_sort).cloned();
         self
     }
     pub fn with_electronic_access_1display(
@@ -125,14 +125,6 @@ impl SolrDocumentBuilder {
         electronic_access_1display: &Option<String>,
     ) -> &mut Self {
         self.electronic_access_1display = electronic_access_1display.clone();
-        self
-    }
-
-    pub fn with_restrictions_display_text(
-        &mut self,
-        restrictions_display_text: impl Into<Vec<String>>,
-    ) -> &mut Self {
-        self.restrictions_display_text = Some(restrictions_display_text.into());
         self
     }
 
