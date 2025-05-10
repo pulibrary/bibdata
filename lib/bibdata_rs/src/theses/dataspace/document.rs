@@ -80,6 +80,136 @@ impl DataspaceDocument {
     pub fn builder() -> DataspaceDocumentBuilder {
         DataspaceDocumentBuilder::new()
     }
+
+    pub fn ark_hash(&self) -> Option<String> {
+        holdings::ark_hash(
+            self.identifier_uri.clone(),
+            self.location.is_some(),
+            self.rights_access_rights.is_some(),
+            self.mudd_walkin.clone(),
+            self.date_classyear.clone()?,
+            self.embargo_lift.clone(),
+            self.embargo_terms.clone(),
+        )
+    }
+
+    pub fn call_number(&self) -> String {
+        holdings::call_number(self.identifier_other.clone())
+    }
+    pub fn languages(&self) -> Vec<String> {
+        language::codes_to_english_names(self.language_iso.clone())
+    }
+
+    pub fn class_year(&self) -> Option<Vec<String>> {
+        let years = self.date_classyear.clone().unwrap_or_default();
+        let year = years.first()?;
+        if year.chars().all(|c| c.is_numeric()) {
+            Some(vec![year.to_string()])
+        } else {
+            None
+        }
+    }
+
+    pub fn all_authors(&self) -> Vec<String> {
+        let mut authors = self.contributor_author.clone().unwrap_or_default().clone();
+        authors.extend(self.contributor_advisor.clone().unwrap_or_default());
+        authors.extend(self.contributor.clone().unwrap_or_default());
+        authors.extend(self.department.clone().unwrap_or_default());
+        authors.extend(self.certificate.clone().unwrap_or_default());
+        authors
+    }
+
+    pub fn location(&self) -> Option<String> {
+        if self.has_current_embargo() || self.on_site_only() {
+            Some("Mudd Manuscript Library".to_owned())
+        } else {
+            None
+        }
+    }
+
+    pub fn location_code(&self) -> Option<String> {
+        if self.has_current_embargo() || self.on_site_only() {
+            Some("mudd$stacks".to_owned())
+        } else {
+            None
+        }
+    }
+
+    pub fn advanced_location(&self) -> Option<Vec<String>> {
+        if self.has_current_embargo() || self.on_site_only() {
+            Some(vec![
+                "mudd$stacks".to_owned(),
+                "Mudd Manuscript Library".to_owned(),
+            ])
+        } else {
+            None
+        }
+    }
+
+    pub fn access_facet(&self) -> Option<String> {
+        if self.has_current_embargo() {
+            None
+        } else if self.on_site_only() {
+            Some("In the Library".to_owned())
+        } else {
+            Some("Online".to_owned())
+        }
+    }
+
+    pub fn authorized_departments(&self) -> Option<Vec<String>> {
+        match &self.department {
+            Some(departments) => Some(departments
+                .iter()
+                .map(|department| department::map_department(department.to_owned()))
+                .filter_map(|department| department)
+                .collect()
+            ),
+            None => None
+        }
+    }
+
+    pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
+        match &self.certificate {
+            Some(certificates) => Some(certificates
+                .iter()
+                .map(|certificate| program::map_program(certificate.to_owned()))
+                .filter_map(|certificate| certificate)
+                .collect()
+            ),
+            None => None
+        }
+    }
+
+    /// Take first title, strip out latex expressions when present to include along
+    /// with non-normalized version (allowing users to get matches both when LaTex
+    /// is pasted directly into the search box and when sub/superscripts are placed
+    /// adjacent to regular characters
+    pub fn title_search_versions(&self) -> Option<Vec<String>> {
+        match &self.title {
+            Some(titles) => {
+                titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
+                            .into_iter()
+                            .unique()
+                            .collect())
+            }
+            None => None,
+        }
+    }
+
+    fn has_current_embargo(&self) -> bool {
+        embargo::has_current_embargo(self.embargo_lift.clone(), self.embargo_terms.clone())
+    }
+
+    fn on_site_only(&self) -> bool {
+        holdings::on_site_only(
+            self.location.is_some(),
+            self.rights_access_rights.is_some(),
+            self.mudd_walkin.clone(),
+            self.date_classyear.clone().unwrap_or_default(),
+            self.embargo_lift.clone(),
+            self.embargo_terms.clone(),
+        )
+    }
 }
 
 #[derive(Default)]
@@ -277,140 +407,6 @@ impl DataspaceDocumentBuilder {
         }
     }
 }
-
-
-impl DataspaceDocument {
-    pub fn ark_hash(&self) -> Option<String> {
-        holdings::ark_hash(
-            self.identifier_uri.clone(),
-            self.location.is_some(),
-            self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
-            self.date_classyear.clone()?,
-            self.embargo_lift.clone(),
-            self.embargo_terms.clone(),
-        )
-    }
-
-    pub fn call_number(&self) -> String {
-        holdings::call_number(self.identifier_other.clone())
-    }
-    pub fn languages(&self) -> Vec<String> {
-        language::codes_to_english_names(self.language_iso.clone())
-    }
-
-    pub fn class_year(&self) -> Option<Vec<String>> {
-        let years = self.date_classyear.clone().unwrap_or_default();
-        let year = years.first()?;
-        if year.chars().all(|c| c.is_numeric()) {
-            Some(vec![year.to_string()])
-        } else {
-            None
-        }
-    }
-
-    pub fn all_authors(&self) -> Vec<String> {
-        let mut authors = self.contributor_author.clone().unwrap_or_default().clone();
-        authors.extend(self.contributor_advisor.clone().unwrap_or_default());
-        authors.extend(self.contributor.clone().unwrap_or_default());
-        authors.extend(self.department.clone().unwrap_or_default());
-        authors.extend(self.certificate.clone().unwrap_or_default());
-        authors
-    }
-
-    pub fn location(&self) -> Option<String> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some("Mudd Manuscript Library".to_owned())
-        } else {
-            None
-        }
-    }
-
-    pub fn location_code(&self) -> Option<String> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some("mudd$stacks".to_owned())
-        } else {
-            None
-        }
-    }
-
-    pub fn advanced_location(&self) -> Option<Vec<String>> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some(vec![
-                "mudd$stacks".to_owned(),
-                "Mudd Manuscript Library".to_owned(),
-            ])
-        } else {
-            None
-        }
-    }
-
-    pub fn access_facet(&self) -> Option<String> {
-        if self.has_current_embargo() {
-            None
-        } else if self.on_site_only() {
-            Some("In the Library".to_owned())
-        } else {
-            Some("Online".to_owned())
-        }
-    }
-
-    pub fn authorized_departments(&self) -> Option<Vec<String>> {
-        match &self.department {
-            Some(departments) => Some(departments
-                .iter()
-                .map(|department| department::map_department(department.to_owned()))
-                .filter_map(|department| department)
-                .collect()
-            ),
-            None => None
-        }
-    }
-
-    pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
-        match &self.certificate {
-            Some(certificates) => Some(certificates
-                .iter()
-                .map(|certificate| program::map_program(certificate.to_owned()))
-                .filter_map(|certificate| certificate)
-                .collect()
-            ),
-            None => None
-        }
-    }
-
-    /// Take first title, strip out latex expressions when present to include along
-    /// with non-normalized version (allowing users to get matches both when LaTex
-    /// is pasted directly into the search box and when sub/superscripts are placed
-    /// adjacent to regular characters
-    pub fn title_search_versions(&self) -> Option<Vec<String>> {
-        match &self.title {
-            Some(titles) => {
-                titles.first().map(|title| vec![title.to_string(), latex::normalize_latex(title.to_string())]
-                            .into_iter()
-                            .unique()
-                            .collect())
-            }
-            None => None,
-        }
-    }
-
-    fn has_current_embargo(&self) -> bool {
-        embargo::has_current_embargo(self.embargo_lift.clone(), self.embargo_terms.clone())
-    }
-
-    fn on_site_only(&self) -> bool {
-        holdings::on_site_only(
-            self.location.is_some(),
-            self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
-            self.date_classyear.clone().unwrap_or_default(),
-            self.embargo_lift.clone(),
-            self.embargo_terms.clone(),
-        )
-    }
-}
-
 
 
 pub fn ruby_json_to_solr_json(ruby: String) -> String {
