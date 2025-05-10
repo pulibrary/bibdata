@@ -14,7 +14,6 @@ pub struct SolrDocument {
     call_number_browse_s: String,
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
-    format: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     location: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -22,35 +21,51 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     location_code_s: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    advanced_location_s: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    access_facet: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
     holdings_1display: Option<String>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
-    electronic_portfolio_s: Option<String>,
+    pub advanced_location_s: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
-    class_year_s: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub_date_start_sort: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub_date_end_sort: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    author_display: Option<Vec<String>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    author_s: Option<Vec<String>>,
+    pub access_facet: Option<String>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     advisor_display: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
-    contributor_display: Option<Vec<String>>,
+    pub author_display: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
-    department_display: Option<Vec<String>>,
+    pub author_s: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub class_year_s: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    contributor_display: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     description_display: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
-    summary_note_display: Option<Vec<String>>,
+    department_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub electronic_portfolio_s: Option<String>,
+
+    pub format: String,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pub_date_end_sort: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pub_date_start_sort: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub summary_note_display: Option<Vec<String>>,
 }
 
 impl SolrDocument {

@@ -4,7 +4,6 @@ require 'rails_helper'
 
 describe 'BibdataRs::Theses::Fetcher', :rust do
   let(:fetcher) { BibdataRs::Theses::Fetcher.new }
-  let(:indexer) { BibdataRs::Theses::Indexer.new }
   let(:api_communities) { File.read(file_fixture('theses/communities.json')) }
   let(:api_collections) { File.read(file_fixture('theses/api_collections.json')) }
   let(:api_client_get) { File.read(file_fixture('theses/api_client_get.json')) }
@@ -45,7 +44,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     it 'exports theses as json' do
-      fetched = fetcher.cache_all_collections(indexer)
+      fetched = fetcher.cache_all_collections
       expect(fetched).to be_an(Array)
       expect(fetched.length).to eq(1)
       document = fetched.first
@@ -142,7 +141,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     it 'requests from the staging URI endpoint' do
-      fetcher.cache_all_collections(indexer)
+      fetcher.cache_all_collections
 
       expect(a_request(:get, 'https://dataspace-staging.princeton.edu/rest/communities/267/collections')).to have_been_made
       expect(a_request(:get, 'https://dataspace-staging.princeton.edu/rest/communities/')).to have_been_made
@@ -203,7 +202,7 @@ describe 'BibdataRs::Theses::Fetcher', :rust do
     end
 
     it 'requests from the production URI endpoint' do
-      fetcher.cache_all_collections(indexer)
+      fetcher.cache_all_collections
 
       expect(a_request(:get, 'https://dataspace.princeton.edu/rest/communities/267/collections')).to have_been_made
       expect(a_request(:get, 'https://dataspace.princeton.edu/rest/communities/')).to have_been_made

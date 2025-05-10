@@ -49,7 +49,7 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
         let raw = RawDocument::deserialize(deserializer)?;
         let mut builder = DataspaceDocument::builder();
 
-        builder = builder.with_id(Some(raw.handle.split_once("/").unwrap_or_default().1.to_owned()));
+        builder = builder.with_id(raw.handle.split_once("/").unwrap_or_default().1);
 
         for entry in raw.metadata {
             if let Some(val) = entry.value {
@@ -108,8 +108,8 @@ impl DataspaceDocumentBuilder {
         Self::default()
     }
 
-    pub fn with_id(mut self, id: Option<String>) -> Self {
-        self.id = id;
+    pub fn with_id(mut self, id: impl Into<String>) -> Self {
+        self.id = Some(id.into());
         self
     }
 
@@ -158,8 +158,12 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_description_abstract(mut self, description_abstract: Option<Vec<String>>) -> Self {
-        self.description_abstract = description_abstract;
+    pub fn with_description_abstract(mut self, description_abstract: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.description_abstract {
+            vec.push(description_abstract.into())
+        } else {
+            self.description_abstract = Some(vec![description_abstract.into()]);
+        };
         self
     }
 
@@ -177,8 +181,12 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_embargo_terms(mut self, embargo_terms: Option<Vec<String>>) -> Self {
-        self.embargo_terms = embargo_terms;
+    pub fn with_embargo_terms(mut self, embargo_terms: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.embargo_terms {
+            vec.push(embargo_terms.into())
+        } else {
+            self.embargo_terms = Some(vec![embargo_terms.into()]);
+        };
         self
     }
 
@@ -236,11 +244,11 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_title(mut self, title: String) -> Self {
+    pub fn with_title(mut self, title: impl Into<String>) -> Self {
         if let Some(ref mut vec) = self.title {
-            vec.push(title)
+            vec.push(title.into())
         } else {
-            self.title = Some(vec![title]);
+            self.title = Some(vec![title.into()]);
         };
         self
     }
@@ -450,7 +458,7 @@ mod tests {
     #[test]
     fn it_can_build_a_document() {
         let metadata = DataspaceDocument::builder()
-            .with_id(Some("123456".to_string()))
+            .with_id("123456")
             .with_embargo_lift(Some(vec!["2010-07-01".to_string()]))
             .with_mudd_walkin("yes")
             .build();
@@ -460,36 +468,128 @@ mod tests {
         assert_eq!(metadata.mudd_walkin.unwrap(), vec!["yes"]);
     }
 
-    #[test]
-    fn it_can_convert_into_solr_document() {
-        let metadata = DataspaceDocument::builder()
-            .with_id(Some("dsp01b2773v788".to_string()))
-            .with_description_abstract(Some(vec!["Summary".to_string()]))
-            .with_contributor("Wolff, Tamsen".to_string())
-            .with_contributor_advisor("Sandberg, Robert".to_string())
-            .with_contributor_author("Clark, Hillary".to_string())
-            .with_date_classyear("2014")
-            .with_department("Princeton University. Department of English")
-            .with_department("Princeton University. Program in Theater")
-            .with_format_extent("102 pages")
-            .with_language_iso("en_US")
-            .with_title("Dysfunction: A Play in One Act".to_string())
-            .build();
+    mod solr_mapping {
+        use super::*;
 
-        let solr = solr::SolrDocument::from(metadata);
+        #[test]
+        fn it_can_convert_into_solr_document() {
+            let metadata = DataspaceDocument::builder()
+                .with_id("dsp01b2773v788")
+                .with_description_abstract("Summary")
+                .with_contributor("Wolff, Tamsen".to_string())
+                .with_contributor_advisor("Sandberg, Robert".to_string())
+                .with_contributor_author("Clark, Hillary".to_string())
+                .with_date_classyear("2014")
+                .with_department("Princeton University. Department of English")
+                .with_department("Princeton University. Program in Theater")
+                .with_format_extent("102 pages")
+                .with_language_iso("en_US")
+                .with_title("Dysfunction: A Play in One Act".to_string())
+                .build();
+    
+            let solr = solr::SolrDocument::from(metadata);
+    
+            assert_eq!(solr.id, "dsp01b2773v788");
+            assert_eq!(solr.title_t.unwrap(), vec!["Dysfunction: A Play in One Act"]);
+            assert_eq!(solr.title_citation_display.unwrap(), "Dysfunction: A Play in One Act");
+            assert_eq!(solr.title_display.unwrap(), "Dysfunction: A Play in One Act");
+            assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
+        }
+        
+        #[test]
+        fn it_adds_the_expected_fields() {
+            let document = DataspaceDocument::builder()
+                .with_id("dsp01b2773v788")
+                .with_description_abstract("Summary")
+                .with_contributor("Wolff, Tamsen")
+                .with_contributor_advisor("Sandberg, Robert")
+                .with_contributor_author("Clark, Hillary")
+                .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
+                .with_format_extent("102 pages")
+                .with_language_iso("en_US")
+                .with_title("Dysfunction: A Play in One Act")
+                .with_date_classyear("2014")
+                .with_department("Princeton University. Department of English")
+                .with_department("Princeton University. Program in Theater")
+                .with_rights_access_rights("Walk-in Access...")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.author_display, Some(vec!["Clark, Hillary".to_owned()]));
+            assert_eq!(
+                solr.author_s.unwrap().sort(),
+                vec!["Clark, Hillary".to_owned(), "Sandberg, Robert".to_owned(), "Wolff, Tamsen".to_owned()].sort()
+            );
+            assert_eq!(solr.summary_note_display, Some(vec!["Summary".to_owned()]))
+        }
 
-        assert_eq!(solr.id, "dsp01b2773v788");
-        assert_eq!(solr.title_t.unwrap(), vec!["Dysfunction: A Play in One Act"]);
-        assert_eq!(solr.title_citation_display.unwrap(), "Dysfunction: A Play in One Act");
-        assert_eq!(solr.title_display.unwrap(), "Dysfunction: A Play in One Act");
-        assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
+        #[test]
+        fn it_is_senior_thesis() {
+            let document = DataspaceDocument::builder().build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.format, "Senior thesis");
+        }
+
+        #[test]
+        fn integer_in_classyear_field() {
+            let document = DataspaceDocument::builder().with_date_classyear("2014").build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.class_year_s.unwrap(), vec!["2014".to_owned()]);
+            assert_eq!(solr.pub_date_start_sort.unwrap(), vec!["2014".to_owned()]);
+            assert_eq!(solr.pub_date_end_sort.unwrap(), vec!["2014".to_owned()]);
+        }
+
+
+        #[test]
+        fn non_integer_in_classyear_field() {
+            let document = DataspaceDocument::builder().with_date_classyear("Undated").build();
+            let solr = solr::SolrDocument::from(document);
+            assert!(solr.class_year_s.is_none());
+            assert!(solr.pub_date_start_sort.is_none());
+            assert!(solr.pub_date_end_sort.is_none());
+        }
+
+        #[test]
+        fn no_classyear() {
+            let document = DataspaceDocument::builder().build();
+            let solr = solr::SolrDocument::from(document);
+            assert!(solr.class_year_s.is_none());
+            assert!(solr.pub_date_start_sort.is_none());
+            assert!(solr.pub_date_end_sort.is_none());
+        }
+
+        #[test]
+        fn with_access_rights() {
+            let document = DataspaceDocument::builder().with_rights_access_rights("Walk-in Access...").build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.access_facet.unwrap(), "Online");
+            assert!(solr.advanced_location_s.is_none());
+        }
+
+        #[test]
+        fn with_embargo() {
+            let document = DataspaceDocument::builder()
+                .with_rights_access_rights("Walk-in Access...")
+                .with_embargo_terms("2100-01-01")
+                .build();
+            let solr = solr::SolrDocument::from(document);
+            assert!(solr.access_facet.is_none());
+            assert_eq!(solr.advanced_location_s.unwrap(), vec!["mudd$stacks".to_owned(), "Mudd Manuscript Library".to_owned()]);
+        }
+
+        #[test]
+        fn it_has_electronic_portfolio_s_by_default() {
+            let document = DataspaceDocument::builder().build();
+            let solr = solr::SolrDocument::from(document);
+            assert_eq!(solr.access_facet.unwrap(), "Online");
+            assert!(solr.electronic_portfolio_s.unwrap().contains("thesis"));
+        }
     }
 
     #[test]
     fn ark_hash_gets_the_ark_with_fulltext_link_display_when_restrictions() {
         let metadata = DataspaceDocument::builder()
-            .with_id(Some("dsp01b2773v788".to_string()))
-            .with_description_abstract(Some(vec!["Summary".to_string()]))
+            .with_id("dsp01b2773v788")
+            .with_description_abstract("Summary")
             .with_contributor("Wolff, Tamsen".to_string())
             .with_contributor_advisor("Sandberg, Robert".to_string())
             .with_contributor_author("Clark, Hillary".to_string())
@@ -499,7 +599,7 @@ mod tests {
             .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
             .with_format_extent("102 pages")
             .with_language_iso("en_US")
-            .with_title("Dysfunction: A Play in One Act".to_string())
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(
@@ -511,8 +611,8 @@ mod tests {
     #[test]
     fn ark_hash_gets_the_ark_with_fulltext_link_display_when_no_restrictions() {
         let metadata = DataspaceDocument::builder()
-            .with_id(Some("dsp01b2773v788".to_string()))
-            .with_description_abstract(Some(vec!["Summary".to_string()]))
+            .with_id("dsp01b2773v788")
+            .with_description_abstract("Summary")
             .with_contributor("Wolff, Tamsen".to_string())
             .with_contributor_advisor("Sandberg, Robert".to_string())
             .with_contributor_author("Clark, Hillary".to_string())
@@ -522,7 +622,7 @@ mod tests {
             .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
             .with_format_extent("102 pages")
             .with_language_iso("en_US")
-            .with_title("Dysfunction: A Play in One Act".to_string())
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(
@@ -534,8 +634,8 @@ mod tests {
     #[test]
     fn ark_hash_returns_none_when_no_url() {
         let metadata = DataspaceDocument::builder()
-            .with_id(Some("dsp01b2773v788".to_string()))
-            .with_description_abstract(Some(vec!["Summary".to_string()]))
+            .with_id("dsp01b2773v788")
+            .with_description_abstract("Summary")
             .with_contributor("Wolff, Tamsen".to_string())
             .with_contributor_advisor("Sandberg, Robert".to_string())
             .with_contributor_author("Clark, Hillary".to_string())
@@ -544,7 +644,7 @@ mod tests {
             .with_department("Princeton University. Program in Theater")
             .with_format_extent("102 pages".to_string())
             .with_language_iso("en_US")
-            .with_title("Dysfunction: A Play in One Act".to_string())
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(metadata.ark_hash(), None);
@@ -576,7 +676,7 @@ mod tests {
 
     #[test]
     fn on_site_only() {
-        assert!(DataspaceDocument::builder().with_embargo_terms(Some(vec!["2100-01-01".to_string()])).build().on_site_only(), "doc with embargo terms field should return true");
+        assert!(DataspaceDocument::builder().with_embargo_terms("2100-01-01").build().on_site_only(), "doc with embargo terms field should return true");
         assert!(DataspaceDocument::builder().with_embargo_lift(Some(vec!["2100-01-01".to_string()])).build().on_site_only(), "doc with embargo lift field should return true");
         assert!(DataspaceDocument::builder()
             .with_embargo_lift(Some(vec!["2000-01-01".to_string()]))
