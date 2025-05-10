@@ -1,6 +1,6 @@
 use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
-use theses::communities;
+use theses::dataspace::communities;
 
 mod config;
 mod ephemera;
@@ -23,7 +23,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule.define_singleton_method("rails_env", function!(config::rails_env, 0))?;
     submodule.define_singleton_method(
         "collection_url",
-        function!(theses::collection::collection_url, 4),
+        function!(theses::dataspace::collection::collection_url, 4),
     )?;
     submodule.define_singleton_method(
         "ruby_json_to_solr_json",

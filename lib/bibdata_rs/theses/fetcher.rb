@@ -206,15 +206,5 @@ module BibdataRs::Theses
       def collections
         @collections ||= api_collections_json.map { |i| i['id'] }
       end
-
-      # USED
-      def map_department(dept)
-        BibdataRs::Theses.map_department dept
-      end
-
-      # USED
-      def map_program(program)
-        BibdataRs::Theses.map_program program
-      end
   end
 end
