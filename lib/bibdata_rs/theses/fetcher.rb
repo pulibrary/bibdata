@@ -97,11 +97,11 @@ module BibdataRs::Theses
     ##
     # Cache all collections
     # USED
-    def cache_all_collections(indexer)
+    def cache_all_collections()
       solr_documents = []
 
       collections.each do |collection_id|
-        collection_documents = cache_collection(indexer, collection_id)
+        collection_documents = cache_collection(collection_id)
         solr_documents += collection_documents
       end
 
@@ -111,13 +111,12 @@ module BibdataRs::Theses
     ##
     # Cache a single collection
     # USED
-    def cache_collection(indexer, collection_id)
+    def cache_collection(collection_id)
       solr_documents = []
 
       elements = fetch_collection(collection_id)
       elements.each do |attrs|
-        byebug if attrs['handle'] == '88435/dsp01k0698788n'
-        solr_document = indexer.build_solr_document(**attrs)
+        solr_document = DataspaceDocument.new(document: JSON.parse(BibdataRs::Theses.ruby_json_to_solr_json(attrs.to_json)), logger: @logger)
         solr_documents << solr_document
       end
 
@@ -129,10 +128,9 @@ module BibdataRs::Theses
     # a cache file.
     # USED
     def self.write_all_collections_to_cache
-      indexer = Indexer.new
       fetcher = Fetcher.new
       File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
-        documents = fetcher.cache_all_collections(indexer)
+        documents = fetcher.cache_all_collections
         solr_documents = documents.map(&:to_solr)
         json_cache = JSON.pretty_generate(solr_documents)
         f.puts(json_cache)
