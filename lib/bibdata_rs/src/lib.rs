@@ -1,6 +1,6 @@
 use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
-use theses::dataspace::communities;
+use theses::dataspace::{collection, communities};
 
 mod config;
 mod ephemera;
@@ -30,8 +30,12 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(theses::dataspace::document::ruby_json_to_solr_json, 1),
     )?;
     submodule.define_singleton_method(
-        "community_id",
+        "collection_ids",
         function!(communities::delete_me_api_collection_ids_for_magnus, 2),
+    )?;
+    submodule.define_singleton_method(
+        "all_documents_as_solr",
+        function!(collection::collections_as_solr, 3),
     )?;
     Ok(())
 }
