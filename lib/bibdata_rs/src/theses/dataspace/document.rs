@@ -203,7 +203,7 @@ impl DataspaceDocument {
         self.certificate.as_ref().map(|certificates| {
             certificates
                 .iter()
-                .filter_map(|certificate| program::map_program(certificate.to_owned()))
+                .filter_map(|certificate| program::map_program(certificate))
                 .collect()
         })
     }

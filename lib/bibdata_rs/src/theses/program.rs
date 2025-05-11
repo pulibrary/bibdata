@@ -1,5 +1,5 @@
-pub fn map_program(original: String) -> Option<String> {
-    match original.as_str() {
+pub fn map_program(original: &str) -> Option<String> {
+    match original {
         "African American Studies Program" => {
             Some("Princeton University. Program in African-American Studies".to_owned())
         }
@@ -121,9 +121,9 @@ mod tests {
     #[test]
     fn it_maps_program_to_lc_program() {
         assert_eq!(
-            map_program("Global Health and Health Policy Program".to_owned()).unwrap(),
+            map_program("Global Health and Health Policy Program").unwrap(),
             "Princeton University. Program in Global Health and Health Policy"
         );
-        assert_eq!(map_program("Cool new program".to_owned()), None);
+        assert_eq!(map_program("Cool new program"), None);
     }
 }
