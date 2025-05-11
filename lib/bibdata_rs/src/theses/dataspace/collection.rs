@@ -50,10 +50,10 @@ where
     U: Into<String> + Clone + Sync,
 {
     let collection_ids = id_selector(server.clone(), community_handle)?;
-    let documents = collection_ids.par_iter().try_fold(|| Vec::new(), |mut accumulator, collection_id| {
+    let documents = collection_ids.par_iter().try_fold(Vec::new, |mut accumulator, collection_id| {
         get_documents_in_collection(&mut accumulator, server.clone(), *collection_id, rest_limit, 0, 0)?;
         Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
-    }).try_reduce(|| Vec::new(), |mut a, b| {
+    }).try_reduce(Vec::new, |mut a, b| {
         a.extend(b);
         Ok(a)
     })?;

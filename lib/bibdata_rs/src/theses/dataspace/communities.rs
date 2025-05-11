@@ -49,7 +49,7 @@ where
     let url = format!("{}/communities/{}/collections", server.clone().into(), id_selector(server, community_handle)?.unwrap_or_default());
     info!("Querying {} for the collections", url);
     let collections: Vec<Collection> = reqwest::blocking::get(url)?.json()?;
-    Ok(collections.iter().map(|collection| collection.id).flatten().collect())
+    Ok(collections.iter().filter_map(|collection| collection.id).collect())
 }
 
 #[cfg(test)]
