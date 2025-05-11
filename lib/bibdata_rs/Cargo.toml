@@ -22,8 +22,6 @@ chrono = "0.4.41"
 env_logger = "0.11.8"
 log = "0.4.27"
 rayon = "1.10.0"
-reqwest-retry = "0.7.0"
-reqwest-middleware = "0.4.2"
 anyhow = "1.0.98"
 
 [dev-dependencies]
