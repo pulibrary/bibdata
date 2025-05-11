@@ -96,7 +96,7 @@ impl DataspaceDocument {
     }
 
     pub fn call_number(&self) -> String {
-        holdings::call_number(self.identifier_other.clone())
+        holdings::call_number(self.identifier_other.as_ref())
     }
     pub fn languages(&self) -> Vec<String> {
         language::codes_to_english_names(self.language_iso.clone())
