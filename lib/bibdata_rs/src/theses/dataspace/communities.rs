@@ -1,5 +1,4 @@
 use log::info;
-use magnus::exception;
 use serde::Deserialize;
 
 #[derive(Debug, Default, Deserialize)]
@@ -13,25 +12,6 @@ struct Collection {
     pub id: Option<u32>,
 }
 
-fn magnus_err_from_reqwest_err(value: &reqwest::Error) -> magnus::Error {
-    magnus::Error::new(exception::runtime_error(), value.to_string())
-}
-
-pub fn delete_me_api_community_id_for_magnus(
-    server: String,
-    community_handle: String,
-) -> Result<Option<u32>, magnus::Error> {
-    get_community_id(server, community_handle.as_ref())
-        .map_err(|value| magnus_err_from_reqwest_err(&value))
-}
-
-pub fn delete_me_api_collection_ids_for_magnus(
-    server: String,
-    community_handle: String,
-) -> Result<Vec<u32>, magnus::Error> {
-    get_collection_list(server, community_handle.as_ref(), get_community_id)
-        .map_err(|value| magnus_err_from_reqwest_err(&value))
-}
 
 /// The DSpace id of the community we're fetching content for.
 /// E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
