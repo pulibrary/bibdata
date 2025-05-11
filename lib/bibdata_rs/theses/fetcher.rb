@@ -129,12 +129,12 @@ module BibdataRs::Theses
     # USED
     def self.write_all_collections_to_cache
       # fetcher = Fetcher.new
-      File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
-        f.puts BibdataRs::Theses.all_documents_as_solr(default_server, default_community, default_rest_limit)
+      # File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
+        BibdataRs::Theses.all_documents_as_solr(default_server, default_community, default_rest_limit)
         # solr_documents = fetcher.cache_all_collections
         # json_cache = JSON.pretty_generate(solr_documents)
         # f.puts(json_cache)
-      end
+      # end
     end
 
     private

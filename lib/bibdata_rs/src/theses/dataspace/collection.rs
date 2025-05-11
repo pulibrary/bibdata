@@ -1,6 +1,9 @@
+use std::{fs::File, io::{BufWriter, Write}};
+
 use log::debug;
 use magnus::exception;
-use crate::theses::{config, dataspace::{communities, document::DataspaceDocument}, solr::SolrDocument};
+use rayon::prelude::*;
+use crate::theses::{config, dataspace::{communities, document::DataspaceDocument}, solr::SolrDocument, theses_cache_path};
 use anyhow::{anyhow, Result};
 
 pub fn collection_url(server: String, id: String, rest_limit: String, offset: String) -> String {
@@ -20,7 +23,7 @@ fn magnus_err_from_anyhow_err(value: &anyhow::Error) -> magnus::Error {
     magnus::Error::new(exception::runtime_error(), value.to_string())
 }
 
-pub fn collections_as_solr(server: String, community_handle: String, rest_limit: u32) -> Result<String, magnus::Error> {
+pub fn collections_as_solr(server: String, community_handle: String, rest_limit: u32) -> Result<(), magnus::Error> {
     let documents =
         get_document_list(
             server,
@@ -28,7 +31,11 @@ pub fn collections_as_solr(server: String, community_handle: String, rest_limit:
             rest_limit,
             |server, handle| communities::get_collection_list(server, handle, communities::get_community_id),
         ).map_err(|e| magnus_err_from_anyhow_err(&e))?;
-    Ok(serde_json::to_string(&documents.iter().map(|doc| SolrDocument::from(doc.clone())).collect::<Vec<SolrDocument>>()).map_err(|e| magnus_err_from_serde_err(&e))?)
+    let file = File::create(theses_cache_path()).map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
+    let mut writer = BufWriter::new(file);
+    serde_json::to_writer(&mut writer, &documents.iter().map(|doc| SolrDocument::from(doc.clone())).collect::<Vec<SolrDocument>>()).map_err(|e| magnus_err_from_serde_err(&e))?;
+    writer.flush().map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
+    Ok(())
 }
 
 pub fn get_document_list<'a, T, U>(
@@ -39,15 +46,15 @@ pub fn get_document_list<'a, T, U>(
 ) -> Result<Vec<DataspaceDocument>>
 where
     T: Fn(U, &'a str) -> Result<Vec<u32>, reqwest::Error>,
-    U: Into<String> + Clone,
+    U: Into<String> + Clone +,
 {
     // TODO: this should be moved earlier in the process, once it is in Rust
     env_logger::init();
     let collection_ids = id_selector(server.clone(), community_handle)?;
-    let mut documents: Vec<DataspaceDocument> = Vec::new();
-    for collection_id in collection_ids {
-        get_documents_in_collection(&mut documents, server.clone(), collection_id, rest_limit, 0, 0)?;
-    }
+    let documents = collection_ids.iter().try_fold(Vec::new(), |mut accumulator, collection_id| {
+        get_documents_in_collection(&mut accumulator, server.clone(), *collection_id, rest_limit, 0, 0)?;
+        Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
+    })?;
     
     Ok(documents)
 }
@@ -111,6 +118,7 @@ mod tests {
 
         let id_selector = |_server, _handle| Ok(vec![361u32]);
         let docs = get_document_list(server.url(), "88435/dsp019c67wm88m", 100, id_selector).unwrap();
+        assert_eq!(docs.len(), 1);
         assert_eq!(docs.clone()[0].title.clone().unwrap(), vec!["Calibration of the Princeton University Subsonic Instructional Wind Tunnel".to_owned()]);
 
         mock_page1.assert();
