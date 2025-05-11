@@ -1,5 +1,5 @@
-pub fn map_department(original: String) -> Option<String> {
-    match original.as_str() {
+pub fn map_department(original: &str) -> Option<String> {
+    match original {
         "African American Studies" => {
             Some("Princeton University. Department of African American Studies".to_owned())
         }
@@ -121,9 +121,9 @@ mod tests {
     #[test]
     fn it_maps_department_to_lc_department() {
         assert_eq!(
-            map_department("Comparative Literature".to_owned()).unwrap(),
+            map_department("Comparative Literature").unwrap(),
             "Princeton University. Department of Comparative Literature"
         );
-        assert_eq!(map_department("Cool new department".to_owned()), None);
+        assert_eq!(map_department("Cool new department"), None);
     }
 }
