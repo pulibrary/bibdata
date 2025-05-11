@@ -1,10 +1,13 @@
-use std::collections::HashMap;
+use std::{collections::HashMap};
 
 use crate::theses::{embargo, looks_like_yes};
 use serde::{ser::SerializeStruct, Serialize};
 
-pub fn call_number(non_ark_ids: Option<Vec<String>>) -> String {
-    let ids = non_ark_ids.unwrap_or_default();
+pub fn call_number(non_ark_ids: Option<&Vec<String>>) -> String {
+    let ids = match non_ark_ids {
+        Some(value) => value,
+        None => &Vec::default()
+    };
     if !ids.is_empty() {
         format!("AC102 {}", ids.first().unwrap())
     } else {
@@ -15,7 +18,7 @@ pub fn call_number(non_ark_ids: Option<Vec<String>>) -> String {
 pub fn online_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String> {
     serde_json::to_string(&ThesisHoldingHash {
         thesis: OnlineHolding {
-            call_number: call_number(non_ark_ids),
+            call_number: call_number(non_ark_ids.as_ref()),
         },
     })
     .ok()
@@ -24,7 +27,7 @@ pub fn online_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String>
 pub fn physical_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String> {
     serde_json::to_string(&ThesisHoldingHash {
         thesis: PhysicalHolding {
-            call_number: call_number(non_ark_ids),
+            call_number: call_number(non_ark_ids.as_ref()),
         },
     })
     .ok()
@@ -141,14 +144,14 @@ mod tests {
     #[test]
     fn it_can_create_call_number() {
         assert_eq!(
-            call_number(Some(vec![
+            call_number(Some(&vec![
                 "123".to_owned(),
                 "456".to_owned(),
                 "789".to_owned()
             ])),
             "AC102 123"
         );
-        assert_eq!(call_number(Some(vec![])), "AC102");
+        assert_eq!(call_number(Some(&vec![])), "AC102");
         assert_eq!(call_number(None), "AC102");
     }
 
