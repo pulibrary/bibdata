@@ -1,7 +1,7 @@
 use log::debug;
 use magnus::exception;
-use crate::theses::{dataspace::{communities, document::DataspaceDocument}, solr::SolrDocument};
-use anyhow::Result;
+use crate::theses::{config, dataspace::{communities, document::DataspaceDocument}, solr::SolrDocument};
+use anyhow::{anyhow, Result};
 
 pub fn collection_url(server: String, id: String, rest_limit: String, offset: String) -> String {
     format!(
@@ -49,23 +49,39 @@ where
     let collection_ids = id_selector(server.clone(), community_handle)?;
     let mut documents: Vec<DataspaceDocument> = Vec::new();
     for collection_id in collection_ids {
-        get_documents_in_collection(&mut documents, server.clone(), collection_id, rest_limit, 0)?;
+        get_documents_in_collection(&mut documents, server.clone(), collection_id, rest_limit, 0, 0)?;
     }
     
     Ok(documents)
 }
 
-fn get_documents_in_collection(documents: &mut Vec<DataspaceDocument>, server: impl Into<String>, collection_id: u32, rest_limit: u32, offset: u32) -> Result<Vec<DataspaceDocument>> {
+fn get_documents_in_collection(documents: &mut Vec<DataspaceDocument>, server: impl Into<String>, collection_id: u32, rest_limit: u32, offset: u32, attempt: u8) -> Result<Vec<DataspaceDocument>> {
     let server_string = server.into();
     let url = collection_url(server_string.clone(), collection_id.to_string(), rest_limit.to_string(), offset.to_string());
-    debug!("Querying {} for the collections", url);
-    let new_documents: Vec<DataspaceDocument> = reqwest::blocking::get(&url)?
-        .json()?;
+    if attempt == 0 {
+        debug!("Querying for the DSpace Collection at {}", url)
+    } else {
+        debug!("Retrying query {}, attempt {} of {}", url, attempt, config::THESES_RETRY_ATTEMPTS);
+    }
+    let new_documents = match get_url_as_json(&url) {
+        Ok(docs) => Ok(docs),
+        Err(e) => { 
+            if attempt < config::THESES_RETRY_ATTEMPTS {
+                get_documents_in_collection(documents, server_string.clone(), collection_id, rest_limit, offset, attempt+1)
+            } else {
+                Err(e)
+            }
+         }
+    }?;
     if !new_documents.is_empty() {
         documents.extend(new_documents);
-        get_documents_in_collection(documents, server_string, collection_id, rest_limit, offset + rest_limit)?;
+        get_documents_in_collection(documents, server_string, collection_id, rest_limit, offset + rest_limit, 0)?;
     }
     Ok(vec![])
+}
+
+fn get_url_as_json(url: &str) -> Result<Vec<DataspaceDocument>> {
+    reqwest::blocking::get(url)?.json().map_err(|e| anyhow!(e))
 }
 
 #[cfg(test)]
