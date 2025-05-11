@@ -9,7 +9,7 @@ use serde::{Deserialize, Serialize};
 
 // This is an intermediate representation of the data from dspace, representing the key value pairs taken from
 // DSpace API metadata
-#[derive(Debug, Serialize)]
+#[derive(Clone, Debug, Serialize)]
 pub struct DataspaceDocument {
     pub id: Option<String>,
     pub contributor: Option<Vec<String>>,

@@ -16,7 +16,7 @@ module BibdataRs::Theses
 
     # leave in Ruby, since the Rails thing is so convenient
     def self.env_config
-      Rails.application.config_for Rails.root.join('config/dspace.yml'), env: BibdataRs::Theses::rails_env
+      Rails.application.config_for Rails.root.join('config/dspace.yml'), env: BibdataRs::Theses.rails_env
     end
 
     # leave in Ruby (if needed), since the config file is tricky in rust since it contains a variety of data types
@@ -77,7 +77,7 @@ module BibdataRs::Theses
       completed = false
 
       until completed
-        url = BibdataRs::Theses::collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
+        url = BibdataRs::Theses.collection_url(@server, id.to_s, @rest_limit.to_s, offset.to_s)
         logger.debug("Querying for the DSpace Collection at #{url}...")
         Retriable.retriable(on: JSON::ParserError, tries: Orangetheses::RETRY_LIMIT, on_retry: log_retries) do
           response = api_client.get(url)
@@ -97,7 +97,7 @@ module BibdataRs::Theses
     ##
     # Cache all collections
     # USED
-    def cache_all_collections()
+    def cache_all_collections
       solr_documents = []
 
       collections.each do |collection_id|
@@ -128,48 +128,25 @@ module BibdataRs::Theses
     # a cache file.
     # USED
     def self.write_all_collections_to_cache
-      fetcher = Fetcher.new
+      # fetcher = Fetcher.new
       File.open(BibdataRs::Theses.theses_cache_path, 'w') do |f|
-        solr_documents = fetcher.cache_all_collections
-        json_cache = JSON.pretty_generate(solr_documents)
-        f.puts(json_cache)
+        byebug
+        f.puts BibdataRs::Theses.all_documents_as_solr(default_server, default_community, default_rest_limit)
+        # solr_documents = fetcher.cache_all_collections
+        # json_cache = JSON.pretty_generate(solr_documents)
+        # f.puts(json_cache)
       end
     end
 
     private
-
 
       # USED
       def api_client
         Faraday
       end
 
-
-      ##
-      # Get all of the collections for a given community
-      # USED
-      def api_collections
-        @api_collections ||= begin
-          collections_url = "#{@server}/communities/#{BibdataRs::Theses::community_id(@server, @community)}/collections"
-          logger.info("Querying #{collections_url} for the collections...")
-          response = api_client.get(collections_url)
-          response.body
-        end
-      end
-
-      ##
-      # All of the collections for a given community, parsed as JSON
-      # USED
-      def api_collections_json
-        @api_collections_json ||= JSON.parse(api_collections)
-      end
-
-      # example to debug using a specific collection id.
-      # @collections ||= api_collections_json.map { |i| i['id'] = '2666' }
-      # https://dataspace-dev.princeton.edu/rest/collections/2666/items
-      # USED
       def collections
-        @collections ||= api_collections_json.map { |i| i['id'] }
+        BibdataRs::Theses.collection_ids(@server, @community)
       end
   end
 end
