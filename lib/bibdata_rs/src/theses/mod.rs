@@ -12,11 +12,9 @@ pub mod program;
 pub mod restrictions;
 pub mod solr;
 
-
 pub fn theses_cache_path() -> String {
     env::var("FILEPATH").unwrap_or("/tmp/theses.json".to_owned())
 }
-
 
 pub fn looks_like_yes(possible: Option<Vec<String>>) -> bool {
     match possible {
@@ -29,7 +27,6 @@ pub fn looks_like_yes(possible: Option<Vec<String>>) -> bool {
 mod tests {
     use super::*;
     use crate::testing_support::preserving_envvar;
-
 
     #[test]
     fn it_determines_the_path_to_cache_the_theses() {
