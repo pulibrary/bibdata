@@ -11,9 +11,6 @@ pub fn collection_url(server: String, id: String, rest_limit: String, offset: St
 }
 
 
-fn magnus_err_from_reqwest_err(value: &reqwest::Error) -> magnus::Error {
-    magnus::Error::new(exception::runtime_error(), value.to_string())
-}
 
 fn magnus_err_from_serde_err(value: &serde_json::Error) -> magnus::Error {
     magnus::Error::new(exception::runtime_error(), value.to_string())
