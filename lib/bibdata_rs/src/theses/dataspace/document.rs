@@ -191,17 +191,21 @@ impl DataspaceDocument {
     }
 
     pub fn authorized_departments(&self) -> Option<Vec<String>> {
-        self.department.as_ref().map(|departments| departments
-                    .iter()
-                    .filter_map(|department| department::map_department(department.to_owned()))
-                    .collect())
+        self.department.as_ref().map(|departments| {
+            departments
+                .iter()
+                .filter_map(|department| department::map_department(department.to_owned()))
+                .collect()
+        })
     }
 
     pub fn authorized_ceritificates(&self) -> Option<Vec<String>> {
-        self.certificate.as_ref().map(|certificates| certificates
-                    .iter()
-                    .filter_map(|certificate| program::map_program(certificate.to_owned()))
-                    .collect())
+        self.certificate.as_ref().map(|certificates| {
+            certificates
+                .iter()
+                .filter_map(|certificate| program::map_program(certificate.to_owned()))
+                .collect()
+        })
     }
 
     /// Take first title, strip out latex expressions when present to include along
