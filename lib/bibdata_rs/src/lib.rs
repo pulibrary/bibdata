@@ -30,8 +30,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(theses::dataspace::document::ruby_json_to_solr_json, 1),
     )?;
     submodule.define_singleton_method(
-        "api_communities_json",
-        function!(communities::api_communities_json, 1),
+        "community_id",
+        function!(communities::delete_me_api_collection_ids_for_magnus, 2),
     )?;
     Ok(())
 }

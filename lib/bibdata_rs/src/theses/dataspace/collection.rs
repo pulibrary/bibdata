@@ -1,3 +1,5 @@
+use serde::Deserialize;
+
 pub fn collection_url(server: String, id: String, rest_limit: String, offset: String) -> String {
     format!(
         "{}/collections/{}/items?limit={}&offset={}&expand=metadata",

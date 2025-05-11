@@ -136,14 +136,6 @@ module BibdataRs::Theses
       end
     end
 
-    ##
-    # The DSpace id of the community we're fetching content for.
-    # E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
-    # USED
-    def api_community_id
-      @api_community_id ||= api_community['id'].to_s
-    end
-
     private
 
 
@@ -152,40 +144,13 @@ module BibdataRs::Theses
         Faraday
       end
 
-      # USED
-      def api_communities
-        @api_communities ||= begin
-          BibdataRs::Theses.api_communities_json(@server)
-          response = api_client.get("#{@server}/communities/")
-          response.body
-        rescue StandardError => e
-          Faraday.logger.warn(e)
-          '[]'
-        end
-      end
-
-      # USED
-      def json_api_communities
-        @json_api_communities ||= JSON.parse(api_communities)
-      end
-
-      ##
-      # Parse the JSON feed containing all of the communities, and return only the
-      # community that matches the handle.
-      # @return [JSON] a json representation of the DSpace community
-      # USED
-      def api_community
-        return if json_api_communities.empty?
-
-        @api_community ||= json_api_communities.find { |c| c['handle'] == @community }
-      end
 
       ##
       # Get all of the collections for a given community
       # USED
       def api_collections
         @api_collections ||= begin
-          collections_url = "#{@server}/communities/#{api_community_id}/collections"
+          collections_url = "#{@server}/communities/#{BibdataRs::Theses::community_id(@server, @community)}/collections"
           logger.info("Querying #{collections_url} for the collections...")
           response = api_client.get(collections_url)
           response.body
