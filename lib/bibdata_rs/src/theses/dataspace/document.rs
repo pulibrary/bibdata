@@ -215,7 +215,7 @@ impl DataspaceDocument {
     pub fn title_search_versions(&self) -> Option<Vec<String>> {
         match &self.title {
             Some(titles) => titles.first().map(|title| {
-                vec![title.to_string(), latex::normalize_latex(title.to_string())]
+                vec![title.to_string(), latex::normalize_latex(title)]
                     .into_iter()
                     .unique()
                     .collect()
