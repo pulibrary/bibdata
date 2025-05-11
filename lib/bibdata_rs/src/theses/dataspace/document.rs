@@ -194,7 +194,7 @@ impl DataspaceDocument {
         self.department.as_ref().map(|departments| {
             departments
                 .iter()
-                .filter_map(|department| department::map_department(department.to_owned()))
+                .filter_map(|department| department::map_department(department))
                 .collect()
         })
     }
