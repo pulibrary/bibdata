@@ -24,6 +24,7 @@ fn magnus_err_from_anyhow_err(value: &anyhow::Error) -> magnus::Error {
 }
 
 pub fn collections_as_solr(server: String, community_handle: String, rest_limit: u32) -> Result<(), magnus::Error> {
+    env_logger::init();
     let documents =
         get_document_list(
             server,
@@ -33,7 +34,7 @@ pub fn collections_as_solr(server: String, community_handle: String, rest_limit:
         ).map_err(|e| magnus_err_from_anyhow_err(&e))?;
     let file = File::create(theses_cache_path()).map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
     let mut writer = BufWriter::new(file);
-    serde_json::to_writer(&mut writer, &documents.iter().map(|doc| SolrDocument::from(doc.clone())).collect::<Vec<SolrDocument>>()).map_err(|e| magnus_err_from_serde_err(&e))?;
+    serde_json::to_writer(&mut writer, &documents.par_iter().map(|doc| SolrDocument::from(doc.clone())).collect::<Vec<SolrDocument>>()).map_err(|e| magnus_err_from_serde_err(&e))?;
     writer.flush().map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
     Ok(())
 }
@@ -46,14 +47,15 @@ pub fn get_document_list<'a, T, U>(
 ) -> Result<Vec<DataspaceDocument>>
 where
     T: Fn(U, &'a str) -> Result<Vec<u32>, reqwest::Error>,
-    U: Into<String> + Clone +,
+    U: Into<String> + Clone + Sync,
 {
-    // TODO: this should be moved earlier in the process, once it is in Rust
-    env_logger::init();
     let collection_ids = id_selector(server.clone(), community_handle)?;
-    let documents = collection_ids.iter().try_fold(Vec::new(), |mut accumulator, collection_id| {
+    let documents = collection_ids.par_iter().try_fold(|| Vec::new(), |mut accumulator, collection_id| {
         get_documents_in_collection(&mut accumulator, server.clone(), *collection_id, rest_limit, 0, 0)?;
         Ok::<Vec<DataspaceDocument>, anyhow::Error>(accumulator)
+    }).try_reduce(|| Vec::new(), |mut a, b| {
+        a.extend(b);
+        Ok(a)
     })?;
     
     Ok(documents)
