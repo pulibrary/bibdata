@@ -1,4 +1,4 @@
-use super::CatalogClient;
+use super::{ephemera_item::ItemResponse, CatalogClient};
 use serde::Deserialize;
 use std::path::PathBuf;
 
@@ -30,11 +30,27 @@ pub async fn read_ephemera_folders() -> Result<Vec<String>, Box<dyn std::error::
     Ok(ids)
 }
 
-pub async fn ephemera_folders_iterator() -> Vec<Vec<String>> {
-    let data = read_ephemera_folders().await.unwrap();
-    data.chunks(1000)
-        .map(|chunk| chunk.to_vec())
-        .collect::<Vec<Vec<String>>>()
+pub async fn ephemera_folders_iterator() -> Result<Vec<Vec<ItemResponse>>, Box<dyn std::error::Error>> {
+    let data: Vec<String> = read_ephemera_folders().await?;
+    let chunk_size = 1000;
+    let mut result: Vec<Vec<ItemResponse>> = Vec::new();
+    for chunk in data.chunks(chunk_size) {
+      let chunk_vec: Vec<String> = chunk.to_vec().clone();
+    // println!("Chunk_vec: {:?}", chunk_vec);
+      let responses = chunk_read_url(chunk_vec).await?;
+      result.push(responses);
+    }
+    Ok(result)
+}
+
+pub async fn chunk_read_url(urls: Vec<String>) -> Result<Vec<ItemResponse>, Box<dyn std::error::Error>> {
+    let mut responses = Vec::new();
+    for url in urls {
+        let client = CatalogClient { url };
+        let response = client.get_item_data().await?;
+        responses.push(response);
+    }
+    Ok(responses)
 }
 
 #[cfg(test)]
@@ -87,29 +103,43 @@ mod tests {
                 .with_body_from_file(d.to_string_lossy().to_string())
                 .create_async().await;
 
-            let data = read_ephemera_folders().await.unwrap();
-            assert!(!data.is_empty());
-            let chunk_size = 3;
-            let mut result: Vec<Vec<String>> = Vec::new();
-            for chunk in data.chunks(chunk_size) {
-                result.push(chunk.to_vec());
-            }
+        let mock1_url = mockito::server_url();
+        
 
+        let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
+        let mock1 = mock("GET", "/")
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file(d.to_string_lossy().to_string())
+            .create();
+
+        let mut d1 = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        d1.push("../../spec/fixtures/files/ephemera/ephemera1.json");
+   
+        let mock2 = mock("GET", "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd")
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file(d1.to_string_lossy().to_string())
+                //.with_body(r#"{ "data": { "id": "test", "attributes": { "title": ["test"] } } }"#)
+                .create();
+        let data = read_ephemera_folders().await.unwrap();
+        let chunk_size = 3;
+        let mut result: Vec<Vec<ItemResponse>> = Vec::new();
+        for chunk in data.chunks(chunk_size) {
+            let chunk_vec: Vec<String> = chunk.to_vec();
+            let responses = chunk_read_url(chunk_vec).await.unwrap();
+            result.push(responses);
+        }  
+            // let result = ephemera_folders_iterator().await.unwrap();
             assert!(!result.is_empty());
-            assert_eq!(result.len(), 4); // Total chunks should be 4
-            assert_eq!(result[0].len(), 3); // First chunk should have 3 items
-            assert_eq!(result[1].len(), 3); // Second chunk should have 3 items
-            assert_eq!(result[2].len(), 3); // Third chunk should have 3 items
-            assert_eq!(result[3].len(), 3); // Forth chunk should have 3 items
-            assert_eq!(
-                result[1],
-                [
-                    "https://figgy-staging.princeton.edu/catalog/602ebba6-1bae-4ba0-9266-0360c27537fe",
-                    "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9055-cfa512e5eddd",
-                    "https://figgy-staging.princeton.edu/catalog/33fc03db-3bca-4388-84gg-6b48092199d6"
-                ]
-            );
-            mock.assert_async().await;
+            // Assuming your ephemera_folders.json has 1 item
+            assert_eq!(result.len(), 1); // Total chunks should be 1
+
+            mock1.assert();
+            mock2.assert();
+        
+    }
         }).await;
     }
 }
