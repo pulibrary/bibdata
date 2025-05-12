@@ -25,10 +25,6 @@ pub struct DataspaceDocumentBuilder {
 }
 
 impl DataspaceDocumentBuilder {
-    pub fn new() -> Self {
-        Self::default()
-    }
-
     pub fn with_id(mut self, id: impl Into<String>) -> Self {
         self.id = Some(id.into());
         self
@@ -120,6 +116,15 @@ impl DataspaceDocumentBuilder {
             vec.push(format_extent.into())
         } else {
             self.format_extent = Some(vec![format_extent.into()]);
+        };
+        self
+    }
+
+    pub fn with_identifier_other(mut self, identifier_other: impl Into<String>) -> Self {
+        if let Some(ref mut vec) = self.identifier_other {
+            vec.push(identifier_other.into())
+        } else {
+            self.identifier_other = Some(vec![identifier_other.into()]);
         };
         self
     }

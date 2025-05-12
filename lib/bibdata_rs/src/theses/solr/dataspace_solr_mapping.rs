@@ -1,49 +1,57 @@
 // This module is responsible for mapping Dataspace metadata to the catalog's solr schema
 
-use crate::theses::{dataspace::document::DataspaceDocument, holdings, solr};
+use crate::theses::{dataspace::document::DataspaceDocument, solr};
 
 impl From<DataspaceDocument> for solr::SolrDocument {
-    fn from(value: DataspaceDocument) -> Self {
-        let binding = value.title.clone().unwrap_or_default();
-        let first_title = binding.first();
+    fn from(doc: DataspaceDocument) -> Self {
         solr::SolrDocument::builder()
-            .with_id(value.id.clone().unwrap_or_default())
-            .with_access_facet(value.access_facet())
-            .with_advanced_location_s(value.advanced_location())
-            .with_advisor_display(value.contributor_advisor.clone())
-            .with_author_display(value.contributor_author.clone())
-            .with_author_s(value.all_authors())
-            .with_author_sort(&value.contributor_author.clone().unwrap_or_default().first())
-            .with_call_number_browse_s(value.call_number())
-            .with_call_number_display(value.call_number())
-            .with_certificate_display(value.authorized_ceritificates())
-            .with_contributor_display(value.contributor.clone())
-            .with_department_display(value.authorized_departments())
-            .with_holdings_1display(holdings::physical_holding_string(
-                value.identifier_uri.clone(),
-            ))
-            .with_location(value.location())
-            .with_location_code_s(value.location_code())
-            .with_location_display(value.location())
-            .with_electronic_access_1display(&value.ark_hash())
-            .with_electronic_portfolio_s(value.online_portfolio_statements())
-            .with_restrictions_note_display(value.restrictions_note_display())
-            .with_title_citation_display(&first_title)
-            .with_title_display(&first_title)
-            .with_title_sort(&title_sort(&value.title))
-            .with_title_t(&value.title_search_versions())
-            .with_language_facet(value.languages())
-            .with_language_name_display(value.languages())
-            .with_class_year_s(&value.class_year())
-            .with_pub_date_start_sort(&value.class_year())
-            .with_pub_date_end_sort(&value.class_year())
-            .with_description_display(value.format_extent)
-            .with_summary_note_display(value.description_abstract)
+            .with_id(match &doc.id {
+                Some(id) => id,
+                None => "",
+            })
+            .with_access_facet(doc.access_facet())
+            .with_advanced_location_s(doc.advanced_location())
+            .with_advisor_display(doc.contributor_advisor.clone())
+            .with_author_display(doc.contributor_author.clone())
+            .with_author_s(doc.all_authors())
+            .with_author_sort(match &doc.contributor_author {
+                Some(authors) => authors.first().cloned(),
+                None => None,
+            })
+            .with_call_number_browse_s(doc.call_number())
+            .with_call_number_display(doc.call_number())
+            .with_certificate_display(doc.authorized_ceritificates())
+            .with_contributor_display(doc.contributor.clone())
+            .with_department_display(doc.authorized_departments())
+            .with_holdings_1display(doc.physical_holding_string())
+            .with_location(doc.location())
+            .with_location_code_s(doc.location_code())
+            .with_location_display(doc.location())
+            .with_electronic_access_1display(doc.ark_hash())
+            .with_electronic_portfolio_s(doc.online_portfolio_statements())
+            .with_restrictions_note_display(doc.restrictions_note_display())
+            .with_title_citation_display(match &doc.title {
+                Some(titles) => titles.first().cloned(),
+                None => None,
+            })
+            .with_title_display(match &doc.title {
+                Some(titles) => titles.first().cloned(),
+                None => None,
+            })
+            .with_title_sort(title_sort(doc.title.as_ref()))
+            .with_title_t(doc.title_search_versions())
+            .with_language_facet(doc.languages())
+            .with_language_name_display(doc.languages())
+            .with_class_year_s(doc.class_year())
+            .with_pub_date_start_sort(doc.class_year())
+            .with_pub_date_end_sort(doc.class_year())
+            .with_description_display(doc.format_extent)
+            .with_summary_note_display(doc.description_abstract)
             .build()
     }
 }
 
-fn title_sort(titles: &Option<Vec<String>>) -> Option<String> {
+fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
     match titles {
         Some(title_vec) => {
             let first = title_vec.first()?;
@@ -297,6 +305,74 @@ mod tests {
         );
     }
 
+    #[test]
+    fn location_code_s() {
+        let document = DataspaceDocument::builder()
+            .with_date_classyear("2020")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(solr.location_code_s, None);
+
+        let document = DataspaceDocument::builder()
+            .with_date_classyear("1980")
+            .with_rights_access_rights("Limited access")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(solr.location_code_s.unwrap(), "mudd$stacks");
+    }
+
+    #[test]
+    fn location_display() {
+        let document = DataspaceDocument::builder()
+            .with_mudd_walkin("yes")
+            .with_date_classyear("1995")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(solr.location_display.unwrap(), "Mudd Manuscript Library");
+    } 
+
+    #[test]
+    fn holdings_1display() {
+        let document = DataspaceDocument::builder()
+            .with_rights_access_rights("Limited access")
+            .with_date_classyear("2005")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(
+            solr.holdings_1display.unwrap(),
+            "{\"thesis\":{\"location\":\"Mudd Manuscript Library\",\"library\":\"Mudd Manuscript Library\",\"location_code\":\"mudd$stacks\",\"call_number\":\"AC102\",\"call_number_browse\":\"AC102\",\"dspace\":true}}",
+            "holdings_1display should be present when physical thesis has limited access"
+        );
+
+        let document = DataspaceDocument::builder()
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp0141687h67f")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert!(
+            solr.holdings_1display.is_none(),
+            "holdings_1display should not be present when newer thesis has no location information"
+        );
+    }
+
+    #[test]
+    fn call_number_browse_s() {
+        let document = DataspaceDocument::builder()
+            .with_rights_access_rights("Limited access")
+            .with_date_classyear("2005")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(solr.call_number_browse_s, "AC102");
+    }
+
+    #[test]
+    fn language_facet() {
+        let document = DataspaceDocument::builder()
+            .with_language_iso("it")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(solr.language_facet, vec!["Italian".to_owned()]);
+    }
+
     mod restrictions_note_display {
         use super::*;
 
@@ -337,22 +413,22 @@ mod tests {
         #[test]
         fn it_can_create_sortable_version_of_title() {
             assert_eq!(
-                title_sort(&Some(vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
                 "somequoteblahblah",
                 "it should strip punctuation"
             );
             assert_eq!(
-                title_sort(&Some(vec!["A title : blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
                 "titleblahblah",
                 "it should strip articles"
             );
             assert_eq!(
-                title_sort(&Some(vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
                 "quoteblahblah",
                 "it should strip punctuation and articles"
             );
             assert_eq!(
-                title_sort(&Some(vec!["thesis".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["thesis".to_owned()])).unwrap(),
                 "thesis",
                 "it should leave words that start with articles alone"
             );

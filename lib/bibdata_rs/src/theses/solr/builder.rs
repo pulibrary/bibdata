@@ -41,34 +41,34 @@ impl SolrDocumentBuilder {
         self.id = id.into();
         self
     }
-    pub fn with_title_t(&mut self, title_t: &Option<Vec<String>>) -> &mut Self {
-        self.title_t = title_t.clone();
+    pub fn with_title_t(&mut self, title_t: Option<Vec<String>>) -> &mut Self {
+        self.title_t = title_t;
         self
     }
     pub fn with_title_citation_display(
         &mut self,
-        title_citation_display: &Option<&String>,
+        title_citation_display: Option<String>,
     ) -> &mut Self {
-        self.title_citation_display = (*title_citation_display).cloned();
+        self.title_citation_display = title_citation_display;
         self
     }
-    pub fn with_title_display(&mut self, title_display: &Option<&String>) -> &mut Self {
-        self.title_display = (*title_display).cloned();
+    pub fn with_title_display(&mut self, title_display: Option<String>) -> &mut Self {
+        self.title_display = title_display;
         self
     }
-    pub fn with_title_sort(&mut self, title_sort: &Option<String>) -> &mut Self {
-        self.title_sort = title_sort.clone();
+    pub fn with_title_sort(&mut self, title_sort: Option<String>) -> &mut Self {
+        self.title_sort = title_sort;
         self
     }
-    pub fn with_author_sort(&mut self, author_sort: &Option<&String>) -> &mut Self {
-        self.author_sort = (*author_sort).cloned();
+    pub fn with_author_sort(&mut self, author_sort: Option<String>) -> &mut Self {
+        self.author_sort = author_sort;
         self
     }
     pub fn with_electronic_access_1display(
         &mut self,
-        electronic_access_1display: &Option<String>,
+        electronic_access_1display: Option<String>,
     ) -> &mut Self {
-        self.electronic_access_1display = electronic_access_1display.clone();
+        self.electronic_access_1display = electronic_access_1display;
         self
     }
 
@@ -135,19 +135,19 @@ impl SolrDocumentBuilder {
         self.electronic_portfolio_s = electronic_portfolio_s;
         self
     }
-    pub fn with_class_year_s(&mut self, class_year_s: &Option<Vec<String>>) -> &mut Self {
-        self.class_year_s = class_year_s.clone();
+    pub fn with_class_year_s(&mut self, class_year_s: Option<Vec<String>>) -> &mut Self {
+        self.class_year_s = class_year_s;
         self
     }
     pub fn with_pub_date_start_sort(
         &mut self,
-        pub_date_start_sort: &Option<Vec<String>>,
+        pub_date_start_sort: Option<Vec<String>>,
     ) -> &mut Self {
-        self.pub_date_start_sort = pub_date_start_sort.clone();
+        self.pub_date_start_sort = pub_date_start_sort;
         self
     }
-    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: &Option<Vec<String>>) -> &mut Self {
-        self.pub_date_end_sort = pub_date_end_sort.clone();
+    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: Option<Vec<String>>) -> &mut Self {
+        self.pub_date_end_sort = pub_date_end_sort;
         self
     }
     pub fn with_author_display(&mut self, author_display: Option<Vec<String>>) -> &mut Self {
@@ -155,7 +155,7 @@ impl SolrDocumentBuilder {
         self
     }
     pub fn with_author_s(&mut self, author_s: Vec<String>) -> &mut Self {
-        self.author_s = Some(author_s.clone());
+        self.author_s = Some(author_s);
         self
     }
     pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {

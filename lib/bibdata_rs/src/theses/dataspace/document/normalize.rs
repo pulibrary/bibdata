@@ -1,36 +1,39 @@
 // This module is responsible for normalizing data within a DataspaceDocument
 
 use crate::theses::{
-    dataspace::document::{restrictions, DataspaceDocument},
-    department, embargo, holdings, language, looks_like_yes, program,
+    dataspace::document::DataspaceDocument,
+    department,
+    embargo::{self, Embargo},
+    holdings::{self, ThesisAvailability},
+    language, program,
 };
 use itertools::Itertools;
 use regex::{Captures, Regex};
 
 impl DataspaceDocument {
     pub fn access_facet(&self) -> Option<String> {
-        if self.has_current_embargo() {
-            None
-        } else if self.on_site_only() {
-            Some("In the Library".to_owned())
-        } else {
-            Some("Online".to_owned())
+        match (self.embargo(), self.on_site_only()) {
+            (embargo::Embargo::Current(_), _) => None,
+            (_, ThesisAvailability::AvailableOffSite) => Some("Online".to_owned()),
+            (_, ThesisAvailability::OnSiteOnly) => Some("In the Library".to_owned()),
         }
     }
 
     pub fn advanced_location(&self) -> Option<Vec<String>> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some(vec![
+        match self.on_site_only() {
+            ThesisAvailability::OnSiteOnly => Some(vec![
                 "mudd$stacks".to_owned(),
                 "Mudd Manuscript Library".to_owned(),
-            ])
-        } else {
-            None
+            ]),
+            _ => None,
         }
     }
 
     pub fn all_authors(&self) -> Vec<String> {
-        let mut authors = self.contributor_author.clone().unwrap_or_default().clone();
+        let mut authors = match &self.contributor_author {
+            Some(authors) => authors.clone(),
+            None => Vec::new(),
+        };
         authors.extend(self.contributor_advisor.clone().unwrap_or_default());
         authors.extend(self.contributor.clone().unwrap_or_default());
         authors.extend(
@@ -52,13 +55,15 @@ impl DataspaceDocument {
 
     pub fn ark_hash(&self) -> Option<String> {
         holdings::ark_hash(
-            self.identifier_uri.clone(),
+            self.identifier_uri.as_ref(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
-            self.date_classyear.clone()?,
-            self.embargo_lift.clone(),
-            self.embargo_terms.clone(),
+            self.walkin_is_yes(),
+            match &self.date_classyear {
+                Some(class_year) => class_year,
+                None => &[],
+            },
+            self.embargo(),
         )
     }
 
@@ -99,71 +104,68 @@ impl DataspaceDocument {
     }
 
     pub fn location(&self) -> Option<String> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some("Mudd Manuscript Library".to_owned())
-        } else {
-            None
+        match self.on_site_only() {
+            ThesisAvailability::OnSiteOnly => Some("Mudd Manuscript Library".to_owned()),
+            _ => None,
         }
     }
 
     pub fn location_code(&self) -> Option<String> {
-        if self.has_current_embargo() || self.on_site_only() {
-            Some("mudd$stacks".to_owned())
-        } else {
-            None
+        match self.on_site_only() {
+            ThesisAvailability::OnSiteOnly => Some("mudd$stacks".to_owned()),
+            _ => None,
         }
     }
 
-    pub fn on_site_only(&self) -> bool {
+    pub fn on_site_only(&self) -> ThesisAvailability {
         holdings::on_site_only(
             self.location.is_some(),
             self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
-            self.date_classyear.clone().unwrap_or_default(),
-            self.embargo_lift.clone(),
-            self.embargo_terms.clone(),
+            self.walkin_is_yes(),
+            match &self.date_classyear {
+                Some(class_year) => class_year,
+                None => &[],
+            },
+            self.embargo(),
         )
     }
 
     pub fn online_portfolio_statements(&self) -> Option<String> {
-        if self.on_site_only() || self.has_current_embargo() {
+        if self.on_site_only() == ThesisAvailability::OnSiteOnly
+            || matches!(self.embargo(), Embargo::Current(_))
+        {
             None
         } else {
-            holdings::online_holding_string(
-                self.identifier_other.as_ref(),
-            )    
+            holdings::online_holding_string(self.identifier_other.as_ref())
+        }
+    }
+
+    pub fn physical_holding_string(&self) -> Option<String> {
+        match self.on_site_only() {
+            ThesisAvailability::AvailableOffSite => None,
+            ThesisAvailability::OnSiteOnly => {
+                holdings::physical_holding_string(self.identifier_other.as_ref())
+            }
         }
     }
 
     pub fn restrictions_note_display(&self) -> Option<Vec<String>> {
-        if self.location.is_some() || self.rights_access_rights.is_some() {
-            Some(restrictions::restrictions_access(
-                self.location.clone().unwrap_or_default().first().cloned(),
-                self.rights_access_rights
-                    .clone()
-                    .unwrap_or_default()
-                    .first()
-                    .cloned(),
-            ))
-        } else if looks_like_yes(self.mudd_walkin.clone()) {
-            Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
-        } else if embargo::has_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
-            if embargo::has_parseable_embargo_date(
-                self.embargo_lift.clone(),
-                self.embargo_terms.clone(),
-            ) {
-                Some(vec![embargo::embargo_text(
-                    self.embargo_lift.clone(),
-                    self.embargo_terms.clone(),
-                    self.id.clone().unwrap_or_default(),
-                )])
-            } else {
-                Some(vec![
-                    format!("This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.", self.id.clone().unwrap_or_default())
-                ])
+        match &self.rights_access_rights {
+            Some(rights) => rights.first().map(|s| vec![s.clone()]),
+            None => {
+                if self.walkin_is_yes() {
+                    Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
+                } else {
+                    match self.embargo() {
+                    Embargo::Current(text) => Some(vec![text]),
+                    Embargo::None => None,
+                    Embargo::Expired => None,
+                    Embargo::Invalid => Some(vec![
+                        format!("This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.", self.id.clone().unwrap_or_default())
+                    ]),
+                }
+                }
             }
-        } else {
-            None
         }
     }
 
@@ -183,8 +185,16 @@ impl DataspaceDocument {
         }
     }
 
-    fn has_current_embargo(&self) -> bool {
-        embargo::has_current_embargo(self.embargo_lift.clone(), self.embargo_terms.clone())
+    fn embargo(&self) -> embargo::Embargo {
+        embargo::Embargo::from_dates(
+            self.embargo_lift.as_ref(),
+            self.embargo_terms.as_ref(),
+            self.id.as_ref().map_or("", |v| v),
+        )
+    }
+
+    fn walkin_is_yes(&self) -> bool {
+        matches!(&self.mudd_walkin, Some(vec) if vec.first().is_some_and(|walkin| walkin == "yes"))
     }
 }
 
@@ -278,66 +288,77 @@ mod tests {
 
     #[test]
     fn on_site_only() {
-        assert!(
+        assert_eq!(
             DataspaceDocument::builder()
                 .with_embargo_terms("2100-01-01")
                 .build()
                 .on_site_only(),
-            "doc with embargo terms field should return true"
+            ThesisAvailability::OnSiteOnly,
+            "doc with embargo terms field should return OnSiteOnly"
         );
-        assert!(
+        assert_eq!(
             DataspaceDocument::builder()
                 .with_embargo_lift("2100-01-01")
                 .build()
                 .on_site_only(),
-            "doc with embargo lift field should return true"
+            ThesisAvailability::OnSiteOnly,
+            "doc with embargo lift field should return OnSiteOnly"
         );
-        assert!(
+        assert_eq!(
             DataspaceDocument::builder()
                 .with_embargo_lift("2000-01-01")
                 .with_mudd_walkin("yes")
                 .with_date_classyear("2012-01-01T00:00:00Z")
                 .build()
                 .on_site_only(),
-            "with a specified accession date prior to 2013, it should return true"
+            ThesisAvailability::OnSiteOnly,
+            "with a specified accession date prior to 2013, it should return OnSiteOnly"
         );
 
-        assert!(
-            !DataspaceDocument::builder()
+        assert_eq!(
+            DataspaceDocument::builder()
                 .with_location("physical location")
                 .build()
                 .on_site_only(),
-            "doc with location field should return false"
+            ThesisAvailability::AvailableOffSite,
+            "doc with location field should return AvailableOffSite"
         );
-        assert!(
-            !DataspaceDocument::builder()
+        assert_eq!(
+            DataspaceDocument::builder()
                 .with_embargo_lift("2000-01-01")
                 .build()
                 .on_site_only(),
-            "doc with expired embargo lift field should return false"
+            ThesisAvailability::AvailableOffSite,
+            "doc with expired embargo lift field should return AvailableOffSite"
         );
-        assert!(
-            !DataspaceDocument::builder()
+        assert_eq!(
+            DataspaceDocument::builder()
                 .with_embargo_lift("2000-01-01")
                 .with_mudd_walkin("yes")
                 .build()
                 .on_site_only(),
-            "without a specified accession date, it should return false"
+            ThesisAvailability::AvailableOffSite,
+            "without a specified accession date, it should return AvailableOffSite"
         );
-        assert!(
-            !DataspaceDocument::builder()
+        assert_eq!(
+            DataspaceDocument::builder()
                 .with_embargo_lift("2000-01-01")
                 .with_mudd_walkin("yes")
                 .with_date_classyear("2013-01-01T00:00:00Z")
                 .build()
                 .on_site_only(),
-            "with a specified accession date in 2013, it should return false"
+            ThesisAvailability::AvailableOffSite,
+            "with a specified accession date in 2013, it should return AvailableOffSite"
         );
-        assert!(
-            !DataspaceDocument::builder().build().on_site_only(),
-            "doc with no access-related fields should return false"
+        assert_eq!(
+            DataspaceDocument::builder().build().on_site_only(),
+            ThesisAvailability::AvailableOffSite,
+            "doc with no access-related fields should return AvailableOffSite"
         );
-        assert!(!DataspaceDocument::builder().build().on_site_only());
+        assert_eq!(
+            DataspaceDocument::builder().build().on_site_only(),
+            ThesisAvailability::AvailableOffSite
+        );
     }
 
     mod all_authors {

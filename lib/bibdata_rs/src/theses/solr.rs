@@ -23,9 +23,9 @@ pub struct SolrDocument {
 
     author_sort: Option<String>,
 
-    call_number_display: String,
-
     call_number_browse_s: String,
+
+    call_number_display: String,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     certificate_display: Option<Vec<String>>,
@@ -37,10 +37,10 @@ pub struct SolrDocument {
     contributor_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    description_display: Option<Vec<String>>,
+    department_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    department_display: Option<Vec<String>>,
+    description_display: Option<Vec<String>>,
 
     electronic_access_1display: Option<String>,
 
@@ -50,7 +50,7 @@ pub struct SolrDocument {
     format: String,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    holdings_1display: Option<String>,
+    pub holdings_1display: Option<String>,
 
     id: String,
 
@@ -73,6 +73,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub_date_start_sort: Option<Vec<String>>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
     restrictions_display_text: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]

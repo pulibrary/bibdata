@@ -17,7 +17,7 @@ use log::debug;
 use magnus::exception;
 use rayon::prelude::*;
 
-pub fn collection_url(server: String, id: String, rest_limit: String, offset: String) -> String {
+pub fn collection_url(server: &str, id: &str, rest_limit: &str, offset: &str) -> String {
     format!(
         "{}/collections/{}/items?limit={}&offset={}&expand=metadata",
         server, id, rest_limit, offset
@@ -38,9 +38,9 @@ pub fn collections_as_solr(
     rest_limit: u32,
 ) -> Result<(), magnus::Error> {
     env_logger::init();
-    let documents = get_document_list(
-        server,
-        community_handle.as_ref(),
+    let documents: Vec<DataspaceDocument> = get_document_list(
+        &server,
+        &community_handle,
         rest_limit,
         |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
@@ -64,23 +64,22 @@ pub fn collections_as_solr(
     Ok(())
 }
 
-pub fn get_document_list<'a, T, U>(
-    server: U,
-    community_handle: &'a str,
+pub fn get_document_list<T>(
+    server: &str,
+    community_handle: &str,
     rest_limit: u32,
     id_selector: T,
 ) -> Result<Vec<DataspaceDocument>>
 where
-    T: Fn(U, &'a str) -> Result<Vec<u32>, reqwest::Error>,
-    U: Into<String> + Clone + Sync,
+    T: Fn(&str, &str) -> Result<Vec<u32>, reqwest::Error>,
 {
-    let collection_ids = id_selector(server.clone(), community_handle)?;
+    let collection_ids = id_selector(server, community_handle)?;
     let documents = collection_ids
         .par_iter()
         .try_fold(Vec::new, |mut accumulator, collection_id| {
             get_documents_in_collection(
                 &mut accumulator,
-                server.clone(),
+                server,
                 *collection_id,
                 rest_limit,
                 0,
@@ -96,20 +95,20 @@ where
     Ok(documents)
 }
 
+// This function recursively fetches paginated API results and retries on error
 fn get_documents_in_collection(
     documents: &mut Vec<DataspaceDocument>,
-    server: impl Into<String>,
+    server: &str,
     collection_id: u32,
     rest_limit: u32,
     offset: u32,
     attempt: u8,
 ) -> Result<Vec<DataspaceDocument>> {
-    let server_string = server.into();
     let url = collection_url(
-        server_string.clone(),
-        collection_id.to_string(),
-        rest_limit.to_string(),
-        offset.to_string(),
+        server,
+        &collection_id.to_string(),
+        &rest_limit.to_string(),
+        &offset.to_string(),
     );
     if attempt == 0 {
         debug!("Querying for the DSpace Collection at {}", url)
@@ -127,7 +126,7 @@ fn get_documents_in_collection(
             if attempt < config::THESES_RETRY_ATTEMPTS {
                 get_documents_in_collection(
                     documents,
-                    server_string.clone(),
+                    server,
                     collection_id,
                     rest_limit,
                     offset,
@@ -142,7 +141,7 @@ fn get_documents_in_collection(
         documents.extend(new_documents);
         get_documents_in_collection(
             documents,
-            server_string,
+            server,
             collection_id,
             rest_limit,
             offset + rest_limit,
@@ -163,10 +162,10 @@ mod tests {
     #[test]
     fn it_creates_a_collection_url() {
         assert_eq!(collection_url(
-            "https://dataspace-dev.princeton.edu/rest".to_owned(),
-            "402".to_owned(),
-            "100".to_owned(),
-            "1000".to_owned()
+            "https://dataspace-dev.princeton.edu/rest",
+            "402",
+            "100",
+            "1000"
         ),
     "https://dataspace-dev.princeton.edu/rest/collections/402/items?limit=100&offset=1000&expand=metadata")
     }
@@ -191,9 +190,9 @@ mod tests {
             .with_body("[]")
             .create();
 
-        let id_selector = |_server, _handle| Ok(vec![361u32]);
+        let id_selector = |_server: &str, _handle: &str| Ok(vec![361u32]);
         let docs =
-            get_document_list(server.url(), "88435/dsp019c67wm88m", 100, id_selector).unwrap();
+            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector).unwrap();
         assert_eq!(docs.len(), 1);
         assert_eq!(
             docs.clone()[0].title.clone().unwrap(),
@@ -205,5 +204,25 @@ mod tests {
 
         mock_page1.assert();
         mock_page2.assert();
+    }
+
+    #[test]
+    fn it_retries_requests_when_500_errors() {
+        let mut server = mockito::Server::new();
+        let mock_page1 = server
+            .mock(
+                "GET",
+                "/collections/361/items?limit=100&offset=0&expand=metadata",
+            )
+            .with_status(500)
+            .expect(4) // The initial request + 3 retries
+            .create();
+
+        let id_selector = |_server: &str, _handle: &str| Ok(vec![361u32]);
+        let docs =
+            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector);
+        assert!(docs.is_err());
+
+        mock_page1.assert();
     }
 }

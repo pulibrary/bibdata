@@ -1,6 +1,6 @@
 // This module is responsible for describing the holdings of a thesis
 
-use crate::theses::{embargo, looks_like_yes};
+use crate::theses::embargo;
 use serde::{ser::SerializeStruct, Serialize};
 use std::collections::HashMap;
 
@@ -9,10 +9,9 @@ pub fn call_number(non_ark_ids: Option<&Vec<String>>) -> String {
         Some(value) => value,
         None => &Vec::default(),
     };
-    if !ids.is_empty() {
-        format!("AC102 {}", ids.first().unwrap())
-    } else {
-        "AC102".to_string()
+    match ids.first() {
+        Some(id) => format!("AC102 {}", id),
+        None => "AC102".to_string(),
     }
 }
 
@@ -25,16 +24,16 @@ pub fn online_holding_string(non_ark_ids: Option<&Vec<String>>) -> Option<String
     .ok()
 }
 
-pub fn physical_holding_string(non_ark_ids: Option<Vec<String>>) -> Option<String> {
+pub fn physical_holding_string(non_ark_ids: Option<&Vec<String>>) -> Option<String> {
     serde_json::to_string(&ThesisHoldingHash {
         thesis: PhysicalHolding {
-            call_number: call_number(non_ark_ids.as_ref()),
+            call_number: call_number(non_ark_ids),
         },
     })
     .ok()
 }
 
-fn physical_class_year(class_years: Vec<String>) -> bool {
+fn physical_class_year(class_years: &[String]) -> bool {
     // For theses, there is no physical copy since 2013
     // anything 2012 and prior have a physical copy
     // @see https://github.com/pulibrary/orangetheses/issues/76
@@ -45,48 +44,47 @@ fn physical_class_year(class_years: Vec<String>) -> bool {
 }
 
 pub fn ark_hash(
-    identifier_uri: Option<Vec<String>>,
+    identifier_uri: Option<&Vec<String>>,
     location: bool,
     access_rights: bool,
-    mudd_walkin: Option<Vec<String>>,
-    class_year: Vec<String>,
-    embargo_lift: Option<Vec<String>>,
-    embargo_terms: Option<Vec<String>>,
+    mudd_walkin: bool,
+    class_year: &[String],
+    embargo: embargo::Embargo,
 ) -> Option<String> {
-    let arks = identifier_uri.unwrap_or_default();
+    let arks = identifier_uri?;
     let key = arks.first()?;
-    let value = if on_site_only(
-        location,
-        access_rights,
-        mudd_walkin,
-        class_year,
-        embargo_lift,
-        embargo_terms,
-    ) {
-        ["DataSpace", "Citation only"]
-    } else {
-        ["DataSpace", "Full text"]
+    let value = match on_site_only(location, access_rights, mudd_walkin, class_year, embargo) {
+        ThesisAvailability::OnSiteOnly => ["DataSpace", "Citation only"],
+        ThesisAvailability::AvailableOffSite => ["DataSpace", "Full text"],
     };
     let mut hash: HashMap<String, serde_json::Value> = HashMap::new();
     hash.insert(key.into(), value.into());
     Some(serde_json::to_string(&hash).unwrap())
 }
 
+#[derive(Debug, PartialEq)]
+pub enum ThesisAvailability {
+    AvailableOffSite,
+    OnSiteOnly,
+}
+
 pub fn on_site_only(
     location: bool,
     access_rights: bool,
-    mudd_walkin: Option<Vec<String>>,
-    class_year: Vec<String>,
-    embargo_lift: Option<Vec<String>>,
-    embargo_terms: Option<Vec<String>>,
-) -> bool {
-    if embargo::has_current_embargo(embargo_lift, embargo_terms) {
-        return true;
+    mudd_walkin: bool,
+    class_year: &[String],
+    embargo: embargo::Embargo,
+) -> ThesisAvailability {
+    if matches!(embargo, embargo::Embargo::Current(_)) {
+        return ThesisAvailability::OnSiteOnly;
     };
     if !physical_class_year(class_year) {
-        return false;
+        return ThesisAvailability::AvailableOffSite;
     }
-    location || access_rights || looks_like_yes(mudd_walkin)
+    if location || access_rights || mudd_walkin {
+        return ThesisAvailability::OnSiteOnly;
+    }
+    ThesisAvailability::AvailableOffSite
 }
 
 #[derive(Debug, Serialize)]
@@ -152,6 +150,7 @@ mod tests {
             ])),
             "AC102 123"
         );
+        assert_eq!(call_number(Some(&vec!["2377".to_owned()])), "AC102 2377");
         assert_eq!(call_number(Some(&vec![])), "AC102");
         assert_eq!(call_number(None), "AC102");
     }
@@ -183,86 +182,42 @@ mod tests {
     }
 
     #[test]
-    fn it_is_onsite_only_when_embargo_terms_is_some() {
+    fn it_is_onsite_only_when_current_embargo() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
-        let class_year = vec![];
-        let embargo_lift = None;
-        let embargo_terms = Some(vec!["2100-01-01".to_owned()]);
+        let mudd_walkin = false;
+        let class_year = [];
+        let embargo =
+            embargo::Embargo::Current("This content is embargoed until July 13, 2100".to_owned());
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            true
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::OnSiteOnly
         );
     }
 
     #[test]
-    fn it_is_onsite_only_when_embargo_lift_is_some() {
+    fn it_is_not_onsite_only_when_embargo_is_expired() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
-        let class_year = vec![];
-        let embargo_lift = Some(vec!["2100-01-01".to_owned()]);
-        let embargo_terms = None;
+        let mudd_walkin = false;
+        let class_year = [];
+        let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            true
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::AvailableOffSite
         );
     }
 
     #[test]
-    fn it_is_not_onsite_only_when_embargo_lift_is_past() {
+    fn it_is_not_onsite_only_when_embargo_is_expired_and_walkin() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
-        let class_year = vec![];
-        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
-        let embargo_terms = None;
+        let mudd_walkin = true;
+        let class_year = [];
+        let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            false
-        );
-    }
-
-    #[test]
-    fn it_is_not_onsite_only_when_embargo_lift_is_past_and_walkin() {
-        let location = false;
-        let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
-        let class_year = vec![];
-        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
-        let embargo_terms = None;
-        assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            false
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::AvailableOffSite
         );
     }
 
@@ -270,20 +225,12 @@ mod tests {
     fn it_is_onsite_only_when_prior_to_2013() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
-        let class_year = vec!["2012-01-01T00:00:00Z".to_owned()];
-        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
-        let embargo_terms = None;
+        let mudd_walkin = true;
+        let class_year = ["2012-01-01T00:00:00Z".to_owned()];
+        let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            true
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::OnSiteOnly
         );
     }
 
@@ -291,20 +238,12 @@ mod tests {
     fn it_is_not_onsite_only_when_from_2013() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
-        let class_year = vec!["2013-01-01T00:00:00Z".to_owned()];
-        let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
-        let embargo_terms = None;
+        let mudd_walkin = true;
+        let class_year = ["2013-01-01T00:00:00Z".to_owned()];
+        let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            false
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::AvailableOffSite
         );
     }
 
@@ -312,20 +251,12 @@ mod tests {
     fn it_is_not_onsite_only_when_physical_location_is_true() {
         let location = true;
         let access_rights = false;
-        let mudd_walkin = None;
-        let class_year = vec![];
-        let embargo_lift = None;
-        let embargo_terms = None;
+        let mudd_walkin = false;
+        let class_year = [];
+        let embargo = embargo::Embargo::None;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            false
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::AvailableOffSite
         );
     }
 
@@ -333,32 +264,22 @@ mod tests {
     fn it_is_not_onsite_only_when_no_restrictions_field() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
-        let class_year = vec![];
-        let embargo_lift = None;
-        let embargo_terms = None;
+        let mudd_walkin = false;
+        let class_year = [];
+        let embargo = embargo::Embargo::None;
         assert_eq!(
-            on_site_only(
-                location,
-                access_rights,
-                mudd_walkin,
-                class_year,
-                embargo_lift,
-                embargo_terms
-            ),
-            false
+            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            ThesisAvailability::AvailableOffSite
         );
     }
 
     #[test]
     fn it_can_determine_if_class_year_would_have_physical_holdings() {
-        let class_years = vec!["2010".to_string()];
-        assert_eq!(physical_class_year(class_years), true);
+        assert_eq!(physical_class_year(&["2010".to_string()]), true);
     }
 
     #[test]
     fn it_can_determine_if_class_year_is_too_new_for_physical_holdings() {
-        let class_years = vec!["2013".to_string()];
-        assert_eq!(physical_class_year(class_years), false);
+        assert_eq!(physical_class_year(&["2013".to_string()]), false);
     }
 }

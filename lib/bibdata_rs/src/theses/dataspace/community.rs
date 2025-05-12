@@ -19,11 +19,11 @@ struct Collection {
 /// The DSpace id of the community we're fetching content for.
 /// E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
 pub fn get_community_id(
-    server: impl Into<String>,
+    server: &str,
     community_handle: &str,
 ) -> Result<Option<u32>, reqwest::Error> {
     let communities: Vec<Community> =
-        reqwest::blocking::get(format!("{}/communities/", server.into()))?.json()?;
+        reqwest::blocking::get(format!("{}/communities/", server))?.json()?;
     let theses_community = communities
         .iter()
         .find(|community| community.handle == community_handle);
@@ -31,18 +31,17 @@ pub fn get_community_id(
     Ok(theses_community.unwrap().id)
 }
 
-pub fn get_collection_list<'a, T, U>(
-    server: U,
-    community_handle: &'a str,
+pub fn get_collection_list<T>(
+    server: &str,
+    community_handle: &str,
     id_selector: T,
 ) -> Result<Vec<u32>, reqwest::Error>
 where
-    T: Fn(U, &'a str) -> Result<Option<u32>, reqwest::Error>,
-    U: Into<String> + Clone,
+    T: Fn(&str, &str) -> Result<Option<u32>, reqwest::Error>,
 {
     let url = format!(
         "{}/communities/{}/collections",
-        server.clone().into(),
+        server,
         id_selector(server, community_handle)?.unwrap_or_default()
     );
     info!("Querying {} for the collections", url);
@@ -66,7 +65,7 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/theses/communities.json")
             .create();
 
-        let id = get_community_id(server.url(), "88435/dsp019c67wm88m")
+        let id = get_community_id(&server.url(), "88435/dsp019c67wm88m")
             .unwrap()
             .unwrap();
         assert_eq!(id, 267);
@@ -83,8 +82,8 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/theses/api_collections.json")
             .create();
 
-        let id_selector = |_server, _handle| Ok(Some(267u32));
-        let ids = get_collection_list(server.url(), "88435/dsp019c67wm88m", id_selector).unwrap();
+        let id_selector = |_server: &str, _handle: &str| Ok(Some(267u32));
+        let ids = get_collection_list(&server.url(), "88435/dsp019c67wm88m", id_selector).unwrap();
         assert_eq!(ids, vec![361]);
 
         mock.assert();

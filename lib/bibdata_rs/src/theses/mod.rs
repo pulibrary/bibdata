@@ -13,13 +13,6 @@ pub fn theses_cache_path() -> String {
     env::var("FILEPATH").unwrap_or("/tmp/theses.json".to_owned())
 }
 
-pub fn looks_like_yes(possible: Option<Vec<String>>) -> bool {
-    match possible {
-        Some(vec) => vec.first().map_or("", |v| v) == "yes",
-        None => false,
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
