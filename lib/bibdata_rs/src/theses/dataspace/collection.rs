@@ -1,3 +1,6 @@
+// This module is responsible for interacting with Dataspace collections
+// using the Dataspace JSON API
+
 use std::{
     fs::File,
     io::{BufWriter, Write},
@@ -5,7 +8,7 @@ use std::{
 
 use crate::theses::{
     config,
-    dataspace::{communities, document::DataspaceDocument},
+    dataspace::{community, document::DataspaceDocument},
     solr::SolrDocument,
     theses_cache_path,
 };
@@ -40,7 +43,7 @@ pub fn collections_as_solr(
         community_handle.as_ref(),
         rest_limit,
         |server, handle| {
-            communities::get_collection_list(server, handle, communities::get_community_id)
+            community::get_collection_list(server, handle, community::get_community_id)
         },
     )
     .map_err(|e| magnus_err_from_anyhow_err(&e))?;

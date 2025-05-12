@@ -1,3 +1,7 @@
+// This module is responsible for interacting with Dataspace communities.
+// using the Dataspace JSON API.  Our Dataspace has a single community dedicated
+// to senior theses.
+
 use log::info;
 use serde::Deserialize;
 

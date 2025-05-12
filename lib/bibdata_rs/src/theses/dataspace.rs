@@ -1,3 +1,3 @@
 pub mod collection;
-pub mod communities;
+pub mod community;
 pub mod document;

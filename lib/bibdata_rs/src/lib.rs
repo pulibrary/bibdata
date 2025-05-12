@@ -1,6 +1,6 @@
 use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
-use theses::dataspace::{collection, communities};
+use theses::dataspace::{collection, community};
 
 mod config;
 mod ephemera;
