@@ -1,6 +1,6 @@
 // This module is responsible for describing the holdings of a thesis
 
-use crate::theses::{embargo, looks_like_yes};
+use crate::theses::embargo;
 use serde::{ser::SerializeStruct, Serialize};
 use std::collections::HashMap;
 
@@ -48,7 +48,7 @@ pub fn ark_hash(
     identifier_uri: Option<Vec<String>>,
     location: bool,
     access_rights: bool,
-    mudd_walkin: Option<Vec<String>>,
+    mudd_walkin: bool,
     class_year: Vec<String>,
     embargo_lift: Option<Vec<String>>,
     embargo_terms: Option<Vec<String>>,
@@ -75,18 +75,18 @@ pub fn ark_hash(
 pub fn on_site_only(
     location: bool,
     access_rights: bool,
-    mudd_walkin: Option<Vec<String>>,
+    mudd_walkin: bool,
     class_year: Vec<String>,
     embargo_lift: Option<Vec<String>>,
     embargo_terms: Option<Vec<String>>,
 ) -> bool {
-    if embargo::has_current_embargo(embargo_lift, embargo_terms) {
+    if embargo::has_current_embargo(embargo_lift.as_ref(), embargo_terms.as_ref()) {
         return true;
     };
     if !physical_class_year(class_year) {
         return false;
     }
-    location || access_rights || looks_like_yes(mudd_walkin)
+    location || access_rights || mudd_walkin
 }
 
 #[derive(Debug, Serialize)]
@@ -186,7 +186,7 @@ mod tests {
     fn it_is_onsite_only_when_embargo_terms_is_some() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
+        let mudd_walkin = false;
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = Some(vec!["2100-01-01".to_owned()]);
@@ -207,7 +207,7 @@ mod tests {
     fn it_is_onsite_only_when_embargo_lift_is_some() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
+        let mudd_walkin = false;
         let class_year = vec![];
         let embargo_lift = Some(vec!["2100-01-01".to_owned()]);
         let embargo_terms = None;
@@ -228,7 +228,7 @@ mod tests {
     fn it_is_not_onsite_only_when_embargo_lift_is_past() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
+        let mudd_walkin = false;
         let class_year = vec![];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
@@ -249,7 +249,7 @@ mod tests {
     fn it_is_not_onsite_only_when_embargo_lift_is_past_and_walkin() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let mudd_walkin = true;
         let class_year = vec![];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
@@ -270,7 +270,7 @@ mod tests {
     fn it_is_onsite_only_when_prior_to_2013() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let mudd_walkin = true;
         let class_year = vec!["2012-01-01T00:00:00Z".to_owned()];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
@@ -291,7 +291,7 @@ mod tests {
     fn it_is_not_onsite_only_when_from_2013() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = Some(vec!["yes".to_owned()]);
+        let mudd_walkin = true;
         let class_year = vec!["2013-01-01T00:00:00Z".to_owned()];
         let embargo_lift = Some(vec!["2000-01-01".to_owned()]);
         let embargo_terms = None;
@@ -312,7 +312,7 @@ mod tests {
     fn it_is_not_onsite_only_when_physical_location_is_true() {
         let location = true;
         let access_rights = false;
-        let mudd_walkin = None;
+        let mudd_walkin = false;
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = None;
@@ -333,7 +333,7 @@ mod tests {
     fn it_is_not_onsite_only_when_no_restrictions_field() {
         let location = false;
         let access_rights = false;
-        let mudd_walkin = None;
+        let mudd_walkin = false;
         let class_year = vec![];
         let embargo_lift = None;
         let embargo_terms = None;

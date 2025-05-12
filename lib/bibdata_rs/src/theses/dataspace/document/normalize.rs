@@ -2,7 +2,7 @@
 
 use crate::theses::{
     dataspace::document::{restrictions, DataspaceDocument},
-    department, embargo, holdings, language, looks_like_yes, program,
+    department, embargo, holdings, language, program,
 };
 use itertools::Itertools;
 use regex::{Captures, Regex};
@@ -55,7 +55,7 @@ impl DataspaceDocument {
             self.identifier_uri.clone(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
+            self.walkin_is_yes(),
             self.date_classyear.clone()?,
             self.embargo_lift.clone(),
             self.embargo_terms.clone(),
@@ -118,7 +118,7 @@ impl DataspaceDocument {
         holdings::on_site_only(
             self.location.is_some(),
             self.rights_access_rights.is_some(),
-            self.mudd_walkin.clone(),
+            self.walkin_is_yes(),
             self.date_classyear.clone().unwrap_or_default(),
             self.embargo_lift.clone(),
             self.embargo_terms.clone(),
@@ -129,9 +129,7 @@ impl DataspaceDocument {
         if self.on_site_only() || self.has_current_embargo() {
             None
         } else {
-            holdings::online_holding_string(
-                self.identifier_other.as_ref(),
-            )    
+            holdings::online_holding_string(self.identifier_other.as_ref())
         }
     }
 
@@ -145,16 +143,16 @@ impl DataspaceDocument {
                     .first()
                     .cloned(),
             ))
-        } else if looks_like_yes(self.mudd_walkin.clone()) {
+        } else if self.walkin_is_yes() {
             Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
         } else if embargo::has_embargo_date(self.embargo_lift.clone(), self.embargo_terms.clone()) {
             if embargo::has_parseable_embargo_date(
-                self.embargo_lift.clone(),
-                self.embargo_terms.clone(),
+                self.embargo_lift.as_ref(),
+                self.embargo_terms.as_ref(),
             ) {
                 Some(vec![embargo::embargo_text(
-                    self.embargo_lift.clone(),
-                    self.embargo_terms.clone(),
+                    self.embargo_lift.as_ref(),
+                    self.embargo_terms.as_ref(),
                     self.id.clone().unwrap_or_default(),
                 )])
             } else {
@@ -184,7 +182,11 @@ impl DataspaceDocument {
     }
 
     fn has_current_embargo(&self) -> bool {
-        embargo::has_current_embargo(self.embargo_lift.clone(), self.embargo_terms.clone())
+        embargo::has_current_embargo(self.embargo_lift.as_ref(), self.embargo_terms.as_ref())
+    }
+
+    fn walkin_is_yes(&self) -> bool {
+        matches!(&self.mudd_walkin, Some(vec) if vec.first().is_some_and(|walkin| walkin == "yes"))
     }
 }
 

@@ -4,8 +4,8 @@ use crate::theses::{dataspace::document::DataspaceDocument, holdings, solr};
 
 impl From<DataspaceDocument> for solr::SolrDocument {
     fn from(value: DataspaceDocument) -> Self {
-        let binding = value.title.clone().unwrap_or_default();
-        let first_title = binding.first();
+        let titles = value.title.clone().unwrap_or_default();
+        let first_title = titles.first();
         solr::SolrDocument::builder()
             .with_id(value.id.clone().unwrap_or_default())
             .with_access_facet(value.access_facet())
@@ -13,37 +13,37 @@ impl From<DataspaceDocument> for solr::SolrDocument {
             .with_advisor_display(value.contributor_advisor.clone())
             .with_author_display(value.contributor_author.clone())
             .with_author_s(value.all_authors())
-            .with_author_sort(&value.contributor_author.clone().unwrap_or_default().first())
+            .with_author_sort(value.contributor_author.clone().unwrap_or_default().iter().next().cloned())
             .with_call_number_browse_s(value.call_number())
             .with_call_number_display(value.call_number())
             .with_certificate_display(value.authorized_ceritificates())
             .with_contributor_display(value.contributor.clone())
             .with_department_display(value.authorized_departments())
             .with_holdings_1display(holdings::physical_holding_string(
-                value.identifier_uri.clone(),
+                value.identifier_other.clone(),
             ))
             .with_location(value.location())
             .with_location_code_s(value.location_code())
             .with_location_display(value.location())
-            .with_electronic_access_1display(&value.ark_hash())
+            .with_electronic_access_1display(value.ark_hash())
             .with_electronic_portfolio_s(value.online_portfolio_statements())
             .with_restrictions_note_display(value.restrictions_note_display())
-            .with_title_citation_display(&first_title)
-            .with_title_display(&first_title)
-            .with_title_sort(&title_sort(&value.title))
-            .with_title_t(&value.title_search_versions())
+            .with_title_citation_display(first_title.cloned())
+            .with_title_display(first_title.cloned())
+            .with_title_sort(title_sort(value.title.as_ref()))
+            .with_title_t(value.title_search_versions())
             .with_language_facet(value.languages())
             .with_language_name_display(value.languages())
-            .with_class_year_s(&value.class_year())
-            .with_pub_date_start_sort(&value.class_year())
-            .with_pub_date_end_sort(&value.class_year())
+            .with_class_year_s(value.class_year())
+            .with_pub_date_start_sort(value.class_year())
+            .with_pub_date_end_sort(value.class_year())
             .with_description_display(value.format_extent)
             .with_summary_note_display(value.description_abstract)
             .build()
     }
 }
 
-fn title_sort(titles: &Option<Vec<String>>) -> Option<String> {
+fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
     match titles {
         Some(title_vec) => {
             let first = title_vec.first()?;
@@ -297,6 +297,18 @@ mod tests {
         );
     }
 
+    #[test]
+    fn holdings_1display() {
+        let document = DataspaceDocument::builder()
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp0141687h67f")
+            .build();
+        let solr = solr::SolrDocument::from(document);
+        assert_eq!(
+            solr.holdings_1display.unwrap(),
+            "{\"thesis\":{\"location\":\"Mudd Manuscript Library\",\"library\":\"Mudd Manuscript Library\",\"location_code\":\"mudd$stacks\",\"call_number\":\"AC102\",\"call_number_browse\":\"AC102\",\"dspace\":true}}"
+        );
+    }
+
     mod restrictions_note_display {
         use super::*;
 
@@ -337,22 +349,22 @@ mod tests {
         #[test]
         fn it_can_create_sortable_version_of_title() {
             assert_eq!(
-                title_sort(&Some(vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["\"Some quote\" : Blah blah".to_owned()])).unwrap(),
                 "somequoteblahblah",
                 "it should strip punctuation"
             );
             assert_eq!(
-                title_sort(&Some(vec!["A title : blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["A title : blah blah".to_owned()])).unwrap(),
                 "titleblahblah",
                 "it should strip articles"
             );
             assert_eq!(
-                title_sort(&Some(vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["\"A quote\" : Blah blah".to_owned()])).unwrap(),
                 "quoteblahblah",
                 "it should strip punctuation and articles"
             );
             assert_eq!(
-                title_sort(&Some(vec!["thesis".to_owned()])).unwrap(),
+                title_sort(Some(&vec!["thesis".to_owned()])).unwrap(),
                 "thesis",
                 "it should leave words that start with articles alone"
             );

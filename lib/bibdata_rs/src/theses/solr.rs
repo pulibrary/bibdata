@@ -50,7 +50,7 @@ pub struct SolrDocument {
     format: String,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    holdings_1display: Option<String>,
+    pub holdings_1display: Option<String>,
 
     id: String,
 
@@ -73,6 +73,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub_date_start_sort: Option<Vec<String>>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
     restrictions_display_text: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
