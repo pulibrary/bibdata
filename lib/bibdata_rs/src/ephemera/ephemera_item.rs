@@ -3,6 +3,8 @@ use std::fs;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraItem {
+    #[serde(rename = "@id")]
+    id: String,
     title: Vec<String>,
     #[serde(rename = "alternative", skip_serializing_if = "Option::is_none")]
     alternative_title_display: Option<Vec<String>>,
@@ -65,15 +67,15 @@ mod tests {
             std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
 
             let mock = server
-                .mock("GET", "/")
+                .mock("GET", "/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
                 .create_async()
                 .await;
 
-            let client = CatalogClient::default();
-            let result = client.get_item_data().await;
+            let client = CatalogClient::new(server.url());
+            let result = client.get_item_data("af4a941d-96a4-463e-9043-cfa512e5eddd").await;
 
             mock.assert_async().await;
 
