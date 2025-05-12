@@ -21,4 +21,4 @@ target
 /lib/bibdata_rs/bibdata_rs.*
 Makefile
 mkmf.log
-.vscode/
+.vscode/*
