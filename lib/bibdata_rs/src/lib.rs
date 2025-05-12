@@ -1,7 +1,9 @@
 use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
 
+mod config;
 mod ephemera;
+mod testing_support;
 mod theses;
 
 #[magnus::init]
