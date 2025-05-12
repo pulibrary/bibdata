@@ -14,7 +14,7 @@ lazy_static::lazy_static! {
 /// This function fixes the issue by only allowing one test to
 /// use it at a time, and to reset the supplied environment variable
 /// value after the test is done.
-/// 
+///
 /// To identify flakiness in the test suite, you can run the test suite
 /// 1000 times and see how many times it fails with:
 /// ```bash
