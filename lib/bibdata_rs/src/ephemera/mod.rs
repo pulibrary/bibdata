@@ -1,5 +1,5 @@
 use ephemera_folder::FolderResponse;
-use ephemera_item::ItemResponse;
+use ephemera_item::{EphemeraItem, ItemResponse};
 
 pub mod ephemera_folder;
 pub mod ephemera_item;
@@ -27,9 +27,9 @@ impl CatalogClient {
         Ok(data)
     }
 
-    pub async fn get_item_data(&self) -> Result<ItemResponse, reqwest::Error> {
+    pub async fn get_item_data(&self) -> Result<EphemeraItem, reqwest::Error> {
         let response = reqwest::get(&self.url).await?;
-        let data: ItemResponse = response.json().await?;
+        let data: EphemeraItem = response.json().await?;
         Ok(data)
     }
 }

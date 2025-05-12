@@ -41,33 +41,37 @@ pub async fn ephemera_folders_iterator() -> Vec<Vec<String>> {
 mod tests {
     use std::path::PathBuf;
 
-    use crate::{ephemera::ephemera_folder::read_ephemera_folders, testing_support::preserving_envvar_async};
+    use crate::{
+        ephemera::ephemera_folder::read_ephemera_folders, testing_support::preserving_envvar_async,
+    };
 
     #[tokio::test]
     async fn test_read_ephemera_folders() {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
             std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
-    
+
             let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
             d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
-    
-            let mock = server.mock("GET", "/")
+
+            let mock = server
+                .mock("GET", "/")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file(d.to_string_lossy().to_string())
-                .create_async().await;
-    
+                .create_async()
+                .await;
+
             let result = read_ephemera_folders().await.unwrap();
             assert!(!result.is_empty());
             assert!(result.contains(
                 &"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd"
                     .to_string()
             ));
-    
-            mock.assert_async().await;
-        }).await;
 
+            mock.assert_async().await;
+        })
+        .await;
     }
 
     #[tokio::test]
@@ -75,7 +79,6 @@ mod tests {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
             std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
-    
             let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
             d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
             let mock = server.mock("GET", "/")
@@ -83,7 +86,7 @@ mod tests {
                 .with_header("content-type", "application/json")
                 .with_body_from_file(d.to_string_lossy().to_string())
                 .create_async().await;
-    
+
             let data = read_ephemera_folders().await.unwrap();
             assert!(!data.is_empty());
             let chunk_size = 3;
@@ -91,7 +94,7 @@ mod tests {
             for chunk in data.chunks(chunk_size) {
                 result.push(chunk.to_vec());
             }
-    
+
             assert!(!result.is_empty());
             assert_eq!(result.len(), 4); // Total chunks should be 4
             assert_eq!(result[0].len(), 3); // First chunk should have 3 items

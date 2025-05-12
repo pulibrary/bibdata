@@ -2,7 +2,7 @@ use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 use std::fs;
 
 #[derive(Deserialize, Debug)]
-pub struct Attributes {
+pub struct EphemeraItem {
     title: Vec<String>,
     #[serde(rename = "alternative", skip_serializing_if = "Option::is_none")]
     alternative_title_display: Option<Vec<String>>,
@@ -17,17 +17,11 @@ pub struct Attributes {
 }
 
 #[derive(Deserialize, Debug)]
-pub struct EphemeraItem {
-    id: String,
-    attributes: Attributes,
-}
-
-#[derive(Deserialize, Debug)]
 pub struct ItemResponse {
     pub data: Vec<EphemeraItem>,
 }
 
-impl Serialize for Attributes {
+impl Serialize for EphemeraItem {
     fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
     where
         S: Serializer,
@@ -39,7 +33,7 @@ impl Serialize for Attributes {
         serializer.end()
     }
 }
-impl Attributes {
+impl EphemeraItem {
     fn other_title_display(&self) -> Vec<String> {
         let mut combined = self.alternative_title_display.clone().unwrap_or_default();
         combined.extend(
@@ -53,7 +47,7 @@ impl Attributes {
 
 pub fn json_ephemera_document(path: String) -> String {
     let data = fs::read_to_string(path).expect("Unable to read file");
-    let metadata: Attributes = serde_json::from_str(&data).expect("Unable to parse JSON");
+    let metadata: EphemeraItem = serde_json::from_str(&data).expect("Unable to parse JSON");
     serde_json::to_string(&metadata).unwrap()
 }
 
@@ -69,23 +63,26 @@ mod tests {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
             std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
-    
-            let mock = server.mock("GET", "/")
+
+            let mock = server
+                .mock("GET", "/")
                 .with_status(200)
                 .with_header("content-type", "application/json")
-                .with_body(r#"{ "data": [] }"#)
-                .create_async().await;
-    
+                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
+                .create_async()
+                .await;
+
             let client = CatalogClient::default();
             let result = client.get_item_data().await;
-    
+
             mock.assert_async().await;
-    
+
             match result {
                 Ok(_response) => assert!(true),
                 Err(e) => panic!("Request failed: {}", e),
             }
-        }).await
+        })
+        .await
     }
 
     #[test]
