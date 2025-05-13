@@ -46,7 +46,7 @@ pub async fn ephemera_folders_iterator(
 }
 
 pub async fn chunk_read_id(
-    ids: Vec<String>,
+    ids: Vec<String>
 ) -> Result<String, Box<dyn std::error::Error>> {
     let mut responses = Vec::new();
     for id in ids {
@@ -73,13 +73,14 @@ mod tests {
     async fn test_read_ephemera_folders() {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
-            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
+            // std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
 
             let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
             d.push("../../spec/fixtures/files/ephemera/ephemera_folders.json");
-
+            let path = "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=";
+            // let path = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL").unwrap();
             let mock = server
-                .mock("GET", "/")
+                .mock("GET", path)
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file(d.to_string_lossy().to_string())
