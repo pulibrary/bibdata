@@ -103,7 +103,6 @@ mod tests {
     async fn test_ephemera_folders_iterator() {
         preserving_envvar_async("FIGGY_STAGING_URL", || async {
             let mut server = mockito::Server::new_async().await;
-            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
 
             let mock1 = server
                 .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
