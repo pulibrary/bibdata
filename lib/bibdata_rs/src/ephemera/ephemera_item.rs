@@ -75,7 +75,9 @@ mod tests {
                 .await;
 
             let client = CatalogClient::new(server.url());
-            let result = client.get_item_data("af4a941d-96a4-463e-9043-cfa512e5eddd").await;
+            let result = client
+                .get_item_data("af4a941d-96a4-463e-9043-cfa512e5eddd")
+                .await;
 
             mock.assert_async().await;
 
