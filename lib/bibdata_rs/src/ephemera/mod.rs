@@ -29,7 +29,8 @@ impl CatalogClient {
     }
 
     pub async fn get_item_data(&self, id: &str) -> Result<EphemeraItem, reqwest::Error> {
-        let response = reqwest::get(format!("{}/catalog/{}", &self.url, id)).await?;
+        let url = format!("{}/catalog/{}", &self.url, id);
+        let response = reqwest::get(url).await?;
         let data: EphemeraItem = response.json().await?;
         Ok(data)
     }
