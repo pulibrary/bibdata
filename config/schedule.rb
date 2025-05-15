@@ -39,7 +39,7 @@ every 1.day, at: '6:00am', roles: [:cron_production] do
   rake 'marc_liberation:partner_update', output: '/tmp/cron_log.log'
 end
 
-every 1.day, at: '7:00am' do
+every 1.day, at: '7:00am', roles: [:worker] do
   rake 'figgy_mms_ids:build_translation_map', output: '/tmp/cron_log.log'
 end
 
