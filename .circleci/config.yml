@@ -3,21 +3,48 @@ orbs:
   node: circleci/node@5.0.3
   rust: circleci/rust@1.6.2
 jobs:
-  build:
-    working_directory: ~/bibdata
+  lint:
+    docker:
+      - image: cimg/ruby:3.4.1
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: bibdata
 
-    # Primary command image where all commands run
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            # this cache is never found because ruby-oci8 isn't included in ci
+            - v4-bibdata-{{ checksum "Gemfile.lock" }}
+            # use a partial cache restore
+            - v4-bibdata-
+      - run: gem install bundler -v '~> 2.0'
+      - run:
+          name: Install dependencies
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Lint with Rubocop
+          command: bundle exec rubocop
+
+  test:
     docker:
       - image: cimg/ruby:3.4.1-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: bibdata
-      - image: cimg/postgres:13.6
+          SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/bibdata-core-test
+      - image: postgres:13.6-alpine
         environment:
           POSTGRES_USER: bibdata
           POSTGRES_DB: bibdata_test
           POSTGRES_HOST_AUTH_METHOD: trust
+      - image: cimg/redis:7.2
       - image: pulibrary/ci-solr:8.4-v2.0.0
         command: server/scripts/ci-start.sh
 
@@ -54,87 +81,12 @@ jobs:
             curl -H 'Content-type: application/json' http://solr:SolrRocks@127.0.0.1:8983/api/collections/ -d '{create: {name: bibdata-core-test, config: bibdata, numShards: 1}}'
 
       - run:
-          name: Wait for Postgres
-          command: dockerize -wait tcp://localhost:5432 -timeout 120s
-
-      - run:
           name: Database setup
           command: bundle exec rake db:setup
 
-  lint:
-    working_directory: ~/bibdata
-
-    docker:
-      - image: cimg/ruby:3.4.1-browsers
-        environment:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: bibdata
-
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-bibdata-{{ checksum "Gemfile.lock" }}
-            # use a partial cache restore
-            - v4-bibdata-
-      - run: gem install bundler -v '~> 2.0'
-      - run:
-          name: Install dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-      - save_cache:
-          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - run:
-          name: Lint with Rubocop
-          command: bundle exec rubocop
-
-  test:
-    working_directory: ~/bibdata
-
-    docker:
-      - image: cimg/ruby:3.4.1-browsers
-        environment:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: bibdata
-          SOLR_URL: http://solr:SolrRocks@localhost:8983/solr/bibdata-core-test
-      - image: postgres:13.6-alpine
-        environment:
-          POSTGRES_USER: bibdata
-          POSTGRES_DB: bibdata_test
-          POSTGRES_HOST_AUTH_METHOD: trust
-      - image: cimg/redis:7.2
-      - image: pulibrary/ci-solr:8.4-v2.0.0
-        command: server/scripts/ci-start.sh
-
-    steps:
-      - checkout
-      - rust/install
-      - node/install:
-          install-yarn: true
-          node-version: '22.14.0'
-      - restore_cache:
-          keys:
-            # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-bibdata-{{ checksum "Gemfile.lock" }}
-            # use a partial cache restore
-            - v4-bibdata-
-      - run: sudo apt-get -y update
-      - run: sudo apt-get install -y postgresql-client || true
-      - run: gem install bundler -v '~> 2.0'
-      - run:
-          name: Install dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
       - run:
           name: Compile Rust code
           command: bundle exec rake compile
-      - save_cache:
-          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
 
       - run:
           name: Load config into solr
@@ -151,9 +103,6 @@ jobs:
       - run:
           name: Database setup
           command: bundle exec rake db:setup
-      - run: 
-          name: Test rust with cargo
-          command: cargo test
       - run:
           name: Test with RSpec
           command: bundle exec rspec spec
@@ -165,38 +114,6 @@ jobs:
       - store_artifacts:
           path: ~/bibdata/coverage
           destination: coverage
-
-  doc:
-    working_directory: ~/bibdata
-
-    docker:
-      - image: cimg/ruby:3.4.1-browsers
-        environment:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: bibdata
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            # this cache is never found because ruby-oci8 isn't included in ci
-            - v4-bibdata-{{ checksum "Gemfile.lock" }}
-            # use a partial cache restore
-            - v4-bibdata-
-      - run: gem install bundler -v '~> 2.0'
-      - run:
-          name: Install dependencies
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-      - save_cache:
-          key: v4-bibdata-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
-      - run:
-          name: Build the YARD documentation
-          command: bundle exec yardoc
-      - store_artifacts:
-          path: ~/bibdata/doc
-          destination: doc
 
   build_and_test_webhook:
     working_directory: ~/bibdata
@@ -215,6 +132,14 @@ jobs:
           name: Rspec
           working_directory: ~/bibdata/webhook_monitor/src/
           command: bundle exec rspec spec
+
+  rust_test:
+    docker:
+      - image: cimg/ruby:3.4
+    steps:
+      - checkout
+      - rust/install
+      - rust/test
 
   semgrep:
     docker:
@@ -247,20 +172,14 @@ workflows:
   version: 2
   default:
     jobs:
-      - build
-      - lint:
-          requires:
-            - build
-      - test:
-          requires:
-            - build
-      - doc:
-          requires:
-            - build
+      - lint
+      - test
+      - rust_test
       - build_and_test_webhook
       - deploy:
          requires:
           - test
+          - rust_test
          filters:
            branches:
              only:
