@@ -2,6 +2,7 @@
 name = "bibdata_rs"
 edition = "2021"
 publish = false
+version = "0.1.0"
 
 [lib]
 crate-type = ["cdylib"]
