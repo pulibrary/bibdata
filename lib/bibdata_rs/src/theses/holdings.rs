@@ -36,14 +36,16 @@ pub fn physical_holding_string(non_ark_ids: Option<&Vec<String>>) -> Option<Stri
 fn physical_class_year(class_years: &[String]) -> bool {
     // For theses, there is no physical copy since 2013
     // anything 2012 and prior have a physical copy
-    // @see https://github.com/pulibrary/orangetheses/issues/76
+    // See docs/theses.md
     match class_years.first() {
-        Some(year) => year < &"2013".to_string(),
+        Some(year) => year.as_str() < "2013",
         None => false,
     }
 }
 
-pub fn ark_hash(
+// Returns a string containing a JSON key/value.  The key is the Ark URL,
+// the value is an array of details about what that URL provides.
+pub fn dataspace_url_with_metadata(
     identifier_uri: Option<&Vec<String>>,
     location: bool,
     access_rights: bool,

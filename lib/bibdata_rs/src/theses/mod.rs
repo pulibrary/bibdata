@@ -1,13 +1,14 @@
 use std::env;
 
-pub mod config;
 pub mod dataspace;
-pub mod department;
-pub mod embargo;
-pub mod holdings;
-pub mod language;
-pub mod program;
-pub mod solr;
+
+mod config;
+mod department;
+mod embargo;
+mod holdings;
+mod language;
+mod program;
+mod solr;
 
 pub fn theses_cache_path() -> String {
     env::var("FILEPATH").unwrap_or("/tmp/theses.json".to_owned())

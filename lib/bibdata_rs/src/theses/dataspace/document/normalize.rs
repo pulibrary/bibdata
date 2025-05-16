@@ -54,7 +54,7 @@ impl DataspaceDocument {
     }
 
     pub fn ark_hash(&self) -> Option<String> {
-        holdings::ark_hash(
+        holdings::dataspace_url_with_metadata(
             self.identifier_uri.as_ref(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
