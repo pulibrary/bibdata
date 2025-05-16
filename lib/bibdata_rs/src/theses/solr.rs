@@ -93,7 +93,7 @@ pub struct SolrDocument {
 
 impl SolrDocument {
     pub fn builder() -> builder::SolrDocumentBuilder {
-        builder::SolrDocumentBuilder::default()
+        Default::default()
     }
 }
 

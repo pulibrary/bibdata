@@ -6,7 +6,7 @@ use serde::{Deserialize, Serialize};
 mod builder;
 mod normalize;
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 pub struct DataspaceDocument {
     pub id: Option<String>,
     pub contributor: Option<Vec<String>>,
@@ -29,6 +29,8 @@ pub struct DataspaceDocument {
     rights_access_rights: Option<Vec<String>>,
 }
 
+// The lifetime specifier is needed due to how serde deserializes,
+// see https://serde.rs/lifetimes.html#understanding-deserializer-lifetimes
 impl<'de> Deserialize<'de> for DataspaceDocument {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
@@ -81,7 +83,7 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
 
 impl DataspaceDocument {
     pub fn builder() -> builder::DataspaceDocumentBuilder {
-        builder::DataspaceDocumentBuilder::default()
+        Default::default()
     }
 }
 

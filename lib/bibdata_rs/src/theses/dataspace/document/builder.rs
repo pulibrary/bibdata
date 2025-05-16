@@ -206,3 +206,15 @@ impl DataspaceDocumentBuilder {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_can_create_a_dataspace_document() {
+        let builder = DataspaceDocumentBuilder::default();
+        let doc = builder.with_id("ABC123").build();
+        assert_eq!(doc.id, Some("ABC123".to_owned()));
+    }
+}

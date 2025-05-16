@@ -32,29 +32,26 @@ fn magnus_err_from_anyhow_err(value: &anyhow::Error) -> magnus::Error {
     magnus::Error::new(exception::runtime_error(), value.to_string())
 }
 
+// The main function for thesis caching, to be called from Ruby
 pub fn collections_as_solr(
     server: String,
     community_handle: String,
     rest_limit: u32,
 ) -> Result<(), magnus::Error> {
     env_logger::init();
-    let documents: Vec<DataspaceDocument> = get_document_list(
-        &server,
-        &community_handle,
-        rest_limit,
-        |server, handle| {
+    let documents: Vec<DataspaceDocument> =
+        get_document_list(&server, &community_handle, rest_limit, |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
-        },
-    )
-    .map_err(|e| magnus_err_from_anyhow_err(&e))?;
+        })
+        .map_err(|e| magnus_err_from_anyhow_err(&e))?;
     let file = File::create(theses_cache_path())
         .map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
     let mut writer = BufWriter::new(file);
     serde_json::to_writer_pretty(
         &mut writer,
         &documents
-            .par_iter()
-            .map(|doc| SolrDocument::from(doc.clone()))
+            .iter()
+            .map(SolrDocument::from)
             .collect::<Vec<SolrDocument>>(),
     )
     .map_err(|e| magnus_err_from_serde_err(&e))?;
@@ -68,10 +65,10 @@ pub fn get_document_list<T>(
     server: &str,
     community_handle: &str,
     rest_limit: u32,
-    id_selector: T,
+    id_selector: T, // a closure that returns a Vec of dspace collection ids
 ) -> Result<Vec<DataspaceDocument>>
 where
-    T: Fn(&str, &str) -> Result<Vec<u32>, reqwest::Error>,
+    T: Fn(&str, &str) -> Result<Vec<u32>>,
 {
     let collection_ids = id_selector(server, community_handle)?;
     let documents = collection_ids
@@ -123,6 +120,7 @@ fn get_documents_in_collection(
     let new_documents = match get_url_as_json(&url) {
         Ok(docs) => Ok(docs),
         Err(e) => {
+            // If there was an error, increment the count of attempts and recurse
             if attempt < config::THESES_RETRY_ATTEMPTS {
                 get_documents_in_collection(
                     documents,
@@ -137,6 +135,8 @@ fn get_documents_in_collection(
             }
         }
     }?;
+    // If we didn't get an empty JSON, there are still more pages of data to fetch, so
+    // recurse with a higher offset (i.e. fetch the next page)
     if !new_documents.is_empty() {
         documents.extend(new_documents);
         get_documents_in_collection(
@@ -157,6 +157,8 @@ fn get_url_as_json(url: &str) -> Result<Vec<DataspaceDocument>> {
 
 #[cfg(test)]
 mod tests {
+    use rb_sys_test_helpers::ruby_test;
+
     use super::*;
 
     #[test]
@@ -195,7 +197,7 @@ mod tests {
             get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector).unwrap();
         assert_eq!(docs.len(), 1);
         assert_eq!(
-            docs.clone()[0].title.clone().unwrap(),
+            docs[0].title.clone().unwrap(),
             vec![
                 "Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
                     .to_owned()
@@ -219,10 +221,21 @@ mod tests {
             .create();
 
         let id_selector = |_server: &str, _handle: &str| Ok(vec![361u32]);
-        let docs =
-            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector);
+        let docs = get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector);
         assert!(docs.is_err());
 
         mock_page1.assert();
+    }
+
+    #[ruby_test]
+    fn it_notifies_ruby_of_errors() {
+        let mut server = mockito::Server::new();
+        let mock_bad_response = server
+            .mock("GET", "/communities/")
+            .with_status(500)
+            .create();
+
+        assert!(collections_as_solr(server.url(), "88435/dsp019c67wm88m".to_owned(), 100).is_err());
+        mock_bad_response.assert();
     }
 }
