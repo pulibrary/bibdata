@@ -149,7 +149,6 @@ dependencies = [
  "codes-iso-639",
  "env_logger",
  "itertools 0.14.0",
- "lazy_static",
  "log",
  "magnus",
  "mockito",
