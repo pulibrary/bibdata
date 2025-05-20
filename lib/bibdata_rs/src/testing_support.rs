@@ -1,9 +1,7 @@
-use std::{env, future::Future, sync::Mutex};
+use std::{env, future::Future, sync::{LazyLock, Mutex}};
 
 // A mutex to ensure that the environment variable access is thread-safe
-lazy_static::lazy_static! {
-    static ref ENV_MUTEX: Mutex<()> = Mutex::new(());
-}
+static ENV_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
 
 /// This function can be used to wrap your test functions that
 /// modify environment variables.  Since rust runs tests in
