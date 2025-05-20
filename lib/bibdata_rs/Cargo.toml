@@ -5,7 +5,7 @@ publish = false
 version = "0.1.0"
 
 [lib]
-crate-type = ["cdylib"]
+crate-type = ["lib", "cdylib"]
 
 [dependencies]
 magnus = { version = "0.6.2" }
@@ -27,5 +27,10 @@ anyhow = "1.0.98"
 rb-sys = "0.9.115"
 
 [dev-dependencies]
+criterion = "0.6.0"
 mockito = "1.7.0"
 rb-sys-test-helpers = "0.2.2"
+
+[[bench]]
+name = "dataspace_bench"
+harness = false

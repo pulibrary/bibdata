@@ -86,6 +86,8 @@ To run the tests in the `marc_to_solr` directory set RAILS_ENV:
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
 
+Run Rust tests with `cargo test`.  Run Rust benchmarks with `cargo bench`.
+
 ## Compiling
 
 Some business logic is written in Rust.  This code is compiled when you

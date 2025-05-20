@@ -4,7 +4,7 @@ use theses::dataspace::collection;
 
 mod config;
 mod ephemera;
-mod theses;
+pub mod theses;
 
 #[cfg(test)]
 mod testing_support;
