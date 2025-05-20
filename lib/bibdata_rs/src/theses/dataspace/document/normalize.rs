@@ -9,6 +9,7 @@ use crate::theses::{
 };
 use itertools::Itertools;
 use regex::{Captures, Regex};
+use std::sync::LazyLock;
 
 impl DataspaceDocument {
     pub fn access_facet(&self) -> Option<String> {
@@ -199,8 +200,8 @@ impl DataspaceDocument {
 }
 
 fn normalize_latex(original: &str) -> String {
-    Regex::new(r"\\\(.*?\\\)")
-        .unwrap()
+    static LATEX_REGEX: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\\\(.*?\\\)").unwrap());
+    LATEX_REGEX
         .replace_all(original, |captures: &Captures| {
             captures[0]
                 .chars()
