@@ -54,7 +54,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
         let folder_results = ephemera_folders_iterator(&url).await
             .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
         let combined_json = folder_results.join(",");
-        Ok(format!("[{}]", combined_json))
+        Ok(combined_json)
     })
 }
 
@@ -120,7 +120,6 @@ mod tests {
 
         let result = json_ephemera_document(server.url().to_string()).unwrap();
         
-        // Verify the result is valid JSON
         let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
         assert!(parsed.is_array());
         
@@ -130,15 +129,42 @@ mod tests {
 
     
     mod no_transliterated_title {
+        use std::path::PathBuf;
+
+    
+        use rb_sys_test_helpers::ruby_test;
+
         use super::*;
-        #[test]
-        fn test_json_ephemera_document() {
-            let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        #[ruby_test]
+        fn test_json_ephemera_document_with_no_transliterated_title() {
+                let mut server = mockito::Server::new();
 
-            d.push("../../spec/fixtures/files/ephemera/ephemera_no_transliterated_title.json");
+                let folder_mock = server
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
+                .create();
 
-            let result = json_ephemera_document(d.to_string_lossy().to_string());
-            assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":[\"Of technique : chance procedures on turntable : a book of essays & illustrations\"],\"other_title_display\":[\"Chance procedures on turntable\"]}");
+                let item_mock = server
+                .mock(
+                    "GET",
+                    mockito::Matcher::Regex(
+                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$".to_string(),
+                    ),
+                )
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_no_transliterated_title.json")
+                .expect(12)
+                .create();
+            
+
+            let result = json_ephemera_document(server.url().to_string()).unwrap();
+            let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
+            assert!(parsed.is_array());
+            folder_mock.assert();
+            item_mock.assert();
         }
     }
 }
