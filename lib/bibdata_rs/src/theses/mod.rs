@@ -8,7 +8,6 @@ mod embargo;
 mod holdings;
 mod language;
 mod program;
-mod solr;
 
 pub fn theses_cache_path() -> String {
     env::var("FILEPATH").unwrap_or("/tmp/theses.json".to_owned())

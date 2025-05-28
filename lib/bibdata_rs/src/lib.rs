@@ -5,6 +5,8 @@ use theses::dataspace::collection;
 mod config;
 mod ephemera;
 pub mod theses;
+mod solr;
+
 
 #[cfg(test)]
 mod testing_support;
