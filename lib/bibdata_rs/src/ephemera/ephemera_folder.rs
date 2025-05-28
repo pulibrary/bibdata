@@ -30,6 +30,7 @@ pub async fn read_ephemera_folders(
     Ok(ids)
 }
 
+// TODO: accept a parameter chunk_size, so that we can pass 1000 in production but 3 in the tests
 pub async fn ephemera_folders_iterator(
     url: &str,
 ) -> Result<Vec<String>, Box<dyn std::error::Error>> {
@@ -52,6 +53,7 @@ pub async fn chunk_read_id(
     for id in ids {
         let client = CatalogClient::new(url.to_owned());
         let response = client.get_item_data(&id).await?;
+        // TODO: This should be the mapped Solr document
         responses.push(response);
     }
     Ok(serde_json::to_string(&responses)?)
