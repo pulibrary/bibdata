@@ -1,5 +1,6 @@
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
-use std::fs;
+
+use super::ephemera_folder::ephemera_folders_iterator;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraItem {
@@ -47,10 +48,14 @@ impl EphemeraItem {
     }
 }
 
-pub fn json_ephemera_document(path: String) -> String {
-    let data = fs::read_to_string(path).expect("Unable to read file");
-    let metadata: EphemeraItem = serde_json::from_str(&data).expect("Unable to parse JSON");
-    serde_json::to_string(&metadata).unwrap()
+pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
+    let rt = tokio::runtime::Runtime::new().map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+    rt.block_on(async {
+        let folder_results = ephemera_folders_iterator(&url).await
+            .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+        let combined_json = folder_results.join(",");
+        Ok(format!("[{}]", combined_json))
+    })
 }
 
 #[cfg(test)]
@@ -58,7 +63,6 @@ mod tests {
     use crate::{ephemera::CatalogClient, testing_support::preserving_envvar_async};
 
     use super::*;
-    use std::path::PathBuf;
 
     #[tokio::test]
     async fn test_get_item_data() {
@@ -91,14 +95,40 @@ mod tests {
 
     #[test]
     fn test_json_ephemera_document() {
-        let mut d = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        let mut server = mockito::Server::new();
 
-        d.push("../../spec/fixtures/files/ephemera/ephemera1.json");
+        let folder_mock = server
+            .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
+            .create();
 
-        let result = json_ephemera_document(d.to_string_lossy().to_string());
-        assert_eq!(result, "{\"title_display\":\"Of technique : chance procedures on turntable : a book of essays & illustrations\",\"title_citation_display\":[\"Of technique : chance procedures on turntable : a book of essays & illustrations\"],\"other_title_display\":[\"Chance procedures on turntable\",\"custom transliterated title\"]}");
+        let item_mock = server
+            .mock(
+                "GET",
+                mockito::Matcher::Regex(
+                    r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$".to_string(),
+                ),
+            )
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
+            .expect(12)
+            .create();
+            
+
+        let result = json_ephemera_document(server.url().to_string()).unwrap();
+        
+        // Verify the result is valid JSON
+        let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
+        assert!(parsed.is_array());
+        
+        folder_mock.assert();
+        item_mock.assert();
     }
 
+    
     mod no_transliterated_title {
         use super::*;
         #[test]
