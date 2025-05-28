@@ -3,6 +3,7 @@ use ephemera_item::{EphemeraItem, ItemResponse};
 
 pub mod ephemera_folder;
 pub mod ephemera_item;
+mod ephemera_item_builder;
 
 pub struct CatalogClient {
     url: String,

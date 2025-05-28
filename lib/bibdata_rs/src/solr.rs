@@ -3,6 +3,7 @@ use serde::Serialize;
 
 mod builder;
 mod dataspace_solr_mapping;
+mod ephemera_solr_mapping;
 
 #[derive(Debug, Default, Serialize)]
 pub struct SolrDocument {
@@ -14,6 +15,9 @@ pub struct SolrDocument {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     advisor_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    alternative_title_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     author_display: Option<Vec<String>>,

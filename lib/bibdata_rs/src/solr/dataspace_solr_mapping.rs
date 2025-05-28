@@ -1,7 +1,7 @@
 // This module is responsible for mapping Dataspace metadata to the catalog's solr schema
 
-use crate::theses::dataspace::document::DataspaceDocument;
 use super::SolrDocument;
+use crate::theses::dataspace::document::DataspaceDocument;
 
 impl From<&DataspaceDocument> for SolrDocument {
     fn from(doc: &DataspaceDocument) -> Self {

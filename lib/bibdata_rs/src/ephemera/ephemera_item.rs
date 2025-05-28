@@ -1,24 +1,30 @@
+use super::{
+    ephemera_folder::ephemera_folders_iterator, ephemera_item_builder::EphemeraItemBuilder,
+};
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
-
-use super::ephemera_folder::ephemera_folders_iterator;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraItem {
     #[serde(rename = "@id")]
-    id: String,
-    title: Vec<String>,
+    pub id: String,
+    pub title: Vec<String>,
     #[serde(rename = "alternative", skip_serializing_if = "Option::is_none")]
-    alternative_title_display: Option<Vec<String>>,
+    pub alternative_title_display: Option<Vec<String>>,
     #[serde(
         rename = "transliterated_title",
         skip_serializing_if = "Option::is_none"
     )]
-    transliterated_title_display: Option<Vec<String>>,
+    pub transliterated_title_display: Option<Vec<String>>,
     // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
     // #[serde(rename = "creator")]
     // creator: Vec<String>,
 }
 
+impl EphemeraItem {
+    pub fn builder() -> EphemeraItemBuilder {
+        EphemeraItemBuilder::new()
+    }
+}
 
 #[derive(Deserialize, Debug)]
 pub struct ItemResponse {
