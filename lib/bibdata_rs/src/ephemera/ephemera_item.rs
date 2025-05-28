@@ -49,9 +49,11 @@ impl EphemeraItem {
 }
 
 pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
-    let rt = tokio::runtime::Runtime::new().map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+    let rt = tokio::runtime::Runtime::new()
+        .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
     rt.block_on(async {
-        let folder_results = ephemera_folders_iterator(&url).await
+        let folder_results = ephemera_folders_iterator(&url)
+            .await
             .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
         let combined_json = folder_results.join(",");
         Ok(combined_json)
@@ -60,7 +62,10 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
 
 #[cfg(test)]
 mod tests {
-    use crate::{ephemera::CatalogClient, testing_support::preserving_envvar_async};
+    use crate::{
+        ephemera::CatalogClient,
+        testing_support::{preserving_envvar, preserving_envvar_async},
+    };
 
     use super::*;
 
@@ -95,70 +100,72 @@ mod tests {
 
     #[test]
     fn test_json_ephemera_document() {
-        let mut server = mockito::Server::new();
+        preserving_envvar("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || {
+            let mut server = mockito::Server::new();
 
-        let folder_mock = server
-            .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
-            .with_status(200)
-            .with_header("content-type", "application/json")
-            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
-            .create();
-
-        let item_mock = server
-            .mock(
-                "GET",
-                mockito::Matcher::Regex(
-                    r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$".to_string(),
-                ),
-            )
-            .with_status(200)
-            .with_header("content-type", "application/json")
-            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
-            .expect(12)
-            .create();
-            
-
-        let result = json_ephemera_document(server.url().to_string()).unwrap();
-        
-        let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
-        assert!(parsed.is_array());
-        
-        folder_mock.assert();
-        item_mock.assert();
-    }
-
-    
-    mod no_transliterated_title {
-        use std::path::PathBuf;
-
-    
-        use rb_sys_test_helpers::ruby_test;
-
-        use super::*;
-        #[ruby_test]
-        fn test_json_ephemera_document_with_no_transliterated_title() {
-                let mut server = mockito::Server::new();
-
-                let folder_mock = server
+            let folder_mock = server
                 .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
                 .create();
 
-                let item_mock = server
+            let item_mock = server
                 .mock(
                     "GET",
                     mockito::Matcher::Regex(
-                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$".to_string(),
+                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                            .to_string(),
                     ),
                 )
                 .with_status(200)
                 .with_header("content-type", "application/json")
-                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_no_transliterated_title.json")
+                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
                 .expect(12)
                 .create();
-            
+
+            let result = json_ephemera_document(server.url().to_string()).unwrap();
+
+            let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
+            assert!(parsed.is_array());
+
+            folder_mock.assert();
+            item_mock.assert();
+        });
+    }
+
+    mod no_transliterated_title {
+        use std::path::PathBuf;
+
+        use rb_sys_test_helpers::ruby_test;
+
+        use super::*;
+        #[ruby_test]
+        fn test_json_ephemera_document_with_no_transliterated_title() {
+            let mut server = mockito::Server::new();
+
+            let folder_mock = server
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
+                .create();
+
+            let item_mock = server
+                .mock(
+                    "GET",
+                    mockito::Matcher::Regex(
+                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                            .to_string(),
+                    ),
+                )
+                .with_status(200)
+                .with_header("content-type", "application/json")
+                .with_body_from_file(
+                    "../../spec/fixtures/files/ephemera/ephemera_no_transliterated_title.json",
+                )
+                .expect(12)
+                .create();
 
             let result = json_ephemera_document(server.url().to_string()).unwrap();
             let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();

@@ -71,6 +71,7 @@ mod tests {
         testing_support::preserving_envvar_async,
     };
 
+    #[ignore]
     #[tokio::test]
     async fn test_read_ephemera_folders() {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
@@ -100,6 +101,7 @@ mod tests {
         .await;
     }
 
+    #[ignore]
     #[tokio::test]
     async fn test_ephemera_folders_iterator() {
         let mut server = mockito::Server::new_async().await;

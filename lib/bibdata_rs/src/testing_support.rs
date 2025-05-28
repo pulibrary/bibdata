@@ -1,4 +1,8 @@
-use std::{env, future::Future, sync::{LazyLock, Mutex}};
+use std::{
+    env,
+    future::Future,
+    sync::{LazyLock, Mutex},
+};
 
 // A mutex to ensure that the environment variable access is thread-safe
 static ENV_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
