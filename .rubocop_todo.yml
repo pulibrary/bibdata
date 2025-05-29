@@ -512,7 +512,6 @@ Style/ClassAndModuleChildren:
     - 'app/adapters/alma_adapter/status.rb'
     - 'app/controllers/users/omniauth_callbacks_controller.rb'
     - 'app/controllers/users/sessions_controller.rb'
-    - 'app/services/alma/indexer.rb'
     - 'app/services/alma/indexer/dump_file_indexer.rb'
     - 'marc_to_solr/lib/pul_solr_json_writer.rb'
     - 'marc_to_solr/lib/uri_ark.rb'
@@ -709,13 +708,6 @@ Style/Next:
 # Configuration parameters: Strict, AllowedNumbers.
 Style/NumericLiterals:
   MinDigits: 8
-
-# Offense count: 1
-# Configuration parameters: AllowedMethods.
-# AllowedMethods: respond_to_missing?
-Style/OptionalBooleanParameter:
-  Exclude:
-    - 'app/services/alma/indexer.rb'
 
 # Offense count: 11
 # This cop supports safe auto-correction (--auto-correct).
