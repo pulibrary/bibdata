@@ -44,7 +44,7 @@ impl Serialize for EphemeraItem {
     }
 }
 impl EphemeraItem {
-    fn other_title_display(&self) -> Vec<String> {
+    pub fn other_title_display(&self) -> Vec<String> {
         let mut combined = self.alternative_title_display.clone().unwrap_or_default();
         combined.extend(
             self.transliterated_title_display
