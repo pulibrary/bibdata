@@ -8,7 +8,7 @@ class Alma::Indexer
   def index_file(file_path, debug_mode = false)
     debug_flag = debug_mode ? '--debug-mode' : ''
     # nosemgrep
-    stdout, stderr, status = Open3.capture3("traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_path} -u #{solr_url} -w Traject::PulSolrJsonWriter")
+    stdout, stderr, status = Open3.capture3("RUBY_YJIT_ENABLE=yes traject #{debug_flag} -c marc_to_solr/lib/traject_config.rb #{file_path} -u #{solr_url} -w Traject::PulSolrJsonWriter")
     if stderr.include?('FATAL') && !status.success?
       Rails.logger.error(stderr)
       raise "Traject indexing failed for #{file_path}: #{stderr}"
