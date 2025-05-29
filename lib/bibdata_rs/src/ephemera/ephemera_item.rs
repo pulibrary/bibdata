@@ -8,13 +8,8 @@ pub struct EphemeraItem {
     #[serde(rename = "@id")]
     pub id: String,
     pub title: Vec<String>,
-    #[serde(rename = "alternative", skip_serializing_if = "Option::is_none")]
-    pub alternative_title_display: Option<Vec<String>>,
-    #[serde(
-        rename = "transliterated_title",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub transliterated_title_display: Option<Vec<String>>,
+    pub alternative: Option<Vec<String>>,
+    pub transliterated_title: Option<Vec<String>>,
     // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
     // #[serde(rename = "creator")]
     // creator: Vec<String>,
@@ -31,26 +26,10 @@ pub struct ItemResponse {
     pub data: Vec<EphemeraItem>,
 }
 
-impl Serialize for EphemeraItem {
-    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-    where
-        S: Serializer,
-    {
-        let mut serializer = serializer.serialize_struct("Attributes", 5)?;
-        serializer.serialize_field("title_display", &self.title.first())?;
-        serializer.serialize_field("title_citation_display", &self.title)?;
-        serializer.serialize_field("other_title_display", &self.other_title_display())?;
-        serializer.end()
-    }
-}
 impl EphemeraItem {
     pub fn other_title_display(&self) -> Vec<String> {
-        let mut combined = self.alternative_title_display.clone().unwrap_or_default();
-        combined.extend(
-            self.transliterated_title_display
-                .clone()
-                .unwrap_or_default(),
-        );
+        let mut combined = self.alternative.clone().unwrap_or_default();
+        combined.extend(self.transliterated_title.clone().unwrap_or_default());
         combined
     }
 }

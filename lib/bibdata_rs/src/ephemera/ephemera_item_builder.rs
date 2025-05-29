@@ -23,11 +23,11 @@ impl EphemeraItemBuilder {
         self
     }
 
-    pub fn alternative(mut self, alternative_title: Vec<String>) -> Self {
-        self.alternative = Some(alternative_title);
+    pub fn alternative(mut self, alternative: Vec<String>) -> Self {
+        self.alternative = Some(alternative);
         self
     }
-    
+
     pub fn transliterated_title(mut self, transliterated_title: Vec<String>) -> Self {
         self.transliterated_title = Some(transliterated_title);
         self
@@ -40,8 +40,8 @@ impl EphemeraItemBuilder {
         Ok(EphemeraItem {
             id,
             title,
-            alternative_title_display: self.alternative,
-            transliterated_title_display: self.transliterated_title,
+            alternative: self.alternative,
+            transliterated_title: self.transliterated_title,
         })
     }
 }
@@ -62,10 +62,7 @@ mod tests {
         let item = item.unwrap();
         assert_eq!(item.id, "test-id");
         assert_eq!(item.title, vec!["test title"]);
-        assert_eq!(
-            item.alternative_title_display,
-            Some(vec!["alt title".to_string()])
-        );
+        assert_eq!(item.alternative, Some(vec!["alt title".to_string()]));
     }
 
     #[test]

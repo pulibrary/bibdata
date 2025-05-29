@@ -9,7 +9,6 @@ pub struct SolrDocumentBuilder {
     title_citation_display: Option<String>,
     title_display: Option<String>,
     title_sort: Option<String>,
-    alternative_title_display: Option<Vec<String>>,
     author_sort: Option<String>,
     electronic_access_1display: Option<String>,
     restrictions_display_text: Option<Vec<String>>,
@@ -58,20 +57,15 @@ impl SolrDocumentBuilder {
         self.title_display = title_display;
         self
     }
-    pub fn with_other_title_display(&mut self, other_title_display: Option<Vec<String>>) -> &mut Self {
+    pub fn with_other_title_display(
+        &mut self,
+        other_title_display: Option<Vec<String>>,
+    ) -> &mut Self {
         self.other_title_display = other_title_display;
         self
     }
     pub fn with_title_sort(&mut self, title_sort: Option<String>) -> &mut Self {
         self.title_sort = title_sort;
-        self
-    }
-
-    pub fn with_alternative_title_display(
-        &mut self,
-        alternative_title_display: Option<Vec<String>>,
-    ) -> &mut Self {
-        self.alternative_title_display = alternative_title_display;
         self
     }
 
@@ -226,7 +220,6 @@ impl SolrDocumentBuilder {
             title_citation_display: self.title_citation_display.clone(),
             title_display: self.title_display.clone(),
             title_sort: self.title_sort.clone(),
-            alternative_title_display: self.alternative_title_display.clone(),
             author_sort: self.author_sort.clone(),
             electronic_access_1display: self.electronic_access_1display.clone(),
             restrictions_display_text: self.restrictions_display_text.clone(),
@@ -268,6 +261,9 @@ mod tests {
         let document = SolrDocumentBuilder::default()
             .with_other_title_display(Some(vec!["Aspen".to_string()]))
             .build();
-        assert_eq!(document.other_title_display, Some(vec!["Aspen".to_string()]));
+        assert_eq!(
+            document.other_title_display,
+            Some(vec!["Aspen".to_string()])
+        );
     }
 }

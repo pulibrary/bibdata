@@ -1,3 +1,5 @@
+use crate::solr::SolrDocument;
+
 use super::{
     ephemera_item::{EphemeraItem, ItemResponse},
     CatalogClient,
@@ -54,7 +56,7 @@ pub async fn chunk_read_id(
         let client = CatalogClient::new(url.to_owned());
         let response = client.get_item_data(&id).await?;
         // TODO: This should be the mapped Solr document
-        responses.push(response);
+        responses.push(SolrDocument::from(&response));
     }
     Ok(serde_json::to_string(&responses)?)
 }
