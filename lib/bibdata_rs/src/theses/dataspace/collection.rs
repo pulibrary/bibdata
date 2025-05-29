@@ -6,10 +6,10 @@ use std::{
     io::{BufWriter, Write},
 };
 
+use crate::solr::SolrDocument;
 use crate::theses::{
     config,
     dataspace::{community, document::DataspaceDocument},
-    solr::SolrDocument,
     theses_cache_path,
 };
 use anyhow::{anyhow, Result};

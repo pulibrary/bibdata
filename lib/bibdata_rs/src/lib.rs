@@ -4,6 +4,7 @@ use theses::dataspace::collection;
 
 mod config;
 mod ephemera;
+mod solr;
 pub mod theses;
 
 #[cfg(test)]

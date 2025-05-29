@@ -3,6 +3,7 @@ use ephemera_item::{EphemeraItem, ItemResponse};
 
 pub mod ephemera_folder;
 pub mod ephemera_item;
+mod ephemera_item_builder;
 
 pub struct CatalogClient {
     url: String,
@@ -10,25 +11,27 @@ pub struct CatalogClient {
 
 impl Default for CatalogClient {
     fn default() -> Self {
-        Self::new()
+        Self::new(
+            std::env::var("FIGGY_PRODUCTION").unwrap_or("https://figgy.princeton.edu".to_string()),
+        )
     }
 }
 
 impl CatalogClient {
-    pub fn new() -> Self {
-        let figgy_ephemera_url = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL");
-        CatalogClient {
-            url: figgy_ephemera_url.unwrap(),
-        }
+    pub fn new(url: String) -> Self {
+        CatalogClient { url }
     }
     pub async fn get_folder_data(&self) -> Result<FolderResponse, reqwest::Error> {
-        let response = reqwest::get(&self.url).await?;
+        let path = std::env::var("FIGGY_BORN_DIGITAL_EPHEMERA_URL").unwrap_or("/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=".to_string());
+        let url = format!("{}{}", &self.url, path);
+        let response = reqwest::get(url).await?;
         let data: FolderResponse = response.json().await?;
         Ok(data)
     }
 
-    pub async fn get_item_data(&self) -> Result<EphemeraItem, reqwest::Error> {
-        let response = reqwest::get(&self.url).await?;
+    pub async fn get_item_data(&self, id: &str) -> Result<EphemeraItem, reqwest::Error> {
+        let url = format!("{}/catalog/{}", &self.url, id);
+        let response = reqwest::get(url).await?;
         let data: EphemeraItem = response.json().await?;
         Ok(data)
     }
