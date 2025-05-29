@@ -24,6 +24,7 @@ pub struct Links {
 }
 pub async fn read_ephemera_folders(
     url: impl Into<String>,
+    chunk_size: usize,
 ) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let client = CatalogClient::new(url.into());
     let response = client.get_folder_data().await?;
@@ -32,12 +33,11 @@ pub async fn read_ephemera_folders(
     Ok(ids)
 }
 
-// TODO: accept a parameter chunk_size, so that we can pass 1000 in production but 3 in the tests
 pub async fn ephemera_folders_iterator(
     url: &str,
+    chunk_size: usize,
 ) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let data: Vec<String> = read_ephemera_folders(url).await?;
-    let chunk_size = 1000;
+    let data: Vec<String> = read_ephemera_folders(url, chunk_size).await?;
     let mut result: Vec<String> = Vec::new();
     for chunk in data.chunks(chunk_size) {
         let chunk_vec: Vec<String> = chunk.to_vec().clone();
@@ -55,7 +55,6 @@ pub async fn chunk_read_id(
     for id in ids {
         let client = CatalogClient::new(url.to_owned());
         let response = client.get_item_data(&id).await?;
-        // TODO: This should be the mapped Solr document
         responses.push(SolrDocument::from(&response));
     }
     Ok(serde_json::to_string(&responses)?)
@@ -91,7 +90,7 @@ mod tests {
                 .create_async()
                 .await;
 
-            let result = read_ephemera_folders(server.url()).await.unwrap();
+            let result = read_ephemera_folders(server.url(), 3).await.unwrap();
             assert!(!result.is_empty());
             assert!(result.contains(
                 &"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd"
@@ -126,7 +125,7 @@ mod tests {
             .with_header("content-type", "application/json")
             .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
             .create();
-        let data = read_ephemera_folders(server.url()).await.unwrap();
+        let data = read_ephemera_folders(server.url(), 3).await.unwrap();
         let chunk_size = 3;
         let mut result: Vec<String> = Vec::new();
         for chunk in data.chunks(chunk_size) {

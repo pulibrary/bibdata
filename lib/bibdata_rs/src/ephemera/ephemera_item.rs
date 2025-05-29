@@ -38,7 +38,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
     let rt = tokio::runtime::Runtime::new()
         .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
     rt.block_on(async {
-        let folder_results = ephemera_folders_iterator(&url)
+        let folder_results = ephemera_folders_iterator(&url, 1_000)
             .await
             .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
         let combined_json = folder_results.join(",");
