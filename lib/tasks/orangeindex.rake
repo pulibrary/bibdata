@@ -117,7 +117,7 @@ namespace :liberate do
     debug = ENV.fetch('DEBUG', nil) == 'true'
     abort 'MARC XML file name must be indicated via FILE environment variable' unless file_name
     solr = IndexFunctions.rsolr_connection(solr_url)
-    Alma::Indexer.new(solr_url:).index_file(file_name, debug)
+    Alma::Indexer.new(solr_url:).index_file_debug(file_name)
     solr.commit
   end
 
