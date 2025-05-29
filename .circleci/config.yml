@@ -5,7 +5,7 @@ orbs:
 jobs:
   lint:
     docker:
-      - image: cimg/ruby:3.4.1
+      - image: cimg/ruby:3.4.4
         environment:
           RAILS_ENV: test
           PGHOST: localhost
@@ -33,7 +33,7 @@ jobs:
 
   test:
     docker:
-      - image: cimg/ruby:3.4.1-browsers
+      - image: cimg/ruby:3.4.4-browsers
         environment:
           RAILS_ENV: test
           PGHOST: localhost
