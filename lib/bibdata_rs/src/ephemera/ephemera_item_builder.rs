@@ -4,8 +4,8 @@ use super::ephemera_item::EphemeraItem;
 pub struct EphemeraItemBuilder {
     id: Option<String>,
     title: Option<Vec<String>>,
-    alternative_title_display: Option<Vec<String>>,
-    transliterated_title_display: Option<Vec<String>>,
+    alternative: Option<Vec<String>>,
+    transliterated_title: Option<Vec<String>>,
 }
 
 impl EphemeraItemBuilder {
@@ -24,12 +24,12 @@ impl EphemeraItemBuilder {
     }
 
     pub fn alternative_title_display(mut self, alternative_title: Vec<String>) -> Self {
-        self.alternative_title_display = Some(alternative_title);
+        self.alternative = Some(alternative_title);
         self
     }
-
+    
     pub fn transliterated_title_display(mut self, transliterated_title: Vec<String>) -> Self {
-        self.transliterated_title_display = Some(transliterated_title);
+        self.transliterated_title = Some(transliterated_title);
         self
     }
 
@@ -40,8 +40,8 @@ impl EphemeraItemBuilder {
         Ok(EphemeraItem {
             id,
             title,
-            alternative_title_display: self.alternative_title_display,
-            transliterated_title_display: self.transliterated_title_display,
+            alternative_title_display: self.alternative,
+            transliterated_title_display: self.transliterated_title,
         })
     }
 }

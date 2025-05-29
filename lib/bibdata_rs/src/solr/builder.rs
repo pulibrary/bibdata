@@ -26,6 +26,7 @@ pub struct SolrDocumentBuilder {
     holdings_1display: Option<String>,
     electronic_portfolio_s: Option<String>,
     class_year_s: Option<Vec<String>>,
+    other_title_display: Option<Vec<String>>,
     pub_date_start_sort: Option<Vec<String>>,
     pub_date_end_sort: Option<Vec<String>>,
     author_display: Option<Vec<String>>,
@@ -248,6 +249,7 @@ impl SolrDocumentBuilder {
             certificate_display: self.certificate_display.clone(),
             description_display: self.description_display.clone(),
             restrictions_note_display: self.restrictions_note_display.clone(),
+            other_title_display: self.other_title_display.clone(),
             summary_note_display: self.summary_note_display.clone(),
         }
     }
