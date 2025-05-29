@@ -4,8 +4,8 @@ use super::ephemera_item::EphemeraItem;
 pub struct EphemeraItemBuilder {
     id: Option<String>,
     title: Option<Vec<String>>,
-    alternative_title_display: Option<Vec<String>>,
-    transliterated_title_display: Option<Vec<String>>,
+    alternative: Option<Vec<String>>,
+    transliterated_title: Option<Vec<String>>,
 }
 
 impl EphemeraItemBuilder {
@@ -23,13 +23,13 @@ impl EphemeraItemBuilder {
         self
     }
 
-    pub fn alternative_title_display(mut self, alternative_title: Vec<String>) -> Self {
-        self.alternative_title_display = Some(alternative_title);
+    pub fn alternative(mut self, alternative_title: Vec<String>) -> Self {
+        self.alternative = Some(alternative_title);
         self
     }
-
-    pub fn transliterated_title_display(mut self, transliterated_title: Vec<String>) -> Self {
-        self.transliterated_title_display = Some(transliterated_title);
+    
+    pub fn transliterated_title(mut self, transliterated_title: Vec<String>) -> Self {
+        self.transliterated_title = Some(transliterated_title);
         self
     }
 
@@ -40,8 +40,8 @@ impl EphemeraItemBuilder {
         Ok(EphemeraItem {
             id,
             title,
-            alternative_title_display: self.alternative_title_display,
-            transliterated_title_display: self.transliterated_title_display,
+            alternative_title_display: self.alternative,
+            transliterated_title_display: self.transliterated_title,
         })
     }
 }
@@ -55,7 +55,7 @@ mod tests {
         let item = EphemeraItemBuilder::new()
             .id("test-id".to_string())
             .title(vec!["test title".to_string()])
-            .alternative_title_display(vec!["alt title".to_string()])
+            .alternative(vec!["alt title".to_string()])
             .build();
 
         assert!(item.is_ok());

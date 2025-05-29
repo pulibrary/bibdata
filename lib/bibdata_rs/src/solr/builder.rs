@@ -26,6 +26,7 @@ pub struct SolrDocumentBuilder {
     holdings_1display: Option<String>,
     electronic_portfolio_s: Option<String>,
     class_year_s: Option<Vec<String>>,
+    other_title_display: Option<Vec<String>>,
     pub_date_start_sort: Option<Vec<String>>,
     pub_date_end_sort: Option<Vec<String>>,
     author_display: Option<Vec<String>>,
@@ -55,6 +56,10 @@ impl SolrDocumentBuilder {
     }
     pub fn with_title_display(&mut self, title_display: Option<String>) -> &mut Self {
         self.title_display = title_display;
+        self
+    }
+    pub fn with_other_title_display(&mut self, other_title_display: Option<Vec<String>>) -> &mut Self {
+        self.other_title_display = other_title_display;
         self
     }
     pub fn with_title_sort(&mut self, title_sort: Option<String>) -> &mut Self {
@@ -248,7 +253,21 @@ impl SolrDocumentBuilder {
             certificate_display: self.certificate_display.clone(),
             description_display: self.description_display.clone(),
             restrictions_note_display: self.restrictions_note_display.clone(),
+            other_title_display: self.other_title_display.clone(),
             summary_note_display: self.summary_note_display.clone(),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_can_build_document_with_other_title_display() {
+        let document = SolrDocumentBuilder::default()
+            .with_other_title_display(Some(vec!["Aspen".to_string()]))
+            .build();
+        assert_eq!(document.other_title_display, Some(vec!["Aspen".to_string()]));
     }
 }
