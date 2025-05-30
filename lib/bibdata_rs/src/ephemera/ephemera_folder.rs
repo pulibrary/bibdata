@@ -113,7 +113,7 @@ mod tests {
             .mock(
                 "GET",
                 mockito::Matcher::Regex(
-                    r"^/catalog/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+                    r"^/catalog/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}.jsonld$"
                         .to_string(),
                 ),
             )
