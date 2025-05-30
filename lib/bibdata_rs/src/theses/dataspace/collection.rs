@@ -61,16 +61,14 @@ pub fn collections_as_solr(
     Ok(())
 }
 
-pub fn get_document_list<T>(
+type CollectionIdsSelector = fn(&str, &str) -> Result<Vec<u32>>;
+pub fn get_document_list(
     server: &str,
     community_handle: &str,
     rest_limit: u32,
-    id_selector: T, // a closure that returns a Vec of dspace collection ids
-) -> Result<Vec<DataspaceDocument>>
-where
-    T: Fn(&str, &str) -> Result<Vec<u32>>,
-{
-    let collection_ids = id_selector(server, community_handle)?;
+    ids_selector: CollectionIdsSelector, // a closure that returns a Vec of dspace collection ids
+) -> Result<Vec<DataspaceDocument>> {
+    let collection_ids = ids_selector(server, community_handle)?;
     let documents = collection_ids
         .par_iter()
         .try_fold(Vec::new, |mut accumulator, collection_id| {
@@ -192,9 +190,9 @@ mod tests {
             .with_body("[]")
             .create();
 
-        let id_selector = |_server: &str, _handle: &str| Ok(vec![361u32]);
+        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec![361u32]);
         let docs =
-            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector).unwrap();
+            get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, ids_selector).unwrap();
         assert_eq!(docs.len(), 1);
         assert_eq!(
             docs[0].title.clone().unwrap(),
@@ -220,8 +218,8 @@ mod tests {
             .expect(4) // The initial request + 3 retries
             .create();
 
-        let id_selector = |_server: &str, _handle: &str| Ok(vec![361u32]);
-        let docs = get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, id_selector);
+        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec![361u32]);
+        let docs = get_document_list(&server.url(), "88435/dsp019c67wm88m", 100, ids_selector);
         assert!(docs.is_err());
 
         mock_page1.assert();
