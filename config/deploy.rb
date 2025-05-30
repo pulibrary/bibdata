@@ -39,8 +39,7 @@ set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-# Default value for keep_releases is 5
-set :keep_releases, 5
+set :keep_releases, 3
 
 set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production] }
 
