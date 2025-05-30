@@ -120,7 +120,7 @@ as deploy user, in `/opt/bibdata/current`
 $ tmux attach-session -t full-index
 $ cd /opt/bibdata/current
 $ mv /home/deploy/theses.json /home/deploy/theses-<date>.json 
-$ FILEPATH=/home/deploy/theses.json RAILS_ENV=production bundle exec rake orangetheses:cache_theses
+$ RUST_LOG=debug FILEPATH=~/theses.json bundle exec rake theses:cache_theses
 CTRL+b d (to detach from tmux)
 ```
 
