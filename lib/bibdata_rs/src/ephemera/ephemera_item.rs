@@ -1,6 +1,7 @@
 use super::{
     ephemera_folder::ephemera_folders_iterator, ephemera_item_builder::EphemeraItemBuilder,
 };
+use log::trace;
 use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
 
 #[derive(Deserialize, Debug)]
@@ -35,6 +36,8 @@ impl EphemeraItem {
 }
 
 pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
+    #[cfg(not(test))]
+    env_logger::init();
     let rt = tokio::runtime::Runtime::new()
         .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
     rt.block_on(async {
@@ -42,6 +45,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
             .await
             .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
         let combined_json = folder_results.join(",");
+        trace!("The JSON that we will post to Solr is {}", combined_json);
         Ok(combined_json)
     })
 }
@@ -62,7 +66,10 @@ mod tests {
             std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
 
             let mock = server
-                .mock("GET", "/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd")
+                .mock(
+                    "GET",
+                    "/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd.jsonld",
+                )
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
@@ -100,7 +107,7 @@ mod tests {
                 .mock(
                     "GET",
                     mockito::Matcher::Regex(
-                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.jsonld$"
                             .to_string(),
                     ),
                 )
@@ -141,7 +148,7 @@ mod tests {
                 .mock(
                     "GET",
                     mockito::Matcher::Regex(
-                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                        r"^/catalog/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}.jsonld$"
                             .to_string(),
                     ),
                 )

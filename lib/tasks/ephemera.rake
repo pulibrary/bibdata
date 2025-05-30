@@ -1,6 +1,6 @@
 namespace :ephemera do
   desc 'Full reindex ephemera into solr'
-  # TODO pass figgy environment url - FIGGY_PRODUCTION or FIGGY_STAGING
+  # TODO: pass figgy environment url - FIGGY_PRODUCTION or FIGGY_STAGING
   task full_reindex: :environment do
     default_solr_url = 'http://localhost:8983/solr/blacklight-core-development'
     solr_url = ENV.fetch('SET_URL', nil) || default_solr_url
