@@ -1,9 +1,6 @@
 use crate::solr::SolrDocument;
 
-use super::{
-    ephemera_item::{EphemeraItem, ItemResponse},
-    CatalogClient,
-};
+use super::CatalogClient;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
@@ -40,7 +37,7 @@ pub async fn ephemera_folders_iterator(
     let mut result: Vec<String> = Vec::new();
     for chunk in data.chunks(chunk_size) {
         let chunk_vec: Vec<String> = chunk.to_vec().clone();
-        let responses = chunk_read_id(chunk_vec, &url).await?;
+        let responses = chunk_read_id(chunk_vec, url).await?;
         result.push(responses);
     }
     Ok(result)
