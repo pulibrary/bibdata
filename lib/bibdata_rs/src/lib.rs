@@ -2,7 +2,6 @@ use ephemera::ephemera_item;
 use magnus::{function, prelude::*, Error, Ruby};
 use theses::dataspace::collection;
 
-mod config;
 mod ephemera;
 mod solr;
 pub mod theses;

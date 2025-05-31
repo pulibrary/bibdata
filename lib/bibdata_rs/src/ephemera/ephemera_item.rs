@@ -2,7 +2,7 @@ use super::{
     ephemera_folder::ephemera_folders_iterator, ephemera_item_builder::EphemeraItemBuilder,
 };
 use log::trace;
-use serde::{ser::SerializeStruct, Deserialize, Serialize, Serializer};
+use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraItem {
@@ -63,7 +63,7 @@ mod tests {
     async fn test_get_item_data() {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
-            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", &server.url());
+            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", server.url());
 
             let mock = server
                 .mock(
@@ -128,7 +128,6 @@ mod tests {
     }
 
     mod no_transliterated_title {
-        use std::path::PathBuf;
 
         use rb_sys_test_helpers::ruby_test;
 

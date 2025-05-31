@@ -1,5 +1,5 @@
 use ephemera_folder::FolderResponse;
-use ephemera_item::{EphemeraItem, ItemResponse};
+use ephemera_item::EphemeraItem;
 use log::debug;
 
 pub mod ephemera_folder;

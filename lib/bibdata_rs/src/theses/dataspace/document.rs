@@ -161,7 +161,7 @@ mod tests {
     #[test]
     fn it_can_parse_identifier_other() {
         let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":[{"key":"dc.identifier.other", "value":"2377"}]}]"#;
-        let documents: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
         assert_eq!(documents.len(), 1);
         assert_eq!(documents[0].identifier_other, Some(vec!["2377".to_owned()]));
     }
@@ -169,7 +169,7 @@ mod tests {
     #[test]
     fn it_can_handle_null_values() {
         let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":[{"key":"dc.contributor", "value":null}]}]"#;
-        let documents: Vec<DataspaceDocument> = serde_json::from_str(&json).unwrap();
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
         assert_eq!(documents.len(), 1);
         assert!(documents[0].contributor.is_none());
     }

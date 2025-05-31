@@ -277,11 +277,11 @@ mod tests {
 
     #[test]
     fn it_can_determine_if_class_year_would_have_physical_holdings() {
-        assert_eq!(physical_class_year(&["2010".to_string()]), true);
+        assert!(physical_class_year(&["2010".to_string()]));
     }
 
     #[test]
     fn it_can_determine_if_class_year_is_too_new_for_physical_holdings() {
-        assert_eq!(physical_class_year(&["2013".to_string()]), false);
+        assert!(!physical_class_year(&["2013".to_string()]));
     }
 }

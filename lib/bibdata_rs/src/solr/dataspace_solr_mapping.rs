@@ -133,7 +133,7 @@ mod tests {
         assert_eq!(solr.author_display, Some(vec!["Clark, Hillary".to_owned()]));
         assert_eq!(
             solr.author_s.unwrap().sort(),
-            vec![
+            [
                 "Clark, Hillary".to_owned(),
                 "Sandberg, Robert".to_owned(),
                 "Wolff, Tamsen".to_owned()
