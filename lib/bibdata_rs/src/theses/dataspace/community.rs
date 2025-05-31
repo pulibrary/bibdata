@@ -32,14 +32,12 @@ pub fn get_community_id(server: &str, community_handle: &str) -> Result<Option<u
     Ok(theses_community.id)
 }
 
-pub fn get_collection_list<T>(
+type CommunityIdSelector = fn(&str, &str) -> Result<Option<u32>>;
+pub fn get_collection_list(
     server: &str,
     community_handle: &str,
-    id_selector: T, // A closure that returns the ID of the dspace community that contains the collections we need
-) -> Result<Vec<u32>>
-where
-    T: Fn(&str, &str) -> Result<Option<u32>>,
-{
+    id_selector: CommunityIdSelector, // A closure that returns the ID of the dspace community that contains the collections we need
+) -> Result<Vec<u32>> {
     let url = format!(
         "{}/communities/{}/collections",
         server,
@@ -95,7 +93,7 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/theses/api_collections.json")
             .create();
 
-        let id_selector = |_server: &str, _handle: &str| Ok(Some(267u32));
+        let id_selector: CommunityIdSelector = |_server: &str, _handle: &str| Ok(Some(267u32));
         let ids = get_collection_list(&server.url(), "88435/dsp019c67wm88m", id_selector).unwrap();
         assert_eq!(ids, vec![361]);
 
