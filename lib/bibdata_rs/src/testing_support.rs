@@ -7,6 +7,8 @@ use std::{
 // A mutex to ensure that the environment variable access is thread-safe
 static ENV_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
 
+type Test<T> = fn() -> T;
+
 /// This function can be used to wrap your test functions that
 /// modify environment variables.  Since rust runs tests in
 /// parallel, changing an environment variable in one test will
@@ -24,10 +26,10 @@ static ENV_MUTEX: LazyLock<Mutex<()>> = LazyLock::new(|| Mutex::new(()));
 ///   cargo test 2>/dev/null 1>&2 || echo "IT FAILED"
 /// done | wc -l
 /// ```
-pub(crate) fn preserving_envvar<T: Fn()>(key: &str, f: T) {
-    let _lock = ENV_MUTEX.lock().unwrap(); // Ensure exclusive access to environment variables
+pub(crate) fn preserving_envvar(key: &str, test: Test<()>) {
+    let _lock = ENV_MUTEX.lock().unwrap_or_else(|e| e.into_inner());
     let original = env::var(key).ok();
-    f();
+    test();
     if let Some(value) = original {
         env::set_var(key, value);
     } else {
@@ -35,10 +37,10 @@ pub(crate) fn preserving_envvar<T: Fn()>(key: &str, f: T) {
     }
 }
 
-pub(crate) async fn preserving_envvar_async<T: Fn() -> U, U: Future>(key: &str, f: T) {
-    let _lock = ENV_MUTEX.lock().unwrap(); // Ensure exclusive access to environment variables
+pub(crate) async fn preserving_envvar_async<F: Future>(key: &str, test: Test<F>) {
+    let _lock = ENV_MUTEX.lock().unwrap_or_else(|e| e.into_inner());
     let original = env::var(key).ok();
-    f().await;
+    test().await;
     if let Some(value) = original {
         env::set_var(key, value);
     } else {
