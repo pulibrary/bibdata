@@ -1,5 +1,21 @@
+use super::SolrDocument;
+use anyhow::Result;
+
+pub fn index(domain: &str, documents: &[SolrDocument]) -> Result<()> {
+    let client = reqwest::blocking::Client::new();
+    client
+        .post(format!(
+            "{}/solr/alma-production-rebuild/update?commit=true",
+            domain
+        ))
+        .body(serde_json::to_string(documents)?)
+        .send()?;
+    Ok(())
+}
+
 #[cfg(test)]
 mod tests {
+    use super::*;
     use crate::solr::builder::SolrDocumentBuilder;
 
     #[test]
@@ -8,10 +24,18 @@ mod tests {
             .with_other_title_display(Some(vec!["Aspen".to_string()]))
             .build();
         let mut server = mockito::Server::new();
-        server
+        let solr_mock = server
             .mock("POST", "/solr/alma-production-rebuild/update?commit=true")
-            .match_body(r#"[{"other_title_display": "Aspen"}]"#)
+            .match_request(|request| {
+                // Confirm that the body of the request is valid JSON with "Aspen" in the other_title_display field
+                let request_documents: Vec<SolrDocument> =
+                    serde_json::from_str(&request.utf8_lossy_body().unwrap()).unwrap();
+                request_documents[0].other_title_display == Some(vec!["Aspen".to_string()])
+            })
             .create();
-        assert!(true)
+
+        index(&server.url(), &[document]).unwrap();
+
+        solr_mock.assert();
     }
 }

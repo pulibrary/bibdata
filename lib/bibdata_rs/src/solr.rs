@@ -1,12 +1,12 @@
 // This module is responsible for describing the metadata in a catalog solr document
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 mod builder;
 mod dataspace_solr_mapping;
 mod ephemera_solr_mapping;
 mod index;
 
-#[derive(Debug, Default, Serialize)]
+#[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     advanced_location_s: Option<Vec<String>>,
