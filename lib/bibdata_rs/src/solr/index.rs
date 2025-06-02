@@ -1,13 +1,10 @@
 use super::SolrDocument;
 use anyhow::Result;
 
-pub fn index(domain: &str, documents: &[SolrDocument]) -> Result<()> {
+pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Result<()> {
     let client = reqwest::blocking::Client::new();
     client
-        .post(format!(
-            "{}/solr/alma-production-rebuild/update?commit=true",
-            domain
-        ))
+        .post(format!("{}/solr/{}/update?commit=true", domain, collection))
         .body(serde_json::to_string(documents)?)
         .send()?;
     Ok(())
@@ -24,8 +21,12 @@ mod tests {
             .with_other_title_display(Some(vec!["Aspen".to_string()]))
             .build();
         let mut server = mockito::Server::new();
+        let collection = "alma-production-rebuild";
         let solr_mock = server
-            .mock("POST", "/solr/alma-production-rebuild/update?commit=true")
+            .mock(
+                "POST",
+                format!("/solr/{}/update?commit=true", collection).as_str(),
+            )
             .match_request(|request| {
                 // Confirm that the body of the request is valid JSON with "Aspen" in the other_title_display field
                 let request_documents: Vec<SolrDocument> =
@@ -34,7 +35,7 @@ mod tests {
             })
             .create();
 
-        index(&server.url(), &[document]).unwrap();
+        index(&server.url(), collection, &[document]).unwrap();
 
         solr_mock.assert();
     }
