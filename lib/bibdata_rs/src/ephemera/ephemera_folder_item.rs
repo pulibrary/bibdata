@@ -1,11 +1,12 @@
 use super::{
-    ephemera_folder::ephemera_folders_iterator, ephemera_item_builder::EphemeraItemBuilder,
+    ephemera_folder_item_builder::EphemeraFolderItemBuilder,
+    ephemera_folders::ephemera_folders_iterator,
 };
 use log::trace;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
-pub struct EphemeraItem {
+pub struct EphemeraFolderItem {
     #[serde(rename = "@id")]
     pub id: String,
     pub title: Vec<String>,
@@ -16,18 +17,18 @@ pub struct EphemeraItem {
     // creator: Vec<String>,
 }
 
-impl EphemeraItem {
-    pub fn builder() -> EphemeraItemBuilder {
-        EphemeraItemBuilder::new()
+impl EphemeraFolderItem {
+    pub fn builder() -> EphemeraFolderItemBuilder {
+        EphemeraFolderItemBuilder::new()
     }
 }
 
 #[derive(Deserialize, Debug)]
 pub struct ItemResponse {
-    pub data: Vec<EphemeraItem>,
+    pub data: Vec<EphemeraFolderItem>,
 }
 
-impl EphemeraItem {
+impl EphemeraFolderItem {
     pub fn other_title_display(&self) -> Vec<String> {
         let mut combined = self.alternative.clone().unwrap_or_default();
         combined.extend(self.transliterated_title.clone().unwrap_or_default());

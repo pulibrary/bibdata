@@ -4,12 +4,12 @@ use super::CatalogClient;
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
-pub struct FolderResponse {
-    pub data: Vec<EphemeraFolder>,
+pub struct FoldersResponse {
+    pub data: Vec<EphemeraFolders>,
 }
 
 #[derive(Deserialize, Debug)]
-pub struct EphemeraFolder {
+pub struct EphemeraFolders {
     id: String,
     links: Links,
 }
@@ -61,7 +61,7 @@ mod tests {
     use std::path::PathBuf;
 
     use crate::{
-        ephemera::ephemera_folder::{ephemera_folders_iterator, read_ephemera_folders},
+        ephemera::ephemera_folders::{ephemera_folders_iterator, read_ephemera_folders},
         testing_support::preserving_envvar_async,
     };
 

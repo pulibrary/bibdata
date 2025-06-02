@@ -1,14 +1,14 @@
-use super::ephemera_item::EphemeraItem;
+use super::ephemera_folder_item::EphemeraFolderItem;
 
 #[derive(Default)]
-pub struct EphemeraItemBuilder {
+pub struct EphemeraFolderItemBuilder {
     id: Option<String>,
     title: Option<Vec<String>>,
     alternative: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
 }
 
-impl EphemeraItemBuilder {
+impl EphemeraFolderItemBuilder {
     pub fn new() -> Self {
         Self::default()
     }
@@ -33,11 +33,11 @@ impl EphemeraItemBuilder {
         self
     }
 
-    pub fn build(self) -> Result<EphemeraItem, &'static str> {
+    pub fn build(self) -> Result<EphemeraFolderItem, &'static str> {
         let id = self.id.ok_or("id is required")?;
         let title = self.title.ok_or("title is required")?;
 
-        Ok(EphemeraItem {
+        Ok(EphemeraFolderItem {
             id,
             title,
             alternative: self.alternative,
@@ -52,7 +52,7 @@ mod tests {
 
     #[test]
     fn test_builder_success() {
-        let item = EphemeraItemBuilder::new()
+        let item = EphemeraFolderItemBuilder::new()
             .id("test-id".to_string())
             .title(vec!["test title".to_string()])
             .alternative(vec!["alt title".to_string()])
@@ -67,7 +67,9 @@ mod tests {
 
     #[test]
     fn test_builder_missing_required_fields() {
-        let item = EphemeraItemBuilder::new().id("test-id".to_string()).build();
+        let item = EphemeraFolderItemBuilder::new()
+            .id("test-id".to_string())
+            .build();
 
         assert!(item.is_err());
         assert_eq!(item.unwrap_err(), "title is required");
