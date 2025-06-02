@@ -1,9 +1,9 @@
-use crate::ephemera::ephemera_item::EphemeraItem;
+use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
 
 use super::SolrDocument;
 
-impl From<&EphemeraItem> for SolrDocument {
-    fn from(value: &EphemeraItem) -> Self {
+impl From<&EphemeraFolderItem> for SolrDocument {
+    fn from(value: &EphemeraFolderItem) -> Self {
         SolrDocument::builder()
             .with_title_citation_display(value.title.first().cloned())
             .with_other_title_display(Some(value.other_title_display()))
@@ -19,7 +19,7 @@ mod tests {
 
     #[test]
     fn it_has_alternative_title_display() {
-        let document = EphemeraItem::builder()
+        let document = EphemeraFolderItem::builder()
             .id("af4a941d-96a4-463e-9043-cfa512e5eddd".to_string())
             .title(vec!["title1".to_string()])
             .alternative(vec!["alternativeTestTitle".to_string()])
@@ -38,7 +38,7 @@ mod tests {
 
     #[test]
     fn it_combines_alternative_and_transliterated_title_into_other_title_display() {
-        let item = EphemeraItem::builder()
+        let item = EphemeraFolderItem::builder()
             .id("12345".to_string())
             .title(vec!["Bohemian Rhapsody".to_string()])
             .alternative(vec!["We are the champions!".to_string()])
@@ -59,7 +59,7 @@ mod tests {
     fn it_can_convert_figgy_json_into_solr() {
         let fixture = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
         let reader = BufReader::new(fixture);
-        let ephemera_item: EphemeraItem = serde_json::from_reader(reader).unwrap();
+        let ephemera_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
         let solr_document: SolrDocument = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.title_citation_display,
