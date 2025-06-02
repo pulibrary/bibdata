@@ -1,10 +1,10 @@
-use ephemera_folders::FoldersResponse;
 use ephemera_folder_item::EphemeraFolderItem;
+use ephemera_folders::FoldersResponse;
 use log::debug;
 
-pub mod ephemera_folders;
 pub mod ephemera_folder_item;
 mod ephemera_folder_item_builder;
+pub mod ephemera_folders;
 
 pub struct CatalogClient {
     url: String,

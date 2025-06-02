@@ -67,7 +67,9 @@ mod tests {
 
     #[test]
     fn test_builder_missing_required_fields() {
-        let item = EphemeraFolderItemBuilder::new().id("test-id".to_string()).build();
+        let item = EphemeraFolderItemBuilder::new()
+            .id("test-id".to_string())
+            .build();
 
         assert!(item.is_err());
         assert_eq!(item.unwrap_err(), "title is required");

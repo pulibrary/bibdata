@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_02_205347) do
     t.datetime "updated_at", precision: nil, null: false
     t.integer "index_status", default: 0
     t.integer "dump_file_type"
+    t.string "s3_key"
     t.index ["dump_id"], name: "index_dump_files_on_dump_id"
   end
 
