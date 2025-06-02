@@ -4,6 +4,7 @@ use serde::Serialize;
 mod builder;
 mod dataspace_solr_mapping;
 mod ephemera_solr_mapping;
+mod index;
 
 #[derive(Debug, Default, Serialize)]
 pub struct SolrDocument {
