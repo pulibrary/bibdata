@@ -13,7 +13,7 @@ namespace :ephemera do
     end  
 
     documents = BibdataRs::Ephemera.json_ephemera_document(figgy_url)
-    BibdataRs::Ephemera.index(solr_url, collection, documents)
+    BibdataRs::Ephemera.index_string(solr_url, collection, documents)
 
     puts "Successfully indexed #{documents.length} documents to #{solr_url}/#{collection}"
   end

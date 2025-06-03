@@ -10,6 +10,12 @@ pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Resu
     Ok(())
 }
 
+pub fn index_string(domain: String, collection: String, documents: String) {
+    let document_vec: Vec<SolrDocument> =
+        serde_json::from_str(&documents).expect("Failed to parse documents from JSON string");
+    index(&domain, &collection, &document_vec).expect("Failed to index documents");
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
