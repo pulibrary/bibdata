@@ -1,13 +1,21 @@
-use super::SolrDocument;
+pub use super::SolrDocument;
 use anyhow::Result;
+use reqwest::header::CONTENT_TYPE;
 
 pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Result<()> {
     let client = reqwest::blocking::Client::new();
     client
         .post(format!("{}/solr/{}/update?commit=true", domain, collection))
         .body(serde_json::to_string(documents)?)
+        .header(CONTENT_TYPE, "application/json")
         .send()?;
     Ok(())
+}
+
+pub fn index_string(domain: String, collection: String, documents: String) {
+    let document_vec: Vec<SolrDocument> =
+        serde_json::from_str(&documents).expect("Failed to parse documents from JSON string");
+    index(&domain, &collection, &document_vec).expect("Failed to index documents");
 }
 
 #[cfg(test)]

@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 mod builder;
 mod dataspace_solr_mapping;
 mod ephemera_solr_mapping;
-mod index;
+pub mod index;
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
