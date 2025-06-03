@@ -1,4 +1,4 @@
-use super::SolrDocument;
+pub use super::SolrDocument;
 use anyhow::Result;
 
 pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Result<()> {
