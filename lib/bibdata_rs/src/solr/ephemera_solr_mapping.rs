@@ -7,6 +7,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
         SolrDocument::builder()
             .with_title_citation_display(value.title.first().cloned())
             .with_other_title_display(Some(value.other_title_display()))
+            .with_id(value.id.clone())
             .build()
     }
 }
@@ -75,5 +76,16 @@ mod tests {
                 "custom transliterated title".to_owned()
             ])
         );
+    }
+
+    #[test]
+    fn it_has_the_id_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.id, "abc123");
     }
 }

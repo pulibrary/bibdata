@@ -6,11 +6,11 @@ namespace :ephemera do
     solr_url = ENV.fetch('SET_URL', nil) || default_solr_url
     figgy_url = ENV.fetch('FIGGY_URL', nil)
     collection = ENV.fetch('COLLECTION', default_collection)
-    
+
     if figgy_url.nil? || collection.nil? || solr_url.nil?
-      puts "Error: FIGGY_URL, COLLECTION, and SET_URL environment variables are required"
+      puts 'Error: FIGGY_URL, COLLECTION, and SET_URL environment variables are required'
       exit 1
-    end  
+    end
 
     documents = BibdataRs::Ephemera.json_ephemera_document(figgy_url)
     BibdataRs::Ephemera.index_string(solr_url, collection, documents)

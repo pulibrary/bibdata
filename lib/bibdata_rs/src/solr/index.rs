@@ -1,11 +1,13 @@
 pub use super::SolrDocument;
 use anyhow::Result;
+use reqwest::header::CONTENT_TYPE;
 
 pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Result<()> {
     let client = reqwest::blocking::Client::new();
     client
         .post(format!("{}/solr/{}/update?commit=true", domain, collection))
         .body(serde_json::to_string(documents)?)
+        .header(CONTENT_TYPE, "application/json")
         .send()?;
     Ok(())
 }
