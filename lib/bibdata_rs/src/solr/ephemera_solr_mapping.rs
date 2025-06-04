@@ -8,7 +8,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_title_citation_display(value.title.first().cloned())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_id(value.id.clone())
-            .with_author_s(value.creator.first().cloned())
+            .with_author_s(value.creator.clone().unwrap_or_default())
             .build()
     }
 }
