@@ -12,9 +12,7 @@ pub struct EphemeraFolderItem {
     pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,
     pub transliterated_title: Option<Vec<String>>,
-    // // creator -> author_display, author, author_s, author_sort, author_roles_1display, author_citation_display
-    // #[serde(rename = "creator")]
-    // creator: Vec<String>,
+    pub creator: Option<Vec<String>>,
 }
 
 impl EphemeraFolderItem {
@@ -29,7 +27,7 @@ pub struct ItemResponse {
 }
 
 impl EphemeraFolderItem {
-    pub fn other_title_display(&self) -> Vec<String> {
+    pub fn other_title_display_combined(&self) -> Vec<String> {
         let mut combined = self.alternative.clone().unwrap_or_default();
         combined.extend(self.transliterated_title.clone().unwrap_or_default());
         combined

@@ -2,9 +2,10 @@ use super::ephemera_folder_item::EphemeraFolderItem;
 
 #[derive(Default)]
 pub struct EphemeraFolderItemBuilder {
+    alternative: Option<Vec<String>>,
+    creator: Option<Vec<String>>,
     id: Option<String>,
     title: Option<Vec<String>>,
-    alternative: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
 }
 
@@ -15,6 +16,11 @@ impl EphemeraFolderItemBuilder {
 
     pub fn id(mut self, id: String) -> Self {
         self.id = Some(id);
+        self
+    }
+
+    pub fn creator(mut self, creator: Vec<String>) -> Self {
+        self.creator = Some(creator);
         self
     }
 
@@ -42,6 +48,7 @@ impl EphemeraFolderItemBuilder {
             title,
             alternative: self.alternative,
             transliterated_title: self.transliterated_title,
+            creator: self.creator,
         })
     }
 }
@@ -56,6 +63,7 @@ mod tests {
             .id("test-id".to_string())
             .title(vec!["test title".to_string()])
             .alternative(vec!["alt title".to_string()])
+            .creator(vec!["jessy".to_string()])
             .build();
 
         assert!(item.is_ok());
@@ -63,6 +71,7 @@ mod tests {
         assert_eq!(item.id, "test-id");
         assert_eq!(item.title, vec!["test title"]);
         assert_eq!(item.alternative, Some(vec!["alt title".to_string()]));
+        assert_eq!(item.creator, Some(vec!["jessy".to_string()]));
     }
 
     #[test]

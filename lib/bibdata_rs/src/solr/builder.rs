@@ -4,12 +4,17 @@ use super::SolrDocument;
 
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
+    author_s: Option<Vec<String>>,
+    author_sort: Option<String>,
+    author_display: Option<Vec<String>>,
+    author_roles_1display: Option<Vec<String>>,
+    author_citation_display: Option<Vec<String>>,
+    advisor_display: Option<Vec<String>>,
     id: String,
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
     title_display: Option<String>,
     title_sort: Option<String>,
-    author_sort: Option<String>,
     electronic_access_1display: Option<String>,
     restrictions_display_text: Option<Vec<String>>,
     restrictions_note_display: Option<Vec<String>>,
@@ -28,9 +33,6 @@ pub struct SolrDocumentBuilder {
     other_title_display: Option<Vec<String>>,
     pub_date_start_sort: Option<Vec<String>>,
     pub_date_end_sort: Option<Vec<String>>,
-    author_display: Option<Vec<String>>,
-    author_s: Option<Vec<String>>,
-    advisor_display: Option<Vec<String>>,
     contributor_display: Option<Vec<String>>,
     department_display: Option<Vec<String>>,
     certificate_display: Option<Vec<String>>,
@@ -42,6 +44,21 @@ impl SolrDocumentBuilder {
         self.id = id.into();
         self
     }
+    pub fn with_author_roles_1display(
+        &mut self,
+        author_roles_1display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.author_roles_1display = author_roles_1display;
+        self
+    }
+    pub fn with_author_citation_display(
+        &mut self,
+        author_citation_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.author_citation_display = author_citation_display;
+        self
+    }
+
     pub fn with_title_t(&mut self, title_t: Option<Vec<String>>) -> &mut Self {
         self.title_t = title_t;
         self
@@ -167,6 +184,7 @@ impl SolrDocumentBuilder {
         self.author_s = Some(author_s);
         self
     }
+
     pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {
         self.advisor_display = advisor_display;
         self
@@ -215,12 +233,19 @@ impl SolrDocumentBuilder {
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
+            access_facet: self.access_facet.clone(),
+            advanced_location_s: self.advanced_location_s.clone(),
+            advisor_display: self.advisor_display.clone(),
+            author_s: self.author_s.clone(),
+            author_display: self.author_display.clone(),
+            author_roles_1display: self.author_roles_1display.clone(),
+            author_citation_display: self.author_citation_display.clone(),
+            author_sort: self.author_sort.clone(),
             id: self.id.clone(),
             title_t: self.title_t.clone(),
             title_citation_display: self.title_citation_display.clone(),
             title_display: self.title_display.clone(),
             title_sort: self.title_sort.clone(),
-            author_sort: self.author_sort.clone(),
             electronic_access_1display: self.electronic_access_1display.clone(),
             restrictions_display_text: self.restrictions_display_text.clone(),
             call_number_display: self.call_number_display.clone(),
@@ -231,16 +256,11 @@ impl SolrDocumentBuilder {
             location: self.location.clone(),
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
-            advanced_location_s: self.advanced_location_s.clone(),
-            access_facet: self.access_facet.clone(),
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),
             class_year_s: self.class_year_s.clone(),
             pub_date_start_sort: self.pub_date_start_sort.clone(),
             pub_date_end_sort: self.pub_date_end_sort.clone(),
-            author_display: self.author_display.clone(),
-            author_s: self.author_s.clone(),
-            advisor_display: self.advisor_display.clone(),
             contributor_display: self.contributor_display.clone(),
             department_display: self.department_display.clone(),
             certificate_display: self.certificate_display.clone(),
