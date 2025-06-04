@@ -5,6 +5,8 @@ use super::{
 use log::trace;
 use serde::Deserialize;
 
+mod format;
+
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolderItem {
     #[serde(rename = "@id")]
