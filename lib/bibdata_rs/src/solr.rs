@@ -55,7 +55,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     electronic_portfolio_s: Option<String>,
 
-    format: String,
+    format: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub holdings_1display: Option<String>,
@@ -116,7 +116,6 @@ mod tests {
     fn test_build_an_empty_solr_document() {
         let document = SolrDocument::builder().build();
         assert_eq!(document.location, None);
-        assert_eq!(document.format, "Senior thesis");
     }
 
     #[test]

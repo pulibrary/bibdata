@@ -10,6 +10,7 @@ pub struct SolrDocumentBuilder {
     author_roles_1display: Option<String>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
+    format: Option<Vec<String>>,
     id: String,
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
@@ -111,6 +112,11 @@ impl SolrDocumentBuilder {
         call_number_browse_s: impl Into<String>,
     ) -> &mut Self {
         self.call_number_browse_s = call_number_browse_s.into();
+        self
+    }
+
+    pub fn with_format(&mut self, format: Vec<String>) -> &mut Self {
+        self.format = Some(format);
         self
     }
 
@@ -252,7 +258,7 @@ impl SolrDocumentBuilder {
             call_number_browse_s: self.call_number_browse_s.clone(),
             language_facet: self.language_facet.clone(),
             language_name_display: self.language_name_display.clone(),
-            format: "Senior thesis".to_owned(),
+            format: self.format.clone(),
             location: self.location.clone(),
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
