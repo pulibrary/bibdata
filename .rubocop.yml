@@ -76,6 +76,10 @@ Metrics/MethodLength:
   Exclude:
     - 'marc_to_solr/lib/princeton_marc.rb'
 
+Rails/NegateInclude:
+  Exclude:
+    - 'marc_to_solr/**/*' # exclude? is a Rails method that is not included in marc_to_solr
+
 Rails/HasAndBelongsToMany:
   Exclude:
     - 'app/models/delivery_location.rb'

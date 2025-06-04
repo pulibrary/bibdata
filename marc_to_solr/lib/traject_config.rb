@@ -773,10 +773,10 @@ to_field 'script_display', extract_marc('546b')
 # mul - Multiple languages, sgn - Sign languages, und - Undetermined, ||| - No attempt to code
 to_field 'language_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |m| m.length == 3 ? m : m.scan(/.{1,3}/) }.flatten.uniq
-  codes_iso_639 = codes.select { |m| language_service.valid_language_code?(m) }
+  codes_iso_639 = codes.select { |m| language_service.can_be_represented_as_iana?(m) }
                        .map { |m| language_service.loc_to_iana(m) }
-  accumulator.replace(codes_iso_639)
-  accumulator.slice!(1..-1)
+  single_iana_code = codes_iso_639.first || 'en'
+  accumulator.replace([single_iana_code])
 end
 
 # Contents:

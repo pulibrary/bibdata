@@ -6,11 +6,15 @@ require_relative './indigenous_languages'
 class LanguageService
   include IndigenousLanguages
   def loc_to_iana(loc)
-    if Languages[loc]&.alpha2.blank? || ['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
-      'en'
-    else
+    if can_be_represented_as_iana? loc
       Languages[loc].alpha2.to_s
+    else
+      'en'
     end
+  end
+
+  def can_be_represented_as_iana?(loc)
+    valid_language_code?(loc) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
   end
 
   def valid_language_code?(code)
