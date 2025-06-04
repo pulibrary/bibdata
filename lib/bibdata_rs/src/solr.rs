@@ -18,7 +18,13 @@ pub struct SolrDocument {
     advisor_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    author_citation_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     author_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    author_roles_1display: Option<String>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     author_s: Option<Vec<String>>,
