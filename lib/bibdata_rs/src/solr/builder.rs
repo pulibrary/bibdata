@@ -7,7 +7,7 @@ pub struct SolrDocumentBuilder {
     author_s: Option<Vec<String>>,
     author_sort: Option<String>,
     author_display: Option<Vec<String>>,
-    author_roles_1display: Option<Vec<String>>,
+    author_roles_1display: Option<String>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
     id: String,
@@ -46,7 +46,7 @@ impl SolrDocumentBuilder {
     }
     pub fn with_author_roles_1display(
         &mut self,
-        author_roles_1display: Option<Vec<String>>,
+        author_roles_1display: Option<String>,
     ) -> &mut Self {
         self.author_roles_1display = author_roles_1display;
         self

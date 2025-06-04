@@ -8,7 +8,9 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_title_citation_display(value.title.first().cloned())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_id(value.id.clone())
+            .with_author_display(value.creator.clone())
             .with_author_s(value.creator.clone().unwrap_or_default())
+            .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .build()
     }
 }
@@ -88,5 +90,18 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.id, "abc123");
+    }
+
+    #[test]
+    fn it_has_the_creator_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .creator(vec!["Aspen".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.author_display, Some(vec!["Aspen".to_owned()]));
+        assert_eq!(solr_document.author_sort, Some("Aspen".to_owned()));
     }
 }
