@@ -5,12 +5,14 @@ use super::{
 use log::trace;
 use serde::Deserialize;
 
-mod format;
+pub mod format;
+use format::Format;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolderItem {
     #[serde(rename = "@id")]
     pub id: String,
+    pub format: Option<Vec<Format>>,
     pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,
     pub transliterated_title: Option<Vec<String>>,
@@ -59,6 +61,9 @@ mod tests {
     };
 
     use super::*;
+    use std::fs::File;
+    use std::io::BufReader;
+    use std::path::Path;
 
     #[tokio::test]
     async fn test_get_item_data() {
@@ -90,6 +95,18 @@ mod tests {
             }
         })
         .await
+    }
+
+    #[test]
+    fn it_can_read_the_format_from_json_ld() {
+        let file = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
+        let reader = BufReader::new(file);
+
+        let ephemera_folder_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
+        assert_eq!(
+            ephemera_folder_item.format.unwrap()[0].rename_format(),
+            Some("Book")
+        );
     }
 
     #[test]

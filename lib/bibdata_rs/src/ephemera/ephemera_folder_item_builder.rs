@@ -1,9 +1,11 @@
+use super::ephemera_folder_item::format::Format;
 use super::ephemera_folder_item::EphemeraFolderItem;
 
 #[derive(Default)]
 pub struct EphemeraFolderItemBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
+    format: Option<Vec<Format>>,
     id: Option<String>,
     title: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
@@ -47,6 +49,7 @@ impl EphemeraFolderItemBuilder {
             id,
             title,
             alternative: self.alternative,
+            format: self.format,
             transliterated_title: self.transliterated_title,
             creator: self.creator,
         })

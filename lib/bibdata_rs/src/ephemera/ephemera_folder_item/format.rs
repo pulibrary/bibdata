@@ -1,7 +1,7 @@
 use serde::Deserialize;
 
-#[derive(Deserialize)]
-struct Format {
+#[derive(Deserialize, Debug)]
+pub struct Format {
     pref_label: Option<String>,
 }
 

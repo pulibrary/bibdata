@@ -119,20 +119,15 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera1.json")
             .expect(12)
             .create();
-        // let data = read_ephemera_folders(server.url(), 3).await.unwrap();
+
         let chunk_size = 3;
-        // let mut result: Vec<String> = Vec::new();
-        // for chunk in data.chunks(chunk_size) {
-        //     let chunk_vec: Vec<String> = chunk.to_vec();
-        //     let responses = chunk_read_id(chunk_vec, &server.url()).await.unwrap();
-        //     result.push(responses);
-        // }
+
         let result = ephemera_folders_iterator(&server.url(), chunk_size)
             .await
             .unwrap();
         assert!(!result.is_empty());
-        // Assuming your ephemera_folders.json has 1 item
-        assert_eq!(result.len(), 4); // Total chunks should be 1
+
+        assert_eq!(result.len(), 4);
 
         mock1.assert();
         mock2.assert();
