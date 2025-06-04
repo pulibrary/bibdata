@@ -24,6 +24,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_certificate_display(doc.authorized_ceritificates())
             .with_contributor_display(doc.contributor.clone())
             .with_department_display(doc.authorized_departments())
+            .with_format(vec!["Senior thesis".to_string()])
             .with_holdings_1display(doc.physical_holding_string())
             .with_location(doc.location())
             .with_location_code_s(doc.location_code())
@@ -147,7 +148,7 @@ mod tests {
     fn it_is_senior_thesis() {
         let document = DataspaceDocument::builder().build();
         let solr = SolrDocument::from(&document);
-        assert_eq!(solr.format, "Senior thesis");
+        assert_eq!(solr.format, Some(vec!["Senior thesis".to_string()]));
     }
 
     #[test]

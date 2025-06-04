@@ -1,16 +1,16 @@
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug)]
+#[derive(Clone, Deserialize, Debug)]
 pub struct Format {
-    pref_label: Option<String>,
+    pub pref_label: Option<String>,
 }
 
 impl Format {
-    pub fn rename_format(&self) -> Option<&str> {
+    pub fn rename_format(&self) -> Option<String> {
         match &self.pref_label {
-            Some(f) if f == "Books" => Some("Book"),
-            Some(f) if f == "Serials" => Some("Journal"),
-            Some(f) if f == "Reports" => Some("Report"),
+            Some(f) if f == "Books" => Some("Book".to_string()),
+            Some(f) if f == "Serials" => Some("Journal".to_string()),
+            Some(f) if f == "Reports" => Some("Report".to_string()),
             _ => None,
         }
     }
@@ -40,6 +40,6 @@ mod tests {
             }
           ]"#;
         let formats: Vec<Format> = serde_json::from_str(json_ld).unwrap();
-        assert_eq!(formats[0].rename_format(), Some("Book"));
+        assert_eq!(formats[0].rename_format(), Some("Book".to_string()));
     }
 }

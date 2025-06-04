@@ -105,7 +105,7 @@ mod tests {
         let ephemera_folder_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
         assert_eq!(
             ephemera_folder_item.format.unwrap()[0].rename_format(),
-            Some("Book")
+            Some("Book".to_string())
         );
     }
 

@@ -36,6 +36,11 @@ impl EphemeraFolderItemBuilder {
         self
     }
 
+    pub fn format(mut self, format: Vec<Format>) -> Self {
+        self.format = Some(format);
+        self
+    }
+
     pub fn transliterated_title(mut self, transliterated_title: Vec<String>) -> Self {
         self.transliterated_title = Some(transliterated_title);
         self
