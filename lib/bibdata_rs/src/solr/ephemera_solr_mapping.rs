@@ -11,6 +11,8 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_author_display(value.creator.clone())
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
+            .with_author_roles_1display(value.creator.clone().unwrap_or_default().first().cloned())
+            .with_author_citation_display(value.creator.clone())
             .build()
     }
 }
@@ -103,5 +105,13 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.author_display, Some(vec!["Aspen".to_owned()]));
         assert_eq!(solr_document.author_sort, Some("Aspen".to_owned()));
+        assert_eq!(
+            solr_document.author_roles_1display,
+            Some("Aspen".to_owned())
+        );
+        assert_eq!(
+            solr_document.author_citation_display,
+            Some(vec!["Aspen".to_owned()])
+        );
     }
 }
