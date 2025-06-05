@@ -1,6 +1,6 @@
 // This module provides a convenient way to create a SolrDocument using the builder pattern
 
-use super::{AccessFacet, Format, SolrDocument};
+use super::{AccessFacet, FormatFacet, SolrDocument};
 
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
@@ -10,7 +10,7 @@ pub struct SolrDocumentBuilder {
     author_roles_1display: Option<String>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
-    format: Option<Vec<Format>>,
+    format: Option<Vec<FormatFacet>>,
     id: String,
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
@@ -143,7 +143,7 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_format(&mut self, format: Vec<Format>) -> &mut Self {
+    pub fn with_format(&mut self, format: Vec<FormatFacet>) -> &mut Self {
         self.format = Some(format);
         self
     }
