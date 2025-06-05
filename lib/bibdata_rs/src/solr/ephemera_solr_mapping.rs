@@ -1,6 +1,7 @@
-use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
-
 use super::SolrDocument;
+use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
+use crate::ephemera_folder_item::subject::ExactMatch;
+use crate::ephemera_folder_item::subject::Subject;
 
 impl From<&EphemeraFolderItem> for SolrDocument {
     fn from(value: &EphemeraFolderItem) -> Self {
@@ -150,7 +151,10 @@ mod tests {
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.author_display, Some(vec!["Aspen".to_owned(), "Tiberius".to_owned()]));
+        assert_eq!(
+            solr_document.author_display,
+            Some(vec!["Aspen".to_owned(), "Tiberius".to_owned()])
+        );
     }
 
     #[test]
@@ -162,7 +166,10 @@ mod tests {
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.author_roles_1display, Some("Tiberius".to_owned()));
+        assert_eq!(
+            solr_document.author_roles_1display,
+            Some("Tiberius".to_owned())
+        );
     }
 
     #[test]
@@ -194,7 +201,7 @@ mod tests {
             Some("Test name".to_owned())
         );
     }
-#[test]
+    #[test]
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
         let ephemera_item = EphemeraFolderItem::builder()
             .id("abc123".to_owned())
@@ -215,5 +222,21 @@ mod tests {
             solr_document.publisher_citation_display,
             Some(vec!["Princeton Press".to_owned()])
         );
+    }
+    #[test]
+    fn it_has_the_accepted_vocabulary_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .subject(vec![Subject {
+                exact_match: ExactMatch {
+                    id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                },
+            }])
+            .build()
+            .unwrap();
+        assert!(ephemera_item.subject.unwrap()[0]
+            .exact_match
+            .accepted_vocabulary());
     }
 }
