@@ -1,3 +1,5 @@
+require_relative '../../lib/bibdata_rs'
+
 # This class is responsible for listing the
 # genres present in a given MARC record
 class Genre
@@ -175,7 +177,7 @@ class Genre
     end
 
     def literary_work?
-      book? && record.fields('008').any? { |litf| %w[1 d e f j p].include? litf.value[33] }
+      @literary ||= book? && BibdataRs.literary_work?(record.to_xml.to_s)
     end
 
     def book?
