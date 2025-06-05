@@ -4,6 +4,8 @@ use serde::Deserialize;
 #[derive(Clone, Deserialize, Debug)]
 pub struct Subject {
     pub exact_match: ExactMatch,
+    #[serde(rename = "pref_label")]
+    pub label: String,
 }
 
 #[derive(Clone, Deserialize, Debug)]
@@ -34,9 +36,9 @@ mod tests {
                 "@type": "skos:Concept",
                 "pref_label": "Music",
                 "in_scheme": {
-                "@id": "https://figgy.princeton.edu/ns/lAESubjects/artsAndCulture",
-                "@type": "skos:ConceptScheme",
-                "pref_label": "Arts and culture"
+                    "@id": "https://figgy.princeton.edu/ns/lAESubjects/artsAndCulture",
+                    "@type": "skos:ConceptScheme",
+                    "pref_label": "Arts and culture"
                 },
                 "exact_match": {
                    "@id": "http://id.loc.gov/authorities/subjects/sh85088762"
@@ -48,5 +50,6 @@ mod tests {
             subject[0].exact_match.id,
             "http://id.loc.gov/authorities/subjects/sh85088762"
         );
+        assert_eq!(subject[0].label, "Music")
     }
 }

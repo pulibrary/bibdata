@@ -23,6 +23,7 @@ pub struct SolrDocumentBuilder {
     call_number_browse_s: String,
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
+    lc_subject_display: Vec<String>,
     location: Option<String>,
     location_display: Option<String>,
     location_code_s: Option<String>,
@@ -157,6 +158,11 @@ impl SolrDocumentBuilder {
         language_name_display: impl Into<Vec<String>>,
     ) -> &mut Self {
         self.language_name_display = language_name_display.into();
+        self
+    }
+
+    pub fn with_lc_subject_display(&mut self, lc_subject_display: Vec<String>) -> &mut Self {
+        self.lc_subject_display = lc_subject_display;
         self
     }
 
