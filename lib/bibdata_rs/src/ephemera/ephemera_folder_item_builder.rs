@@ -5,6 +5,7 @@ use super::ephemera_folder_item::EphemeraFolderItem;
 pub struct EphemeraFolderItemBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
+    contributor: Option<Vec<String>>,
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
@@ -23,7 +24,10 @@ impl EphemeraFolderItemBuilder {
         self.id = Some(id);
         self
     }
-
+    pub fn contributor(mut self, contributor: Vec<String>) -> Self {
+        self.contributor = Some(contributor);
+        self
+    }
     pub fn creator(mut self, creator: Vec<String>) -> Self {
         self.creator = Some(creator);
         self
@@ -76,6 +80,7 @@ impl EphemeraFolderItemBuilder {
             provenance: self.provenance,
             publisher: self.publisher,
             creator: self.creator,
+            contributor: self.contributor,
         })
     }
 }
@@ -113,5 +118,20 @@ mod tests {
 
         assert!(item.is_err());
         assert_eq!(item.unwrap_err(), "title is required");
+    }
+
+    #[test]
+    fn it_has_a_contributor() {
+        let item = EphemeraFolderItemBuilder::new()
+            .id("test-id".to_string())
+            .title(vec!["test title".to_string()])
+            .contributor(vec!["Eric".to_string()])
+            .build();
+
+        assert!(item.is_ok());
+        let item = item.unwrap();
+        assert_eq!(item.id, "test-id");
+        assert_eq!(item.title, vec!["test title"]);
+        assert_eq!(item.contributor, Some(vec!["Eric".to_string()]));
     }
 }

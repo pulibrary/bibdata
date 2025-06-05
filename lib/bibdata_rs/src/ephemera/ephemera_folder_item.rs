@@ -22,6 +22,7 @@ pub struct EphemeraFolderItem {
     pub provenance: Option<String>,
     pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
+    pub contributor: Option<Vec<String>>,
 }
 
 impl EphemeraFolderItem {
@@ -34,6 +35,17 @@ impl EphemeraFolderItem {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
             _ => vec![],
         }
+    }
+
+    pub fn all_contributors(&self) -> Vec<String> {
+        let mut all_contributors = Vec::default();
+        all_contributors.extend(self.creator.clone().unwrap_or_default());
+        all_contributors.extend(self.contributor.clone().unwrap_or_default());
+        all_contributors
+    }
+
+    pub fn first_contibutor(&self) -> Option<String> {
+        self.all_contributors().first().cloned()
     }
 }
 
