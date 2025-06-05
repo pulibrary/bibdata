@@ -8,7 +8,9 @@ use log::trace;
 use serde::Deserialize;
 
 pub mod format;
+pub mod subject;
 use format::Format;
+use subject::Subject;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolderItem {
@@ -20,6 +22,7 @@ pub struct EphemeraFolderItem {
     pub alternative: Option<Vec<String>>,
     pub publisher: Option<Vec<String>>,
     pub provenance: Option<String>,
+    pub subject: Option<Vec<Subject>>,
     pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,

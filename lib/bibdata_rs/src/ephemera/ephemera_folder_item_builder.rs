@@ -1,5 +1,6 @@
 use super::ephemera_folder_item::format::Format;
 use super::ephemera_folder_item::EphemeraFolderItem;
+use crate::ephemera_folder_item::subject::Subject;
 
 #[derive(Default)]
 pub struct EphemeraFolderItemBuilder {
@@ -11,6 +12,7 @@ pub struct EphemeraFolderItemBuilder {
     id: Option<String>,
     provenance: Option<String>,
     publisher: Option<Vec<String>>,
+    subject: Option<Vec<Subject>>,
     title: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
 }
@@ -38,6 +40,11 @@ impl EphemeraFolderItemBuilder {
         self
     }
 
+    pub fn subject(mut self, subject: Vec<Subject>) -> Self {
+        self.subject = Some(subject);
+        self
+    }
+
     pub fn title(mut self, title: Vec<String>) -> Self {
         self.title = Some(title);
         self
@@ -50,6 +57,10 @@ impl EphemeraFolderItemBuilder {
 
     pub fn format(mut self, format: Vec<Format>) -> Self {
         self.format = Some(format);
+        self
+    }
+    pub fn subjects(mut self, subjects: Vec<Subject>) -> Self {
+        self.subject = Some(subjects);
         self
     }
     pub fn provenance(mut self, provenance: String) -> Self {
@@ -79,6 +90,7 @@ impl EphemeraFolderItemBuilder {
             transliterated_title: self.transliterated_title,
             provenance: self.provenance,
             publisher: self.publisher,
+            subject: self.subject,
             creator: self.creator,
             contributor: self.contributor,
         })
