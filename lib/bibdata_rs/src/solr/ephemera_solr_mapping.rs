@@ -169,7 +169,7 @@ mod tests {
             Some("Test name".to_owned())
         );
     }
-
+#[test]
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
         let ephemera_item = EphemeraFolderItem::builder()
             .id("abc123".to_owned())
