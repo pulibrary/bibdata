@@ -33,7 +33,7 @@ impl EphemeraFolderItem {
         EphemeraFolderItemBuilder::new()
     }
 
-    pub fn solr_formats(&self) -> Vec<solr::Format> {
+    pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
             _ => vec![],
@@ -140,7 +140,7 @@ mod tests {
         let ephemera_folder_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
         assert_eq!(
             ephemera_folder_item.format.unwrap()[0].pref_label,
-            Some(solr::Format::Book)
+            Some(solr::FormatFacet::Book)
         );
     }
 

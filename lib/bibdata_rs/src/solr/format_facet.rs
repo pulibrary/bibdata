@@ -3,7 +3,7 @@ use std::str::FromStr;
 
 #[allow(dead_code)]
 #[derive(Copy, Clone, Debug, Serialize, PartialEq)]
-pub enum Format {
+pub enum FormatFacet {
     #[serde(rename = "Archival item")]
     ArchivalItem,
     Audio,
@@ -30,7 +30,7 @@ pub enum Format {
 #[derive(Debug)]
 pub struct NoFormatMatches;
 
-impl FromStr for Format {
+impl FromStr for FormatFacet {
     type Err = NoFormatMatches;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -45,7 +45,7 @@ impl FromStr for Format {
     }
 }
 
-impl<'de> Deserialize<'de> for Format {
+impl<'de> Deserialize<'de> for FormatFacet {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
@@ -67,35 +67,35 @@ mod tests {
     #[test]
     fn it_serializes() {
         assert_eq!(
-            serde_json::to_string(&Format::ArchivalItem).unwrap(),
+            serde_json::to_string(&FormatFacet::ArchivalItem).unwrap(),
             r#""Archival item""#
         );
         assert_eq!(
-            serde_json::to_string(&Format::DataFile).unwrap(),
+            serde_json::to_string(&FormatFacet::DataFile).unwrap(),
             r#""Data file""#
         );
         assert_eq!(
-            serde_json::to_string(&Format::MusicalScore).unwrap(),
+            serde_json::to_string(&FormatFacet::MusicalScore).unwrap(),
             r#""Musical score""#
         );
         assert_eq!(
-            serde_json::to_string(&Format::SeniorThesis).unwrap(),
+            serde_json::to_string(&FormatFacet::SeniorThesis).unwrap(),
             r#""Senior thesis""#
         );
         assert_eq!(
-            serde_json::to_string(&Format::VideoProjectedMedium).unwrap(),
+            serde_json::to_string(&FormatFacet::VideoProjectedMedium).unwrap(),
             r#""Video/Projected medium""#
         );
         assert_eq!(
-            serde_json::to_string(&Format::VisualMaterial).unwrap(),
+            serde_json::to_string(&FormatFacet::VisualMaterial).unwrap(),
             r#""Visual material""#
         );
     }
 
     #[test]
     fn it_can_be_created_from_str() {
-        assert_eq!(Format::from_str("Books").unwrap(), Format::Book);
-        assert_eq!(Format::from_str("Reports").unwrap(), Format::Report);
-        assert_eq!(Format::from_str("Serials").unwrap(), Format::Journal);
+        assert_eq!(FormatFacet::from_str("Books").unwrap(), FormatFacet::Book);
+        assert_eq!(FormatFacet::from_str("Reports").unwrap(), FormatFacet::Report);
+        assert_eq!(FormatFacet::from_str("Serials").unwrap(), FormatFacet::Journal);
     }
 }

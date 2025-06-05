@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{Format, SolrDocumentBuilder};
+use super::{access_facet::AccessFacet, FormatFacet, SolrDocumentBuilder};
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
@@ -8,7 +8,7 @@ pub struct SolrDocument {
     pub advanced_location_s: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub access_facet: Option<String>,
+    pub access_facet: Option<AccessFacet>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub advisor_display: Option<Vec<String>>,
@@ -51,7 +51,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub electronic_portfolio_s: Option<String>,
 
-    pub format: Option<Vec<Format>>,
+    pub format: Option<Vec<FormatFacet>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub holdings_1display: Option<String>,

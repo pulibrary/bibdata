@@ -3,7 +3,7 @@ use serde::Deserialize;
 
 #[derive(Copy, Clone, Deserialize, Debug)]
 pub struct Format {
-    pub pref_label: Option<solr::Format>,
+    pub pref_label: Option<solr::FormatFacet>,
 }
 
 #[cfg(test)]
@@ -30,6 +30,6 @@ mod tests {
             }
           ]"#;
         let formats: Vec<Format> = serde_json::from_str(json_ld).unwrap();
-        assert_eq!(formats[0].pref_label, Some(solr::Format::Book));
+        assert_eq!(formats[0].pref_label, Some(solr::FormatFacet::Book));
     }
 }

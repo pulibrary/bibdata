@@ -179,12 +179,12 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .format(vec![Format {
-                pref_label: Some(solr::Format::from_str("Serials").unwrap()),
+                pref_label: Some(solr::FormatFacet::from_str("Serials").unwrap()),
             }])
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.format, Some(vec![solr::Format::Journal]))
+        assert_eq!(solr_document.format, Some(vec![solr::FormatFacet::Journal]))
     }
 
     #[test]

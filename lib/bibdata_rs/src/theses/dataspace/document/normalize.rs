@@ -1,22 +1,22 @@
 // This module is responsible for normalizing data within a DataspaceDocument
 
-use crate::theses::{
+use crate::{solr::AccessFacet, theses::{
     dataspace::document::DataspaceDocument,
     department,
     embargo::{self, Embargo},
     holdings::{self, ThesisAvailability},
     language, program,
-};
+}};
 use itertools::Itertools;
 use regex::{Captures, Regex};
 use std::sync::LazyLock;
 
 impl DataspaceDocument {
-    pub fn access_facet(&self) -> Option<String> {
+    pub fn access_facet(&self) -> Option<AccessFacet> {
         match (self.embargo(), self.on_site_only()) {
             (embargo::Embargo::Current(_), _) => None,
-            (_, ThesisAvailability::AvailableOffSite) => Some("Online".to_owned()),
-            (_, ThesisAvailability::OnSiteOnly) => Some("In the Library".to_owned()),
+            (_, ThesisAvailability::AvailableOffSite) => Some(AccessFacet::Online),
+            (_, ThesisAvailability::OnSiteOnly) => Some(AccessFacet::InTheLibrary),
         }
     }
 

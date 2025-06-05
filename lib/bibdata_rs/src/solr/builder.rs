@@ -1,6 +1,6 @@
 // This module provides a convenient way to create a SolrDocument using the builder pattern
 
-use super::{Format, SolrDocument};
+use super::{AccessFacet, FormatFacet, SolrDocument};
 
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
@@ -10,7 +10,7 @@ pub struct SolrDocumentBuilder {
     author_roles_1display: Option<String>,
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
-    format: Option<Vec<Format>>,
+    format: Option<Vec<FormatFacet>>,
     id: String,
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
@@ -30,7 +30,7 @@ pub struct SolrDocumentBuilder {
     notes: Option<Vec<String>>,
     notes_display: Option<Vec<String>>,
     advanced_location_s: Option<Vec<String>>,
-    access_facet: Option<String>,
+    access_facet: Option<AccessFacet>,
     holdings_1display: Option<String>,
     electronic_portfolio_s: Option<String>,
     class_year_s: Option<Vec<String>>,
@@ -143,7 +143,7 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_format(&mut self, format: Vec<Format>) -> &mut Self {
+    pub fn with_format(&mut self, format: Vec<FormatFacet>) -> &mut Self {
         self.format = Some(format);
         self
     }
@@ -193,7 +193,7 @@ impl SolrDocumentBuilder {
         self.advanced_location_s = advanced_location_s;
         self
     }
-    pub fn with_access_facet(&mut self, access_facet: Option<String>) -> &mut Self {
+    pub fn with_access_facet(&mut self, access_facet: Option<AccessFacet>) -> &mut Self {
         self.access_facet = access_facet;
         self
     }
@@ -284,7 +284,7 @@ impl SolrDocumentBuilder {
     }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
-            access_facet: self.access_facet.clone(),
+            access_facet: self.access_facet,
             advanced_location_s: self.advanced_location_s.clone(),
             advisor_display: self.advisor_display.clone(),
             author_s: self.author_s.clone(),
