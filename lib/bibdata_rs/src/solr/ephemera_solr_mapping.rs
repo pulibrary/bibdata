@@ -153,6 +153,7 @@ mod tests {
         assert_eq!(solr_document.format, Some(vec![solr::Format::Journal]))
     }
 
+    #[test]
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
         let ephemera_item = EphemeraFolderItem::builder()
             .id("abc123".to_owned())
