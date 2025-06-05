@@ -11,7 +11,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_author_display(Some(value.all_contributors()))
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
-            .with_author_roles_1display(value.creator.clone().unwrap_or_default().first().cloned())
+            .with_author_roles_1display(value.first_contibutor())
             .with_author_citation_display(value.creator.clone())
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
@@ -151,6 +151,18 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.author_display, Some(vec!["Aspen".to_owned(), "Tiberius".to_owned()]));
+    }
+
+    #[test]
+    fn it_uses_contributor_as_a_fallback_value_for_the_author_roles_1display_field() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .contributor(vec!["Tiberius".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.author_roles_1display, Some("Tiberius".to_owned()));
     }
 
     #[test]

@@ -43,6 +43,10 @@ impl EphemeraFolderItem {
         all_contributors.extend(self.contributor.clone().unwrap_or_default());
         all_contributors
     }
+
+    pub fn first_contibutor(&self) -> Option<String> {
+        self.all_contributors().first().cloned()
+    }
 }
 
 #[derive(Deserialize, Debug)]
