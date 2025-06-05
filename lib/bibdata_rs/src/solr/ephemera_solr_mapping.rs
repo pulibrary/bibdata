@@ -15,6 +15,8 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_roles_1display(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
+            .with_notes(value.description.clone())
+            .with_notes_display(value.description.clone())
             .with_format(
                 value
                     .format
@@ -105,6 +107,22 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.id, "abc123");
+    }
+
+    #[test]
+    fn it_has_the_description_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .description(vec!["Puppy biting".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.notes, Some(vec!["Puppy biting".to_owned()]));
+        assert_eq!(
+            solr_document.notes_display,
+            Some(vec!["Puppy biting".to_owned()])
+        );
     }
 
     #[test]

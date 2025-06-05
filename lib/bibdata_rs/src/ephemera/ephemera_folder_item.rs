@@ -12,6 +12,7 @@ use format::Format;
 pub struct EphemeraFolderItem {
     #[serde(rename = "@id")]
     pub id: String,
+    pub description: Option<Vec<String>>,
     pub format: Option<Vec<Format>>,
     pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,

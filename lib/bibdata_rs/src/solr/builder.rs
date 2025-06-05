@@ -26,6 +26,8 @@ pub struct SolrDocumentBuilder {
     location: Option<String>,
     location_display: Option<String>,
     location_code_s: Option<String>,
+    notes: Option<Vec<String>>,
+    notes_display: Option<Vec<String>>,
     advanced_location_s: Option<Vec<String>>,
     access_facet: Option<String>,
     holdings_1display: Option<String>,
@@ -145,6 +147,14 @@ impl SolrDocumentBuilder {
         self.location_code_s = location_code_s;
         self
     }
+    pub fn with_notes(&mut self, notes: Option<Vec<String>>) -> &mut Self {
+        self.notes = notes;
+        self
+    }
+    pub fn with_notes_display(&mut self, notes_display: Option<Vec<String>>) -> &mut Self {
+        self.notes_display = notes_display;
+        self
+    }
     pub fn with_advanced_location_s(
         &mut self,
         advanced_location_s: Option<Vec<String>>,
@@ -262,6 +272,8 @@ impl SolrDocumentBuilder {
             location: self.location.clone(),
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
+            notes: self.notes.clone(),
+            notes_display: self.notes_display.clone(),
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),
             class_year_s: self.class_year_s.clone(),

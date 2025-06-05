@@ -5,6 +5,7 @@ use super::ephemera_folder_item::EphemeraFolderItem;
 pub struct EphemeraFolderItemBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
+    description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
     title: Option<Vec<String>>,
@@ -23,6 +24,11 @@ impl EphemeraFolderItemBuilder {
 
     pub fn creator(mut self, creator: Vec<String>) -> Self {
         self.creator = Some(creator);
+        self
+    }
+
+    pub fn description(mut self, description: Vec<String>) -> Self {
+        self.description = Some(description);
         self
     }
 
@@ -54,6 +60,7 @@ impl EphemeraFolderItemBuilder {
             id,
             title,
             alternative: self.alternative,
+            description: self.description,
             format: self.format,
             transliterated_title: self.transliterated_title,
             creator: self.creator,
