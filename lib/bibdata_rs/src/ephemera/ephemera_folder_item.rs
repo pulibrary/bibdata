@@ -1,3 +1,5 @@
+use crate::solr;
+
 use super::{
     ephemera_folder_item_builder::EphemeraFolderItemBuilder,
     ephemera_folders::ephemera_folders_iterator,
@@ -24,6 +26,13 @@ pub struct EphemeraFolderItem {
 impl EphemeraFolderItem {
     pub fn builder() -> EphemeraFolderItemBuilder {
         EphemeraFolderItemBuilder::new()
+    }
+
+    pub fn solr_formats(&self) -> Vec<solr::Format> {
+        match &self.format {
+            Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
+            _ => vec![],
+        }
     }
 }
 
@@ -59,6 +68,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
 mod tests {
     use crate::{
         ephemera::CatalogClient,
+        solr,
         testing_support::{preserving_envvar, preserving_envvar_async},
     };
 
@@ -106,8 +116,8 @@ mod tests {
 
         let ephemera_folder_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
         assert_eq!(
-            ephemera_folder_item.format.unwrap()[0].rename_format(),
-            Some("Book".to_string())
+            ephemera_folder_item.format.unwrap()[0].pref_label,
+            Some(solr::Format::Book)
         );
     }
 

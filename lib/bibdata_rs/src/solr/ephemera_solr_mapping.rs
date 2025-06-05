@@ -1,5 +1,3 @@
-use itertools::Itertools;
-
 use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
 
 use super::SolrDocument;
@@ -17,15 +15,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_author_citation_display(value.creator.clone())
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
-            .with_format(
-                value
-                    .format
-                    .clone()
-                    .unwrap_or_default()
-                    .iter()
-                    .filter_map(|format| format.rename_format())
-                    .collect(),
-            )
+            .with_format(value.solr_formats())
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
@@ -35,9 +25,9 @@ impl From<&EphemeraFolderItem> for SolrDocument {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader};
+    use std::{fs::File, io::BufReader, str::FromStr};
 
-    use crate::ephemera::ephemera_folder_item::format::Format;
+    use crate::{ephemera::ephemera_folder_item::format::Format, solr};
 
     use super::*;
 
@@ -155,12 +145,12 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .format(vec![Format {
-                pref_label: Some("Serials".to_string()),
+                pref_label: Some(solr::Format::from_str("Serials").unwrap()),
             }])
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.format, Some(vec!["Journal".to_string()]))
+        assert_eq!(solr_document.format, Some(vec![solr::Format::Journal]))
     }
 
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
