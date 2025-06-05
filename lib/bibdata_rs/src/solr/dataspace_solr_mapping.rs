@@ -77,7 +77,7 @@ fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use crate::solr::Format;
+    use crate::solr::{AccessFacet, Format};
 
     use super::*;
 
@@ -190,7 +190,7 @@ mod tests {
             .with_rights_access_rights("Walk-in Access...")
             .build();
         let solr = SolrDocument::from(&document);
-        assert_eq!(solr.access_facet.unwrap(), "Online");
+        assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
         assert!(solr.advanced_location_s.is_none());
     }
 
@@ -215,7 +215,7 @@ mod tests {
     fn it_has_electronic_portfolio_s_by_default() {
         let document = DataspaceDocument::builder().build();
         let solr = SolrDocument::from(&document);
-        assert_eq!(solr.access_facet.unwrap(), "Online");
+        assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
         assert!(solr.electronic_portfolio_s.unwrap().contains("thesis"));
     }
 
