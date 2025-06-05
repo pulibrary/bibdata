@@ -69,6 +69,8 @@ pub struct SolrDocument {
 
     language_name_display: Vec<String>,
 
+    lc_subject_display: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     location: Option<String>,
 

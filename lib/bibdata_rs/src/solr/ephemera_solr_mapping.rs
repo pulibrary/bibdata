@@ -6,21 +6,22 @@ use crate::ephemera_folder_item::subject::Subject;
 impl From<&EphemeraFolderItem> for SolrDocument {
     fn from(value: &EphemeraFolderItem) -> Self {
         SolrDocument::builder()
-            .with_title_citation_display(value.title.first().cloned())
-            .with_other_title_display(Some(value.other_title_display_combined()))
-            .with_id(value.id.clone())
             .with_author_display(Some(value.all_contributors()))
+            .with_author_roles_1display(value.first_contibutor())
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
-            .with_author_roles_1display(value.first_contibutor())
             .with_author_citation_display(value.creator.clone())
+            .with_format(value.solr_formats())
+            .with_id(value.id.clone())
+            .with_lc_subject_display(value.subject_labels())
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
-            .with_format(value.solr_formats())
+            .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
+            .with_title_citation_display(value.title.first().cloned())
             .build()
     }
 }
@@ -232,11 +233,32 @@ mod tests {
                 exact_match: ExactMatch {
                     id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
                 },
+                label: "Music".to_string(),
             }])
             .build()
             .unwrap();
         assert!(ephemera_item.subject.unwrap()[0]
             .exact_match
             .accepted_vocabulary());
+    }
+    #[test]
+    fn it_includes_subject_terms_in_lc_subject_display_field() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .subject(vec![Subject {
+                exact_match: ExactMatch {
+                    id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                },
+                label: "Music".to_string(),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.lc_subject_display,
+            Some(vec!["Music".to_string()])
+        );
+
     }
 }

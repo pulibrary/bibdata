@@ -40,6 +40,13 @@ impl EphemeraFolderItem {
         }
     }
 
+    pub fn subject_labels(&self) -> Vec<String> {
+        match &self.subject {
+            Some(subjects) => subjects.iter().map(|s| s.label.clone()).collect(),
+            _ => vec![],
+        }
+    }
+
     pub fn all_contributors(&self) -> Vec<String> {
         let mut all_contributors = Vec::default();
         all_contributors.extend(self.creator.clone().unwrap_or_default());
