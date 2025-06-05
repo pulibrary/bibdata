@@ -26,6 +26,9 @@ impl From<&EphemeraFolderItem> for SolrDocument {
                     .filter_map(|format| format.rename_format())
                     .collect(),
             )
+            .with_pub_created_display(value.publisher.clone())
+            .with_publisher_no_display(value.publisher.clone())
+            .with_publisher_citation_display(value.publisher.clone())
             .build()
     }
 }
@@ -158,5 +161,27 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.format, Some(vec!["Journal".to_string()]))
+    }
+
+    fn it_has_the_publisher_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .publisher(vec!["Princeton Press".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.pub_created_display,
+            Some(vec!["Princeton Press".to_owned()])
+        );
+        assert_eq!(
+            solr_document.publisher_no_display,
+            Some(vec!["Princeton Press".to_owned()])
+        );
+        assert_eq!(
+            solr_document.publisher_citation_display,
+            Some(vec!["Princeton Press".to_owned()])
+        );
     }
 }
