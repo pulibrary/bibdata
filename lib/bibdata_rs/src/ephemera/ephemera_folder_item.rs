@@ -36,6 +36,13 @@ impl EphemeraFolderItem {
             _ => vec![],
         }
     }
+
+    pub fn all_contributors(&self) -> Vec<String> {
+        let mut all_contributors = Vec::default();
+        all_contributors.extend(self.creator.clone().unwrap_or_default());
+        all_contributors.extend(self.contributor.clone().unwrap_or_default());
+        all_contributors
+    }
 }
 
 #[derive(Deserialize, Debug)]
