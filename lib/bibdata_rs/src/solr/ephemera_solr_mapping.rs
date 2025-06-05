@@ -241,4 +241,24 @@ mod tests {
             .exact_match
             .accepted_vocabulary());
     }
+    #[test]
+    fn it_includes_subject_terms_in_lc_subject_display_field() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .subject(vec![Subject {
+                exact_match: ExactMatch {
+                    id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                },
+                label: "Music".to_string(),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.lc_subject_display,
+            Some(vec!["Music".to_string()])
+        );
+
+    }
 }

@@ -23,7 +23,7 @@ pub struct SolrDocumentBuilder {
     call_number_browse_s: String,
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
-    lc_subject_display: Vec<String>,
+    lc_subject_display: Option<Vec<String>>,
     location: Option<String>,
     location_display: Option<String>,
     location_code_s: Option<String>,
@@ -162,7 +162,7 @@ impl SolrDocumentBuilder {
     }
 
     pub fn with_lc_subject_display(&mut self, lc_subject_display: Vec<String>) -> &mut Self {
-        self.lc_subject_display = lc_subject_display;
+        self.lc_subject_display = Some(lc_subject_display);
         self
     }
 
@@ -292,18 +292,15 @@ impl SolrDocumentBuilder {
             author_roles_1display: self.author_roles_1display.clone(),
             author_citation_display: self.author_citation_display.clone(),
             author_sort: self.author_sort.clone(),
-            id: self.id.clone(),
-            title_t: self.title_t.clone(),
-            title_citation_display: self.title_citation_display.clone(),
-            title_display: self.title_display.clone(),
-            title_sort: self.title_sort.clone(),
-            electronic_access_1display: self.electronic_access_1display.clone(),
-            restrictions_display_text: self.restrictions_display_text.clone(),
             call_number_display: self.call_number_display.clone(),
             call_number_browse_s: self.call_number_browse_s.clone(),
+            electronic_access_1display: self.electronic_access_1display.clone(),
+            id: self.id.clone(),
+            restrictions_display_text: self.restrictions_display_text.clone(),
             language_facet: self.language_facet.clone(),
             language_name_display: self.language_name_display.clone(),
             format: self.format.clone(),
+            lc_subject_display: self.lc_subject_display.clone(),
             location: self.location.clone(),
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
@@ -318,6 +315,10 @@ impl SolrDocumentBuilder {
             publisher_citation_display: self.publisher_citation_display.clone(),
             pub_date_start_sort: self.pub_date_start_sort.clone(),
             pub_date_end_sort: self.pub_date_end_sort.clone(),
+            title_citation_display: self.title_citation_display.clone(),
+            title_display: self.title_display.clone(),
+            title_sort: self.title_sort.clone(),
+            title_t: self.title_t.clone(),
             contributor_display: self.contributor_display.clone(),
             department_display: self.department_display.clone(),
             certificate_display: self.certificate_display.clone(),
