@@ -8,4 +8,3 @@ pub mod solr_document;
 pub use builder::SolrDocumentBuilder;
 pub use format::Format;
 pub use solr_document::SolrDocument;
-

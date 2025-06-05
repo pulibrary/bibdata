@@ -4,7 +4,7 @@ use solr::index;
 use theses::dataspace::collection;
 
 mod ephemera;
-mod solr;
+pub mod solr;
 pub mod theses;
 
 #[cfg(test)]

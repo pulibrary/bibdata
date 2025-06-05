@@ -259,6 +259,5 @@ mod tests {
             solr_document.lc_subject_display,
             Some(vec!["Music".to_string()])
         );
-
     }
 }
