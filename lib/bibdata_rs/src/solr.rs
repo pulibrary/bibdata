@@ -76,6 +76,12 @@ pub struct SolrDocument {
     location_code_s: Option<String>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    notes: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    notes_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     other_title_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
