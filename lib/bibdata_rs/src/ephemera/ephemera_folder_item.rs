@@ -19,6 +19,7 @@ pub struct EphemeraFolderItem {
     pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,
     pub publisher: Option<Vec<String>>,
+    pub provenance: Option<String>,
     pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
 }
