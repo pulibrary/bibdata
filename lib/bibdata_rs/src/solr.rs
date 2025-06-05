@@ -4,7 +4,10 @@ use serde::{Deserialize, Serialize};
 mod builder;
 mod dataspace_solr_mapping;
 mod ephemera_solr_mapping;
+mod format;
 pub mod index;
+
+pub use format::Format;
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
@@ -55,7 +58,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     electronic_portfolio_s: Option<String>,
 
-    format: Option<Vec<String>>,
+    format: Option<Vec<Format>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub holdings_1display: Option<String>,

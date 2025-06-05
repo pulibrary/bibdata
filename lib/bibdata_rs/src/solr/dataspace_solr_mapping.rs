@@ -24,7 +24,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_certificate_display(doc.authorized_ceritificates())
             .with_contributor_display(doc.contributor.clone())
             .with_department_display(doc.authorized_departments())
-            .with_format(vec!["Senior thesis".to_string()])
+            .with_format(vec![super::Format::SeniorThesis])
             .with_holdings_1display(doc.physical_holding_string())
             .with_location(doc.location())
             .with_location_code_s(doc.location_code())
@@ -77,6 +77,8 @@ fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
+    use crate::solr::Format;
+
     use super::*;
 
     #[test]
@@ -148,7 +150,7 @@ mod tests {
     fn it_is_senior_thesis() {
         let document = DataspaceDocument::builder().build();
         let solr = SolrDocument::from(&document);
-        assert_eq!(solr.format, Some(vec!["Senior thesis".to_string()]));
+        assert_eq!(solr.format, Some(vec![Format::SeniorThesis]));
     }
 
     #[test]
