@@ -95,7 +95,13 @@ mod tests {
     #[test]
     fn it_can_be_created_from_str() {
         assert_eq!(FormatFacet::from_str("Books").unwrap(), FormatFacet::Book);
-        assert_eq!(FormatFacet::from_str("Reports").unwrap(), FormatFacet::Report);
-        assert_eq!(FormatFacet::from_str("Serials").unwrap(), FormatFacet::Journal);
+        assert_eq!(
+            FormatFacet::from_str("Reports").unwrap(),
+            FormatFacet::Report
+        );
+        assert_eq!(
+            FormatFacet::from_str("Serials").unwrap(),
+            FormatFacet::Journal
+        );
     }
 }

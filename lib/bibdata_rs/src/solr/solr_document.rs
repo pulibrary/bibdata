@@ -35,7 +35,7 @@ pub struct SolrDocument {
     pub certificate_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub class_year_s: Option<Vec<String>>,
+    pub class_year_s: Option<Vec<i16>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub contributor_display: Option<Vec<String>>,
@@ -89,10 +89,10 @@ pub struct SolrDocument {
     pub pub_created_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub pub_date_end_sort: Option<Vec<String>>,
+    pub pub_date_end_sort: Option<Vec<i16>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub pub_date_start_sort: Option<Vec<String>>,
+    pub pub_date_start_sort: Option<Vec<i16>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub publisher_citation_display: Option<Vec<String>>,

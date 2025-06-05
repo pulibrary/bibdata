@@ -1,12 +1,15 @@
 // This module is responsible for normalizing data within a DataspaceDocument
 
-use crate::{solr::AccessFacet, theses::{
-    dataspace::document::DataspaceDocument,
-    department,
-    embargo::{self, Embargo},
-    holdings::{self, ThesisAvailability},
-    language, program,
-}};
+use crate::{
+    solr::AccessFacet,
+    theses::{
+        dataspace::document::DataspaceDocument,
+        department,
+        embargo::{self, Embargo},
+        holdings::{self, ThesisAvailability},
+        language, program,
+    },
+};
 use itertools::Itertools;
 use regex::{Captures, Regex};
 use std::sync::LazyLock;
@@ -90,13 +93,12 @@ impl DataspaceDocument {
         holdings::call_number(self.identifier_other.as_ref())
     }
 
-    pub fn class_year(&self) -> Option<Vec<String>> {
+    pub fn class_year(&self) -> Option<Vec<i16>> {
         let years = self.date_classyear.clone().unwrap_or_default();
         let year = years.first()?;
-        if year.chars().all(|c| c.is_numeric()) {
-            Some(vec![year.to_string()])
-        } else {
-            None
+        match year.parse::<i16>() {
+            Ok(parsed) => Some(vec![parsed]),
+            _ => None,
         }
     }
 
