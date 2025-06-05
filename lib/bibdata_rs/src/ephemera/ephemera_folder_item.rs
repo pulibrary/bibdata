@@ -22,6 +22,7 @@ pub struct EphemeraFolderItem {
     pub provenance: Option<String>,
     pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
+    pub contributor: Option<Vec<String>>,
 }
 
 impl EphemeraFolderItem {
