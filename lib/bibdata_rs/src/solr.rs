@@ -85,6 +85,15 @@ pub struct SolrDocument {
     other_title_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub_created_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    publisher_citation_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
+    publisher_no_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub_date_end_sort: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]

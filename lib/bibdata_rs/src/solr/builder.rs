@@ -34,6 +34,9 @@ pub struct SolrDocumentBuilder {
     electronic_portfolio_s: Option<String>,
     class_year_s: Option<Vec<String>>,
     other_title_display: Option<Vec<String>>,
+    publisher_no_display: Option<Vec<String>>,
+    pub_created_display: Option<Vec<String>>,
+    publisher_citation_display: Option<Vec<String>>,
     pub_date_start_sort: Option<Vec<String>>,
     pub_date_end_sort: Option<Vec<String>>,
     contributor_display: Option<Vec<String>>,
@@ -82,6 +85,27 @@ impl SolrDocumentBuilder {
         other_title_display: Option<Vec<String>>,
     ) -> &mut Self {
         self.other_title_display = other_title_display;
+        self
+    }
+    pub fn with_pub_created_display(
+        &mut self,
+        pub_created_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.pub_created_display = pub_created_display;
+        self
+    }
+    pub fn with_publisher_no_display(
+        &mut self,
+        publisher_no_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.publisher_no_display = publisher_no_display;
+        self
+    }
+    pub fn with_publisher_citation_display(
+        &mut self,
+        publisher_citation_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        self.publisher_citation_display = publisher_citation_display;
         self
     }
     pub fn with_title_sort(&mut self, title_sort: Option<String>) -> &mut Self {
@@ -277,6 +301,9 @@ impl SolrDocumentBuilder {
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),
             class_year_s: self.class_year_s.clone(),
+            publisher_no_display: self.publisher_no_display.clone(),
+            pub_created_display: self.pub_created_display.clone(),
+            publisher_citation_display: self.publisher_citation_display.clone(),
             pub_date_start_sort: self.pub_date_start_sort.clone(),
             pub_date_end_sort: self.pub_date_end_sort.clone(),
             contributor_display: self.contributor_display.clone(),
