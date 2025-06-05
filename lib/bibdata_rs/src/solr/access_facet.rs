@@ -4,5 +4,5 @@ use serde::{Deserialize, Serialize};
 pub enum AccessFacet {
     #[serde(rename = "In the Library")]
     InTheLibrary,
-    Online
+    Online,
 }
