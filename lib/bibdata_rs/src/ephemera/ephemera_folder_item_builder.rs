@@ -8,6 +8,7 @@ pub struct EphemeraFolderItemBuilder {
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
+    provenance: Option<String>,
     publisher: Option<Vec<String>>,
     title: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
@@ -47,6 +48,10 @@ impl EphemeraFolderItemBuilder {
         self.format = Some(format);
         self
     }
+    pub fn provenance(mut self, provenance: String) -> Self {
+        self.provenance = Some(provenance);
+        self
+    }
     pub fn publisher(mut self, publisher: Vec<String>) -> Self {
         self.publisher = Some(publisher);
         self
@@ -68,6 +73,7 @@ impl EphemeraFolderItemBuilder {
             description: self.description,
             format: self.format,
             transliterated_title: self.transliterated_title,
+            provenance: self.provenance,
             publisher: self.publisher,
             creator: self.creator,
         })
@@ -85,6 +91,7 @@ mod tests {
             .title(vec!["test title".to_string()])
             .alternative(vec!["alt title".to_string()])
             .creator(vec!["jessy".to_string()])
+            .provenance("Test name".to_string())
             .publisher(vec!["Princeton Press".to_string()])
             .build();
 
@@ -94,6 +101,7 @@ mod tests {
         assert_eq!(item.title, vec!["test title"]);
         assert_eq!(item.alternative, Some(vec!["alt title".to_string()]));
         assert_eq!(item.creator, Some(vec!["jessy".to_string()]));
+        assert_eq!(item.provenance, Some("Test name".to_string()));
         assert_eq!(item.publisher, Some(vec!["Princeton Press".to_string()]));
     }
 

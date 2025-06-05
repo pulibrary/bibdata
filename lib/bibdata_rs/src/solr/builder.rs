@@ -34,6 +34,7 @@ pub struct SolrDocumentBuilder {
     electronic_portfolio_s: Option<String>,
     class_year_s: Option<Vec<String>>,
     other_title_display: Option<Vec<String>>,
+    provenance_display: Option<String>,
     publisher_no_display: Option<Vec<String>>,
     pub_created_display: Option<Vec<String>>,
     publisher_citation_display: Option<Vec<String>>,
@@ -205,6 +206,10 @@ impl SolrDocumentBuilder {
         self.class_year_s = class_year_s;
         self
     }
+    pub fn with_provenance_display(&mut self, provenance_display: Option<String>) -> &mut Self {
+        self.provenance_display = provenance_display;
+        self
+    }
     pub fn with_pub_date_start_sort(
         &mut self,
         pub_date_start_sort: Option<Vec<String>>,
@@ -301,6 +306,7 @@ impl SolrDocumentBuilder {
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),
             class_year_s: self.class_year_s.clone(),
+            provenance_display: self.provenance_display.clone(),
             publisher_no_display: self.publisher_no_display.clone(),
             pub_created_display: self.pub_created_display.clone(),
             publisher_citation_display: self.publisher_citation_display.clone(),

@@ -16,6 +16,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
             .with_format(value.solr_formats())
+            .with_provenance_display(value.provenance.clone())
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
@@ -154,6 +155,21 @@ mod tests {
     }
 
     #[test]
+    fn it_has_the_provenance_from_the_ephemera_folder_item() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .provenance("Test name".to_owned())
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.id, "abc123");
+        assert_eq!(
+            solr_document.provenance_display,
+            Some("Test name".to_owned())
+        );
+    }
+
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
         let ephemera_item = EphemeraFolderItem::builder()
             .id("abc123".to_owned())
