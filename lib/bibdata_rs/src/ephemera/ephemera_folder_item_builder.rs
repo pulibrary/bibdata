@@ -22,6 +22,10 @@ impl EphemeraFolderItemBuilder {
         Self::default()
     }
 
+    pub fn alternative(mut self, alternative: Vec<String>) -> Self {
+        self.alternative = Some(alternative);
+        self
+    }
     pub fn id(mut self, id: String) -> Self {
         self.id = Some(id);
         self
@@ -40,27 +44,8 @@ impl EphemeraFolderItemBuilder {
         self
     }
 
-    pub fn subject(mut self, subject: Vec<Subject>) -> Self {
-        self.subject = Some(subject);
-        self
-    }
-
-    pub fn title(mut self, title: Vec<String>) -> Self {
-        self.title = Some(title);
-        self
-    }
-
-    pub fn alternative(mut self, alternative: Vec<String>) -> Self {
-        self.alternative = Some(alternative);
-        self
-    }
-
     pub fn format(mut self, format: Vec<Format>) -> Self {
         self.format = Some(format);
-        self
-    }
-    pub fn subjects(mut self, subjects: Vec<Subject>) -> Self {
-        self.subject = Some(subjects);
         self
     }
     pub fn provenance(mut self, provenance: String) -> Self {
@@ -69,6 +54,20 @@ impl EphemeraFolderItemBuilder {
     }
     pub fn publisher(mut self, publisher: Vec<String>) -> Self {
         self.publisher = Some(publisher);
+        self
+    }
+    pub fn subject(mut self, subject: Vec<Subject>) -> Self {
+        self.subject = Some(subject);
+        self
+    }
+
+    pub fn subjects(mut self, subjects: Vec<Subject>) -> Self {
+        self.subject = Some(subjects);
+        self
+    }
+
+    pub fn title(mut self, title: Vec<String>) -> Self {
+        self.title = Some(title);
         self
     }
 
@@ -82,17 +81,18 @@ impl EphemeraFolderItemBuilder {
         let title = self.title.ok_or("title is required")?;
 
         Ok(EphemeraFolderItem {
-            id,
-            title,
             alternative: self.alternative,
+            creator: self.creator,
+            contributor: self.contributor,
             description: self.description,
             format: self.format,
-            transliterated_title: self.transliterated_title,
+            id,
             provenance: self.provenance,
             publisher: self.publisher,
             subject: self.subject,
-            creator: self.creator,
-            contributor: self.contributor,
+            title,
+
+            transliterated_title: self.transliterated_title,
         })
     }
 }
