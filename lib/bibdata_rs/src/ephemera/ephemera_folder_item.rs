@@ -8,24 +8,27 @@ use log::trace;
 use serde::Deserialize;
 
 pub mod format;
+pub mod language;
 pub mod subject;
 use format::Format;
+use language::Language;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolderItem {
-    #[serde(rename = "@id")]
-    pub id: String,
-    pub description: Option<Vec<String>>,
-    pub format: Option<Vec<Format>>,
-    pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,
-    pub publisher: Option<Vec<String>>,
-    pub provenance: Option<String>,
-    pub subject: Option<Vec<Subject>>,
-    pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub format: Option<Vec<Format>>,
+    #[serde(rename = "@id")]
+    pub id: String,
+    pub language: Option<Vec<Language>>,
+    pub provenance: Option<String>,
+    pub publisher: Option<Vec<String>>,
+    pub subject: Option<Vec<Subject>>,
+    pub title: Vec<String>,
+    pub transliterated_title: Option<Vec<String>>,
 }
 
 impl EphemeraFolderItem {
@@ -36,14 +39,21 @@ impl EphemeraFolderItem {
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
-            _ => vec![],
+            None => vec![],
         }
     }
 
     pub fn subject_labels(&self) -> Vec<String> {
         match &self.subject {
             Some(subjects) => subjects.iter().map(|s| s.label.clone()).collect(),
-            _ => vec![],
+            None => vec![],
+        }
+    }
+
+    pub fn language_labels(&self) -> Vec<String> {
+        match &self.language {
+            Some(languages) => languages.iter().map(|l| l.label.clone()).collect(),
+            None => vec![],
         }
     }
 
