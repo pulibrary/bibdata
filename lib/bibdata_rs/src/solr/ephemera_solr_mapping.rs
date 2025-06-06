@@ -14,6 +14,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_format(value.solr_formats())
             .with_id(value.id.clone())
             .with_lc_subject_display(value.subject_labels())
+            .with_lc_subject_facet(value.subject_labels())
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
@@ -242,7 +243,7 @@ mod tests {
             .accepted_vocabulary());
     }
     #[test]
-    fn it_includes_subject_terms_in_lc_subject_display_field() {
+    fn it_includes_subject_terms_in_lc_subject_display_and_lc_subject_facet_field() {
         let ephemera_item = EphemeraFolderItem::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
@@ -257,6 +258,10 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.lc_subject_display,
+            Some(vec!["Music".to_string()])
+        );
+        assert_eq!(
+            solr_document.lc_subject_facet,
             Some(vec!["Music".to_string()])
         );
     }

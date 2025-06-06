@@ -24,6 +24,7 @@ pub struct SolrDocumentBuilder {
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
     lc_subject_display: Option<Vec<String>>,
+    lc_subject_facet: Option<Vec<String>>,
     location: Option<LibraryFacet>,
     location_display: Option<String>,
     location_code_s: Option<String>,
@@ -166,6 +167,11 @@ impl SolrDocumentBuilder {
         self
     }
 
+    pub fn with_lc_subject_facet(&mut self, lc_subject_facet: Vec<String>) -> &mut Self {
+        self.lc_subject_facet = Some(lc_subject_facet);
+        self
+    }
+
     pub fn with_location(&mut self, location: Option<LibraryFacet>) -> &mut Self {
         self.location = location;
         self
@@ -298,6 +304,7 @@ impl SolrDocumentBuilder {
             language_name_display: self.language_name_display.clone(),
             format: self.format.clone(),
             lc_subject_display: self.lc_subject_display.clone(),
+            lc_subject_facet: self.lc_subject_facet.clone(),
             location: self.location,
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
