@@ -59,6 +59,7 @@ impl EphemeraFolderItem {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct ItemResponse {
     pub data: Vec<EphemeraFolderItem>,
@@ -98,7 +99,6 @@ mod tests {
     use super::*;
     use std::fs::File;
     use std::io::BufReader;
-    use std::path::Path;
 
     #[tokio::test]
     async fn test_get_item_data() {

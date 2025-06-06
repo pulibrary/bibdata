@@ -1,7 +1,5 @@
 use super::SolrDocument;
 use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
-use crate::ephemera_folder_item::subject::ExactMatch;
-use crate::ephemera_folder_item::subject::Subject;
 
 impl From<&EphemeraFolderItem> for SolrDocument {
     fn from(value: &EphemeraFolderItem) -> Self {
@@ -31,9 +29,10 @@ impl From<&EphemeraFolderItem> for SolrDocument {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, str::FromStr};
-
+    use crate::ephemera_folder_item::subject::ExactMatch;
+    use crate::ephemera_folder_item::subject::Subject;
     use crate::{ephemera::ephemera_folder_item::format::Format, solr};
+    use std::{fs::File, io::BufReader, str::FromStr};
 
     use super::*;
 

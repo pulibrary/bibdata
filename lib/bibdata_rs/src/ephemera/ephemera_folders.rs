@@ -8,12 +8,14 @@ pub struct FoldersResponse {
     pub data: Vec<EphemeraFolders>,
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolders {
     id: String,
     links: Links,
 }
 
+#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Links {
     #[serde(rename = "self")]

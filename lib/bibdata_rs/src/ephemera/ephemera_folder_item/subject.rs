@@ -1,4 +1,3 @@
-use crate::solr;
 use serde::Deserialize;
 
 #[derive(Clone, Deserialize, Debug)]
