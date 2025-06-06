@@ -28,7 +28,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_holdings_1display(doc.physical_holding_string())
             .with_location(doc.location())
             .with_location_code_s(doc.location_code())
-            .with_location_display(doc.location())
+            .with_location_display(doc.location_display())
             .with_electronic_access_1display(doc.ark_hash())
             .with_electronic_portfolio_s(doc.online_portfolio_statements())
             .with_restrictions_note_display(doc.restrictions_note_display())
