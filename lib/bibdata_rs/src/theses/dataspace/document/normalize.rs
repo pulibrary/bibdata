@@ -1,7 +1,7 @@
 // This module is responsible for normalizing data within a DataspaceDocument
 
 use crate::{
-    solr::{AccessFacet, LibraryFacet},
+    solr::{AccessFacet, ElectronicAccess, LibraryFacet},
     theses::{
         dataspace::document::DataspaceDocument,
         department,
@@ -57,7 +57,7 @@ impl DataspaceDocument {
         authors
     }
 
-    pub fn ark_hash(&self) -> Option<String> {
+    pub fn ark_hash(&self) -> Option<ElectronicAccess> {
         holdings::dataspace_url_with_metadata(
             self.identifier_uri.as_ref(),
             self.location.is_some(),
@@ -247,7 +247,11 @@ mod tests {
 
         assert_eq!(
             metadata.ark_hash().unwrap(),
-            r#"{"http://arks.princeton.edu/ark:/88435/dsp01b2773v788":["DataSpace","Full text"]}"#
+            ElectronicAccess {
+                url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
+                link_text: "DataSpace".to_owned(),
+                link_description: Some("Full text".to_owned())
+            }
         );
     }
 
@@ -270,7 +274,11 @@ mod tests {
 
         assert_eq!(
             metadata.ark_hash().unwrap(),
-            r#"{"http://arks.princeton.edu/ark:/88435/dsp01b2773v788":["DataSpace","Full text"]}"#
+            ElectronicAccess {
+                url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
+                link_text: "DataSpace".to_owned(),
+                link_description: Some("Full text".to_owned())
+            }
         );
     }
 
