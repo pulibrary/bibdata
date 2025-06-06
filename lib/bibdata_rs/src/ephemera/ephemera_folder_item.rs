@@ -22,6 +22,7 @@ pub struct EphemeraFolderItem {
     pub alternative: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
+    pub country: Option<Vec<Country>>,
     pub description: Option<Vec<String>>,
     pub format: Option<Vec<Format>>,
     #[serde(rename = "@id")]
@@ -42,6 +43,17 @@ impl EphemeraFolderItem {
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
+            None => vec![],
+        }
+    }
+
+    pub fn country_labels(&self) -> Vec<String> {
+        match &self.country {
+            Some(countries) => countries
+                .iter()
+                .filter(|country| country.exact_match.accepted_vocabulary())
+                .map(|country| country.label.clone())
+                .collect(),
             None => vec![],
         }
     }
@@ -104,7 +116,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
 #[cfg(test)]
 mod tests {
     use crate::{
-        ephemera::CatalogClient,
+        ephemera::{ephemera_folder_item::country::ExactMatch, CatalogClient},
         solr,
         testing_support::{preserving_envvar, preserving_envvar_async},
     };
@@ -231,5 +243,33 @@ mod tests {
             folder_mock.assert();
             item_mock.assert();
         }
+    }
+
+    #[test]
+    fn it_can_return_country_labels_for_authorized_vocabularies() {
+        let item = EphemeraFolderItem::builder()
+            .id("123ABC".to_string())
+            .title(vec!["The worst book ever!".to_string()])
+            .country(vec![
+                Country {
+                    exact_match: ExactMatch {
+                        id: country::Id {
+                            id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_string(),
+                        },
+                    },
+                    label: "Andorra".to_string(),
+                },
+                Country {
+                    exact_match: ExactMatch {
+                        id: country::Id {
+                            id: "[\"http://bad-bad-bad\"]".to_string(),
+                        },
+                    },
+                    label: "Anguilla".to_string(),
+                },
+            ])
+            .build()
+            .unwrap();
+        assert_eq!(item.country_labels(), vec!["Andorra".to_string()]);
     }
 }

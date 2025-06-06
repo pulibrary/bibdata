@@ -1,3 +1,4 @@
+use super::ephemera_folder_item::country::Country;
 use super::ephemera_folder_item::format::Format;
 use super::ephemera_folder_item::EphemeraFolderItem;
 use crate::ephemera::ephemera_folder_item::language::Language;
@@ -8,6 +9,7 @@ pub struct EphemeraFolderItemBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
     contributor: Option<Vec<String>>,
+    country: Option<Vec<Country>>,
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
@@ -34,6 +36,10 @@ impl EphemeraFolderItemBuilder {
     }
     pub fn contributor(mut self, contributor: Vec<String>) -> Self {
         self.contributor = Some(contributor);
+        self
+    }
+    pub fn country(mut self, country: Vec<Country>) -> Self {
+        self.country = Some(country);
         self
     }
     pub fn creator(mut self, creator: Vec<String>) -> Self {
@@ -90,6 +96,7 @@ impl EphemeraFolderItemBuilder {
             alternative: self.alternative,
             creator: self.creator,
             contributor: self.contributor,
+            country: self.country,
             description: self.description,
             format: self.format,
             id,
