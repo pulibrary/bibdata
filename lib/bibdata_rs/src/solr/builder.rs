@@ -1,6 +1,6 @@
 // This module provides a convenient way to create a SolrDocument using the builder pattern
 
-use super::{AccessFacet, FormatFacet, SolrDocument};
+use super::{AccessFacet, FormatFacet, LibraryFacet, SolrDocument};
 
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
@@ -24,7 +24,7 @@ pub struct SolrDocumentBuilder {
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
     lc_subject_display: Option<Vec<String>>,
-    location: Option<String>,
+    location: Option<LibraryFacet>,
     location_display: Option<String>,
     location_code_s: Option<String>,
     notes: Option<Vec<String>>,
@@ -166,7 +166,7 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_location(&mut self, location: Option<String>) -> &mut Self {
+    pub fn with_location(&mut self, location: Option<LibraryFacet>) -> &mut Self {
         self.location = location;
         self
     }
@@ -298,7 +298,7 @@ impl SolrDocumentBuilder {
             language_name_display: self.language_name_display.clone(),
             format: self.format.clone(),
             lc_subject_display: self.lc_subject_display.clone(),
-            location: self.location.clone(),
+            location: self.location,
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
             notes: self.notes.clone(),

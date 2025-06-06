@@ -1,7 +1,7 @@
 // This module is responsible for normalizing data within a DataspaceDocument
 
 use crate::{
-    solr::AccessFacet,
+    solr::{AccessFacet, LibraryFacet},
     theses::{
         dataspace::document::DataspaceDocument,
         department,
@@ -106,7 +106,14 @@ impl DataspaceDocument {
         language::codes_to_english_names(self.language_iso.clone())
     }
 
-    pub fn location(&self) -> Option<String> {
+    pub fn location(&self) -> Option<LibraryFacet> {
+        match self.on_site_only() {
+            ThesisAvailability::OnSiteOnly => Some(LibraryFacet::Mudd),
+            _ => None,
+        }
+    }
+
+    pub fn location_display(&self) -> Option<String> {
         match self.on_site_only() {
             ThesisAvailability::OnSiteOnly => Some("Mudd Manuscript Library".to_owned()),
             _ => None,

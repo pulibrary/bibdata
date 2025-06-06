@@ -1,6 +1,6 @@
 use serde::{Deserialize, Serialize};
 
-use super::{access_facet::AccessFacet, FormatFacet, SolrDocumentBuilder};
+use super::{access_facet::AccessFacet, FormatFacet, LibraryFacet, SolrDocumentBuilder};
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
@@ -65,7 +65,7 @@ pub struct SolrDocument {
     pub lc_subject_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub location: Option<String>,
+    pub location: Option<LibraryFacet>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location_display: Option<String>,
@@ -137,8 +137,8 @@ mod tests {
     #[test]
     fn test_build_a_solr_document_with_location() {
         let document = SolrDocument::builder()
-            .with_location(Some("Mudd Manuscript Library".to_owned()))
+            .with_location(Some(LibraryFacet::Mudd))
             .build();
-        assert_eq!(document.location.unwrap(), "Mudd Manuscript Library");
+        assert_eq!(document.location.unwrap(), LibraryFacet::Mudd);
     }
 }
