@@ -7,9 +7,12 @@ use super::{
 use log::trace;
 use serde::Deserialize;
 
+pub mod country;
 pub mod format;
 pub mod language;
 pub mod subject;
+
+use country::Country;
 use format::Format;
 use language::Language;
 use subject::Subject;
