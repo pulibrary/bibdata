@@ -12,6 +12,8 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
             .with_format(value.solr_formats())
+            .with_homoit_subject_display(value.subject_labels())
+            .with_homoit_subject_facet(value.subject_labels())
             .with_id(value.id.clone())
             .with_lc_subject_display(value.subject_labels())
             .with_lc_subject_facet(value.subject_labels())
@@ -263,6 +265,29 @@ mod tests {
         assert_eq!(
             solr_document.lc_subject_facet,
             Some(vec!["Music".to_string()])
+        );
+    }
+    #[test]
+    fn it_includes_subject_terms_in_homoit_subject_display_and_homoit_subject_facet_field() {
+        let ephemera_item = EphemeraFolderItem::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .subject(vec![Subject {
+                exact_match: ExactMatch {
+                    id: "https://homosaurus.org/v4/homoit0000485".to_owned(),
+                },
+                label: "Gay Community".to_string(),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.homoit_subject_display,
+            Some(vec!["Gay Community".to_string()])
+        );
+        assert_eq!(
+            solr_document.homoit_subject_facet,
+            Some(vec!["Gay Community".to_string()])
         );
     }
 }

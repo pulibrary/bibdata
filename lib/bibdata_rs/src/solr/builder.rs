@@ -21,6 +21,8 @@ pub struct SolrDocumentBuilder {
     restrictions_note_display: Option<Vec<String>>,
     call_number_display: String,
     call_number_browse_s: String,
+    homoit_subject_display: Option<Vec<String>>,
+    homoit_subject_facet: Option<Vec<String>>,
     language_facet: Vec<String>,
     language_name_display: Vec<String>,
     lc_subject_display: Option<Vec<String>>,
@@ -161,7 +163,17 @@ impl SolrDocumentBuilder {
         self.language_name_display = language_name_display.into();
         self
     }
-
+    pub fn with_homoit_subject_display(
+        &mut self,
+        homoit_subject_display: Vec<String>,
+    ) -> &mut Self {
+        self.homoit_subject_display = Some(homoit_subject_display);
+        self
+    }
+    pub fn with_homoit_subject_facet(&mut self, homoit_subject_facet: Vec<String>) -> &mut Self {
+        self.homoit_subject_facet = Some(homoit_subject_facet);
+        self
+    }
     pub fn with_lc_subject_display(&mut self, lc_subject_display: Vec<String>) -> &mut Self {
         self.lc_subject_display = Some(lc_subject_display);
         self
@@ -303,6 +315,8 @@ impl SolrDocumentBuilder {
             language_facet: self.language_facet.clone(),
             language_name_display: self.language_name_display.clone(),
             format: self.format.clone(),
+            homoit_subject_display: self.homoit_subject_display.clone(),
+            homoit_subject_facet: self.homoit_subject_facet.clone(),
             lc_subject_display: self.lc_subject_display.clone(),
             lc_subject_facet: self.lc_subject_facet.clone(),
             location: self.location,

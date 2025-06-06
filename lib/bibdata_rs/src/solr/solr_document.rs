@@ -56,6 +56,10 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub holdings_1display: Option<String>,
 
+    pub homoit_subject_display: Option<Vec<String>>,
+
+    pub homoit_subject_facet: Option<Vec<String>>,
+
     pub id: String,
 
     pub language_facet: Vec<String>,
