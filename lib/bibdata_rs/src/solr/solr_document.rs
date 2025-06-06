@@ -64,6 +64,8 @@ pub struct SolrDocument {
 
     pub lc_subject_display: Option<Vec<String>>,
 
+    pub lc_subject_facet: Option<Vec<String>>,
+
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<LibraryFacet>,
 
