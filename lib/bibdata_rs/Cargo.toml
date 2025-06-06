@@ -24,6 +24,7 @@ log = "0.4.27"
 rayon = "1.10.0"
 anyhow = "1.0.98"
 rb-sys = "0.9.115"
+marctk = "0.4.2"
 
 [dev-dependencies]
 criterion = "0.6.0"
