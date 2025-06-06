@@ -13,7 +13,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_homoit_subject_display(value.subject_labels())
             .with_homoit_subject_facet(value.subject_labels())
             .with_id(value.id.clone())
-            .with_language_facet(value.language.clone().unwrap().iter().map(|l| l.into()).collect::<Vec<String>>())
+            .with_language_facet(value.language_labels())
             .with_lc_subject_display(value.subject_labels())
             .with_lc_subject_facet(value.subject_labels())
             .with_notes(value.description.clone())

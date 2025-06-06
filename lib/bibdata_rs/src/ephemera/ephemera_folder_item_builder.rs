@@ -50,6 +50,10 @@ impl EphemeraFolderItemBuilder {
         self.format = Some(format);
         self
     }
+    pub fn language(mut self, language: Vec<Language>) -> Self {
+        self.language = Some(language);
+        self
+    }
     pub fn provenance(mut self, provenance: String) -> Self {
         self.provenance = Some(provenance);
         self
