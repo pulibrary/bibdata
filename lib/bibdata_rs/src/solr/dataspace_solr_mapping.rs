@@ -44,7 +44,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_title_t(doc.title_search_versions())
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
-            .with_class_year_s(doc.class_year())
+            .with_class_year_s(doc.class_year().map(|year| vec![year]))
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
@@ -160,8 +160,8 @@ mod tests {
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.class_year_s.unwrap(), vec![2014]);
-        assert_eq!(solr.pub_date_start_sort.unwrap(), vec![2014]);
-        assert_eq!(solr.pub_date_end_sort.unwrap(), vec![2014]);
+        assert_eq!(solr.pub_date_start_sort.unwrap(), 2014);
+        assert_eq!(solr.pub_date_end_sort.unwrap(), 2014);
     }
 
     #[test]

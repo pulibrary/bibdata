@@ -39,8 +39,8 @@ pub struct SolrDocumentBuilder {
     publisher_no_display: Option<Vec<String>>,
     pub_created_display: Option<Vec<String>>,
     publisher_citation_display: Option<Vec<String>>,
-    pub_date_start_sort: Option<Vec<i16>>,
-    pub_date_end_sort: Option<Vec<i16>>,
+    pub_date_start_sort: Option<i16>,
+    pub_date_end_sort: Option<i16>,
     contributor_display: Option<Vec<String>>,
     department_display: Option<Vec<String>>,
     certificate_display: Option<Vec<String>>,
@@ -216,11 +216,11 @@ impl SolrDocumentBuilder {
         self.provenance_display = provenance_display;
         self
     }
-    pub fn with_pub_date_start_sort(&mut self, pub_date_start_sort: Option<Vec<i16>>) -> &mut Self {
+    pub fn with_pub_date_start_sort(&mut self, pub_date_start_sort: Option<i16>) -> &mut Self {
         self.pub_date_start_sort = pub_date_start_sort;
         self
     }
-    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: Option<Vec<i16>>) -> &mut Self {
+    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: Option<i16>) -> &mut Self {
         self.pub_date_end_sort = pub_date_end_sort;
         self
     }
@@ -310,8 +310,8 @@ impl SolrDocumentBuilder {
             publisher_no_display: self.publisher_no_display.clone(),
             pub_created_display: self.pub_created_display.clone(),
             publisher_citation_display: self.publisher_citation_display.clone(),
-            pub_date_start_sort: self.pub_date_start_sort.clone(),
-            pub_date_end_sort: self.pub_date_end_sort.clone(),
+            pub_date_start_sort: self.pub_date_start_sort,
+            pub_date_end_sort: self.pub_date_end_sort,
             title_citation_display: self.title_citation_display.clone(),
             title_display: self.title_display.clone(),
             title_sort: self.title_sort.clone(),
