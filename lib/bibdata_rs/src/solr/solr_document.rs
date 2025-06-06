@@ -1,6 +1,8 @@
 use serde::{Deserialize, Serialize};
 
-use super::{access_facet::AccessFacet, FormatFacet, LibraryFacet, SolrDocumentBuilder};
+use super::{
+    access_facet::AccessFacet, ElectronicAccess, FormatFacet, LibraryFacet, SolrDocumentBuilder,
+};
 
 #[derive(Debug, Default, Deserialize, Serialize)]
 pub struct SolrDocument {
@@ -46,7 +48,7 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub description_display: Option<Vec<String>>,
 
-    pub electronic_access_1display: Option<String>,
+    pub electronic_access_1display: Option<ElectronicAccess>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub electronic_portfolio_s: Option<String>,
@@ -146,5 +148,20 @@ mod tests {
             .with_location(Some(LibraryFacet::Mudd))
             .build();
         assert_eq!(document.location.unwrap(), LibraryFacet::Mudd);
+    }
+
+    #[test]
+    fn it_can_serialize_an_electronic_access() {
+        let document = SolrDocument::builder()
+            .with_electronic_access_1display(Some(ElectronicAccess {
+                url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
+                link_text: "DataSpace".to_owned(),
+                link_description: Some("Full text".to_owned()),
+            }))
+            .build();
+        let serialized = serde_json::to_string(&document).unwrap();
+        assert!(serialized.contains(
+            r#""electronic_access_1display":"{\"http://arks.princeton.edu/ark:/88435/dsp01b2773v788\":[\"DataSpace\",\"Full text\"]}""#
+        ))
     }
 }

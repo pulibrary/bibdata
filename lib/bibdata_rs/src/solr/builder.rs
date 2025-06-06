@@ -1,6 +1,6 @@
 // This module provides a convenient way to create a SolrDocument using the builder pattern
 
-use super::{AccessFacet, FormatFacet, LibraryFacet, SolrDocument};
+use super::{AccessFacet, ElectronicAccess, FormatFacet, LibraryFacet, SolrDocument};
 
 #[derive(Debug, Default)]
 pub struct SolrDocumentBuilder {
@@ -16,7 +16,7 @@ pub struct SolrDocumentBuilder {
     title_citation_display: Option<String>,
     title_display: Option<String>,
     title_sort: Option<String>,
-    electronic_access_1display: Option<String>,
+    electronic_access_1display: Option<ElectronicAccess>,
     restrictions_display_text: Option<Vec<String>>,
     restrictions_note_display: Option<Vec<String>>,
     call_number_display: String,
@@ -124,7 +124,7 @@ impl SolrDocumentBuilder {
     }
     pub fn with_electronic_access_1display(
         &mut self,
-        electronic_access_1display: Option<String>,
+        electronic_access_1display: Option<ElectronicAccess>,
     ) -> &mut Self {
         self.electronic_access_1display = electronic_access_1display;
         self

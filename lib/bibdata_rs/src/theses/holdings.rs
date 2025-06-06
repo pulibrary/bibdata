@@ -1,8 +1,7 @@
 // This module is responsible for describing the holdings of a thesis
 
-use crate::theses::embargo;
+use crate::{solr::ElectronicAccess, theses::embargo};
 use serde::{ser::SerializeStruct, Serialize};
-use std::collections::HashMap;
 
 pub fn call_number(non_ark_ids: Option<&Vec<String>>) -> String {
     let ids = match non_ark_ids {
@@ -52,16 +51,22 @@ pub fn dataspace_url_with_metadata(
     mudd_walkin: bool,
     class_year: &[String],
     embargo: embargo::Embargo,
-) -> Option<String> {
-    let arks = identifier_uri?;
-    let key = arks.first()?;
-    let value = match on_site_only(location, access_rights, mudd_walkin, class_year, embargo) {
-        ThesisAvailability::OnSiteOnly => ["DataSpace", "Citation only"],
-        ThesisAvailability::AvailableOffSite => ["DataSpace", "Full text"],
-    };
-    let mut hash: HashMap<String, serde_json::Value> = HashMap::new();
-    hash.insert(key.into(), value.into());
-    Some(serde_json::to_string(&hash).unwrap())
+) -> Option<ElectronicAccess> {
+    let first_ark = identifier_uri?.first()?;
+    Some(ElectronicAccess {
+        url: first_ark.to_owned(),
+        link_text: "DataSpace".to_owned(),
+        link_description: match on_site_only(
+            location,
+            access_rights,
+            mudd_walkin,
+            class_year,
+            embargo,
+        ) {
+            ThesisAvailability::OnSiteOnly => Some("Citation only".to_owned()),
+            ThesisAvailability::AvailableOffSite => Some("Full text".to_owned()),
+        },
+    })
 }
 
 #[derive(Debug, PartialEq)]
