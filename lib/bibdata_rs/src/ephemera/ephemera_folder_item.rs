@@ -11,22 +11,24 @@ pub mod format;
 pub mod language;
 pub mod subject;
 use format::Format;
+use language::Language;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
 pub struct EphemeraFolderItem {
     #[serde(rename = "@id")]
-    pub id: String,
-    pub description: Option<Vec<String>>,
-    pub format: Option<Vec<Format>>,
-    pub title: Vec<String>,
     pub alternative: Option<Vec<String>>,
-    pub publisher: Option<Vec<String>>,
-    pub provenance: Option<String>,
-    pub subject: Option<Vec<Subject>>,
-    pub transliterated_title: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
+    pub description: Option<Vec<String>>,
+    pub format: Option<Vec<Format>>,
+    pub id: String,
+    pub language: Option<Vec<Language>>,
+    pub provenance: Option<String>,
+    pub publisher: Option<Vec<String>>,
+    pub subject: Option<Vec<Subject>>,
+    pub title: Vec<String>,
+    pub transliterated_title: Option<Vec<String>>,
 }
 
 impl EphemeraFolderItem {

@@ -1,5 +1,6 @@
 use super::ephemera_folder_item::format::Format;
 use super::ephemera_folder_item::EphemeraFolderItem;
+use crate::ephemera::ephemera_folder_item::language::Language;
 use crate::ephemera_folder_item::subject::Subject;
 
 #[derive(Default)]
@@ -10,6 +11,7 @@ pub struct EphemeraFolderItemBuilder {
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
+    language: Option<Vec<Language>>,
     provenance: Option<String>,
     publisher: Option<Vec<String>>,
     subject: Option<Vec<Subject>>,
@@ -87,6 +89,7 @@ impl EphemeraFolderItemBuilder {
             description: self.description,
             format: self.format,
             id,
+            language: self.language,
             provenance: self.provenance,
             publisher: self.publisher,
             subject: self.subject,

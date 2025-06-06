@@ -1,6 +1,4 @@
-use anyhow::anyhow;
 use serde::Deserialize;
-use serde_json::Value;
 
 #[derive(Clone, Deserialize, Debug)]
 pub struct Language {
@@ -31,13 +29,31 @@ impl ExactMatch {
     pub fn accepted_vocabulary(&self) -> bool {
         match &self.id.language_ids() {
             Ok(s)
-                if s.iter()
-                    .any(|url| url.starts_with("http://id.loc.gov/vocabulary/iso639-1")) =>
+                if s.iter().any(|url| {
+                    url.starts_with("http://id.loc.gov/vocabulary/iso639-1")
+                        || url.starts_with("http://id.loc.gov/vocabulary/iso639-2")
+                }) =>
             {
                 true
             }
             _ => false,
         }
+    }
+}
+
+impl Into<String> for &Language {
+    fn into(self) -> String {
+        self.label.clone()
+    }
+}
+
+pub trait VecInto<String> {
+  fn vec_into(self) -> Vec<String>;
+}
+
+impl<Language, String> VecInto<String> for Vec<Language> where String: From<Language> {
+    fn vec_into(self) -> Vec<String> {
+        self.iter().map(std::convert::Into::into).collect()
     }
 }
 
@@ -74,7 +90,7 @@ mod tests {
               },
               "exact_match": {
                 "@id": {
-                  "@id": "[\"http://id.loc.gov/vocabulary/iso639-1/es\"]"
+                  "@id": "[\"http://id.loc.gov/vocabulary/iso639-2/spa\"]"
                 }
               }
             }
