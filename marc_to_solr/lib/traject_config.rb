@@ -1172,7 +1172,7 @@ end
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
 to_field 'genre_facet' do |record, accumulator|
-  accumulator.replace(Genre.new(record).to_a)
+  accumulator.replace(BibdataRs::Marc.genres(MarcBreaker.break(record)))
 end
 
 # Related name(s):
