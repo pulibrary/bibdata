@@ -41,22 +41,6 @@ impl ExactMatch {
     }
 }
 
-// impl Into<String> for &Language {
-//     fn into(self) -> String {
-//         self.label.clone()
-//     }
-// }
-
-// pub trait VecInto<String> {
-//   fn vec_into(self) -> Vec<String>;
-// }
-
-// impl<Language, String> VecInto<String> for Vec<Language> where String: From<Language> {
-//     fn vec_into(self) -> Vec<String> {
-//         self.iter().map(std::convert::Into::into).collect()
-//     }
-// }
-
 #[cfg(test)]
 mod tests {
     use super::*;
