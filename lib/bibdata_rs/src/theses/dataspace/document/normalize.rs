@@ -93,13 +93,12 @@ impl DataspaceDocument {
         holdings::call_number(self.identifier_other.as_ref())
     }
 
-    pub fn class_year(&self) -> Option<Vec<String>> {
+    pub fn class_year(&self) -> Option<Vec<i16>> {
         let years = self.date_classyear.clone().unwrap_or_default();
         let year = years.first()?;
-        if year.chars().all(|c| c.is_numeric()) {
-            Some(vec![year.to_string()])
-        } else {
-            None
+        match year.parse::<i16>() {
+            Ok(parsed) => Some(vec![parsed]),
+            _ => None,
         }
     }
 

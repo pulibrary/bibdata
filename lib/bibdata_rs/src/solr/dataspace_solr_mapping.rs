@@ -159,9 +159,9 @@ mod tests {
             .with_date_classyear("2014")
             .build();
         let solr = SolrDocument::from(&document);
-        assert_eq!(solr.class_year_s.unwrap(), vec!["2014".to_owned()]);
-        assert_eq!(solr.pub_date_start_sort.unwrap(), vec!["2014".to_owned()]);
-        assert_eq!(solr.pub_date_end_sort.unwrap(), vec!["2014".to_owned()]);
+        assert_eq!(solr.class_year_s.unwrap(), vec![2014]);
+        assert_eq!(solr.pub_date_start_sort.unwrap(), vec![2014]);
+        assert_eq!(solr.pub_date_end_sort.unwrap(), vec![2014]);
     }
 
     #[test]

@@ -33,14 +33,14 @@ pub struct SolrDocumentBuilder {
     access_facet: Option<AccessFacet>,
     holdings_1display: Option<String>,
     electronic_portfolio_s: Option<String>,
-    class_year_s: Option<Vec<String>>,
+    class_year_s: Option<Vec<i16>>,
     other_title_display: Option<Vec<String>>,
     provenance_display: Option<String>,
     publisher_no_display: Option<Vec<String>>,
     pub_created_display: Option<Vec<String>>,
     publisher_citation_display: Option<Vec<String>>,
-    pub_date_start_sort: Option<Vec<String>>,
-    pub_date_end_sort: Option<Vec<String>>,
+    pub_date_start_sort: Option<Vec<i16>>,
+    pub_date_end_sort: Option<Vec<i16>>,
     contributor_display: Option<Vec<String>>,
     department_display: Option<Vec<String>>,
     certificate_display: Option<Vec<String>>,
@@ -208,7 +208,7 @@ impl SolrDocumentBuilder {
         self.electronic_portfolio_s = electronic_portfolio_s;
         self
     }
-    pub fn with_class_year_s(&mut self, class_year_s: Option<Vec<String>>) -> &mut Self {
+    pub fn with_class_year_s(&mut self, class_year_s: Option<Vec<i16>>) -> &mut Self {
         self.class_year_s = class_year_s;
         self
     }
@@ -216,14 +216,11 @@ impl SolrDocumentBuilder {
         self.provenance_display = provenance_display;
         self
     }
-    pub fn with_pub_date_start_sort(
-        &mut self,
-        pub_date_start_sort: Option<Vec<String>>,
-    ) -> &mut Self {
+    pub fn with_pub_date_start_sort(&mut self, pub_date_start_sort: Option<Vec<i16>>) -> &mut Self {
         self.pub_date_start_sort = pub_date_start_sort;
         self
     }
-    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: Option<Vec<String>>) -> &mut Self {
+    pub fn with_pub_date_end_sort(&mut self, pub_date_end_sort: Option<Vec<i16>>) -> &mut Self {
         self.pub_date_end_sort = pub_date_end_sort;
         self
     }
