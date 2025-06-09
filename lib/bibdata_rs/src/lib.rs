@@ -4,6 +4,7 @@ use solr::index;
 use theses::dataspace::collection;
 
 mod ephemera;
+pub mod marc;
 pub mod solr;
 pub mod theses;
 
