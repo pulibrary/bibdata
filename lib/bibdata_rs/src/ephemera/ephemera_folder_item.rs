@@ -129,7 +129,6 @@ mod tests {
     async fn test_get_item_data() {
         preserving_envvar_async("FIGGY_BORN_DIGITAL_EPHEMERA_URL", || async {
             let mut server = mockito::Server::new_async().await;
-            std::env::set_var("FIGGY_BORN_DIGITAL_EPHEMERA_URL", server.url());
 
             let mock = server
                 .mock(
