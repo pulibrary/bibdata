@@ -8,8 +8,8 @@ pub mod genre;
 
 pub use punctuation::trim_punctuation;
 
-pub fn genres(xml: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&xml)?;
+pub fn genres(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
     Ok(genre::genres(&record))
 }
 
