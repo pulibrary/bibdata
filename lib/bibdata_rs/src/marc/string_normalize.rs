@@ -72,5 +72,9 @@ mod tests {
         assert_eq!(strip_non_numeric("0abc123"), "123");
         assert_eq!(strip_non_numeric("000abc123"), "123");
         assert_eq!(strip_non_numeric("000abc0123"), "123");
+        assert_eq!(strip_non_numeric("1024"), "1024");
+        assert_eq!(strip_non_numeric("a1b0c2d4e"), "1024");
+        assert_eq!(strip_non_numeric("300"), "300");
+        assert_eq!(strip_non_numeric("3abcd00"), "300");
     }
 }
