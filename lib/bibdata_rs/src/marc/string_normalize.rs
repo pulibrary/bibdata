@@ -62,4 +62,19 @@ mod tests {
         assert_eq!("Le réve", trim_punctuation("Le réve."));
         assert_eq!("Bill Dueber, Jr.", trim_punctuation("Bill Dueber, Jr."));
     }
+
+    #[test]
+    fn it_strips_non_numeric() {
+        assert_eq!(strip_non_numeric("abc"), "");
+        assert_eq!(strip_non_numeric("123"), "123");
+        assert_eq!(strip_non_numeric("0123"), "123");
+        assert_eq!(strip_non_numeric("abc0123"), "123");
+        assert_eq!(strip_non_numeric("0abc123"), "123");
+        assert_eq!(strip_non_numeric("000abc123"), "123");
+        assert_eq!(strip_non_numeric("000abc0123"), "123");
+        assert_eq!(strip_non_numeric("1024"), "1024");
+        assert_eq!(strip_non_numeric("a1b0c2d4e"), "1024");
+        assert_eq!(strip_non_numeric("300"), "300");
+        assert_eq!(strip_non_numeric("3abcd00"), "300");
+    }
 }
