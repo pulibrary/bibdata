@@ -362,7 +362,7 @@ describe 'From princeton_marc.rb' do
       expect(@linked_nums).to include(oclc_normalize(@oclc_num, prefix: true))
       expect(@linked_nums).to include(oclc_normalize(@oclc_num2, prefix: true))
       expect(@linked_nums).to include(oclc_normalize(@oclc_num4, prefix: true))
-      expect(@linked_nums).to include('BIB' + strip_non_numeric(@bib))
+      expect(@linked_nums).to include('BIB' + BibdataRs::Marc.strip_non_numeric(@bib))
       expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num))
       expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num2))
       expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num))

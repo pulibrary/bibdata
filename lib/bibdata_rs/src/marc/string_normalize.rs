@@ -28,6 +28,15 @@ pub fn trim_punctuation(string: &str) -> String {
         .to_owned()
 }
 
+pub fn strip_non_numeric(string: &str) -> String {
+    string
+        .chars()
+        // remove preceding zeroes
+        .skip_while(|c| !c.is_numeric() || c == &'0')
+        .filter(|c| c.is_numeric())
+        .collect()
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
