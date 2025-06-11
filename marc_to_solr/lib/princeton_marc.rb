@@ -151,7 +151,7 @@ def other_versions record
       linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == '035') && oclc_number?(s_field.value)
       if ((field.tag == '776') && (s_field.code == 'w')) || ((field.tag == '787') && (s_field.code == 'w'))
         linked_nums << oclc_normalize(s_field.value, prefix: true) if oclc_number?(s_field.value)
-        linked_nums << ('BIB' + strip_non_numeric(s_field.value)) unless s_field.value.include?('(')
+        linked_nums << ('BIB' + BibdataRs::Marc.strip_non_numeric(s_field.value)) unless s_field.value.include?('(')
         if s_field.value.include?('(') && !s_field.value.start_with?('(')
           logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
         end
@@ -328,10 +328,6 @@ def process_subject_topic_facet record
   lcsh_subjects + other_thesaurus_subjects
 end
 
-def strip_non_numeric num_str
-  num_str.gsub(/\D/, '').to_i.to_s
-end
-
 def oclc_number? oclc
   # Strip spaces and dashes
   clean_oclc = oclc.gsub(/[\-\s]/, '')
@@ -341,7 +337,7 @@ def oclc_number? oclc
 end
 
 def oclc_normalize oclc, opts = { prefix: false }
-  oclc_num = strip_non_numeric(oclc)
+  oclc_num = BibdataRs::Marc.strip_non_numeric(oclc)
   if opts[:prefix] == true
     case oclc_num.length
     when 1..8
