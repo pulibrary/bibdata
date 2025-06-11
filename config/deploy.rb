@@ -114,7 +114,11 @@ namespace :deploy do
       end
     end
   end
-  after :updated, :compile
+  namespace :deploy do
+    namespace :assets do
+      before :compile_assets, :compile
+    end
+  end
 
   desc 'Restart application'
   task :restart do
