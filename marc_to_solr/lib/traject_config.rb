@@ -1665,40 +1665,6 @@ each_record do |record, context|
   context.output_hash['access_facet'] = AccessFacetBuilder.build(record:, context:)
 end
 
-# Location has:
-#    1040
-#    866 |0 az
-#    866 |1 az
-#    866 |2 az
-#    866 30 az
-#    866 31 az
-#    866 32 az
-#    866 40 az
-#    866 41 az
-#    866 42 az
-#    866 50 az
-#    866 51 az
-#    866 52 az
-#    899 XX a
-# to_field 'location_has_display', extract_marc('866| 0|az:866| 1|az:866| 2|az:866|30|az:866|31|az:866|32|az:866|40|az:866|41|az:866|42|az:866|50|az:866|51|az:866|52|az:899a')
-
-# Location has (current):
-#    866 || az
-#    1020
-# to_field 'location_has_current_display', extract_marc('866|  |az')
-
-# Supplements:
-#    1042
-#    867 XX az
-#    1022
-# to_field 'supplements_display', extract_marc('867az')
-
-# Indexes:
-#    1044
-#    868 XX az
-#    1024
-# to_field 'indexes_display', extract_marc('868az')
-
 ########################################################
 # Processing already-extracted fields                  #
 # Remove holding 856s from electronic_access_1display  #
