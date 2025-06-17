@@ -15,7 +15,9 @@ class MarcBreaker
   end
 
   def as_breaker
-    fields = original.fields.map do |f|
+    fields = original.fields
+                     .select { |f| valid_tag? f.tag }
+                     .map do |f|
       case f
       when MARC::DataField
         datafield_to_breaker(f)
@@ -62,6 +64,10 @@ class MarcBreaker
 
     def valid_indicator?(stripped)
       stripped.bytesize <= 1
+    end
+
+    def valid_tag?(tag)
+      tag&.bytesize == 3
     end
 
     def leader_to_breaker(ldr)
