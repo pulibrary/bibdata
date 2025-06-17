@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>05654nam a2200397zu 4500</leader>
+        <controlfield tag="001">99131506983706421</controlfield>
+        <controlfield tag="005">20250604103706.0</controlfield>
+        <controlfield tag="006">m o d | </controlfield>
+        <controlfield tag="007">cr#|||||||||||</controlfield>
+        <controlfield tag="008">250525|2025uuuuno |||||o |||| ||mul d</controlfield>
+        <datafield tag="020" ind1=" " ind2=" ">
+            <subfield code="a">82-15-06996-7</subfield>
+        </datafield>
+        <datafield tag="024" ind1=" " ind2="7">
+            <subfield code="a">10.18261/9788215069968-25</subfield>
+            <subfield code="2">doi</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(CKB)38871254400041</subfield>
+        </datafield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(EXLCZ)9938871254400041</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="a">nno</subfield>
+            <subfield code="a">nob</subfield>
+            <subfield code="b">nno</subfield>
+            <subfield code="b">nob</subfield>
+            <subfield code="b">eng</subfield>
+        </datafield>
+        <datafield tag="130" ind1="0" ind2=" ">
+            <subfield code="a">Plan, politikk og prosess</subfield>
+        </datafield>
+        <datafield tag="245" ind1="1" ind2="0">
+            <subfield code="a">Plan, politikk og prosess:</subfield>
+            <subfield code="b">eit heidersskrift til Jørgen Amdam og Roar Amdam</subfield>
+            <subfield code="c">Gro Anita Bårdseth, Bjarte Folkestad, Lars Julius Halvorsen og Grethe
+                Mari Mattland Olsen (red.)</subfield>
+        </datafield>
+        <datafield tag="264" ind1=" " ind2="1">
+            <subfield code="a">Oslo</subfield>
+            <subfield code="b">Scandinavian University Press (Universitetsforlaget)</subfield>
+            <subfield code="c">2025</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">1 online (nettilkoblet) ressurs</subfield>
+        </datafield>
+        <datafield tag="336" ind1=" " ind2=" ">
+            <subfield code="a">tekst</subfield>
+            <subfield code="0">http://rdaregistry.info/termList/RDAContentType/1020</subfield>
+            <subfield code="2">rdaco</subfield>
+        </datafield>
+        <datafield tag="337" ind1=" " ind2=" ">
+            <subfield code="a">datamaskin</subfield>
+            <subfield code="0">http://rdaregistry.info/termList/RDAMediaType/1003</subfield>
+            <subfield code="2">rdamt</subfield>
+        </datafield>
+        <datafield tag="338" ind1=" " ind2=" ">
+            <subfield code="a">online (nettilkoblet) ressurs</subfield>
+            <subfield code="0">http://rdaregistry.info/termList/RDACarrierType/1018</subfield>
+            <subfield code="2">rdact</subfield>
+        </datafield>
+        <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="a">tekstfil</subfield>
+            <subfield code="0">http://rdaregistry.info/termList/fileType/1002</subfield>
+            <subfield code="2">rdaft</subfield>
+        </datafield>
+        <datafield tag="347" ind1=" " ind2=" ">
+            <subfield code="b">EPUB</subfield>
+            <subfield code="b">PDF</subfield>
+            <subfield code="b">HTML</subfield>
+        </datafield>
+        <datafield tag="505" ind1="0" ind2="0">
+            <subfield code="g">1.</subfield>
+            <subfield code="g">Introduksjon til Plan, politikk og prosess: eit heidersskrift
+                tilJørgen Amdam og Roar Amdam /</subfield>
+            <subfield code="r">Gro Anita Bårdseth,</subfield>
+            <subfield code="r">Bjarte Folkestad,</subfield>
+            <subfield code="r">Lars Julius Halvorsen, og</subfield>
+            <subfield code="r">Grethe Mari Mattland Olsen.-</subfield>
+            <subfield code="g">Del 1.:</subfield>
+            <subfield code="t">Plan:</subfield>
+            <subfield code="g">2.:</subfield>
+            <subfield code="t">Planteori og praksis : sentrale bidrag fra Jørgen Amdam og Roar Amdam
+                /</subfield>
+            <subfield code="r">Aksel Hagen, og</subfield>
+            <subfield code="r">Ulla Higdem.-</subfield>
+            <subfield code="g">3.:</subfield>
+            <subfield code="t">Bibliografisk oversikt over Jørgen Amdam og Roar Amdam
+                sinevitskaplege arbeid /</subfield>
+            <subfield code="r">Bente Gunn Lien.-</subfield>
+            <subfield code="g">4.:</subfield>
+            <subfield code="t">Medvirkningskompetanse i planleggerutdanningen /</subfield>
+            <subfield code="r">Elin Børrud.-</subfield>
+            <subfield code="g">5.:</subfield>
+            <subfield code="t">Samordna innsats om sosiale berekraftsmål i kommuneplanlegging :
+                rollene til kommunale velferdstenester /</subfield>
+            <subfield code="r">Elisabeth Busengdal.-</subfield>
+            <subfield code="t">6.:</subfield>
+            <subfield code="t">. Har digital tvilling praktisk verdi for norsk planlegging?: ei
+                sonderande oversikt /</subfield>
+            <subfield code="r">Kjersti Straume, og</subfield>
+            <subfield code="r">Gro Anita Bårdseth ;</subfield>
+            <subfield code="g">7.:</subfield>
+            <subfield code="t">Å klatre i kunnskapshierarkiet: frå data til handling i systematisk
+                folkehelsearbeid /</subfield>
+            <subfield code="r">Ellen Strøm Synnevåg,</subfield>
+            <subfield code="r">Gro Anita Bårdseth, og</subfield>
+            <subfield code="r">Tove Vikanes Agdestein.-</subfield>
+            <subfield code="g">Del 2.:</subfield>
+            <subfield code="t">Politikk :</subfield>
+            <subfield code="g">8..</subfield>
+            <subfield code="t">Politikkens abdikasjon: lokalisering som del av samfunnsplanlegginga
+                /</subfield>
+            <subfield code="r">Håvard Teigen ;</subfield>
+            <subfield code="g">9.:</subfield>
+            <subfield code="t">Frå røykeslutt til samfunnsutvikling: lokalt folkehelsearbeid setti
+                lys av nasjonal folkehelsepolitikk, 1990–2020 /</subfield>
+            <subfield code="r">Randi Bergem ;</subfield>
+            <subfield code="g">10.:</subfield>
+            <subfield code="t">Fra anakronisme til politikksuksess : historien om den
+                statligepolitikken for utkantbutikker /</subfield>
+            <subfield code="r">Lars Julius Halvorsen, og</subfield>
+            <subfield code="r">Finn Ove Båtevik ;</subfield>
+            <subfield code="g">11.:</subfield>
+            <subfield code="t">Deliberasjon uten reell innflytelse? : erfaringer fra et forsøk med
+                kommunedelsutvalg /</subfield>
+            <subfield code="r">Jørn Andreas Cruickshank, og</subfield>
+            <subfield code="r">Bjarte Folkestad ;</subfield>
+            <subfield code="g">12.:</subfield>
+            <subfield code="t">Myndiggjerande leiing i vidaregåande skule /</subfield>
+            <subfield code="r">Magnar Hjertenæs ;</subfield>
+            <subfield code="g">13.:</subfield>
+            <subfield code="t">Bærekraftmål i konflikt?: nullutslipp fra cruise i Geirangerfjorden
+                2026 /</subfield>
+            <subfield code="r">Else Ragni Yttredal, og</subfield>
+            <subfield code="r">Nathalie Homlong ;</subfield>
+            <subfield code="g">14..</subfield>
+            <subfield code="t">Litt om legalitetsprinsippet i grunnloven § 113 /</subfield>
+            <subfield code="r">Bernt Olav Øvregaard.-</subfield>
+            <subfield code="g">Del 3.:</subfield>
+            <subfield code="t">Prosess:</subfield>
+            <subfield code="g">15.:</subfield>
+            <subfield code="t">Medvirkning i kommunal planlegging: invitert eller sjølorganisert? /</subfield>
+            <subfield code="r">Nils Aarsæther,</subfield>
+            <subfield code="r">Torill Nyseth, og</subfield>
+            <subfield code="r">Toril Ringholm ;</subfield>
+            <subfield code="g">16..</subfield>
+            <subfield code="t">Kravet til medverknad i plan- og bygningslova vedendringar i
+                planprosessens avsluttande fase.: eii drøfting av Sivilombodets sak 2022/1303 ./</subfield>
+            <subfield code="r">Ingvild Sande Lillebø ;</subfield>
+            <subfield code="g">17.:</subfield>
+            <subfield code="t">Erfaringar med undervisningsopplegg for å utvikle
+                medverknadskompetanse /</subfield>
+            <subfield code="r">Grethe Mari Mattland Olsen ;</subfield>
+            <subfield code="g">18.:</subfield>
+            <subfield code="t">Myndiggjering som planlagt endring i Nav. :mellom lokal autonomiog
+                sentral statleg styring /</subfield>
+            <subfield code="r">Alf Roger Djupvik ;</subfield>
+            <subfield code="g">19.:</subfield>
+            <subfield code="t">Podkast som lokalsamfunnsprosjekt.: en casestudie av Alvdalspodden /</subfield>
+            <subfield code="r">Lars Julius Halvorsen, og</subfield>
+            <subfield code="r">Dag S. Roland.-</subfield>
+            <subfield code="g">Forfattere</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+            <subfield code="a">Denne boka er eit heidersskrift til brørne Jørgen Amdam og Roar
+                Amdam. Brørne Amdam har vore sentrale i oppbygginga av bachelor- og masterutdanning
+                i samfunnsplanlegging og leiing ved Høgskulen i Volda og dei har bygd opp eit sterkt
+                fagmiljø i tilknyting til desse utdanningane. Sidan 1970-talet har dei produsert ein
+                rik og mangfaldig forskingslitteratur knytt til planlegging og regional utvikling.
+                Gjennom fleire tiår har deira arbeid bore frukter og sett varige spor. Målet med
+                boka er å heidre deira innsats ved ein liten høgskule i ein mellomstor kommune på
+                Sunnmøre.Bokas tittel, Plan, politikk og prosess, speglar det breie fagfeltet som
+                Jørgen Amdam og Roar Amdam har dekt gjennom sine lange forskar- og
+                undervisingskarrierar. Boka er sett saman av 19 kapittel og presenterer både ny
+                empiri og diskuterer nye perspektiv på aktuelle tema i samfunnsplanlegging.
+                Forfattarane er tilsette ved Institutt for planlegging og administrasjon ved
+                Høgskulen i Volda, og forskarkollegaer frå brørne sine omfattande nettverk rundt om
+                i Noreg.</subfield>
+            <subfield code="c">Forlagets omtale</subfield>
+        </datafield>
+        <datafield tag="540" ind1=" " ind2=" ">
+            <subfield code="a">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+                International License</subfield>
+            <subfield code="f">CC BY-NC-ND 4.0</subfield>
+            <subfield code="2">cc</subfield>
+            <subfield code="0">https://creativecommons.org/licenses/by-nc-nd/4.0/</subfield>
+        </datafield>
+        <datafield tag="546" ind1=" " ind2=" ">
+            <subfield code="a">Tekst på bokmål og nynorsk (norsk), forfattersammendrag på engelsk</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2="7">
+            <subfield code="a">Amdam, Jørgen</subfield>
+            <subfield code="4">hnr</subfield>
+            <subfield code="2">bare</subfield>
+            <subfield code="0">(NO-TrBIB)90102840</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2="§">
+            <subfield code="a">Amdam, Roar,</subfield>
+            <subfield code="d">1951-</subfield>
+            <subfield code="0">(DLC)n 97006361</subfield>
+            <subfield code="4">hnr</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Bårdseth, Gro Anita</subfield>
+            <subfield code="d">1970-</subfield>
+            <subfield code="0">(NO-TrBIB)98050378</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">aui</subfield>
+            <subfield code="4">ctb</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Folkestad, Bjarte</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">aui</subfield>
+            <subfield code="4">ctb -</subfield>
+            <subfield code="0">(NO-TrBIB)6075999</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Halvorsen, Lars J.</subfield>
+            <subfield code="d">1975-</subfield>
+            <subfield code="q">(Lars Julius)</subfield>
+            <subfield code="0">(NO-TrBIB)1003724</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">aui</subfield>
+            <subfield code="4">ctb</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Olsen, Grethe Mattland</subfield>
+            <subfield code="d">1962-</subfield>
+            <subfield code="0">(NO-TrBIB)90318738</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">edt</subfield>
+            <subfield code="4">aui</subfield>
+            <subfield code="4">ctb</subfield>
+        </datafield>
+        <datafield tag="776" ind1="0" ind2="8">
+            <subfield code="z">82-15-06997-5</subfield>
+        </datafield>
+        <datafield tag="906" ind1=" " ind2=" ">
+            <subfield code="a">BOOK</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2025-06-16 00:32:50 US/Eastern</subfield>
+            <subfield code="b">2025-05-25 12:59:19 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="951" ind1=" " ind2=" ">
+            <subfield code="v">2025-06-03 02:46:21 US/Eastern</subfield>
+            <subfield code="g">Scandinavian University Press</subfield>
+            <subfield code="u">System</subfield>
+            <subfield code="t">2025-06-03 02:46:21 US/Eastern</subfield>
+            <subfield code="x">
+                https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=531070142660006421&amp;Force_direct=true</subfield>
+            <subfield code="s">electronic inventory creator</subfield>
+            <subfield code="0">531070142660006421</subfield>
+            <subfield code="w">2025-06-03 06:46:21</subfield>
+            <subfield code="f">false</subfield>
+            <subfield code="m">611049126540006421</subfield>
+            <subfield code="n">Scandinavian University Press Open Access eBooks</subfield>
+            <subfield code="b">param</subfield>
+            <subfield code="1">621049126530006421</subfield>
+            <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99131506983706421</subfield>
+            <subfield code="a">Available</subfield>
+            <subfield code="l">615450000000003193</subfield>
+            <subfield code="e">BOOK</subfield>
+            <subfield code="8">531070142660006421</subfield>
+        </datafield>
+        <datafield tag="951" ind1=" " ind2=" ">
+            <subfield code="v">2025-05-26 14:03:19 US/Eastern</subfield>
+            <subfield code="g">DOAB Directory of Open Access Books</subfield>
+            <subfield code="u">System</subfield>
+            <subfield code="t">2025-05-26 14:03:19 US/Eastern</subfield>
+            <subfield code="x">
+                https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&amp;portfolio_pid=531069392200006421&amp;Force_direct=true</subfield>
+            <subfield code="s">electronic inventory creator</subfield>
+            <subfield code="0">531069392200006421</subfield>
+            <subfield code="w">2025-05-26 18:03:19</subfield>
+            <subfield code="f">false</subfield>
+            <subfield code="m">61753493830006421</subfield>
+            <subfield code="n">DOAB Directory of Open Access Books</subfield>
+            <subfield code="b">param</subfield>
+            <subfield code="1">62753505900006421</subfield>
+            <subfield code="c">d?u.ignore_date_coverage=true&amp;rft.mms_id=99131506983706421</subfield>
+            <subfield code="a">Available</subfield>
+            <subfield code="l">613680000000000027</subfield>
+            <subfield code="e">BOOK</subfield>
+            <subfield code="8">531069392200006421</subfield>
+        </datafield>
+    </record>
+</collection>

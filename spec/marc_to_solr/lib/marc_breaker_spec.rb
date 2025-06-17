@@ -81,6 +81,29 @@ RSpec.describe MarcBreaker do
     # rubocop:enable Layout/TrailingWhitespace
   end
 
+  it 'can handle invalid multi-byte indicators' do
+    marc_xml_with_invalid_indicator = <<~XML
+      <record>
+        <leader>05654nam a2200397zu 4500</leader>
+        <datafield tag="700" ind1="1" ind2="§">
+          <subfield code="a">Amdam, Roar,</subfield>
+          <subfield code="d">1951-</subfield>
+          <subfield code="0">(DLC)n 97006361</subfield>
+          <subfield code="4">hnr</subfield>
+        </datafield>
+      </record>
+    XML
+    reader = MARC::XMLReader.new(StringIO.new(marc_xml_with_invalid_indicator))
+    original_record = reader.first
+    breaker = described_class.break original_record
+    expect(breaker).to eq(
+      <<~'END_MARC_BREAKER_RECORD'.strip
+        =LDR 05654nam a2200397zu 4500
+        =700 1\$aAmdam, Roar,$d1951-$0(DLC)n 97006361$4hnr
+      END_MARC_BREAKER_RECORD
+    )
+  end
+
   it 'is faster than the XML serialization from the Ruby Marc gem' do
     reader = MARC::XMLReader.new File.expand_path('../../fixtures/marc_to_solr/9914141453506421.mrx', __dir__)
     original_record = reader.first
