@@ -20,6 +20,15 @@ RSpec.describe Alma::Indexer, indexing: true, sidekiq: true do
       expect(response['response']['numFound']).to eq 1
     end
 
+    it 'handles bad indicators' do
+      solr = RSolr.connect(url: solr_url)
+      solr.delete_by_query('*:*')
+
+      indexer = described_class.new(solr_url:)
+      file_path = file_fixture('alma/broken_indicator.xml')
+      indexer.index_file(file_path)
+    end
+
     it 'handles deleted records' do
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query('*:*')

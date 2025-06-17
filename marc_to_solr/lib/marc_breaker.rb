@@ -53,11 +53,15 @@ class MarcBreaker
 
     def normalize_indicator(ind)
       stripped = ind.strip
-      if stripped.empty?
+      if stripped.empty? || !valid_indicator?(stripped)
         '\\'
       else
         stripped
       end
+    end
+
+    def valid_indicator?(stripped)
+      stripped.bytesize <= 1
     end
 
     def leader_to_breaker(ldr)
