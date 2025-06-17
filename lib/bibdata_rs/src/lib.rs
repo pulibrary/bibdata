@@ -28,6 +28,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(collection::collections_as_solr, 3),
     )?;
     submodule_marc.define_singleton_method("genres", function!(marc::genres, 1))?;
+    submodule_marc.define_singleton_method("no_longer_published", function!(marc::no_longer_published, 1))?;
     submodule_marc
         .define_singleton_method("strip_non_numeric", function!(marc::strip_non_numeric, 1))?;
     Ok(())
