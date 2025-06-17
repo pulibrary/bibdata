@@ -29,6 +29,12 @@ RSpec.describe Alma::Indexer, indexing: true, sidekiq: true do
       indexer.index_file(file_path)
     end
 
+    it 'handles records with fields that have no tags' do
+      indexer = described_class.new(solr_url:)
+      file_path = file_fixture('alma/field_with_no_tag.xml')
+      indexer.index_file(file_path)
+    end
+
     it 'handles deleted records' do
       solr = RSolr.connect(url: solr_url)
       solr.delete_by_query('*:*')

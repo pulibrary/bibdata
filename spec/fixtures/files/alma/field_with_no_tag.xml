@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<collection>
+    <record>
+        <leader>00000ntmaa22000002u 4500</leader>
+        <controlfield tag="008">000000e18991899xx | eng d</controlfield>
+        <controlfield tag="001">99131354668406421</controlfield>
+        <datafield tag="035" ind1=" " ind2=" ">
+            <subfield code="a">(PULFA)C1771_c59376-79462</subfield>
+        </datafield>
+        <datafield tag="040" ind1=" " ind2=" ">
+            <subfield code="a">NjP</subfield>
+            <subfield code="b">eng</subfield>
+            <subfield code="e">dacs</subfield>
+            <subfield code="c">NjP</subfield>
+        </datafield>
+        <datafield tag="041" ind1=" " ind2=" ">
+            <subfield code="c">eng</subfield>
+        </datafield>
+        <datafield tag="046" ind1=" " ind2=" ">
+            <subfield code="a">i</subfield>
+            <subfield code="c">1899</subfield>
+            <subfield code="e">1899</subfield>
+        </datafield>
+        <datafield tag="099" ind1=" " ind2=" ">
+            <subfield code="a">C1771_c59376-79462</subfield>
+        </datafield>
+        <datafield tag="245" ind1=" " ind2=" ">
+            <subfield code="a">Pawnee Bill in Princeton Photograph and Program</subfield>
+            <subfield code="f">1899</subfield>
+        </datafield>
+        <datafield tag="300" ind1=" " ind2=" ">
+            <subfield code="a">2</subfield>
+            <subfield code="f">items</subfield>
+        </datafield>
+        <datafield tag="583" ind1=" " ind2=" ">
+            <subfield code="a">Items processed and described by Lauren C. Williams in January 2025.</subfield>
+        </datafield>
+        <datafield tag="541" ind1=" " ind2=" ">
+            <subfield code="a">Gift of Edward D. Truesdell, Class of 1902, in November 1953 (AM
+                2025-057).</subfield>
+        </datafield>
+        <datafield tag="520" ind1=" " ind2=" ">
+            <subfield code="a">The photograph is 8 x 9 cm, with a caption in pencil on the back:
+                "Pawnee Bill in Princeton, May 15th, 1899. 'a pure, moral chaste entertainment.'
+                (The Texas steers.)" It shows several bulls walking down the street. The program is
+                37 cm, 4 pages, dated Monday, May 15th, 1899, Princeton, N.J. Sam. H. Joseph,
+                publisher. </subfield>
+        </datafield>
+        <datafield tag="544" ind1=" " ind2=" ">
+            <subfield code="a">Acquired with two other photographs with similar captions on the
+                back, which are titled “Pawnee Bill in Princeton,” and are part of the Princeton
+                University Library Collection of Western Americana Photographs (WC064). </subfield>
+        </datafield>
+        <datafield tag="506" ind1=" " ind2=" ">
+            <subfield code="a">Collection is open for research use.</subfield>
+        </datafield>
+        <datafield tag="650" ind1=" " ind2="0">
+            <subfield code="a">Animals</subfield>
+        </datafield>
+        <datafield tag="651" ind1=" " ind2="7">
+            <subfield code="a">Princeton (N.J.).</subfield>
+            <subfield code="y">19th century</subfield>
+            <subfield code="v">photographs</subfield>
+            <subfield code="2">lcnaf</subfield>
+        </datafield>
+        <datafield tag="610" ind1="2" ind2="7">
+            <subfield code="a">Pawnee Bill’s Historical Wild West, Indian Museum, and Encampment.</subfield>
+            <subfield code="2">local</subfield>
+        </datafield>
+        <datafield tag="655" ind1=" " ind2="7">
+            <subfield code="a">Gelatin silver prints</subfield>
+            <subfield code="2">aat</subfield>
+        </datafield>
+        <datafield tag="600" ind1="1" ind2="7">
+            <subfield code="a">Pawnee Bill.</subfield>
+        </datafield>
+        <datafield tag="700" ind1="1" ind2=" ">
+            <subfield code="a">Truesdell, Edward D.</subfield>
+            <subfield code="4">dnr</subfield>
+            <subfield code="2">local</subfield>
+        </datafield>
+        <datafield tag="856" ind1="4" ind2="2">
+            <subfield code="z">Search and Request</subfield>
+            <subfield code="u">https://findingaids.princeton.edu/catalog/C1771_c59376-79462</subfield>
+            <subfield code="y">Princeton University Library Finding Aids</subfield>
+        </datafield>
+        <datafield tag="982" ind1=" " ind2=" ">
+            <subfield code="c">scamss</subfield>
+        </datafield>
+        <datafield tag="" ind1="1" ind2="7">
+            <subfield code="a">Truesdell, Edward D.</subfield>
+            <subfield code="4">dnr</subfield>
+            <subfield code="2">local</subfield>
+        </datafield>
+        <datafield tag="950" ind1=" " ind2=" ">
+            <subfield code="c">2025-06-16 08:21:25 US/Eastern</subfield>
+            <subfield code="b">2025-01-24 08:08:03 US/Eastern</subfield>
+            <subfield code="a">false</subfield>
+        </datafield>
+        <datafield tag="852" ind1="8" ind2=" ">
+            <subfield code="b">rare</subfield>
+            <subfield code="c">scamss</subfield>
+            <subfield code="h">C1771_c59376-79462</subfield>
+            <subfield code="8">221041330340006421</subfield>
+        </datafield>
+        <datafield tag="952" ind1=" " ind2=" ">
+            <subfield code="d">2025-01-24 13:08:09</subfield>
+            <subfield code="8">221041330340006421</subfield>
+            <subfield code="a">2025-01-24 13:08:09</subfield>
+            <subfield code="b">Special Collections</subfield>
+            <subfield code="c">scamss: Manuscripts Archival</subfield>
+            <subfield code="e">false</subfield>
+        </datafield>
+    </record>
+</collection>
