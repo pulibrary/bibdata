@@ -291,6 +291,7 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 #    260 XX abcefg
 #    264 XX abc
 to_field 'pub_created_display', extract_marc('260abcefg') do |record, accumulator|
+  BibdataRs::Marc.no_longer_published(MarcBreaker.break(record))
   if record['008'] && record['008'].value[6, 1] == 'd'
     end_date = record.end_date_from_008
     if end_date && end_date != '9999'
