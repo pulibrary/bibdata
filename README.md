@@ -86,7 +86,23 @@ To run the tests in the `marc_to_solr` directory set RAILS_ENV:
 To run all the tests use the rake task, which sets some environment variables for you:
 `$ rake spec`
 
-Run Rust tests with `cargo test`.  Run Rust benchmarks with `cargo bench`.
+Run Rust tests with `cargo test`.
+
+### Benchmarking and profiling
+
+Run Rust benchmarks with `cargo bench`.
+
+Profiling the rust code can be a little tricky, since if you try to profile it from a
+ruby entrypoint, the rust code will have been compiled with optimizations that
+mean you can't see the names of functions, etc.  However, due to the Magnus integration,
+it can be hard to try to run the rust code in isolation without a Ruby VM.
+
+Given the above challenges, one approach to profiling is:
+1. Write a criterion benchmark for the code you want to profile.
+2. Install samply: `cargo install --locked samply`
+3. Assuming you want to profile the marc_bench benchmark: `samply record cargo bench --bench marc_bench --profile=profiling -- --profile-time 5`
+4. Samply will open up the Firefox profiler with the results.  Note that samply also profiles the rust compiler, so if your results are filled with `rustc`, you can remove those tracks (or simply re-run the previous `samply` command) to remove those distractions.
+5. The Flame Graph and Stack Chart tabs within the Firefox profiler are the most useful.
 
 ## Compiling
 
