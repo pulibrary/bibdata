@@ -13,6 +13,10 @@ class LanguageService
     end
   end
 
+  def loc_to_mult_iana(loc)
+    Languages[loc].alpha2.to_s if valid_language_code?(loc)
+  end
+
   def can_be_represented_as_iana?(loc)
     valid_language_code?(loc) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
   end
