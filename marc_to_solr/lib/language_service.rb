@@ -14,7 +14,9 @@ class LanguageService
   end
 
   def loc_to_mult_iana(loc)
-    Languages[loc].alpha2.to_s if valid_language_code?(loc)
+    return nil unless valid_language_code?(loc)
+
+    Languages[loc]&.alpha2.to_s
   end
 
   def can_be_represented_as_iana?(loc)
