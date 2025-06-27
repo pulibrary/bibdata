@@ -105,8 +105,13 @@ Language data is stored in the following solr fields.  In general, the `language
         </tr>
         <tr>
             <th scope="row"><code>language_iana_s</code></th>
-            <td>Show page (not displayed to user), JSON-LD</td>
+            <td>Show page (not displayed to user)</td>
             <td>Inform screen readers which language pack to use when reading catalog record</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>mult_languages_iana_s</code></th>
+            <td>JSON-LD</td>
+            <td>Pass the data on to Figgy</td>
         </tr>
         <tr>
             <th scope="row"><code>language_display</code></th>
