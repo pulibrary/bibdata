@@ -43,6 +43,8 @@ class MarcBreaker
     end
 
     def subfield_to_breaker(subfield)
+      return '' unless valid_subfield_code?(subfield.code)
+
       "$#{subfield.code}#{escape_to_breaker(subfield.value)}"
     end
 
@@ -64,6 +66,10 @@ class MarcBreaker
 
     def valid_indicator?(stripped)
       stripped.bytesize <= 1
+    end
+
+    def valid_subfield_code?(code)
+      code&.bytesize == 1
     end
 
     def valid_tag?(tag)
