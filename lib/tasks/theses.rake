@@ -1,3 +1,4 @@
+require_relative '../bibdata_rs/theses/fetcher'
 namespace :theses do
   desc 'Exports all theses as solr json docs to FILEPATH'
   task cache_theses: :environment do
