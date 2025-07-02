@@ -137,6 +137,21 @@ RSpec.describe MarcBreaker do
     expect(breaker).to eq("=LDR 05654nam a2200397zu 4500\n=082 0\\$4dnr")
   end
 
+  it 'removes fields with an invalid tag' do
+    marc_xml_with_blank_tag = <<~END_MARC_XML
+      <record>
+        <leader>05654nam a2200397zu 4500</leader>
+        <datafield tag=".33" ind1="0" ind2="">
+          <subfield code="4">dnr</subfield>
+        </datafield>
+      </record>
+    END_MARC_XML
+    reader = MARC::XMLReader.new(StringIO.new(marc_xml_with_blank_tag))
+    original_record = reader.first
+    breaker = described_class.break original_record
+    expect(breaker).to eq('=LDR 05654nam a2200397zu 4500')
+  end
+
   it 'is faster than the XML serialization from the Ruby Marc gem' do
     reader = MARC::XMLReader.new File.expand_path('../../fixtures/marc_to_solr/9914141453506421.mrx', __dir__)
     original_record = reader.first
