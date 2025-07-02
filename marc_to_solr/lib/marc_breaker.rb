@@ -73,7 +73,7 @@ class MarcBreaker
     end
 
     def valid_tag?(tag)
-      tag&.bytesize == 3
+      (tag&.bytesize == 3) && tag.match?(/\A[[:alnum:]]{3}\Z/)
     end
 
     def leader_to_breaker(ldr)
