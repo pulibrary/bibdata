@@ -246,6 +246,24 @@ mod tests {
     }
 
     #[test]
+    fn it_can_identify_autobiographies_as_primary_source() {
+        let record = Record::from_breaker(
+            r#"=LDR 02056cam a2200385 i 4500
+=008 180831s2018 ag 000 0 spa d
+=100 1\ $a Barilaro, Javier, $d 1974- $e author.  $0 http://id.loc.gov/authorities/names/no2019132371
+=600 10 $a Barilaro, Javier, $d 1974- $v Biography."#,
+        )
+        .unwrap();
+        assert_eq!(
+            genres(&record),
+            vec![
+                "Biography".to_string(),
+                "Primary sources".to_string()
+            ]
+        )
+    }
+
+    #[test]
     fn it_can_identify_primary_source() {
         assert!(does_genre_term_indicate_primary_source("Correspondence"));
     }
