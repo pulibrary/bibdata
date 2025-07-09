@@ -26,4 +26,11 @@ class ApplicationController < ActionController::Base
       head :internal_server_error
     end
   end
+
+  private
+
+    def verify_admin!
+      authenticate_user!
+      head :forbidden unless current_user.catalog_admin?
+    end
 end

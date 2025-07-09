@@ -195,25 +195,58 @@ RSpec.describe AlmaAdapter do
       expect(holding1[:label]).to eq 'Lewis Library - Term Loan Reserves'
     end
 
-    it 'reports On-site access for aeon locations' do
-      FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
-      availability = adapter.get_availability_one(id: '99111299423506421')
-      item = availability['99111299423506421']['22741556190006421']
-      expect(item[:status_label]).to eq 'On-site Access'
+    describe 'change_status Flipflop is turned on' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(true)
+      end
+
+      it 'reports On-site access for aeon locations' do
+        FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
+        availability = adapter.get_availability_one(id: '99111299423506421')
+        item = availability['99111299423506421']['22741556190006421']
+        expect(item[:status_label]).to eq 'Available'
+      end
+
+      it 'reports On-site access for some specific (map) locations' do
+        FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
+        availability = adapter.get_availability_one(id: '9968442613506421')
+        item = availability['9968442613506421']['22692920560006421']
+        expect(item[:status_label]).to eq 'Available'
+      end
+
+      it 'reports On-site access for specific special collections locations' do
+        FactoryBot.create(:special_collection_location, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only')
+        availability = adapter.get_availability_one(id: '9922522883506421')
+        item = availability['9922522883506421']['22943439460006421']
+        expect(item[:status_label]).to eq 'Available'
+      end
     end
 
-    it 'reports On-site access for some specific (map) locations' do
-      FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
-      availability = adapter.get_availability_one(id: '9968442613506421')
-      item = availability['9968442613506421']['22692920560006421']
-      expect(item[:status_label]).to eq 'On-site Access'
-    end
+    describe 'change_status Flipflop is turned off' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(false)
+      end
 
-    it 'reports On-site access for specific special collections locations' do
-      FactoryBot.create(:special_collection_location, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only')
-      availability = adapter.get_availability_one(id: '9922522883506421')
-      item = availability['9922522883506421']['22943439460006421']
-      expect(item[:status_label]).to eq 'On-site Access'
+      it 'reports On-site access for aeon locations' do
+        FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
+        availability = adapter.get_availability_one(id: '99111299423506421')
+        item = availability['99111299423506421']['22741556190006421']
+        expect(item[:status_label]).to eq 'On-site Access'
+      end
+
+      it 'reports On-site access for some specific (map) locations' do
+        FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
+        availability = adapter.get_availability_one(id: '9968442613506421')
+        item = availability['9968442613506421']['22692920560006421']
+        expect(item[:status_label]).to eq 'On-site Access'
+      end
+
+      it 'reports On-site access for specific special collections locations' do
+        FactoryBot.create(:special_collection_location, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only')
+        availability = adapter.get_availability_one(id: '9922522883506421')
+        item = availability['9922522883506421']['22943439460006421']
+        expect(item[:status_label]).to eq 'On-site Access'
+      end
     end
 
     it 'does not have a dash (-) before the label when the label is missing' do

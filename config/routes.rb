@@ -1,5 +1,6 @@
 require 'sidekiq/pro/web'
 Rails.application.routes.draw do
+  mount Flipflop::Engine => '/features'
   mount HealthMonitor::Engine, at: '/'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', sessions: 'users/sessions' }
   resources :dump_files, only: [:show]

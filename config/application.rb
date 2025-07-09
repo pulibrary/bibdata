@@ -9,6 +9,14 @@ Bundler.require(:default, Rails.env)
 
 module MarcLiberation
   class Application < Rails::Application
+    # Before filter for Flipflop dashboard. Replace with a lambda or method name
+    # defined in ApplicationController to implement access control.
+    config.flipflop.dashboard_access_filter = :verify_admin!
+
+    # By default, when set to `nil`, strategy loading errors are suppressed in test
+    # mode. Set to `true` to always raise errors, or `false` to always warn.
+    config.flipflop.raise_strategy_errors = false
+
     config.active_support.cache_format_version = 7.0
     config.encoding = 'utf-8'
     # Settings in config/environments/* take precedence over those specified here.
