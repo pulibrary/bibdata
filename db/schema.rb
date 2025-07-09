@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_05_02_205347) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_09_181404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,13 @@ ActiveRecord::Schema[7.2].define(version: 2025_05_02_205347) do
     t.string "message_body"
     t.string "alma_job_status"
     t.index ["message_body"], name: "index_events_on_message_body", unique: true
+  end
+
+  create_table "flipflop_features", force: :cascade do |t|
+    t.string "key", null: false
+    t.boolean "enabled", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|

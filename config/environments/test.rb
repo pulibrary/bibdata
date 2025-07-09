@@ -1,4 +1,12 @@
 Rails.application.configure do
+  # Before filter for Flipflop dashboard. Replace with a lambda or method name
+  # defined in ApplicationController to implement access control.
+  #  config.flipflop.dashboard_access_filter = nil
+
+  # By default, when set to `nil`, strategy loading errors are suppressed in test
+  # mode. Set to `true` to always raise errors, or `false` to always warn.
+  config.flipflop.raise_strategy_errors = true
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # The test environment is used exclusively to run your application's

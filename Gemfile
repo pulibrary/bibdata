@@ -16,6 +16,7 @@ gem 'ed25519'
 gem 'faraday', '~> 1.0'
 gem 'faraday_middleware', '~> 1.0'
 gem 'ffi', '>= 1.9.25'
+gem 'flipflop', '~> 2.8.0'
 gem 'friendly_id'
 # Pinning to 12.4.0 due to Rails 7.1 compatibility issue in 12.4.1
 gem 'health-monitor-rails', '12.4.0'
