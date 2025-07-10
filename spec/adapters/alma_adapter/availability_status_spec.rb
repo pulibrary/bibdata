@@ -23,7 +23,7 @@ RSpec.describe AlmaAdapter::AvailabilityStatus do
         allow(Flipflop).to receive(:change_status?).and_return(true)
       end
 
-      it 'reports unavailable when all items are unavailable' do
+      it 'reports Request when all items are unavailable' do
         bib = Alma::Bib.new('mms_id' => '99125378873406421')
         status = described_class.new(bib:, deep_check: true)
         availability = status.bib_availability_from_items

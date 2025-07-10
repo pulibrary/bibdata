@@ -304,7 +304,7 @@ class AlmaAdapter
       # [Source for values](https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/)
       # [Work Order documentation](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770142/Work+Orders)
       code = if value.in?(%w[Bind Pres AcqWorkOrder CollDev HMT])
-               'Unavailable'
+               Flipflop.change_status? ? 'Request' : 'Unavailable'
              else
                # "COURSE" or "PHYSICAL_TO_DIGITIZATION"
                'Available'
@@ -318,8 +318,11 @@ class AlmaAdapter
       #   https://developers.exlibrisgroup.com/alma/apis/docs/xsd/rest_item.xsd/
       value = item_data.dig('process_type', 'value')
       desc = item_data.dig('process_type', 'desc')
-
-      { code: 'Unavailable', label: desc, source: 'process_type', process_type: value }
+      if Flipflop.change_status?
+        { code: 'Request', label: desc, source: 'process_type', process_type: value }
+      else
+        { code: 'Unavailable', label: desc, source: 'process_type', process_type: value }
+      end
     end
 
     def status_from_base_status
