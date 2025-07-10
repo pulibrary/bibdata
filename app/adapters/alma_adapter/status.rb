@@ -18,7 +18,9 @@ class AlmaAdapter::Status
     if on_site_holding?
       return Flipflop.change_status? ? 'Available' : 'On-site Access'
     end
-    return 'Some items not available' if holding['availability'] == 'check_holdings'
+    if holding['availability'] == 'check_holdings'
+      return Flipflop.change_status? ? 'Some Available' : 'Some items not available'
+    end
     return holding['availability'].titlecase if holding['availability']
 
     # For electronic holdings

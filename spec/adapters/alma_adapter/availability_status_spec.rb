@@ -25,11 +25,30 @@ RSpec.describe AlmaAdapter::AvailabilityStatus do
       expect(availability['22897164770006421'][:status_label]).to eq 'Unavailable'
     end
 
-    it 'reports some items not available when there is a mix of statuses' do
-      bib = Alma::Bib.new('mms_id' => '99125379706706421')
-      status = described_class.new(bib:, deep_check: true)
-      availability = status.bib_availability_from_items
-      expect(availability['22897390520006421'][:status_label]).to eq 'Some items not available'
+    describe 'change_status Flipflop is turned on - Some Available' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(true)
+      end
+
+      it 'has status - Some Available when there is a mix of statuses' do
+        bib = Alma::Bib.new('mms_id' => '99125379706706421')
+        status = described_class.new(bib:, deep_check: true)
+        availability = status.bib_availability_from_items
+        expect(availability['22897390520006421'][:status_label]).to eq 'Some Available'
+      end
+    end
+
+    describe 'change_status Flipflop is turned off - Some items not available' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(false)
+      end
+
+      it 'has status - Some items not available when there is a mix of statuses' do
+        bib = Alma::Bib.new('mms_id' => '99125379706706421')
+        status = described_class.new(bib:, deep_check: true)
+        availability = status.bib_availability_from_items
+        expect(availability['22897390520006421'][:status_label]).to eq 'Some items not available'
+      end
     end
   end
 end
