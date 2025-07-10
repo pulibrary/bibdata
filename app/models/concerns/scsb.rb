@@ -18,7 +18,9 @@ module Scsb
 
   def scsb_request_response_customize(scsb_request_response:)
     scsb_request_response.each do |r|
-      r['itemAvailabilityStatus'] = 'Unavailable' if r['itemAvailabilityStatus'] == 'Not Available'
+      if r['itemAvailabilityStatus'] == 'Not Available'
+        r['itemAvailabilityStatus'] = Flipflop.change_status? ? 'Request' : 'Unavailable'
+      end
     end
   end
 

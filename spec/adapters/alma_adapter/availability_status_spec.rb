@@ -18,11 +18,30 @@ RSpec.describe AlmaAdapter::AvailabilityStatus do
       expect(availability['22897520080006421'][:status_label]).to eq 'Available'
     end
 
-    it 'reports unavailable when all items are unavailable' do
-      bib = Alma::Bib.new('mms_id' => '99125378873406421')
-      status = described_class.new(bib:, deep_check: true)
-      availability = status.bib_availability_from_items
-      expect(availability['22897164770006421'][:status_label]).to eq 'Unavailable'
+    describe 'change_status Flipflop is turned on - Request' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(true)
+      end
+
+      it 'reports Request when all items are unavailable' do
+        bib = Alma::Bib.new('mms_id' => '99125378873406421')
+        status = described_class.new(bib:, deep_check: true)
+        availability = status.bib_availability_from_items
+        expect(availability['22897164770006421'][:status_label]).to eq 'Request'
+      end
+    end
+
+    describe 'change_status Flipflop is turned off - Unavailable' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(false)
+      end
+
+      it 'reports unavailable when all items are unavailable' do
+        bib = Alma::Bib.new('mms_id' => '99125378873406421')
+        status = described_class.new(bib:, deep_check: true)
+        availability = status.bib_availability_from_items
+        expect(availability['22897164770006421'][:status_label]).to eq 'Unavailable'
+      end
     end
 
     describe 'change_status Flipflop is turned on - Some Available' do
