@@ -49,7 +49,7 @@ class AlmaAdapter
                                elsif none_available
                                  'Unavailable'
                                else
-                                 'Some items not available'
+                                 Flipflop.change_status? ? 'Some Available' : 'Some items not available'
                                end
         availability[holding_id][:status_label] = holding_availability
       end

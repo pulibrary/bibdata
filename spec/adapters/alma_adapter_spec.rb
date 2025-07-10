@@ -170,10 +170,28 @@ RSpec.describe AlmaAdapter do
       expect(holding[:location]).to eq 'firestone$stacks'
     end
 
-    it 'reports some items available' do
-      availability = adapter.get_availability_one(id: '9921799253506421')
-      holding = availability['9921799253506421']['22201236200006421']
-      expect(holding[:status_label]).to eq 'Some items not available'
+    describe 'change_status Flipflop is turned on - Some Available' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(true)
+      end
+
+      it 'has status - Some Available' do
+        availability = adapter.get_availability_one(id: '9921799253506421')
+        holding = availability['9921799253506421']['22201236200006421']
+        expect(holding[:status_label]).to eq 'Some Available'
+      end
+    end
+
+    describe 'change_status Flipflop is turned off - Some items not available' do
+      before do
+        allow(Flipflop).to receive(:change_status?).and_return(false)
+      end
+
+      it 'has status - Some items not available' do
+        availability = adapter.get_availability_one(id: '9921799253506421')
+        holding = availability['9921799253506421']['22201236200006421']
+        expect(holding[:status_label]).to eq 'Some items not available'
+      end
     end
 
     it 'ignores electronic resources' do
