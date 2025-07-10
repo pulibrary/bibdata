@@ -47,7 +47,7 @@ class AlmaAdapter
         holding_availability = if all_available
                                  'Available'
                                elsif none_available
-                                 'Unavailable'
+                                 Flipflop.change_status? ? 'Request' : 'Unavailable'
                                else
                                  Flipflop.change_status? ? 'Some Available' : 'Some items not available'
                                end
