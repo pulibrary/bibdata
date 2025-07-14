@@ -161,34 +161,13 @@ RSpec.describe AlmaAdapter do
       stub_alma_ids(ids: '9922522883506421', status: 200, fixture: '9922522883506421')
     end
 
-    describe 'change_status Flipflop is turned on - Request' do
-      before do
-        allow(Flipflop).to receive(:change_status?).and_return(true)
-      end
-
-      it 'reports availability of physical holdings' do
-        FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
-        availability = adapter.get_availability_one(id: '9922486553506421')
-        holding = availability['9922486553506421']['22117511410006421']
-        expect(holding[:status_label]).to eq 'Request'
-        expect(holding[:label]).to eq 'Firestone Library - Stacks'
-        expect(holding[:location]).to eq 'firestone$stacks'
-      end
-    end
-
-    describe 'change_status Flipflop is turned off - Unavailable' do
-      before do
-        allow(Flipflop).to receive(:change_status?).and_return(false)
-      end
-
-      it 'reports availability of physical holdings' do
-        FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
-        availability = adapter.get_availability_one(id: '9922486553506421')
-        holding = availability['9922486553506421']['22117511410006421']
-        expect(holding[:status_label]).to eq 'Unavailable'
-        expect(holding[:label]).to eq 'Firestone Library - Stacks'
-        expect(holding[:location]).to eq 'firestone$stacks'
-      end
+    it 'reports availability of physical holdings' do
+      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
+      availability = adapter.get_availability_one(id: '9922486553506421')
+      holding = availability['9922486553506421']['22117511410006421']
+      expect(holding[:status_label]).to eq 'Unavailable'
+      expect(holding[:label]).to eq 'Firestone Library - Stacks'
+      expect(holding[:location]).to eq 'firestone$stacks'
     end
 
     describe 'change_status Flipflop is turned on - Some Available' do
@@ -382,50 +361,21 @@ RSpec.describe AlmaAdapter do
       stub_alma_library(library_code: 'recap', location_code: 'xr')
     end
 
-    describe 'change_status Flipflop is turned on - returns Request if Unavailable' do
-      before do
-        allow(Flipflop).to receive(:change_status?).and_return(true)
-      end
-
-      it 'uses the work_order to calculate status' do
-        availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
-        item = availability.first
-        expect(item[:status]).to eq 'Request'
-        expect(item[:status_label]).to eq 'Holdings Management'
-        expect(item[:status_source]).to eq 'work_order'
-      end
-
-      it 'uses the process_type to calculate status' do
-        availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
-        item = availability.find { |bib_item| bib_item[:id] == '23261963800006421' }
-        expect(item[:status]).to eq 'Request'
-        expect(item[:status_label]).to eq 'Transit'
-        expect(item[:status_source]).to eq 'process_type'
-        expect(item[:process_type]).to eq 'TRANSIT'
-      end
+    it 'uses the work_order to calculate status' do
+      availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
+      item = availability.first
+      expect(item[:status]).to eq 'Unavailable'
+      expect(item[:status_label]).to eq 'Holdings Management'
+      expect(item[:status_source]).to eq 'work_order'
     end
 
-    describe 'change_status Flipflop is turned off - returns Unavailable' do
-      before do
-        allow(Flipflop).to receive(:change_status?).and_return(false)
-      end
-
-      it 'uses the work_order to calculate status' do
-        availability = adapter.get_availability_holding(id: '9965126093506421', holding_id: '22202918790006421')
-        item = availability.first
-        expect(item[:status]).to eq 'Unavailable'
-        expect(item[:status_label]).to eq 'Holdings Management'
-        expect(item[:status_source]).to eq 'work_order'
-      end
-
-      it 'uses the process_type to calculate status' do
-        availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
-        item = availability.find { |bib_item| bib_item[:id] == '23261963800006421' }
-        expect(item[:status]).to eq 'Unavailable'
-        expect(item[:status_label]).to eq 'Transit'
-        expect(item[:status_source]).to eq 'process_type'
-        expect(item[:process_type]).to eq 'TRANSIT'
-      end
+    it 'uses the process_type to calculate status' do
+      availability = adapter.get_availability_holding(id: '9943506421', holding_id: '22261963850006421')
+      item = availability.find { |bib_item| bib_item[:id] == '23261963800006421' }
+      expect(item[:status]).to eq 'Unavailable'
+      expect(item[:status_label]).to eq 'Transit'
+      expect(item[:status_source]).to eq 'process_type'
+      expect(item[:process_type]).to eq 'TRANSIT'
     end
 
     it 'uses the base_status to calculate status' do

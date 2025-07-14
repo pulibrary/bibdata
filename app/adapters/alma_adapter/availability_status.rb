@@ -40,18 +40,14 @@ class AlmaAdapter
           status = holding_status_from_item(alma_item)
           availability[holding_id] = status
           all_available &&= status[:status_label] == 'Available'
-          none_available &&= status[:status_label] == if Flipflop.change_status?
-                                                        'Request'
-                                                      else
-                                                        'Unavailable'
-                                                      end
+          none_available &&= status[:status_label] == 'Unavailable'
         end
 
         # Update the availability's status_label of the holding as a whole.
         holding_availability = if all_available
                                  'Available'
                                elsif none_available
-                                 Flipflop.change_status? ? 'Request' : 'Unavailable'
+                                 'Unavailable'
                                else
                                  Flipflop.change_status? ? 'Some Available' : 'Some items not available'
                                end
@@ -66,9 +62,6 @@ class AlmaAdapter
 
       location_info = location_record(holding)
       status_label = Status.new(bib:, holding:, aeon: aeon?(location_info)).to_s
-      if status_label == 'Unavailable'
-        status_label = Flipflop.change_status? ? 'Request' : 'Unavailable'
-      end
       status = {
         on_reserve: AlmaItem.reserve_location?(holding['library_code'], holding['location_code']) ? 'Y' : 'N',
         location: holding_location_code(holding),
