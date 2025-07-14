@@ -4,7 +4,7 @@ use super::{
 };
 use itertools::Itertools;
 use marctk::Record;
-use regex::Regex;
+use regex::{Regex, RegexBuilder};
 use std::sync::LazyLock;
 
 mod biographical_content;
@@ -16,13 +16,14 @@ pub fn genres(record: &Record) -> Vec<String> {
         .into_iter()
         .chain(genres_from_subfield_x(record))
         .chain(genres_from_subject_vocabularies(record))
-        .chain(genres_from_primary_source_mapping(record))
+        .chain(genres_from_primary_source_lcsh_mapping(record))
+        .chain(genres_from_primary_source_lcgft_mapping(record))
         .chain(genres_from_biographical_content(record))
         .unique()
         .collect()
 }
 
-pub fn genres_from_primary_source_mapping(record: &Record) -> Vec<String> {
+fn genres_from_primary_source_lcsh_mapping(record: &Record) -> Vec<String> {
     if is_book(record) && is_literary_work(record) {
         return vec![];
     }
@@ -31,7 +32,7 @@ pub fn genres_from_primary_source_mapping(record: &Record) -> Vec<String> {
             "600(*0)vx:610(*0)vx:611(*0)vx:630(*0)vx:650(*0)vx:651(*0)vx:655(*0)a:655(*0)vx",
         )
         .iter()
-        .any(|genre_term| does_genre_term_indicate_primary_source(genre_term))
+        .any(|genre_term| does_lcsh_genre_term_indicate_primary_source(genre_term))
     {
         vec!["Primary sources".to_string()]
     } else {
@@ -110,7 +111,7 @@ const PRIMARY_SOURCE_GENRES: &[&str] = &[
     "statistics",
 ];
 
-fn does_genre_term_indicate_primary_source(value: &str) -> bool {
+fn does_lcsh_genre_term_indicate_primary_source(value: &str) -> bool {
     static CONTAINS_PRIMARY_SOURCE_TERM: LazyLock<Vec<Regex>> = LazyLock::new(|| {
         PRIMARY_SOURCE_GENRES
             .iter()
@@ -124,7 +125,7 @@ fn does_genre_term_indicate_primary_source(value: &str) -> bool {
         .any(|r| r.is_match(normalized_genre))
 }
 
-pub fn genres_from_biographical_content(record: &Record) -> Vec<String> {
+fn genres_from_biographical_content(record: &Record) -> Vec<String> {
     if matches!(
         BiographicalContent::from(record),
         BiographicalContent::Autobiography
@@ -136,7 +137,7 @@ pub fn genres_from_biographical_content(record: &Record) -> Vec<String> {
     }
 }
 
-pub fn genres_from_subfield_x(record: &Record) -> Vec<String> {
+fn genres_from_subfield_x(record: &Record) -> Vec<String> {
     record
         .extract_values("600(*0)x:610(*0)x:611(*0)x:630(*0)x:650(*0)x:651(*0)x:655(*0)x")
         .iter()
@@ -147,7 +148,7 @@ pub fn genres_from_subfield_x(record: &Record) -> Vec<String> {
         .collect()
 }
 
-pub fn genres_from_subfield_v(record: &Record) -> Vec<String> {
+fn genres_from_subfield_v(record: &Record) -> Vec<String> {
     record
         .extract_values("600(*0)v:610(*0)v:611(*0)v:630(*0)v:650(*0)v:651(*0)v:655(*0)a:655(*0)v")
         .iter()
@@ -162,7 +163,7 @@ const SUBJECT_GENRE_VOCABULARIES: &[&str] = &[
     "rbtyp", "homoit",
 ];
 
-pub fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
+fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
     let subjects = record.fields().iter().fold(Vec::new(), |mut acc, field| {
         if field.ind2() != "7" { return acc }
         if !matches!(&field.first_subfield("2"), Some(sf) if SUBJECT_GENRE_VOCABULARIES.contains(&sf.content().trim())) { return acc };
@@ -174,6 +175,171 @@ pub fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
         acc
     });
     subjects
+}
+
+const PRIMARY_SOURCE_LCGFT_GENRES: &[&str] = &[
+    "Primary sources",
+    "Call documents",
+    "Charters and articles of incorporation",
+    "Church covenants",
+    "Church orders",
+    "Codes (Jewish law)",
+    "Codices (Law)",
+    "Collective labor agreements",
+    "Commercial arbitration agreements",
+    "Concordats",
+    "Consilia",
+    "Constitutional amendments",
+    "Constitutions",
+    "Contracts",
+    "Cooperative agreements",
+    "Court decisions and opinions",
+    "Court rules",
+    "Coutumes",
+    "Customary laws",
+    "Custumals",
+    "Deeds",
+    "Executive orders",
+    "Fatwas",
+    "Indulgences (Canon law)",
+    "Intergovernmental agreements",
+    "Legal instruments",
+    "Legal memorandums",
+    "Legal petitions",
+    "Legislative materials",
+    "Messages (Official communications)",
+    "Monastic constitutions",
+    "Monastic rules",
+    "Official gazettes",
+    "Papal documents",
+    "Papal encyclicals",
+    "Patents",
+    "Privileges and immunities",
+    "Proclamations",
+    "Records (Documents)",
+    "Records and briefs",
+    "Registers (Lists)",
+    "Religious inventories",
+    "Remonstrances",
+    "Resolutions (Law)",
+    "Responsa (Jewish law)",
+    "Session laws",
+    "Statutes and codes",
+    "Travaux préparatoires (Treaties)",
+    "Treaties",
+    "Trial and arbitral proceedings",
+    "Wills",
+    "Writs",
+    "Year books (English law reports)",
+    "Autobiographical comics",
+    "Autobiographical drama",
+    "Autobiographical films",
+    "Autobiographical television programs",
+    "Autobiographies",
+    "Captivity narratives",
+    "Diaries",
+    "Personal narratives",
+    "Slave narratives",
+    "Census data",
+    "City directories",
+    "Data sets",
+    "Death registers",
+    "Demographic surveys",
+    "Judicial statistics",
+    "Medical statistics",
+    "Statistics",
+    "Vital statistics",
+    "Field recordings",
+    "Interviews",
+    "Radio interviews",
+    "Business correspondence",
+    "Chirographa (Personal correspondence)",
+    "Love letters",
+    "Pastoral letters and charges",
+    "Personal correspondence",
+    "Manuscripts",
+    "Atlases",
+    "Cartographic materials",
+    "Digital maps",
+    "Early maps",
+    "Geospatial data",
+    "Globes",
+    "Gores (Maps)",
+    "Manuscript maps",
+    "Mappae mundi",
+    "Maps",
+    "Military maps",
+    "Mine maps",
+    "Nautical charts",
+    "Outline maps",
+    "Physical maps",
+    "Quadrangle maps",
+    "Raster data",
+    "Road maps",
+    "Stick charts",
+    "Strip maps",
+    "Topographic maps",
+    "Topological maps",
+    "Upside-down maps",
+    "World atlases",
+    "World maps",
+    "Zoning maps",
+    "Field notes",
+    "Notebooks",
+    "Sketchbooks",
+    "Oral histories",
+    "Personal recordings",
+    "Ephemera",
+    "Tracts (Ephemera)",
+    "Aerial photographs",
+    "Aerial views",
+    "Baby books",
+    "Drawings",
+    "Negatives (Photographs)",
+    "Photographs",
+    "Pictures",
+    "Portraits",
+    "Selfies",
+    "Self-portraits",
+    "Visual works",
+    "Campaign speeches",
+    "Occasional speeches",
+    "Speeches",
+];
+
+fn genres_from_primary_source_lcgft_mapping(record: &Record) -> Vec<String> {
+    if is_book(record) && is_literary_work(record) {
+        return vec![];
+    }
+    if record
+        .extract_fields(
+            "655",
+        )
+        .filter(|field| field.ind2() == "7" && matches!(field.first_subfield("2"), Some(vocabulary) if vocabulary.content().trim() == "lcgft" ))
+        .any(|field| field.get_subfields("a").iter().any(|sf| does_lcgft_genre_term_indicate_primary_source(sf.content())))
+    {
+        vec!["Primary sources".to_string()]
+    } else {
+        vec![]
+    }
+}
+
+fn does_lcgft_genre_term_indicate_primary_source(value: &str) -> bool {
+    static CONTAINS_LCGFT_PRIMARY_SOURCE_TERM: LazyLock<Vec<Regex>> = LazyLock::new(|| {
+        PRIMARY_SOURCE_LCGFT_GENRES
+            .iter()
+            .map(|term| {
+                RegexBuilder::new(format!(r"(^|\W){}($|\W)", term).as_str())
+                    .case_insensitive(true)
+                    .build()
+                    .unwrap()
+            })
+            .collect()
+    });
+    let normalized_genre = value.trim().trim_end_matches('.');
+    CONTAINS_LCGFT_PRIMARY_SOURCE_TERM
+        .iter()
+        .any(|r| r.is_match(normalized_genre))
 }
 
 fn is_literary_work(record: &Record) -> bool {
@@ -264,7 +430,25 @@ mod tests {
     }
 
     #[test]
+    fn it_can_find_genres_from_lcgft() {
+        let record = Record::from_breaker(
+            r#"=LDR 04137cam a2200853Ii 4500
+=655 \7 $a Chirographa (Personal correspondence) $2 lcgft"#,
+        )
+        .unwrap();
+        assert_eq!(
+            genres(&record),
+            vec![
+                "Chirographa (Personal correspondence)".to_string(),
+                "Primary sources".to_string()
+            ]
+        )
+    }
+
+    #[test]
     fn it_can_identify_primary_source() {
-        assert!(does_genre_term_indicate_primary_source("Correspondence"));
+        assert!(does_lcsh_genre_term_indicate_primary_source(
+            "Correspondence"
+        ));
     }
 }

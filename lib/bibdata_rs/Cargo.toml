@@ -34,3 +34,7 @@ rb-sys-test-helpers = "0.2.2"
 [[bench]]
 name = "dataspace_bench"
 harness = false
+
+[[bench]]
+name = "marc_bench"
+harness = false
