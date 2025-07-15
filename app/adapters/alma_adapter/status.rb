@@ -15,9 +15,7 @@ class AlmaAdapter::Status
   end
 
   def to_s
-    if on_site_holding?
-      return Flipflop.change_status? ? 'Available' : 'On-site Access'
-    end
+    return 'On-site Access' if on_site_holding?
     if holding['availability'] == 'check_holdings'
       return Flipflop.change_status? ? 'Some Available' : 'Some items not available'
     end
