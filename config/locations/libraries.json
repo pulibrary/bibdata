@@ -6,6 +6,12 @@
         "url": "https://bibdata.princeton.edu/locations/libraries/arch.json"
     },
     {
+        "label":"Commons Library",
+        "code": "commons",
+        "order": 0,
+        "url": "https://bibdata.princeton.edu/locations/libraries/commons.json"
+    },
+    {
         "label": "East Asian Library",
         "code": "eastasian",
         "order": 0,
