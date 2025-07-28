@@ -182,6 +182,27 @@
     },
     {
         "label": "",
+        "code":"commons$stacks",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": false,
+        "open": true,
+        "requestable": false,
+        "always_requestable": false,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Limited",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/commons$stacks.json",
+        "library": {
+            "label": "Commons Library",
+            "code": "commons",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+
+    },
+    {
+        "label": "",
         "code": "eastasian$hy",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,

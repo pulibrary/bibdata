@@ -14,10 +14,12 @@ RSpec.describe LocationDataService, type: :service do
   end
 
   describe '#delete_existing_and_repopulate' do
+    # rubocop:disable RSpec/MultipleExpectations
     it 'deletes existing data and populates library and location data from json' do
       arch_library = Library.find_by(code: 'arch')
       arch_stacks = HoldingLocation.find_by(code: 'arch$stacks')
       annex_stacks = HoldingLocation.find_by(code: 'annex$stacks')
+      commons_stacks = HoldingLocation.find_by(code: 'commons$stacks')
       delivery_location_pf = DeliveryLocation.find_by(gfa_pickup: 'PF')
       eastasian_hy = HoldingLocation.find_by(code: 'eastasian$hy')
       firestone_seref = HoldingLocation.find_by(code: 'firestone$seref')
@@ -44,12 +46,13 @@ RSpec.describe LocationDataService, type: :service do
       stokes_spr = HoldingLocation.find_by(code: 'stokes$spr')
 
       expect(delivery_location_pf.pickup_location).to be true
-      expect(Library.count).to eq 18
-      expect(HoldingLocation.count).to eq 83
+      expect(Library.count).to eq 19
+      expect(HoldingLocation.count).to eq 84
       expect(arch_library.label).to eq 'Architecture Library'
       expect(annex_stacks.label).to eq 'Stacks'
       expect(arch_stacks.open).to be true
       expect(annex_stacks.open).to be false
+      expect(commons_stacks.label).to eq ''
       expect(eastasian_hy.label).to eq ''
       expect(firestone_secw.label).to eq 'Scribner Library: Common Works Collection'
       expect(firestone_seref.label).to eq 'Scribner Library: Reference'
@@ -82,6 +85,7 @@ RSpec.describe LocationDataService, type: :service do
       expect(stokes_spia.label).to eq 'Wallace Hall (SPIA)'
       expect(stokes_spr.label).to eq 'Wallace Hall (SPR)'
     end
+    # rubocop:enable RSpec/MultipleExpectations
 
     context 'Plasma Library' do
       plasma_location_codes = %w[index la li nb ps rdr ref rr serial stacks theses]
