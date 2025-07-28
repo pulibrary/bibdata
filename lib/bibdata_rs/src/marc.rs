@@ -3,6 +3,7 @@ use marctk::Record;
 
 mod string_normalize;
 
+pub mod date;
 pub mod fixed_field;
 pub mod genre;
 
@@ -15,6 +16,11 @@ pub fn genres(record_string: String) -> Result<Vec<String>, magnus::Error> {
 
 pub fn strip_non_numeric(string: String) -> String {
     string_normalize::strip_non_numeric(&string)
+}
+
+pub fn no_longer_published(record_string: String) -> Result<bool, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(date::no_longer_published(record))
 }
 
 fn get_record(breaker: &str) -> Result<Record, magnus::Error> {
