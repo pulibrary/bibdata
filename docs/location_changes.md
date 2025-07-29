@@ -41,6 +41,12 @@
 6. If in step 2 you stopped the workers then start the workers: 
     - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_staging -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata staging web servers. They don't run the worker service.)   
 
+7. Deploy orangelight 
+   or 
+   ssh in one of the [orangelight staging VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/orangelight#L37-L38) and run the rake task to clear the cache:
+   `cd /opt/orangelight/current`
+   `bundle exec rake cache:clear`
+
 ## 3. Update Bibdata QA
 
 1. Deploy your branch on qa and follow the steps to make sure that nothing is breaking the tables.
@@ -57,7 +63,12 @@
 
 5. Review the changes in [Bibdata qa](https://bibdata-qa.princeton.edu/)
 6.  If in step 2 you stopped the workers then start the workers:
-    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_qa -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata qa web servers. They don't run the worker service)    
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_qa -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata qa web servers. They don't run the worker service)  
+7. Deploy orangelight 
+   or 
+   ssh in one of the [orangelight QA VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/orangelight#L24-L25) and run the rake task to clear the cache:
+   `cd /opt/orangelight/current`
+   `bundle exec rake cache:clear`  
 
 *If there were no errors updating the location tables in QA or in staging, merge the branch and go to the next step to update the location tables in production.*
 ## 4. Update Bibdata production
@@ -77,4 +88,10 @@
 5. Review the changes in [Bibdata production](https://bibdata.princeton.edu/)
 
 6. Start the workers:
-    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_production -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata production web servers. They don't run the worker service) 
+    - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_production -u pulsys -m shell -a "sudo service bibdata-workers start"`. (Ignore the console error for the bibdata production web servers. They don't run the worker service)
+
+7. Deploy orangelight 
+   or 
+   ssh in one of the [orangelight production VMs](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/orangelight#L7-L11) and run the rake task to clear the cache:
+   `cd /opt/orangelight/current`
+   `bundle exec rake cache:clear`
