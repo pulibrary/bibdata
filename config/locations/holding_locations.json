@@ -3653,6 +3653,32 @@
     },
     {
         "label": "Remote Storage (ReCAP): Marquand Library Use Only",
+        "code": "marquand$pjm",
+        "aeon_location": false,
+        "recap_electronic_delivery_location": true,
+        "open": false,
+        "requestable": true,
+        "always_requestable": false,
+        "circulates": true,
+        "remote_storage": "recap_rmt",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$pjm.json",
+        "library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "holding_library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "delivery_locations": [
+           "PJ" 
+        ]
+    },
+    {
+        "label": "Remote Storage (ReCAP): Marquand Library Use Only",
         "code": "marquand$pj",
         "aeon_location": false,
         "recap_electronic_delivery_location": true,
