@@ -30,7 +30,7 @@
 
 3. Connect in one of the [bibdata_staging workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L9C1-L10):
     
-    - `ssh deploy@bibdata-worker-staging1`  
+    - `ssh deploy@bibdata-worker-staging1.lib.princeton.edu`  
     - `cd /opt/bibdata/current` 
 
 4. Run the following rake task to delete and repopulate the locations in the bibdata staging database:  
@@ -49,7 +49,7 @@
     - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_qa -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata qa web servers. They don't run the worker service.) 
 
 3. Connect in one of [bibdata-qa workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L4-L5):    
-    - `ssh deploy@bibdata-worker-qa1`  
+    - `ssh deploy@bibdata-worker-qa1.princeton.edu`  
     - `cd /opt/bibdata/current`  
 
 4. Run the following rake task to delete and repopulate the locations in the bibdata qa database:  
@@ -68,7 +68,7 @@
     - cd in your local princeton_ansible directory → pipenv shell → `ansible bibdata_production -u pulsys -m shell -a "sudo service bibdata-workers stop"`. (Ignore the console error for the bibdata production web servers. They don't run the worker service) . 
 
 3. Connect in one of [bibdata-production workers](https://github.com/pulibrary/princeton_ansible/blob/main/inventory/all_projects/bibdata#L14-L15):    
-    - `ssh deploy@bibdata-worker-prod1`  
+    - `ssh deploy@bibdata-worker-prod1.princeton.edu`  
     - `cd /opt/bibdata/current`  
 
 4. Run the following rake task to delete and repopulate the locations in the bibdata production database:  
