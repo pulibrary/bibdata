@@ -48,7 +48,7 @@ mod tests {
     fn it_ignores_values_unless_first_indicator_is_1() {
         let record = Record::from_breaker(r"=041 0\ $hlad $hspa").unwrap();
 
-        let mut languages = original_languages_of_translation(&record);
+        let languages = original_languages_of_translation(&record);
         assert!(languages.is_empty());
     }
 }
