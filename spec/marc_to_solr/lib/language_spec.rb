@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Language indexing' do
+RSpec.describe 'Language indexing', :rust do
   describe 'language_iana_s' do
     it 'takes the first value that has a two-character equivalent' do
       fields = [
@@ -40,6 +40,17 @@ RSpec.describe 'Language indexing' do
       record = MARC::Record.new_from_hash('fields' => fields, 'leader' => '03657ctmaa2200673Ii 4500')
       indexed = IndexerService.build.map_record record
       expect(indexed['mult_languages_iana_s']).to eq ['fa', 'ar']
+    end
+  end
+
+  describe 'original_language_of_translation_facet' do
+    it 'is an array of English names of original languages' do
+      fields = [
+        { '041' => { 'ind1' => '1', 'ind2' => ' ', 'subfields' => [{ 'h' => 'gre' }, { 'h' => 'spa' }] } }
+      ]
+      record = MARC::Record.new_from_hash('fields' => fields, 'leader' => '03657ctmaa2200673Ii 4500')
+      indexed = IndexerService.build.map_record record
+      expect(indexed['original_language_of_translation_facet']).to eq ['Greek, Modern (1453-)', 'Spanish']
     end
   end
 end

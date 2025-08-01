@@ -7,3 +7,4 @@ unless Dir.glob("#{File.dirname(__FILE__)}/bibdata_rs/bibdata_rs.*").any?
 end
 
 require_relative 'bibdata_rs/bibdata_rs'
+require_relative 'bibdata_rs/utils'

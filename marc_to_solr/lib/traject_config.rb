@@ -56,6 +56,10 @@ each_record do |record, context|
   end
 end
 
+each_record do |record, context|
+  context.clipboard[:marc_breaker] = MarcBreaker.break record
+end
+
 after_processing do
   using_solr = ['Traject::SolrJsonWriter', 'Traject::PulSolrJsonWriter'].include?(@settings['writer_class_name'])
   if using_solr
@@ -758,6 +762,10 @@ to_field 'language_facet' do |record, accumulator|
   accumulator.append('Indigenous Languages (Western Hemisphere)') if language_service.in_an_indigenous_language?(record)
 end
 
+to_field 'original_language_of_translation_facet' do |_record, accumulator, context|
+  accumulator.replace BibdataRs::Marc.original_languages_of_translation(context.clipboard[:marc_breaker])
+end
+
 to_field 'publication_place_facet', extract_marc('008[15-17]') do |_record, accumulator, _context|
   places = accumulator.compact.map { |c| Traject::TranslationMap.new('marc_countries')[c.strip] }
   accumulator.replace(places.compact)
@@ -1178,8 +1186,8 @@ end
 
 # 600/610/650/651 $v, $x filtered
 # 655 $a, $v, $x filtered
-to_field 'genre_facet' do |record, accumulator|
-  accumulator.replace(BibdataRs::Marc.genres(MarcBreaker.break(record)))
+to_field 'genre_facet' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.genres(context.clipboard[:marc_breaker]))
 end
 
 # Related name(s):
