@@ -113,6 +113,9 @@ pub struct SolrDocument {
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub restrictions_note_display: Option<Vec<String>>,
+    
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub series_display: Option<Vec<String>>, 
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_note_display: Option<Vec<String>>,

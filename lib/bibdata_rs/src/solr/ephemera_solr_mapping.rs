@@ -23,6 +23,7 @@ impl From<&EphemeraFolderItem> for SolrDocument {
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
+            .with_series_display(value.series.clone())
             .with_title_citation_display(value.title.first().cloned())
             .build()
     }
