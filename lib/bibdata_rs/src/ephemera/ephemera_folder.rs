@@ -1,8 +1,8 @@
 use crate::solr;
 
 use super::{
-    ephemera_folder_item_builder::EphemeraFolderItemBuilder,
-    ephemera_folders::ephemera_folders_iterator,
+    ephemera_folder_builder::EphemeraFolderBuilder,
+    born_digital_collection::ephemera_folders_iterator,
 };
 use log::trace;
 use serde::Deserialize;
@@ -18,7 +18,7 @@ use language::Language;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
-pub struct EphemeraFolderItem {
+pub struct EphemeraFolder {
     pub alternative: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
@@ -35,9 +35,9 @@ pub struct EphemeraFolderItem {
     pub transliterated_title: Option<Vec<String>>,
 }
 
-impl EphemeraFolderItem {
-    pub fn builder() -> EphemeraFolderItemBuilder {
-        EphemeraFolderItemBuilder::new()
+impl EphemeraFolder {
+    pub fn builder() -> EphemeraFolderBuilder {
+        EphemeraFolderBuilder::new()
     }
 
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
@@ -87,10 +87,10 @@ impl EphemeraFolderItem {
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct ItemResponse {
-    pub data: Vec<EphemeraFolderItem>,
+    pub data: Vec<EphemeraFolder>,
 }
 
-impl EphemeraFolderItem {
+impl EphemeraFolder {
     pub fn other_title_display_combined(&self) -> Vec<String> {
         let mut combined = self.alternative.clone().unwrap_or_default();
         combined.extend(self.transliterated_title.clone().unwrap_or_default());
@@ -116,7 +116,7 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
 #[cfg(test)]
 mod tests {
     use crate::{
-        ephemera::{ephemera_folder_item::country::ExactMatch, CatalogClient},
+        ephemera::{ephemera_folder::country::ExactMatch, CatalogClient},
         solr,
         testing_support::{preserving_envvar, preserving_envvar_async},
     };
@@ -161,7 +161,7 @@ mod tests {
         let file = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
         let reader = BufReader::new(file);
 
-        let ephemera_folder_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
+        let ephemera_folder_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
         assert_eq!(
             ephemera_folder_item.format.unwrap()[0].pref_label,
             Some(solr::FormatFacet::Book)
@@ -246,7 +246,7 @@ mod tests {
 
     #[test]
     fn it_can_return_country_labels_for_authorized_vocabularies() {
-        let item = EphemeraFolderItem::builder()
+        let item = EphemeraFolder::builder()
             .id("123ABC".to_string())
             .title(vec!["The worst book ever!".to_string()])
             .country(vec![

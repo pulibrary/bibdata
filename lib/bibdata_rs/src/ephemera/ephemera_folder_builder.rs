@@ -1,11 +1,11 @@
-use super::ephemera_folder_item::country::Country;
-use super::ephemera_folder_item::format::Format;
-use super::ephemera_folder_item::EphemeraFolderItem;
-use crate::ephemera::ephemera_folder_item::language::Language;
-use crate::ephemera_folder_item::subject::Subject;
+use super::ephemera_folder::country::Country;
+use super::ephemera_folder::format::Format;
+use super::ephemera_folder::EphemeraFolder;
+use crate::ephemera::ephemera_folder::language::Language;
+use crate::ephemera_folder::subject::Subject;
 
 #[derive(Default)]
-pub struct EphemeraFolderItemBuilder {
+pub struct EphemeraFolderBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
     contributor: Option<Vec<String>>,
@@ -21,7 +21,7 @@ pub struct EphemeraFolderItemBuilder {
     transliterated_title: Option<Vec<String>>,
 }
 
-impl EphemeraFolderItemBuilder {
+impl EphemeraFolderBuilder {
     pub fn new() -> Self {
         Self::default()
     }
@@ -88,11 +88,11 @@ impl EphemeraFolderItemBuilder {
         self
     }
 
-    pub fn build(self) -> Result<EphemeraFolderItem, &'static str> {
+    pub fn build(self) -> Result<EphemeraFolder, &'static str> {
         let id = self.id.ok_or("id is required")?;
         let title = self.title.ok_or("title is required")?;
 
-        Ok(EphemeraFolderItem {
+        Ok(EphemeraFolder {
             alternative: self.alternative,
             creator: self.creator,
             contributor: self.contributor,
@@ -117,7 +117,7 @@ mod tests {
 
     #[test]
     fn test_builder_success() {
-        let item = EphemeraFolderItemBuilder::new()
+        let item = EphemeraFolderBuilder::new()
             .id("test-id".to_string())
             .title(vec!["test title".to_string()])
             .alternative(vec!["alt title".to_string()])
@@ -138,7 +138,7 @@ mod tests {
 
     #[test]
     fn test_builder_missing_required_fields() {
-        let item = EphemeraFolderItemBuilder::new()
+        let item = EphemeraFolderBuilder::new()
             .id("test-id".to_string())
             .build();
 
@@ -148,7 +148,7 @@ mod tests {
 
     #[test]
     fn it_has_a_contributor() {
-        let item = EphemeraFolderItemBuilder::new()
+        let item = EphemeraFolderBuilder::new()
             .id("test-id".to_string())
             .title(vec!["test title".to_string()])
             .contributor(vec!["Eric".to_string()])

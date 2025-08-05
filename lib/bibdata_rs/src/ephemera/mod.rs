@@ -1,10 +1,10 @@
-use ephemera_folder_item::EphemeraFolderItem;
-use ephemera_folders::FoldersResponse;
+use ephemera_folder::EphemeraFolder;
+use born_digital_collection::FoldersResponse;
 use log::debug;
 
-pub mod ephemera_folder_item;
-mod ephemera_folder_item_builder;
-pub mod ephemera_folders;
+pub mod ephemera_folder;
+mod ephemera_folder_builder;
+pub mod born_digital_collection;
 
 pub struct CatalogClient {
     url: String,
@@ -31,11 +31,11 @@ impl CatalogClient {
         Ok(data)
     }
 
-    pub async fn get_item_data(&self, id: &str) -> Result<EphemeraFolderItem, reqwest::Error> {
+    pub async fn get_item_data(&self, id: &str) -> Result<EphemeraFolder, reqwest::Error> {
         let url = format!("{}/catalog/{}.jsonld", &self.url, id);
         debug!("Fetching JSON-LD of a single folder at {}", url);
         let response = reqwest::get(url).await?;
-        let data: EphemeraFolderItem = response.json().await?;
+        let data: EphemeraFolder = response.json().await?;
         Ok(data)
     }
 }

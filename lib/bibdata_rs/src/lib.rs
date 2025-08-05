@@ -1,4 +1,4 @@
-use ephemera::ephemera_folder_item;
+use ephemera::ephemera_folder;
 use magnus::{function, prelude::*, Error, Ruby};
 use solr::index;
 use theses::dataspace::collection;
@@ -20,7 +20,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     let submodule_ephemera = module.define_module("Ephemera")?;
     submodule_ephemera.define_singleton_method(
         "json_ephemera_document",
-        function!(ephemera_folder_item::json_ephemera_document, 1),
+        function!(ephemera_folder::json_ephemera_document, 1),
     )?;
     submodule_ephemera
         .define_singleton_method("index_string", function!(index::index_string, 3))?;
