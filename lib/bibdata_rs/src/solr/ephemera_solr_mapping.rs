@@ -1,8 +1,8 @@
 use super::SolrDocument;
-use crate::ephemera::ephemera_folder_item::EphemeraFolderItem;
+use crate::ephemera::ephemera_folder::EphemeraFolder;
 
-impl From<&EphemeraFolderItem> for SolrDocument {
-    fn from(value: &EphemeraFolderItem) -> Self {
+impl From<&EphemeraFolder> for SolrDocument {
+    fn from(value: &EphemeraFolder) -> Self {
         SolrDocument::builder()
             .with_author_display(Some(value.all_contributors()))
             .with_author_roles_1display(value.first_contibutor())
@@ -30,16 +30,16 @@ impl From<&EphemeraFolderItem> for SolrDocument {
 
 #[cfg(test)]
 mod tests {
-    use crate::ephemera_folder_item::subject::ExactMatch;
-    use crate::ephemera_folder_item::subject::Subject;
-    use crate::{ephemera::ephemera_folder_item::format::Format, solr};
+    use crate::ephemera_folder::subject::ExactMatch;
+    use crate::ephemera_folder::subject::Subject;
+    use crate::{ephemera::ephemera_folder::format::Format, solr};
     use std::{fs::File, io::BufReader, str::FromStr};
 
     use super::*;
 
     #[test]
     fn it_has_alternative_title_display() {
-        let document = EphemeraFolderItem::builder()
+        let document = EphemeraFolder::builder()
             .id("af4a941d-96a4-463e-9043-cfa512e5eddd".to_string())
             .title(vec!["title1".to_string()])
             .alternative(vec!["alternativeTestTitle".to_string()])
@@ -58,7 +58,7 @@ mod tests {
 
     #[test]
     fn it_combines_alternative_and_transliterated_title_into_other_title_display() {
-        let item = EphemeraFolderItem::builder()
+        let item = EphemeraFolder::builder()
             .id("12345".to_string())
             .title(vec!["Bohemian Rhapsody".to_string()])
             .alternative(vec!["We are the champions!".to_string()])
@@ -79,7 +79,7 @@ mod tests {
     fn it_can_convert_figgy_json_into_solr() {
         let fixture = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
         let reader = BufReader::new(fixture);
-        let ephemera_item: EphemeraFolderItem = serde_json::from_reader(reader).unwrap();
+        let ephemera_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
         let solr_document: SolrDocument = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.title_citation_display,
@@ -99,7 +99,7 @@ mod tests {
 
     #[test]
     fn it_has_the_id_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .build()
@@ -110,7 +110,7 @@ mod tests {
 
     #[test]
     fn it_has_the_description_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .description(vec!["Puppy biting".to_owned()])
@@ -126,7 +126,7 @@ mod tests {
 
     #[test]
     fn it_has_the_creator_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .creator(vec!["Aspen".to_owned()])
@@ -147,7 +147,7 @@ mod tests {
 
     #[test]
     fn it_has_the_contributor_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .creator(vec!["Aspen".to_owned()])
@@ -163,7 +163,7 @@ mod tests {
 
     #[test]
     fn it_uses_contributor_as_a_fallback_value_for_the_author_roles_1display_field() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .contributor(vec!["Tiberius".to_owned()])
@@ -178,7 +178,7 @@ mod tests {
 
     #[test]
     fn it_has_the_format_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .format(vec![Format {
@@ -192,7 +192,7 @@ mod tests {
 
     #[test]
     fn it_has_the_provenance_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .provenance("Test name".to_owned())
@@ -207,7 +207,7 @@ mod tests {
     }
     #[test]
     fn it_has_the_publisher_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .publisher(vec!["Princeton Press".to_owned()])
@@ -229,7 +229,7 @@ mod tests {
     }
     #[test]
     fn it_has_the_accepted_vocabulary_from_the_ephemera_folder_item() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
@@ -246,7 +246,7 @@ mod tests {
     }
     #[test]
     fn it_includes_subject_terms_in_lc_subject_display_and_lc_subject_facet_field() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
@@ -269,7 +269,7 @@ mod tests {
     }
     #[test]
     fn it_includes_subject_terms_in_homoit_subject_display_and_homoit_subject_facet_field() {
-        let ephemera_item = EphemeraFolderItem::builder()
+        let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
