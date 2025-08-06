@@ -1,5 +1,6 @@
-use super::ephemera_folder::country::Country;
+use super::ephemera_folder::coverage::Coverage;
 use super::ephemera_folder::format::Format;
+use super::ephemera_folder::origin_place::OriginPlace;
 use super::ephemera_folder::EphemeraFolder;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera_folder::subject::Subject;
@@ -9,11 +10,12 @@ pub struct EphemeraFolderBuilder {
     alternative: Option<Vec<String>>,
     creator: Option<Vec<String>>,
     contributor: Option<Vec<String>>,
-    country: Option<Vec<Country>>,
+    coverage: Option<Vec<Coverage>>,
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
     language: Option<Vec<Language>>,
+    origin_place: Option<Vec<OriginPlace>>,
     provenance: Option<String>,
     publisher: Option<Vec<String>>,
     subject: Option<Vec<Subject>>,
@@ -38,8 +40,8 @@ impl EphemeraFolderBuilder {
         self.contributor = Some(contributor);
         self
     }
-    pub fn country(mut self, country: Vec<Country>) -> Self {
-        self.country = Some(country);
+    pub fn coverage(mut self, country: Vec<Coverage>) -> Self {
+        self.coverage = Some(country);
         self
     }
     pub fn creator(mut self, creator: Vec<String>) -> Self {
@@ -58,6 +60,10 @@ impl EphemeraFolderBuilder {
     }
     pub fn language(mut self, language: Vec<Language>) -> Self {
         self.language = Some(language);
+        self
+    }
+    pub fn origin_place(mut self, origin: Vec<OriginPlace>) -> Self {
+        self.origin_place = Some(origin);
         self
     }
     pub fn provenance(mut self, provenance: String) -> Self {
@@ -96,11 +102,12 @@ impl EphemeraFolderBuilder {
             alternative: self.alternative,
             creator: self.creator,
             contributor: self.contributor,
-            country: self.country,
+            coverage: self.coverage,
             description: self.description,
             format: self.format,
             id,
             language: self.language,
+            origin: self.origin_place,
             provenance: self.provenance,
             publisher: self.publisher,
             subject: self.subject,

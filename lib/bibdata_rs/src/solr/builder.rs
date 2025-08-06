@@ -11,6 +11,7 @@ pub struct SolrDocumentBuilder {
     author_citation_display: Option<Vec<String>>,
     advisor_display: Option<Vec<String>>,
     format: Option<Vec<FormatFacet>>,
+    geographic_facet: Option<Vec<String>>,
     id: String,
     title_t: Option<Vec<String>>,
     title_citation_display: Option<String>,
@@ -39,6 +40,7 @@ pub struct SolrDocumentBuilder {
     class_year_s: Option<Vec<i16>>,
     other_title_display: Option<Vec<String>>,
     provenance_display: Option<String>,
+    publication_location_citation_display: Option<Vec<String>>,
     publisher_no_display: Option<Vec<String>>,
     pub_created_display: Option<Vec<String>>,
     publisher_citation_display: Option<Vec<String>>,
@@ -70,6 +72,11 @@ impl SolrDocumentBuilder {
         self
     }
 
+    pub fn with_geographic_facet(&mut self, geographic_facet: Option<Vec<String>>) -> &mut Self {
+        self.geographic_facet = geographic_facet;
+        self
+    }
+
     pub fn with_title_t(&mut self, title_t: Option<Vec<String>>) -> &mut Self {
         self.title_t = title_t;
         self
@@ -90,6 +97,13 @@ impl SolrDocumentBuilder {
         other_title_display: Option<Vec<String>>,
     ) -> &mut Self {
         self.other_title_display = other_title_display;
+        self
+    }
+    pub fn with_publication_location_citation_display(
+        &mut self,
+        publication_location_citation_display: Vec<String>,
+    ) -> &mut Self {
+        self.publication_location_citation_display = Some(publication_location_citation_display);
         self
     }
     pub fn with_pub_created_display(
@@ -310,6 +324,7 @@ impl SolrDocumentBuilder {
             call_number_display: self.call_number_display.clone(),
             call_number_browse_s: self.call_number_browse_s.clone(),
             electronic_access_1display: self.electronic_access_1display.clone(),
+            geographic_facet: self.geographic_facet.clone(),
             id: self.id.clone(),
             restrictions_display_text: self.restrictions_display_text.clone(),
             language_facet: self.language_facet.clone(),

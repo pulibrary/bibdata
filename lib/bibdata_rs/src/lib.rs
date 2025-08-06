@@ -29,7 +29,10 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(collection::collections_as_solr, 3),
     )?;
     submodule_marc.define_singleton_method("genres", function!(marc::genres, 1))?;
-    submodule_marc.define_singleton_method("original_languages_of_translation", function!(marc::original_languages_of_translation, 1))?;
+    submodule_marc.define_singleton_method(
+        "original_languages_of_translation",
+        function!(marc::original_languages_of_translation, 1),
+    )?;
     submodule_marc
         .define_singleton_method("strip_non_numeric", function!(marc::strip_non_numeric, 1))?;
     Ok(())

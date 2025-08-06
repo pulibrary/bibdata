@@ -9,7 +9,9 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
+            .with_description_display(Some(value.origin_place_labels()))
             .with_format(value.solr_formats())
+            .with_geographic_facet(Some(value.coverage_labels()))
             .with_homoit_subject_display(value.subject_labels())
             .with_homoit_subject_facet(value.subject_labels())
             .with_id(value.id.clone())
@@ -20,6 +22,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
+            .with_publication_location_citation_display(value.origin_place_labels())
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
@@ -30,6 +33,9 @@ impl From<&EphemeraFolder> for SolrDocument {
 
 #[cfg(test)]
 mod tests {
+
+    use crate::ephemera::ephemera_folder::country;
+    use crate::ephemera::ephemera_folder::coverage::Coverage;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
     use crate::{ephemera::ephemera_folder::format::Format, solr};
@@ -288,6 +294,27 @@ mod tests {
         assert_eq!(
             solr_document.homoit_subject_facet,
             Some(vec!["Gay Community".to_string()])
+        );
+    }
+    #[test]
+    fn it_includes_coverage_labels_in_geographic_facet_field() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .coverage(vec![Coverage {
+                exact_match: country::ExactMatch {
+                    id: country::Id {
+                        id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_owned(),
+                    },
+                },
+                label: "Andorra".to_string(),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.geographic_facet,
+            Some(vec!["Andorra".to_string()])
         );
     }
 }
