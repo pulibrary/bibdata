@@ -26,6 +26,7 @@ pub struct EphemeraFolder {
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
     pub coverage: Option<Vec<Coverage>>,
+    pub date_created: Option<Vec<String>>,
     pub description: Option<Vec<String>>,
     pub format: Option<Vec<Format>>,
     #[serde(rename = "@id")]
@@ -96,6 +97,13 @@ impl EphemeraFolder {
 
     pub fn first_contibutor(&self) -> Option<String> {
         self.all_contributors().first().cloned()
+    }
+
+    pub fn date_created_year(&self) -> Option<i16> {
+        self.date_created
+            .as_ref()?
+            .iter()
+            .find_map(|date_str| date_str.get(0..4)?.parse::<i16>().ok())
     }
 }
 

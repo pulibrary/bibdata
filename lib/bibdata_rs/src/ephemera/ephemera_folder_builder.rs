@@ -11,6 +11,7 @@ pub struct EphemeraFolderBuilder {
     creator: Option<Vec<String>>,
     contributor: Option<Vec<String>>,
     coverage: Option<Vec<Coverage>>,
+    date_created: Option<Vec<String>>,
     description: Option<Vec<String>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
@@ -48,12 +49,14 @@ impl EphemeraFolderBuilder {
         self.creator = Some(creator);
         self
     }
-
+    pub fn date_created(mut self, date_created: Vec<String>) -> Self {
+        self.date_created = Some(date_created);
+        self
+    }
     pub fn description(mut self, description: Vec<String>) -> Self {
         self.description = Some(description);
         self
     }
-
     pub fn format(mut self, format: Vec<Format>) -> Self {
         self.format = Some(format);
         self
@@ -103,6 +106,7 @@ impl EphemeraFolderBuilder {
             creator: self.creator,
             contributor: self.contributor,
             coverage: self.coverage,
+            date_created: self.date_created,
             description: self.description,
             format: self.format,
             id,
