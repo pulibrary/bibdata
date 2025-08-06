@@ -304,7 +304,7 @@ mod tests {
             .coverage(vec![Coverage {
                 exact_match: country::ExactMatch {
                     id: country::Id {
-                        id: "http://id.loc.gov/vocabulary/countries/an".to_owned(),
+                        id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_owned(),
                     },
                 },
                 label: "Andorra".to_string(),

@@ -72,10 +72,7 @@ impl SolrDocumentBuilder {
         self
     }
 
-    pub fn with_geographic_facet(
-        &mut self,
-        geographic_facet: Option<Vec<String>>,
-    ) -> &mut Self {
+    pub fn with_geographic_facet(&mut self, geographic_facet: Option<Vec<String>>) -> &mut Self {
         self.geographic_facet = geographic_facet;
         self
     }
