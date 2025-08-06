@@ -422,10 +422,7 @@ mod tests {
         .unwrap();
         assert_eq!(
             genres(&record),
-            vec![
-                "Biography".to_string(),
-                "Primary sources".to_string()
-            ]
+            vec!["Biography".to_string(), "Primary sources".to_string()]
         )
     }
 

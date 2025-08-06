@@ -56,6 +56,9 @@ pub struct SolrDocument {
     pub format: Option<Vec<FormatFacet>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub geographic_facet: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub holdings_1display: Option<String>,
 
     pub homoit_subject_display: Option<Vec<String>>,

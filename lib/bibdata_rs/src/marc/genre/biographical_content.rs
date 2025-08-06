@@ -51,6 +51,9 @@ mod tests {
 =600 10 $a Barilaro, Javier, $d 1974- $v Biography."#,
         )
         .unwrap();
-        assert_eq!(BiographicalContent::from(&record), BiographicalContent::Autobiography);
+        assert_eq!(
+            BiographicalContent::from(&record),
+            BiographicalContent::Autobiography
+        );
     }
 }

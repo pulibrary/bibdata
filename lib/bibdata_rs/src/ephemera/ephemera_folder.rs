@@ -1,20 +1,23 @@
 use crate::solr;
 
 use super::{
-    ephemera_folder_builder::EphemeraFolderBuilder,
     born_digital_collection::ephemera_folders_iterator,
+    ephemera_folder_builder::EphemeraFolderBuilder,
 };
 use log::trace;
 use serde::Deserialize;
 
 pub mod country;
+pub mod coverage;
 pub mod format;
 pub mod language;
+pub mod origin_place;
 pub mod subject;
 
-use country::Country;
+use coverage::Coverage;
 use format::Format;
 use language::Language;
+use origin_place::OriginPlace;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
@@ -22,12 +25,13 @@ pub struct EphemeraFolder {
     pub alternative: Option<Vec<String>>,
     pub creator: Option<Vec<String>>,
     pub contributor: Option<Vec<String>>,
-    pub country: Option<Vec<Country>>,
+    pub coverage: Option<Vec<Coverage>>,
     pub description: Option<Vec<String>>,
     pub format: Option<Vec<Format>>,
     #[serde(rename = "@id")]
     pub id: String,
     pub language: Option<Vec<Language>>,
+    pub origin: Option<Vec<OriginPlace>>,
     pub provenance: Option<String>,
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
@@ -47,12 +51,23 @@ impl EphemeraFolder {
         }
     }
 
-    pub fn country_labels(&self) -> Vec<String> {
-        match &self.country {
-            Some(countries) => countries
+    pub fn coverage_labels(&self) -> Vec<String> {
+        match &self.coverage {
+            Some(coverage_vector) => coverage_vector
                 .iter()
-                .filter(|country| country.exact_match.accepted_vocabulary())
-                .map(|country| country.label.clone())
+                .filter(|coverage| coverage.exact_match.accepted_vocabulary())
+                .map(|coverage| coverage.label.clone())
+                .collect(),
+            None => vec![],
+        }
+    }
+
+    pub fn origin_place_labels(&self) -> Vec<String> {
+        match &self.origin {
+            Some(origin_vector) => origin_vector
+                .iter()
+                .filter(|origin| origin.exact_match.accepted_vocabulary())
+                .map(|origin| origin.label.clone())
                 .collect(),
             None => vec![],
         }
@@ -245,12 +260,12 @@ mod tests {
     }
 
     #[test]
-    fn it_can_return_country_labels_for_authorized_vocabularies() {
+    fn it_can_return_coverage_labels_for_authorized_vocabularies() {
         let item = EphemeraFolder::builder()
             .id("123ABC".to_string())
             .title(vec!["The worst book ever!".to_string()])
-            .country(vec![
-                Country {
+            .coverage(vec![
+                Coverage {
                     exact_match: ExactMatch {
                         id: country::Id {
                             id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_string(),
@@ -258,7 +273,7 @@ mod tests {
                     },
                     label: "Andorra".to_string(),
                 },
-                Country {
+                Coverage {
                     exact_match: ExactMatch {
                         id: country::Id {
                             id: "[\"http://bad-bad-bad\"]".to_string(),
@@ -269,6 +284,6 @@ mod tests {
             ])
             .build()
             .unwrap();
-        assert_eq!(item.country_labels(), vec!["Andorra".to_string()]);
+        assert_eq!(item.coverage_labels(), vec!["Andorra".to_string()]);
     }
 }

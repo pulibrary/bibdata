@@ -1,10 +1,10 @@
-use ephemera_folder::EphemeraFolder;
 use born_digital_collection::FoldersResponse;
+use ephemera_folder::EphemeraFolder;
 use log::debug;
 
+pub mod born_digital_collection;
 pub mod ephemera_folder;
 mod ephemera_folder_builder;
-pub mod born_digital_collection;
 
 pub struct CatalogClient {
     url: String,
