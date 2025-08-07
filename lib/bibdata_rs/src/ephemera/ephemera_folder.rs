@@ -127,6 +127,13 @@ impl EphemeraFolder {
         combined.extend(self.publisher.clone().unwrap_or_default());
         combined
     }
+
+    pub fn origin_place_publisher_date_created_combined(&self) -> Vec<String> {
+        let mut combined = self.origin_place_labels();
+        combined.extend(self.publisher.clone().unwrap_or_default());
+        combined.extend(self.date_created.clone().unwrap_or_default());
+        combined
+    }
 }
 
 #[allow(dead_code)]
