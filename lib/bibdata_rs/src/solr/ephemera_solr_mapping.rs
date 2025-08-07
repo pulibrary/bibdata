@@ -4,6 +4,7 @@ use crate::ephemera::ephemera_folder::EphemeraFolder;
 impl From<&EphemeraFolder> for SolrDocument {
     fn from(value: &EphemeraFolder) -> Self {
         SolrDocument::builder()
+            .with_access_facet(value.access_facet())
             .with_author_display(Some(value.all_contributors()))
             .with_author_roles_1display(value.first_contibutor())
             .with_author_s(value.creator.clone().unwrap_or_default())
@@ -395,5 +396,15 @@ mod tests {
                 "1973".to_string()
             ])
         );
+    }
+    #[test]
+    fn it_has_access_facet_online() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.access_facet, Some(solr::AccessFacet::Online));
     }
 }

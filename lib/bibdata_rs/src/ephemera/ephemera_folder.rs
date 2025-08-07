@@ -1,4 +1,4 @@
-use crate::solr;
+use crate::solr::{self, AccessFacet};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -133,6 +133,9 @@ impl EphemeraFolder {
         combined.extend(self.publisher.clone().unwrap_or_default());
         combined.extend(self.date_created.clone().unwrap_or_default());
         combined
+    }
+    pub fn access_facet(&self) -> Option<AccessFacet> {
+        Some(AccessFacet::Online)
     }
 }
 
