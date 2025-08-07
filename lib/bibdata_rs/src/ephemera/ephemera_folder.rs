@@ -33,6 +33,7 @@ pub struct EphemeraFolder {
     pub id: String,
     pub language: Option<Vec<Language>>,
     pub origin: Option<Vec<OriginPlace>>,
+    pub page_count: Option<String>,
     pub provenance: Option<String>,
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
@@ -117,6 +118,14 @@ impl EphemeraFolder {
     pub fn other_title_display_combined(&self) -> Vec<String> {
         let mut combined = self.alternative.clone().unwrap_or_default();
         combined.extend(self.transliterated_title.clone().unwrap_or_default());
+        combined
+    }
+    pub fn page_count_origin_place_labels_combined(&self) -> Vec<String> {
+        let mut combined = match self.page_count.clone() {
+            Some(page_count) => vec![page_count],
+            None => Vec::new(),
+        };
+        combined.extend(self.origin_place_labels());
         combined
     }
 }

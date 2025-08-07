@@ -17,6 +17,7 @@ pub struct EphemeraFolderBuilder {
     id: Option<String>,
     language: Option<Vec<Language>>,
     origin_place: Option<Vec<OriginPlace>>,
+    page_count: Option<String>,
     provenance: Option<String>,
     publisher: Option<Vec<String>>,
     subject: Option<Vec<Subject>>,
@@ -69,6 +70,10 @@ impl EphemeraFolderBuilder {
         self.origin_place = Some(origin);
         self
     }
+    pub fn page_count(mut self, page_count: String) -> Self {
+        self.page_count = Some(page_count);
+        self
+    }
     pub fn provenance(mut self, provenance: String) -> Self {
         self.provenance = Some(provenance);
         self
@@ -112,6 +117,7 @@ impl EphemeraFolderBuilder {
             id,
             language: self.language,
             origin: self.origin_place,
+            page_count: self.page_count,
             provenance: self.provenance,
             publisher: self.publisher,
             subject: self.subject,
