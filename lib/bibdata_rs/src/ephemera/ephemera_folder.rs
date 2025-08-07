@@ -106,20 +106,13 @@ impl EphemeraFolder {
             .iter()
             .find_map(|date_str| date_str.get(0..4)?.parse::<i16>().ok())
     }
-}
 
-#[allow(dead_code)]
-#[derive(Deserialize, Debug)]
-pub struct ItemResponse {
-    pub data: Vec<EphemeraFolder>,
-}
-
-impl EphemeraFolder {
     pub fn other_title_display_combined(&self) -> Vec<String> {
         let mut combined = self.alternative.clone().unwrap_or_default();
         combined.extend(self.transliterated_title.clone().unwrap_or_default());
         combined
     }
+    
     pub fn page_count_origin_place_labels_combined(&self) -> Vec<String> {
         let mut combined = match self.page_count.clone() {
             Some(page_count) => vec![page_count],
@@ -128,6 +121,12 @@ impl EphemeraFolder {
         combined.extend(self.origin_place_labels());
         combined
     }
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Debug)]
+pub struct ItemResponse {
+    pub data: Vec<EphemeraFolder>,
 }
 
 pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
