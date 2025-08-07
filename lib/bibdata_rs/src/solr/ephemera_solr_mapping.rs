@@ -22,6 +22,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
+            .with_pub_citation_display(value.origin_place_publisher_date_created_combined())
             .with_pub_date_display(value.date_created_publisher_combined())
             .with_publication_location_citation_display(value.origin_place_labels())
             .with_pub_date_start_sort(value.date_created_year())
@@ -366,6 +367,33 @@ mod tests {
         assert_eq!(
             solr.pub_date_display,
             Some(vec!["1973".to_string(), "Rolling Press".to_string()])
+        );
+    }
+    #[test]
+    fn it_combines_origin_place_and_publisher_and_date_created_into_pub_citation_display() {
+        let item = EphemeraFolder::builder()
+            .id("12345".to_string())
+            .title(vec!["Bohemian Rhapsody".to_string()])
+            .date_created(vec!["1973".to_string()])
+            .publisher(vec!["Rolling Press".to_string()])
+            .origin_place(vec![OriginPlace {
+                exact_match: country::ExactMatch {
+                    id: country::Id {
+                        id: "[\"http://id.loc.gov/vocabulary/countries/ck\"]".to_owned(),
+                    },
+                },
+                label: "Colombia".to_string(),
+            }])
+            .build()
+            .unwrap();
+        let solr = SolrDocument::from(&item);
+        assert_eq!(
+            solr.pub_citation_display,
+            Some(vec![
+                "Colombia".to_string(),
+                "Rolling Press".to_string(),
+                "1973".to_string()
+            ])
         );
     }
 }

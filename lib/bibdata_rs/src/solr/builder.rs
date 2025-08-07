@@ -40,6 +40,7 @@ pub struct SolrDocumentBuilder {
     class_year_s: Option<Vec<i16>>,
     other_title_display: Option<Vec<String>>,
     provenance_display: Option<String>,
+    pub_citation_display: Option<Vec<String>>,
     pub_date_display: Option<Vec<String>>,
     publication_location_citation_display: Option<Vec<String>>,
     publisher_no_display: Option<Vec<String>>,
@@ -109,6 +110,10 @@ impl SolrDocumentBuilder {
         publication_location_citation_display: Vec<String>,
     ) -> &mut Self {
         self.publication_location_citation_display = Some(publication_location_citation_display);
+        self
+    }
+    pub fn with_pub_citation_display(&mut self, pub_citation_display: Vec<String>) -> &mut Self {
+        self.pub_citation_display = Some(pub_citation_display);
         self
     }
     pub fn with_pub_created_display(
@@ -352,6 +357,7 @@ impl SolrDocumentBuilder {
             publisher_no_display: self.publisher_no_display.clone(),
             pub_created_display: self.pub_created_display.clone(),
             publisher_citation_display: self.publisher_citation_display.clone(),
+            pub_citation_display: self.pub_citation_display.clone(),
             pub_date_start_sort: self.pub_date_start_sort,
             pub_date_end_sort: self.pub_date_end_sort,
             title_citation_display: self.title_citation_display.clone(),
