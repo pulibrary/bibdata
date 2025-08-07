@@ -48,8 +48,8 @@ module BibdataRs
       end
 
       def languages
-        download = URI.open('https://www.loc.gov/standards/iso639-2/ISO-639-2_utf-8.txt')
-        CSV.new(download, col_sep: '|').filter_map do |row|
+        download = URI.open('https://www.loc.gov/standards/iso639-2/ISO-639-2_8859-1.txt')
+        CSV.new(download, col_sep: '|', encoding: 'iso-8859-1').filter_map do |row|
           next if row[0].include? '-' # skip ranges of language codes that are reserved for local use
 
           language_code = row[0].gsub(/[^a-z]/, '')

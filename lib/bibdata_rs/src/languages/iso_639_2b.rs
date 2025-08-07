@@ -1256,7 +1256,7 @@ pub fn from_iso_639b_code(code: &str) -> Option<Language> {
             two_letter_code: Some("nn"),
         }),
         "nob" => Some(Language {
-            english_name: "BokmÃ¥l, Norwegian",
+            english_name: "Bokmål, Norwegian",
             two_letter_code: Some("nb"),
         }),
         "nog" => Some(Language {
@@ -1404,7 +1404,7 @@ pub fn from_iso_639b_code(code: &str) -> Option<Language> {
             two_letter_code: None,
         }),
         "pro" => Some(Language {
-            english_name: "ProvenÃ§al, Old (to 1500)",
+            english_name: "Provençal, Old (to 1500)",
             two_letter_code: None,
         }),
         "pus" => Some(Language {
@@ -1840,7 +1840,7 @@ pub fn from_iso_639b_code(code: &str) -> Option<Language> {
             two_letter_code: Some("vi"),
         }),
         "vol" => Some(Language {
-            english_name: "VolapÃ¼k",
+            english_name: "Volapük",
             two_letter_code: Some("vo"),
         }),
         "vot" => Some(Language {
