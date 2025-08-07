@@ -100,6 +100,9 @@ pub struct SolrDocument {
     pub pub_created_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
+    pub pub_date_display: Option<Vec<String>>,
+
+    #[serde(skip_serializing_if = "Option::is_none")]
     pub pub_date_end_sort: Option<i16>,
 
     #[serde(skip_serializing_if = "Option::is_none")]

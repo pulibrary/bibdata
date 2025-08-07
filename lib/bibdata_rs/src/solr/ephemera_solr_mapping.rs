@@ -22,6 +22,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
+            .with_pub_date_display(value.date_created_publisher_combined())
             .with_publication_location_citation_display(value.origin_place_labels())
             .with_pub_date_start_sort(value.date_created_year())
             .with_pub_created_display(value.publisher.clone())
@@ -350,6 +351,21 @@ mod tests {
         assert_eq!(
             solr.description_display,
             Some(vec!["333".to_string(), "Colombia".to_string()])
+        );
+    }
+    #[test]
+    fn it_combines_date_created_and_publisher_into_pub_date_display() {
+        let item = EphemeraFolder::builder()
+            .id("12345".to_string())
+            .title(vec!["Bohemian Rhapsody".to_string()])
+            .date_created(vec!["1973".to_string()])
+            .publisher(vec!["Rolling Press".to_string()])
+            .build()
+            .unwrap();
+        let solr = SolrDocument::from(&item);
+        assert_eq!(
+            solr.pub_date_display,
+            Some(vec!["1973".to_string(), "Rolling Press".to_string()])
         );
     }
 }

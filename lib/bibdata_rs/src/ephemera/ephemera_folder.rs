@@ -112,13 +112,19 @@ impl EphemeraFolder {
         combined.extend(self.transliterated_title.clone().unwrap_or_default());
         combined
     }
-    
+
     pub fn page_count_origin_place_labels_combined(&self) -> Vec<String> {
         let mut combined = match self.page_count.clone() {
             Some(page_count) => vec![page_count],
             None => Vec::new(),
         };
         combined.extend(self.origin_place_labels());
+        combined
+    }
+
+    pub fn date_created_publisher_combined(&self) -> Vec<String> {
+        let mut combined = self.date_created.clone().unwrap_or_default();
+        combined.extend(self.publisher.clone().unwrap_or_default());
         combined
     }
 }
