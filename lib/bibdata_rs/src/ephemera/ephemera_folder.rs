@@ -37,6 +37,7 @@ pub struct EphemeraFolder {
     pub provenance: Option<String>,
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
+    pub sort_title: Option<Vec<String>>,
     pub title: Vec<String>,
     pub transliterated_title: Option<Vec<String>>,
 }
@@ -133,6 +134,13 @@ impl EphemeraFolder {
         combined.extend(self.publisher.clone().unwrap_or_default());
         combined.extend(self.date_created.clone().unwrap_or_default());
         combined
+    }
+    pub fn first_sort_title(&self) -> Option<String> {
+        self.sort_title
+            .as_ref()
+            .or_else(|| Some(&self.title))?
+            .first()
+            .cloned()
     }
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
