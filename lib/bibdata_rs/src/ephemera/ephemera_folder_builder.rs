@@ -4,6 +4,7 @@ use super::ephemera_folder::origin_place::OriginPlace;
 use super::ephemera_folder::EphemeraFolder;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera_folder::subject::Subject;
+use crate::solr::ElectronicAccess;
 
 #[derive(Default)]
 pub struct EphemeraFolderBuilder {
@@ -13,6 +14,7 @@ pub struct EphemeraFolderBuilder {
     coverage: Option<Vec<Coverage>>,
     date_created: Option<Vec<String>>,
     description: Option<Vec<String>>,
+    electronic_access: Option<Vec<ElectronicAccess>>,
     format: Option<Vec<Format>>,
     id: Option<String>,
     language: Option<Vec<Language>>,
@@ -57,6 +59,10 @@ impl EphemeraFolderBuilder {
     }
     pub fn description(mut self, description: Vec<String>) -> Self {
         self.description = Some(description);
+        self
+    }
+    pub fn electronic_access(mut self, electronic_access: Vec<ElectronicAccess>) -> Self {
+        self.electronic_access = Some(electronic_access);
         self
     }
     pub fn format(mut self, format: Vec<Format>) -> Self {
@@ -117,6 +123,7 @@ impl EphemeraFolderBuilder {
             coverage: self.coverage,
             date_created: self.date_created,
             description: self.description,
+            electronic_access: self.electronic_access,
             format: self.format,
             id,
             language: self.language,
