@@ -23,6 +23,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_other_title_display(Some(value.other_title_display_combined()))
             .with_provenance_display(value.provenance.clone())
             .with_publication_location_citation_display(value.origin_place_labels())
+            .with_pub_date_start_sort(value.date_created_year())
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
@@ -316,5 +317,16 @@ mod tests {
             solr_document.geographic_facet,
             Some(vec!["Andorra".to_string()])
         );
+    }
+    #[test]
+    fn it_includes_date_created_in_pub_date_start_sort() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .date_created(vec!["1973-10-01".to_string()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(solr_document.pub_date_start_sort, Some(1973));
     }
 }
