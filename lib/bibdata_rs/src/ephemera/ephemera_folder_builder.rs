@@ -21,6 +21,7 @@ pub struct EphemeraFolderBuilder {
     provenance: Option<String>,
     publisher: Option<Vec<String>>,
     subject: Option<Vec<Subject>>,
+    sort_title: Option<Vec<String>>,
     title: Option<Vec<String>>,
     transliterated_title: Option<Vec<String>>,
 }
@@ -91,7 +92,10 @@ impl EphemeraFolderBuilder {
         self.subject = Some(subjects);
         self
     }
-
+    pub fn sort_title(mut self, sort_title: Vec<String>) -> Self {
+        self.sort_title = Some(sort_title);
+        self
+    }
     pub fn title(mut self, title: Vec<String>) -> Self {
         self.title = Some(title);
         self
@@ -120,9 +124,9 @@ impl EphemeraFolderBuilder {
             page_count: self.page_count,
             provenance: self.provenance,
             publisher: self.publisher,
+            sort_title: self.sort_title,
             subject: self.subject,
             title,
-
             transliterated_title: self.transliterated_title,
         })
     }

@@ -30,6 +30,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
+            .with_title_sort(value.first_sort_title())
             .with_title_citation_display(value.title.first().cloned())
             .build()
     }
@@ -406,5 +407,32 @@ mod tests {
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(solr_document.access_facet, Some(solr::AccessFacet::Online));
+    }
+    #[test]
+    fn it_has_title_sort() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .sort_title(vec!["The book of trees".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.title_sort,
+            Some("The book of trees".to_string())
+        );
+    }
+    #[test]
+    fn it_uses_title_as_title_sort_when_sort_title_is_unavailable() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.title_sort,
+            Some("Our favorite book".to_string())
+        );
     }
 }
