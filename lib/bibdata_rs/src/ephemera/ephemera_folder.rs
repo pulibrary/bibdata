@@ -28,6 +28,7 @@ pub struct EphemeraFolder {
     pub coverage: Option<Vec<Coverage>>,
     pub date_created: Option<Vec<String>>,
     pub description: Option<Vec<String>>,
+    pub electronic_access: Option<Vec<solr::ElectronicAccess>>,
     pub format: Option<Vec<Format>>,
     #[serde(rename = "@id")]
     pub id: String,
@@ -144,6 +145,13 @@ impl EphemeraFolder {
     }
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
+    }
+    pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
+        Some(solr::ElectronicAccess {
+            url: self.id.clone(),
+            link_text: "Online Content".to_owned(),
+            link_description: Some("Born Digital Monographs, Serials, & Series Reports".to_owned()),
+        })
     }
 }
 

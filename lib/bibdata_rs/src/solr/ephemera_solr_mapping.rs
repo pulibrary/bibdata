@@ -11,6 +11,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
             .with_description_display(Some(value.page_count_origin_place_labels_combined()))
+            .with_electronic_access_1display(value.electronic_access())
             .with_format(value.solr_formats())
             .with_geographic_facet(Some(value.coverage_labels()))
             .with_homoit_subject_display(value.subject_labels())
@@ -433,6 +434,30 @@ mod tests {
         assert_eq!(
             solr_document.title_sort,
             Some("Our favorite book".to_string())
+        );
+    }
+    #[test]
+    fn it_has_electronic_access_1display() {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .electronic_access(vec![solr::ElectronicAccess {
+                url: "http://example.com".to_owned(),
+                link_text: "Access Link".to_owned(),
+                link_description: Some("Description of the link".to_owned()),
+            }])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.electronic_access_1display,
+            Some(solr::ElectronicAccess {
+                url: ephemera_item.id.clone(),
+                link_text: "Online Content".to_owned(),
+                link_description: Some(
+                    "Born Digital Monographs, Serials, & Series Reports".to_owned()
+                ),
+            })
         );
     }
 }
