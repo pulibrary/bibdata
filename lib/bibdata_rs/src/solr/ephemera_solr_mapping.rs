@@ -392,11 +392,7 @@ mod tests {
         let solr = SolrDocument::from(&item);
         assert_eq!(
             solr.pub_citation_display,
-            Some(vec![
-                "Colombia".to_string(),
-                "Rolling Press".to_string(),
-                "1973".to_string()
-            ])
+            Some(vec!["Colombia: Rolling Press, 1973".to_string()])
         );
     }
     #[test]
