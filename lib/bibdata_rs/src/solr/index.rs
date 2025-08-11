@@ -2,20 +2,21 @@ pub use super::SolrDocument;
 use anyhow::Result;
 use reqwest::header::CONTENT_TYPE;
 
-pub fn index(domain: &str, collection: &str, documents: &[SolrDocument]) -> Result<()> {
+pub fn index(solr_url: &str, documents: &[SolrDocument]) -> Result<()> {
     let client = reqwest::blocking::Client::new();
+    let commit_url = format!("{solr_url}/update?commit=true");
     client
-        .post(format!("{}/solr/{}/update?commit=true", domain, collection))
+        .post(&commit_url)
         .body(serde_json::to_string(documents)?)
         .header(CONTENT_TYPE, "application/json")
         .send()?;
     Ok(())
 }
 
-pub fn index_string(domain: String, collection: String, documents: String) {
+pub fn index_string(solr_url: String, documents: String) {
     let document_vec: Vec<SolrDocument> =
         serde_json::from_str(&documents).expect("Failed to parse documents from JSON string");
-    index(&domain, &collection, &document_vec).expect("Failed to index documents");
+    index(&solr_url, &document_vec).expect("Failed to index documents");
 }
 
 #[cfg(test)]
@@ -43,7 +44,8 @@ mod tests {
             })
             .create();
 
-        index(&server.url(), collection, &[document]).unwrap();
+        let solr_url = format!("{}/solr/{collection}", &server.url());
+        index(&solr_url, &[document]).unwrap();
 
         solr_mock.assert();
     }
