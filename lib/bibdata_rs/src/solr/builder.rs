@@ -347,7 +347,6 @@ impl SolrDocumentBuilder {
             location: self.location,
             location_display: self.location_display.clone(),
             location_code_s: self.location_code_s.clone(),
-            notes: self.notes.clone(),
             notes_display: self.notes_display.clone(),
             holdings_1display: self.holdings_1display.clone(),
             electronic_portfolio_s: self.electronic_portfolio_s.clone(),

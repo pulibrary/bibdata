@@ -130,7 +130,6 @@ mod tests {
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.notes, Some(vec!["Puppy biting".to_owned()]));
         assert_eq!(
             solr_document.notes_display,
             Some(vec!["Puppy biting".to_owned()])
