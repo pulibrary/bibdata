@@ -133,21 +133,21 @@ impl EphemeraFolder {
     pub fn origin_place_publisher_date_created_combined(&self) -> Vec<String> {
         let origin = self
             .origin_place_labels()
-            .get(0)
+            .first()
             .cloned()
             .unwrap_or_default();
         let publisher = self
             .publisher
             .clone()
             .unwrap_or_default()
-            .get(0)
+            .first()
             .cloned()
             .unwrap_or_default();
         let date = self
             .date_created
             .clone()
             .unwrap_or_default()
-            .get(0)
+            .first()
             .cloned()
             .unwrap_or_default();
         let mut result = Vec::new();
@@ -175,7 +175,7 @@ impl EphemeraFolder {
     pub fn first_sort_title(&self) -> Option<String> {
         self.sort_title
             .as_ref()
-            .or_else(|| Some(&self.title))?
+            .or(Some(&self.title))?
             .first()
             .cloned()
     }

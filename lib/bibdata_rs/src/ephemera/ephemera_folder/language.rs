@@ -27,17 +27,10 @@ impl Id {
 
 impl ExactMatch {
     pub fn accepted_vocabulary(&self) -> bool {
-        match &self.id.language_ids() {
-            Ok(s)
-                if s.iter().any(|url| {
-                    url.starts_with("http://id.loc.gov/vocabulary/iso639-1")
-                        || url.starts_with("http://id.loc.gov/vocabulary/iso639-2")
-                }) =>
-            {
-                true
-            }
-            _ => false,
-        }
+        matches!(&self.id.language_ids(), Ok(s) if s.iter().any(|url| {
+                  url.starts_with("http://id.loc.gov/vocabulary/iso639-1")
+                     || url.starts_with("http://id.loc.gov/vocabulary/iso639-2")
+        }))
     }
 }
 
