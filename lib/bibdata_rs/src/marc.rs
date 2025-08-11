@@ -6,6 +6,7 @@ mod string_normalize;
 pub mod fixed_field;
 pub mod genre;
 pub mod language;
+pub mod note;
 
 pub use string_normalize::trim_punctuation;
 
@@ -22,6 +23,11 @@ pub fn original_languages_of_translation(
         .iter()
         .map(|language| language.english_name.to_owned())
         .collect())
+}
+
+pub fn access_notes(record_string: String) -> Result<Option<Vec<String>>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(note::access_notes(&record))
 }
 
 pub fn strip_non_numeric(string: String) -> String {

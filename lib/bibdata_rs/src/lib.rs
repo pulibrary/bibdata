@@ -28,6 +28,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "all_documents_as_solr",
         function!(collection::collections_as_solr, 3),
     )?;
+    submodule_marc.define_singleton_method("access_notes", function!(marc::access_notes, 1))?;
     submodule_marc.define_singleton_method("genres", function!(marc::genres, 1))?;
     submodule_marc.define_singleton_method(
         "original_languages_of_translation",

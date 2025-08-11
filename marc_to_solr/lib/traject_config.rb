@@ -1432,6 +1432,11 @@ to_field 'recap_notes_display' do |record, accumulator|
   end
 end
 
+to_field 'access_restrictions_note_display' do |_record, accumulator, context|
+  notes = BibdataRs::Marc.access_notes(context.clipboard[:marc_breaker])
+  accumulator.replace(notes) if notes
+end
+
 each_record do |_record, context|
   dissertation_note = context.output_hash['dissertation_notes_display']
   if dissertation_note && dissertation_note.first.downcase.gsub(/[^a-z]/, '').include?('seniorprincetonuniversity')
