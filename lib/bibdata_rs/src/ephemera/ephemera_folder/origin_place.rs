@@ -25,9 +25,7 @@ mod tests {
                 "pref_label": "LAE Geographic Areas"
                 },
                 "exact_match": {
-                "@id": {
-                    "@id": "[\"http://id.loc.gov/vocabulary/countries/ck\"]"
-                }
+                    "@id": "http://id.loc.gov/vocabulary/countries/ck"
                 }
             },
             {
@@ -40,16 +38,14 @@ mod tests {
                 "pref_label": "LAE Geographic Areas"
                 },
                 "exact_match": {
-                "@id": {
-                    "@id": "[\"http://id.badbadbad.gov/vocabulary/countries/ve\"]"
-                }
+                    "@id": "http://id.badbadbad.gov/vocabulary/countries/ve"
                 }
             }
           ]"#;
         let origin_vector: Vec<OriginPlace> = serde_json::from_str(json_ld).unwrap();
         assert_eq!(
-            origin_vector[0].exact_match.id.country_ids().unwrap(),
-            vec!["http://id.loc.gov/vocabulary/countries/ck"]
+            origin_vector[0].exact_match.id,
+            "http://id.loc.gov/vocabulary/countries/ck"
         );
         assert_eq!(origin_vector[0].label, "Colombia");
         assert_eq!(origin_vector[1].label, "Venezuela");

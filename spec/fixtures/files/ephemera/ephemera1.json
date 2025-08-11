@@ -66,9 +66,7 @@
           "pref_label": "LAE Geographic Areas"
         },
         "exact_match": {
-          "@id": {
-            "@id": "[\"http://id.loc.gov/vocabulary/countries/an\"]"
-          }
+          "@id": "http://id.loc.gov/vocabulary/countries/an"
         }
       },
       {
@@ -80,10 +78,8 @@
           "@type": "skos:ConceptScheme",
           "pref_label": "LAE Geographic Areas"
         },
-        "exact_match": {
-          "@id": {
-            "@id": "[\"http://id.loc.gov/vocabulary/countries/am\"]"
-          }
+        "exact_match": { 
+          "@id": "http://id.loc.gov/vocabulary/countries/am"
         }
       },
       {
@@ -96,9 +92,7 @@
           "pref_label": "LAE Geographic Areas"
         },
         "exact_match": {
-          "@id": {
-            "@id": "[\"http://id.loc.gov/vocabulary/countries/ag\"]"
-          }
+          "@id": "http://id.loc.gov/vocabulary/countries/ag"
         }
       }
     ],
@@ -130,9 +124,7 @@
           "pref_label": "LAE Geographic Areas"
         },
         "exact_match": {
-          "@id": {
-            "@id": "[\"http://id.loc.gov/vocabulary/countries/ck\"]"
-          }
+          "@id": "http://id.loc.gov/vocabulary/countries/ck"
         }
       }
     ],

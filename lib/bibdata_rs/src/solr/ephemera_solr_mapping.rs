@@ -310,9 +310,7 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .coverage(vec![Coverage {
                 exact_match: country::ExactMatch {
-                    id: country::Id {
-                        id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_owned(),
-                    },
+                    id: "http://id.loc.gov/vocabulary/countries/an".to_owned(),
                 },
                 label: "Andorra".to_string(),
             }])
@@ -343,9 +341,7 @@ mod tests {
             .page_count("333".to_string())
             .origin_place(vec![OriginPlace {
                 exact_match: country::ExactMatch {
-                    id: country::Id {
-                        id: "[\"http://id.loc.gov/vocabulary/countries/ck\"]".to_owned(),
-                    },
+                    id: "http://id.loc.gov/vocabulary/countries/ck".to_owned(),
                 },
                 label: "Colombia".to_string(),
             }])
@@ -381,9 +377,7 @@ mod tests {
             .publisher(vec!["Rolling Press".to_string()])
             .origin_place(vec![OriginPlace {
                 exact_match: country::ExactMatch {
-                    id: country::Id {
-                        id: "[\"http://id.loc.gov/vocabulary/countries/ck\"]".to_owned(),
-                    },
+                    id: "http://id.loc.gov/vocabulary/countries/ck".to_owned(),
                 },
                 label: "Colombia".to_string(),
             }])
