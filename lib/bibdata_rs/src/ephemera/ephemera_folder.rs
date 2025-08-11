@@ -351,17 +351,13 @@ mod tests {
             .coverage(vec![
                 Coverage {
                     exact_match: ExactMatch {
-                        id: country::Id {
-                            id: "[\"http://id.loc.gov/vocabulary/countries/an\"]".to_string(),
-                        },
+                        id: "http://id.loc.gov/vocabulary/countries/an".to_string(),
                     },
                     label: "Andorra".to_string(),
                 },
                 Coverage {
                     exact_match: ExactMatch {
-                        id: country::Id {
-                            id: "[\"http://bad-bad-bad\"]".to_string(),
-                        },
+                        id: "http://bad-bad-bad".to_string(),
                     },
                     label: "Anguilla".to_string(),
                 },

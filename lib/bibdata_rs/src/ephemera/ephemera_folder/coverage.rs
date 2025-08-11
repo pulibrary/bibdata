@@ -25,9 +25,7 @@ mod tests {
                   "pref_label": "LAE Geographic Areas"
                 },
                 "exact_match": {
-                    "@id": {
-                        "@id": "[\"http://id.loc.gov/vocabulary/countries/an\"]"
-                    }
+                        "@id": "http://id.loc.gov/vocabulary/countries/an"
                 }
             },
             {
@@ -40,16 +38,14 @@ mod tests {
                   "pref_label": "LAE Geographic Areas"
                 },
                 "exact_match": {
-                    "@id": {
-                        "@id": "[\"http://id.badbadbad.gov/vocabulary/countries/am\"]"
-                    }
+                        "@id": "http://id.badbadbad.gov/vocabulary/countries/am"
                 }
             }
           ]"#;
         let coverage_vector: Vec<Coverage> = serde_json::from_str(json_ld).unwrap();
         assert_eq!(
-            coverage_vector[0].exact_match.id.country_ids().unwrap(),
-            vec!["http://id.loc.gov/vocabulary/countries/an"]
+            coverage_vector[0].exact_match.id,
+            "http://id.loc.gov/vocabulary/countries/an"
         );
         assert_eq!(coverage_vector[0].label, "Andorra");
         assert_eq!(coverage_vector[1].label, "Anguilla");
