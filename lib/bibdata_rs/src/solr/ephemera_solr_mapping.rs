@@ -16,7 +16,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_geographic_facet(Some(value.coverage_labels()))
             .with_homoit_subject_display(value.subject_labels())
             .with_homoit_subject_facet(value.subject_labels())
-            .with_id(value.id.clone())
+            .with_id(value.normalized_id())
             .with_language_facet(value.language_labels())
             .with_lc_subject_display(value.subject_labels())
             .with_lc_subject_facet(value.subject_labels())
@@ -107,6 +107,10 @@ mod tests {
                 "Chance procedures on turntable".to_owned(),
                 "custom transliterated title".to_owned()
             ])
+        );
+        assert_eq!(
+            solr_document.id,
+            "af4a941d-96a4-463e-9043-cfa512e5eddd".to_string()
         );
     }
 
