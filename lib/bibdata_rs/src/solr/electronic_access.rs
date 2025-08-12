@@ -1,7 +1,7 @@
-use serde::{ser::Error, Deserialize, Serialize};
+use serde::{ser::Error, Deserialize, Deserializer, Serialize};
 use std::collections::HashMap;
 
-#[derive(Clone, Deserialize, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq)]
 pub struct ElectronicAccess {
     pub url: String,
     pub link_text: String,
@@ -27,6 +27,36 @@ impl Serialize for ElectronicAccess {
     }
 }
 
+impl<'de> Deserialize<'de> for ElectronicAccess {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        // The input is a JSON string containing a map: {url: [link_text, link_description?]}
+        let s = String::deserialize(deserializer)?;
+        let map: HashMap<String, Vec<String>> =
+            serde_json::from_str(&s).map_err(serde::de::Error::custom)?;
+        let url = map.keys().next().ok_or(serde::de::Error::custom(
+            "No url found in this ElectronicAccess",
+        ))?;
+        let mut details = map
+            .get(url)
+            .ok_or(serde::de::Error::custom(
+                "No url details found in this ElectronicAccess",
+            ))?
+            .iter();
+        let link_text = details.next().ok_or(serde::de::Error::custom(
+            "No link text found in this ElectronicAccess",
+        ))?;
+        let link_description = details.next();
+        Ok(ElectronicAccess {
+            url: url.to_owned(),
+            link_text: link_text.to_owned(),
+            link_description: link_description.cloned(),
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -42,5 +72,30 @@ mod tests {
             serde_json::to_string(&access).unwrap(),
             r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}""#
         );
+    }
+
+    #[test]
+    fn it_can_deserialize_from_json() {
+        let json =
+            r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}""#;
+        let parsed: ElectronicAccess = serde_json::from_str(&json).unwrap();
+        assert_eq!(
+            parsed.url,
+            "http://arks.princeton.edu/ark:/88435/dch989rf19q"
+        );
+        assert_eq!(parsed.link_text, "Electronic Resource");
+        assert!(parsed.link_description.is_none());
+    }
+
+    #[test]
+    fn it_can_deserialize_electronic_access_with_link_description_from_json() {
+        let json = r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\",\"My nice description\"]}""#;
+        let parsed: ElectronicAccess = serde_json::from_str(&json).unwrap();
+        assert_eq!(
+            parsed.url,
+            "http://arks.princeton.edu/ark:/88435/dch989rf19q"
+        );
+        assert_eq!(parsed.link_text, "Electronic Resource");
+        assert_eq!(parsed.link_description.unwrap(), "My nice description");
     }
 }
