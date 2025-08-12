@@ -148,7 +148,7 @@ jobs:
           command: mkdir coverage
       - run:
           name: Run coverage
-          command: cargo llvm-cov --lcov --output-path coverage/lcov.info
+          command: cargo llvm-cov --lcov --output-path ~/coverage/lcov.info
       - store_artifacts:
           path: ~/bibdata/coverage
           destination: coverage
