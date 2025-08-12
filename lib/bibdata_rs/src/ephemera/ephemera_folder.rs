@@ -189,6 +189,14 @@ impl EphemeraFolder {
             link_description: Some("Born Digital Monographs, Serials, & Series Reports".to_owned()),
         })
     }
+    pub fn normalized_id(&self) -> String {
+        self.id
+            .split('/')
+            .last()
+            .unwrap_or(&self.id)
+            .trim()
+            .to_string()
+    }
 }
 
 #[allow(dead_code)]
