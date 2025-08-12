@@ -31,6 +31,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_pub_created_display(value.publisher.clone())
             .with_publisher_no_display(value.publisher.clone())
             .with_publisher_citation_display(value.publisher.clone())
+            .with_title_display(value.title.first().cloned())
             .with_title_sort(value.first_sort_title())
             .with_title_citation_display(value.title.first().cloned())
             .build()
