@@ -145,10 +145,10 @@ jobs:
           command: cargo +stable install cargo-llvm-cov --locked
       - run:
           name: Create coverage working_directory
-          command: mkdir coverage
+          command: mkdir ~/bibdata/coverage
       - run:
           name: Run coverage
-          command: cargo llvm-cov --lcov --output-path ~/coverage/lcov.info
+          command: cargo llvm-cov --lcov --output-path ~/bibdata/coverage/lcov.info
       - store_artifacts:
           path: ~/bibdata/coverage
           destination: coverage
