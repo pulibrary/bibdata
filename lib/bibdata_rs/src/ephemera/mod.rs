@@ -13,9 +13,7 @@ pub struct CatalogClient {
 
 impl Default for CatalogClient {
     fn default() -> Self {
-        Self::new(
-            std::env::var("FIGGY_URL").unwrap_or("https://figgy.princeton.edu".to_string()),
-        )
+        Self::new(std::env::var("FIGGY_URL").unwrap_or("https://figgy.princeton.edu".to_string()))
     }
 }
 
