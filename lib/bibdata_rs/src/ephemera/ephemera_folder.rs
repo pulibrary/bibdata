@@ -33,6 +33,7 @@ pub struct EphemeraFolder {
     #[serde(rename = "@id")]
     pub id: String,
     pub language: Option<Vec<Language>>,
+    #[serde(rename = "origin_place")]
     pub origin: Option<Vec<OriginPlace>>,
     pub page_count: Option<String>,
     pub provenance: Option<String>,

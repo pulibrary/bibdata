@@ -113,6 +113,10 @@ mod tests {
             solr_document.id,
             "af4a941d-96a4-463e-9043-cfa512e5eddd".to_string()
         );
+        assert_eq!(
+            solr_document.description_display,
+            Some(vec!["116".to_string(), "Colombia".to_string()])
+        )
     }
 
     #[test]
