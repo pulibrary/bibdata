@@ -150,7 +150,9 @@ fn get_documents_in_collection(
 }
 
 fn get_url_as_json(url: &str) -> Result<Vec<DataspaceDocument>> {
-    reqwest::blocking::get(url)?.json().map_err(|e| anyhow!(e))
+    reqwest::blocking::get(url)?
+        .json()
+        .map_err(|e| anyhow!("Could not parse json at {url}: {e:?}"))
 }
 
 #[cfg(test)]

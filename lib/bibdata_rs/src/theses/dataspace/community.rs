@@ -20,8 +20,9 @@ struct Collection {
 /// The DSpace id of the community we're fetching content for.
 /// E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
 pub fn get_community_id(server: &str, community_handle: &str) -> Result<Option<u32>> {
-    let communities: Vec<Community> =
-        reqwest::blocking::get(format!("{}/communities/", server))?.json()?;
+    let communities: Vec<Community> = reqwest::blocking::get(format!("{}/communities/", server))?
+        .json()
+        .map_err(|e| anyhow!("Could not parse json: {e:?}"))?;
     let theses_community = communities
         .iter()
         .find(|community| community.handle == community_handle)
@@ -44,7 +45,9 @@ pub fn get_collection_list(
         id_selector(server, community_handle)?.unwrap_or_default()
     );
     info!("Querying {} for the collections", url);
-    let collections: Vec<Collection> = reqwest::blocking::get(url)?.json()?;
+    let collections: Vec<Collection> = reqwest::blocking::get(url)?
+        .json()
+        .map_err(|e| anyhow!("Could not parse json: {e:?}"))?;
     Ok(collections
         .iter()
         .filter_map(|collection| collection.id)
