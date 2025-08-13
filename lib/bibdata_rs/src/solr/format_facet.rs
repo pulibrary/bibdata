@@ -37,6 +37,7 @@ impl FromStr for FormatFacet {
         match s {
             "Book" => Ok(Self::Book),
             "Books" => Ok(Self::Book),
+            "Pamphlets" => Ok(Self::Book),
             "Reports" => Ok(Self::Report),
             "Serials" => Ok(Self::Journal),
             "Senior thesis" => Ok(Self::SeniorThesis),
@@ -102,6 +103,10 @@ mod tests {
         assert_eq!(
             FormatFacet::from_str("Serials").unwrap(),
             FormatFacet::Journal
+        );
+        assert_eq!(
+            FormatFacet::from_str("Pamphlets").unwrap(),
+            FormatFacet::Book
         );
     }
 }
