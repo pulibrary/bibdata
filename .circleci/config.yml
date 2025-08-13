@@ -147,7 +147,6 @@ jobs:
       - coveralls/upload:
           coverage_file: lcov.info
           coverage_format: lcov
-          debug: true
 
   semgrep:
     docker:
