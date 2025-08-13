@@ -5,6 +5,7 @@ use theses::dataspace::collection;
 
 mod ephemera;
 pub mod languages;
+#[cfg_attr(coverage_nightly, coverage(off))]
 pub mod marc;
 pub mod solr;
 pub mod theses;
@@ -13,6 +14,7 @@ pub mod theses;
 mod testing_support;
 
 #[magnus::init]
+#[cfg_attr(coverage_nightly, coverage(off))]
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("BibdataRs")?;
     let submodule_marc = module.define_module("Marc")?;
