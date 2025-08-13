@@ -21,7 +21,7 @@
       {
         "@id": "https://figgy-staging.princeton.edu/catalog/f12456b9-342f-4681-80a3-da1b7854aaac",
         "@type": "pcdm:Collection",
-        "title": "Born Digital Monographs, Serials, & Series Reports"
+        "title": "Born Digital Monographic Reports and Papers"
       },
       {
         "@id": "https://figgy-staging.princeton.edu/catalog/92d97b5e-cde8-4eeb-8e56-6d5d0f294038",
@@ -54,7 +54,7 @@
     ],
     "barcode": "00000000000000",
     "label": "Folder 00000000000000",
-    "is_part_of": "Born Digital Monographs, Serials, & Series Reports",
+    "is_part_of": "Born Digital Monographic Reports and Papers",
     "coverage": [
       {
         "@id": "https://figgy-staging.princeton.edu/catalog/8d175872-80fc-4389-bd0b-5034d1178669",

@@ -454,7 +454,7 @@ mod tests {
                 url: ephemera_item.id.clone(),
                 link_text: "Online Content".to_owned(),
                 link_description: Some(
-                    "Born Digital Monographs, Serials, & Series Reports".to_owned()
+                    "Born Digital Monographic Reports and Papers".to_owned()
                 ),
             })
         );

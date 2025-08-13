@@ -187,7 +187,7 @@ impl EphemeraFolder {
         Some(solr::ElectronicAccess {
             url: self.id.clone(),
             link_text: "Online Content".to_owned(),
-            link_description: Some("Born Digital Monographs, Serials, & Series Reports".to_owned()),
+            link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
         })
     }
     pub fn normalized_id(&self) -> String {
