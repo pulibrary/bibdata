@@ -38,6 +38,3 @@ harness = false
 [[bench]]
 name = "marc_bench"
 harness = false
-
-[lints.rust]
-unexpected_cfgs = { level = "warn", check-cfg = ['cfg(coverage)'] }
