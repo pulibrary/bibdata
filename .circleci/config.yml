@@ -148,7 +148,7 @@ jobs:
           name: Run coverage
           command: cargo llvm-cov --lcov --output-path ~/bibdata/coverage/lcov.info
       - coveralls/upload:
-          coverage_file: ~/bibdata/coverage/lcov.info
+          coverage_file: /home/circleci/bibdata/coverage/lcov.info
           coverage_format: lcov
           debug: true
 
