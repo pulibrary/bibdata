@@ -1,5 +1,6 @@
 version: 2.1
 orbs:
+  coveralls: coveralls/coveralls@2.2.5
   node: circleci/node@5.0.3
   rust: circleci/rust@1.6.2
 jobs:
@@ -111,9 +112,6 @@ jobs:
             FIGGY_ARK_CACHE_PATH: spec/fixtures/marc_to_solr/figgy_ark_cache
             TRAJECT_CONFIG: marc_to_solr/lib/traject_config.rb
             BIBDATA_ADMIN_NETIDS: admin123
-      - store_artifacts:
-          path: ~/bibdata/coverage
-          destination: coverage
 
   build_and_test_webhook:
     working_directory: ~/bibdata
@@ -140,6 +138,15 @@ jobs:
       - checkout
       - rust/install
       - rust/test
+      - run:
+          name: Install cargo-llvm-cov
+          command: cargo +stable install cargo-llvm-cov --locked
+      - run:
+          name: Run coverage
+          command: cargo llvm-cov --lcov --output-path lcov.info --ignore-filename-regex iso_639_2b
+      - coveralls/upload:
+          coverage_file: lcov.info
+          coverage_format: lcov
 
   semgrep:
     docker:
