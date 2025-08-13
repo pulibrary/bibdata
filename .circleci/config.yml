@@ -142,13 +142,10 @@ jobs:
           name: Install cargo-llvm-cov
           command: cargo +stable install cargo-llvm-cov --locked
       - run:
-          name: Create coverage working_directory
-          command: mkdir -p ~/bibdata/coverage
-      - run:
           name: Run coverage
-          command: cargo llvm-cov --lcov --output-path ~/bibdata/coverage/lcov.info
+          command: cargo llvm-cov --lcov --output-path lcov.info
       - coveralls/upload:
-          coverage_file: /home/circleci/bibdata/coverage/lcov.info
+          coverage_file: lcov.info
           coverage_format: lcov
           debug: true
 
