@@ -1,5 +1,5 @@
 use serde::{Deserialize, Deserializer, Serialize};
-use std::str::FromStr;
+use std::{fmt::Display, str::FromStr};
 
 #[allow(dead_code)]
 #[derive(Copy, Clone, Debug, Serialize, PartialEq)]
@@ -25,6 +25,20 @@ pub enum FormatFacet {
     VideoProjectedMedium,
     #[serde(rename = "Visual material")]
     VisualMaterial,
+}
+
+impl Display for FormatFacet {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::ArchivalItem => write!(f, "Archival item"),
+            Self::DataFile => write!(f, "Data file"),
+            Self::MusicalScore => write!(f, "Musical score"),
+            Self::SeniorThesis => write!(f, "Senior thesis"),
+            Self::VideoProjectedMedium => write!(f, "Video/Projected medium"),
+            Self::VisualMaterial => write!(f, "Visual material"),
+            _ => write!(f, "{:?}", self),
+        }
+    }
 }
 
 #[derive(Debug)]

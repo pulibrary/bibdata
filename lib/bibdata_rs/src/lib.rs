@@ -36,5 +36,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule_marc
         .define_singleton_method("strip_non_numeric", function!(marc::strip_non_numeric, 1))?;
+
+    submodule_marc.define_singleton_method("format_facets", function!(marc::format_facets, 1))?;
     Ok(())
 }

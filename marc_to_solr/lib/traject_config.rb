@@ -387,9 +387,8 @@ end
 # end
 
 # format - allow multiple - "first" one is used for thumbnail
-to_field 'format' do |record, accumulator|
-  formats = Format.new(record).bib_format
-  formats.each { |fmt| accumulator << Traject::TranslationMap.new('format')[fmt] }
+to_field 'format' do |_record, accumulator, context|
+  accumulator.replace BibdataRs::Marc.format_facets(context.clipboard[:marc_breaker])
 end
 
 # Medium/Support:
