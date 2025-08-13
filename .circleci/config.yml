@@ -143,7 +143,7 @@ jobs:
           command: cargo +stable install cargo-llvm-cov --locked
       - run:
           name: Run coverage
-          command: cargo llvm-cov --lcov --output-path lcov.info
+          command: cargo llvm-cov --lcov --output-path lcov.info --ignore-filename-regex iso_639_2b
       - coveralls/upload:
           coverage_file: lcov.info
           coverage_format: lcov
