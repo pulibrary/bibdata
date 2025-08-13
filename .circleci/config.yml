@@ -150,6 +150,7 @@ jobs:
       - coveralls/upload:
           coverage_file: ~/bibdata/coverage/lcov.info
           coverage_format: lcov
+          debug: true
 
   semgrep:
     docker:
