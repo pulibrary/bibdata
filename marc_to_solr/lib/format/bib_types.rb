@@ -144,51 +144,8 @@ class BibTypes
     # Get the 8524* fields
     f8524 = record.fields('852').select { |f| f.indicator1 == '4' }
 
-    # RC
-    if %w[i j].include?(ldr6) && (bib_format == 'MU')
-      @record.fields('007').map { |f| f.value }.each do |f|
-        if f[1] == 'd' && f[12] == 'e'
-          types << 'RC'
-          break
-        end
-      end
-    end
-
-    f8524.each do |f|
-      if (f['b']&.upcase == 'MUSIC') && (f['j'] =~ /\ACD/i)
-        types << 'RC'
-        break
-      end
-    end
-
-    # RL
-
-    if (bib_format == 'MU') && %w[i j].include?(ldr6) && self['007[1]'].include?('d')
-      record.fields('300').each do |f|
-        str = f.subfields.collect { |s| s.value }.join(' ')
-        if (str =~ /DISC/i) && str =~ %r{33 1/3 RPM}i
-          types << 'RL'
-          break
-        end
-      end
-    end
-
-    f8524.each do |f|
-      if  (f['j'] =~ /\ALP/i) &&
-          ((f['b'].upcase == 'MUSIC') || (f['c'].upcase == 'MUSI'))
-        types << 'RL'
-        break
-      end
-    end
-
-    # RM
-    types << 'RM' if (ldr6 == 'j') && (bib_format == 'MU')
-
-    # RS
-    types << 'RS' if (ldr6 == 'i') && (bib_format == 'MU')
-
-    # RU
-    types << 'RU' if %w[i j].include?(ldr6) && (bib_format == 'MU')
+    types << 'RC' if f8524.any? { |f| (f['b']&.upcase == 'MUSIC') && (f['j'] =~ /\ACD/i) }
+    types << 'RL' if f8524.any? { |f| (f['j'] =~ /\ALP/i) && ((f['b'].upcase == 'MUSIC') || (f['c'].upcase == 'MUSI')) }
 
     types.uniq!
     return types
@@ -277,41 +234,7 @@ class BibTypes
   def serial_types
     types = []
     types << 'SX' if %w[b s].include?(record.leader[7])
-    types.concat journal_types
-    types.concat newspaper_types
     types.uniq!
-    return types
-  end
-
-  def journal_types
-    types = []
-    # gotta be SE and have a 008
-    return types unless (bib_format == 'SE') && record['008']
-
-    # We need lots of chars from the 008
-    f8 = record['008'].value
-
-    if  (f8[21] == 'p') &&
-        [' ', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 's', 'x', 'z', '|'].include?(f8[22]) &&
-        ['0', '|'].include?(f8[29])
-      types << 'AJ'
-    end
-
-    if  [' ', 'd', 'l', 'm', 'p', 'w', '|'].include?(f8[21]) &&
-        [' ', 'a', 'b', 'c', 'd', 'f', 'g', 'h', 'i', 's', 'x', 'z', '|'].include?(f8[22]) &&
-        ['a', 'b', 'g', 'm', 'n', 'o', 'p', 's', 'w', 'x', 'y', ' '].include?(f8[24]) &&
-        ['0', '|'].include?(f8[29])
-      types << 'AJ'
-    end
-
-    types.uniq!
-    return types
-  end
-
-  def newspaper_types
-    types = []
-    types << 'AN' if (bib_format == 'SE') && record['008'] &&
-                     ((record['008'].value[21] == 'n') || (record['008'].value[22] == 'e'))
     return types
   end
 
@@ -324,7 +247,6 @@ class BibTypes
 
   def mixed_types
     types = []
-    types << 'MV' if (bib_format == 'MX') || (record.leader[8] == 'a')
     types << 'MW' if %w[d f p t].include?(record.leader[6])
     return types
   end
