@@ -152,7 +152,7 @@ jobs:
           command: cargo llvm-cov --lcov --output-path ~/bibdata/coverage/lcov.info
       - coveralls/upload:
           coverage_file: ~/bibdata/coverage/lcov.info
-          token: ${{ COVERALLS_REPO_TOKEN }}
+          token: ${COVERALLS_REPO_TOKEN}
 
   semgrep:
     docker:
