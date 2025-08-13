@@ -16,7 +16,7 @@ mod tests {
             {
               "@id": "https://figgy-staging.princeton.edu/catalog/5dbeae15-f46a-4411-a385-ce6df02231dc",
               "@type": "skos:Concept",
-              "pref_label": "Books",
+              "pref_label": "Pamphlets",
               "in_scheme": {
                 "@id": "https://figgy.princeton.edu/ns/ephemeraGenres",
                 "@type": "skos:ConceptScheme",
