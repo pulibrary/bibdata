@@ -18,6 +18,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_homoit_subject_facet(value.subject_labels())
             .with_id(value.normalized_id())
             .with_language_facet(value.language_labels())
+            .with_language_name_display(value.language_labels())
             .with_lc_subject_display(value.subject_labels())
             .with_lc_subject_facet(value.subject_labels())
             .with_notes(value.description.clone())
