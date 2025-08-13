@@ -149,6 +149,7 @@ jobs:
           command: cargo llvm-cov --lcov --output-path ~/bibdata/coverage/lcov.info
       - coveralls/upload:
           coverage_file: ~/bibdata/coverage/lcov.info
+          coverage_format: lcov
 
   semgrep:
     docker:
