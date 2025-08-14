@@ -5,7 +5,7 @@ mod string_normalize;
 
 pub mod control_field;
 pub mod fixed_field;
-pub mod format_facet;
+pub mod record_facet_mapping;
 pub mod genre;
 pub mod language;
 pub mod note;
@@ -34,7 +34,7 @@ pub fn access_notes(record_string: String) -> Result<Option<Vec<String>>, magnus
 
 pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
-    Ok(format_facet::format_facets(&record)
+    Ok(record_facet_mapping::format_facets(&record)
         .iter()
         .map(|facet| format!("{facet}"))
         .collect())
