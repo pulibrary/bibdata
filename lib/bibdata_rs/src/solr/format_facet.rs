@@ -27,6 +27,9 @@ pub enum FormatFacet {
     VisualMaterial,
 }
 
+// When we provide a format facet to Ruby, it must be provided as a String.
+// Implementing Display allows us to map FormatFacet values to Strings so
+// that Ruby can access them.
 impl Display for FormatFacet {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
