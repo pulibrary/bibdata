@@ -1,4 +1,3 @@
-require_relative './lib/format'
 require_relative './lib/princeton_marc'
 require_relative './lib/geo'
 require_relative './lib/electronic_portfolio_builder'

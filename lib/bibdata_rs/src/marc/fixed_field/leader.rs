@@ -67,6 +67,17 @@ impl BibliographicLevel {
     pub fn is_serial(&self) -> bool {
         matches!(self, Self::SerialComponentPart | Self::Serial)
     }
+
+    pub fn is_monograph(&self) -> bool {
+        matches!(
+            self,
+            Self::MonographicComponentPart
+                | Self::SerialComponentPart
+                | Self::Collection
+                | Self::Subunit
+                | Self::MonographItem
+        )
+    }
 }
 
 impl TryFrom<char> for BibliographicLevel {
@@ -95,6 +106,13 @@ impl TryFrom<&Record> for BibliographicLevel {
             .nth(7)
             .ok_or("No Bibliographic level at LDR/07")?
             .try_into()
+    }
+}
+
+pub fn is_monograph(record: &Record) -> bool {
+    match BibliographicLevel::try_from(record) {
+        Ok(level) => level.is_monograph(),
+        _ => false,
     }
 }
 
