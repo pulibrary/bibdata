@@ -5,10 +5,10 @@ mod string_normalize;
 
 pub mod control_field;
 pub mod fixed_field;
-pub mod record_facet_mapping;
 pub mod genre;
 pub mod language;
 pub mod note;
+pub mod record_facet_mapping;
 
 pub use string_normalize::trim_punctuation;
 
