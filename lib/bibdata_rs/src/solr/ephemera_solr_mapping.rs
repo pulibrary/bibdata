@@ -10,7 +10,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
-            .with_description_display(Some(value.page_count_origin_place_labels_combined()))
+            .with_description_display(Some(value.concat_page_count()))
             .with_electronic_access_1display(value.electronic_access())
             .with_format(value.solr_formats())
             .with_geographic_facet(Some(value.coverage_labels()))
@@ -116,7 +116,7 @@ mod tests {
         );
         assert_eq!(
             solr_document.description_display,
-            Some(vec!["116".to_string(), "Colombia".to_string()])
+            Some(vec!["pages: 116".to_string()])
         )
     }
 
@@ -343,7 +343,7 @@ mod tests {
         assert_eq!(solr_document.pub_date_start_sort, Some(1973));
     }
     #[test]
-    fn it_combines_page_count_and_origin_place_labels_into_description_display() {
+    fn it_concats_page_count_into_description_display() {
         let item = EphemeraFolder::builder()
             .id("12345".to_string())
             .title(vec!["Bohemian Rhapsody".to_string()])
@@ -359,7 +359,7 @@ mod tests {
         let solr = SolrDocument::from(&item);
         assert_eq!(
             solr.description_display,
-            Some(vec!["333".to_string(), "Colombia".to_string()])
+            Some(vec!["pages: 333".to_string()])
         );
     }
     #[test]
