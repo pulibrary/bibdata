@@ -12,6 +12,9 @@ pub mod record_facet_mapping;
 
 pub use string_normalize::trim_punctuation;
 
+pub fn alma_code_start_22(code: String) -> bool {
+    code.starts_with("22") && code.ends_with("06421")
+}
 pub fn genres(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(genre::genres(&record))
