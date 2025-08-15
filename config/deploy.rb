@@ -41,7 +41,7 @@ set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
 
 set :keep_releases, 3
 
-set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production] }
+set :whenever_roles, ->{ [:cron, :cron_staging, :cron_production, :worker] }
 
 namespace :sidekiq do
   task :restart do
