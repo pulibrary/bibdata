@@ -46,7 +46,9 @@ class Dump < ActiveRecord::Base
     end
 
     def latest_generated
-      order('generated_date desc').first
+      joins(:event).where(event: { success: true })
+                   .where.not(generated_date: nil)
+                   .order('generated_date desc').first
     end
 
     def generated_date(dump_id)
