@@ -86,6 +86,6 @@ class ActionNoteBuilder
     end
 
     def scsb_record?
-      @scsb_record ||= scsb_doc?(@record['001']&.value)
+      @scsb_record ||= BibdataRs::Marc.is_scsb?(MarcBreaker.break(@record))
     end
 end

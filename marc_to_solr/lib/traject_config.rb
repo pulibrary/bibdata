@@ -1450,7 +1450,7 @@ each_record do |record, context|
   location_codes = MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code_start_22?(field['8'])
-    is_scsb = scsb_doc?(record['001'].value)
+    is_scsb = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
     field.subfields.each do |s_field|
       # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
       if s_field.code == 'b'

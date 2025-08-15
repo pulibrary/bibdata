@@ -42,5 +42,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "alma_code_start_22?",
         function!(marc::alma_code_start_22, 1),
     )?;
+    submodule_marc.define_singleton_method("is_scsb?", function!(marc::is_scsb, 1))?;
     Ok(())
 }

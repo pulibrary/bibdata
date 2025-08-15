@@ -587,7 +587,7 @@ end
 
 def browse_fields(record, khi_key_order: %w[k h i])
   result = []
-  fields = if scsb_doc?(record['001']&.value)
+  fields = if BibdataRs::Marc.is_scsb?(MarcBreaker.break(record))
              scsb_852(record)
            else
              alma_852(record)
@@ -622,13 +622,6 @@ end
 def alma_950(record)
   field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
   field_950_a.map { |f| f['b'] }.first if field_950_a.present?
-end
-
-# SCSB item
-# Keep this check with the alma_code? check
-# until we make sure that the records in alma are updated
-def scsb_doc?(record_id)
-  /^SCSB-\d+/.match?(record_id)
 end
 
 def process_holdings(record)
@@ -702,7 +695,7 @@ def process_recap_notes record
   item_notes = []
   partner_lib = nil
   Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
-    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    is_scsb = BibdataRs::Marc.is_scsb?(MarcBreaker.break(record)) && field['0']
     next unless is_scsb
 
     field.subfields.each do |s_field|
@@ -712,7 +705,7 @@ def process_recap_notes record
     end
   end
   Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
-    is_scsb = scsb_doc?(record['001'].value) && field['0']
+    is_scsb = BibdataRs::Marc.is_scsb?(MarcBreaker.break(record)) && field['0']
     next unless is_scsb
 
     col_group = ''

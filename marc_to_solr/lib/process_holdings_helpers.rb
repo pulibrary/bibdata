@@ -18,7 +18,7 @@ class ProcessHoldingsHelpers
   end
 
   def scsb?(field_852)
-    scsb_doc?(record['001'].value) && field_852['0']
+    BibdataRs::Marc.is_scsb?(MarcBreaker.break(record)) && field_852['0']
   end
 
   def group_866_867_868_on_holding_perm_id(holding_perm_id, field_852)
@@ -43,7 +43,7 @@ class ProcessHoldingsHelpers
   # returns an array of MARC 852 (full holdings) fields
   def fields_852_alma_or_scsb
     record.fields('852').select do |f|
-      BibdataRs::Marc.alma_code_start_22?(f['8'].to_s) || (scsb_doc?(record['001'].value) && f['0'])
+      BibdataRs::Marc.alma_code_start_22?(f['8'].to_s) || (BibdataRs::Marc.is_scsb?(MarcBreaker.break(record)) && f['0'])
     end
   end
 
