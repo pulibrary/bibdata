@@ -81,10 +81,20 @@ RSpec.describe Dump, type: :model do
   end
 
   describe '.latest_generated' do
-    it 'returns the last-created dump' do
+    it 'returns the last-generated dump' do
       dump1 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago, event_id: event_success.id)
       dump2 = described_class.create(dump_type: partner_recap_dump_type, generated_date: 2.days.ago, event_id: event_success.id)
       expect(described_class.latest_generated.id).to eq dump1.id
+    end
+
+    it 'prefers a newer dump with a successful event' do
+      unsuccessful_event = Event.create(start: 2.days.ago, finish: nil, error: nil, success: nil, created_at: 2.days.ago, updated_at: 2.days.ago)
+      successful_event = Event.create(start: 1.day.ago, finish: 1.day.ago, error: nil, success: true, created_at: 1.day.ago, updated_at: 1.day.ago)
+
+      unsuccessful_dump = described_class.create(dump_type: partner_recap_dump_type, generated_date: nil, event_id: unsuccessful_event.id)
+      successful_dump = described_class.create(dump_type: partner_recap_dump_type, generated_date: 1.day.ago, event_id: successful_event.id)
+
+      expect(described_class.latest_generated.id).to eq successful_dump.id
     end
   end
 
