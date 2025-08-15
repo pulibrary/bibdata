@@ -98,7 +98,7 @@ If needed, [use the SCSB API to request new full dump records from the system to
 Then, if needed, [pull the most recent SCSB full dump records into dump files](./scsb/dump_files.md).
 This is only necessary if the most recent "Full Partner ReCAP Records" is missing files, or if
 the monthly process hasn't run for a while and there is no recent event of this type.
-Note that this process takes 12 hours.
+Note that this process takes 7 hours.
 
 Once the files are all downloaded and processed, index them with
 
