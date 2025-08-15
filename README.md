@@ -14,7 +14,6 @@ wiki](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/overview)
 ### Dependencies
   * Postgresql (provided in development by lando)
   * `brew install lastpass-cli`
-  * `brew install shared-mime-info` (for `mimemagic` gem)
 
 Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
