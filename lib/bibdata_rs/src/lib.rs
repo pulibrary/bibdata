@@ -38,5 +38,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         .define_singleton_method("strip_non_numeric", function!(marc::strip_non_numeric, 1))?;
 
     submodule_marc.define_singleton_method("format_facets", function!(marc::format_facets, 1))?;
+    submodule_marc.define_singleton_method(
+        "alma_code_start_22?",
+        function!(marc::alma_code_start_22, 1),
+    )?;
     Ok(())
 }

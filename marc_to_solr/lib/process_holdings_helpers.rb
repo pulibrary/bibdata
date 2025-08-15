@@ -14,7 +14,7 @@ class ProcessHoldingsHelpers
   end
 
   def alma?(field_852)
-    alma_code_start_22?(field_852['8'])
+    BibdataRs::Marc.alma_code_start_22?(field_852['8'].to_s)
   end
 
   def scsb?(field_852)
@@ -43,7 +43,7 @@ class ProcessHoldingsHelpers
   # returns an array of MARC 852 (full holdings) fields
   def fields_852_alma_or_scsb
     record.fields('852').select do |f|
-      alma_code_start_22?(f['8']) || (scsb_doc?(record['001'].value) && f['0'])
+      BibdataRs::Marc.alma_code_start_22?(f['8'].to_s) || (scsb_doc?(record['001'].value) && f['0'])
     end
   end
 
