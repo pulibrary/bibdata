@@ -1413,7 +1413,7 @@ end
 
 # Skip SCSB records that include only private items
 each_record do |record, context|
-  recap_notes = process_recap_notes(record)
+  recap_notes = BibdataRs::Marc.recap_partner_notes(context.clipboard[:marc_breaker])
   next if recap_notes.empty?
   next if recap_notes.map { |note| note.include?('P') }.include?(false)
 
@@ -1422,8 +1422,8 @@ each_record do |record, context|
 end
 
 ## for recap notes
-to_field 'recap_notes_display' do |record, accumulator|
-  recap_notes = process_recap_notes(record)
+to_field 'recap_notes_display' do |_record, accumulator, context|
+  recap_notes = BibdataRs::Marc.recap_partner_notes(context.clipboard[:marc_breaker])
   unless recap_notes.empty?
     recap_notes.each_with_index do |value, i|
       accumulator[i] = value

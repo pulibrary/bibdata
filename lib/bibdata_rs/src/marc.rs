@@ -36,6 +36,11 @@ pub fn access_notes(record_string: String) -> Result<Option<Vec<String>>, magnus
     Ok(note::access_notes(&record))
 }
 
+pub fn recap_partner_notes(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(scsb::recap_partner::recap_partner_notes(&record))
+}
+
 pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(scsb::is_scsb(&record))
