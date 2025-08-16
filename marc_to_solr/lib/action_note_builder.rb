@@ -1,12 +1,13 @@
 class ActionNoteBuilder
-  attr_reader :record
+  attr_reader :record, :marc_breaker
 
-  def initialize(record:)
+  def initialize(record:, marc_breaker:)
     @record = record
+    @marc_breaker = marc_breaker || MarcBreaker.break(record)
   end
 
-  def self.build(record:)
-    new(record:).build
+  def self.build(record:, marc_breaker:)
+    new(record:, marc_breaker:).build
   end
 
   def build
@@ -86,6 +87,6 @@ class ActionNoteBuilder
     end
 
     def scsb_record?
-      @scsb_record ||= scsb_doc?(@record['001']&.value)
+      @scsb_record ||= BibdataRs::Marc.is_scsb?(marc_breaker)
     end
 end
