@@ -13,10 +13,24 @@ pub fn index(solr_url: &str, documents: &[SolrDocument]) -> Result<()> {
     Ok(())
 }
 
-pub fn index_string(solr_url: String, documents: String) {
-    let document_vec: Vec<SolrDocument> =
-        serde_json::from_str(&documents).expect("Failed to parse documents from JSON string");
+pub fn index_string(solr_url: String, documents: String) -> Result<(), magnus::Error> {
+    if documents.trim().is_empty() {
+        return Err(magnus::Error::new(
+            magnus::exception::runtime_error(),
+            "No documents to index",
+        ));
+    }
+    let document_vec: Vec<SolrDocument> = serde_json::from_str(&documents).map_err(|e| {
+        magnus::Error::new(
+            magnus::exception::runtime_error(),
+            format!(
+                "Coulld not parse documents from JSON string: {:?}, {}",
+                e, documents
+            ),
+        )
+    })?;
     index(&solr_url, &document_vec).expect("Failed to index documents");
+    Ok(())
 }
 
 #[cfg(test)]

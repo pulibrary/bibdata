@@ -20,30 +20,25 @@ impl<'de> Deserialize<'de> for Format {
             exact_match: Option<serde_json::Value>,
         }
 
-        // fn extract_id(val: &serde_json::Value) -> Option<&str> {
-        //     match val.get("@id") {
-        //         Some(id_val) if id_val.is_string() => id_val.as_str(),
-        //         Some(id_val) if id_val.is_object() => id_val.get("@id")?.as_str(),
-        //         _ => None,
-        //     }
-        // }
+        let format_nested = FormatNestedId::deserialize(deserializer)?;
+        let facet = format_nested
+            .exact_match
+            .as_ref()
+            .and_then(|em| em.get("@id"))
+            .map(|id_val| {
+                Some(if id_val.is_string() {
+                    solr::FormatFacet::Book
+                } else if id_val.is_object() {
+                    solr::FormatFacet::Book
+                } else {
+                    // If @id is neither string nor object, return None
+                    return None;
+                })
+            });
 
-      let format_nested = FormatNestedId::deserialize(deserializer)?;
-      let facet = format_nested.exact_match
-        .as_ref()
-        .and_then(|em| em.get("@id"))
-        .map(|id_val| {
-          Some(if id_val.is_string() {
-            solr::FormatFacet::Book
-          } else if id_val.is_object() {
-            solr::FormatFacet::Book
-          } else {
-            // If @id is neither string nor object, return None
-            return None;
-          })
-        });
-
-        Ok(Format { pref_label: facet.flatten() })
+        Ok(Format {
+            pref_label: facet.flatten(),
+        })
     }
 }
 
