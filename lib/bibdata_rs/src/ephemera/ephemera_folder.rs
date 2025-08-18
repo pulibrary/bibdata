@@ -280,7 +280,7 @@ mod tests {
             let mut server = mockito::Server::new();
 
             let folder_mock = server
-                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")
@@ -320,7 +320,7 @@ mod tests {
             let mut server = mockito::Server::new();
 
             let folder_mock = server
-                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographs%2C+Serials%2C+%26+Series+Reports&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
+                .mock("GET", "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q=")
                 .with_status(200)
                 .with_header("content-type", "application/json")
                 .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_folders.json")

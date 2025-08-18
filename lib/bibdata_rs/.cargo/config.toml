@@ -1,0 +1,3 @@
+[env]
+FIGGY_BORN_DIGITAL_EPHEMERA_URL = "/catalog.json?f%5Bephemera_project_ssim%5D%5B%5D=Born+Digital+Monographic+Reports+and+Papers&f%5Bhuman_readable_type_ssim%5D%5B%5D=Ephemera+Folder&f%5Bstate_ssim%5D%5B%5D=complete&per_page=100&q="
+FIGGY_URL = "https://figgy.princeton.edu"
