@@ -32,6 +32,15 @@ RSpec.describe 'Language indexing', :rust do
       expect(indexed['mult_languages_iana_s']).to be_nil
     end
 
+    it 'can get a language from the 008' do
+      fields = [
+        { '008' => '130515s17uu xx 000 0 ban d' }
+      ]
+      record = MARC::Record.new_from_hash('fields' => fields, 'leader' => '03657ctmaa2200673Ii 4500')
+      indexed = IndexerService.build.map_record record
+      expect(indexed['mult_languages_iana_s']).to eq ['ban']
+    end
+
     it 'takes valid values that have a two-character equivalent' do
       fields = [
         { '008' => '130515s17uu xx 000 0 ota d' },
