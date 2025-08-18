@@ -30,7 +30,7 @@ mod tests {
     #[test]
     fn it_can_parse_exact_match_from_the_json_ld() {
         let json_ld = r#"[
-                {
+            {
                 "@id": "https://figgy-staging.princeton.edu/catalog/abf14319-f4bd-48d3-b4ab-5369354cc4aa",
                 "@type": "skos:Concept",
                 "pref_label": "Music",
