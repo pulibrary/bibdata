@@ -26,12 +26,9 @@ impl<'de> Deserialize<'de> for Format {
             .as_ref()
             .and_then(|em| em.get("@id"))
             .map(|id_val| {
-                Some(if id_val.is_string() {
-                    solr::FormatFacet::Book
-                } else if id_val.is_object() {
+                Some(if id_val.is_string() || id_val.is_object() {
                     solr::FormatFacet::Book
                 } else {
-                    // If @id is neither string nor object, return None
                     return None;
                 })
             });
