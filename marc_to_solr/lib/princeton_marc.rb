@@ -585,9 +585,9 @@ def scsb_852(record)
   record.fields('852').select { |f| scsb_code_start?(f['b']) }
 end
 
-def browse_fields(record, khi_key_order: %w[k h i])
+def browse_fields(record, marc_breaker:, khi_key_order: %w[k h i])
   result = []
-  fields = if scsb_doc?(record['001']&.value)
+  fields = if BibdataRs::Marc.is_scsb?(marc_breaker)
              scsb_852(record)
            else
              alma_852(record)
@@ -622,13 +622,6 @@ end
 def alma_950(record)
   field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
   field_950_a.map { |f| f['b'] }.first if field_950_a.present?
-end
-
-# SCSB item
-# Keep this check with the alma_code? check
-# until we make sure that the records in alma are updated
-def scsb_doc?(record_id)
-  /^SCSB-\d+/.match?(record_id)
 end
 
 def process_holdings(record, marc_breaker)

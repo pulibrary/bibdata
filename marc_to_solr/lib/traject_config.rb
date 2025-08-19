@@ -834,8 +834,8 @@ to_field 'source_acquisition_display', extract_marc('541|1*|abcdefhno36:541| *|a
 to_field 'publications_about_display', extract_marc('581az36')
 
 # Action note - formatted with link
-to_field 'action_notes_1display' do |record, accumulator|
-  notes = ActionNoteBuilder.build(record:)
+to_field 'action_notes_1display' do |record, accumulator, context|
+  notes = ActionNoteBuilder.build(record:, marc_breaker: context.clipboard[:marc_breaker])
   accumulator.replace(notes) if notes.present?
 end
 
@@ -1637,15 +1637,15 @@ end
 #    852 XX hik
 # Position 852|k in the beginning of the call_number_display
 # The call_number_display is used in the catalog record page.
-to_field 'call_number_display' do |record, accumulator|
-  accumulator << browse_fields(record)
+to_field 'call_number_display' do |record, accumulator, context|
+  accumulator << browse_fields(record, marc_breaker: context.clipboard[:marc_breaker])
   accumulator.flatten!
 end
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
-to_field 'call_number_browse_s' do |record, accumulator|
-  accumulator << browse_fields(record, khi_key_order: %w[h i k])
+to_field 'call_number_browse_s' do |record, accumulator, context|
+  accumulator << browse_fields(record, khi_key_order: %w[h i k], marc_breaker: context.clipboard[:marc_breaker])
   accumulator.flatten!
 end
 
