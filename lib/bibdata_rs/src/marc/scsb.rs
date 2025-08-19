@@ -1,5 +1,8 @@
 use marctk::Record;
 
+mod collection_group;
+pub mod recap_partner;
+
 // We use this SCSB check for multiple workflows
 pub fn is_scsb(record: &Record) -> bool {
     record

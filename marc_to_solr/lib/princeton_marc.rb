@@ -698,51 +698,6 @@ def invalid_location?(code)
   Traject::TranslationMap.new('locations')[code].nil?
 end
 
-def process_recap_notes record
-  item_notes = []
-  partner_lib = nil
-  Traject::MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
-    is_scsb = scsb_doc?(record['001'].value) && field['0']
-    next unless is_scsb
-
-    field.subfields.each do |s_field|
-      if s_field.code == 'b'
-        partner_lib = s_field.value # ||= Traject::TranslationMap.new("locations", :default => "__passthrough__")[s_field.value]
-      end
-    end
-  end
-  Traject::MarcExtractor.cached('87603ahjptxz').collect_matching_lines(record) do |field, _spec, _extractor|
-    is_scsb = scsb_doc?(record['001'].value) && field['0']
-    next unless is_scsb
-
-    col_group = ''
-    field.subfields.each do |s_field|
-      if s_field.code == 'x'
-        if s_field.value == 'Shared'
-          col_group = 'S'
-        elsif s_field.value == 'Private'
-          col_group = 'P'
-        elsif s_field.value == 'Committed'
-          col_group = 'C'
-        elsif s_field.value == 'Uncommittable'
-          col_group = 'U'
-        else
-          col_group = 'O'
-        end
-      end
-    end
-    if partner_lib == 'scsbnypl'
-      partner_display_string = 'N'
-    elsif partner_lib == 'scsbcul'
-      partner_display_string = 'C'
-    elsif partner_lib == 'scsbhl'
-      partner_display_string = 'H'
-    end
-    item_notes << "#{partner_display_string} - #{col_group}"
-  end
-  item_notes
-end
-
 def local_heading?(field)
   field.any? { |subfield| subfield.code == '2' && subfield.value == 'local' } &&
     field.any? { |subfield| subfield.code == '5' && subfield.value == 'NjP' }
