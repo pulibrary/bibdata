@@ -28,7 +28,9 @@ impl<'de> Deserialize<'de> for ExactMatch {
                 }
             }
         }
-        Err(serde::de::Error::custom("Could not parse ExactMatch Country id"))
+        Err(serde::de::Error::custom(
+            "Could not parse ExactMatch Country id",
+        ))
     }
 }
 
