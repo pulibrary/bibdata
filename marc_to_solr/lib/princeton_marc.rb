@@ -631,9 +631,9 @@ def scsb_doc?(record_id)
   /^SCSB-\d+/.match?(record_id)
 end
 
-def process_holdings(record)
+def process_holdings(record, marc_breaker)
   all_holdings = {}
-  holdings_helpers = ProcessHoldingsHelpers.new(record:)
+  holdings_helpers = ProcessHoldingsHelpers.new(record:, marc_breaker:)
   holdings_helpers.fields_852_alma_or_scsb.each do |field_852|
     next if holdings_helpers.includes_only_private_scsb_items?(field_852)
 

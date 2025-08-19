@@ -1406,8 +1406,8 @@ to_field 'subject_era_facet', marc_era_facet
 
 # # From displayh.cfg
 
-to_field 'holdings_1display' do |record, accumulator|
-  all_holdings = process_holdings(record)
+to_field 'holdings_1display' do |record, accumulator, context|
+  all_holdings = process_holdings(record, context.clipboard[:marc_breaker])
   accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
 end
 

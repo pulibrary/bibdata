@@ -1,8 +1,9 @@
 class ProcessHoldingsHelpers
-  attr_reader :record
+  attr_reader :record, :marc_breaker
 
-  def initialize(record:)
+  def initialize(record:, marc_breaker:)
     @record = record
+    @marc_breaker = marc_breaker
   end
 
   def holding_id(field_852)
@@ -18,7 +19,7 @@ class ProcessHoldingsHelpers
   end
 
   def scsb?(field_852)
-    scsb_doc?(record['001'].value) && field_852['0']
+    BibdataRs::Marc.is_scsb?(marc_breaker) && field_852['0']
   end
 
   def group_866_867_868_on_holding_perm_id(holding_perm_id, field_852)
