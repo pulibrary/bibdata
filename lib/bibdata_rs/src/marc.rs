@@ -9,6 +9,7 @@ pub mod genre;
 pub mod language;
 pub mod note;
 pub mod record_facet_mapping;
+pub mod scsb;
 
 pub use string_normalize::trim_punctuation;
 
@@ -33,6 +34,11 @@ pub fn original_languages_of_translation(
 pub fn access_notes(record_string: String) -> Result<Option<Vec<String>>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(note::access_notes(&record))
+}
+
+pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(scsb::is_scsb(&record))
 }
 
 pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error> {
