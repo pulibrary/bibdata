@@ -38,7 +38,9 @@ mod tests {
                 "pref_label": "LAE Geographic Areas"
                 },
                 "exact_match": {
-                    "@id": "http://id.badbadbad.gov/vocabulary/countries/ve"
+                    "@id": {
+                        "@id": "[\"http://id.badbadbad.gov/vocabulary/countries/ve\"]"
+                    }
                 }
             }
           ]"#;
