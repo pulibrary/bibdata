@@ -47,5 +47,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "recap_partner_notes",
         function!(marc::recap_partner_notes, 1),
     )?;
+    submodule_marc
+        .define_singleton_method("non_private_items?", function!(marc::non_private_items, 2))?;
     Ok(())
 }

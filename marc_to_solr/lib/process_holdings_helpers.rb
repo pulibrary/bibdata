@@ -32,8 +32,7 @@ class ProcessHoldingsHelpers
 
   def items_by_852(field_852)
     holding_id = holding_id(field_852)
-    items = record.fields('876').select { |f| f['0'] == holding_id }
-    items.map { |item| item unless private_scsb_item?(item, field_852) }.compact
+    BibdataRs::Marc.non_private_items?(marc_breaker, holding_id)
   end
 
   def private_scsb_item?(field_876, field_852)
@@ -96,7 +95,7 @@ class ProcessHoldingsHelpers
   def includes_only_private_scsb_items?(field_852)
     return false unless scsb?(field_852)
 
-    items_by_852(field_852).empty?
+    items_by_852(field_852)
   end
 
   # Builds the holding, without any item-specific information
