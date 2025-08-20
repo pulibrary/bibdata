@@ -95,7 +95,7 @@ impl FromStr for FormatFacet {
             "picket signs" => Ok(Self::Book),
             "posters" => Ok(Self::VisualMaterial),
             "postcards" => Ok(Self::Book),
-            "reports" => Ok(Self::Report),
+            "report" | "reports" => Ok(Self::Report),
             "serials" => Ok(Self::Journal),
             "series" => Ok(Self::Book),
             "stickers" => Ok(Self::Book),
