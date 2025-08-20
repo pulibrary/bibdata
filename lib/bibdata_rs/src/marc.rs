@@ -59,6 +59,10 @@ pub fn normalize_oclc_number(string: String) -> String {
     identifier::normalize_oclc_number(&string)
 }
 
+pub fn is_oclc_number(string: String) -> bool {
+    identifier::is_oclc_number(&string)
+}
+
 pub fn strip_non_numeric(string: String) -> String {
     string_normalize::strip_non_numeric(&string)
 }

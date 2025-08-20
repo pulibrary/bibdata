@@ -1375,7 +1375,7 @@ end
 to_field 'oclc_s', extract_marc('035a') do |_record, accumulator|
   oclcs = []
   accumulator.each_with_index do |value, _i|
-    oclcs << BibdataRs::Marc.strip_non_numeric(value) if oclc_number?(value)
+    oclcs << BibdataRs::Marc.strip_non_numeric(value) if BibdataRs::Marc.is_oclc_number?(value)
   end
   accumulator.replace(oclcs)
 end

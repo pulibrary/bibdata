@@ -290,27 +290,6 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'oclc_number?' do
-    it 'detects invalid OCLC numbers' do
-      expect(oclc_number?('(OCoLC)TGPSM11-B2267 ')).to be false
-      expect(oclc_number?('(OCoLC)xon9990014350')).to be false
-      expect(oclc_number?('(OCoLC)onx9990014350')).to be false
-    end
-
-    it 'detects valid OCLC numbers' do
-      # Includes various prefixes and extraneous (but harmless) spaces
-      values = []
-      values << '(OCoLC)882089266'
-      values << '(OCoLC)on9990014350'
-      values << '(OCoLC)ocn899745778'
-      values << '(OCoLC)ocm00112267 '
-      values << '(OCoLC)on 9990014350'
-      values.each do |value|
-        expect(oclc_number?(value)).to be true
-      end
-    end
-  end
-
   describe 'other_versions function' do
     before(:all) do
       @bib = '9947652213506421'
