@@ -63,6 +63,11 @@ pub fn is_oclc_number(string: String) -> bool {
     identifier::is_oclc_number(&string)
 }
 
+pub fn identifiers_of_all_versions(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(identifier::identifiers_of_all_versions(&record))
+}
+
 pub fn strip_non_numeric(string: String) -> String {
     string_normalize::strip_non_numeric(&string)
 }

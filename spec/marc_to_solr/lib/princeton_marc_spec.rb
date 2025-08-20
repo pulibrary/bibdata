@@ -290,59 +290,6 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'other_versions function' do
-    before(:all) do
-      @bib = '9947652213506421'
-      @bib_776w = { '776' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'w' => @bib }] } }
-      @non_oclc_non_bib = '(DLC)12345678'
-      @non_oclc_non_bib_776w = { '776' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'w' => @non_oclc_non_bib }] } }
-      @oclc_num = '(OCoLC)on9990014350'
-      @oclc_776w = { '776' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'w' => @oclc_num }] } }
-      @oclc_num2 = '(OCoLC)on9990014351'
-      @oclc_num3 = '(OCoLC)on9990014352'
-      @oclc_787w = { '787' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'w' => @oclc_num2 }, { 'z' => @oclc_num3 }] } }
-      @oclc_num4 = '(OCoLC)on9990014353'
-      @oclc_035a = { '035' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => @oclc_num4 }] } }
-      @issn_num = '0378-5955'
-      @issn_022 = { '022' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'l' => @issn_num }, { 'y' => @issn_num }] } }
-      @issn_num2 = '1234-5679'
-      @issn_776x = { '776' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'x' => @issn_num2 }] } }
-      @isbn_num = '0-9752298-0-X'
-      @isbn_776z = { '776' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'z' => @isbn_num }] } }
-      @isbn_num2 = 'ISBN: 978-0-306-40615-7'
-      @isbn_num2_10d = '0-306-40615-2'
-      @isbn_020 = { '020' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => @isbn_num2 }, { 'z' => @isbn_num2_10d }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@bib_776w, @non_oclc_non_bib_776w, @oclc_776w, @oclc_787w, @oclc_035a, @issn_022, @issn_776x, @isbn_776z, @isbn_020])
-      @linked_nums = other_versions(@sample_marc)
-    end
-
-    it 'includes isbn, issn, oclc nums for expected fields/subfields' do
-      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num))
-      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num2))
-      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num4))
-      expect(@linked_nums).to include('BIB' + BibdataRs::Marc.strip_non_numeric(@bib))
-      expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num))
-      expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num2))
-      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num))
-      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num2))
-      expect(@linked_nums).to include(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))
-    end
-
-    it 'removes duplicates' do
-      expect(LibraryStandardNumbers::ISBN.normalize(@isbn_num2)).to eq(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))
-      expect(@linked_nums.count(LibraryStandardNumbers::ISSN.normalize(@issn_num))).to eq 1
-      expect(@linked_nums.count(LibraryStandardNumbers::ISBN.normalize(@isbn_num2_10d))).to eq 1
-    end
-
-    it 'excludes numbers not in expect subfields' do
-      expect(@linked_nums).not_to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num3))
-    end
-
-    it 'excludes non oclc/non bib in expected oclc/bib subfield' do
-      expect(@linked_nums).not_to include(BibdataRs::Marc.normalize_oclc_number(@non_oclc_non_bib))
-    end
-  end
-
   describe 'process_names, process_alt_script_names function' do
     before(:all) do
       @t100 = { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'John' }, { 'd' => '1492' }, { 't' => 'TITLE' }, { 'k' => 'ignore' }] } }

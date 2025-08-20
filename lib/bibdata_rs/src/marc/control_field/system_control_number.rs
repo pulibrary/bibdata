@@ -1,9 +1,11 @@
 // This module is concerned with the 035 (system control number)
 
+use crate::marc::identifier::oclc::is_oclc_number;
 use marctk::Record;
 
 pub enum SystemControlNumber {
     Pulfa(String),
+    OCLCNumber(String),
     OtherControlNumber,
     InvalidControlNumber,
 }
@@ -15,6 +17,8 @@ impl From<&str> for SystemControlNumber {
                 Some(number) => SystemControlNumber::Pulfa(number.to_owned()),
                 None => SystemControlNumber::InvalidControlNumber,
             }
+        } else if is_oclc_number(value) {
+            Self::OCLCNumber(value.to_owned())
         } else {
             SystemControlNumber::OtherControlNumber
         }
