@@ -148,9 +148,9 @@ def other_versions record
       if (field.tag == '022') || ((field.tag == '776') && (s_field.code == 'x'))
         linked_nums << LibraryStandardNumbers::ISSN.normalize(s_field.value)
       end
-      linked_nums << oclc_normalize(s_field.value, prefix: true) if (field.tag == '035') && oclc_number?(s_field.value)
+      linked_nums << BibdataRs::Marc.normalize_oclc_number(s_field.value) if (field.tag == '035') && oclc_number?(s_field.value)
       if ((field.tag == '776') && (s_field.code == 'w')) || ((field.tag == '787') && (s_field.code == 'w'))
-        linked_nums << oclc_normalize(s_field.value, prefix: true) if oclc_number?(s_field.value)
+        linked_nums << BibdataRs::Marc.normalize_oclc_number(s_field.value) if oclc_number?(s_field.value)
         linked_nums << ('BIB' + BibdataRs::Marc.strip_non_numeric(s_field.value)) unless s_field.value.include?('(')
         if s_field.value.include?('(') && !s_field.value.start_with?('(')
           logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
@@ -334,22 +334,6 @@ def oclc_number? oclc
   # Ensure it follows the OCLC standard
   # (see https://help.oclc.org/Metadata_Services/WorldShare_Collection_Manager/Data_sync_collections/Prepare_your_data/30035_field_and_OCLC_control_numbers)
   clean_oclc.match(/\(OCoLC\)(ocn|ocm|on)*\d+/) != nil
-end
-
-def oclc_normalize oclc, opts = { prefix: false }
-  oclc_num = BibdataRs::Marc.strip_non_numeric(oclc)
-  if opts[:prefix] == true
-    case oclc_num.length
-    when 1..8
-      'ocm' + ('%08d' % oclc_num)
-    when 9
-      'ocn' + oclc_num
-    else
-      'on' + oclc_num
-    end
-  else
-    oclc_num
-  end
 end
 
 # Construct (or retrieve) the cache manager service

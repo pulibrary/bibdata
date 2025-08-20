@@ -6,6 +6,7 @@ mod string_normalize;
 pub mod control_field;
 pub mod fixed_field;
 pub mod genre;
+pub mod identifier;
 pub mod language;
 pub mod note;
 pub mod record_facet_mapping;
@@ -52,6 +53,10 @@ pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error
         .iter()
         .map(|facet| format!("{facet}"))
         .collect())
+}
+
+pub fn normalize_oclc_number(string: String) -> String {
+    identifier::normalize_oclc_number(&string)
 }
 
 pub fn strip_non_numeric(string: String) -> String {

@@ -290,27 +290,6 @@ describe 'From princeton_marc.rb' do
     end
   end
 
-  describe 'oclc_s normalize' do
-    it 'without prefix' do
-      expect(oclc_normalize('(OCoLC)882089266')).to eq('882089266')
-      expect(oclc_normalize('(OCoLC)on9990014350')).to eq('9990014350')
-      expect(oclc_normalize('(OCoLC)ocn899745778')).to eq('899745778')
-      expect(oclc_normalize('(OCoLC)ocm00012345')).to eq('12345')
-    end
-
-    it 'with prefix' do
-      expect(oclc_normalize('(OCoLC)882089266', prefix: true)).to eq('ocn882089266')
-      expect(oclc_normalize('(OCoLC)on9990014350', prefix: true)).to eq('on9990014350')
-      expect(oclc_normalize('(OCoLC)ocn899745778', prefix: true)).to eq('ocn899745778')
-      expect(oclc_normalize('(OCoLC)ocm00012345', prefix: true)).to eq('ocm00012345')
-    end
-
-    it 'source with and without prefix normalize the same way' do
-      expect(oclc_normalize('(OCoLC)ocm00012345')).to eq(oclc_normalize('(OCoLC)12345'))
-      expect(oclc_normalize('(OCoLC)ocm00012345', prefix: true)).to eq(oclc_normalize('(OCoLC)12345', prefix: true))
-    end
-  end
-
   describe 'oclc_number?' do
     it 'detects invalid OCLC numbers' do
       expect(oclc_number?('(OCoLC)TGPSM11-B2267 ')).to be false
@@ -359,9 +338,9 @@ describe 'From princeton_marc.rb' do
     end
 
     it 'includes isbn, issn, oclc nums for expected fields/subfields' do
-      expect(@linked_nums).to include(oclc_normalize(@oclc_num, prefix: true))
-      expect(@linked_nums).to include(oclc_normalize(@oclc_num2, prefix: true))
-      expect(@linked_nums).to include(oclc_normalize(@oclc_num4, prefix: true))
+      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num))
+      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num2))
+      expect(@linked_nums).to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num4))
       expect(@linked_nums).to include('BIB' + BibdataRs::Marc.strip_non_numeric(@bib))
       expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num))
       expect(@linked_nums).to include(LibraryStandardNumbers::ISSN.normalize(@issn_num2))
@@ -377,11 +356,11 @@ describe 'From princeton_marc.rb' do
     end
 
     it 'excludes numbers not in expect subfields' do
-      expect(@linked_nums).not_to include(oclc_normalize(@oclc_num3, prefix: true))
+      expect(@linked_nums).not_to include(BibdataRs::Marc.normalize_oclc_number(@oclc_num3))
     end
 
     it 'excludes non oclc/non bib in expected oclc/bib subfield' do
-      expect(@linked_nums).not_to include(oclc_normalize(@non_oclc_non_bib, prefix: true))
+      expect(@linked_nums).not_to include(BibdataRs::Marc.normalize_oclc_number(@non_oclc_non_bib))
     end
   end
 
