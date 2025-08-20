@@ -1,36 +1,69 @@
-use serde::Deserialize;
+use serde::{Deserialize, Deserializer, Serialize};
+use serde_json::Value;
 
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Language {
     pub exact_match: ExactMatch,
     #[serde(rename = "pref_label")]
     pub label: String,
 }
 
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Debug)]
 pub struct ExactMatch {
-    #[serde(rename = "@id")]
     pub id: Id,
 }
-
-#[derive(Clone, Deserialize, Debug)]
+#[derive(Clone, Serialize, Deserialize, Debug)]
 pub struct Id {
     #[serde(rename = "@id")]
     pub id: String,
 }
 impl Id {
     fn language_ids(&self) -> anyhow::Result<Vec<String>> {
-        let v: Vec<String> = serde_json::from_str(&self.id)?;
-        Ok(v)
+        if self.id.starts_with('[') {
+            let v: Vec<String> = serde_json::from_str(&self.id)?;
+            Ok(v)
+        } else {
+            Ok(vec![self.id.clone()])
+        }
     }
 }
-
 impl ExactMatch {
     pub fn accepted_vocabulary(&self) -> bool {
         matches!(&self.id.language_ids(), Ok(s) if s.iter().any(|url| {
                   url.starts_with("http://id.loc.gov/vocabulary/iso639-1")
                      || url.starts_with("http://id.loc.gov/vocabulary/iso639-2")
         }))
+    }
+}
+
+impl<'de> Deserialize<'de> for ExactMatch {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let value = Value::deserialize(deserializer)?;
+        if let Some(id_value) = value.get("@id") {
+            if id_value.is_string() {
+                return Ok(ExactMatch {
+                    id: Id {
+                        id: id_value.as_str().unwrap().to_string(),
+                    },
+                });
+            } else if id_value.is_object() {
+                if let Some(nested_id) = id_value.get("@id") {
+                    if nested_id.is_string() {
+                        return Ok(ExactMatch {
+                            id: Id {
+                                id: nested_id.as_str().unwrap().to_string(),
+                            },
+                        });
+                    }
+                }
+            }
+        }
+        Err(serde::de::Error::custom(
+            "Could not parse ExactMatch Language id",
+        ))
     }
 }
 
@@ -66,9 +99,7 @@ mod tests {
                 "pref_label": "LAE Languages neato"
               },
               "exact_match": {
-                "@id": {
-                  "@id": "[\"http://id.loc.gov/vocabulary/iso639-2/spa\"]"
-                }
+                "@id": "http://id.loc.gov/vocabulary/iso639-2/spa"
               }
             }
           ]"#;
