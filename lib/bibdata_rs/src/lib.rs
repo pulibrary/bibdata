@@ -49,5 +49,15 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule_marc
         .define_singleton_method("private_items?", function!(marc::private_items, 2))?;
+    submodule_marc.define_singleton_method(
+        "normalize_oclc_number",
+        function!(marc::normalize_oclc_number, 1),
+    )?;
+    submodule_marc.define_singleton_method(
+        "identifiers_of_all_versions",
+        function!(marc::identifiers_of_all_versions, 1),
+    )?;
+    submodule_marc
+        .define_singleton_method("is_oclc_number?", function!(marc::is_oclc_number, 1))?;
     Ok(())
 }
