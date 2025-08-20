@@ -51,5 +51,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "normalize_oclc_number",
         function!(marc::normalize_oclc_number, 1),
     )?;
+    submodule_marc
+        .define_singleton_method("is_oclc_number?", function!(marc::is_oclc_number, 1))?;
     Ok(())
 }
