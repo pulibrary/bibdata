@@ -54,6 +54,17 @@ pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error
         .map(|facet| format!("{facet}"))
         .collect())
 }
+pub fn private_items(record_string: String, holding_id: String) -> Result<bool, magnus::Error> {
+    let record = get_record(&record_string)?;
+    let fields_876 = record.get_fields("876");
+    let mut items = fields_876.iter().filter(|field| {
+        field.first_subfield("0").map(|subfield| subfield.content()) == Some(&holding_id)
+    });
+    Ok(items.any(|item| {
+        item.first_subfield("x")
+            .map_or(true, |subfield| subfield.content() == "Private")
+    }))
+}
 
 pub fn normalize_oclc_number(string: String) -> String {
     identifier::normalize_oclc_number(&string)

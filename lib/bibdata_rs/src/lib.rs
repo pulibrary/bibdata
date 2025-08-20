@@ -47,6 +47,8 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "recap_partner_notes",
         function!(marc::recap_partner_notes, 1),
     )?;
+    submodule_marc
+        .define_singleton_method("private_items?", function!(marc::private_items, 2))?;
     submodule_marc.define_singleton_method(
         "normalize_oclc_number",
         function!(marc::normalize_oclc_number, 1),

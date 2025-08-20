@@ -96,7 +96,7 @@ class ProcessHoldingsHelpers
   def includes_only_private_scsb_items?(field_852)
     return false unless scsb?(field_852)
 
-    items_by_852(field_852).empty?
+    BibdataRs::Marc.private_items?(marc_breaker, holding_id(field_852))
   end
 
   # Builds the holding, without any item-specific information
