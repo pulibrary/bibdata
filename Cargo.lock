@@ -156,6 +156,7 @@ dependencies = [
  "criterion",
  "env_logger",
  "itertools 0.14.0",
+ "library_stdnums",
  "log",
  "magnus",
  "marctk",
@@ -1247,6 +1248,12 @@ name = "libm"
 version = "0.2.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f9fbbcab51052fe104eb5e5d351cf728d30a5be1fe14d9be8a3b097481fb97de"
+
+[[package]]
+name = "library_stdnums"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ff45009282f541df36b35638ca06f8ecc0c7154fe380ad79e279660e7c1d758c"
 
 [[package]]
 name = "linux-raw-sys"

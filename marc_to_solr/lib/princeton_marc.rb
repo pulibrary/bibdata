@@ -133,34 +133,6 @@ def standard_no_hash record
   standard_no
 end
 
-# Handles ISBNs, ISSNs, and OCLCs
-# ISBN: 020a, 020z, 776z
-# ISSN: 022a, 022l, 022y, 022z, 776x
-# OCLC: 035a, 776w, 787w
-# BIB: 776w, 787w (adds BIB prefix so Blacklight can detect whether to search id field)
-def other_versions record
-  linked_nums = []
-  Traject::MarcExtractor.cached('020az:022alyz:035a:776wxz:787w').collect_matching_lines(record) do |field, _spec, _extractor|
-    field.subfields.each do |s_field|
-      if (field.tag == '020') || ((field.tag == '776') && (s_field.code == 'z'))
-        linked_nums << LibraryStandardNumbers::ISBN.normalize(s_field.value)
-      end
-      if (field.tag == '022') || ((field.tag == '776') && (s_field.code == 'x'))
-        linked_nums << LibraryStandardNumbers::ISSN.normalize(s_field.value)
-      end
-      linked_nums << BibdataRs::Marc.normalize_oclc_number(s_field.value) if (field.tag == '035') && BibdataRs::Marc.is_oclc_number?(s_field.value)
-      if ((field.tag == '776') && (s_field.code == 'w')) || ((field.tag == '787') && (s_field.code == 'w'))
-        linked_nums << BibdataRs::Marc.normalize_oclc_number(s_field.value) if BibdataRs::Marc.is_oclc_number?(s_field.value)
-        linked_nums << ('BIB' + BibdataRs::Marc.strip_non_numeric(s_field.value)) unless s_field.value.include?('(')
-        if s_field.value.include?('(') && !s_field.value.start_with?('(')
-          logger.error "#{record['001']} - linked field formatting: #{s_field.value}"
-        end
-      end
-    end
-  end
-  linked_nums.compact.uniq
-end
-
 # only includes values before $t
 def process_names record
   Traject::MarcExtractor.cached('100aqbcdk:110abcdfgkln:111abcdfgklnpq:700aqbcdk:710abcdfgkln:711abcdfgklnpq').collect_matching_lines(record) do |field, spec, extractor|

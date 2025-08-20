@@ -1393,9 +1393,8 @@ end
 #    3500 022A776X
 #    3500 020A776Z
 #    3500 776Z020A
-to_field 'other_version_s' do |record, accumulator|
-  linked_nums = other_versions(record)
-  accumulator.replace(linked_nums)
+to_field 'other_version_s' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.identifiers_of_all_versions(context.clipboard[:marc_breaker]))
 end
 
 # Original language:
