@@ -47,6 +47,16 @@ pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
     Ok(scsb::is_scsb(&record))
 }
 
+pub fn current_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(&field_string)?;
+    let field_876 = record.get_fields("876").into_iter().next();
+    Ok(field_876.and_then(
+        |field| match (field.first_subfield("y"), field.first_subfield("z")) {
+            (Some(y), Some(z)) => Some(format!("{}${}", y.content(), z.content())),
+            _ => None,
+        },
+    ))
+}
 pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(record_facet_mapping::format_facets(&record)

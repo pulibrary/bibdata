@@ -29,6 +29,13 @@ class MarcBreaker
     fields.join("\n")
   end
 
+  def datafield_to_breaker(field)
+    ind1 = normalize_indicator field.indicator1
+    ind2 = normalize_indicator field.indicator2
+    all_subfields = field.subfields.map { |subfield| subfield_to_breaker(subfield) }.join
+    "=#{field.tag} #{ind1}#{ind2}#{all_subfields}"
+  end
+
   private
 
     MARC_BREAKER_SF_DELIMITER = '$'.freeze
@@ -46,13 +53,6 @@ class MarcBreaker
       return '' unless valid_subfield_code?(subfield.code)
 
       "$#{subfield.code}#{escape_to_breaker(subfield.value)}"
-    end
-
-    def datafield_to_breaker(field)
-      ind1 = normalize_indicator field.indicator1
-      ind2 = normalize_indicator field.indicator2
-      all_subfields = field.subfields.map { |subfield| subfield_to_breaker(subfield) }.join
-      "=#{field.tag} #{ind1}#{ind2}#{all_subfields}"
     end
 
     def normalize_indicator(ind)
