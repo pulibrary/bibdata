@@ -70,6 +70,7 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "publication_statements",
         function!(marc::publication_statements, 1),
     )?;
-    submodule_marc.define_singleton_method("build_call_number", function!(marc::build_call_number, 1))?;
+    submodule_marc
+        .define_singleton_method("build_call_number", function!(marc::build_call_number, 1))?;
     Ok(())
 }

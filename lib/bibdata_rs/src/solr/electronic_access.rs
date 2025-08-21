@@ -6,6 +6,7 @@ pub struct ElectronicAccess {
     pub url: String,
     pub link_text: String,
     pub link_description: Option<String>,
+    pub iiif_manifest_url: Option<String>,
 }
 
 impl Serialize for ElectronicAccess {
@@ -53,6 +54,7 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
             url: url.to_owned(),
             link_text: link_text.to_owned(),
             link_description: link_description.cloned(),
+            iiif_manifest_url: None,
         })
     }
 }
@@ -67,6 +69,7 @@ mod tests {
             url: "http://arks.princeton.edu/ark:/88435/dch989rf19q".to_owned(),
             link_text: "Electronic Resource".to_owned(),
             link_description: None,
+            iiif_manifest_url: None,
         };
         assert_eq!(
             serde_json::to_string(&access).unwrap(),

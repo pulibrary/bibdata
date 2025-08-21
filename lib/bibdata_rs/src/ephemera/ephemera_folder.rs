@@ -186,6 +186,10 @@ impl EphemeraFolder {
             url: self.id.clone(),
             link_text: "Online Content".to_owned(),
             link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
+            iiif_manifest_url: Some(format!(
+                "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
+                self.id
+            )),
         })
     }
     pub fn normalized_id(&self) -> String {
