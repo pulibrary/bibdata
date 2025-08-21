@@ -192,7 +192,10 @@ impl EphemeraFolder {
             )),
             digital_content: Some(DigitalContent {
                 link_text: vec!["Digital content".to_owned()],
-                url: format!("https://catalog-staging.princeton.edu/catalog/{}#view", self.id),
+                url: format!(
+                    "https://catalog-staging.princeton.edu/catalog/{}#view",
+                    self.normalized_id()
+                ),
             }),
         })
     }
@@ -288,14 +291,18 @@ mod tests {
         let reader = BufReader::new(file);
 
         let ephemera_folder_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
-        let digital_content = ephemera_folder_item.electronic_access().unwrap().digital_content.unwrap();
+        let digital_content = ephemera_folder_item
+            .electronic_access()
+            .unwrap()
+            .digital_content
+            .unwrap();
         assert_eq!(
             digital_content.link_text,
             vec!["Digital content".to_string()]
         );
         assert_eq!(
             digital_content.url,
-            "".to_string()
+            "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string()
         );
     }
 
