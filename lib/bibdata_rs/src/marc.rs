@@ -1,3 +1,4 @@
+use itertools::Itertools;
 use magnus::exception;
 use marctk::Record;
 
@@ -82,6 +83,23 @@ pub fn current_location_code(field_string: String) -> Result<Option<String>, mag
         },
     ))
 }
+pub fn build_call_number(field_string: String) -> Result<Option<String>, magnus::Error> {
+    // call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
+    let record = get_record(&field_string)?;
+    let field_852 = record.get_fields("852").into_iter().next();
+    let call_number = field_852.map(|field| {
+        field
+            .subfields()
+            .iter()
+            .filter(|subfield| ["h", "i", "k", "j"].contains(&subfield.code()))
+            .map(|subfield| subfield.content().to_string())
+            .filter(|s| !s.is_empty())
+            //.collect::<Vec<String>>()
+            .join(" ")
+    });
+    Ok(call_number.filter(|s| !s.is_empty()))
+}
+
 pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(record_facet_mapping::format_facets(&record)
