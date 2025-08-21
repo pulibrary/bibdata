@@ -17,20 +17,6 @@ RSpec.describe LanguageService, type: :service do
     end
   end
 
-  describe '#valid_language_code?' do
-    it 'returns true for a valid ISO language code' do
-      expect(described_class.new.valid_language_code?('grc')).to be(true)
-    end
-
-    it 'returns true for a valid ISO 639-5 collective code' do
-      expect(described_class.new.valid_language_code?('nah')).to be(true)
-    end
-
-    it 'returns false for an invalid ISO language code' do
-      expect(described_class.new.valid_language_code?('123')).to be(false)
-    end
-  end
-
   describe('#specific_names') do
     let(:fields) do
       [

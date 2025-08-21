@@ -755,7 +755,7 @@ end
 
 to_field 'mult_languages_iana_s', extract_marc('008[35-37]:041a:041d') do |_record, accumulator|
   codes = accumulator.compact.map { |m| m.length == 3 ? m : m.scan(/.{1,3}/) }.flatten.uniq
-  codes_iso_639 = codes.select { |m| language_service.valid_language_code?(m) }
+  codes_iso_639 = codes.select { |m| BibdataRs::Languages.valid_language_code?(m.to_s) }
                        .map { |m| language_service.loc_to_mult_iana(m) }&.reject(&:blank?)
   accumulator.replace(codes_iso_639)
 end

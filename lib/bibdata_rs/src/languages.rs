@@ -1,5 +1,6 @@
 pub mod iso_639_2b;
 pub mod iso_639_3;
+pub mod iso_639_5;
 
 #[derive(Debug, PartialEq)]
 pub struct Language {
@@ -21,8 +22,7 @@ impl Iso639_3Language {
     }
 
     pub fn iso_639_2b_language(&self) -> Option<Language> {
-        self.iso_639_2b_code
-            .map(iso_639_2b::from_iso_639b_code)?
+        self.iso_639_2b_code.map(iso_639_2b::from_iso_639b_code)?
     }
 
     pub fn language_name(&self) -> &'static str {
@@ -45,6 +45,15 @@ pub fn language_name(code: &str) -> Result<&'static str, NoSuchLanguageCode> {
 // A wrapper for use in Ruby that uses owned strings
 pub fn language_code_to_name(code: String) -> Option<String> {
     language_name(&code).ok().map(|name| name.to_owned())
+}
+
+pub fn is_valid_language_code(code: String) -> bool {
+    if code.is_empty() {
+        return false;
+    }
+    iso_639_2b::from_iso_639b_code(&code).is_some()
+        || iso_639_5::from_iso_639_5_code(&code).is_some()
+        || iso_639_3::from_iso_639_3_code(&code).is_some()
 }
 
 #[cfg(test)]
@@ -81,5 +90,22 @@ mod tests {
     fn it_can_get_the_language_name_by_iso_639_3_or_iso_639_2b_code() {
         assert_eq!(language_name("ell").unwrap(), "Greek, Modern (1453-)"); // ell is the ISO 639-3 code
         assert_eq!(language_name("gre").unwrap(), "Greek, Modern (1453-)"); // ell is the ISO 639-2b code
+    }
+
+    #[test]
+    fn it_can_validate_language_codes() {
+        assert!(
+            is_valid_language_code("per".to_owned()),
+            "ISO 639-2b code is considered to be valid"
+        );
+        assert!(
+            is_valid_language_code("grc".to_owned()),
+            "ISO 639-3 code is considered to be valid"
+        );
+        assert!(
+            is_valid_language_code("nah".to_owned()),
+            "ISO 639-5 collective code is considered to be valid"
+        );
+        assert!(!is_valid_language_code("123".to_owned()), "Invalid code");
     }
 }

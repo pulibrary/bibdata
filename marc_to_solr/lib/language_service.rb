@@ -14,20 +14,14 @@ class LanguageService
   end
 
   def loc_to_mult_iana(loc)
-    return nil unless valid_language_code?(loc)
+    return nil unless BibdataRs::Languages.valid_language_code?(loc.to_s)
 
     two_char_version = Languages[loc]&.alpha2
     two_char_version ? two_char_version.to_s : loc
   end
 
   def can_be_represented_as_iana?(loc)
-    valid_language_code?(loc) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
-  end
-
-  def valid_language_code?(code)
-    return false if code.blank?
-
-    Languages[code].present? || iso_639_5_include?(code)
+    BibdataRs::Languages.valid_language_code?(loc.to_s) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
   end
 
   def code_to_name(code)
