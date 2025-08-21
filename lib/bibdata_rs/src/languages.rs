@@ -21,4 +21,9 @@ mod tests {
             "Gaelic"
         );
     }
+
+    #[test]
+    fn intentionally_fail() {
+        assert_eq!(0, 1);
+    }
 }
