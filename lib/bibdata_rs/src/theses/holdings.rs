@@ -67,6 +67,7 @@ pub fn dataspace_url_with_metadata(
             ThesisAvailability::AvailableOffSite => Some("Full text".to_owned()),
         },
         iiif_manifest_url: None,
+        digital_content: None,
     })
 }
 

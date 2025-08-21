@@ -47,6 +47,7 @@ mod tests {
     use crate::ephemera::ephemera_folder::origin_place::OriginPlace;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
+    use crate::solr::DigitalContent;
     use crate::{ephemera::ephemera_folder::format::Format, solr};
     use std::{fs::File, io::BufReader, str::FromStr};
 
@@ -453,6 +454,7 @@ mod tests {
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned(),
                 ),
+                digital_content: None,
             }])
             .build()
             .unwrap();
@@ -466,7 +468,11 @@ mod tests {
                 iiif_manifest_url: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned()
-                )
+                ),
+                digital_content: Some(DigitalContent {
+                    link_text: vec!["Digital content".to_owned()],
+                    url: "https://catalog-staging.princeton.edu/catalog/abc123#view".to_string(),
+                }),
             })
         );
     }

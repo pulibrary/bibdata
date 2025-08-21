@@ -7,6 +7,13 @@ pub struct ElectronicAccess {
     pub link_text: String,
     pub link_description: Option<String>,
     pub iiif_manifest_url: Option<String>,
+    pub digital_content: Option<DigitalContent>,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct DigitalContent {
+    pub url: String,
+    pub link_text: Vec<String>,
 }
 
 impl Serialize for ElectronicAccess {
@@ -55,6 +62,7 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
             link_text: link_text.to_owned(),
             link_description: link_description.cloned(),
             iiif_manifest_url: None,
+            digital_content: None,
         })
     }
 }
@@ -70,6 +78,7 @@ mod tests {
             link_text: "Electronic Resource".to_owned(),
             link_description: None,
             iiif_manifest_url: None,
+            digital_content: None,
         };
         assert_eq!(
             serde_json::to_string(&access).unwrap(),
