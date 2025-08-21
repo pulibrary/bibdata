@@ -62,5 +62,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "current_location_code",
         function!(marc::current_location_code, 1),
     )?;
+    submodule_marc.define_singleton_method(
+            "publication_statements",
+        function!(marc::publication_statements, 1),
+    )?;
     Ok(())
 }

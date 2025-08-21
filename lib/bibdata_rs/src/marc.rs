@@ -9,8 +9,10 @@ pub mod genre;
 pub mod identifier;
 pub mod language;
 pub mod note;
+pub mod publication;
 pub mod record_facet_mapping;
 pub mod scsb;
+pub mod variable_length_field;
 
 pub use string_normalize::trim_punctuation;
 
@@ -87,6 +89,11 @@ pub fn is_oclc_number(string: String) -> bool {
 pub fn identifiers_of_all_versions(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(identifier::identifiers_of_all_versions(&record))
+}
+
+pub fn publication_statements(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(publication::publication_statements(&record).collect())
 }
 
 pub fn strip_non_numeric(string: String) -> String {

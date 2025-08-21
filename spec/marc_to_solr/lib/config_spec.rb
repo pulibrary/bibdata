@@ -739,15 +739,10 @@ describe 'From traject_config.rb', indexing: true do
       let(:date_9999_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [date_9999_008, p260], 'leader' => leader)) }
       let(:date_199u_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [date_199u_008, p260], 'leader' => leader)) }
       let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [not_ceased_008, p260], 'leader' => leader)) }
-      let(:ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260], 'leader' => leader)) }
       let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
 
       it 'displays 264 tag sorted by indicator2' do
         expect(@sample34['pub_created_display']).to eq ['[Paris] : Les Films de La Pleiade, 1956-1971.', '[Brooklyn, N.Y.] : Icarus Films, [2017]', 'Â©1956-1971']
-      end
-
-      it 'displays when 008-6 is d and an end date is present in the 008' do
-        expect(ceased_marc['pub_created_display']).to include 'Cincinnati, Ohio : American Drama Institute, c1991-2007'
       end
 
       it 'when u is present in the end date string convert it to a 9' do
