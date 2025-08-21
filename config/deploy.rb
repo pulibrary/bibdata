@@ -25,6 +25,7 @@ set :passenger_restart_with_touch, true
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{
+  target
   tmp/pids
   tmp/cache
   tmp/figgy_ark_cache
