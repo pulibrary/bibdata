@@ -504,7 +504,7 @@ end
 
 # Removes empty call_number fields from holdings_1display
 def remove_empty_call_number_fields(holding)
-  holding.tap { |h| %w[call_number call_number_browse].map { |k| h.delete(k) if h.fetch(k, []).empty? } }
+  holding.tap { |h| %w[call_number call_number_browse].map { |k| h.delete(k) if h[k].blank? } }
 end
 
 # Collects only non empty khi
