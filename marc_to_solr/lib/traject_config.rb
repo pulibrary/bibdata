@@ -353,18 +353,6 @@ to_field 'cataloged_tdt' do |record, accumulator|
   end
 end
 
-# TODO: Remove after completing https://github.com/pulibrary/marc_liberation/issues/822
-# to_field 'cataloged_tdt' do |record, accumulator|
-#   extractor_doc_id =  MarcExtractor.cached("001")
-#   doc_id = extractor_doc_id.extract(record).first
-#   unless /^SCSB-\d+/ =~ doc_id
-#     #puts "#{record['001'].value}"
-#     extractor_959a  = MarcExtractor.cached("959a")
-#     cataloged_date = extractor_959a.extract(record).first
-#     accumulator[0] = Time.parse(cataloged_date).utc.strftime("%Y-%m-%dT%H:%M:%SZ") unless cataloged_date.nil?
-#   end
-# end
-
 # format - allow multiple - "first" one is used for thumbnail
 to_field 'format' do |_record, accumulator, context|
   accumulator.replace BibdataRs::Marc.format_facets(context.clipboard[:marc_breaker])
