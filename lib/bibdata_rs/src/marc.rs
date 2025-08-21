@@ -49,6 +49,29 @@ pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
     Ok(scsb::is_scsb(&record))
 }
 
+// Build the permanent location code from 852$b and 852$c
+// Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
+pub fn permanent_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(&field_string)?;
+    let field_852 = record.get_fields("852").into_iter().next();
+    Ok(field_852.and_then(|field| match field.first_subfield("8") {
+        Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
+            let b = field
+                .first_subfield("b")
+                .map(|subfield| subfield.content())
+                .unwrap_or_default();
+            let c = field
+                .first_subfield("c")
+                .map(|subfield| subfield.content())
+                .unwrap_or_default();
+            Some(format!("{b}${c}"))
+        }
+        _ => field
+            .first_subfield("b")
+            .map(|subfield| subfield.content().to_string()),
+    }))
+}
+
 pub fn current_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
     let record = get_record(&field_string)?;
     let field_876 = record.get_fields("876").into_iter().next();
