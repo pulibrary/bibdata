@@ -57,11 +57,8 @@ class ProcessHoldingsHelpers
   # Build the permanent location code from 852$b and 852$c
   # Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
   def permanent_location_code(field_852)
-    if alma?(field_852)
-      "#{field_852['b']}$#{field_852['c']}"
-    else
-      field_852['b']
-    end
+    marc_breaker_852 = marc_breaker_field(field_852)
+    BibdataRs::Marc.permanent_location_code(marc_breaker_852)
   end
 
   # Select 876 fields (items) with permanent location. 876 location is equal to the 852 permanent location.
