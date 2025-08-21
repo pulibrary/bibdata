@@ -453,6 +453,7 @@ mod tests {
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned(),
                 ),
+                digital_content: None,
             }])
             .build()
             .unwrap();
@@ -466,7 +467,8 @@ mod tests {
                 iiif_manifest_url: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned()
-                )
+                ),
+                digital_content: None,
             })
         );
     }

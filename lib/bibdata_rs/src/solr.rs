@@ -11,6 +11,7 @@ mod library_facet;
 
 pub use access_facet::AccessFacet;
 pub use builder::SolrDocumentBuilder;
+pub use electronic_access::DigitalContent;
 pub use electronic_access::ElectronicAccess;
 pub use format_facet::FormatFacet;
 pub use library_facet::LibraryFacet;
