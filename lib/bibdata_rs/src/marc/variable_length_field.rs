@@ -1,12 +1,12 @@
 use itertools::Itertools;
-use marctk::Field;
+use marctk::{Field, Subfield};
 
-pub fn join_subfields(field: &Field) -> String {
-    let raw = field
-        .subfields()
-        .iter()
-        .map(|subfield| subfield.content())
-        .join(" ");
+pub fn join_all_subfields(field: &Field) -> String {
+    join_subfields(field.subfields().iter())
+}
+
+pub fn join_subfields<'a>(subfields: impl Iterator<Item = &'a Subfield>) -> String {
+    let raw = subfields.map(|subfield| subfield.content()).join(" ");
     combine_consecutive_whitespace(&raw)
 }
 

@@ -51,7 +51,7 @@ mod tests {
 
     #[test]
     fn it_categorizes_record_with_no_040_as_archival_description() {
-        let record = Record::from_breaker("").unwrap();
+        let record = Record::default();
         assert!(uses_archival_description(&record));
     }
 

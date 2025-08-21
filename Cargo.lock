@@ -1308,9 +1308,9 @@ dependencies = [
 
 [[package]]
 name = "marctk"
-version = "0.5.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c1eca22081ab92a86e5c3db7d258a4c16f051f2bc7b34b5522803ce6964c61af"
+checksum = "824169a757e4fe8cc0b274b328992d65e3a9421431c9aa115507d85fd2fd53c1"
 dependencies = [
  "getopts",
  "xml-rs",
