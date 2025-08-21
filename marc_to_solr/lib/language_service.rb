@@ -31,7 +31,7 @@ class LanguageService
   end
 
   def code_to_name(code)
-    Languages[code]&.name || iso_639_5_name(code)
+    BibdataRs::Languages.code_to_name(code) || iso_639_5_name(code)
   end
 
   def macrolanguage_codes(individual_language_code)

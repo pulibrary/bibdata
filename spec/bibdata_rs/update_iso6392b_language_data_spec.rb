@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative '../../lib/bibdata_rs/'
 
-RSpec.describe BibdataRs::UpdateLanguageData do
+RSpec.describe BibdataRs::UpdateIso6392bLanguageData do
   it 'generates a rust function based on data from the Library of Congress' do
     loc_data = <<~'END_LOC_DATA'.chomp
       aar||aa|Afar|afar

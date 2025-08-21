@@ -15,6 +15,7 @@ mod testing_support;
 #[magnus::init]
 fn init(ruby: &Ruby) -> Result<(), Error> {
     let module = ruby.define_module("BibdataRs")?;
+    let submodule_languages = module.define_module("Languages")?;
     let submodule_marc = module.define_module("Marc")?;
     let submodule_theses = module.define_module("Theses")?;
     let submodule_ephemera = module.define_module("Ephemera")?;
@@ -27,6 +28,10 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule_theses.define_singleton_method(
         "all_documents_as_solr",
         function!(collection::collections_as_solr, 3),
+    )?;
+    submodule_languages.define_singleton_method(
+        "code_to_name",
+        function!(languages::language_code_to_name, 1),
     )?;
     submodule_marc.define_singleton_method("access_notes", function!(marc::access_notes, 1))?;
     submodule_marc.define_singleton_method("genres", function!(marc::genres, 1))?;

@@ -40,7 +40,7 @@ RSpec.describe LanguageService, type: :service do
     let(:specific_names) { described_class.new.specific_names(MARC::Record.new_from_hash('fields' => fields)) }
 
     it 'finds a language from the 008' do
-      expect(specific_names).to eq(['Modern Greek (1453-)'])
+      expect(specific_names).to eq(['Greek, Modern (1453-)'])
     end
 
     context 'when the 008 is a collective code' do
