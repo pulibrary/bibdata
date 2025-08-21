@@ -50,7 +50,8 @@ class ProcessHoldingsHelpers
 
   # Build the current location code from 876$y and 876$z
   def current_location_code(field_876)
-    "#{field_876['y']}$#{field_876['z']}" if field_876['y'] && field_876['z']
+    marc_breaker_876 = MarcBreaker.new('').datafield_to_breaker(field_876)
+    BibdataRs::Marc.current_location_code(marc_breaker_876)
   end
 
   # Build the permanent location code from 852$b and 852$c
