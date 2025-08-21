@@ -163,6 +163,7 @@ mod tests {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
                 link_text: "DataSpace".to_owned(),
                 link_description: Some("Full text".to_owned()),
+                iiif_manifest_url: None,
             }))
             .build();
         let serialized = serde_json::to_string(&document).unwrap();

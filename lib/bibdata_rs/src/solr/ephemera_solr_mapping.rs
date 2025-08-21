@@ -449,6 +449,10 @@ mod tests {
                 url: "http://example.com".to_owned(),
                 link_text: "Access Link".to_owned(),
                 link_description: Some("Description of the link".to_owned()),
+                iiif_manifest_url: Some(
+                    "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
+                        .to_owned(),
+                ),
             }])
             .build()
             .unwrap();
@@ -459,6 +463,10 @@ mod tests {
                 url: ephemera_item.id.clone(),
                 link_text: "Online Content".to_owned(),
                 link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
+                iiif_manifest_url: Some(
+                    "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
+                        .to_owned()
+                )
             })
         );
     }
