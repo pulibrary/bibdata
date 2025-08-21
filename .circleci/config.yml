@@ -137,12 +137,11 @@ jobs:
     steps:
       - checkout
       - rust/install
-      - rust/test
       - run:
           name: Install cargo-llvm-cov
           command: cargo +stable install cargo-llvm-cov --locked
       - run:
-          name: Run coverage
+          name: Run tests with coverage
           command: cargo llvm-cov --lcov --output-path lcov.info --ignore-filename-regex iso_639_2b
       - coveralls/upload:
           coverage_file: lcov.info
