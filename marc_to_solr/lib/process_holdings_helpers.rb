@@ -50,7 +50,7 @@ class ProcessHoldingsHelpers
 
   # Build the current location code from 876$y and 876$z
   def current_location_code(field_876)
-    marc_breaker_876 = MarcBreaker.new('').datafield_to_breaker(field_876)
+    marc_breaker_876 = marc_breaker_field(field_876)
     BibdataRs::Marc.current_location_code(marc_breaker_876)
   end
 
@@ -181,4 +181,12 @@ class ProcessHoldingsHelpers
     textual_holdings << field['z'] if field.tag == field_tag && field['z']
     textual_holdings.join(' ') if textual_holdings.present?
   end
+
+  private
+
+    # Convert a Marc::Datafield to a string so that we can send it to the Rust marctk
+    # The string will look like: =245 \\ $aMy title $b My subtitle
+    def marc_breaker_field(field)
+      MarcBreaker.new('').datafield_to_breaker(field)
+    end
 end
