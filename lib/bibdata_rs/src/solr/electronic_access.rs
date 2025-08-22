@@ -72,33 +72,70 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
     where
         D: Deserializer<'de>,
     {
-        // The input is a JSON string containing a map: {url: [link_text, link_description?]}
+        // The input is a JSON string containing a map with possible keys:
+        // {url: [link_text, link_description?], digital_content_url: [link_text], iiif_manifest_paths: {ephemera_ark: url}}
         let s = String::deserialize(deserializer)?;
-        let map: HashMap<String, Vec<String>> =
+        let map: serde_json::Map<String, serde_json::Value> =
             serde_json::from_str(&s).map_err(serde::de::Error::custom)?;
-        let url = map.keys().next().ok_or(serde::de::Error::custom(
-            "No url found in this ElectronicAccess",
-        ))?;
-        let mut details = map
-            .get(url)
-            .ok_or(serde::de::Error::custom(
-                "No url details found in this ElectronicAccess",
-            ))?
-            .iter();
-        let link_text = details.next().ok_or(serde::de::Error::custom(
-            "No link text found in this ElectronicAccess",
-        ))?;
-        let link_description = details.next();
+
+        // Main URL and notes
+        let (url, notes) = map
+            .iter()
+            .find(|(k, _)| *k != "iiif_manifest_paths" && *k != "digital_content_url")
+            .ok_or_else(|| serde::de::Error::custom("No url found in this ElectronicAccess"))?;
+
+        let notes_arr = notes
+            .as_array()
+            .ok_or_else(|| serde::de::Error::custom("Notes are not an array"))?;
+
+        let link_text = notes_arr
+            .get(0)
+            .and_then(|v| v.as_str())
+            .ok_or_else(|| serde::de::Error::custom("No link text found in this ElectronicAccess"))?
+            .to_owned();
+
+        let link_description = notes_arr
+            .get(1)
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_owned());
+
+        // Digital Content
+        let digital_content = map
+            .iter()
+            .find(|(k, _)| *k != "iiif_manifest_paths" && *k != url)
+            .and_then(|(dc_url, dc_notes)| {
+                let dc_notes_arr = dc_notes.as_array()?;
+                let dc_link_texts: Vec<String> = dc_notes_arr
+                    .iter()
+                    .filter_map(|v| v.as_str().map(|s| s.to_owned()))
+                    .collect();
+                if dc_link_texts.is_empty() {
+                    None
+                } else {
+                    Some(DigitalContent {
+                        url: dc_url.clone(),
+                        link_text: dc_link_texts,
+                    })
+                }
+            });
+
+        // IIIF Manifest URL
+        let iiif_manifest_url = map
+            .get("iiif_manifest_paths")
+            .and_then(|v| v.as_object())
+            .and_then(|obj| obj.get("ephemera_ark"))
+            .and_then(|v| v.as_str())
+            .map(|s| s.to_owned());
+
         Ok(ElectronicAccess {
-            url: url.to_owned(),
-            link_text: link_text.to_owned(),
-            link_description: link_description.cloned(),
-            iiif_manifest_url: None,
-            digital_content: None,
+            url: url.clone(),
+            link_text,
+            link_description,
+            iiif_manifest_url,
+            digital_content,
         })
     }
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
