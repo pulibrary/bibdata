@@ -1,4 +1,7 @@
-use crate::solr::{self, AccessFacet, DigitalContent};
+use crate::{
+    ephemera::ephemera_folder::electronic_access::ElectronicAccess,
+    solr::{self, AccessFacet, DigitalContent},
+};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -9,6 +12,7 @@ use serde::Deserialize;
 
 pub mod country;
 pub mod coverage;
+pub mod electronic_access;
 pub mod format;
 pub mod language;
 pub mod origin_place;
@@ -28,7 +32,7 @@ pub struct EphemeraFolder {
     pub coverage: Option<Vec<Coverage>>,
     pub date_created: Option<Vec<String>>,
     pub description: Option<Vec<String>>,
-    pub electronic_access: Option<Vec<solr::ElectronicAccess>>,
+    pub electronic_access: Option<Vec<ElectronicAccess>>,
     pub format: Option<Vec<Format>>,
     #[serde(rename = "@id")]
     pub id: String,

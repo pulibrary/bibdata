@@ -462,16 +462,24 @@ mod tests {
         let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
-            .electronic_access(vec![solr::ElectronicAccess {
-                url: "http://example.com".to_owned(),
-                link_text: "Access Link".to_owned(),
-                link_description: Some("Description of the link".to_owned()),
-                iiif_manifest_url: Some(
-                    "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
-                        .to_owned(),
-                ),
-                digital_content: None,
-            }])
+            .electronic_access(vec![
+                crate::ephemera::ephemera_folder::electronic_access::ElectronicAccess {
+                    electronic_access: Some(solr::ElectronicAccess {
+                        url: "http://example.com".to_owned(),
+                        link_text: "Access Link".to_owned(),
+                        link_description: Some("Description of the link".to_owned()),
+                        iiif_manifest_url: Some(
+                            "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
+                                .to_owned(),
+                        ),
+                        digital_content: Some(DigitalContent {
+                            link_text: vec!["Digital content".to_owned()],
+                            url: "https://catalog-staging.princeton.edu/catalog/abc123#view"
+                                .to_string(),
+                        }),
+                    }),
+                },
+            ])
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);

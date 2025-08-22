@@ -2,9 +2,9 @@ use super::ephemera_folder::coverage::Coverage;
 use super::ephemera_folder::format::Format;
 use super::ephemera_folder::origin_place::OriginPlace;
 use super::ephemera_folder::EphemeraFolder;
+use crate::ephemera::ephemera_folder::electronic_access::ElectronicAccess;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera_folder::subject::Subject;
-use crate::solr::ElectronicAccess;
 
 #[derive(Default)]
 pub struct EphemeraFolderBuilder {
