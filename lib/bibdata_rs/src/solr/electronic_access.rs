@@ -21,16 +21,48 @@ impl Serialize for ElectronicAccess {
     where
         S: serde::Serializer,
     {
-        let notes = match &self.link_description {
-            Some(desc) => {
-                vec![&self.link_text, desc]
-            }
-            None => {
-                vec![&self.link_text]
-            }
-        };
-        let mut hash = HashMap::new();
-        hash.insert(&self.url, notes);
+        let mut hash = serde_json::Map::new();
+
+        // Main URL
+        let mut notes = vec![self.link_text.clone()];
+        if let Some(desc) = &self.link_description {
+            notes.push(desc.clone());
+        }
+        hash.shift_insert(
+            0,
+            self.url.clone(),
+            serde_json::Value::Array(notes.into_iter().map(serde_json::Value::String).collect()),
+        );
+
+        // Digital Content
+        if let Some(dc) = &self.digital_content {
+            hash.shift_insert(
+                1,
+                dc.url.clone(),
+                serde_json::Value::Array(
+                    dc.link_text
+                        .iter()
+                        .cloned()
+                        .map(serde_json::Value::String)
+                        .collect(),
+                ),
+            );
+        }
+
+        // IIIF Manifest Paths
+        if let Some(iiif_url) = &self.iiif_manifest_url {
+            let mut iiif_map = serde_json::Map::new();
+            iiif_map.insert(
+                "ephemera_ark".to_string(),
+                serde_json::Value::String(iiif_url.clone()),
+            );
+            hash.shift_insert(
+                2,
+                "iiif_manifest_paths".to_string(),
+                serde_json::Value::Object(iiif_map),
+            );
+        }
+
         serializer.serialize_str(&serde_json::to_string(&hash).map_err(S::Error::custom)?)
     }
 }
@@ -70,7 +102,25 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use pretty_assertions::assert_eq;
 
+    #[test]
+    fn it_can_serialize_digital_content_to_json() {
+        let access = ElectronicAccess {
+            url: "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd".to_string(),
+            link_text: "Online Content".to_string(),
+            link_description: Some("Born Digital Monographic Reports and Papers".to_string()),
+            iiif_manifest_url: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
+            digital_content: Some(DigitalContent {
+                link_text: vec!["Digital Content".to_string()],
+                url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
+            }),
+        };
+        assert_eq!(
+            serde_json::to_string(&access).unwrap(),
+            r#""{\"https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd\":[\"Online Content\",\"Born Digital Monographic Reports and Papers\"],\"https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view\":[\"Digital Content\"],\"iiif_manifest_paths\":{\"ephemera_ark\":\"https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest\"}}""#
+        );
+    }
     #[test]
     fn it_can_serialize_to_json() {
         let access = ElectronicAccess {
