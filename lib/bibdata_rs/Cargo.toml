@@ -12,7 +12,7 @@ magnus = { version = "0.6.2" }
 regex = "1.11.1"
 serde = { version = "1.0.219", features = ["derive"] }
 serde-xml-rs = "0.8.0"
-serde_json = "1.0.140"
+serde_json = { version = "1.0.140", features = ["indexmap", "preserve_order"] }
 reqwest = { version = "0.12.15", features = ["json", "blocking"] }
 tokio = { version = "1", features = ["full"] }
 itertools = "0.14.0"
@@ -26,11 +26,13 @@ anyhow = "1.0.98"
 rb-sys = "0.9.115"
 marctk = {version = "0.6.0", features = ["marc21_bibliographic"] }
 library_stdnums = "0.1.0"
+indexmap = "2"
 
 [dev-dependencies]
 criterion = "0.6.0"
 mockito = "1.7.0"
 rb-sys-test-helpers = "0.2.2"
+pretty_assertions = "1.4.1"
 
 [[bench]]
 name = "dataspace_bench"

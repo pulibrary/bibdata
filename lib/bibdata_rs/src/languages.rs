@@ -21,8 +21,7 @@ impl Iso639_3Language {
     }
 
     pub fn iso_639_2b_language(&self) -> Option<Language> {
-        self.iso_639_2b_code
-            .map(iso_639_2b::from_iso_639b_code)?
+        self.iso_639_2b_code.map(iso_639_2b::from_iso_639b_code)?
     }
 
     pub fn language_name(&self) -> &'static str {
