@@ -188,7 +188,7 @@ impl EphemeraFolder {
             link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
             iiif_manifest_url: Some(format!(
                 "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
-                self.id
+                self.normalized_id()
             )),
             digital_content: Some(DigitalContent {
                 link_text: vec!["Digital content".to_owned()],

@@ -48,6 +48,7 @@ mod tests {
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
     use crate::solr::DigitalContent;
+    use crate::solr::ElectronicAccess;
     use crate::{ephemera::ephemera_folder::format::Format, solr};
     use std::{fs::File, io::BufReader, str::FromStr};
 
@@ -118,6 +119,21 @@ mod tests {
         assert_eq!(
             solr_document.description_display,
             Some(vec!["pages: 116".to_string()])
+        );
+        assert_eq!(
+            solr_document.electronic_access_1display,
+            Some(
+                ElectronicAccess {
+                    url: "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd".to_string(),
+                    link_text: "Online Content".to_string(),
+                    link_description: Some("Born Digital Monographic Reports and Papers".to_string()),
+                    iiif_manifest_url: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
+                    digital_content: Some(DigitalContent {
+                        link_text: vec!["Digital content".to_string()],
+                        url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
+                    }),
+                }
+            )
         )
     }
 
