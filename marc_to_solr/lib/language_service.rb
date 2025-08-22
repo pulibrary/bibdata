@@ -14,14 +14,25 @@ class LanguageService
   end
 
   def loc_to_mult_iana(loc)
-    return nil unless BibdataRs::Languages.valid_language_code?(loc.to_s)
+    return nil unless valid_language_code?(loc)
 
     two_char_version = Languages[loc]&.alpha2
     two_char_version ? two_char_version.to_s : loc
   end
 
   def can_be_represented_as_iana?(loc)
-    BibdataRs::Languages.valid_language_code?(loc.to_s) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
+    valid_language_code?(loc) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
+  end
+
+  def valid_language_code?(code)
+    return false if code.blank?
+
+    # Rust strings need to be UTF-8 encoded, so let's confirm
+    # that the encoding is valid before sending it to Rust
+    code_as_string = code.to_s
+    return false unless code_as_string.valid_encoding?
+
+    BibdataRs::Languages.valid_language_code?(code_as_string)
   end
 
   def code_to_name(code)
