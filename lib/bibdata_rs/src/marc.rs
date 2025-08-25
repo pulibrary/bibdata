@@ -17,6 +17,14 @@ pub mod variable_length_field;
 
 pub use string_normalize::trim_punctuation;
 
+// def holding_id(field_852)
+//     if field_852['8'] && alma?(field_852)
+//       holding_id = field_852['8']
+//     elsif field_852['0'] && scsb?(field_852)
+//       holding_id = field_852['0']
+//     end
+// end
+
 pub fn alma_code_start_22(code: String) -> bool {
     code.starts_with("22") && code.ends_with("06421")
 }
@@ -53,9 +61,8 @@ pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
 // Build the permanent location code from 852$b and 852$c
 // Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
 pub fn permanent_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
-    let record = get_record(&field_string)?;
-    let field_852 = record.get_fields("852").into_iter().next();
-    Ok(field_852.and_then(|field| match field.first_subfield("8") {
+    let field = field_852(field_string)?;
+    Ok(match field.first_subfield("8") {
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
             let b = field
                 .first_subfield("b")
@@ -70,7 +77,19 @@ pub fn permanent_location_code(field_string: String) -> Result<Option<String>, m
         _ => field
             .first_subfield("b")
             .map(|subfield| subfield.content().to_string()),
-    }))
+    })
+}
+
+fn field_852(field_string: String) -> Result<marctk::Field, magnus::Error> {
+    let record = get_record(&field_string)?;
+    let field_852 = record.get_fields("852").into_iter().next();
+    let field_852 = field_852.ok_or_else(|| {
+        magnus::Error::new(
+            exception::runtime_error(),
+            format!("No 852 field found in record {}", field_string),
+        )
+    })?;
+    Ok(field_852.clone())
 }
 
 pub fn current_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
