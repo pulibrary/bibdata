@@ -81,5 +81,6 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     )?;
     submodule_marc
         .define_singleton_method("build_call_number", function!(marc::build_call_number, 1))?;
+    submodule_marc.define_singleton_method("holding_id", function!(marc::holding_id, 2))?;
     Ok(())
 }
