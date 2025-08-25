@@ -17,13 +17,22 @@ pub mod variable_length_field;
 
 pub use string_normalize::trim_punctuation;
 
-// def holding_id(field_852)
-//     if field_852['8'] && alma?(field_852)
-//       holding_id = field_852['8']
-//     elsif field_852['0'] && scsb?(field_852)
-//       holding_id = field_852['0']
-//     end
-// end
+pub fn holding_id(
+    field_string: String,
+    full_record: String,
+) -> Result<Option<String>, magnus::Error> {
+    let field = field_852(&field_string)?;
+    let record = get_record(&full_record)?;
+    let subfield_code_8 = field.first_subfield("8");
+    let subfield_code_0 = field.first_subfield("0");
+    match (subfield_code_8, subfield_code_0) {
+        (Some(subfield), _) if alma_code_start_22(subfield.content().to_owned()) => {
+            Ok(Some(subfield.content().to_owned()))
+        }
+        (_, Some(subfield)) if scsb::is_scsb(&record) => Ok(Some(subfield.content().to_owned())),
+        _ => Ok(None),
+    }
+}
 
 pub fn alma_code_start_22(code: String) -> bool {
     code.starts_with("22") && code.ends_with("06421")
@@ -61,7 +70,7 @@ pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
 // Build the permanent location code from 852$b and 852$c
 // Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
 pub fn permanent_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
-    let field = field_852(field_string)?;
+    let field = field_852(&field_string)?;
     Ok(match field.first_subfield("8") {
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
             let b = field
@@ -80,7 +89,7 @@ pub fn permanent_location_code(field_string: String) -> Result<Option<String>, m
     })
 }
 
-fn field_852(field_string: String) -> Result<marctk::Field, magnus::Error> {
+fn field_852(field_string: &String) -> Result<marctk::Field, magnus::Error> {
     let record = get_record(&field_string)?;
     let field_852 = record.get_fields("852").into_iter().next();
     let field_852 = field_852.ok_or_else(|| {

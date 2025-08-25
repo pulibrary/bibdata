@@ -7,11 +7,7 @@ class ProcessHoldingsHelpers
   end
 
   def holding_id(field_852)
-    if field_852['8'] && alma?(field_852)
-      holding_id = field_852['8']
-    elsif field_852['0'] && scsb?(field_852)
-      holding_id = field_852['0']
-    end
+    BibdataRs::Marc.holding_id(marc_breaker_field(field_852), marc_breaker)
   end
 
   def alma?(field_852)
