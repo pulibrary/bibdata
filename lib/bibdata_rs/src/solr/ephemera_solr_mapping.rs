@@ -127,7 +127,7 @@ mod tests {
                     url: "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd".to_string(),
                     link_text: "Online Content".to_string(),
                     link_description: Some("Born Digital Monographic Reports and Papers".to_string()),
-                    iiif_manifest_url: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
+                    iiif_manifest_paths: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
                     digital_content: Some(DigitalContent {
                         link_text: vec!["Digital content".to_string()],
                         url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
@@ -466,7 +466,7 @@ mod tests {
                 url: "http://example.com".to_owned(),
                 link_text: "Access Link".to_owned(),
                 link_description: Some("Description of the link".to_owned()),
-                iiif_manifest_url: Some(
+                iiif_manifest_paths: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned(),
                 ),
@@ -481,7 +481,7 @@ mod tests {
                 url: ephemera_item.id.clone(),
                 link_text: "Online Content".to_owned(),
                 link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
-                iiif_manifest_url: Some(
+                iiif_manifest_paths: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned()
                 ),
