@@ -6,7 +6,7 @@ pub struct ElectronicAccess {
     pub url: String,
     pub link_text: String,
     pub link_description: Option<String>,
-    pub iiif_manifest_url: Option<String>,
+    pub iiif_manifest_paths: Option<String>,
     pub digital_content: Option<DigitalContent>,
 }
 
@@ -50,7 +50,7 @@ impl Serialize for ElectronicAccess {
         }
 
         // IIIF Manifest Paths
-        if let Some(iiif_url) = &self.iiif_manifest_url {
+        if let Some(iiif_url) = &self.iiif_manifest_paths {
             let mut iiif_map = serde_json::Map::new();
             iiif_map.insert(
                 "ephemera_ark".to_string(),
@@ -131,7 +131,7 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
             url: url.clone(),
             link_text,
             link_description,
-            iiif_manifest_url,
+            iiif_manifest_paths: iiif_manifest_url,
             digital_content,
         })
     }
@@ -147,7 +147,7 @@ mod tests {
             url: "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd".to_string(),
             link_text: "Online Content".to_string(),
             link_description: Some("Born Digital Monographic Reports and Papers".to_string()),
-            iiif_manifest_url: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
+            iiif_manifest_paths: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
             digital_content: Some(DigitalContent {
                 link_text: vec!["Digital Content".to_string()],
                 url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
@@ -164,7 +164,7 @@ mod tests {
             url: "http://arks.princeton.edu/ark:/88435/dch989rf19q".to_owned(),
             link_text: "Electronic Resource".to_owned(),
             link_description: None,
-            iiif_manifest_url: None,
+            iiif_manifest_paths: None,
             digital_content: None,
         };
         assert_eq!(
