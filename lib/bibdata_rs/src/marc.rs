@@ -90,7 +90,7 @@ pub fn permanent_location_code(field_string: String) -> Result<Option<String>, m
 }
 
 fn field_852(field_string: &String) -> Result<marctk::Field, magnus::Error> {
-    let record = get_record(&field_string)?;
+    let record = get_record(field_string)?;
     let field_852 = record.get_fields("852").into_iter().next();
     let field_852 = field_852.ok_or_else(|| {
         magnus::Error::new(

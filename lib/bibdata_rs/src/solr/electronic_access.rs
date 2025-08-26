@@ -1,5 +1,4 @@
 use serde::{ser::Error, Deserialize, Deserializer, Serialize};
-use std::collections::HashMap;
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct ElectronicAccess {
@@ -89,7 +88,7 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
             .ok_or_else(|| serde::de::Error::custom("Notes are not an array"))?;
 
         let link_text = notes_arr
-            .get(0)
+            .first()
             .and_then(|v| v.as_str())
             .ok_or_else(|| serde::de::Error::custom("No link text found in this ElectronicAccess"))?
             .to_owned();
