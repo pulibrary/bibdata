@@ -42,6 +42,7 @@ impl From<&EphemeraFolder> for SolrDocument {
 #[cfg(test)]
 mod tests {
 
+    use crate::ephemera;
     use crate::ephemera::ephemera_folder::country;
     use crate::ephemera::ephemera_folder::coverage::Coverage;
     use crate::ephemera::ephemera_folder::origin_place::OriginPlace;
@@ -273,7 +274,7 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                    id: ephemera::ephemera_folder::subject::Id { id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned() },
                 },
                 label: "Music".to_string(),
             }])
@@ -290,7 +291,7 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                    id: ephemera::ephemera_folder::subject::Id { id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned() },
                 },
                 label: "Music".to_string(),
             }])
@@ -313,7 +314,7 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: "https://homosaurus.org/v4/homoit0000485".to_owned(),
+                    id: ephemera::ephemera_folder::subject::Id { id: "https://homosaurus.org/v4/homoit0000485".to_owned() },
                 },
                 label: "Gay Community".to_string(),
             }])
