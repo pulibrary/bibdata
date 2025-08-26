@@ -33,7 +33,7 @@ class AugmentTheSubject
       parsed_json = JSON.parse(File.read(LCSH_STANDALONE_A_FILE), { symbolize_names: true })
       parsed_json[:standalone_subfield_a].map do |term|
         normalize(term)
-      end
+      end.to_set
     end
   end
 
