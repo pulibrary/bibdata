@@ -78,11 +78,24 @@ impl EphemeraFolder {
         }
     }
 
-    pub fn subject_labels(&self) -> Vec<String> {
-        match &self.subject {
-            Some(subjects) => subjects.iter().map(|s| s.label.clone()).collect(),
-            None => vec![],
-        }
+    pub fn homoit_subject_labels(&self) -> Option<Vec<String>> {
+        self.subject.as_ref().map(|subjects| {
+            subjects
+                .iter()
+                .filter(|s| s.exact_match.accepted_homoit_vocabulary())
+                .map(|s| s.label.clone())
+                .collect()
+        })
+    }
+
+    pub fn lc_subject_labels(&self) -> Option<Vec<String>> {
+        self.subject.as_ref().map(|subjects| {
+            subjects
+                .iter()
+                .filter(|s| s.exact_match.accepted_loc_vocabulary())
+                .map(|s| s.label.clone())
+                .collect()
+        })
     }
 
     pub fn language_labels(&self) -> Vec<String> {
