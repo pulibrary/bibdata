@@ -7,18 +7,12 @@ pub struct ElectronicAccess {
     pub link_description: Option<String>,
     pub iiif_manifest_paths: Option<String>,
     pub digital_content: Option<DigitalContent>,
-    pub thumbnail: Option<Thumbnail>,
 }
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct DigitalContent {
     pub url: String,
     pub link_text: Vec<String>,
-}
-#[derive(Deserialize, Serialize, Debug, Clone, PartialEq)]
-pub struct Thumbnail {
-    #[serde(rename = "@id")]
-    pub id: String,
 }
 
 impl Serialize for ElectronicAccess {
@@ -138,7 +132,6 @@ impl<'de> Deserialize<'de> for ElectronicAccess {
             link_description,
             iiif_manifest_paths: iiif_manifest_url,
             digital_content,
-            thumbnail: None
         })
     }
 }
@@ -157,8 +150,7 @@ mod tests {
             digital_content: Some(DigitalContent {
                 link_text: vec!["Digital Content".to_string()],
                 url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
-            }),
-            thumbnail: None
+            })
         };
         assert_eq!(
             serde_json::to_string(&access).unwrap(),
@@ -173,7 +165,6 @@ mod tests {
             link_description: None,
             iiif_manifest_paths: None,
             digital_content: None,
-            thumbnail: None
         };
         assert_eq!(
             serde_json::to_string(&access).unwrap(),

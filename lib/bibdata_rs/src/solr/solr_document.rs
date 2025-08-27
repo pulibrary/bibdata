@@ -123,6 +123,9 @@ pub struct SolrDocument {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub summary_note_display: Option<Vec<String>>,
 
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub thumbnail_display: Option<String>,
+
     pub title_citation_display: Option<String>,
 
     pub title_display: Option<String>,
@@ -165,7 +168,6 @@ mod tests {
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None,
-                thumbnail: None,
             }))
             .build();
         let serialized = serde_json::to_string(&document).unwrap();

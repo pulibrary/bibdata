@@ -68,7 +68,6 @@ pub fn dataspace_url_with_metadata(
         },
         iiif_manifest_paths: None,
         digital_content: None,
-        thumbnail: None,
     })
 }
 

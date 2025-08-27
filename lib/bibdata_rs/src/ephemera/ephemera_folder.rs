@@ -1,4 +1,4 @@
-use crate::solr::{self, AccessFacet, DigitalContent, Thumbnail};
+use crate::solr::{self, AccessFacet, DigitalContent};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -41,8 +41,16 @@ pub struct EphemeraFolder {
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
     pub sort_title: Option<Vec<String>>,
+    // pub thumbnail: Option<Thumbnail>,
     pub title: Vec<String>,
     pub transliterated_title: Option<Vec<String>>,
+}
+
+#[derive(Debug, Deserialize, PartialEq)]
+pub struct Thumbnail {
+    #[serde(rename = "@id")]
+    pub manifest_url: String,
+    pub url: String,
 }
 
 impl EphemeraFolder {
@@ -195,18 +203,18 @@ impl EphemeraFolder {
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
     }
-    pub async fn fetch_thumbnail(&self) -> Option<Thumbnail> {
+    pub async fn fetch_thumbnail(&self, domain: &str) -> Result<Option<Thumbnail>, anyhow::Error> {
         let manifest_url = format!(
-            "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
+            "{domain}/concern/ephemera_folders/{}/manifest",
             self.normalized_id()
         );
-        let resp = reqwest::get(&manifest_url).await.ok()?.text().await.ok()?;
-        let manifest: Value = serde_json::from_str(&resp).ok()?;
-        let thumbnail_json = manifest.get("thumbnail")?;
-        serde_json::from_value(thumbnail_json.clone()).ok()
+        let resp = reqwest::get(&manifest_url).await?.text().await?;
+        let manifest: Value = serde_json::from_str(&resp)?;
+        return Ok(None);
+        // let thumbnail_json = manifest.get("thumbnail")?;
+        // serde_json::from_value(thumbnail_json.clone())
     }
-    pub async fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
-        let thumbnail = self.fetch_thumbnail().await;
+    pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
             url: self.id.clone(),
             link_text: "Online Content".to_owned(),
@@ -222,7 +230,6 @@ impl EphemeraFolder {
                     self.normalized_id()
                 ),
             }),
-            thumbnail
         })
     }
     pub fn normalized_id(&self) -> String {
@@ -319,7 +326,7 @@ mod tests {
         let ephemera_folder_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
         let digital_content = ephemera_folder_item
             .electronic_access()
-            .await.unwrap()
+            .unwrap()
             .digital_content
             .unwrap();
         assert_eq!(
@@ -430,5 +437,34 @@ mod tests {
             .build()
             .unwrap();
         assert_eq!(item.coverage_labels(), vec!["Andorra".to_string()]);
+    }
+    #[tokio::test]
+    async fn it_can_fetch_thumbnail() {
+        let folder = EphemeraFolder::builder()
+            .id("fa30780e-dfd8-4545-b1b0-b3eec9fca96b".to_string())
+            .title(vec!["The worst book ever!".to_string()])
+            .build()
+            .unwrap();
+        let mut server = mockito::Server::new_async().await;
+
+        let mock = server
+            .mock(
+                "GET",
+                "/concern/ephemera_folders/fa30780e-dfd8-4545-b1b0-b3eec9fca96b/manifest",
+            )
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_manifest.json")
+            .create_async()
+            .await;
+        let result = folder
+            .fetch_thumbnail(&server.url())
+            .await
+            .unwrap()
+            .unwrap();
+        mock.assert_async().await;
+
+        assert_eq!(result.url, "https://iiif.princeton.edu/loris/figgy_prod/4f%2Ff3%2F30%2F4ff330e0e1f04f5d8e6e4f3c9e8b4c6d%2Fintermediate_file.jp2/full/!200,150/0/default.jpg".to_string());
+        assert_eq!(result.manifest_url, "https://figgy.princeton.edu/concern/ephemera_folders/fa30780e-dfd8-4545-b1b0-b3eec9fca96b/manifest".to_string());
     }
 }
