@@ -165,6 +165,7 @@ mod tests {
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None,
+                thumbnail: None,
             }))
             .build();
         let serialized = serde_json::to_string(&document).unwrap();

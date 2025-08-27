@@ -253,6 +253,7 @@ mod tests {
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None,
+                thumbnail: None,
             }
         );
     }
@@ -282,6 +283,7 @@ mod tests {
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None,
+                thumbnail: None,
             }
         );
     }

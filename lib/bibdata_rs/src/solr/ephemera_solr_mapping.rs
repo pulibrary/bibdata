@@ -133,6 +133,7 @@ mod tests {
                         link_text: vec!["Digital content".to_string()],
                         url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
                     }),
+                    thumbnail: None
                 }
             )
         )
@@ -486,6 +487,7 @@ mod tests {
                         .to_owned(),
                 ),
                 digital_content: None,
+                thumbnail: None,
             }])
             .build()
             .unwrap();
@@ -504,6 +506,7 @@ mod tests {
                     link_text: vec!["Digital content".to_owned()],
                     url: "https://catalog-staging.princeton.edu/catalog/abc123#view".to_string(),
                 }),
+                thumbnail: None,
             })
         );
     }

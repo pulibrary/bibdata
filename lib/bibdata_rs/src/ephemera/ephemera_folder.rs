@@ -1,4 +1,4 @@
-use crate::solr::{self, AccessFacet, DigitalContent};
+use crate::solr::{self, AccessFacet, DigitalContent, Thumbnail};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -18,6 +18,7 @@ use coverage::Coverage;
 use format::Format;
 use language::Language;
 use origin_place::OriginPlace;
+use serde_json::Value;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
@@ -194,7 +195,18 @@ impl EphemeraFolder {
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
     }
-    pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
+    pub async fn fetch_thumbnail(&self) -> Option<Thumbnail> {
+        let manifest_url = format!(
+            "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
+            self.normalized_id()
+        );
+        let resp = reqwest::get(&manifest_url).await.ok()?.text().await.ok()?;
+        let manifest: Value = serde_json::from_str(&resp).ok()?;
+        let thumbnail_json = manifest.get("thumbnail")?;
+        serde_json::from_value(thumbnail_json.clone()).ok()
+    }
+    pub async fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
+        let thumbnail = self.fetch_thumbnail().await;
         Some(solr::ElectronicAccess {
             url: self.id.clone(),
             link_text: "Online Content".to_owned(),
@@ -210,6 +222,7 @@ impl EphemeraFolder {
                     self.normalized_id()
                 ),
             }),
+            thumbnail
         })
     }
     pub fn normalized_id(&self) -> String {
@@ -298,15 +311,15 @@ mod tests {
         );
     }
 
-    #[test]
-    fn it_can_read_the_digital_content_from_json_ld() {
+    #[tokio::test]
+    async fn it_can_read_the_digital_content_from_json_ld() {
         let file = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
         let reader = BufReader::new(file);
 
         let ephemera_folder_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
         let digital_content = ephemera_folder_item
             .electronic_access()
-            .unwrap()
+            .await.unwrap()
             .digital_content
             .unwrap();
         assert_eq!(
