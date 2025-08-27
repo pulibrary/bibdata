@@ -41,7 +41,7 @@ pub struct EphemeraFolder {
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
     pub sort_title: Option<Vec<String>>,
-    // pub thumbnail: Option<Thumbnail>,
+    pub thumbnail: Option<Thumbnail>,
     pub title: Vec<String>,
     pub transliterated_title: Option<Vec<String>>,
 }
@@ -49,8 +49,7 @@ pub struct EphemeraFolder {
 #[derive(Debug, Deserialize, PartialEq)]
 pub struct Thumbnail {
     #[serde(rename = "@id")]
-    pub manifest_url: String,
-    pub url: String,
+    pub thumbnail_url: String,
 }
 
 impl EphemeraFolder {
@@ -210,9 +209,12 @@ impl EphemeraFolder {
         );
         let resp = reqwest::get(&manifest_url).await?.text().await?;
         let manifest: Value = serde_json::from_str(&resp)?;
-        return Ok(None);
-        // let thumbnail_json = manifest.get("thumbnail")?;
-        // serde_json::from_value(thumbnail_json.clone())
+        if let Some(thumbnail_json) = manifest.get("thumbnail") {
+            let thumbnail: Thumbnail = serde_json::from_value(thumbnail_json.clone())?;
+            Ok(Some(thumbnail))
+        } else {
+            Ok(None)
+        }
     }
     pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
@@ -464,7 +466,6 @@ mod tests {
             .unwrap();
         mock.assert_async().await;
 
-        assert_eq!(result.url, "https://iiif.princeton.edu/loris/figgy_prod/4f%2Ff3%2F30%2F4ff330e0e1f04f5d8e6e4f3c9e8b4c6d%2Fintermediate_file.jp2/full/!200,150/0/default.jpg".to_string());
-        assert_eq!(result.manifest_url, "https://figgy.princeton.edu/concern/ephemera_folders/fa30780e-dfd8-4545-b1b0-b3eec9fca96b/manifest".to_string());
+        assert_eq!(result.thumbnail_url, "https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string());
     }
 }
