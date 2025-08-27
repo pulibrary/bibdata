@@ -56,6 +56,20 @@ pub fn is_valid_language_code(code: String) -> bool {
         || iso_639_3::from_iso_639_3_code(&code).is_some()
 }
 
+pub fn two_letter_code(code: &str) -> Option<&'static str> {
+    iso_639_2b::from_iso_639b_code(code)
+        .and_then(|language| language.two_letter_code)
+        .or_else(|| {
+            iso_639_3::from_iso_639_3_code(code)
+                .and_then(|language| language.language.two_letter_code)
+        })
+}
+
+// A wrapper for use in Ruby that uses owned strings
+pub fn two_letter_code_owned(code: String) -> Option<String> {
+    two_letter_code(&code).map(|two_letter_code| two_letter_code.to_owned())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -107,5 +121,24 @@ mod tests {
             "ISO 639-5 collective code is considered to be valid"
         );
         assert!(!is_valid_language_code("123".to_owned()), "Invalid code");
+    }
+
+    #[test]
+    fn it_can_get_a_two_letter_code() {
+        assert_eq!(
+            two_letter_code("eng"),
+            Some("en"),
+            "it shortens to the two-character form"
+        );
+        assert_eq!(
+            two_letter_code("chi"),
+            Some("zh"),
+            "it handles cases where ISO 639-2 preferred codes are different from the MARC standard"
+        );
+        assert_eq!(
+            two_letter_code("zxx"),
+            None,
+            "it handles non-languages from the MARC standard"
+        );
     }
 }

@@ -37,6 +37,10 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         "valid_language_code?",
         function!(languages::is_valid_language_code, 1),
     )?;
+    submodule_languages.define_singleton_method(
+        "two_letter_code",
+        function!(languages::two_letter_code_owned, 1),
+    )?;
     submodule_marc.define_singleton_method("access_notes", function!(marc::access_notes, 1))?;
     submodule_marc.define_singleton_method("genres", function!(marc::genres, 1))?;
     submodule_marc.define_singleton_method(

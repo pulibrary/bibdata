@@ -3,20 +3,6 @@
 require 'rails_helper'
 
 RSpec.describe LanguageService, type: :service do
-  describe '#loc_to_iana' do
-    it 'shortens to the two-character form' do
-      expect(described_class.new.loc_to_iana('eng')).to eq('en')
-    end
-
-    it 'handles cases where ISO 639-2 preferred codes are different from the MARC standard' do
-      expect(described_class.new.loc_to_iana('chi')).to eq('zh')
-    end
-
-    it 'handles non-languages from the MARC standard' do
-      expect(described_class.new.loc_to_iana('zxx')).to eq('en')
-    end
-  end
-
   describe('#specific_names') do
     let(:fields) do
       [
