@@ -14,13 +14,13 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_electronic_access_1display(value.electronic_access())
             .with_format(value.solr_formats())
             .with_geographic_facet(Some(value.coverage_labels()))
-            .with_homoit_subject_display(value.subject_labels())
-            .with_homoit_subject_facet(value.subject_labels())
+            .with_homoit_subject_display(value.homoit_subject_labels().unwrap_or_default())
+            .with_homoit_subject_facet(value.homoit_subject_labels().unwrap_or_default())
             .with_id(value.normalized_id())
             .with_language_facet(value.language_labels())
             .with_language_name_display(value.language_labels())
-            .with_lc_subject_display(value.subject_labels())
-            .with_lc_subject_facet(value.subject_labels())
+            .with_lc_subject_display(value.lc_subject_labels().unwrap_or_default())
+            .with_lc_subject_facet(value.lc_subject_labels().unwrap_or_default())
             .with_notes(value.description.clone())
             .with_notes_display(value.description.clone())
             .with_other_title_display(Some(value.other_title_display_combined()))
@@ -268,13 +268,15 @@ mod tests {
         );
     }
     #[test]
-    fn it_has_the_accepted_vocabulary_from_the_ephemera_folder_item() {
+    fn it_has_the_accepted_loc_vocabulary_from_the_ephemera_folder_item() {
         let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: ephemera::ephemera_folder::subject::Id { id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned() },
+                    id: ephemera::ephemera_folder::subject::Id {
+                        id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                    },
                 },
                 label: "Music".to_string(),
             }])
@@ -282,7 +284,7 @@ mod tests {
             .unwrap();
         assert!(ephemera_item.subject.unwrap()[0]
             .exact_match
-            .accepted_vocabulary());
+            .accepted_loc_vocabulary());
     }
     #[test]
     fn it_includes_subject_terms_in_lc_subject_display_and_lc_subject_facet_field() {
@@ -291,7 +293,9 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: ephemera::ephemera_folder::subject::Id { id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned() },
+                    id: ephemera::ephemera_folder::subject::Id {
+                        id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
+                    },
                 },
                 label: "Music".to_string(),
             }])
@@ -300,6 +304,10 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.lc_subject_display,
+            Some(vec!["Music".to_string()])
+        );
+        assert_ne!(
+            solr_document.homoit_subject_display,
             Some(vec!["Music".to_string()])
         );
         assert_eq!(
@@ -314,7 +322,9 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
                 exact_match: ExactMatch {
-                    id: ephemera::ephemera_folder::subject::Id { id: "https://homosaurus.org/v4/homoit0000485".to_owned() },
+                    id: ephemera::ephemera_folder::subject::Id {
+                        id: "https://homosaurus.org/v4/homoit0000485".to_owned(),
+                    },
                 },
                 label: "Gay Community".to_string(),
             }])
@@ -327,6 +337,10 @@ mod tests {
         );
         assert_eq!(
             solr_document.homoit_subject_facet,
+            Some(vec!["Gay Community".to_string()])
+        );
+        assert_ne!(
+            solr_document.lc_subject_display,
             Some(vec!["Gay Community".to_string()])
         );
     }

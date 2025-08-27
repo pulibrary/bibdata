@@ -29,10 +29,15 @@ impl Id {
 }
 
 impl ExactMatch {
-    pub fn accepted_vocabulary(&self) -> bool {
+    pub fn accepted_loc_vocabulary(&self) -> bool {
         matches!(&self.id.subject_ids(), Ok(s) if s.iter().any(|url| {
                   url.starts_with("http://id.loc.gov")
-                     || url.starts_with("https://homosaurus.org/")
+        }))
+    }
+
+    pub fn accepted_homoit_vocabulary(&self) -> bool {
+        matches!(&self.id.subject_ids(), Ok(s) if s.iter().any(|url| {
+            url.starts_with("https://homosaurus.org/")
         }))
     }
 }
@@ -67,7 +72,6 @@ impl<'de> Deserialize<'de> for ExactMatch {
         ))
     }
 }
-
 
 #[cfg(test)]
 mod tests {
