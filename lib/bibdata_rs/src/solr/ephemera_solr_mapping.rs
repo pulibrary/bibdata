@@ -47,6 +47,7 @@ mod tests {
     use crate::ephemera::ephemera_folder::country;
     use crate::ephemera::ephemera_folder::coverage::Coverage;
     use crate::ephemera::ephemera_folder::origin_place::OriginPlace;
+    use crate::ephemera::ephemera_folder::Thumbnail;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
     use crate::solr::DigitalContent;
@@ -506,6 +507,21 @@ mod tests {
                     url: "https://catalog-staging.princeton.edu/catalog/abc123#view".to_string(),
                 })
             })
+        );
+    }
+
+    #[test]
+    fn it_includes_the_thumbnail() {
+        let ephemera_folder = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .thumbnail(Thumbnail { thumbnail_url: "https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string()})
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_folder);
+        assert_eq!(
+            solr_document.thumbnail_display,
+            Some("https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string())
         );
     }
 }
