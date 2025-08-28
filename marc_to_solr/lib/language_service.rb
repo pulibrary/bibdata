@@ -5,23 +5,11 @@ require_relative './indigenous_languages'
 
 class LanguageService
   include IndigenousLanguages
-  def loc_to_iana(loc)
-    if can_be_represented_as_iana? loc
-      Languages[loc].alpha2.to_s
-    else
-      'en'
-    end
-  end
 
   def loc_to_mult_iana(loc)
     return nil unless valid_language_code?(loc)
 
-    two_char_version = Languages[loc]&.alpha2
-    two_char_version ? two_char_version.to_s : loc
-  end
-
-  def can_be_represented_as_iana?(loc)
-    valid_language_code?(loc) && Languages[loc]&.alpha2.present? && !['zxx', 'mul', 'sgn', 'und', '|||'].include?(loc)
+    BibdataRs::Languages.two_letter_code(loc.to_s) || loc
   end
 
   def valid_language_code?(code)
