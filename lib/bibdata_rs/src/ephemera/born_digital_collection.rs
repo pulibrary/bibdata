@@ -52,7 +52,10 @@ pub async fn chunk_read_id(
     let mut responses = Vec::new();
     for id in ids {
         let client = CatalogClient::new(url.to_owned());
-        let response = client.get_item_data(&id).await?;
+        let mut response = client.get_item_data(&id).await?;
+        if let Ok(thumbnail) = response.fetch_thumbnail(&url, &id).await {
+            response.thumbnail = thumbnail;
+        }
         responses.push(SolrDocument::from(&response));
     }
     Ok(serde_json::to_string(&responses)?)

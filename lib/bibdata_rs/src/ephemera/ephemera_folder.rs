@@ -204,11 +204,12 @@ impl EphemeraFolder {
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
     }
-    pub async fn fetch_thumbnail(&self, domain: &str) -> Result<Option<Thumbnail>, anyhow::Error> {
-        let manifest_url = format!(
-            "{domain}/concern/ephemera_folders/{}/manifest",
-            self.normalized_id()
-        );
+    pub async fn fetch_thumbnail(
+        &self,
+        domain: &str,
+        id: &str,
+    ) -> Result<Option<Thumbnail>, anyhow::Error> {
+        let manifest_url = format!("{domain}/concern/ephemera_folders/{}/manifest", id);
         let resp = reqwest::get(&manifest_url).await?.text().await?;
         let manifest: Value = serde_json::from_str(&resp)?;
         if let Some(thumbnail_json) = manifest.get("thumbnail") {
@@ -462,7 +463,7 @@ mod tests {
             .create_async()
             .await;
         let result = folder
-            .fetch_thumbnail(&server.url())
+            .fetch_thumbnail(&server.url(), &folder.id)
             .await
             .unwrap()
             .unwrap();
