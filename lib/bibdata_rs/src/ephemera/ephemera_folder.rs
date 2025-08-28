@@ -46,7 +46,7 @@ pub struct EphemeraFolder {
     pub transliterated_title: Option<Vec<String>>,
 }
 
-#[derive(Debug, Deserialize, PartialEq)]
+#[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct Thumbnail {
     #[serde(rename = "@id")]
     pub thumbnail_url: String,
@@ -56,7 +56,9 @@ impl EphemeraFolder {
     pub fn builder() -> EphemeraFolderBuilder {
         EphemeraFolderBuilder::new()
     }
-
+    pub fn thumbnail_url(&self) -> Option<String> {
+        self.thumbnail.as_ref().map(|t| t.thumbnail_url.clone())
+    }
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),

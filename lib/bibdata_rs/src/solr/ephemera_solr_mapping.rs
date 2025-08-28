@@ -35,6 +35,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_title_display(value.title.first().cloned())
             .with_title_sort(value.first_sort_title())
             .with_title_citation_display(value.title.first().cloned())
+            .with_thumbnail_display(value.thumbnail_url())
             .build()
     }
 }
