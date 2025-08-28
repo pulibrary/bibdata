@@ -142,13 +142,13 @@ mod tests {
     async fn test_chunk_read_id_sets_thumbnail() {
         // Setup mock server and data
         let mut server = mockito::Server::new_async().await;
-        let test_id = "test-id";
+        let test_id = "af4a941d-96a4-463e-9043-cfa511e5eddd";
         let test_url = server.url();
 
         // Mock get_item_data response
         let item_data_path = "../../spec/fixtures/files/ephemera/ephemera1.json";
         let _mock_item = server
-            .mock("GET", "/catalog/test_id.jsonld")
+            .mock("GET", "/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd.jsonld")
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body_from_file(item_data_path)
@@ -159,7 +159,7 @@ mod tests {
             "thumbnail": { "@id": "https://example.com/thumbnail.jpg" }
         }"#;
         let _mock_manifest = server
-            .mock("GET", "/concern/ephemera_folders/test_id/manifest")
+            .mock("GET", "/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa511e5eddd/manifest")
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body(manifest_json)
