@@ -1,7 +1,7 @@
 use super::ephemera_folder::coverage::Coverage;
 use super::ephemera_folder::format::Format;
 use super::ephemera_folder::origin_place::OriginPlace;
-use super::ephemera_folder::EphemeraFolder;
+use super::ephemera_folder::{EphemeraFolder, Thumbnail};
 use crate::ephemera::ephemera_folder;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera_folder::subject::Subject;
@@ -104,6 +104,11 @@ impl EphemeraFolderBuilder {
         self.sort_title = Some(sort_title);
         self
     }
+    pub fn thumbnail(mut self, thumbnail: Thumbnail) -> Self {
+        self.thumbnail = Some(thumbnail);
+        self
+    }
+
     pub fn title(mut self, title: Vec<String>) -> Self {
         self.title = Some(title);
         self

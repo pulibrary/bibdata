@@ -4,7 +4,7 @@ use super::{
     born_digital_collection::ephemera_folders_iterator,
     ephemera_folder_builder::EphemeraFolderBuilder,
 };
-use log::trace;
+use log::{debug, trace};
 use serde::Deserialize;
 
 pub mod country;
@@ -210,6 +210,7 @@ impl EphemeraFolder {
         id: &str,
     ) -> Result<Option<Thumbnail>, anyhow::Error> {
         let manifest_url = format!("{domain}/concern/ephemera_folders/{}/manifest", id);
+        debug!("Fetching manifest from {manifest_url}");
         let resp = reqwest::get(&manifest_url).await?.text().await?;
         let manifest: Value = serde_json::from_str(&resp)?;
         if let Some(thumbnail_json) = manifest.get("thumbnail") {
