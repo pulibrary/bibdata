@@ -63,6 +63,7 @@ pub async fn chunk_read_id(
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use std::path::PathBuf;
 
     use crate::{
@@ -136,5 +137,42 @@ mod tests {
 
         mock1.assert();
         mock2.assert();
+    }
+    #[tokio::test]
+    async fn test_chunk_read_id_sets_thumbnail() {
+        // Setup mock server and data
+        let mut server = mockito::Server::new_async().await;
+        let test_id = "test-id";
+        let test_url = server.url();
+
+        // Mock get_item_data response
+        let item_data_path = "../../spec/fixtures/files/ephemera/ephemera1.json";
+        let _mock_item = server
+            .mock("GET", "/catalog/test_id.jsonld")
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file(item_data_path)
+            .create();
+
+        // Mock manifest response with thumbnail
+        let manifest_json = r#"{
+            "thumbnail": { "@id": "https://example.com/thumbnail.jpg" }
+        }"#;
+        let _mock_manifest = server
+            .mock("GET", "/concern/ephemera_folders/test_id/manifest")
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body(manifest_json)
+            .create();
+
+        // Call chunk_read_id
+        let ids = vec![test_id.to_string()];
+        let result_json = chunk_read_id(ids, &test_url).await.unwrap();
+
+        // Check that the thumbnail URL is present in the result
+        assert!(
+            result_json.contains("https://example.com/thumbnail.jpg"),
+            "Thumbnail URL should be present in the serialized response"
+        );
     }
 }
