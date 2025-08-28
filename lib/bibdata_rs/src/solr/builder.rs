@@ -48,6 +48,7 @@ pub struct SolrDocumentBuilder {
     publisher_citation_display: Option<Vec<String>>,
     pub_date_start_sort: Option<i16>,
     pub_date_end_sort: Option<i16>,
+    thumbnail_display: Option<String>,
     contributor_display: Option<Vec<String>>,
     department_display: Option<Vec<String>>,
     certificate_display: Option<Vec<String>>,
@@ -321,6 +322,10 @@ impl SolrDocumentBuilder {
         self.summary_note_display = summary_note_display;
         self
     }
+    pub fn with_thumbnail_display(&mut self, thumbnail_display: Option<String>) -> &mut Self {
+        self.thumbnail_display = thumbnail_display;
+        self
+    }
     pub fn build(&self) -> SolrDocument {
         SolrDocument {
             access_facet: self.access_facet,
@@ -363,6 +368,7 @@ impl SolrDocumentBuilder {
             title_display: self.title_display.clone(),
             title_sort: self.title_sort.clone(),
             title_t: self.title_t.clone(),
+            thumbnail_display: self.thumbnail_display.clone(),
             contributor_display: self.contributor_display.clone(),
             department_display: self.department_display.clone(),
             certificate_display: self.certificate_display.clone(),
@@ -386,6 +392,17 @@ mod tests {
         assert_eq!(
             document.other_title_display,
             Some(vec!["Aspen".to_string()])
+        );
+    }
+
+    #[test]
+    fn it_can_build_document_with_thumbnail_display() {
+        let document = SolrDocumentBuilder::default()
+            .with_thumbnail_display(Some("http://example.com/thumbnail.jpg".to_string()))
+            .build();
+        assert_eq!(
+            document.thumbnail_display,
+            Some("http://example.com/thumbnail.jpg".to_string())
         );
     }
 }

@@ -2,6 +2,7 @@ use super::ephemera_folder::coverage::Coverage;
 use super::ephemera_folder::format::Format;
 use super::ephemera_folder::origin_place::OriginPlace;
 use super::ephemera_folder::EphemeraFolder;
+use crate::ephemera::ephemera_folder;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera_folder::subject::Subject;
 use crate::solr::ElectronicAccess;
@@ -25,6 +26,7 @@ pub struct EphemeraFolderBuilder {
     subject: Option<Vec<Subject>>,
     sort_title: Option<Vec<String>>,
     title: Option<Vec<String>>,
+    thumbnail: Option<ephemera_folder::Thumbnail>,
     transliterated_title: Option<Vec<String>>,
 }
 
@@ -134,6 +136,7 @@ impl EphemeraFolderBuilder {
             sort_title: self.sort_title,
             subject: self.subject,
             title,
+            thumbnail: self.thumbnail,
             transliterated_title: self.transliterated_title,
         })
     }

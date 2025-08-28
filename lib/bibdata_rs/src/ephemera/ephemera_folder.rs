@@ -18,6 +18,7 @@ use coverage::Coverage;
 use format::Format;
 use language::Language;
 use origin_place::OriginPlace;
+use serde_json::Value;
 use subject::Subject;
 
 #[derive(Deserialize, Debug)]
@@ -40,15 +41,24 @@ pub struct EphemeraFolder {
     pub publisher: Option<Vec<String>>,
     pub subject: Option<Vec<Subject>>,
     pub sort_title: Option<Vec<String>>,
+    pub thumbnail: Option<Thumbnail>,
     pub title: Vec<String>,
     pub transliterated_title: Option<Vec<String>>,
+}
+
+#[derive(Debug, Deserialize, PartialEq, Clone)]
+pub struct Thumbnail {
+    #[serde(rename = "@id")]
+    pub thumbnail_url: String,
 }
 
 impl EphemeraFolder {
     pub fn builder() -> EphemeraFolderBuilder {
         EphemeraFolderBuilder::new()
     }
-
+    pub fn thumbnail_url(&self) -> Option<String> {
+        self.thumbnail.as_ref().map(|t| t.thumbnail_url.clone())
+    }
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
             Some(formats) => formats.iter().filter_map(|f| f.pref_label).collect(),
@@ -194,6 +204,20 @@ impl EphemeraFolder {
     pub fn access_facet(&self) -> Option<AccessFacet> {
         Some(AccessFacet::Online)
     }
+    pub async fn fetch_thumbnail(&self, domain: &str) -> Result<Option<Thumbnail>, anyhow::Error> {
+        let manifest_url = format!(
+            "{domain}/concern/ephemera_folders/{}/manifest",
+            self.normalized_id()
+        );
+        let resp = reqwest::get(&manifest_url).await?.text().await?;
+        let manifest: Value = serde_json::from_str(&resp)?;
+        if let Some(thumbnail_json) = manifest.get("thumbnail") {
+            let thumbnail: Thumbnail = serde_json::from_value(thumbnail_json.clone())?;
+            Ok(Some(thumbnail))
+        } else {
+            Ok(None)
+        }
+    }
     pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
             url: self.id.clone(),
@@ -298,8 +322,8 @@ mod tests {
         );
     }
 
-    #[test]
-    fn it_can_read_the_digital_content_from_json_ld() {
+    #[tokio::test]
+    async fn it_can_read_the_digital_content_from_json_ld() {
         let file = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
         let reader = BufReader::new(file);
 
@@ -417,5 +441,33 @@ mod tests {
             .build()
             .unwrap();
         assert_eq!(item.coverage_labels(), vec!["Andorra".to_string()]);
+    }
+    #[tokio::test]
+    async fn it_can_fetch_thumbnail() {
+        let folder = EphemeraFolder::builder()
+            .id("fa30780e-dfd8-4545-b1b0-b3eec9fca96b".to_string())
+            .title(vec!["The worst book ever!".to_string()])
+            .build()
+            .unwrap();
+        let mut server = mockito::Server::new_async().await;
+
+        let mock = server
+            .mock(
+                "GET",
+                "/concern/ephemera_folders/fa30780e-dfd8-4545-b1b0-b3eec9fca96b/manifest",
+            )
+            .with_status(200)
+            .with_header("content-type", "application/json")
+            .with_body_from_file("../../spec/fixtures/files/ephemera/ephemera_manifest.json")
+            .create_async()
+            .await;
+        let result = folder
+            .fetch_thumbnail(&server.url())
+            .await
+            .unwrap()
+            .unwrap();
+        mock.assert_async().await;
+
+        assert_eq!(result.thumbnail_url, "https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string());
     }
 }

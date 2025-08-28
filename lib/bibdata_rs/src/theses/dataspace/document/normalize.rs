@@ -252,7 +252,7 @@ mod tests {
                 link_text: "DataSpace".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
-                digital_content: None,
+                digital_content: None
             }
         );
     }
@@ -281,7 +281,7 @@ mod tests {
                 link_text: "DataSpace".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
-                digital_content: None,
+                digital_content: None
             }
         );
     }

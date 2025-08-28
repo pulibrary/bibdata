@@ -35,6 +35,7 @@ impl From<&EphemeraFolder> for SolrDocument {
             .with_title_display(value.title.first().cloned())
             .with_title_sort(value.first_sort_title())
             .with_title_citation_display(value.title.first().cloned())
+            .with_thumbnail_display(value.thumbnail_url())
             .build()
     }
 }
@@ -132,7 +133,7 @@ mod tests {
                     digital_content: Some(DigitalContent {
                         link_text: vec!["Digital content".to_string()],
                         url: "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string(),
-                    }),
+                    })
                 }
             )
         )
@@ -503,7 +504,7 @@ mod tests {
                 digital_content: Some(DigitalContent {
                     link_text: vec!["Digital content".to_owned()],
                     url: "https://catalog-staging.princeton.edu/catalog/abc123#view".to_string(),
-                }),
+                })
             })
         );
     }
