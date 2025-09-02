@@ -23,6 +23,11 @@ every 1.day, at: '3:00am' do
   rake 'liberate:arks:clear_and_seed_cache'
 end
 
+# reindex ephemera born digital from figgy
+every 1.day, at: '4:00am' do
+  rake 'ephemera:full_reindex'
+end
+
 job_type :liberate_latest_production,
          'cd :path && :environment_variable=:environment SET_URL=:set_url :bundle_command rake :task --silent :output'
 
