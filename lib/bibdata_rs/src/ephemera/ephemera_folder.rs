@@ -223,8 +223,8 @@ impl EphemeraFolder {
     pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
             url: self.id.clone(),
-            link_text: "Online Content".to_owned(),
-            link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
+            link_text: "".to_owned(),
+            link_description: None,
             iiif_manifest_paths: Some(format!(
                 "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
                 self.normalized_id()
