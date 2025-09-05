@@ -167,7 +167,6 @@ mod tests {
                 link_text: "DataSpace".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
-                digital_content: None,
             }))
             .build();
         let serialized = serde_json::to_string(&document).unwrap();

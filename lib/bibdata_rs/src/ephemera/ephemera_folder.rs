@@ -1,4 +1,4 @@
-use crate::solr::{self, AccessFacet, DigitalContent};
+use crate::solr::{self, AccessFacet};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -222,20 +222,16 @@ impl EphemeraFolder {
     }
     pub fn electronic_access(&self) -> Option<solr::ElectronicAccess> {
         Some(solr::ElectronicAccess {
-            url: self.id.clone(),
-            link_text: "Online Content".to_owned(),
-            link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
+            url: format!(
+                "https://catalog-staging.princeton.edu/catalog/{}#view",
+                self.normalized_id()
+            ),
+            link_text: "Digital content".to_owned(),
+            link_description: None,
             iiif_manifest_paths: Some(format!(
                 "https://figgy.princeton.edu/concern/ephemera_folders/{}/manifest",
                 self.normalized_id()
             )),
-            digital_content: Some(DigitalContent {
-                link_text: vec!["Digital content".to_owned()],
-                url: format!(
-                    "https://catalog-staging.princeton.edu/catalog/{}#view",
-                    self.normalized_id()
-                ),
-            }),
         })
     }
     pub fn normalized_id(&self) -> String {
@@ -321,27 +317,6 @@ mod tests {
         assert_eq!(
             ephemera_folder_item.format.unwrap()[0].pref_label,
             Some(solr::FormatFacet::Book)
-        );
-    }
-
-    #[tokio::test]
-    async fn it_can_read_the_digital_content_from_json_ld() {
-        let file = File::open("../../spec/fixtures/files/ephemera/ephemera1.json").unwrap();
-        let reader = BufReader::new(file);
-
-        let ephemera_folder_item: EphemeraFolder = serde_json::from_reader(reader).unwrap();
-        let digital_content = ephemera_folder_item
-            .electronic_access()
-            .unwrap()
-            .digital_content
-            .unwrap();
-        assert_eq!(
-            digital_content.link_text,
-            vec!["Digital content".to_string()]
-        );
-        assert_eq!(
-            digital_content.url,
-            "https://catalog-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd#view".to_string()
         );
     }
 
