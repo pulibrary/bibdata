@@ -128,8 +128,8 @@ mod tests {
             Some(
                 ElectronicAccess {
                     url: "https://figgy-staging.princeton.edu/catalog/af4a941d-96a4-463e-9043-cfa512e5eddd".to_string(),
-                    link_text: "Online Content".to_string(),
-                    link_description: Some("Born Digital Monographic Reports and Papers".to_string()),
+                    link_text: "".to_string(),
+                    link_description: None,
                     iiif_manifest_paths: Some("https://figgy.princeton.edu/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa512e5eddd/manifest".to_string()),
                     digital_content: Some(DigitalContent {
                         link_text: vec!["Digital content".to_string()],
@@ -481,8 +481,8 @@ mod tests {
             .title(vec!["Our favorite book".to_owned()])
             .electronic_access(vec![solr::ElectronicAccess {
                 url: "http://example.com".to_owned(),
-                link_text: "Access Link".to_owned(),
-                link_description: Some("Description of the link".to_owned()),
+                link_text: "".to_owned(),
+                link_description: None,
                 iiif_manifest_paths: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned(),
@@ -496,8 +496,8 @@ mod tests {
             solr_document.electronic_access_1display,
             Some(solr::ElectronicAccess {
                 url: ephemera_item.id.clone(),
-                link_text: "Online Content".to_owned(),
-                link_description: Some("Born Digital Monographic Reports and Papers".to_owned()),
+                link_text: "".to_owned(),
+                link_description: None,
                 iiif_manifest_paths: Some(
                     "https://figgy.princeton.edu/concern/ephemera_folders/abc123/manifest"
                         .to_owned()
