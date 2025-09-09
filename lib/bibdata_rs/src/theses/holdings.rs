@@ -3,6 +3,8 @@
 use crate::{solr::ElectronicAccess, theses::embargo};
 use serde::{ser::SerializeStruct, Serialize};
 
+use ThesisAvailability::*;
+
 pub fn call_number(non_ark_ids: Option<&Vec<String>>) -> String {
     let ids = match non_ark_ids {
         Some(value) => value,
@@ -63,8 +65,8 @@ pub fn dataspace_url_with_metadata(
             class_year,
             embargo,
         ) {
-            ThesisAvailability::OnSiteOnly => Some("Citation only".to_owned()),
-            ThesisAvailability::AvailableOffSite => Some("Full text".to_owned()),
+            OnSiteOnly => Some("Citation only".to_owned()),
+            AvailableOffSite => Some("Full text".to_owned()),
         },
         iiif_manifest_paths: None,
         digital_content: None,
@@ -85,15 +87,15 @@ pub fn on_site_only(
     embargo: embargo::Embargo,
 ) -> ThesisAvailability {
     if matches!(embargo, embargo::Embargo::Current(_)) {
-        return ThesisAvailability::OnSiteOnly;
+        return OnSiteOnly;
     };
     if !physical_class_year(class_year) {
-        return ThesisAvailability::AvailableOffSite;
+        return AvailableOffSite;
     }
     if location || access_rights || mudd_walkin {
-        return ThesisAvailability::OnSiteOnly;
+        return OnSiteOnly;
     }
-    ThesisAvailability::AvailableOffSite
+    AvailableOffSite
 }
 
 #[derive(Debug, Serialize)]
@@ -200,7 +202,7 @@ mod tests {
             embargo::Embargo::Current("This content is embargoed until July 13, 2100".to_owned());
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::OnSiteOnly
+            OnSiteOnly
         );
     }
 
@@ -213,7 +215,7 @@ mod tests {
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::AvailableOffSite
+            AvailableOffSite
         );
     }
 
@@ -226,7 +228,7 @@ mod tests {
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::AvailableOffSite
+            AvailableOffSite
         );
     }
 
@@ -239,7 +241,7 @@ mod tests {
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::OnSiteOnly
+            OnSiteOnly
         );
     }
 
@@ -252,7 +254,7 @@ mod tests {
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::AvailableOffSite
+            AvailableOffSite
         );
     }
 
@@ -265,7 +267,7 @@ mod tests {
         let embargo = embargo::Embargo::None;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::AvailableOffSite
+            AvailableOffSite
         );
     }
 
@@ -278,7 +280,7 @@ mod tests {
         let embargo = embargo::Embargo::None;
         assert_eq!(
             on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
-            ThesisAvailability::AvailableOffSite
+            AvailableOffSite
         );
     }
 

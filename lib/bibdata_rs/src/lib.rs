@@ -1,7 +1,7 @@
 use ephemera::ephemera_folder;
 use magnus::{function, prelude::*, Error, Ruby};
 use solr::index;
-use theses::dataspace::collection;
+use theses::legacy_dataspace::collection;
 
 mod ephemera;
 pub mod languages;

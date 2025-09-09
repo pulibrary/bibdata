@@ -3,7 +3,7 @@
 use crate::{
     solr::{AccessFacet, ElectronicAccess, LibraryFacet},
     theses::{
-        dataspace::document::DataspaceDocument,
+        legacy_dataspace::document::DataspaceDocument,
         department,
         embargo::{self, Embargo},
         holdings::{self, ThesisAvailability},

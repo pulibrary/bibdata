@@ -9,7 +9,7 @@ use std::{
 use crate::solr::SolrDocument;
 use crate::theses::{
     config,
-    dataspace::{community, document::DataspaceDocument},
+    legacy_dataspace::{community, document::DataspaceDocument},
     theses_cache_path,
 };
 use anyhow::{anyhow, Result};
