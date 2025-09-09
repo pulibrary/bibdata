@@ -53,7 +53,7 @@ pub async fn chunk_read_id(
     for id in ids {
         let client = CatalogClient::new(url.to_owned());
         let mut response = client.get_item_data(&id).await?;
-        if let Ok(thumbnail) = response.fetch_thumbnail(&url, &id).await {
+        if let Ok(thumbnail) = response.fetch_thumbnail(url, &id).await {
             response.thumbnail = thumbnail;
         }
         responses.push(SolrDocument::from(&response));
@@ -148,7 +148,10 @@ mod tests {
         // Mock get_item_data response
         let item_data_path = "../../spec/fixtures/files/ephemera/ephemera1.json";
         let _mock_item = server
-            .mock("GET", "/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd.jsonld")
+            .mock(
+                "GET",
+                "/catalog/af4a941d-96a4-463e-9043-cfa511e5eddd.jsonld",
+            )
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body_from_file(item_data_path)
@@ -159,7 +162,10 @@ mod tests {
             "thumbnail": { "@id": "https://example.com/thumbnail.jpg" }
         }"#;
         let _mock_manifest = server
-            .mock("GET", "/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa511e5eddd/manifest")
+            .mock(
+                "GET",
+                "/concern/ephemera_folders/af4a941d-96a4-463e-9043-cfa511e5eddd/manifest",
+            )
             .with_status(200)
             .with_header("content-type", "application/json")
             .with_body(manifest_json)
