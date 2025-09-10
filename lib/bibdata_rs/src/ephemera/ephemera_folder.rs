@@ -1,4 +1,5 @@
 use crate::solr::{self, AccessFacet};
+use serde::Serialize;
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -50,6 +51,15 @@ pub struct EphemeraFolder {
 pub struct Thumbnail {
     #[serde(rename = "@id")]
     pub thumbnail_url: String,
+}
+
+#[derive(Debug, Serialize, PartialEq, Clone)]
+pub struct AuthorRoles {
+    pub secondary_authors: Vec<String>,
+    pub translators: Vec<String>,
+    pub editors: Vec<String>,
+    pub compilers: Vec<String>,
+    pub primary_author: String,
 }
 
 impl EphemeraFolder {
@@ -114,16 +124,34 @@ impl EphemeraFolder {
             None => vec![],
         }
     }
+    pub fn group_contributors(&self) -> Option<String> {
+        let primary_author = self
+            .creator
+            .as_ref()
+            .and_then(|v| v.first())
+            .cloned()
+            .unwrap_or_default();
+        let secondary_authors = self.contributor.clone().unwrap_or_default();
+        if primary_author.is_empty() && secondary_authors.is_empty() {
+            return None;
+        }
+
+        let roles = AuthorRoles {
+            secondary_authors,
+            translators: vec![],
+            editors: vec![],
+            compilers: vec![],
+            primary_author,
+        };
+
+        serde_json::to_string(&roles).ok()
+    }
 
     pub fn all_contributors(&self) -> Vec<String> {
         let mut all_contributors = Vec::default();
         all_contributors.extend(self.creator.clone().unwrap_or_default());
         all_contributors.extend(self.contributor.clone().unwrap_or_default());
         all_contributors
-    }
-
-    pub fn first_contibutor(&self) -> Option<String> {
-        self.all_contributors().first().cloned()
     }
 
     pub fn date_created_year(&self) -> Option<i16> {
