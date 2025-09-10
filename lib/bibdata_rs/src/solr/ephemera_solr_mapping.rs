@@ -6,7 +6,7 @@ impl From<&EphemeraFolder> for SolrDocument {
         SolrDocument::builder()
             .with_access_facet(value.access_facet())
             .with_author_display(Some(value.all_contributors()))
-            .with_author_roles_1display(value.first_contibutor())
+            .with_author_roles_1display(value.group_contributors())
             .with_author_s(value.creator.clone().unwrap_or_default())
             .with_author_sort(value.creator.clone().unwrap_or_default().first().cloned())
             .with_author_citation_display(value.creator.clone())
@@ -168,18 +168,35 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .creator(vec!["Aspen".to_owned()])
+            .contributor(vec!["Neptune".to_owned()])
             .build()
             .unwrap();
         let solr_document = SolrDocument::from(&ephemera_item);
-        assert_eq!(solr_document.author_display, Some(vec!["Aspen".to_owned()]));
-        assert_eq!(solr_document.author_sort, Some("Aspen".to_owned()));
         assert_eq!(
-            solr_document.author_roles_1display,
-            Some("Aspen".to_owned())
+            solr_document.author_display,
+            Some(vec!["Aspen".to_owned(), "Neptune".to_owned()])
         );
+        assert_eq!(solr_document.author_sort, Some("Aspen".to_owned()));
         assert_eq!(
             solr_document.author_citation_display,
             Some(vec!["Aspen".to_owned()])
+        );
+    }
+
+    #[test]
+    fn it_has_author_roles_1display_with_primary_author_and_secondary_author_from_the_ephemera_folder_item(
+    ) {
+        let ephemera_item = EphemeraFolder::builder()
+            .id("abc123".to_owned())
+            .title(vec!["Our favorite book".to_owned()])
+            .creator(vec!["Aspen".to_owned()])
+            .contributor(vec!["Neptune".to_owned()])
+            .build()
+            .unwrap();
+        let solr_document = SolrDocument::from(&ephemera_item);
+        assert_eq!(
+            solr_document.author_roles_1display,
+            Some(r#"{"secondary_authors":["Neptune"],"translators":[],"editors":[],"compilers":[],"primary_author":"Aspen"}"#.to_owned())
         );
     }
 
@@ -200,7 +217,7 @@ mod tests {
     }
 
     #[test]
-    fn it_uses_contributor_as_a_fallback_value_for_the_author_roles_1display_field() {
+    fn it_uses_contributor_in_secondary_authors_for_the_author_roles_1display_field() {
         let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
@@ -210,7 +227,7 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.author_roles_1display,
-            Some("Tiberius".to_owned())
+            Some(r#"{"secondary_authors":["Tiberius"],"translators":[],"editors":[],"compilers":[],"primary_author":""}"#.to_owned())
         );
     }
 
