@@ -529,7 +529,7 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_folder);
         assert_eq!(
             solr_document.thumbnail_display,
-            Some("https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string())
+            Some("https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/square/225,/0/default.jpg".to_string())
         );
     }
 }

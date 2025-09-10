@@ -52,7 +52,12 @@ pub struct Thumbnail {
     #[serde(rename = "@id")]
     pub thumbnail_url: String,
 }
-
+impl Thumbnail {
+    pub fn normalized_url(&self) -> String {
+        self.thumbnail_url
+            .replace("/full/!200,150/0/default.jpg", "/square/225,/0/default.jpg")
+    }
+}
 #[derive(Debug, Serialize, PartialEq, Clone)]
 pub struct AuthorRoles {
     pub secondary_authors: Vec<String>,
@@ -67,7 +72,7 @@ impl EphemeraFolder {
         EphemeraFolderBuilder::new()
     }
     pub fn thumbnail_url(&self) -> Option<String> {
-        self.thumbnail.as_ref().map(|t| t.thumbnail_url.clone())
+        self.thumbnail.as_ref().map(|t| t.normalized_url().clone())
     }
     pub fn solr_formats(&self) -> Vec<solr::FormatFacet> {
         match &self.format {
