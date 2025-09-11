@@ -11,9 +11,17 @@ namespace :ephemera do
     end
 
     documents = BibdataRs::Ephemera.json_ephemera_document(figgy_url)
+    if documents.empty?
+      puts 'No documents to index.'
+      exit 1
+    end
+
     BibdataRs::Ephemera.index_string(solr_url, documents)
 
     puts "Successfully indexed #{documents.length} documents to #{solr_url}"
+
+  rescue StandardError => e
+    puts "Error during indexing: #{e.message}"
   end
 
   desc 'Delete all ephemera records from solr'

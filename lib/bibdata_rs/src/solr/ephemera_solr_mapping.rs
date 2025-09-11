@@ -288,18 +288,20 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
-                exact_match: ExactMatch {
+                exact_match: Some(ExactMatch {
                     id: ephemera::ephemera_folder::subject::Id {
                         id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
                     },
-                },
+                }),
                 label: "Music".to_string(),
             }])
             .build()
             .unwrap();
         assert!(ephemera_item.subject.unwrap()[0]
             .exact_match
-            .accepted_loc_vocabulary());
+            .as_ref()
+            .map(|em| em.accepted_loc_vocabulary())
+            .unwrap_or(false));
     }
     #[test]
     fn it_includes_subject_terms_in_lc_subject_display_and_lc_subject_facet_field() {
@@ -307,11 +309,11 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
-                exact_match: ExactMatch {
+                exact_match: Some(ExactMatch {
                     id: ephemera::ephemera_folder::subject::Id {
                         id: "http://id.loc.gov/authorities/subjects/sh85088762".to_owned(),
                     },
-                },
+                }),
                 label: "Music".to_string(),
             }])
             .build()
@@ -336,11 +338,11 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .subject(vec![Subject {
-                exact_match: ExactMatch {
+                exact_match: Some(ExactMatch {
                     id: ephemera::ephemera_folder::subject::Id {
                         id: "https://homosaurus.org/v4/homoit0000485".to_owned(),
                     },
-                },
+                }),
                 label: "Gay Community".to_string(),
             }])
             .build()

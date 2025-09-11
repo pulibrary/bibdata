@@ -1,9 +1,10 @@
+use log::trace;
 use serde::{Deserialize, Deserializer, Serialize};
 use serde_json::Value;
 
 #[derive(Clone, Deserialize, Debug)]
 pub struct Subject {
-    pub exact_match: ExactMatch,
+    pub exact_match: Option<ExactMatch>,
     #[serde(rename = "pref_label")]
     pub label: String,
 }
@@ -39,6 +40,20 @@ impl ExactMatch {
         matches!(&self.id.subject_ids(), Ok(s) if s.iter().any(|url| {
             url.starts_with("https://homosaurus.org/")
         }))
+    }
+}
+
+impl Subject {
+    pub fn log_when_there_is_no_exact_match(&self) {
+        if self.exact_match.is_none() {
+            trace!("Subject missing exact_match: {:?}", self);
+        }
+    }
+}
+
+pub fn log_subjects_without_exact_match(subjects: &[Subject]) {
+    for subject in subjects {
+        subject.log_when_there_is_no_exact_match();
     }
 }
 
@@ -96,7 +111,7 @@ mod tests {
         ]"#;
         let subject: Vec<Subject> = serde_json::from_str(json_ld).unwrap();
         assert_eq!(
-            subject[0].exact_match.id.id,
+            subject[0].exact_match.as_ref().unwrap().id.id,
             "http://id.loc.gov/authorities/subjects/sh85088762"
         );
         assert_eq!(subject[0].label, "Music")
