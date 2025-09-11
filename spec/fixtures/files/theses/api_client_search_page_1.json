@@ -1,0 +1,202 @@
+{
+  "id" : null,
+  "scope" : "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
+  "query" : null,
+  "appliedFilters" : null,
+  "sort" : null,
+  "configuration" : null,
+  "type" : "discover",
+  "_links" : {
+    "self" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ ]
+      },
+      "page" : {
+        "number" : 2,
+        "size" : 100,
+        "totalPages" : 2,
+        "totalElements" : 117
+      },
+      "_links" : {
+        "prev" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=1&size=100"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=2&size=100"
+        },
+        "first" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=0&size=100"
+        }
+      }
+    },
+    "facets" : [ {
+      "name" : "author",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "minValue" : "Aaronson, Braiden D.",
+      "maxValue" : "Zucker, Andrew",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "next" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=1&size=5"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Adnan Khan, Jihan",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Adnan%20Khan,%20Jihan,equals"
+            }
+          }
+        }, {
+          "label" : "Al-Sabah, Nasir N.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Al-Sabah,%20Nasir%20N.,equals"
+            }
+          }
+        }, {
+          "label" : "Anella, Peter A.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Anella,%20Peter%20A.,equals"
+            }
+          }
+        }, {
+          "label" : "Anugula, Shrika R.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Anugula,%20Shrika%20R.,equals"
+            }
+          }
+        }, {
+          "label" : "Askar, Anel",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Askar,%20Anel,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "subject",
+      "facetType" : "hierarchical",
+      "facetLimit" : 5,
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/subject?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "dateIssued",
+      "facetType" : "date",
+      "facetLimit" : 5,
+      "minValue" : "2025",
+      "maxValue" : "2025-12-30",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/dateIssued?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "2025",
+          "count" : 117,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.dateIssued=2025,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "has_content_in_original_bundle",
+      "facetType" : "standard",
+      "facetLimit" : 2,
+      "page" : {
+        "number" : 0,
+        "size" : 2
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/has_content_in_original_bundle?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=2"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "true",
+          "count" : 117,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.has_content_in_original_bundle=true,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "entityType",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/entityType?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Publication",
+          "count" : 117,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.entityType=Publication,equals"
+            }
+          }
+        } ]
+      }
+    } ]
+  }
+}

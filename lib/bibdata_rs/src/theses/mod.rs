@@ -1,6 +1,7 @@
 use std::env;
 
 pub mod legacy_dataspace;
+pub mod dataspace;
 
 mod config;
 mod department;

@@ -1,28 +1,1608 @@
-[
-    {
-      "id": 361,
-      "name": "Aeronautical Engineering, 1945-1975",
-      "handle": "88435/dsp015m60qr96c",
-      "type": "collection",
-      "link": "/rest/collections/361",
-      "expand": [
-        "parentCommunityList",
-        "parentCommunity",
-        "items",
-        "license",
-        "logo",
-        "all"
-      ],
-      "logo": null,
-      "parentCommunity": null,
-      "parentCommunityList": [],
-      "items": [],
-      "license": null,
-      "copyrightText": "",
-      "introductoryText": "",
-      "shortDescription": "",
-      "sidebarText": "",
-      "numberItems": 83
+{
+  "_embedded" : {
+    "collections" : [ {
+      "id" : "b0dc4031-cb36-4d22-8454-6ee3a65d9c93",
+      "uuid" : "b0dc4031-cb36-4d22-8454-6ee3a65d9c93",
+      "name" : "Aeronautical Engineering, 1945-1975",
+      "handle" : "88435/dsp015m60qr96c",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp015m60qr96c",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Aeronautical Engineering, 1945-1975",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/b0dc4031-cb36-4d22-8454-6ee3a65d9c93/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "894dd444-031f-4adf-8ea6-4e9cb6ef7334",
+      "uuid" : "894dd444-031f-4adf-8ea6-4e9cb6ef7334",
+      "name" : "Biochemical Sciences, 1968-1985",
+      "handle" : "88435/dsp01ws859f870",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01ws859f870",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Biochemical Sciences, 1968-1985",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/894dd444-031f-4adf-8ea6-4e9cb6ef7334/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "20e046fe-9ffd-4e29-8dcb-58134c76a600",
+      "uuid" : "20e046fe-9ffd-4e29-8dcb-58134c76a600",
+      "name" : "Biology, 1925-1990",
+      "handle" : "88435/dsp01hx11xf31p",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01hx11xf31p",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Biology, 1925-1990",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/20e046fe-9ffd-4e29-8dcb-58134c76a600/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "7b686aa9-9945-4fd5-bb46-18280c502516",
+      "uuid" : "7b686aa9-9945-4fd5-bb46-18280c502516",
+      "name" : "East Asian Studies Program, 2017-2022",
+      "handle" : "88435/dsp016682x659t",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp016682x659t",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "East Asian Studies Program, 2017-2022",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7b686aa9-9945-4fd5-bb46-18280c502516/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "1691f5c5-dc06-4781-9a62-d37a26786ea0",
+      "uuid" : "1691f5c5-dc06-4781-9a62-d37a26786ea0",
+      "name" : "Engineering and Applied Science, 1933-1987",
+      "handle" : "88435/dsp01v692t627b",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01v692t627b",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Engineering and Applied Science, 1933-1987",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/1691f5c5-dc06-4781-9a62-d37a26786ea0/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "25496fae-62b1-419a-8cb4-ff6ea26fea2d",
+      "uuid" : "25496fae-62b1-419a-8cb4-ff6ea26fea2d",
+      "name" : "Global Health and Health Policy Program, 2017-2023",
+      "handle" : "88435/dsp01kh04ds333",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01kh04ds333",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Global Health and Health Policy Program, 2017-2023",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/25496fae-62b1-419a-8cb4-ff6ea26fea2d/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "0afa60f7-069e-4dbb-976a-1c890a62c68b",
+      "uuid" : "0afa60f7-069e-4dbb-976a-1c890a62c68b",
+      "name" : "Medieval Studies, 1976-1981",
+      "handle" : "88435/dsp01pg15bd95c",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01pg15bd95c",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Medieval Studies, 1976-1981",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/0afa60f7-069e-4dbb-976a-1c890a62c68b/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "73260ccd-73f7-4f1c-947c-cffd6383b20a",
+      "uuid" : "73260ccd-73f7-4f1c-947c-cffd6383b20a",
+      "name" : "Modern Languages, 1926-1958",
+      "handle" : "88435/dsp01jq085k036",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01jq085k036",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Modern Languages, 1926-1958",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/73260ccd-73f7-4f1c-947c-cffd6383b20a/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "75be81f0-9855-47bd-996d-343105d55206",
+      "uuid" : "75be81f0-9855-47bd-996d-343105d55206",
+      "name" : "Oriental Studies, 1959-1969",
+      "handle" : "88435/dsp01x059c739h",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01x059c739h",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Oriental Studies, 1959-1969",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/75be81f0-9855-47bd-996d-343105d55206/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "d684cece-fa74-4fa9-bd10-2b2bdea9f0d1",
+      "uuid" : "d684cece-fa74-4fa9-bd10-2b2bdea9f0d1",
+      "name" : "Program in Dance, 2024",
+      "handle" : "88435/dsp019c67wq51x",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp019c67wq51x",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Program in Dance, 2024",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/d684cece-fa74-4fa9-bd10-2b2bdea9f0d1/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "8fb0807d-e897-437a-ad0a-4c4ea693b022",
+      "uuid" : "8fb0807d-e897-437a-ad0a-4c4ea693b022",
+      "name" : "Program in Gender and Sexuality Studies, 2024",
+      "handle" : "88435/dsp015999n676q",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp015999n676q",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Program in Gender and Sexuality Studies, 2024",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8fb0807d-e897-437a-ad0a-4c4ea693b022/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "524b9f0c-0458-4457-824d-b33032cb4691",
+      "uuid" : "524b9f0c-0458-4457-824d-b33032cb4691",
+      "name" : "Program in Visual Arts",
+      "handle" : "88435/dsp015m60qv59m",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp015m60qv59m",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Program in Visual Arts",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/524b9f0c-0458-4457-824d-b33032cb4691/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "2e7cd023-109c-4d8a-bde8-2f41e1496145",
+      "uuid" : "2e7cd023-109c-4d8a-bde8-2f41e1496145",
+      "name" : "Robotics and Intelligent Systems Program",
+      "handle" : "88435/dsp01hx11xj45p",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01hx11xj45p",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Robotics and Intelligent Systems Program",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/2e7cd023-109c-4d8a-bde8-2f41e1496145/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "4873cbf3-3690-412d-95e4-cc1e03144812",
+      "uuid" : "4873cbf3-3690-412d-95e4-cc1e03144812",
+      "name" : "Romance Languages and Literatures, 1928-2002",
+      "handle" : "88435/dsp014j03cz716",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp014j03cz716",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Romance Languages and Literatures, 1928-2002",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/4873cbf3-3690-412d-95e4-cc1e03144812/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "8d9754b5-d0eb-4c00-ba7f-878226461c02",
+      "uuid" : "8d9754b5-d0eb-4c00-ba7f-878226461c02",
+      "name" : "Slavic Languages and Literature, 1962-2024",
+      "handle" : "88435/dsp010r967379h",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp010r967379h",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Slavic Languages and Literature, 1962-2024",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/8d9754b5-d0eb-4c00-ba7f-878226461c02/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "a57293b5-f982-41e1-87dd-e018bd46accd",
+      "uuid" : "a57293b5-f982-41e1-87dd-e018bd46accd",
+      "name" : "South Asian Studies Program",
+      "handle" : "88435/dsp01nk322h55k",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01nk322h55k",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "South Asian Studies Program",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/a57293b5-f982-41e1-87dd-e018bd46accd/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "7808de06-7fd4-4d4c-93a7-f118b6bc2796",
+      "uuid" : "7808de06-7fd4-4d4c-93a7-f118b6bc2796",
+      "name" : "Special Program in Humanities, 1936-1972",
+      "handle" : "88435/dsp01mg74qm166",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01mg74qm166",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Special Program in Humanities, 1936-1972",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/7808de06-7fd4-4d4c-93a7-f118b6bc2796/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "67eb5056-4942-49bc-aead-c4ad877730d4",
+      "uuid" : "67eb5056-4942-49bc-aead-c4ad877730d4",
+      "name" : "Statistics, 1967-1985",
+      "handle" : "88435/dsp01gq67jr24n",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01gq67jr24n",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Statistics, 1967-1985",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/67eb5056-4942-49bc-aead-c4ad877730d4/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "fc3c47ef-5b90-4af3-8f7c-5d462e4d4255",
+      "uuid" : "fc3c47ef-5b90-4af3-8f7c-5d462e4d4255",
+      "name" : "Theater Program, 1940-2024",
+      "handle" : "88435/dsp01c247ds15b",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01c247ds15b",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Theater Program, 1940-2024",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/fc3c47ef-5b90-4af3-8f7c-5d462e4d4255/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    }, {
+      "id" : "83175450-7225-4842-9e3c-e974c32e0a38",
+      "uuid" : "83175450-7225-4842-9e3c-e974c32e0a38",
+      "name" : "Civil Engineering and Operations Research, 1931-2000",
+      "handle" : "88435/dsp010v8380632",
+      "metadata" : {
+        "dc.description.abstract" : [ {
+          "value" : "",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.identifier.uri" : [ {
+          "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp010v8380632",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dc.title" : [ {
+          "value" : "Civil Engineering and Operations Research, 1931-2000",
+          "language" : "en",
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ],
+        "dspace.entity.type" : [ {
+          "value" : "Publication",
+          "language" : null,
+          "authority" : null,
+          "confidence" : -1,
+          "place" : 0
+        } ]
+      },
+      "archivedItemsCount" : -1,
+      "type" : "collection",
+      "_links" : {
+        "harvester" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/harvester"
+        },
+        "itemtemplate" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/itemtemplate"
+        },
+        "license" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/license"
+        },
+        "logo" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/logo"
+        },
+        "mappedItems" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/mappedItems"
+        },
+        "parentCommunity" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/parentCommunity"
+        },
+        "adminGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/adminGroup"
+        },
+        "submittersGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/submittersGroup"
+        },
+        "itemReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/itemReadGroup"
+        },
+        "bitstreamReadGroup" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/bitstreamReadGroup"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38"
+        },
+        "workflowGroups" : [ {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/workflowGroups/editor",
+          "name" : "editor"
+        }, {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/83175450-7225-4842-9e3c-e974c32e0a38/workflowGroups/finaleditor",
+          "name" : "finaleditor"
+        } ]
+      }
+    } ]
+  },
+  "_links" : {
+    "first" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections?page=0&size=20"
+    },
+    "self" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections"
+    },
+    "next" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections?page=1&size=20"
+    },
+    "last" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections?page=2&size=20"
+    },
+    "search" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/core/collections/search"
     }
-  ]
-  
+  },
+  "page" : {
+    "size" : 20,
+    "totalElements" : 57,
+    "totalPages" : 3,
+    "number" : 0
+  }
+}

@@ -1,0 +1,100 @@
+[
+  {
+    "id": 10652,
+    "name": "Calibration of the Princeton University Subsonic Instructional Wind Tunnel",
+    "handle": "88435/dsp0141687h67f",
+    "type": "item",
+    "link": "/rest/items/10652",
+    "expand": [
+      "parentCollection",
+      "parentCollectionList",
+      "parentCommunityList",
+      "bitstreams",
+      "all"
+    ],
+    "lastModified": "2014-08-28 08:55:37.649",
+    "parentCollection": null,
+    "parentCollectionList": null,
+    "parentCommunityList": null,
+    "metadata": [
+      {
+        "key": "dc.contributor.author",
+        "value": "Carter, Roger",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.contributor.author",
+        "value": "Wilkinson, Robert",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.contributor.author",
+        "value": "Landis, Houston",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.contributor.author",
+        "value": "Williams, Forman A.",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.date.accessioned",
+        "value": "2014-08-28T12:55:37Z",
+        "language": null
+      },
+      {
+        "key": "dc.date.available",
+        "value": "2014-08-28T12:55:37Z",
+        "language": null
+      },
+      {
+        "key": "dc.date.issued",
+        "value": "1955",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.identifier.uri",
+        "value": "http://arks.princeton.edu/ark:/88435/dsp0141687h67f",
+        "language": null
+      },
+      {
+        "key": "dc.format.extent",
+        "value": "96 Pages",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.title",
+        "value": "Calibration of the Princeton University Subsonic Instructional Wind Tunnel",
+        "language": "en_US"
+      },
+      {
+        "key": "dc.type",
+        "value": "Princeton University Senior Theses",
+        "language": "en_US"
+      },
+      {
+        "key": "pu.projectgrantnumber",
+        "value": "690-2143",
+        "language": "en_US"
+      },
+      {
+        "key": "pu.date.classyear",
+        "value": "1955",
+        "language": "en_US"
+      },
+      {
+        "key": "pu.department",
+        "value": "Aeronautical Engineering",
+        "language": "en_US"
+      },
+      {
+        "key": "pu.location",
+        "value": "This thesis can be viewed in person at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.  \nTo order a copy complete the <a href=\"http://rbsc.princeton.edu/senior-thesis-order-form\" target=\"_blank\">Senior Thesis Request Form</a>.  \nFor more information contact <a href=mailto:mudd@princeton.edu>mudd@princeton.edu</a>.",
+        "language": "en_US"
+      }
+    ],
+    "bitstreams": null,
+    "withdrawn": "false",
+    "archived": "true"
+  }
+]

@@ -1,0 +1,189 @@
+{
+  "id" : null,
+  "scope" : "d98b1985-fc36-47ce-b11a-62386b505e85",
+  "query" : null,
+  "appliedFilters" : null,
+  "sort" : null,
+  "configuration" : null,
+  "type" : "discover",
+  "_links" : {
+    "self" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ ]
+      },
+      "page" : {
+        "number" : 1,
+        "size" : 100,
+        "totalPages" : 1,
+        "totalElements" : 4
+      },
+      "_links" : {
+        "prev" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&page=0&size=100"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&page=1&size=100"
+        },
+        "first" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&page=0&size=100"
+        }
+      }
+    },
+    "facets" : [ {
+      "name" : "author",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "minValue" : "Aaronson, Braiden D.",
+      "maxValue" : "Zucker, Andrew",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Singer, Sidney Lynn",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Singer,%20Sidney%20Lynn,equals"
+            }
+          }
+        }, {
+          "label" : "Slagle, Mackenzie E.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Slagle,%20Mackenzie%20E.,equals"
+            }
+          }
+        }, {
+          "label" : "Smart, Josie",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Smart,%20Josie,equals"
+            }
+          }
+        }, {
+          "label" : "Yang, Audrey",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Yang,%20Audrey,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "subject",
+      "facetType" : "hierarchical",
+      "facetLimit" : 5,
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/subject?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "dateIssued",
+      "facetType" : "date",
+      "facetLimit" : 5,
+      "minValue" : "2025",
+      "maxValue" : "2025-12-30",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/dateIssued?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "2025",
+          "count" : 4,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.dateIssued=2025,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "has_content_in_original_bundle",
+      "facetType" : "standard",
+      "facetLimit" : 2,
+      "page" : {
+        "number" : 0,
+        "size" : 2
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/has_content_in_original_bundle?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=2"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "true",
+          "count" : 4,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.has_content_in_original_bundle=true,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "entityType",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/entityType?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Publication",
+          "count" : 4,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.entityType=Publication,equals"
+            }
+          }
+        } ]
+      }
+    } ]
+  }
+}
