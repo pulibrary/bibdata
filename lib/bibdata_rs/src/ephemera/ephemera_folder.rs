@@ -1,4 +1,7 @@
-use crate::solr::{self, AccessFacet};
+use crate::{
+    ephemera::ephemera_folder::subject::log_subjects_without_exact_match,
+    solr::{self, AccessFacet},
+};
 use serde::Serialize;
 
 use super::{
@@ -107,7 +110,12 @@ impl EphemeraFolder {
         self.subject.as_ref().map(|subjects| {
             subjects
                 .iter()
-                .filter(|s| s.exact_match.accepted_homoit_vocabulary())
+                .filter(|s| {
+                    s.exact_match
+                        .as_ref()
+                        .map(|em| em.accepted_homoit_vocabulary())
+                        .unwrap_or(false)
+                })
                 .map(|s| s.label.clone())
                 .collect()
         })
@@ -117,7 +125,12 @@ impl EphemeraFolder {
         self.subject.as_ref().map(|subjects| {
             subjects
                 .iter()
-                .filter(|s| s.exact_match.accepted_loc_vocabulary())
+                .filter(|s| {
+                    s.exact_match
+                        .as_ref()
+                        .map(|em| em.accepted_loc_vocabulary())
+                        .unwrap_or(false)
+                })
                 .map(|s| s.label.clone())
                 .collect()
         })
@@ -285,13 +298,22 @@ pub struct ItemResponse {
 
 pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
     #[cfg(not(test))]
-    env_logger::init();
+    let _ = env_logger::try_init();
     let rt = tokio::runtime::Runtime::new()
         .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
     rt.block_on(async {
         let folder_results = ephemera_folders_iterator(&url, 1_000)
             .await
             .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+
+        for folder_json in &folder_results {
+            if let Ok(folder) = serde_json::from_str::<EphemeraFolder>(folder_json) {
+                if let Some(subjects) = &folder.subject {
+                    log_subjects_without_exact_match(subjects);
+                }
+            }
+        }
+
         let combined_json = folder_results.join(",");
         trace!("The JSON that we will post to Solr is {}", combined_json);
         Ok(combined_json)
