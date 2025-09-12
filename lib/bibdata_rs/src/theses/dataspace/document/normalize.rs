@@ -33,7 +33,7 @@ impl DataspaceDocument {
         }
     }
 
-    pub fn all_authors(&self) -> Vec<String> {
+    pub fn all_authors(&self) -> Vec<Option<String>> {
         let mut authors = match &self.contributor_author {
             Some(authors) => authors.clone(),
             None => Vec::new(),
@@ -45,27 +45,39 @@ impl DataspaceDocument {
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|dept| department::map_department(dept)),
+                .map(|dept| { dept.clone().unwrap_or_default() })
+                .filter_map(|dept| department::map_department(&dept))
+                .map(|dept| { Some(dept) }),
         );
         authors.extend(
             self.certificate
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|program| program::map_program(program)),
+                .map(|program| { program.clone().unwrap_or_default() })
+                .filter_map(|program| program::map_program(&program))
+                .map(|program| { Some(program) }),
         );
         authors
     }
 
+    pub fn unwrap_vec_values(vec: Option<Vec<Option<String>>>) -> Option<Vec<String>> {
+        Some(vec.unwrap_or_default()
+            .iter()
+            .map(|s| { s.clone().unwrap_or_default() })
+            .collect())
+    }
+
     pub fn ark_hash(&self) -> Option<ElectronicAccess> {
+        let empty_vec = vec![];
         holdings::dataspace_url_with_metadata(
-            self.identifier_uri.as_ref(),
+            Self::unwrap_vec_values(self.identifier_uri.clone()).as_ref(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => class_year,
-                None => &[],
+                Some(class_year) => Self::unwrap_vec_values(Some(class_year.clone()))?,
+                None => empty_vec,
             },
             self.embargo(),
         )
@@ -75,7 +87,7 @@ impl DataspaceDocument {
         self.certificate.as_ref().map(|certificates| {
             certificates
                 .iter()
-                .filter_map(|certificate| program::map_program(certificate))
+                .filter_map(|certificate| program::map_program(certificate.clone().unwrap_or_default().as_ref()))
                 .collect()
         })
     }
@@ -84,23 +96,23 @@ impl DataspaceDocument {
         self.department.as_ref().map(|departments| {
             departments
                 .iter()
-                .filter_map(|department| department::map_department(department))
+                .filter_map(|department| department::map_department(department.clone().unwrap_or_default().as_ref()))
                 .collect()
         })
     }
 
     pub fn call_number(&self) -> String {
-        holdings::call_number(self.identifier_other.as_ref())
+        holdings::call_number(Self::unwrap_vec_values(self.identifier_other.clone()).as_ref())
     }
 
     pub fn class_year(&self) -> Option<i16> {
         let years = self.date_classyear.clone().unwrap_or_default();
         let year = years.first()?;
-        year.parse::<i16>().ok()
+        year.clone().unwrap_or_default().parse::<i16>().ok()
     }
 
     pub fn languages(&self) -> Vec<String> {
-        language::codes_to_english_names(self.language_iso.clone())
+        language::codes_to_english_names(Self::unwrap_vec_values(self.language_iso.clone()))
     }
 
     pub fn location(&self) -> Option<LibraryFacet> {
@@ -125,13 +137,14 @@ impl DataspaceDocument {
     }
 
     pub fn on_site_only(&self) -> ThesisAvailability {
+        let empty_vec = vec![];
         holdings::on_site_only(
             self.location.is_some(),
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => class_year,
-                None => &[],
+                Some(class_year) => Self::unwrap_vec_values(Some(class_year.clone())).unwrap_or_default(),
+                None => empty_vec,
             },
             self.embargo(),
         )
@@ -143,7 +156,7 @@ impl DataspaceDocument {
         {
             None
         } else {
-            holdings::online_holding_string(self.identifier_other.as_ref())
+            holdings::online_holding_string(Self::unwrap_vec_values(self.identifier_other.clone()).as_ref())
         }
     }
 
@@ -151,14 +164,14 @@ impl DataspaceDocument {
         match self.on_site_only() {
             ThesisAvailability::AvailableOffSite => None,
             ThesisAvailability::OnSiteOnly => {
-                holdings::physical_holding_string(self.identifier_other.as_ref())
+                holdings::physical_holding_string(Self::unwrap_vec_values(self.identifier_other.clone()).as_ref())
             }
         }
     }
 
     pub fn restrictions_note_display(&self) -> Option<Vec<String>> {
         match &self.rights_access_rights {
-            Some(rights) => rights.first().map(|s| vec![s.clone()]),
+            Some(rights) => Self::unwrap_vec_values(Some(rights.clone())).unwrap_or_default().first().map(|s| vec![s.clone()]),
             None => {
                 if self.walkin_is_yes() {
                     Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
@@ -183,7 +196,7 @@ impl DataspaceDocument {
     pub fn title_search_versions(&self) -> Option<Vec<String>> {
         match &self.title {
             Some(titles) => titles.first().map(|title| {
-                vec![title.to_string(), normalize_latex(title)]
+                vec![title.clone().unwrap_or_default().to_string(), normalize_latex(title.clone().unwrap_or_default().as_ref())]
                     .into_iter()
                     .unique()
                     .collect()
@@ -194,14 +207,14 @@ impl DataspaceDocument {
 
     fn embargo(&self) -> embargo::Embargo {
         embargo::Embargo::from_dates(
-            self.embargo_lift.as_ref(),
-            self.embargo_terms.as_ref(),
+            Self::unwrap_vec_values(self.embargo_lift.clone()).as_ref(),
+            Self::unwrap_vec_values(self.embargo_terms.clone()).as_ref(),
             self.id.as_ref().map_or("", |v| v),
         )
     }
 
     fn walkin_is_yes(&self) -> bool {
-        matches!(&self.mudd_walkin, Some(vec) if vec.first().is_some_and(|walkin| walkin == "yes"))
+        matches!(&self.mudd_walkin, Some(vec) if vec.first().is_some_and(|walkin| walkin == &Some("yes".to_string())))
     }
 }
 
@@ -223,7 +236,7 @@ mod tests {
     use crate::theses::dataspace::document::Metadatum;
 
     fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
-        vec![Metadatum { value: value.to_string() }]
+        vec![Metadatum { value: Some(value.to_string()) }]
     }
 
     #[test]
@@ -394,7 +407,7 @@ mod tests {
             let document = DataspaceDocument::builder()
                 .with_contributor_author(metadatum_vec_from_string("Turing, Alan"))
                 .build();
-            assert_eq!(document.all_authors(), vec!["Turing, Alan".to_owned()]);
+            assert_eq!(document.all_authors(), vec![Some("Turing, Alan".to_owned())]);
         }
 
         #[test]
@@ -404,7 +417,7 @@ mod tests {
                 .build();
             assert_eq!(
                 document.all_authors(),
-                vec!["Princeton University. Department of Astrophysical Sciences".to_owned()]
+                vec![Some("Princeton University. Department of Astrophysical Sciences".to_owned())]
             );
         }
 
@@ -415,7 +428,7 @@ mod tests {
                 .build();
             assert_eq!(
                 document.all_authors(),
-                vec!["Princeton University. Program in Hellenic Studies".to_owned()]
+                vec![Some("Princeton University. Program in Hellenic Studies".to_owned())]
             );
         }
     }

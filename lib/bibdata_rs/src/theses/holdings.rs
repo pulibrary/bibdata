@@ -51,7 +51,7 @@ pub fn dataspace_url_with_metadata(
     location: bool,
     access_rights: bool,
     mudd_walkin: bool,
-    class_year: &[String],
+    class_year: Vec<String>,
     embargo: embargo::Embargo,
 ) -> Option<ElectronicAccess> {
     let first_ark = identifier_uri?.first()?;
@@ -83,13 +83,13 @@ pub fn on_site_only(
     location: bool,
     access_rights: bool,
     mudd_walkin: bool,
-    class_year: &[String],
+    class_year: Vec<String>,
     embargo: embargo::Embargo,
 ) -> ThesisAvailability {
     if matches!(embargo, embargo::Embargo::Current(_)) {
         return OnSiteOnly;
     };
-    if !physical_class_year(class_year) {
+    if !physical_class_year(&class_year) {
         return AvailableOffSite;
     }
     if location || access_rights || mudd_walkin {
@@ -197,11 +197,11 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = false;
-        let class_year = [];
+        let class_year = vec![];
         let embargo =
             embargo::Embargo::Current("This content is embargoed until July 13, 2100".to_owned());
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             OnSiteOnly
         );
     }
@@ -211,10 +211,10 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = false;
-        let class_year = [];
+        let class_year = vec![];
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             AvailableOffSite
         );
     }
@@ -224,10 +224,10 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = true;
-        let class_year = [];
+        let class_year = vec![];
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             AvailableOffSite
         );
     }
@@ -237,10 +237,10 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = true;
-        let class_year = ["2012-01-01T00:00:00Z".to_owned()];
+        let class_year = vec!["2012-01-01T00:00:00Z".to_owned()];
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             OnSiteOnly
         );
     }
@@ -250,10 +250,10 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = true;
-        let class_year = ["2013-01-01T00:00:00Z".to_owned()];
+        let class_year = vec!["2013-01-01T00:00:00Z".to_owned()];
         let embargo = embargo::Embargo::Expired;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             AvailableOffSite
         );
     }
@@ -263,10 +263,10 @@ mod tests {
         let location = true;
         let access_rights = false;
         let mudd_walkin = false;
-        let class_year = [];
+        let class_year = vec![];
         let embargo = embargo::Embargo::None;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             AvailableOffSite
         );
     }
@@ -276,10 +276,10 @@ mod tests {
         let location = false;
         let access_rights = false;
         let mudd_walkin = false;
-        let class_year = [];
+        let class_year = vec![];
         let embargo = embargo::Embargo::None;
         assert_eq!(
-            on_site_only(location, access_rights, mudd_walkin, &class_year, embargo),
+            on_site_only(location, access_rights, mudd_walkin, class_year, embargo),
             AvailableOffSite
         );
     }

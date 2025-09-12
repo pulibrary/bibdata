@@ -271,13 +271,24 @@ impl SolrDocumentBuilder {
         self.author_display = author_display;
         self
     }
+    pub fn with_author_display_unwrap(&mut self, author_display: Option<Vec<Option<String>>>) -> &mut Self {
+        self.author_display = Self::unwrap_string(author_display);
+        self
+    }
     pub fn with_author_s(&mut self, author_s: Vec<String>) -> &mut Self {
         self.author_s = Some(author_s);
         self
     }
-
+    pub fn with_author_s_unwrap(&mut self, author_s: Vec<Option<String>>) -> &mut Self {
+        self.author_s = Self::unwrap_string(Some(author_s));
+        self
+    }
     pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {
         self.advisor_display = advisor_display;
+        self
+    }
+    pub fn with_advisor_display_unwrap(&mut self, advisor_display: Option<Vec<Option<String>>>) -> &mut Self {
+        self.advisor_display = Self::unwrap_string(advisor_display);
         self
     }
     pub fn with_contributor_display(
@@ -285,6 +296,10 @@ impl SolrDocumentBuilder {
         contributor_display: Option<Vec<String>>,
     ) -> &mut Self {
         self.contributor_display = contributor_display;
+        self
+    }
+    pub fn with_contributor_display_unwrap(&mut self, contributor_display: Option<Vec<Option<String>>>) -> &mut Self {
+        self.contributor_display = Self::unwrap_string(contributor_display);
         self
     }
     pub fn with_department_display(
@@ -308,6 +323,10 @@ impl SolrDocumentBuilder {
         self.description_display = description_display;
         self
     }
+    pub fn with_description_display_unwrap(&mut self, description_display: Option<Vec<Option<String>>>) -> &mut Self {
+        self.description_display = Self::unwrap_string(description_display);
+        self
+    }
     pub fn with_restrictions_note_display(
         &mut self,
         restrictions_note_display: Option<Vec<String>>,
@@ -320,6 +339,10 @@ impl SolrDocumentBuilder {
         summary_note_display: Option<Vec<String>>,
     ) -> &mut Self {
         self.summary_note_display = summary_note_display;
+        self
+    }
+    pub fn with_summary_note_display_unwrap(&mut self, summary_note_display: Option<Vec<Option<String>>>) -> &mut Self {
+        self.summary_note_display = Self::unwrap_string(summary_note_display);
         self
     }
     pub fn with_thumbnail_display(&mut self, thumbnail_display: Option<String>) -> &mut Self {
@@ -377,6 +400,13 @@ impl SolrDocumentBuilder {
             other_title_display: self.other_title_display.clone(),
             summary_note_display: self.summary_note_display.clone(),
         }
+    }
+
+    fn unwrap_string(value: Option<Vec<Option<String>>>) -> Option<Vec<String>> {
+        Some(value.unwrap()
+            .iter()
+            .map(|s| { s.clone().unwrap() })
+            .collect())
     }
 }
 

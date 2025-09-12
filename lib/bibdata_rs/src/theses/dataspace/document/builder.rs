@@ -6,23 +6,23 @@ use crate::theses::dataspace::document::Metadatum;
 #[derive(Debug, Default)]
 pub struct DataspaceDocumentBuilder {
     id: Option<String>,
-    certificate: Option<Vec<String>>,
-    contributor: Option<Vec<String>>,
-    contributor_advisor: Option<Vec<String>>,
-    contributor_author: Option<Vec<String>>,
-    date_classyear: Option<Vec<String>>,
-    description_abstract: Option<Vec<String>>,
-    department: Option<Vec<String>>,
-    embargo_lift: Option<Vec<String>>,
-    embargo_terms: Option<Vec<String>>,
-    format_extent: Option<Vec<String>>,
-    identifier_other: Option<Vec<String>>,
-    identifier_uri: Option<Vec<String>>,
-    language_iso: Option<Vec<String>>,
-    location: Option<Vec<String>>,
-    mudd_walkin: Option<Vec<String>>,
-    rights_access_rights: Option<Vec<String>>,
-    title: Option<Vec<String>>,
+    certificate: Option<Vec<Option<String>>>,
+    contributor: Option<Vec<Option<String>>>,
+    contributor_advisor: Option<Vec<Option<String>>>,
+    contributor_author: Option<Vec<Option<String>>>,
+    date_classyear: Option<Vec<Option<String>>>,
+    description_abstract: Option<Vec<Option<String>>>,
+    department: Option<Vec<Option<String>>>,
+    embargo_lift: Option<Vec<Option<String>>>,
+    embargo_terms: Option<Vec<Option<String>>>,
+    format_extent: Option<Vec<Option<String>>>,
+    identifier_other: Option<Vec<Option<String>>>,
+    identifier_uri: Option<Vec<Option<String>>>,
+    language_iso: Option<Vec<Option<String>>>,
+    location: Option<Vec<Option<String>>>,
+    mudd_walkin: Option<Vec<Option<String>>>,
+    rights_access_rights: Option<Vec<Option<String>>>,
+    title: Option<Vec<Option<String>>>,
 }
 
 impl DataspaceDocumentBuilder {
@@ -35,7 +35,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.certificate {
             vec.extend(certificate.iter()
                 .map(|cert| { cert.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -44,7 +44,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.contributor {
             vec.extend(contributors.iter()
                 .map(|contributor| { contributor.value.clone() })
-                .collect::<Vec<String>>());
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -53,7 +53,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.contributor_advisor {
             vec.extend(contributor_advisors.iter()
                 .map(|ca| { ca.value.clone() })
-                .collect::<Vec<String>>());
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -62,7 +62,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.contributor_author {
             vec.extend(contributor_author.iter()
                 .map(|ca| { ca.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -71,7 +71,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.date_classyear {
             vec.extend(date_classyear.iter()
                 .map(|date| { date.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -80,7 +80,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.description_abstract {
             vec.extend(description_abstract.iter()
                 .map(|abs| { abs.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -89,7 +89,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.department {
             vec.extend(department.iter()
                 .map(|department| { department.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -98,7 +98,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.embargo_lift {
             vec.extend(embargo_lift.iter()
                 .map(|el| { el.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -107,7 +107,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.embargo_terms {
             vec.extend(embargo_terms.iter()
                 .map(|terms| { terms.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -116,7 +116,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.format_extent {
             vec.extend(format_extent.iter()
                 .map(|format| { format.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -125,7 +125,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.identifier_other {
             vec.extend(identifier_other.iter()
                 .map(|identifier| { identifier.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -134,7 +134,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.identifier_uri {
             vec.extend(identifier_uri.iter()
                 .map(|uri| { uri.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -143,7 +143,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.language_iso {
             vec.extend(language_iso.iter()
                 .map(|lang| { lang.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -152,7 +152,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.location {
             vec.extend(location.iter()
                 .map(|location| { location.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -161,7 +161,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.mudd_walkin {
             vec.extend(mudd_walkin.iter()
                 .map(|mw| { mw.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -170,7 +170,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.rights_access_rights {
             vec.extend(rights_access_rights.iter()
                 .map(|rights| { rights.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }
@@ -179,7 +179,7 @@ impl DataspaceDocumentBuilder {
         if let Some(ref mut vec) = self.title {
             vec.extend(title.iter()
                 .map(|title| { title.value.clone() })
-                .collect::<Vec<String>>())
+                .collect::<Vec<Option<String>>>())
         }
         self
     }

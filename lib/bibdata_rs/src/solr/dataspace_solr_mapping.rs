@@ -13,17 +13,17 @@ impl From<&DataspaceDocument> for SolrDocument {
             })
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location())
-            .with_advisor_display(doc.contributor_advisor.clone())
-            .with_author_display(doc.contributor_author.clone())
-            .with_author_s(doc.all_authors())
+            .with_advisor_display_unwrap(doc.contributor_advisor.clone())
+            .with_author_display_unwrap(doc.contributor_author.clone())
+            .with_author_s_unwrap(doc.all_authors())
             .with_author_sort(match &doc.contributor_author {
-                Some(authors) => authors.first().cloned(),
+                Some(authors) => authors.first().cloned().unwrap(),
                 None => None,
             })
             .with_call_number_browse_s(doc.call_number())
             .with_call_number_display(doc.call_number())
             .with_certificate_display(doc.authorized_ceritificates())
-            .with_contributor_display(doc.contributor.clone())
+            .with_contributor_display_unwrap(doc.contributor.clone())
             .with_department_display(doc.authorized_departments())
             .with_format(vec![super::FormatFacet::SeniorThesis])
             .with_holdings_1display(doc.physical_holding_string())
@@ -34,22 +34,22 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_electronic_portfolio_s(doc.online_portfolio_statements())
             .with_restrictions_note_display(doc.restrictions_note_display())
             .with_title_citation_display(match &doc.title {
-                Some(titles) => titles.first().cloned(),
+                Some(titles) => titles.first().cloned().unwrap(),
                 None => None,
             })
             .with_title_display(match &doc.title {
-                Some(titles) => titles.first().cloned(),
+                Some(titles) => titles.first().cloned().unwrap(),
                 None => None,
             })
-            .with_title_sort(title_sort(doc.title.as_ref()))
+            .with_title_sort(title_sort_as_option(doc.title.as_ref()))
             .with_title_t(doc.title_search_versions())
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
-            .with_description_display(doc.format_extent.clone())
-            .with_summary_note_display(doc.description_abstract.clone())
+            .with_description_display_unwrap(doc.format_extent.clone())
+            .with_summary_note_display_unwrap(doc.description_abstract.clone())
             .build()
     }
 }
@@ -126,6 +126,30 @@ fn title_sort(titles: Option<&Vec<String>>) -> Option<String> {
     }
 }
 
+fn title_sort_as_option(titles: Option<&Vec<Option<String>>>) -> Option<String> {
+    match titles {
+        Some(title_vec) => {
+            let first = title_vec.first()?;
+            Some(
+                first
+                    .as_ref()
+                    .unwrap()
+                    .to_lowercase()
+                    .chars()
+                    .filter(|c| !c.is_ascii_punctuation())
+                    .collect::<String>()
+                    .trim_start_matches("a ")
+                    .trim_start_matches("an ")
+                    .trim_start_matches("the ")
+                    .chars()
+                    .filter(|c| !c.is_whitespace())
+                    .collect::<String>(),
+            )
+        }
+        None => None,
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use crate::solr::{AccessFacet, FormatFacet};
@@ -134,7 +158,7 @@ mod tests {
     use super::*;
 
     fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
-        vec![Metadatum { value: value.to_string() }]
+        vec![Metadatum { value: Some(value.to_string()) }]
     }
 
     #[test]

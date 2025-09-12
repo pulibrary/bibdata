@@ -249,8 +249,8 @@ mod tests {
         assert_eq!(
             docs[0].title.clone().unwrap(),
             vec![
-                "Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
-                    .to_owned()
+                Some("Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
+                    .to_owned())
             ]
         );
 
