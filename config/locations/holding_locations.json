@@ -374,7 +374,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -552,7 +557,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -634,7 +644,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Reference",
@@ -676,7 +693,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Western Periodicals",
@@ -696,7 +720,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Permanent Reserve",
@@ -736,7 +767,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Microfilms: Forrestal Annex",
@@ -782,7 +820,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Reference ",
@@ -989,7 +1034,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1011,7 +1061,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1099,7 +1154,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1191,7 +1251,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1235,7 +1300,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1257,7 +1327,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1279,7 +1354,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1301,7 +1381,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1362,7 +1447,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Classics Collection Non-Circulating",
@@ -1402,7 +1494,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Government Documents Collection",
@@ -1422,7 +1521,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Government Documents Collection Microforms",
@@ -1567,23 +1673,12 @@
             "order": 0
         },
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
             "PF",
-            "PJ",
             "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PA",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB",
-            "QX"
+            "PM"
         ]
     },
     {
@@ -1644,7 +1739,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Microforms Services (Film M)",
@@ -1887,7 +1989,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PA"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -1950,7 +2057,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Remote Storage (ReCAP): Firestone Library Use Only",
@@ -2026,7 +2140,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Preservation Office: Contact preservation@princeton.edu",
@@ -2068,7 +2189,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "African American Studies Reading Room: Reserve",
@@ -2667,7 +2795,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PA"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -2689,7 +2822,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PA"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -2710,7 +2848,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "United Nations Collection",
@@ -2730,7 +2875,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "",
@@ -2811,7 +2963,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PA"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -2854,7 +3011,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Tech Equipment",
@@ -2919,7 +3083,12 @@
             "order": 0
         },
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -3231,7 +3400,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -3415,7 +3589,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Lewis Library - Serials (Off-Site)",
@@ -3458,7 +3639,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -3500,7 +3686,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -3990,7 +4181,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PK"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -4074,23 +4270,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
             "PF",
-            "PJ",
             "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PA",
-            "IL",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB"
+            "PM"
         ]
     },
     {
@@ -4254,7 +4439,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "",
@@ -4471,7 +4663,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -4559,7 +4756,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -4581,7 +4783,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -4667,7 +4874,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -4689,7 +4901,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PT"
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
         ]
     },
     {
@@ -6980,7 +7197,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Computer Media",
@@ -7040,7 +7264,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Wallace Hall",
@@ -7061,6 +7292,11 @@
         },
         "holding_library": null,
         "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
             "PM"
         ]
     },
@@ -7152,7 +7388,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Atlases. Wallace Hall",
@@ -7172,7 +7415,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Periodicals. Wallace Hall",
@@ -7192,7 +7442,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Writing Shelf. Wallace Hall",
@@ -7212,7 +7469,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Reserve. Wallace Hall",
@@ -7252,7 +7516,14 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": []
+        "delivery_locations": [
+            "PW",
+            "PL",
+            "PT",
+            "PF",
+            "PK",
+            "PM"
+        ]
     },
     {
         "label": "Periodicals. Wallace Hall",
@@ -7273,23 +7544,12 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PQ",
             "PW",
             "PL",
             "PT",
             "PF",
-            "PJ",
             "PK",
-            "PH",
-            "PM",
-            "PG",
-            "PA",
-            "IL",
-            "QL",
-            "PS",
-            "PZ",
-            "QK",
-            "PB"
+            "PM"
         ]
     },
     {
