@@ -19,39 +19,42 @@ use rayon::prelude::*;
 use serde::Deserialize;
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct SearchResponse {
+pub struct SearchResponse {
     pub _embedded: SearchEmbedded,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct SearchEmbedded {
+#[serde(rename_all =  "camelCase")]
+pub struct SearchEmbedded {
     pub search_result: SearchResult,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct SearchResult {
+pub struct SearchResult {
     pub _embedded: ResultEmbedded,
     pub page: Page,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct ResultEmbedded {
+pub struct ResultEmbedded {
     pub objects: Vec<Item>,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct Page {
+#[serde(rename_all =  "camelCase")]
+pub struct Page {
     number: i32,
     total_pages: i32,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct Item {
+pub struct Item {
     pub _embedded: ItemEmbedded,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
-struct ItemEmbedded {
+#[serde(rename_all =  "camelCase")]
+pub struct ItemEmbedded {
     pub indexable_object: DataspaceDocument,
 }
 
@@ -102,11 +105,11 @@ pub fn collections_as_solr(
 type CollectionIdsSelector = fn(&str, &str) -> Result<Vec<String>>;
 pub fn get_document_list(
     server: &str,
-    community_handle: &str,
+    community_id: &str,
     rest_limit: u32,
     ids_selector: CollectionIdsSelector, // a closure that returns a Vec of dspace collection ids
 ) -> Result<Vec<DataspaceDocument>> {
-    let collection_ids = ids_selector(server, community_handle)?;
+    let collection_ids = ids_selector(server, community_id)?;
     let documents = collection_ids
         .par_iter()
         .try_fold(Vec::new, |mut accumulator, collection_id| {
@@ -132,14 +135,14 @@ pub fn get_document_list(
 fn get_documents_in_collection(
     documents: &mut Vec<DataspaceDocument>,
     server: &str,
-    collection_id: String,
+    scope: String,
     page_size: u32,
     page: u32,
     attempt: u8,
 ) -> Result<Vec<DataspaceDocument>> {
     let url = collection_url(
         server,
-        &collection_id,
+        &scope,
         &page_size.to_string(),
         &page.to_string(),
     );
@@ -171,7 +174,7 @@ fn get_documents_in_collection(
                 get_documents_in_collection(
                     documents,
                     server,
-                    collection_id.clone(),
+                    scope.clone(),
                     page_size,
                     page,
                     attempt + 1,
@@ -187,7 +190,7 @@ fn get_documents_in_collection(
         get_documents_in_collection(
             documents,
             server,
-            collection_id,
+            scope,
             page_size,
             page + 1,
             0)?;
@@ -228,7 +231,7 @@ mod tests {
         let mock_page0 = server
             .mock(
                 "GET",
-                "/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5&page=0",
+                "/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=20&page=0",
             )
             .with_status(200)
             .with_body_from_file("../../spec/fixtures/files/theses/api_client_search.json")
@@ -236,15 +239,15 @@ mod tests {
         let mock_page1 = server
             .mock(
                 "GET",
-                "/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=100&page=1",
+                "/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=20&page=1",
             )
             .with_status(200)
             .with_body_from_file("../../spec/fixtures/files/theses/api_client_search_page_1.json")
             .create();
 
-        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec!["d98b1985-fc36-47ce-b11a-62386b505e85".to_string()]);
+        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec!["ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string()]);
         let docs =
-            get_document_list(&server.url(), "88435/dsp019c67wm88m", 5, ids_selector).unwrap();
+            get_document_list(&server.url(), "c5839e02-b833-4db1-a92f-92a1ffd286b9", 20, ids_selector).unwrap();
         assert_eq!(docs.len(), 1);
         assert_eq!(
             docs[0].title.clone().unwrap(),

@@ -133,6 +133,34 @@
                   "authority" : null,
                   "confidence" : -1,
                   "place" : 0
+                },
+                {
+                  "value": "NA",
+                  "language": null,
+                  "authority": null,
+                  "confidence": -1,
+                  ":place": 1
+                } ],
+                "dc.rights.accessRights": [ {
+                  "value" : "Walk-in Access...",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.certificate": [ {
+                  "value" : "Creative Writing Program",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                },
+                {
+                  "value" : "NA",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 1
                 } ]
               },
               "inArchive" : true,

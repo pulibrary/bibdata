@@ -465,7 +465,7 @@ mod tests {
                 .with_embargo_lift(metadatum_vec_from_string("invalid"))
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+            assert_eq!(solr.restrictions_note_display, Some(vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>.".to_string()]));
         }
 
         #[test]

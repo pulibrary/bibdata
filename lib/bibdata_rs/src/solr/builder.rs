@@ -403,7 +403,7 @@ impl SolrDocumentBuilder {
     }
 
     fn unwrap_string(value: Option<Vec<Option<String>>>) -> Option<Vec<String>> {
-        Some(value.unwrap()
+        Some(value.unwrap_or_default()
             .iter()
             .map(|s| { s.clone().unwrap() })
             .collect())

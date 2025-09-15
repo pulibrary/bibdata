@@ -90,6 +90,8 @@ impl DataspaceDocument {
 mod tests {
     use std::{fs::File, io::BufReader};
 
+    use crate::theses::dataspace::collection::SearchResponse;
+
     use super::*;
 
     fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
@@ -104,77 +106,68 @@ mod tests {
             .with_mudd_walkin(metadatum_vec_from_string("yes"))
             .build();
 
-        assert_eq!(metadata.id.unwrap(), "123456");
-        assert_eq!(metadata.embargo_lift.unwrap(), vec![Some("2010-07-01".to_string())]);
-        assert_eq!(metadata.mudd_walkin.unwrap(), vec![Some("yes".to_string())]);
-
+        assert_eq!(metadata.id, Some("123456".to_string()));
+        assert_eq!(metadata.embargo_lift, Some(vec![Some("2010-07-01".to_string())]));        assert_eq!(metadata.embargo_lift, Some(vec![Some("2010-07-01".to_string())]));
+        assert_eq!(metadata.mudd_walkin, Some(vec![Some("yes".to_string())]));
     }
 
     #[test]
     fn it_can_parse_json() {
         let fixture = File::open("../../spec/fixtures/files/theses/api_client_search.json").unwrap();
         let reader = BufReader::new(fixture);
-        let documents: Vec<DataspaceDocument> = serde_json::from_reader(reader).unwrap();
-        assert_eq!(documents.len(), 1);
-        assert_eq!(documents[0].id, Some("dsp01b2773v788".to_owned()));
+        let response: SearchResponse = serde_json::from_reader(reader).unwrap();
+        let documents = response._embedded.search_result._embedded.objects;
+        let document = documents[0]._embedded.indexable_object.clone();
+        assert_eq!(documents.len(), 20);
+        assert_eq!(document.id, Some("dsp01s1784q17j".to_owned()));
         assert_eq!(
-            documents[0].title,
-            Some(vec![Some("Dysfunction: A Play in One Act".to_owned())])
+            document.title,
+            Some(vec![Some("Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion".to_owned())])
         );
         assert_eq!(
-            documents[0].contributor,
+            document.contributor_advisor,
+            Some(vec![Some("Reichman, Nancy".to_owned())])
+        );
+        assert_eq!(
+            document.contributor_author,
+            Some(vec![Some("Brunnermeier, Anjali".to_owned())])
+        );
+        assert_eq!(
+            document.identifier_uri,
             Some(vec![
-                Some("Wolff, Tamsen".to_owned()),
-                Some("2nd contributor".to_owned())
+                Some("https://theses-dissertations.princeton.edu/handle/88435/dsp01s1784q17j".to_owned())
             ])
         );
+        assert_eq!(document.language_iso, Some(vec![Some("en_US".to_owned())]));
+        assert_eq!(document.date_classyear, Some(vec![Some("2025".to_owned())]));
         assert_eq!(
-            documents[0].contributor_advisor,
-            Some(vec![Some("Sandberg, Robert".to_owned())])
+            document.department,
+            Some(vec![Some("Economics".to_owned()), Some("NA".to_owned())])
         );
         assert_eq!(
-            documents[0].contributor_author,
-            Some(vec![Some("Clark, Hillary".to_owned())])
-        );
-        assert_eq!(
-            documents[0].identifier_uri,
-            Some(vec![
-                Some("http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned())
-            ])
-        );
-        assert_eq!(
-            documents[0].format_extent,
-            Some(vec![Some("102 pages".to_owned())])
-        );
-        assert_eq!(documents[0].language_iso, Some(vec![Some("en_US".to_owned())]));
-        assert_eq!(documents[0].date_classyear, Some(vec![Some("2013".to_owned())]));
-        assert_eq!(
-            documents[0].department,
-            Some(vec![Some("English".to_owned()), Some("NA".to_owned())])
-        );
-        assert_eq!(
-            documents[0].certificate,
+            document.certificate,
             Some(vec![Some("Creative Writing Program".to_owned()), Some("NA".to_owned())])
         );
         assert_eq!(
-            documents[0].rights_access_rights,
+            document.rights_access_rights,
             Some(vec![Some("Walk-in Access...".to_owned())])
         );
     }
 
     #[test]
     fn it_can_parse_identifier_other() {
-        let json = r#"{"handle":"88435/dsp01b2773v788","metadata":{"dc.identifier.other": [{ "value":"2377" }]}}"#;
-        let document: DataspaceDocument = serde_json::from_str(json).unwrap();
-        // assert_eq!(documents.len(), 1);
-        assert_eq!(document.identifier_other, Some(vec![Some("2377".to_owned())]));
+        let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":{"dc.identifier.other":[{ "value":"2377", "test":"test string" }]}}]"#;
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
+        assert_eq!(documents.len(), 1);
+        assert_eq!(documents[0].id, Some("dsp01b2773v788".to_owned()));
+        assert_eq!(documents[0].identifier_other, Some(vec![Some("2377".to_owned())]));
     }
 
     #[test]
     fn it_can_handle_null_values() {
-        let json = r#"{"handle":"88435/dsp01b2773v788","metadata":{"dc.contributor":[{ "value":null}]}}"#;
-        let document: DataspaceDocument = serde_json::from_str(json).unwrap();
-        // assert_eq!(documents.len(), 1);
-        assert!(document.contributor.is_none());
+        let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":{"dc.contributor":[{ "value":null }]}}]"#;
+        let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
+        assert_eq!(documents.len(), 1);
+        assert_eq!(documents[0].contributor, Some(vec![None]));
     }
 }
