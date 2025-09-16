@@ -35,6 +35,10 @@ settings do
       raise exception
     end
   }
+  # These threads asynchronously POST to solr and wait for its response to confirm
+  # that everything is okay.  Since they spend most of their time waiting, it's
+  # fine to have more of these threads than we have CPU cores.
+  provide 'solr_writer.thread_pool', 5
 end
 # rubocop:enable Style/GuardClause
 
