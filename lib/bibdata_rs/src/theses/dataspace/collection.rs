@@ -159,7 +159,7 @@ fn get_documents_in_collection(
     let search_response = get_url_as_json(&url);
     let pagination: Page;
 
-    let new_documents = match search_response {
+    let mut new_documents = match search_response {
         Ok(docs) => {
             pagination = docs.clone()._embedded.search_result.page;
             Ok(map_search_result_to_vec(docs))
@@ -184,9 +184,11 @@ fn get_documents_in_collection(
             }
         }
     }?;
+    if !new_documents.is_empty() {
+        documents.append(&mut new_documents);
+    }
     // If the current page is not the last page get the next page of documents
-    if pagination.total_pages < pagination.number + 1 {
-        documents.extend(new_documents);
+    if pagination.number + 1 < pagination.total_pages {
         get_documents_in_collection(
             documents,
             server,
@@ -236,6 +238,25 @@ mod tests {
             .with_status(200)
             .with_body_from_file("../../spec/fixtures/files/theses/api_client_search.json")
             .create();
+
+        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec!["ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string()]);
+        let docs =
+            get_document_list(&server.url(), "c5839e02-b833-4db1-a92f-92a1ffd286b9", 20, ids_selector).unwrap();
+        assert_eq!(docs.len(), 20);
+        assert_eq!(
+            docs[0].title.clone().unwrap(),
+            vec![
+                Some("Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion"
+                    .to_owned())
+            ]
+        );
+
+        mock_page0.assert();
+    }
+
+    #[test]
+    fn requests_past_pagination_limit_return_no_results() {
+        let mut server = mockito::Server::new();
         let mock_page1 = server
             .mock(
                 "GET",
@@ -245,19 +266,17 @@ mod tests {
             .with_body_from_file("../../spec/fixtures/files/theses/api_client_search_page_1.json")
             .create();
 
-        let ids_selector: CollectionIdsSelector = |_server: &str, _handle: &str| Ok(vec!["ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string()]);
-        let docs =
-            get_document_list(&server.url(), "c5839e02-b833-4db1-a92f-92a1ffd286b9", 20, ids_selector).unwrap();
-        assert_eq!(docs.len(), 1);
-        assert_eq!(
-            docs[0].title.clone().unwrap(),
-            vec![
-                Some("Calibration of the Princeton University Subsonic Instructional Wind Tunnel"
-                    .to_owned())
-            ]
+        let mut docs: Vec<DataspaceDocument> = vec![];
+        let _ = get_documents_in_collection(
+            &mut docs,
+            &server.url(),
+            "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa".to_string(),
+            20,
+            1,
+            0
         );
 
-        mock_page0.assert();
+        assert_eq!(docs.len(), 0);
         mock_page1.assert();
     }
 
