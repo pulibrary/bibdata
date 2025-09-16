@@ -1,7 +1,8 @@
 use ephemera::ephemera_folder;
 use magnus::{function, prelude::*, Error, Ruby};
 use solr::index;
-use theses::legacy_dataspace::collection;
+use theses::dataspace::collection;
+use theses::legacy_dataspace::collection as legacy_collection;
 
 mod ephemera;
 pub mod languages;
@@ -26,8 +27,12 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule_ephemera
         .define_singleton_method("index_string", function!(index::index_string, 2))?;
     submodule_theses.define_singleton_method(
+        "all_documents_as_solr",
+        function!(collection::collections_as_solr, 3),
+    )?;
+    submodule_theses.define_singleton_method(
         "all_legacy_documents_as_solr",
-        function!(collection::legacy_collections_as_solr, 3),
+        function!(legacy_collection::legacy_collections_as_solr, 3),
     )?;
     submodule_languages.define_singleton_method(
         "code_to_name",

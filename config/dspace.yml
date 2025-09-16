@@ -1,7 +1,9 @@
 ---
 default: &default
-  server: <%= ENV["DSPACE_URL"] || "https://dataspace-dev.princeton.edu/rest" %>
-  community: 88435/dsp019c67wm88m
+  server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
+  community: "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+  legacy_server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace-dev.princeton.edu/rest" %>
+  legacy_community: 88435/dsp019c67wm88m
   rest_limit: 100
   retry_limit: 5
 
@@ -11,8 +13,8 @@ test: *default
 
 staging:
   <<: *default
-  server: <%= ENV["DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
+  server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
 
 production:
   <<: *default
-  server: <%= ENV["DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
+  server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
