@@ -50,8 +50,8 @@ module BibdataRs
       # Get a json representation of all thesis collections and write it as JSON to
       # a cache file.
       def self.write_all_collections_to_cache
-        # BibdataRs::Theses.all_legacy_documents_as_solr(default_legacy_server, default_community, default_rest_limit)
-        # BibdataRs::Theses.all_documents_as_solr(default_server, default_community, default_rest_limit)
+        BibdataRs::Theses.all_legacy_documents_as_solr(default_legacy_server, default_community, default_rest_limit)
+        BibdataRs::Theses.all_documents_as_solr(default_server, default_community, default_rest_limit)
         merge_theses_json
       end
     end
