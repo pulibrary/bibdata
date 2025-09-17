@@ -15,8 +15,10 @@ test: *default
 
 staging:
   <<: *default
-  server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
+  server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
+  legacy_server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
 
 production:
   <<: *default
-  server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
+  server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
+  legacy_server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
