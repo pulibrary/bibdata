@@ -62,7 +62,7 @@ pub fn get_collection_list(
     id_selector: CommunityIdSelector, // A closure that returns the ID of the dspace community that contains the collections we need
 ) -> Result<Vec<String>> {
     let url = format!(
-        "{}/communities/{}/collections",
+        "{}/core/communities/{}/collections",
         server,
         id_selector(server, community_handle)?.unwrap_or_default()
     );
@@ -115,7 +115,7 @@ mod tests {
     fn it_fetches_the_list_of_collections_in_the_community() {
         let mut server = mockito::Server::new();
         let mock = server
-            .mock("GET", "/communities/c5839e02-b833-4db1-a92f-92a1ffd286b9/collections")
+            .mock("GET", "/core/communities/c5839e02-b833-4db1-a92f-92a1ffd286b9/collections")
             .with_status(200)
             .with_body_from_file("../../spec/fixtures/files/theses/api_collections.json")
             .create();

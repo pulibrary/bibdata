@@ -10,7 +10,7 @@ use crate::solr::SolrDocument;
 use crate::theses::{
     config,
     legacy_dataspace::{community, document::DataspaceDocument},
-    theses_cache_path,
+    temp_legacy_theses_cache_path,
 };
 use anyhow::{anyhow, Result};
 use log::debug;
@@ -44,7 +44,7 @@ pub fn legacy_collections_as_solr(
             community::get_collection_list(server, handle, community::get_community_id)
         })
         .map_err(|e| magnus_err_from_anyhow_err(&e))?;
-    let file = File::create(theses_cache_path())
+    let file = File::create(temp_legacy_theses_cache_path())
         .map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
     let mut writer = BufWriter::new(file);
     serde_json::to_writer_pretty(
