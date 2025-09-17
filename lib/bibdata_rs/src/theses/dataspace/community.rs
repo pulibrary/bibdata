@@ -62,7 +62,7 @@ pub fn get_collection_list(
     id_selector: CommunityIdSelector, // A closure that returns the ID of the dspace community that contains the collections we need
 ) -> Result<Vec<String>> {
     let url = format!(
-        "{}/core/communities/{}/collections",
+        "{}/core/communities/{}/collections?size=100",
         server,
         id_selector(server, community_handle)?.unwrap_or_default()
     );
