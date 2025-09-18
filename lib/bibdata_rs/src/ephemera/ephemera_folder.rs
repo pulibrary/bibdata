@@ -2,7 +2,7 @@ use crate::{
     ephemera::ephemera_folder::subject::log_subjects_without_exact_match,
     solr::{self, AccessFacet},
 };
-use serde::Serialize;
+use serde::{Deserializer, Serialize};
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -39,11 +39,13 @@ pub struct EphemeraFolder {
     pub id: String,
     pub language: Option<Vec<Language>>,
     #[serde(rename = "origin_place")]
-    pub origin: Option<Vec<OriginPlace>>,
+    #[serde(default, deserialize_with = "option_vec_safe_deserialize")]
+    pub origin: Option<VecSafe<OriginPlace>>,
     pub page_count: Option<String>,
     pub provenance: Option<String>,
     pub publisher: Option<Vec<String>>,
-    pub subject: Option<Vec<Subject>>,
+    #[serde(default, deserialize_with = "option_vec_safe_deserialize")]
+    pub subject: Option<VecSafe<Subject>>,
     pub sort_title: Option<Vec<String>>,
     pub thumbnail: Option<Thumbnail>,
     pub title: Vec<String>,
@@ -68,6 +70,75 @@ pub struct AuthorRoles {
     pub editors: Vec<String>,
     pub compilers: Vec<String>,
     pub primary_author: String,
+}
+
+// VecSafe is a wrapper around Vec<T> that provides safe deserialization from JSON arrays
+// containing objects. It ignores any elements that fail to deserialize into T.
+#[derive(PartialEq, Debug, Clone)]
+pub struct VecSafe<T>(pub Vec<T>);
+
+use std::ops::Deref;
+
+impl<T> Deref for VecSafe<T> {
+    type Target = Vec<T>;
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+
+pub fn vec_safe_deserialize<'de, D, T>(deserializer: D) -> Result<VecSafe<T>, D::Error>
+where
+    D: Deserializer<'de>,
+    T: serde::de::DeserializeOwned,
+{
+    let raw = Vec::<serde_json::Value>::deserialize(deserializer)?;
+    let mut result = Vec::new();
+    for value in raw {
+        if let Ok(item) = serde_json::from_value::<T>(value) {
+            result.push(item);
+        }
+    }
+    Ok(VecSafe(result))
+}
+
+// Custom deserializer for Option<VecSafe<T>>
+pub fn option_vec_safe_deserialize<'de, D, T>(
+    deserializer: D,
+) -> Result<Option<VecSafe<T>>, D::Error>
+where
+    D: Deserializer<'de>,
+    T: serde::de::DeserializeOwned,
+{
+    // Try to deserialize as Option<Vec<serde_json::Value>>
+    let opt_raw = Option::<Vec<serde_json::Value>>::deserialize(deserializer)?;
+    match opt_raw {
+        Some(raw) => {
+            let mut result = Vec::new();
+            for value in raw {
+                if let Ok(item) = serde_json::from_value::<T>(value) {
+                    result.push(item);
+                }
+            }
+            if result.is_empty() {
+                Ok(None)
+            } else {
+                Ok(Some(VecSafe(result)))
+            }
+        }
+        None => Ok(None),
+    }
+}
+
+impl<'de, T> Deserialize<'de> for VecSafe<T>
+where
+    T: serde::de::DeserializeOwned,
+{
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        vec_safe_deserialize(deserializer)
+    }
 }
 
 impl EphemeraFolder {
@@ -501,5 +572,45 @@ mod tests {
         mock.assert_async().await;
 
         assert_eq!(result.thumbnail_url, "https://iiif-cloud.princeton.edu/iiif/2/c9%2Fa6%2F2b%2Fc9a62b81f8014b13933f4cf462c092dc%2Fintermediate_file/full/!200,150/0/default.jpg".to_string());
+    }
+
+    #[test]
+    fn it_does_not_error_on_invalid_origin_place_type() {
+        use serde_json::json;
+
+        let invalid_json = json!({
+            "@id": "test-id",
+            "title": ["Test Title"],
+            "origin_place": [""]
+        });
+
+        let result: Result<EphemeraFolder, _> = serde_json::from_value(invalid_json);
+
+        assert!(
+            result.is_ok(),
+            "Deserialization should not error on invalid origin_place type"
+        );
+        let folder = result.unwrap();
+        assert!(folder.origin.is_none());
+    }
+
+    #[test]
+    fn it_does_not_error_on_invalid_subject_type() {
+        use serde_json::json;
+
+        let invalid_json = json!({
+            "@id": "test-id",
+            "title": ["Test Title"],
+            "subject": ["εφήμερα","θέμα με λάθος δομή"]
+        });
+
+        let result: Result<EphemeraFolder, _> = serde_json::from_value(invalid_json);
+
+        assert!(
+            result.is_ok(),
+            "Deserialization should not error on invalid subject type"
+        );
+        let folder = result.unwrap();
+        assert!(folder.subject.is_none());
     }
 }

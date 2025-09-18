@@ -1,9 +1,11 @@
 use super::ephemera_folder::coverage::Coverage;
 use super::ephemera_folder::format::Format;
 use super::ephemera_folder::origin_place::OriginPlace;
+use super::ephemera_folder::VecSafe;
 use super::ephemera_folder::{EphemeraFolder, Thumbnail};
-use crate::ephemera::ephemera_folder;
+use crate::ephemera;
 use crate::ephemera::ephemera_folder::language::Language;
+use crate::ephemera::ephemera_folder::{self};
 use crate::ephemera_folder::subject::Subject;
 use crate::solr::ElectronicAccess;
 
@@ -134,12 +136,12 @@ impl EphemeraFolderBuilder {
             format: self.format,
             id,
             language: self.language,
-            origin: self.origin_place,
+            origin: self.origin_place.map(|v| VecSafe(v)),
             page_count: self.page_count,
             provenance: self.provenance,
             publisher: self.publisher,
             sort_title: self.sort_title,
-            subject: self.subject,
+            subject: self.subject.map(|v| VecSafe::from(VecSafe(v))),
             title,
             thumbnail: self.thumbnail,
             transliterated_title: self.transliterated_title,

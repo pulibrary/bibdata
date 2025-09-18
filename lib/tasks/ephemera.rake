@@ -21,7 +21,8 @@ namespace :ephemera do
     puts "Successfully indexed #{documents.length} documents to #{solr_url}"
 
   rescue StandardError => e
-    puts "Error during indexing: #{e.message}"
+    Rails.logger.error("Error processing ephemera folder: #{e.message}")
+    puts "Error processing ephemera folder: #{e.message}"
   end
 
   desc 'Delete all ephemera records from solr'
