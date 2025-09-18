@@ -72,6 +72,8 @@ pub struct AuthorRoles {
     pub primary_author: String,
 }
 
+// VecSafe is a wrapper around Vec<T> that provides safe deserialization from JSON arrays
+// containing objects. It ignores any elements that fail to deserialize into T.
 #[derive(PartialEq, Debug, Clone)]
 pub struct VecSafe<T>(pub Vec<T>);
 
@@ -167,7 +169,6 @@ impl EphemeraFolder {
     pub fn origin_place_labels(&self) -> Vec<String> {
         match &self.origin {
             Some(origin_vector) => origin_vector
-                .0
                 .iter()
                 .filter(|origin| origin.exact_match.accepted_vocabulary())
                 .map(|origin| origin.label.clone())
@@ -590,7 +591,7 @@ mod tests {
             "Deserialization should not error on invalid origin_place type"
         );
         let folder = result.unwrap();
-        assert!(folder.origin.is_none() || folder.origin.as_ref().unwrap().0.is_empty());
+        assert!(folder.origin.is_none());
     }
 
     #[test]
@@ -610,6 +611,6 @@ mod tests {
             "Deserialization should not error on invalid subject type"
         );
         let folder = result.unwrap();
-        assert!(folder.subject.is_none() || folder.subject.as_ref().unwrap().0.is_empty());
+        assert!(folder.subject.is_none());
     }
 }

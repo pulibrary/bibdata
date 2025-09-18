@@ -136,7 +136,7 @@ impl EphemeraFolderBuilder {
             format: self.format,
             id,
             language: self.language,
-            origin: self.origin_place.map(|v| VecSafe::from(VecSafe(v))),
+            origin: self.origin_place.map(|v| VecSafe(v)),
             page_count: self.page_count,
             provenance: self.provenance,
             publisher: self.publisher,
