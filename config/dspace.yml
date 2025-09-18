@@ -18,6 +18,11 @@ staging:
   server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
   legacy_server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace-staging.princeton.edu/rest" %>
 
+qa: 
+  <<: *default
+  server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
+  legacy_server: <%= ENV["LEGACY_DSPACE_URL"] || "https://dataspace.princeton.edu/rest" %>
+
 production:
   <<: *default
   server: <%= ENV["DSPACE_URL"] || "https://theses-dissertations.princeton.edu/server/api" %>
