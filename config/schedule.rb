@@ -24,7 +24,7 @@ every 1.day, at: '3:00am' do
 end
 
 # reindex ephemera born digital from figgy
-every 1.day, at: '4:00am' do
+every 1.day, at: '4:00am', roles: [:cron_production] do
   rake 'ephemera:full_reindex'
 end
 
