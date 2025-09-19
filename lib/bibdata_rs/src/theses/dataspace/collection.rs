@@ -246,8 +246,8 @@ mod tests {
         assert_eq!(
             docs[0].title.clone().unwrap(),
             vec![
-                Some("Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion"
-                    .to_owned())
+                "Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion"
+                    .to_owned()
             ]
         );
 

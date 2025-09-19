@@ -11,29 +11,35 @@ mod normalize;
 #[derive(Clone, Debug, Default, Serialize)]
 pub struct DataspaceDocument {
     pub id: Option<String>,
-    pub contributor: Option<Vec<Option<String>>>,
-    pub contributor_advisor: Option<Vec<Option<String>>>,
-    pub contributor_author: Option<Vec<Option<String>>>,
-    pub description_abstract: Option<Vec<Option<String>>>,
-    pub format_extent: Option<Vec<Option<String>>>,
-    pub identifier_other: Option<Vec<Option<String>>>,
-    pub identifier_uri: Option<Vec<Option<String>>>,
-    pub title: Option<Vec<Option<String>>>,
+    pub contributor: Option<Vec<String>>,
+    pub contributor_advisor: Option<Vec<String>>,
+    pub contributor_author: Option<Vec<String>>,
+    pub description_abstract: Option<Vec<String>>,
+    pub format_extent: Option<Vec<String>>,
+    pub identifier_other: Option<Vec<String>>,
+    pub identifier_uri: Option<Vec<String>>,
+    pub title: Option<Vec<String>>,
 
-    certificate: Option<Vec<Option<String>>>,
-    date_classyear: Option<Vec<Option<String>>>,
-    department: Option<Vec<Option<String>>>,
-    embargo_lift: Option<Vec<Option<String>>>,
-    embargo_terms: Option<Vec<Option<String>>>,
-    language_iso: Option<Vec<Option<String>>>,
-    location: Option<Vec<Option<String>>>,
-    mudd_walkin: Option<Vec<Option<String>>>,
-    rights_access_rights: Option<Vec<Option<String>>>,
+    certificate: Option<Vec<String>>,
+    date_classyear: Option<Vec<String>>,
+    department: Option<Vec<String>>,
+    embargo_lift: Option<Vec<String>>,
+    embargo_terms: Option<Vec<String>>,
+    language_iso: Option<Vec<String>>,
+    location: Option<Vec<String>>,
+    mudd_walkin: Option<Vec<String>>,
+    rights_access_rights: Option<Vec<String>>,
 }
 
 #[derive(Clone, Debug, Default, Deserialize)]
 pub struct Metadatum {
     pub value: Option<String>,
+}
+
+impl From<&str> for Metadatum {
+    fn from(str: &str) -> Self {
+        Metadatum { value: Some(str.to_string()) }
+    }
 }
 
 // The lifetime specifier is needed due to how serde deserializes,
@@ -107,8 +113,9 @@ mod tests {
             .build();
 
         assert_eq!(metadata.id, Some("123456".to_string()));
-        assert_eq!(metadata.embargo_lift, Some(vec![Some("2010-07-01".to_string())]));        assert_eq!(metadata.embargo_lift, Some(vec![Some("2010-07-01".to_string())]));
-        assert_eq!(metadata.mudd_walkin, Some(vec![Some("yes".to_string())]));
+        assert_eq!(metadata.embargo_lift, Some(vec!["2010-07-01".to_string()]));
+        assert_eq!(metadata.embargo_lift, Some(vec!["2010-07-01".to_string()]));
+        assert_eq!(metadata.mudd_walkin, Some(vec!["yes".to_string()]));
     }
 
     #[test]
@@ -122,35 +129,35 @@ mod tests {
         assert_eq!(document.id, Some("dsp01s1784q17j".to_owned()));
         assert_eq!(
             document.title,
-            Some(vec![Some("Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion".to_owned())])
+            Some(vec!["Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion".to_owned()])
         );
         assert_eq!(
             document.contributor_advisor,
-            Some(vec![Some("Reichman, Nancy".to_owned())])
+            Some(vec!["Reichman, Nancy".to_owned()])
         );
         assert_eq!(
             document.contributor_author,
-            Some(vec![Some("Brunnermeier, Anjali".to_owned())])
+            Some(vec!["Brunnermeier, Anjali".to_owned()])
         );
         assert_eq!(
             document.identifier_uri,
             Some(vec![
-                Some("https://theses-dissertations.princeton.edu/handle/88435/dsp01s1784q17j".to_owned())
+                "https://theses-dissertations.princeton.edu/handle/88435/dsp01s1784q17j".to_owned()
             ])
         );
-        assert_eq!(document.language_iso, Some(vec![Some("en_US".to_owned())]));
-        assert_eq!(document.date_classyear, Some(vec![Some("2025".to_owned())]));
+        assert_eq!(document.language_iso, Some(vec!["en_US".to_owned()]));
+        assert_eq!(document.date_classyear, Some(vec!["2025".to_owned()]));
         assert_eq!(
             document.department,
-            Some(vec![Some("Economics".to_owned()), Some("NA".to_owned())])
+            Some(vec!["Economics".to_owned(), "NA".to_owned()])
         );
         assert_eq!(
             document.certificate,
-            Some(vec![Some("Creative Writing Program".to_owned()), Some("NA".to_owned())])
+            Some(vec!["Creative Writing Program".to_owned(), "NA".to_owned()])
         );
         assert_eq!(
             document.rights_access_rights,
-            Some(vec![Some("Walk-in Access...".to_owned())])
+            Some(vec!["Walk-in Access...".to_owned()])
         );
     }
 
@@ -160,7 +167,7 @@ mod tests {
         let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
         assert_eq!(documents.len(), 1);
         assert_eq!(documents[0].id, Some("dsp01b2773v788".to_owned()));
-        assert_eq!(documents[0].identifier_other, Some(vec![Some("2377".to_owned())]));
+        assert_eq!(documents[0].identifier_other, Some(vec!["2377".to_owned()]));
     }
 
     #[test]
@@ -168,6 +175,6 @@ mod tests {
         let json = r#"[{"handle":"88435/dsp01b2773v788","metadata":{"dc.contributor":[{ "value":null }]}}]"#;
         let documents: Vec<DataspaceDocument> = serde_json::from_str(json).unwrap();
         assert_eq!(documents.len(), 1);
-        assert_eq!(documents[0].contributor, Some(vec![None]));
+        assert_eq!(documents[0].contributor, Some(vec!("".to_string())));
     }
 }
