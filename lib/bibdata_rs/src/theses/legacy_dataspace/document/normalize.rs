@@ -58,15 +58,14 @@ impl DataspaceDocument {
     }
 
     pub fn ark_hash(&self) -> Option<ElectronicAccess> {
-        let empty_vec = vec![];
         holdings::dataspace_url_with_metadata(
             self.identifier_uri.as_ref(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => class_year.clone(),
-                None => empty_vec,
+                Some(class_year) => &class_year,
+                None => &[],
             },
             self.embargo(),
         )
@@ -131,8 +130,8 @@ impl DataspaceDocument {
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => class_year.clone(),
-                None => vec![],
+                Some(class_year) => &class_year,
+                None => &[],
             },
             self.embargo(),
         )
@@ -250,7 +249,7 @@ mod tests {
             metadata.ark_hash().unwrap(),
             ElectronicAccess {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
-                link_text: "DataSpace".to_owned(),
+                link_text: "Theses Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None
@@ -279,7 +278,7 @@ mod tests {
             metadata.ark_hash().unwrap(),
             ElectronicAccess {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
-                link_text: "DataSpace".to_owned(),
+                link_text: "Theses Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None
