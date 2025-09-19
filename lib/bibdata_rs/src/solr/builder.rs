@@ -275,7 +275,6 @@ impl SolrDocumentBuilder {
         self.author_s = Some(author_s);
         self
     }
-
     pub fn with_advisor_display(&mut self, advisor_display: Option<Vec<String>>) -> &mut Self {
         self.advisor_display = advisor_display;
         self
@@ -378,6 +377,7 @@ impl SolrDocumentBuilder {
             summary_note_display: self.summary_note_display.clone(),
         }
     }
+
 }
 
 #[cfg(test)]

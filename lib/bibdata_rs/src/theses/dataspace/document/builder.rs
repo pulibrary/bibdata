@@ -1,6 +1,7 @@
 // This module provides a convenient way to create a DataspaceDocument using the builder pattern
 
 use super::DataspaceDocument;
+use crate::theses::dataspace::document::Metadatum;
 
 #[derive(Debug, Default)]
 pub struct DataspaceDocumentBuilder {
@@ -30,156 +31,173 @@ impl DataspaceDocumentBuilder {
         self
     }
 
-    pub fn with_certificate(mut self, certificate: impl Into<String>) -> Self {
+    pub fn with_certificate(mut self, certificate: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.certificate {
-            vec.push(certificate.into())
+            vec.extend(certificate.iter()
+                .map(|cert| { cert.value.clone().unwrap_or_default() }))
         } else {
-            self.certificate = Some(vec![certificate.into()]);
-        };
+            self.certificate = Some(certificate.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_contributor(mut self, contributor: impl Into<String>) -> Self {
+    pub fn with_contributor(mut self, contributors: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.contributor {
-            vec.push(contributor.into())
+            vec.extend(contributors.iter()
+                .map(|contributor| { contributor.value.clone().unwrap_or_default() }))
         } else {
-            self.contributor = Some(vec![contributor.into()]);
-        };
+            self.contributor = Some(contributors.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_contributor_advisor(mut self, contributor_advisor: impl Into<String>) -> Self {
+    pub fn with_contributor_advisor(mut self, contributor_advisors: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.contributor_advisor {
-            vec.push(contributor_advisor.into())
+            vec.extend(contributor_advisors.iter()
+                .map(|ca| { ca.value.clone().unwrap_or_default() }))
         } else {
-            self.contributor_advisor = Some(vec![contributor_advisor.into()]);
-        };
+            self.contributor_advisor = Some(contributor_advisors.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_contributor_author(mut self, contributor_author: impl Into<String>) -> Self {
+    pub fn with_contributor_author(mut self, contributor_author: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.contributor_author {
-            vec.push(contributor_author.into())
+            vec.extend(contributor_author.iter()
+                .map(|ca| { ca.value.clone().unwrap_or_default() }))
         } else {
-            self.contributor_author = Some(vec![contributor_author.into()]);
-        };
+            self.contributor_author = Some(contributor_author.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_date_classyear(mut self, date_classyear: impl Into<String>) -> Self {
+    pub fn with_date_classyear(mut self, date_classyear: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.date_classyear {
-            vec.push(date_classyear.into())
+            vec.extend(date_classyear.iter()
+                .map(|date| { date.value.clone().unwrap_or_default() }))
         } else {
-            self.date_classyear = Some(vec![date_classyear.into()]);
-        };
+            self.date_classyear = Some(date_classyear.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_description_abstract(mut self, description_abstract: impl Into<String>) -> Self {
+    pub fn with_description_abstract(mut self, description_abstract: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.description_abstract {
-            vec.push(description_abstract.into())
+            vec.extend(description_abstract.iter()
+                .map(|abs| { abs.value.clone().unwrap_or_default() }))
         } else {
-            self.description_abstract = Some(vec![description_abstract.into()]);
-        };
+            self.description_abstract = Some(description_abstract.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_department(mut self, department: impl Into<String>) -> Self {
+    pub fn with_department(mut self, department: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.department {
-            vec.push(department.into())
+            vec.extend(&mut department.iter()
+                .map(|department| { department.value.clone().unwrap_or_default() }))
         } else {
-            self.department = Some(vec![department.into()]);
-        };
+            self.department = Some(department.iter().map(|md| { md.value.clone().unwrap_or_default()}).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_embargo_lift(mut self, embargo_lift: impl Into<String>) -> Self {
+    pub fn with_embargo_lift(mut self, embargo_lift: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.embargo_lift {
-            vec.push(embargo_lift.into())
+            vec.extend(embargo_lift.iter()
+                .map(|el| { el.value.clone().unwrap_or_default() }))
         } else {
-            self.embargo_lift = Some(vec![embargo_lift.into()]);
-        };
+            self.embargo_lift = Some(embargo_lift.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_embargo_terms(mut self, embargo_terms: impl Into<String>) -> Self {
+    pub fn with_embargo_terms(mut self, embargo_terms: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.embargo_terms {
-            vec.push(embargo_terms.into())
+            vec.extend(embargo_terms.iter()
+                .map(|terms| { terms.value.clone().unwrap_or_default() }))
         } else {
-            self.embargo_terms = Some(vec![embargo_terms.into()]);
-        };
+            self.embargo_terms = Some(embargo_terms.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_format_extent(mut self, format_extent: impl Into<String>) -> Self {
+    pub fn with_format_extent(mut self, format_extent: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.format_extent {
-            vec.push(format_extent.into())
+            vec.extend(format_extent.iter()
+                .map(|format| { format.value.clone().unwrap_or_default() }))
         } else {
-            self.format_extent = Some(vec![format_extent.into()]);
-        };
+            self.format_extent = Some(format_extent.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_identifier_other(mut self, identifier_other: impl Into<String>) -> Self {
+    pub fn with_identifier_other(mut self, identifier_other: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.identifier_other {
-            vec.push(identifier_other.into())
+            vec.extend(identifier_other.iter()
+                .map(|identifier| { identifier.value.clone().unwrap_or_default() }))
         } else {
-            self.identifier_other = Some(vec![identifier_other.into()]);
-        };
+            self.identifier_other = Some(identifier_other.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_identifier_uri(mut self, identifier_uri: impl Into<String>) -> Self {
+    pub fn with_identifier_uri(mut self, identifier_uri: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.identifier_uri {
-            vec.push(identifier_uri.into())
+            vec.extend(identifier_uri.iter()
+                .map(|uri| { uri.value.clone().unwrap_or_default() }))
         } else {
-            self.identifier_uri = Some(vec![identifier_uri.into()]);
-        };
+            self.identifier_uri = Some(identifier_uri.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_language_iso(mut self, language_iso: impl Into<String>) -> Self {
+    pub fn with_language_iso(mut self, language_iso: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.language_iso {
-            vec.push(language_iso.into())
+            vec.extend(language_iso.iter()
+                .map(|lang| { lang.value.clone().unwrap_or_default() }))
         } else {
-            self.language_iso = Some(vec![language_iso.into()]);
-        };
+            self.language_iso = Some(language_iso.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_location(mut self, location: impl Into<String>) -> Self {
+    pub fn with_location(mut self, location: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.location {
-            vec.push(location.into())
+            vec.extend(location.iter()
+                .map(|location| { location.value.clone().unwrap_or_default() }))
         } else {
-            self.location = Some(vec![location.into()]);
-        };
+            self.location = Some(location.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_mudd_walkin(mut self, mudd_walkin: impl Into<String>) -> Self {
+    pub fn with_mudd_walkin(mut self, mudd_walkin: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.mudd_walkin {
-            vec.push(mudd_walkin.into())
+            vec.extend(mudd_walkin.iter()
+                .map(|mw| { mw.value.clone().unwrap_or_default() }));
         } else {
-            self.mudd_walkin = Some(vec![mudd_walkin.into()]);
-        };
+            self.mudd_walkin = Some(mudd_walkin.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_rights_access_rights(mut self, rights_access_rights: impl Into<String>) -> Self {
+    pub fn with_rights_access_rights(mut self, rights_access_rights: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.rights_access_rights {
-            vec.push(rights_access_rights.into())
+            vec.extend(rights_access_rights.iter()
+                .map(|rights| { rights.value.clone().unwrap_or_default() }))
         } else {
-            self.rights_access_rights = Some(vec![rights_access_rights.into()]);
-        };
+            self.rights_access_rights = Some(rights_access_rights.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 
-    pub fn with_title(mut self, title: impl Into<String>) -> Self {
+    pub fn with_title(mut self, title: Vec<Metadatum>) -> Self {
         if let Some(ref mut vec) = self.title {
-            vec.push(title.into())
+            vec.extend(title.iter()
+                .map(|title| { title.value.clone().unwrap_or_default() }))
         } else {
-            self.title = Some(vec![title.into()]);
-        };
+            self.title = Some(title.iter().map(|md| { md.value.clone().unwrap_or_default() }).collect::<Vec<String>>())
+        }
         self
     }
 

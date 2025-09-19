@@ -2,7 +2,7 @@ use std::{fs::File, io::BufReader};
 
 use bibdata_rs::{
     solr::SolrDocument,
-    theses::dataspace::document::{self, DataspaceDocument},
+    theses::legacy_dataspace::document::{self, DataspaceDocument},
 };
 use criterion::{criterion_group, criterion_main, Criterion};
 

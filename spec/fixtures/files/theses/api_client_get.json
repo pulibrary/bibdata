@@ -1,101 +1,972 @@
-[
-    {
-      "id": 10652,
-      "name": "Calibration of the Princeton University Subsonic Instructional Wind Tunnel",
-      "handle": "88435/dsp0141687h67f",
-      "type": "item",
-      "link": "/rest/items/10652",
-      "expand": [
-        "parentCollection",
-        "parentCollectionList",
-        "parentCommunityList",
-        "bitstreams",
-        "all"
-      ],
-      "lastModified": "2014-08-28 08:55:37.649",
-      "parentCollection": null,
-      "parentCollectionList": null,
-      "parentCommunityList": null,
-      "metadata": [
-        {
-          "key": "dc.contributor.author",
-          "value": "Carter, Roger",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.contributor.author",
-          "value": "Wilkinson, Robert",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.contributor.author",
-          "value": "Landis, Houston",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.contributor.author",
-          "value": "Williams, Forman A.",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.date.accessioned",
-          "value": "2014-08-28T12:55:37Z",
-          "language": null
-        },
-        {
-          "key": "dc.date.available",
-          "value": "2014-08-28T12:55:37Z",
-          "language": null
-        },
-        {
-          "key": "dc.date.issued",
-          "value": "1955",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.identifier.uri",
-          "value": "http://arks.princeton.edu/ark:/88435/dsp0141687h67f",
-          "language": null
-        },
-        {
-          "key": "dc.format.extent",
-          "value": "96 Pages",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.title",
-          "value": "Calibration of the Princeton University Subsonic Instructional Wind Tunnel",
-          "language": "en_US"
-        },
-        {
-          "key": "dc.type",
-          "value": "Princeton University Senior Theses",
-          "language": "en_US"
-        },
-        {
-          "key": "pu.projectgrantnumber",
-          "value": "690-2143",
-          "language": "en_US"
-        },
-        {
-          "key": "pu.date.classyear",
-          "value": "1955",
-          "language": "en_US"
-        },
-        {
-          "key": "pu.department",
-          "value": "Aeronautical Engineering",
-          "language": "en_US"
-        },
-        {
-          "key": "pu.location",
-          "value": "This thesis can be viewed in person at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.  \nTo order a copy complete the <a href=\"http://rbsc.princeton.edu/senior-thesis-order-form\" target=\"_blank\">Senior Thesis Request Form</a>.  \nFor more information contact <a href=mailto:mudd@princeton.edu>mudd@princeton.edu</a>.",
-          "language": "en_US"
+{
+    "id": null,
+    "scope": "d98b1985-fc36-47ce-b11a-62386b505e85",
+    "query": null,
+    "appliedFilters": null,
+    "sort": null,
+    "configuration": null,
+    "type": "discover",
+    "_links": {
+        "self": {
+            "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
         }
-      ],
-      "bitstreams": null,
-      "withdrawn": "false",
-      "archived": "true"
+    },
+    "_embedded": {
+        "searchResult": {
+            "_embedded": {
+                "objects": [
+                    {
+                        "hitHighlights": null,
+                        "type": "discover",
+                        "_links": {
+                            "indexableObject": {
+                                "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc"
+                            }
+                        },
+                        "_embedded": {
+                            "indexableObject": {
+                                "id": "8686e727-9368-4168-ba62-03b9f3d3bbcc",
+                                "uuid": "8686e727-9368-4168-ba62-03b9f3d3bbcc",
+                                "name": "Bonjour, Hi, ᐧᑫᐃᐦ: Law, Identity, and Indigenous Language Recognition in Québec",
+                                "handle": "88435/dsp011j92gb914",
+                                "metadata": {
+                                    "dc.contributor.advisor": [
+                                        {
+                                            "value": "Stout, Julien Robert",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.contributor.author": [
+                                        {
+                                            "value": "Singer, Sidney Lynn",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.accessioned": [
+                                        {
+                                            "value": "2025-07-11T15:51:03Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.available": [
+                                        {
+                                            "value": "2025-07-11T15:51:03Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.issued": [
+                                        {
+                                            "value": "2025-04-18",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.identifier.uri": [
+                                        {
+                                            "value": "https://theses-dissertations.princeton.edu/handle/88435/dsp011j92gb914",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.language.iso": [
+                                        {
+                                            "value": "en",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.title": [
+                                        {
+                                            "value": "Bonjour, Hi, ᐧᑫᐃᐦ: Law, Identity, and Indigenous Language Recognition in Québec",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.type": [
+                                        {
+                                            "value": "Princeton University Senior Theses",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.entity.type": [
+                                        {
+                                            "value": "Publication",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.workflow.startDateTime": [
+                                        {
+                                            "value": "2025-04-18T17:11:41.986Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.contributor.authorid": [
+                                        {
+                                            "value": "920305070",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.date.classyear": [
+                                        {
+                                            "value": "2025",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.department": [
+                                        {
+                                            "value": "French and Italian",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ]
+                                },
+                                "inArchive": true,
+                                "discoverable": true,
+                                "withdrawn": false,
+                                "lastModified": "2025-07-11T16:00:15.688+00:00",
+                                "entityType": "Publication",
+                                "type": "item",
+                                "_links": {
+                                    "accessStatus": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/accessStatus"
+                                    },
+                                    "bundles": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/bundles"
+                                    },
+                                    "identifiers": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/identifiers"
+                                    },
+                                    "mappedCollections": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/mappedCollections"
+                                    },
+                                    "owningCollection": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/owningCollection"
+                                    },
+                                    "relationships": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/relationships"
+                                    },
+                                    "version": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/version"
+                                    },
+                                    "templateItemOf": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/templateItemOf"
+                                    },
+                                    "thumbnail": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc/thumbnail"
+                                    },
+                                    "self": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8686e727-9368-4168-ba62-03b9f3d3bbcc"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "hitHighlights": null,
+                        "type": "discover",
+                        "_links": {
+                            "indexableObject": {
+                                "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b"
+                            }
+                        },
+                        "_embedded": {
+                            "indexableObject": {
+                                "id": "8a6ffbe3-1ed2-4c09-89af-9ba76b76876b",
+                                "uuid": "8a6ffbe3-1ed2-4c09-89af-9ba76b76876b",
+                                "name": "Towards Reckoning with the Sahara: Memory Politics of French Nuclear Testing in Mā’ohi Nui (French Polynesia)",
+                                "handle": "88435/dsp014b29b942p",
+                                "metadata": {
+                                    "dc.contributor.advisor": [
+                                        {
+                                            "value": "Philippe, Sébastien",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        },
+                                        {
+                                            "value": "Benhaïm, André",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 1
+                                        }
+                                    ],
+                                    "dc.contributor.author": [
+                                        {
+                                            "value": "Smart, Josie",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.accessioned": [
+                                        {
+                                            "value": "2025-07-24T14:40:07Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.available": [
+                                        {
+                                            "value": "2025-07-24T14:40:07Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.issued": [
+                                        {
+                                            "value": "2025-04-29",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.description.abstract": [
+                                        {
+                                            "value": "Entre 1960 et 1996, la France procède à 210 essais nucléaires, événements qui ont des conséquences innombrables. La plupart se déroulent en Polynésie, territoire d’outre-mer où le Commissariat à l’énergie atomique (CEA), ainsi que les militaires, créent un Centre d’expérimentation du Pacifique (CEP) et y font exploser 193 des bombes. L’impact énorme de ces essais reste difficile à cerner, mais après des plaintes légales portées par, notamment, des politiciens polynésiens et des associations de victimes des essais, l’État commence à déclassifier des documents qui aident à définir leur étendue. Il élabore aussi une loi, dite la loi Morin, qui fournit un processus pour indemniser les victimes atteintes d’un des vingt-trois cancers radioinduits qu’il reconnaît, ce qui entraîne un certain nombre d’indemnisations de militaires français mais rejette beaucoup de demandes concernant les polynésiens. Utilisant les données des documents déclassifiés pour reconstruire la trajectoire de certains tirs, en 2021, les chercheurs prouvent que celles sur lesquelles le Comité d’indemnisation des victimes des essais nucléaires (Civen) s’est basés pour évaluer (voire : rejeter) les dossiers des victimes polynésiennes sont erronées. Les députés polynésiens et leurs alliés réussissent, en 2024, à former une commission d’enquête au sein de l’Assemblée nationale pour examiner, entre autres choses, l’histoire des essais nucléaires, leur impact sur les polynésiens, et les allégations concernant l’arbitraire du Civen.\n\nCe mémoire commence par analyser le développement de cette commission et à expliquer les avancées scientifiques qui y ont mené, portant sur le projet un nouveau regard : celui de la « politique de mémoire », domaine qui a pour but la considération de la mémoire comme outil et création politique. Après s’être penché sur la commission de l’Assemblée nationale et sa nouvelle capacité à définir la mémoire à travers la politique publique, on examine les associations militantes polynésiennes, qui luttent activement pour faire connaître les résultats des essais, le processus d’indemnisation et la politique du nucléaire qui influence la perspective des gens de manière intime. La politique locale contribue aussi à ce carrefour où réside la mémoire, tous les niveaux de la politique se mêlant pour modifier et transmettre une histoire des essais nucléaires, définie par le travail de ceux qui s’y engagent.\nLa politique de mémoire est aussi vivante en dehors de la politique au sens strict, et l’un de ses centres de création majeures est la littérature. Le premier roman polynésien, L’île des rêves écrasés de Chantal T. Spitz, constitue un cas d’étude remarquable : il évoque en premier lieu le silence, thème central de l’expérience nucléaire maòhi. Spitz mobilise son histoire personnelle pour contester l’histoire « officielle », expression de l’imposition du silence, puisque cette dernière, en se prétendant officielle, ignore ce qu’éprouve le peuple maòhi afin de promouvoir les structures mémorielles du colonialisme français. L’écriture de Spitz, bien que personnelle, se révèle également collective : elle interroge la relation coloniale entre la France et la Polynésie pour montrer que la mémoire communautaire peut rappeler la nécessité d’un équilibre entre le passé et l’avenir, à travers un présent qui valorise les racines propres au maòhi. C’est une stratégie qui reconnaît à la fois la victimisation des polynésiens par la France coloniale, responsable de l’explosion de nombreuses bombes sur leur territoire, et leur culpabilité liée à la collaboration de ceux qui ont travaillé pour le CEP et contribué à l’expansion du projet nucléaire, ainsi qu’aux dommages qu’il a infligés. En soulignant le rôle de l’écrivain dans la construction de la mémoire, même issu d’une culture historiquement orale, Spitz défend un nouveau métissage entre tradition revendiquée et modernité transformée dans la société post-nucléaire. Ce mélange place également la mémoire politique en opposition au silence imposé pour faire taire les écrivains maòhi, tout en renouvelant la légitimité d’un silence traditionnel, lorsqu’il est choisi.\n\nComparé aux 193 tirs effectués en Polynésie, les dix-sept essais nucléaires menés par la France au Sahara algérien entre 1960 et 1966 restent bien moins connus. La France semble peu disposée à revisiter l’histoire de la guerre d’Algérie ; elle cherche à établir une séparation nette entre les deux contextes et refuse de déclassifier les documents permettant d’examiner cette série d’essais. Il est pourtant impossible de dissocier cette mémoire de celle des essais ultérieurs, ce qui soulève une réflexion sur l’actuelle quasi-impossibilité correspondante d’indemniser les algériens au titre de la loi Morin. Ce refus persistant de la France d’assumer ses essais sahariens ne semble guère susceptible d’évoluer soixante-dix ans plus tard – l’État devrait pourtant déclassifier les documents pertinents et indemniser les algériens qu’il a exposés à la radiation, mais même sans sa coopération, la politique de mémoire algérienne s’épanouit autrement. L’Algérie produit, elle aussi, une littérature « irradiée », et le Front de Libération Nationale n’est pas étranger aux stratégies de contrôle de la mémoire par la rétention des archives. Le cas de la mémoire nucléaire d’Algérie permet ainsi d’observer, à l’image de la revendication de la mémoire politique après les ravages du colonialisme nucléaire que Spitz décrit dans son roman, la progression de la politique de mémoire une fois affranchie de la relation coloniale. En fin de compte, c’est la France qui demeure hantée par un passé nucléaire qu’elle ne peut nier – et qui s’inflige des silences à cause des refus d’exploration des faits. Le mémoire se conclut sur un examen des moyens permettant de répondre aux inquiétudes liées à l’affaiblissement de la mémoire en Polynésie, notamment à travers l’éducation des jeunes, en particulier par les arts.",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.identifier.uri": [
+                                        {
+                                            "value": "https://theses-dissertations.princeton.edu/handle/88435/dsp014b29b942p",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.language.iso": [
+                                        {
+                                            "value": "en",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.title": [
+                                        {
+                                            "value": "Towards Reckoning with the Sahara: Memory Politics of French Nuclear Testing in Mā’ohi Nui (French Polynesia)",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.type": [
+                                        {
+                                            "value": "Princeton University Senior Theses",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.entity.type": [
+                                        {
+                                            "value": "Publication",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.workflow.startDateTime": [
+                                        {
+                                            "value": "2025-04-29T15:08:54.744Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.certificate": [
+                                        {
+                                            "value": "History and the Practice of Diplomacy",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.contributor.authorid": [
+                                        {
+                                            "value": "920228370",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.date.classyear": [
+                                        {
+                                            "value": "2025",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.department": [
+                                        {
+                                            "value": "French and Italian",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ]
+                                },
+                                "inArchive": true,
+                                "discoverable": true,
+                                "withdrawn": false,
+                                "lastModified": "2025-07-24T16:01:10.272+00:00",
+                                "entityType": "Publication",
+                                "type": "item",
+                                "_links": {
+                                    "accessStatus": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/accessStatus"
+                                    },
+                                    "bundles": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/bundles"
+                                    },
+                                    "identifiers": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/identifiers"
+                                    },
+                                    "mappedCollections": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/mappedCollections"
+                                    },
+                                    "owningCollection": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/owningCollection"
+                                    },
+                                    "relationships": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/relationships"
+                                    },
+                                    "version": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/version"
+                                    },
+                                    "templateItemOf": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/templateItemOf"
+                                    },
+                                    "thumbnail": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b/thumbnail"
+                                    },
+                                    "self": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/8a6ffbe3-1ed2-4c09-89af-9ba76b76876b"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "hitHighlights": null,
+                        "type": "discover",
+                        "_links": {
+                            "indexableObject": {
+                                "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c"
+                            }
+                        },
+                        "_embedded": {
+                            "indexableObject": {
+                                "id": "c15171ba-b630-4eea-acf4-15946fc9451c",
+                                "uuid": "c15171ba-b630-4eea-acf4-15946fc9451c",
+                                "name": "“Ero forestiero e mi avete ospitato”: Humanitarian Corridors and the Role of Christian Organizations in Italy’s Refugee Reception",
+                                "handle": "88435/dsp010k225f482",
+                                "metadata": {
+                                    "dc.contributor.advisor": [
+                                        {
+                                            "value": "Marchesi, Simone",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        },
+                                        {
+                                            "value": "Sharkey, Alyssa",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 1
+                                        }
+                                    ],
+                                    "dc.contributor.author": [
+                                        {
+                                            "value": "Slagle, Mackenzie E.",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.accessioned": [
+                                        {
+                                            "value": "2025-07-24T14:41:27Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.available": [
+                                        {
+                                            "value": "2025-07-24T14:41:27Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.issued": [
+                                        {
+                                            "value": "2025-04-21",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.identifier.uri": [
+                                        {
+                                            "value": "https://theses-dissertations.princeton.edu/handle/88435/dsp010k225f482",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.language.iso": [
+                                        {
+                                            "value": "en_US",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.title": [
+                                        {
+                                            "value": "“Ero forestiero e mi avete ospitato”: Humanitarian Corridors and the Role of Christian Organizations in Italy’s Refugee Reception",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.type": [
+                                        {
+                                            "value": "Princeton University Senior Theses",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.entity.type": [
+                                        {
+                                            "value": "Publication",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.workflow.startDateTime": [
+                                        {
+                                            "value": "2025-04-21T19:20:29.731Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.contributor.authorid": [
+                                        {
+                                            "value": "920252873",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.date.classyear": [
+                                        {
+                                            "value": "2025",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.department": [
+                                        {
+                                            "value": "French and Italian",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ]
+                                },
+                                "inArchive": true,
+                                "discoverable": true,
+                                "withdrawn": false,
+                                "lastModified": "2025-07-24T16:01:36.607+00:00",
+                                "entityType": "Publication",
+                                "type": "item",
+                                "_links": {
+                                    "accessStatus": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/accessStatus"
+                                    },
+                                    "bundles": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/bundles"
+                                    },
+                                    "identifiers": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/identifiers"
+                                    },
+                                    "mappedCollections": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/mappedCollections"
+                                    },
+                                    "owningCollection": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/owningCollection"
+                                    },
+                                    "relationships": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/relationships"
+                                    },
+                                    "version": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/version"
+                                    },
+                                    "templateItemOf": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/templateItemOf"
+                                    },
+                                    "thumbnail": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c/thumbnail"
+                                    },
+                                    "self": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/c15171ba-b630-4eea-acf4-15946fc9451c"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    {
+                        "hitHighlights": null,
+                        "type": "discover",
+                        "_links": {
+                            "indexableObject": {
+                                "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a"
+                            }
+                        },
+                        "_embedded": {
+                            "indexableObject": {
+                                "id": "def4a98f-ce7f-482d-bfd6-34db4baf902a",
+                                "uuid": "def4a98f-ce7f-482d-bfd6-34db4baf902a",
+                                "name": "I AM YOU, YOU ARE ME: Familiar Foreignness in Contemporary Multilingual Writing",
+                                "handle": "88435/dsp01vt150n698",
+                                "metadata": {
+                                    "dc.contributor.advisor": [
+                                        {
+                                            "value": "Bellos, David",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        },
+                                        {
+                                            "value": "Wampole, Christy",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 1
+                                        }
+                                    ],
+                                    "dc.contributor.author": [
+                                        {
+                                            "value": "Yang, Audrey",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.accessioned": [
+                                        {
+                                            "value": "2025-07-24T14:42:26Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.available": [
+                                        {
+                                            "value": "2025-07-24T14:42:26Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.date.issued": [
+                                        {
+                                            "value": "2025-04-18",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.identifier.uri": [
+                                        {
+                                            "value": "https://theses-dissertations.princeton.edu/handle/88435/dsp01vt150n698",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.language.iso": [
+                                        {
+                                            "value": "en_US",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.title": [
+                                        {
+                                            "value": "I AM YOU, YOU ARE ME: Familiar Foreignness in Contemporary Multilingual Writing",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dc.type": [
+                                        {
+                                            "value": "Princeton University Senior Theses",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.entity.type": [
+                                        {
+                                            "value": "Publication",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "dspace.workflow.startDateTime": [
+                                        {
+                                            "value": "2025-04-18T17:00:15.979Z",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.contributor.authorid": [
+                                        {
+                                            "value": "920231753",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.date.classyear": [
+                                        {
+                                            "value": "2025",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ],
+                                    "pu.department": [
+                                        {
+                                            "value": "French and Italian",
+                                            "language": null,
+                                            "authority": null,
+                                            "confidence": -1,
+                                            "place": 0
+                                        }
+                                    ]
+                                },
+                                "inArchive": true,
+                                "discoverable": true,
+                                "withdrawn": false,
+                                "lastModified": "2025-07-24T16:01:49.522+00:00",
+                                "entityType": "Publication",
+                                "type": "item",
+                                "_links": {
+                                    "accessStatus": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/accessStatus"
+                                    },
+                                    "bundles": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/bundles"
+                                    },
+                                    "identifiers": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/identifiers"
+                                    },
+                                    "mappedCollections": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/mappedCollections"
+                                    },
+                                    "owningCollection": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/owningCollection"
+                                    },
+                                    "relationships": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/relationships"
+                                    },
+                                    "version": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/version"
+                                    },
+                                    "templateItemOf": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/templateItemOf"
+                                    },
+                                    "thumbnail": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a/thumbnail"
+                                    },
+                                    "self": {
+                                        "href": "https://theses-dissertations.princeton.edu/server/api/core/items/def4a98f-ce7f-482d-bfd6-34db4baf902a"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ]
+            },
+            "page": {
+                "number": 0,
+                "size": 20,
+                "totalPages": 1,
+                "totalElements": 4
+            },
+            "_links": {
+                "self": {
+                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
+                }
+            }
+        },
+        "facets": [
+            {
+                "name": "author",
+                "facetType": "text",
+                "facetLimit": 5,
+                "minValue": "Aaronson, Braiden D.",
+                "maxValue": "Zucker, Andrew",
+                "page": {
+                    "number": 0,
+                    "size": 5
+                },
+                "_links": {
+                    "self": {
+                        "href": "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+                    }
+                },
+                "_embedded": {
+                    "values": [
+                        {
+                            "label": "Singer, Sidney Lynn",
+                            "count": 1,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Singer,%20Sidney%20Lynn,equals"
+                                }
+                            }
+                        },
+                        {
+                            "label": "Slagle, Mackenzie E.",
+                            "count": 1,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Slagle,%20Mackenzie%20E.,equals"
+                                }
+                            }
+                        },
+                        {
+                            "label": "Smart, Josie",
+                            "count": 1,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Smart,%20Josie,equals"
+                                }
+                            }
+                        },
+                        {
+                            "label": "Yang, Audrey",
+                            "count": 1,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.author=Yang,%20Audrey,equals"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "subject",
+                "facetType": "hierarchical",
+                "facetLimit": 5,
+                "_links": {
+                    "self": {
+                        "href": "https://theses-dissertations.princeton.edu/server/api/discover/facets/subject?scope=d98b1985-fc36-47ce-b11a-62386b505e85"
+                    }
+                },
+                "_embedded": {
+                    "values": []
+                }
+            },
+            {
+                "name": "dateIssued",
+                "facetType": "date",
+                "facetLimit": 5,
+                "minValue": "2025",
+                "maxValue": "2025-12-30",
+                "page": {
+                    "number": 0,
+                    "size": 5
+                },
+                "_links": {
+                    "self": {
+                        "href": "https://theses-dissertations.princeton.edu/server/api/discover/facets/dateIssued?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+                    }
+                },
+                "_embedded": {
+                    "values": [
+                        {
+                            "label": "2025",
+                            "count": 4,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.dateIssued=2025,equals"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "has_content_in_original_bundle",
+                "facetType": "standard",
+                "facetLimit": 2,
+                "page": {
+                    "number": 0,
+                    "size": 2
+                },
+                "_links": {
+                    "self": {
+                        "href": "https://theses-dissertations.princeton.edu/server/api/discover/facets/has_content_in_original_bundle?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=2"
+                    }
+                },
+                "_embedded": {
+                    "values": [
+                        {
+                            "label": "true",
+                            "count": 4,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.has_content_in_original_bundle=true,equals"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "entityType",
+                "facetType": "text",
+                "facetLimit": 5,
+                "page": {
+                    "number": 0,
+                    "size": 5
+                },
+                "_links": {
+                    "self": {
+                        "href": "https://theses-dissertations.princeton.edu/server/api/discover/facets/entityType?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=5"
+                    }
+                },
+                "_embedded": {
+                    "values": [
+                        {
+                            "label": "Publication",
+                            "count": 4,
+                            "authorityKey": null,
+                            "type": "discover",
+                            "_links": {
+                                "search": {
+                                    "href": "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&f.entityType=Publication,equals"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
     }
-  ]
-  
+}
