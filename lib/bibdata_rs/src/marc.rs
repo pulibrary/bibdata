@@ -150,8 +150,6 @@ pub fn private_items(record_string: String, holding_id: String) -> Result<bool, 
 
 pub fn notes_cjk(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
-    // These notes are supposedly in Latin script, but still may contain some
-    // CJK characters
     Ok(cjk::notes_cjk(&record).collect())
 }
 

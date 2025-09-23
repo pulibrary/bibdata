@@ -7,6 +7,8 @@ use marctk::Record;
 use unicode_blocks::is_cjk;
 
 pub fn notes_cjk(record: &Record) -> impl Iterator<Item = String> + use<'_> {
+    // These notes are supposedly in Latin script, but still may contain some
+    // CJK characters
     let latin_script_note_fields = record.extract_fields(500..=599);
     let parallel_script_fields =
         record
