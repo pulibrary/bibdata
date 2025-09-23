@@ -3,7 +3,6 @@ use super::ephemera_folder::format::Format;
 use super::ephemera_folder::origin_place::OriginPlace;
 use super::ephemera_folder::VecSafe;
 use super::ephemera_folder::{EphemeraFolder, Thumbnail};
-use crate::ephemera;
 use crate::ephemera::ephemera_folder::language::Language;
 use crate::ephemera::ephemera_folder::{self};
 use crate::ephemera_folder::subject::Subject;
