@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'CJK indexing' do
+describe 'CJK indexing', :indexing, :rust do
   describe 'cjk_subject' do
     it 'includes subjects in Katakana' do
       record = MARC::Record.new_from_hash(
