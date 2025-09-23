@@ -484,7 +484,8 @@ describe 'From princeton_marc.rb' do
       @s650_sk = { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Siku subject' }, { 'x' => 'Siku hierarchy' }, { '2' => 'sk' }] } }
       @s650_homoit = { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Homosaurus subject' }, { '2' => 'homoit' }] } }
       @s650_exclude = { '650' => { 'ind1' => '', 'ind2' => '7', 'subfields' => [{ 'a' => 'Bad subject' }, { '2' => 'bad' }] } }
-      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk, @s650_homoit])
+      @s650_arabic = { '880' => { 'ind1' => '', 'ind2' => '0', 'subfields' => [{ '6' => '650-01' }, { 'a' => 'سوزوكي' }] } }
+      @sample_marc = MARC::Record.new_from_hash('fields' => [@s600, @s630, @s650_sk, @s650_homoit, @s650_arabic])
       @subjects = process_subject_topic_facet(@sample_marc)
     end
 
@@ -510,6 +511,10 @@ describe 'From princeton_marc.rb' do
       expect(@subjects).to include('Join Title 2015')
       expect(@subjects).to include('Fiction')
       expect(@subjects).to include("don't ignore TITLE")
+    end
+
+    it 'includes parallel Arabic subjects' do
+      expect(@subjects).to include('سوزوكي')
     end
   end
 
