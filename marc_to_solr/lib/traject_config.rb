@@ -1034,7 +1034,9 @@ to_field 'rbgenr_genre_facet' do |record, accumulator|
   accumulator.replace(genres)
 end
 
-to_field 'cjk_subject', extract_marc('600|*0|abcdfklmnopqrtvxyz:610|*0|abfklmnoprstvxyz:611|*0|abcdefgklnpqstvxyz:630|*0|adfgklmnoprstvxyz:650|*0|abcvxyz:650|*7|abcvxyz:651|*0|avxyz', alternate_script: :only)
+to_field 'cjk_subject' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.subjects_cjk(context.clipboard[:marc_breaker]))
+end
 
 # used for split subject topic facet
 to_field 'subject_topic_facet' do |record, accumulator|

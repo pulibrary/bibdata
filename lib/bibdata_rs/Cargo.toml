@@ -27,6 +27,7 @@ rb-sys = "0.9.115"
 marctk = {version = "0.6.0", features = ["marc21_bibliographic"] }
 library_stdnums = "0.1.0"
 indexmap = "2"
+unicode-blocks = "0.1.9"
 
 [dev-dependencies]
 criterion = "0.6.0"

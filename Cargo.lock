@@ -173,6 +173,7 @@ dependencies = [
  "serde-xml-rs",
  "serde_json",
  "tokio",
+ "unicode-blocks",
 ]
 
 [[package]]
@@ -2576,6 +2577,12 @@ checksum = "96bd2f2237fe450fcd0a1d2f5f4e91711124f7857ba2e964247776ebeeb7b0c4"
 dependencies = [
  "unic-common",
 ]
+
+[[package]]
+name = "unicode-blocks"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6b12e05d9e06373163a9bb6bb8c263c261b396643a99445fe6b9811fd376581b"
 
 [[package]]
 name = "unicode-ident"
