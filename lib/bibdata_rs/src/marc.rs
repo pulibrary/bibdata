@@ -4,6 +4,7 @@ use marctk::Record;
 
 mod string_normalize;
 
+pub mod cjk;
 pub mod control_field;
 pub mod fixed_field;
 pub mod genre;
@@ -16,7 +17,6 @@ pub mod scsb;
 pub mod variable_length_field;
 
 pub use string_normalize::trim_punctuation;
-use unicode_blocks::is_cjk;
 
 pub fn holding_id(
     field_string: String,
@@ -148,92 +148,14 @@ pub fn private_items(record_string: String, holding_id: String) -> Result<bool, 
     }))
 }
 
+pub fn notes_cjk(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(cjk::notes_cjk(&record).collect())
+}
+
 pub fn subjects_cjk(record_string: String) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
-    Ok(extract_parallel_values(
-        &record,
-        "600",
-        "*",
-        "0",
-        &[
-            "a", "b", "c", "d", "f", "k", "l", "m", "n", "o", "p", "q", "r", "t", "v", "x", "y",
-            "z",
-        ],
-    )
-    .chain(extract_parallel_values(
-        &record,
-        "610",
-        "*",
-        "0",
-        &[
-            "a", "b", "f", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y", "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        &record,
-        "611",
-        "*",
-        "0",
-        &[
-            "a", "b", "c", "d", "e", "f", "g", "k", "l", "n", "p", "q", "s", "t", "v", "x", "y",
-            "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        &record,
-        "630",
-        "*",
-        "0",
-        &[
-            "a", "d", "f", "g", "k", "l", "m", "n", "o", "p", "r", "s", "t", "v", "x", "y", "z",
-        ],
-    ))
-    .chain(extract_parallel_values(
-        &record,
-        "650",
-        "*",
-        "0",
-        &["a", "b", "c", "v", "x", "y", "z"],
-    ))
-    .chain(extract_parallel_values(
-        &record,
-        "650",
-        "*",
-        "7",
-        &["a", "b", "c", "v", "x", "y", "z"],
-    ))
-    .chain(extract_parallel_values(
-        &record,
-        "651",
-        "*",
-        "0",
-        &["a", "v", "x", "y", "z"],
-    ))
-    .filter(|value| value.chars().any(is_cjk))
-    .collect())
-}
-//adfgklmnoprstvxyz
-
-fn extract_parallel_values<'record>(
-    record: &'record Record,
-    tag: &str,
-    ind1: &'record str,
-    ind2: &'record str,
-    subfields: &'record [&str],
-) -> impl Iterator<Item = String> + 'record {
-    record
-        .get_parallel_fields(tag)
-        .into_iter()
-        .filter(move |field| ind1 == "*" || ind1 == field.ind1())
-        .filter(move |field| ind2 == "*" || ind2 == field.ind2())
-        .map(|field| {
-            field
-                .subfields()
-                .iter()
-                .filter(|subfield| subfields.contains(&subfield.code()))
-                .map(|subfield| subfield.content())
-                .join(" ")
-        })
+    Ok(cjk::subjects_cjk(&record).collect())
 }
 
 pub fn normalize_oclc_number(string: String) -> String {
