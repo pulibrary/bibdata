@@ -792,8 +792,8 @@ describe 'From traject_config.rb', indexing: true do
       end
 
       it 'cjk_notes contains 880 fields associated with 5xx fields' do
-        expect(@record_cjk['cjk_notes'][0]).to include('乾隆癸亥李大倫"序"言刻書事.')
-        expect(@record_cjk['cjk_notes'][0]).not_to include('子部')
+        expect(@record_cjk['cjk_notes'][1]).to include('乾隆癸亥李大倫"序"言刻書事.')
+        expect(@record_cjk['cjk_notes'][1]).not_to include('子部')
       end
     end
 

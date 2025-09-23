@@ -104,22 +104,8 @@ end
 
 # 880 field is "vernacular" and may link to a translation in a 5xx
 # Only add 880 alt script values associated with a 5xx field
-to_field 'cjk_notes' do |record, accumulator|
-  fields = record.fields.select { |f| f.tag == '880' }
-  linked_fields = fields.select do |f|
-    f.subfields.find { |sf| sf.code == '6' && sf.value.start_with?('5') }.present?
-  end
-  values = linked_fields.map do |field|
-    subfield_values = field.subfields
-                           .reject { |sf| sf.code == '6' }
-                           .collect(&:value)
-
-    next if subfield_values.empty?
-
-    subfield_values.join(' ')
-  end
-
-  accumulator << values.compact.join(' ')
+to_field 'cjk_notes' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.notes_cjk(context.clipboard[:marc_breaker]))
 end
 
 to_field 'figgy_1display' do |record, accumulator|
