@@ -3072,12 +3072,7 @@
             "order": 0
         },
         "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PK",
-            "PM"
+            "PT"
         ]
     },
     {
@@ -3389,12 +3384,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PK",
-            "PM"
+            "PT"
         ]
     },
     {
@@ -3579,12 +3569,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PK",
-            "PM"
+            "PT"
         ]
     },
     {
@@ -3628,12 +3613,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PK",
-            "PM"
+            "PT"
         ]
     },
     {
@@ -3675,12 +3655,7 @@
         },
         "holding_library": null,
         "delivery_locations": [
-            "PW",
-            "PL",
-            "PT",
-            "PF",
-            "PK",
-            "PM"
+            "PT"
         ]
     },
     {
