@@ -17,14 +17,10 @@
 -->
 
 <config>
-  <luceneMatchVersion>8.4.1</luceneMatchVersion>
-
-  <lib dir="${solr.install.dir}/contrib/analysis-extras/lib" />
-  <lib dir="${solr.install.dir}/contrib/analysis-extras/lucene-libs" />
-  <lib dir="conf" />
+  <luceneMatchVersion>9.11.1</luceneMatchVersion>
 
   <directoryFactory name="DirectoryFactory"
-                    class="${solr.directoryFactory:solr.StandardDirectoryFactory}">
+    class="${solr.directoryFactory:solr.StandardDirectoryFactory}">
   </directoryFactory>
 
   <updateHandler class="solr.DirectUpdateHandler2">
@@ -337,7 +333,8 @@
         electronic_portfolio_s,
         cataloged_tdt,
         contained_in_s,
-        call_number_display
+        call_number_display,
+        thumbnail_display
       </str>
 
       <str name="facet">true</str>
@@ -364,13 +361,6 @@
        queries across multiple shards
     -->
   <requestHandler name="search" class="solr.SearchHandler" default="true" initParams="searchParams"></requestHandler>
-
-  <requestHandler name="engineering_search" class="solr.SearchHandler" initParams="searchParams">
-    <!-- Appends means we add this parameter always but the query sent by the client can also add more of them. -->
-    <lst name="appends">
-      <str name="boost">if(termfreq(text,'engineering'),100,0)</str>
-    </lst>
-  </requestHandler>
 
   <requestHandler name="/advanced" class="solr.SearchHandler" initParams="searchParams">
     <!-- a lucene request handler for using the JSON Query DSL, for advanced search
