@@ -34,7 +34,7 @@ Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pull
 
 The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3 and maxShardsPerNode of 2. The solr machines (lib-solr-prod7, lib-solr-prod8, and lib-solr-prod9) are behind the load balancer and applications should access them via [access solr machines](http://lib-solr8-prod.princeton.edu:8983).
 
-The collections `catalog-alma-production1` and `catalog-alma-production2` are swapped as needed and should be accessed via the aliases `catalog-alma-production` and `catalog-alma-production-rebuild`
+The collections `catalog-production1` and `catalog-production2` are swapped as needed and should be accessed via the aliases `catalog-production` and `catalog-production-rebuild`
 
 The staging catalog uses [catalog-staging](http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging) and also has a rebuild index, `catalog-staging-rebuild`.
 
@@ -52,12 +52,12 @@ Before you begin indexing, [check the solr cloud health](#check-solr-cloud-healt
 
 ### Clear the rebuild collection
 
-ssh to an orangelight webserver and verify that the index in use is `catalog-alma-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
+ssh to an orangelight webserver and verify that the index in use is `catalog-production` by checking `cat /home/deploy/app_configs/orangelight | grep SOLR`
 webserver. You can find the webserver machine names in the [capistrano environments](https://github.com/pulibrary/orangelight/tree/main/config/deploy).
 
 Go to the solr admin UI (see above).
 
-- Select the `catalog-alma-production-rebuild` collection from the dropdown
+- Select the `catalog-production-rebuild` collection from the dropdown
 - Select the `documents` menu item
 - Select 'xml' from the 'Document Type' dropdown
 - Enter `<delete><query>*:*</query></delete>` in the 'Document(s)' form box
@@ -73,7 +73,7 @@ Go to the solr admin UI (see above).
     ```
     tmux new -s full-index
     $ cd /opt/bibdata/current
-    $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:full
+    $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:full
     CTRL+b d (to detach from tmux)
     ```
 1. Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index:
@@ -102,7 +102,7 @@ Note that this process takes 7 hours.
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:full`
+`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:full`
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
@@ -129,7 +129,7 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 ```
 $ tmux attach-session -t full-index
 $ cd /opt/bibdata/current
-$ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
+$ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
 CTRL+b d (to detach from tmux)
 ```
 
@@ -144,7 +144,7 @@ To turn off sneakers workers:
 To index the coins:
 
 - as deploy user, in `/opt/bibdata/current`
-- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake numismatics:index:full`
+- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake numismatics:index:full`
 - Runs in background jobs via Sidekiq. Takes 30 min to an hour.
 
 ### Logs
@@ -160,7 +160,7 @@ SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/bl
 ```
 $ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake liberate:incremental
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:incremental
 ```
 
 ### Index the latest SCSB changes
@@ -171,13 +171,13 @@ SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/bl
 ```
 $ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild bundle exec rake scsb:latest
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:latest
 ```
 2. The following rake task will index the 'Updated Partner ReCAP Records' since the SET_DATE until now. The SET_DATE below is an example date. 
 ```
 $ ssh deploy@bibdata-worker-prod1   
 $ cd /opt/bibdata/current   
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
+$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
 You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
@@ -194,7 +194,7 @@ $ ansible orangelight_qa -u pulsys -m shell -a "sudo service orangelight-sneaker
 `$ ssh deploy@catalog-qa1`
 
 Use your preffered editor -nano or vi- and manually edit `app_configs/orangelight`  
-set the SOLR_URL to `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild` and save
+set the SOLR_URL to `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild` and save
 ```
 $ exit
 $ ssh pulsys@catalog-qa1
@@ -211,7 +211,7 @@ $ sudo service nginx restart
 
 - Set up an ssh tunnel to the solr index (you can use the pul_solr cap task given
 above to do this)
-- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-alma-production-rebuild bin/rails s`
+- From your local orangelight checkout, run rails and point it to the solr url via your tunnel: `SOLR_URL=http://localhost:[port]/solr/catalog-production-rebuild bin/rails s`
 - Go to localhost:3000  
 - Do a keyword empty search to get the total number of records are the index
 - In advanced search → holding location, search for scsbcul, scsbnypl and scsbhl to see results only from SCSB indexed records.
@@ -244,9 +244,9 @@ CTRL+b d (to detach from tmux)
 Then swap the rebuild collection to the production alias.
 
 - Run the cap task on pul_solr to swap the aliases
-- Make sure you use the right values for PRODUCTION and REBUILD. Instructions for determining the correct values are [in the cap task](https://github.com/pulibrary/pul_solr/blob/main/config/deploy.rb#L99-L101).  For example if you just built the full index on catalog-alma-production2 and are swapping it into production do:
+- Make sure you use the right values for PRODUCTION and REBUILD. Instructions for determining the correct values are [in the cap task](https://github.com/pulibrary/pul_solr/blob/main/config/deploy.rb#L99-L101).  For example if you just built the full index on catalog-production2 and are swapping it into production do:
 ```
-[PRODUCTION_ALIAS=catalog-alma-production REBUILD_ALIAS=catalog-alma-production-rebuild] PRODUCTION=[catalog-alma-production2] REBUILD=[catalog-alma-production3] bundle exec cap production alias:swap
+[PRODUCTION_ALIAS=catalog-production REBUILD_ALIAS=catalog-production-rebuild] PRODUCTION=[catalog-production2] REBUILD=[catalog-production3] bundle exec cap production alias:swap
 ```
 
 Then turn sneakers workers back on:
@@ -268,9 +268,9 @@ Then expire the rails cache to get the updated values on the front page of the c
     `ssh deploy@bibdata-worker-prod1`    
     `cd /opt/bibdata/current/`    
     `bundle exec rails c`    
-* Set the solr url connection to be the catalog-alma-production-rebuild collection:
+* Set the solr url connection to be the catalog-production-rebuild collection:
   
-    `solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-alma-production-rebuild"`   
+    `solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild"`   
     `solr = RSolr.connect(url: solr_url)`
 
 * Delete records from Solr, excluding SCSB and Thesis records:
