@@ -249,7 +249,7 @@ mod tests {
             metadata.ark_hash().unwrap(),
             ElectronicAccess {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
-                link_text: "Theses Central".to_owned(),
+                link_text: "Thesis Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None
@@ -278,7 +278,7 @@ mod tests {
             metadata.ark_hash().unwrap(),
             ElectronicAccess {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
-                link_text: "Theses Central".to_owned(),
+                link_text: "Thesis Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
                 iiif_manifest_paths: None,
                 digital_content: None

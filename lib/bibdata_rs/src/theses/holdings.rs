@@ -57,7 +57,7 @@ pub fn dataspace_url_with_metadata(
     let first_ark = identifier_uri?.first()?;
     Some(ElectronicAccess {
         url: first_ark.to_owned(),
-        link_text: "Theses Central".to_owned(),
+        link_text: "Thesis Central".to_owned(),
         link_description: match on_site_only(
             location,
             access_rights,

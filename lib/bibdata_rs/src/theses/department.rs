@@ -111,10 +111,10 @@ pub fn map_department(original: &str) -> Option<String> {
         ),
         "Statistics" => Some("Princeton University. Department of Statistics".to_owned()),
         "School of Public and International Affairs" => {
-            Some("School of Public and International Affairs".to_owned())
+            Some("Princeton University. School of Public and International Affairs".to_owned())
         },
 
-        "Public & International Affairs" => Some("School of Public and International Affairs".to_owned()),
+        "Public & International Affairs" => Some("Princeton University. School of Public and International Affairs".to_owned()),
         "Art & Archaeology" => Some("Princeton University. Department of Art and Archaeology".to_owned()),
         "Civil & Environmental Engr" => Some("Princeton University. Department of Civil and Environmental Engineering".to_owned()),
         "Mechanical & Aerospace Engr" => Some("Princeton University. Department of Mechanical and Aerospace Engineering".to_owned()),
