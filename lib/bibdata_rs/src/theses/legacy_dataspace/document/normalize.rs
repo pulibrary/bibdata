@@ -3,7 +3,7 @@
 use crate::{
     solr::{AccessFacet, ElectronicAccess, LibraryFacet},
     theses::{
-        dataspace::document::DataspaceDocument,
+        legacy_dataspace::document::DataspaceDocument,
         department,
         embargo::{self, Embargo},
         holdings::{self, ThesisAvailability},
@@ -45,26 +45,26 @@ impl DataspaceDocument {
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|dept| department::map_department(&dept)),
+                .filter_map(|dept| department::map_department(dept)),
         );
         authors.extend(
             self.certificate
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|program| program::map_program(&program)),
+                .filter_map(|program| program::map_program(program)),
         );
         authors
     }
 
     pub fn ark_hash(&self) -> Option<ElectronicAccess> {
         holdings::dataspace_url_with_metadata(
-            self.identifier_uri.clone().as_ref(),
+            self.identifier_uri.as_ref(),
             self.location.is_some(),
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => Some(class_year)?,
+                Some(class_year) => &class_year,
                 None => &[],
             },
             self.embargo(),
@@ -90,7 +90,7 @@ impl DataspaceDocument {
     }
 
     pub fn call_number(&self) -> String {
-        holdings::call_number(self.identifier_other.clone().as_ref())
+        holdings::call_number(self.identifier_other.as_ref())
     }
 
     pub fn class_year(&self) -> Option<i16> {
@@ -130,7 +130,7 @@ impl DataspaceDocument {
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => class_year,
+                Some(class_year) => &class_year,
                 None => &[],
             },
             self.embargo(),
@@ -220,12 +220,6 @@ fn normalize_latex(original: &str) -> String {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::theses::dataspace::document::Metadatum;
-
-    fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
-        vec![Metadatum { value: Some(value.to_string()) }]
-    }
-
     #[test]
     fn it_normalizes_latex() {
         assert_eq!(
@@ -238,17 +232,17 @@ mod tests {
     fn ark_hash_gets_the_ark_with_fulltext_link_display_when_restrictions() {
         let metadata = DataspaceDocument::builder()
             .with_id("dsp01b2773v788")
-            .with_description_abstract(metadatum_vec_from_string("Summary"))
-            .with_contributor(metadatum_vec_from_string("Wolff, Tamsen"))
-            .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
-            .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
-            .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
-            .with_identifier_uri(metadatum_vec_from_string("http://arks.princeton.edu/ark:/88435/dsp01b2773v788"))
-            .with_format_extent(metadatum_vec_from_string("102 pages"))
-            .with_language_iso(metadatum_vec_from_string("en_US"))
-            .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))
+            .with_description_abstract("Summary")
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
+            .with_format_extent("102 pages")
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(
@@ -257,7 +251,8 @@ mod tests {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
                 link_text: "Thesis Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
-                iiif_manifest_paths: None
+                iiif_manifest_paths: None,
+                digital_content: None
             }
         );
     }
@@ -266,17 +261,17 @@ mod tests {
     fn ark_hash_gets_the_ark_with_fulltext_link_display_when_no_restrictions() {
         let metadata = DataspaceDocument::builder()
             .with_id("dsp01b2773v788")
-            .with_description_abstract(metadatum_vec_from_string("Summary"))
-            .with_contributor(metadatum_vec_from_string("Wolff, Tamsen"))
-            .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
-            .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
-            .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
-            .with_identifier_uri(metadatum_vec_from_string("http://arks.princeton.edu/ark:/88435/dsp01b2773v788"))
-            .with_format_extent(metadatum_vec_from_string("102 pages"))
-            .with_language_iso(metadatum_vec_from_string("en_US"))
-            .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))
+            .with_description_abstract("Summary")
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_identifier_uri("http://arks.princeton.edu/ark:/88435/dsp01b2773v788")
+            .with_format_extent("102 pages")
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(
@@ -285,7 +280,8 @@ mod tests {
                 url: "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".to_owned(),
                 link_text: "Thesis Central".to_owned(),
                 link_description: Some("Full text".to_owned()),
-                iiif_manifest_paths: None
+                iiif_manifest_paths: None,
+                digital_content: None
             }
         );
     }
@@ -294,16 +290,16 @@ mod tests {
     fn ark_hash_returns_none_when_no_url() {
         let metadata = DataspaceDocument::builder()
             .with_id("dsp01b2773v788")
-            .with_description_abstract(metadatum_vec_from_string("Summary"))
-            .with_contributor(metadatum_vec_from_string("Wolff, Tamsen"))
-            .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
-            .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
-            .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
-            .with_format_extent(metadatum_vec_from_string("102 pages"))
-            .with_language_iso(metadatum_vec_from_string("en_US"))
-            .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))
+            .with_description_abstract("Summary")
+            .with_contributor("Wolff, Tamsen".to_string())
+            .with_contributor_advisor("Sandberg, Robert".to_string())
+            .with_contributor_author("Clark, Hillary".to_string())
+            .with_date_classyear("2014")
+            .with_department("Princeton University. Department of English")
+            .with_department("Princeton University. Program in Theater")
+            .with_format_extent("102 pages".to_string())
+            .with_language_iso("en_US")
+            .with_title("Dysfunction: A Play in One Act")
             .build();
 
         assert_eq!(metadata.ark_hash(), None);
@@ -313,7 +309,7 @@ mod tests {
     fn on_site_only() {
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_terms(metadatum_vec_from_string("2100-01-01"))
+                .with_embargo_terms("2100-01-01")
                 .build()
                 .on_site_only(),
             ThesisAvailability::OnSiteOnly,
@@ -321,7 +317,7 @@ mod tests {
         );
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_lift(metadatum_vec_from_string("2100-01-01"))
+                .with_embargo_lift("2100-01-01")
                 .build()
                 .on_site_only(),
             ThesisAvailability::OnSiteOnly,
@@ -329,9 +325,9 @@ mod tests {
         );
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_lift(metadatum_vec_from_string("2000-01-01"))
-                .with_mudd_walkin(metadatum_vec_from_string("yes"))
-                .with_date_classyear(metadatum_vec_from_string("2012-01-01T00:00:00Z"))
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
+                .with_date_classyear("2012-01-01T00:00:00Z")
                 .build()
                 .on_site_only(),
             ThesisAvailability::OnSiteOnly,
@@ -340,7 +336,7 @@ mod tests {
 
         assert_eq!(
             DataspaceDocument::builder()
-                .with_location(metadatum_vec_from_string("physical location"))
+                .with_location("physical location")
                 .build()
                 .on_site_only(),
             ThesisAvailability::AvailableOffSite,
@@ -348,7 +344,7 @@ mod tests {
         );
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_lift(metadatum_vec_from_string("2000-01-01"))
+                .with_embargo_lift("2000-01-01")
                 .build()
                 .on_site_only(),
             ThesisAvailability::AvailableOffSite,
@@ -356,8 +352,8 @@ mod tests {
         );
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_lift(metadatum_vec_from_string("2000-01-01"))
-                .with_mudd_walkin(metadatum_vec_from_string("yes"))
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
                 .build()
                 .on_site_only(),
             ThesisAvailability::AvailableOffSite,
@@ -365,9 +361,9 @@ mod tests {
         );
         assert_eq!(
             DataspaceDocument::builder()
-                .with_embargo_lift(metadatum_vec_from_string("2000-01-01"))
-                .with_mudd_walkin(metadatum_vec_from_string("yes"))
-                .with_date_classyear(metadatum_vec_from_string("2013-01-01T00:00:00Z"))
+                .with_embargo_lift("2000-01-01")
+                .with_mudd_walkin("yes")
+                .with_date_classyear("2013-01-01T00:00:00Z")
                 .build()
                 .on_site_only(),
             ThesisAvailability::AvailableOffSite,
@@ -390,7 +386,7 @@ mod tests {
         #[test]
         fn it_includes_author() {
             let document = DataspaceDocument::builder()
-                .with_contributor_author(metadatum_vec_from_string("Turing, Alan"))
+                .with_contributor_author("Turing, Alan")
                 .build();
             assert_eq!(document.all_authors(), vec!["Turing, Alan".to_owned()]);
         }
@@ -398,7 +394,7 @@ mod tests {
         #[test]
         fn it_includes_normalized_department() {
             let document = DataspaceDocument::builder()
-                .with_department(metadatum_vec_from_string("Astrophysical Sciences"))
+                .with_department("Astrophysical Sciences")
                 .build();
             assert_eq!(
                 document.all_authors(),
@@ -409,7 +405,7 @@ mod tests {
         #[test]
         fn it_includes_normalized_certificate() {
             let document = DataspaceDocument::builder()
-                .with_certificate(metadatum_vec_from_string("Hellenic Studies Program"))
+                .with_certificate("Hellenic Studies Program")
                 .build();
             assert_eq!(
                 document.all_authors(),

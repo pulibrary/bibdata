@@ -1,0 +1,3511 @@
+{
+  "id" : null,
+  "scope" : "ace6dfbf-4f73-4558-acd0-1c4e5fd94baa",
+  "query" : null,
+  "appliedFilters" : null,
+  "sort" : null,
+  "configuration" : null,
+  "type" : "discover",
+  "_links" : {
+    "self" : {
+      "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+    }
+  },
+  "_embedded" : {
+    "searchResult" : {
+      "_embedded" : {
+        "objects" : [ {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "701b400c-e232-46c9-a516-dece7dcd093b",
+              "uuid" : "701b400c-e232-46c9-a516-dece7dcd093b",
+              "name" : "Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion",
+              "handle" : "88435/dsp01s1784q17j",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Reichman, Nancy",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Brunnermeier, Anjali",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T13:51:05Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T13:51:05Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-08",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "The Renewable Energy Transition has propelled two diverging trends in the United States energy industry: a major uptake in power generation from renewable sources and a series of closures of nonrenewable facilities. I study the counteracting labor market implications of both developments between 2019 and 2023, locating all operating utility-scale solar and wind generators and all 842 power plant and generator retirements. These retirements have been criticized by politicians and interest groups who believe that decarbonization policies are devastating fossil fuel dependent communities. I collect annual employment and earnings data for 3,000+ counties and 680+ commuting zones to evaluate the magnitudes of labor market reactions to plant retirements, measure the economic impacts of wind and solar, and identify disproportionate reactions to plant closures in regions without renewables. Distinct from prior literature, I concentrate on a more recent time period and extend existing methodologies to isolate adverse consequences based on a lack of renewable energy adoption. Using autoregressive two-way fixed effects modeling of same year and next year outcomes, I find that plant retirements had a nonsignificant negative impact on employment but were evidently damaging toward earnings, specifically personal income and total wages in commuting zones. I also identify significant positive economic impacts of solar capacity that do outweigh the average losses from retired plant capacity. However, I establish that regions with zero renewable capacity were more harshly affected by plant retirements, experiencing 3.5 to 4.6 times larger reductions in total wages. These findings highlight several economic benefits of renewable technologies but also recognize disparate trends in labor market quality after power plant closures in nonrenewable reliant economies.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01s1784q17j",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Charging Ahead, Left Behind?\nBalancing Local Labor Market Trade-Offs of Recent U.S. Power Plant Retirements and Renewable Energy Expansion",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-08T21:25:13.547Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920279832",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                },
+                {
+                  "value": "NA",
+                  "language": null,
+                  "authority": null,
+                  "confidence": -1,
+                  ":place": 1
+                } ],
+                "dc.rights.accessRights": [ {
+                  "value" : "Walk-in Access...",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.certificate": [ {
+                  "value" : "Creative Writing Program",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                },
+                {
+                  "value" : "NA",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 1
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:00:25.705+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/701b400c-e232-46c9-a516-dece7dcd093b"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "740cae3c-e5ad-4762-9eb0-8036ef484be5",
+              "uuid" : "740cae3c-e5ad-4762-9eb0-8036ef484be5",
+              "name" : "Reforming the Reforms: Analyzing how Managerial Entrenchment Impacted Performance During the Implementation of Japanese Corporate Governance Reforms",
+              "handle" : "88435/dsp01hm50tw162",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Liu, Jin",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Barrett, John",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T14:16:53Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T14:16:53Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-09",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Following its meteoric economic rise after World War II, Japan was reaching the global economic prowess of the U.S. and Europe. But, over-optimistic speculation instigated an economic crash, plunging Japan into the “Lost Decade”. However, the ensuing economic stagnation persisted well into the 2020s. To combat the persistent economic issues, Shinzo Abe introduced the “Three Arrows” to revitalize the Japanese markets. The third \"arrow\" hoped to address the structural issues - cross-holdings, zombie firms, and short-termism - facing Japan via corporate governance reforms. The three key reforms promising to address these issues and facilitate long-term growth were the 2014 Stewardship Code (‘SWC’), the 2015 Corporate Governance Code (‘CGC’), and the 2019 Fair M&A Guidelines (‘FMG’).\nPrevious literature has commented on how cross-holding entrenchment protects managers from external investors, hindering firm performance and critical value-creating decisions. Using the degree of cross-holding as the method of understanding how firms of varying entrenchment levels reacted to the reforms, I implemented a firm-level panel data event study to analyze the subsequent results of each policy on Cash-to-Assets, Debt-to-Assets, Return on Assets, and Gross Margin.\nMy study finds that the Stewardship Code prompted a de-leveraging campaign and temporary cash utilization within low cross-holding firms, resulting in an improvement in Return on Assets. The Corporate Governance Code supported the trends prompted by the SWC and marginal improvement in Gross Margins. Finally, the Fair M&A Guidelines yielded insignificant results for the outcome variables. Based on these results, I suggest that Japanese policymakers should imitate the SWC for future revisions and reforms. The three suggestions are 1) incorporate some level of pressure or punitive measure 2) reduce cross-holding entrenchment, and 3) bolster shareholder participation. With these three recommendations, Japan may re-emerge in the global markets",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01hm50tw162",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Reforming the Reforms: Analyzing how Managerial Entrenchment Impacted Performance During the Implementation of Japanese Corporate Governance Reforms",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T00:01:57.125Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920278603",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:00:27.864+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/740cae3c-e5ad-4762-9eb0-8036ef484be5"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "1d8ac5b4-9b25-471a-bade-7c0123accc39",
+              "uuid" : "1d8ac5b4-9b25-471a-bade-7c0123accc39",
+              "name" : "Understanding the Market Segmentation and Price Discovery of Cross-Listed Chinese Stocks in New York and Hong Kong",
+              "handle" : "88435/dsp0173666793j",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Xiong, Wei",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Zhong, Oliver Y.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T15:09:51Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T15:09:51Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This study extends the literature on the price discovery process of cross-listed Chinese stocks by examining a novel dataset of 47 Chinese firms that were dual listed on stock exchanges in New York and Hong Kong at any point prior to the end of 2024. Unlike most previous research, this study focuses not solely on state-owned enterprises (SOEs) but rather incorporates data from over thirty private Chinese firms that listed on the Hong Kong Stock Exchange (HKEX) amid heightened U.S.-delisting risk around 2020. We take advantage of asynchronous trading hours between NY and HK to estimate lead-lag regressions of daily returns using ordinary least squares, fixed effects, and seemingly unrelated regression models. We find evidence that the NY and HK markets remain segmented and that the market where a firm trades more intensively tends to be more price informative, even if this market is not the firm’s home market.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp0173666793j",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Understanding the Market Segmentation and Price Discovery of Cross-Listed Chinese Stocks in New York and Hong Kong",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T11:33:29.414Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920306533",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Statistics and Machine Learning",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:00:17.171+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1d8ac5b4-9b25-471a-bade-7c0123accc39"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "4f5875bc-5a22-4d15-a79e-92f36bc7ab17",
+              "uuid" : "4f5875bc-5a22-4d15-a79e-92f36bc7ab17",
+              "name" : "Rural Economic Stagnation Despite Farm Recovery in the Long Aftermath of the 1980s US Farm Debt Crisis",
+              "handle" : "88435/dsp018336h5347",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Yogo, Motohiro",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Grouws, Sofie L.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T14:31:58Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T14:31:58Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This study aims to elucidate the previously unstudied long-term economic effects of\nthe Farm Debt Crisis of the 1980s in rural America. Leveraging variation in local\nagricultural commodity mixes, this study utilizes a shift-share instrument to identify\nexogenous variation in local crisis intensities. Analysis reveals that the Farm Debt\nCrisis had a persistent negative impact on incomes and populations in rural economies\nthrough 2023, implicating the Farm Debt Crisis in the economic stagnation and demographic\ndecline in rural America that began in the 1980s. Persistent supply-side\ntightening of credit at local community banks is shown to be an important cause of\nthe long-run economic outcomes. The study also reveals significant differences in the\nrecovery of the farm and non-farm sector in rural economies. In more crisis impacted\ncounties, the farm sector has recovered, while the non-farm sector has continued its\nrelative decline. Differential tightening of credit between the two sectors is proposed\nas an explanation for the stark difference in recovery dynamics, and government policy\ninterventions are argued to drive this sectoral redistribution of lending.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp018336h5347",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Rural Economic Stagnation Despite Farm Recovery in the Long Aftermath of the 1980s US Farm Debt Crisis",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T19:45:55.391Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920285333",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:00:20.013+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/4f5875bc-5a22-4d15-a79e-92f36bc7ab17"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "69e580dd-f788-4366-8cff-d54b7b89f2dc",
+              "uuid" : "69e580dd-f788-4366-8cff-d54b7b89f2dc",
+              "name" : "The Power of the Payor: Exploring the Effect of Mandated Infertility Treatment Coverage on Female Labor Outcomes",
+              "handle" : "88435/dsp01cv43p125q",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Reichman, Nancy",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Feiner, Amelia R.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T14:20:07Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T14:20:07Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-08",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Between 1980 and 2000, thirteen US states enacted policies mandating insurance coverage for infertility treatments, generating plausibly exogenous variation in access to reproductive technologies. Employing a series of differences-in-differences regressions that exploit variation in mandates across states and years, I estimate the causal effect of increased access to infertility treatments on female labor market outcomes. I extend this analysis with a triple-difference model, examining differential labor trends across age cohorts. The results reveal a consistent pattern of reduced labor force participation in the years following mandate implementation, relative to women in untreated states. Although wage income effects are less robust, there is a general upward trend in income, particularly in states with more comprehensive legislation. These findings suggest that expanded access to infertility treatments has meaningful consequences for women’s labor market behavior.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01cv43p125q",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "The Power of the Payor: Exploring the Effect of Mandated Infertility Treatment Coverage on Female Labor Outcomes",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-08T15:38:37.323Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920245463",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:00:21.942+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/69e580dd-f788-4366-8cff-d54b7b89f2dc"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "99178376-e6cf-48ec-b4fe-90a2fe9b6565",
+              "uuid" : "99178376-e6cf-48ec-b4fe-90a2fe9b6565",
+              "name" : "Forging Prices: A Comparative Analysis of Chinese and United States Monetary Policy on Metal Markets",
+              "handle" : "88435/dsp01gm80hz761",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Xiong, Wei",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Tang, David C.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T14:57:14Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T14:57:14Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-06",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "I utilize an event study methodology to examine the effect of monetary policy shocks in the U.S. and China on base metals commodity prices from 1993 to 2022. I find that shocks to the Chinese 1-year policy rate, Chinese 5-year policy rate, Chinese reserve requirement, and U.S. Federal Funds Rate produce generally negative cumulative abnormal returns in copper, aluminum, zinc, and nickel prices. On a unit-by-unit basis, shocks to the Chinese reserve requirement produce the greatest negative cumulative abnormal returns for all metals, followed by the U.S. Federal Funds Rate, Chinese 1-year policy rate, and Chinese 5-year policy rate. Increases to Chinese monetary policy instruments produce a stronger magnitude of cumulative abnormal returns compared to decreases, with the exception of aluminum and zinc with the Chinese reserve requirement ratio. With U.S. monetary policy instruments, decreases produce a stronger magnitude of cumulative abnormal returns compared to increases in monetary policy instruments. However, standardization of cumulative abnormal returns based on historical volatility of changes to monetary policy shows the U.S. Federal Funds Rate as the most impactful monetary policy instrument. Results should ultimately be treated with skepticism due to poor goodness of fit of the model, suggesting that additional factors may be influencing base metal price movements; further research into this subject could explore other macroeconomic variables and transmission mechanisms that could better capture base metal commodity price dynamics.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01gm80hz761",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Forging Prices: A Comparative Analysis of Chinese and United States Monetary Policy on Metal Markets",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-06T07:05:26.028Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920294932",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:01:13.387+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/99178376-e6cf-48ec-b4fe-90a2fe9b6565"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "c5d684a2-4a87-4800-a945-ca523c3a8a76",
+              "uuid" : "c5d684a2-4a87-4800-a945-ca523c3a8a76",
+              "name" : "When and How Much? Effects of Calcium Intake on Osteoporosis, Cardiovascular Disease, and Breast Cancer in Women",
+              "handle" : "88435/dsp013b591c99m",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Reichman, Nancy",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Raghu, Maiya A.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T15:19:15Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T15:19:15Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This thesis examines the health and economic implications of calcium intake across the menopausal transition, focusing on three high-cost diseases that disproportionately affect aging women: cardiovascular issues, osteoporosis, and breast cancer. Using longitudinal data from the Study of Women’s Health Across the Nation (SWAN), I estimate individual fixed effects and baseline-adjusted linear probability models to assess how the amount, timing, and source of calcium intake influence disease outcomes. I find that very low calcium intake significantly increases the risk of cardiovascular conditions, especially in peri- and postmenopausal women, while even moderate deficiencies are linked to higher osteoporosis risk over time, with changes manifesting faster than severe deficiencies. High calcium intake may offer protective effects against breast cancer regardless of source. Dietary calcium is generally more beneficial than supplemental forms for heart outcomes and osteoporosis prevention. Findings highlight a promising and low-cost avenue for preventive care, with the potential to reduce future healthcare expenditures and improve population health outcomes for women.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp013b591c99m",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "When and How Much? Effects of Calcium Intake on Osteoporosis, Cardiovascular Disease, and Breast Cancer in Women",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T19:57:55.445Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                }, {
+                  "value" : "2025-04-11T01:51:06.177Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 1
+                } ],
+                "pu.certificate" : [ {
+                  "value" : "Entrepreneurship",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920285924",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Bioengineering",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                }, {
+                  "value" : "Statistics and Machine Learning",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 1
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:01:41.147+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/c5d684a2-4a87-4800-a945-ca523c3a8a76"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "e37c28c2-25c0-422e-b119-5ab5c00eba74",
+              "uuid" : "e37c28c2-25c0-422e-b119-5ab5c00eba74",
+              "name" : "Public Transit and Employment Rates in Northern Virginia",
+              "handle" : "88435/dsp01nc580r08t",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Buchholz, Nicholas Wyeth",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Gorrepati, Rishi",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-24T13:58:45Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-24T13:58:45Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01nc580r08t",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Public Transit and Employment Rates in Northern Virginia",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T14:45:56.036Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.certificate" : [ {
+                  "value" : "Urban Studies",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920283930",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-24T16:01:57.467+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/e37c28c2-25c0-422e-b119-5ab5c00eba74"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "026f718e-843e-4127-a814-31e08fa2d07d",
+              "uuid" : "026f718e-843e-4127-a814-31e08fa2d07d",
+              "name" : "Polarization and the Partisan Purse: Bias in Economic Sentiment, Evidence from Recent U.S. Elections",
+              "handle" : "88435/dsp01ff3658695",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Shim, Henry",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Yuan, Allison Y.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:49:06Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:49:06Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Increasing political polarization in the United States has changed the way in which individuals receive and interpret information. While historically, a multitude of factors inform the choice of an individual’s party affiliation, the relationship between choice input and existing political bias has been complicated in recent elections. Using data from Gallup’s US Daily Poll, this study analyzes how political polarization biases one type of non-political opinion: economic sentiment. Drawing from concepts in behavioral economics (e.g. limited attention and imperfect recall), this paper tests the hypothesis that individuals are biased by their pre-existing party affiliations when making an assessment on the performance of the economy, both sociotropically and egocentrically. This study uses the framework of a difference-in-difference model to estimate the causal effects of an individual’s preferred party being elected, and vice versa, on self-reported economic sentiment and spending. Observed results suggest that political bias is present in sociotropic assessments and weakly present in egocentric assessments. This bias is especially large in magnitude, in both directions (i.e. for both Democrats and Republicans) after the 2016 election. In election periods in which the party in offi ce was reversed after an election, individuals whose preferred party was voted out after an election were more economically optimistic throughout the 3 months before the election. The converse was true for individuals whose preferred party was voted into o ffice. This study also found that the optimism in sentiment for individuals whose party was elected, and vice versa, did not translate to a change in the same direction for reported spending.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01ff3658695",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Polarization and the Partisan Purse: Bias in Economic Sentiment, Evidence from Recent U.S. Elections",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T00:01:18.784Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920246018",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Finance",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:17.617+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/026f718e-843e-4127-a814-31e08fa2d07d"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "05a3e2b0-ad35-422f-aeff-659b59c08f7f",
+              "uuid" : "05a3e2b0-ad35-422f-aeff-659b59c08f7f",
+              "name" : "The Economics of Uncertainty: Prospect Theory in Practice at the Poker Table",
+              "handle" : "88435/dsp01td96k5958",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Iijima, Ryota",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Shoily, Fariha",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-29T15:04:05Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-29T15:04:05Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This study explores the relationship between wealth, represented by stack depth, and risk, represented by voluntary and aggressive betting behaviors, among players in poker games. By examining poker—a game that mirrors real-world decision-making with its incomplete information and uncertainty—this study sheds light on how an individual’s resources, like chip stack size, shape their risk tolerance and propensity toward risk-seeking or risk-averse behavior in high-stakes environments. In this study, I use over 4.9 million observations of hand data from online No-Limit Texas Hold’em games across 65,000 unique players to run several fixed effects regressions that assess this relationship. The results reveal several key insights: (1) there is a significant positive and nonlinear relationship between stack depth and the amount that a player voluntarily wagers; (2) players psychologically set reference points for themselves at 100 BBs where they exhibit “kinked” nonlinear behavioral shifts; (3) players exhibit loss aversion, with players who are down money being significantly more risk-seeking as their stack grows than players who have already earned a profit; (4) players with larger stacks experience diminishing sensitivity, as they demonstrate weaker behavioral responses to additional gains, while those with smaller stacks respond more acutely to small changes in wealth; and (5) additional wealth is associated with a lower proportional betting, implying risk-aversion over accumulated resources. These findings are consistent with Prospect Theory and provide implications for behavioral modeling in finance, gaming, and consumer decision-making.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01td96k5958",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "The Economics of Uncertainty: Prospect Theory in Practice at the Poker Table",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T19:42:31.743Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920290748",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:21.888+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/05a3e2b0-ad35-422f-aeff-659b59c08f7f"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "1b80139e-eb84-4c45-b5d1-20aae202c076",
+              "uuid" : "1b80139e-eb84-4c45-b5d1-20aae202c076",
+              "name" : "What “Makes” a “Popular” Song?: Accounting for Creative Capital",
+              "handle" : "88435/dsp015425kf12p",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Lee, David S.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Rios, Isabella",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:17:58Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:17:58Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-04",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This work examines the impact of “creative capital,” in the form of credited songwriters and producers, on a song’s “popularity,” as measured by chart performance. Executing twelve ordinary least squares (OLS) regressions upon an aggregated dataset composed of Billboard Hot 100 weekly chart rankings, song specific features accessed through Spotify’s Web API, and “creative capital counts” pulled with the assistance Microsoft 365 Copilot, I find that additional “creative capital” generates a statistically significant improvement in “popularity.” Moreover, I determine that the marginal benefit of such additions depends upon the interaction of songwriter and producer “creative capital groups” and increases with the overall number of credited creatives within each group. Additionally, the results of this study indicate a lack of statistical significance of song audio features in determining song “popularity.”",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp015425kf12p",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "What “Makes” a “Popular” Song?: Accounting for Creative Capital",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-04T20:39:10.317Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920272498",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:54.873+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b80139e-eb84-4c45-b5d1-20aae202c076"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "073dbc33-71fa-45dd-84b0-c18cad3c4444",
+              "uuid" : "073dbc33-71fa-45dd-84b0-c18cad3c4444",
+              "name" : "The Effect of Proposition 13 on California Municipal Finances and Taxation",
+              "handle" : "88435/dsp011831cp39v",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Bordeu Gazmuri, Olivia",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Deschenes, Michael N.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T18:05:11Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T18:05:11Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Proposition 13, which was passed in California in 1978, reduced property taxes to one percent,\ncapped valuation increases to the lesser of inflation and two percent per annum, limited\nreassessments to change-in-ownership events, and reset property valuations to 1975 levels. This\npaper investigates the tax-setting response of local governments following a negative tax shock\nby exploiting the change in the property tax scheme of California. Results indicate material and\nstatistically significant changes at the county level in jurisdictions’ reliance on intergovernmental\ntransfers. The paper undertakes three methods of analysis in order to understand the magnitude\nand significance of these responses: synthetic difference-in-difference at the state and local level;\na dose-response difference-in-difference analysis within California using a constructed property\ntax exposure metric; and a cross-border analysis of bordering counties in Oregon, Nevada, and\nArizona. The analysis provides significant results for the first two and mixed results for the third.\nThe conclusions herein illuminate the dynamics of local government responses following the\npassage of Proposition 13 as well as the relationships between layers of governments in systems\nof fiscal federalism like the United States.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp011831cp39v",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "The Effect of Proposition 13 on California Municipal Finances and Taxation",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T14:45:48.014Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920245749",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:27.762+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/073dbc33-71fa-45dd-84b0-c18cad3c4444"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "0947082f-fddf-46eb-b3d6-46307f09b5ef",
+              "uuid" : "0947082f-fddf-46eb-b3d6-46307f09b5ef",
+              "name" : "The Capacity Factor Delta: Equity Market Reaction to Weather-Induced Power Outages in Electricity-Generating Firms",
+              "handle" : "88435/dsp01z603r186s",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Becko, John Sturm",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Sutton, Jason R.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-29T15:03:08Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-29T15:03:08Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This paper employs a quasi-experimental event study design that analyzes the equity market reactions to severe weather events in electricity-generating firms via average cumulative abnormal returns and dynamic average treatment effects on the treated (ATT). It uses a novel treatment identification strategy by assembling a treatment zone of severe weather events using individually reported storm locations. Treatment is assigned to power plants within 100 miles of the path of the power-outage inducing storm, then traced to firms for the treatment group via ownership data. The findings are as follows: [1] The average cumulative abnormal returns for both the treatment group firms and the control group firms were significant, at -1.57% and -1.09%, respectively, indicating a negative equity market reaction to severe weather events. [2] The treated renewable firms (-2.38%) earned significantly lower cumulative abnormal returns as compared to the control group of renewable firms. [3] Asymmetrically, the control group fossil fuel firms earned significant lower cumulative abnormal returns (-2.43%) as compared to the fossil fuel treatment group. [4] The ATT for event-day 20 was significant across all observations, renewable firms, and fossil fuel firms, indicating significant positive abnormal return ATTs for the treatment group of 0.24%, 0.11%, and 0.37%, respectively. Findings [1] and [2] support the hypotheses of the study that treated groups would underperform control groups and that renewable energy firms would outperform fossil fuel firms. Findings [3] and [4] oppose the hypotheses of the study but could be explained by extrapolatory beliefs and stimulatory effects of emergency stimulus efforts to restore the grid.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01z603r186s",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "The Capacity Factor Delta: Equity Market Reaction to Weather-Induced Power Outages in Electricity-Generating Firms",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T19:27:18.541Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920268776",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Finance",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:30.249+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0947082f-fddf-46eb-b3d6-46307f09b5ef"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "1b6823d5-1cdb-48ea-9d48-2e941194633d",
+              "uuid" : "1b6823d5-1cdb-48ea-9d48-2e941194633d",
+              "name" : "Disparities in Climate Threat Perception: Lessons from LMICs and HICs",
+              "handle" : "88435/dsp01zg64tq36h",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Dupas, Pascaline",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Adnan Khan, Jihan",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:45:11Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:45:11Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Awareness of climate threats plays a vital role in enabling households and institutions to adapt their behavior, build resilience, and support mitigation efforts. My study investigates the divergent impacts of climate-related disasters on public perceptions of climate risk, mental health concern, and institutional trust across low- and middle-income countries (LMICs) and high-income countries (HICs). Using repeated cross-sectional data from the World Risk Poll (2019–2023) and a Difference-in-Differences (DiD) approach with country fixed effects, it examines how exposure to climate shocks shapes individual attitudes and responses over time.\nThe findings reveal significant disparities between LMICs and HICs. In LMICs, public sentiment remains largely unchanged post-shock, with limited evidence of belief updating in terms of how individuals perceive climate-induced threats, or heightened concern. Even in LMICs with high levels of initial awareness about climate threats, exposure appears to lead to desensitization rather than increased risk perception. By contrast, in HICs, high-exposure regions report greater perceived climate threat, particularly among younger and tertiary-educated populations. Demographic factors such as age, gender, education level, and urbanicity play critical roles in shaping individual responses to climate shocks. While exposure is associated with increased environmental concern in HICs, structural barriers — including weak institutions and limited access to information — constrain belief updating in LMICs.\nBy integrating cross-national data, my research contributes to a more global understanding of climate vulnerability and resilience. It emphasizes the importance of context-specific approaches to addressing climate risks and highlights that patterns observed in HICs may not be replicable in LMICs, where structural constraints and data availability limit current research.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01zg64tq36h",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Disparities in Climate Threat Perception: Lessons from LMICs and HICs",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-09T20:08:56.773Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920284279",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:51.509+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1b6823d5-1cdb-48ea-9d48-2e941194633d"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "133aa262-0f1a-4049-9f36-e6839c9ed549",
+              "uuid" : "133aa262-0f1a-4049-9f36-e6839c9ed549",
+              "name" : "Restaurants, Reviews, and Residential Change: Examining the Relationship between Restaurant Reviews and Gentrification",
+              "handle" : "88435/dsp01db78tg465",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Bilir, Lisa Kamran",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Quayle, Aiden P.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T18:40:32Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T18:40:32Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This thesis investigates the relationship between online restaurant reviews and gentrification in U.S. ZIP codes from 2005 to 2022. This study highlights the underexplored role of cultural capital, specifically as captured through Yelp restaurant reviews, and the way it influences neighborhood desirability and housing prices. The data used for this analysis is derived from the Yelp Open dataset for the treatment variables, Zillow Housing data to measure gentrification, and the American Community Survey to add demographic and socioeconomic controls. Using multiple regression methods, the results provide robust empirical evidence that positive restaurant reviews and the number of businesses on Yelp are significantly associated with rising housing prices. Surprisingly, however, total review volume shows a negative association and the average stars in a ZIP code show no statistically significant relationship. Implications for policymakers include the potential to use digital consumer data as early signals of neighborhood change, enabling more proactive and equitable urban planning.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01db78tg465",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Restaurants, Reviews, and Residential Change: Examining the Relationship between Restaurant Reviews and Gentrification",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T18:31:06.178Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920286897",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Statistics and Machine Learning",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:42.997+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/133aa262-0f1a-4049-9f36-e6839c9ed549"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "1a64493c-b5ff-4b05-b27e-7029e6eace4d",
+              "uuid" : "1a64493c-b5ff-4b05-b27e-7029e6eace4d",
+              "name" : "Shots, Shortages, and Structural Barriers: A County Level Study of U.S. Influenza Vaccination (2018-2023)",
+              "handle" : "88435/dsp017s75dg81z",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Ho, Kate",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Watson, Will",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T18:12:53Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T18:12:53Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "The thesis examines the political, structural, and socioeconomic drivers of influenza vaccination disparities across U.S. counties from 2018 to 2023. Using a comprehensive county level panel dataset, this study employs fixed effects regressions to model how political partisanship, healthcare infrastructure, healthcare access, and socioeconomic variables shape vaccination rates among rural and urban counties. Key predictors include partisan voting margins, healthcare professional shortages, licensed pharmacist availability, and the density of Federally Qualified Health Centers and Rural Health Clinics. Results reveal that Republican leaning counties consistently show lower vaccination rates, while greater access to licensed pharmacists and Federally Qualified Health Centers are associated with higher uptake, especially in rural areas. Meanwhile the presences of Rural Health Centers had unintuitive negative association. This study further applies a two-stage least squares model to estimate the causal effect of vaccination on flu related morality, displaying a protective effect. The multidimensional nature of this study reveals the need for community based depoliticized and decentralized approaches to vaccine access and a reassessment of public infrastructure and trust in institutions.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp017s75dg81z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Shots, Shortages, and Structural Barriers: A County Level Study of U.S. Influenza Vaccination (2018-2023)",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-10T15:12:26.852Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920250458",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:45.731+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/1a64493c-b5ff-4b05-b27e-7029e6eace4d"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "10b81838-0c0b-4a38-8f10-f378f250f03d",
+              "uuid" : "10b81838-0c0b-4a38-8f10-f378f250f03d",
+              "name" : "Effects of Immigrant Entrepreneurship on Party Voting Decisions in the United States",
+              "handle" : "88435/dsp01tq57nv45m",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Reichman, Nancy",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Anugula, Shrika R.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:46:51Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:46:51Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-10",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This paper investigates the effect of immigrant entrepreneurship on votes for the more immigrant-restrictive party in America, the Republican Party. Since immigrant entrepreneurs contribute to the economy and act as job creators, I hypothesize that citizens observe this pattern and alter their sentiment toward immigrants in a more positive manner, leading to a decline in votes for the Republican Party. I run a fixed effects OLS model on the county and state level, altering model specifications by changing the control variables and adding a time lag. A two-stage least square regression is run as a robustness check. I find that there is a robust negative association between the amount of immigrant entrepreneurship and votes for the Republican Party. These results imply an emerging trend of positive immigrant sentiment as entrepreneurial immigration continues to rise.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01tq57nv45m",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Effects of Immigrant Entrepreneurship on Party Voting Decisions in the United States",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-09T20:55:03.047Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920196104",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.minor" : [ {
+                  "value" : "Finance",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:38.462+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/10b81838-0c0b-4a38-8f10-f378f250f03d"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "0ad487ba-1577-4fe0-aa98-8b4290539b27",
+              "uuid" : "0ad487ba-1577-4fe0-aa98-8b4290539b27",
+              "name" : "BUSINESS VALUATION: A COMPARABLE STUDY OF DISCOUNTED CASH FLOW AND COMPARABLE COMPANY ANALYSIS ACROSS INDUSTRIES",
+              "handle" : "88435/dsp018w32r9035",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Urgun, Can",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Astreinidis, Filippos",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:16:16Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:16:16Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-04",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "This thesis examines the practical aspects of two widely used widely used valuation methods, the Discounted Cash Flow (DCF) and Comparable Company Analysis (CCA) models. It uses a comparative analysis to assess their potential as well as their limitations across three industries: technology, healthcare, and consumer goods. The paper finds that the DCF method is appropriate for valuing firms with stable cash flows. However, it is subject to excessive assumption bias, and slight miscalculations can impact the valuation results. It also proves that CCA is a strong instrument to value firms in high-growth and volatile sectors. The results stress the need for cautious financial modeling and provide analysts with practical guidance in choosing valuation tools across different market environments.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp018w32r9035",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "BUSINESS VALUATION: A COMPARABLE STUDY OF DISCOUNTED CASH FLOW AND COMPARABLE COMPANY ANALYSIS ACROSS INDUSTRIES",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-04T15:19:39.028Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920284995",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:00:32.688+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/0ad487ba-1577-4fe0-aa98-8b4290539b27"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "2ff5ae36-0394-4026-9fc6-484b73937d6f",
+              "uuid" : "2ff5ae36-0394-4026-9fc6-484b73937d6f",
+              "name" : "THE SWISS NATIONAL BANK'S MONETARY POLICY IMPACT, INCLUDING PERSISTENTLY LOW INTEREST RATES, ON SWITZERLAND'S LONG-TERM RATES – A COMPARATIVE ANALYSIS WITH THE NETHERLANDS",
+              "handle" : "88435/dsp01bn999b18p",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Urgun, Can",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Bosancic, Matthew L.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:42:17Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:42:17Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-09",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Switzerland’s low interest rate policy, set by the SNB, contrasts sharply with the inflation targeting monetary policy by the Netherlands under the ECB. This paper investigates the impact of these countries’ short-term policy rates on long-term bond yields, aiming to identify the differences in their responses. To do this, we analyze structural breaks during key economic events including the Global Financial Crisis, the Eurozone Crisis, and the SNB’s adoption of negative interest rates. We also conduct an evaluation of the differences in monetary policy transmission using vector autoregressions (VARs), Chow tests and IRF’s. The findings aim to provide insights into the effectiveness of low-rate policies versus inflation targeting in shaping economic stability and the dynamics of long-term interest rates. \n\nOur results indicate that the transmission of short-term policy rate changes to long-term bond yields differs significantly between Switzerland and the Netherlands. In Switzerland, the SNB has kept the policy rate low and the response of 10-year bond yields was shown to be weaker and less consistent with the policy rate, largely since negative interest rates were introduced. In the Netherlands under the ECB's inflation-targeting framework, transmission is stronger and more stable. Besides policy rates, macroeconomic factors play a crucial role: Swiss yields react strongly to external risk and exchange rate volatility, while Dutch yields react more sensitively to Eurozone monetary policy and inflation expectations. These results suggest that while long-term yields impact to policy rates, macroeconomic conditions are the primary drivers of long-term interest rate behavior.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp01bn999b18p",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "THE SWISS NATIONAL BANK'S MONETARY POLICY IMPACT, INCLUDING PERSISTENTLY LOW INTEREST RATES, ON SWITZERLAND'S LONG-TERM RATES – A COMPARATIVE ANALYSIS WITH THE NETHERLANDS",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-09T17:07:37.971Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920249787",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:01:53.717+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2ff5ae36-0394-4026-9fc6-484b73937d6f"
+                }
+              }
+            }
+          }
+        }, {
+          "hitHighlights" : null,
+          "type" : "discover",
+          "_links" : {
+            "indexableObject" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b"
+            }
+          },
+          "_embedded" : {
+            "indexableObject" : {
+              "id" : "2e14a971-b612-4b73-9afa-604760be336b",
+              "uuid" : "2e14a971-b612-4b73-9afa-604760be336b",
+              "name" : "Rethinking the Arc: An Econometric and Game-Theoretical Analysis of the NBA’s Three-Point Reliance and Proposed Rule Changes",
+              "handle" : "88435/dsp011g05fg03z",
+              "metadata" : {
+                "dc.contributor.advisor" : [ {
+                  "value" : "Shim, Henry",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.contributor.author" : [ {
+                  "value" : "Milligan, Justin T.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.accessioned" : [ {
+                  "value" : "2025-07-28T17:20:26Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.available" : [ {
+                  "value" : "2025-07-28T17:20:26Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.date.issued" : [ {
+                  "value" : "2025-04-08",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.description.abstract" : [ {
+                  "value" : "Over the past decade, the National Basketball Association (NBA) has witnessed a historic rise in three-point shooting frequency, raising concern over the direction of the game. Fueled by a more comprehensive understanding of basketball analytics, this trend has led to the decline of the mid-range game and has produced more repetitive shot selections. Currently, over 42\\% of total shot attempts are from behind the three-point line, and the majority of the remainder are taken in the paint. My thesis investigates the degree to which three-point shooting is impacting the game today, and proposes two rule changes to mitigate this impact: the extension of the three-point line and the addition of a four-point line. To do this, I use a combination of econometric, statistical, and game-theoretical methods to motivate, establish, and analyze what these rule changes would look like over time. The results suggest that shifting the three-point line back to 26 feet and eliminating the corner three would return shot distributions to a 2011-2012 level, the season where ratings peaked since the turn of the century. Additionally, this paper analyzes the dynamics of a four-point line and its potential ramifications. After taking into account how player skill would develop over time, the results suggest placing a four-point line at 33 feet. While both of these lines would significantly decrease three-point shooting frequency, I argue that extending the three-point line to 26 feet most directly addresses the league's current issues. Overall, this thesis explores how economic strategies can depict the three-point reliance in the NBA, and analyzes the potential impact of rule changes.",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.identifier.uri" : [ {
+                  "value" : "https://theses-dissertations.princeton.edu/handle/88435/dsp011g05fg03z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.language.iso" : [ {
+                  "value" : "en_US",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.title" : [ {
+                  "value" : "Rethinking the Arc: An Econometric and Game-Theoretical Analysis of the NBA’s Three-Point Reliance and Proposed Rule Changes",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dc.type" : [ {
+                  "value" : "Princeton University Senior Theses",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.entity.type" : [ {
+                  "value" : "Publication",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "dspace.workflow.startDateTime" : [ {
+                  "value" : "2025-04-08T15:28:03.755Z",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.contributor.authorid" : [ {
+                  "value" : "920291998",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.date.classyear" : [ {
+                  "value" : "2025",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ],
+                "pu.department" : [ {
+                  "value" : "Economics",
+                  "language" : null,
+                  "authority" : null,
+                  "confidence" : -1,
+                  "place" : 0
+                } ]
+              },
+              "inArchive" : true,
+              "discoverable" : true,
+              "withdrawn" : false,
+              "lastModified" : "2025-07-29T16:01:28.307+00:00",
+              "entityType" : "Publication",
+              "type" : "item",
+              "_links" : {
+                "accessStatus" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/accessStatus"
+                },
+                "bundles" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/bundles"
+                },
+                "identifiers" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/identifiers"
+                },
+                "mappedCollections" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/mappedCollections"
+                },
+                "owningCollection" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/owningCollection"
+                },
+                "relationships" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/relationships"
+                },
+                "version" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/version"
+                },
+                "templateItemOf" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/templateItemOf"
+                },
+                "thumbnail" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b/thumbnail"
+                },
+                "self" : {
+                  "href" : "https://theses-dissertations.princeton.edu/server/api/core/items/2e14a971-b612-4b73-9afa-604760be336b"
+                }
+              }
+            }
+          }
+        } ]
+      },
+      "page" : {
+        "number" : 0,
+        "size" : 5,
+        "totalPages" : 1,
+        "totalElements" : 5
+      },
+      "_links" : {
+        "next" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=1"
+        },
+        "last" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=1"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+        }
+      }
+    },
+    "facets" : [ {
+      "name" : "author",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "minValue" : "Aaronson, Braiden D.",
+      "maxValue" : "Zucker, Andrew",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "next" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&page=1&size=5"
+        },
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/author?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Adnan Khan, Jihan",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Adnan%20Khan,%20Jihan,equals"
+            }
+          }
+        }, {
+          "label" : "Al-Sabah, Nasir N.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Al-Sabah,%20Nasir%20N.,equals"
+            }
+          }
+        }, {
+          "label" : "Anella, Peter A.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Anella,%20Peter%20A.,equals"
+            }
+          }
+        }, {
+          "label" : "Anugula, Shrika R.",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Anugula,%20Shrika%20R.,equals"
+            }
+          }
+        }, {
+          "label" : "Askar, Anel",
+          "count" : 1,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.author=Askar,%20Anel,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "subject",
+      "facetType" : "hierarchical",
+      "facetLimit" : 5,
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/subject?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa"
+        }
+      },
+      "_embedded" : {
+        "values" : [ ]
+      }
+    }, {
+      "name" : "dateIssued",
+      "facetType" : "date",
+      "facetLimit" : 5,
+      "minValue" : "2025",
+      "maxValue" : "2025-12-30",
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/dateIssued?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "2025",
+          "count" : 117,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.dateIssued=2025,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "has_content_in_original_bundle",
+      "facetType" : "standard",
+      "facetLimit" : 2,
+      "page" : {
+        "number" : 0,
+        "size" : 2
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/has_content_in_original_bundle?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=2"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "true",
+          "count" : 5,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.has_content_in_original_bundle=true,equals"
+            }
+          }
+        } ]
+      }
+    }, {
+      "name" : "entityType",
+      "facetType" : "text",
+      "facetLimit" : 5,
+      "page" : {
+        "number" : 0,
+        "size" : 5
+      },
+      "_links" : {
+        "self" : {
+          "href" : "https://theses-dissertations.princeton.edu/server/api/discover/facets/entityType?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&size=5"
+        }
+      },
+      "_embedded" : {
+        "values" : [ {
+          "label" : "Publication",
+          "count" : 5,
+          "authorityKey" : null,
+          "type" : "discover",
+          "_links" : {
+            "search" : {
+              "href" : "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=ace6dfbf-4f73-4558-acd0-1c4e5fd94baa&f.entityType=Publication,equals"
+            }
+          }
+        } ]
+      }
+    } ]
+  }
+}
