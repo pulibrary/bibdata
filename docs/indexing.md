@@ -28,7 +28,10 @@ The [orangetheses repository](https://github.com/pulibrary/orangetheses) is used
 A thesis record id starts with 'dsp'. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
-Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pulled in through orangelight code and so doesn't come through bibdata, but bibdata has a rake task to bulk index all the coins for initial full index creation and any time a full reindex may be needed.
+Numismatics data comes from Figgy via the rabbitmq. Every time Figgy publishes a coin, sneakers sends a message to rabbitmq and the coin document is posted into solr. The coin document is structured in Figgy. Bibdata has a rake task to bulk index all the coins any time a full reindex is needed or if there is a need to reindex all of them at once.
+
+## Source: Ephemera
+Ephemera data comes from Figgy. Bibdata has code to map these resources into a marc record and index them in the catalog solr collection. These resources have digital content that is rendered in Orangelight through the viewer. Currently, a daily scheduled task indexes all the ephemera into the solr catalog collection. 
 
 ## Solr Machines and Collections
 
@@ -112,7 +115,7 @@ Takes 6-7 hours to complete.
 
 ### Index Theses
 
-SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/7284a2364a8c1eb5af70f8e79b80a44eb546a4bc/config/deploy/production.rb#L11-L12) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
+SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L14-L15) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
 
 as deploy user, in `/opt/bibdata/current`
 
@@ -133,6 +136,21 @@ $ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild
 CTRL+b d (to detach from tmux)
 ```
 
+### Index Epehemera
+SSH as the deploy user to the [bibdata worker machine](https://github.com/pulibrary/bibdata/blob/main/config/deploy/production.rb#L14-L15) that is used for indexing and start a tmux session. `ssh deploy@bibdata-worker-prod1`
+
+as deploy user, in `/opt/bibdata/current`
+
+```
+$ tmux attach-session -t full-index
+$ cd /opt/bibdata/current 
+$ RUST_LOG=debug bundle exec rake ephemera:full_reindex
+CTRL+b d (to detach from tmux)
+```
+- If you want more detailed output while you're running the rake task set RUST_LOG=trace.
+- If you're running the rake task in a staging or qa environment you will need to set figgy's production url FIGGY_URL=https://figgy.princeton.edu
+Currently there are not many ephemera resources in Figgy. This step takes around 1-2 minutes. 
+```
 
 ### Index Numismatic Coins
 
