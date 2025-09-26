@@ -32,11 +32,11 @@ Numismatics data comes from Figgy via the rabbitmq. Incremental indexing is pull
 
 ## Solr Machines and Collections
 
-The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3 and maxShardsPerNode of 2. The solr machines (lib-solr-prod7, lib-solr-prod8, and lib-solr-prod9) are behind the load balancer and applications should access them via [access solr machines](http://lib-solr8-prod.princeton.edu:8983).
+The Catalog index is currently on a solrcloud cluster with 2 shards and a replication factor of 3 and maxShardsPerNode of 2. The solr machines (lib-solr-prod7, lib-solr-prod8, and lib-solr-prod9) are behind the load balancer and applications should access them via [access solr machines](http://lib-solr9-prod.princeton.edu:8983).
 
 The collections `catalog-production1` and `catalog-production2` are swapped as needed and should be accessed via the aliases `catalog-production` and `catalog-production-rebuild`
 
-The staging catalog uses [catalog-staging](http://lib-solr8d-staging.princeton.edu:8983/solr/catalog-staging) and also has a rebuild index, `catalog-staging-rebuild`.
+The staging catalog uses [catalog-staging](http://lib-solr9-staging.princeton.edu:8983/solr/catalog-staging) and also has a rebuild index, `catalog-staging-rebuild`.
 
 ## Accessing the solr admin UI
 
@@ -73,7 +73,7 @@ Go to the solr admin UI (see above).
     ```
     tmux new -s full-index
     $ cd /opt/bibdata/current
-    $ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:full
+    $ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:full
     CTRL+b d (to detach from tmux)
     ```
 1. Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index:
@@ -102,7 +102,7 @@ Note that this process takes 7 hours.
 
 Once the files are all downloaded and processed, index them with
 
-`$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:full`
+`$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:full`
 
 Indexing jobs for each DumpFile in the dump will be run in the background. To watch the progress of the index, you can login and go to /sidekiq.
 
@@ -129,7 +129,7 @@ This step takes around 10 minutes. It will create a `theses.json` file in `home/
 ```
 $ tmux attach-session -t full-index
 $ cd /opt/bibdata/current
-$ curl 'http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
+$ curl 'http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild/update?commit=true' --data-binary @/home/deploy/theses.json -H 'Content-type:application/json'
 CTRL+b d (to detach from tmux)
 ```
 
@@ -144,7 +144,7 @@ To turn off sneakers workers:
 To index the coins:
 
 - as deploy user, in `/opt/bibdata/current`
-- `$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake numismatics:index:full`
+- `$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake numismatics:index:full`
 - Runs in background jobs via Sidekiq. Takes 30 min to an hour.
 
 ### Logs
@@ -160,7 +160,7 @@ SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/bl
 ```
 $ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:incremental
+$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake liberate:incremental
 ```
 
 ### Index the latest SCSB changes
@@ -171,13 +171,13 @@ SSH to the [bibdata alma worker machine](https://github.com/pulibrary/bibdata/bl
 ```
 $ ssh deploy@bibdata-worker-prod1
 $ cd /opt/bibdata/current
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:latest
+$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild bundle exec rake scsb:latest
 ```
 2. The following rake task will index the 'Updated Partner ReCAP Records' since the SET_DATE until now. The SET_DATE below is an example date. 
 ```
 $ ssh deploy@bibdata-worker-prod1   
 $ cd /opt/bibdata/current   
-$ SET_URL=http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
+$ SET_URL=http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild SET_DATE=2022-08-28 bundle exec rake scsb:updates
 ```
 You can see the progress of the SCSB indexing in sidekiq/Busy tab.  
 
@@ -194,7 +194,7 @@ $ ansible orangelight_qa -u pulsys -m shell -a "sudo service orangelight-sneaker
 `$ ssh deploy@catalog-qa1`
 
 Use your preffered editor -nano or vi- and manually edit `app_configs/orangelight`  
-set the SOLR_URL to `http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild` and save
+set the SOLR_URL to `http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild` and save
 ```
 $ exit
 $ ssh pulsys@catalog-qa1
@@ -270,7 +270,7 @@ Then expire the rails cache to get the updated values on the front page of the c
     `bundle exec rails c`    
 * Set the solr url connection to be the catalog-production-rebuild collection:
   
-    `solr_url = "http://lib-solr8-prod.princeton.edu:8983/solr/catalog-production-rebuild"`   
+    `solr_url = "http://lib-solr9-prod.princeton.edu:8983/solr/catalog-production-rebuild"`   
     `solr = RSolr.connect(url: solr_url)`
 
 * Delete records from Solr, excluding SCSB and Thesis records:
