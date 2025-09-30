@@ -79,7 +79,7 @@ pub fn collections_as_solr(
     community_handle: String,
     rest_limit: u32,
 ) -> Result<(), magnus::Error> {
-    env_logger::init();
+    let _ = env_logger::try_init();
     let documents: Vec<DataspaceDocument> =
         get_document_list(&server, &community_handle, rest_limit, |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
