@@ -50,7 +50,6 @@ mod tests {
     use crate::ephemera::ephemera_folder::Thumbnail;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
-    use crate::solr::DigitalContent;
     use crate::solr::ElectronicAccess;
     use crate::{ephemera::ephemera_folder::format::Format, solr};
     use std::{fs::File, io::BufReader, str::FromStr};
