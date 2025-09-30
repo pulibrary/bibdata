@@ -3,11 +3,12 @@
 use crate::{
     solr::{AccessFacet, ElectronicAccess, LibraryFacet},
     theses::{
-        legacy_dataspace::document::DataspaceDocument,
         department,
         embargo::{self, Embargo},
         holdings::{self, ThesisAvailability},
-        language, program,
+        language,
+        legacy_dataspace::document::DataspaceDocument,
+        program,
     },
 };
 use itertools::Itertools;
@@ -64,7 +65,7 @@ impl DataspaceDocument {
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => &class_year,
+                Some(class_year) => class_year,
                 None => &[],
             },
             self.embargo(),
@@ -130,7 +131,7 @@ impl DataspaceDocument {
             self.rights_access_rights.is_some(),
             self.walkin_is_yes(),
             match &self.date_classyear {
-                Some(class_year) => &class_year,
+                Some(class_year) => class_year,
                 None => &[],
             },
             self.embargo(),

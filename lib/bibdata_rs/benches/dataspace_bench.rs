@@ -29,7 +29,7 @@ fn dataspace_to_solr_benchmark(c: &mut Criterion) {
             let reader = BufReader::new(fixture);
             let documents: Vec<DataspaceDocument> = serde_json::from_reader(reader).unwrap();
             let solr_documents: Vec<SolrDocument> =
-                documents.iter().map(|d| SolrDocument::from(d)).collect();
+                documents.iter().map(SolrDocument::from).collect();
             assert_eq!(
                 solr_documents[0].title_citation_display,
                 Some("Dysfunction: A Play in One Act".to_string())

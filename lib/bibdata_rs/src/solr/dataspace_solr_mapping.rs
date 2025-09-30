@@ -136,16 +136,16 @@ mod tests {
     fn it_can_convert_into_solr_document() {
         let metadata = DataspaceDocument::builder()
             .with_id("dsp01b2773v788")
-            .with_description_abstract(vec!("Summary".into()))
-            .with_contributor(vec!("Wolff, Tamsen".into()))
-            .with_contributor_advisor(vec!("Sandberg, Robert".into()))
-            .with_contributor_author(vec!("Clark, Hillary".into()))
-            .with_date_classyear(vec!("2014".into()))
-            .with_department(vec!("Princeton University. Department of English".into()))
-            .with_department(vec!("Princeton University. Program in Theater".into()))
-            .with_format_extent(vec!("102 pages".into()))
-            .with_language_iso(vec!("en_US".into()))
-            .with_title(vec!("Dysfunction: A Play in One Act".into()))
+            .with_description_abstract(vec!["Summary".into()])
+            .with_contributor(vec!["Wolff, Tamsen".into()])
+            .with_contributor_advisor(vec!["Sandberg, Robert".into()])
+            .with_contributor_author(vec!["Clark, Hillary".into()])
+            .with_date_classyear(vec!["2014".into()])
+            .with_department(vec!["Princeton University. Department of English".into()])
+            .with_department(vec!["Princeton University. Program in Theater".into()])
+            .with_format_extent(vec!["102 pages".into()])
+            .with_language_iso(vec!["en_US".into()])
+            .with_title(vec!["Dysfunction: A Play in One Act".into()])
             .build();
 
         let solr = SolrDocument::from(&metadata);
@@ -170,18 +170,20 @@ mod tests {
     fn it_adds_the_expected_fields() {
         let document = DataspaceDocument::builder()
             .with_id("dsp01b2773v788")
-            .with_description_abstract(vec!("Summary".into()))
-            .with_contributor(vec!("Wolff, Tamsen".into()))
-            .with_contributor_advisor(vec!("Sandberg, Robert".into()))
-            .with_contributor_author(vec!("Clark, Hillary".into()))
-            .with_identifier_uri(vec!("http://arks.princeton.edu/ark:/88435/dsp01b2773v788".into()))
-            .with_format_extent(vec!("102 pages".into()))
-            .with_language_iso(vec!("en_US".into()))
-            .with_title(vec!("Dysfunction: A Play in One Act".into()))
-            .with_date_classyear(vec!("2014".into()))
-            .with_department(vec!("Princeton University. Department of English".into()))
-            .with_department(vec!("Princeton University. Program in Theater".into()))
-            .with_rights_access_rights(vec!("Walk-in Access...".into()))
+            .with_description_abstract(vec!["Summary".into()])
+            .with_contributor(vec!["Wolff, Tamsen".into()])
+            .with_contributor_advisor(vec!["Sandberg, Robert".into()])
+            .with_contributor_author(vec!["Clark, Hillary".into()])
+            .with_identifier_uri(vec![
+                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".into()
+            ])
+            .with_format_extent(vec!["102 pages".into()])
+            .with_language_iso(vec!["en_US".into()])
+            .with_title(vec!["Dysfunction: A Play in One Act".into()])
+            .with_date_classyear(vec!["2014".into()])
+            .with_department(vec!["Princeton University. Department of English".into()])
+            .with_department(vec!["Princeton University. Program in Theater".into()])
+            .with_rights_access_rights(vec!["Walk-in Access...".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.author_display, Some(vec!["Clark, Hillary".to_owned()]));
@@ -207,7 +209,7 @@ mod tests {
     #[test]
     fn integer_in_classyear_field() {
         let document = DataspaceDocument::builder()
-            .with_date_classyear(vec!("2014".into()))
+            .with_date_classyear(vec!["2014".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.class_year_s.unwrap(), vec![2014]);
@@ -218,7 +220,7 @@ mod tests {
     #[test]
     fn non_integer_in_classyear_field() {
         let document = DataspaceDocument::builder()
-            .with_date_classyear(vec!("Undated".into()))
+            .with_date_classyear(vec!["Undated".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert!(solr.class_year_s.is_none());
@@ -238,7 +240,7 @@ mod tests {
     #[test]
     fn with_access_rights() {
         let document = DataspaceDocument::builder()
-            .with_rights_access_rights(vec!("Walk-in Access...".into()))
+            .with_rights_access_rights(vec!["Walk-in Access...".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
@@ -248,8 +250,8 @@ mod tests {
     #[test]
     fn with_embargo() {
         let document = DataspaceDocument::builder()
-            .with_rights_access_rights(vec!("Walk-in Access...".into()))
-            .with_embargo_terms(vec!("2100-01-01".into()))
+            .with_rights_access_rights(vec!["Walk-in Access...".into()])
+            .with_embargo_terms(vec!["2100-01-01".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert!(solr.access_facet.is_none());
@@ -283,7 +285,7 @@ mod tests {
     #[test]
     fn with_allowed_department_name() {
         let document = DataspaceDocument::builder()
-            .with_department(vec!("English".into()))
+            .with_department(vec!["English".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(
@@ -295,7 +297,9 @@ mod tests {
 
     #[test]
     fn with_disallowed_department_name() {
-        let document = DataspaceDocument::builder().with_department(vec!("NA".into())).build();
+        let document = DataspaceDocument::builder()
+            .with_department(vec!["NA".into()])
+            .build();
         let solr = SolrDocument::from(&document);
         assert!(
             solr.department_display.unwrap().is_empty(),
@@ -306,8 +310,8 @@ mod tests {
     #[test]
     fn with_multiple_allowed_department_names() {
         let document = DataspaceDocument::builder()
-            .with_department(vec!("English".into()))
-            .with_department(vec!("German".into()))
+            .with_department(vec!["English".into()])
+            .with_department(vec!["German".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(
@@ -323,7 +327,7 @@ mod tests {
     #[test]
     fn with_allowed_certificate_name() {
         let document = DataspaceDocument::builder()
-            .with_certificate(vec!("Creative Writing Program".into()))
+            .with_certificate(vec!["Creative Writing Program".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(
@@ -335,7 +339,9 @@ mod tests {
 
     #[test]
     fn with_disallowed_certificate_name() {
-        let document = DataspaceDocument::builder().with_certificate(vec!("NA".into())).build();
+        let document = DataspaceDocument::builder()
+            .with_certificate(vec!["NA".into()])
+            .build();
         let solr = SolrDocument::from(&document);
         assert!(
             solr.certificate_display.unwrap().is_empty(),
@@ -346,8 +352,8 @@ mod tests {
     #[test]
     fn with_multiple_allowed_certificate_names() {
         let document = DataspaceDocument::builder()
-            .with_certificate(vec!("Environmental Studies Program".into()))
-            .with_certificate(vec!("African Studies Program".into()))
+            .with_certificate(vec!["Environmental Studies Program".into()])
+            .with_certificate(vec!["African Studies Program".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(
@@ -363,14 +369,14 @@ mod tests {
     #[test]
     fn location_code_s() {
         let document = DataspaceDocument::builder()
-            .with_date_classyear(vec!("2020".into()))
+            .with_date_classyear(vec!["2020".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.location_code_s, None);
 
         let document = DataspaceDocument::builder()
-            .with_date_classyear(vec!("1980".into()))
-            .with_rights_access_rights(vec!("Limited access".into()))
+            .with_date_classyear(vec!["1980".into()])
+            .with_rights_access_rights(vec!["Limited access".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.location_code_s.unwrap(), "mudd$stacks");
@@ -379,8 +385,8 @@ mod tests {
     #[test]
     fn location_display() {
         let document = DataspaceDocument::builder()
-            .with_mudd_walkin(vec!("yes".into()))
-            .with_date_classyear(vec!("1995".into()))
+            .with_mudd_walkin(vec!["yes".into()])
+            .with_date_classyear(vec!["1995".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.location_display.unwrap(), "Mudd Manuscript Library");
@@ -389,8 +395,8 @@ mod tests {
     #[test]
     fn holdings_1display() {
         let document = DataspaceDocument::builder()
-            .with_rights_access_rights(vec!("Limited access".into()))
-            .with_date_classyear(vec!("2005".into()))
+            .with_rights_access_rights(vec!["Limited access".into()])
+            .with_date_classyear(vec!["2005".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(
@@ -400,7 +406,9 @@ mod tests {
         );
 
         let document = DataspaceDocument::builder()
-            .with_identifier_uri(vec!("http://arks.princeton.edu/ark:/88435/dsp0141687h67f".into()))
+            .with_identifier_uri(vec![
+                "http://arks.princeton.edu/ark:/88435/dsp0141687h67f".into()
+            ])
             .build();
         let solr = SolrDocument::from(&document);
         assert!(
@@ -412,8 +420,8 @@ mod tests {
     #[test]
     fn call_number_browse_s() {
         let document = DataspaceDocument::builder()
-            .with_rights_access_rights(vec!("Limited access".into()))
-            .with_date_classyear(vec!("2005".into()))
+            .with_rights_access_rights(vec!["Limited access".into()])
+            .with_date_classyear(vec!["2005".into()])
             .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.call_number_browse_s, "AC102");
@@ -421,7 +429,9 @@ mod tests {
 
     #[test]
     fn language_facet() {
-        let document = DataspaceDocument::builder().with_language_iso(vec!("it".into())).build();
+        let document = DataspaceDocument::builder()
+            .with_language_iso(vec!["it".into()])
+            .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.language_facet, vec!["Italian".to_owned()]);
     }
@@ -433,7 +443,7 @@ mod tests {
         fn when_lift_date_is_invalid() {
             let document = DataspaceDocument::builder()
                 .with_id("test-id")
-                .with_embargo_lift(vec!("invalid".into()))
+                .with_embargo_lift(vec!["invalid".into()])
                 .build();
             let solr = SolrDocument::from(&document);
             assert_eq!(solr.restrictions_note_display, Some(vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>.".to_string()]));
@@ -443,7 +453,7 @@ mod tests {
         fn when_terms_date_is_invalid() {
             let document = DataspaceDocument::builder()
                 .with_id("test-id")
-                .with_embargo_terms(vec!("invalid".into()))
+                .with_embargo_terms(vec!["invalid".into()])
                 .build();
             let solr = SolrDocument::from(&document);
             assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
@@ -658,7 +668,9 @@ mod legacy_tests {
 
     #[test]
     fn with_disallowed_department_name() {
-        let document = LegacyDataspaceDocument::builder().with_department("NA").build();
+        let document = LegacyDataspaceDocument::builder()
+            .with_department("NA")
+            .build();
         let solr = SolrDocument::from(&document);
         assert!(
             solr.department_display.unwrap().is_empty(),
@@ -698,7 +710,9 @@ mod legacy_tests {
 
     #[test]
     fn with_disallowed_certificate_name() {
-        let document = LegacyDataspaceDocument::builder().with_certificate("NA").build();
+        let document = LegacyDataspaceDocument::builder()
+            .with_certificate("NA")
+            .build();
         let solr = SolrDocument::from(&document);
         assert!(
             solr.certificate_display.unwrap().is_empty(),
@@ -784,7 +798,9 @@ mod legacy_tests {
 
     #[test]
     fn language_facet() {
-        let document = LegacyDataspaceDocument::builder().with_language_iso("it").build();
+        let document = LegacyDataspaceDocument::builder()
+            .with_language_iso("it")
+            .build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.language_facet, vec!["Italian".to_owned()]);
     }

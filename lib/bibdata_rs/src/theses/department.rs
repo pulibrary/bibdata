@@ -112,19 +112,40 @@ pub fn map_department(original: &str) -> Option<String> {
         "Statistics" => Some("Princeton University. Department of Statistics".to_owned()),
         "School of Public and International Affairs" => {
             Some("Princeton University. School of Public and International Affairs".to_owned())
-        },
+        }
 
-        "Public & International Affairs" => Some("Princeton University. School of Public and International Affairs".to_owned()),
-        "Art & Archaeology" => Some("Princeton University. Department of Art and Archaeology".to_owned()),
-        "Civil & Environmental Engr" => Some("Princeton University. Department of Civil and Environmental Engineering".to_owned()),
-        "Mechanical & Aerospace Engr" => Some("Princeton University. Department of Mechanical and Aerospace Engineering".to_owned()),
-        "Chemical and Biological Engr" => Some("Princeton University. Department of Chemical and Biological Engineering".to_owned()),
+        "Public & International Affairs" => {
+            Some("Princeton University. School of Public and International Affairs".to_owned())
+        }
+        "Art & Archaeology" => {
+            Some("Princeton University. Department of Art and Archaeology".to_owned())
+        }
+        "Civil & Environmental Engr" => Some(
+            "Princeton University. Department of Civil and Environmental Engineering".to_owned(),
+        ),
+        "Mechanical & Aerospace Engr" => Some(
+            "Princeton University. Department of Mechanical and Aerospace Engineering".to_owned(),
+        ),
+        "Chemical and Biological Engr" => Some(
+            "Princeton University. Department of Chemical and Biological Engineering".to_owned(),
+        ),
         "Architecture" => Some("Princeton University. School of Architecture".to_owned()),
-        "Ops Research & Financial Engr" => Some("Princeton University. Department of Operations Research and Financial Engineering".to_owned()),
-        "Electrical & Computer Engr" => Some("Princeton University. Department of Electrical Engineering".to_owned()),
-        "Creative Writing Program" => Some("Princeton University. Creative Writing Program".to_owned()),
-        "Ecology & Evolutionary Biology" => Some("Princeton University. Department of Ecology and Evolutionary Biology".to_owned()),
-        "Independent Study-Linguistics" => Some("Princeton University Independent Concentration Program".to_owned()),
+        "Ops Research & Financial Engr" => Some(
+            "Princeton University. Department of Operations Research and Financial Engineering"
+                .to_owned(),
+        ),
+        "Electrical & Computer Engr" => {
+            Some("Princeton University. Department of Electrical Engineering".to_owned())
+        }
+        "Creative Writing Program" => {
+            Some("Princeton University. Creative Writing Program".to_owned())
+        }
+        "Ecology & Evolutionary Biology" => {
+            Some("Princeton University. Department of Ecology and Evolutionary Biology".to_owned())
+        }
+        "Independent Study-Linguistics" => {
+            Some("Princeton University Independent Concentration Program".to_owned())
+        }
         _ => None,
     }
 }

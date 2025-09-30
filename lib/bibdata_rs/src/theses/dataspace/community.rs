@@ -40,9 +40,10 @@ struct Collection {
 /// The DSpace id of the community we're fetching content for.
 /// E.g., for handle '88435/dsp019c67wm88m', the DSpace id is 267
 pub fn get_community_id(server: &str, community_handle: &str) -> Result<Option<String>> {
-    let communities: CommunitiesResponse = reqwest::blocking::get(format!("{}/core/communities/", server))?
-        .json()
-        .map_err(|e| anyhow!("Could not parse json: {e:?}"))?;
+    let communities: CommunitiesResponse =
+        reqwest::blocking::get(format!("{}/core/communities/", server))?
+            .json()
+            .map_err(|e| anyhow!("Could not parse json: {e:?}"))?;
     let theses_community = communities
         ._embedded
         .communities
@@ -115,12 +116,17 @@ mod tests {
     fn it_fetches_the_list_of_collections_in_the_community() {
         let mut server = mockito::Server::new();
         let mock = server
-            .mock("GET", "/core/communities/c5839e02-b833-4db1-a92f-92a1ffd286b9/collections?size=100")
+            .mock(
+                "GET",
+                "/core/communities/c5839e02-b833-4db1-a92f-92a1ffd286b9/collections?size=100",
+            )
             .with_status(200)
             .with_body_from_file("../../spec/fixtures/files/theses/api_collections.json")
             .create();
 
-        let id_selector: CommunityIdSelector = |_server: &str, _handle: &str| Ok(Some("c5839e02-b833-4db1-a92f-92a1ffd286b9".to_string()));
+        let id_selector: CommunityIdSelector = |_server: &str, _handle: &str| {
+            Ok(Some("c5839e02-b833-4db1-a92f-92a1ffd286b9".to_string()))
+        };
         let ids = get_collection_list(&server.url(), "88435/dsp019c67wm88m", id_selector).unwrap();
         assert!(ids.contains(&"894dd444-031f-4adf-8ea6-4e9cb6ef7334".to_string()));
 
