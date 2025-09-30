@@ -38,7 +38,9 @@ pub struct Metadatum {
 
 impl From<&str> for Metadatum {
     fn from(str: &str) -> Self {
-        Metadatum { value: Some(str.to_string()) }
+        Metadatum {
+            value: Some(str.to_string()),
+        }
     }
 }
 
@@ -52,7 +54,7 @@ impl<'de> Deserialize<'de> for DataspaceDocument {
         #[derive(Deserialize)]
         struct RawDocument {
             handle: String,
-            metadata: HashMap<String, Vec<Metadatum>>
+            metadata: HashMap<String, Vec<Metadatum>>,
         }
 
         let raw = RawDocument::deserialize(deserializer)?;
@@ -101,7 +103,9 @@ mod tests {
     use super::*;
 
     fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
-        vec![Metadatum { value: Some(value.to_string()) }]
+        vec![Metadatum {
+            value: Some(value.to_string()),
+        }]
     }
 
     #[test]
@@ -120,7 +124,8 @@ mod tests {
 
     #[test]
     fn it_can_parse_json() {
-        let fixture = File::open("../../spec/fixtures/files/theses/api_client_search.json").unwrap();
+        let fixture =
+            File::open("../../spec/fixtures/files/theses/api_client_search.json").unwrap();
         let reader = BufReader::new(fixture);
         let response: SearchResponse = serde_json::from_reader(reader).unwrap();
         let documents = response._embedded.search_result._embedded.objects;

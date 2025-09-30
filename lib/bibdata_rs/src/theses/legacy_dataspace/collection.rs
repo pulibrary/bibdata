@@ -235,7 +235,10 @@ mod tests {
             .with_status(500)
             .create();
 
-        assert!(legacy_collections_as_solr(server.url(), "88435/dsp019c67wm88m".to_owned(), 100).is_err());
+        assert!(
+            legacy_collections_as_solr(server.url(), "88435/dsp019c67wm88m".to_owned(), 100)
+                .is_err()
+        );
         mock_bad_response.assert();
     }
 }

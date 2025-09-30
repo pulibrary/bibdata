@@ -223,7 +223,9 @@ mod tests {
     use crate::theses::dataspace::document::Metadatum;
 
     fn metadatum_vec_from_string(value: &str) -> Vec<Metadatum> {
-        vec![Metadatum { value: Some(value.to_string()) }]
+        vec![Metadatum {
+            value: Some(value.to_string()),
+        }]
     }
 
     #[test]
@@ -243,9 +245,15 @@ mod tests {
             .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
             .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
             .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
-            .with_identifier_uri(metadatum_vec_from_string("http://arks.princeton.edu/ark:/88435/dsp01b2773v788"))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Department of English",
+            ))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Program in Theater",
+            ))
+            .with_identifier_uri(metadatum_vec_from_string(
+                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788",
+            ))
             .with_format_extent(metadatum_vec_from_string("102 pages"))
             .with_language_iso(metadatum_vec_from_string("en_US"))
             .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))
@@ -271,9 +279,15 @@ mod tests {
             .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
             .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
             .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
-            .with_identifier_uri(metadatum_vec_from_string("http://arks.princeton.edu/ark:/88435/dsp01b2773v788"))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Department of English",
+            ))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Program in Theater",
+            ))
+            .with_identifier_uri(metadatum_vec_from_string(
+                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788",
+            ))
             .with_format_extent(metadatum_vec_from_string("102 pages"))
             .with_language_iso(metadatum_vec_from_string("en_US"))
             .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))
@@ -299,8 +313,12 @@ mod tests {
             .with_contributor_advisor(metadatum_vec_from_string("Sandberg, Robert"))
             .with_contributor_author(metadatum_vec_from_string("Clark, Hillary"))
             .with_date_classyear(metadatum_vec_from_string("2014"))
-            .with_department(metadatum_vec_from_string("Princeton University. Department of English"))
-            .with_department(metadatum_vec_from_string("Princeton University. Program in Theater"))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Department of English",
+            ))
+            .with_department(metadatum_vec_from_string(
+                "Princeton University. Program in Theater",
+            ))
             .with_format_extent(metadatum_vec_from_string("102 pages"))
             .with_language_iso(metadatum_vec_from_string("en_US"))
             .with_title(metadatum_vec_from_string("Dysfunction: A Play in One Act"))

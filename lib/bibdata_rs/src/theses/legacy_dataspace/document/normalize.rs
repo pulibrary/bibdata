@@ -3,11 +3,12 @@
 use crate::{
     solr::{AccessFacet, ElectronicAccess, LibraryFacet},
     theses::{
-        legacy_dataspace::document::DataspaceDocument,
         department,
         embargo::{self, Embargo},
         holdings::{self, ThesisAvailability},
-        language, program,
+        language,
+        legacy_dataspace::document::DataspaceDocument,
+        program,
     },
 };
 use itertools::Itertools;

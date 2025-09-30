@@ -377,7 +377,6 @@ impl SolrDocumentBuilder {
             summary_note_display: self.summary_note_display.clone(),
         }
     }
-
 }
 
 #[cfg(test)]
