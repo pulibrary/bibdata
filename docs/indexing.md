@@ -150,7 +150,6 @@ CTRL+b d (to detach from tmux)
 - If you want more detailed output while you're running the rake task set RUST_LOG=trace.
 - If you're running the rake task in a staging or qa environment you will need to set figgy's production url FIGGY_URL=https://figgy.princeton.edu
 Currently there are not many ephemera resources in Figgy. This step takes around 1-2 minutes. 
-```
 
 ### Index Numismatic Coins
 
