@@ -45,14 +45,14 @@ impl DataspaceDocument {
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|dept| department::map_department(&dept)),
+                .filter_map(|dept| department::map_department(dept)),
         );
         authors.extend(
             self.certificate
                 .clone()
                 .unwrap_or_default()
                 .iter()
-                .filter_map(|program| program::map_program(&program)),
+                .filter_map(|program| program::map_program(program)),
         );
         authors
     }

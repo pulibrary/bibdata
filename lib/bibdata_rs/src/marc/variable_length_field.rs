@@ -20,6 +20,6 @@ mod tests {
     #[test]
     fn it_can_combine_consecutive_whitespace() {
         let s = "Dogs       cats";
-        assert_eq!(combine_consecutive_whitespace(&s), "Dogs cats");
+        assert_eq!(combine_consecutive_whitespace(s), "Dogs cats");
     }
 }

@@ -62,7 +62,7 @@ pub fn dataspace_url_with_metadata(
             location,
             access_rights,
             mudd_walkin,
-            &class_year,
+            class_year,
             embargo,
         ) {
             OnSiteOnly => Some("Citation only".to_owned()),
@@ -88,7 +88,7 @@ pub fn on_site_only(
     if matches!(embargo, embargo::Embargo::Current(_)) {
         return OnSiteOnly;
     };
-    if !physical_class_year(&class_year) {
+    if !physical_class_year(class_year) {
         return AvailableOffSite;
     }
     if location || access_rights || mudd_walkin {

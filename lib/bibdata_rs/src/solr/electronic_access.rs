@@ -121,7 +121,7 @@ mod tests {
     fn it_can_deserialize_from_json() {
         let json =
             r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\"]}""#;
-        let parsed: ElectronicAccess = serde_json::from_str(&json).unwrap();
+        let parsed: ElectronicAccess = serde_json::from_str(json).unwrap();
         assert_eq!(
             parsed.url,
             "http://arks.princeton.edu/ark:/88435/dch989rf19q"
@@ -133,7 +133,7 @@ mod tests {
     #[test]
     fn it_can_deserialize_electronic_access_with_link_description_from_json() {
         let json = r#""{\"http://arks.princeton.edu/ark:/88435/dch989rf19q\":[\"Electronic Resource\",\"My nice description\"]}""#;
-        let parsed: ElectronicAccess = serde_json::from_str(&json).unwrap();
+        let parsed: ElectronicAccess = serde_json::from_str(json).unwrap();
         assert_eq!(
             parsed.url,
             "http://arks.princeton.edu/ark:/88435/dch989rf19q"

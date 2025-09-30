@@ -144,7 +144,7 @@ pub fn private_items(record_string: String, holding_id: String) -> Result<bool, 
     });
     Ok(items.any(|item| {
         item.first_subfield("x")
-            .map_or(true, |subfield| subfield.content() == "Private")
+            .is_none_or(|subfield| subfield.content() == "Private")
     }))
 }
 

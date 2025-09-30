@@ -354,7 +354,7 @@ impl EphemeraFolder {
     pub fn normalized_id(&self) -> String {
         self.id
             .split('/')
-            .last()
+            .next_back()
             .unwrap_or(&self.id)
             .trim()
             .to_string()
