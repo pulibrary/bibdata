@@ -36,7 +36,7 @@ class CacheMap
       return
     end
 
-    pages = response.fetch('pages')
+    pages = response.fetch('meta')['pages']
 
     cache_page(response)
 
@@ -68,27 +68,84 @@ class CacheMap
 
     # Cache a page
     # @param page [Hash] Solr response page
+    # def cache_page(page)
+    #   docs = page.fetch('data')
+    #   docs.each do |doc|
+    #     resource_type = doc.fetch('type', [])
+    #     next if resource_type == "Issue" || resource_type == "Ephemera Folder" || resource_type == "Coin" # Issues/Coins and Ephemera don't have arks at the moment
+    #     ark = if doc.fetch('attributes')['identifier_ssim'] then doc.fetch('attributes')['identifier_ssim']['attributes']['value'] || [] end
+    #     # next if ark.nil? || ark.empty?
+      
+    #     bib_id = if doc.fetch('attributes')['source_metadata_identifier_ssim'] then doc.fetch('attributes')['source_metadata_identifier_ssim']['attributes']['value'] || [] end
+    #     puts "---"
+    #     puts ark
+    #     puts resource_type
+    #     puts "----"
+    #     next if bib_id.nil? || bib_id.empty?
+    #     id = doc.fetch('id')
+        
+    #     # Write this to the file cache
+    #     key_for_ark = self.class.cache_key_for(ark:)
+    #     # Don't overwrite the first value
+    #     unless @cache.exist?(key_for_ark)
+    #       @cache.write(key_for_ark, id:, source_metadata_identifier: bib_id, internal_resource: resource_type)
+    #       @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
+    #     end
+    #   end
+    # end
+
     def cache_page(page)
-      docs = page.fetch('docs')
+      docs = page.fetch('data')
+      
       docs.each do |doc|
-        arks = doc.fetch('identifier_ssim', [])
-        bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
-        id = doc.fetch('id')
-        # Grab the human readable type
-        resource_types = doc.fetch('internal_resource_ssim', nil) || doc.fetch('has_model_ssim', nil)
-        resource_type = resource_types.first
-
-        ark = arks.first
-        bib_id = bib_ids.first
-
-        # Write this to the file cache
-        key_for_ark = self.class.cache_key_for(ark:)
-        # Handle collisions by refusing to overwrite the first value
-        unless @cache.exist?(key_for_ark)
-          @cache.write(key_for_ark, id:, source_metadata_identifier: bib_id, internal_resource: resource_type)
-          @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
-        end
+        next unless process_doc?(doc)
+        
+        ark = extract_ark(doc)
+        next if ark.nil? || ark.empty?
+        
+        bib_id = extract_bib_id(doc)
+        next if bib_id.nil? || bib_id.empty?
+        
+        cache_document_mapping(doc, ark, bib_id)
       end
+    end
+
+    def process_doc?(doc)
+      resource_type = doc.fetch('type', [])
+      excluded_types = ["Issue", "Ephemera Folder", "Coin"]
+      !excluded_types.include?(resource_type)
+    end
+
+    def extract_ark(doc)
+      attributes = doc.dig('attributes', 'identifier_ssim')
+      return nil unless attributes
+      
+      attributes.dig('attributes', 'value') || []
+    end
+
+    def extract_bib_id(doc)
+      attributes = doc.dig('attributes', 'source_metadata_identifier_ssim')
+      return nil unless attributes
+      
+      attributes.dig('attributes', 'value') || []
+    end
+
+    def cache_document_mapping(doc, ark, bib_id)
+      id = doc.fetch('id')
+      resource_type = doc.fetch('type', [])
+      key_for_ark = self.class.cache_key_for(ark: ark)
+      
+      # Don't overwrite existing cache entries
+      return if @cache.exist?(key_for_ark)
+      
+      cache_data = {
+        id: id,
+        source_metadata_identifier: bib_id,
+        internal_resource: resource_type
+      }
+      
+      @cache.write(key_for_ark, cache_data)
+      @logger.debug "Cached mapping for #{ark} to #{bib_id}"
     end
 
     # Query the service using the endpoint
@@ -98,7 +155,6 @@ class CacheMap
         url = URI::HTTPS.build(host: @host, path: @path, query: "q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
         http_response = Faraday.get(url)
         values = JSON.parse(http_response.body)
-        values.fetch('response')
       rescue StandardError => e
         @logger.error "Failed to seed the ARK cached from Solr: #{e}"
         {}
