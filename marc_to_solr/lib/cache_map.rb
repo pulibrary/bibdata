@@ -1,5 +1,6 @@
 require 'faraday'
 require 'active_support/core_ext/string'
+require 'active_support/core_ext/object/blank'
 
 # Cached mapping of ARKs to Bib IDs
 # Retrieves and stores paginated Solr responses containing the ARK's and BibID's
@@ -22,8 +23,6 @@ class CacheMap
     @logger = logger
   end
 
-  # Seed the cache
-  # @param page [Integer] the page number at which to start the caching
   def seed!(page: 1)
     @logger.info "Seeding the cache for #{@host} using Solr..."
     # Determine if the values from the Solr response have been cached
@@ -36,12 +35,23 @@ class CacheMap
       return
     end
 
-    pages = response.fetch('pages')
+    # Check for meta key
+    unless response.key?('meta')
+      @logger.error "Invalid response format from Solr: missing 'meta' key. Response: #{response.inspect}"
+      return
+    end
+
+    meta = response['meta']
+    unless meta&.key?('pages')
+      @logger.error "Invalid response format from Solr: missing 'pages' in meta. Meta: #{meta.inspect}"
+      return
+    end
+    pages = meta['pages']
 
     cache_page(response)
 
     # Recurse if there are more pages to cache
-    if pages.fetch('last_page?') == false
+    if pages.fetch('last_page?', true) == false
       seed!(page: page + 1)
     else
       # Otherwise, mark within the cache that a thread has populated all of the ARK/BibID pairs
@@ -66,29 +76,58 @@ class CacheMap
 
   private
 
-    # Cache a page
-    # @param page [Hash] Solr response page
     def cache_page(page)
-      docs = page.fetch('docs')
+      docs = page.fetch('data')
+
       docs.each do |doc|
-        arks = doc.fetch('identifier_ssim', [])
-        bib_ids = doc.fetch('source_metadata_identifier_ssim', [])
-        id = doc.fetch('id')
-        # Grab the human readable type
-        resource_types = doc.fetch('internal_resource_ssim', nil) || doc.fetch('has_model_ssim', nil)
-        resource_type = resource_types.first
+        next unless process_doc?(doc)
 
-        ark = arks.first
-        bib_id = bib_ids.first
+        ark = extract_ark(doc)
+        next if ark.blank?
 
-        # Write this to the file cache
-        key_for_ark = self.class.cache_key_for(ark:)
-        # Handle collisions by refusing to overwrite the first value
-        unless @cache.exist?(key_for_ark)
-          @cache.write(key_for_ark, id:, source_metadata_identifier: bib_id, internal_resource: resource_type)
-          @logger.debug "Cached the mapping for #{ark} to #{bib_id}"
-        end
+        bib_id = extract_bib_id(doc)
+        next if bib_id.blank?
+
+        cache_document_mapping(doc, ark, bib_id)
       end
+    end
+
+    def process_doc?(doc)
+      resource_type = doc.fetch('type', [])
+      excluded_types = ['Issue', 'Ephemera Folder', 'Coin']
+      !excluded_types.include?(resource_type)
+    end
+
+    def extract_ark(doc)
+      attributes = doc.dig('attributes', 'identifier_ssim')
+      return nil unless attributes
+
+      attributes.dig('attributes', 'value') || []
+    end
+
+    def extract_bib_id(doc)
+      attributes = doc.dig('attributes', 'source_metadata_identifier_ssim')
+      return nil unless attributes
+
+      attributes.dig('attributes', 'value') || []
+    end
+
+    def cache_document_mapping(doc, ark, bib_id)
+      id = doc.fetch('id')
+      resource_type = doc.fetch('type', [])
+      key_for_ark = self.class.cache_key_for(ark:)
+
+      # Don't overwrite existing cache entries
+      return if @cache.exist?(key_for_ark)
+
+      cache_data = {
+        id:,
+        source_metadata_identifier: bib_id,
+        internal_resource: resource_type
+      }
+
+      @cache.write(key_for_ark, cache_data)
+      @logger.debug "Cached mapping for #{ark} to #{bib_id}"
     end
 
     # Query the service using the endpoint
@@ -98,7 +137,6 @@ class CacheMap
         url = URI::HTTPS.build(host: @host, path: @path, query: "q=&rows=#{@rows}&page=#{page}&f[identifier_tesim][]=ark")
         http_response = Faraday.get(url)
         values = JSON.parse(http_response.body)
-        values.fetch('response')
       rescue StandardError => e
         @logger.error "Failed to seed the ARK cached from Solr: #{e}"
         {}
