@@ -19,9 +19,9 @@ set :job_template, "bash -l -c 'export PATH=\"/usr/local/bin/:$PATH\" && :job'"
 #   written into whenever (like mailto)
 
 # populate the figgy ark cache
-every 1.day, at: '3:00am' do
-  rake 'liberate:arks:clear_and_seed_cache'
-end
+# every 1.day, at: '3:00am' do
+#   rake 'liberate:arks:clear_and_seed_cache'
+# end
 
 # reindex ephemera born digital from figgy
 every 1.day, at: '4:00am', roles: [:cron_production] do
