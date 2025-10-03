@@ -1,6 +1,7 @@
 namespace :ephemera do
   desc 'Full reindex ephemera into solr'
   task full_reindex: :environment do
+    ENV['RUST_LOG'] = 'trace'
     default_solr_url = Rails.application.config.solr[:url]
     solr_url = ENV.fetch('SET_URL', nil) || default_solr_url
     figgy_url = ENV.fetch('FIGGY_URL', nil)
