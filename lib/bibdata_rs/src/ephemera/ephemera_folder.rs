@@ -597,11 +597,23 @@ mod tests {
     #[test]
     fn it_does_not_error_on_invalid_subject_type() {
         use serde_json::json;
+        let _ = env_logger::builder()
+            .is_test(true)
+            .filter_level(log::LevelFilter::Trace)
+            .try_init();
 
         let invalid_json = json!({
-            "@id": "test-id",
+            "@id": "test-id-with-invalid-subjects",
             "title": ["Test Title"],
-            "subject": ["εφήμερα","θέμα με λάθος δομή"]
+            // "subject": ["εφήμερα","θέμα με λάθος δομή"]
+            "subject": [
+                {
+                    "pref_label": "εφήμερα",
+                },
+                {
+                    "pref_label": "θέμα με λάθος δομή",
+                }
+            ]
         });
 
         let result: Result<EphemeraFolder, _> = serde_json::from_value(invalid_json);
@@ -611,6 +623,18 @@ mod tests {
             "Deserialization should not error on invalid subject type"
         );
         let folder = result.unwrap();
-        assert!(folder.subject.is_none());
+        assert!(folder.subject.is_some());
+        let subjects = folder.subject.as_ref().unwrap();
+        assert_eq!(subjects.len(), 2);
+
+        assert!(subjects[0].exact_match.is_none());
+        assert!(subjects[1].exact_match.is_none());
+
+        log_subjects_without_exact_match(subjects);
+
+        // Run: RUST_LOG=trace cargo test it_does_not_error_on_invalid_subject_type -- --nocapture
+        // The trace logs should have:
+        // "Subject missing exact_match: Subject { exact_match: None, label: "εφήμερα" }"
+        // "Subject missing exact_match: Subject { exact_match: None, label: "θέμα με λάθος δομή" }"
     }
 }
