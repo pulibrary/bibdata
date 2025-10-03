@@ -25,7 +25,7 @@ set :job_template, "bash -l -c 'export PATH=\"/usr/local/bin/:$PATH\" && :job'"
 
 # reindex ephemera born digital from figgy
 every 1.day, at: '4:00am', roles: [:cron_production] do
-  rake 'ephemera:full_reindex'
+  rake 'ephemera:full_reindex', output: '/tmp/ephemera_full_reindex.log'
 end
 
 job_type :liberate_latest_production,
