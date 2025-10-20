@@ -3704,6 +3704,66 @@
         "delivery_locations": []
     },
     {
+        "label": "Rare Books",
+        "code": "marquand$fbx",
+        "aeon_location": true,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": true,
+        "always_requestable": true,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$fbx.json",
+        "library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Rare Books",
+        "code": "marquand$rrx",
+        "aeon_location": true,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": true,
+        "always_requestable": true,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$rrx.json",
+        "library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
+        "label": "Rare Books",
+        "code": "marquand$ebx",
+        "aeon_location": true,
+        "recap_electronic_delivery_location": false,
+        "open": false,
+        "requestable": true,
+        "always_requestable": true,
+        "circulates": false,
+        "remote_storage": "",
+        "fulfillment_unit": "Closed",
+        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$ebx.json",
+        "library": {
+            "label": "Marquand Library",
+            "code": "marquand",
+            "order": 0
+        },
+        "holding_library": null,
+        "delivery_locations": []
+    },
+    {
         "label": "Tech Equipment",
         "code": "marquand$tech",
         "aeon_location": false,
