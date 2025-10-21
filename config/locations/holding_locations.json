@@ -576,7 +576,7 @@
     },
     {
         "label": "",
-        "code":"commons$stacks",
+        "code": "commons$stacks",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
         "open": true,
@@ -593,7 +593,6 @@
         },
         "holding_library": null,
         "delivery_locations": []
-
     },
     {
         "label": "Tech Equipment",
@@ -891,11 +890,9 @@
             "order": 0
         },
         "delivery_locations": [
-            "QT",
-            "PL",
             "PF",
-            "QA",
-            "IL",
+            "QT",
+            "QL",
             "QC",
             "QP"
         ]
@@ -3914,7 +3911,7 @@
             "order": 0
         },
         "delivery_locations": [
-           "PJ" 
+            "PJ"
         ]
     },
     {
