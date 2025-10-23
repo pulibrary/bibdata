@@ -1,0 +1,12 @@
+{
+    "errorsExist": true,
+    "errorList": {
+      "error": [
+        {
+          "errorCode": "401688",
+          "errorMessage": "Search failed for Items with mmsId 123, holdings id 456.",
+          "trackingId": "bad-bad-bad-123"
+        }
+      ]
+    }
+  }

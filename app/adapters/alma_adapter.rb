@@ -83,18 +83,22 @@ class AlmaAdapter
     handle_alma_error(client_error: e)
   end
 
+  # Fetch the items for the holding and create
+  # the availability response for each item
+  # If the holding has more than ITEMS_PER_PAGE items the Alma gem will automatically
+  # make multiple calls to the Alma API.
   def get_availability_holding(id:, holding_id:)
-    # Fetch the bib record and get the information for the individual holding
-    bibs = Alma::Bib.find(Array.wrap(id), expand: %w[p_avail e_avail d_avail requests].join(',')).each
-    return nil if bibs.count == 0
-
-    # Fetch the items for the holding and create
-    # the availability response for each item
-    bib_status = AvailabilityStatus.from_bib(bib: bibs.first)
-    holding_items = bib_status.holding_item_data(holding_id:)
-    holding_items[:items].map(&:availability_summary)
+    options = { enable_loggable: true, timeout: 10 }
+    message = "Items for bib: #{id}, holding_id: #{holding_id}"
+    holding_items = AlmaAdapter::Execute.call(options:, message:) do
+      opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id:, order_by: 'enum_a' }
+      Alma::BibItem.find(id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item).availability_summary }
+    end
   rescue Alma::StandardError => e
-    handle_alma_error(client_error: e)
+    errors = build_alma_errors(from: e)
+    raise errors.first if errors.first.is_a?(Alma::PerSecondThresholdError)
+
+    nil
   end
 
   # Returns list of holding records for a given MMS
