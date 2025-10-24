@@ -32,11 +32,11 @@ module AlmaStubbing
                  body: alma_path.join("holding_#{holding_id}.json"))
   end
 
-  def stub_alma_holding_items(mms_id:, holding_id:, filename:, query: 'limit=100')
+  def stub_alma_holding_items(mms_id:, holding_id:, filename:, query: 'limit=100', status: 200)
     alma_path = Pathname.new(file_fixture_path).join('alma')
     query_string = [query, 'order_by=enum_a'].select(&:present?).join('&')
     stub_request(:get, "https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/#{mms_id}/holdings/#{holding_id}/items?#{query_string}")
-      .to_return(status: 200,
+      .to_return(status:,
                  headers: { 'Content-Type' => 'application/json' },
                  body: alma_path.join(filename))
   end

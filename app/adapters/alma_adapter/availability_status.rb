@@ -149,23 +149,6 @@ class AlmaAdapter
       holdings.find { |h| h['holding_id'] == holding_id }
     end
 
-    # Returns all the items for a given holding_id in the current bib.
-    # This is a more specific version of `item_data`.
-    #
-    # If the holding has more than ITEMS_PER_PAGE items the Alma gem will automatically
-    # make multiple calls to the Alma API.
-    def holding_item_data(holding_id:)
-      data = nil
-      options = { enable_loggable: true, timeout: 10 }
-      message = "Items for bib: #{bib.id}, holding_id: #{holding_id}"
-      AlmaAdapter::Execute.call(options:, message:) do
-        opts = { limit: Alma::BibItemSet::ITEMS_PER_PAGE, holding_id:, order_by: 'enum_a' }
-        items = Alma::BibItem.find(bib.id, opts).all.map { |item| AlmaAdapter::AlmaItem.new(item) }
-        data = { items:, total_count: items.count }
-      end
-      data
-    end
-
     private
 
       # Returns the extra location information that we store in the local database

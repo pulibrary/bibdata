@@ -258,14 +258,11 @@ RSpec.describe AlmaAdapter do
     let(:library_lewis_stacks) { file_fixture('alma/library_lewis_stacks.json') }
 
     before do
-      stub_alma_ids(ids: '9919392043506421', status: 200)
       stub_alma_holding_items(mms_id: '9919392043506421', holding_id: '22105104420006421', filename: '9919392043506421_holding_items.json')
-      stub_alma_ids(ids: '99122455086806421', status: 200)
       stub_alma_holding_items(mms_id: '99122455086806421', holding_id: '22477860740006421', filename: '99122455086806421_holding_items.json')
       stub_alma_library(library_code: 'firestone', location_code: 'dixn')
       stub_alma_library(library_code: 'firestone', location_code: 'stacks')
 
-      stub_alma_ids(ids: '9999362473506421', status: 200)
       # https://api-na.hosted.exlibrisgroup.com/almaws/v1/bibs/9999362473506421/holdings/22752541670006421/items?limit=100&order_by=enum_a
       stub_alma_holding_items(mms_id: '9999362473506421', holding_id: '22752541670006421', filename: '9999362473506421_holding_items.json')
       stub_alma_holding_items(mms_id: '9999362473506421', holding_id: '22752541690006421', filename: '9999362473506421_holding_items_two.json')
@@ -315,6 +312,11 @@ RSpec.describe AlmaAdapter do
       expect(item[:location]).to eq 'firestone$dixn'
       expect(item[:pickup_location_id]).to eq 'firestone'
       expect(item[:pickup_location_code]).to eq 'firestone'
+    end
+
+    it 'does not make unnecessary http requests' do
+      adapter.get_availability_holding(id: '99122455086806421', holding_id: '22477860740006421')
+      expect(WebMock).to have_requested(:get, /alma/).times(1)
     end
   end
 

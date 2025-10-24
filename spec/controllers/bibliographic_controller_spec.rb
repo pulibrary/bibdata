@@ -257,7 +257,7 @@ RSpec.describe BibliographicController, type: :controller do
 
   describe '#availability_holding' do
     before do
-      stub_alma_ids(ids: 'not-exist', status: 200, fixture: 'not_found')
+      stub_alma_holding_items(mms_id: 'not-exist', holding_id: 'not-exist', filename: 'holding_items_nonexistant_mmsid.json', status: 400)
       stub_alma_ids(ids: '9922486553506421', status: 200)
       stub_alma_holding_items(mms_id: '9922486553506421', holding_id: '22117511410006421', filename: '9922486553506421_holding_items.json')
       stub_alma_holding_items(mms_id: '9922486553506421', holding_id: 'not-exist', filename: 'not_found_items.json')
