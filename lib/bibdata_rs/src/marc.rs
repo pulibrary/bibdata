@@ -180,6 +180,10 @@ pub fn strip_non_numeric(string: String) -> String {
     string_normalize::strip_non_numeric(&string)
 }
 
+pub fn trim_punctuation_owned(string: String) -> String {
+    trim_punctuation(&string)
+}
+
 fn get_record(breaker: &str) -> Result<Record, magnus::Error> {
     Record::from_breaker(breaker).map_err(|err| {
         magnus::Error::new(

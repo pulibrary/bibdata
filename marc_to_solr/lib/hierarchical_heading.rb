@@ -22,10 +22,10 @@ class HierarchicalHeading
     end
 
     def compile_string
-      heading = Traject::Macros::Marc21.trim_punctuation(first_subfield.value)
+      heading = BibdataRs::Marc.trim_punctuation(first_subfield.value.to_s)
       remaining_subfields.each do |subfield|
         heading << delimiter_for(subfield)
-        heading << Traject::Macros::Marc21.trim_punctuation(subfield.value)
+        heading << BibdataRs::Marc.trim_punctuation(subfield.value.to_s)
       end
       heading
     end
