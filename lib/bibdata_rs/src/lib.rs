@@ -93,5 +93,9 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
     submodule_marc.define_singleton_method("holding_id", function!(marc::holding_id, 2))?;
     submodule_marc.define_singleton_method("subjects_cjk", function!(marc::subjects_cjk, 1))?;
     submodule_marc.define_singleton_method("notes_cjk", function!(marc::notes_cjk, 1))?;
+    submodule_marc.define_module_function(
+        "trim_punctuation",
+        function!(marc::trim_punctuation_owned, 1),
+    )?;
     Ok(())
 }
