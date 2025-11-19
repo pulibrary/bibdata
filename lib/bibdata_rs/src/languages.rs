@@ -16,7 +16,7 @@ pub struct Iso639_3Language {
 }
 
 impl Iso639_3Language {
-    pub fn macrolanguage(&self) -> Option<Iso639_3Language> {
+    pub fn macrolanguage(&self) -> Option<&Iso639_3Language> {
         self.macrolanguage_code
             .map(iso_639_3::from_iso_639_3_code)?
     }
@@ -68,6 +68,27 @@ pub fn two_letter_code(code: &str) -> Option<&'static str> {
 // A wrapper for use in Ruby that uses owned strings
 pub fn two_letter_code_owned(code: String) -> Option<String> {
     two_letter_code(&code).map(|two_letter_code| two_letter_code.to_owned())
+}
+
+pub fn macrolanguage_codes_owned(individual_language_code: String) -> Vec<String> {
+    macrolanguage_codes(&individual_language_code)
+}
+
+pub fn macrolanguage_codes(individual_language_code: &str) -> Vec<String> {
+    iso_639_3::from_iso_639_3_code(individual_language_code)
+        .and_then(|language| language.macrolanguage_code)
+        .map_or(Vec::default(), |macrolanguage_code| {
+            let mut macrolanguage_codes = vec![macrolanguage_code.to_string()];
+            let macrolanguage = iso_639_3::from_iso_639_3_code(macrolanguage_code);
+            let bibliographic_code = macrolanguage.and_then(|language| language.iso_639_2b_code);
+            if let Some(code) = bibliographic_code {
+                // only add it if it is unique
+                if code != macrolanguage_code {
+                    macrolanguage_codes.push(code.to_string())
+                }
+            }
+            macrolanguage_codes
+        })
 }
 
 #[cfg(test)]
