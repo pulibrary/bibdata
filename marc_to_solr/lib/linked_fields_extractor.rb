@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class is responsible for extracting and validating
 # Alma MMS IDs from the 773 and 774 MARC fields
 class LinkedFieldsExtractor

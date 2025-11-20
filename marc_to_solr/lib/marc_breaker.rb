@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This class is responsible for converting MARC records into the
 # MarcBreaker format (see https://www.loc.gov/marc/makrbrkr.html)
 #
@@ -38,8 +40,8 @@ class MarcBreaker
 
   private
 
-    MARC_BREAKER_SF_DELIMITER = '$'.freeze
-    MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'.freeze
+    MARC_BREAKER_SF_DELIMITER = '$'
+    MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'
 
     def escape_to_breaker(value)
       value.gsub(MARC_BREAKER_SF_DELIMITER, MARC_BREAKER_SF_DELIMITER_ESCAPE).tr("\n", ' ')

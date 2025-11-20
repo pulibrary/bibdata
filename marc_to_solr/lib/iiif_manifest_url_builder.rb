@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class for building instances of URI::HTTPS for IIIF Manifest URL's
 class IIIFManifestUrlBuilder
   # Constructor

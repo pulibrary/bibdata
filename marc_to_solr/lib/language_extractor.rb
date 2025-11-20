@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # A class to pull out language information from
 # a MARC record
 class LanguageExtractor

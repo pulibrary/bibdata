@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class which provides an API similar to that of ActiveSupport::Cache::Store Objects
 # Currently this just supports the Lightly Gem (@see https://github.com/DannyBen/lightly)
 class CacheAdapter

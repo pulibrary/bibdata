@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ElectronicAccessLinkFactory
   # Extract values from a given MARC subfield
   # @param s_field the MARC subfield

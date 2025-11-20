@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProcessHoldingsHelpers
   attr_reader :record, :marc_breaker
 

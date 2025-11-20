@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Composite of CacheMaps
 # Provides the ability to build a cache from multiple Solr endpoints
 class CompositeCacheMap

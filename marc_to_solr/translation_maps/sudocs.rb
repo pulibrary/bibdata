@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 {
   'A' => 'A - Agriculture',
   'AE' => 'AE - National Archives and Records Administration',

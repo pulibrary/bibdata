@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 {
   'A' => 'SuDocs: A-G',
   'AE' => 'SuDocs: A-G',

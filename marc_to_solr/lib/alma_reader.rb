@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Alma MARC-XML files have no namespace defined, so we have to bypass that
 # requirement in Nokogiri.
 class AlmaReader < Traject::MarcReader

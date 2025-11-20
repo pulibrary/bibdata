@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # geo.rb
 # extract geo-related data from MARC
 

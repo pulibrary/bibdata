@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/core_ext/module'
 
 # Class for handling instances of caching objects

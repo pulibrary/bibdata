@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class for building electronic portfolio JSON from marc fields
 class ElectronicPortfolioBuilder
   # Build electronic portfolio JSON from marc fields

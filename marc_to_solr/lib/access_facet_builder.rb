@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class for building access_facet values
 class AccessFacetBuilder
   # Build access facet
