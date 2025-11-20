@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'normal_uri_factory'
 require_relative 'uri_ark'
 

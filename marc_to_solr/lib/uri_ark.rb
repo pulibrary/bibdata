@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Class modeling the ARK standard for URL's
 # @see https://tools.ietf.org/html/draft-kunze-ark-18
 class URI::ARK < URI::Generic
