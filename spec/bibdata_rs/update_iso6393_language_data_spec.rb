@@ -33,43 +33,60 @@ RSpec.describe BibdataRs::UpdateIso6393LanguageData do
       // instead run `bundle exec rake languages:iso639_3:refresh_list`
       // All data is from www.iso639-3.sil.org
       use super::{Iso639_3Language, Language};
-      pub fn from_iso_639_3_code(code: &str) -> Option<Iso639_3Language> {
-          match code {
-              "aaa" => Some(Iso639_3Language {
+      use std::{collections::HashMap, sync::LazyLock};
+      pub fn from_iso_639_3_code(code: &str) -> Option<&Iso639_3Language> {
+          ISO_639_3.get(code)
+      }
+
+      static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
+          let mut language_hash = HashMap::with_capacity(8000);
+
+          language_hash.insert(
+              "aaa",
+              Iso639_3Language {
                   language: Language {
                       english_name: "Ghotuo",
                       two_letter_code: None,
                   },
                   macrolanguage_code: None,
                   iso_639_2b_code: None,
-              }),
-              "aab" => Some(Iso639_3Language {
+              },
+          );
+          language_hash.insert(
+              "aab",
+              Iso639_3Language {
                   language: Language {
                       english_name: "Alumu-Tesu",
                       two_letter_code: None,
                   },
                   macrolanguage_code: None,
                   iso_639_2b_code: None,
-              }),
-              "aao" => Some(Iso639_3Language {
+              },
+          );
+          language_hash.insert(
+              "aao",
+              Iso639_3Language {
                   language: Language {
                       english_name: "Algerian Saharan Arabic",
                       two_letter_code: None,
                   },
                   macrolanguage_code: Some("ara"),
                   iso_639_2b_code: None,
-              }),
-              "aar" => Some(Iso639_3Language {
+              },
+          );
+          language_hash.insert(
+              "aar",
+              Iso639_3Language {
                   language: Language {
                       english_name: "Afar",
                       two_letter_code: Some("aa"),
                   },
                   macrolanguage_code: None,
                   iso_639_2b_code: Some("aar"),
-              }),
-              _ => None,
-          }
-      }
+              },
+          );
+          language_hash
+      });
 
     END_EXPECTED_RUST_CODE
     expect(file.read).to eq expected_rust_code

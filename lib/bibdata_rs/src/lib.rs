@@ -39,6 +39,10 @@ fn init(ruby: &Ruby) -> Result<(), Error> {
         function!(languages::language_code_to_name, 1),
     )?;
     submodule_languages.define_singleton_method(
+        "macrolanguage_codes",
+        function!(languages::macrolanguage_codes_owned, 1),
+    )?;
+    submodule_languages.define_singleton_method(
         "valid_language_code?",
         function!(languages::is_valid_language_code, 1),
     )?;

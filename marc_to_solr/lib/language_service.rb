@@ -28,12 +28,7 @@ class LanguageService
   end
 
   def macrolanguage_codes(individual_language_code)
-    individual = Languages[individual_language_code]
-    if individual.respond_to? :macrolanguage
-      [individual&.macrolanguage&.alpha3_bibliographic.to_s, individual&.macrolanguage&.iso639_3.to_s].uniq
-    else
-      []
-    end
+    BibdataRs::Languages.macrolanguage_codes(individual_language_code)
   end
 
   def specific_names(record)

@@ -24,10 +24,10 @@ module BibdataRs
 
   Iso639_3Language = Struct.new(:language, :macrolanguage_code, :iso_639_2b_code) do
     # Represent this Language struct as a rust Option<Iso639_3Language>
-    def as_rust_option
-      "Some(Iso639_3Language { language: #{language.as_rust}, " \
+    def as_rust
+      "Iso639_3Language { language: #{language.as_rust}, " \
         "macrolanguage_code: #{rust_option_string(macrolanguage_code)}, " \
-        "iso_639_2b_code: #{rust_option_string(iso_639_2b_code)} })"
+        "iso_639_2b_code: #{rust_option_string(iso_639_2b_code)} }"
     end
 
     private
@@ -88,13 +88,17 @@ module BibdataRs
             // instead run `bundle exec rake languages:iso639_3:refresh_list`
             // All data is from www.iso639-3.sil.org
             use super::{Iso639_3Language, Language};
-            pub fn from_iso_639_3_code(code: &str) -> Option<Iso639_3Language> {
+            use std::{collections::HashMap, sync::LazyLock};
+            pub fn from_iso_639_3_code(code: &str) -> Option<&Iso639_3Language> {
+                ISO_639_3.get(code)
+            }
 
-              match code {
-                  #{languages.join(",\n        ")},
-                  _ => None
-              }
-          }
+            static ISO_639_3: LazyLock<HashMap<&str, Iso639_3Language>> = LazyLock::new(|| {
+                let mut language_hash = HashMap::with_capacity(8000);
+
+                  #{languages.join(";\n        ")};
+                language_hash
+          });
         END_ISO_639_3_FUNCTION
       end
 
@@ -103,7 +107,7 @@ module BibdataRs
         CSV.new(download, col_sep: "\t", headers: true).filter_map do |row|
           language = Language.new(row['Ref_Name'], row['Part1'])
           iso639_3_language = Iso639_3Language.new(language, macrolanguage(row['Id']), row['Part2b'])
-          "\"#{row['Id']}\" => #{iso639_3_language.as_rust_option}"
+          "language_hash.insert(\"#{row['Id']}\", #{iso639_3_language.as_rust})"
         end
       end
 
