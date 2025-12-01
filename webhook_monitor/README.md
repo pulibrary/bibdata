@@ -48,6 +48,9 @@ Configure the URL and secret in Alma:
 Here is some alma documentation about webhooks:
 https://knowledge.exlibrisgroup.com/Alma/Product_Documentation/010Alma_Online_Help_(English)/090Integrations_with_External_Systems/030Resource_Management/300Webhooks
 
+## Alma Sandbox Integration
+After Ex Libris has executed the bi-annual cloning of production Alma to the [Alma Sandbox]([url](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/pages/1770198/Premium+Sandbox)) remember to 'Activate' the alma-staging-webhook. The Alma team is authorized to do this.
+
 ## Tests
 
 To run the tests for the alma webhook monitor:
