@@ -3803,26 +3803,6 @@
         ]
     },
     {
-        "label": "Computer Media",
-        "code": "marquand$ltop",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": true,
-        "circulates": false,
-        "remote_storage": "",
-        "fulfillment_unit": "Media",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$ltop.json",
-        "library": {
-            "label": "Marquand Library",
-            "code": "marquand",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": []
-    },
-    {
         "label": "Microforms Remote Storage: Marquand Use Only",
         "code": "marquand$mic",
         "aeon_location": false,
@@ -3834,50 +3814,6 @@
         "remote_storage": "",
         "fulfillment_unit": "Closed",
         "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$mic.json",
-        "library": {
-            "label": "Marquand Library",
-            "code": "marquand",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
-    },
-    {
-        "label": "Manuscripts",
-        "code": "marquand$ms",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": true,
-        "circulates": false,
-        "remote_storage": "",
-        "fulfillment_unit": "Closed",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$ms.json",
-        "library": {
-            "label": "Marquand Library",
-            "code": "marquand",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
-    },
-    {
-        "label": "Manuscripts: Reference",
-        "code": "marquand$msref",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": true,
-        "circulates": false,
-        "remote_storage": "",
-        "fulfillment_unit": "Closed",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$msref.json",
         "library": {
             "label": "Marquand Library",
             "code": "marquand",
@@ -4063,28 +3999,6 @@
         ]
     },
     {
-        "label": "Barr Ferree Collection",
-        "code": "marquand$saf",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": true,
-        "circulates": false,
-        "remote_storage": "",
-        "fulfillment_unit": "Closed",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$saf.json",
-        "library": {
-            "label": "Marquand Library",
-            "code": "marquand",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
-    },
-    {
         "label": "Remote Storage: Marquand Use Only",
         "code": "marquand$stacks",
         "aeon_location": false,
@@ -4145,28 +4059,6 @@
         },
         "holding_library": null,
         "delivery_locations": []
-    },
-    {
-        "label": "Workroom",
-        "code": "marquand$wr",
-        "aeon_location": false,
-        "recap_electronic_delivery_location": false,
-        "open": false,
-        "requestable": true,
-        "always_requestable": true,
-        "circulates": false,
-        "remote_storage": "",
-        "fulfillment_unit": "Closed",
-        "url": "https://bibdata.princeton.edu/locations/holding_locations/marquand$wr.json",
-        "library": {
-            "label": "Marquand Library",
-            "code": "marquand",
-            "order": 0
-        },
-        "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
     },
     {
         "label": "Rare Books",
