@@ -3798,9 +3798,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Microforms: Marquand Use Only",
@@ -3820,9 +3818,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Remote Storage (ReCAP): Marquand Library Use Only",
@@ -3950,9 +3946,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Reserve",
@@ -3972,9 +3966,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Storage",
@@ -3994,9 +3986,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Marquand Use Only",
@@ -4016,9 +4006,7 @@
             "order": 0
         },
         "holding_library": null,
-        "delivery_locations": [
-            "PJ"
-        ]
+        "delivery_locations": []
     },
     {
         "label": "Rare Books: Miscellanea",
