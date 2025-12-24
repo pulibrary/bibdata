@@ -47,7 +47,7 @@ gem 'open3'
 gem 'orangetheses', github: 'pulibrary/orangetheses', tag: 'v1.4.5'
 gem 'pg'
 gem 'rack'
-gem 'rails', '~> 7.2'
+gem 'rails', '~> 8.1'
 gem 'responders'
 gem 'rest-client', require: false
 gem 'rsolr', '~> 2.5.0'
