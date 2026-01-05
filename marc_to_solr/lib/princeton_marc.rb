@@ -59,6 +59,8 @@ module MARC
     def date_from_008
       if self['008']
         d = self['008'].value[7, 4]
+        return d unless d
+
         d = d.tr 'u', '0' unless d == 'uuuu'
         d = d.tr ' ', '0' unless d == '    '
         d if /^[0-9]{4}$/.match?(d)
