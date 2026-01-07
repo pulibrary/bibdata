@@ -14,20 +14,6 @@ module Scsb
       )
     end
 
-    def self.recap_transfer_client
-      new(
-        s3_client:
-        Aws::S3::Client.new(
-          region: 'us-east-2',
-          credentials: Aws::Credentials.new(
-            ENV['SCSB_S3_ACCESS_KEY'],
-            ENV['SCSB_S3_SECRET_ACCESS_KEY']
-          )
-        ),
-        s3_bucket_name: ENV['SCSB_S3_BUCKET_NAME']
-      )
-    end
-
     attr_reader :s3_client, :s3_bucket_name
 
     def initialize(s3_client:, s3_bucket_name:)

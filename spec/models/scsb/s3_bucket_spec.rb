@@ -5,16 +5,6 @@ RSpec.describe Scsb::S3Bucket, type: :model do
   let(:s3_client) { Aws::S3::Client.new(region: 'us-east-1', credentials: s3_credentials) }
   let(:s3) { described_class.new(s3_client:, s3_bucket_name: 'test') }
 
-  describe '.recap_transfer_client' do
-    it 'uses SCSB_S3 keys' do
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with('SCSB_S3_BUCKET_NAME').and_return('stuff')
-      bucket = described_class.recap_transfer_client
-
-      expect(bucket.s3_bucket_name).to eq 'stuff'
-    end
-  end
-
   describe '.partner_transfer_client' do
     it 'uses SCSB_S3_PARTNER keys' do
       allow(ENV).to receive(:[]).and_call_original
