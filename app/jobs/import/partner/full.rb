@@ -2,6 +2,7 @@ module Import
   module Partner
     class Full
       include Sidekiq::Job
+
       def perform
         FileUtils.mkdir_p(update_directory)
         delete_stale_files

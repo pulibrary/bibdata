@@ -28,7 +28,7 @@ class AlmaAdapter
     def bib_availability_from_items
       availability = {}
       item_data.each do |holding_id, items|
-        next if items.count == 0
+        next if items.none?
 
         # Process all the items for the holding and keep the "status" information from the last one.
         # Notice that we also gather enough information to determine whether the holding as a whole
@@ -160,7 +160,7 @@ class AlmaAdapter
       # which is equivalent to the alma external_name value
       def holding_location_label(holding, location_record)
         label = location_record&.label
-        [holding['library'], label].select(&:present?).join(' - ')
+        [holding['library'], label].compact_blank.join(' - ')
       end
 
       def holding_location_code(holding)

@@ -79,7 +79,7 @@ to_field 'id', extract_marc('001', first: true)
 
 # if the id contains only numbers we know it's a princeton item
 to_field 'numeric_id_b', extract_marc('001', first: true) do |_record, accumulator|
-  accumulator.map! { |v| /^[0-9]+$/.match?(v) ? true : false }
+  accumulator.map! { |v| /^[0-9]+$/.match?(v) || false }
 end
 
 # for scsb local system id
@@ -114,7 +114,7 @@ to_field 'figgy_1display' do |record, accumulator|
 
   next unless figgy_items
 
-  accumulator << figgy_items.to_json.to_s
+  accumulator << figgy_items.to_json
 end
 
 # Author/Artist:
@@ -130,7 +130,7 @@ to_field 'author_citation_display', extract_marc('100a:110a:111a:700a:710a:711a'
 
 to_field 'author_roles_1display' do |record, accumulator|
   authors = process_author_roles(record)
-  accumulator[0] = authors.to_json.to_s
+  accumulator[0] = authors.to_json
 end
 
 to_field 'cjk_author' do |record, accumulator|
@@ -325,10 +325,10 @@ to_field 'cataloged_tdt' do |record, accumulator|
   extractor_doc_id = MarcExtractor.cached('001')
   doc_id = extractor_doc_id.extract(record).first
   unless /^SCSB-\d+/.match?(doc_id)
-    cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
-                       alma_876(record).map { |f| f['d'] }.sort.first
-                     elsif alma_951_active(record) && alma_951_active(record).map { |f| f['w'] }.compact.present?
-                       alma_951_active(record).map { |f| f['w'] }.compact.sort.first
+    cataloged_date = if alma_876(record) && alma_876(record).pluck('d').compact.present?
+                       alma_876(record).pluck('d').sort.first
+                     elsif alma_951_active(record) && alma_951_active(record).pluck('w').compact.present?
+                       alma_951_active(record).pluck('w').compact.sort.first
                      else
                        alma_950(record)
                      end
@@ -1034,7 +1034,7 @@ to_field 'subject_topic_facet' do |record, accumulator|
 end
 
 to_field 'lc_1letter_facet' do |record, accumulator|
-  if record['050'] && (record['050']['a'])
+  if record['050'] && record['050']['a']
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
     if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
@@ -1044,7 +1044,7 @@ to_field 'lc_1letter_facet' do |record, accumulator|
 end
 
 to_field 'lc_rest_facet' do |record, accumulator|
-  if record['050'] && (record['050']['a'])
+  if record['050'] && record['050']['a']
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
     accumulator << Traject::TranslationMap.new('callnumber_map')[letters]
   end
@@ -1052,7 +1052,7 @@ end
 
 to_field 'lc_pipe_facet' do |record, accumulator|
   delimiter = '|||'
-  if record['050'] && (record['050']['a'])
+  if record['050'] && record['050']['a']
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
     map_first = Traject::TranslationMap.new('callnumber_map')[first_letter]
@@ -1067,7 +1067,7 @@ end
 # TODO: Remove in favor of lc_pipe_facet once reindex complete
 to_field 'lc_facet' do |record, accumulator|
   delimiter = ':'
-  if record['050'] && (record['050']['a'])
+  if record['050'] && record['050']['a']
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
     map_first = Traject::TranslationMap.new('callnumber_map')[first_letter]
@@ -1091,7 +1091,7 @@ to_field 'sudoc_facet' do |record, accumulator|
 end
 
 to_field 'call_number_scheme_facet' do |record, accumulator|
-  if record['050'] && (record['050']['a'])
+  if record['050'] && record['050']['a']
     first_letter = record['050']['a'].lstrip.slice(0, 1)
     letters = /([[:alpha:]])*/.match(record['050']['a'])[0]
     accumulator << 'Library of Congress' if !Traject::TranslationMap.new('callnumber_map')[letters].nil?
@@ -1170,25 +1170,25 @@ to_field 'related_name_json_1display' do |record, accumulator|
     end
     relators << 'Related name' if relators.empty?
     relators.each do |relator|
-      if (non_t && rel_name.present?)
+      if non_t && rel_name.present?
         rel_name_hash[relator] ||= []
         rel_name_hash[relator] << rel_name
       end
     end
   end
-  accumulator[0] = rel_name_hash.to_json.to_s unless rel_name_hash == {}
+  accumulator[0] = rel_name_hash.to_json unless rel_name_hash == {}
 end
 
 to_field 'related_works_1display' do |record, accumulator|
   fields = '700|* |aqbcdfghklmnoprstx:710|* |abcdfghklnoprstx:711|* |abcdefgklnpqt'
   related_works = prep_name_title(record, fields)
-  accumulator[0] = related_works.to_json.to_s unless related_works.empty?
+  accumulator[0] = related_works.to_json unless related_works.empty?
 end
 
 to_field 'contains_1display' do |record, accumulator|
   fields = '700|*2|aqbcdfghklmnoprstx:710|*2|abcdfghklnoprstx:711|*2|abcdefgklnpqt'
   analytical_entries = prep_name_title(record, fields)
-  accumulator[0] = analytical_entries.to_json.to_s unless analytical_entries.empty?
+  accumulator[0] = analytical_entries.to_json unless analytical_entries.empty?
 end
 
 to_field 'instrumentation_facet', marc_instrumentation_humanized
@@ -1239,7 +1239,7 @@ to_field 'other_title_1display' do |record, accumulator|
       other_title_hash[label] ? other_title_hash[label] << title : other_title_hash[label] = [title] unless title.nil?
     end
   end
-  accumulator[0] = other_title_hash.to_json.to_s unless other_title_hash == {}
+  accumulator[0] = other_title_hash.to_json unless other_title_hash == {}
   accumulator
 end
 
@@ -1308,7 +1308,7 @@ to_field 'standard_no_024_index', extract_marc('024a')
 
 to_field 'standard_no_1display' do |record, accumulator|
   standard_no = standard_no_hash(record)
-  accumulator[0] = standard_no.to_json.to_s unless standard_no == {}
+  accumulator[0] = standard_no.to_json unless standard_no == {}
 end
 
 to_field 'lccn_s', extract_marc('010a') do |_record, accumulator|
@@ -1365,7 +1365,7 @@ to_field 'subject_era_facet', marc_era_facet
 
 to_field 'holdings_1display' do |record, accumulator, context|
   all_holdings = process_holdings(record, context.clipboard[:marc_breaker])
-  accumulator[0] = all_holdings.to_json.to_s unless all_holdings.empty?
+  accumulator[0] = all_holdings.to_json unless all_holdings.empty?
 end
 
 # Skip SCSB records that include only private items
@@ -1464,7 +1464,7 @@ to_field 'name_title_245a_vern', extract_marc('245a', alternate_script: :only, f
 to_field 'uniform_240' do |record, accumulator|
   MarcExtractor.cached('240apldfhkmnors', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
-      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
 
       accumulator << s_field.value
     end
@@ -1474,7 +1474,7 @@ end
 to_field 'uniform_240_vern' do |record, accumulator|
   MarcExtractor.cached('240apldfhkmnors', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
-      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
 
       accumulator << s_field.value
     end
@@ -1485,7 +1485,7 @@ end
 to_field 'uniform_130' do |record, accumulator|
   MarcExtractor.cached('130apldfhkmnorst', alternate_script: false).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
-      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
 
       accumulator << s_field.value
     end
@@ -1496,7 +1496,7 @@ end
 to_field 'uniform_130_vern' do |record, accumulator|
   MarcExtractor.cached('130apldfhkmnorst', alternate_script: :only).collect_matching_lines(record) do |field, spec, _extractor|
     field.subfields.each do |s_field|
-      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
 
       accumulator << s_field.value
     end
@@ -1519,9 +1519,9 @@ to_field 'linked_title_s' do |record, accumulator|
     field.subfields.each do |s_field|
       non_a = false if s_field.code == 'a'
       non_t = false if s_field.code == 't'
-      break if (non_a && non_t)
+      break if non_a && non_t
     end
-    accumulator << ae unless (non_a || non_t)
+    accumulator << ae unless non_a || non_t
   end
 end
 
@@ -1558,7 +1558,7 @@ each_record do |_record, context|
       browse_field << %(#{author} #{doc['name_title_245a_vern'][0]})
     end
   end
-  context.output_hash['name_uniform_title_1display'] = [name_uniform_t.to_json.to_s] unless name_uniform_t.empty?
+  context.output_hash['name_uniform_title_1display'] = [name_uniform_t.to_json] unless name_uniform_t.empty?
 
   # combine name-title browse values into a single array
   browse_field = browse_field.compact.flatten.uniq
@@ -1583,7 +1583,7 @@ each_record do |_record, context|
   uniform_t << doc['uniform_130'] if doc['uniform_130']
   uniform_t << doc['uniform_130_vern'] if doc['uniform_130_vern']
 
-  context.output_hash['uniform_title_1display'] = [uniform_t.to_json.to_s] unless uniform_t.empty?
+  context.output_hash['uniform_title_1display'] = [uniform_t.to_json] unless uniform_t.empty?
 
   # these fields are no longer necessary
   context.output_hash.delete('uniform_130')
@@ -1655,8 +1655,8 @@ each_record do |_record, context|
       holding_856s.each do |h_id, links|
         holdings_hash[h_id]['electronic_access'] = links
       end
-      context.output_hash['holdings_1display'][0] = holdings_hash.to_json.to_s
-      context.output_hash['electronic_access_1display'][0] = bib_856s.to_json.to_s
+      context.output_hash['holdings_1display'][0] = holdings_hash.to_json
+      context.output_hash['electronic_access_1display'][0] = bib_856s.to_json
     end
   end
   if context.output_hash['title_display'] && (context.output_hash['title_display'].length > 1)

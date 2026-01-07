@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @events = Event.order('start asc')
+    @events = Event.order(:start)
     respond_with(@events)
   end
 
@@ -26,6 +26,6 @@ class EventsController < ApplicationController
     end
 
     def event_params
-      params.require(:event).permit(:start, :finish, :error, :success)
+      params.expect(event: %i[start finish error success])
     end
 end

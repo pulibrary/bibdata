@@ -75,7 +75,7 @@ class LocationDataService
       return {} unless holding_library_code
 
       library = find_library_by_code(holding_library_code)
-      library.id if library.present?
+      library.presence&.id
     end
 
     # Find the delivery library using the gfa_pickup value

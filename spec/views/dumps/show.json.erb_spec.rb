@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe 'dumps/show', type: :view do
   context 'dump show page' do
     it 'includes' do
-      assign(:dump, FactoryBot.create(:full_dump))
+      assign(:dump, create(:full_dump))
       render
       response = JSON.parse(rendered)
       expect(response['files'].keys.first).to eq('bib_records')

@@ -8,9 +8,9 @@ RSpec.describe LocationMapsGeneratorService do
   let(:holding_library_path) { File.join(base_path, 'holding_library.rb') }
 
   after do
-    FileUtils.rm(locations_path) if File.exist?(locations_path)
-    FileUtils.rm(location_display_path) if File.exist?(location_display_path)
-    FileUtils.rm(holding_library_path) if File.exist?(holding_library_path)
+    FileUtils.rm_f(locations_path)
+    FileUtils.rm_f(location_display_path)
+    FileUtils.rm_f(holding_library_path)
   end
 
   describe '.generate' do
@@ -19,7 +19,7 @@ RSpec.describe LocationMapsGeneratorService do
     end
 
     it 'generates location maps from data in holdings tables' do
-      FactoryBot.create(:holding_location)
+      create(:holding_location)
       described_class.generate
       expect(File.read(locations_path)).to include('location-code', 'Library')
       expect(File.read(location_display_path)).to include('location-code', 'Firestone Library')

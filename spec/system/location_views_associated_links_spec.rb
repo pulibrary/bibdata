@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 describe 'Holding Location views link to other associated locations' do
-  let(:library) { FactoryBot.create(:library) }
-  let(:delivery_location) { FactoryBot.create(:delivery_location) }
-  let(:holding_location) { FactoryBot.create(:holding_location) }
+  let(:library) { create(:library) }
+  let(:delivery_location) { create(:delivery_location) }
+  let(:holding_location) { create(:holding_location) }
 
   it 'Link to library from library label rather than extra show link' do
     library

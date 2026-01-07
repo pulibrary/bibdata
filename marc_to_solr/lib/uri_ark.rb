@@ -39,7 +39,7 @@ class URI::ARK < URI::Generic
 
   # Constructor
   def initialize(*arg)
-    super(*arg)
+    super
     extract_components!
   end
 

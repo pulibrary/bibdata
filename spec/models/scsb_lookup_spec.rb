@@ -75,8 +75,7 @@ RSpec.describe ScsbLookup do
 
       before do
         allow(Rails.logger).to receive(:error)
-        allow(scsb_response).to receive(:body).and_return(scsb_response_body)
-        allow(scsb_response).to receive(:status).and_return(200)
+        allow(scsb_response).to receive_messages(body: scsb_response_body, status: 200)
       end
 
       it 'logs the error and returns an empty Hash' do

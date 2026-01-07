@@ -20,7 +20,7 @@ class ActionNoteBuilder
 
       notes << { description: description(field), uri: uri(field) }
     end
-    notes = [notes.to_json.to_s] if notes.present?
+    notes = [notes.to_json] if notes.present?
     notes.presence
   end
 
@@ -83,7 +83,7 @@ class ActionNoteBuilder
     end
 
     def pulfa_record?
-      @pulfa_record ||= @record.fields('035').select { |f| f['a']&.downcase =~ /pulfa/ }.present?
+      @pulfa_record ||= @record.fields('035').any? { |f| f['a']&.downcase =~ /pulfa/ }
     end
 
     def scsb_record?

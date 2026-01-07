@@ -111,7 +111,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: bib_items_po, filename: "#{bib_items_po}_po.json")
         get :bib_items, params: { bib_id: bib_items_po }, format: 'json'
         expect(response.status).to be 200
-        locations = JSON.parse(response.body)
+        locations = response.parsed_body
         expect(locations).to eq expected_response
       end
     end
@@ -140,7 +140,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: unsuppressed_two_loc_two_items, filename: fixture)
         get :bib_items, params: { bib_id: unsuppressed_two_loc_two_items }, format: 'json'
         expect(response.status).to be 200
-        locations = JSON.parse(response.body)
+        locations = response.parsed_body
         expect(locations).to eq expected_response
       end
     end
@@ -159,7 +159,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: unsuppressed_loc_with_two_holdings, filename: fixture)
         get :bib_items, params: { bib_id: unsuppressed_loc_with_two_holdings }, format: 'json'
         expect(response.status).to be 200
-        locations = JSON.parse(response.body)
+        locations = response.parsed_body
         expect(locations).to eq expected_response
       end
     end
@@ -172,7 +172,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: bib_items, filename: fixture)
         get :bib_items, params: { bib_id: bib_items }, format: 'json'
         expect(response.status).to be 200
-        locations = JSON.parse(response.body)
+        locations = response.parsed_body
         expect(locations['lewis$resterm'][0]['items'][0]['temp_location']).to eq 'lewis$resterm'
       end
     end
@@ -182,7 +182,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: '9965126093506421', filename: '9965126093506421_holding_items.json')
         get :bib_items, params: { bib_id: '9965126093506421' }, format: 'json'
         expect(response.status).to be 200
-        body = JSON.parse(response.body)
+        body = response.parsed_body
         expect(body['firestone$stacks'].first['sortable_call_number']).to eq 'PS.3558.A62424.B43--2010'
       end
 
@@ -190,7 +190,7 @@ RSpec.describe BibliographicController, type: :controller do
         stub_alma_bib_items(mms_id: '9941598513506421', filename: '9941598513506421_holding_items.json')
         get :bib_items, params: { bib_id: '9941598513506421' }, format: 'json'
         expect(response.status).to be 200
-        body = JSON.parse(response.body)
+        body = response.parsed_body
         expect(body['firestone$stacks'].first['sortable_call_number']).to eq 'RA.056627.B7544.2003--OVERSIZE'
       end
     end
@@ -278,7 +278,7 @@ RSpec.describe BibliographicController, type: :controller do
       # items. They both return total_count 0 in Alma.
       get :availability_holding, params: { bib_id: '9922486553506421', holding_id: 'not-exist' }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body).count).to eq 0
+      expect(response.parsed_body.count).to eq 0
     end
 
     it 'reports record not found for a bib_id / holding_id mismatch' do
@@ -287,19 +287,19 @@ RSpec.describe BibliographicController, type: :controller do
       # items.
       get :availability_holding, params: { bib_id: '9922486553506421', holding_id: '22105104420006421' }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body).count).to eq 0
+      expect(response.parsed_body.count).to eq 0
     end
 
     it 'returns valid JSON for a valid bib_id/holding_id' do
       get :availability_holding, params: { bib_id: '9922486553506421', holding_id: '22117511410006421' }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body).count).to be 1
+      expect(response.parsed_body.count).to be 1
     end
 
     it 'handles a holding without items correctly' do
       get :availability_holding, params: { bib_id: '9922868943506421', holding_id: '22109192600006421' }, format: :json
       expect(response.status).to eq 200
-      expect(JSON.parse(response.body).count).to eq 0
+      expect(response.parsed_body.count).to eq 0
     end
   end
 end

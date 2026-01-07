@@ -1,9 +1,9 @@
 json.type @dump.dump_type.downcase
 json.generated_date @dump.generated_date
 json.files do
-  DumpFile.dump_file_types.each do |dft_name, _dft_id|
+  DumpFile.dump_file_types.each_key do |dft_name|
     dft = dft_name.to_sym
-    json.set! dft, @dump.dump_files.where(dump_file_type: dft).each do |df|
+    json.set! dft, @dump.dump_files.where(dump_file_type: dft).find_each do |df|
       json.dump_file dump_file_url(df)
       json.md5 df.md5
     end

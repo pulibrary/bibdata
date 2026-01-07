@@ -26,27 +26,27 @@ FactoryBot.define do
 
   factory :empty_dump, class: 'Dump' do
     dump_type { :full_dump }
-    association :event
+    event
   end
 
   factory :empty_incremental_dump, class: 'Dump' do
     dump_type { :changed_records }
-    association :event
+    event
   end
 
   factory :empty_partner_recap_incremental_dump, class: 'Dump' do
     dump_type { :partner_recap }
-    association :event
+    event
   end
 
   factory :empty_partner_full_dump, class: 'Dump' do
     dump_type { :partner_recap_full }
-    association :event
+    event
   end
 
   factory :empty_partner_recap_dump, class: 'Dump' do
     dump_type { :partner_recap }
-    association :event
+    event
   end
 
   factory :full_dump, class: 'Dump' do
@@ -109,7 +109,7 @@ FactoryBot.define do
     alma_job_status { 'COMPLETED_SUCCESS' }
     created_at { finish }
     updated_at { finish }
-    association :dump, factory: :full_dump
+    dump factory: %i[full_dump]
   end
 
   factory :incremental_dump_event, class: 'Event' do
@@ -120,7 +120,7 @@ FactoryBot.define do
     alma_job_status { 'COMPLETED_SUCCESS' }
     created_at { finish }
     updated_at { finish }
-    association :dump, factory: :incremental_dump
+    dump factory: %i[incremental_dump]
   end
 
   factory :partner_recap_daily_event, class: 'Event' do
@@ -131,7 +131,7 @@ FactoryBot.define do
     alma_job_status {}
     created_at { finish }
     updated_at { finish }
-    association :dump, factory: :partner_recap_daily_dump
+    dump factory: %i[partner_recap_daily_dump]
   end
 
   factory :partner_recap_full_event, class: 'Event' do
@@ -142,6 +142,6 @@ FactoryBot.define do
     alma_job_status {}
     created_at { finish }
     updated_at { finish }
-    association :dump, factory: :partner_recap_full_dump
+    dump factory: %i[partner_recap_full_dump]
   end
 end

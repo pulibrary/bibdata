@@ -21,7 +21,7 @@ class ElectronicLocation
   def identifiers
     iiif_manifest_arks + @subfields.select do |subfield|
       subfield.key?(ElectronicLocations::SubfieldCodes::URI) && /arks\.princeton\.edu/.match(subfield[ElectronicLocations::SubfieldCodes::URI])
-    end.map { |subfield| subfield[ElectronicLocations::SubfieldCodes::URI] }
+    end.pluck(ElectronicLocations::SubfieldCodes::URI)
   end
 
   def uri

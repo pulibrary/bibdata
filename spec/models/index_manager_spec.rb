@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
+RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
   let(:solr_url) { ENV.fetch('SOLR_URL', nil) || "http://#{ENV.fetch('lando_bibdata_test_solr_conn_host', nil)}:#{ENV.fetch('lando_bibdata_test_solr_conn_port', nil)}/solr/bibdata-core-test" }
   let(:solr) { RSolr.connect(url: solr_url) }
 
@@ -28,8 +28,8 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
 
   describe '.reindex!' do
     it 'wipes solr and queues up a full reindex into it' do
-      full_event = FactoryBot.create(:full_dump_event)
-      incremental_event = FactoryBot.create(:incremental_dump_event)
+      full_event = create(:full_dump_event)
+      incremental_event = create(:incremental_dump_event)
       existing_index_manager = described_class.for(solr_url)
       existing_index_manager.last_dump_completed = incremental_event.dump
       existing_index_manager.save
@@ -61,8 +61,8 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
 
   describe 'index_next_dump!' do
     it "indexes a full dump if there's been nothing indexed yet" do
-      full_event = FactoryBot.create(:full_dump_event)
-      incremental_event = FactoryBot.create(:incremental_dump_event)
+      full_event = create(:full_dump_event)
+      incremental_event = create(:incremental_dump_event)
 
       index_manager = described_class.for(solr_url)
       Sidekiq::Testing.inline! do
@@ -83,7 +83,7 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
 
     it "doesn't index anything if it's caught up" do
       allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
-      full_event = FactoryBot.create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
+      full_event = create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
 
       index_manager = described_class.for(solr_url)
       Sidekiq::Testing.inline! do
@@ -103,16 +103,16 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
     it 'indexes the previous incremental if the most recent full dump has been done' do
       allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
       # This incremental is before the pre-full-dump incremental, don't run it
-      pre_pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
-      pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
-      full_event = FactoryBot.create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
+      pre_pre_incremental_event = create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
+      pre_incremental_event = create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
+      full_event = create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
       # This should get skipped on the third call because events with no files just get skipped
-      skipped_incremental_event = FactoryBot.create(:incremental_dump_event, start: 5.hours.ago, finish: 4.hours.ago,
-                                                                             dump: FactoryBot.create(:incremental_dump, dump_files: []))
+      skipped_incremental_event = create(:incremental_dump_event, start: 5.hours.ago, finish: 4.hours.ago,
+                                                                  dump: create(:incremental_dump, dump_files: []))
       # This should get run on the third call
-      incremental_event = FactoryBot.create(:incremental_dump_event, start: 4.hours.ago, finish: 3.hours.ago)
+      incremental_event = create(:incremental_dump_event, start: 4.hours.ago, finish: 3.hours.ago)
       # Incremental that isn't run yet, but would eventually.
-      final_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.hours.ago, finish: 1.hour.ago)
+      final_incremental_event = create(:incremental_dump_event, start: 2.hours.ago, finish: 1.hour.ago)
 
       index_manager = described_class.for(solr_url)
       Sidekiq::Testing.inline! do
@@ -150,11 +150,11 @@ RSpec.describe IndexManager, type: :model, indexing: true, sidekiq: true do
       allow(Index::DumpFileJob).to receive(:perform_async).and_call_original
 
       # This incremental is before the full dump, don't run it
-      pre_pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
-      pre_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
-      full_event = FactoryBot.create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
-      incremental_event = FactoryBot.create(:incremental_dump_event, start: 4.hours.ago, finish: 3.hours.ago)
-      final_incremental_event = FactoryBot.create(:incremental_dump_event, start: 2.hours.ago, finish: 1.hour.ago)
+      pre_pre_incremental_event = create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
+      pre_incremental_event = create(:incremental_dump_event, start: 2.days.ago, finish: 2.days.ago + 100)
+      full_event = create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
+      incremental_event = create(:incremental_dump_event, start: 4.hours.ago, finish: 3.hours.ago)
+      final_incremental_event = create(:incremental_dump_event, start: 2.hours.ago, finish: 1.hour.ago)
 
       index_manager = described_class.for(solr_url)
       expect(index_manager).not_to be_in_progress

@@ -2,6 +2,7 @@ module Import
   module Partner
     class DownloadFullFileJob
       include Sidekiq::Job
+
       def perform(dump_id, institution, file_prefix)
         zip_file = Scsb::PartnerUpdates::Full.download_full_file(institution, 'zip')
 

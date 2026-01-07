@@ -173,7 +173,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       pending 'Replace with Alma'
       stub_voyager('6815537')
       get '/bibliographic/6815537.json'
-      bib = JSON.parse(response.body)
+      bib = response.parsed_body
       has_852 = bib['fields'].any? { |f| f.has_key?('852') }
       expect(has_852).to be(false)
     end
@@ -251,7 +251,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       get "/bibliographic/#{bib_id}/solr"
       expect(response.status).to be(200)
 
-      solr_doc = JSON.parse(response.body)
+      solr_doc = response.parsed_body
       expect(solr_doc['id']).to eq(['1234567'])
     end
 
@@ -263,7 +263,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
         get "/bibliographic/#{bib_id}/solr"
         expect(response.status).to be(200)
 
-        solr_doc = JSON.parse(response.body)
+        solr_doc = response.parsed_body
         expect(solr_doc['id']).to eq(['10372293'])
 
         expect(solr_doc).to have_key('electronic_access_1display')
@@ -349,7 +349,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       pending 'Replace with Alma'
       stub_voyager('8637182')
       get '/bibliographic/8637182.json'
-      bib = JSON.parse(response.body)
+      bib = response.parsed_body
       has_866 = bib['fields'].any? { |f| f.has_key?('866') }
       expect(has_866).to be(false)
     end
@@ -360,7 +360,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       pending 'Replace with Alma'
       stub_voyager('4461315')
       get '/bibliographic/4461315.json'
-      bib = JSON.parse(response.body)
+      bib = response.parsed_body
       has_959 = bib['fields'].any? { |f| f.has_key?('959') }
       expect(has_959).to be(true)
     end
@@ -369,7 +369,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       pending 'Replace with Alma'
       stub_voyager('491668')
       get '/bibliographic/491668.json'
-      bib = JSON.parse(response.body)
+      bib = response.parsed_body
       has_959 = bib['fields'].any? { |f| f.has_key?('959') }
       expect(has_959).to be(true)
     end
@@ -378,7 +378,7 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       pending 'Replace with Alma'
       stub_voyager('4609321')
       get '/bibliographic/4609321.json'
-      bib = JSON.parse(response.body)
+      bib = response.parsed_body
       has_959 = bib['fields'].any? { |f| f.has_key?('959') }
       expect(has_959).to be(false)
     end
@@ -390,12 +390,12 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       bib_id = '7617477'
       stub_voyager('7617477')
       get "/bibliographic/#{bib_id}.json"
-      ipad_bib_record = JSON.parse(response.body)
+      ipad_bib_record = response.parsed_body
 
       %w[7429805 7429809 7429811].each do |id|
         stub_voyager_holding(id)
         get "/holdings/#{id}.json"
-        holding = JSON.parse(response.body)
+        holding = response.parsed_body
         holding = MARC::Record.new_from_hash(holding)
         eight52 = holding['852'].to_hash
         eight52['852']['subfields'].prepend('0' => id.to_s)
@@ -411,12 +411,12 @@ RSpec.describe 'Bibliographic Gets', type: :request do
       bib_id = '4609321'
       stub_voyager('4609321')
       get "/bibliographic/#{bib_id}.json"
-      ipad_bib_record = JSON.parse(response.body)
+      ipad_bib_record = response.parsed_body
 
       %w[4847980 4848993].each do |id|
         stub_voyager_holding(id)
         get "/holdings/#{id}.json"
-        holding = JSON.parse(response.body)
+        holding = response.parsed_body
         holding = MARC::Record.new_from_hash(holding)
         eight66 = holding['866'].to_hash
         eight66['866']['subfields'].prepend('0' => id.to_s)

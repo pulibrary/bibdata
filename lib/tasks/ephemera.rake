@@ -20,7 +20,6 @@ namespace :ephemera do
     BibdataRs::Ephemera.index_string(solr_url, documents)
 
     puts "Successfully indexed #{documents.length} documents to #{solr_url}"
-
   rescue StandardError => e
     Rails.logger.error("Error processing ephemera folder: #{e.message}")
     puts "Error processing ephemera folder: #{e.message}"
@@ -49,7 +48,7 @@ namespace :ephemera do
     match_uuid = 'id:/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/'
 
     response = solr.get('select', params: { q: match_uuid, fl: 'id' })
-    uuids = response['response']['docs'].map { |doc| doc['id'] }
+    uuids = response['response']['docs'].pluck('id')
     puts "Deleting #{uuids.length} records with UUIDs:"
     uuids.each { |uuid| puts uuid }
 

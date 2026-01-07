@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'From traject_config.rb', indexing: true do
+describe 'From traject_config.rb', :indexing do
   let(:leader) { '1234567890' }
   let(:online) { @indexer.map_record(fixture_record('9990889283506421')) }
 
@@ -124,14 +124,14 @@ describe 'From traject_config.rb', indexing: true do
     end
 
     describe 'locations' do
-      it 'will index the location_code_s' do
+      it 'indexes the location_code_s' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
         expect(record['location_code_s']).to eq ['lewis$stacks', 'firestone$stacks']
       end
     end
 
     describe 'scsb locations' do
-      it 'will index a scsbnypl location' do
+      it 'indexes a scsbnypl location' do
         expect(@scsb_nypl['location_code_s']).to eq ['scsbnypl']
         expect(@scsb_nypl['location']).to eq ['ReCAP']
         expect(@scsb_nypl['advanced_location_s']).to eq %w[scsbnypl ReCAP]
@@ -157,10 +157,10 @@ describe 'From traject_config.rb', indexing: true do
     describe 'contents_display' do
       context 'with a contents note' do
         it 'naively splits on double dashes' do
-          expect(@sample34['contents_display']).to match_array(['Disc 1. Mammy water', '(1956, 19 min.) ; The mad masters', '(1956, 29 min.)', 'Moi, un noir', '(1959, 74 min.)', 'Disc 2. The human pyramid', '(1961, 93 min.)', 'The lion hunters', '(1967, 81 min.)', 'Disc 3. Jaguar', '(1967, 93 min.)', 'Little by little (1971, 96 min.)', 'Disc 4. The punishment', '(1964, 64 min.)', 'Jean Rouch, the adventerous filmmaker / Laurent VeÌdrine (2017, 55 min.).'])
-          expect(@sample37['contents_display']).to match_array(['Book 1. April-June', 'Book 2. July-September', 'Book 3. October-December.'])
-          expect(@record_call_number2['contents_display']).to match_array(['Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06)', 'Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17)', 'Got lost (2007-2008) / Helmut Lachenmann (24:56)', 'Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27)', 'Ophelia sings (2012) / Wolfgang Rihm (9:45)', 'Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30).'])
-          expect(@translated_contents['contents_display']).to match_array(['Pod svodami mraka i sveta / Anatoliĭ Korolev', 'Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.', 'Под сводами мрака и света / Анатолий Королев', 'Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина.'])
+          expect(@sample34['contents_display']).to contain_exactly('Disc 1. Mammy water', '(1956, 19 min.) ; The mad masters', '(1956, 29 min.)', 'Moi, un noir', '(1959, 74 min.)', 'Disc 2. The human pyramid', '(1961, 93 min.)', 'The lion hunters', '(1967, 81 min.)', 'Disc 3. Jaguar', '(1967, 93 min.)', 'Little by little (1971, 96 min.)', 'Disc 4. The punishment', '(1964, 64 min.)', 'Jean Rouch, the adventerous filmmaker / Laurent VeÌdrine (2017, 55 min.).')
+          expect(@sample37['contents_display']).to contain_exactly('Book 1. April-June', 'Book 2. July-September', 'Book 3. October-December.')
+          expect(@record_call_number2['contents_display']).to contain_exactly('Sechs Lieder nach Christian Morgenstern = Six songs after Christian Morganstern (1952-1953) / Heinz Holliger (12:06)', 'Due melodie = Two melodies = Zwei Melodien (1978) / Salvatore Sciarrino (6:17)', 'Got lost (2007-2008) / Helmut Lachenmann (24:56)', 'Requiem po drugu = Requiem for the Beloved = Requiem für den Geliebten, op. 26 (1982-1987) / György Kurtág (6:27)', 'Ophelia sings (2012) / Wolfgang Rihm (9:45)', 'Wenn die Landschaft aufhört = When the landscape ceases (2015) / Bernhard Lang (5:30).')
+          expect(@translated_contents['contents_display']).to contain_exactly('Pod svodami mraka i sveta / Anatoliĭ Korolev', 'Markiz Astolʹf de Ki︠u︡stin: pochta dukhov, ili Rossii︠a︡ v 2007 godu: perelozhenie na otechestvennyĭ Sergei︠a︡ Esina.', 'Под сводами мрака и света / Анатолий Королев', 'Маркиз Астольф де Кюстин: почта духов, или Россия в 2007 году: переложение на отечественный Сергея Есина.')
         end
       end
     end
@@ -168,9 +168,9 @@ describe 'From traject_config.rb', indexing: true do
     describe 'the cataloged_date from publishing job' do
       describe 'the date cataloged facets' do
         context 'When the record has 950, 876 and 951 fields' do
-          it 'will index the oldest 876d field' do
+          it 'indexes the oldest 876d field' do
             marc_record = fixture_record('99299653506421_custom_951')
-            fields_876_sorted = alma_876(marc_record).map { |f| f['d'] }.sort
+            fields_876_sorted = alma_876(marc_record).pluck('d').sort
             expect(marc_record['876']['d']).to be_truthy
             expect(marc_record['951']['w']).to be_truthy
             expect(marc_record['950']['b']).to be_truthy
@@ -179,7 +179,7 @@ describe 'From traject_config.rb', indexing: true do
         end
 
         context 'When the record has only a 950b field' do
-          it 'will index the 950b field' do
+          it 'indexes the 950b field' do
             record = fixture_record('9939339473506421')
             expect(record['950']['b']).to be_truthy
             expect(record['876']).to be_falsey
@@ -203,7 +203,7 @@ describe 'From traject_config.rb', indexing: true do
       end
 
       context 'When it is an electronic record' do
-        it 'will index the 951w field' do
+        it 'indexes the 951w field' do
           record = fixture_record('99122424622606421')
           indexed_record = @indexer.map_record(record)
           expect(record['951']['w']).to be_truthy
@@ -304,7 +304,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(portfolio2['end']).to eq 'latest'
       end
 
-      it 'will not index an inactive electronic_portfolio' do
+      it 'does not index an inactive electronic_portfolio' do
         expect(@inactive_electronic_portfolio['electronic_portfolio_s']).to be_nil
       end
 
@@ -318,12 +318,12 @@ describe 'From traject_config.rb', indexing: true do
           @active_portfolios1 = @custom_inactive_electronic_portfolio['electronic_portfolio_s'].map { |p| JSON.parse(p) }
         end
 
-        it 'will index the active portfolio' do
+        it 'indexes the active portfolio' do
           expect(@active_portfolios1.any? { |hash| hash['title'] == 'SciTech Premium Collection' }).to be true
           expect(@active_portfolios1.any? { |hash| hash['url'] == 'https://na05.alma.exlibrisgroup.com/view/uresolver/01PRI_INST/openurl?u.ignore_date_coverage=true&portfolio_pid=53788872140006421&Force_direct=true' }).to be true
         end
 
-        it 'will not index the inactive portfolio' do
+        it 'does not index the inactive portfolio' do
           expect(@active_portfolios1).not_to include '53821583960006421'
         end
       end
@@ -839,7 +839,7 @@ describe 'From traject_config.rb', indexing: true do
       it 'has info about the figgy resource' do
         expect(@figgy_example['figgy_1display']).to be_present
         keys = JSON.parse(@figgy_example['figgy_1display'].first).first.keys
-        expect(keys).to match_array(['visibility', 'portion_note', 'iiif_manifest_url'])
+        expect(keys).to contain_exactly('visibility', 'portion_note', 'iiif_manifest_url')
       end
 
       describe 'a private figgy object' do
@@ -956,7 +956,7 @@ describe 'From traject_config.rb', indexing: true do
         @holdings = JSON.parse(@sample40['holdings_1display'][0])
         holding = @holdings['22666524470006421']
         expect(holding.keys).to include('sub_location')
-        expect(holding['sub_location']).to match_array(['Oversize RA566.27'])
+        expect(holding['sub_location']).to contain_exactly('Oversize RA566.27')
       end
 
       it 'includes 852 subfield x as process_type' do
@@ -1078,7 +1078,7 @@ describe 'From traject_config.rb', indexing: true do
 
         it 'includes 400 and 440 field for series_title_index field' do
           yes_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400, t440], 'leader' => leader))
-          expect(yes_440['series_title_index']).to match_array(['TITLE', 'John 1492'])
+          expect(yes_440['series_title_index']).to contain_exactly('TITLE', 'John 1492')
         end
 
         it 'excludes series_title_index field when no matching values' do
@@ -1093,7 +1093,7 @@ describe 'From traject_config.rb', indexing: true do
         let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t760, a762, at765], 'leader' => leader)) }
 
         it 'only includes 765at' do
-          expect(linked_record['linked_title_s']).to match_array(['Both name and title'])
+          expect(linked_record['linked_title_s']).to contain_exactly('Both name and title')
         end
 
         it 'linked title field included in name-title browse' do
@@ -1121,15 +1121,12 @@ describe 'From traject_config.rb', indexing: true do
         let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader)) }
 
         it 'name title browse field includes both scripts, excludes 245 with uniform title present' do
-          expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to match_array([['Name.', 'Uniform Title,', '5'],
-                                                                                              ['AltName.', 'AltUniform Title,', '5']])
-          expect(uniform_title['name_title_browse_s']).to match_array(['Name. Uniform Title', 'Name. Uniform Title, 5',
-                                                                       'AltName. AltUniform Title', 'AltName. AltUniform Title, 5'])
+          expect(JSON.parse(uniform_title['name_uniform_title_1display'][0])).to contain_exactly(['Name.', 'Uniform Title,', '5'], ['AltName.', 'AltUniform Title,', '5'])
+          expect(uniform_title['name_title_browse_s']).to contain_exactly('Name. Uniform Title', 'Name. Uniform Title, 5', 'AltName. AltUniform Title', 'AltName. AltUniform Title, 5')
         end
 
         it 'name title browse field includes both scripts, includes 245 when no uniform title present' do
-          expect(no_uniform_title['name_title_browse_s']).to match_array(['Name. Title 245a',
-                                                                          'AltName. VernTitle 245a'])
+          expect(no_uniform_title['name_title_browse_s']).to contain_exactly('Name. Title 245a', 'AltName. VernTitle 245a')
         end
       end
 
@@ -1140,7 +1137,7 @@ describe 'From traject_config.rb', indexing: true do
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130], 'leader' => leader)) }
 
             it 'has the English language field' do
-              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([['Bible.', 'Latin.', 'Vulgate.', '1461.']])
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to contain_exactly(['Bible.', 'Latin.', 'Vulgate.', '1461.'])
             end
           end
 
@@ -1150,7 +1147,7 @@ describe 'From traject_config.rb', indexing: true do
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130, t880], 'leader' => leader)) }
 
             it 'has the English and vernacular field' do
-              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to match_array([['Awrāq (Madrid, Spain)'], ['اوراق (Madrid, Spain)']])
+              expect(JSON.parse(uniform_title['uniform_title_1display'][0])).to contain_exactly(['Awrāq (Madrid, Spain)'], ['اوراق (Madrid, Spain)'])
             end
           end
         end
@@ -1178,12 +1175,12 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'includes a field with data for the classification facet' do
         lc_facet = @sample40['lc_pipe_facet']
-        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine|||RA - Public Aspects of Medicine'])
+        expect(lc_facet).to contain_exactly('R - Medicine', 'R - Medicine|||RA - Public Aspects of Medicine')
       end
 
       it 'handles cases where the call number is a single letter' do
         lc_facet = @sample44['lc_pipe_facet']
-        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|||Z - Bibliography, Library Science, Information Resources'])
+        expect(lc_facet).to contain_exactly('Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources|||Z - Bibliography, Library Science, Information Resources')
       end
 
       it 'handles cases where there is no call number' do
@@ -1203,12 +1200,12 @@ describe 'From traject_config.rb', indexing: true do
 
       it 'includes a field with data for the classification facet' do
         lc_facet = @sample40['lc_facet']
-        expect(lc_facet).to match_array(['R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine'])
+        expect(lc_facet).to contain_exactly('R - Medicine', 'R - Medicine:RA - Public Aspects of Medicine')
       end
 
       it 'handles cases where the call number is a single letter' do
         lc_facet = @sample44['lc_facet']
-        expect(lc_facet).to match_array(['Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources:Z - Bibliography, Library Science, Information Resources'])
+        expect(lc_facet).to contain_exactly('Z - Bibliography, Library Science, Information Resources', 'Z - Bibliography, Library Science, Information Resources:Z - Bibliography, Library Science, Information Resources')
       end
 
       it 'handles cases where there is no call number' do
@@ -1228,11 +1225,11 @@ describe 'From traject_config.rb', indexing: true do
       let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
 
       it '490s are not included when they are covered by another series field' do
-        expect(record['series_display']).to match_array(['Series title.', 'The Series'])
+        expect(record['series_display']).to contain_exactly('Series title.', 'The Series')
       end
 
       it 'matches for other works within series ignore non-filing characters, trim punctuation' do
-        expect(record['more_in_this_series_t']).to match_array(['Series title', 'Series'])
+        expect(record['more_in_this_series_t']).to contain_exactly('Series title', 'Series')
       end
     end
 
@@ -1368,29 +1365,29 @@ describe 'From traject_config.rb', indexing: true do
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh, s650_sk, s650_skbb, s650_exclude, s650_local, s650_homoit], 'leader' => leader)) }
 
         it 'include lc subjects and local subjects in the same display field' do
-          expect(subject_marc['lc_subject_display']).to match_array(['LC Subject', 'Local Subject'])
+          expect(subject_marc['lc_subject_display']).to contain_exactly('LC Subject', 'Local Subject')
         end
 
         it 'includes siku subjects in separate fields' do
-          expect(subject_marc['siku_subject_display']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
-          expect(subject_marc['siku_subject_unstem_search']).to match_array(['Siku Subject', 'Siku Subject with skbb code'])
+          expect(subject_marc['siku_subject_display']).to contain_exactly('Siku Subject', 'Siku Subject with skbb code')
+          expect(subject_marc['siku_subject_unstem_search']).to contain_exactly('Siku Subject', 'Siku Subject with skbb code')
         end
 
         it 'includes homoit subjects in separate fields' do
-          expect(subject_marc['homoit_subject_display']).to match_array(['Homosaurus Subject'])
-          expect(subject_marc['homoit_subject_unstem_search']).to match_array(['Homosaurus Subject'])
+          expect(subject_marc['homoit_subject_display']).to contain_exactly('Homosaurus Subject')
+          expect(subject_marc['homoit_subject_unstem_search']).to contain_exactly('Homosaurus Subject')
         end
 
         it 'include lc, siku, and local subjects in separate unstem fields' do
-          expect(subject_marc['subject_unstem_search']).to match_array(['LC Subject'])
-          expect(subject_marc['local_subject_display']).to match_array(['Local Subject'])
-          expect(subject_marc['local_subject_unstem_search']).to match_array(['Local Subject'])
+          expect(subject_marc['subject_unstem_search']).to contain_exactly('LC Subject')
+          expect(subject_marc['local_subject_display']).to contain_exactly('Local Subject')
+          expect(subject_marc['local_subject_unstem_search']).to contain_exactly('Local Subject')
         end
 
         it 'works using a fixture file' do
           expect(@local_subject_heading['lc_subject_display']).to include("Undocumented immigrants#{SEPARATOR}Europe")
           expect(@local_subject_heading['local_subject_display']).to eq(["Undocumented immigrants#{SEPARATOR}Europe"])
-          expect(@siku_subject_headings['siku_subject_display']).to match_array(['Zi bu—Zhu jia lei—Jidu jiao zhi shu', '子部—諸家類—基督教之屬', 'Zi bu—Tian wen suan fa lei—Li fa.', '子部—天文算法類—曆法.'])
+          expect(@siku_subject_headings['siku_subject_display']).to contain_exactly('Zi bu—Zhu jia lei—Jidu jiao zhi shu', '子部—諸家類—基督教之屬', 'Zi bu—Tian wen suan fa lei—Li fa.', '子部—天文算法類—曆法.')
         end
       end
 
@@ -1530,23 +1527,17 @@ describe 'From traject_config.rb', indexing: true do
         let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
 
         it 'augments the subject terms to add Indigenous Studies and changes to Indigenous subject term' do
-          expect(subject_marc['subject_facet']).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
-          expect(subject_marc['subject_topic_facet']).to match_array(['Indigenous peoples of North America', 'Connecticut', 'Indigenous Studies'])
-          expect(subject_marc['lc_subject_display']).to match_array(["Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
-          expect(subject_marc['subject_unstem_search']).to match_array(["Indians of North America#{SEPARATOR}Connecticut", "Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies'])
+          expect(subject_marc['subject_facet']).to contain_exactly("Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies')
+          expect(subject_marc['subject_topic_facet']).to contain_exactly('Indigenous peoples of North America', 'Connecticut', 'Indigenous Studies')
+          expect(subject_marc['lc_subject_display']).to contain_exactly("Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies')
+          expect(subject_marc['subject_unstem_search']).to contain_exactly("Indians of North America#{SEPARATOR}Connecticut", "Indigenous peoples of North America#{SEPARATOR}Connecticut", 'Indigenous Studies')
         end
 
         it 'works against a fixture' do
-          expect(@indigenous_studies['subject_facet']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
-                                                                       'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
-          expect(@indigenous_studies['subject_topic_facet']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
-                                                                             'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
-          expect(@indigenous_studies['lc_subject_display']).to match_array(['Indigenous peoples of Central America', 'Indigenous peoples of Mexico',
-                                                                            'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies'])
-          expect(@indigenous_studies['subject_unstem_search']).to match_array(['Indians of Central America', 'Indians of Mexico', 'Indians of North America',
-                                                                               'Indians of the West Indies', 'Indigenous Studies', 'Indigenous peoples of Central America',
-                                                                               'Indigenous peoples of Mexico', 'Indigenous peoples of North America',
-                                                                               'Indigenous peoples of the West Indies'])
+          expect(@indigenous_studies['subject_facet']).to contain_exactly('Indigenous peoples of Central America', 'Indigenous peoples of Mexico', 'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies')
+          expect(@indigenous_studies['subject_topic_facet']).to contain_exactly('Indigenous peoples of Central America', 'Indigenous peoples of Mexico', 'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies')
+          expect(@indigenous_studies['lc_subject_display']).to contain_exactly('Indigenous peoples of Central America', 'Indigenous peoples of Mexico', 'Indigenous peoples of North America', 'Indigenous peoples of the West Indies', 'Indigenous Studies')
+          expect(@indigenous_studies['subject_unstem_search']).to contain_exactly('Indians of Central America', 'Indians of Mexico', 'Indians of North America', 'Indians of the West Indies', 'Indigenous Studies', 'Indigenous peoples of Central America', 'Indigenous peoples of Mexico', 'Indigenous peoples of North America', 'Indigenous peoples of the West Indies')
         end
 
         context 'subdivision that repeats main subject term' do
@@ -1572,10 +1563,10 @@ describe 'From traject_config.rb', indexing: true do
           let(:subject_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s650_lcsh], 'leader' => leader)) }
 
           it 'changes the subject term in display fields, but includes both old and new in search fields' do
-            expect(subject_marc['subject_facet']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-            expect(subject_marc['subject_topic_facet']).to match_array(['Undocumented immigrants', 'United States'])
-            expect(subject_marc['lc_subject_display']).to match_array(["Undocumented immigrants#{SEPARATOR}United States"])
-            expect(subject_marc['subject_unstem_search']).to match_array(["Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States"])
+            expect(subject_marc['subject_facet']).to contain_exactly("Undocumented immigrants#{SEPARATOR}United States")
+            expect(subject_marc['subject_topic_facet']).to contain_exactly('Undocumented immigrants', 'United States')
+            expect(subject_marc['lc_subject_display']).to contain_exactly("Undocumented immigrants#{SEPARATOR}United States")
+            expect(subject_marc['subject_unstem_search']).to contain_exactly("Illegal aliens#{SEPARATOR}United States", "Undocumented immigrants#{SEPARATOR}United States")
           end
 
           it 'works against a fixture' do
@@ -1624,21 +1615,21 @@ describe 'From traject_config.rb', indexing: true do
         expect(@homosaurus['subject_unstem_search']).to match_array(lc_only_terms)
         expect(@homosaurus['subject_facet']).to match_array(lc_and_homosaurus_terms)
         # # this should combine both, without lc subfields
-        expect(@homosaurus['subject_topic_facet']).to match_array(['Transgender people', 'Trans', 'Transgender community', 'Transgender culture'])
+        expect(@homosaurus['subject_topic_facet']).to contain_exactly('Transgender people', 'Trans', 'Transgender community', 'Transgender culture')
         expect(@homosaurus_655['homoit_genre_s']).to match(['LGBTQ+ periodicals'])
       end
     end
 
     describe 'fast_subject_facet' do
       it 'indexes fast_subject_facet' do
-        expect(@fast_subject_heading['fast_subject_facet']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
+        expect(@fast_subject_heading['fast_subject_facet']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
       end
     end
 
     describe 'fast subject heading fields' do
       it 'indexes fast headings' do
-        expect(@fast_subject_heading['fast_subject_display']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
-        expect(@fast_subject_heading['fast_subject_unstem_search']).to match_array(['Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)'])
+        expect(@fast_subject_heading['fast_subject_display']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
+        expect(@fast_subject_heading['fast_subject_unstem_search']).to contain_exactly('Criticism, interpretation, etc', "Children's literature, Russian", 'Russia (Federation)')
       end
 
       it 'does not add fast headings to subject_facet or subject_topic_facet' do
@@ -1742,7 +1733,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(@scsb_multiple).to be
         holdings = JSON.parse(@scsb_multiple['holdings_1display'].first)
         public_holding_id = '10615483'
-        expect(holdings.keys).to match_array([public_holding_id])
+        expect(holdings.keys).to contain_exactly(public_holding_id)
       end
     end
 
@@ -1787,7 +1778,7 @@ describe 'From traject_config.rb', indexing: true do
         expect(note['uri']).to eq('http://arks.princeton.edu/ark:/88435/dcxg94j1575')
       end
 
-      it 'will not index private notes - first indicator 0' do
+      it 'does not index private notes - first indicator 0' do
         expect(@private_notes_583['action_notes_1display']).to be_nil
       end
 

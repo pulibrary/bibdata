@@ -2,7 +2,7 @@
 
 RSpec.shared_context 'scsb_partner_updates_incremental' do
   include_context 'scsb_partner_updates'
-  let(:event) { FactoryBot.build(:event) }
+  let(:event) { build(:event) }
   let(:dump) { Dump.create(dump_type: :partner_recap, event_id: event.id) }
   let(:timestamp) { Dump.send(:incremental_update_timestamp) }
   let(:scsb_file) { file_fixture('scsb/scsb_leaderd.xml').to_s }

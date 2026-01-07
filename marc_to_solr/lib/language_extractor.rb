@@ -14,7 +14,7 @@ class LanguageExtractor
   def possible_language_subject_headings
     @marc_record.fields('650')
                 .select { |field| field['v']&.match(/^texts/i) }
-                .map { |field| field['a'] }
+                .pluck('a')
   end
 
   def fixed_field_code

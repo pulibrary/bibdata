@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'fileutils'
 
-RSpec.describe 'Devise restricts features for unauthenticated users', type: :system, js: true do
+RSpec.describe 'Devise restricts features for unauthenticated users', :js, type: :system do
   before(:all) do
     dump_test_bib_ids('./spec/fixtures/sample_bib_ids.txt')
   end
@@ -30,7 +30,7 @@ RSpec.describe 'Devise restricts features for unauthenticated users', type: :sys
     end
 
     it 'only authenticated users can delete events' do
-      sign_in FactoryBot.create(:admin), scope: :user
+      sign_in create(:admin), scope: :user
       visit '/events'
       expect(page).to have_link 'Delete'
     end

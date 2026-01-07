@@ -36,7 +36,7 @@ class DumpFile < ActiveRecord::Base
   end
 
   before_destroy do
-    File.delete(path) if File.exist?(path)
+    FileUtils.rm_f(path)
   end
 
   def recap_record_type?

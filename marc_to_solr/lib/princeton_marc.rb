@@ -40,7 +40,7 @@ module MARC
 
     def date_display
       date = nil
-      date = self['260']['c'] if self['260'] && (self['260']['c'])
+      date = self['260']['c'] if self['260'] && self['260']['c']
       date ||= self.date_from_008
     end
   end
@@ -408,7 +408,7 @@ def everything_through_t record, fields
         break
       end
     end
-    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless (title.empty? || non_t)
+    values << Traject::Macros::Marc21.trim_punctuation(title.join(' ')) unless title.empty? || non_t
   end
   values
 end
@@ -426,7 +426,7 @@ def prep_name_title record, fields
     non_a = true
     non_t = true
     field.subfields.each do |s_field|
-      next if (!spec.subfields.nil? && !spec.subfields.include?(s_field.code))
+      next if !spec.subfields.nil? && !spec.subfields.include?(s_field.code)
 
       non_a = false if s_field.code == 'a'
       non_t = false if s_field.code == 't'
@@ -436,7 +436,7 @@ def prep_name_title record, fields
         name_title << s_field.value
       end
     end
-    unless (non_a || non_t)
+    unless non_a || non_t
       name_title.unshift(author.join(' '))
       values << name_title unless name_title.empty?
     end
@@ -459,7 +459,7 @@ end
 def join_hierarchy(fields, include_first_element: false)
   if include_first_element == false
     # Exclude the name-only portion of hierarchy
-    expand_sublists_for_hierarchy(fields).map { |a| a[1..-1] }
+    expand_sublists_for_hierarchy(fields).pluck(1..-1)
   else
     # Include full hierarchy
     expand_sublists_for_hierarchy(fields)
@@ -533,7 +533,7 @@ end
 
 def alma_950(record)
   field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
-  field_950_a.map { |f| f['b'] }.first if field_950_a.present?
+  field_950_a.presence&.pick('b')
 end
 
 def process_holdings(record, marc_breaker)
