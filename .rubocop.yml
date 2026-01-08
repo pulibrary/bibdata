@@ -1,9 +1,10 @@
 inherit_from: .rubocop_todo.yml
 
-require:
+plugins:
   - rubocop-rails
   - rubocop-rspec
   - rubocop-performance
+  - rubocop-factory_bot
 
 AllCops:
   DisplayCopNames: true
@@ -20,6 +21,8 @@ AllCops:
     - 'marc_to_solr/translation_maps/locations.rb'
     - 'marc_to_solr/translation_maps/holding_library.rb'
 
+FactoryBot/AssociationStyle:
+  Enabled: false
 Style/AsciiComments:
   Enabled: false
 
