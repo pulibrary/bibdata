@@ -285,7 +285,7 @@ RSpec/ExpectChange:
 # Include: **/*_spec*rb*, **/spec/**/*
 RSpec/SpecFilePathFormat:
   Exclude:
-    - 'spec/marc_to_solr/lib/embargo_date_extractor.rb'
+    - 'spec/marc_to_solr/lib/embargo_date_extractor_spec.rb'
     - 'spec/marc_to_solr/lib/linked_field_extractor_spec.rb'
     - 'spec/marc_to_solr/lib/uri_ark_spec.rb'
     - 'webhook_monitor/src/spec/index_spec.rb'
