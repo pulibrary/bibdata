@@ -103,19 +103,6 @@ RSpec.describe AlmaAdapter do
     end
   end
 
-  describe 'a record that has an ARK' do
-    xit 'exposes the ark' do
-      # find an alma record with an ark.princeton.edu
-    end
-  end
-
-  describe 'a record with no item' do
-    # it has a holding
-    # it doesn't have an item. This should be checked on the Holding
-    xit 'has a holding' do
-    end
-  end
-
   describe 'record availability' do
     let(:bib_record_with_ava) { file_fixture('alma/9922486553506421.json') }
     let(:bib_record_with_ava_holding_items) { file_fixture('alma/9922486553506421_holding_items.json') }
