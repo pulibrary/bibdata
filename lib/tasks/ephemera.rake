@@ -20,7 +20,6 @@ namespace :ephemera do
     BibdataRs::Ephemera.index_string(solr_url, documents)
 
     puts "Successfully indexed #{documents.length} documents to #{solr_url}"
-
   rescue StandardError => e
     Rails.logger.error("Error processing ephemera folder: #{e.message}")
     puts "Error processing ephemera folder: #{e.message}"

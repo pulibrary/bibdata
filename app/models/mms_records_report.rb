@@ -10,7 +10,7 @@ class MmsRecordsReport
   end
 
   def self.endpoint
-    @endpoint ||= (MARC_LIBERATION_CONFIG['figgy_base_url']).to_s
+    @endpoint ||= MARC_LIBERATION_CONFIG['figgy_base_url'].to_s
   end
 
   def mms_records_report

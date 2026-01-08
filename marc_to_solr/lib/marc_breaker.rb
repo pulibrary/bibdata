@@ -16,6 +16,7 @@ class MarcBreaker
     breaker.as_breaker
   end
 
+  # rubocop:disable Layout/IndentationWidth
   def as_breaker
     fields = original.fields
                      .select { |f| valid_tag? f.tag }
@@ -31,17 +32,17 @@ class MarcBreaker
     fields.join("\n")
   end
 
+  # rubocop:enable Layout/IndentationWidth
   def datafield_to_breaker(field)
     ind1 = normalize_indicator field.indicator1
     ind2 = normalize_indicator field.indicator2
     all_subfields = field.subfields.map { |subfield| subfield_to_breaker(subfield) }.join
     "=#{field.tag} #{ind1}#{ind2}#{all_subfields}"
   end
+  MARC_BREAKER_SF_DELIMITER = '$'
+  MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'
 
   private
-
-    MARC_BREAKER_SF_DELIMITER = '$'
-    MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'
 
     def escape_to_breaker(value)
       value.gsub(MARC_BREAKER_SF_DELIMITER, MARC_BREAKER_SF_DELIMITER_ESCAPE).tr("\n", ' ')

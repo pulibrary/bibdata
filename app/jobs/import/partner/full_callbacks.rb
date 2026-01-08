@@ -32,7 +32,9 @@ module Import
       def process_xml_file_success(_status, options)
         # unlink big zip file here
         zip_file = options['zip_file']
+        # rubocop:disable Lint/NonAtomicFileOperation
         File.unlink(zip_file) if File.exist?(zip_file)
+        # rubocop:enable Lint/NonAtomicFileOperation
       end
     end
   end

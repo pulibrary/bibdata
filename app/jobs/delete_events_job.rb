@@ -1,5 +1,6 @@
 class DeleteEventsJob
   include Sidekiq::Worker
+
   # @param dump_type [Symbol] the dump type of the dumps you want to clean up
   # @param older_than [int] the Time before which dumps should be deleted
   def perform(dump_type, older_than)

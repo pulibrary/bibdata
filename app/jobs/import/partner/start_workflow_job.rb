@@ -2,6 +2,7 @@ module Import
   module Partner
     class StartWorkflowJob
       include Sidekiq::Job
+
       def perform(dump_id)
         dump = Dump.find(dump_id)
         batch.jobs do

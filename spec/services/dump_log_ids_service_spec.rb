@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ::DumpLogIdsService do
+RSpec.describe DumpLogIdsService do
   describe '#process_dump' do
     it 'gets the right counts' do
       dump = FactoryBot.create(:incremental_dump)

@@ -5,6 +5,7 @@ module Import
     # Downloads the files from the sftp server and attaches them to Event, Dump,
     # DumpFile objects. Kicks off further processing if necessary
     include Sidekiq::Job
+
     queue_as :default
     attr_reader :dump_file_type
 

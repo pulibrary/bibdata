@@ -5,7 +5,7 @@ class AlmaAdapter
     # @param item [Alma::BibItem]
     def initialize(item)
       @item = item
-      super(item)
+      super
     end
 
     def self.reserve_location?(library_code, location_code)

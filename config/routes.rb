@@ -30,7 +30,7 @@ Rails.application.routes.draw do
                             constraints: { patron_id: %r{[^/]+} }
 
   require 'sidekiq/web'
-  authenticate :user, ->(user) { user.catalog_admin? } do
+  authenticate :user, lambda(&:catalog_admin?) do
     mount Sidekiq::Web => '/sidekiq'
   end
 end

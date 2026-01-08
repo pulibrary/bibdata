@@ -28,7 +28,7 @@ class AlmaAdapter
     def bib_availability_from_items
       availability = {}
       item_data.each do |holding_id, items|
-        next if items.count == 0
+        next if items.none?
 
         # Process all the items for the holding and keep the "status" information from the last one.
         # Notice that we also gather enough information to determine whether the holding as a whole
@@ -104,6 +104,7 @@ class AlmaAdapter
     end
 
     def holding_summary(holding)
+      # rubocop:disable Style/SafeNavigationChainLength
       holding_item_data = item_data[holding['holding_id']]
       location_info = location_record(holding)
       status = Status.new(bib:, holding:, aeon: aeon?(location_info))
@@ -114,6 +115,7 @@ class AlmaAdapter
         label: holding_location_label(holding, location_info),
         status: status.to_s
       }
+      # rubocop:enable Style/SafeNavigationChainLength
     end
 
     def item_data

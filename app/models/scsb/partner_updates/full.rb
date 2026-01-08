@@ -17,7 +17,9 @@ module Scsb
         destination_filepath = "#{scsb_file_dir}/#{filename}"
         FileUtils.move(file, destination_filepath)
         Dump.attach_dump_file(dump_id, destination_filepath, :recap_records_full_metadata)
+        # rubocop:disable Lint/NonAtomicFileOperation
         File.unlink(destination_filepath) if File.exist?(destination_filepath)
+        # rubocop:enable Lint/NonAtomicFileOperation
         unless matches_expected_collections
           raise StandardError, "Metadata file indicates that dump for #{institution} does not include the correct Group IDs, not processing. Group ids: #{group_ids}"
         end

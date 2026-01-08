@@ -33,11 +33,11 @@ class AccessFacetBuilder
   private
 
     def electronic_portfolio
-      return 'Online' if context.output_hash['electronic_portfolio_s'].present?
+      'Online' if context.output_hash['electronic_portfolio_s'].present?
     end
 
     def in_library
-      return 'In the Library' if context.output_hash['location_code_s'].present?
+      'In the Library' if context.output_hash['location_code_s'].present?
     end
 
     # Return 'online' if record has an 856 field and
@@ -46,10 +46,10 @@ class AccessFacetBuilder
       field = record.find { |f| f.tag == '856' }
       indicator = field.try(:indicator2)
 
-      return 'Online' if ['0', '1', ' '].include?(indicator)
+      'Online' if ['0', '1', ' '].include?(indicator)
     end
 
     def digitized_in_figgy
-      return 'Online' if context.output_hash['figgy_1display'].present?
+      'Online' if context.output_hash['figgy_1display'].present?
     end
 end

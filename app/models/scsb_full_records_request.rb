@@ -59,7 +59,7 @@ class ScsbFullRecordsRequest
       if Rails.env.test?
         'TESTME'
       else
-        ENV['SCSB_AUTH_KEY']
+        ENV.fetch('SCSB_AUTH_KEY', nil)
       end
     end
 end

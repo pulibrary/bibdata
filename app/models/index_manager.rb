@@ -6,6 +6,7 @@ class IndexManager < ActiveRecord::Base
     IndexManager.find_or_initialize_by(solr_collection: solr_url)
   end
 
+  # rubocop:disable Naming/PredicateMethod
   def self.reindex!(solr_url: nil)
     solr_url ||= rebuild_solr_url
     manager = self.for(solr_url)
@@ -17,6 +18,7 @@ class IndexManager < ActiveRecord::Base
     manager.index_remaining!
     true
   end
+  # rubocop:enable Naming/PredicateMethod
 
   def self.rebuild_solr_url
     "#{Rails.application.config.solr['url']}-rebuild"

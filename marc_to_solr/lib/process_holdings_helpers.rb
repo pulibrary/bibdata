@@ -31,7 +31,7 @@ class ProcessHoldingsHelpers
   def items_by_852(field_852)
     holding_id = holding_id(field_852)
     items = record.fields('876').select { |f| f['0'] == holding_id }
-    items.map { |item| item unless private_scsb_item?(item, field_852) }.compact
+    items.reject { |item| private_scsb_item?(item, field_852) }
   end
 
   def private_scsb_item?(field_876, field_852)
@@ -77,10 +77,12 @@ class ProcessHoldingsHelpers
     end
   end
 
+  # rubocop:disable Naming/PredicateMethod
   def in_temporary_location(field_876, field_852)
     # temporary location is any item whose 876 and 852 do not match
     BibdataRs::Marc.current_location_code(marc_breaker_field(field_876)) != BibdataRs::Marc.permanent_location_code(marc_breaker_field(field_852))
   end
+  # rubocop:enable Naming/PredicateMethod
 
   def build_call_number(field_852)
     BibdataRs::Marc.build_call_number(marc_breaker_field(field_852))

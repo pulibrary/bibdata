@@ -74,7 +74,7 @@ module Scsb
       if Rails.env.test?
         'TESTME'
       else
-        ENV['SCSB_AUTH_KEY']
+        ENV.fetch('SCSB_AUTH_KEY', nil)
       end
     end
 
@@ -82,7 +82,7 @@ module Scsb
       if Rails.env.test?
         'https://test.api.com/'
       else
-        ENV['SCSB_SERVER']
+        ENV.fetch('SCSB_SERVER', nil)
       end
     end
 

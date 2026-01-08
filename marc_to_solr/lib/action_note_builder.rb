@@ -20,7 +20,7 @@ class ActionNoteBuilder
 
       notes << { description: description(field), uri: uri(field) }
     end
-    notes = [notes.to_json.to_s] if notes.present?
+    notes = [notes.to_json] if notes.present?
     notes.presence
   end
 

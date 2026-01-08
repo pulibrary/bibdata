@@ -2,6 +2,7 @@ module Import
   module Partner
     class ProcessXmlFileJob
       include Sidekiq::Job
+
       def perform(dump_id, file)
         scsb_file_dir = ENV.fetch('SCSB_FILE_DIR')
         filename = File.basename(file)
@@ -11,7 +12,9 @@ module Import
         reader.map { |record| writer.write(Scsb::PartnerUpdates::Full.process_record(record)) }
         writer.close
         Dump.attach_dump_file(dump_id, file_path, :recap_records_full)
+        # rubocop:disable Lint/NonAtomicFileOperation
         File.unlink(file) if File.exist?(file)
+        # rubocop:enable Lint/NonAtomicFileOperation
       end
     end
   end

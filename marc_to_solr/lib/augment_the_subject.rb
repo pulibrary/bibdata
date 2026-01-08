@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'set'
-
 ##
 # The creation and management of metadata are not neutral activities.
 class AugmentTheSubject
@@ -31,9 +29,9 @@ class AugmentTheSubject
   def standalone_subfield_a_terms
     @standalone_subfield_a_terms ||= begin
       parsed_json = JSON.parse(File.read(LCSH_STANDALONE_A_FILE), { symbolize_names: true })
-      parsed_json[:standalone_subfield_a].map do |term|
+      parsed_json[:standalone_subfield_a].to_set do |term|
         normalize(term)
-      end.to_set
+      end
     end
   end
 
@@ -52,7 +50,7 @@ class AugmentTheSubject
       # Turns all the sub-arrays into sets for set comparison later
       parsed_json.transform_values! do |value|
         value.map do |val|
-          val.map { |term| normalize(term) }.to_set
+          val.to_set { |term| normalize(term) }
         end
       end
       # Normalizes and symbolizes key for fast and consistent retrieval
@@ -111,7 +109,7 @@ class AugmentTheSubject
   def subfield_x_match?(term)
     subfields = term.split(SEPARATOR)
     subfields = subfields.map { |subfield| normalize(subfield) }
-    !(standalone_subfield_x_terms & subfields).empty?
+    !!standalone_subfield_x_terms.intersect?(subfields)
   end
 
   ##
