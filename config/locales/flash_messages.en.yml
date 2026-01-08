@@ -1,0 +1,7 @@
+en:
+  flash_messages:
+    error: "Error"
+    alert: "Danger!"
+    notice: "A notice"
+    success: "Success!"
+    flash: "Flash"
