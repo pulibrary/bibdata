@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'faker'
-
+# rubocop:disable FactoryBot/FactoryAssociationWithStrategy
 FactoryBot.define do
   factory :holding_location, class: 'HoldingLocation' do
     label { Faker::Company.name + ' Library' }
@@ -85,3 +85,4 @@ FactoryBot.define do
     library { build(:library, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only"') }
   end
 end
+# rubocop:enable FactoryBot/FactoryAssociationWithStrategy

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable FactoryBot/FactoryAssociationWithStrategy
 FactoryBot.define do
   factory :delivery_location, class: 'DeliveryLocation' do
     label { 'delivery-location-label' }
@@ -13,3 +14,4 @@ FactoryBot.define do
     digital_location { true }
   end
 end
+# rubocop:enable FactoryBot/FactoryAssociationWithStrategy
