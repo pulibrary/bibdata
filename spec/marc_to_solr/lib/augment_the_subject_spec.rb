@@ -6,13 +6,13 @@ create_global_indexer_service
 ##
 # When our catalog records contain subject headings, that should be classified as
 # Indigenous Studies, it adds that term.
-RSpec.describe AugmentTheSubject, indexing: true do
+RSpec.describe AugmentTheSubject, :indexing do
   let(:ats) { described_class.new }
 
   context "subfield a's that match by themselves" do
     it 'builds a list of terms from the csv' do
       subfields = described_class.parse_standalone_a
-      expect(subfields).to be_kind_of(Hash)
+      expect(subfields).to be_a(Hash)
       expect(subfields[:standalone_subfield_a].length).to eq 5599
     end
 
@@ -156,9 +156,9 @@ RSpec.describe AugmentTheSubject, indexing: true do
       expect(parsed_subfields).to be
       expect(parsed_subfields.keys.empty?).to be false
       expect(parsed_subfields.keys.first).to be('Acadians')
-      expect(parsed_subfields.values.first[0]).to match_array(['History', 'Expulsion, 1755', 'Nova Scotia'])
+      expect(parsed_subfields.values.first[0]).to contain_exactly('History', 'Expulsion, 1755', 'Nova Scotia')
       expect(parsed_subfields['United States'].size).to eq(9)
-      expect(parsed_subfields['United States'][3]).to match_array(['History', 'Civil War, 1861-1865', 'Participation, Indian'])
+      expect(parsed_subfields['United States'][3]).to contain_exactly('History', 'Civil War, 1861-1865', 'Participation, Indian')
       expect(parsed_subfields['United States.']).to be
 
       us_expected = [['Antiquities'],
@@ -174,8 +174,8 @@ RSpec.describe AugmentTheSubject, indexing: true do
     end
 
     it 'creates a cache of required subfields' do
-      expect(ats.indigenous_studies_required).to be_kind_of(Hash)
-      expect(ats.indigenous_studies_required[:acadians].first).to be_kind_of(Set)
+      expect(ats.indigenous_studies_required).to be_a(Hash)
+      expect(ats.indigenous_studies_required[:acadians].first).to be_a(Set)
     end
   end
 

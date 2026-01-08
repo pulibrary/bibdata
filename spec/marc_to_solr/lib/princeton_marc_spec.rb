@@ -344,7 +344,7 @@ describe 'From princeton_marc.rb' do
     end
 
     it 'expects indicator matcher to factor into matching lines' do
-      expect(@indicator_titles).to match_array(['AWESOME John 1492 dont ignore'])
+      expect(@indicator_titles).to contain_exactly('AWESOME John 1492 dont ignore')
     end
 
     it 'alt_titles includes 880 field' do
@@ -389,17 +389,17 @@ describe 'From princeton_marc.rb' do
 
     it '$t required, includes only specified subfields' do
       name_titles_700 = prep_name_title(@sample_marc, '700adt')
-      expect(name_titles_700[0]).to match_array(['John 1492', 'TITLE'])
+      expect(name_titles_700[0]).to contain_exactly('John 1492', 'TITLE')
     end
 
     it '$a required, split happens before $t' do
       name_titles_710 = prep_name_title(@sample_marc, '710')
-      expect(name_titles_710[0]).to match_array(['Sean 2011', 'work', '53', 'Allegro'])
+      expect(name_titles_710[0]).to contain_exactly('Sean 2011', 'work', '53', 'Allegro')
     end
 
     it '#join_hierarchy combines hierarchical component with parent components' do
       name_titles = join_hierarchy(prep_name_title(@sample_marc, '700adt:710'))
-      expect(name_titles).to match_array([['John 1492 TITLE'], ['Sean 2011 work', 'Sean 2011 work 53', 'Sean 2011 work 53 Allegro']])
+      expect(name_titles).to contain_exactly(['John 1492 TITLE'], ['Sean 2011 work', 'Sean 2011 work 53', 'Sean 2011 work 53 Allegro'])
     end
   end
 
@@ -752,7 +752,7 @@ describe 'From princeton_marc.rb' do
 
       context 'with a record with both public and private holdings' do
         it 'indexes only public items for SCSB' do
-          expect(@holdings_scsb_mixed.keys).to match_array([@holding_id_scsb_mixed_public])
+          expect(@holdings_scsb_mixed.keys).to contain_exactly(@holding_id_scsb_mixed_public)
         end
       end
     end

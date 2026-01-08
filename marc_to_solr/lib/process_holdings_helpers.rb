@@ -173,7 +173,7 @@ class ProcessHoldingsHelpers
     textual_holdings = []
     textual_holdings << field['a'] if field.tag == field_tag && field['a']
     textual_holdings << field['z'] if field.tag == field_tag && field['z']
-    textual_holdings.join(' ') if textual_holdings.present?
+    textual_holdings.presence&.join(' ')
   end
 
   private
