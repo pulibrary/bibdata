@@ -31,7 +31,7 @@ class ProcessHoldingsHelpers
   def items_by_852(field_852)
     holding_id = holding_id(field_852)
     items = record.fields('876').select { |f| f['0'] == holding_id }
-    items.map { |item| item unless private_scsb_item?(item, field_852) }.compact
+    items.reject { |item| private_scsb_item?(item, field_852) }
   end
 
   def private_scsb_item?(field_876, field_852)

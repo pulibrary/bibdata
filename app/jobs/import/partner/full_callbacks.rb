@@ -32,7 +32,7 @@ module Import
       def process_xml_file_success(_status, options)
         # unlink big zip file here
         zip_file = options['zip_file']
-        File.unlink(zip_file) if File.exist?(zip_file)
+        FileUtils.rm_f(zip_file)
       end
     end
   end

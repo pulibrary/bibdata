@@ -3,6 +3,7 @@ require 'rspec-benchmark'
 
 RSpec.describe Import::Partner::ProcessXmlFileJob do
   include RSpec::Benchmark::Matchers
+
   include_context 'scsb_partner_updates_full'
   around do |example|
     Sidekiq::Testing.inline! do

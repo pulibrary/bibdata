@@ -16,6 +16,7 @@ class MarcBreaker
     breaker.as_breaker
   end
 
+  # rubocop:disable Layout/IndentationWidth
   def as_breaker
     fields = original.fields
                      .select { |f| valid_tag? f.tag }
@@ -31,6 +32,7 @@ class MarcBreaker
     fields.join("\n")
   end
 
+  # rubocop:enable Layout/IndentationWidth
   def datafield_to_breaker(field)
     ind1 = normalize_indicator field.indicator1
     ind2 = normalize_indicator field.indicator2

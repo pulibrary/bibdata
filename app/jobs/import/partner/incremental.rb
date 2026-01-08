@@ -3,6 +3,7 @@ module Import
     class Incremental
       include Sidekiq::Job
       include Scsb
+
       queue_as :default
 
       def perform(dump_id, timestamp)

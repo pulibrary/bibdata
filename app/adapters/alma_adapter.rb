@@ -28,9 +28,9 @@ class AlmaAdapter
   def get_bib_records(ids, show_suppressed: false)
     cql_query = show_suppressed ? '' : 'alma.mms_tagSuppressed=false%20and%20'
     cql_query << ids.map { |id| "alma.mms_id=#{id}" }.join('%20or%20')
-    sru_url = "#{Rails.configuration.alma['sru_url']}?"\
-              'version=1.2&operation=searchRetrieve&'\
-              "recordSchema=marcxml&query=#{cql_query}"\
+    sru_url = "#{Rails.configuration.alma['sru_url']}?" \
+              'version=1.2&operation=searchRetrieve&' \
+              "recordSchema=marcxml&query=#{cql_query}" \
               "&maximumRecords=#{ids.count}"
     MARC::XMLReader.new(URI(sru_url).open, parser: :nokogiri).map do |record|
       MarcRecord.new(nil, record)
@@ -72,7 +72,7 @@ class AlmaAdapter
     options = { timeout: 20 }
     AlmaAdapter::Execute.call(options:, message: "Find bibs #{ids.join(',')}") do
       bibs = Alma::Bib.find(Array.wrap(ids), expand: %w[p_avail e_avail d_avail requests].join(',')).each
-      return nil if bibs.count == 0
+      return nil if bibs.none?
 
       availability = bibs.each_with_object({}) do |bib, acc|
         acc[bib.id] = AvailabilityStatus.new(bib:, deep_check:).bib_availability

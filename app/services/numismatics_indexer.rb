@@ -64,6 +64,7 @@ class NumismaticsIndexer
 
   class PaginatingJsonResponse
     include Enumerable
+
     attr_reader :url, :logger
 
     def initialize(url:, logger:)

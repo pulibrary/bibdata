@@ -1,5 +1,6 @@
 module FormattingConcern
   extend ActiveSupport::Concern
+
   # @param records [MARC::Record] Could be one or a collection
   # @return [String] A serialized <mrx:record/> or <mrx:collection/>
   # "Cleans" the record of invalid xml characters
@@ -37,8 +38,7 @@ module FormattingConcern
   # @return [Array<Hash>]
   def pass_records_through_xml_parser(records)
     reader = MARC::XMLReader.new(StringIO.new(records_to_xml_string(records)))
-    record_hashes = []
-    reader.each { |r| record_hashes << r.to_hash }
+    record_hashes = reader.map(&:to_hash)
     if record_hashes.length == 1
       record_hashes.first
     else

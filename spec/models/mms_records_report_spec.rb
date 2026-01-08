@@ -40,9 +40,9 @@ RSpec.describe MmsRecordsReport do
     let(:translation_map_path) { 'spec/fixtures/files/figgy/translation_map.yml' }
 
     around do |example|
-      File.delete(translation_map_path) if File.exist?(translation_map_path)
+      FileUtils.rm_f(translation_map_path)
       example.run
-      File.delete(translation_map_path) if File.exist?(translation_map_path)
+      FileUtils.rm_f(translation_map_path)
     end
 
     it 'saves it to a ruby file as a translation map' do

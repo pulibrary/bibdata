@@ -1,5 +1,6 @@
 require 'rails_helper'
 include FormattingConcern
+
 RSpec.describe BarcodeController, type: :controller do
   describe '#scsb' do
     context 'when given a valid barcode' do

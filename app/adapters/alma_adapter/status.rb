@@ -22,7 +22,7 @@ class AlmaAdapter::Status
     return holding['availability'].titlecase if holding['availability']
 
     # For electronic holdings
-    return holding['activation_status'].titlecase if holding['activation_status']
+    holding['activation_status']&.titlecase
   end
 
   def on_site_holding?

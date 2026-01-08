@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'languages'
-require_relative './indigenous_languages'
+require_relative 'indigenous_languages'
 
 class LanguageService
   include IndigenousLanguages
