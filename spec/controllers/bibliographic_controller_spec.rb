@@ -5,9 +5,11 @@ RSpec.describe BibliographicController, type: :controller do
   let(:unsuppressed) { '991227850000541' }
   let(:ark_record) { '99226236706421' }
   let(:ark_record_xml) { file_fixture("alma/ark_#{ark_record}.xml").read }
-  let(:marc_99226236706421) { MARC::XMLReader.new(StringIO.new(ark_record_xml)).first }
   let(:unsuppressed_xml) { file_fixture("alma/unsuppressed_#{unsuppressed}.xml").read }
+  # rubocop:disable RSpec/IndexedLet
+  let(:marc_99226236706421) { MARC::XMLReader.new(StringIO.new(ark_record_xml)).first }
   let(:marc_991227850000541) { MARC::XMLReader.new(StringIO.new(unsuppressed_xml)).first }
+  # rubocop:enable RSpec/IndexedLet
   let(:bib_id) { '1234567' }
   let(:bib_record) { instance_double(MARC::Record) }
   let(:file_path) { Rails.root.join('spec', 'fixtures', "#{bib_id}.mrx") }

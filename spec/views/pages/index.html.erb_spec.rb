@@ -17,16 +17,16 @@ RSpec.describe 'pages/index', type: :view do
   end
 
   context 'with index managers' do
-    let!(:index_manager1) { create(:index_manager, solr_collection: 'daily_indexing', last_dump_completed: create(:incremental_dump)) }
-    let!(:index_manager2) { create(:index_manager, solr_collection: 'rebuild_indexing', last_dump_completed: create(:full_dump)) }
+    let!(:index_manager_one) { create(:index_manager, solr_collection: 'daily_indexing', last_dump_completed: create(:incremental_dump)) }
+    let!(:index_manager_two) { create(:index_manager, solr_collection: 'rebuild_indexing', last_dump_completed: create(:full_dump)) }
 
     it 'includes the id of the last dump indexed' do
       render
 
-      expect(rendered).to match(/#{index_manager1.last_dump_completed_id}/)
-      expect(rendered).to match(/#{index_manager2.last_dump_completed_id}/)
-      expect(rendered).to match(index_manager1.solr_collection)
-      expect(rendered).to have_link(index_manager1.last_dump_completed_id.to_s, href: "http://test.host/dumps/#{index_manager1.last_dump_completed_id}.json")
+      expect(rendered).to match(/#{index_manager_one.last_dump_completed_id}/)
+      expect(rendered).to match(/#{index_manager_two.last_dump_completed_id}/)
+      expect(rendered).to match(index_manager_one.solr_collection)
+      expect(rendered).to have_link(index_manager_one.last_dump_completed_id.to_s, href: "http://test.host/dumps/#{index_manager_one.last_dump_completed_id}.json")
     end
   end
 end

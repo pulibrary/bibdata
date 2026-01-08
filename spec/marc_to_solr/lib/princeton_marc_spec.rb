@@ -82,8 +82,10 @@ describe 'From princeton_marc.rb' do
     let(:figgy_dir_path) { ENV.fetch('FIGGY_ARK_CACHE_PATH', nil) || 'spec/fixtures/marc_to_solr/figgy_ark_cache' }
 
     let(:url) { 'https://domain.edu/test-resource' }
+    # rubocop:disable RSpec/IndexedLet
     let(:l001) { { '001' => '9947652213506421' } }
     let(:l856) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url }] } } }
+    # rubocop:enable RSpec/IndexedLet
     let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856]) }
     let(:logger) { instance_double(Logger, info: nil, error: nil, debug: nil, warn: nil) }
 
@@ -100,8 +102,10 @@ describe 'From princeton_marc.rb' do
     end
 
     context 'with a URL for an ARK' do
+      # rubocop:disable RSpec/IndexedLet
       let(:l856_2) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url, 'z' => 'label' }] } } }
       let(:l856_3) { { '856' => { 'ind1' => ' ', 'ind2' => ' ', 'subfields' => [{ 'u' => url, '3' => 'Selected images' }] } } }
+      # rubocop:enable RSpec/IndexedLet
       let(:url) { 'http://arks.princeton.edu/ark:/88435/00000140q' }
       let(:marc_record) { MARC::Record.new_from_hash('fields' => [l001, l856, l856_2, l856_3]) }
 
