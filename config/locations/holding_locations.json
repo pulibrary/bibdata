@@ -3781,7 +3781,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Tang Reading Room Remote Storage: Marquand Use Only",
+        "label": "Tang East Asian Reference: Marquand Use Only",
         "code": "marquand$fesrf",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
@@ -3803,7 +3803,7 @@
         ]
     },
     {
-        "label": "Microforms Remote Storage: Marquand Use Only",
+        "label": "Microforms: Marquand Use Only",
         "code": "marquand$mic",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
@@ -3933,7 +3933,7 @@
         ]
     },
     {
-        "label": "Reference Remote Storage: Marquand Use Only",
+        "label": "Marquand Use Only",
         "code": "marquand$ref",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
@@ -3999,7 +3999,7 @@
         ]
     },
     {
-        "label": "Remote Storage: Marquand Use Only",
+        "label": "Marquand Use Only",
         "code": "marquand$stacks",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
