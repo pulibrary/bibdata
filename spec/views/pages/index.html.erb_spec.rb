@@ -17,8 +17,8 @@ RSpec.describe 'pages/index', type: :view do
   end
 
   context 'with index managers' do
-    let!(:index_manager1) { FactoryBot.create(:index_manager, solr_collection: 'daily_indexing', last_dump_completed: FactoryBot.create(:incremental_dump)) }
-    let!(:index_manager2) { FactoryBot.create(:index_manager, solr_collection: 'rebuild_indexing', last_dump_completed: FactoryBot.create(:full_dump)) }
+    let!(:index_manager1) { create(:index_manager, solr_collection: 'daily_indexing', last_dump_completed: create(:incremental_dump)) }
+    let!(:index_manager2) { create(:index_manager, solr_collection: 'rebuild_indexing', last_dump_completed: create(:full_dump)) }
 
     it 'includes the id of the last dump indexed' do
       render

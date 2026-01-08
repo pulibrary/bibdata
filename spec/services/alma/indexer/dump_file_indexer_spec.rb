@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Alma::Indexer::DumpFileIndexer, :sidekiq do
   let(:solr_url) { ENV.fetch('SOLR_URL', nil) || "http://#{ENV.fetch('lando_bibdata_test_solr_conn_host', nil)}:#{ENV.fetch('lando_bibdata_test_solr_conn_port', nil)}/solr/bibdata-core-test" }
   let(:file_path) { 'spec/fixtures/files/scsb/scsb_test_short.xml.gz' }
-  let(:dump_file) { FactoryBot.create(:dump_file, path: file_path) }
+  let(:dump_file) { create(:dump_file, path: file_path) }
   let(:dump_file_indexer) { described_class.new(dump_file, solr_url:) }
 
   around do |example|

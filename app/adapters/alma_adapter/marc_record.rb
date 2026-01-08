@@ -23,9 +23,7 @@ class AlmaAdapter
       linked_record_fields = marc_record.fields('774').select do |field|
         alma_bib_id?(field['w']) && field['t']
       end
-      linked_record_fields.map do |field|
-        field['w']
-      end
+      linked_record_fields.pluck('w')
     end
 
     def enrich_with_item(item)

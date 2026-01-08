@@ -19,6 +19,6 @@ class DumpsController < ApplicationController
     end
 
     def dump_params
-      params.require(:dump).permit(:dump_id) # (:dump_id, :path, :md5)
+      params.expect(dump: [:dump_id]) # (:dump_id, :path, :md5)
     end
 end

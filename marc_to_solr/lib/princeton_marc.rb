@@ -459,7 +459,7 @@ end
 def join_hierarchy(fields, include_first_element: false)
   if include_first_element == false
     # Exclude the name-only portion of hierarchy
-    expand_sublists_for_hierarchy(fields).map { |a| a[1..-1] }
+    expand_sublists_for_hierarchy(fields).pluck(1..-1)
   else
     # Include full hierarchy
     expand_sublists_for_hierarchy(fields)
@@ -533,7 +533,7 @@ end
 
 def alma_950(record)
   field_950_a = record.fields('950').select { |f| %w[true false].include?(f['a']) }
-  field_950_a.map { |f| f['b'] }.first if field_950_a.present?
+  field_950_a.presence&.pick('b')
 end
 
 def process_holdings(record, marc_breaker)

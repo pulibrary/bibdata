@@ -170,7 +170,7 @@ describe 'From traject_config.rb', :indexing do
         context 'When the record has 950, 876 and 951 fields' do
           it 'indexes the oldest 876d field' do
             marc_record = fixture_record('99299653506421_custom_951')
-            fields_876_sorted = alma_876(marc_record).map { |f| f['d'] }.sort
+            fields_876_sorted = alma_876(marc_record).pluck('d').sort
             expect(marc_record['876']['d']).to be_truthy
             expect(marc_record['951']['w']).to be_truthy
             expect(marc_record['950']['b']).to be_truthy

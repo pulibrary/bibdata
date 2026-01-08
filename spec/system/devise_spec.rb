@@ -30,7 +30,7 @@ RSpec.describe 'Devise restricts features for unauthenticated users', :js, type:
     end
 
     it 'only authenticated users can delete events' do
-      sign_in FactoryBot.create(:admin), scope: :user
+      sign_in create(:admin), scope: :user
       visit '/events'
       expect(page).to have_link 'Delete'
     end

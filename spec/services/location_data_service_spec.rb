@@ -132,9 +132,9 @@ RSpec.describe LocationDataService, type: :service do
       scsbnypl_record = HoldingLocation.find_by(code: 'scsbnypl')
       scsbhl_record = HoldingLocation.find_by(code: 'scsbhl')
       scsbcul_record = HoldingLocation.find_by(code: 'scsbcul')
-      delivery_location_scsbcul = DeliveryLocation.all.find(scsbcul_record.delivery_location_ids.first)
-      delivery_location_scsbhl = DeliveryLocation.all.find(scsbhl_record.delivery_location_ids.first)
-      delivery_location_scsbnypl = DeliveryLocation.all.find(scsbnypl_record.delivery_location_ids.first)
+      delivery_location_scsbcul = DeliveryLocation.find(scsbcul_record.delivery_location_ids.first)
+      delivery_location_scsbhl = DeliveryLocation.find(scsbhl_record.delivery_location_ids.first)
+      delivery_location_scsbnypl = DeliveryLocation.find(scsbnypl_record.delivery_location_ids.first)
 
       expect(delivery_location_record(scsbnypl_record).label).to eq 'Firestone Circulation Desk'
       expect(delivery_location_record(scsbnypl_record).gfa_pickup).to eq 'QX'
@@ -160,7 +160,7 @@ RSpec.describe LocationDataService, type: :service do
 
       expect(location.id).to eq 3
       expect(location.label).to eq 'Architecture Library'
-      new_location = FactoryBot.create(:delivery_location)
+      new_location = create(:delivery_location)
       expect(new_location.id).to eq 31
     end
 
@@ -215,6 +215,6 @@ RSpec.describe LocationDataService, type: :service do
   end
 
   def delivery_location_record(value)
-    DeliveryLocation.all.find(value.delivery_location_ids.first)
+    DeliveryLocation.find(value.delivery_location_ids.first)
   end
 end

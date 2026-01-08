@@ -76,7 +76,7 @@ RSpec.describe AvailabilityController, type: :controller do
         ]
       )
       get :index, params: { scsb_id:, format: :json }
-      bib_barcodes = JSON.parse(response.body)
+      bib_barcodes = response.parsed_body
       expect(bib_barcodes).to eq(bib_response)
     end
 
@@ -87,7 +87,7 @@ RSpec.describe AvailabilityController, type: :controller do
         .to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Not Available", "errorMessage": null}]', headers: {})
 
       get :index, params: { scsb_id:, format: :json }
-      bib_barcodes = JSON.parse(response.body)
+      bib_barcodes = response.parsed_body
       expect(bib_barcodes['32101055068314']['itemAvailabilityStatus']).to eq('Unavailable')
     end
   end
@@ -144,7 +144,7 @@ RSpec.describe AvailabilityController, type: :controller do
         ]
       )
       get :index, params: { barcodes: %w[32101055068314 32101055068313], format: :json }
-      bib_barcodes = JSON.parse(response.body)
+      bib_barcodes = response.parsed_body
       expect(bib_barcodes).to eq(bib_response)
     end
 
@@ -155,7 +155,7 @@ RSpec.describe AvailabilityController, type: :controller do
         .to_return(status: 200, body: '[{ "itemBarcode": "32101055068314", "itemAvailabilityStatus": "Available", "errorMessage": null},{ "itemBarcode": "32101055068313", "itemAvailabilityStatus": "Not Available", "errorMessage": null}]', headers: {})
 
       get :index, params: { barcodes: %w[32101055068314 32101055068313], format: :json }
-      bib_barcodes = JSON.parse(response.body)
+      bib_barcodes = response.parsed_body
 
       scsb_barcode_unavailable = bib_barcodes['32101055068313']
       expect(scsb_barcode_unavailable['itemAvailabilityStatus']).to eq('Unavailable')
