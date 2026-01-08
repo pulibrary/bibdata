@@ -123,7 +123,7 @@ RSpec.describe Dump, type: :model do
     it 'sets to create time of previous partner recap dump when there' do
       described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time, event_id: event_success.id)
       timestamp = described_class.send(:incremental_update_timestamp)
-      expect(timestamp).to eq(test_create_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+      expect(timestamp).to eq(test_create_time.utc.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
     end
 
     it 'sets to environment variable when there' do
