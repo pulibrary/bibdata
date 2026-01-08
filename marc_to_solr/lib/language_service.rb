@@ -27,9 +27,7 @@ class LanguageService
     BibdataRs::Languages.code_to_name(code) || iso_639_5_name(code)
   end
 
-  def macrolanguage_codes(individual_language_code)
-    BibdataRs::Languages.macrolanguage_codes(individual_language_code)
-  end
+  delegate :macrolanguage_codes, to: :'BibdataRs::Languages'
 
   def specific_names(record)
     specific_codes(record).map { |code| code_to_name(code) }

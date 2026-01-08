@@ -30,7 +30,7 @@ RSpec.describe DeleteEventsJob, type: :job do
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, incremental_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, incremental_event.dump.id)
-        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*new_event.dump.dump_files.map(&:id) + incremental_event.dump.dump_files.map(&:id))
+        expect(DumpFile.all.to_a.map(&:id)).to match_array(new_event.dump.dump_files.map(&:id) + incremental_event.dump.dump_files.map(&:id))
         expect(Dir.empty?(File.join(copy_path, old_event.id.to_s))).to be true
         expect(Dir.empty?(File.join(copy_path, new_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, incremental_event.id.to_s))).to be false
@@ -56,7 +56,7 @@ RSpec.describe DeleteEventsJob, type: :job do
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_event.id, full_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_event.dump.id, full_event.dump.id)
-        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*(new_event.dump.dump_files.map(&:id) + full_event.dump.dump_files.map(&:id)))
+        expect(DumpFile.all.to_a.map(&:id)).to match_array(new_event.dump.dump_files.map(&:id) + full_event.dump.dump_files.map(&:id))
         expect(Dir.empty?(File.join(copy_path, old_event.id.to_s))).to be true
         expect(Dir.empty?(File.join(copy_path, new_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, full_event.id.to_s))).to be false
@@ -82,7 +82,7 @@ RSpec.describe DeleteEventsJob, type: :job do
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.id, full_partner_recap_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_partner_recap_daily_event.dump.id, full_partner_recap_event.dump.id)
-        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*(new_partner_recap_daily_event.dump.dump_files.map(&:id) + full_partner_recap_event.dump.dump_files.map(&:id)))
+        expect(DumpFile.all.to_a.map(&:id)).to match_array(new_partner_recap_daily_event.dump.dump_files.map(&:id) + full_partner_recap_event.dump.dump_files.map(&:id))
         expect(Dir.empty?(File.join(copy_path, old_partner_recap_event.id.to_s))).to be true
         expect(Dir.empty?(File.join(copy_path, new_partner_recap_daily_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, full_partner_recap_event.id.to_s))).to be false
@@ -106,7 +106,7 @@ RSpec.describe DeleteEventsJob, type: :job do
 
         expect(Event.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.id, partner_recap_daily_event.id)
         expect(Dump.all.to_a.map(&:id)).to contain_exactly(new_full_partner_recap_event.dump.id, partner_recap_daily_event.dump.id)
-        expect(DumpFile.all.to_a.map(&:id)).to contain_exactly(*new_full_partner_recap_event.dump.dump_files.map(&:id) + partner_recap_daily_event.dump.dump_files.map(&:id))
+        expect(DumpFile.all.to_a.map(&:id)).to match_array(new_full_partner_recap_event.dump.dump_files.map(&:id) + partner_recap_daily_event.dump.dump_files.map(&:id))
         expect(Dir.empty?(File.join(copy_path, old_full_partner_recap_event.id.to_s))).to be true
         expect(Dir.empty?(File.join(copy_path, new_full_partner_recap_event.id.to_s))).to be false
         expect(Dir.empty?(File.join(copy_path, partner_recap_daily_event.id.to_s))).to be false

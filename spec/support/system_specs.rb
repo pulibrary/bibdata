@@ -11,14 +11,14 @@ RSpec.configure do |config|
     driven_by :rack_test
   end
 
-  config.before(:each, type: :system, js: true) do
+  config.before(:each, :js, type: :system) do
     if ENV['RUN_IN_BROWSER']
       driven_by(:selenium_chrome)
     else
       driven_by(:selenium_chrome_headless)
     end
   end
-  config.before(:each, type: :system, js: true, in_browser: true) do
+  config.before(:each, :in_browser, :js, type: :system) do
     driven_by(:selenium_chrome)
   end
 end
