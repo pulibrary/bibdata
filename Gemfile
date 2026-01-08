@@ -82,6 +82,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-benchmark'
   gem 'rubocop'
+  gem 'rubocop-factory_bot'
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
