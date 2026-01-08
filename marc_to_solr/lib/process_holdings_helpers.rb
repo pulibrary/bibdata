@@ -77,10 +77,12 @@ class ProcessHoldingsHelpers
     end
   end
 
+  # rubocop:disable Naming/PredicateMethod
   def in_temporary_location(field_876, field_852)
     # temporary location is any item whose 876 and 852 do not match
     BibdataRs::Marc.current_location_code(marc_breaker_field(field_876)) != BibdataRs::Marc.permanent_location_code(marc_breaker_field(field_852))
   end
+  # rubocop:enable Naming/PredicateMethod
 
   def build_call_number(field_852)
     BibdataRs::Marc.build_call_number(marc_breaker_field(field_852))

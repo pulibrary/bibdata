@@ -104,6 +104,7 @@ class AlmaAdapter
     end
 
     def holding_summary(holding)
+      # rubocop:disable Style/SafeNavigationChainLength
       holding_item_data = item_data[holding['holding_id']]
       location_info = location_record(holding)
       status = Status.new(bib:, holding:, aeon: aeon?(location_info))
@@ -114,6 +115,7 @@ class AlmaAdapter
         label: holding_location_label(holding, location_info),
         status: status.to_s
       }
+      # rubocop:enable Style/SafeNavigationChainLength
     end
 
     def item_data

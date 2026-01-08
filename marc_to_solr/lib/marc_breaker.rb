@@ -39,11 +39,10 @@ class MarcBreaker
     all_subfields = field.subfields.map { |subfield| subfield_to_breaker(subfield) }.join
     "=#{field.tag} #{ind1}#{ind2}#{all_subfields}"
   end
+  MARC_BREAKER_SF_DELIMITER = '$'
+  MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'
 
   private
-
-    MARC_BREAKER_SF_DELIMITER = '$'
-    MARC_BREAKER_SF_DELIMITER_ESCAPE = '{dollar}'
 
     def escape_to_breaker(value)
       value.gsub(MARC_BREAKER_SF_DELIMITER, MARC_BREAKER_SF_DELIMITER_ESCAPE).tr("\n", ' ')
