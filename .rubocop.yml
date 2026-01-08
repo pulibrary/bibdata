@@ -23,6 +23,7 @@ AllCops:
 
 FactoryBot/AssociationStyle:
   Enabled: false
+
 Style/AsciiComments:
   Enabled: false
 
@@ -95,6 +96,9 @@ Rails/HasManyOrHasOneDependent:
 Rails/ApplicationRecord:
   Exclude:
     - 'app/models/*'
+
+RSpec/NoExpectationExample:
+  Enabled: false
 
 Security/Open:
   Enabled: true

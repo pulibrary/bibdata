@@ -21,33 +21,33 @@ RSpec.describe Import::Alma, type: :job do
     context 'with a full dump' do
       let(:job_id) { '1436402400006421' }
 
-      let(:filename1) { 'fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz' }
-      let(:name1) do
+      let(:filename_one) { 'fulldump_1436402400006421_20201218_211210[050]_new_1.tar.gz' }
+      let(:name_one) do
         Net::SFTP::Protocol::V01::Name.new(
-          filename1,
-          "-rw-rw-r--. 1 alma alma  49546443 Dec 18 16:50 #{filename1}",
+          filename_one,
+          "-rw-rw-r--. 1 alma alma  49546443 Dec 18 16:50 #{filename_one}",
           attrs
         )
       end
-      let(:remote_path1) { "/alma/publishing/#{filename1}" }
-      let(:local_path1) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1) }
+      let(:remote_path_one) { "/alma/publishing/#{filename_one}" }
+      let(:local_path_one) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename_one) }
 
-      let(:filename2) { 'fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz' }
-      let(:name2) do
+      let(:filename_two) { 'fulldump_1436402400006421_20201218_211210[050]_new_2.tar.gz' }
+      let(:name_two) do
         Net::SFTP::Protocol::V01::Name.new(
-          filename2,
-          "-rw-rw-r--. 1 alma alma   4916786 Dec 18 16:50 #{filename2}",
+          filename_two,
+          "-rw-rw-r--. 1 alma alma   4916786 Dec 18 16:50 #{filename_two}",
           attrs
         )
       end
-      let(:remote_path2) { "/alma/publishing/#{filename2}" }
-      let(:local_path2) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2) }
+      let(:remote_path_two) { "/alma/publishing/#{filename_two}" }
+      let(:local_path_two) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename_two) }
 
-      let(:filename3) { 'fulldump_1434819190006421_2020121520_new_1.xml.tar.gz' }
-      let(:name3) do
+      let(:filename_three) { 'fulldump_1434819190006421_2020121520_new_1.xml.tar.gz' }
+      let(:name_three) do
         Net::SFTP::Protocol::V01::Name.new(
-          filename3,
-          "-rw-rw-r--. 1 alma alma  49970147 Dec 15 15:55 #{filename3}",
+          filename_three,
+          "-rw-rw-r--. 1 alma alma  49970147 Dec 15 15:55 #{filename_three}",
           attrs
         )
       end
@@ -64,22 +64,21 @@ RSpec.describe Import::Alma, type: :job do
 
       before do
         allow(Net::SFTP).to receive(:start).and_yield(session_stub)
-        allow(session_stub).to receive(:dir).and_return(dir_stub)
-        allow(dir_stub).to receive(:entries).and_return([name1, name2, name3])
-        allow(session_stub).to receive(:download).and_return(download_stub)
+        allow(dir_stub).to receive(:entries).and_return([name_one, name_two, name_three])
+        allow(session_stub).to receive_messages(dir: dir_stub, download: download_stub)
         allow(download_stub).to receive(:wait)
       end
 
       it 'downloads the files' do
         described_class.perform_async(dump.id, job_id)
 
-        expect(session_stub).to have_received(:download).once.with(remote_path1, local_path1)
-        expect(session_stub).to have_received(:download).once.with(remote_path2, local_path2)
-        expect(Dump.all.count).to eq 1
+        expect(session_stub).to have_received(:download).once.with(remote_path_one, local_path_one)
+        expect(session_stub).to have_received(:download).once.with(remote_path_two, local_path_two)
+        expect(Dump.count).to eq 1
 
         expect(dump.dump_files.count).to eq 2
         expect(dump.dump_files.map(&:dump_file_type).uniq).to eq ['bib_records']
-        expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename1), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename2))
+        expect(dump.dump_files.map(&:path)).to contain_exactly(File.join(MARC_LIBERATION_CONFIG['data_dir'], filename_one), File.join(MARC_LIBERATION_CONFIG['data_dir'], filename_two))
 
         expect(Index::RemainingDumpsJob).not_to have_received(:perform_async)
       end

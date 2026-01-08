@@ -591,8 +591,10 @@ describe 'From traject_config.rb', :indexing do
       end
 
       describe 'local overrides' do
+        # rubocop:disable RSpec/IndexedLet
         let(:f650) { { '650' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'Oil spills', 'z' => 'America, Gulf of' }] } } }
         let(:f651) { { '651' => { 'ind1' => ' ', 'ind2' => '0', 'subfields' => [{ 'a' => 'America, Gulf of. ' }] } } }
+        # rubocop:enable RSpec/IndexedLet
 
         it 'creates a facet for local marc geographic locations' do
           record = @indexer.map_record(MARC::Record.new_from_hash('fields' => [f650], 'leader' => leader))
@@ -689,6 +691,7 @@ describe 'From traject_config.rb', :indexing do
       let(:name) { 'American Drama Institute,' }
       let(:date) { 'c1991-' }
       let(:date_full) { 'c1991-1998' }
+
       let(:ceased_008) do
         {
           '008' => '911219d19912007ohufr-p-------0---a0eng-c'
@@ -732,9 +735,12 @@ describe 'From traject_config.rb', :indexing do
           }
         }
       end
+
       let(:no_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [no_date_008, p260], 'leader' => leader)) }
+
       let(:date_9999_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [date_9999_008, p260], 'leader' => leader)) }
       let(:date_199u_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [date_199u_008, p260], 'leader' => leader)) }
+
       let(:not_ceased_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [not_ceased_008, p260], 'leader' => leader)) }
       let(:no_trailing_date_marc) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [ceased_008, p260_complete], 'leader' => leader)) }
 
@@ -1068,8 +1074,10 @@ describe 'From traject_config.rb', :indexing do
       end
 
       describe 'mixing extract_marc and everything_after_t' do
+        # rubocop:disable RSpec/IndexedLet
         let(:t400) { { '400' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 't' => 'TITLE' }] } } }
         let(:t440) { { '440' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 't' => 'AWESOME' }, { 'a' => 'John' }, { 'n' => '1492' }, { 'k' => 'dont ignore' }] } } }
+        # rubocop:enable RSpec/IndexedLet
 
         it 'includes 400 field when 440 missing for series_title_index field' do
           no_440 = @indexer.map_record(MARC::Record.new_from_hash('fields' => [t400], 'leader' => leader))
@@ -1103,6 +1111,7 @@ describe 'From traject_config.rb', :indexing do
 
       describe '#related_record_info_display' do
         let(:i776) { { '776' => { 'ind1' => '', 'ind2' => '', 'subfields' => [{ 'i' => 'Test description' }] } } }
+
         let(:linked_record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [i776], 'leader' => leader)) }
 
         it 'indexes the 776$i value' do
@@ -1111,12 +1120,14 @@ describe 'From traject_config.rb', :indexing do
       end
 
       describe 'name_uniform_title_display field' do
+        # rubocop:disable RSpec/IndexedLet
         let(:n100) { { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01' }, { 'a' => 'Name,' }] } } }
         let(:n100_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '100-01' }, { 'a' => 'AltName ;' }] } } }
         let(:t240) { { '240' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-02' }, { 'a' => 'Uniform Title,' }, { 'p' => '5' }] } } }
         let(:t240_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '240-02' }, { 'a' => 'AltUniform Title,' }, { 'p' => '5' }] } } }
         let(:t245) { { '245' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-03' }, { 'a' => 'Title 245a' }] } } }
         let(:t245_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '245-03' }, { 'a' => 'VernTitle 245a' }] } } }
+        # rubocop:enable RSpec/IndexedLet
         let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
         let(:no_uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t245, t245_vern], 'leader' => leader)) }
 
@@ -1134,6 +1145,7 @@ describe 'From traject_config.rb', :indexing do
         context 'with no author' do
           context 'in English' do
             let(:t130) { { '130' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Bible.', 'l' => 'Latin.', 's' => 'Vulgate.', 'f' => '1461.' }] } } }
+
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130], 'leader' => leader)) }
 
             it 'has the English language field' do
@@ -1142,8 +1154,10 @@ describe 'From traject_config.rb', :indexing do
           end
 
           context 'with Arabic and English' do
+            # rubocop:disable RSpec/IndexedLet
             let(:t130) { { '130' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01', 'a' => 'Awrāq (Madrid, Spain)' }] } } }
             let(:t880) { { '880' => { 'ind1' => '0', 'ind2' => ' ', 'subfields' => [{ '6' => '130-01', 'a' => 'اوراق (Madrid, Spain)' }] } } }
+            # rubocop:enable RSpec/IndexedLet
             let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t130, t880], 'leader' => leader)) }
 
             it 'has the English and vernacular field' do
@@ -1153,12 +1167,14 @@ describe 'From traject_config.rb', :indexing do
         end
 
         context 'with an author' do
+          # rubocop:disable RSpec/IndexedLet
           let(:n100) { { '100' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-01' }, { 'a' => 'Name,' }] } } }
           let(:n100_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '100-01' }, { 'a' => 'AltName ;' }] } } }
           let(:t240) { { '240' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-02' }, { 'a' => 'Uniform Title,' }, { 'p' => '5' }] } } }
           let(:t240_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '240-02' }, { 'a' => 'AltUniform Title,' }, { 'p' => '5' }] } } }
           let(:t245) { { '245' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '880-03' }, { 'a' => 'Title 245a' }] } } }
           let(:t245_vern) { { '880' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ '6' => '245-03' }, { 'a' => 'VernTitle 245a' }] } } }
+          # rubocop:enable RSpec/IndexedLet
           let(:uniform_title) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [n100, n100_vern, t240, t240_vern, t245, t245_vern], 'leader' => leader)) }
 
           it 'does not create a uniform_title_1display' do
@@ -1171,6 +1187,7 @@ describe 'From traject_config.rb', :indexing do
 
     describe 'lc_pipe_facet' do
       let(:t050) { { '050' => { 'ind1' => '0', 'ind2' => '0', 'subfields' => [{ 'a' => 'IN PROCESS' }] } } }
+
       let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [t050], 'leader' => leader)) }
 
       it 'includes a field with data for the classification facet' do
@@ -1219,9 +1236,11 @@ describe 'From traject_config.rb', :indexing do
     end
 
     describe 'series 490 dedup, non-filing' do
+      # rubocop:disable RSpec/IndexedLet
       let(:s490) { { '490' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Series title' }] } } }
       let(:s830) { { '830' => { 'ind1' => '', 'ind2' => ' ', 'subfields' => [{ 'a' => 'Series title.' }] } } }
       let(:s440) { { '440' => { 'ind1' => '', 'ind2' => '4', 'subfields' => [{ 'a' => 'The Series' }] } } }
+      # rubocop:enable RSpec/IndexedLet
       let(:record) { @indexer.map_record(MARC::Record.new_from_hash('fields' => [s490, s830, s440], 'leader' => leader)) }
 
       it '490s are not included when they are covered by another series field' do
