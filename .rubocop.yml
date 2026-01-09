@@ -96,6 +96,8 @@ Rails/HasManyOrHasOneDependent:
 Rails/ApplicationRecord:
   Exclude:
     - 'app/models/*'
+Rails/Pluck:
+  Enabled: false
 
 RSpec/NoExpectationExample:
   Enabled: false
