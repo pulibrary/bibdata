@@ -9,7 +9,7 @@ rescue StandardError => e
   lando_list = []
 end
 
-if !lando_list.empty? && (Rails.env.development? || Rails.env.test?)
+if !lando_list.empty? && Rails.env.local?
   begin
     lando_services = JSON.parse(`lando info --format json`, symbolize_names: true)
     lando_services.each do |service|

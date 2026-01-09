@@ -21,7 +21,7 @@ RSpec.describe 'Health Check', type: :request do
 
         expect(response).not_to be_successful
         expect(response.status).to eq 503
-        solr_response = JSON.parse(response.body)['results'].find { |x| x['name'] == 'SolrStatus' }
+        solr_response = response.parsed_body['results'].find { |x| x['name'] == 'SolrStatus' }
         expect(solr_response['message']).to start_with 'The solr has an invalid status'
       end
     end

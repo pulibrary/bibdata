@@ -27,7 +27,7 @@ RSpec.describe BarcodeController, type: :controller do
         expect(record['959']).to be_nil
         # Ensure there are no non-numeric fields
         # ReCAP's parser can't handle them.
-        expect(record.fields.map { |x| format('%03d', x.tag.to_i) }).to contain_exactly(*record.fields.map(&:tag))
+        expect(record.fields.map { |x| format('%03d', x.tag.to_i) }).to match_array(record.fields.map(&:tag))
       end
 
       it "enriches a bound-with item with multiple bibs it's attached to" do
@@ -135,12 +135,12 @@ RSpec.describe BarcodeController, type: :controller do
 
   describe '#valid_barcode' do
     context 'barcode is valid' do
-      let(:valid_barcode1) { '32101123456789' }
-      let(:valid_barcode2) { 'PULTST12345' }
+      let(:valid_barcode_one) { '32101123456789' }
+      let(:valid_barcode_two) { 'PULTST12345' }
 
       it 'returns true' do
-        expect(described_class.valid_barcode?(valid_barcode1)).to be(true)
-        expect(described_class.valid_barcode?(valid_barcode2)).to be(true)
+        expect(described_class.valid_barcode?(valid_barcode_one)).to be(true)
+        expect(described_class.valid_barcode?(valid_barcode_two)).to be(true)
       end
     end
 

@@ -20,7 +20,7 @@ RSpec.describe Event, type: :model do
   end
 
   context 'When attempting to create duplicate events' do
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json').read).to_json }
 
     before do
       described_class.create(message_body:)

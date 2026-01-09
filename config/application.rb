@@ -1,7 +1,7 @@
 require File.expand_path('boot', __dir__)
 
 require 'rails/all'
-require_relative 'lando_env' if Rails.env.development? || Rails.env.test?
+require_relative 'lando_env' if Rails.env.local?
 
 # Require the gems listed in Gemfile, but only the default ones
 # and those for the environment rails is running in

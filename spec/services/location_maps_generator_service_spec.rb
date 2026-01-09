@@ -19,7 +19,7 @@ RSpec.describe LocationMapsGeneratorService do
     end
 
     it 'generates location maps from data in holdings tables' do
-      FactoryBot.create(:holding_location)
+      create(:holding_location)
       described_class.generate
       expect(File.read(locations_path)).to include('location-code', 'Library')
       expect(File.read(location_display_path)).to include('location-code', 'Firestone Library')

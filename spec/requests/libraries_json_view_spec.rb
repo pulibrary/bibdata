@@ -11,9 +11,9 @@ describe 'Library json view', type: :request do
 
   describe 'the response body' do
     it "/libraries looks as we'd expect, sorted by order" do
-      FactoryBot.create_list(:library, 2)
+      create_list(:library, 2)
       expected = []
-      Library.all.each do |library|
+      Library.find_each do |library|
         attrs = {
           label: library.label,
           code: library.code,
@@ -28,7 +28,7 @@ describe 'Library json view', type: :request do
     end
 
     it "/libraries/{code} looks as we'd expect" do
-      library = FactoryBot.create(:library)
+      library = create(:library)
       expected = {
         label: library.label,
         code: library.code,

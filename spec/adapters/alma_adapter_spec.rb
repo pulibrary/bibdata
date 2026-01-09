@@ -103,19 +103,6 @@ RSpec.describe AlmaAdapter do
     end
   end
 
-  describe 'a record that has an ARK' do
-    xit 'exposes the ark' do
-      # find an alma record with an ark.princeton.edu
-    end
-  end
-
-  describe 'a record with no item' do
-    # it has a holding
-    # it doesn't have an item. This should be checked on the Holding
-    xit 'has a holding' do
-    end
-  end
-
   describe 'record availability' do
     let(:bib_record_with_ava) { file_fixture('alma/9922486553506421.json') }
     let(:bib_record_with_ava_holding_items) { file_fixture('alma/9922486553506421_holding_items.json') }
@@ -162,7 +149,7 @@ RSpec.describe AlmaAdapter do
     end
 
     it 'reports availability of physical holdings' do
-      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
+      create(:holding_location, code: 'firestone$stacks', label: 'Stacks')
       availability = adapter.get_availability_one(id: '9922486553506421')
       holding = availability['9922486553506421']['22117511410006421']
       expect(holding[:status_label]).to eq 'Unavailable'
@@ -201,7 +188,7 @@ RSpec.describe AlmaAdapter do
     end
 
     it 'reports availability (with holding_id) for items in temporary locations when requested' do
-      FactoryBot.create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
+      create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
       availability = adapter.get_availability_one(id: '9959958323506421', deep_check: true)
       holding1 = availability['9959958323506421']['22272063570006421']
       holding2 = availability['9959958323506421']['22272063520006421']
@@ -214,28 +201,28 @@ RSpec.describe AlmaAdapter do
     end
 
     it 'reports On-site access for aeon locations' do
-      FactoryBot.create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
+      create(:aeon_location, code: 'rare$jrare', label: 'Special Collections')
       availability = adapter.get_availability_one(id: '99111299423506421')
       item = availability['99111299423506421']['22741556190006421']
       expect(item[:status_label]).to eq 'On-site Access'
     end
 
     it 'reports On-site access for some specific (map) locations' do
-      FactoryBot.create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
+      create(:map_location, code: 'lewis$mapmc', label: 'Lewis Library - Map Collection. Map Case')
       availability = adapter.get_availability_one(id: '9968442613506421')
       item = availability['9968442613506421']['22692920560006421']
       expect(item[:status_label]).to eq 'On-site Access'
     end
 
     it 'reports On-site access for specific special collections locations' do
-      FactoryBot.create(:special_collection_location, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only')
+      create(:special_collection_location, code: 'rare$scaex', label: 'Special Collections - Rare Books Archival. Special Collections Use Only')
       availability = adapter.get_availability_one(id: '9922522883506421')
       item = availability['9922522883506421']['22943439460006421']
       expect(item[:status_label]).to eq 'On-site Access'
     end
 
     it 'does not have a dash (-) before the label when the label is missing' do
-      FactoryBot.create(:holding_location, code: 'firestone$stacks', label: '')
+      create(:holding_location, code: 'firestone$stacks', label: '')
       availability = adapter.get_availability_one(id: '9922486553506421')
       holding = availability['9922486553506421']['22117511410006421']
       expect(holding[:label]).to eq 'Firestone Library'
@@ -272,8 +259,8 @@ RSpec.describe AlmaAdapter do
     end
 
     it 'reports holdings availability' do
-      FactoryBot.create(:holding_location, code: 'lewis$stacks', label: 'Stacks')
-      FactoryBot.create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
+      create(:holding_location, code: 'lewis$stacks', label: 'Stacks')
+      create(:holding_location, code: 'lewis$resterm', label: 'Term Loan Reserves')
       availability = adapter.get_availability_holding(id: '9999362473506421', holding_id: '22752541670006421')
 
       item = availability.first

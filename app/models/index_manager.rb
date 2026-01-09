@@ -88,7 +88,7 @@ class IndexManager < ActiveRecord::Base
   end
 
   def previous_to_full_incremental
-    Dump.changed_records.joins(:event).where('events.start < ?', last_dump_completed.event.start.to_s).where.not(id: last_dump_completed.id).order('events.start' => 'DESC').first
+    Dump.changed_records.joins(:event).where(events: { start: ...last_dump_completed.event.start.to_s }).where.not(id: last_dump_completed.id).order('events.start' => 'DESC').first
   end
 
   def next_incremental

@@ -280,17 +280,12 @@ RSpec/ExpectChange:
     - 'spec/models/event_spec.rb'
     - 'spec/models/scsb/partner_updates/update_spec.rb'
 
-# Offense count: 146
-# This cop supports safe auto-correction (--auto-correct).
-RSpec/FactoryBot/SyntaxMethods:
-  Enabled: false
-
 # Offense count: 4
 # Configuration parameters: Include, CustomTransform, IgnoreMethods, SpecSuffixOnly.
 # Include: **/*_spec*rb*, **/spec/**/*
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Exclude:
-    - 'spec/marc_to_solr/lib/embargo_date_extractor.rb'
+    - 'spec/marc_to_solr/lib/embargo_date_extractor_spec.rb'
     - 'spec/marc_to_solr/lib/linked_field_extractor_spec.rb'
     - 'spec/marc_to_solr/lib/uri_ark_spec.rb'
     - 'webhook_monitor/src/spec/index_spec.rb'

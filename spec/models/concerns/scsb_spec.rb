@@ -8,7 +8,9 @@ describe Scsb do
   end
 
   after do
+    # rubocop:disable RSpec/RemoveConst
     Object.send(:remove_const, :TestLookup)
+    # rubocop:enable RSpec/RemoveConst
   end
 
   describe '#items_by_id' do

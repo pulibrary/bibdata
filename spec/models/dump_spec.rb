@@ -24,7 +24,7 @@ RSpec.describe Dump, type: :model do
 
   describe '.partner_recap' do
     it 'is a scope that can chain' do
-      FactoryBot.create(:empty_partner_recap_dump)
+      create(:empty_partner_recap_dump)
       dumps = described_class.partner_recap.where(created_at: 4.hours.ago..Time.now)
       expect(dumps.count).to eq 1
     end
@@ -48,7 +48,7 @@ RSpec.describe Dump, type: :model do
 
     context "when there's a previous partner recap dump" do
       it 'uses the timestamp from that dump' do
-        dump = FactoryBot.create(:empty_partner_recap_dump)
+        dump = create(:empty_partner_recap_dump)
         allow(Import::Partner::Incremental).to receive(:perform_async)
 
         described_class.partner_update
@@ -123,7 +123,7 @@ RSpec.describe Dump, type: :model do
     it 'sets to create time of previous partner recap dump when there' do
       described_class.create(dump_type: partner_recap_dump_type, created_at: test_create_time, event_id: event_success.id)
       timestamp = described_class.send(:incremental_update_timestamp)
-      expect(timestamp).to eq(test_create_time.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
+      expect(timestamp).to eq(test_create_time.utc.strftime('%Y-%m-%d %H:%M:%S.%6N %z'))
     end
 
     it 'sets to environment variable when there' do
