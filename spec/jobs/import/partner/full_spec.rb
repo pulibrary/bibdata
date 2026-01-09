@@ -141,7 +141,7 @@ RSpec.describe Import::Partner::Full do
       expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/CUL_20210429_192300.zip').to_s)
       expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/NYPL_20210430_015000.zip').to_s)
       expect(FileUtils).to have_received(:rm).with(Rails.root.join('tmp/specs/update_directory/HL_20210716_063500.zip').to_s)
-      expect(Dir.exist?(Rails.root.join('tmp/specs/update_directory'))).to be true
+      expect(Rails.root.join('tmp/specs/update_directory').exist?).to be true
     end
 
     context 'when one file deletion fails' do

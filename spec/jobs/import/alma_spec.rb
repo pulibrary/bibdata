@@ -108,9 +108,8 @@ RSpec.describe Import::Alma, type: :job do
         dir_stub = instance_double(Net::SFTP::Operations::Dir)
         download_stub = instance_double(Net::SFTP::Operations::Download)
         allow(Net::SFTP).to receive(:start).and_yield(session_stub)
-        allow(session_stub).to receive(:dir).and_return(dir_stub)
         allow(dir_stub).to receive(:entries).and_return([name])
-        allow(session_stub).to receive(:download).and_return(download_stub)
+        allow(session_stub).to receive_messages(dir: dir_stub, download: download_stub)
         allow(download_stub).to receive(:wait)
 
         described_class.perform_async(dump.id, job_id)

@@ -154,9 +154,9 @@ RSpec.describe PatronController, type: :controller do
         active_barcode = '77777777'
         expect(response.parsed_body['barcode']).to eq active_barcode
         expect(response.parsed_body).to eq({ 'netid' => nil, 'first_name' => 'Amir', 'last_name' => 'Abadi',
-                                                  'barcode' => '77777777', 'university_id' => 'BC123456789', 'patron_id' => 'BC123456789',
-                                                  'patron_group' => 'GST', 'patron_group_desc' => 'GST Guest Patron',
-                                                  'active_email' => 'Abadi@other_school.edu' })
+                                             'barcode' => '77777777', 'university_id' => 'BC123456789', 'patron_id' => 'BC123456789',
+                                             'patron_group' => 'GST', 'patron_group_desc' => 'GST Guest Patron',
+                                             'active_email' => 'Abadi@other_school.edu' })
       end
     end
   end

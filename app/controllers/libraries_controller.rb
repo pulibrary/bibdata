@@ -5,7 +5,7 @@ class LibrariesController < ApplicationController
 
   # GET /libraries
   def index
-    @libraries = Library.all.order(:order, :label)
+    @libraries = Library.order(:order, :label)
   end
 
   # GET /libraries/1

@@ -108,7 +108,7 @@ RSpec.describe IndexManager, :indexing, :sidekiq, type: :model do
       full_event = create(:full_dump_event, start: 1.day.ago, finish: 1.day.ago + 100)
       # This should get skipped on the third call because events with no files just get skipped
       skipped_incremental_event = create(:incremental_dump_event, start: 5.hours.ago, finish: 4.hours.ago,
-                                                                             dump: create(:incremental_dump, dump_files: []))
+                                                                  dump: create(:incremental_dump, dump_files: []))
       # This should get run on the third call
       incremental_event = create(:incremental_dump_event, start: 4.hours.ago, finish: 3.hours.ago)
       # Incremental that isn't run yet, but would eventually.

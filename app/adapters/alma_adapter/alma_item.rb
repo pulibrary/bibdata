@@ -335,7 +335,7 @@ class AlmaAdapter
     # Add the library label in front if it exists
     def holding_location_label(code)
       label = HoldingLocation.find_by(code:)&.label
-      [composite_library_label_display, label].select(&:present?).join(' - ')
+      [composite_library_label_display, label].compact_blank.join(' - ')
     end
   end
 end

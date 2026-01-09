@@ -37,7 +37,7 @@ RSpec.describe AwsSqsPoller do
       )
     end
     let(:job_id) { '1434818870006421' }
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json').read).to_json }
 
     it "doesn't throw an error, logs it, and ends polling" do
       # Add the default signal handler back, RSpec's doesn't kill the process.
@@ -96,7 +96,7 @@ RSpec.describe AwsSqsPoller do
       allow(Import::Alma).to receive(:perform_async)
       described_class.poll
       expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
-      expect(Dump.all.count).to eq 1
+      expect(Dump.count).to eq 1
       expect(Dump.first.dump_type).to eq 'changed_records'
       event = Dump.first.event
       expect(event.message_body).to eq message_body
