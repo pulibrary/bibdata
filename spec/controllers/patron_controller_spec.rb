@@ -58,7 +58,7 @@ RSpec.describe PatronController, type: :controller do
       it 'allows them to access patron info' do
         get :patron_info, params: { patron_id: patron_identifier, format: :json }
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)).to eq(
+        expect(response.parsed_body).to eq(
           'netid' => 'cmonster',
           'first_name' => 'Cookie',
           'last_name' => 'Monster',
@@ -76,7 +76,7 @@ RSpec.describe PatronController, type: :controller do
       expect(Ldap).to receive(:find_by_netid).with(patron_identifier).and_return(ldap_data: 'is here')
       get :patron_info, params: { patron_id: patron_identifier, ldap: true, format: :json }
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to eq(
+      expect(response.parsed_body).to eq(
         'netid' => 'bbird',
         'first_name' => 'Big',
         'last_name' => 'Bird',
@@ -94,7 +94,7 @@ RSpec.describe PatronController, type: :controller do
       expect(Ldap).not_to receive(:find_by_netid)
       get :patron_info, params: { patron_id: patron_identifier, ldap: 'other', format: :json }
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to eq(
+      expect(response.parsed_body).to eq(
         'netid' => 'bbird',
         'first_name' => 'Big',
         'last_name' => 'Bird',
@@ -110,7 +110,7 @@ RSpec.describe PatronController, type: :controller do
     it 'allows authenticated users to access patron info' do
       get :patron_info, params: { patron_id: patron_identifier, format: :json }
       expect(response).to have_http_status(:ok)
-      expect(JSON.parse(response.body)).to eq(
+      expect(response.parsed_body).to eq(
         'netid' => 'bbird',
         'first_name' => 'Big',
         'last_name' => 'Bird',
@@ -140,7 +140,7 @@ RSpec.describe PatronController, type: :controller do
         barcode = patron_identifier
         get :patron_info, params: { patron_id: patron_identifier, format: :json }
         expect(response).to have_http_status(:ok)
-        expect(JSON.parse(response.body)['barcode']).to eq barcode
+        expect(response.parsed_body['barcode']).to eq barcode
       end
     end
 
@@ -152,8 +152,8 @@ RSpec.describe PatronController, type: :controller do
 
         expect(response).to have_http_status(:ok)
         active_barcode = '77777777'
-        expect(JSON.parse(response.body)['barcode']).to eq active_barcode
-        expect(JSON.parse(response.body)).to eq({ 'netid' => nil, 'first_name' => 'Amir', 'last_name' => 'Abadi',
+        expect(response.parsed_body['barcode']).to eq active_barcode
+        expect(response.parsed_body).to eq({ 'netid' => nil, 'first_name' => 'Amir', 'last_name' => 'Abadi',
                                                   'barcode' => '77777777', 'university_id' => 'BC123456789', 'patron_id' => 'BC123456789',
                                                   'patron_group' => 'GST', 'patron_group_desc' => 'GST Guest Patron',
                                                   'active_email' => 'Abadi@other_school.edu' })
