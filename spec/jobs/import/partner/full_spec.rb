@@ -108,7 +108,7 @@ RSpec.describe Import::Partner::Full do
     end
 
     context 'when there are no matching files at all' do
-      let(:dump) { FactoryBot.create(:empty_partner_full_dump) }
+      let(:dump) { create(:empty_partner_full_dump) }
       let(:filter_response_pairs) do
         [
           [/CUL.*\.zip/, nil],

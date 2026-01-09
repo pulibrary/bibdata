@@ -58,13 +58,13 @@ RSpec.describe AwsSqsPoller do
 
   context 'when a full dump job comes through' do
     let(:job_id) { '1434818870006421' }
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_full_dump.json').read).to_json }
 
     it 'Creates an event and kicks off a background job' do
       allow(Import::Alma).to receive(:perform_async)
       described_class.poll
       expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
-      expect(Dump.all.count).to eq 1
+      expect(Dump.count).to eq 1
       expect(Dump.first.dump_type).to eq('full_dump')
       event = Dump.first.event
       expect(event.message_body).to eq message_body
@@ -76,7 +76,7 @@ RSpec.describe AwsSqsPoller do
 
   context 'when a incremental dump job comes through' do
     let(:job_id) { '6587815790006421' }
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump.json').read).to_json }
 
     context 'with a duplicate event' do
       before do
@@ -116,7 +116,7 @@ RSpec.describe AwsSqsPoller do
 
   context 'when an alma job completes with errors an incremental dump job comes through' do
     let(:job_id) { '38205463100006421' }
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump_alma_job_failed.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_incremental_dump_alma_job_failed.json').read).to_json }
 
     it 'creates an event with alma job status COMPLETED_FAILED' do
       allow(Import::Alma).to receive(:perform_async)
@@ -137,14 +137,14 @@ RSpec.describe AwsSqsPoller do
 
   context 'when a ReCAP dump comes through' do
     let(:job_id) { '6587815790006421' }
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json').read).to_json }
 
     it 'Creates an event and kicks off a background job' do
       allow(Import::Alma).to receive(:perform_async)
       described_class.poll
       expect(Import::Alma).to have_received(:perform_async).with(instance_of(Integer), job_id)
 
-      expect(Dump.all.count).to eq 1
+      expect(Dump.count).to eq 1
       expect(Dump.first.dump_type).to eq 'princeton_recap'
       event = Dump.first.event
       expect(event.message_body).to eq message_body
@@ -155,14 +155,14 @@ RSpec.describe AwsSqsPoller do
   end
 
   context 'when some other job comes through' do
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json'))).to_json }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_other_job.json').read).to_json }
 
     it 'Does nothing' do
       allow(Import::Alma).to receive(:perform_async)
       described_class.poll
       expect(Import::Alma).not_to have_received(:perform_async)
-      expect(Dump.all.count).to eq 0
-      expect(Event.all.count).to eq 0
+      expect(Dump.count).to eq 0
+      expect(Event.count).to eq 0
     end
   end
 end

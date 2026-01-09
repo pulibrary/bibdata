@@ -53,7 +53,7 @@ RSpec.describe Import::Alma, type: :job do
       end
 
       let(:dump) do
-        FactoryBot.create(:empty_dump).tap do |d|
+        create(:empty_dump).tap do |d|
           d.event.message_body = '{"job_instance": {"name":"Publishing Platform Job General Publishing"}}'
           d.event.save
         end
@@ -97,7 +97,7 @@ RSpec.describe Import::Alma, type: :job do
       let(:remote_path) { "/alma/publishing/#{filename}" }
       let(:local_path) { File.join(MARC_LIBERATION_CONFIG['data_dir'], filename) }
       let(:dump) do
-        FactoryBot.create(:empty_incremental_dump).tap do |d|
+        create(:empty_incremental_dump).tap do |d|
           d.event.message_body = '{"job_instance": {"name":"Publishing Platform Job Incremental Publishing"}}'
           d.event.save
         end
@@ -116,7 +116,7 @@ RSpec.describe Import::Alma, type: :job do
         described_class.perform_async(dump.id, job_id)
 
         expect(session_stub).to have_received(:download).once.with(remote_path, local_path)
-        expect(Dump.all.count).to eq 1
+        expect(Dump.count).to eq 1
         expect(Dump.first.dump_files.count).to eq 1
         expect(Dump.first.dump_files.map(&:dump_file_type).uniq).to eq ['updated_records']
         expect(Dump.first.dump_files.first.path).to eq File.join(MARC_LIBERATION_CONFIG['data_dir'], filename)

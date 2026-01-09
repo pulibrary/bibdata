@@ -6,9 +6,9 @@ RSpec.describe 'events/index', type: :view do
   context 'events page' do
     it 'lists events ordered by start asc in localtime' do
       assign(:events, [
-               event1 = FactoryBot.create(:event),
-               event2 = FactoryBot.create(:event, start: Time.now - 2.months, finish: Time.now - 2.months + 180, error: nil, success: true),
-               event3 = FactoryBot.create(:event, start: Time.now - 1.month, finish: Time.now - 1.month + 180, error: nil, success: true)
+               event1 = create(:event),
+               event2 = create(:event, start: Time.now - 2.months, finish: Time.now - 2.months + 180, error: nil, success: true),
+               event3 = create(:event, start: Time.now - 1.month, finish: Time.now - 1.month + 180, error: nil, success: true)
              ])
       render
       expect(rendered).to have_css('tr.table-striped:nth-child(1) > td:nth-child(2)', text: event1.start.localtime.to_fs(:db_twelve_hour))
@@ -17,20 +17,20 @@ RSpec.describe 'events/index', type: :view do
     end
 
     it 'does not include Delete column for unauthenticated users' do
-      assign(:events, [FactoryBot.create(:event)])
+      assign(:events, [create(:event)])
       render
       expect(rendered).not_to include '<th>Delete?</th>'
     end
 
     it 'includes Delete column for authenticated users' do
       allow(view).to receive(:user_signed_in?).and_return(true)
-      assign(:events, [FactoryBot.create(:event)])
+      assign(:events, [create(:event)])
       render
       expect(rendered).to include '<th>Delete?</th>'
     end
 
     it 'includes Alma Job Status column' do
-      assign(:events, [FactoryBot.create(:event)])
+      assign(:events, [create(:event)])
       render
       expect(rendered).to include '<th>Alma Job Status</th>'
     end

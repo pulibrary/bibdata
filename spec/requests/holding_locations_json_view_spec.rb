@@ -12,7 +12,7 @@ describe 'HoldingLocation', type: :request do
 
     describe 'the response body' do
       it "/holding_locations looks as we'd expect" do
-        FactoryBot.create_list(:holding_location, 2)
+        create_list(:holding_location, 2)
         expected = []
         HoldingLocation.all.each do |holding_location|
           attrs = {
@@ -36,8 +36,8 @@ describe 'HoldingLocation', type: :request do
           }
           expected << attrs
         end
-        hl = FactoryBot.create(:holding_location)
-        hl.update(holding_library: FactoryBot.create(:library))
+        hl = create(:holding_location)
+        hl.update(holding_library: create(:library))
 
         holding_location = HoldingLocation.last
         attrs = {
@@ -70,11 +70,11 @@ describe 'HoldingLocation', type: :request do
 
       it "/holding_locations/{code} looks as we'd expect without hours_location" do
         # Get extras in the db to make sure the association is OK
-        FactoryBot.create(:library)
-        FactoryBot.create(:delivery_location)
-        holding_location = FactoryBot.create(:holding_location)
+        create(:library)
+        create(:delivery_location)
+        holding_location = create(:holding_location)
         2.times do
-          dl = FactoryBot.create(:delivery_location)
+          dl = create(:delivery_location)
           holding_location.delivery_locations << dl
         end
         holding_location.reload
@@ -119,14 +119,14 @@ describe 'HoldingLocation', type: :request do
 
       it "/holding_locations/{code} looks as we'd expect with holding_library" do
         # Get extras in the db to make sure the association is OK
-        FactoryBot.create(:library)
-        FactoryBot.create(:delivery_location)
-        holding_location = FactoryBot.create(:holding_location)
+        create(:library)
+        create(:delivery_location)
+        holding_location = create(:holding_location)
         2.times do
-          dl = FactoryBot.create(:delivery_location)
+          dl = create(:delivery_location)
           holding_location.delivery_locations << dl
         end
-        holding_location.update(holding_library: FactoryBot.create(:library))
+        holding_location.update(holding_library: create(:library))
         holding_location.reload
         expected = {
           label: holding_location.label,
@@ -182,7 +182,7 @@ describe 'HoldingLocation', type: :request do
 
     describe 'the response body' do
       it '/holding_locations contains expected fields' do
-        FactoryBot.create_list(:holding_location, 2)
+        create_list(:holding_location, 2)
         expected = []
         HoldingLocation.all.each do |holding_location|
           attrs = [
@@ -200,8 +200,8 @@ describe 'HoldingLocation', type: :request do
           ]
           expected << attrs
         end
-        hl = FactoryBot.create(:holding_location)
-        hl.update(holding_library: FactoryBot.create(:library))
+        hl = create(:holding_location)
+        hl.update(holding_library: create(:library))
         holding_location = HoldingLocation.last
         attrs = [
           CGI.escapeHTML(holding_location.label),
@@ -224,11 +224,11 @@ describe 'HoldingLocation', type: :request do
       end
 
       it '/holding_locations/{code} contains expected fields' do
-        FactoryBot.create(:library)
-        FactoryBot.create(:delivery_location)
-        holding_location = FactoryBot.create(:holding_location)
+        create(:library)
+        create(:delivery_location)
+        holding_location = create(:holding_location)
         2.times do
-          dl = FactoryBot.create(:delivery_location)
+          dl = create(:delivery_location)
           holding_location.delivery_locations << dl
         end
         holding_location.reload

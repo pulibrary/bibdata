@@ -4,7 +4,7 @@ require 'app/services/aws_sqs_poller'
 
 RSpec.describe AlmaDumpFactory do
   context 'looking at the dump more than once' do
-    let(:message_body) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json'))) }
+    let(:message_body) { JSON.parse(Rails.root.join('spec', 'fixtures', 'aws', 'sqs_recap_incremental_dump.json').read) }
 
     it 'only instantiates one dump' do
       dump = AlmaDumpFactory.bib_dump(message_body)

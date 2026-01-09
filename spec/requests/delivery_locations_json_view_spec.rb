@@ -12,7 +12,7 @@ describe 'DeliveryLocation', type: :request do
 
     describe 'the response body' do
       it "/delivery_locations looks as we'd expect" do
-        FactoryBot.create_list(:delivery_location, 2)
+        create_list(:delivery_location, 2)
         expected = []
         DeliveryLocation.all.each do |delivery_location|
           attrs = {
@@ -38,7 +38,7 @@ describe 'DeliveryLocation', type: :request do
       end
 
       it "/delivery_locations/{code} looks as we'd expect" do
-        delivery_location = FactoryBot.create(:delivery_location)
+        delivery_location = create(:delivery_location)
         expected = {
           label: delivery_location.label,
           address: delivery_location.address,
@@ -69,7 +69,7 @@ describe 'DeliveryLocation', type: :request do
 
     describe 'the response body' do
       it '/delivery_locations contains expected fields' do
-        FactoryBot.create_list(:delivery_location, 2)
+        create_list(:delivery_location, 2)
         expected = []
         DeliveryLocation.all.each do |delivery_location|
           attrs = [
@@ -91,7 +91,7 @@ describe 'DeliveryLocation', type: :request do
       end
 
       it '/delivery_locations/{code} contains expected fields' do
-        delivery_location = FactoryBot.create(:delivery_location)
+        delivery_location = create(:delivery_location)
         expected = [
           CGI.escapeHTML(delivery_location.label),
           CGI.escapeHTML(delivery_location.address),
