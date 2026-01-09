@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'json'
+require 'honeybadger'
 
 # This class allow us to delete Solr records with our current
 # version of Traject. Once we upgrade to Traject version 3.1
