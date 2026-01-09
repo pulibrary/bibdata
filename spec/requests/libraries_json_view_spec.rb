@@ -13,7 +13,7 @@ describe 'Library json view', type: :request do
     it "/libraries looks as we'd expect, sorted by order" do
       create_list(:library, 2)
       expected = []
-      Library.all.each do |library|
+      Library.all.find_each do |library|
         attrs = {
           label: library.label,
           code: library.code,

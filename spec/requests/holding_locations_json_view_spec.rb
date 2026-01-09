@@ -14,7 +14,7 @@ describe 'HoldingLocation', type: :request do
       it "/holding_locations looks as we'd expect" do
         create_list(:holding_location, 2)
         expected = []
-        HoldingLocation.all.each do |holding_location|
+        HoldingLocation.all.find_each do |holding_location|
           attrs = {
             label: holding_location.label,
             code: holding_location.code,
@@ -184,7 +184,7 @@ describe 'HoldingLocation', type: :request do
       it '/holding_locations contains expected fields' do
         create_list(:holding_location, 2)
         expected = []
-        HoldingLocation.all.each do |holding_location|
+        HoldingLocation.all.find_each do |holding_location|
           attrs = [
             CGI.escapeHTML(holding_location.label),
             holding_location.code,

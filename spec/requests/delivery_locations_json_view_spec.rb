@@ -14,7 +14,7 @@ describe 'DeliveryLocation', type: :request do
       it "/delivery_locations looks as we'd expect" do
         create_list(:delivery_location, 2)
         expected = []
-        DeliveryLocation.all.each do |delivery_location|
+        DeliveryLocation.all.find_each do |delivery_location|
           attrs = {
             label: delivery_location.label,
             address: delivery_location.address,
@@ -71,7 +71,7 @@ describe 'DeliveryLocation', type: :request do
       it '/delivery_locations contains expected fields' do
         create_list(:delivery_location, 2)
         expected = []
-        DeliveryLocation.all.each do |delivery_location|
+        DeliveryLocation.all.find_each do |delivery_location|
           attrs = [
             CGI.escapeHTML(delivery_location.label),
             CGI.escapeHTML(delivery_location.address),
