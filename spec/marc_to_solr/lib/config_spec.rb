@@ -123,6 +123,40 @@ describe 'From traject_config.rb', :indexing do
       end
     end
 
+    describe 'marcxml field' do
+      it 'includes compressed MARCXML as base64-encoded string' do
+        expect(@scsb_nypl['marcxml']).to be_present
+        expect(@scsb_nypl['marcxml'].first).to be_a(String)
+        expect(@scsb_nypl['marcxml'].first).not_to include('<record')
+        expect(@scsb_nypl['marcxml'].first).not_to include('<?xml')
+      end
+
+      it 'can be decompressed back to MARCXML' do
+        compressed = @scsb_nypl['marcxml'].first
+        decompressed = MarcxmlCompressor.decompress(compressed)
+
+        expect(decompressed).to include('<record')
+        expect(decompressed).to include('http://www.loc.gov/MARC21/slim')
+        expect(decompressed).to include('SCSB-8157262')
+        expect(decompressed).to include('<leader>')
+        expect(decompressed).to include('</record>')
+      end
+
+      it 'handles UTF-8 encoding' do
+        compressed = @scsb_nypl['marcxml'].first
+        expect { MarcxmlCompressor.decompress(compressed) }.not_to raise_error
+
+        decompressed = MarcxmlCompressor.decompress(compressed)
+        expect(decompressed).to be_a(String)
+        expect(decompressed.encoding).to eq(Encoding::UTF_8)
+      end
+
+      it 'is not present for Princeton records' do
+        expect(@sample1['marcxml']).to be_nil
+        expect(@format_book['marcxml']).to be_nil
+      end
+    end
+
     describe 'locations' do
       it 'indexes the location_code_s' do
         record = @indexer.map_record(fixture_record('9992320213506421'))
