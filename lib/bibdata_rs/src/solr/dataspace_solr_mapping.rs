@@ -47,7 +47,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
-            .with_pub_citation_display(doc.authorized_departments().unwrap())
+            .with_pub_citation_display(doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
