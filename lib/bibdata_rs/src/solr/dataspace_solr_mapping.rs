@@ -13,7 +13,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             })
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location())
-            .with_author_citation_display(doc.contributor_author.clone())
+            .with_thesis_author_citation_display(doc.contributor_author.clone())
             .with_advisor_display(doc.contributor_advisor.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(doc.all_authors())

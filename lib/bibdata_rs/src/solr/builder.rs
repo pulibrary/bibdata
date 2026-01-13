@@ -75,6 +75,18 @@ impl SolrDocumentBuilder {
         self
     }
 
+    pub fn with_thesis_author_citation_display(
+        &mut self,
+        author_citation_display: Option<Vec<String>>,
+    ) -> &mut Self {
+        let empty_string = String::new();
+        let author_unwrap = author_citation_display.unwrap_or_default();
+        let first_author = author_unwrap.first().unwrap_or(&empty_string);
+        let formatted_author = Some(vec!(format!("{}, and Princeton University", first_author)));
+        self.author_citation_display = formatted_author;
+        self
+    }
+
     pub fn with_geographic_facet(&mut self, geographic_facet: Option<Vec<String>>) -> &mut Self {
         self.geographic_facet = geographic_facet;
         self
