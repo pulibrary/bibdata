@@ -2,8 +2,6 @@ use itertools::Itertools;
 use magnus::exception;
 use marctk::Record;
 
-mod string_normalize;
-
 pub mod cjk;
 pub mod control_field;
 pub mod fixed_field;
@@ -16,6 +14,10 @@ pub mod record_facet_mapping;
 pub mod scsb;
 pub mod variable_length_field;
 
+mod ruby_bindings;
+mod string_normalize;
+
+pub use ruby_bindings::register_ruby_methods;
 pub use string_normalize::trim_punctuation;
 
 pub fn holding_id(
