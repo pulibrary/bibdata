@@ -325,9 +325,9 @@ to_field 'cataloged_tdt' do |record, accumulator|
   extractor_doc_id = MarcExtractor.cached('001')
   doc_id = extractor_doc_id.extract(record).first
   unless /^SCSB-\d+/.match?(doc_id)
-    cataloged_date = if alma_876(record) && alma_876(record).map { |f| f['d'] }.compact.present?
+    cataloged_date = if alma_876(record)&.any? { |f| f['d'] }
                        alma_876(record).map { |f| f['d'] }.sort.first
-                     elsif alma_951_active(record) && alma_951_active(record).map { |f| f['w'] }.compact.present?
+                     elsif alma_951_active(record)&.any? { |f| f['w'] }
                        alma_951_active(record).map { |f| f['w'] }.compact.sort.first
                      else
                        alma_950(record)
