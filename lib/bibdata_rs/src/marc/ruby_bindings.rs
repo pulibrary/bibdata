@@ -10,6 +10,14 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc
         .define_singleton_method("alma_code_start_22?", function!(alma_code_start_22, 1))?;
     submodule_marc.define_singleton_method("build_call_number", function!(build_call_number, 1))?;
+    submodule_marc.define_singleton_method(
+        "call_number_labels_for_browse",
+        function!(call_number_labels_for_browse_from_marc_breaker, 1),
+    )?;
+    submodule_marc.define_singleton_method(
+        "call_number_labels_for_display",
+        function!(call_number_labels_for_display_from_marc_breaker, 1),
+    )?;
     submodule_marc
         .define_singleton_method("current_location_code", function!(current_location_code, 1))?;
     submodule_marc.define_singleton_method("format_facets", function!(format_facets, 1))?;
@@ -45,4 +53,18 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc
         .define_module_function("trim_punctuation", function!(trim_punctuation_owned, 1))?;
     Ok(())
+}
+
+fn call_number_labels_for_display_from_marc_breaker(
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(call_number::call_number_labels_for_display(&record))
+}
+
+fn call_number_labels_for_browse_from_marc_breaker(
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(call_number::call_number_labels_for_browse(&record))
 }

@@ -1594,16 +1594,14 @@ end
 #    852 XX hik
 # Position 852|k in the beginning of the call_number_display
 # The call_number_display is used in the catalog record page.
-to_field 'call_number_display' do |record, accumulator, context|
-  accumulator << browse_fields(record, marc_breaker: context.clipboard[:marc_breaker])
-  accumulator.flatten!
+to_field 'call_number_display' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.call_number_labels_for_display(context.clipboard[:marc_breaker]))
 end
 
 # Position 852|k at the end of the call_number_browse_s
 # The call_number_browse_s is used in the call number browse page in the catalog
-to_field 'call_number_browse_s' do |record, accumulator, context|
-  accumulator << browse_fields(record, khi_key_order: %w[h i k], marc_breaker: context.clipboard[:marc_breaker])
-  accumulator.flatten!
+to_field 'call_number_browse_s' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.call_number_labels_for_browse(context.clipboard[:marc_breaker]))
 end
 
 # The call_number_locator_display is used in the 'Where to find it' feature in the record page,
