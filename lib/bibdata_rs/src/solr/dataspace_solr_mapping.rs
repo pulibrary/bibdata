@@ -13,6 +13,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             })
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location())
+            .with_author_citation_display(doc.contributor_author.clone())
             .with_advisor_display(doc.contributor_advisor.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(doc.all_authors())
@@ -46,6 +47,7 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
+            .with_pub_citation_display(doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
@@ -64,6 +66,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_access_facet(doc.access_facet())
             .with_advanced_location_s(doc.advanced_location())
             .with_advisor_display(doc.contributor_advisor.clone())
+            .with_author_citation_display(doc.contributor_author.clone())
             .with_author_display(doc.contributor_author.clone())
             .with_author_s(doc.all_authors())
             .with_author_sort(match &doc.contributor_author {
@@ -96,6 +99,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_language_facet(doc.languages())
             .with_language_name_display(doc.languages())
             .with_class_year_s(doc.class_year().map(|year| vec![year]))
+            .with_pub_citation_display(doc.authorized_departments().unwrap_or_default())
             .with_pub_date_start_sort(doc.class_year())
             .with_pub_date_end_sort(doc.class_year())
             .with_description_display(doc.format_extent.clone())
@@ -141,8 +145,8 @@ mod tests {
             .with_contributor_advisor(vec!["Sandberg, Robert".into()])
             .with_contributor_author(vec!["Clark, Hillary".into()])
             .with_date_classyear(vec!["2014".into()])
-            .with_department(vec!["Princeton University. Department of English".into()])
-            .with_department(vec!["Princeton University. Program in Theater".into()])
+            .with_department(vec!["English".into()])
+            .with_department(vec!["History".into()])
             .with_format_extent(vec!["102 pages".into()])
             .with_language_iso(vec!["en_US".into()])
             .with_title(vec!["Dysfunction: A Play in One Act".into()])
@@ -164,6 +168,8 @@ mod tests {
             "Dysfunction: A Play in One Act"
         );
         assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
+        assert_eq!(solr.author_citation_display.unwrap(), vec!["Clark, Hillary"]);
+        assert_eq!(solr.pub_citation_display.unwrap(), vec!["Princeton University. Department of English", "Princeton University. Department of History"]);
     }
 
     #[test]
