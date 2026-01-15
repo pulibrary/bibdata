@@ -546,6 +546,9 @@
    <field name="standard_no_index" type="string" indexed="true" stored="false" multiValued="true" />
    <field name="uniform_title_s" type="text" indexed="true" stored="true" multiValued="true" />
    <field name="_version_" type="plong" indexed="true" stored="true" multiValued="false"/>
+   
+    <!-- MARCXML field - stores gzipped+base64 MARCXML as string -->
+   <field name="marcxml" type="string" indexed="false" stored="true" multiValued="false"/>
 
     <!-- Dynamic field definitions.  If a field name is not found, dynamicFields
         will be used if the name matches any of the patterns.

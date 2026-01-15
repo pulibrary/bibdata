@@ -11,6 +11,7 @@ require 'stringex'
 require 'library_standard_numbers'
 require 'time'
 require 'iso-639'
+require_relative '../../app/services/marcxml_compressor'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
 
@@ -76,6 +77,15 @@ after_processing do
 end
 
 to_field 'id', extract_marc('001', first: true)
+
+# Store the full MARCXML record as compressed string (gzip + base64) for SCSB records only
+to_field 'marcxml' do |record, accumulator, context|
+  is_scsb = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
+  next unless is_scsb
+
+  xml_string = record.to_xml.to_s
+  accumulator << MarcxmlCompressor.compress(xml_string)
+end
 
 # if the id contains only numbers we know it's a princeton item
 to_field 'numeric_id_b', extract_marc('001', first: true) do |_record, accumulator|
