@@ -4338,7 +4338,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Reading Room",
+        "label": "Graduate Study Room",
         "code": "mendel$rg",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
