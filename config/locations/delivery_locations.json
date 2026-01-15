@@ -347,7 +347,7 @@
         "contact_email": "microfms@princeton.edu",
         "gfa_pickup": "PB",
         "staff_only": false,
-        "pickup_location": false,
+        "pickup_location": true,
         "digital_location": false,
         "url": "https://bibdata.princeton.edu/locations/delivery_locations/28.json",
         "library": {
