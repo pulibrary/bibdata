@@ -32,7 +32,6 @@ impl From<&DataspaceDocument> for SolrDocument {
             .with_location_code_s(doc.location_code())
             .with_location_display(doc.location_display())
             .with_electronic_access_1display(doc.ark_hash())
-            .with_electronic_portfolio_s(doc.online_portfolio_statements())
             .with_restrictions_note_display(doc.restrictions_note_display())
             .with_title_citation_display(match &doc.title {
                 Some(titles) => titles.first().cloned(),
@@ -268,14 +267,6 @@ mod tests {
                 "Mudd Manuscript Library".to_owned()
             ]
         );
-    }
-
-    #[test]
-    fn it_has_electronic_portfolio_s_by_default() {
-        let document = DataspaceDocument::builder().build();
-        let solr = SolrDocument::from(&document);
-        assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
-        assert!(solr.electronic_portfolio_s.unwrap().contains("thesis"));
     }
 
     #[test]
