@@ -471,11 +471,6 @@ def remove_empty_call_number_fields(holding)
   holding.tap { |h| %w[call_number call_number_browse].map { |k| h.delete(k) if h[k].blank? } }
 end
 
-# Collects only non empty khi
-def call_number_khi(field)
-  field.subfields.reject { |s| s.value.empty? }.collect { |s| s if %w[k h i].include?(s.code) }.compact
-end
-
 # Alma Princeton item
 def alma_code_start_22?(code)
   code.to_s.start_with?('22') && code.to_s.end_with?('06421')
@@ -491,27 +486,6 @@ end
 
 def alma_852(record)
   record.fields('852').select { |f| alma_code_start_22?(f['8']) }
-end
-
-def scsb_852(record)
-  record.fields('852').select { |f| scsb_code_start?(f['b']) }
-end
-
-def browse_fields(record, marc_breaker:, khi_key_order: %w[k h i])
-  result = []
-  fields = if BibdataRs::Marc.is_scsb?(marc_breaker)
-             scsb_852(record)
-           else
-             alma_852(record)
-           end
-  fields.each do |field|
-    subfields = call_number_khi(field)
-    next if subfields.empty?
-
-    values = [field[khi_key_order[0]], field[khi_key_order[1]], field[khi_key_order[2]]].compact.reject(&:empty?)
-    result << values.join(' ') if values.present?
-  end
-  result
 end
 
 def alma_876(record)

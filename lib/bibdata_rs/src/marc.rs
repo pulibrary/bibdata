@@ -2,6 +2,7 @@ use itertools::Itertools;
 use magnus::exception;
 use marctk::Record;
 
+pub mod call_number;
 pub mod cjk;
 pub mod control_field;
 pub mod fixed_field;
