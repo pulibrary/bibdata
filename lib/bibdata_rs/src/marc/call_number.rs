@@ -18,7 +18,9 @@ pub fn call_number_labels_for_browse(record: &Record) -> Vec<String> {
     )
 }
 
-fn field_extractor_for_record(record: &Record) -> fn(&Record) -> Vec<&Field> {
+fn field_extractor_for_record(
+    record: &Record,
+) -> fn(&Record) -> Box<dyn Iterator<Item = &Field> + '_> {
     if is_scsb(record) {
         scsb_call_number_fields
     } else {
@@ -28,37 +30,26 @@ fn field_extractor_for_record(record: &Record) -> fn(&Record) -> Vec<&Field> {
 
 fn call_number_labels(
     record: &Record,
-    field_extractor: fn(&Record) -> Vec<&Field>,
+    field_extractor: fn(&Record) -> Box<dyn Iterator<Item = &Field> + '_>,
     field_labeler: fn(&Field) -> Option<String>,
 ) -> Vec<String> {
-    field_extractor(record)
-        .into_iter()
-        .filter_map(field_labeler)
-        .collect()
+    field_extractor(record).filter_map(field_labeler).collect()
 }
 
-fn scsb_call_number_fields(record: &Record) -> Vec<&Field> {
-    record
-        .get_fields("852")
-        .into_iter()
-        .filter(|field| {
-            field
-                .first_subfield("b")
-                .is_some_and(|subfield_b| subfield_b.content().starts_with("scsb"))
-        })
-        .collect()
+fn scsb_call_number_fields(record: &Record) -> Box<dyn Iterator<Item = &Field> + '_> {
+    Box::new(record.get_fields("852").into_iter().filter(|field| {
+        field
+            .first_subfield("b")
+            .is_some_and(|subfield_b| subfield_b.content().starts_with("scsb"))
+    }))
 }
 
-fn alma_call_number_fields(record: &Record) -> Vec<&Field> {
-    record
-        .get_fields("852")
-        .into_iter()
-        .filter(|field| {
-            field.first_subfield("8").is_some_and(|subfield_8| {
-                subfield_8.content().starts_with("22") && subfield_8.content().ends_with("06421")
-            })
+fn alma_call_number_fields(record: &Record) -> Box<dyn Iterator<Item = &Field> + '_> {
+    Box::new(record.get_fields("852").into_iter().filter(|field| {
+        field.first_subfield("8").is_some_and(|subfield_8| {
+            subfield_8.content().starts_with("22") && subfield_8.content().ends_with("06421")
         })
-        .collect()
+    }))
 }
 
 fn display_field_labeler(field: &Field) -> Option<String> {
@@ -94,5 +85,33 @@ fn browse_field_labeler(field: &Field) -> Option<String> {
         None
     } else {
         Some(label.to_owned())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn it_creates_call_number_labels() {
+        let alma_record = Record::from_breaker(
+            r"=852 0\ $firestone$cnec$hBP166.38$i.A284 2003$822583221030006421",
+        )
+        .unwrap();
+        let scsb_record = Record::from_breaker(
+            r#"=001 SCSB-123
+=852 00 $0441372$hQ4$i.C4222a$bscsbcul"#,
+        )
+        .unwrap();
+        assert_eq!(
+            call_number_labels_for_display(&alma_record),
+            ["BP166.38 .A284 2003"]
+        );
+        assert_eq!(
+            call_number_labels_for_browse(&alma_record),
+            ["BP166.38 .A284 2003"]
+        );
+        assert_eq!(call_number_labels_for_display(&scsb_record), ["Q4 .C4222a"]);
+        assert_eq!(call_number_labels_for_browse(&scsb_record), ["Q4 .C4222a"]);
     }
 }
