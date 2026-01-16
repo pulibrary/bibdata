@@ -23,6 +23,10 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("format_facets", function!(format_facets, 1))?;
     submodule_marc.define_singleton_method("genres", function!(genres, 1))?;
     submodule_marc.define_singleton_method("holding_id", function!(holding_id, 2))?;
+    submodule_marc.define_module_function(
+        "icpsr_subjects",
+        function!(icpsr_subjects_from_marc_breaker, 1),
+    )?;
     submodule_marc.define_singleton_method(
         "identifiers_of_all_versions",
         function!(identifiers_of_all_versions, 1),
@@ -45,7 +49,6 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
         "publication_statements",
         function!(publication_statements, 1),
     )?;
-
     submodule_marc
         .define_singleton_method("recap_partner_notes", function!(recap_partner_notes, 1))?;
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
@@ -67,4 +70,27 @@ fn call_number_labels_for_browse_from_marc_breaker(
 ) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(&record_string)?;
     Ok(call_number::call_number_labels_for_browse(&record))
+}
+
+fn icpsr_subjects_from_marc_breaker(record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(&record_string)?;
+    Ok(subject::icpsr_subjects(&record))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use magnus::Ruby;
+    use rb_sys_test_helpers::ruby_test;
+
+    #[ruby_test]
+    fn it_binds_icpsr_subjects_method() {
+        let ruby = unsafe { Ruby::get_unchecked() };
+        let module = ruby.define_module("MyNiceModule").unwrap();
+        register_ruby_methods(&module).unwrap();
+        let method_exists: bool = ruby
+            .eval("MyNiceModule::Marc.respond_to? :icpsr_subjects")
+            .unwrap();
+        assert!(method_exists);
+    }
 }
