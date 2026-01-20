@@ -927,6 +927,10 @@ to_field 'fast_subject_display' do |record, accumulator|
   end
 end
 
+to_field 'icpsr_subject_unstem_search' do |_record, accumulator, context|
+  accumulator.replace BibdataRs::Marc.icpsr_subjects(context.clipboard[:marc_breaker])
+end
+
 # Adds lc, siku, local, and homoit subject unstem_search fields
 # Note that lc unstem search should include both archaic and replaced terms
 each_record do |_record, context|
