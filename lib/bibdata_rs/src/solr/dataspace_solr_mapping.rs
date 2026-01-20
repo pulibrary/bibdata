@@ -83,7 +83,7 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_location_code_s(doc.location_code())
             .with_location_display(doc.location_display())
             .with_electronic_access_1display(doc.ark_hash())
-            .with_electronic_portfolio_s(doc.online_portfolio_statements())
+
             .with_restrictions_note_display(doc.restrictions_note_display())
             .with_title_citation_display(match &doc.title {
                 Some(titles) => titles.first().cloned(),
@@ -267,6 +267,14 @@ mod tests {
                 "Mudd Manuscript Library".to_owned()
             ]
         );
+    }
+
+    #[test]
+    fn it_has_no_electronic_portfolio_s() {
+        let document = DataspaceDocument::builder().build();
+        let solr = SolrDocument::from(&document);
+        assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
+        assert!(solr.electronic_portfolio_s.is_none());
     }
 
     #[test]
@@ -633,11 +641,11 @@ mod legacy_tests {
     }
 
     #[test]
-    fn it_has_electronic_portfolio_s_by_default() {
+    fn it_has_no_electronic_portfolio_s() {
         let document = LegacyDataspaceDocument::builder().build();
         let solr = SolrDocument::from(&document);
         assert_eq!(solr.access_facet.unwrap(), AccessFacet::Online);
-        assert!(solr.electronic_portfolio_s.unwrap().contains("thesis"));
+        assert!(solr.electronic_portfolio_s.is_none());
     }
 
     #[test]
