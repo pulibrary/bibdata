@@ -17,7 +17,6 @@ pub fn identifiers_of_all_versions(record: &Record) -> Vec<String> {
     normalized_isbns_for_all_versions(record)
         .chain(normalized_issns_for_all_versions(record))
         .chain(normalized_oclc_numbers(record))
-        .chain(normalized_oclc_numbers(record))
         .chain(linked_record_control_numbers(record))
         .collect()
 }
