@@ -115,8 +115,10 @@ where
         Some(raw) => {
             let mut result = Vec::new();
             for value in raw {
-                if let Ok(item) = serde_json::from_value::<T>(value) {
-                    result.push(item);
+                if value.is_object() || value.is_array() {
+                    if let Ok(item) = serde_json::from_value::<T>(value) {
+                        result.push(item);
+                    }
                 }
             }
             if result.is_empty() {
@@ -159,7 +161,7 @@ impl EphemeraFolder {
         match &self.coverage {
             Some(coverage_vector) => coverage_vector
                 .iter()
-                .filter(|coverage| coverage.exact_match.accepted_vocabulary())
+                .filter(|coverage| coverage.exact_match.as_ref().map_or(false, |em| em.accepted_vocabulary()))
                 .map(|coverage| coverage.label.clone())
                 .collect(),
             None => vec![],
@@ -170,7 +172,7 @@ impl EphemeraFolder {
         match &self.origin {
             Some(origin_vector) => origin_vector
                 .iter()
-                .filter(|origin| origin.exact_match.accepted_vocabulary())
+                .filter(|origin| origin.exact_match.as_ref().map_or(false, |em| em.accepted_vocabulary()))
                 .map(|origin| origin.label.clone())
                 .collect(),
             None => vec![],
@@ -529,15 +531,15 @@ mod tests {
             .title(vec!["The worst book ever!".to_string()])
             .coverage(vec![
                 Coverage {
-                    exact_match: ExactMatch {
+                    exact_match: Some(ExactMatch {
                         id: "http://id.loc.gov/vocabulary/countries/an".to_string(),
-                    },
+                    }),
                     label: "Andorra".to_string(),
                 },
                 Coverage {
-                    exact_match: ExactMatch {
+                    exact_match: Some(ExactMatch {
                         id: "http://bad-bad-bad".to_string(),
-                    },
+                    }),
                     label: "Anguilla".to_string(),
                 },
             ])
