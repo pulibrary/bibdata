@@ -366,9 +366,9 @@ mod tests {
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
             .coverage(vec![Coverage {
-                exact_match: country::ExactMatch {
+                exact_match: Some(country::ExactMatch {
                     id: "http://id.loc.gov/vocabulary/countries/an".to_owned(),
-                },
+                }),
                 label: "Andorra".to_string(),
             }])
             .build()
@@ -397,9 +397,9 @@ mod tests {
             .title(vec!["Bohemian Rhapsody".to_string()])
             .page_count("333".to_string())
             .origin_place(vec![OriginPlace {
-                exact_match: country::ExactMatch {
+                exact_match: Some(country::ExactMatch {
                     id: "http://id.loc.gov/vocabulary/countries/ck".to_owned(),
-                },
+                }),
                 label: "Colombia".to_string(),
             }])
             .build()
@@ -434,9 +434,9 @@ mod tests {
             .date_created(vec!["1973".to_string()])
             .publisher(vec!["Rolling Press".to_string()])
             .origin_place(vec![OriginPlace {
-                exact_match: country::ExactMatch {
+                exact_match: Some(country::ExactMatch {
                     id: "http://id.loc.gov/vocabulary/countries/ck".to_owned(),
-                },
+                }),
                 label: "Colombia".to_string(),
             }])
             .build()
