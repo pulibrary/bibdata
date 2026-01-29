@@ -300,7 +300,7 @@ GEM
     flipflop (2.8.0)
       activesupport (>= 4.0)
       terminal-table (>= 1.8)
-    friendly_id (5.5.1)
+    friendly_id (5.6.0)
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
