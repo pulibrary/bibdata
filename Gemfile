@@ -34,14 +34,12 @@ gem 'logstash-event'
 gem 'loofah', '>= 2.22'
 gem 'marc', '~> 1.0'
 gem 'marc_cleanup', github: 'pulibrary/marc_cleanup', require: false
-gem 'multi_json'
 gem 'mutex_m'
 gem 'net-imap', require: false
 gem 'net-ldap'
 gem 'net-pop', require: false
 gem 'net-sftp'
 gem 'net-smtp', require: false
-gem 'oj'
 gem 'omniauth-cas'
 gem 'omniauth-rails_csrf_protection'
 gem 'open3'

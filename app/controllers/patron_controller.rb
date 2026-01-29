@@ -10,7 +10,7 @@ class PatronController < ApplicationController
     info = parse_data
     info[:ldap] = Ldap.find_by_netid(patron_id) if params[:ldap].present? && sanitize(params[:ldap]) == 'true'
     respond_to do |wants|
-      wants.json  { render json: MultiJson.dump(info) }
+      wants.json  { render json: info }
     end
   rescue StandardError => e
     handle_alma_exception(exception: e, message: "Error fetching patron: #{@patron_id}")
