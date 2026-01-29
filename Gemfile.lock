@@ -368,7 +368,7 @@ GEM
       ffi (~> 1.0)
     library_standard_numbers (0.1.0)
       rb_sys (~> 0.9.91)
-    lightly (0.2.1)
+    lightly (0.4.0)
     lint_roller (1.1.0)
     llhttp-ffi (0.5.0)
       ffi-compiler (~> 1.0)
@@ -793,7 +793,7 @@ DEPENDENCIES
   jquery-tablesorter (~> 1.21)
   lcsort
   library_standard_numbers
-  lightly (~> 0.2.1)
+  lightly (~> 0.4.0)
   lograge
   logstash-event
   loofah (>= 2.22)
