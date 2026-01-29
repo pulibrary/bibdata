@@ -82,8 +82,7 @@ class BibliographicController < ApplicationController
     else
       respond_to do |wants|
         wants.json  do
-          json = MultiJson.dump(pass_records_through_xml_parser(records))
-          render json:
+          render json: pass_records_through_xml_parser(records)
         end
         wants.xml do
           xml = records_to_xml_string(records)
@@ -119,8 +118,7 @@ class BibliographicController < ApplicationController
     else
       respond_to do |wants|
         wants.json  do
-          json = MultiJson.dump(pass_records_through_xml_parser(records))
-          render json:
+          render json: pass_records_through_xml_parser(records)
         end
         wants.xml do
           xml = records_to_xml_string(records)
@@ -140,7 +138,7 @@ class BibliographicController < ApplicationController
     holding_summary = adapter.get_items_for_bib(sanitized_bibid).holding_summary(item_key_filter: item_keys)
 
     respond_to do |wants|
-      wants.json  { render json: MultiJson.dump(add_locator_call_no(holding_summary)) }
+      wants.json  { render json: add_locator_call_no(holding_summary) }
       wants.xml { render xml: '<todo but="You probably want JSON anyway" />' }
     end
   rescue Alma::BibItemSet::ResponseError

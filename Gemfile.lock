@@ -405,7 +405,6 @@ GEM
     minitest (6.0.1)
       prism (~> 1.5)
     msgpack (1.7.5)
-    multi_json (1.15.0)
     multi_xml (0.8.0)
       bigdecimal (>= 3.1, < 5)
     multipart-post (2.4.1)
@@ -447,9 +446,6 @@ GEM
       faraday (< 3)
       faraday-follow_redirects (>= 0.3.0, < 2)
       rexml
-    oj (3.16.8)
-      bigdecimal (>= 3.0)
-      ostruct (>= 0.2)
     omniauth (2.1.2)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
@@ -803,14 +799,12 @@ DEPENDENCIES
   loofah (>= 2.22)
   marc (~> 1.0)
   marc_cleanup!
-  multi_json
   mutex_m
   net-imap
   net-ldap
   net-pop
   net-sftp
   net-smtp
-  oj
   omniauth-cas
   omniauth-rails_csrf_protection
   open3

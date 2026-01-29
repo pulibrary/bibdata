@@ -33,8 +33,7 @@ class BarcodeController < ApplicationController
       else
         respond_to do |wants|
           wants.json  do
-            json = MultiJson.dump(pass_records_through_xml_parser(records))
-            render json:
+            render json: pass_records_through_xml_parser(records)
           end
           wants.xml do
             xml = records_to_xml_string(records)

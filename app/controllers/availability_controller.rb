@@ -13,7 +13,7 @@ class AvailabilityController < ApplicationController
         render plain: "SCSB Barcodes(s): #{params[:barcodes]} not found.", status: :not_found
       else
         respond_to do |wants|
-          wants.json  { render json: MultiJson.dump(avail) }
+          wants.json  { render json: avail }
         end
       end
     elsif params[:scsb_id]
@@ -23,7 +23,7 @@ class AvailabilityController < ApplicationController
         render plain: "SCSB Record: #{params[:scsb_id]} not found.", status: :not_found
       else
         respond_to do |wants|
-          wants.json  { render json: MultiJson.dump(avail) }
+          wants.json  { render json: avail }
         end
       end
     else
