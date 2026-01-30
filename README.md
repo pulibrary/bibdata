@@ -12,37 +12,72 @@ wiki](https://pul-confluence.atlassian.net/wiki/spaces/ALMA/overview)
 ## Development and testing
 
 ### Dependencies
-  * Postgresql (provided in development by lando)
-  * `brew install lastpass-cli`
+
+* Postgresql (provided in development by lando)
+* `brew install lastpass-cli`
 
 Note: You need to have PostgreSQL installed in your machine and available in your path for the `pg` gem to compile native extensions (e.g. `export PATH=$PATH:/Library/PostgreSQL/10/bin/`).
 
 ### Setup server
+
 1. Install Lando from [lando releases GitHub](https://github.com/lando/lando/releases) (at least 3.0.0-rrc.2)
 1. Install Sidekiq Pro credentials:
-```
+
+```text
 lpass login emailhere
 bin/setup_keys
 ```
+
 1. Install bundler version in Gemfile.lock
-```
+
+```text
 gem install bundler -v '2.2.27'
 ```
+
 1. Install bundle
-```
+
+```text
 bundle install
 ```
+
 1. To start: `bundle exec rake servers:start`
 1. For testing:
-   - `bundle exec rspec`
+   * `bundle exec rspec`
 1. For development:
-   - `bundle exec rails server`
-   - Access bibdata at http://localhost:3000/
-   - If you will be working with background jobs in development, include your netid so you are recognized as an admin `BIBDATA_ADMIN_NETIDS=yournetid bundle exec rails server`
+   * `bundle exec rails server`
+   * Access bibdata at <http://localhost:3000/>
+   * If you will be working with background jobs in development, include your netid so you are recognized as an admin `BIBDATA_ADMIN_NETIDS=yournetid bundle exec rails server`
 1. If you are working with background jobs in development, start sidekiq in a new tab or window
-   - `bundle exec sidekiq`
-   - To access the sidekiq dashboard, first sign into the application, then go to http://localhost:3000/sidekiq
+   * `bundle exec sidekiq`
+   * To access the sidekiq dashboard, first sign into the application, then go to <http://localhost:3000/sidekiq>
 1. To stop: `bundle exec rake servers:stop` or `lando stop`
+
+## Devbox (optional)
+
+This repo can be developed using [Devbox](https://www.jetify.com/devbox) to provide a reproducible Ruby/Node toolchain.
+
+### Enter the environment
+
+```bash
+devbox shell
+```
+
+#### Install dependencies and prepare the DB
+
+```sh
+devbox run setup
+```
+
+#### Common commands
+
+```sh
+devbox run server
+devbox run test
+devbox run lint
+devbox run sidekiq
+```
+
+> **Note:** This repo uses `sidekiq-pro` from `gems.contribsys.com.` Ensure your Bundler credentials are configured (e.g. via `bundle config` / environment variables) if you need Sidekiq Pro locally.
 
 ## Configure Alma keys for Development
 
@@ -58,11 +93,13 @@ In order to resolve bibliographic identifiers (bib. IDs) to resources with ARKs 
 ### Seeding the Cache
 
 One may seed the cache using the following Rake Task:
+
 ```bash
 rake liberate:arks:seed_cache
 ```
 
 In development, when running commands that utilize the cache, such as commands indexing via traject, set the `FIGGY_ARK_CACHE_PATH` to point to `spec/fixtures/marc_to_solr/figgy_ark_cache` in the local environment.
+
 ```bash
 export FIGGY_ARK_CACHE_PATH=spec/fixtures/marc_to_solr/figgy_ark_cache
 ```
@@ -70,10 +107,10 @@ export FIGGY_ARK_CACHE_PATH=spec/fixtures/marc_to_solr/figgy_ark_cache
 ### Clearing the Cache
 
 One may clear the cache using the following Rake Task:
+
 ```bash
 rake liberate:arks:clear_cache
 ```
-
 
 ## Tests
 
@@ -93,20 +130,22 @@ Run Rust benchmarks with `cargo bench`.
 
 Profiling the rust code can be a little tricky, since if you try to profile it from a
 ruby entrypoint, the rust code will have been compiled with optimizations that
-mean you can't see the names of functions, etc.  However, due to the Magnus integration,
+mean you can't see the names of functions, etc. However, due to the Magnus integration,
 it can be hard to try to run the rust code in isolation without a Ruby VM.
 
 Given the above challenges, one approach to profiling is:
+
 1. Write a criterion benchmark for the code you want to profile.
 2. Install samply: `cargo install --locked samply`
 3. Assuming you want to profile the marc_bench benchmark: `samply record cargo bench --bench marc_bench --profile=profiling -- --profile-time 5`
-4. Samply will open up the Firefox profiler with the results.  Note that samply also profiles the rust compiler, so if your results are filled with `rustc`, you can remove those tracks (or simply re-run the previous `samply` command) to remove those distractions.
+4. Samply will open up the Firefox profiler with the results. Note that samply also profiles the rust compiler, so if your results are filled with `rustc`, you can remove those tracks (or simply re-run the previous `samply` command) to remove those distractions.
 5. The Flame Graph and Stack Chart tabs within the Firefox profiler are the most useful.
 
 ## Compiling
 
-Some business logic is written in Rust.  This code is compiled when you
+Some business logic is written in Rust. This code is compiled when you
 do any of the following actions:
+
 * deploy
 * run an rspec test with the `rust` tag
 * call a class, module, or method that is provided by the Rust code and there is no
@@ -122,7 +161,7 @@ This repository uses [semgrep](https://semgrep.dev/) to:
 
 To run semgrep locally:
 
-```
+```text
 brew install semgrep
 semgrep --config .semgrep.yml . # run custom bibdata rules
 semgrep --config auto . # run rules from the semgrep community
@@ -130,6 +169,7 @@ semgrep --config auto --config .semgrep.yml . # run both sets of rules
 ```
 
 ## Deploy
+
 Deployment is through capistrano. To deploy a branch other than "main", prepend an environment variable to your deploy command, e.g.:
 `BRANCH=my_feature bundle exec cap staging deploy`
 
@@ -138,9 +178,11 @@ Deployment is through capistrano. To deploy a branch other than "main", prepend 
 See: [Location Changes documentation](https://github.com/pulibrary/bibdata/blob/main/docs/location_changes.md)
 
 ## API Endpoints
+
 [API Endpoint documentation](docs/api_endpoints.md)
 
 ## Alma Webhooks
+
 see [[webhook_monitor/README.md]]
 
 ## License
