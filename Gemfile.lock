@@ -121,8 +121,8 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
-    addressable (2.8.7)
-      public_suffix (>= 2.0.2, < 7.0)
+    addressable (2.8.8)
+      public_suffix (>= 2.0.2, < 8.0)
     airbrussh (1.6.0)
       sshkit (>= 1.6.1, != 1.7.0)
     alma (0.5.1)
@@ -215,7 +215,7 @@ GEM
       term-ansicolor (~> 1.7)
       thor (~> 1.2)
       tins (~> 1.32)
-    crack (1.0.0)
+    crack (1.0.1)
       bigdecimal
       rexml
     crass (1.0.6)
@@ -304,7 +304,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
-    hashdiff (1.1.2)
+    hashdiff (1.2.1)
     hashie (5.0.0)
     health-monitor-rails (12.9.0)
       railties (>= 6.1)
@@ -471,7 +471,7 @@ GEM
     psych (5.3.1)
       date
       stringio
-    public_suffix (6.0.1)
+    public_suffix (7.0.2)
     puma (6.5.0)
       nio4r (~> 2.0)
     racc (1.8.1)
@@ -724,7 +724,7 @@ GEM
       descendants_tracker (~> 0.0, >= 0.0.3)
     warden (1.2.9)
       rack (>= 2.0.9)
-    webmock (3.24.0)
+    webmock (3.26.1)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
