@@ -3989,7 +3989,7 @@
         "delivery_locations": []
     },
     {
-        "label": "Marquand Use Only",
+        "label": "Stacks: Marquand Use Only",
         "code": "marquand$stacks",
         "aeon_location": false,
         "recap_electronic_delivery_location": false,
