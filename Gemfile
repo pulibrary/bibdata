@@ -50,7 +50,7 @@ gem 'rack'
 gem 'rails', '~> 8.1'
 gem 'responders'
 gem 'rest-client', require: false
-gem 'rsolr', '~> 2.5.0'
+gem 'rsolr', '~> 2.6.0'
 gem 'rubyzip'
 gem 'sass-rails'
 gem 'sidekiq'
