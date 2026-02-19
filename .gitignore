@@ -22,3 +22,4 @@ target
 Makefile
 mkmf.log
 .vscode/*
+vendor/bundle

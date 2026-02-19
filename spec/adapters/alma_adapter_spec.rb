@@ -270,6 +270,7 @@ RSpec.describe AlmaAdapter do
       expect(item[:in_temp_library]).to be false
       expect(item[:temp_library_code]).to be_nil
       expect(item[:label]).to eq 'Lewis Library - Stacks'
+      expect(item[:requested]).to be false
 
       # We are hard-coding this value to "N" to preserve the property in the response
       # but we are not really using this value anymore.
@@ -287,7 +288,7 @@ RSpec.describe AlmaAdapter do
                     status: 'Available', status_label: 'Item in place', status_source: 'base_status', process_type: nil,
                     on_reserve: 'Y', item_type: 'Gen', pickup_location_id: 'lewis', pickup_location_code: 'lewis',
                     location: 'lewis$resterm', label: 'Lewis Library - Term Loan Reserves', description: '', enum_display: '',
-                    chron_display: '', in_temp_library: true, temp_library_code: 'lewis',
+                    chron_display: '', requested: false, in_temp_library: true, temp_library_code: 'lewis',
                     temp_library_label: 'Lewis Library - Term Loan Reserves', temp_location_code: 'lewis$resterm',
                     temp_location_label: 'Lewis Library - Term Loan Reserves' }
       expect(item).to eq item_test
