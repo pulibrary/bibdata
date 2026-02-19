@@ -252,7 +252,8 @@ class AlmaAdapter
         label: holding_location_label(composite_location), # Firestore Library
         description: item_data['description'], # "v. 537, no. 7618 (2016 Sept. 1)" - new in Alma
         enum_display: enumeration, # in Alma there are many enumerations
-        chron_display: chronology # in Alma there are many chronologies
+        chron_display: chronology, # in Alma there are many chronologies
+        requested: item_data['requested']
       }.merge(temp_library_availability_summary)
     end
 
