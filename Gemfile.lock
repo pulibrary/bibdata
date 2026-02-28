@@ -41,8 +41,8 @@ GIT
 GEM
   remote: https://gems.contribsys.com/
   specs:
-    sidekiq-pro (7.3.4)
-      sidekiq (>= 7.3.7, < 8)
+    sidekiq-pro (8.0.3)
+      sidekiq (>= 8.0.8, < 9)
 
 GEM
   remote: https://rubygems.org/
@@ -539,7 +539,7 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    redis-client (0.23.0)
+    redis-client (0.26.4)
       connection_pool
     regexp_parser (2.11.3)
     reline (0.6.3)
@@ -637,11 +637,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    sidekiq (7.3.7)
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
+    sidekiq (8.0.10)
+      connection_pool (>= 2.5.0)
+      json (>= 2.9.0)
+      logger (>= 1.6.2)
+      rack (>= 3.1.0)
+      redis-client (>= 0.23.2)
     simplecov (0.22.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
