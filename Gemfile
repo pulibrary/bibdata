@@ -87,7 +87,6 @@ group :development, :test do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   gem 'simplecov'
-  gem 'solargraph'
   gem 'solr_wrapper'
   gem 'timecop'
   gem 'webmock'
