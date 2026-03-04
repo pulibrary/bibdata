@@ -46,7 +46,7 @@ jobs:
           POSTGRES_DB: bibdata_test
           POSTGRES_HOST_AUTH_METHOD: trust
       - image: cimg/redis:7.2
-      - image: quay.io/pulibrary/ci-solr:9.9-v1.0.1
+      - image: ghcr.io/pulibrary/ci-solr:9.9-v1.0.0
         command: server/scripts/ci-start.sh
 
     steps:
