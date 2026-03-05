@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe MmsRecordsReport do
   let(:figgy_request) do
     stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy/figgy_report.json'))
+      .to_return(status: 200, body: File.read('spec/fixtures/files/figgy/figgy_report.json'))
   end
 
   before do

@@ -62,9 +62,9 @@ RSpec.describe LocationMapsGeneratorService do
     let(:holding_library_template_path) { File.join(base_path, 'holding_library.rb.tmpl') }
 
     before do
-      File.open(locations_template_path, 'w')
-      File.open(location_display_template_path, 'w')
-      File.open(holding_library_template_path, 'w')
+      FileUtils.touch(locations_template_path)
+      FileUtils.touch(location_display_template_path)
+      FileUtils.touch(holding_library_template_path)
       allow(described_class).to receive(:new).and_return(service)
     end
 
@@ -88,7 +88,7 @@ RSpec.describe LocationMapsGeneratorService do
 
       it 'overwrites the translation map' do
         # Create a translation map file
-        File.open(locations_path, 'w')
+        FileUtils.touch(locations_path)
 
         described_class.generate_from_templates
         expect(FileUtils).to have_received(:cp).exactly(3).times

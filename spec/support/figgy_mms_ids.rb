@@ -4,7 +4,7 @@ RSpec.configure do |config|
   # but that fails to load Webmock
   config.before(:all) do
     stub_request(:get, 'https://figgy.princeton.edu/reports/mms_records.json?auth_token=FAKE_TOKEN')
-      .to_return(status: 200, body: File.open('spec/fixtures/files/figgy/figgy_report.json'))
+      .to_return(status: 200, body: File.read('spec/fixtures/files/figgy/figgy_report.json'))
     MmsRecordsReport.new.to_translation_map
   end
   # rubocop:enable RSpec/BeforeAfterAll

@@ -74,8 +74,8 @@ class AlmaAdapter
       bibs = Alma::Bib.find(Array.wrap(ids), expand: %w[p_avail e_avail d_avail requests].join(',')).each
       return nil if bibs.none?
 
-      availability = bibs.each_with_object({}) do |bib, acc|
-        acc[bib.id] = AvailabilityStatus.new(bib:, deep_check:).bib_availability
+      availability = bibs.to_h do |bib|
+        [bib.id, AvailabilityStatus.new(bib:, deep_check:).bib_availability]
       end
       availability
     end

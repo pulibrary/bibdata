@@ -1,3 +1,5 @@
+# rubocop:disable Style/OneClassPerFile
+
 # This service is intended to be run by a daemon. It watches the AWS SQS poll
 # for full dump events and kicks off a job to process them.
 class AwsSqsPoller
@@ -118,3 +120,5 @@ class AlmaDumpFactory
     message['job_instance']['end_time']
   end
 end
+
+# rubocop:enable Style/OneClassPerFile
