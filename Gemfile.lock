@@ -531,9 +531,9 @@ GEM
     rake (13.3.1)
     rake-compiler (1.3.1)
       rake
-    rake-compiler-dock (1.9.1)
-    rb_sys (0.9.111)
-      rake-compiler-dock (= 1.9.1)
+    rake-compiler-dock (1.11.0)
+    rb_sys (0.9.124)
+      rake-compiler-dock (= 1.11.0)
     rdoc (7.1.0)
       erb
       psych (>= 4.0.0)
@@ -798,7 +798,7 @@ DEPENDENCIES
   rails (~> 8.1)
   rails-controller-testing
   rake-compiler
-  rb_sys (~> 0.9.111)
+  rb_sys
   responders
   rest-client
   rsolr (~> 2.5.0)
