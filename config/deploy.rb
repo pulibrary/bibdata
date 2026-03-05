@@ -146,7 +146,7 @@ namespace :deploy do
   task :cleanup_toolchains do
     on roles(:all) do
       within release_path do
-        execute :rustup, :toolchain, :remove, '$(rustup toolchain list | grep -v active | grep -v default)'
+        execute :rake, 'rust:cleanup_toolchains'
       end
     end
   end
