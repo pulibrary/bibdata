@@ -37,8 +37,11 @@ set :linked_dirs, %w{
 
 set :linked_files, ['marc_to_solr/translation_maps/figgy_mms_ids.yaml']
 
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
+set :default_env, {
+  CARGO_HOME: '/usr/local/cargo',
+  RUSTUP_HOME: '/usr/local/rustup',
+  PATH: '/usr/local/cargo/bin:$PATH'
+}
 
 set :keep_releases, 3
 
@@ -111,7 +114,7 @@ namespace :deploy do
   task :compile do
     on roles(:all) do
       within release_path do
-        execute :rake, 'compile'
+        execute :rake, :compile
       end
     end
   end
