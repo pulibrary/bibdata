@@ -10,7 +10,6 @@ require_relative '../lib'
 require 'stringex'
 require 'library_standard_numbers'
 require 'time'
-require 'iso-639'
 require_relative '../../app/services/marcxml_compressor'
 extend Traject::Macros::Marc21Semantics
 extend Traject::Macros::MarcFormats
