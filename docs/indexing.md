@@ -23,8 +23,6 @@ About 68,800 senior theses pulled from the [Dataspace repository](http://dataspa
 
 Frequency of updates: Once per year. The Mudd Manuscript Library - Collections Cordinator will contact the Orangelight tech liaison and request the senior theses to be loaded into the catalog.
 
-The [orangetheses repository](https://github.com/pulibrary/orangetheses) is used to pull the theses from dspace.
-
 A thesis record id starts with 'dsp'. To search the catalog for all the indexed dspace theses: `https://catalog-alma-qa.princeton.edu/catalog?utf8=%E2%9C%93&search_field=all_fields&q=id%3Adsp*`
 
 ## Source: Numismatics
