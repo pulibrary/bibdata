@@ -23,7 +23,7 @@ class Alma::Indexer
 
       # SCSB files are only g-zipped.
       dump_file.unzip
-      yield File.open(dump_file.path)
+      File.open(dump_file.path, &)
       dump_file.zip
     end
   end

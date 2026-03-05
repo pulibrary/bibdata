@@ -49,7 +49,7 @@ class LanguageService
 
   def iso639_language_names(record)
     LanguageExtractor.new(record).iso_041_codes.map { |code| code_to_name(code) }
-                     .compact
+                                               .compact
   end
 
   def includes_more_specific_version?(codes, code_to_check)

@@ -9,7 +9,7 @@ plugins:
 AllCops:
   DisplayCopNames: true
   NewCops: enable
-  TargetRubyVersion: 3.2
+  TargetRubyVersion: 3.4
   Exclude:
     - 'db/**/*'
     - 'bin/*'

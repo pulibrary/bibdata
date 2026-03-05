@@ -47,7 +47,7 @@ class LanguageExtractor
     def extract_from_multiple_041s(fields)
       fields.map do |field|
         field.subfields.select { |sf| %(a d).include? sf.code }
-             .map(&:value)
+                       .map(&:value)
       end.flatten
     end
 end

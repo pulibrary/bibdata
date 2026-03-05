@@ -56,7 +56,7 @@ RSpec.describe BarcodeController, type: :controller do
                  '9972625743506421')
         stub_alma_holding(mms_id: '9972625743506421', holding_id: '2240957220006421')
 
-        voyager_comparison = MARC::XMLReader.new(File.open(Pathname.new(file_fixture_path).join('alma', 'comparison', 'voyager_scsb_32101069559514.xml'))).first
+        voyager_comparison = MARC::XMLReader.new(Pathname.new(file_fixture_path).join('alma', 'comparison', 'voyager_scsb_32101069559514.xml').to_s).first
         get :scsb, params: { barcode: '32101069559514' }, format: :xml
 
         expect(response).to be_successful

@@ -98,8 +98,8 @@ class AlmaAdapter
     end
 
     def to_h
-      holdings.each_with_object({}) do |holding, acc|
-        acc[holding['holding_id']] = holding_summary(holding)
+      holdings.to_h do |holding|
+        [holding['holding_id'], holding_summary(holding)]
       end
     end
 
