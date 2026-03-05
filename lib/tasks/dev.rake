@@ -34,14 +34,6 @@ end
 
 namespace :server do
   namespace :solr do
-    task start_solr_wrapper: :environment do
-      SolrWrapper.wrap(port: 8983, verbose: true, managed: true, download_dir: 'tmp', version: '8.4.1') do |solr|
-        solr.with_collection(name: 'bibdata-core-test', dir: 'solr/conf') do
-          puts 'Started SolrWrapper at https://127.0.0.1:8983, press Ctrl+C to close'
-          loop { sleep }
-        end
-      end
-    end
     namespace :configs do
       desc 'Updates solr config files from github'
       task :update, %i[solr_dir config_path] => :environment do |_t, args|

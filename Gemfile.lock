@@ -401,7 +401,6 @@ GEM
     mime-types-data (3.2024.1203)
     mini_mime (1.1.5)
     mini_portile2 (2.8.9)
-    minitar (1.0.2)
     minitest (6.0.1)
       prism (~> 1.5)
     msgpack (1.8.0)
@@ -648,13 +647,6 @@ GEM
     simplecov-html (0.13.1)
     simplecov_json_formatter (0.1.4)
     slop (4.10.1)
-    solr_wrapper (4.1.0)
-      faraday
-      faraday-follow_redirects
-      minitar
-      ostruct
-      retriable
-      ruby-progressbar
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -823,7 +815,6 @@ DEPENDENCIES
   sidekiq
   sidekiq-pro!
   simplecov
-  solr_wrapper
   stringex!
   terser
   timecop
