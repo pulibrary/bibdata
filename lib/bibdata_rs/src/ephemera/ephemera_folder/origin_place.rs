@@ -1,5 +1,5 @@
 use crate::ephemera_folder::country::ExactMatch;
-use serde::{Deserialize, Deserializer};
+use serde::Deserializer;
 
 use serde_json::Value;
 
@@ -15,9 +15,11 @@ impl<'de> serde::Deserialize<'de> for OriginPlace {
         D: Deserializer<'de>,
     {
         let value = Value::deserialize(deserializer)?;
-        let label = value.get("pref_label")
+        let label = value
+            .get("pref_label")
             .and_then(|v| v.as_str())
-            .unwrap_or("").to_string();
+            .unwrap_or("")
+            .to_string();
         let exact_match = match value.get("exact_match") {
             Some(em_value) => ExactMatch::deserialize(em_value).ok(),
             None => None,
@@ -69,7 +71,15 @@ mod tests {
         );
         assert_eq!(origin_vector[0].label, "Colombia");
         assert_eq!(origin_vector[1].label, "Venezuela");
-        assert!(origin_vector[0].exact_match.as_ref().unwrap().accepted_vocabulary());
-        assert!(!origin_vector[1].exact_match.as_ref().unwrap().accepted_vocabulary());
+        assert!(origin_vector[0]
+            .exact_match
+            .as_ref()
+            .unwrap()
+            .accepted_vocabulary());
+        assert!(!origin_vector[1]
+            .exact_match
+            .as_ref()
+            .unwrap()
+            .accepted_vocabulary());
     }
 }
