@@ -99,4 +99,4 @@ group :test do
 end
 
 gem 'rake-compiler'
-gem 'rb_sys', '~> 0.9.111'
+gem 'rb_sys'
