@@ -142,5 +142,15 @@ namespace :deploy do
     end
   end
 
+  desc 'Remove old rust toolchains'
+  task :cleanup_toolchains do
+    on roles(:all) do
+      within release_path do
+        execute :rustup, :toolchain, :remove, '$(rustup toolchain list | grep -v active | grep -v default)'
+      end
+    end
+  end
+
+  after :finishing, :cleanup_toolchains
   after :finishing, 'deploy:cleanup'
 end
