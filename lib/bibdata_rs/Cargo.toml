@@ -17,7 +17,7 @@ reqwest = { version = "0.12.15", features = ["json", "blocking"] }
 tokio = { version = "1", features = ["full"] }
 itertools = "0.14.0"
 codes-iso-639 = "0.1.5"
-parse_datetime = "0.9.0"
+parse_datetime = "0.11.0"
 chrono = "0.4.44"
 env_logger = "0.11.8"
 log = "0.4.27"
