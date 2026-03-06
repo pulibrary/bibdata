@@ -328,7 +328,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    jquery-tablesorter (1.27.2)
+    jquery-tablesorter (1.28.0)
       railties (>= 3.2)
     json (2.19.0)
     json-schema (6.1.0)
@@ -750,7 +750,7 @@ DEPENDENCIES
   human_languages (~> 0.10)
   jbuilder
   jquery-rails
-  jquery-tablesorter (~> 1.21)
+  jquery-tablesorter (~> 1.28)
   lcsort
   library_standard_numbers
   lightly (~> 0.2.1)
