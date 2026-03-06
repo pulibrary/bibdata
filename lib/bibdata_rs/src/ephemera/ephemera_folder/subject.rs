@@ -70,16 +70,15 @@ impl<'de> Deserialize<'de> for ExactMatch {
                         id: id_value.as_str().unwrap().to_string(),
                     },
                 });
-            } else if id_value.is_object() {
-                if let Some(nested_id) = id_value.get("@id") {
-                    if nested_id.is_string() {
-                        return Ok(ExactMatch {
-                            id: Id {
-                                id: nested_id.as_str().unwrap().to_string(),
-                            },
-                        });
-                    }
-                }
+            } else if id_value.is_object()
+                && let Some(nested_id) = id_value.get("@id")
+                && nested_id.is_string()
+            {
+                return Ok(ExactMatch {
+                    id: Id {
+                        id: nested_id.as_str().unwrap().to_string(),
+                    },
+                });
             }
         }
         Err(serde::de::Error::custom(

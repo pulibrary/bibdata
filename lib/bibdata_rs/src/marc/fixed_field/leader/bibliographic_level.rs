@@ -71,13 +71,17 @@ mod tests {
     #[test]
     fn it_can_identify_a_serials_record() {
         let serial_record = Record::from_breaker("=LDR 01644cas a2200397 a 4500").unwrap();
-        assert!(BibliographicLevel::try_from(&serial_record)
-            .unwrap()
-            .is_serial());
+        assert!(
+            BibliographicLevel::try_from(&serial_record)
+                .unwrap()
+                .is_serial()
+        );
 
         let monograph_record = Record::from_breaker("=LDR 04137cam a2200853Ii 4500").unwrap();
-        assert!(!BibliographicLevel::try_from(&monograph_record)
-            .unwrap()
-            .is_serial());
+        assert!(
+            !BibliographicLevel::try_from(&monograph_record)
+                .unwrap()
+                .is_serial()
+        );
     }
 }

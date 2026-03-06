@@ -101,7 +101,7 @@ fn extract_parallel_values<'record>(
     ind1: &'record str,
     ind2: &'record str,
     subfields: &'record [&str],
-) -> impl Iterator<Item = String> + 'record {
+) -> impl Iterator<Item = String> + 'record + use<'record> {
     record
         .get_parallel_fields(tag)
         .into_iter()

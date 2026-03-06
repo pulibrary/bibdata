@@ -1,5 +1,5 @@
 use super::*;
-use magnus::{function, Module, Object, RModule};
+use magnus::{Module, Object, RModule, function};
 
 // This module is responsible for the communication between Ruby and Rust code on the topic of MARC
 // (specifically the BibdataRs::Marc Ruby module and the crate::marc Rust module)
@@ -74,7 +74,10 @@ fn call_number_labels_for_browse_from_marc_breaker(
     Ok(call_number::call_number_labels_for_browse(&record))
 }
 
-fn icpsr_subjects_from_marc_breaker(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+fn icpsr_subjects_from_marc_breaker(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(subject::icpsr_subjects(&record))
 }

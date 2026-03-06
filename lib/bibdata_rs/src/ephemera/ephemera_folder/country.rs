@@ -18,14 +18,13 @@ impl<'de> Deserialize<'de> for ExactMatch {
                     id: id.as_str().unwrap().to_string(),
                 });
             }
-            if id.is_object() {
-                if let Some(nested_id) = id.get("@id") {
-                    if nested_id.is_string() {
-                        return Ok(ExactMatch {
-                            id: nested_id.as_str().unwrap().to_string(),
-                        });
-                    }
-                }
+            if id.is_object()
+                && let Some(nested_id) = id.get("@id")
+                && nested_id.is_string()
+            {
+                return Ok(ExactMatch {
+                    id: nested_id.as_str().unwrap().to_string(),
+                });
             }
         }
         Err(serde::de::Error::custom(

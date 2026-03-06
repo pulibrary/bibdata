@@ -1,5 +1,5 @@
 use super::{
-    fixed_field::{literary_forms, BibliographicLevel, TypeOfRecord},
+    fixed_field::{BibliographicLevel, TypeOfRecord, literary_forms},
     trim_punctuation,
 };
 use itertools::Itertools;
@@ -164,7 +164,7 @@ const SUBJECT_GENRE_VOCABULARIES: &[&str] = &[
 ];
 
 fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
-    let subjects = record.fields().iter().fold(Vec::new(), |mut acc, field| {
+    record.fields().iter().fold(Vec::new(), |mut acc, field| {
         if field.ind2() != "7" { return acc }
         if !matches!(&field.first_subfield("2"), Some(sf) if SUBJECT_GENRE_VOCABULARIES.contains(&sf.content().trim())) { return acc };
         acc.extend(field.subfields().iter()
@@ -173,8 +173,7 @@ fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
             .map(|genre| genre.trim().to_owned())
         );
         acc
-    });
-    subjects
+    })
 }
 
 const PRIMARY_SOURCE_LCGFT_GENRES: &[&str] = &[

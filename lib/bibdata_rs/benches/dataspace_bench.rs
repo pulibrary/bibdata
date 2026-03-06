@@ -4,7 +4,7 @@ use bibdata_rs::{
     solr::SolrDocument,
     theses::legacy_dataspace::document::{self, DataspaceDocument},
 };
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 
 fn title_normalize_benchmark(c: &mut Criterion) {
     let mut group = c.benchmark_group("title_normalize");

@@ -12,7 +12,7 @@ use crate::theses::{
     dataspace::{community, document::DataspaceDocument},
     temp_theses_cache_path,
 };
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use log::debug;
 use magnus::Ruby;
 use rayon::prelude::*;
@@ -215,13 +215,15 @@ mod tests {
 
     #[test]
     fn it_creates_a_collection_url() {
-        assert_eq!(collection_url(
-            "https://theses-dissertations.princeton.edu/server/api",
-            "d98b1985-fc36-47ce-b11a-62386b505e85",
-            "100",
-            "10"
-        ),
-        "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=100&page=10");
+        assert_eq!(
+            collection_url(
+                "https://theses-dissertations.princeton.edu/server/api",
+                "d98b1985-fc36-47ce-b11a-62386b505e85",
+                "100",
+                "10"
+            ),
+            "https://theses-dissertations.princeton.edu/server/api/discover/search/objects?scope=d98b1985-fc36-47ce-b11a-62386b505e85&size=100&page=10"
+        );
     }
 
     #[test]
@@ -314,7 +316,10 @@ mod tests {
             .create();
         let ruby = unsafe { Ruby::get_unchecked() };
 
-        assert!(collections_as_solr(&ruby, server.url(), "88435/dsp019c67wm88m".to_owned(), 100).is_err());
+        assert!(
+            collections_as_solr(&ruby, server.url(), "88435/dsp019c67wm88m".to_owned(), 100)
+                .is_err()
+        );
         mock_bad_response.assert();
     }
 }

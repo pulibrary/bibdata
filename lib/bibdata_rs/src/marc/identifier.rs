@@ -23,7 +23,7 @@ pub fn identifiers_of_all_versions(record: &Record) -> Vec<String> {
 
 // Record control numbers can either be OCLC numbers (which are normalized to a format like ocn991350412)
 // or some other type of control number (which are normalized and include the prefix BIB)
-fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String> {
+fn linked_record_control_numbers(record: &Record) -> impl Iterator<Item = String> + use<> {
     record
         .extract_values("776w:787w")
         .into_iter()

@@ -1,4 +1,4 @@
-use serde::{ser::Error, Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Deserializer, Serialize, ser::Error};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct ElectronicAccess {

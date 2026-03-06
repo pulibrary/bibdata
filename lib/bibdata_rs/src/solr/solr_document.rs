@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 use super::{
-    access_facet::AccessFacet, ElectronicAccess, FormatFacet, LibraryFacet, SolrDocumentBuilder,
+    ElectronicAccess, FormatFacet, LibraryFacet, SolrDocumentBuilder, access_facet::AccessFacet,
 };
 
 #[derive(Debug, Default, Deserialize, Serialize)]

@@ -6,11 +6,7 @@ pub fn access_notes(record: &Record) -> Option<Vec<String>> {
         .iter()
         .map(|note| note.trim().to_owned())
         .collect();
-    if notes.is_empty() {
-        None
-    } else {
-        Some(notes)
-    }
+    if notes.is_empty() { None } else { Some(notes) }
 }
 
 #[cfg(test)]

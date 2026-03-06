@@ -115,10 +115,10 @@ where
         Some(raw) => {
             let mut result = Vec::new();
             for value in raw {
-                if value.is_object() || value.is_array() {
-                    if let Ok(item) = serde_json::from_value::<T>(value) {
-                        result.push(item);
-                    }
+                if (value.is_object() || value.is_array())
+                    && let Ok(item) = serde_json::from_value::<T>(value)
+                {
+                    result.push(item);
                 }
             }
             if result.is_empty() {
@@ -390,10 +390,10 @@ pub fn json_ephemera_document(ruby: &magnus::Ruby, url: String) -> Result<String
             .map_err(|e| magnus::Error::new(ruby.exception_runtime_error(), e.to_string()))?;
 
         for folder_json in &folder_results {
-            if let Ok(folder) = serde_json::from_str::<EphemeraFolder>(folder_json) {
-                if let Some(subjects) = &folder.subject {
-                    log_subjects_without_exact_match(subjects);
-                }
+            if let Ok(folder) = serde_json::from_str::<EphemeraFolder>(folder_json)
+                && let Some(subjects) = &folder.subject
+            {
+                log_subjects_without_exact_match(subjects);
             }
         }
 
@@ -408,7 +408,7 @@ mod tests {
     use magnus::Ruby;
 
     use crate::{
-        ephemera::{ephemera_folder::country::ExactMatch, CatalogClient},
+        ephemera::{CatalogClient, ephemera_folder::country::ExactMatch},
         solr,
         testing_support::{preserving_envvar, preserving_envvar_async},
     };

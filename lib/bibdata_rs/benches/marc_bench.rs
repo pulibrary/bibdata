@@ -1,5 +1,5 @@
 use bibdata_rs::marc::{call_number::call_number_labels_for_display, genre::genres};
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 use marctk::Record;
 
 fn genre_facet_benchmark(c: &mut Criterion) {

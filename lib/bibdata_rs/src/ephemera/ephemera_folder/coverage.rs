@@ -70,16 +70,20 @@ mod tests {
         );
         assert_eq!(coverage_vector[0].label, "Andorra");
         assert_eq!(coverage_vector[1].label, "Anguilla");
-        assert!(coverage_vector[0]
-            .exact_match
-            .as_ref()
-            .unwrap()
-            .accepted_vocabulary());
-        assert!(!coverage_vector[1]
-            .exact_match
-            .as_ref()
-            .unwrap()
-            .accepted_vocabulary());
+        assert!(
+            coverage_vector[0]
+                .exact_match
+                .as_ref()
+                .unwrap()
+                .accepted_vocabulary()
+        );
+        assert!(
+            !coverage_vector[1]
+                .exact_match
+                .as_ref()
+                .unwrap()
+                .accepted_vocabulary()
+        );
     }
 
     #[test]

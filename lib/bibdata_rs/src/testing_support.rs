@@ -31,9 +31,9 @@ pub(crate) fn preserving_envvar(key: &str, test: Test<()>) {
     let original = env::var(key).ok();
     test();
     if let Some(value) = original {
-        env::set_var(key, value);
+        unsafe { env::set_var(key, value) };
     } else {
-        env::remove_var(key);
+        unsafe { env::remove_var(key) };
     }
 }
 
@@ -42,8 +42,8 @@ pub(crate) async fn preserving_envvar_async<F: Future>(key: &str, test: Test<F>)
     let original = env::var(key).ok();
     test().await;
     if let Some(value) = original {
-        env::set_var(key, value);
+        unsafe { env::set_var(key, value) };
     } else {
-        env::remove_var(key);
+        unsafe { env::remove_var(key) };
     }
 }

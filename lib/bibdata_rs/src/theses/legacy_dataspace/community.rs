@@ -2,7 +2,7 @@
 // using the Dataspace JSON API.  Our Dataspace has a single community dedicated
 // to senior theses.
 
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use log::info;
 use serde::Deserialize;
 

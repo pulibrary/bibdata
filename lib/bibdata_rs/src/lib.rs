@@ -1,5 +1,5 @@
 use ephemera::ephemera_folder;
-use magnus::{function, prelude::*, Error, Ruby};
+use magnus::{Error, Ruby, function, prelude::*};
 use solr::index;
 use theses::dataspace::collection;
 use theses::legacy_dataspace::collection as legacy_collection;
