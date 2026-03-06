@@ -115,7 +115,7 @@ do any of the following actions:
 
 ## Upgrading rust
 
-To upgrade the version of Rust used, edit the rust-toolchain file.  CircleCI, capistrano, and local development environments all use rustup, so they should recognize the new version number and install it accordingly.
+To upgrade the version of Rust used, edit the rust-toolchain.toml file.  CircleCI, capistrano, and local development environments all use rustup, so they should recognize the new version number and install it accordingly.
 
 Note that installing multiple versions of the rust toolchain can take up quite a bit of disk space, so make sure that the boxes have enough disk space before deploying a new rust version.
 
