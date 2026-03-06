@@ -59,21 +59,23 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
 }
 
 fn call_number_labels_for_display_from_marc_breaker(
+    ruby: &Ruby,
     record_string: String,
 ) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+    let record = get_record(ruby, &record_string)?;
     Ok(call_number::call_number_labels_for_display(&record))
 }
 
 fn call_number_labels_for_browse_from_marc_breaker(
+    ruby: &Ruby,
     record_string: String,
 ) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+    let record = get_record(ruby, &record_string)?;
     Ok(call_number::call_number_labels_for_browse(&record))
 }
 
-fn icpsr_subjects_from_marc_breaker(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+fn icpsr_subjects_from_marc_breaker(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(subject::icpsr_subjects(&record))
 }
 
