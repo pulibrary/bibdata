@@ -32,7 +32,7 @@ unicode-blocks = "0.1.9"
 [dev-dependencies]
 criterion = "0.6.0"
 mockito = "1.7.0"
-rb-sys-test-helpers = "0.2.2"
+rb-sys-test-helpers = "0.3.0"
 pretty_assertions = "1.4.1"
 
 [[bench]]
