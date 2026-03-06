@@ -161,7 +161,12 @@ impl EphemeraFolder {
         match &self.coverage {
             Some(coverage_vector) => coverage_vector
                 .iter()
-                .filter(|coverage| coverage.exact_match.as_ref().map_or(false, |em| em.accepted_vocabulary()))
+                .filter(|coverage| {
+                    coverage
+                        .exact_match
+                        .as_ref()
+                        .is_some_and(|em| em.accepted_vocabulary())
+                })
                 .map(|coverage| coverage.label.clone())
                 .collect(),
             None => vec![],
@@ -172,7 +177,12 @@ impl EphemeraFolder {
         match &self.origin {
             Some(origin_vector) => origin_vector
                 .iter()
-                .filter(|origin| origin.exact_match.as_ref().map_or(false, |em| em.accepted_vocabulary()))
+                .filter(|origin| {
+                    origin
+                        .exact_match
+                        .as_ref()
+                        .is_some_and(|em| em.accepted_vocabulary())
+                })
                 .map(|origin| origin.label.clone())
                 .collect(),
             None => vec![],

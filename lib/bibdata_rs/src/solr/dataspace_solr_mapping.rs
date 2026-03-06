@@ -83,7 +83,6 @@ impl From<&LegacyDataspaceDocument> for SolrDocument {
             .with_location_code_s(doc.location_code())
             .with_location_display(doc.location_display())
             .with_electronic_access_1display(doc.ark_hash())
-
             .with_restrictions_note_display(doc.restrictions_note_display())
             .with_title_citation_display(match &doc.title {
                 Some(titles) => titles.first().cloned(),
@@ -167,8 +166,17 @@ mod tests {
             "Dysfunction: A Play in One Act"
         );
         assert_eq!(solr.title_sort.unwrap(), "dysfunctionaplayinoneact");
-        assert_eq!(solr.author_citation_display.unwrap(), vec!["Clark, Hillary"]);
-        assert_eq!(solr.pub_citation_display.unwrap(), vec!["Princeton University. Department of English", "Princeton University. Department of History"]);
+        assert_eq!(
+            solr.author_citation_display.unwrap(),
+            vec!["Clark, Hillary"]
+        );
+        assert_eq!(
+            solr.pub_citation_display.unwrap(),
+            vec![
+                "Princeton University. Department of English",
+                "Princeton University. Department of History"
+            ]
+        );
     }
 
     #[test]
