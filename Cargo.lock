@@ -1837,9 +1837,9 @@ checksum = "08f8d2924cf136a1315e2b4c7460a39f62ef11ee5d522df9b2750fab55b868b6"
 
 [[package]]
 name = "rb-sys-test-helpers"
-version = "0.2.2"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d6ccb543252549fc28f5d290322e041cd682bd199a8e1caaa813fb6e63dd221e"
+checksum = "ccc637c53cad6a6b49ad51c5857c64e36bd70c955ffafe9dc9cc5bc9dd0b3b18"
 dependencies = [
  "rb-sys",
  "rb-sys-env",
@@ -1848,9 +1848,9 @@ dependencies = [
 
 [[package]]
 name = "rb-sys-test-helpers-macros"
-version = "0.2.2"
+version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1508caed999cb659ab1b3308e7b2985186b3b550ef5492dc18da71b560c55615"
+checksum = "b1c1fce35d9ac77a2745e539232fb82a75856675a5daf4ef8b1ca994d89f8b3f"
 dependencies = [
  "quote",
  "syn",
