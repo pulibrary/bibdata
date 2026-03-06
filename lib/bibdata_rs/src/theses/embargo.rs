@@ -45,7 +45,7 @@ fn embargo_text(
             Mudd Manuscript Library</a>.",
             date, doc_id
         ),
-        None => String::default()
+        None => String::default(),
     }
 }
 
@@ -145,7 +145,9 @@ mod tests {
 
     #[test]
     fn test_embargo_text() {
-        assert_eq!(embargo_text(None, Some(&vec!["2100-07-13".to_owned()]), "dsp01br86b694j"),
-        "This content is embargoed until July 13, 2100. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/dsp01br86b694j\">Mudd Manuscript Library</a>.");
+        assert_eq!(
+            embargo_text(None, Some(&vec!["2100-07-13".to_owned()]), "dsp01br86b694j"),
+            "This content is embargoed until July 13, 2100. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/dsp01br86b694j\">Mudd Manuscript Library</a>."
+        );
     }
 }

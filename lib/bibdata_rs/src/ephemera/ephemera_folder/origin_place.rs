@@ -71,15 +71,19 @@ mod tests {
         );
         assert_eq!(origin_vector[0].label, "Colombia");
         assert_eq!(origin_vector[1].label, "Venezuela");
-        assert!(origin_vector[0]
-            .exact_match
-            .as_ref()
-            .unwrap()
-            .accepted_vocabulary());
-        assert!(!origin_vector[1]
-            .exact_match
-            .as_ref()
-            .unwrap()
-            .accepted_vocabulary());
+        assert!(
+            origin_vector[0]
+                .exact_match
+                .as_ref()
+                .unwrap()
+                .accepted_vocabulary()
+        );
+        assert!(
+            !origin_vector[1]
+                .exact_match
+                .as_ref()
+                .unwrap()
+                .accepted_vocabulary()
+        );
     }
 }

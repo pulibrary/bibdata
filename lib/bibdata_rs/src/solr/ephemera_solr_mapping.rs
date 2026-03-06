@@ -44,10 +44,10 @@ impl From<&EphemeraFolder> for SolrDocument {
 mod tests {
 
     use crate::ephemera;
+    use crate::ephemera::ephemera_folder::Thumbnail;
     use crate::ephemera::ephemera_folder::country;
     use crate::ephemera::ephemera_folder::coverage::Coverage;
     use crate::ephemera::ephemera_folder::origin_place::OriginPlace;
-    use crate::ephemera::ephemera_folder::Thumbnail;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
     use crate::solr::ElectronicAccess;
@@ -183,8 +183,8 @@ mod tests {
     }
 
     #[test]
-    fn it_has_author_roles_1display_with_primary_author_and_secondary_author_from_the_ephemera_folder_item(
-    ) {
+    fn it_has_author_roles_1display_with_primary_author_and_secondary_author_from_the_ephemera_folder_item()
+     {
         let ephemera_item = EphemeraFolder::builder()
             .id("abc123".to_owned())
             .title(vec!["Our favorite book".to_owned()])
@@ -296,11 +296,13 @@ mod tests {
             }])
             .build()
             .unwrap();
-        assert!(ephemera_item.subject.unwrap()[0]
-            .exact_match
-            .as_ref()
-            .map(|em| em.accepted_loc_vocabulary())
-            .unwrap_or(false));
+        assert!(
+            ephemera_item.subject.unwrap()[0]
+                .exact_match
+                .as_ref()
+                .map(|em| em.accepted_loc_vocabulary())
+                .unwrap_or(false)
+        );
     }
     #[test]
     fn it_includes_subject_terms_in_lc_subject_display_and_lc_subject_facet_field() {
@@ -426,8 +428,8 @@ mod tests {
         );
     }
     #[test]
-    fn it_combines_origin_place_and_publisher_and_date_created_into_pub_citation_display_and_pub_created_display(
-    ) {
+    fn it_combines_origin_place_and_publisher_and_date_created_into_pub_citation_display_and_pub_created_display()
+     {
         let item = EphemeraFolder::builder()
             .id("12345".to_string())
             .title(vec!["Bohemian Rhapsody".to_string()])

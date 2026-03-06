@@ -4,9 +4,8 @@ use super::{
         system_control_number::is_princeton_finding_aid,
     },
     fixed_field::{
-        is_monograph,
-        physical_description::{categories_of_material, CategoryOfMaterial},
-        TypeOfRecord,
+        TypeOfRecord, is_monograph,
+        physical_description::{CategoryOfMaterial, categories_of_material},
     },
 };
 use crate::{marc::fixed_field::BibliographicLevel, solr};

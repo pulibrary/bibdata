@@ -1,5 +1,5 @@
 use bibdata_rs::languages;
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{Criterion, criterion_group, criterion_main};
 
 fn macrolanguage_codes(c: &mut Criterion) {
     let mut group = c.benchmark_group("macrolanguage_codes");

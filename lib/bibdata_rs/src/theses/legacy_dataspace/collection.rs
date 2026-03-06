@@ -12,7 +12,7 @@ use crate::theses::{
     legacy_dataspace::{community, document::DataspaceDocument},
     temp_legacy_theses_cache_path,
 };
-use anyhow::{anyhow, Result};
+use anyhow::{Result, anyhow};
 use log::debug;
 use magnus::Ruby;
 use rayon::prelude::*;
@@ -164,13 +164,15 @@ mod tests {
 
     #[test]
     fn it_creates_a_collection_url() {
-        assert_eq!(collection_url(
-            "https://dataspace-dev.princeton.edu/rest",
-            "402",
-            "100",
-            "1000"
-        ),
-    "https://dataspace-dev.princeton.edu/rest/collections/402/items?limit=100&offset=1000&expand=metadata")
+        assert_eq!(
+            collection_url(
+                "https://dataspace-dev.princeton.edu/rest",
+                "402",
+                "100",
+                "1000"
+            ),
+            "https://dataspace-dev.princeton.edu/rest/collections/402/items?limit=100&offset=1000&expand=metadata"
+        )
     }
 
     #[test]

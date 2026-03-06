@@ -1,12 +1,12 @@
 use crate::marc::{
-    control_field::system_control_number::{system_control_numbers, SystemControlNumber},
+    control_field::system_control_number::{SystemControlNumber, system_control_numbers},
     string_normalize::strip_non_numeric,
 };
 use marctk::Record;
 use regex::Regex;
 use std::sync::LazyLock;
 
-pub fn normalized_oclc_numbers(record: &Record) -> impl Iterator<Item = String> {
+pub fn normalized_oclc_numbers(record: &Record) -> impl Iterator<Item = String> + use<> {
     system_control_numbers(record)
         .into_iter()
         .filter_map(|number| match number {

@@ -1,4 +1,4 @@
-use crate::languages::{iso_639_2b::from_iso_639b_code, Language};
+use crate::languages::{Language, iso_639_2b::from_iso_639b_code};
 use marctk::Record;
 
 pub fn original_languages_of_translation(record: &Record) -> Vec<Language> {

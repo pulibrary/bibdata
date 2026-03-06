@@ -59,12 +59,18 @@ pub fn original_languages_of_translation(
         .collect())
 }
 
-pub fn access_notes(ruby: &Ruby, record_string: String) -> Result<Option<Vec<String>>, magnus::Error> {
+pub fn access_notes(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Option<Vec<String>>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(note::access_notes(&record))
 }
 
-pub fn recap_partner_notes(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+pub fn recap_partner_notes(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(scsb::recap_partner::recap_partner_notes(&record))
 }
@@ -76,7 +82,10 @@ pub fn is_scsb(ruby: &Ruby, record_string: String) -> Result<bool, magnus::Error
 
 // Build the permanent location code from 852$b and 852$c
 // Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
-pub fn permanent_location_code(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
+pub fn permanent_location_code(
+    ruby: &Ruby,
+    field_string: String,
+) -> Result<Option<String>, magnus::Error> {
     let field = field_852(ruby, &field_string)?;
     Ok(match field.first_subfield("8") {
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
@@ -108,7 +117,10 @@ fn field_852(ruby: &Ruby, field_string: &String) -> Result<marctk::Field, magnus
     Ok(field_852.clone())
 }
 
-pub fn current_location_code(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
+pub fn current_location_code(
+    ruby: &Ruby,
+    field_string: String,
+) -> Result<Option<String>, magnus::Error> {
     let record = get_record(ruby, &field_string)?;
     let field_876 = record.get_fields("876").into_iter().next();
     Ok(field_876.and_then(
@@ -118,7 +130,10 @@ pub fn current_location_code(ruby: &Ruby, field_string: String) -> Result<Option
         },
     ))
 }
-pub fn build_call_number(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
+pub fn build_call_number(
+    ruby: &Ruby,
+    field_string: String,
+) -> Result<Option<String>, magnus::Error> {
     // call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
     let record = get_record(ruby, &field_string)?;
     let field_852 = record.get_fields("852").into_iter().next();
@@ -142,7 +157,11 @@ pub fn format_facets(ruby: &Ruby, record_string: String) -> Result<Vec<String>, 
         .map(|facet| format!("{facet}"))
         .collect())
 }
-pub fn private_items(ruby: &Ruby, record_string: String, holding_id: String) -> Result<bool, magnus::Error> {
+pub fn private_items(
+    ruby: &Ruby,
+    record_string: String,
+    holding_id: String,
+) -> Result<bool, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     let fields_876 = record.get_fields("876");
     let mut items = fields_876.iter().filter(|field| {
@@ -172,12 +191,18 @@ pub fn is_oclc_number(string: String) -> bool {
     identifier::is_oclc_number(&string)
 }
 
-pub fn identifiers_of_all_versions(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+pub fn identifiers_of_all_versions(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(identifier::identifiers_of_all_versions(&record))
 }
 
-pub fn publication_statements(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+pub fn publication_statements(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(publication::publication_statements(&record).collect())
 }

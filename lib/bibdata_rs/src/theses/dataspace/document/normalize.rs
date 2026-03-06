@@ -164,13 +164,14 @@ impl DataspaceDocument {
                     Some(vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the '<a href=\"http://mudd.princeton.edu\">Mudd Manuscript Library</a>.".to_owned()])
                 } else {
                     match self.embargo() {
-                    Embargo::Current(text) => Some(vec![text]),
-                    Embargo::None => None,
-                    Embargo::Expired => None,
-                    Embargo::Invalid => Some(vec![
-                        format!("This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.", self.id.clone().unwrap_or_default())
-                    ]),
-                }
+                        Embargo::Current(text) => Some(vec![text]),
+                        Embargo::None => None,
+                        Embargo::Expired => None,
+                        Embargo::Invalid => Some(vec![format!(
+                            "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/{}\"> Mudd Manuscript Library</a>.",
+                            self.id.clone().unwrap_or_default()
+                        )]),
+                    }
                 }
             }
         }

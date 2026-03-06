@@ -188,7 +188,7 @@ mod tests {
             .with_contributor_advisor(vec!["Sandberg, Robert".into()])
             .with_contributor_author(vec!["Clark, Hillary".into()])
             .with_identifier_uri(vec![
-                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".into()
+                "http://arks.princeton.edu/ark:/88435/dsp01b2773v788".into(),
             ])
             .with_format_extent(vec!["102 pages".into()])
             .with_language_iso(vec!["en_US".into()])
@@ -420,7 +420,7 @@ mod tests {
 
         let document = DataspaceDocument::builder()
             .with_identifier_uri(vec![
-                "http://arks.princeton.edu/ark:/88435/dsp0141687h67f".into()
+                "http://arks.princeton.edu/ark:/88435/dsp0141687h67f".into(),
             ])
             .build();
         let solr = SolrDocument::from(&document);
@@ -469,7 +469,12 @@ mod tests {
                 .with_embargo_terms(vec!["invalid".into()])
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+            assert_eq!(
+                solr.restrictions_note_display.unwrap(),
+                vec![
+                    "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."
+                ]
+            );
         }
 
         #[test]
@@ -479,7 +484,12 @@ mod tests {
                 .with_rights_access_rights(vec!("Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.".into()))
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."]);
+            assert_eq!(
+                solr.restrictions_note_display.unwrap(),
+                vec![
+                    "Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."
+                ]
+            );
         }
     }
 
@@ -828,7 +838,12 @@ mod legacy_tests {
                 .with_embargo_lift("invalid")
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+            assert_eq!(
+                solr.restrictions_note_display.unwrap(),
+                vec![
+                    "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."
+                ]
+            );
         }
 
         #[test]
@@ -838,7 +853,12 @@ mod legacy_tests {
                 .with_embargo_terms("invalid")
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."]);
+            assert_eq!(
+                solr.restrictions_note_display.unwrap(),
+                vec![
+                    "This content is currently under embargo. For more information contact the <a href=\"mailto:dspadmin@princeton.edu?subject=Regarding embargoed DataSpace Item 88435/test-id\"> Mudd Manuscript Library</a>."
+                ]
+            );
         }
 
         #[test]
@@ -848,7 +868,12 @@ mod legacy_tests {
                 .with_rights_access_rights("Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>.")
                 .build();
             let solr = SolrDocument::from(&document);
-            assert_eq!(solr.restrictions_note_display.unwrap(), vec!["Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."]);
+            assert_eq!(
+                solr.restrictions_note_display.unwrap(),
+                vec![
+                    "Walk-in Access. This thesis can only be viewed on computer terminals at the <a href=http://mudd.princeton.edu>Mudd Manuscript Library</a>."
+                ]
+            );
         }
     }
 

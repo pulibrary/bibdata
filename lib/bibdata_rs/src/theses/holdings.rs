@@ -1,7 +1,7 @@
 // This module is responsible for describing the holdings of a thesis
 
 use crate::{solr::ElectronicAccess, theses::embargo};
-use serde::{ser::SerializeStruct, Serialize};
+use serde::{Serialize, ser::SerializeStruct};
 
 use ThesisAvailability::*;
 
