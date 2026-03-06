@@ -1,7 +1,8 @@
 use serde::{Deserialize, Serialize};
 
 use super::{
-    ElectronicAccess, FormatFacet, LibraryFacet, SolrDocumentBuilder, access_facet::AccessFacet,
+    AuthorRoles, ElectronicAccess, FormatFacet, LibraryFacet, SolrDocumentBuilder,
+    access_facet::AccessFacet,
 };
 
 #[derive(Debug, Default, Deserialize, Serialize)]
@@ -22,7 +23,7 @@ pub struct SolrDocument {
     pub author_display: Option<Vec<String>>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub author_roles_1display: Option<String>,
+    pub author_roles_1display: Option<AuthorRoles>,
 
     #[serde(skip_serializing_if = "Option::is_none")]
     pub author_s: Option<Vec<String>>,

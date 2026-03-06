@@ -50,6 +50,7 @@ mod tests {
     use crate::ephemera::ephemera_folder::origin_place::OriginPlace;
     use crate::ephemera_folder::subject::ExactMatch;
     use crate::ephemera_folder::subject::Subject;
+    use crate::solr::AuthorRoles;
     use crate::solr::ElectronicAccess;
     use crate::{ephemera::ephemera_folder::format::Format, solr};
     use std::{fs::File, io::BufReader, str::FromStr};
@@ -195,7 +196,11 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.author_roles_1display,
-            Some(r#"{"secondary_authors":["Neptune"],"translators":[],"editors":[],"compilers":[],"primary_author":"Aspen"}"#.to_owned())
+            Some(AuthorRoles {
+                secondary_authors: vec!["Neptune".to_owned()],
+                primary_author: Some("Aspen".to_owned()),
+                ..Default::default()
+            })
         );
     }
 
@@ -226,7 +231,10 @@ mod tests {
         let solr_document = SolrDocument::from(&ephemera_item);
         assert_eq!(
             solr_document.author_roles_1display,
-            Some(r#"{"secondary_authors":["Tiberius"],"translators":[],"editors":[],"compilers":[],"primary_author":""}"#.to_owned())
+            Some(AuthorRoles {
+                secondary_authors: vec!["Tiberius".to_owned()],
+                ..Default::default()
+            })
         );
     }
 

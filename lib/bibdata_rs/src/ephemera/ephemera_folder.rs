@@ -1,8 +1,8 @@
 use crate::{
     ephemera::ephemera_folder::subject::log_subjects_without_exact_match,
-    solr::{self, AccessFacet},
+    solr::{self, AccessFacet, AuthorRoles},
 };
-use serde::{Deserializer, Serialize};
+use serde::Deserializer;
 
 use super::{
     born_digital_collection::ephemera_folders_iterator,
@@ -62,14 +62,6 @@ impl Thumbnail {
         self.thumbnail_url
             .replace("/full/!200,150/0/default.jpg", "/square/225,/0/default.jpg")
     }
-}
-#[derive(Debug, Serialize, PartialEq, Clone)]
-pub struct AuthorRoles {
-    pub secondary_authors: Vec<String>,
-    pub translators: Vec<String>,
-    pub editors: Vec<String>,
-    pub compilers: Vec<String>,
-    pub primary_author: String,
 }
 
 // VecSafe is a wrapper around Vec<T> that provides safe deserialization from JSON arrays
@@ -225,27 +217,14 @@ impl EphemeraFolder {
             None => vec![],
         }
     }
-    pub fn group_contributors(&self) -> Option<String> {
-        let primary_author = self
-            .creator
-            .as_ref()
-            .and_then(|v| v.first())
-            .cloned()
-            .unwrap_or_default();
-        let secondary_authors = self.contributor.clone().unwrap_or_default();
-        if primary_author.is_empty() && secondary_authors.is_empty() {
-            return None;
-        }
-
-        let roles = AuthorRoles {
-            secondary_authors,
+    pub fn group_contributors(&self) -> AuthorRoles {
+        AuthorRoles {
+            primary_author: self.creator.as_ref().and_then(|v| v.first()).cloned(),
+            secondary_authors: self.contributor.clone().unwrap_or_default(),
             translators: vec![],
             editors: vec![],
             compilers: vec![],
-            primary_author,
-        };
-
-        serde_json::to_string(&roles).ok()
+        }
     }
 
     pub fn all_contributors(&self) -> Vec<String> {
