@@ -1,6 +1,6 @@
 // This module is responsible for handling embargoed theses
 
-use chrono::prelude::*;
+use jiff::{Timestamp, Zoned};
 use parse_datetime::parse_datetime;
 
 #[derive(Debug, PartialEq)]
@@ -20,7 +20,7 @@ impl Embargo {
         match raw_embargo_date(lift_dates, terms_dates) {
             Some(date) => match parse_datetime(date) {
                 Ok(parsed) => {
-                    if parsed > Utc::now() {
+                    if parsed.timestamp() > Timestamp::now() {
                         Self::Current(embargo_text(lift_dates, terms_dates, doc_id))
                     } else {
                         Self::Expired
@@ -54,13 +54,13 @@ fn embargo_date(
     terms_dates: Option<&Vec<String>>,
 ) -> Option<String> {
     parsed_embargo_date(lift_dates, terms_dates)
-        .map(|date| format!("{}", date.format("%B %-d, %Y")))
+        .map(|date| date.strftime("%B %-d, %Y").to_string())
 }
 
 fn parsed_embargo_date(
     lift_dates: Option<&Vec<String>>,
     terms_dates: Option<&Vec<String>>,
-) -> Option<DateTime<FixedOffset>> {
+) -> Option<Zoned> {
     match raw_embargo_date(lift_dates, terms_dates) {
         Some(date) => parse_datetime(date).ok(),
         None => None,

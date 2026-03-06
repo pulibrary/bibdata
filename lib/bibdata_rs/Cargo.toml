@@ -17,8 +17,7 @@ reqwest = { version = "0.12.15", features = ["json", "blocking"] }
 tokio = { version = "1", features = ["full"] }
 itertools = "0.14.0"
 codes-iso-639 = "0.1.5"
-parse_datetime = "0.11.0"
-chrono = "0.4.44"
+parse_datetime = "0.13.0"
 env_logger = "0.11.8"
 log = "0.4.27"
 rayon = "1.10.0"
@@ -28,6 +27,7 @@ marctk = {version = "0.6.0", features = ["marc21_bibliographic"] }
 library_stdnums = "0.1.0"
 indexmap = "2"
 unicode-blocks = "0.1.9"
+jiff = "0.2.23"
 
 [dev-dependencies]
 criterion = "0.8.2"
