@@ -1,5 +1,5 @@
 use itertools::Itertools;
-use magnus::exception;
+use magnus::Ruby;
 use marctk::Record;
 
 pub mod call_number;
@@ -23,11 +23,12 @@ pub use ruby_bindings::register_ruby_methods;
 pub use string_normalize::trim_punctuation;
 
 pub fn holding_id(
+    ruby: &Ruby,
     field_string: String,
     full_record: String,
 ) -> Result<Option<String>, magnus::Error> {
-    let field = field_852(&field_string)?;
-    let record = get_record(&full_record)?;
+    let field = field_852(ruby, &field_string)?;
+    let record = get_record(ruby, &full_record)?;
     let subfield_code_8 = field.first_subfield("8");
     let subfield_code_0 = field.first_subfield("0");
     match (subfield_code_8, subfield_code_0) {
@@ -42,40 +43,41 @@ pub fn holding_id(
 pub fn alma_code_start_22(code: String) -> bool {
     code.starts_with("22") && code.ends_with("06421")
 }
-pub fn genres(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn genres(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(genre::genres(&record))
 }
 
 pub fn original_languages_of_translation(
+    ruby: &Ruby,
     record_string: String,
 ) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+    let record = get_record(ruby, &record_string)?;
     Ok(language::original_languages_of_translation(&record)
         .iter()
         .map(|language| language.english_name.to_owned())
         .collect())
 }
 
-pub fn access_notes(record_string: String) -> Result<Option<Vec<String>>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn access_notes(ruby: &Ruby, record_string: String) -> Result<Option<Vec<String>>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(note::access_notes(&record))
 }
 
-pub fn recap_partner_notes(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn recap_partner_notes(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(scsb::recap_partner::recap_partner_notes(&record))
 }
 
-pub fn is_scsb(record_string: String) -> Result<bool, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn is_scsb(ruby: &Ruby, record_string: String) -> Result<bool, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(scsb::is_scsb(&record))
 }
 
 // Build the permanent location code from 852$b and 852$c
 // Do not append the 852c if it is a SCSB - we save the SCSB locations as scsbnypl and scsbcul
-pub fn permanent_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
-    let field = field_852(&field_string)?;
+pub fn permanent_location_code(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
+    let field = field_852(ruby, &field_string)?;
     Ok(match field.first_subfield("8") {
         Some(alma_code) if alma_code_start_22(alma_code.content().to_string()) => {
             let b = field
@@ -94,20 +96,20 @@ pub fn permanent_location_code(field_string: String) -> Result<Option<String>, m
     })
 }
 
-fn field_852(field_string: &String) -> Result<marctk::Field, magnus::Error> {
-    let record = get_record(field_string)?;
+fn field_852(ruby: &Ruby, field_string: &String) -> Result<marctk::Field, magnus::Error> {
+    let record = get_record(ruby, field_string)?;
     let field_852 = record.get_fields("852").into_iter().next();
     let field_852 = field_852.ok_or_else(|| {
         magnus::Error::new(
-            exception::runtime_error(),
+            ruby.exception_runtime_error(),
             format!("No 852 field found in record {}", field_string),
         )
     })?;
     Ok(field_852.clone())
 }
 
-pub fn current_location_code(field_string: String) -> Result<Option<String>, magnus::Error> {
-    let record = get_record(&field_string)?;
+pub fn current_location_code(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
+    let record = get_record(ruby, &field_string)?;
     let field_876 = record.get_fields("876").into_iter().next();
     Ok(field_876.and_then(
         |field| match (field.first_subfield("y"), field.first_subfield("z")) {
@@ -116,9 +118,9 @@ pub fn current_location_code(field_string: String) -> Result<Option<String>, mag
         },
     ))
 }
-pub fn build_call_number(field_string: String) -> Result<Option<String>, magnus::Error> {
+pub fn build_call_number(ruby: &Ruby, field_string: String) -> Result<Option<String>, magnus::Error> {
     // call_number = [field_852['h'], field_852['i'], field_852['k'], field_852['j']].reject(&:blank?)
-    let record = get_record(&field_string)?;
+    let record = get_record(ruby, &field_string)?;
     let field_852 = record.get_fields("852").into_iter().next();
     let call_number = field_852.map(|field| {
         field
@@ -133,15 +135,15 @@ pub fn build_call_number(field_string: String) -> Result<Option<String>, magnus:
     Ok(call_number.filter(|s| !s.is_empty()))
 }
 
-pub fn format_facets(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn format_facets(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(record_facet_mapping::format_facets(&record)
         .iter()
         .map(|facet| format!("{facet}"))
         .collect())
 }
-pub fn private_items(record_string: String, holding_id: String) -> Result<bool, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn private_items(ruby: &Ruby, record_string: String, holding_id: String) -> Result<bool, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     let fields_876 = record.get_fields("876");
     let mut items = fields_876.iter().filter(|field| {
         field.first_subfield("0").map(|subfield| subfield.content()) == Some(&holding_id)
@@ -152,13 +154,13 @@ pub fn private_items(record_string: String, holding_id: String) -> Result<bool, 
     }))
 }
 
-pub fn notes_cjk(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn notes_cjk(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(cjk::notes_cjk(&record).collect())
 }
 
-pub fn subjects_cjk(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn subjects_cjk(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(cjk::subjects_cjk(&record).collect())
 }
 
@@ -170,13 +172,13 @@ pub fn is_oclc_number(string: String) -> bool {
     identifier::is_oclc_number(&string)
 }
 
-pub fn identifiers_of_all_versions(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn identifiers_of_all_versions(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(identifier::identifiers_of_all_versions(&record))
 }
 
-pub fn publication_statements(record_string: String) -> Result<Vec<String>, magnus::Error> {
-    let record = get_record(&record_string)?;
+pub fn publication_statements(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
     Ok(publication::publication_statements(&record).collect())
 }
 
@@ -188,10 +190,10 @@ pub fn trim_punctuation_owned(string: String) -> String {
     trim_punctuation(&string)
 }
 
-fn get_record(breaker: &str) -> Result<Record, magnus::Error> {
+fn get_record(ruby: &Ruby, breaker: &str) -> Result<Record, magnus::Error> {
     Record::from_breaker(breaker).map_err(|err| {
         magnus::Error::new(
-            exception::runtime_error(),
+            ruby.exception_runtime_error(),
             format!("Found error {} while parsing breaker {}", err, breaker),
         )
     })

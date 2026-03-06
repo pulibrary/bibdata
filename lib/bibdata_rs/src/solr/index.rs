@@ -1,5 +1,6 @@
 pub use super::SolrDocument;
 use anyhow::Result;
+use magnus::Ruby;
 use reqwest::header::CONTENT_TYPE;
 
 pub fn index(solr_url: &str, documents: &[SolrDocument]) -> Result<()> {
@@ -13,16 +14,16 @@ pub fn index(solr_url: &str, documents: &[SolrDocument]) -> Result<()> {
     Ok(())
 }
 
-pub fn index_string(solr_url: String, documents: String) -> Result<(), magnus::Error> {
+pub fn index_string(ruby: &Ruby, solr_url: String, documents: String) -> Result<(), magnus::Error> {
     if documents.trim().is_empty() {
         return Err(magnus::Error::new(
-            magnus::exception::runtime_error(),
+            ruby.exception_runtime_error(),
             "No documents to index",
         ));
     }
     let document_vec: Vec<SolrDocument> = serde_json::from_str(&documents).map_err(|e| {
         magnus::Error::new(
-            magnus::exception::runtime_error(),
+            ruby.exception_runtime_error(),
             format!(
                 "Coulld not parse documents from JSON string: {:?}, {}",
                 e, documents

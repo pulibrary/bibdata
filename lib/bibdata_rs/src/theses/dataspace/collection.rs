@@ -14,7 +14,7 @@ use crate::theses::{
 };
 use anyhow::{anyhow, Result};
 use log::debug;
-use magnus::exception;
+use magnus::Ruby;
 use rayon::prelude::*;
 use serde::Deserialize;
 
@@ -65,16 +65,17 @@ pub fn collection_url(server: &str, scope: &str, page_size: &str, page: &str) ->
     )
 }
 
-fn magnus_err_from_serde_err(value: &serde_json::Error) -> magnus::Error {
-    magnus::Error::new(exception::runtime_error(), value.to_string())
+fn magnus_err_from_serde_err(ruby: &Ruby, value: &serde_json::Error) -> magnus::Error {
+    magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
-fn magnus_err_from_anyhow_err(value: &anyhow::Error) -> magnus::Error {
-    magnus::Error::new(exception::runtime_error(), value.to_string())
+fn magnus_err_from_anyhow_err(ruby: &Ruby, value: &anyhow::Error) -> magnus::Error {
+    magnus::Error::new(ruby.exception_runtime_error(), value.to_string())
 }
 
 // The main function for thesis caching, to be called from Ruby
 pub fn collections_as_solr(
+    ruby: &Ruby,
     server: String,
     community_handle: String,
     rest_limit: u32,
@@ -84,9 +85,9 @@ pub fn collections_as_solr(
         get_document_list(&server, &community_handle, rest_limit, |server, handle| {
             community::get_collection_list(server, handle, community::get_community_id)
         })
-        .map_err(|e| magnus_err_from_anyhow_err(&e))?;
+        .map_err(|e| magnus_err_from_anyhow_err(ruby, &e))?;
     let file = File::create(temp_theses_cache_path())
-        .map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
+        .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
     let mut writer = BufWriter::new(file);
     serde_json::to_writer_pretty(
         &mut writer,
@@ -95,10 +96,10 @@ pub fn collections_as_solr(
             .map(SolrDocument::from)
             .collect::<Vec<SolrDocument>>(),
     )
-    .map_err(|e| magnus_err_from_serde_err(&e))?;
+    .map_err(|e| magnus_err_from_serde_err(ruby, &e))?;
     writer
         .flush()
-        .map_err(|value| magnus_err_from_anyhow_err(&anyhow!(value)))?;
+        .map_err(|value| magnus_err_from_anyhow_err(ruby, &anyhow!(value)))?;
     Ok(())
 }
 
@@ -311,8 +312,9 @@ mod tests {
             .mock("GET", "/core/communities/")
             .with_status(500)
             .create();
+        let ruby = unsafe { Ruby::get_unchecked() };
 
-        assert!(collections_as_solr(server.url(), "88435/dsp019c67wm88m".to_owned(), 100).is_err());
+        assert!(collections_as_solr(&ruby, server.url(), "88435/dsp019c67wm88m".to_owned(), 100).is_err());
         mock_bad_response.assert();
     }
 }

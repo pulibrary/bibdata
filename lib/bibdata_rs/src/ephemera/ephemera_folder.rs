@@ -369,15 +369,15 @@ pub struct ItemResponse {
     pub data: Vec<EphemeraFolder>,
 }
 
-pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
+pub fn json_ephemera_document(ruby: &magnus::Ruby, url: String) -> Result<String, magnus::Error> {
     #[cfg(not(test))]
     let _ = env_logger::try_init();
     let rt = tokio::runtime::Runtime::new()
-        .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+        .map_err(|e| magnus::Error::new(ruby.exception_runtime_error(), e.to_string()))?;
     rt.block_on(async {
         let folder_results = ephemera_folders_iterator(&url, 1_000)
             .await
-            .map_err(|e| magnus::Error::new(magnus::exception::runtime_error(), e.to_string()))?;
+            .map_err(|e| magnus::Error::new(ruby.exception_runtime_error(), e.to_string()))?;
 
         for folder_json in &folder_results {
             if let Ok(folder) = serde_json::from_str::<EphemeraFolder>(folder_json) {
@@ -395,6 +395,8 @@ pub fn json_ephemera_document(url: String) -> Result<String, magnus::Error> {
 
 #[cfg(test)]
 mod tests {
+    use magnus::Ruby;
+
     use crate::{
         ephemera::{ephemera_folder::country::ExactMatch, CatalogClient},
         solr,
@@ -474,7 +476,8 @@ mod tests {
                 .expect(12)
                 .create();
 
-            let result = json_ephemera_document(server.url().to_string()).unwrap();
+            let ruby = unsafe { Ruby::get_unchecked() };
+            let result = json_ephemera_document(&ruby, server.url().to_string()).unwrap();
 
             let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
             assert!(parsed.is_array());
@@ -516,7 +519,8 @@ mod tests {
                 .expect(12)
                 .create();
 
-            let result = json_ephemera_document(server.url().to_string()).unwrap();
+            let ruby = unsafe { Ruby::get_unchecked() };
+            let result = json_ephemera_document(&ruby, server.url().to_string()).unwrap();
             let parsed: serde_json::Value = serde_json::from_str(&result).unwrap();
             assert!(parsed.is_array());
             folder_mock.assert();
