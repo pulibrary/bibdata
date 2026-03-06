@@ -309,7 +309,8 @@ GEM
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
     httpclient (2.8.3)
-    human_languages (0.9.1)
+    human_languages (0.10.1)
+      csv (~> 3.0)
     i18n (1.14.8)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -742,7 +743,7 @@ DEPENDENCIES
   health-monitor-rails (= 12.9.0)
   high_voltage (~> 3.0)
   honeybadger
-  human_languages (~> 0.7)
+  human_languages (~> 0.10)
   jbuilder
   jquery-rails
   jquery-tablesorter (~> 1.21)
