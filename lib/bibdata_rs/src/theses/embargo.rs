@@ -53,8 +53,7 @@ fn embargo_date(
     lift_dates: Option<&Vec<String>>,
     terms_dates: Option<&Vec<String>>,
 ) -> Option<String> {
-    parsed_embargo_date(lift_dates, terms_dates)
-        .map(|date| date.strftime("%B %-d, %Y").to_string())
+    parsed_embargo_date(lift_dates, terms_dates).map(|date| date.strftime("%B %-d, %Y").to_string())
 }
 
 fn parsed_embargo_date(

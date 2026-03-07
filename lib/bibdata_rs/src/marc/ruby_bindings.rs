@@ -1,3 +1,5 @@
+use crate::solr::AuthorRoles;
+
 use super::*;
 use magnus::{Module, Object, RModule, function};
 
@@ -9,6 +11,8 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc.define_singleton_method("access_notes", function!(access_notes, 1))?;
     submodule_marc
         .define_singleton_method("alma_code_start_22?", function!(alma_code_start_22, 1))?;
+    submodule_marc
+        .define_singleton_method("author_roles", function!(author_roles_from_marc_breaker, 1))?;
     submodule_marc.define_singleton_method("build_call_number", function!(build_call_number, 1))?;
     submodule_marc.define_singleton_method(
         "call_number_labels_for_browse",
@@ -80,6 +84,19 @@ fn icpsr_subjects_from_marc_breaker(
 ) -> Result<Vec<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(subject::icpsr_subjects(&record))
+}
+
+fn author_roles_from_marc_breaker(
+    ruby: &Ruby,
+    record_string: String,
+) -> Result<String, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    serde_json::to_string(&AuthorRoles::from(&record)).map_err(|err| {
+        magnus::Error::new(
+            ruby.exception_runtime_error(),
+            format!("Found error {} while serializing author roles", err),
+        )
+    })
 }
 
 #[cfg(test)]
