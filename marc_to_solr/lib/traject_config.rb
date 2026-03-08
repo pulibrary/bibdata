@@ -59,6 +59,7 @@ end
 
 each_record do |record, context|
   context.clipboard[:marc_breaker] = MarcBreaker.break record
+  context.clipboard[:publication_data] = BibdataRs::Marc.publication_data(context.clipboard[:marc_breaker])
   context.clipboard[:is_scsb] = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
 end
 
@@ -290,14 +291,13 @@ to_field 'pub_created_vern_display', extract_marc('260abcefg:264abcefg3', altern
 #    260 XX abcefg
 #    264 XX abc
 to_field 'pub_created_display' do |_record, accumulator, context|
-  accumulator.replace(BibdataRs::Marc.publication_statements(context.clipboard[:marc_breaker]))
+  accumulator.replace(context.clipboard[:publication_data]['pub_created_display'])
 end
 
 to_field 'pub_created_s', extract_marc('260abcefg:264abcefg3')
 
-to_field 'pub_citation_display' do |record, accumulator|
-  pub_info = set_pub_citation(record)
-  accumulator.replace(pub_info)
+to_field 'pub_citation_display' do |_record, accumulator, context|
+  accumulator.replace(context.clipboard[:publication_data]['pub_citation_display'])
 end
 
 to_field 'publication_location_citation_display', extract_marc('260a:264|*1|a', trim_punctuation: true, first: true)

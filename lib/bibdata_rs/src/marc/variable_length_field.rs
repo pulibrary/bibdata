@@ -1,6 +1,13 @@
 use itertools::Itertools;
 use marctk::{Field, Subfield};
 
+pub fn latin_or_non_latin_tag_eq(tags: &[&str]) -> impl Fn(&Field) -> bool {
+    |field| {
+        tags.iter()
+            .any(|tag| *tag == field.tag() || multiscript_tag_eq(field, tag))
+    }
+}
+
 pub fn multiscript_tag_eq(field: &Field, tag: &str) -> bool {
     field.tag() == tag
         || (field.tag() == "880"
