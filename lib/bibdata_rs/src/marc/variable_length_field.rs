@@ -1,5 +1,24 @@
 use itertools::Itertools;
-use marctk::{Field, Subfield};
+use marctk::{Field, Record, Subfield};
+
+use crate::marc::extract_values::ExtractValues;
+
+pub fn extract_values_by_tag_including_non_latin<'a, T, E>(
+    record: &'a Record,
+    tags: &[&str],
+    extractor: E,
+) -> impl Iterator<Item = T>
+where
+    E: Fn(&'a Field) -> Option<T>,
+{
+    record.extract_field_values_by(
+        move |field| {
+            tags.iter()
+                .any(|tag| *tag == field.tag() || multiscript_tag_eq(field, tag))
+        },
+        extractor,
+    )
+}
 
 pub fn multiscript_tag_eq(field: &Field, tag: &str) -> bool {
     field.tag() == tag
