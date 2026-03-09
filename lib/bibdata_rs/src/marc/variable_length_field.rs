@@ -1,5 +1,23 @@
 use itertools::Itertools;
-use marctk::{Field, Subfield};
+use marctk::{Field, Record, Subfield};
+
+pub fn extract_field_values_by<'a, C, E, T>(
+    record: &'a Record,
+    criteria: C,
+    extractor: E,
+) -> impl Iterator<Item = T>
+where
+    C: 'a + Fn(&'a Field) -> bool,
+    E: 'a + Fn(&'a Field) -> Option<T>,
+{
+    record.fields().iter().filter_map(move |field| {
+        if criteria(field) {
+            extractor(field)
+        } else {
+            None
+        }
+    })
+}
 
 pub fn join_all_subfields(field: &Field) -> String {
     join_subfields(field.subfields().iter())
