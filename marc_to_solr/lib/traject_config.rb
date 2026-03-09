@@ -59,6 +59,7 @@ end
 
 each_record do |record, context|
   context.clipboard[:marc_breaker] = MarcBreaker.break record
+  context.clipboard[:is_scsb] = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
 end
 
 after_processing do
@@ -79,8 +80,7 @@ to_field 'id', extract_marc('001', first: true)
 
 # Store the full MARCXML record as compressed string (gzip + base64) for SCSB records only
 to_field 'marcxml' do |record, accumulator, context|
-  is_scsb = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
-  next unless is_scsb
+  next unless context.clipboard[:is_scsb]
 
   xml_string = record.to_xml.to_s
   accumulator << MarcxmlCompressor.compress(xml_string)
@@ -799,7 +799,7 @@ to_field 'publications_about_display', extract_marc('581az36')
 
 # Action note - formatted with link
 to_field 'action_notes_1display' do |record, accumulator, context|
-  notes = ActionNoteBuilder.build(record:, marc_breaker: context.clipboard[:marc_breaker])
+  notes = ActionNoteBuilder.build(record:, scsb_record: context.clipboard[:scsb_record])
   accumulator.replace(notes) if notes.present?
 end
 
@@ -1419,14 +1419,13 @@ each_record do |record, context|
   location_codes = MarcExtractor.cached('852').collect_matching_lines(record) do |field, _spec, _extractor|
     holding_b = nil
     is_alma = alma_code_start_22?(field['8'])
-    is_scsb = BibdataRs::Marc.is_scsb?(context.clipboard[:marc_breaker])
     field.subfields.each do |s_field|
       # Alma::skip any 852 fields that do not have subfield 8 with a value that begins with 22
       if s_field.code == 'b'
         # update the logged error. It doesn't look right as it is and we need to see in alma if we
         # still need to log multiple $b in 852.
         # logger.error "#{record['001']} - Multiple $b in single 852 holding" unless holding_b.nil?
-        holding_b ||= s_field.value if is_alma || is_scsb
+        holding_b ||= s_field.value if is_alma || context.clipboard[:is_scsb]
         holding_b += "$#{field['c']}" if field['c'] && is_alma
       end
     end
