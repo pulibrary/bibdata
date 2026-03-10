@@ -19,6 +19,14 @@ where
     })
 }
 
+pub fn multiscript_tag_eq(field: &Field, tag: &str) -> bool {
+    field.tag() == tag
+        || (field.tag() == "880"
+            && field
+                .first_subfield("6")
+                .is_some_and(|subfield| subfield.content().trim().starts_with(tag)))
+}
+
 pub fn join_all_subfields(field: &Field) -> String {
     join_subfields(field.subfields().iter())
 }

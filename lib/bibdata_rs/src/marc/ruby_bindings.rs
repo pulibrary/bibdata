@@ -57,6 +57,8 @@ pub fn register_ruby_methods(parent_module: &RModule) -> Result<(), magnus::Erro
     submodule_marc
         .define_singleton_method("recap_partner_notes", function!(recap_partner_notes, 1))?;
     submodule_marc.define_singleton_method("strip_non_numeric", function!(strip_non_numeric, 1))?;
+    submodule_marc
+        .define_singleton_method("siku_subjects_display", function!(siku_subjects_display, 1))?;
     submodule_marc.define_singleton_method("subjects_cjk", function!(subjects_cjk, 1))?;
     submodule_marc
         .define_module_function("trim_punctuation", function!(trim_punctuation_owned, 1))?;
@@ -103,6 +105,11 @@ fn author_roles_from_marc_breaker(
 fn cataloged_date(ruby: &Ruby, record_string: String) -> Result<Option<String>, magnus::Error> {
     let record = get_record(ruby, &record_string)?;
     Ok(date::cataloged_date(&record))
+}
+
+fn siku_subjects_display(ruby: &Ruby, record_string: String) -> Result<Vec<String>, magnus::Error> {
+    let record = get_record(ruby, &record_string)?;
+    Ok(subject::siku_subjects_display(&record).collect())
 }
 
 #[cfg(test)]
