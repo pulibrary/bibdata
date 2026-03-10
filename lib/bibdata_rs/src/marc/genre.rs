@@ -4,7 +4,6 @@ use super::{
 };
 use itertools::Itertools;
 use marctk::Record;
-use regex::{Regex, RegexBuilder};
 use std::sync::LazyLock;
 
 mod biographical_content;
@@ -89,40 +88,73 @@ fn is_likely_genre_term(term: &str) -> bool {
             .any(|starting_term| term.starts_with(starting_term))
 }
 
-const PRIMARY_SOURCE_GENRES: &[&str] = &[
-    "atlases",
-    "charters",
-    "correspondence",
-    "diaries",
-    "documents",
-    "interview",
-    "interviews",
-    "letters",
-    "manuscripts",
-    "maps",
-    "notebooks, sketchbooks, etc",
-    "oral history",
-    "pamphlets",
-    "personal narratives",
-    "photographs",
-    "pictorial works",
-    "sources",
-    "speeches",
-    "statistics",
-];
+// This struct is used to compare two terms and determine if one term
+// contains another.  For example, the term "Fox art--Exhibitions" contains
+// the term "Exhibitions"
+struct ComparableTerm(Vec<String>);
+impl ComparableTerm {
+    pub fn contains(&self, part: &Self) -> bool {
+        // Divide our term into windows of the same length as `part`.
+        // For example, if `self`` is `ComparableTerm::from("Fox art Pictorial works")`
+        // and `part` is ComparableTerm::from("Pictorial works"), windows will have
+        // size 2 (the same as the number of words in "Pictorial works"), and the three
+        // windows would be:
+        //   * Fox art
+        //   * art Pictorial
+        //   * Pictorial works -- which is a match!!
+        self.0.windows(part.len()).any(|window| window == part.0)
+    }
+
+    pub fn len(&self) -> usize {
+        self.0.len()
+    }
+}
+impl From<&str> for ComparableTerm {
+    // Normalize into a lower-case Vec<String> of words
+    fn from(value: &str) -> Self {
+        let non_word_character = |c: char| !c.is_alphanumeric();
+        Self(
+            value
+                .split(non_word_character)
+                .map(str::to_lowercase)
+                .collect(),
+        )
+    }
+}
+
+type CombinedTerm = ComparableTerm;
+type Subdivision = ComparableTerm;
+
+static PRIMARY_SOURCE_GENRES: LazyLock<[Subdivision; 19]> = LazyLock::new(|| {
+    [
+        "atlases",
+        "charters",
+        "correspondence",
+        "diaries",
+        "documents",
+        "interview",
+        "interviews",
+        "letters",
+        "manuscripts",
+        "maps",
+        "notebooks, sketchbooks, etc",
+        "oral history",
+        "pamphlets",
+        "personal narratives",
+        "photographs",
+        "pictorial works",
+        "sources",
+        "speeches",
+        "statistics",
+    ]
+    .map(Subdivision::from)
+});
 
 fn does_lcsh_genre_term_indicate_primary_source(value: &str) -> bool {
-    static CONTAINS_PRIMARY_SOURCE_TERM: LazyLock<Vec<Regex>> = LazyLock::new(|| {
-        PRIMARY_SOURCE_GENRES
-            .iter()
-            .map(|term| Regex::new(format!(r"(^|\W){}($|\W)", term).as_str()).unwrap())
-            .collect()
-    });
-    let lowercase = value.to_lowercase();
-    let normalized_genre = lowercase.trim().trim_end_matches('.');
-    CONTAINS_PRIMARY_SOURCE_TERM
+    let term = CombinedTerm::from(value);
+    PRIMARY_SOURCE_GENRES
         .iter()
-        .any(|r| r.is_match(normalized_genre))
+        .any(|genre_subdivision| term.contains(genre_subdivision))
 }
 
 fn genres_from_biographical_content(record: &Record) -> Vec<String> {
@@ -176,135 +208,138 @@ fn genres_from_subject_vocabularies(record: &Record) -> Vec<String> {
     })
 }
 
-const PRIMARY_SOURCE_LCGFT_GENRES: &[&str] = &[
-    "Primary sources",
-    "Call documents",
-    "Charters and articles of incorporation",
-    "Church covenants",
-    "Church orders",
-    "Codes (Jewish law)",
-    "Codices (Law)",
-    "Collective labor agreements",
-    "Commercial arbitration agreements",
-    "Concordats",
-    "Consilia",
-    "Constitutional amendments",
-    "Constitutions",
-    "Contracts",
-    "Cooperative agreements",
-    "Court decisions and opinions",
-    "Court rules",
-    "Coutumes",
-    "Customary laws",
-    "Custumals",
-    "Deeds",
-    "Executive orders",
-    "Fatwas",
-    "Indulgences (Canon law)",
-    "Intergovernmental agreements",
-    "Legal instruments",
-    "Legal memorandums",
-    "Legal petitions",
-    "Legislative materials",
-    "Messages (Official communications)",
-    "Monastic constitutions",
-    "Monastic rules",
-    "Official gazettes",
-    "Papal documents",
-    "Papal encyclicals",
-    "Patents",
-    "Privileges and immunities",
-    "Proclamations",
-    "Records (Documents)",
-    "Records and briefs",
-    "Registers (Lists)",
-    "Religious inventories",
-    "Remonstrances",
-    "Resolutions (Law)",
-    "Responsa (Jewish law)",
-    "Session laws",
-    "Statutes and codes",
-    "Travaux préparatoires (Treaties)",
-    "Treaties",
-    "Trial and arbitral proceedings",
-    "Wills",
-    "Writs",
-    "Year books (English law reports)",
-    "Autobiographical comics",
-    "Autobiographical drama",
-    "Autobiographical films",
-    "Autobiographical television programs",
-    "Autobiographies",
-    "Captivity narratives",
-    "Diaries",
-    "Personal narratives",
-    "Slave narratives",
-    "Census data",
-    "City directories",
-    "Data sets",
-    "Death registers",
-    "Demographic surveys",
-    "Judicial statistics",
-    "Medical statistics",
-    "Statistics",
-    "Vital statistics",
-    "Field recordings",
-    "Interviews",
-    "Radio interviews",
-    "Business correspondence",
-    "Chirographa (Personal correspondence)",
-    "Love letters",
-    "Pastoral letters and charges",
-    "Personal correspondence",
-    "Manuscripts",
-    "Atlases",
-    "Cartographic materials",
-    "Digital maps",
-    "Early maps",
-    "Geospatial data",
-    "Globes",
-    "Gores (Maps)",
-    "Manuscript maps",
-    "Mappae mundi",
-    "Maps",
-    "Military maps",
-    "Mine maps",
-    "Nautical charts",
-    "Outline maps",
-    "Physical maps",
-    "Quadrangle maps",
-    "Raster data",
-    "Road maps",
-    "Stick charts",
-    "Strip maps",
-    "Topographic maps",
-    "Topological maps",
-    "Upside-down maps",
-    "World atlases",
-    "World maps",
-    "Zoning maps",
-    "Field notes",
-    "Notebooks",
-    "Sketchbooks",
-    "Oral histories",
-    "Personal recordings",
-    "Ephemera",
-    "Tracts (Ephemera)",
-    "Aerial photographs",
-    "Aerial views",
-    "Baby books",
-    "Drawings",
-    "Negatives (Photographs)",
-    "Photographs",
-    "Pictures",
-    "Portraits",
-    "Selfies",
-    "Self-portraits",
-    "Visual works",
-    "Campaign speeches",
-    "Occasional speeches",
-    "Speeches",
-];
+static PRIMARY_SOURCE_LCGFT_GENRES: LazyLock<[Subdivision; 127]> = LazyLock::new(|| {
+    [
+        "Primary sources",
+        "Call documents",
+        "Charters and articles of incorporation",
+        "Church covenants",
+        "Church orders",
+        "Codes (Jewish law)",
+        "Codices (Law)",
+        "Collective labor agreements",
+        "Commercial arbitration agreements",
+        "Concordats",
+        "Consilia",
+        "Constitutional amendments",
+        "Constitutions",
+        "Contracts",
+        "Cooperative agreements",
+        "Court decisions and opinions",
+        "Court rules",
+        "Coutumes",
+        "Customary laws",
+        "Custumals",
+        "Deeds",
+        "Executive orders",
+        "Fatwas",
+        "Indulgences (Canon law)",
+        "Intergovernmental agreements",
+        "Legal instruments",
+        "Legal memorandums",
+        "Legal petitions",
+        "Legislative materials",
+        "Messages (Official communications)",
+        "Monastic constitutions",
+        "Monastic rules",
+        "Official gazettes",
+        "Papal documents",
+        "Papal encyclicals",
+        "Patents",
+        "Privileges and immunities",
+        "Proclamations",
+        "Records (Documents)",
+        "Records and briefs",
+        "Registers (Lists)",
+        "Religious inventories",
+        "Remonstrances",
+        "Resolutions (Law)",
+        "Responsa (Jewish law)",
+        "Session laws",
+        "Statutes and codes",
+        "Travaux préparatoires (Treaties)",
+        "Treaties",
+        "Trial and arbitral proceedings",
+        "Wills",
+        "Writs",
+        "Year books (English law reports)",
+        "Autobiographical comics",
+        "Autobiographical drama",
+        "Autobiographical films",
+        "Autobiographical television programs",
+        "Autobiographies",
+        "Captivity narratives",
+        "Diaries",
+        "Personal narratives",
+        "Slave narratives",
+        "Census data",
+        "City directories",
+        "Data sets",
+        "Death registers",
+        "Demographic surveys",
+        "Judicial statistics",
+        "Medical statistics",
+        "Statistics",
+        "Vital statistics",
+        "Field recordings",
+        "Interviews",
+        "Radio interviews",
+        "Business correspondence",
+        "Chirographa (Personal correspondence)",
+        "Love letters",
+        "Pastoral letters and charges",
+        "Personal correspondence",
+        "Manuscripts",
+        "Atlases",
+        "Cartographic materials",
+        "Digital maps",
+        "Early maps",
+        "Geospatial data",
+        "Globes",
+        "Gores (Maps)",
+        "Manuscript maps",
+        "Mappae mundi",
+        "Maps",
+        "Military maps",
+        "Mine maps",
+        "Nautical charts",
+        "Outline maps",
+        "Physical maps",
+        "Quadrangle maps",
+        "Raster data",
+        "Road maps",
+        "Stick charts",
+        "Strip maps",
+        "Topographic maps",
+        "Topological maps",
+        "Upside-down maps",
+        "World atlases",
+        "World maps",
+        "Zoning maps",
+        "Field notes",
+        "Notebooks",
+        "Sketchbooks",
+        "Oral histories",
+        "Personal recordings",
+        "Ephemera",
+        "Tracts (Ephemera)",
+        "Aerial photographs",
+        "Aerial views",
+        "Baby books",
+        "Drawings",
+        "Negatives (Photographs)",
+        "Photographs",
+        "Pictures",
+        "Portraits",
+        "Selfies",
+        "Self-portraits",
+        "Visual works",
+        "Campaign speeches",
+        "Occasional speeches",
+        "Speeches",
+    ]
+    .map(Subdivision::from)
+});
 
 fn genres_from_primary_source_lcgft_mapping(record: &Record) -> Vec<String> {
     if is_book(record) && is_literary_work(record) {
@@ -324,21 +359,10 @@ fn genres_from_primary_source_lcgft_mapping(record: &Record) -> Vec<String> {
 }
 
 fn does_lcgft_genre_term_indicate_primary_source(value: &str) -> bool {
-    static CONTAINS_LCGFT_PRIMARY_SOURCE_TERM: LazyLock<Vec<Regex>> = LazyLock::new(|| {
-        PRIMARY_SOURCE_LCGFT_GENRES
-            .iter()
-            .map(|term| {
-                RegexBuilder::new(format!(r"(^|\W){}($|\W)", term).as_str())
-                    .case_insensitive(true)
-                    .build()
-                    .unwrap()
-            })
-            .collect()
-    });
-    let normalized_genre = value.trim().trim_end_matches('.');
-    CONTAINS_LCGFT_PRIMARY_SOURCE_TERM
+    let term = CombinedTerm::from(value);
+    PRIMARY_SOURCE_LCGFT_GENRES
         .iter()
-        .any(|r| r.is_match(normalized_genre))
+        .any(|lcgft_genre| term.contains(lcgft_genre))
 }
 
 fn is_literary_work(record: &Record) -> bool {
