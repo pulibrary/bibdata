@@ -2,8 +2,7 @@ use itertools::Itertools;
 use marctk::{Field, Record, Subfield};
 
 use crate::marc::{
-    trim_punctuation,
-    variable_length_field::{extract_field_values_by, multiscript_tag_eq},
+    extract_values::ExtractValues, trim_punctuation, variable_length_field::multiscript_tag_eq,
 };
 
 const SEPARATOR: char = '—';
@@ -57,8 +56,7 @@ pub fn icpsr_subjects(record: &Record) -> Vec<String> {
 }
 
 pub fn siku_subjects_display(record: &Record) -> impl Iterator<Item = String> {
-    extract_field_values_by(
-        record,
+    record.extract_field_values_by(
         |field| {
             multiscript_tag_eq(field, "650")
                 && matches!(SubjectVocabulary::from(field), SubjectVocabulary::Siku)

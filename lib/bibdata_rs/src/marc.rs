@@ -8,6 +8,7 @@ pub mod cjk;
 pub mod contributors;
 pub mod control_field;
 pub mod date;
+pub mod extract_values;
 pub mod fixed_field;
 pub mod genre;
 pub mod identifier;

@@ -5,8 +5,8 @@ use parse_datetime::parse_datetime_at_date;
 
 use crate::marc::{
     alma::{AlmaElectronicPortfolio, AlmaHoldingId},
+    extract_values::ExtractValues,
     scsb::is_scsb,
-    variable_length_field::extract_field_values_by,
 };
 
 pub fn cataloged_date(record: &Record) -> Option<String> {
@@ -14,36 +14,36 @@ pub fn cataloged_date(record: &Record) -> Option<String> {
         return None;
     }
 
-    let item_edit_date = extract_field_values_by(
-        record,
-        |field| {
-            field.tag() == "876"
-                && field
-                    .first_subfield("0")
-                    .is_some_and(|subfield| AlmaHoldingId::from(subfield).is_valid())
-        },
-        |field| field.first_subfield("d").map(Subfield::content),
-    )
-    .sorted();
+    let item_edit_date = record
+        .extract_field_values_by(
+            |field| {
+                field.tag() == "876"
+                    && field
+                        .first_subfield("0")
+                        .is_some_and(|subfield| AlmaHoldingId::from(subfield).is_valid())
+            },
+            |field| field.first_subfield("d").map(Subfield::content),
+        )
+        .sorted();
 
-    let electronic_edit_date = extract_field_values_by(
-        record,
-        |field| {
-            matches!(
-                AlmaElectronicPortfolio::try_from(field),
-                Ok(AlmaElectronicPortfolio::Active)
-            )
-        },
-        |field| field.first_subfield("w").map(Subfield::content),
-    )
-    .sorted();
+    let electronic_edit_date = record
+        .extract_field_values_by(
+            |field| {
+                matches!(
+                    AlmaElectronicPortfolio::try_from(field),
+                    Ok(AlmaElectronicPortfolio::Active)
+                )
+            },
+            |field| field.first_subfield("w").map(Subfield::content),
+        )
+        .sorted();
 
-    let record_edit_date = extract_field_values_by(
-        record,
-        |field| field.tag() == "950",
-        |field| field.first_subfield("b").map(Subfield::content),
-    )
-    .sorted();
+    let record_edit_date = record
+        .extract_field_values_by(
+            |field| field.tag() == "950",
+            |field| field.first_subfield("b").map(Subfield::content),
+        )
+        .sorted();
 
     item_edit_date
         .chain(electronic_edit_date)
