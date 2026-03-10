@@ -846,9 +846,8 @@ to_field 'lc_subject_include_archaic_search_terms_index' do |record, accumulator
   accumulator.replace(combined_subjects)
 end
 
-to_field 'siku_subject_display' do |record, accumulator|
-  subjects = process_hierarchy(record, '650|*7|abcvxyz') { |field| siku_heading? field }
-  accumulator.replace(subjects)
+to_field 'siku_subject_display' do |_record, accumulator, context|
+  accumulator.replace(BibdataRs::Marc.siku_subjects_display(context.clipboard[:marc_breaker]))
 end
 
 # used for the Browse lists and hierarchical subject facet

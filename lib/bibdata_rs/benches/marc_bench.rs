@@ -1,5 +1,8 @@
 use bibdata_rs::{
-    marc::{call_number::call_number_labels_for_display, date::cataloged_date, genre::genres},
+    marc::{
+        call_number::call_number_labels_for_display, date::cataloged_date, genre::genres,
+        subject::siku_subjects_display,
+    },
     solr::AuthorRoles,
 };
 use criterion::{Criterion, criterion_group, criterion_main};
@@ -51,12 +54,27 @@ fn cataloged_date_benchmark(c: &mut Criterion) {
     });
 }
 
+fn siku_subjects_display_benchmark(c: &mut Criterion) {
+    let record = fixture_record("../../spec/fixtures/marc_to_solr/9918309193506421.mrx");
+    c.bench_function("siku_subjects_display", |b| {
+        b.iter(|| {
+            let mut subjects = siku_subjects_display(&record);
+            assert!(subjects.next().is_some());
+            assert!(subjects.next().is_some());
+            assert!(subjects.next().is_some());
+            assert!(subjects.next().is_some());
+            assert!(subjects.next().is_none());
+        })
+    });
+}
+
 criterion_group!(
     benches,
     author_role_benchmark,
     call_number_benchmark,
     cataloged_date_benchmark,
-    genre_facet_benchmark
+    genre_facet_benchmark,
+    siku_subjects_display_benchmark
 );
 criterion_main!(benches);
 

@@ -1,4 +1,4 @@
-use std::sync::LazyLock;
+use std::{borrow::Cow, sync::LazyLock};
 
 use regex::Regex;
 
@@ -15,17 +15,27 @@ pub fn trim_punctuation(string: &str) -> String {
     static TRAILING_PERIOD: LazyLock<Regex> =
         LazyLock::new(|| Regex::new(r"( *\w{3,}) *\.*\z").unwrap());
 
-    // single square bracket characters if they are the start and/or end
-    //   chars and there are no internal square brackets.
-    static SINGLE_SQUARE_BRACKET: LazyLock<Regex> =
-        LazyLock::new(|| Regex::new(r"\A\[?([^\[\]]+)\]?\z").unwrap());
-
     let no_trailing = TRAILING.replace(string, "");
     let no_trailing_period = TRAILING_PERIOD.replace(&no_trailing, "$1");
-    SINGLE_SQUARE_BRACKET
-        .replace(&no_trailing_period, "$1")
+    trim_starting_and_ending_brackets(&no_trailing_period)
         .trim()
         .to_owned()
+}
+
+fn trim_starting_and_ending_brackets(original: &str) -> Cow<'_, str> {
+    let trimmed = original
+        .strip_prefix('[')
+        .map(|start_trimmed| start_trimmed.strip_suffix(']').unwrap_or(start_trimmed))
+        .or(original.strip_suffix(']'));
+    match trimmed {
+        // Make sure the string does not contain any remaining [], since they might have
+        // been paired with the ones we just removed, in which case the trimmed string
+        // won't make sense and we should return the original.
+        Some(trimmed) if !trimmed.contains('[') && !trimmed.contains(']') => {
+            Cow::Owned(trimmed.to_owned())
+        }
+        _ => Cow::Borrowed(original),
+    }
 }
 
 pub fn strip_non_numeric(string: &str) -> String {
